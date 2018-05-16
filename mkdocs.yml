@@ -1,5 +1,5 @@
 site_name: kintone UI Component
-repo_url: https://github.dev.cybozu.co.jp/SC/kintone-ui-component/tree/mkdocs
+repo_url: https://github.com/kintone/kintone-ui-component
 
 theme:
   name: 'material'
