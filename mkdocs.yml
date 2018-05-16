@@ -1,0 +1,18 @@
+site_name: kintone UI Component
+repo_url: https://github.dev.cybozu.co.jp/SC/kintone-ui-component/tree/mkdocs
+
+theme:
+  name: 'material'
+  favicon: favicon.ico
+  palette:
+    primary: 'Light Blue'
+    accent: 'Light Blue'
+  logo:
+    icon: 'cloud'
+
+markdown_extensions:
+  - admonition
+extra_javascript:
+  - 'js/extra.js'
+extra_css:
+  - 'style/extra.css'
