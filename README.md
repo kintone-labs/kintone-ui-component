@@ -34,7 +34,7 @@ $ npm link ../kintone-ui-component
 ```
 
 ## Document
-[kintone UI Component](https://github.dev.cybozu.co.jp/pages/SC/kintone-ui-component/)
+[kintone UI Component](https://kintone.github.io/kintone-ui-component)
 
 ## How to build
 
