@@ -1,0 +1,57 @@
+.kuc-btn.normal,
+.kuc-btn.submit {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 16px;
+    white-space: nowrap;
+}
+.kuc-btn.normal:disabled,
+.kuc-btn.submit:disabled,
+.kuc-btn.normal:disabled:hover,
+.kuc-btn.submit:disabled:hover {
+    color: #bababa;
+    border: 1px solid #e3e7e8;
+    background-color: #dbdcdd;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.kuc-btn.normal {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 16px;
+    min-width: 163px;
+    height: 48px;
+    outline: none;
+    border: 1px solid #e3e7e8;
+    background-color: #f7f9fa;
+    box-shadow: 1px 1px 1px #fff inset;
+    color: #3498db;
+    text-align: center;
+    line-height: 48px;
+}
+.kuc-btn.normal:hover {
+    background-color: #c8d6dd;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.kuc-btn.submit {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 16px;
+    min-width: 163px;
+    height: 48px;
+    outline: none;
+    border: 1px solid #e3e7e8;
+    background-color: #3498db;
+    box-shadow: 1px 1px 1px #8ccbee inset;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+}
+.kuc-btn.submit:hover {
+    background-color: #1d6fa5;
+    cursor: pointer;
+}
