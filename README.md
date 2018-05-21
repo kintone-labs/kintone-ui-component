@@ -46,7 +46,7 @@ $ npm link ../kintone-ui-component
 
 ### For javaScript
 ```
-$ git clone git@github.dev.cybozu.co.jp:SC/kintone-ui-component.git
+$ git clone https://github.com/kintone/kintone-ui-component.git
 $ cd kintone-ui-component
 $ npm install
 $ npm run build
@@ -59,7 +59,7 @@ $ npm run build
 
 ### For React
 ```
-$ git clone git@github.dev.cybozu.co.jp:SC/kintone-ui-component.git
+$ git clone https://github.com/kintone/kintone-ui-component.git
 $ cd kintone-ui-component
 $ npm install
 $ npm run compile
