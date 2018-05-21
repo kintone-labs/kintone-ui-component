@@ -28,7 +28,7 @@ $ npm install kintone-ui-components --dev
 ```
 * If you don't want to install kintone-ui-component from npm, you can follow below steps to install it.
 ```
-$ git clone github.dev.cybozu.co.jp:SC/kintone-ui-component.git
+$ git clone https://github.com/kintone/kintone-ui-component.git
 $ cd my-customization
 $ npm link ../kintone-ui-component
 ```
