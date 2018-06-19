@@ -22,7 +22,7 @@
         }, 
         {
             "location": "/Getting-Started/QuickStart-Javascript/", 
-            "text": "QuickStart Javascript\n\n\nCreate a customization\n\n\n\n\nAttach 2 below files from './dist' folder in \nkintoneUIComponent\n into kintone app\n\n\n\n\n ./dist/kintone-ui-component.min.js\n ./dist/kintone-ui-component.min.css\n\n\n\n\n\n\nCreate index.js file\n\n\n\n\n(function () {\n    kintone.events.on(\napp.record.detail.show\n, function (ev) {\n      var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();\n      var button = new kintoneUIComponent.Button({ text: 'Submit' });\n      kintoneSpaceElement.appendChild(button.render());\n      button.on('click', function(){\n        alert('This is my customization');\n      })\n    });\n  });\n\n\n\n\n\n\nAttach index.js file into \nkintone app setting", 
+            "text": "QuickStart Javascript\n\n\nCreate a customization\n\n\n\n\nAttach 2 below files from './dist' folder in \nkintone-ui-component\n into kintone app\n\n\n\n\n ./dist/kintone-ui-component.min.js\n ./dist/kintone-ui-component.min.css\n\n\n\n\n\n\nCreate index.js file\n\n\n\n\n(function () {\n    kintone.events.on(\napp.record.detail.show\n, function (ev) {\n      var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();\n      var button = new kintoneUIComponent.Button({ text: 'Submit' });\n      kintoneSpaceElement.appendChild(button.render());\n      button.on('click', function(){\n        alert('This is my customization');\n      })\n    });\n  });\n\n\n\n\n\n\nAttach index.js file into \nkintone app setting", 
             "title": "QuickStart Javascript"
         }, 
         {
@@ -32,7 +32,7 @@
         }, 
         {
             "location": "/Getting-Started/QuickStart-Javascript/#create-a-customization", 
-            "text": "Attach 2 below files from './dist' folder in  kintoneUIComponent  into kintone app    ./dist/kintone-ui-component.min.js\n ./dist/kintone-ui-component.min.css   Create index.js file   (function () {\n    kintone.events.on( app.record.detail.show , function (ev) {\n      var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();\n      var button = new kintoneUIComponent.Button({ text: 'Submit' });\n      kintoneSpaceElement.appendChild(button.render());\n      button.on('click', function(){\n        alert('This is my customization');\n      })\n    });\n  });   Attach index.js file into  kintone app setting", 
+            "text": "Attach 2 below files from './dist' folder in  kintone-ui-component  into kintone app    ./dist/kintone-ui-component.min.js\n ./dist/kintone-ui-component.min.css   Create index.js file   (function () {\n    kintone.events.on( app.record.detail.show , function (ev) {\n      var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();\n      var button = new kintoneUIComponent.Button({ text: 'Submit' });\n      kintoneSpaceElement.appendChild(button.render());\n      button.on('click', function(){\n        alert('This is my customization');\n      })\n    });\n  });   Attach index.js file into  kintone app setting", 
             "title": "Create a customization"
         }, 
         {
