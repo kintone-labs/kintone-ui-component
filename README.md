@@ -1,8 +1,5 @@
 # kintone UI Component
 
-## Version
-0.1.1
-
 ## Usage
 
 ### For javascript
