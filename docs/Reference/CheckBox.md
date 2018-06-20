@@ -5,9 +5,9 @@
 
 |Number|	Description|
 | --- | --- |
-|1|	Icon when the item is selected|
+|1|	Icon when the item is selected|	
 |2|	Label of an item|
-|3|Not selected item|
+|3|Not selected item|	
 |4|Disabled item|
 
 ## Constructor
@@ -53,7 +53,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-
+ 
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -125,7 +125,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-
+ 
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -201,7 +201,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
       const item = {
         label: 'Lemon',
@@ -292,7 +292,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
         console.log(this.state.items[0])
     }
@@ -366,7 +366,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -464,7 +464,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -559,7 +559,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
        console.log(this.state.value);
     }
@@ -650,7 +650,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
         this.setState({
             value: this.state.value.concat(['Lemon'])
@@ -741,10 +741,10 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
-
+ 
         items[0].isDisabled = true;
         this.setState({ items: items });
     }
@@ -830,10 +830,10 @@ export default class Plugin extends React.Component {
           <button onClick={this.handleClick}>Click</button>
         </div>
       }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
-
+ 
         items[1].isDisabled = false;
         this.setState({ items: items });
     }
@@ -1160,7 +1160,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <CheckBox isDisabled={true} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
@@ -1241,7 +1241,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <CheckBox isDisabled={false} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
