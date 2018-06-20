@@ -5,9 +5,9 @@
 
 |Number|	Description|
 | --- | --- |
-|1|	Main area|	
+|1|	Main area|
 |2|	Content area|
-|3|Selected item|	
+|3|Selected item|
 |4|Not selected item|
 |5|Disabled item|
 
@@ -34,7 +34,7 @@
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+
 export default class Plugin extends React.Component {
     render() {
         var items = [
@@ -55,7 +55,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-    
+
         return (
             <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -101,7 +101,7 @@ Dom element
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+
 export default class Plugin extends React.Component {
     render() {
         var items = [
@@ -122,7 +122,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-    
+
         return (
             <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -146,9 +146,9 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 ```
 </details>
@@ -178,7 +178,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -187,7 +187,7 @@ export default class Plugin extends React.Component {
             value: undefined
         }
     }
-   
+
     render() {
         return (
          <div>
@@ -196,7 +196,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick= () => {
       const item = {
         label: 'Lemon',
@@ -227,10 +227,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```
 </details>
@@ -257,7 +257,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -265,7 +265,7 @@ export default class Plugin extends React.Component {
             items: []
         }
     }
-   
+
     render() {
         return (
          <div>
@@ -274,7 +274,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick= () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -303,10 +303,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.removeItem(0);
 console.log(firstItem);
 ```
@@ -339,7 +339,7 @@ The list contains all items of dropdown.
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -362,7 +362,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-   
+
     render() {
         return (
          <div>
@@ -371,7 +371,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -397,10 +397,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 var list = dropdown.getItems();
 list.forEach(function(item) {
     console.log(item);
@@ -430,7 +430,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -456,7 +456,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
     render() {
         return (
          <div>
@@ -465,7 +465,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick = () => {
         console.log(this.state.value);
     }
@@ -489,10 +489,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 var selectedItem = dropdown.getValue();
 console.log(selectedItem);
 ```
@@ -520,7 +520,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -546,7 +546,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
     render() {
         return (
          <div>
@@ -555,7 +555,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick = () => {
         this.setState({value: 'Orange'});
     }
@@ -579,10 +579,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.setValue('Orange');
 ```
 </details>
@@ -609,7 +609,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -635,7 +635,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
          <div>
@@ -644,11 +644,11 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
- 
+
     handleClick = () => {
         const items = [...this.state.items];
         items[0].isDisabled = true;
- 
+
         this.setState({ items: items });
     }
 }
@@ -671,10 +671,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.disableItem('Orange');
 ```
 </details>
@@ -701,7 +701,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -727,7 +727,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
          <div>
@@ -736,11 +736,11 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
- 
+
     handleClick = () => {
         const items = [...this.state.items];
         items[1].isDisabled = false;
- 
+
         this.setState({ items: items });
     }
 }
@@ -763,10 +763,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.enableItem('Banana');
 ```
 </details>
@@ -794,7 +794,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -820,7 +820,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />
@@ -851,10 +851,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.on('change', function(value) {
     console.log('on change');
 });
@@ -881,7 +881,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -907,7 +907,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
@@ -937,10 +937,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.show();
 ```
 </details>
@@ -965,7 +965,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -991,12 +991,12 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
         );
-        
+
     }
 
     handleChange = (value) => {
@@ -1022,10 +1022,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.hide();
 ```
 </details>
@@ -1050,7 +1050,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1076,11 +1076,11 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={true} />
-        ); 
+        );
     }
     handleChange = (value) => {
          this.setState({value});
@@ -1105,10 +1105,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.disable();
 ```
 </details>
@@ -1131,7 +1131,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1157,12 +1157,12 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={false} />
         );
-        
+
     }
 
     handleChange = (value) => {
@@ -1188,10 +1188,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render();
-    
+
 dropdown.enable();
 ```
 </details>

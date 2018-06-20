@@ -16,7 +16,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -28,7 +28,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 ```
 </details>
 
@@ -51,7 +51,7 @@ Dom element
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -62,7 +62,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
@@ -86,7 +86,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -98,7 +98,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 spinner.show();
@@ -123,7 +123,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     render() {
         return (

@@ -5,9 +5,9 @@
 
 |Number|	Description|
 | --- | --- |
-|1|	Icon when the item is selected|	
+|1|	Icon when the item is selected|
 |2|	Label of an item|
-|3|Not selected item|	
+|3|Not selected item|
 |4|Disabled item|
 
 ## Constructor
@@ -53,7 +53,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
- 
+
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -125,7 +125,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
- 
+
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -154,7 +154,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 ```
 </details>
@@ -199,7 +201,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
       const item = {
         label: 'Lemon',
@@ -234,7 +236,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.addItem({
     label: 'Grape',
@@ -288,7 +292,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
         console.log(this.state.items[0])
     }
@@ -316,7 +320,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var firstItem = checkbox.getItem(0);
 console.log(firstItem);
@@ -360,7 +366,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -393,7 +399,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.removeItem(0);
 ```
@@ -456,7 +464,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -464,7 +472,7 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript** 
+**Javascript**
 ```javascript
 var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
@@ -486,7 +494,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var items = checkbox.getItems();
 items.forEach(function(item) {
@@ -549,7 +559,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
        console.log(this.state.value);
     }
@@ -577,7 +587,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var value = checkbox.getValue();
 value.forEach(function(item) {
@@ -638,7 +650,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
         this.setState({
             value: this.state.value.concat(['Lemon'])
@@ -668,7 +680,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.setValue(['Lemon']);
 ```
@@ -727,10 +741,10 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
- 
+
     handleClick = () => {
         const items = [...this.state.items];
- 
+
         items[0].isDisabled = true;
         this.setState({ items: items });
     }
@@ -758,7 +772,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disableItem('Orange');
 ```
@@ -814,10 +830,10 @@ export default class Plugin extends React.Component {
           <button onClick={this.handleClick}>Click</button>
         </div>
       }
- 
+
     handleClick = () => {
         const items = [...this.state.items];
- 
+
         items[1].isDisabled = false;
         this.setState({ items: items });
     }
@@ -845,7 +861,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enableItem('Banana');
 ```
@@ -932,7 +950,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.on('change', function(value) {
     console.log('on change');
@@ -1012,7 +1032,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.show();
 ```
@@ -1089,7 +1111,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.hide();
 ```
@@ -1136,7 +1160,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
- 
+
     render() {
         return (
             <CheckBox isDisabled={true} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
@@ -1167,7 +1191,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disable();
 ```
@@ -1215,7 +1241,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
- 
+
     render() {
         return (
             <CheckBox isDisabled={false} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
@@ -1246,7 +1272,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enable();
 ```
