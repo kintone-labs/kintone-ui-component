@@ -229,7 +229,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
     
 dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```
@@ -305,7 +305,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.removeItem(0);
 console.log(firstItem);
@@ -399,7 +399,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 var list = dropdown.getItems();
 list.forEach(function(item) {
@@ -491,7 +491,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 var selectedItem = dropdown.getValue();
 console.log(selectedItem);
@@ -581,7 +581,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.setValue('Orange');
 ```
@@ -673,7 +673,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.disableItem('Orange');
 ```
@@ -765,7 +765,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.enableItem('Banana');
 ```
@@ -853,7 +853,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render()));
 
 dropdown.on('change', function(value) {
     console.log('on change');
@@ -939,7 +939,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.show();
 ```
@@ -1024,7 +1024,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.hide();
 ```
@@ -1107,7 +1107,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.disable();
 ```
@@ -1190,7 +1190,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 dropdown.enable();
 ```
