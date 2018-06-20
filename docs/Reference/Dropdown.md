@@ -794,7 +794,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
- 
+  
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -820,7 +820,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
- 
+  
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />

@@ -201,7 +201,7 @@ export default class Plugin extends React.Component {
             value: undefined
         }
     }
-   
+  
     render() {
         return (
          <div>
@@ -210,7 +210,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
       const item = {
         label: 'Lemon',
@@ -286,7 +286,7 @@ export default class Plugin extends React.Component {
             }]
         }
     }
-   
+  
     render() {
         return (
          <div>
@@ -295,7 +295,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -395,7 +395,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -496,7 +496,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
         console.log(this.state.value);
     }
@@ -589,7 +589,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
         this.setState({value: 'Orange'});
     }
@@ -683,7 +683,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
         const items = [...this.state.items];
         items[0].isDisabled = true;
@@ -779,7 +779,7 @@ export default class Plugin extends React.Component {
          </div>
        );
     }
-   
+  
     handleClick = () => {
         const items = [...this.state.items];
         items[1].isDisabled = false;
