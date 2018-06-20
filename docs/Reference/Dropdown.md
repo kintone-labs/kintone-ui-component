@@ -178,7 +178,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -187,7 +187,7 @@ export default class Plugin extends React.Component {
             value: undefined
         }
     }
-    
+   
     render() {
         return (
          <div>
@@ -196,7 +196,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-    
+   
     handleClick= () => {
       const item = {
         label: 'Lemon',
@@ -257,7 +257,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -265,7 +265,7 @@ export default class Plugin extends React.Component {
             items: []
         }
     }
-    
+   
     render() {
         return (
          <div>
@@ -274,7 +274,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-    
+   
     handleClick= () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -339,7 +339,7 @@ The list contains all items of dropdown.
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -362,7 +362,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-    
+   
     render() {
         return (
          <div>
@@ -371,7 +371,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-    
+   
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -430,7 +430,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -465,7 +465,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-    
+   
     handleClick = () => {
         console.log(this.state.value);
     }
@@ -520,7 +520,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -546,7 +546,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
     render() {
         return (
          <div>
@@ -555,7 +555,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-    
+   
     handleClick = () => {
         this.setState({value: 'Orange'});
     }
@@ -609,7 +609,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -635,7 +635,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
    render() {
         return (
          <div>
@@ -701,7 +701,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -727,7 +727,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
    render() {
         return (
          <div>
@@ -794,7 +794,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -820,7 +820,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+ 
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />
@@ -881,7 +881,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -907,7 +907,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
@@ -965,7 +965,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -991,7 +991,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
@@ -1131,7 +1131,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-    
+   
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1157,7 +1157,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-    
+   
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={false} />

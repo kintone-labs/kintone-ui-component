@@ -22,7 +22,7 @@
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -61,7 +61,7 @@ Dom element
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -98,7 +98,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -107,7 +107,7 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript**
+**Javascript**	
 ```
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
@@ -137,7 +137,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -147,7 +147,7 @@ export default class Plugin extends React.Component {
 }
 ```
 **Javascript**
-```
+```	
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -176,7 +176,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -220,7 +220,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -257,7 +257,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -294,7 +294,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -331,7 +331,7 @@ None
 ```
 import { Label } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     render() {
         return (

@@ -16,7 +16,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-
+   
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -51,7 +51,7 @@ Dom element
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-
+   
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -86,7 +86,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-
+   
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -123,7 +123,7 @@ None
 ```
 import { Spinner } from 'kintone-ui-component';
 import React from 'react';
-
+   
 export default class Plugin extends React.Component {
     render() {
         return (

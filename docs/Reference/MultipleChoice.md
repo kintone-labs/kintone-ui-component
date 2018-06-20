@@ -5,9 +5,9 @@
 
 |Number|	Description|
 | --- | --- |
-|1|	Title|
+|1|	Title|	
 |2|	Selected item|
-|3|Not selected item|
+|3|Not selected item|	
 |4|Disabled item|
 
 ## Constructor
@@ -32,7 +32,7 @@
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+  
 export default class Plugin extends React.Component {
     render() {
         var items = [
@@ -53,7 +53,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
-
+  
         return (
             <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -104,7 +104,7 @@ Dom element
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+  
 export default class Plugin extends React.Component {
     render() {
         var items = [
@@ -125,7 +125,7 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
-
+  
         return (
             <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -185,7 +185,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+  
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -193,7 +193,7 @@ export default class Plugin extends React.Component {
             items: []
         }
     }
-
+  
     render() {
         return (
         <div>
@@ -202,7 +202,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
       const item = {
         label: 'Lemon',
@@ -237,7 +237,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
-
+  
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
@@ -277,7 +277,7 @@ The item at given position.
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+  
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -300,7 +300,7 @@ export default class Plugin extends React.Component {
     ]
         this.state = {items: items};
     }
-
+  
     render() {
         return (
         <div>
@@ -309,7 +309,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
         console.log(this.state.items[0]);
     }
@@ -341,7 +341,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 var firstItem = mulChoice.getItem(0);
 console.log(firstItem);
 ```
@@ -367,7 +366,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -375,7 +374,7 @@ export default class Plugin extends React.Component {
             items: []
         }
     }
-
+ 
     render() {
         return (
         <div>
@@ -384,7 +383,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
       this.setState(prevState => {
         if (prevState.items) {
@@ -451,7 +450,7 @@ Multiple choice list item.
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -474,7 +473,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
         <div>
@@ -483,7 +482,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -517,7 +516,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 var items = mulChoice.getItems();
 items.forEach(function(item) {
     console.log(item.value + ':' + item.isDisabled);
@@ -547,7 +545,7 @@ List of checked items.
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -570,7 +568,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
         <div>
@@ -579,7 +577,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
        console.log(this.state.value);
     }
@@ -611,7 +609,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
     console.log(item.value);
@@ -640,7 +637,7 @@ None
 
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -663,7 +660,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
         <div>
@@ -672,7 +669,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
         this.setState({
             value: ['Lemon']
@@ -706,7 +703,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 mulChoice.setValue(['Lemon']);
 ```
 </details>
@@ -731,7 +727,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -754,7 +750,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
         <div>
@@ -763,10 +759,10 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
         const items = [...this.state.items];
-
+ 
         items[0].isDisabled = true;
         this.setState({ items: items });
     }
@@ -823,7 +819,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -846,7 +842,7 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
         <div>
@@ -855,10 +851,10 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-
+  
     handleClick = () => {
         const items = [...this.state.items];
-
+ 
         items[1].isDisabled = false;
         this.setState({ items: items });
     }
@@ -890,7 +886,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 mulChoice.enableItem('Banana');
 ```
 </details>
@@ -916,7 +911,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+  
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -976,7 +971,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
-
+ 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
@@ -1004,7 +999,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1027,13 +1022,13 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <MultipleChoice value={this.state.value} isVisible={true} items={this.state.items} onClick={this.handleClick}/>
         );
     }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
 
@@ -1068,7 +1063,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
-
 
 mulChoice.show();
 ```
@@ -1092,7 +1086,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1115,13 +1109,13 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <MultipleChoice value={this.state.value} isVisible={true} items={this.state.items} onClick={this.handleClick}/>
         );
     }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
 
@@ -1157,7 +1151,6 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(mulChoice.render());
 
-
 mulChoice.hide();
 ```
 </details>
@@ -1180,7 +1173,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1203,13 +1196,13 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <MultipleChoice value={this.state.value} isDisabled={true} items={this.state.items} onClick={this.handleClick}/>
         );
     }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
 
@@ -1268,7 +1261,7 @@ None
 ```
 import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
-
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -1291,13 +1284,13 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-
+ 
     render() {
         return (
             <MultipleChoice value={this.state.value} isDisabled={false} items={this.state.items} onClick={this.handleClick}/>
         );
     }
-
+ 
     handleClick = () => {
         const items = [...this.state.items];
 
