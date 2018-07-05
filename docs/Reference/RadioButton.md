@@ -66,7 +66,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new kintoneUIComponentComponent.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -141,7 +141,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new kintoneUIComponentComponent.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
