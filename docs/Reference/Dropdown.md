@@ -853,7 +853,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 });
 
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render()));
+    body.appendChild(dropdown.render());
 
 dropdown.on('change', function(value) {
     console.log('on change');
