@@ -154,7 +154,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 ```
 </details>
@@ -234,7 +236,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.addItem({
     label: 'Grape',
@@ -316,7 +320,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var firstItem = checkbox.getItem(0);
 console.log(firstItem);
@@ -393,7 +399,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.removeItem(0);
 ```
@@ -464,7 +472,7 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript** 
+**Javascript**
 ```javascript
 var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
@@ -486,7 +494,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var items = checkbox.getItems();
 items.forEach(function(item) {
@@ -577,7 +587,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var value = checkbox.getValue();
 value.forEach(function(item) {
@@ -668,7 +680,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.setValue(['Lemon']);
 ```
@@ -758,7 +772,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disableItem('Orange');
 ```
@@ -845,7 +861,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enableItem('Banana');
 ```
@@ -932,7 +950,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.on('change', function(value) {
     console.log('on change');
@@ -1012,7 +1032,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.show();
 ```
@@ -1089,7 +1111,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.hide();
 ```
@@ -1167,7 +1191,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disable();
 ```
@@ -1246,7 +1272,9 @@ var checkbox = new kintoneUIComponent.CheckBox ({
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enable();
 ```

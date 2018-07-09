@@ -66,7 +66,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -141,7 +141,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -162,9 +162,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 ```
 </details>
 
@@ -225,7 +225,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -246,9 +246,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```
@@ -309,7 +309,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -330,9 +330,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 dropdown.removeItem(0);
 ```
@@ -406,7 +406,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -429,7 +429,7 @@ var radioBtn = new KintoneUI.RadioButton({
 });
  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 var items = radioBtn.getItems();
 items.forEach(function(item) {
@@ -505,7 +505,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -526,9 +526,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.getValue();
 ```
@@ -598,7 +598,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -619,9 +619,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 dropdown.setValue('Lemon');
 ```
@@ -695,7 +695,7 @@ export default class Plugin extends React.Component {
 **Javascript**
 
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -716,9 +716,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.disableItem('Orange');
 ```
@@ -791,7 +791,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -814,7 +814,7 @@ var radioBtn = new KintoneUI.RadioButton({
 });
  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.enableItem('Banana');
 ```
@@ -884,7 +884,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -905,9 +905,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.on('change', function(value) {
     console.log('on change');
@@ -970,7 +970,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -993,7 +993,7 @@ var radioBtn = new KintoneUI.RadioButton({
 });
  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.show();
 ```
@@ -1054,7 +1054,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -1075,9 +1075,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.hide();
 ```
@@ -1142,7 +1142,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -1165,7 +1165,7 @@ var radioBtn = new KintoneUI.RadioButton({
 });
  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.disable();
 ```
@@ -1230,7 +1230,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var radioBtn = new KintoneUI.RadioButton({
+var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
             {
@@ -1251,9 +1251,9 @@ var radioBtn = new KintoneUI.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render();
+body.appendChild(radioBtn.render());
 
 radioBtn.enable();
 ```

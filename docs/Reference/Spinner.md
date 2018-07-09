@@ -28,7 +28,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 ```
 </details>
 
@@ -62,7 +62,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
@@ -98,7 +98,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var spinner = new KintoneUI.Spinner();
+var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 spinner.show();

@@ -154,9 +154,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 ```
 </details>
@@ -237,9 +237,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 
 mulChoice.addItem({
@@ -337,10 +337,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 var firstItem = mulChoice.getItem(0);
 console.log(firstItem);
@@ -417,9 +416,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 
 mulChoice.removeItem(0);
@@ -513,10 +512,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 var items = mulChoice.getItems();
 items.forEach(function(item) {
@@ -607,10 +605,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
@@ -702,10 +699,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 mulChoice.setValue(['Lemon']);
 ```
@@ -794,9 +790,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 
 mulChoice.disableItem('Orange');
@@ -886,10 +882,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 mulChoice.enableItem('Banana');
 ```
@@ -978,7 +973,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 });
  
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 mulChoice.on('change', function(value) {
     console.log('on change');
@@ -1065,10 +1060,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 mulChoice.show();
 ```
@@ -1153,10 +1147,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(mulChoice.render());
 
 mulChoice.hide();
 ```
@@ -1241,9 +1234,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 
 mulChoice.disable();
@@ -1329,12 +1322,11 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
      ],
      value: ['Orange', 'Banana']
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render();
+body.appendChild(mulChoice.render());
 
 
 mulChoice.enable();
 ```
 </details>
-

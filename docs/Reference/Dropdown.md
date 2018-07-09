@@ -146,9 +146,9 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
 
 ```
 </details>
@@ -227,9 +227,9 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
+    body.appendChild(dropdown.render());
     
 dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```
@@ -303,10 +303,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.removeItem(0);
 console.log(firstItem);
 ```
@@ -397,10 +397,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 var list = dropdown.getItems();
 list.forEach(function(item) {
     console.log(item);
@@ -456,7 +456,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+
     render() {
         return (
          <div>
@@ -489,10 +489,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 var selectedItem = dropdown.getValue();
 console.log(selectedItem);
 ```
@@ -579,10 +579,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.setValue('Orange');
 ```
 </details>
@@ -671,10 +671,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.disableItem('Orange');
 ```
 </details>
@@ -763,10 +763,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.enableItem('Banana');
 ```
 </details>
@@ -794,7 +794,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+  
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -820,7 +820,7 @@ export default class Plugin extends React.Component {
             value: 'Banana'
         };
     }
-   
+  
    render() {
         return (
             <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />
@@ -851,10 +851,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.on('change', function(value) {
     console.log('on change');
 });
@@ -881,7 +881,7 @@ None
 ```
 import { DropDown } from 'kintone-ui-component';
 import React from 'react';
-   
+ 
 export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
@@ -937,10 +937,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.show();
 ```
 </details>
@@ -1022,10 +1022,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.hide();
 ```
 </details>
@@ -1105,10 +1105,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.disable();
 ```
 </details>
@@ -1188,10 +1188,10 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render();
-    
+    body.appendChild(dropdown.render());
+
 dropdown.enable();
 ```
 </details>
