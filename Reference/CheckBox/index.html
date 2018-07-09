@@ -993,7 +993,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 </code></pre>
 
@@ -1096,7 +1098,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.addItem({
     label: 'Grape',
@@ -1210,7 +1214,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var firstItem = checkbox.getItem(0);
 console.log(firstItem);
@@ -1295,7 +1301,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.removeItem(0);
 </code></pre>
@@ -1384,7 +1392,7 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong> </p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1405,7 +1413,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var items = checkbox.getItems();
 items.forEach(function(item) {
@@ -1501,7 +1511,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 var value = checkbox.getValue();
 value.forEach(function(item) {
@@ -1600,7 +1612,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.setValue(['Lemon']);
 </code></pre>
@@ -1697,7 +1711,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disableItem('Orange');
 </code></pre>
@@ -1792,7 +1808,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enableItem('Banana');
 </code></pre>
@@ -1892,7 +1910,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.on('change', function(value) {
     console.log('on change');
@@ -1965,7 +1985,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.show();
 </code></pre>
@@ -2035,7 +2057,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.hide();
 </code></pre>
@@ -2106,7 +2130,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.disable();
 </code></pre>
@@ -2178,7 +2204,9 @@ export default class Plugin extends React.Component {
      ],
      value: ['Orange', 'Banana']
 });
-checkbox.render();
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
 checkbox.enable();
 </code></pre>
