@@ -334,7 +334,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-dropdown.removeItem(0);
+radioBtn.removeItem(0);
 ```
 </details>
 
@@ -623,7 +623,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-dropdown.setValue('Lemon');
+radioBtn.setValue('Lemon');
 ```
 </details>
 
