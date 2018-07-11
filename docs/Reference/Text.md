@@ -160,9 +160,7 @@ export default class Plugin extends React.Component {
       );
     }
     handleClick= () => {
-        this.setState({
-            value: 'samp 1'
-        });
+        console.log(this.state.value);
     };
 }
 
