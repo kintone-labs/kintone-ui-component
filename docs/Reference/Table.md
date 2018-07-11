@@ -87,7 +87,7 @@ class App extends Component {
   }
   handleRowRemove = (data) => {
     const table = this.state.table;
-    table.value = data;
+    table.value = data.tableValue;
     this.setState({ table: table });
     console.log('data: ', data);
   }
@@ -204,7 +204,7 @@ class App extends Component {
   }
   handleRowRemove = (data) => {
     const table = this.state.table;
-    table.value = data;
+    table.value = data.tableValue;
     this.setState({ table: table });
     console.log('data: ', data);
   }
