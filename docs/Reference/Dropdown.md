@@ -32,7 +32,7 @@
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
@@ -99,7 +99,7 @@ Dom element
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
@@ -176,7 +176,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -255,7 +255,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -337,7 +337,7 @@ The list contains all items of dropdown.
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -428,7 +428,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -518,7 +518,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -607,7 +607,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -699,7 +699,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -732,7 +732,7 @@ export default class Plugin extends React.Component {
         return (
          <div>
           <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Disabled Item</button>
+          <button onClick={this.handleClick}>Enabled Item</button>
          </div>
         );
     }
@@ -792,7 +792,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -823,7 +823,7 @@ export default class Plugin extends React.Component {
   
    render() {
         return (
-            <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />
+            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange } />
         );
     }
         handleChange = (value) => {
@@ -831,7 +831,6 @@ export default class Plugin extends React.Component {
             console.log('value: ' + value);
         }
     }
-}
 
 ```
 **Javascript**
@@ -879,7 +878,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -910,7 +909,7 @@ export default class Plugin extends React.Component {
    
    render() {
         return (
-            <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
+            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
         );
     }
 
@@ -963,7 +962,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -994,7 +993,7 @@ export default class Plugin extends React.Component {
    
    render() {
         return (
-            <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
+            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
         );
         
     }
@@ -1048,7 +1047,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -1079,7 +1078,7 @@ export default class Plugin extends React.Component {
    
    render() {
         return (
-            <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={true} />
+            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={true} />
         ); 
     }
     handleChange = (value) => {
@@ -1129,7 +1128,7 @@ None
 
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -1160,7 +1159,7 @@ export default class Plugin extends React.Component {
    
    render() {
         return (
-            <DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={false} />
+            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={false} />
         );
         
     }
