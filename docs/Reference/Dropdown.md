@@ -306,7 +306,7 @@ var dropdown = new kintoneUIComponent.Dropdown({
 
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(dropdown.render());
-
+var firstItem = dropdown.getItems()[0];
 dropdown.removeItem(0);
 console.log(firstItem);
 ```
