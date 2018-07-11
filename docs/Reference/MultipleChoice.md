@@ -611,7 +611,7 @@ body.appendChild(mulChoice.render());
 
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
-    console.log(item.value);
+    console.log(item);
 });
 ```
 </details>
