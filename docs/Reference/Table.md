@@ -378,7 +378,7 @@ body.appendChild(table.render());
 
 var value = table.getValue();
 value.forEach(rowData => {
-    row.forEach(cellData => {
+    rowData.forEach(cellData => {
         console.log(cellData)
     });
 });
@@ -489,7 +489,7 @@ table.setValue([
     ['orange', 'green'],
     ['orange', 'red'],
     ['banana', 'green'],
-    ['banana', 'red'
+    ['banana', 'red']
 ]);
 ```
 </details>
