@@ -825,13 +825,12 @@ export default class Plugin extends React.Component {
     }
 
     render() {
-        return
-        {
+        return (
         <div>
           <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
           <button onClick={this.handleClick}>Click</button>
         </div>
-        }
+        );
       }
  
     handleClick = () => {
