@@ -160,9 +160,7 @@ export default class Plugin extends React.Component {
       );
     }
     handleClick= () => {
-        this.setState({
-            value: 'samp 1'
-        });
+        console.log(this.state.value);
     };
 }
 
@@ -205,11 +203,11 @@ export default class Plugin extends React.Component {
         return (
             <Text value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() => {console.log('click')}} />
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
 }
 
 ```

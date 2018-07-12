@@ -334,7 +334,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-dropdown.removeItem(0);
+radioBtn.removeItem(0);
 ```
 </details>
 
@@ -623,7 +623,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-dropdown.setValue('Lemon');
+radioBtn.setValue('Lemon');
 ```
 </details>
 
@@ -679,7 +679,7 @@ export default class Plugin extends React.Component {
         return (
          <div>
           <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Set Value</button>
+          <button onClick={this.handleClick}>Disabled Item</button>
          </div>
        );
     }
@@ -775,7 +775,7 @@ export default class Plugin extends React.Component {
         return (
          <div>
           <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Set Value</button>
+          <button onClick={this.handleClick}>Enabled Item</button>
          </div>
        );
     }
@@ -874,12 +874,12 @@ export default class Plugin extends React.Component {
             <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange } />
         );
     }
-        handleChange(value) {
+        handleChange = (value) => {
             this.setState({value});
             console.log('value: ' + value);
         }
     }
-}
+
 
 ```
 **Javascript**
@@ -962,7 +962,7 @@ export default class Plugin extends React.Component {
  
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={() => {this.setState({value});}} isVisible={true} />
+            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isVisible={true} />
         );
     }
 }
@@ -1131,12 +1131,12 @@ export default class Plugin extends React.Component {
  
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisable={true} />
+            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={true} />
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
         }
-    }
 }
 
 ```
@@ -1219,12 +1219,12 @@ export default class Plugin extends React.Component {
  
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisable={false} />
+            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={false} />
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
         }
-    }
 }
 
 ```

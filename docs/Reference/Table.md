@@ -87,7 +87,7 @@ class App extends Component {
   }
   handleRowRemove = (data) => {
     const table = this.state.table;
-    table.value = data;
+    table.value = data.tableValue;
     this.setState({ table: table });
     console.log('data: ', data);
   }
@@ -204,7 +204,7 @@ class App extends Component {
   }
   handleRowRemove = (data) => {
     const table = this.state.table;
-    table.value = data;
+    table.value = data.tableValue;
     this.setState({ table: table });
     console.log('data: ', data);
   }
@@ -378,7 +378,7 @@ body.appendChild(table.render());
 
 var value = table.getValue();
 value.forEach(rowData => {
-    row.forEach(cellData => {
+    rowData.forEach(cellData => {
         console.log(cellData)
     });
 });
@@ -489,7 +489,7 @@ table.setValue([
     ['orange', 'green'],
     ['orange', 'red'],
     ['banana', 'green'],
-    ['banana', 'red'
+    ['banana', 'red']
 ]);
 ```
 </details>

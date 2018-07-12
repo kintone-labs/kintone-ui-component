@@ -99,7 +99,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' />
+            <IconButton text='insert' size='small' type='remove'/>
         );
     }
 }

@@ -186,9 +186,7 @@ export default class Plugin extends React.Component {
    handleClick(){
         console.log('click');
    }
-        );
     }
-}
 
 ```
 **Javascript**

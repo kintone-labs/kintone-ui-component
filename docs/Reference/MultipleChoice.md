@@ -34,7 +34,8 @@ import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -52,8 +53,9 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: ['Orange']};
-  
+        this.state = { items: items, value: ['Orange'] };
+    }
+    render() {
         return (
             <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -106,7 +108,8 @@ import { MultipleChoice } from 'kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -124,8 +127,9 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: ['Orange']};
-  
+        this.state = { items: items, value: ['Orange'] };
+    }
+    render() {
         return (
             <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -611,7 +615,7 @@ body.appendChild(mulChoice.render());
 
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
-    console.log(item.value);
+    console.log(item);
 });
 ```
 </details>
@@ -847,7 +851,7 @@ export default class Plugin extends React.Component {
         return (
         <div>
           <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Disabled Item</button>
+          <button onClick={this.handleClick}>Enabled Item</button>
         </div>
       );
     }
@@ -1112,7 +1116,7 @@ export default class Plugin extends React.Component {
  
     render() {
         return (
-            <MultipleChoice value={this.state.value} isVisible={true} items={this.state.items} onClick={this.handleClick}/>
+            <MultipleChoice value={this.state.value} isVisible={false} items={this.state.items} onClick={this.handleClick}/>
         );
     }
  

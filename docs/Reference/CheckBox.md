@@ -52,7 +52,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Orange'};
+        this.state = {items: items, value: ['Orange']};
  
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
@@ -124,7 +124,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Orange'};
+        this.state = {items: items, value: ['Orange']};
  
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
@@ -367,7 +367,7 @@ export default class Plugin extends React.Component {
       );
     }
  
-    handleClick () => {
+    handleClick = () => {
       this.setState(prevState => {
         if (prevState.items) {
             return prevState.items.splice(0, 1);
@@ -639,7 +639,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items, value: []};
     }
 
     render() {
@@ -825,10 +825,12 @@ export default class Plugin extends React.Component {
     }
 
     render() {
+        return (
         <div>
           <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
           <button onClick={this.handleClick}>Click</button>
         </div>
+        );
       }
  
     handleClick = () => {
