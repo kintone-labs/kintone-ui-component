@@ -1194,7 +1194,7 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(radioBtn.render());
 
-dropdown.removeItem(0);
+radioBtn.removeItem(0);
 </code></pre>
 
 <p></details></p>
@@ -1512,7 +1512,7 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(radioBtn.render());
 
-dropdown.setValue('Lemon');
+radioBtn.setValue('Lemon');
 </code></pre>
 
 <p></details></p>
@@ -1575,7 +1575,7 @@ export default class Plugin extends React.Component {
         return (
          &lt;div&gt;
           &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-          &lt;button onClick={this.handleClick}&gt;Set Value&lt;/button&gt;
+          &lt;button onClick={this.handleClick}&gt;Disabled Item&lt;/button&gt;
          &lt;/div&gt;
        );
     }
@@ -1678,7 +1678,7 @@ export default class Plugin extends React.Component {
         return (
          &lt;div&gt;
           &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-          &lt;button onClick={this.handleClick}&gt;Set Value&lt;/button&gt;
+          &lt;button onClick={this.handleClick}&gt;Enabled Item&lt;/button&gt;
          &lt;/div&gt;
        );
     }
@@ -1789,12 +1789,12 @@ export default class Plugin extends React.Component {
             &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange } /&gt;
         );
     }
-        handleChange(value) {
+        handleChange = (value) =&gt; {
             this.setState({value});
             console.log('value: ' + value);
         }
     }
-}
+
 
 </code></pre>
 
@@ -1870,7 +1870,7 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={() =&gt; {this.setState({value});}} isVisible={true} /&gt;
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isVisible={true} /&gt;
         );
     }
 }
@@ -2025,12 +2025,12 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisable={true} /&gt;
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={true} /&gt;
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
         }
-    }
 }
 
 </code></pre>
@@ -2106,12 +2106,12 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisable={false} /&gt;
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={false} /&gt;
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
         }
-    }
 }
 
 </code></pre>

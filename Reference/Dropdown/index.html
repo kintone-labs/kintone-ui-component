@@ -866,7 +866,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -926,7 +926,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1024,7 +1024,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1109,7 +1109,7 @@ dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1160,7 +1160,7 @@ export default class Plugin extends React.Component {
 
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(dropdown.render());
-
+var firstItem = dropdown.getItems()[0];
 dropdown.removeItem(0);
 console.log(firstItem);
 </code></pre>
@@ -1206,7 +1206,7 @@ console.log(firstItem);
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1301,7 +1301,7 @@ list.forEach(function(item) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1397,7 +1397,7 @@ console.log(selectedItem);
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1492,7 +1492,7 @@ dropdown.setValue('Orange');
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1590,7 +1590,7 @@ dropdown.disableItem('Orange');
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1623,7 +1623,7 @@ export default class Plugin extends React.Component {
         return (
          &lt;div&gt;
           &lt;Dropdown items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-          &lt;button onClick={this.handleClick}&gt;Disabled Item&lt;/button&gt;
+          &lt;button onClick={this.handleClick}&gt;Enabled Item&lt;/button&gt;
          &lt;/div&gt;
         );
     }
@@ -1694,7 +1694,7 @@ dropdown.enableItem('Banana');
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1725,7 +1725,7 @@ export default class Plugin extends React.Component {
 
    render() {
         return (
-            &lt;DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange } /&gt;
+            &lt;Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange } /&gt;
         );
     }
         handleChange = (value) =&gt; {
@@ -1733,7 +1733,6 @@ export default class Plugin extends React.Component {
             console.log('value: ' + value);
         }
     }
-}
 
 </code></pre>
 
@@ -1772,7 +1771,7 @@ dropdown.on('change', function(value) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1803,7 +1802,7 @@ export default class Plugin extends React.Component {
 
    render() {
         return (
-            &lt;DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} /&gt;
+            &lt;Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} /&gt;
         );
     }
 
@@ -1847,7 +1846,7 @@ dropdown.show();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1878,7 +1877,7 @@ export default class Plugin extends React.Component {
 
    render() {
         return (
-            &lt;DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} /&gt;
+            &lt;Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} /&gt;
         );
 
     }
@@ -1923,7 +1922,7 @@ dropdown.hide();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1954,7 +1953,7 @@ export default class Plugin extends React.Component {
 
    render() {
         return (
-            &lt;DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={true} /&gt;
+            &lt;Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={true} /&gt;
         ); 
     }
     handleChange = (value) =&gt; {
@@ -1997,7 +1996,7 @@ dropdown.disable();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from 'kintone-ui-component';
+<pre><code>import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2028,7 +2027,7 @@ export default class Plugin extends React.Component {
 
    render() {
         return (
-            &lt;DropDown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisable={false} /&gt;
+            &lt;Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={false} /&gt;
         );
 
     }

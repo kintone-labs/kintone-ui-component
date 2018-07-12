@@ -889,9 +889,7 @@ export default class Plugin extends React.Component {
       );
     }
     handleClick= () =&gt; {
-        this.setState({
-            value: 'samp 1'
-        });
+        console.log(this.state.value);
     };
 }
 
@@ -947,11 +945,11 @@ export default class Plugin extends React.Component {
         return (
             &lt;Text value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() =&gt; {console.log('click')}} /&gt;
         );
-        handleChange(value) {
+    }
+    handleChange(value) {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
 }
 
 </code></pre>

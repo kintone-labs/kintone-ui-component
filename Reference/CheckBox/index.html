@@ -898,7 +898,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Orange'};
+        this.state = {items: items, value: ['Orange']};
 
         return (
             &lt;CheckBox items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
@@ -963,7 +963,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Orange'};
+        this.state = {items: items, value: ['Orange']};
 
         return (
             &lt;CheckBox items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
@@ -1269,7 +1269,7 @@ export default class Plugin extends React.Component {
       );
     }
 
-    handleClick () =&gt; {
+    handleClick = () =&gt; {
       this.setState(prevState =&gt; {
         if (prevState.items) {
             return prevState.items.splice(0, 1);
@@ -1571,7 +1571,7 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items, value: []};
     }
 
     render() {
@@ -1772,10 +1772,12 @@ export default class Plugin extends React.Component {
     }
 
     render() {
+        return (
         &lt;div&gt;
           &lt;CheckBox items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
           &lt;button onClick={this.handleClick}&gt;Click&lt;/button&gt;
         &lt;/div&gt;
+        );
       }
 
     handleClick = () =&gt; {
