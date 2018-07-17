@@ -9,16 +9,10 @@ export default class RadioButton extends AbstractSingleSelection {
   }
 
   getValue() {
-    if(!this._reactObject){
-        return this._getState().value;
-    }
     return this.inner._getValue();
   }
 
   getItems() {
-      if (this._reactObject) {
-          return this.inner._getItems();
-      }
       return this._getState().items;
   }
 
