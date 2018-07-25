@@ -297,13 +297,17 @@ export default class Plugin extends React.Component {
     }
   
     handleClick = () => {
-      this.setState(prevState => {
-        if (prevState.items) {
-            return prevState.items.splice(0, 1);
-        }
-        return prevState;
-      });
-    }
+     this.setState(prevState => {
+         if (prevState.items[0]) {
+           if (this.state.value === prevState.items[0].value) {
+             prevState.value = undefined;
+           }
+           prevState.items.splice(0, 1)
+           return prevState;
+         }
+         return prevState;
+     });
+   };
 }
 
 ```
