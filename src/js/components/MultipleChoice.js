@@ -8,23 +8,14 @@ export default class MultipleChoice extends AbstractMultiSelection {
   }
 
   getValue() {
-      if (!this._reactObject) {
-          return this._getState().value;
-      }
       return this.inner._getValue();
   }
 
   getItems() {
-      if (this._reactObject) {
-          return this.inner._getItems();
-      }
       return this._getState().items;
   }
 
   getItem(index) {
-      if (this._reactObject) {
-          return this.inner._getItem(index);
-      }
       return this._getState().items[index];
   }
 

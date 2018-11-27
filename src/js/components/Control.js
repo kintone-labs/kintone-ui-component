@@ -19,7 +19,7 @@ export default class Control {
     }
 
     _getState(){
-        return this.props;
+        return this.inner.props;
     }
 
     get inner() {
