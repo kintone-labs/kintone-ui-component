@@ -13,17 +13,21 @@ import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
 
-window.kintoneUIComponent = {
-    Alert: Alert,
-    Label: Label,
-    Button: Button,
-    IconButton: IconButton,
-    Text: Text,
-    Dropdown: Dropdown,
-    NotifyPopup: NotifyPopup,
-    MultipleChoice: MultipleChoice,
-    RadioButton: RadioButton,
-    CheckBox: CheckBox,
-    Spinner: Spinner,
-    Table: Table
+const kintoneUIComponent = {
+    Alert,
+    Label,
+    Button,
+    IconButton,
+    Text,
+    Dropdown,
+    NotifyPopup,
+    MultipleChoice,
+    RadioButton,
+    CheckBox,
+    Spinner,
+    Table,
 };
+
+window.kintoneUIComponent = kintoneUIComponent;
+
+export default kintoneUIComponent;
