@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Component, PropTypes} from 'react';
 
-export default class Item extends React.Component {
+export default class Item extends Component {
     static propTypes = {
         item: PropTypes.object,
         isVisible: PropTypes.bool,

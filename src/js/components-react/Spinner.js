@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Component, PropTypes} from 'react';
 
-export default class Spinner extends React.Component {
+export default class Spinner extends Component {
     static propTypes = {
         isVisible: PropTypes.bool
     }

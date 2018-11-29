@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import withState from './withState';
 import Message from '../constant/Message';
 
@@ -54,7 +53,7 @@ export default class Control {
 
     _renderReactObject(parent) {
         const container = document.createElement('div');
-        this._reactObject = ReactDOM.render(
+        this._reactObject = render(
             this._getReactElement(),
             container
         );

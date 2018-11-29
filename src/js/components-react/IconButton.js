@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Component, PropTypes} from 'react';
 
-export default class IconButton extends React.Component {
+export default class IconButton extends Component {
     static propTypes = {
         type: PropTypes.string,
         text: PropTypes.string,

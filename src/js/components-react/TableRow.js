@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
+import {Component, PropTypes} from 'react';
 import IconButton from './IconButton';
 
 class TableRow extends Component {
@@ -58,7 +56,7 @@ class TableRow extends Component {
                                 key={index}
                                 className="kuc-table-td"
                             >
-                                {React.cloneElement(cell,
+                                {cloneElement(cell,
                                     {
                                         value: this.props.value[index],
                                         onChange: (value) => {

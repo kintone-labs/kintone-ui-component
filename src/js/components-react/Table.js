@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
+import {Component, PropTypes} from 'react';
 import TableRow from './TableRow';
 
 class Table extends Component {

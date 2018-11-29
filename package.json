@@ -12,15 +12,13 @@
     "build": "cross-env NODE_ENV=production webpack",
     "compile": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files"
   },
-  "dependencies": {
-    "prop-types": "15.6.1"
-  },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.2",
     "babel-loader": "7.1.2",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.20",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-react-app": "3.1.1",

@@ -1,4 +1,3 @@
-import React from 'react';
 import Item from './Item';
 import Message from '../constant/Message';
 import AbstractMultiSelection from './AbstractMultiSelection';

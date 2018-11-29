@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Component, PropTypes} from 'react';
 
-export default class AbstractMultiSelection extends React.Component {
+export default class AbstractMultiSelection extends Component {
     static propTypes = {
         items: PropTypes.array,
         value: PropTypes.array,
