@@ -41,7 +41,7 @@ kintone.events.on("app.record.index.show", function(ev) {
 **Step** 3: Add webpack.config.js file to my-customization/ folder 
 ```
 const path = require('path');
-const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) => {
     return {
         entry: {
@@ -59,7 +59,7 @@ module.exports = (env = {}) => {
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['react','env'],
+                            presets: ['react-app','@babel/preset-env'],
                             plugins: ["transform-class-properties"]
                         }
                     }
@@ -74,12 +74,13 @@ module.exports = (env = {}) => {
             ]
         },
         watch: env.watch,
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin({
-                include: /\.min\.js$/,
-                minimize: true
-            })
-        ]
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({ 
+                    include: /\.min\.js$/,
+                })
+            ]
+        }
     }
 }
 ```
