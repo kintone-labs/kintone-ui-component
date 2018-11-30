@@ -1,4 +1,4 @@
 module.exports = {
-    extends: "@cybozu",
-    "parser": "babel-eslint"
+    extends: ["@cybozu", "@cybozu/eslint-config/presets/react"],
+    parser: "babel-eslint"
 };
