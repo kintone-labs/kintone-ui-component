@@ -45,7 +45,7 @@ export default class NotifyPopup extends Component {
       return className.join(' ').trim();
     }
 
-    _onClick() {
+    _onClick = () => {
       if (this.props.isDisabled) {
         return false;
       }

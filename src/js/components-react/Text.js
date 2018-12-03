@@ -20,15 +20,15 @@ export default class Text extends Component {
     }
 
     componentWillReceiveProps({value}) {
-      value = value || '';
-      this.setState({value});
+      const new_value = value || '';
+      this.setState({value: new_value});
     }
 
     _getValue() {
       return this.props.value;
     }
 
-    _onChange(event) {
+    _onChange = (event) => {
       const value = event.target.value;
       this.props.onChange(value);
       this.setState({value: value});

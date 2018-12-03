@@ -7,7 +7,7 @@ export default class Dropdown extends AbstractSingleSelection {
     state = {
       isVisibleItems: false
     }
-    _showItems() {
+    _showItems = () => {
       this.setState({
         isVisibleItems: true
       }, () => {
@@ -18,7 +18,7 @@ export default class Dropdown extends AbstractSingleSelection {
         }
       });
     }
-    _hideItems() {
+    _hideItems = () => {
       this.setState({
         isVisibleItems: false
       }, () => {

@@ -24,7 +24,7 @@ export default class Alert extends Component {
       return className.join(' ');
     }
 
-    _onClick() {
+    _onClick = () => {
       if (this.props.isDisabled) {
         return null;
       }

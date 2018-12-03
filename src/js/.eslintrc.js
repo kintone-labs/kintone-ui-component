@@ -3,5 +3,6 @@ module.exports = {
     parser: "babel-eslint",
     rules: {
         "no-invalid-this": 0,
+        "react/no-deprecated": 0,
     }
 };

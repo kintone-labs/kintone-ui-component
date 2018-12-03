@@ -45,9 +45,10 @@ export default class AbstractSingleSelection extends Component {
       });
     }
 
-    _handleItemClick(item) {
+    _handleItemClick = (item) => {
       const value = item.value;
-      // this.setState({value: value});
+      // eslint-disable-next-line react/no-unused-state
+      this.setState({value: value});
       this.props.onChange(value);
     }
 

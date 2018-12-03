@@ -16,7 +16,7 @@ export default class Item extends Component {
       onClick: f => f
     };
 
-    _onClick() {
+    _onClick = () => {
       if (this.props.isDisabled) {
         return false;
       }
@@ -24,7 +24,7 @@ export default class Item extends Component {
       return true;
     }
 
-    onChange() {
+    onChange = () => {
       if (this.props.isDisabled) {
         return false;
       }

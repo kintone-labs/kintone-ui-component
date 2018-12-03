@@ -37,7 +37,7 @@ class Table extends Component {
       return this.state.value;
     }
 
-    onCellChange(rowValue, rowIndex, columnIndex) {
+    onCellChange = (rowValue, rowIndex, columnIndex) => {
       this.setState((prevState) => {
         const value = [...prevState.value];
         value[rowIndex] = rowValue;
@@ -55,7 +55,7 @@ class Table extends Component {
       });
     }
 
-    onCellClick(rowIndex, columnIndex) {
+    onCellClick = (rowIndex, columnIndex) => {
       const data = {
         tableValue: this.state.value,
         cell: {
@@ -68,7 +68,7 @@ class Table extends Component {
       }
     }
 
-    addRow(index) {
+    addRow = (index) => {
       this.setState((prevState) => {
         const value = [...prevState.value];
         value.splice(index + 1, 0, this.dataTemplate);
@@ -84,7 +84,7 @@ class Table extends Component {
       });
     }
 
-    removeRow(index) {
+    removeRow = (index) => {
       this.setState((prevState) => {
         const value = [...prevState.value];
         value.splice(index, 1);
@@ -95,6 +95,7 @@ class Table extends Component {
           };
           this.props.onRowRemove(data);
         }
+        return {'value': value};
       });
     }
 

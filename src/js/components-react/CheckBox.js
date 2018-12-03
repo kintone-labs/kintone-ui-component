@@ -4,7 +4,7 @@ import AbstractMultiSelection from './AbstractMultiSelection';
 import React from 'react';
 
 export default class CheckBox extends AbstractMultiSelection {
-  _handleItemClick(itemValue) {
+  _handleItemClick = (itemValue) => {
     this.setState((prevState) => {
       const value = prevState.value ? prevState.value.slice() : [];
       const length = value.length;

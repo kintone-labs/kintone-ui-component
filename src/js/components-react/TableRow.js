@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
 class TableRow extends Component {
-  addRow() {
+  addRow = () => {
     this.props.onRowAdd(this.props.index);
   }
 
-  removeRow() {
+  removeRow = () => {
     this.props.onRowRemove(this.props.index);
   }
 
-  handleOnCellChange(value, cellIndex) {
+  handleOnCellChange = (value, cellIndex) => {
     const rowValue = this.props.value.slice();
     rowValue[cellIndex] = value;
     this.props.onCellChange(rowValue, this.props.index, cellIndex);
   }
 
-  handleOnCellClick(cellIndex) {
+  handleOnCellClick = (cellIndex) => {
     const rowIndex = this.props.index;
     this.props.onCellClick(rowIndex, cellIndex);
   }

@@ -35,7 +35,7 @@ export default class Control {
     this.el.parentNode.replaceChild(newEl, this.el);
     this.el = newEl;
   }
-  _handleOnChange(value) {
+  _handleOnChange = (value) => {
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }

@@ -15,7 +15,7 @@ export default class Label extends Component {
       onClick: f => f
     };
 
-    _onClick() {
+    _onClick = () => {
       if (this.props.isDisabled) {
         return null;
       }
