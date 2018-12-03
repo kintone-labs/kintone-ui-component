@@ -27,7 +27,7 @@ export default class NotifyPopup extends Component {
       this.setState({isVisible});
     }
 
-    _handleClosePopup() {
+    _handleClosePopup = () => {
       if (this.props.isDisabled) {
         return false;
       }
