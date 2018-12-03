@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import {render} from 'react-dom';
 import withState from './withState';
 import Message from '../constant/Message';

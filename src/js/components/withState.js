@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import {React, Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 export default WrappedComponent => {
   return class Wrapper extends Component {
