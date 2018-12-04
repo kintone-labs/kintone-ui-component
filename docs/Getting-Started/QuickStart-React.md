@@ -10,8 +10,8 @@
 $ npm install -g create-react-app
 $ create-react-app my-customization
 $ cd my-customization
-$ npm install --only=dev cross-env babel-preset-stage-0 css-loader style-loader
-$ npm install --only=dev kintone-ui-components
+$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli
+$ npm install kintone-ui-component
 $ rm -f src/*
 ```
 **Step** 2: Add index.js file to src/ folder:

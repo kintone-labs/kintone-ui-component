@@ -34,7 +34,8 @@ import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -53,7 +54,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
- 
+    }
+
+    render() {
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -106,7 +109,8 @@ import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -125,7 +129,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
- 
+    }
+
+    render() {
         return (
             <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -433,7 +439,7 @@ The list contains all items of the dropdown.
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -528,7 +534,7 @@ List of checked items.
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -619,7 +625,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -710,7 +716,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -801,7 +807,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -893,7 +899,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -981,7 +987,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -1061,7 +1067,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -1140,7 +1146,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
@@ -1220,8 +1226,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
-
+```javascript
 import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 

@@ -78,7 +78,6 @@ export default class Plugin extends React.Component {
 var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(alert.render());
-alert .render();
 ```
 </details>
 
