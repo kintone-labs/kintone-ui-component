@@ -31,12 +31,13 @@
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -55,7 +56,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-    
+    }
+
+    render() {
         return (
             <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -63,7 +66,7 @@ export default class Plugin extends React.Component {
 }
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -98,12 +101,13 @@ Dom element
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -122,7 +126,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: 'Orange'};
-    
+    }
+
+    render() {
         return (
             <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
@@ -130,7 +136,7 @@ export default class Plugin extends React.Component {
 }
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -175,7 +181,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -211,7 +217,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -254,7 +260,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -291,7 +297,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -340,7 +346,7 @@ The list contains all items of dropdown.
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -385,7 +391,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -431,7 +437,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -477,7 +483,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -521,7 +527,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -567,7 +573,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -610,7 +616,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -659,7 +665,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -702,7 +708,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -751,7 +757,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -795,7 +801,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
   
@@ -838,7 +844,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -881,7 +887,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
  
@@ -924,7 +930,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -965,7 +971,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -1009,7 +1015,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1050,7 +1056,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -1092,7 +1098,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1131,7 +1137,7 @@ None
 <Summary>Sample</Summary>
 
 **React**
-```
+```javascript
 import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
    
@@ -1175,7 +1181,7 @@ export default class Plugin extends React.Component {
 
 ```
 **Javascript**
-```
+```javascript
 var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
