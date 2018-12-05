@@ -20,7 +20,7 @@ module.exports = (env = {}) => {
                         loader: 'babel-loader',
                         options: {
                             presets: ['react', 'stage-0', 'env'],
-                            plugins: ["transform-class-properties"]
+                            plugins: ["transform-class-properties", "transform-react-remove-prop-types"]
                         }
                     },
                 },
@@ -41,6 +41,11 @@ module.exports = (env = {}) => {
         },
         watch: env.watch,
         plugins: [
+            new webpack.DefinePlugin({ // <-- key to reducing React's size
+                'process.env': {
+                    'NODE_ENV': JSON.stringify('production')
+                }
+            }),
             new webpack.optimize.UglifyJsPlugin({
                 include: /\.min\.js$/,
                 minimize: true

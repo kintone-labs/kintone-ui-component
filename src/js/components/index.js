@@ -1,5 +1,4 @@
 import '../../style';
-
 import Alert from './Alert';
 import Label from './Label';
 import Button from './Button';
@@ -12,22 +11,19 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
-
 const kintoneUIComponent = {
-    Alert,
-    Label,
-    Button,
-    IconButton,
-    Text,
-    Dropdown,
-    NotifyPopup,
-    MultipleChoice,
-    RadioButton,
-    CheckBox,
-    Spinner,
-    Table,
+  Alert,
+  Label,
+  Button,
+  IconButton,
+  Text,
+  Dropdown,
+  NotifyPopup,
+  MultipleChoice,
+  RadioButton,
+  CheckBox,
+  Spinner,
+  Table,
 };
-
 window.kintoneUIComponent = kintoneUIComponent;
-
 export default kintoneUIComponent;

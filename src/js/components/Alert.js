@@ -9,6 +9,6 @@ export default class Alert extends Control {
   }
 
   setType(type) {
-      this._setState({type});
+    this._setState({type});
   }
 }
