@@ -35,6 +35,7 @@ export default class Control {
     this.el.parentNode.replaceChild(newEl, this.el);
     this.el = newEl;
   }
+
   _handleOnChange = (value) => {
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
@@ -56,9 +57,7 @@ export default class Control {
       this._getReactElement(),
       container
     );
-
     this._reactObject.setState({onChange: this._handleOnChange});
-
     return container;
   }
 
@@ -73,12 +72,10 @@ export default class Control {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
     }
-
     if (eventName === 'change') {
       this.onChange = callback;
       return;
     }
-
     this._reactObject.setState({['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)]: callback});
   }
 

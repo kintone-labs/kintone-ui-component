@@ -11,7 +11,6 @@ export default class Text extends Control {
       if (!this._reactObject) {
         return this._getState().value;
       }
-
       return this.inner._getValue();
     }
 }
