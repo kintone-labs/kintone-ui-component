@@ -40,11 +40,43 @@ export default class Control {
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }
-    this._setStateAfterOnChange(value);
+    this._setStateAfterEventHandler(value);
   }
 
-  _setStateAfterOnChange(value) {
-    this._reactObject.setState({value});
+  _handleOnRowAdd = (value) => {
+    if (typeof this.rowAdd === 'function') {
+      this.rowAdd(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnRowRemove = (value) => {
+    if (typeof this.rowRemove === 'function') {
+      this.rowRemove(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnCellClick = (value) => {
+    if (typeof this.cellClick === 'function') {
+      this.cellClick(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnPopupClose = () => {
+    if (typeof this.onClose === 'function') {
+      this.onClose();
+    }
+    this.hide();
+  }
+
+  _setStateAfterEventHandler(value) {
+    if (value.tableValue) {
+      this._reactObject.setState({value: value.tableValue});
+    } else {
+      this._reactObject.setState({value});
+    }
   }
 
   _triggerOnChange(value) {
@@ -58,6 +90,17 @@ export default class Control {
       container
     );
     this._reactObject.setState({onChange: this._handleOnChange});
+    if (this._reactObject.inner.constructor.name === 'Table') {
+      this._reactObject.setState({
+        onCellChange: this._handleOnChange,
+        onCellClick: this._handleOnCellClick,
+        onRowAdd: this._handleOnRowAdd,
+        onRowRemove: this._handleOnRowRemove,
+      });
+    }
+    if (this._reactObject.inner.constructor.name === 'NotifyPopup') {
+      this._reactObject.setState({onClose: this._handleOnPopupClose});
+    }
     return container;
   }
 

@@ -15,16 +15,6 @@ export default class AbstractSingleSelection extends Component {
       onChange: f => f
     };
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        items: this.props.items
-      };
-    }
-
-    componentWillReceiveProps({items}) {
-      this.setState({items});
-    }
     _getValue() {
       return this.props.value;
     }
@@ -47,8 +37,6 @@ export default class AbstractSingleSelection extends Component {
 
     _handleItemClick = (item) => {
       const value = item.value;
-      // eslint-disable-next-line react/no-unused-state
-      this.setState({value: value});
       this.props.onChange(value);
     }
 
@@ -75,6 +63,5 @@ export default class AbstractSingleSelection extends Component {
       return this.props.items && this.props.items.some(item => {
         return item.value === this.props.value;
       });
-
     }
 }

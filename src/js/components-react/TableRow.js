@@ -48,31 +48,25 @@ class TableRow extends Component {
       );
     }
 
+    const listItems = this.props.template.map((cell, index) => {
+      const newCell = cloneElement(cell,
+        {
+          value: this.props.value[index],
+          onChange: (value) => {
+            this.handleOnCellChange(value, index);
+          },
+          onClick: () => {
+            this.handleOnCellClick(index);
+          },
+          name: cell.props.name + '_' + this.props.index + '_' + index
+        }
+      );
+      return <RowItem key={newCell.props.value} newCell={newCell} />;
+    });
+
     return (
       <div className="kuc-table-tr">
-        {
-          this.props.template.map((cell, index) => {
-            return (
-              <div
-                key={index}
-                className="kuc-table-td"
-              >
-                {cloneElement(cell,
-                  {
-                    value: this.props.value[index],
-                    onChange: (value) => {
-                      this.handleOnCellChange(value, index);
-                    },
-                    onClick: () => {
-                      this.handleOnCellClick(index);
-                    },
-                    name: cell.props.name + '_' + this.props.index + '_' + index
-                  }
-                )}
-              </div>
-            );
-          })
-        }
+        {listItems}
         <div className="kuc-table-td action-group">
           {addIcon}
           {removeIcon}
@@ -81,6 +75,19 @@ class TableRow extends Component {
     );
   }
 }
+
+const RowItem = (props) => {
+  return (
+    <div
+      className="kuc-table-td"
+    >
+      {props.newCell}
+    </div>
+  );
+};
+RowItem.propTypes = {
+  newCell: PropTypes.object
+};
 
 TableRow.propTypes = {
   index: PropTypes.number,

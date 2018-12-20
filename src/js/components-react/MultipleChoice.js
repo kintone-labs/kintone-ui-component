@@ -5,23 +5,20 @@ import React from 'react';
 
 export default class MultipleChoice extends AbstractMultiSelection {
   _handleItemClick = (itemValue) => {
-    this.setState((prevState) => {
-      const value = prevState.value ? prevState.value.slice() : [];
-      const length = value.length;
-      let include = false;
-      for (let i = 0; i < length; i++) {
-        if (value[i] === itemValue) {
-          include = true;
-          value.splice(i, 1);
-          break;
-        }
+    const value = this.props.value ? this.props.value.slice() : [];
+    const length = value.length;
+    let include = false;
+    for (let i = 0; i < length; i++) {
+      if (value[i] === itemValue) {
+        include = true;
+        value.splice(i, 1);
+        break;
       }
-      if (!include) {
-        value.push(itemValue);
-      }
-      this.props.onChange(value);
-      return {'value': value};
-    });
+    }
+    if (!include) {
+      value.push(itemValue);
+    }
+    this.props.onChange(value);
   }
 
   render() {
@@ -29,7 +26,7 @@ export default class MultipleChoice extends AbstractMultiSelection {
       return null;
     }
     const items = this.props.items && this.props.items.map((item, i) => {
-      const isSelected = this.state.value ? this.state.value.some(value => value === item.value) : false;
+      const isSelected = this.props.value ? this.props.value.some(value => value === item.value) : false;
       return (
         <Item
           key={i}

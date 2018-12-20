@@ -9,36 +9,27 @@ export default class NotifyPopup extends Component {
       isVisible: PropTypes.bool,
       isDisabled: PropTypes.bool,
       onClick: PropTypes.func,
+      onClose: PropTypes.func,
       onChange: PropTypes.func,
     };
 
     static defaultProps = {
-      onClick: f => f
+      onClick: f => f,
+      onClose: f => f,
     };
-
-    constructor(props) {
-      super(props);
-      this.state = {
-        isVisible: this.props.isVisible,
-      };
-    }
-
-    componentWillReceiveProps({isVisible}) {
-      this.setState({isVisible});
-    }
 
     _handleClosePopup = () => {
       if (this.props.isDisabled) {
         return false;
       }
-      this.setState({isVisible: false});
+      this.props.onClose();
       return true;
     }
 
     _getClassName() {
       const className = [
         'kuc-notify',
-        this.state.isVisible === false ? '' : 'show',
+        this.props.isVisible === false ? '' : 'show',
         this._getStyleByType().bgClass,
 
       ];
@@ -49,7 +40,6 @@ export default class NotifyPopup extends Component {
       if (this.props.isDisabled) {
         return false;
       }
-
       this.props.onClick();
       return true;
     }

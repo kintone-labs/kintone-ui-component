@@ -16,25 +16,6 @@ export default class AbstractMultiSelection extends Component {
       onClick: f => f
     };
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        value: props.value,
-        items: props.items
-      };
-    }
-
-    componentWillReceiveProps(nextProps) {
-      this.setState(prevState => {
-        const newValue = nextProps.value || prevState.state.value;
-        const newItems = nextProps.items || prevState.state.items;
-        return {
-          value: newValue,
-          items: newItems
-        };
-      });
-    }
-
     _getValue() {
       return this.state.value;
     }
@@ -43,7 +24,6 @@ export default class AbstractMultiSelection extends Component {
       if (!this.props.items) {
         return;
       }
-
       this.setState({value: value});
     }
 
@@ -53,7 +33,6 @@ export default class AbstractMultiSelection extends Component {
       }
       this.setState(prevState => {
         const newItems = [...prevState.items];
-
         newItems.forEach((item, i) => {
           if (item.value === value) {
             newItems[i].isDisabled = isDisabled;
@@ -85,6 +64,7 @@ export default class AbstractMultiSelection extends Component {
 
       return isUnique;
     }
+
     _hasValidValue() {
       const validValues = [];
       this.props.items.forEach((item) => {
@@ -95,8 +75,8 @@ export default class AbstractMultiSelection extends Component {
         return true;
       }
 
-      if (this.state.value instanceof Array) {
-        return this.state.value.every(val => validValues.indexOf(val) >= 0);
+      if (this.props.value instanceof Array) {
+        return this.props.value.every(val => validValues.indexOf(val) >= 0);
       }
 
       return false;

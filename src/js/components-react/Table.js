@@ -13,51 +13,35 @@ class Table extends Component {
 
     constructor(props) {
       super(props);
-
-      const rowTemplate = props.rowTemplate || [];
       this.dataTemplate = props.rowTemplate.map(element => {
         return element.props.value;
       });
       const value = props.value || [this.dataTemplate];
-
-      this.state = {
-        rowTemplate: rowTemplate,
-        header: props.header || [],
-        value: value
-      };
-    }
-
-    componentWillReceiveProps({value}) {
-      if (value) {
-        this.setState({value});
-      }
+      this.props.value = value;
     }
 
     _getValue() {
-      return this.state.value;
+      return this.props.value;
     }
 
     onCellChange = (rowValue, rowIndex, columnIndex) => {
-      this.setState((prevState) => {
-        const value = [...prevState.value];
-        value[rowIndex] = rowValue;
-        if (this.props.onCellChange) {
-          const data = {
-            tableValue: value,
-            cell: {
-              row: rowIndex,
-              colunm: columnIndex
-            }
-          };
-          this.props.onCellChange(data);
-        }
-        return {'value': value};
-      });
+      const value = [...this.props.value];
+      value[rowIndex] = rowValue;
+      if (this.props.onCellChange) {
+        const data = {
+          tableValue: value,
+          cell: {
+            row: rowIndex,
+            colunm: columnIndex
+          }
+        };
+        this.props.onCellChange(data);
+      }
     }
 
     onCellClick = (rowIndex, columnIndex) => {
       const data = {
-        tableValue: this.state.value,
+        tableValue: this.props.value,
         cell: {
           row: rowIndex,
           colunm: columnIndex
@@ -69,34 +53,26 @@ class Table extends Component {
     }
 
     addRow = (index) => {
-      this.setState((prevState) => {
-        const value = [...prevState.value];
-        value.splice(index + 1, 0, this.dataTemplate);
-
-        if (this.props.onRowAdd) {
-          const data = {
-            tableValue: value,
-            row: index + 1
-          };
-          this.props.onRowAdd(data);
-        }
-        return {'value': value};
-      });
+      const value = [...this.props.value];
+      value.splice(index + 1, 0, this.dataTemplate);
+      if (this.props.onRowAdd) {
+        const data = {
+          tableValue: value,
+          row: index + 1
+        };
+        this.props.onRowAdd(data);
+      }
     }
 
     removeRow = (index) => {
-      this.setState((prevState) => {
-        const value = [...prevState.value];
-        value.splice(index, 1);
-
-        if (this.props.onRowRemove) {
-          const data = {
-            tableValue: value
-          };
-          this.props.onRowRemove(data);
-        }
-        return {'value': value};
-      });
+      const value = [...this.props.value];
+      value.splice(index, 1);
+      if (this.props.onRowRemove) {
+        const data = {
+          tableValue: value
+        };
+        this.props.onRowRemove(data);
+      }
     }
 
     render() {
@@ -104,7 +80,7 @@ class Table extends Component {
         return null;
       }
 
-      const header = this.state.header.map((data, index) => {
+      const header = this.props.header.map((data, index) => {
         return (
           <div key={'Table_Header_Column_' + index} className="kuc-table-th">
             <span className="kuc-header-label">{data}</span>
@@ -112,8 +88,7 @@ class Table extends Component {
         );
       });
 
-      const enableRemove = this.state.value.length > 1;
-
+      const enableRemove = this.props.value.length > 1;
       return (
         <div className="kuc-table">
           <div className="kuc-table-thead">
@@ -122,13 +97,13 @@ class Table extends Component {
             </div>
           </div>
           <div className="kuc-table-tbody">
-            {this.state.value.map((rowValue, index) => (
+            {this.props.value.map((rowValue, index) => (
               <TableRow
                 key={index}
                 index={index}
                 value={rowValue}
                 enableRemove={enableRemove}
-                template={this.state.rowTemplate}
+                template={this.props.rowTemplate}
                 onRowAdd={this.addRow}
                 onRowRemove={this.removeRow}
                 onCellChange={this.onCellChange}
