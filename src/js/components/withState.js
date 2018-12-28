@@ -18,7 +18,7 @@ export default WrappedComponent => {
         }
 
         render() {
-          return <WrappedComponent {...this.state} ref={c => (this.inner = c)} />;
+          return <WrappedComponent {...this.state} />;
         }
   };
 };

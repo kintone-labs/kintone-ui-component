@@ -20,7 +20,6 @@ export default class MultipleChoice extends AbstractMultiSelection {
     }
     this.props.onChange(value);
   }
-
   render() {
     if (this.props.isVisible === false) {
       return null;

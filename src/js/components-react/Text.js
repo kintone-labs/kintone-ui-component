@@ -1,44 +1,33 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Text extends Component {
-  static propTypes = {
-    value: PropTypes.string,
-    isVisible: PropTypes.bool,
-    isDisabled: PropTypes.bool,
-    onClick: PropTypes.func,
-    onChange: PropTypes.func,
-  }
-
-  static defaultProps = {
-    onChange: f => f
+const Text = (props) => {
+  const _onChange = (event) => {
+    const value = event.target.value;
+    props.onChange(value);
   };
 
-  _getValue() {
-    return this.props.value;
-  }
-
-  _onChange = (event) => {
-    const value = event.target.value;
-    this.props.onChange(value);
-  }
-
-  render() {
-    if (this.props.isVisible === false) {
-      return null;
-    }
-
-    return (
-      <div className="kuc-input-outer">
-        <input
-          type="text"
-          value={this.props.value}
-          className="kuc-input-text"
-          onClick={this.props.onClick}
-          onChange={this._onChange}
-          disabled={this.props.isDisabled}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="kuc-input-outer">
+      <input
+        type="text"
+        value={props.value}
+        className="kuc-input-text"
+        onClick={props.onClick}
+        onChange={_onChange}
+        disabled={props.isDisabled}
+      />
+    </div>
+  );
+};
+Text.propTypes = {
+  value: PropTypes.string,
+  isVisible: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  onChange: PropTypes.func,
+};
+Text.defaultProps = {
+  onChange: f => f
+};
+export default Text;

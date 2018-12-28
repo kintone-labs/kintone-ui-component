@@ -1,80 +1,78 @@
-import React, {Component, cloneElement} from 'react';
+import React, {cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-class TableRow extends Component {
-  addRow = () => {
-    this.props.onRowAdd(this.props.index);
-  }
+const TableRow = (props) => {
+  const addRow = () => {
+    props.onRowAdd(props.index);
+  };
 
-  removeRow = () => {
-    this.props.onRowRemove(this.props.index);
-  }
+  const removeRow = () => {
+    props.onRowRemove(props.index);
+  };
 
-  handleOnCellChange = (value, cellIndex) => {
-    const rowValue = this.props.value.slice();
+  const handleOnCellChange = (value, cellIndex) => {
+    const rowValue = props.value.slice();
     rowValue[cellIndex] = value;
-    this.props.onCellChange(rowValue, this.props.index, cellIndex);
-  }
+    props.onCellChange(rowValue, props.index, cellIndex);
+  };
 
-  handleOnCellClick = (cellIndex) => {
-    const rowIndex = this.props.index;
-    this.props.onCellClick(rowIndex, cellIndex);
-  }
+  const handleOnCellClick = (cellIndex) => {
+    const rowIndex = props.index;
+    props.onCellClick(rowIndex, cellIndex);
+  };
 
-  render() {
-    const addIcon = (
-      <span style={{marginRight: '5px'}}>
+  const addIcon = (
+    <span style={{marginRight: '5px'}}>
+      <IconButton
+        type="insert"
+        color="blue"
+        size="small"
+        onClick={addRow}
+      />
+    </span>
+  );
+
+  let removeIcon = null;
+  if (props.enableRemove) {
+    removeIcon = (
+      <span>
         <IconButton
-          type="insert"
-          color="blue"
+          type="remove"
+          color="gray"
           size="small"
-          onClick={this.addRow}
+          onClick={removeRow}
         />
       </span>
     );
-
-    let removeIcon = null;
-    if (this.props.enableRemove) {
-      removeIcon = (
-        <span>
-          <IconButton
-            type="remove"
-            color="gray"
-            size="small"
-            onClick={this.removeRow}
-          />
-        </span>
-      );
-    }
-
-    const listItems = this.props.template.map((cell, index) => {
-      const newCell = cloneElement(cell,
-        {
-          value: this.props.value[index],
-          onChange: (value) => {
-            this.handleOnCellChange(value, index);
-          },
-          onClick: () => {
-            this.handleOnCellClick(index);
-          },
-          name: cell.props.name + '_' + this.props.index + '_' + index
-        }
-      );
-      return <RowItem key={newCell.props.value} newCell={newCell} />;
-    });
-
-    return (
-      <div className="kuc-table-tr">
-        {listItems}
-        <div className="kuc-table-td action-group">
-          {addIcon}
-          {removeIcon}
-        </div>
-      </div>
-    );
   }
-}
+
+  const listItems = props.template.map((cell, index) => {
+    const newCell = cloneElement(cell,
+      {
+        value: props.value[index],
+        onChange: (value) => {
+          handleOnCellChange(value, index);
+        },
+        onClick: () => {
+          handleOnCellClick(index);
+        },
+        name: cell.props.name + '_' + props.index + '_' + index
+      }
+    );
+    return <RowItem key={newCell.props.value} newCell={newCell} />;
+  });
+
+  return (
+    <div className="kuc-table-tr">
+      {listItems}
+      <div className="kuc-table-td action-group">
+        {addIcon}
+        {removeIcon}
+      </div>
+    </div>
+  );
+};
 
 const RowItem = (props) => {
   return (
@@ -88,7 +86,6 @@ const RowItem = (props) => {
 RowItem.propTypes = {
   newCell: PropTypes.object
 };
-
 TableRow.propTypes = {
   index: PropTypes.number,
   enableRemove: PropTypes.bool,
@@ -99,5 +96,4 @@ TableRow.propTypes = {
   onCellChange: PropTypes.func,
   onCellClick: PropTypes.func
 };
-
 export default TableRow;

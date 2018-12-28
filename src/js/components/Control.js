@@ -18,22 +18,16 @@ export default class Control {
   }
 
   _getState() {
-    return this.inner.props;
-  }
-
-  get inner() {
-    return this._reactObject.inner;
+    return this.props;
   }
 
   render() {
-    this.el = this._renderReactObject();
-    return this.el;
-  }
-
-  refresh() {
     const newEl = this._renderReactObject();
-    this.el.parentNode.replaceChild(newEl, this.el);
+    if (this.el !== undefined) {
+      this.el.parentNode.replaceChild(newEl, this.el);
+    }
     this.el = newEl;
+    return this.el;
   }
 
   _handleOnChange = (value) => {
@@ -90,7 +84,7 @@ export default class Control {
       container
     );
     this._reactObject.setState({onChange: this._handleOnChange});
-    if (this._reactObject.inner.constructor.name === 'Table') {
+    if (this._reactComponentClass.name === 'Table') {
       this._reactObject.setState({
         onCellChange: this._handleOnChange,
         onCellClick: this._handleOnCellClick,
@@ -98,7 +92,7 @@ export default class Control {
         onRowRemove: this._handleOnRowRemove,
       });
     }
-    if (this._reactObject.inner.constructor.name === 'NotifyPopup') {
+    if (this._reactComponentClass.name === 'NotifyPopup') {
       this._reactObject.setState({onClose: this._handleOnPopupClose});
     }
     return container;

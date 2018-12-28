@@ -1,38 +1,35 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-    static propTypes = {
-      type: PropTypes.string,
-      text: PropTypes.string,
-      isVisible: PropTypes.bool,
-      isDisabled: PropTypes.bool,
-      onClick: PropTypes.func,
-      onChange: PropTypes.func,
-    }
+const Button = (props) => {
+  const _getClassName = () => {
+    return [
+      'kuc-btn',
+      props.type !== 'submit' ? 'normal' : '',
+      props.type === 'submit' ? 'submit' : ''
+    ].join(' ').trim();
+  };
+  if (props.isVisible === false) {
+    return null;
+  }
 
-    _getClassName() {
-      return [
-        'kuc-btn',
-        this.props.type !== 'submit' ? 'normal' : '',
-        this.props.type === 'submit' ? 'submit' : ''
-      ].join(' ').trim();
-    }
-
-    render() {
-      if (this.props.isVisible === false) {
-        return null;
-      }
-
-      return (
-        <button
-          className={this._getClassName()}
-          onClick={this.props.onClick}
-          onChange={this.props.onChange}
-          disabled={this.props.isDisabled}
-        >
-          {this.props.text}
-        </button>
-      );
-    }
-}
+  return (
+    <button
+      className={_getClassName()}
+      onClick={props.onClick}
+      onChange={props.onChange}
+      disabled={props.isDisabled}
+    >
+      {props.text}
+    </button>
+  );
+};
+Button.propTypes = {
+  type: PropTypes.string,
+  text: PropTypes.string,
+  isVisible: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  onChange: PropTypes.func,
+};
+export default Button;
