@@ -2,6 +2,19 @@ import React, {cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
+const RowItem = (props) => {
+  return (
+    <div
+      className="kuc-table-td"
+    >
+      {props.newCell}
+    </div>
+  );
+};
+RowItem.propTypes = {
+  newCell: PropTypes.object
+};
+
 const TableRow = (props) => {
   const addRow = () => {
     props.onRowAdd(props.index);
@@ -60,7 +73,7 @@ const TableRow = (props) => {
         name: cell.props.name + '_' + props.index + '_' + index
       }
     );
-    return <RowItem key={newCell.props.value} newCell={newCell} />;
+    return <RowItem key={newCell.props.value || index} newCell={newCell} />;
   });
 
   return (
@@ -72,19 +85,6 @@ const TableRow = (props) => {
       </div>
     </div>
   );
-};
-
-const RowItem = (props) => {
-  return (
-    <div
-      className="kuc-table-td"
-    >
-      {props.newCell}
-    </div>
-  );
-};
-RowItem.propTypes = {
-  newCell: PropTypes.object
 };
 TableRow.propTypes = {
   index: PropTypes.number,
