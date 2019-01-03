@@ -37,6 +37,13 @@ export default class Control {
     this._setStateAfterEventHandler(value);
   }
 
+  _handleOnCellChange = (value) => {
+    if (typeof this.cellChange === 'function') {
+      this.cellChange(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
   _handleOnRowAdd = (value) => {
     if (typeof this.rowAdd === 'function') {
       this.rowAdd(value);
@@ -83,25 +90,27 @@ export default class Control {
       this._getReactElement(),
       container
     );
-    this._reactObject.setState({onChange: this._handleOnChange});
-    if (this._reactComponentClass.name === 'Table') {
-      this._reactObject.setState({
-        onCellChange: this._handleOnChange,
-        onCellClick: this._handleOnCellClick,
-        onRowAdd: this._handleOnRowAdd,
-        onRowRemove: this._handleOnRowRemove,
-      });
-    }
-    if (this._reactComponentClass.name === 'NotifyPopup') {
-      this._reactObject.setState({onClose: this._handleOnPopupClose});
-    }
     return container;
   }
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
+    let additionalProps = {onChange: this._handleOnChange};
+    if (this._reactComponentClass.name === 'Table') {
+      additionalProps = {...additionalProps,
+        onCellChange: this._handleOnCellChange,
+        onCellClick: this._handleOnCellClick,
+        onRowAdd: this._handleOnRowAdd,
+        onRowRemove: this._handleOnRowRemove,
+      };
+    }
+    if (this._reactComponentClass.name === 'NotifyPopup') {
+      additionalProps = {...additionalProps,
+        onClose: this._handleOnPopupClose,
+      };
+    }
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} />;
+    const reactElement = <Component {...this.props} {...additionalProps} />;
     return reactElement;
   }
 

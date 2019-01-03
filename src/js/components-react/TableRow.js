@@ -73,7 +73,7 @@ const TableRow = (props) => {
         name: cell.props.name + '_' + props.index + '_' + index
       }
     );
-    return <RowItem key={newCell.props.value || index} newCell={newCell} />;
+    return <RowItem key={newCell.props.value} newCell={newCell} />;
   });
 
   return (

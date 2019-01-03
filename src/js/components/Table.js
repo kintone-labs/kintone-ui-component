@@ -7,7 +7,9 @@ export default class Table extends Control {
     let props = {};
     if (props_opt.rowTemplate) {
       const rowTemplate = props_opt.rowTemplate.map(element => {
-        return element._getReactElement();
+        element.props.onChange = element._handleOnChange;
+        const elem = element._getReactElement();
+        return elem;
       });
       const dataTemplate = props_opt.rowTemplate.map(element => {
         return element.props.value;

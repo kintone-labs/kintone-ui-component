@@ -1,7 +1,6 @@
 import Control from './Control';
 import Message from '../constant/Message';
 export default class AbstractSingleSelection extends Control {
-
   _setDisabledItem(value, isDisabled) {
     if (!this._getState().items) {
       return;
@@ -16,7 +15,6 @@ export default class AbstractSingleSelection extends Control {
   }
 
   _removeItem(index) {
-
     if (isNaN(index) && !isFinite(index) || index === '') {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
