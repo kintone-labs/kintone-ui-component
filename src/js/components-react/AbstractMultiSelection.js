@@ -26,8 +26,8 @@ export default class AbstractMultiSelection extends Component {
 
     componentWillReceiveProps(nextProps) {
       this.setState(prevState => {
-        const newValue = nextProps.value || prevState.state.value;
-        const newItems = nextProps.items || prevState.state.items;
+        const newValue = nextProps.value || prevState.value;
+        const newItems = nextProps.items || prevState.items;
         return {
           value: newValue,
           items: newItems
