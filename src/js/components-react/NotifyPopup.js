@@ -78,21 +78,19 @@ export default class NotifyPopup extends Component {
 
     render() {
       return (
-        <div>
-          <div className={this._getClassName()}>
-            <div
-              className="kuc-notify-title"
-              onClick={this._onClick}
-            >
-              {this.props.text}
-            </div>
-            <div className="kuc-close-button">
-              <IconButton
-                onClick={this._handleClosePopup}
-                type="close"
-                color={this._getStyleByType().color}
-              />
-            </div>
+        <div className={this._getClassName()}>
+          <div
+            className="kuc-notify-title"
+            onClick={this._onClick}
+          >
+            {this.props.text}
+          </div>
+          <div className="kuc-close-button">
+            <IconButton
+              onClick={this._handleClosePopup}
+              type="close"
+              color={this._getStyleByType().color}
+            />
           </div>
         </div>
       );

@@ -71,7 +71,7 @@ export default class Dropdown extends AbstractSingleSelection {
         this.props.isDisabled ? 'kuc-dropdown-disable' : ''
       ];
       return (
-        <div className="kuc-dropdown-container">
+        <span className="kuc-dropdown-container">
           <div className="kuc-dropdown-sub-container">
             <div className="kuc-dropdown-outer" onClick={this._showItems}>
               <div className={className.join(' ').trim()}>
@@ -87,7 +87,7 @@ export default class Dropdown extends AbstractSingleSelection {
               {items}
             </div>
           </div>
-        </div>
+        </span>
       );
     }
 

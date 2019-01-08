@@ -3,6 +3,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import withState from './withState';
 import Message from '../constant/Message';
+import Table from './Table'
 const validEventNames = ['click', 'change'];
 export default class Control {
   constructor(props) {
@@ -51,12 +52,15 @@ export default class Control {
   }
 
   _renderReactObject() {
-    const container = document.createElement('div');
+    let container = document.createElement('span');
+    if (this._getReactElement() instanceof Table) {
+      container = document.createElement('div')
+    }
+    container.classList.add('kuc-wrapper')
     this._reactObject = render(
       this._getReactElement(),
       container
     );
-
     this._reactObject.setState({onChange: this._handleOnChange});
 
     return container;

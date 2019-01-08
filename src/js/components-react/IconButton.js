@@ -27,7 +27,7 @@ export default class IconButton extends Component {
     }
 
     _getClassType() {
-      let classType = 'fa fa-plus';
+      let classType
       switch (this.props.type) {
         case 'insert':
           break;
@@ -37,6 +37,8 @@ export default class IconButton extends Component {
         case 'close':
           classType = 'fa fa-times';
           break;
+        default:
+          classType = 'fa fa-plus';
       }
       return classType;
     }

@@ -39,13 +39,13 @@ export default class Alert extends Component {
       }
 
       return (
-        <div
+        <span
           className={this._getClassName()}
           onClick={this._onClick}
           onChange={this.props.onChange}
         >
           {this.props.text}
-        </div>
+        </span>
       );
     }
 }
