@@ -5,9 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = (env = {}) => {
     return {
         entry: {
-            "kintone-ui-component.min": './src/js/components/index.js',
-            "react-test.min": './sample.js',
-            "js-test.min": './sample_js.js'
+            "kintone-ui-component.min": './src/js/components/index.js'
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
@@ -48,10 +46,17 @@ module.exports = (env = {}) => {
                     'NODE_ENV': JSON.stringify('production')
                 }
             }),
-            // new webpack.optimize.UglifyJsPlugin({
-            //     include: /\.min\.js$/,
-            //     minimize: true
-            // }),
+            new webpack.optimize.UglifyJsPlugin({
+                include: /\.min\.js$/,
+                minimize: true,
+                compress: {
+                    warnings: false,
+                    keep_fnames: true
+                },
+                mangle: {
+                    keep_fnames: true
+                },
+            }),
             new ExtractTextPlugin({
                 filename: '[name].css'
             })

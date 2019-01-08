@@ -7,9 +7,9 @@ const Table = (props) => {
     return element.props.value;
   });
   props.value = props.value || [dataTemplate];
-
+  Table.innerValue = props.value;
   const onCellChange = (rowValue, rowIndex, columnIndex) => {
-    const value = [...props.value];
+    const value = [...Table.innerValue];
     value[rowIndex] = rowValue;
     if (props.onCellChange) {
       const data = {
@@ -106,7 +106,7 @@ Table.propTypes = {
   onCellChange: PropTypes.func,
   onCellClick: PropTypes.func,
   onRowAdd: PropTypes.func,
-  onRowRemove: PropTypes.func
+  onRowRemove: PropTypes.func,
 };
 Table.defaultProps = {
   rowTemplate: []

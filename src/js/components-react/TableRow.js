@@ -24,7 +24,7 @@ const TableRow = (props) => {
     props.onRowRemove(props.index);
   };
 
-  const handleOnCellChange = (value, cellIndex) => {
+  const handleOnCellChange = function(value, cellIndex) {
     const rowValue = props.value.slice();
     rowValue[cellIndex] = value;
     props.onCellChange(rowValue, props.index, cellIndex);
