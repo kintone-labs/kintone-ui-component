@@ -20,7 +20,7 @@
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items will be displayed on dropdown.|
 |options.items[].value|String|Yes|The value of an item.<br>If the value is duplicate, the error will be displayed|
-|options.items[].label|String|No|List of items will be displayed on dropdown.|
+|options.items[].label|String|No|The label of an item.|
 |options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
 |options.value|String|No|Default selected value. <br> If the 'options.value' is nonexistent value, the error will be displayed|
 |options.isDisabled|Boolean|No|The dropdown will be disabled. <br> Default value: 'false'|
@@ -268,7 +268,18 @@ export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = {
-            items: []
+            items: [
+                {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: true
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: false
+            }
+            ]
         }
     }
    

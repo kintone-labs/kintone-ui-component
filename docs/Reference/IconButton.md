@@ -27,19 +27,20 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' />
+            <IconButton type:'insert' size:'small' color:'blue' />
         );
     }
 }
 ```
 **Javascript**
 ```
-var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color='blue', size: 'small'});
+var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 ```
 </details>
 
 ## Methods
 ### render()
+Get dom element of component.
 
 **Parameter**
 
@@ -47,7 +48,7 @@ None
 
 **Returns**
 
-Get dom element of component.
+Dom element
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -61,7 +62,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' />
+            <IconButton type:'insert' size:'small' color:'blue' />
         );
     }
 }
@@ -99,7 +100,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' type='remove'/>
+            <IconButton type:'insert' size:'small' type='remove'/>
         );
     }
 }
@@ -140,7 +141,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' />
+            <IconButton type:'insert' size:'small' />
         );
     }
 }
@@ -181,7 +182,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' onClick={this.handleClick} />
+            <IconButton type:'insert' size:'small' color:'blue' onClick={this.handleClick} />
         );
     }
     handleClick() {
@@ -226,7 +227,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' isVisible={true} />
+            <IconButton type:'insert' size:'small' color:'blue' isVisible={true} />
         );
     }
 }
@@ -265,7 +266,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' isVisible={false} />
+            <IconButton type:'insert' size:'small' color:'blue' isVisible={false} />
         );
     }
 }
@@ -281,8 +282,8 @@ iconBtn.hide();
 ```
 </details>
 
-### disble()
-Disbled the icon button.
+### disable()
+Disabled the icon button.
 
 **Parameter**
 
@@ -304,7 +305,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' isDisabled={true} />
+            <IconButton type:'insert' size:'small' color:'blue' isDisabled={true} />
         );
     }
 }
@@ -316,7 +317,7 @@ var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
 
-iconBtn.disble();
+iconBtn.disable();
 ```
 </details>
 
@@ -343,7 +344,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton text='insert' size='small' color='blue' isDisabled={false} />
+            <IconButton type:'insert' size:'small' color:'blue' isDisabled={false} />
         );
     }
 }

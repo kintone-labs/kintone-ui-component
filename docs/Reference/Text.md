@@ -248,10 +248,10 @@ export default class Plugin extends React.Component {
         return (
             <Text value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={true} />
         );
-        handleChange(value) {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
+    }
+    handleChange(value) {
+        this.setState({value});
+        console.log('value: ' + value);
     }
 }
 
@@ -291,10 +291,10 @@ export default class Plugin extends React.Component {
         return (
             <Text value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={false} />
         );
-        handleChange(value) {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
+    }
+    handleChange(value) {
+        this.setState({value});
+        console.log('value: ' + value);
     }
 }
 
@@ -334,10 +334,10 @@ export default class Plugin extends React.Component {
         return (
             <Text value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={true} />
         );
-        handleChange(value) {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
+    }
+    handleChange(value) {
+        this.setState({value});
+        console.log('value: ' + value);
     }
 }
 
@@ -377,10 +377,10 @@ export default class Plugin extends React.Component {
         return (
             <Text value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={false} />
         );
-        handleChange(value) {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
+    }
+    handleChange(value) {
+        this.setState({value});
+        console.log('value: ' + value);
     }
 }
 

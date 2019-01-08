@@ -237,12 +237,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 label: 'Banana',
                 value: 'Banana',
                 isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
+            }
         ],
     value: 'Banana'
 });

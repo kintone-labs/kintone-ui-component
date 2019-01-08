@@ -286,7 +286,23 @@ export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = {
-            items: []
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
         }
     }
 
@@ -360,7 +376,23 @@ export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = {
-            items: []
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
         }
     }
 
