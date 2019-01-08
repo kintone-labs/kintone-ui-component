@@ -34,7 +34,7 @@ export default class Plugin extends React.Component {
 ```
 **Javascript**
 ```
-var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color='blue', size: 'small'});
+var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 ```
 </details>
 
