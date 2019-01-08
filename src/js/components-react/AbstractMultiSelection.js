@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const _hasDuplicatedItems = () => {
-  const unique = {};
-  let isUnique = true;
-  if (this.props.items) {
-    this.props.items.forEach((val, i) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
-        isUnique = false;
-=======
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 
@@ -102,7 +93,6 @@ export default class AbstractMultiSelection extends Component {
 
       if (this.props.value === undefined) {
         return true;
->>>>>>> origin/v0.2.0
       }
       unique[val.value] = 0;
     });
