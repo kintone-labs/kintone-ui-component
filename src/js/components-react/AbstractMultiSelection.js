@@ -2,7 +2,7 @@ const _hasDuplicatedItems = () => {
   const unique = {};
   let isUnique = true;
   if (this.props.items) {
-    this.props.items.forEach((val, i) => {
+    this.props.items.forEach((val) => {
       if (typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
@@ -10,7 +10,7 @@ const _hasDuplicatedItems = () => {
     });
   }
 
-  return isUnique;
+  return !isUnique;
 };
 
 const _hasValidValue = () => {

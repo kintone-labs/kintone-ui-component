@@ -51,7 +51,7 @@ export default class Dropdown extends React.PureComponent {
       return null;
     }
 
-    if (!(() => AbstractSingleSelection._hasDuplicatedItems)()) {
+    if ((() => AbstractSingleSelection._hasDuplicatedItems)()) {
       throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
 

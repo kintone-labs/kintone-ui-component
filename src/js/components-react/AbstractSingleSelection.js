@@ -14,7 +14,7 @@ const _hasDuplicatedItems = () => {
       unique[val.value] = 0;
     });
   }
-  return isUnique;
+  return !isUnique;
 };
 
 const _hasValidValue = () => {

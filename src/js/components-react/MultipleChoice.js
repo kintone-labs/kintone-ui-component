@@ -38,7 +38,7 @@ const MultipleChoice = (props) => {
     );
   });
 
-  if (!(() => AbstractMultiSelection._hasDuplicatedItems)()) {
+  if ((() => AbstractMultiSelection._hasDuplicatedItems)()) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
