@@ -50,11 +50,11 @@ export default class Dropdown extends React.PureComponent {
       return null;
     }
 
-    if ((() => AbstractSingleSelection._hasDuplicatedItems)()) {
+    if (AbstractSingleSelection._hasDuplicatedItems(this.props.items)) {
       throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
 
-    if (!(() => AbstractSingleSelection._hasValidValue)()) {
+    if (!AbstractSingleSelection._hasValidValue(this.props.items, this.props.value)) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
 
@@ -82,7 +82,7 @@ export default class Dropdown extends React.PureComponent {
       this.props.isDisabled ? 'kuc-dropdown-disable' : ''
     ];
     return (
-      <div className="kuc-dropdown-container">
+      <span className="kuc-dropdown-container">
         <div className="kuc-dropdown-sub-container">
           <div className="kuc-dropdown-outer" onClick={this._showItems}>
             <div className={className.join(' ').trim()}>
@@ -98,7 +98,7 @@ export default class Dropdown extends React.PureComponent {
             {items}
           </div>
         </div>
-      </div>
+      </span>
     );
   }
 }

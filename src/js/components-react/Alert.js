@@ -25,12 +25,12 @@ const Alert = (props) => {
   }
 
   return (
-    <div
+    <span
       className={_getClassName()}
       onClick={_onClick}
     >
       {props.text}
-    </div>
+    </span>
   );
 };
 Alert.propTypes = {

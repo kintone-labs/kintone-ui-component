@@ -1,8 +1,8 @@
-const _hasDuplicatedItems = () => {
+const _hasDuplicatedItems = (items) => {
   const unique = {};
   let isUnique = true;
-  if (this.props.items) {
-    this.props.items.forEach((val) => {
+  if (items) {
+    items.forEach((val) => {
       if (typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
@@ -13,18 +13,18 @@ const _hasDuplicatedItems = () => {
   return !isUnique;
 };
 
-const _hasValidValue = () => {
+const _hasValidValue = (items, value) => {
   const validValues = [];
-  this.props.items.forEach((item) => {
+  items.forEach((item) => {
     validValues.push(item.value);
   });
 
-  if (this.props.value === undefined) {
+  if (value === undefined) {
     return true;
   }
 
-  if (this.props.value instanceof Array) {
-    return this.props.value.every(val => validValues.indexOf(val) >= 0);
+  if (value instanceof Array) {
+    return value.every(val => validValues.indexOf(val) >= 0);
   }
   return false;
 };

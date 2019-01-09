@@ -85,7 +85,8 @@ export default class Control {
   }
 
   _renderReactObject() {
-    const container = document.createElement('div');
+    const container = document.createElement('span');
+    container.classList.add('kuc-wrapper');
     this._reactObject = render(
       this._getReactElement(),
       container
@@ -95,20 +96,7 @@ export default class Control {
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
-    let additionalProps = {onChange: this._handleOnChange};
-    if (this._reactComponentClass.name === 'Table') {
-      additionalProps = {...additionalProps,
-        onCellChange: this._handleOnCellChange,
-        onCellClick: this._handleOnCellClick,
-        onRowAdd: this._handleOnRowAdd,
-        onRowRemove: this._handleOnRowRemove,
-      };
-    }
-    if (this._reactComponentClass.name === 'NotifyPopup') {
-      additionalProps = {...additionalProps,
-        onClose: this._handleOnPopupClose,
-      };
-    }
+    const additionalProps = {onChange: this._handleOnChange};
     // eslint-disable-next-line react/jsx-filename-extension
     const reactElement = <Component {...this.props} {...additionalProps} />;
     return reactElement;

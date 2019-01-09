@@ -1,6 +1,9 @@
 import Control from './Control';
 import TableReact from '../components-react/Table';
 import Message from '../constant/Message';
+import {render} from 'react-dom';
+import withState from './withState';
+import React from 'react';
 const validEventNames = ['cellChange', 'cellClick', 'rowAdd', 'rowRemove'];
 export default class Table extends Control {
   constructor(props_opt) {
@@ -42,5 +45,28 @@ export default class Table extends Control {
     }
     const formatEventName = 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
     this._reactObject.setState({[formatEventName]: callback});
+  }
+
+  _renderReactObject() {
+    const container = document.createElement('div');
+    container.classList.add('kuc-wrapper');
+    this._reactObject = render(
+      this._getReactElement(),
+      container
+    );
+    return container;
+  }
+
+  _getReactElement() {
+    const Component = withState(this._reactComponentClass);
+    const additionalProps = {
+      onCellChange: this._handleOnCellChange,
+      onCellClick: this._handleOnCellClick,
+      onRowAdd: this._handleOnRowAdd,
+      onRowRemove: this._handleOnRowRemove,
+    };
+    // eslint-disable-next-line react/jsx-filename-extension
+    const reactElement = <Component {...this.props} {...additionalProps} />;
+    return reactElement;
   }
 }

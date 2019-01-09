@@ -1,6 +1,7 @@
 .kuc-alert {
     position: relative;
-    display: block;
+    display: inline-block;
+    min-width: 280px;
     margin: 8px 0;
     padding: 4px 18px;
     background: #e74c3c;
