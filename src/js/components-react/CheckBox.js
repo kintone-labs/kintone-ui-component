@@ -60,11 +60,9 @@ CheckBox.propTypes = {
   value: PropTypes.array,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
   onChange: PropTypes.func,
 };
 CheckBox.defaultProps = {
-  onChange: f => f,
-  onClick: f => f
+  onChange: f => f
 };
 export default CheckBox;

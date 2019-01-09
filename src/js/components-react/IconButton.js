@@ -52,6 +52,5 @@ IconButton.propTypes = {
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  onChange: PropTypes.func,
 };
 export default IconButton;

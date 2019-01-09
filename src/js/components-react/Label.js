@@ -17,7 +17,6 @@ const Label = (props) => {
     <div
       className="kuc-label"
       onClick={_onClick}
-      onChange={props.onChange}
     >
       {props.text}
       {props.isRequired && <span className="kuc-require">*</span>}
@@ -25,13 +24,11 @@ const Label = (props) => {
   );
 };
 Label.propTypes = {
-  type: PropTypes.string,
   text: PropTypes.string,
   isRequired: PropTypes.bool,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  onChange: PropTypes.func
 };
 Label.defaultProps = {
   onClick: f => f

@@ -28,7 +28,6 @@ const Alert = (props) => {
     <div
       className={_getClassName()}
       onClick={_onClick}
-      onChange={props.onChange}
     >
       {props.text}
     </div>
@@ -40,7 +39,6 @@ Alert.propTypes = {
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  onChange: PropTypes.func,
 };
 Alert.defaultProps = {
   onClick: f => f

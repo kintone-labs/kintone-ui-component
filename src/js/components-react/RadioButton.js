@@ -46,7 +46,6 @@ RadioButton.propTypes = {
   items: PropTypes.array,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
   onChange: PropTypes.func,
 };
 export default RadioButton;

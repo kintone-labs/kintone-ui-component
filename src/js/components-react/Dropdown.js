@@ -11,7 +11,6 @@ export default class Dropdown extends React.PureComponent {
     items: PropTypes.array,
     isVisible: PropTypes.bool,
     isDisabled: PropTypes.bool,
-    onClick: PropTypes.func,
     onChange: PropTypes.func,
   }
 

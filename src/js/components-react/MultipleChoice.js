@@ -62,11 +62,9 @@ MultipleChoice.propTypes = {
   value: PropTypes.array,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
   onChange: PropTypes.func,
 };
 MultipleChoice.defaultProps = {
   onChange: f => f,
-  onClick: f => f
 };
 export default MultipleChoice;

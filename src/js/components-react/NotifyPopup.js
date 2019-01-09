@@ -78,7 +78,6 @@ NotifyPopup.propTypes = {
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   onClose: PropTypes.func,
-  onChange: PropTypes.func,
 };
 NotifyPopup.defaultProps = {
   onClick: f => f,

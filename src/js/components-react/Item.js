@@ -9,7 +9,7 @@ export const Item = (props) => {
     return true;
   };
 
-  const onChange = () => {
+  const _onChange = () => {
     if (props.isDisabled) {
       return false;
     }
@@ -37,7 +37,7 @@ export const Item = (props) => {
           disabled={props.isDisabled}
           type={props.type}
           checked={props.selected}
-          onChange={onChange}
+          onChange={_onChange}
         />
         <label htmlFor={id}>{props.item.label}
         </label>

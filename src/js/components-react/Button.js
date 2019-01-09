@@ -17,7 +17,6 @@ const Button = (props) => {
     <button
       className={_getClassName()}
       onClick={props.onClick}
-      onChange={props.onChange}
       disabled={props.isDisabled}
     >
       {props.text}
@@ -30,6 +29,5 @@ Button.propTypes = {
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  onChange: PropTypes.func,
 };
 export default Button;
