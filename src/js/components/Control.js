@@ -18,32 +18,66 @@ export default class Control {
   }
 
   _getState() {
-    return this.inner.props;
-  }
-
-  get inner() {
-    return this._reactObject.inner;
+    return this.props;
   }
 
   render() {
-    this.el = this._renderReactObject();
+    const newEl = this._renderReactObject();
+    if (this.el !== undefined) {
+      this.el.parentNode.replaceChild(newEl, this.el);
+    }
+    this.el = newEl;
     return this.el;
   }
 
-  refresh() {
-    const newEl = this._renderReactObject();
-    this.el.parentNode.replaceChild(newEl, this.el);
-    this.el = newEl;
-  }
   _handleOnChange = (value) => {
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }
-    this._setStateAfterOnChange(value);
+    this._setStateAfterEventHandler(value);
   }
 
-  _setStateAfterOnChange(value) {
-    this._reactObject.setState({value});
+  _handleOnCellChange = (value) => {
+    if (typeof this.cellChange === 'function') {
+      this.cellChange(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnRowAdd = (value) => {
+    if (typeof this.rowAdd === 'function') {
+      this.rowAdd(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnRowRemove = (value) => {
+    if (typeof this.rowRemove === 'function') {
+      this.rowRemove(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnCellClick = (value) => {
+    if (typeof this.cellClick === 'function') {
+      this.cellClick(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _handleOnPopupClose = () => {
+    if (typeof this.onClose === 'function') {
+      this.onClose();
+    }
+    this.hide();
+  }
+
+  _setStateAfterEventHandler(value) {
+    if (value.tableValue) {
+      this._reactObject.setState({value: value.tableValue});
+    } else {
+      this._reactObject.setState({value});
+    }
   }
 
   _triggerOnChange(value) {
@@ -56,16 +90,27 @@ export default class Control {
       this._getReactElement(),
       container
     );
-
-    this._reactObject.setState({onChange: this._handleOnChange});
-
     return container;
   }
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
+    let additionalProps = {onChange: this._handleOnChange};
+    if (this._reactComponentClass.name === 'Table') {
+      additionalProps = {...additionalProps,
+        onCellChange: this._handleOnCellChange,
+        onCellClick: this._handleOnCellClick,
+        onRowAdd: this._handleOnRowAdd,
+        onRowRemove: this._handleOnRowRemove,
+      };
+    }
+    if (this._reactComponentClass.name === 'NotifyPopup') {
+      additionalProps = {...additionalProps,
+        onClose: this._handleOnPopupClose,
+      };
+    }
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} />;
+    const reactElement = <Component {...this.props} {...additionalProps} />;
     return reactElement;
   }
 
@@ -73,12 +118,10 @@ export default class Control {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
     }
-
     if (eventName === 'change') {
       this.onChange = callback;
       return;
     }
-
     this._reactObject.setState({['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)]: callback});
   }
 
