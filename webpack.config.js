@@ -48,7 +48,14 @@ module.exports = (env = {}) => {
             }),
             new webpack.optimize.UglifyJsPlugin({
                 include: /\.min\.js$/,
-                minimize: true
+                minimize: true,
+                compress: {
+                    warnings: false,
+                    keep_fnames: true
+                },
+                mangle: {
+                    keep_fnames: true
+                },
             }),
             new ExtractTextPlugin({
                 filename: '[name].css'

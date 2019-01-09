@@ -17,12 +17,8 @@ export default WrappedComponent => {
           this.state = {...props};
         }
 
-        componentWillReceiveProps({value}) {
-          this.setState({value});
-        }
-
         render() {
-          return <WrappedComponent {...this.state} ref={c => (this.inner = c)} />;
+          return <WrappedComponent {...this.state} />;
         }
   };
 };

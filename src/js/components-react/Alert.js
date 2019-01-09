@@ -1,51 +1,46 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Alert extends Component {
-    static propTypes = {
-      type: PropTypes.string,
-      text: PropTypes.string,
-      isVisible: PropTypes.bool,
-      isDisabled: PropTypes.bool,
-      onClick: PropTypes.func,
-      onChange: PropTypes.func,
+const Alert = (props) => {
+  const _getClassName = () => {
+    const className = [
+      'kuc-alert',
+      props.type === 'success' ? 'bg-success' : 'bg-danger'
+    ];
+
+    return className.join(' ');
+  };
+
+  const _onClick = () => {
+    if (props.isDisabled) {
+      return null;
     }
 
-    static defaultProps = {
-      onClick: f => f
-    };
+    props.onClick();
+    return true;
+  };
 
-    _getClassName() {
-      const className = [
-        'kuc-alert',
-        this.props.type === 'success' ? 'bg-success' : 'bg-danger'
-      ];
+  if (props.isVisible === false) {
+    return null;
+  }
 
-      return className.join(' ');
-    }
-
-    _onClick = () => {
-      if (this.props.isDisabled) {
-        return null;
-      }
-
-      this.props.onClick();
-      return true;
-    }
-
-    render() {
-      if (this.props.isVisible === false) {
-        return null;
-      }
-
-      return (
-        <span
-          className={this._getClassName()}
-          onClick={this._onClick}
-          onChange={this.props.onChange}
-        >
-          {this.props.text}
-        </span>
-      );
-    }
-}
+  return (
+    <span
+      className={_getClassName()}
+      onClick={_onClick}
+    >
+      {props.text}
+    </span>
+  );
+};
+Alert.propTypes = {
+  type: PropTypes.string,
+  text: PropTypes.string,
+  isVisible: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+Alert.defaultProps = {
+  onClick: f => f
+};
+export default Alert;
