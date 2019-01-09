@@ -52,6 +52,10 @@
     font-size: 22px;
     vertical-align: middle;
 }
+.kuc-dropdown-sub-container {
+    display: inline-block;
+    min-width: 280px;
+}
 .kuc-dropdown-sub-container .kuc-list-outer {
     position: absolute;
     min-width: 280px;
