@@ -36,88 +36,6 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
-**React**
-```
-import React, { Component } from 'react';
-import { Table, RadioButton, Dropdown, Button, IconButton} from 'kintone-ui-component';
- 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    const fruit = [
-          {
-            label: 'Orange',
-            value: 'orange'
-          },
-          {
-            label: 'Banana',
-            value: 'banana'
-          }
-        ];
- 
-    const color = [
-      {
-        label: 'Red',
-        value: 'red'
-      },
-      {
-        label: 'Green',
-        value: 'green'
-      }
-    ];
-    this.state = {
-      fruit: fruit,
-      table: {
-        header: ['Radio', 'Dropdown', 'MultipleChoice', 'Check', 'Alert', 'Label', 'text', 'button', 'icon button'],
-        rowTemplate: [
-          <RadioButton name="fruit" items={fruit} value={fruit.value} isVisible={true} isDisabled={false} />,
-          <Dropdown items={color} isVisible={true} isDisabled={false} />,
-          <Button text="button" isVisible={true} isDisabled={false} />,
-          <IconButton />
-        ]
-      }
-    }
-  }
-
-  handleRowAdd = (data) => {
-    const table = this.state.table;
-    table.value = data.tableValue;
-    this.setState({ table: table });
-    console.log('data: ', data);
-  }
-  handleRowRemove = (data) => {
-    const table = this.state.table;
-    table.value = data.tableValue;
-    this.setState({ table: table });
-    console.log('data: ', data);
-  }
-
-  handleCellChange = (data) => {
-    const table = this.state.table;
-    table.value = data.tableValue;
-    this.setState({ table: table });
-    console.log('data: ', data);
-  }
-
-  handleCellClick = (data) => {
-    console.log('data: ', data);
-  }
-
-  render() {
-    return (
-      <div>
-        <Table header={this.state.table.header} rowTemplate={this.state.table.rowTemplate}
-          value={this.state.table.value} isVisible={true}
-          onCellChange={this.handleCellChange}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellClick={this.handleCellClick}
-        />
-      </div>
-    );
-  }
-}
-```
 **Javascript**
 ```
 const radioBtn = new kintoneUIComponent.RadioButton({
@@ -136,23 +54,6 @@ var table = new kintoneUIComponent.Table({
     header: ['Fruit', 'Color']
 });
 ```
-</details>
-
-## Methods
-### render()
-Get dom element of component.
-
-**Parameter**
-
-None
-
-**Returns**
-
-Dom element
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
 import React, { Component } from 'react';
@@ -235,6 +136,23 @@ class App extends Component {
   }
 }
 ```
+</details>
+
+## Methods
+### render()
+Get dom element of component.
+
+**Parameter**
+
+None
+
+**Returns**
+
+Dom element
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 const radioBtn = new kintoneUIComponent.RadioButton({
@@ -255,6 +173,88 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
+**React**
+```
+import React, { Component } from 'react';
+import { Table, RadioButton, Dropdown, Button, IconButton} from 'kintone-ui-component';
+ 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    const fruit = [
+          {
+            label: 'Orange',
+            value: 'orange'
+          },
+          {
+            label: 'Banana',
+            value: 'banana'
+          }
+        ];
+ 
+    const color = [
+      {
+        label: 'Red',
+        value: 'red'
+      },
+      {
+        label: 'Green',
+        value: 'green'
+      }
+    ];
+    this.state = {
+      fruit: fruit,
+      table: {
+        header: ['Radio', 'Dropdown', 'MultipleChoice', 'Check', 'Alert', 'Label', 'text', 'button', 'icon button'],
+        rowTemplate: [
+          <RadioButton name="fruit" items={fruit} value={fruit.value} isVisible={true} isDisabled={false} />,
+          <Dropdown items={color} isVisible={true} isDisabled={false} />,
+          <Button text="button" isVisible={true} isDisabled={false} />,
+          <IconButton />
+        ]
+      }
+    }
+  }
+
+  handleRowAdd = (data) => {
+    const table = this.state.table;
+    table.value = data.tableValue;
+    this.setState({ table: table });
+    console.log('data: ', data);
+  }
+  handleRowRemove = (data) => {
+    const table = this.state.table;
+    table.value = data.tableValue;
+    this.setState({ table: table });
+    console.log('data: ', data);
+  }
+
+  handleCellChange = (data) => {
+    const table = this.state.table;
+    table.value = data.tableValue;
+    this.setState({ table: table });
+    console.log('data: ', data);
+  }
+
+  handleCellClick = (data) => {
+    console.log('data: ', data);
+  }
+
+  render() {
+    return (
+      <div>
+        <Table header={this.state.table.header} rowTemplate={this.state.table.rowTemplate}
+          value={this.state.table.value} isVisible={true}
+          onCellChange={this.handleCellChange}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellClick={this.handleCellClick}
+        />
+      </div>
+    );
+  }
+}
+```
 </details>
 
 ### getValue()
@@ -273,6 +273,33 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+const radioBtn = new kintoneUIComponent.RadioButton({
+    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
+    value: 'orange',
+    name: 'Fruit'
+});
+ 
+const dropdown = new kintoneUIComponent.Dropdown({
+    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
+    value: 'green'
+})
+ 
+var table = new kintoneUIComponent.Table({
+    rowTemplate: [radioBtn, dropdown],
+    header: ['Fruit', 'Color']
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+
+var value = table.getValue();
+value.forEach(rowData => {
+    rowData.forEach(cellData => {
+        console.log(cellData)
+    });
+});
+```
 **React**
 ```
 import React, { Component } from 'react';
@@ -356,33 +383,6 @@ class App extends Component {
   }
 }
 ```
-**Javascript**
-```
-const radioBtn = new kintoneUIComponent.RadioButton({
-    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
-    value: 'orange',
-    name: 'Fruit'
-});
- 
-const dropdown = new kintoneUIComponent.Dropdown({
-    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
-    value: 'green'
-})
- 
-var table = new kintoneUIComponent.Table({
-    rowTemplate: [radioBtn, dropdown],
-    header: ['Fruit', 'Color']
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
-
-var value = table.getValue();
-value.forEach(rowData => {
-    rowData.forEach(cellData => {
-        console.log(cellData)
-    });
-});
-```
 </details>
 
 ### setValue(value)
@@ -409,6 +409,33 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+const radioBtn = new kintoneUIComponent.RadioButton({
+    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
+    value: 'orange',
+    name: 'Fruit'
+});
+ 
+const dropdown = new kintoneUIComponent.Dropdown({
+    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
+    value: 'green'
+})
+ 
+var table = new kintoneUIComponent.Table({
+    rowTemplate: [radioBtn, dropdown],
+    header: ['Fruit', 'Color']
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+ 
+table.setValue([
+    ['orange', 'green'],
+    ['orange', 'red'],
+    ['banana', 'green'],
+    ['banana', 'red']
+]);
+```
 **React**
 ```
 import ReactDOM from 'react-dom';
@@ -465,33 +492,6 @@ class App extends Component {
   }
 }
 ```
-**Javascript**
-```
-const radioBtn = new kintoneUIComponent.RadioButton({
-    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
-    value: 'orange',
-    name: 'Fruit'
-});
- 
-const dropdown = new kintoneUIComponent.Dropdown({
-    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
-    value: 'green'
-})
- 
-var table = new kintoneUIComponent.Table({
-    rowTemplate: [radioBtn, dropdown],
-    header: ['Fruit', 'Color']
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
- 
-table.setValue([
-    ['orange', 'green'],
-    ['orange', 'red'],
-    ['banana', 'green'],
-    ['banana', 'red']
-]);
-```
 </details>
 
 ### on(eventName, callBack)
@@ -529,6 +529,39 @@ Callback data
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
+    value: 'orange',
+    name: 'Fruit'
+});
+ 
+var dropdown = new kintoneUIComponent.Dropdown({
+    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
+    value: 'green'
+})
+ 
+var table = new kintoneUIComponent.Table({
+    rowTemplate: [radioBtn, dropdown],
+    header: ['Fruit', 'Color']
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+ 
+table.on('rowRemove', function(data) {
+    console.log(data);
+})
+table.on('rowAdd', function(data) {
+    console.log(data);
+})
+table.on('cellChange', function(data) {
+    console.log(data);
+})
+table.on('cellClick', function(data) {
+    console.log(data);
+})
+```
 **React**
 ```
 import React, { Component } from 'react';
@@ -611,39 +644,6 @@ class App extends Component {
   }
 }
 ```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
-    value: 'orange',
-    name: 'Fruit'
-});
- 
-var dropdown = new kintoneUIComponent.Dropdown({
-    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
-    value: 'green'
-})
- 
-var table = new kintoneUIComponent.Table({
-    rowTemplate: [radioBtn, dropdown],
-    header: ['Fruit', 'Color']
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
- 
-table.on('rowRemove', function(data) {
-    console.log(data);
-})
-table.on('rowAdd', function(data) {
-    console.log(data);
-})
-table.on('cellChange', function(data) {
-    console.log(data);
-})
-table.on('cellClick', function(data) {
-    console.log(data);
-})
-```
 </details>
 
 ### show()
@@ -660,6 +660,29 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
+    value: 'orange',
+    name: 'Fruit'
+});
+ 
+var dropdown = new kintoneUIComponent.Dropdown({
+    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
+    value: 'green'
+})
+ 
+var table = new kintoneUIComponent.Table({
+    rowTemplate: [radioBtn, dropdown],
+    header: ['Fruit', 'Color'],
+    isVisible: false
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+
+table.show();
+```
 **React**
 ```
 import ReactDOM from 'react-dom';
@@ -749,29 +772,6 @@ class App extends Component {
   }
 }
 ```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
-    value: 'orange',
-    name: 'Fruit'
-});
- 
-var dropdown = new kintoneUIComponent.Dropdown({
-    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
-    value: 'green'
-})
- 
-var table = new kintoneUIComponent.Table({
-    rowTemplate: [radioBtn, dropdown],
-    header: ['Fruit', 'Color'],
-    isVisible: false
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
-
-table.show();
-```
 </details>
 
 ### hide()
@@ -788,6 +788,28 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
+    value: 'orange',
+    name: 'Fruit'
+});
+ 
+var dropdown = new kintoneUIComponent.Dropdown({
+    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
+    value: 'green'
+})
+ 
+var table = new kintoneUIComponent.Table({
+    rowTemplate: [radioBtn, dropdown],
+    header: ['Fruit', 'Color']
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+
+table.hide();
+```
 **React**
 ```
 import ReactDOM from 'react-dom';
@@ -877,27 +899,4 @@ class App extends Component {
   }
 }
 ```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-    items: [{label: 'Orange', value: 'orange'}, {label: 'Banana', value: 'banana'}],
-    value: 'orange',
-    name: 'Fruit'
-});
- 
-var dropdown = new kintoneUIComponent.Dropdown({
-    items: [{label: 'Red', value: 'red'}, {label: 'Green', value: 'green'}],
-    value: 'green'
-})
- 
-var table = new kintoneUIComponent.Table({
-    rowTemplate: [radioBtn, dropdown],
-    header: ['Fruit', 'Color']
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
-
-table.hide();
-```
 </details>
-

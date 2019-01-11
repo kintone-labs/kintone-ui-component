@@ -12,6 +12,10 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var spinner = new kintoneUIComponent.Spinner();
+```
 **React**
 ```
 import { Spinner } from 'kintone-ui-component';
@@ -25,10 +29,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var spinner = new kintoneUIComponent.Spinner();
 ```
 </details>
 
@@ -47,6 +47,12 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var spinner = new kintoneUIComponent.Spinner();
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(spinner.render());
+```
 **React**
 ```
 import { Spinner } from 'kintone-ui-component';
@@ -59,12 +65,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var spinner = new kintoneUIComponent.Spinner();
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(spinner.render());
 ```
 </details>
 
@@ -82,6 +82,13 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var spinner = new kintoneUIComponent.Spinner();
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(spinner.render());
+spinner.show();
+```
 **React**
 ```
 import { Spinner } from 'kintone-ui-component';
@@ -95,13 +102,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var spinner = new kintoneUIComponent.Spinner();
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(spinner.render());
-spinner.show();
 ```
 </details>
 
@@ -119,6 +119,13 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var spinner = new kintoneUIComponent.Spinner();
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(spinner.render());
+spinner.hide();
+```
 **React**
 ```
 import { Spinner } from 'kintone-ui-component';
@@ -132,12 +139,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var spinner = new kintoneUIComponent.Spinner();
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(spinner.render());
-spinner.hide();
 ```
 </details>

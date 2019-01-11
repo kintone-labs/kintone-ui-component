@@ -17,6 +17,10 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text= new kintoneUIComponent.Text({value: '12345'});
+```
 **React**
 ```
 import {Text} from 'kintone-ui-component';
@@ -31,10 +35,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var text= new kintoneUIComponent.Text({value: '12345'});
 ```
 </details>
 
@@ -53,6 +53,12 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+```
 **React**
 ```
 import {Text} from 'kintone-ui-component';
@@ -67,12 +73,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
 ```
 </details>
 
@@ -92,6 +92,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.setValue('input text');
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -116,14 +124,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.setValue('input text');
-```
 </details>
 
 ### getValue()
@@ -143,6 +143,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.getValue();
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -165,14 +173,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.getValue();
-```
 </details>
 
 ### on(eventName, callBack)
@@ -192,6 +192,16 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.on('click', function(event) {
+    console.log('on click');
+});
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -211,16 +221,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.on('click', function(event) {
-    console.log('on click');
-});
-```
 </details>
 
 ### show()
@@ -237,6 +237,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.show();
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -256,14 +264,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.show();
-```
 </details>
 
 ### hide()
@@ -280,6 +280,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.hide();
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -299,14 +307,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.hide();
-```
 </details>
 
 ### disable()
@@ -323,6 +323,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.disable();
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -342,14 +350,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.disable();
-```
 </details>
 
 ### enable()
@@ -366,6 +366,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+
+text.enable();
+```
 **React**
 ```
 import { Text} from 'kintone-ui-component';
@@ -384,13 +392,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(text.render());
-
-text.enable();
 ```
 </details>
