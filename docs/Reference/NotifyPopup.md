@@ -26,6 +26,13 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -39,13 +46,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
 ```
 </details>
 
@@ -64,6 +64,16 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -76,16 +86,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
 
 ```
 </details>
@@ -106,6 +106,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.setText('Submit failed');
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -119,17 +130,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.setText('Submit failed');
 ```
 </details>
 
@@ -149,6 +149,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.setType('success');
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -162,17 +173,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.setType('success');
 ```
 </details>
 
@@ -193,6 +193,19 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.on('click', function(event) {
+    console.log('on click');
+});
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -211,19 +224,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.on('click', function(event) {
-    console.log('on click');
-});
-```
 </details>
 
 ### show()
@@ -240,6 +240,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.show();
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -253,17 +264,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.show();
 ```
 </details>
 
@@ -281,6 +281,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.hide();
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -294,17 +305,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.hide();
 ```
 </details>
 
@@ -323,6 +323,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.disable();
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -336,17 +347,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.disable();
 ```
 </details>
 
@@ -364,6 +364,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+
+notifyPopup.enable();
+```
 **React**
 ```
 import { NotifyPopup } from 'kintone-ui-component';
@@ -377,16 +388,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Submit sucessffully',
-    type: 'success'
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(notifyPopup.render());
-
-notifyPopup.enable();
 ```
 </details>
