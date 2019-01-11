@@ -571,8 +571,8 @@
 <pre><code>$ npm install -g create-react-app
 $ create-react-app my-customization
 $ cd my-customization
-$ npm install --only=dev cross-env babel-preset-stage-0 css-loader style-loader
-$ npm install --only=dev kintone-ui-components
+$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli
+$ npm install kintone-ui-component
 $ rm -f src/*
 </code></pre>
 
@@ -601,7 +601,7 @@ kintone.events.on(&quot;app.record.index.show&quot;, function(ev) {
 
 <p><strong>Step</strong> 3: Add webpack.config.js file to my-customization/ folder </p>
 <pre><code>const path = require('path');
-const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) =&gt; {
     return {
         entry: {
@@ -619,7 +619,7 @@ module.exports = (env = {}) =&gt; {
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['react','env'],
+                            presets: ['react-app','@babel/preset-env'],
                             plugins: [&quot;transform-class-properties&quot;]
                         }
                     }
@@ -634,12 +634,13 @@ module.exports = (env = {}) =&gt; {
             ]
         },
         watch: env.watch,
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin({
-                include: /\.min\.js$/,
-                minimize: true
-            })
-        ]
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({ 
+                    include: /\.min\.js$/,
+                })
+            ]
+        }
     }
 }
 </code></pre>

@@ -880,7 +880,8 @@
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -899,7 +900,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
+    }
 
+    render() {
         return (
             &lt;CheckBox items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
         );
@@ -945,7 +948,8 @@ export default class Plugin extends React.Component {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    render() {
+    constructor(opts) {
+        super(opts);
         var items = [
             {
                 label: 'Orange',
@@ -964,7 +968,9 @@ export default class Plugin extends React.Component {
             },
         ];
         this.state = {items: items, value: ['Orange']};
+    }
 
+    render() {
         return (
             &lt;CheckBox items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
         );
@@ -1174,7 +1180,23 @@ export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = {
-            items: []
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
         }
     }
 
@@ -1256,7 +1278,23 @@ export default class Plugin extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = {
-            items: []
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
         }
     }
 
@@ -1353,7 +1391,7 @@ checkbox.removeItem(0);
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1453,7 +1491,7 @@ items.forEach(function(item) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1552,7 +1590,7 @@ value.forEach(function(item) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1650,7 +1688,7 @@ checkbox.setValue(['Lemon']);
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1749,7 +1787,7 @@ checkbox.disableItem('Orange');
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1854,7 +1892,7 @@ checkbox.enableItem('Banana');
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1935,7 +1973,7 @@ checkbox.on('change', function(value) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2008,7 +2046,7 @@ checkbox.show();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2080,7 +2118,7 @@ checkbox.hide();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2153,8 +2191,7 @@ checkbox.disable();
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>
-import { CheckBox } from 'kintone-ui-component';
+<pre><code class="javascript">import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
