@@ -1147,6 +1147,30 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var dropdown = new kintoneUIComponent.Dropdown({
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: true
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: false
+        }
+    ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(dropdown.render());
+
+dropdown.enable();
+```
+
 **React**
 ```javascript
 import { Dropdown } from 'kintone-ui-component';
@@ -1190,28 +1214,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```javascript
-var dropdown = new kintoneUIComponent.Dropdown({
-    items: [
-        {
-            label: 'Orange',
-            value: 'Orange',
-            isDisabled: true
-        },
-        {
-            label: 'Banana',
-            value: 'Banana',
-            isDisabled: false
-        }
-    ],
-    value: 'Banana'
-});
-
-var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render());
-
-dropdown.enable();
 ```
 </details>

@@ -18,6 +18,14 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({
+    text: 'Name',
+    isRequired: true
+});
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -30,14 +38,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({
-    text: 'Name',
-    isRequired: true
-});
 ```
 </details>
 
@@ -57,6 +57,13 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -69,12 +76,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
 ```
 </details>
 
@@ -94,6 +95,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**	
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.setText('Name');
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -106,13 +115,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**	
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.setText('Name');
 ```
 </details>
 
@@ -133,6 +135,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```	
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.setRequired(true);
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -145,13 +155,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```	
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.setRequired(true);
 ```
 </details>
 
@@ -172,6 +175,16 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.on('click', function(event) {
+    console.log('on click');
+});
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -189,15 +202,6 @@ export default class Plugin extends React.Component {
     }
 
 ```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.on('click', function(event) {
-    console.log('on click');
-});
-```
 </details>
 
 ### show()
@@ -214,6 +218,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.show();
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -227,13 +239,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.show();
 ```
 </details>
 
@@ -251,6 +256,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.hide();
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -263,14 +276,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.hide();
 ```
 </details>
 
@@ -288,6 +293,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.disable();
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -300,14 +313,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.disable();
 ```
 </details>
 
@@ -325,6 +330,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(label.render());
+label.enable();
+```
+
 **React**
 ```
 import { Label } from 'kintone-ui-component';
@@ -337,13 +350,5 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```
-var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
-label.enable();
 ```
 </details>

@@ -19,6 +19,11 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
+```
+
 **React**
 ```
 import { IconButton } from 'kintone-ui-component';
@@ -31,10 +36,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 ```
 </details>
 
@@ -53,6 +54,12 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+```
 
 **React**
 ```
@@ -66,12 +73,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
 ```
 </details>
 
@@ -91,6 +92,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setType('remove');
+```
 
 **React**
 ```
@@ -105,14 +114,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.setType('remove');
 ```
 </details>
 
@@ -132,6 +133,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setSize('small');
+```
 
 **React**
 ```
@@ -145,14 +154,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.setSize('small');
 ```
 </details>
 
@@ -173,6 +174,16 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.on('click', function(event) {
+    console.log('on click');
+});
+```
 
 **React**
 ```
@@ -191,16 +202,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.on('click', function(event) {
-    console.log('on click');
-});
-```
 </details>
 
 ### show()
@@ -218,6 +219,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.show();
+```
 
 **React**
 ```
@@ -232,14 +241,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.show();
 ```
 </details>
 
@@ -257,6 +258,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.hide();
+```
 
 **React**
 ```
@@ -271,14 +280,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.hide();
 ```
 </details>
 
@@ -296,6 +297,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.disable();
+```
 
 **React**
 ```
@@ -310,14 +319,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.disable();
 ```
 </details>
 
@@ -335,6 +336,14 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.enable();
+```
 
 **React**
 ```
@@ -349,13 +358,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.enable();
 ```
 </details>
