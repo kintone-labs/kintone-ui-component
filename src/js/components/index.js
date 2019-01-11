@@ -27,3 +27,17 @@ const kintoneUIComponent = {
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;
+export {
+  Alert,
+  Label,
+  Button,
+  IconButton,
+  Text,
+  Dropdown,
+  NotifyPopup,
+  MultipleChoice,
+  RadioButton,
+  CheckBox,
+  Spinner,
+  Table
+};
