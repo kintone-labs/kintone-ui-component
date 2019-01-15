@@ -41,11 +41,11 @@ const CheckBox = (props) => {
     );
   });
 
-  if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
+  if ((() => AbstractMultiSelection._hasDuplicatedItems)()) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
-  if (!AbstractMultiSelection._hasValidValue(props.items, props.value)) {
+  if (!(() => AbstractMultiSelection._hasValidValue)()) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 

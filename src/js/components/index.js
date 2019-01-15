@@ -23,7 +23,7 @@ const kintoneUIComponent = {
   RadioButton,
   CheckBox,
   Spinner,
-  Table
+  Table,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;

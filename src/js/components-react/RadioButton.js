@@ -13,11 +13,11 @@ const RadioButton = (props) => {
     return null;
   }
 
-  if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
+  if ((() => AbstractSingleSelection._hasDuplicatedItems)()) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
-  if (!AbstractSingleSelection._hasValidValue(props.items, props.value)) {
+  if (!(() => AbstractSingleSelection._hasValidValue)()) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
