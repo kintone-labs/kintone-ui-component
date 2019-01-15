@@ -3,11 +3,11 @@ const _handleItemClick = (item, onChange) => {
   onChange(value);
 };
 
-const _hasDuplicatedItems = () => {
+const _hasDuplicatedItems = (items) => {
   const unique = {};
   let isUnique = true;
-  if (this.props.items) {
-    this.props.items.forEach((val) => {
+  if (items) {
+    items.forEach((val) => {
       if (typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
@@ -17,12 +17,12 @@ const _hasDuplicatedItems = () => {
   return !isUnique;
 };
 
-const _hasValidValue = () => {
-  if (this.props.value === undefined) {
+const _hasValidValue = (items, value) => {
+  if (value === undefined) {
     return true;
   }
-  return this.props.items && this.props.items.some(item => {
-    return item.value === this.props.value;
+  return items && items.some(item => {
+    return item.value === value;
   });
 };
 export default {_handleItemClick, _hasDuplicatedItems, _hasValidValue};
