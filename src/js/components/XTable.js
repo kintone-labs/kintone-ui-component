@@ -1,26 +1,56 @@
+/* eslint-disable react/jsx-filename-extension */
 import Control from './Control';
 import XTableReact from '../components-react/XTable';
 import Message from '../constant/Message';
 import {render} from 'react-dom';
 import withState from './withState';
+import PropTypes from 'prop-types';
 import React from 'react';
 const validEventNames = ['cellChange', 'cellClick', 'rowAdd', 'rowRemove'];
-export default class Table extends Control {
-  constructor(props_opt) {
-    let props = {};
-    if (props_opt.rowTemplate) {
-      const rowTemplate = props_opt.rowTemplate.map(element => {
-        element.props.onChange = element._handleOnChange;
-        const elem = element._getReactElement();
-        return elem;
-      });
-      const dataTemplate = props_opt.rowTemplate.map(element => {
-        return element.props.value;
-      });
-      const value = props_opt.value || [dataTemplate];
-      props_opt.value = value;
-      props = {...props_opt, rowTemplate: rowTemplate};
-    }
+
+class XTableCustomCell extends React.Component {
+  static propTypes = {
+    html: PropTypes.object
+  }
+  constructor(props) {
+    super(props);
+    this.domEl = null;
+    this.setDomElRef = element => {
+      this.domEl = element;
+    };
+  }
+
+  componentDidMount() {
+    if (this.domEl) this.domEl.append(this.props.html);
+  }
+
+  render() {
+    return <div ref={this.setDomElRef} />;
+  }
+}
+
+export default class XTable extends Control {
+  constructor(opt_props) {
+    const {columns, data} = opt_props;
+    const {tableItems} = data;
+    const props = {};
+    const columnsReact = columns.map((column) => {
+      if (typeof column.cell === 'function') {
+        const cellRenderer = ({rowData, rowIndex, columnIndex}) => {
+          const div = column.cell({rowData, rowIndex, columnIndex});
+          return <XTableCustomCell html={div} key={columnIndex} />;
+        };
+        cellRenderer.propTypes = {
+          rowData: PropTypes.array,
+          rowIndex: PropTypes.number,
+          columnIndex: PropTypes.number,
+        };
+        column.cellRenderer = cellRenderer;
+      }
+      return column;
+    });
+    props.data = tableItems;
+    props.columns = columnsReact;
     super(props);
     this._reactComponentClass = XTableReact;
   }
@@ -60,10 +90,7 @@ export default class Table extends Control {
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
     const additionalProps = {
-      onCellChange: this._handleOnCellChange,
-      onCellClick: this._handleOnCellClick,
-      onRowAdd: this._handleOnRowAdd,
-      onRowRemove: this._handleOnRowRemove,
+      onChange: this._handleOnChange,
     };
     // eslint-disable-next-line react/jsx-filename-extension
     const reactElement = <Component {...this.props} {...additionalProps} />;

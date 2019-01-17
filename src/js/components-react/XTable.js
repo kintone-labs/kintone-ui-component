@@ -35,7 +35,7 @@ const XTableBody = ({columns, data, onChange, keyField}) => {
       {data.map((rowData, rowIndex) => (
         <div className="kuc-table-tr" key={rowData[keyField] || rowIndex}>
           {columns.map((column, columnIndex) => {
-            const {cell, accessor, actions, tdProps} = column;
+            const {cellRenderer, accessor, actions, tdProps} = column;
             if (actions === true) {
               return (
                 <XTableCellActions
@@ -49,7 +49,7 @@ const XTableBody = ({columns, data, onChange, keyField}) => {
             return (
               <XTableCell
                 key={columnIndex}
-                {...{rowData, rowIndex, accessor, cell, tdProps}}
+                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, tdProps}}
               />
             );
           })}
@@ -68,14 +68,15 @@ XTableBody.propTypes = {
 const XTableCell = ({
   rowData,
   rowIndex,
+  columnIndex,
   accessor,
-  cell = () => '',
+  cellRenderer = () => '',
   tdProps: tdPropsFn
 }) => {
-  const cellProps = {rowData, rowIndex};
+  const cellProps = {rowData, rowIndex, columnIndex};
   const content = accessor
     ? getValueByAccessor(accessor, rowData)
-    : cell(cellProps);
+    : cellRenderer(cellProps);
   const tdProps = tdPropsFn ? tdPropsFn(cellProps) : {};
   return <div {...tdProps} className="kuc-table-td">{content}</div>;
 };
