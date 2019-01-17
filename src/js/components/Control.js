@@ -18,7 +18,7 @@ export default class Control {
   }
 
   _getState() {
-    return this.props;
+    return this._reactObject.state;
   }
 
   render() {
