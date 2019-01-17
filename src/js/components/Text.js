@@ -6,9 +6,6 @@ export default class Text extends Control {
       this._setState({value});
     }
     getValue() {
-      if (!this._reactObject) {
-        return this._getState().value;
-      }
-      return this.inner._getValue();
+      return this._getState().value;
     }
 }
