@@ -2,14 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Dialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: props.isVisible
-    };
-  }
   render() {
-    if (this.state.isVisible === false) {
+    if (this.props.isVisible === false) {
       return null;
     }
     return (
@@ -22,9 +16,7 @@ class Dialog extends React.Component {
                 (
                   <span
                     className="kuc-dialog-close-button"
-                    onClick={()=>{
-                      this.setState({isVisible: false});
-                    }}
+                    onClick={this.props.onClose}
                   >
                     &times;
                   </span>
@@ -51,7 +43,8 @@ Dialog.propTypes = {
   content: PropTypes.any,
   footer: PropTypes.any,
   isVisible: PropTypes.bool,
-  showCloseButton: PropTypes.bool
+  showCloseButton: PropTypes.bool,
+  onClose: PropTypes.func
 };
 Dialog.defaultProps = {
   isVisible: false,
