@@ -11,9 +11,6 @@
     overflow: auto;
     z-index: 2000;
     transition: all 0.25s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 .kuc-notify.show {
     top: 30px;

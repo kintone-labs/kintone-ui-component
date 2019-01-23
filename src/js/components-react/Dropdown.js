@@ -82,7 +82,7 @@ export default class Dropdown extends React.PureComponent {
       this.props.isDisabled ? 'kuc-dropdown-disable' : ''
     ];
     return (
-      <span className="kuc-dropdown-container">
+      <div className="kuc-dropdown-container">
         <div className="kuc-dropdown-sub-container">
           <div className="kuc-dropdown-outer" onClick={this._showItems}>
             <div className={className.join(' ').trim()}>
@@ -98,7 +98,7 @@ export default class Dropdown extends React.PureComponent {
             {items}
           </div>
         </div>
-      </span>
+      </div>
     );
   }
 }

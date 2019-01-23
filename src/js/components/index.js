@@ -25,7 +25,10 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+<<<<<<< HEAD
   XTable,
+=======
+>>>>>>> origin/v0.2.0
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;

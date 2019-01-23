@@ -81,8 +81,7 @@ export default class Control {
   }
 
   _renderReactObject() {
-    const container = document.createElement('span');
-    container.classList.add('kuc-wrapper');
+    const container = document.createElement('div');
     this._reactObject = render(
       this._getReactElement(),
       container
