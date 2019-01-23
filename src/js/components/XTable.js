@@ -3,42 +3,29 @@ import Control from './Control';
 import XTableReact from '../components-react/XTable';
 import Message from '../constant/Message';
 import {render} from 'react-dom';
-import withState from './withState';
 import PropTypes from 'prop-types';
 import React from 'react';
+import XTableCellPortalWrapper from './XTableCellPortalWrapper';
 const validEventNames = ['cellChange', 'cellClick', 'rowAdd', 'rowRemove'];
-
-class XTableCustomCell extends React.Component {
-  static propTypes = {
-    html: PropTypes.object
-  }
-  constructor(props) {
-    super(props);
-    this.domEl = null;
-    this.setDomElRef = element => {
-      this.domEl = element;
-    };
-  }
-
-  componentDidMount() {
-    if (this.domEl) this.domEl.append(this.props.html);
-  }
-
-  render() {
-    return <div ref={this.setDomElRef} />;
-  }
-}
 
 export default class XTable extends Control {
   constructor(opt_props) {
-    const {columns, data} = opt_props;
-    const {tableItems} = data;
+    const {columns, defaultValues} = opt_props;
     const props = {};
+    super(props);
+    const {_handleOnChange} = this;
     const columnsReact = columns.map((column) => {
       if (typeof column.cell === 'function') {
         const cellRenderer = ({rowData, rowIndex, columnIndex}) => {
-          const div = column.cell({rowData, rowIndex, columnIndex});
-          return <XTableCustomCell html={div} key={columnIndex} />;
+          return (
+            <XTableCellPortalWrapper
+              render={column.cell}
+              data={rowData}
+              rowIndex={rowIndex}
+              columnIndex={columnIndex}
+              onChange={(value) => _handleOnChange(value)}
+            />
+          );
         };
         cellRenderer.propTypes = {
           rowData: PropTypes.array,
@@ -49,9 +36,9 @@ export default class XTable extends Control {
       }
       return column;
     });
-    props.data = tableItems;
-    props.columns = columnsReact;
-    super(props);
+    this.props.data = [defaultValues];
+    this.defaultValues = defaultValues;
+    this.props.columns = columnsReact;
     this._reactComponentClass = XTableReact;
   }
 
@@ -87,13 +74,27 @@ export default class XTable extends Control {
     return container;
   }
 
-  _getReactElement() {
-    const Component = withState(this._reactComponentClass);
-    const additionalProps = {
-      onChange: this._handleOnChange,
-    };
-    // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} {...additionalProps} />;
-    return reactElement;
+  _handleOnChange = (value) => {
+    // if (typeof this.onChange === 'function') {
+    //   this._triggerOnChange(value);
+    // }
+    this._setStateAfterEventHandler(value);
+  }
+
+  _setStateAfterEventHandler(value) {
+    let {data} = this._getState();
+    const {type} = value;
+    if (type === 'ADD_ROW') {
+      const template = this.defaultValues;
+      data = value.data;
+      data[value.rowIndex] = template;
+    }
+    if (type === 'CELL_CHANGED') {
+      data[value.rowIndex] = value.data;
+    }
+    if (type === 'REMOVE_ROW') {
+      data = value.data;
+    }
+    this._reactObject.setState({data});
   }
 }

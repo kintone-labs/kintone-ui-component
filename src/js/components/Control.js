@@ -18,7 +18,7 @@ export default class Control {
   }
 
   _getState() {
-    return this.props;
+    return this._reactObject.state;
   }
 
   render() {
@@ -73,11 +73,7 @@ export default class Control {
   }
 
   _setStateAfterEventHandler(value) {
-    if (value.tableValue) {
-      this._reactObject.setState({value: value.tableValue});
-    } else {
-      this._reactObject.setState({value});
-    }
+    this._reactObject.setState({value});
   }
 
   _triggerOnChange(value) {
