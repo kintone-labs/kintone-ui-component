@@ -1,0 +1,41 @@
+.kuc-tabs-tabs {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.kuc-tabs-tab-list {
+  margin: 0 0 10px;
+  padding: 0 0 10px;
+}
+
+.kuc-tabs-container {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 16px;
+  min-width: 163px;
+  height: 48px;
+  outline: none;
+  border: 1px solid #e3e7e8;
+  background-color: #f7f9fa;
+  box-shadow: 1px 1px 1px #fff inset;
+  color: #3498db;
+  text-align: center;
+  font-size: 16px;
+}
+
+.kuc-tabs-container-selection {
+  background-color: #3498db !important;
+  box-shadow: 1px 1px 1px #8ccbee inset !important;
+  color: #fff !important;
+}
+
+.kuc-tabs-disabled {
+  color: GrayText;
+  cursor: default;
+}

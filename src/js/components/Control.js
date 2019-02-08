@@ -72,6 +72,13 @@ export default class Control {
     this.hide();
   }
 
+  _handleOnSelect = (value) => {
+    if (typeof this.onSelect === "function") {
+      this.onSelect(value);
+    }
+    this._setStateAfterEventHandler(value);
+  }
+
   _setStateAfterEventHandler(value) {
     if (value.tableValue) {
       this._reactObject.setState({value: value.tableValue});
