@@ -1,115 +1,149 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TableRow from './TableRow';
+import IconButton from './IconButton';
 
-const Table = (props) => {
-  const dataTemplate = props.rowTemplate.map(element => {
-    return element.props.value;
-  });
-  props.value = props.value || [dataTemplate];
-  Table.innerValue = props.value;
-  const onCellChange = (rowValue, rowIndex, columnIndex) => {
-    const value = [...Table.innerValue];
-    value[rowIndex] = rowValue;
-    if (props.onCellChange) {
-      const data = {
-        tableValue: value,
-        cell: {
-          row: rowIndex,
-          colunm: columnIndex
-        }
-      };
-      props.onCellChange(data);
-    }
-  };
-
-  const onCellClick = (rowIndex, columnIndex) => {
-    const data = {
-      tableValue: props.value,
-      cell: {
-        row: rowIndex,
-        colunm: columnIndex
-      }
-    };
-    if (props.onCellClick) {
-      props.onCellClick(data);
-    }
-  };
-
-  const addRow = (index) => {
-    const value = [...props.value];
-    value.splice(index + 1, 0, dataTemplate);
-    if (props.onRowAdd) {
-      const data = {
-        tableValue: value,
-        row: index + 1
-      };
-      props.onRowAdd(data);
-    }
-  };
-
-  const removeRow = (index) => {
-    const value = [...props.value];
-    value.splice(index, 1);
-    if (props.onRowRemove) {
-      const data = {
-        tableValue: value
-      };
-      props.onRowRemove(data);
-    }
-  };
-
-  if (props.isVisible === false) {
-    return null;
-  }
-
-  const header = props.header.map((data, index) => {
-    return (
-      <div key={'Table_Header_Column_' + index} className="kuc-table-th">
-        <span className="kuc-header-label">{data}</span>
-      </div>
-    );
-  });
-
-  const enableRemove = props.value.length > 1;
+const Table = ({data, onChange, keyField = 'id', columns}) => {
   return (
     <div className="kuc-table">
       <div className="kuc-table-thead">
         <div className="kuc-table-tr">
-          {header}
+          <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <div className="kuc-table-tbody">
-        {props.value.map((rowValue, index) => (
-          <TableRow
-            key={index}
-            index={index}
-            value={rowValue}
-            enableRemove={enableRemove}
-            template={props.rowTemplate}
-            onRowAdd={addRow}
-            onRowRemove={removeRow}
-            onCellChange={onCellChange}
-            onCellClick={onCellClick}
-          />
-        ))}
-      </div>
+      <TableBody {...{columns, data, onChange, keyField}} />
     </div>
   );
 };
 
-Table.propTypes = {
-  isVisible: PropTypes.bool,
-  header: PropTypes.arrayOf(PropTypes.string),
-  rowTemplate: PropTypes.arrayOf(PropTypes.element),
-  value: PropTypes.array,
-  onCellChange: PropTypes.func,
-  onCellClick: PropTypes.func,
-  onRowAdd: PropTypes.func,
-  onRowRemove: PropTypes.func,
+const TableHeaderRow = ({columns}) => {
+  const header = columns.map((data, index) => {
+    return data.header ? (
+      <div key={'Table_Header_Column_' + index} className="kuc-table-th">
+        <span className="kuc-header-label">{data.header}</span>
+      </div>
+    ) : '';
+  });
+  return header;
 };
-Table.defaultProps = {
-  rowTemplate: []
+TableHeaderRow.propTypes = {
+  columns: PropTypes.array,
+};
+
+const TableBody = ({columns, data, onChange, keyField}) => {
+  return (
+    <div className="kuc-table-tbody">
+      {data.map((rowData, rowIndex) => (
+        <div className="kuc-table-tr" key={rowData[keyField] || rowIndex}>
+          {columns.map((column, columnIndex) => {
+            const {cellRenderer, accessor, actions, tdProps} = column;
+            if (actions === true) {
+              return (
+                <TableCellActions
+                  {...{key: columnIndex, data, rowIndex, addRow, removeRow}}
+                  dispatch={newState => {
+                    onChange && onChange(newState);
+                  }}
+                />
+              );
+            }
+            return (
+              <TableCell
+                key={columnIndex}
+                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, tdProps}}
+              />
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+};
+TableBody.propTypes = {
+  columns: PropTypes.array,
+  data: PropTypes.array,
+  onChange: PropTypes.func,
+  keyField: PropTypes.string
+};
+
+const TableCell = ({
+  rowData,
+  rowIndex,
+  columnIndex,
+  accessor,
+  cellRenderer = () => '',
+  tdProps: tdPropsFn
+}) => {
+  const cellProps = {rowData, rowIndex, columnIndex};
+  const content = accessor
+    ? getValueByAccessor(accessor, rowData)
+    : cellRenderer(cellProps);
+  const tdProps = tdPropsFn ? tdPropsFn(cellProps) : {};
+  return <div {...tdProps} className="kuc-table-td">{content}</div>;
+};
+
+const TableCellActions = ({data, rowIndex, addRow, removeRow, dispatch}) => {
+  return (
+    <div className="kuc-table-td action-group">
+      <span style={{marginRight: '5px'}}>
+        <IconButton
+          type="insert"
+          color="blue"
+          size="small"
+          onClick={() =>
+            dispatch({
+              type: 'ADD_ROW',
+              data: addRow({data, rowIndex}),
+              rowIndex: rowIndex + 1
+            })
+          }
+        />
+      </span>
+      {data.length > 1 &&
+        <span>
+          <IconButton
+            type="remove"
+            color="gray"
+            size="small"
+            onClick={() =>
+              dispatch({
+                type: 'REMOVE_ROW',
+                data: removeRow({data, rowIndex}),
+                rowIndex: rowIndex
+              })
+            }
+          />
+        </span>
+      }
+    </div>
+  );
+};
+TableCellActions.propTypes = {
+  data: PropTypes.array,
+  rowIndex: PropTypes.number,
+  addRow: PropTypes.func,
+  removeRow: PropTypes.func,
+  dispatch: PropTypes.func
+};
+
+const getValueByAccessor = (accessor, data) => {
+  switch (typeof accessor) {
+    case 'string':
+      return data[accessor];
+    case 'function':
+      return accessor(data);
+    default:
+      return '';
+  }
+};
+
+const addRow = ({data, rowIndex}) => {
+  const insertAt = rowIndex + 1;
+  const newData = [...data.slice(0, insertAt), {}, ...data.slice(insertAt)];
+  return newData;
+};
+
+const removeRow = ({data, rowIndex}) => {
+  return data.filter((item, index) => index !== rowIndex);
 };
 
 export default Table;

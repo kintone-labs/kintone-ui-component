@@ -11,7 +11,6 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
-import XTable from './XTable';
 const kintoneUIComponent = {
   Alert,
   Label,
@@ -25,7 +24,6 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
-  XTable,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;
