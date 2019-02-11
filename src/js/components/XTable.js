@@ -1,100 +1,176 @@
 /* eslint-disable react/jsx-filename-extension */
-import Control from './Control';
-import XTableReact from '../components-react/XTable';
-import Message from '../constant/Message';
-import {render} from 'react-dom';
-import PropTypes from 'prop-types';
 import React from 'react';
-import XTableCellPortalWrapper from './XTableCellPortalWrapper';
-const validEventNames = ['cellChange', 'cellClick', 'rowAdd', 'rowRemove'];
+import ReactDOM, {render} from 'react-dom';
+import XTableReact from '../components-react/XTable';
+import PropTypes from 'prop-types';
 
-export default class XTable extends Control {
-  constructor(opt_props) {
-    const {columns, defaultValues} = opt_props;
-    const props = {};
-    super(props);
-    const {_handleOnChange} = this;
-    const columnsReact = columns.map((column) => {
-      if (typeof column.cell === 'function') {
-        const cellRenderer = ({rowData, rowIndex, columnIndex}) => {
-          return (
-            <XTableCellPortalWrapper
-              render={column.cell}
-              data={rowData}
-              rowIndex={rowIndex}
-              columnIndex={columnIndex}
-              onChange={(value) => _handleOnChange(value)}
-            />
-          );
-        };
-        cellRenderer.propTypes = {
-          rowData: PropTypes.array,
-          rowIndex: PropTypes.number,
-          columnIndex: PropTypes.number,
-        };
-        column.cellRenderer = cellRenderer;
-      }
-      return column;
+export default class XTable {
+  constructor({data, columns, onRowAdd, onRowRemove, onCellChange}) {
+    this.data = data;
+    this.onRowAdd = onRowAdd;
+    this.onRowRemove = onRowRemove;
+    this.onCellChange = onCellChange;
+    this.columns = columns.map(({header}) => {
+      return {
+        header
+      };
     });
-    this.props.data = [defaultValues];
-    this.defaultValues = defaultValues;
-    this.props.columns = columnsReact;
-    this._reactComponentClass = XTableReact;
+
+    this.cellsTemplate = columns.map(({cell}) => {
+      return cell;
+    });
   }
 
-  setValue(value) {
-    this._setState({value});
-  }
-
-  getValue() {
-    if (!this._reactObject) {
-      return this._getState().value;
+  _handleOnChange = ({type, rowIndex, data}) => {
+    if (type === 'ADD_ROW' && this.onRowAdd) {
+      const rowData = this.onRowAdd({rowIndex, rowData: data[rowIndex]});
+      if (rowData) {
+        data[rowIndex] = rowData;
+      }
     }
-    return this.inner._getValue();
+    this.data = data;
+    this._renderCells();
+    this._triggerChange({type, rowIndex, data});
+  };
+
+  _triggerChange(...args) {
+    const {type} = args[0];
+    if (type === 'REMOVE_ROW' && this.onRowRemove) {
+      this.onRowRemove(...args);
+    }
+    if (type === 'CELL_CHANGE' && this.onCellChange) {
+      this.onCellChange(...args);
+    }
   }
 
-  on(eventName, callback) {
-    if (!validEventNames.some(event => event === eventName)) {
-      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
-    }
-    if (validEventNames.some(event => event === eventName)) {
-      this.onRowAdd = callback;
-    }
-    const formatEventName = 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
-    this._reactObject.setState({[formatEventName]: callback});
-  }
-
-  _renderReactObject() {
-    const container = document.createElement('div');
-    container.classList.add('kuc-wrapper');
-    this._reactObject = render(
-      this._getReactElement(),
-      container
+  render() {
+    const wrapperEl = document.createElement('span');
+    const reactEl = render(
+      <StatefulXTable
+        data={this.data}
+        columns={this.columns}
+        onChange={this._handleOnChange}
+      />,
+      wrapperEl
     );
-    return container;
+
+    // eslint-disable-next-line react/no-find-dom-node
+    this.el = ReactDOM.findDOMNode(reactEl);
+    this._renderCells();
+
+    return wrapperEl;
   }
 
-  _handleOnChange = (value) => {
-    // if (typeof this.onChange === 'function') {
-    //   this._triggerOnChange(value);
-    // }
-    this._setStateAfterEventHandler(value);
+  updateRowData(rowIndex, data) {
+    const rowData = this._mergeDeep(this.data[rowIndex], data);
+    const type = 'CELL_CHANGE';
+    this.data[rowIndex] = rowData;
+    this._renderCells();
+    this._triggerChange({type, data: this.data, rowIndex});
   }
 
-  _setStateAfterEventHandler(value) {
-    let {data} = this._getState();
-    const {type} = value;
-    if (type === 'ADD_ROW') {
-      const template = this.defaultValues;
-      data = value.data;
-      data[value.rowIndex] = template;
+  _renderCells() {
+    const table = this;
+    const rowsEl = [...this.el.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')];
+
+    rowsEl.forEach((rowEl, rowIndex) => {
+      const rowData = this.data[rowIndex];
+      const updateRowData = this.updateRowData.bind(this, rowIndex);
+
+      this.cellsTemplate.forEach((cellTemplate, index) => {
+        const cell = rowEl.childNodes[index];
+
+        let element;
+        let cellInstance;
+        if (cell.childNodes.length === 0) {
+          cellInstance = cellTemplate();
+          element = cellInstance.init({
+            table,
+            rowData,
+            rowIndex,
+            updateRowData
+          });
+          cell.appendChild(element);
+          cell.__xTableCellInstance = cellInstance;
+        }
+        cellInstance = cell.__xTableCellInstance;
+        cellInstance.update({table, rowData, rowIndex, element});
+      });
+    });
+  }
+
+  _isObject(item) {
+    return (item && typeof item === 'object' && !Array.isArray(item));
+  }
+
+  _mergeDeep(target, source) {
+    const output = Object.assign({}, target);
+    if (this._isObject(target) && this._isObject(source)) {
+      Object.keys(source).forEach(key => {
+        if (this._isObject(source[key])) {
+          if (!(key in target)) Object.assign(output, {[key]: source[key]});
+          else output[key] = this._mergeDeep(target[key], source[key]);
+        } else {
+          Object.assign(output, {[key]: source[key]});
+        }
+      });
     }
-    if (type === 'CELL_CHANGED') {
-      data[value.rowIndex] = value.data;
-    }
-    if (type === 'REMOVE_ROW') {
-      data = value.data;
-    }
-    this._reactObject.setState({data});
+    return output;
   }
 }
+
+class StatefulXTable extends React.Component {
+  propTypes = {
+    data: PropTypes.array,
+    onChange: PropTypes.func,
+    columns: PropTypes.array
+  }
+
+  state = {
+    data: this.props.data
+  }
+
+  handleChange = ({type, data, rowIndex}) => {
+    if (type === 'ADD_ROW') {
+      data[rowIndex] = {};
+    }
+
+    this.setState({data}, () => {
+      const {onChange} = this.props;
+      if (!onChange) {
+        return;
+      }
+      onChange({data, type, rowIndex});
+    });
+  };
+
+  render() {
+    const data = this.state.data;
+    const columns = [...this.props.columns, {actions: true}];
+    return (
+      <XTableReact data={data} columns={columns} onChange={this.handleChange} />
+    );
+  }
+}
+
+class XTableCell {
+  constructor({init, update, props} = {}) {
+    this._init = init;
+    this._update = update;
+    this.props = props;
+  }
+
+  init(...args) {
+    if (this._init) {
+      return this._init(...args);
+    }
+    return false;
+  }
+
+  update(...args) {
+    if (this._update) {
+      this._update(...args);
+    }
+  }
+}
+XTable.Cell = XTableCell;
