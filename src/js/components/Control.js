@@ -18,7 +18,7 @@ export default class Control {
   }
 
   _getState() {
-    return this.props;
+    return this._reactObject.state;
   }
 
   render() {
@@ -85,8 +85,7 @@ export default class Control {
   }
 
   _renderReactObject() {
-    const container = document.createElement('span');
-    container.classList.add('kuc-wrapper');
+    const container = document.createElement('div');
     this._reactObject = render(
       this._getReactElement(),
       container

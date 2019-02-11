@@ -30,10 +30,7 @@ export default class Table extends Control {
   }
 
   getValue() {
-    if (!this._reactObject) {
-      return this._getState().value;
-    }
-    return this.inner._getValue();
+    return this._getState().value;
   }
 
   on(eventName, callback) {

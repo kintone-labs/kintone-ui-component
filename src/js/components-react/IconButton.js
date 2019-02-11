@@ -24,8 +24,6 @@ const IconButton = (props) => {
       case 'close':
         classType = 'fa fa-times';
         break;
-      default:
-        break;
     }
     return classType;
   };
