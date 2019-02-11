@@ -8,11 +8,11 @@ const AttachmentFileItem = (props) => {
 
   const _formatFileSize = (size) => {
     if (size >= 1048576) {
-      return Math.round(size / 1048576) + 'MB';
+      return Math.round(size / 1048576) + ' MB';
     } else if (size >= 1024) {
-      return Math.round(size / 1024) + 'KB';
+      return Math.round(size / 1024) + ' KB';
     }
-    return Math.round(size) + 'bytes';
+    return Math.round(size) + ' bytes';
   };
 
   return (
