@@ -1,4 +1,4 @@
-export default class XTableCell {
+export default class TableCell {
   constructor({init, update, props} = {}) {
     this._init = init;
     this._update = update;

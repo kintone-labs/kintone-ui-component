@@ -21,8 +21,8 @@ export default class Control {
     return this._reactObject.state;
   }
 
-  render() {
-    const newEl = this._renderReactObject();
+  async render() {
+    const newEl = await this._renderReactObject();
     if (this.el !== undefined) {
       this.el.parentNode.replaceChild(newEl, this.el);
     }
@@ -80,20 +80,23 @@ export default class Control {
     this.onChange(value);
   }
 
-  _renderReactObject() {
+  async _renderReactObject() {
     const container = document.createElement('div');
-    this._reactObject = render(
-      this._getReactElement(),
-      container
-    );
-    return container;
+    return new Promise((resolve) => {
+      render(
+        this._getReactElement(),
+        container, () => {
+          resolve(container);
+        }
+      );
+    });
   }
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
     const additionalProps = {onChange: this._handleOnChange};
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} {...additionalProps} />;
+    const reactElement = <Component {...this.props} {...additionalProps} ref={el => (this._reactObject = el)} />;
     return reactElement;
   }
 

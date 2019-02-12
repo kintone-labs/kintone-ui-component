@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import ReactDOM, {render} from 'react-dom';
+import {render} from 'react-dom';
 import TableReact from '../components-react/Table';
 import PropTypes from 'prop-types';
 import TableCell from './TableCell';
 
 export default class Table {
-  constructor({data, columns, onRowAdd, onRowRemove, onCellChange}) {
+  constructor({data, defaultRowData, columns, onRowAdd, onRowRemove, onCellChange}) {
     this.data = data;
     this.onRowAdd = onRowAdd;
     this.onRowRemove = onRowRemove;
@@ -16,17 +16,21 @@ export default class Table {
         header
       };
     });
-
     this.cellsTemplate = columns.map(({cell}) => {
       return cell;
     });
+    this.defaultRowData = defaultRowData;
   }
 
   _handleOnChange = ({type, rowIndex, data}) => {
-    if (type === 'ADD_ROW' && this.onRowAdd) {
-      const rowData = this.onRowAdd({rowIndex, rowData: data[rowIndex]});
-      if (rowData) {
-        data[rowIndex] = rowData;
+    if (type === 'ADD_ROW') {
+      if (this.onRowAdd) {
+        const rowData = this.onRowAdd({rowIndex, rowData: data[rowIndex]});
+        if (rowData) {
+          data[rowIndex] = rowData;
+        }
+      } else {
+        data[rowIndex] = JSON.parse(JSON.stringify(this.defaultRowData));
       }
     }
     this.data = data;
@@ -44,17 +48,15 @@ export default class Table {
     }
   }
 
-  _renderCells() {
+  async _renderCells() {
     const table = this;
     const rowsEl = [...this.el.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')];
 
-    rowsEl.forEach((rowEl, rowIndex) => {
+    for (const [rowIndex, rowEl] of rowsEl.entries()) {
       const rowData = this.data[rowIndex];
       const updateRowData = this.updateRowData.bind(this, rowIndex);
-
-      this.cellsTemplate.forEach((cellTemplate, index) => {
+      for (const [index, cellTemplate] of this.cellsTemplate.entries()) {
         const cell = rowEl.childNodes[index];
-
         let element;
         let cellInstance;
         if (cell.childNodes.length === 0) {
@@ -65,13 +67,14 @@ export default class Table {
             rowIndex,
             updateRowData
           });
+          element = await Promise.resolve(element);
           cell.appendChild(element);
           cell.__tableCellInstance = cellInstance;
         }
         cellInstance = cell.__tableCellInstance;
         cellInstance.update({table, rowData, rowIndex, element});
-      });
-    });
+      }
+    }
   }
 
   _isObject(item) {
@@ -95,7 +98,7 @@ export default class Table {
 
   render() {
     const wrapperEl = document.createElement('span');
-    const reactEl = render(
+    render(
       <StatefulTable
         data={this.data}
         columns={this.columns}
@@ -103,19 +106,18 @@ export default class Table {
       />,
       wrapperEl
     );
-
-    // eslint-disable-next-line react/no-find-dom-node
-    this.el = ReactDOM.findDOMNode(reactEl);
+    this.el = wrapperEl.childNodes[0];
     this._renderCells();
-
     return wrapperEl;
   }
 
-  updateRowData(rowIndex, data) {
+  updateRowData(rowIndex, data, rerender = true) {
     const rowData = this._mergeDeep(this.data[rowIndex], data);
     const type = 'CELL_CHANGE';
     this.data[rowIndex] = rowData;
-    this._renderCells();
+    if (rerender) {
+      this._renderCells();
+    }
     this._triggerChange({type, data: this.data, rowIndex});
   }
 }
