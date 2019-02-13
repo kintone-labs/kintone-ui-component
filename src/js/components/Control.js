@@ -21,8 +21,8 @@ export default class Control {
     return this._reactObject.state;
   }
 
-  async render() {
-    const newEl = await this._renderReactObject();
+  render() {
+    const newEl = this._renderReactObject();
     if (this.el !== undefined) {
       this.el.parentNode.replaceChild(newEl, this.el);
     }
@@ -80,16 +80,13 @@ export default class Control {
     this.onChange(value);
   }
 
-  async _renderReactObject() {
+  _renderReactObject() {
     const container = document.createElement('div');
-    return new Promise((resolve) => {
-      render(
-        this._getReactElement(),
-        container, () => {
-          resolve(container);
-        }
-      );
-    });
+    render(
+      this._getReactElement(),
+      container
+    );
+    return container;
   }
 
   _getReactElement() {

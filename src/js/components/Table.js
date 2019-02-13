@@ -48,7 +48,7 @@ export default class Table {
     }
   }
 
-  async _renderCells() {
+  _renderCells() {
     const table = this;
     const rowsEl = [...this.el.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')];
 
@@ -67,7 +67,6 @@ export default class Table {
             rowIndex,
             updateRowData
           });
-          element = await Promise.resolve(element);
           cell.appendChild(element);
           cell.__tableCellInstance = cellInstance;
         }
@@ -104,10 +103,11 @@ export default class Table {
         columns={this.columns}
         onChange={this._handleOnChange}
       />,
-      wrapperEl
+      wrapperEl, () => {
+        this.el = wrapperEl.childNodes[0];
+        this._renderCells();
+      }
     );
-    this.el = wrapperEl.childNodes[0];
-    this._renderCells();
     return wrapperEl;
   }
 
