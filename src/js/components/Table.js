@@ -137,6 +137,20 @@ export default class Table {
       this._reactObject.setState({actionButtonsShown});
     }
   }
+
+  getValue() {
+    return this.data;
+  }
+
+  setValue(data) {
+    this.data = data;
+    if (this._reactObject) {
+      this._reactObject.setState({data}, () => {
+        // rerender cells
+        this._renderCells();
+      });
+    }
+  }
 }
 Table.Cell = TableCell;
 
