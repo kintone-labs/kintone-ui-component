@@ -66,6 +66,7 @@ const Attachment = (props) => {
   };
 
   let dropZone;
+  let inputElement;
   const _onDragEnter = () => {
     const fileDroppableElement = dropZone.parentElement;
     const attachmentFileElement = fileDroppableElement.parentElement;
@@ -126,7 +127,17 @@ const Attachment = (props) => {
           <a className="kuc-attachment-file-upload-button" tabIndex="-1">
             <span className="kuc-attachment-file-upload-button-text">{_getMessage('UPLOAD_BUTTON_TEXT')}</span>
             <div className="kuc-attachment-file-upload-html5">
-              <input type="file" multiple onChange={_addFiles} />
+              <input
+                type="file"
+                multiple
+                ref={(element) => {
+                  inputElement = element;
+                }}
+                onClick={() => {
+                  inputElement.value = null;
+                }}
+                onChange={_addFiles}
+              />
             </div>
           </a>
           <p className="kuc-attachment-file-constraints">{_getMessage('FILE_CONSTRAINT')}</p>
