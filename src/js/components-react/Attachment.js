@@ -10,18 +10,13 @@ const Attachment = (props) => {
   };
 
   const _showError = () => {
-    if (props.tooLargeFilesName.length === 0) {
+    if (!Array.isArray(props.tooLargeFilesName) || props.tooLargeFilesName.length === 0) {
       return null;
-    }
-
-    let filesName = '';
-    for (let i = 0; i < props.tooLargeFilesName.length; i++) {
-      filesName += (i === 0 ? '' : ', ') + props.tooLargeFilesName[i];
     }
 
     return (
       <div className="kuc-attachment-file-error">
-        <span>{_getMessage('EXCEED_LIMIT_1')}{filesName}{_getMessage('EXCEED_LIMIT_2')}</span>
+        <span>{_getMessage('EXCEED_LIMIT_1')}{props.tooLargeFilesName.join(', ')}{_getMessage('EXCEED_LIMIT_2')}</span>
       </div>
     );
   };
@@ -118,7 +113,7 @@ const Attachment = (props) => {
           </div>
           <div className="kuc-attachment-file-filelist" />
           <div className="kuc-attachment-file-filelist kuc-attachment-file-filelist-list">
-            {props.files.map((file, index) => (
+            {Array.isArray(props.files) && props.files.map((file, index) => (
               <AttachmentFileItem
                 key={index}
                 index={index}
