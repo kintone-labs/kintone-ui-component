@@ -37,34 +37,6 @@ export default class Control {
     this._setStateAfterEventHandler(value);
   }
 
-  _handleOnCellChange = (value) => {
-    if (typeof this.cellChange === 'function') {
-      this.cellChange(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnRowAdd = (value) => {
-    if (typeof this.rowAdd === 'function') {
-      this.rowAdd(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnRowRemove = (value) => {
-    if (typeof this.rowRemove === 'function') {
-      this.rowRemove(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnCellClick = (value) => {
-    if (typeof this.cellClick === 'function') {
-      this.cellClick(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
   _handleOnPopupClose = () => {
     if (typeof this.onClose === 'function') {
       this.onClose();

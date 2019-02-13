@@ -10,13 +10,13 @@ import Alert from './Alert';
 import Message from '../constant/Message';
 const validFieldTypes = ['text', 'dropdown', 'checkbox', 'multichoice', 'radio', 'label', 'icon', 'alert'];
 
-const createTableCell = (type, fieldName) => {
+const createTableCell = (type, fieldName, props = {}) => {
   let field;
   let FieldComponent;
   if (!validFieldTypes.some(fieldType => fieldType === type)) {
     throw new Error(Message.control.INVALID_TABLE_FIELDS + '"' + validFieldTypes.join('","') + '"');
   }
-  const init = ({updateRowData, rowIndex, table}) => {
+  const init = ({updateRowData, rowIndex, columnIndex, table}) => {
     switch (type) {
       case 'text':
         FieldComponent = Text;
@@ -46,8 +46,9 @@ const createTableCell = (type, fieldName) => {
       default:
         break;
     }
-    field = new FieldComponent({...table.data[rowIndex][fieldName]});
-
+    field = new FieldComponent({...table.data[rowIndex][fieldName], ...props});
+    // return DOM
+    const dom = field.render();
     // assign listeners
     switch (type) {
       case 'text':
@@ -60,19 +61,14 @@ const createTableCell = (type, fieldName) => {
           rowData[fieldName].value = value;
           updateRowData(rowData, false);
           // if has custom on change call it
+          if (props && props.onChange) {
+            props.onChange({rowIndex, columnIndex, rowData});
+          }
         });
-        break;
-      case 'label':
-      case 'icon':
-      case 'alert':
-        // if has custom onclick add to props
         break;
       default:
         break;
     }
-
-    // return DOM
-    const dom = field.render();
     return dom;
   };
   const update = ({rowData}) => {

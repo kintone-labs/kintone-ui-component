@@ -52,12 +52,11 @@ export default class Table {
   _renderCells() {
     const table = this;
     const rowsEl = [...this.el.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')];
-
     for (const [rowIndex, rowEl] of rowsEl.entries()) {
       const rowData = this.data[rowIndex];
       const updateRowData = this.updateRowData.bind(this, rowIndex);
-      for (const [index, cellTemplate] of this.cellsTemplate.entries()) {
-        const cell = rowEl.childNodes[index];
+      for (const [columnIndex, cellTemplate] of this.cellsTemplate.entries()) {
+        const cell = rowEl.childNodes[columnIndex];
         let element;
         let cellInstance;
         if (cell.childNodes.length === 0) {
@@ -66,13 +65,14 @@ export default class Table {
             table,
             rowData,
             rowIndex,
+            columnIndex,
             updateRowData
           });
           cell.appendChild(element);
           cell.__tableCellInstance = cellInstance;
         }
         cellInstance = cell.__tableCellInstance;
-        cellInstance.update({table, rowData, rowIndex, element});
+        cellInstance.update({table, rowData, rowIndex, columnIndex, element});
       }
     }
   }
@@ -114,14 +114,16 @@ export default class Table {
     return wrapperEl;
   }
 
-  updateRowData(rowIndex, data, rerender = true) {
+  updateRowData(rowIndex, data, rerender = true, trigger = true) {
     const rowData = this._mergeDeep(this.data[rowIndex], data);
     const type = 'CELL_CHANGE';
     this.data[rowIndex] = rowData;
     if (rerender) {
       this._renderCells();
     }
-    this._triggerChange({type, data: this.data, rowIndex});
+    if (trigger) {
+      this._triggerChange({type, data: this.data, rowIndex});
+    }
   }
 
   showActionButtons() {
