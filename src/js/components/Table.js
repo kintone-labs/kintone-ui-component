@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import TableCell from './TableCell';
 
 export default class Table {
-  constructor({data, defaultRowData, columns, onRowAdd, onRowRemove, onCellChange}) {
+  constructor({data, defaultRowData, columns, actionButtonsShown, onRowAdd, onRowRemove, onCellChange}) {
     this.data = data;
     this.onRowAdd = onRowAdd;
     this.onRowRemove = onRowRemove;
@@ -20,6 +20,7 @@ export default class Table {
       return cell;
     });
     this.defaultRowData = defaultRowData;
+    this.actionButtonsShown = actionButtonsShown !== undefined ? actionButtonsShown : true;
   }
 
   _handleOnChange = ({type, rowIndex, data}) => {
@@ -102,6 +103,8 @@ export default class Table {
         data={this.data}
         columns={this.columns}
         onChange={this._handleOnChange}
+        actionButtonsShown={this.actionButtonsShown}
+        ref={el => (this._reactObject = el)}
       />,
       wrapperEl, () => {
         this.el = wrapperEl.childNodes[0];
@@ -120,6 +123,20 @@ export default class Table {
     }
     this._triggerChange({type, data: this.data, rowIndex});
   }
+
+  showActionButtons() {
+    const actionButtonsShown = true;
+    if (this._reactObject) {
+      this._reactObject.setState({actionButtonsShown});
+    }
+  }
+
+  hideActionButtons() {
+    const actionButtonsShown = false;
+    if (this._reactObject) {
+      this._reactObject.setState({actionButtonsShown});
+    }
+  }
 }
 Table.Cell = TableCell;
 
@@ -127,11 +144,13 @@ class StatefulTable extends React.Component {
   propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    columns: PropTypes.array
+    columns: PropTypes.array,
+    actionButtonsShown: PropTypes.bool
   }
 
   state = {
-    data: this.props.data
+    data: this.props.data,
+    actionButtonsShown: this.props.actionButtonsShown
   }
 
   handleChange = ({type, data, rowIndex}) => {
@@ -149,8 +168,8 @@ class StatefulTable extends React.Component {
   };
 
   render() {
-    const data = this.state.data;
-    const columns = [...this.props.columns, {actions: true}];
+    const {data, actionButtonsShown} = this.state;
+    const columns = [...this.props.columns, {actions: actionButtonsShown}];
     return (
       <TableReact data={data} columns={columns} onChange={this.handleChange} />
     );
