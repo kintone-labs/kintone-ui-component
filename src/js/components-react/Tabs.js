@@ -20,7 +20,6 @@ const TabsReact = props => {
   });
 
   const tabPanel = props.items.map((item, i) => {
-    console.log("item.value : " + item.value);
     return (
       <TabPanel>
         <p dangerouslySetInnerHTML={{ __html: item.value }}></p>

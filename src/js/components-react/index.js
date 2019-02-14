@@ -11,7 +11,7 @@ import CheckBox from './CheckBox';
 import RadioButton from './RadioButton';
 import Spinner from './Spinner';
 import Table from './Table';
-import Tabs from '.Tabs';
+import Tabs from './Tabs';
 
 export {Alert};
 export {Label};
