@@ -27,9 +27,9 @@
 }
 
 @keyframes kuc-load {
-    0%	{
+    0% {
         transform: rotate(0deg)
-    } 
+    }
     3% {
         transform: rotate(10deg)
     }
@@ -39,100 +39,100 @@
     8% {
         transform: rotate(30deg)
     }
-    11%	{
+    11% {
         transform: rotate(40deg)
     }
-    14%	{
+    14% {
         transform: rotate(50deg)
     }
-    17%	{
+    17% {
         transform: rotate(60deg)
     }
-    19%	{
+    19% {
         transform: rotate(70deg)
     }
-    22%	{
+    22% {
         transform: rotate(80deg)
     }
-    25%	{
+    25% {
         transform: rotate(90deg)
     }
-    28%	{
+    28% {
         transform: rotate(100deg)
     }
-    31%	{
+    31% {
         transform: rotate(110deg)
     }
-    33%	{
+    33% {
         transform: rotate(120deg)
     }
-    36%	{
+    36% {
         transform: rotate(130deg)
     }
-    39%	{
+    39% {
         transform: rotate(140deg)
     }
-    42%	{
+    42% {
         transform: rotate(150deg)
     }
-    44%	{
+    44% {
         transform: rotate(160deg)
     }
-    47%	{
+    47% {
         transform: rotate(170deg)
     }
-    50%	{
+    50% {
         transform: rotate(180deg)
     }
-    53%	{
+    53% {
         transform: rotate(190deg)
     }
-    56%	{
+    56% {
         transform: rotate(200deg)
     }
-    58%	{
+    58% {
         transform: rotate(210deg)
     }
-    61%	{
+    61% {
         transform: rotate(220deg)
     }
-    64%	{
+    64% {
         transform: rotate(230deg)
     }
-    67%	{
+    67% {
         transform: rotate(240deg)
     }
-    69%	{
+    69% {
         transform: rotate(250deg)
     }
-    72%	{
+    72% {
         transform: rotate(260deg)
     }
-    75%	{
+    75% {
         transform: rotate(270deg)
     }
-    78%	{
+    78% {
         transform: rotate(280deg)
     }
-    81%	{
+    81% {
         transform: rotate(290deg)
     }
-    83%	{
+    83% {
         transform: rotate(300deg)
     }
-    86%	{
+    86% {
         transform: rotate(310deg)
     }
-    89%	{
+    89% {
         transform: rotate(320deg)
     }
-    92%	{
+    92% {
         transform: rotate(330deg)
     }
-    94%	{
+    94% {
         transform: rotate(340deg)
     }
-    97%	{
+    97% {
         transform: rotate(350deg)
     }
     100% {
@@ -141,7 +141,7 @@
 }
 
 @-webkit-keyframes kuc-load {
-    0%	{
+    0% {
         transform: rotate(0deg)
     } 
     3% {
@@ -153,100 +153,100 @@
     8% {
         transform: rotate(30deg)
     }
-    11%	{
+    11% {
         transform: rotate(40deg)
     }
-    14%	{
+    14% {
         transform: rotate(50deg)
     }
-    17%	{
+    17% {
         transform: rotate(60deg)
     }
-    19%	{
+    19% {
         transform: rotate(70deg)
     }
-    22%	{
+    22% {
         transform: rotate(80deg)
     }
-    25%	{
+    25% {
         transform: rotate(90deg)
     }
-    28%	{
+    28% {
         transform: rotate(100deg)
     }
-    31%	{
+    31% {
         transform: rotate(110deg)
     }
-    33%	{
+    33% {
         transform: rotate(120deg)
     }
-    36%	{
+    36% {
         transform: rotate(130deg)
     }
-    39%	{
+    39% {
         transform: rotate(140deg)
     }
-    42%	{
+    42% {
         transform: rotate(150deg)
     }
-    44%	{
+    44% {
         transform: rotate(160deg)
     }
-    47%	{
+    47% {
         transform: rotate(170deg)
     }
-    50%	{
+    50% {
         transform: rotate(180deg)
     }
-    53%	{
+    53% {
         transform: rotate(190deg)
     }
-    56%	{
+    56% {
         transform: rotate(200deg)
     }
-    58%	{
+    58% {
         transform: rotate(210deg)
     }
-    61%	{
+    61% {
         transform: rotate(220deg)
     }
-    64%	{
+    64% {
         transform: rotate(230deg)
     }
-    67%	{
+    67% {
         transform: rotate(240deg)
     }
-    69%	{
+    69% {
         transform: rotate(250deg)
     }
-    72%	{
+    72% {
         transform: rotate(260deg)
     }
-    75%	{
+    75% {
         transform: rotate(270deg)
     }
-    78%	{
+    78% {
         transform: rotate(280deg)
     }
-    81%	{
+    81% {
         transform: rotate(290deg)
     }
-    83%	{
+    83% {
         transform: rotate(300deg)
     }
-    86%	{
+    86% {
         transform: rotate(310deg)
     }
-    89%	{
+    89% {
         transform: rotate(320deg)
     }
-    92%	{
+    92% {
         transform: rotate(330deg)
     }
-    94%	{
+    94% {
         transform: rotate(340deg)
     }
-    97%	{
+    97% {
         transform: rotate(350deg)
     }
     100% {
