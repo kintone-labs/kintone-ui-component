@@ -31,10 +31,10 @@ export default class Control {
   }
 
   _handleOnChange = (value) => {
+    this._setStateAfterEventHandler(value);
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }
-    this._setStateAfterEventHandler(value);
   }
 
   _handleOnPopupClose = () => {
