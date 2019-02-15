@@ -188,9 +188,17 @@ class StatefulTable extends React.Component {
 
   render() {
     const {data, actionButtonsShown} = this.state;
-    const columns = [...this.props.columns, {actions: actionButtonsShown}];
+    let columns = this.props.columns;
+    if (actionButtonsShown) {
+      columns = [...this.props.columns, {actions: actionButtonsShown}];
+    }
     return (
-      <TableReact data={data} columns={columns} onRowAdd={this.handleChange} onRowRemove={this.handleChange} />
+      <TableReact
+        data={data}
+        columns={columns}
+        onRowAdd={this.handleChange}
+        onRowRemove={this.handleChange}
+      />
     );
   }
 }
