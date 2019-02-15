@@ -11,6 +11,7 @@ import CheckBox from './CheckBox';
 import RadioButton from './RadioButton';
 import Spinner from './Spinner';
 import Table from './Table';
+import DateTime from './DateTime';
 
 export {Alert};
 export {Label};
@@ -24,3 +25,4 @@ export {CheckBox};
 export {RadioButton};
 export {Spinner};
 export {Table};
+export {DateTime};
