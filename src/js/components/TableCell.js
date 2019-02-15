@@ -1,8 +1,7 @@
 export default class TableCell {
-  constructor({init, update, props} = {}) {
+  constructor({init, update} = {}) {
     this._init = init;
     this._update = update;
-    this.props = props;
   }
 
   init(...args) {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-const Table = ({data, onChange, keyField = 'id', columns}) => {
+const Table = ({data, onRowAdd, onRowRemove, onCellChange, keyField = 'id', columns}) => {
   return (
     <div className="kuc-table">
       <div className="kuc-table-thead">
@@ -10,7 +10,7 @@ const Table = ({data, onChange, keyField = 'id', columns}) => {
           <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <TableBody {...{columns, data, onChange, keyField}} />
+      <TableBody {...{columns, data, onRowAdd, onRowRemove, onCellChange, keyField}} />
     </div>
   );
 };
@@ -29,7 +29,7 @@ TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, onChange, keyField}) => {
+const TableBody = ({columns, data, onRowAdd, onRowRemove, onCellChange, keyField}) => {
   return (
     <div className="kuc-table-tbody">
       {data.map((rowData, rowIndex) => (
@@ -41,7 +41,12 @@ const TableBody = ({columns, data, onChange, keyField}) => {
                 <TableCellActions
                   {...{key: columnIndex, data, rowIndex, addRow, removeRow}}
                   dispatch={newState => {
-                    onChange && onChange(newState);
+                    if (onRowAdd && newState.type === 'ADD_ROW') {
+                      onRowAdd(newState);
+                    }
+                    if (onRowRemove && newState.type === 'REMOVE_ROW') {
+                      onRowRemove(newState);
+                    }
                   }}
                 />
               );
@@ -49,7 +54,7 @@ const TableBody = ({columns, data, onChange, keyField}) => {
             return (
               <TableCell
                 key={columnIndex}
-                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, tdProps}}
+                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, onCellChange, tdProps}}
               />
             );
           })}
@@ -61,7 +66,9 @@ const TableBody = ({columns, data, onChange, keyField}) => {
 TableBody.propTypes = {
   columns: PropTypes.array,
   data: PropTypes.array,
-  onChange: PropTypes.func,
+  onRowAdd: PropTypes.func,
+  onRowRemove: PropTypes.func,
+  onCellChange: PropTypes.func,
   keyField: PropTypes.string
 };
 
@@ -71,9 +78,13 @@ const TableCell = ({
   columnIndex,
   accessor,
   cellRenderer = () => '',
+  onCellChange,
   tdProps: tdPropsFn
 }) => {
   const cellProps = {rowData, rowIndex, columnIndex};
+  if (typeof onCellChange === 'function') {
+    cellProps.onCellChange = onCellChange;
+  }
   const content = accessor
     ? getValueByAccessor(accessor, rowData)
     : cellRenderer(cellProps);

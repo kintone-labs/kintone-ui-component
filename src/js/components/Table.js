@@ -102,7 +102,8 @@ export default class Table {
       <StatefulTable
         data={this.data}
         columns={this.columns}
-        onChange={this._handleOnChange}
+        onRowRemove={this._handleOnChange}
+        onRowAdd={this._handleOnChange}
         actionButtonsShown={this.actionButtonsShown}
         ref={el => (this._reactObject = el)}
       />,
@@ -159,7 +160,8 @@ Table.Cell = TableCell;
 class StatefulTable extends React.Component {
   propTypes = {
     data: PropTypes.array,
-    onChange: PropTypes.func,
+    onRowRemove: PropTypes.func,
+    onRowAdd: PropTypes.func,
     columns: PropTypes.array,
     actionButtonsShown: PropTypes.bool
   }
@@ -170,16 +172,17 @@ class StatefulTable extends React.Component {
   }
 
   handleChange = ({type, data, rowIndex}) => {
+    let handler = this.props.onRowRemove;
     if (type === 'ADD_ROW') {
       data[rowIndex] = {};
+      handler = this.props.onRowAdd;
     }
 
     this.setState({data}, () => {
-      const {onChange} = this.props;
-      if (!onChange) {
+      if (!handler) {
         return;
       }
-      onChange({data, type, rowIndex});
+      handler({data, type, rowIndex});
     });
   };
 
@@ -187,7 +190,7 @@ class StatefulTable extends React.Component {
     const {data, actionButtonsShown} = this.state;
     const columns = [...this.props.columns, {actions: actionButtonsShown}];
     return (
-      <TableReact data={data} columns={columns} onChange={this.handleChange} />
+      <TableReact data={data} columns={columns} onRowAdd={this.handleChange} onRowRemove={this.handleChange} />
     );
   }
 }
