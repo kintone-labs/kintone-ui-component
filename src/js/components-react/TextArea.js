@@ -69,6 +69,10 @@ export default class TextArea extends React.Component {
   };
 
   render() {
+    if (this.props.isVisible === false) {
+      return null;
+    }
+
     return (
       <div
         className="kuc-textarea-outer"
