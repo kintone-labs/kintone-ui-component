@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-const Table = ({data, onRowAdd, onRowRemove, onCellChange, keyField = 'id', columns}) => {
+const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, keyField = 'id', columns}) => {
   return (
     <div className="kuc-table">
       <div className="kuc-table-thead">
@@ -10,7 +10,7 @@ const Table = ({data, onRowAdd, onRowRemove, onCellChange, keyField = 'id', colu
           <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <TableBody {...{columns, data, onRowAdd, onRowRemove, onCellChange, keyField}} />
+      <TableBody {...{columns, data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, keyField}} />
     </div>
   );
 };
@@ -29,7 +29,10 @@ TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, onRowAdd, onRowRemove, onCellChange, keyField}) => {
+const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, onCellChange, keyField}) => {
+  if (actionButtonsShown) {
+    columns.push({actions: true});
+  }
   return (
     <div className="kuc-table-tbody">
       {data.map((rowData, rowIndex) => (
@@ -66,6 +69,7 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, onCellChange, keyField
 TableBody.propTypes = {
   columns: PropTypes.array,
   data: PropTypes.array,
+  actionButtonsShown: PropTypes.bool,
   onRowAdd: PropTypes.func,
   onRowRemove: PropTypes.func,
   onCellChange: PropTypes.func,
