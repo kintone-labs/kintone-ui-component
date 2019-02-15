@@ -15,6 +15,38 @@ export default class Attachment extends Control {
     return this._getState().files;
   }
 
+  setDropZoneText(dropZoneText) {
+    this._setState({dropZoneText});
+  }
+
+  setBrowseButtonText(browseButtonText) {
+    this._setState({browseButtonText});
+  }
+
+  setFileLimitText(fileLimitText) {
+    this._setState({fileLimitText});
+  }
+
+  setMaxFileSize(maxFileSize) {
+    if (isNaN(maxFileSize) && !isFinite(maxFileSize) || maxFileSize === '') {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
+
+    this._setState({maxFileSize});
+  }
+
+  setErrorMessage(errorMessage) {
+    this._setState({errorMessage});
+  }
+
+  showError() {
+    this._setState({isErrorVisible: true});
+  }
+
+  hideError() {
+    this._setState({isErrorVisible: false});
+  }
+
   on(eventName, callback) {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
@@ -24,18 +56,18 @@ export default class Attachment extends Control {
     }
   }
 
-  _handleOnFilesAdd = (data) => {
+  _handleOnFilesAdd = (files, tooLargeFilesName) => {
     if (typeof this.filesAdd === 'function') {
-      this.filesAdd(data);
+      this.filesAdd(files, tooLargeFilesName);
     }
-    this._reactObject.setState({files: data.files, tooLargeFilesName: data.tooLargeFilesName});
+    this._reactObject.setState({files});
   };
 
-  _handleOnFileRemove = (data) => {
+  _handleOnFileRemove = (files) => {
     if (typeof this.fileRemove === 'function') {
-      this.fileRemove(data);
+      this.fileRemove(files);
     }
-    this._reactObject.setState({files: data.files, tooLargeFilesName: data.tooLargeFilesName});
+    this._reactObject.setState({files});
   };
 
   _getReactElement() {

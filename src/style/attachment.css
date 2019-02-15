@@ -1,10 +1,8 @@
 .kuc-attachment-outer {
-    display: inline-block;
     width: 293px;
     height: auto;
     box-sizing: border-box;
     position: relative;
-    float: left;
 }
 
 .kuc-attachment-value {
@@ -78,6 +76,7 @@
     vertical-align: middle;
     height: 100%;
     width: 100%;
+    line-height: 1.5;
 }
 
 .kuc-attachment-file-constraints {

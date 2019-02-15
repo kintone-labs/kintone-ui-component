@@ -1,35 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Message from '../constant/Message';
 import AttachmentFileItem from './AttachmentFileItem';
 
 const Attachment = (props) => {
-  const _getMessage = (key) => {
-    const language = (props.language === 'en' || props.language === 'ja' || props.language === 'zh') ? props.language : 'en';
-    return Message.attachment[language].hasOwnProperty(key) ? Message.attachment[language][key] : '';
-  };
+  if (props.isVisible === false) {
+    return null;
+  }
 
-  const _showError = () => {
-    if (!Array.isArray(props.tooLargeFilesName) || props.tooLargeFilesName.length === 0) {
-      return null;
-    }
-
-    return (
-      <div className="kuc-attachment-file-error">
-        <span>{_getMessage('EXCEED_LIMIT_1')}{props.tooLargeFilesName.join(', ')}{_getMessage('EXCEED_LIMIT_2')}</span>
-      </div>
-    );
-  };
+  let dropZoneElement;
+  let inputElement;
 
   const _removeFile = (index) => {
     if (props.onFileRemove) {
       const files = [...props.files];
       files.splice(index, 1);
-      const data = {
-        files: files,
-        tooLargeFilesName: []
-      };
-      props.onFileRemove(data);
+      props.onFileRemove(files);
     }
   };
 
@@ -44,7 +29,7 @@ const Attachment = (props) => {
     for (let i = 0; i < addedFiles.length; i++) {
       const file = addedFiles[i];
 
-      if (file.size <= 1073741824) {
+      if (file.size <= props.maxFileSize) {
         files.push(file);
       } else {
         tooLargeFilesName.push(file.name);
@@ -52,11 +37,7 @@ const Attachment = (props) => {
     }
 
     if (props.onFilesAdd) {
-      const data = {
-        files: [...props.files, ...files],
-        tooLargeFilesName: tooLargeFilesName
-      };
-      props.onFilesAdd(data);
+      props.onFilesAdd([...props.files, ...files], tooLargeFilesName);
     }
   };
 
@@ -65,32 +46,26 @@ const Attachment = (props) => {
     event.stopPropagation();
   };
 
-  let dropZone;
-  let inputElement;
   const _onDragEnter = () => {
-    const fileDroppableElement = dropZone.parentElement;
+    const fileDroppableElement = dropZoneElement.parentElement;
     const attachmentFileElement = fileDroppableElement.parentElement;
 
     attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
     attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
 
-    dropZone.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
-    dropZone.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
+    dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
+    dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
     fileDroppableElement.style.display = '';
   };
 
   const _onDragLeave = () => {
-    const fileDroppableElement = dropZone.parentElement;
+    const fileDroppableElement = dropZoneElement.parentElement;
     const attachmentFileElement = fileDroppableElement.parentElement;
 
     attachmentFileElement.style.height = 'auto';
     attachmentFileElement.className = 'kuc-attachment-file';
     fileDroppableElement.style.display = 'none';
   };
-
-  if (props.isVisible === false) {
-    return null;
-  }
 
   return (
     <div className="kuc-attachment-outer">
@@ -106,10 +81,10 @@ const Attachment = (props) => {
               onDrop={_addFiles}
               onDragLeave={_onDragLeave}
               ref={(dropElement) => {
-                dropZone = dropElement;
+                dropZoneElement = dropElement;
               }}
             >
-              {_getMessage('DROPPABLE_TEXT')}
+              {props.dropZoneText}
             </div>
           </div>
           <div className="kuc-attachment-file-filelist" />
@@ -125,7 +100,7 @@ const Attachment = (props) => {
             ))}
           </div>
           <a className="kuc-attachment-file-upload-button" tabIndex="-1">
-            <span className="kuc-attachment-file-upload-button-text">{_getMessage('UPLOAD_BUTTON_TEXT')}</span>
+            <span className="kuc-attachment-file-upload-button-text">{props.browseButtonText}</span>
             <div className="kuc-attachment-file-upload-html5">
               <input
                 type="file"
@@ -140,24 +115,35 @@ const Attachment = (props) => {
               />
             </div>
           </a>
-          <p className="kuc-attachment-file-constraints">{_getMessage('FILE_CONSTRAINT')}</p>
+          <p className="kuc-attachment-file-constraints">{props.fileLimitText}</p>
         </div>
-        {_showError()}
+        {props.isErrorVisible === true && (
+          <div className="kuc-attachment-file-error">
+            <span>{props.errorMessage}</span>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 Attachment.propTypes = {
-  language: PropTypes.string,
+  dropZoneText: PropTypes.string,
+  browseButtonText: PropTypes.string,
+  fileLimitText: PropTypes.string,
+  maxFileSize: PropTypes.number,
+  errorMessage: PropTypes.string,
+  isErrorVisible: PropTypes.bool,
   isVisible: PropTypes.bool,
   files: PropTypes.array,
-  tooLargeFilesName: PropTypes.arrayOf(PropTypes.string),
   onFilesAdd: PropTypes.func,
   onFileRemove: PropTypes.func,
 };
 Attachment.defaultProps = {
   files: [],
-  tooLargeFilesName: []
+  dropZoneText: 'Drop files here.',
+  browseButtonText: 'Browse',
+  fileLimitText: '(Maximum: 1 GB)',
+  maxFileSize: 1073741824,
 };
 export default Attachment;
