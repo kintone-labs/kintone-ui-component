@@ -25,14 +25,14 @@ export default class Table {
 
   _handleOnChange = ({type, rowIndex, data}) => {
     if (type === 'ADD_ROW') {
+      let newRowData;
       if (this.onRowAdd) {
-        const rowData = this.onRowAdd({rowIndex, data});
-        if (rowData) {
-          data[rowIndex] = rowData;
-        }
-      } else {
-        data[rowIndex] = JSON.parse(JSON.stringify(this.defaultRowData));
+        newRowData = this.onRowAdd({rowIndex, data});
       }
+      if (!newRowData || newRowData === undefined) {
+        newRowData = JSON.parse(JSON.stringify(this.defaultRowData));
+      }
+      data[rowIndex] = newRowData;
     }
     this.data = data;
     this._renderCells();
