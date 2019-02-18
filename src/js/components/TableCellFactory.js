@@ -59,10 +59,11 @@ const createTableCell = (type, fieldName, props = {}) => {
         field.on('change', (value) => {
           const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
           rowData[fieldName].value = value;
-          updateRowData(rowData, false);
+          updateRowData(rowData, false, true, fieldName);
           // if has custom on change call it
           if (props && props.onChange) {
-            props.onChange({rowIndex, columnIndex, rowData});
+            const data = table.data;
+            props.onChange({data, rowIndex, fieldName});
           }
         });
         break;

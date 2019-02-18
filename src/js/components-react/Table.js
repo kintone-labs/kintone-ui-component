@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
 const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, keyField = 'id', columns, isVisible}) => {
+  const _onCellChange = (newValue, tableData, rowIndex, fieldName) => {
+    if (onCellChange) {
+      tableData[rowIndex][fieldName] = newValue;
+      onCellChange({rowIndex, data: tableData, fieldName});
+    }
+  };
   return (
     <div className="kuc-table" style={{display: isVisible ? 'table' : 'none'}}>
       <div className="kuc-table-thead">
@@ -10,7 +16,7 @@ const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = 
           <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <TableBody {...{columns, data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, keyField}} />
+      <TableBody {...{columns, data, onRowAdd, onRowRemove, _onCellChange, actionButtonsShown, keyField}} />
     </div>
   );
 };
@@ -29,7 +35,7 @@ TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, onCellChange, keyField}) => {
+const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange, keyField}) => {
   if (actionButtonsShown) {
     columns.push({actions: true});
   }
@@ -57,7 +63,7 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, on
             return (
               <TableCell
                 key={columnIndex}
-                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, onCellChange, tdProps}}
+                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, _onCellChange, tdProps}}
               />
             );
           })}
@@ -72,7 +78,7 @@ TableBody.propTypes = {
   actionButtonsShown: PropTypes.bool,
   onRowAdd: PropTypes.func,
   onRowRemove: PropTypes.func,
-  onCellChange: PropTypes.func,
+  _onCellChange: PropTypes.func,
   keyField: PropTypes.string
 };
 
@@ -82,12 +88,12 @@ const TableCell = ({
   columnIndex,
   accessor,
   cellRenderer = () => '',
-  onCellChange,
+  _onCellChange,
   tdProps: tdPropsFn
 }) => {
   const cellProps = {rowData, rowIndex, columnIndex};
-  if (typeof onCellChange === 'function') {
-    cellProps.onCellChange = onCellChange;
+  if (typeof _onCellChange === 'function') {
+    cellProps.onCellChange = _onCellChange;
   }
   const content = accessor
     ? getValueByAccessor(accessor, rowData)

@@ -116,7 +116,7 @@ export default class Table {
     return wrapperEl;
   }
 
-  updateRowData(rowIndex, data, rerender = true, trigger = true) {
+  updateRowData(rowIndex, data, rerender = true, trigger = true, fieldName) {
     const rowData = this._mergeDeep(this.data[rowIndex], data);
     const type = 'CELL_CHANGE';
     this.data[rowIndex] = rowData;
@@ -124,7 +124,11 @@ export default class Table {
       this._renderCells();
     }
     if (trigger) {
-      this._triggerChange({type, data: this.data, rowIndex});
+      if (fieldName) {
+        this._triggerChange({type, data: this.data, rowIndex, fieldName});
+      } else {
+        this._triggerChange({type, data: this.data, rowIndex});
+      }
     }
   }
 
