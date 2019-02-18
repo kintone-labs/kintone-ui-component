@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AttachmentFileItem from './AttachmentFileItem';
+import Message from '../constant/Message';
 
 const Attachment = (props) => {
   if (props.isVisible === false) {
@@ -9,6 +10,10 @@ const Attachment = (props) => {
 
   let dropZoneElement;
   let inputElement;
+
+  if (isNaN(props.maxFileSize) && !isFinite(props.maxFileSize) || props.maxFileSize === '') {
+    throw new Error(Message.common.INVALID_ARGUMENT);
+  }
 
   const _removeFile = (index) => {
     if (props.onFileRemove) {
