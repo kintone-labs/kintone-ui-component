@@ -72,6 +72,13 @@ export default class Control {
     this.hide();
   }
 
+  _handleOnToggle = (toggle) => {
+    if (typeof this.onToggle === 'function') {
+      this.onToggle(toggle);
+    }
+    this._setState({toggle: toggle});
+  };
+
   _setStateAfterEventHandler(value) {
     if (value.tableValue) {
       this._reactObject.setState({value: value.tableValue});
@@ -95,7 +102,7 @@ export default class Control {
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
-    const additionalProps = {onChange: this._handleOnChange};
+    const additionalProps = {onChange: this._handleOnChange, onToggle: this._handleOnToggle};
     // eslint-disable-next-line react/jsx-filename-extension
     const reactElement = <Component {...this.props} {...additionalProps} />;
     return reactElement;
