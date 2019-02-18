@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 const TabsReact = props => {
 
@@ -13,7 +13,13 @@ const TabsReact = props => {
 
   const tabList = props.items.map((item, i) => {
     return (
-      <Tab selectedClassName="kuc-tabs-container-selection" className="kuc-tabs-container" disabled={item.isDisabled} disabledClassName="kuc-tabs-disabled">
+      // eslint-disable-next-line react/jsx-key
+      <Tab
+        selectedClassName="kuc-tabs-container-selection"
+        className="kuc-tabs-container"
+        disabled={item.isDisabled}
+        disabledClassName="kuc-tabs-disabled"
+      >
         {item.label}
       </Tab>
     );
@@ -21,8 +27,9 @@ const TabsReact = props => {
 
   const tabPanel = props.items.map((item, i) => {
     return (
+      // eslint-disable-next-line react/jsx-key
       <TabPanel>
-        <p dangerouslySetInnerHTML={{ __html: item.value }}></p>
+        <p dangerouslySetInnerHTML={{__html: item.value}} />
       </TabPanel>
     );
   });

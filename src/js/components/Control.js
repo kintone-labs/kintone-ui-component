@@ -73,7 +73,7 @@ export default class Control {
   }
 
   _handleOnSelect = (value) => {
-    if (typeof this.onSelect === "function") {
+    if (typeof this.onSelect === 'function') {
       this.onSelect(value);
     }
     this._setStateAfterEventHandler(value);
