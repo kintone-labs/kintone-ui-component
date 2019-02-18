@@ -4,6 +4,8 @@ import {render} from 'react-dom';
 import TableReact from '../components-react/Table';
 import PropTypes from 'prop-types';
 import TableCell from './TableCell';
+import Message from '../constant/Message';
+const validEventNames = ['rowAdd', 'rowRemove', 'cellChange'];
 
 export default class Table {
   constructor({data, defaultRowData, columns, actionButtonsShown, onRowAdd, onRowRemove, onCellChange}) {
@@ -166,6 +168,13 @@ export default class Table {
 
   hide() {
     this._reactObject.setState({isVisible: false});
+  }
+
+  on(eventName, callback) {
+    if (!validEventNames.some(event => event === eventName)) {
+      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
+    }
+    this['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback;
   }
 }
 Table.Cell = TableCell;
