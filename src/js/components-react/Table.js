@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, keyField = 'id', columns}) => {
+const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, keyField = 'id', columns, isVisible}) => {
   return (
-    <div className="kuc-table">
+    <div className="kuc-table" style={{display: isVisible ? 'table' : 'none'}}>
       <div className="kuc-table-thead">
         <div className="kuc-table-tr">
           <TableHeaderRow columns={columns} />

@@ -154,6 +154,14 @@ export default class Table {
       });
     }
   }
+
+  show() {
+    this._reactObject.setState({isVisible: true});
+  }
+
+  hide() {
+    this._reactObject.setState({isVisible: false});
+  }
 }
 Table.Cell = TableCell;
 
@@ -163,12 +171,14 @@ class StatefulTable extends React.Component {
     onRowRemove: PropTypes.func,
     onRowAdd: PropTypes.func,
     columns: PropTypes.array,
-    actionButtonsShown: PropTypes.bool
+    actionButtonsShown: PropTypes.bool,
+    isVisible: PropTypes.bool
   }
 
   state = {
     data: this.props.data,
-    actionButtonsShown: this.props.actionButtonsShown
+    actionButtonsShown: this.props.actionButtonsShown,
+    isVisible: true
   }
 
   handleChange = ({type, data, rowIndex}) => {
@@ -187,7 +197,7 @@ class StatefulTable extends React.Component {
   };
 
   render() {
-    const {data, actionButtonsShown} = this.state;
+    const {data, actionButtonsShown, isVisible} = this.state;
     const columns = [...this.props.columns];
     return (
       <TableReact
@@ -196,6 +206,7 @@ class StatefulTable extends React.Component {
         onRowAdd={this.handleChange}
         onRowRemove={this.handleChange}
         actionButtonsShown={actionButtonsShown}
+        isVisible={isVisible}
       />
     );
   }
