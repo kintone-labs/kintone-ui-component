@@ -26,7 +26,7 @@ export default class Table {
   _handleOnChange = ({type, rowIndex, data}) => {
     if (type === 'ADD_ROW') {
       if (this.onRowAdd) {
-        const rowData = this.onRowAdd({rowIndex, rowData: data[rowIndex]});
+        const rowData = this.onRowAdd({rowIndex, data});
         if (rowData) {
           data[rowIndex] = rowData;
         }
@@ -41,6 +41,7 @@ export default class Table {
 
   _triggerChange(...args) {
     const {type} = args[0];
+    delete args[0].type;
     if (type === 'REMOVE_ROW' && this.onRowRemove) {
       this.onRowRemove(...args);
     }
