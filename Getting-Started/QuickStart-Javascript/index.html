@@ -559,7 +559,7 @@
 <li>Create index.js file</li>
 </ul>
 <pre><code>(function () {
-    kintone.events.on(&quot;app.record.detail.show&quot;, function (ev) {
+    kintone.events.on(&quot;app.record.index.show&quot;, function (ev) {
       var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();
       var button = new kintoneUIComponent.Button({ text: 'Submit' });
       kintoneSpaceElement.appendChild(button.render());
@@ -567,7 +567,7 @@
         alert('This is my customization');
       })
     });
-  });
+  })();
 </code></pre>
 
 <ul>
