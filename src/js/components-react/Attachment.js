@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AttachmentFileItem from './AttachmentFileItem';
-import Message from '../constant/Message';
 
 const Attachment = (props) => {
   if (props.isVisible === false) {
@@ -10,10 +9,6 @@ const Attachment = (props) => {
 
   let dropZoneElement;
   let inputElement;
-
-  if (isNaN(props.maxFileSize) && !isFinite(props.maxFileSize) || props.maxFileSize === '') {
-    throw new Error(Message.common.INVALID_ARGUMENT);
-  }
 
   const _removeFile = (index) => {
     if (props.onFileRemove) {
@@ -27,22 +22,9 @@ const Attachment = (props) => {
     event.preventDefault();
     _onDragLeave(event);
 
-    const addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-
-    const tooLargeFilesName = [];
-    const files = [];
-    for (let i = 0; i < addedFiles.length; i++) {
-      const file = addedFiles[i];
-
-      if (file.size <= props.maxFileSize) {
-        files.push(file);
-      } else {
-        tooLargeFilesName.push(file.name);
-      }
-    }
-
     if (props.onFilesAdd) {
-      props.onFilesAdd([...props.files, ...files], tooLargeFilesName);
+      const addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+      props.onFilesAdd([...props.files, ...addedFiles]);
     }
   };
 
@@ -136,7 +118,6 @@ Attachment.propTypes = {
   dropZoneText: PropTypes.string,
   browseButtonText: PropTypes.string,
   fileLimitText: PropTypes.string,
-  maxFileSize: PropTypes.number,
   errorMessage: PropTypes.string,
   isErrorVisible: PropTypes.bool,
   isVisible: PropTypes.bool,
@@ -148,7 +129,5 @@ Attachment.defaultProps = {
   files: [],
   dropZoneText: 'Drop files here.',
   browseButtonText: 'Browse',
-  fileLimitText: '(Maximum: 1 GB)',
-  maxFileSize: 1073741824,
 };
 export default Attachment;

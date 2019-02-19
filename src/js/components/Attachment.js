@@ -27,14 +27,6 @@ export default class Attachment extends Control {
     this._setState({fileLimitText});
   }
 
-  setMaxFileSize(maxFileSize) {
-    if (isNaN(maxFileSize) && !isFinite(maxFileSize) || maxFileSize === '') {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-
-    this._setState({maxFileSize});
-  }
-
   setErrorMessage(errorMessage) {
     this._setState({errorMessage});
   }
@@ -56,9 +48,9 @@ export default class Attachment extends Control {
     }
   }
 
-  _handleOnFilesAdd = (files, tooLargeFilesName) => {
+  _handleOnFilesAdd = (files) => {
     if (typeof this.filesAdd === 'function') {
-      this.filesAdd(files, tooLargeFilesName);
+      this.filesAdd(files);
     }
     this._reactObject.setState({files});
   };
