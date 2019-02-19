@@ -49,9 +49,9 @@
   var customCell = function() {
     return {
       init: function({rowData, updateRowData}) {
-        let span = document.createElement('span');
-        let textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
-        let textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
+        var span = document.createElement('span');
+        var textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
+        var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
         span.appendChild(textfield1.render());
         span.appendChild(textfield2.render());
         textfield1.on('change', function(newValue){
@@ -65,8 +65,8 @@
         return span;
       },
       update: function({ rowData }) {
-        const text1val = rowData.text1;
-        const text2val = rowData.text2;
+        var text1val = rowData.text1;
+        var text2val = rowData.text2;
         if (text1val && this.textfield1._reactObject) {
           this.textfield1.setValue(text1val.value);
         }
