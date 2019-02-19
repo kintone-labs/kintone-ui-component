@@ -11,4 +11,5 @@ import './checkBox.css';
 import './radioButton.css';
 import './spinner.css';
 import './table.css';
+import './textArea.css';
 import './attachment.css';
