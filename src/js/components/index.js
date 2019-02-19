@@ -11,7 +11,9 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
+import TextArea from './TextArea';
 import createTableCell from './TableCellFactory';
+
 const kintoneUIComponent = {
   Alert,
   Label,
@@ -25,6 +27,7 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+  TextArea,
   createTableCell
 };
 window.kintoneUIComponent = kintoneUIComponent;
