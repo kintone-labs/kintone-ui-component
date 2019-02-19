@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, keyField = 'id', columns, isVisible}) => {
+const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, columns, isVisible}) => {
   const _onCellChange = (newValue, tableData, rowIndex, fieldName) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -16,7 +16,7 @@ const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = 
           <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <TableBody {...{columns, data, onRowAdd, onRowRemove, _onCellChange, actionButtonsShown, keyField}} />
+      <TableBody {...{columns, data, onRowAdd, onRowRemove, _onCellChange, actionButtonsShown}} />
     </div>
   );
 };
@@ -35,14 +35,14 @@ TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange, keyField}) => {
+const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}) => {
   if (actionButtonsShown) {
     columns.push({actions: true});
   }
   return (
     <div className="kuc-table-tbody">
       {data.map((rowData, rowIndex) => (
-        <div className="kuc-table-tr" key={rowData[keyField] || rowIndex}>
+        <div className="kuc-table-tr" key={rowIndex}>
           {columns.map((column, columnIndex) => {
             const {cell, accessor, actions, tdProps} = column;
             if (actions === true) {
@@ -79,7 +79,6 @@ TableBody.propTypes = {
   onRowAdd: PropTypes.func,
   onRowRemove: PropTypes.func,
   _onCellChange: PropTypes.func,
-  keyField: PropTypes.string
 };
 
 const TableCell = ({
