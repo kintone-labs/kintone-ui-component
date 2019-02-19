@@ -647,7 +647,7 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { kintoneUIComponent.createTableCell('text', 'text') }
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
     },
   ]
 });
@@ -754,7 +754,7 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { kintoneUIComponent.createTableCell('text', 'text') }
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
     },
   ]
 });
