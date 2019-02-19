@@ -21,9 +21,8 @@
 |options|Object|No|An object contains params of constructor.|
 |options.dropZoneText|String|No|Text will show when the file is dragged over the attachment field. (item 7)<br>Default value: 'Drop files here.'|
 |options.browseButtonText|String|No|Text of the browse button. (item 4)<br>Default value: 'Browse'|
-|options.fileLimitText|String|No|Text of the file limit warn part. (item 5)<br>Default value: '(Maximum: 1 GB)'|
+|options.fileLimitText|String|No|Text of the file limit warn part. (item 5)|
 |options.errorMessage|String|No|Error message (item 6)|
-|options.maxFileSize|Integer|No|If the size of a file is larger than "maxFileSize", it will not be added.<br>Default value: 1073741824|
 |options.isErrorVisible|Boolean|No|Only when it is **true**, "errorMessage" will show.<br>Default value: false|
 |options.files|Array&lt;Object&gt;|No|File objects (ref. [https://developer.mozilla.org/en-US/docs/Web/API/File](https://developer.mozilla.org/en-US/docs/Web/API/File))<br>Or objects contain "name" and "size"|
 |options.files[].name|String|No|The file name|
@@ -406,64 +405,6 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setMaxFileSize(maxFileSize)
-Get the checked values of the checkbox.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|maxFileSize|String|Yes|If the size of a file is larger than "maxFileSize", it will not be added.|
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-```javascript
-const body = document.getElementsByTagName("BODY")[0];
-const attachment = new kintoneUIComponent.Attachment();
-body.appendChild(attachment.render());
-attachment.setMaxFileSize(12345);
-```
-
-**React**
-```javascript
-import {Attachment} from 'kintone-ui-component';
-import React from 'react';
- 
-export default class Plugin extends React.Component {
-  state = {
-    files: [],
-  };
- 
-  handleFilesAdd = (files, tooLargeFilesName) => {
-    this.setState({files});
-    console.log('files:', files);
-    console.log('tooLargeFilesName:', tooLargeFilesName);
-  };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
-  };
- 
-  render() {
-    return (
-      <Attachment
-        files={this.state.files}
-        maxFileSize={12345}
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
-    );
-  }
-}
-```
-</details>
-
 ### setErrorMessage(errorMessage)
 Set the error message.
 
@@ -664,7 +605,6 @@ Callback data
 |Event|Name|Type|Description|
 | --- | --- | --- | --- |
 |filesAdd|files|Array&lt;Object&gt;|List of all file objects that are displayed in the attachment field after files are added.|
-| |tooLargeFilesName|Array&lt;String&gt;|List of the too large file names|
 |fileRemove|files|Array&lt;Object&gt;|List of all file objects that are displayed in the attachment field after a file is removed.|
 
 <details class="tab-container" open>
@@ -677,9 +617,8 @@ const body = document.getElementsByTagName("BODY")[0];
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
  
-attachment.on('filesAdd', (files, tooLargeFilesName) => {
+attachment.on('filesAdd', (files) => {
     console.log('files:', files);
-    console.log('tooLargeFilesName:', tooLargeFilesName);
 });
  
 attachment.on('fileRemove', (files) => {
@@ -697,10 +636,9 @@ export default class Plugin extends React.Component {
     files: [],
   };
  
-  handleFilesAdd = (files, tooLargeFilesName) => {
+  handleFilesAdd = (files) => {
     this.setState({files});
     console.log('files:', files);
-    console.log('tooLargeFilesName:', tooLargeFilesName);
   };
  
   handleFileRemove = (files) => {
