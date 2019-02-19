@@ -10,4 +10,13 @@ export default class Label extends Control {
   setRequired(isRequired) {
     this._setState({isRequired});
   }
+
+  setTextColor(textColor) {
+    this._setState({textColor});
+  }
+
+  setBackgroundColor(backgroundColor) {
+    this._setState({backgroundColor});
+  }
+
 }
