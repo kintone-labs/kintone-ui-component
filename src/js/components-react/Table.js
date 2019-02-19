@@ -44,7 +44,7 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _o
       {data.map((rowData, rowIndex) => (
         <div className="kuc-table-tr" key={rowData[keyField] || rowIndex}>
           {columns.map((column, columnIndex) => {
-            const {cellRenderer, accessor, actions, tdProps} = column;
+            const {cell, accessor, actions, tdProps} = column;
             if (actions === true) {
               return (
                 <TableCellActions
@@ -63,7 +63,7 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _o
             return (
               <TableCell
                 key={columnIndex}
-                {...{rowData, rowIndex, columnIndex, accessor, cellRenderer, _onCellChange, tdProps}}
+                {...{rowData, rowIndex, columnIndex, accessor, cell, _onCellChange, tdProps}}
               />
             );
           })}
@@ -87,7 +87,7 @@ const TableCell = ({
   rowIndex,
   columnIndex,
   accessor,
-  cellRenderer = () => '',
+  cell = () => '',
   _onCellChange,
   tdProps: tdPropsFn
 }) => {
@@ -97,7 +97,7 @@ const TableCell = ({
   }
   const content = accessor
     ? getValueByAccessor(accessor, rowData)
-    : cellRenderer(cellProps);
+    : cell(cellProps);
   const tdProps = tdPropsFn ? tdPropsFn(cellProps) : {};
   return <div {...tdProps} className="kuc-table-td">{content}</div>;
 };
