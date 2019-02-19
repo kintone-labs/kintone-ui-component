@@ -861,7 +861,7 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { kintoneUIComponent.createTableCell('text', 'text') }
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
     },
   ],
   actionButtonsShown: false,
@@ -969,7 +969,7 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { kintoneUIComponent.createTableCell('text', 'text') }
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
     },
   ],
   actionButtonsShown: true,
@@ -1109,7 +1109,7 @@ var table = new kintoneUIComponent.Table({
     },
     {
       header: 'Checkbox',
-      cell: () => kintoneUIComponent.createTableCell('checkbox', 'checkbox')
+      cell: function () { return kintoneUIComponent.createTableCell('checkbox', 'checkbox') }
     },
   ]
 });
