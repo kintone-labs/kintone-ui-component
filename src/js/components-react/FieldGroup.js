@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 const FieldGroupReact = (props) => {
 
-    const _handleToggleClick = () => {
-        const toggleState = props.toggle === 'expand' ? 'collapse' : 'expand';
-        if (props.onToggle) {
-            props.onToggle(toggleState);
-        }
-    };
+  const _handleToggleClick = () => {
+    const toggleState = props.toggle === 'expand' ? 'collapse' : 'expand';
+    if (props.onToggle) {
+      props.onToggle(toggleState);
+    }
+  };
 
   const _getClassName = () => {
     return [
@@ -20,7 +20,8 @@ const FieldGroupReact = (props) => {
 
   const _getFieldItems = () => props.items && props.items.map((item, i) => {
     return (
-      <p dangerouslySetInnerHTML={{ __html: item.value }}></p>
+      // eslint-disable-next-line react/jsx-key
+      <p dangerouslySetInnerHTML={{__html: item.value}} />
     );
   });
 
