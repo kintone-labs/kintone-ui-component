@@ -23,7 +23,7 @@ export default class FieldGroup extends Control {
 
     addItem(item) {
       const prevState = this._getState();
-      this._setState({ items: prevState.items ? prevState.items.concat([item]) : [item] });
+      this._setState({items: prevState.items ? prevState.items.concat([item]) : [item]});
     }
 
     removeItem(index) {
@@ -34,15 +34,14 @@ export default class FieldGroup extends Control {
       const items = this._getState().items;
       if (!items || !items[index]) {
         return;
-        // eslint-disable-next-line indent
-        }
+      }
 
       if (items[index].value === this._getState().value) {
-        this._setState({ value: undefined });
+        this._setState({value: undefined});
       }
 
       items.splice(index, 1);
-      this._setState({ items: items });
+      this._setState({items: items});
     }
 
     getItems() {

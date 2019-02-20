@@ -20,8 +20,7 @@ const FieldGroupReact = (props) => {
 
   const _getFieldItems = () => props.items && props.items.map((item, i) => {
     return (
-      // eslint-disable-next-line react/jsx-key
-      <p dangerouslySetInnerHTML={{__html: item.value}} />
+      <p key={i} dangerouslySetInnerHTML={{__html: item.value}} />
     );
   });
 
