@@ -129,7 +129,7 @@ Set color of caption.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|color|String|No|Color of caption.|
+|color|String|Yes|Color of caption.|
 
 **Returns**
 
@@ -168,7 +168,7 @@ Set color of background.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|color|String|No|Color of background.|
+|color|String|Yes|Color of background.|
 
 **Returns**
 
