@@ -1,111 +1,406 @@
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
+import PropTypes from 'prop-types';
+import color from 'react-color/lib/helpers/color';
+import colorPickerWrap from './colorPickerWrap';
+import {EditableInput, Hue, Saturation} from 'react-color/lib/components/common';
 
-import { CustomPicker } from 'react-color'
-import { EditableInput, Hue, Saturation } from 'react-color/lib/components/common'
-import ColorPickerFields from './ColorPickerFields'
+const STATUS_CLOSE = 0;
+const STATUS_OPEN = 1;
+const STATUS_ACCEPT = 2;
+const STATUS_CANCEL = 3;
+
+const COLOR_PICKER_STYLES_NORMAL = reactCSS({
+  'default': {
+    HEXwrap: {
+      position: 'relative',
+    },
+    HEXinput: {
+      display: 'inline-block',
+      boxsizing: 'border-box',
+      width: '90%',
+      marginLeft: '20%',
+      marginBottom: '6px',
+      paddingLeft: '10px',
+      margin: '0',
+      padding: '0 8px',
+      height: '48px',
+      outline: 'none',
+      border: '1px solid #e3e7e8',
+      backgroundColor: '#fff',
+      boxShadow: '4px 4px 12px #f5f5f5 inset, -4px -4px 12px #f5f5f5 inset',
+      fontSize: '14px',
+      textIndent: '4px',
+    },
+    HEXlabel: {
+      position: 'absolute',
+      top: '15px',
+      left: '0px',
+      width: '14px',
+      textTransform: 'uppercase',
+      fontSize: '14px',
+      height: '48px',
+      lineHeight: '22px',
+      marginBottom: '6px',
+      textIndent: '2px',
+    },
+    RGBwrap: {
+      position: 'relative',
+    },
+    RGBinput: {
+      marginLeft: '40%',
+      width: '40%',
+      height: '16px',
+      border: '1px solid #e3e7e8',
+      boxShadow: 'inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC',
+      marginBottom: '5px',
+      fontSize: '13px',
+      paddingLeft: '3px',
+      marginRight: '10px',
+    },
+    RGBlabel: {
+      left: '10px',
+      width: '20px',
+      textTransform: 'uppercase',
+      fontSize: '13px',
+      height: '18px',
+      lineHeight: '22px',
+      position: 'absolute',
+    }
+  }
+});
+
+const COLOR_PICKER_STYLES_DISABLED = reactCSS({
+  'default': {
+    HEXinput: {
+      display: 'inline-block',
+      boxsizing: 'border-box',
+      width: '90%',
+      marginLeft: '20%',
+      marginBottom: '6px',
+      paddingLeft: '10px',
+      margin: '0',
+      padding: '0 8px',
+      height: '48px',
+      outline: 'none',
+      border: '1px solid #e3e7e8',
+      fontSize: '14px',
+      textIndent: '4px',
+
+      cursor: 'not-allowed',
+      backgroundColor: '#E7E6E6',
+      boxShadow: 'none',
+    }
+  }
+});
 
 export class ColorPicker extends React.Component {
 
-    constructor(props) {
-        super()
-    
-        this.state = {
-          currentColor: props.hex,
-          displayColorPicker: false,
-        }
-    }
-    
-    _handleClick = () => {
-        this.setState({ displayColorPicker: true })  
+    static propTypes = {
+      color: PropTypes.string,
+      isColorSetted: PropTypes.bool,
+      isVisible: PropTypes.bool,
+      isDisabled: PropTypes.bool,
+      onChange: PropTypes.func
     };
 
-    _handleClose = () => {
-        this.setState({ displayColorPicker: false })
+    static defaultProps = {
+      onChange: f => f
+    };
+
+    constructor(props) {
+      super();
+      const data = props;
+
+      this.state = {
+        currentColor: {
+          hex: data.hex,
+          hsl: data.hsl,
+          hsv: data.hsv,
+          rgb: data.rgb
+        },
+        status: STATUS_CLOSE
+      };
+    }
+
+    componentDidMount() {
+      if (this.props.isDisabled) {
+        this._hex.input.disabled = true;
+      }
+
+      if (this.props.isDisabled) return false;
+      window.addEventListener('mousedown', this._handleMouseDown);
+      window.addEventListener('pointerdown', this._handleMouseDown);
+      return true;
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.isColorSetted) {
+        const data = nextProps;
+
+        this.setState({currentColor: {
+          hex: data.hex,
+          hsl: data.hsl,
+          hsv: data.hsv,
+          rgb: data.rgb
+        }});
+      }
+      return nextProps;
+    }
+
+    componentDidUpdate() {
+      if (this.props.isDisabled) {
+        this._hex.input.disabled = true;
+      }
+    }
+
+    componentWillUnmount() {
+      if (this.props.isDisabled) return false;
+      window.removeEventListener('mousedown', this._handleMouseDown);
+      window.removeEventListener('pointerdown', this._handleMouseDown);
+      return true;
+    }
+
+    _handleAccept = () => {
+      const data = this.props;
+
+      this.setState({currentColor: {
+        hex: data.hex,
+        hsl: data.hsl,
+        hsv: data.hsv,
+        rgb: data.rgb
+      },
+      status: STATUS_ACCEPT});
     };
 
     _handleCancel = () => {
-        this.setState({ displayColorPicker: false })
+      this.setState({status: STATUS_CANCEL});
     };
 
+    _handleSHVChange = (data, e) => {
+      this._clearInputFocus();
+      this.props.onChange(data, e);
+    };
+
+    _handleMouseDown = (e) => {
+      if (this._containDom(this._root, e.target) === false) {
+        this.setState({status: STATUS_CANCEL});
+      }
+    }
+
+    _handleEditableInputChange = (data, e) => {
+      if (data['#'] === '') {
+        this.props.onChange({
+          hex: data['#'],
+          source: 'hex',
+        }, e);
+        return;
+      }
+
+      if (data['#']) {
+        if (color.isValidHex(data['#'])) {
+          this.props.onChange({
+            hex: data['#'],
+            source: 'hex',
+          }, e);
+        }
+      } else if (data.r || data.g || data.b) {
+        const thisProps = this.props;
+        this.props.onChange({
+          r: data.r || thisProps.rgb.r,
+          g: data.g || thisProps.rgb.g,
+          b: data.b || thisProps.rgb.b,
+          source: 'rgb',
+        }, e);
+      } else if (data.h || data.s || data.v) {
+        const thisProps = this.props;
+        this.props.onChange({
+          h: data.h || thisProps.hsv.h,
+          s: data.s || thisProps.hsv.s,
+          v: data.v || thisProps.hsv.v,
+          source: 'hsv',
+        }, e);
+      }
+    };
+
+    _openColorPicker = () => {
+      if (this.props.isDisabled) return false;
+      this.setState({status: STATUS_OPEN});
+      return true;
+    };
+
+    _clearInputFocus = () => {
+      this._hex.input.blur();
+      this._r.input.blur();
+      this._g.input.blur();
+      this._b.input.blur();
+      this._h.input.blur();
+      this._s.input.blur();
+      this._v.input.blur();
+    }
+
+    _containDom = (root, dom) => {
+      let point = dom;
+      while (point !== undefined && point !== null && point.tagName.toUpperCase() !== 'BODY') {
+        if (point === root) {
+          return true;
+        }
+        point = point.parentNode;
+      }
+      return false;
+    }
+
+    _replaceHex(hex) {
+      return hex.replace('#', '');
+    }
+
     render() {
-        const styles = reactCSS({
-            'default': {
-                body: {
-                    padding: '5px 5px 0px',
-                    display: 'flex'
-                  },             
-                hue: {
-                    position: 'relative',
-                    height: '150px',
-                    width: '18px',
-                    marginLeft: '10px',
-                    border: '2px solid #B3B3B3',
-                    borderBottom: '2px solid #F0F0F0'
-                },
-                input: {
-                    height: 45,
-                    width: 80,
-                    border: `1px solid e3e7e8`,
-                    paddingLeft: 10,
-                    marginBottom: 10
-                },
-                saturation: {
-                    width: '152px',
-                    height: '152px',
-                    position: 'relative',
-                    border: '2px solid #B3B3B3',
-                    borderBottom: '2px solid #F0F0F0',
-                    overflow: 'hidden'
-                },
-                popover: {
-                    position: 'absolute',
-                    zIndex: '2',
-                },
-                cover: {
-                    position: 'fixed',
-                    top: '0px',
-                    right: '0px',
-                    bottom: '0px',
-                    left: '0px',
-                },
-            },
-          });
+      const thisProps = this.props;
 
-        return (
-            <div >
-                <div onClick={ this._handleClick } >
-                    <EditableInput
-                        style={{ input: styles.input }}
-                        value={this.props.hex}
-                        onChange={this.props.onChange} 
+      if (this.props.isVisible === false) {
+        return null;
+      }
+
+      if (this.state.status === STATUS_CANCEL) {
+        this.props = {
+          ...this.props,
+          hex: this.state.currentColor.hex,
+          hsl: this.state.currentColor.hsl,
+          hsv: this.state.currentColor.hsv,
+          rgb: this.state.currentColor.rgb,
+        };
+      }
+
+      if (this.props.isDisabled || this.state.status === STATUS_ACCEPT || this.state.status === STATUS_CANCEL) {
+        if (this.state.status !== STATUS_CLOSE) {
+          this.setState({status: STATUS_CLOSE});
+        }
+      }
+
+      let hexInputCss = null;
+      if (this.props.isDisabled) {
+        hexInputCss = {
+          wrap: COLOR_PICKER_STYLES_NORMAL.HEXwrap,
+          input: COLOR_PICKER_STYLES_DISABLED.HEXinput,
+          label: COLOR_PICKER_STYLES_NORMAL.HEXlabel
+        };
+      } else {
+        hexInputCss = {
+          wrap: COLOR_PICKER_STYLES_NORMAL.HEXwrap,
+          input: COLOR_PICKER_STYLES_NORMAL.HEXinput,
+          label: COLOR_PICKER_STYLES_NORMAL.HEXlabel
+        };
+      }
+      const rgbInputCss = {
+        wrap: COLOR_PICKER_STYLES_NORMAL.RGBwrap,
+        input: COLOR_PICKER_STYLES_NORMAL.RGBinput,
+        label: COLOR_PICKER_STYLES_NORMAL.RGBlabel
+      };
+
+      return (
+        <div
+          ref={(input) => {
+            this._root = input;
+          }}
+          className="kuc-colorpicker-outer"
+        >
+          <div className="kuc-colorpicker-fields" onClick={this._openColorPicker} >
+            <EditableInput
+              style={hexInputCss}
+              label="#"
+              ref={(input) => {
+                this._hex = input;
+              }}
+              value={this._replaceHex(thisProps.hex)}
+              onChange={this._handleEditableInputChange}
+            />
+          </div>
+
+          { this.state.status === STATUS_OPEN ?
+            <div className="kuc-colorpicker-pop-popover" >
+              <div className="kuc-colorpicker-pop-outer">
+                <div className="kuc-colorpicker-pop-body" >
+                  <div className="kuc-colorpicker-saturation">
+                    <Saturation
+                      hsl={thisProps.hsl}
+                      hsv={thisProps.hsv}
+                      onChange={this._handleSHVChange}
                     />
+                  </div>
+                  <div className="kuc-colorpicker-hue">
+                    <Hue
+                      direction="vertical"
+                      hsl={thisProps.hsl}
+                      onChange={this._handleSHVChange}
+                    />
+                  </div>
+                  <div className="kuc-colorpicker-fields">
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="r"
+                      ref={(input) => {
+                        this._r = input;
+                      }}
+                      value={thisProps.rgb.r}
+                      onChange={this._handleEditableInputChange}
+                    />
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="g"
+                      ref={(input) => {
+                        this._g = input;
+                      }}
+                      value={thisProps.rgb.g}
+                      onChange={this._handleEditableInputChange}
+                    />
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="b"
+                      ref={(input) => {
+                        this._b = input;
+                      }}
+                      value={thisProps.rgb.b}
+                      onChange={this._handleEditableInputChange}
+                    />
+                    <div className="kuc-colorpicker-divider" />
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="h"
+                      ref={(input) => {
+                        this._h = input;
+                      }}
+                      value={Math.round(thisProps.hsv.h)}
+                      onChange={this._handleEditableInputChange}
+                    />
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="s"
+                      ref={(input) => {
+                        this._s = input;
+                      }}
+                      value={Math.round(thisProps.hsv.s * 100)}
+                      onChange={this._handleEditableInputChange}
+                    />
+                    <EditableInput
+                      style={rgbInputCss}
+                      label="v"
+                      ref={(input) => {
+                        this._v = input;
+                      }}
+                      value={Math.round(thisProps.hsv.v * 100)}
+                      onChange={this._handleEditableInputChange}
+                    />
+                  </div>
                 </div>
-
-                { this.state.displayColorPicker ? <div style={styles.popover}>
-                <div style={styles.cover} onClick={this._handleClose}/>
-                    <div className='kuc-pop-outer'>
-                        <div style={styles.body}>
-                            <div style={styles.saturation}>
-                                <Saturation hsl={this.props.hsl} hsv={this.props.hsv} onChange={this.props.onChange}/>
-                            </div>
-
-                            <div style={styles.hue}>
-                                <Hue hsl={this.props.hsl} onChange={this.props.onChange} direction='vertical'/>
-                            </div>
-                            <div>
-                                <ColorPickerFields rgb={this.props.rgb} hsv={this.props.hsv} hex={this.props.hex} onChange={this.props.onChange} />
-                            </div>
-                        </div>
-                        <div className="kuc-pop-bottom">
-                            <button className="kuc-btn-ok" onClick={this._handleClose} >OK</button>
-                            <button className="kuc-btn-cancel" onClick={this._handleCancel} >Cancel</button>
-                        </div>  
-                    </div>               
-                </div> : null } 
-            </div>
-        )
+                <div className="kuc-colorpicker-pop-bottom">
+                  <div className="kuc-colorpicker-button kuc-colorpicker-button-ok" onClick={this._handleAccept}>OK</div>
+                  <div className="kuc-colorpicker-button kuc-colorpicker-button-cancel" onClick={this._handleCancel}>Cancel</div>
+                </div>
+              </div>
+            </div> : null}
+        </div>
+      );
     }
 }
 
-export default CustomPicker(ColorPicker)
+export default colorPickerWrap(ColorPicker);
