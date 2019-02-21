@@ -134,6 +134,7 @@ export class ColorPicker extends React.Component {
       return true;
     }
 
+    // eslint-disable-next-line react/no-deprecated
     componentWillReceiveProps(nextProps) {
       if (nextProps.isColorSetted) {
         const data = nextProps;

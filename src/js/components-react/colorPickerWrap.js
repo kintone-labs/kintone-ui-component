@@ -3,7 +3,27 @@ import debounce from 'lodash/debounce';
 import color from 'react-color/lib/helpers/color';
 
 export const ColorWrap = (Picker) => {
+  const COLOR_EMPTY = {
+    hex: '',
+    hsl: {a: '',
+      h: '',
+      l: '',
+      s: '',
+    },
+    hsv: {a: '',
+      h: '',
+      s: '',
+      v: '',
+    },
+    oldHue: '',
+    rgb: {a: '',
+      b: '',
+      g: '',
+      r: '',
+    }
+  };
   class ColorPicker extends (PureComponent || Component) {
+
     constructor(props) {
       super();
       if (props.hasOwnProperty('color')) {
@@ -11,25 +31,7 @@ export const ColorWrap = (Picker) => {
           ...color.toState(props.color, 0),
         };
       } else {
-        this.state = {
-          hex: '',
-          hsl: {a: '',
-            h: '',
-            l: '',
-            s: '',
-          },
-          hsv: {a: '',
-            h: '',
-            s: '',
-            v: '',
-          },
-          oldHue: '',
-          rgb: {a: '',
-            b: '',
-            g: '',
-            r: '',
-          }
-        };
+        this.state = COLOR_EMPTY;
       }
 
       this.debounce = debounce((fn, data, event) => {
@@ -38,8 +40,9 @@ export const ColorWrap = (Picker) => {
     }
 
     componentWillReceiveProps(nextProps) {
+      const oldHue = this.state.oldHue;
       this.setState({
-        ...color.toState(nextProps.color, this.state.oldHue),
+        ...color.toState(nextProps.color, oldHue),
       });
     }
 
@@ -80,25 +83,7 @@ export const ColorWrap = (Picker) => {
         if (this.state.color === '') {
           this.state = {
             ...this.state,
-            ...{
-              hex: '',
-              hsl: {a: '',
-                h: '',
-                l: '',
-                s: '',
-              },
-              hsv: {a: '',
-                h: '',
-                s: '',
-                v: '',
-              },
-              oldHue: '',
-              rgb: {a: '',
-                b: '',
-                g: '',
-                r: '',
-              }
-            }
+            ...COLOR_EMPTY
           };
         } else {
           this.state = {
