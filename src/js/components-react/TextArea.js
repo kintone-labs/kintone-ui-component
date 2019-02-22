@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class TextArea extends React.Component {
+export default class TextArea extends React.PureComponent {
   static propTypes = {
     value: PropTypes.string,
     isVisible: PropTypes.bool,
