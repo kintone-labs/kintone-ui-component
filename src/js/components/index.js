@@ -13,6 +13,7 @@ import Spinner from './Spinner';
 import Table from './Table';
 import Dialog from './Dialog';
 import TextArea from './TextArea';
+import createTableCell from './TableCellFactory';
 
 const kintoneUIComponent = {
   Alert,
@@ -29,6 +30,7 @@ const kintoneUIComponent = {
   Table,
   Dialog,
   TextArea,
+  createTableCell
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;
