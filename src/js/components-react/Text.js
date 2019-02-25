@@ -7,6 +7,10 @@ const Text = (props) => {
     props.onChange(value);
   };
 
+  if (props.isVisible === false) {
+    return null;
+  }
+
   return (
     <div className="kuc-input-outer">
       <input

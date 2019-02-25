@@ -12,3 +12,6 @@ import './radioButton.css';
 import './spinner.css';
 import './table.css';
 import './colorPicker.css';
+import './dialog.css';
+import './textArea.css';
+import './attachment.css';

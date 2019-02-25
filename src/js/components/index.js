@@ -12,6 +12,11 @@ import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
 import ColorPicker from './ColorPicker';
+import Dialog from './Dialog';
+import TextArea from './TextArea';
+import Attachment from './Attachment';
+import createTableCell from './TableCellFactory';
+
 const kintoneUIComponent = {
   Alert,
   Label,
@@ -26,6 +31,10 @@ const kintoneUIComponent = {
   Spinner,
   Table,
   ColorPicker,
+  Dialog,
+  TextArea,
+  Attachment,
+  createTableCell,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;

@@ -12,6 +12,9 @@ import RadioButton from './RadioButton';
 import Spinner from './Spinner';
 import Table from './Table';
 import ColorPicker from './ColorPicker';
+import Dialog from './Dialog';
+import TextArea from './TextArea';
+import Attachment from './Attachment';
 
 export {Alert};
 export {Label};
@@ -26,3 +29,6 @@ export {RadioButton};
 export {Spinner};
 export {Table};
 export {ColorPicker};
+export {Dialog};
+export {TextArea};
+export {Attachment};
