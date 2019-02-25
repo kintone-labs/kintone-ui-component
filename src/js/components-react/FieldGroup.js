@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 const FieldGroupReact = (props) => {
 
+  if (props.isVisible === false) {
+    return null;
+  }
+
   const _handleToggleClick = () => {
     const toggleState = props.toggle === 'expand' ? 'collapse' : 'expand';
     if (props.onToggle) {
@@ -40,7 +44,8 @@ FieldGroupReact.propTypes = {
   name: PropTypes.string,
   toggle: PropTypes.string,
   items: PropTypes.array,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
+  isVisible: PropTypes.bool,
 };
 
 export default FieldGroupReact;
