@@ -45,7 +45,7 @@ Dialog.propTypes = {
   onClose: PropTypes.func
 };
 Dialog.defaultProps = {
-  isVisible: false,
+  isVisible: true,
   showCloseButton: true
 };
 
