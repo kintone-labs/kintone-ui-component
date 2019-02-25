@@ -84,8 +84,8 @@ export const ColorWrap = (Picker) => {
         if (this.state.color === '') {
           this.setState(COLOR_EMPTY);
         } else {
-          const color_arr = color.toState(this.state.color, 0);
-          this.setState(color_arr);
+          const colorArray = color.toState(this.state.color, 0);
+          this.setState(colorArray);
         }
 
         delete this.state.color;
