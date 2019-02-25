@@ -22,7 +22,7 @@ export const ColorWrap = (Picker) => {
       r: '',
     }
   };
-  class ColorPicker extends (PureComponent) {
+  class ColorPicker extends PureComponent {
 
     constructor(props) {
       super();
@@ -82,22 +82,10 @@ export const ColorWrap = (Picker) => {
       const isColorSetted = this.state.hasOwnProperty('color');
       if (isColorSetted) {
         if (this.state.color === '') {
-          this.setState({
-            hex: COLOR_EMPTY.hex,
-            hsl: COLOR_EMPTY.hsl,
-            hsv: COLOR_EMPTY.hsv,
-            rgb: COLOR_EMPTY.rgb,
-            oldHue: COLOR_EMPTY.oldHue
-          });
+          this.setState(COLOR_EMPTY);
         } else {
-          const c = this.state.color;
-          this.setState({
-            hex: color.toState(c, 0).hex,
-            hsl: color.toState(c, 0).hsl,
-            hsv: color.toState(c, 0).hsv,
-            rgb: color.toState(c, 0).rgb,
-            oldHue: color.toState(c, 0).oldHue
-          });
+          const color_arr = color.toState(this.state.color, 0);
+          this.setState(color_arr);
         }
 
         delete this.state.color;
