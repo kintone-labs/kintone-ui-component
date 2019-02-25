@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconButton from './IconButton';
 
 const Dialog = (props) => {
   if (props.isVisible === false) {
@@ -15,9 +16,8 @@ const Dialog = (props) => {
               (
                 <span
                   className="kuc-dialog-close-button"
-                  onClick={props.onClose}
                 >
-                  &times;
+                  <IconButton type="close" onClick={props.onClose} />
                 </span>
               ) :
               (
