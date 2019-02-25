@@ -184,6 +184,7 @@ export class ColorPicker extends React.PureComponent {
 
     _handleMouseDown = (e) => {
       if (this._containDom(this._root, e.target) === false) {
+        this._hex.input.blur();
         this.setState({status: STATUS_CANCEL});
       }
     }
