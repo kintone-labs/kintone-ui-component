@@ -11,6 +11,7 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
+import Dialog from './Dialog';
 import TextArea from './TextArea';
 import createTableCell from './TableCellFactory';
 
@@ -27,6 +28,7 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+  Dialog,
   TextArea,
   createTableCell
 };
