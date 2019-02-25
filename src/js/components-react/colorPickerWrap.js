@@ -41,7 +41,9 @@ export const ColorWrap = (Picker) => {
 
     // eslint-disable-next-line react/no-deprecated
     componentWillReceiveProps(nextProps) {
-      this.state.color = nextProps.color;
+      this.setState({
+        color: nextProps.color
+      });
       return nextProps;
     }
 
@@ -80,15 +82,22 @@ export const ColorWrap = (Picker) => {
       const isColorSetted = this.state.hasOwnProperty('color');
       if (isColorSetted) {
         if (this.state.color === '') {
-          this.state = {
-            ...this.state,
-            ...COLOR_EMPTY
-          };
+          this.setState({
+            hex: COLOR_EMPTY.hex,
+            hsl: COLOR_EMPTY.hsl,
+            hsv: COLOR_EMPTY.hsv,
+            rgb: COLOR_EMPTY.rgb,
+            oldHue: COLOR_EMPTY.oldHue
+          });
         } else {
-          this.state = {
-            ...this.state,
-            ...color.toState(this.state.color, 0),
-          };
+          const c = this.state.color;
+          this.setState({
+            hex: color.toState(c, 0).hex,
+            hsl: color.toState(c, 0).hsl,
+            hsv: color.toState(c, 0).hsv,
+            rgb: color.toState(c, 0).rgb,
+            oldHue: color.toState(c, 0).oldHue
+          });
         }
 
         delete this.state.color;
