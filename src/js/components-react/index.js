@@ -13,6 +13,7 @@ import Spinner from './Spinner';
 import Table from './Table';
 import Dialog from './Dialog';
 import TextArea from './TextArea';
+import Attachment from './Attachment';
 
 export {Alert};
 export {Label};
@@ -28,3 +29,4 @@ export {Spinner};
 export {Table};
 export {Dialog};
 export {TextArea};
+export {Attachment};

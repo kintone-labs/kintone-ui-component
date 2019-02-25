@@ -13,6 +13,7 @@ import Spinner from './Spinner';
 import Table from './Table';
 import Dialog from './Dialog';
 import TextArea from './TextArea';
+import Attachment from './Attachment';
 import createTableCell from './TableCellFactory';
 
 const kintoneUIComponent = {
@@ -30,7 +31,8 @@ const kintoneUIComponent = {
   Table,
   Dialog,
   TextArea,
-  createTableCell
+  Attachment,
+  createTableCell,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;
