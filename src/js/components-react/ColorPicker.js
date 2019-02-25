@@ -94,7 +94,7 @@ const COLOR_PICKER_STYLES_DISABLED = reactCSS({
   }
 });
 
-export class ColorPicker extends React.Component {
+export class ColorPicker extends React.PureComponent {
 
     static propTypes = {
       color: PropTypes.string,
@@ -124,10 +124,9 @@ export class ColorPicker extends React.Component {
     }
 
     componentDidMount() {
-      if (this.props.isDisabled) {
-        this._hex.input.disabled = true;
+      if (this._hex !== null) {
+        this._hex.input.disabled = (this.props.isDisabled === true);
       }
-
       if (this.props.isDisabled) return false;
       window.addEventListener('mousedown', this._handleMouseDown);
       window.addEventListener('pointerdown', this._handleMouseDown);
@@ -150,8 +149,8 @@ export class ColorPicker extends React.Component {
     }
 
     componentDidUpdate() {
-      if (this.props.isDisabled) {
-        this._hex.input.disabled = true;
+      if (this._hex !== null) {
+        this._hex.input.disabled = (this.props.isDisabled === true);
       }
     }
 

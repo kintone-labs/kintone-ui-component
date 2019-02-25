@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import debounce from 'lodash/debounce';
 import color from 'react-color/lib/helpers/color';
 
@@ -22,7 +22,7 @@ export const ColorWrap = (Picker) => {
       r: '',
     }
   };
-  class ColorPicker extends (PureComponent || Component) {
+  class ColorPicker extends (PureComponent) {
 
     constructor(props) {
       super();
@@ -39,11 +39,10 @@ export const ColorWrap = (Picker) => {
       }, 100);
     }
 
+    // eslint-disable-next-line react/no-deprecated
     componentWillReceiveProps(nextProps) {
-      const oldHue = this.state.oldHue;
-      this.setState({
-        ...color.toState(nextProps.color, oldHue),
-      });
+      this.state.color = nextProps.color;
+      return nextProps;
     }
 
     handleChange = (data, event) => {
