@@ -4,7 +4,30 @@ import Message from '../constant/Message';
 const validEventNames = ['select'];
 
 export default class Tabs extends AbstractTabsSelection {
-  _reactComponentClass = TabsReact;
+  constructor(props_opt) {
+    let props = {};
+    if (props_opt.items) {
+      const items = props_opt.items.map(item => {
+        let itemArr = {};
+        if (item.value._reactObject !== undefined) {
+          const elem = item.value.render().outerHTML;
+          itemArr = {
+            'label': item.label,
+            'value': elem
+          };
+        } else {
+          itemArr = {
+            'label': item.label,
+            'value': item.value
+          };
+        }
+        return itemArr;
+      });
+      props = {...props_opt, items: items};
+    }
+    super(props);
+    this._reactComponentClass = TabsReact;
+  }
 
   disableItem(value) {
     return this._setDisabledItem(value, true);

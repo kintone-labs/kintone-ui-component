@@ -4,6 +4,10 @@ import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 const TabsReact = props => {
 
+  if (props.isVisible === false) {
+    return null;
+  }
+
   const _onSelect = (index, last) => {
     if (props.onSelect) {
       props.onSelect(props.items[index], index, last);
@@ -13,8 +17,8 @@ const TabsReact = props => {
 
   const tabList = props.items.map((item, i) => {
     return (
-      // eslint-disable-next-line react/jsx-key
       <Tab
+        key={i}
         selectedClassName="kuc-tabs-container-selection"
         className="kuc-tabs-container"
         disabled={item.isDisabled}
@@ -27,9 +31,8 @@ const TabsReact = props => {
 
   const tabPanel = props.items.map((item, i) => {
     return (
-      // eslint-disable-next-line react/jsx-key
-      <TabPanel>
-        <p dangerouslySetInnerHTML={{__html: item.value}} />
+      <TabPanel key={i}>
+        <span dangerouslySetInnerHTML={{__html: item.value}} />
       </TabPanel>
     );
   });
@@ -41,7 +44,9 @@ const TabsReact = props => {
       defaultIndex={props.value}
     >
       <TabList className="kuc-tabs-tab-list">{tabList}</TabList>
-      {tabPanel}
+      <div className="kuc-tabs-tab-contents">
+        {tabPanel}
+      </div>
     </Tabs>
   );
 };
@@ -50,6 +55,7 @@ TabsReact.propTypes = {
   items: PropTypes.array,
   isDisabled: PropTypes.bool,
   onSelect: PropTypes.func,
-  value: PropTypes.number
+  value: PropTypes.number,
+  isVisible: PropTypes.bool
 };
 export default TabsReact;
