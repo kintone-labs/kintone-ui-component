@@ -12,6 +12,8 @@ import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
 import Dialog from './Dialog';
+import TextArea from './TextArea';
+
 const kintoneUIComponent = {
   Alert,
   Label,
@@ -25,7 +27,8 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
-  Dialog
+  Dialog,
+  TextArea,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;

@@ -13,12 +13,17 @@ const Label = (props) => {
     return null;
   }
 
+  const _style = {
+    color: '' || props.textColor,
+    backgroundColor: '' || props.backgroundColor
+  };
+
   return (
     <div
       className="kuc-label"
       onClick={_onClick}
     >
-      {props.text}
+      <span style={_style}>{props.text}</span>
       {props.isRequired && <span className="kuc-require">*</span>}
     </div>
   );
@@ -28,6 +33,8 @@ Label.propTypes = {
   isRequired: PropTypes.bool,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  textColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
 };
 Label.defaultProps = {
