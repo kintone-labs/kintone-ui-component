@@ -189,7 +189,7 @@ var myDialog = new kintoneUIComponent.Dialog({
     header: "Dialog header",
     content: "This is content",
     footer: "Footer",
-    isVisible: false,
+    isVisible: true,
     showCloseButton: true
 });
 var body = document.getElementsByTagName("BODY")[0];
@@ -210,7 +210,6 @@ export default class Plugin extends React.Component {
                 content="This is content"
                 footer="Footer"
                 isVisible={false}
-                onClose={this.onClose}
             />
         );
     }
