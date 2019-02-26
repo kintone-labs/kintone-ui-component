@@ -7,6 +7,7 @@
 * [Alert](Reference/Alert)
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
+* [ColorPicker](Reference/ColorPicker)
 * [Dropdown](Reference/Dropdown)
 * [IconButton](Reference/IconButton)
 * [Label](Reference/Label)
