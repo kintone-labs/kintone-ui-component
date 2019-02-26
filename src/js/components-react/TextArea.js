@@ -24,7 +24,7 @@ export default class TextArea extends React.PureComponent {
     };
   }
 
-  _onMouseDown(ev) {
+  _onMouseDown() {
     const _this = this;
     const eventMouseMove = document.onmousemove;
     const eventMouseUp = document.onmouseup;
