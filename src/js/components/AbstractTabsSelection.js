@@ -7,7 +7,7 @@ export default class AbstractTabsSelection extends Control {
     }
     const newItems = [...this._getState().items];
     newItems.forEach((item, i) => {
-      if (item.label === value) {
+      if (item.tabName === value) {
         newItems[i].isDisabled = isDisabled;
       }
     });
@@ -24,7 +24,7 @@ export default class AbstractTabsSelection extends Control {
       return;
     }
 
-    if (items[index].label === this._getState().value) {
+    if (items[index].tabName === this._getState().value) {
       this._setState({value: undefined});
     }
 

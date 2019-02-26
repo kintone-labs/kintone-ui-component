@@ -9,16 +9,16 @@ export default class Tabs extends AbstractTabsSelection {
     if (props_opt.items) {
       const items = props_opt.items.map(item => {
         let itemArr = {};
-        if (item.value._reactObject !== undefined) {
-          const elem = item.value.render().outerHTML;
+        if (typeof item.tabContent === 'string') {
           itemArr = {
-            'label': item.label,
-            'value': elem
+            'tabName': item.tabName,
+            'tabContent': item.tabContent
           };
         } else {
+          const elem = item.tabContent.render().outerHTML;
           itemArr = {
-            'label': item.label,
-            'value': item.value
+            'tabName': item.tabName,
+            'tabContent': elem
           };
         }
         return itemArr;

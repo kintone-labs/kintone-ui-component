@@ -24,7 +24,7 @@ const TabsReact = props => {
         disabled={item.isDisabled}
         disabledClassName="kuc-tabs-disabled"
       >
-        {item.label}
+        {item.tabName}
       </Tab>
     );
   });
@@ -32,7 +32,7 @@ const TabsReact = props => {
   const tabPanel = props.items.map((item, i) => {
     return (
       <TabPanel key={i}>
-        <span dangerouslySetInnerHTML={{__html: item.value}} />
+        <span dangerouslySetInnerHTML={{__html: item.tabContent}} />
       </TabPanel>
     );
   });
