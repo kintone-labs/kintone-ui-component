@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import '../../style';
 import Alert from './Alert';
 import Label from './Label';
