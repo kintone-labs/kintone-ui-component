@@ -36,7 +36,7 @@ export default class Dialog extends Control {
     return this._getState().footer;
   }
 
-  defaultClose() {
+  defaultClose = () => {
     if (typeof this.onClose === 'function') {
       this.onClose();
     }
