@@ -25,6 +25,16 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var myDialog = new kintoneUIComponent.Dialog({
+    header: "Dialog header",
+    content: "This is content",
+    footer: "Footer",
+    isVisible: false,
+    showCloseButton: true
+});
+```
 **React**
 ```javascript
 import {Dialog} from 'kintone-ui-component';
@@ -50,16 +60,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```javascript
-var myDialog = new kintoneUIComponent.Dialog({
-    header: "Dialog header",
-    content: "This is content",
-    footer: "Footer",
-    isVisible: false,
-    showCloseButton: true
-});
 ```
 </details>
 
@@ -78,6 +78,19 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var myDialog = new kintoneUIComponent.Dialog({
+    header: "Dialog header",
+    content: "This is content",
+    footer: "Footer",
+    isVisible: true,
+    showCloseButton: true
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(myDialog.render());
+```
 **React**
 ```javascript
 import {Dialog} from 'kintone-ui-component';
@@ -103,19 +116,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```javascript
-var myDialog = new kintoneUIComponent.Dialog({
-    header: "Dialog header",
-    content: "This is content",
-    footer: "Footer",
-    isVisible: false,
-    showCloseButton: true
-});
-
-var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(dropdown.render());
 ```
 </details>
 
