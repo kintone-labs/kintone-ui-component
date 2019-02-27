@@ -47,7 +47,7 @@ export default class Dialog extends Control {
     const Component = withState(this._reactComponentClass);
     const additionalProps = {onClose: this.defaultClose};
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} {...additionalProps} />;
+    const reactElement = <Component {...this.props} {...additionalProps} ref={el => (this._reactObject = el)} />;
     return reactElement;
   }
 }
