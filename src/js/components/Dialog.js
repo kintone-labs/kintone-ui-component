@@ -1,5 +1,7 @@
 import Control from './Control';
+import withState from './withState';
 import DialogReact from '../components-react/Dialog';
+import React from 'react';
 
 export default class Dialog extends Control {
   _reactComponentClass = DialogReact;
@@ -32,5 +34,20 @@ export default class Dialog extends Control {
 
   getFooter() {
     return this._getState().footer;
+  }
+
+  defaultClose() {
+    if (typeof this.onClose === 'function') {
+      this.onClose();
+    }
+    this.hide();
+  }
+
+  _getReactElement() {
+    const Component = withState(this._reactComponentClass);
+    const additionalProps = {onClose: this.defaultClose};
+    // eslint-disable-next-line react/jsx-filename-extension
+    const reactElement = <Component {...this.props} {...additionalProps} />;
+    return reactElement;
   }
 }
