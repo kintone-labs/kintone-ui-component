@@ -13,16 +13,11 @@ export default class Table {
     this.onRowAdd = onRowAdd;
     this.onRowRemove = onRowRemove;
     this.onCellChange = onCellChange;
-    this.columns = columns.map(({header}) => {
-      return {
-        header
-      };
-    });
-    this.cellsTemplate = columns.map(({cell}) => {
-      return cell;
-    });
+    this.columns = columns;
     this.defaultRowData = defaultRowData;
     this.actionButtonsShown = actionButtonsShown !== undefined ? actionButtonsShown : true;
+    this._validateRequired();
+    this._mapColumns();
   }
 
   _handleOnChange = ({type, rowIndex, data}) => {
@@ -99,6 +94,33 @@ export default class Table {
     return output;
   }
 
+  _validateRequired() {
+    if (
+      !Array.isArray(this.data) ||
+      !Array.isArray(this.columns) ||
+      typeof this.defaultRowData !== 'object'
+    ) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
+  }
+
+  _mapColumns() {
+    this.cellsTemplate = this.columns.map(({cell}) => {
+      if (cell === undefined) {
+        throw new Error(Message.common.INVALID_ARGUMENT);
+      }
+      return cell;
+    });
+    this.columns = this.columns.map(({header}) => {
+      if (header === undefined) {
+        throw new Error(Message.common.INVALID_ARGUMENT);
+      }
+      return {
+        header
+      };
+    });
+  }
+
   render() {
     const wrapperEl = document.createElement('span');
     render(
@@ -153,6 +175,9 @@ export default class Table {
   }
 
   setValue(data) {
+    if (!Array.isArray(data)) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     this.data = data;
     if (this._reactObject) {
       this._reactObject.setState({data}, () => {
@@ -181,10 +206,10 @@ Table.Cell = TableCell;
 
 class StatefulTable extends React.Component {
   propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.array.isRequired,
     onRowRemove: PropTypes.func,
     onRowAdd: PropTypes.func,
-    columns: PropTypes.array,
+    columns: PropTypes.array.isRequired,
     actionButtonsShown: PropTypes.bool,
     isVisible: PropTypes.bool
   }
@@ -221,6 +246,7 @@ class StatefulTable extends React.Component {
         onRowRemove={this.handleChange}
         actionButtonsShown={actionButtonsShown}
         isVisible={isVisible}
+        defaultRowData={{}}
       />
     );
   }
