@@ -132,25 +132,23 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
-  
+
   handleRowRemove = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -165,14 +163,13 @@ class App extends Component {
       },
     ];
     return (
-      <Table 
-        data={this.state.tableData} 
+      <Table
+        columns={columns}
+        data={this.state.tableData}
+        defaultRowData={defaultRowData}
         onRowAdd={this.handleRowAdd}
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={true}
       />
     );
   }
@@ -232,25 +229,23 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
-  
+
   handleRowRemove = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -265,14 +260,13 @@ class App extends Component {
       },
     ];
     return (
-      <Table 
-        data={this.state.tableData} 
+      <Table
+        columns={columns}
+        data={this.state.tableData}
+        defaultRowData={defaultRowData}
         onRowAdd={this.handleRowAdd}
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={true}
       />
     );
   }
@@ -322,8 +316,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -333,14 +326,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -357,13 +349,14 @@ class App extends Component {
     return (
       <div>
         <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={true}
+          columns={columns}
+          data={this.state.tableData} 
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={true}
         />
         <Button text="Get table value" onClick={() => {
             console.log(this.state.tableData)
@@ -436,8 +429,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -447,14 +439,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -471,19 +462,20 @@ class App extends Component {
     return (
       <div>
         <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={true}
+          columns={columns}
+          data={this.state.tableData} 
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={true}
         />
         <Button text="Set table value" onClick={() => {
             const tableData = [
-              {text: { value: 'first row' }},
-              {text: { value: 'second row' }},
-              {text: { value: 'third row' }}
+              {text: 'first row'},
+              {text: 'second row'},
+              {text: 'third row'}
             ]
             this.setState({tableData})
           }}
@@ -573,8 +565,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -590,7 +581,7 @@ class App extends Component {
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -606,13 +597,14 @@ class App extends Component {
     ];
     return (
       <Table
-      data={this.state.tableData} 
-      onRowAdd={this.handleRowAdd}
-      onRowRemove={this.handleRowRemove}
-      onCellChange={this.handleCellChange}
-      columns={columns}
-      actionButtonsShown={true}
-      isVisible={true}
+        columns={columns}
+        data={this.state.tableData}
+        defaultRowData={defaultRowData}
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        actionButtonsShown={true}
+        isVisible={true}
       />
     );
   }
@@ -674,8 +666,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -685,14 +676,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, isVisible} = this.state;
+    const {tableData, isVisible, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -708,14 +698,15 @@ class App extends Component {
     ];
     return (
       <div>
-        <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={isVisible}
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={isVisible}
         />
         <Button text="Show table" onClick={() => {
             this.setState({isVisible: true})
@@ -725,6 +716,7 @@ class App extends Component {
     );
   }
 }
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -781,8 +773,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -792,14 +783,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, isVisible} = this.state;
+    const {tableData, isVisible, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -815,16 +805,17 @@ class App extends Component {
     ];
     return (
       <div>
-        <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={isVisible}
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={isVisible}
         />
-        <Button text="Show table" onClick={() => {
+        <Button text="Hide table" onClick={() => {
             this.setState({isVisible: false})
           }}
         />
@@ -832,6 +823,7 @@ class App extends Component {
     );
   }
 }
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -889,8 +881,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -900,14 +891,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, actionButtonsShown} = this.state;
+    const {tableData, actionButtonsShown, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -923,14 +913,14 @@ class App extends Component {
     ];
     return (
       <div>
-        <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={actionButtonsShown}
-        isVisible={isVisible}
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={actionButtonsShown}
         />
         <Button text="Show action buttons" onClick={() => {
             this.setState({actionButtonsShown: true})
@@ -940,6 +930,7 @@ class App extends Component {
     );
   }
 }
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -997,8 +988,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1008,14 +998,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, actionButtonsShown} = this.state;
+    const {tableData, actionButtonsShown, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1031,14 +1020,14 @@ class App extends Component {
     ];
     return (
       <div>
-        <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={actionButtonsShown}
-        isVisible={isVisible}
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={actionButtonsShown}
         />
         <Button text="Hide action buttons" onClick={() => {
             this.setState({actionButtonsShown: false})
@@ -1048,6 +1037,7 @@ class App extends Component {
     );
   }
 }
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -1134,8 +1124,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1145,14 +1134,13 @@ class App extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = (newValue, data, rowIndex, fieldName) => {
-    data[rowIndex][fieldName] = newValue
+  handleCellChange = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1168,14 +1156,15 @@ class App extends Component {
     ];
     return (
       <div>
-        <Table 
-        data={this.state.tableData} 
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        columns={columns}
-        actionButtonsShown={true}
-        isVisible={true}
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={true}
         />
         <Button text="Update row data" onClick={() => {
             const {tableData} = this.state
@@ -1258,8 +1247,7 @@ class App extends Component {
     }
   }
 
-  handleRowAdd = ({data, rowIndex}) => {
-    data[rowIndex] = {...this.state.defaultRowData}
+  handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1275,7 +1263,7 @@ class App extends Component {
   }
 
   render() {
-    const {tableData} = this.state;
+    const {tableData, defaultRowData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1291,13 +1279,14 @@ class App extends Component {
     ];
     return (
       <Table
-      data={this.state.tableData} 
-      onRowAdd={this.handleRowAdd}
-      onRowRemove={this.handleRowRemove}
-      onCellChange={this.handleCellChange}
-      columns={columns}
-      actionButtonsShown={true}
-      isVisible={true}
+        columns={columns}
+        data={this.state.tableData}
+        defaultRowData={defaultRowData}
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        actionButtonsShown={true}
+        isVisible={true}
       />
     );
   }
