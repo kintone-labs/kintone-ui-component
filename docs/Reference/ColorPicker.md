@@ -24,6 +24,9 @@
 |options.color|String|No|The ColorPicker's input value.Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'.<br> Default value is ''|
 |options.isDisabled|Boolean|No|The ColorPicker will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The ColorPicker will be visible. <br> Default value: 'true'|
+|options.onAccept|Callback|No|Handler for ok button click event|
+|options.onCancel|Callback|No|Handler for cancel button event|
+|options.onChangeComplete|Callback|No|Handler for color change event|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -185,6 +188,69 @@ export default class Plugin extends React.Component {
 
 ```
 </details>
+
+### on(eventName, callBack)
+Register callback for an event
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|eventName|	String|	Yes|Name of events: <ul><li>'accept' <ul><li>The 'accept' event occurs when click the ok button in the colorpicker </li></ul> </li><li>'cancel'<ul><li>The 'cancel' event occurs when click the cancel button or outside of the colorpicker</li></ul> </li> <li>'changeComplete'<ul><li>The 'changeComplete' event occurs when changing the color in the colorpicker.
+
+**Returns**
+<br>None
+<br><br><b>Callback data</b>
+
+|Event| Name| Type| Description |
+| --- | --- | --- | --- |
+|accept|	color |	Object |the current color|
+|cancel |color|	Object|	the previous color|
+|changeComplete| color|	Object|	the changing color|
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(colorPicker.render());
+
+colorPicker.on('accept', function(color) {
+    console.log(color.hex);
+});   
+colorPicker.on('cancel', function(color) {
+    console.log(color.hex);
+});  
+colorPicker.on('changeComplete', function(color) {
+    console.log(color.hex);
+});  
+```
+**React**
+```
+import { ColorPicker } from 'kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    state = {color: '#FF0000'}
+    render() {
+        return (
+            <ColorPicker value={this.state.color} onAccept={this.handleAccept} 
+              onCancel={this.handleCancel} onChangeComplete={this.handleChangeComplete} />
+        );
+    }
+    handleAccept = (color) => {
+      console.log(color.hex);
+    };
+    handleCancel = (color) => {
+      console.log(color.hex);
+    };
+    handleChangeComplete = (color) => {
+      console.log(color.hex);
+    };
+}
+```
 
 ### show()
 Display the colorpicker.
