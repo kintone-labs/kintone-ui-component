@@ -1,7 +1,9 @@
 import Control from './Control';
 import ColorPickerReact from '../components-react/ColorPicker';
 import React from 'react';
+import Message from '../constant/Message';
 
+const validEventNames = ['changeComplete', 'accept', 'cancel'];
 export default class ColorPicker extends Control {
     _reactComponentClass = ColorPickerReact;
 
@@ -10,6 +12,13 @@ export default class ColorPicker extends Control {
       // eslint-disable-next-line react/jsx-filename-extension
       const reactElement = <Component {...this.props} />;
       return reactElement;
+    }
+
+    on(eventName, callback) {
+      if (!validEventNames.some(event => event === eventName)) {
+        throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
+      }
+      this._reactObject.setState({['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)]: callback});
     }
 
     setColor(color) {

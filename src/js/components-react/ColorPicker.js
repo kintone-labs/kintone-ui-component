@@ -101,7 +101,9 @@ export class ColorPicker extends React.PureComponent {
       isColorSetted: PropTypes.bool,
       isVisible: PropTypes.bool,
       isDisabled: PropTypes.bool,
-      onChange: PropTypes.func
+      onChange: PropTypes.func,
+      onAccept: PropTypes.func,
+      onCancel: PropTypes.func
     };
 
     static defaultProps = {
@@ -133,21 +135,6 @@ export class ColorPicker extends React.PureComponent {
       return true;
     }
 
-    // eslint-disable-next-line react/no-deprecated
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.isColorSetted) {
-        const data = nextProps;
-
-        this.setState({currentColor: {
-          hex: data.hex,
-          hsl: data.hsl,
-          hsv: data.hsv,
-          rgb: data.rgb
-        }});
-      }
-      return nextProps;
-    }
-
     componentDidUpdate() {
       if (this._hex !== null) {
         this._hex.input.disabled = (this.props.isDisabled === true);
@@ -171,10 +158,15 @@ export class ColorPicker extends React.PureComponent {
         rgb: data.rgb
       },
       status: STATUS_ACCEPT});
+      const colors = color.toState({source: 'hex', hex: data.hex});
+      this.props.onAccept && this.props.onAccept(colors);
     };
 
     _handleCancel = () => {
       this.setState({status: STATUS_CANCEL});
+
+      const colors = color.toState({source: 'hex', hex: this.state.currentColor.hex});
+      this.props.onCancel && this.props.onCancel(colors);
     };
 
     _handleSHVChange = (data, e) => {
@@ -186,6 +178,8 @@ export class ColorPicker extends React.PureComponent {
       if (this._containDom(this._root, e.target) === false) {
         this._hex.input.blur();
         this.setState({status: STATUS_CANCEL});
+        const colors = color.toState({source: 'hex', hex: this.state.currentColor.hex});
+        this.props.onCancel && this.props.onCancel(colors);
       }
     }
 
@@ -260,6 +254,19 @@ export class ColorPicker extends React.PureComponent {
 
       if (this.props.isVisible === false) {
         return null;
+      }
+
+      if (thisProps.isColorSetted) {
+        // eslint-disable-next-line react/no-direct-mutation-state
+        this.state = {
+          ...this.state,
+          ...{currentColor: {
+            hex: thisProps.hex,
+            hsl: thisProps.hsl,
+            hsv: thisProps.hsv,
+            rgb: thisProps.rgb
+          }}
+        };
       }
 
       if (this.state.status === STATUS_CANCEL) {
