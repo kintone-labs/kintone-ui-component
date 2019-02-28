@@ -10,7 +10,7 @@ export default class ColorPicker extends Control {
     _getReactElement() {
       const Component = this._reactComponentClass;
       // eslint-disable-next-line react/jsx-filename-extension
-      const reactElement = <Component {...this.props} />;
+      const reactElement = <Component {...this.props} ref={el => (this._reactObject = el)} />;
       return reactElement;
     }
 
