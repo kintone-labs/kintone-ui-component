@@ -7,15 +7,6 @@
   cursor: pointer;
   outline: none;
 }
-.kuc-icon-btn.normal {
-  border: none;
-  border-radius: 0%;
-  color: #9E9E9E;
-  background-color: #EEEEEE;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
-}
 .kuc-icon-btn:hover {
   color: #ffffff;
   background-color: #2d8dd6;

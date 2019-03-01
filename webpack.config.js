@@ -5,8 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = (env = {}) => {
     return {
         entry: {
-            "kintone-ui-component.min": './src/js/components/index.js',
-            "test-react": './sample_react/index.js'
+            "kintone-ui-component.min": './src/js/components/index.js'
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
