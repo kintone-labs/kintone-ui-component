@@ -14,4 +14,8 @@ export default class IconButton extends Control {
   setShape(shape) {
     return this._setState({shape});
   }
+
+  setColor(color) {
+    return this._setState({color});
+  }
 }
