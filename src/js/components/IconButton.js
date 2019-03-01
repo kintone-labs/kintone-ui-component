@@ -10,4 +10,8 @@ export default class IconButton extends Control {
   setSize(size) {
     return this._setState({size});
   }
+
+  setShape(shape) {
+    return this._setState({shape});
+  }
 }
