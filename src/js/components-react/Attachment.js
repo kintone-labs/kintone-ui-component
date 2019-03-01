@@ -9,6 +9,7 @@ const Attachment = (props) => {
 
   let dropZoneElement;
   let inputElement;
+  let dragEnterCounter = 0;
 
   const _removeFile = (index) => {
     if (props.onFileRemove) {
@@ -19,39 +20,93 @@ const Attachment = (props) => {
   };
 
   const _addFiles = (event) => {
-    event.preventDefault();
-    _onDragLeave(event);
-
     if (props.onFilesAdd) {
       const addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
       props.onFilesAdd([...props.files, ...addedFiles]);
     }
   };
 
-  const _onDragOver = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const _isFileDrop = function(event) {
+    // handle IE
+    if (event.dataTransfer.files.length === 0) {
+      return false;
+    }
+
+    // handle Chrome, Firefox, Edge, Safari
+    if (event.dataTransfer.items) {
+      for (let i = 0; i < event.dataTransfer.items.length; i++) {
+        if (typeof (event.dataTransfer.items[i].webkitGetAsEntry) === 'function'
+          && event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   };
 
-  const _onDragEnter = () => {
-    const fileDroppableElement = dropZoneElement.parentElement;
-    const attachmentFileElement = fileDroppableElement.parentElement;
+  const _isFileOrDirectoryDrag = (event) => {
+    if (event.dataTransfer.items !== undefined) {
+      for (let i = 0; i < event.dataTransfer.items.length; i++) {
+        if (event.dataTransfer.items[i].kind.toLowerCase() === 'file') {
+          return true;
+        }
+      }
+    }
 
-    attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
-    attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
+    if (event.dataTransfer.types !== undefined) {
+      for (let i = 0; i < event.dataTransfer.types.length; i++) {
+        if (event.dataTransfer.types[i].toLowerCase() === 'files') {
+          return true;
+        }
+      }
+    }
 
-    dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
-    dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
-    fileDroppableElement.style.display = '';
+    return false;
+  };
+
+  const _onDrop = (event) => {
+    event.preventDefault();
+    _onDragLeave();
+    if (_isFileDrop(event)) {
+      _addFiles(event);
+    }
+  };
+
+  const _onDragOver = (event) => {
+    event.stopPropagation();
+    if (_isFileOrDirectoryDrag(event)) {
+      event.preventDefault();
+    }
+  };
+
+  const _onDragEnter = (event) => {
+    dragEnterCounter++;
+    if (dragEnterCounter === 1 && _isFileOrDirectoryDrag(event)) {
+      event.preventDefault();
+
+      const fileDroppableElement = dropZoneElement.parentElement;
+      const attachmentFileElement = fileDroppableElement.parentElement;
+
+      attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
+      attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
+
+      dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
+      dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
+      fileDroppableElement.style.display = '';
+    }
   };
 
   const _onDragLeave = () => {
-    const fileDroppableElement = dropZoneElement.parentElement;
-    const attachmentFileElement = fileDroppableElement.parentElement;
+    dragEnterCounter--;
+    if (dragEnterCounter === 0) {
+      const fileDroppableElement = dropZoneElement.parentElement;
+      const attachmentFileElement = fileDroppableElement.parentElement;
 
-    attachmentFileElement.style.height = 'auto';
-    attachmentFileElement.className = 'kuc-attachment-file';
-    fileDroppableElement.style.display = 'none';
+      attachmentFileElement.style.height = 'auto';
+      attachmentFileElement.className = 'kuc-attachment-file';
+      fileDroppableElement.style.display = 'none';
+    }
   };
 
   return (
@@ -61,12 +116,11 @@ const Attachment = (props) => {
           className="kuc-attachment-file"
           onDragOver={_onDragOver}
           onDragEnter={_onDragEnter}
+          onDragLeave={_onDragLeave}
         >
-          <div className="kuc-attachment-file-droppable" style={{display: 'none'}}>
+          <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
             <div
               className="kuc-attachment-file-droppable-text"
-              onDrop={_addFiles}
-              onDragLeave={_onDragLeave}
               ref={(dropElement) => {
                 dropZoneElement = dropElement;
               }}
