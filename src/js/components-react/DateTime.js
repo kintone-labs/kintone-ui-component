@@ -6,60 +6,27 @@ import zh from 'date-fns/locale/zh-CN';
 import en from 'date-fns/locale/en-US';
 
 class DateTime extends React.Component {
-
   constructor(props) {
     super(props);
-    if (props.type == null) {
-      props.type = 'datetime';
+    if (this.props.locale == null) {
+      this.props.locale = 'ja';
     }
-    if (props.value == null) {
-      props.value = '';
-    }
-    if (props.timeIntervals == null) {
-      props.timeIntervals = 30;
-    }
-    // startDateは'react-datepicker'固有の変数名なので、名前を変更できない
-    // ボタン名を定数化するかは要検討
     if (props.locale === 'ja') {
       this.state = {
-        startDate: props.value,
         todayButtonLabel: '今日',
         clearButtonLabel: '選択を解除',
-        locale: props.locale,
-        timeIntervals: props.timeIntervals,
       };
     } else if (props.locale === 'en') {
       this.state = {
-        startDate: props.value,
         todayButtonLabel: 'Today',
         clearButtonLabel: 'None',
-        locale: props.locale,
-        timeIntervals: props.timeIntervals,
       };
     } else if (props.locale === 'zh') {
       this.state = {
-        startDate: props.value,
-        todayButtonLabel: 'Today',
-        clearButtonLabel: 'None',
-        locale: props.locale,
-        timeIntervals: props.timeIntervals,
-      };
-    } else {
-      // デフォルトの値はjaとする
-      props.locale = 'ja';
-      this.state = {
-        startDate: props.value,
-        todayButtonLabel: '今日',
-        clearButtonLabel: '選択を解除',
-        locale: props.locale,
-        timeIntervals: props.timeIntervals,
+        todayButtonLabel: '今天',
+        clearButtonLabel: '清空',
       };
     }
-    this._getClassName = this._getClassName.bind(this);
-    this._handleChangeDate = this._handleChangeDate.bind(this);
-    this._handleChangeTime = this._handleChangeTime.bind(this);
-    this._selectToday = this._selectToday.bind(this);
-    this._clear = this._clear.bind(this);
 
     ja.options.firstWeekContainsDate = 1;
     ja.options.weekStartsOn = 0;
@@ -67,64 +34,84 @@ class DateTime extends React.Component {
     registerLocale('zh', zh);
     registerLocale('en', en);
   }
-  _handleChangeDate(date) {
-    if (this.state.startDate === '') {
-      this.setState({
-        startDate: date
-      });
+  _handleChangeDate = (date) => {
+    if (this.props.value === '') {
+      this.props.value = date;
+      this.setState({});
       if (this.props.onChange != null) {
         this.props.onChange(date);
       }
     } else {
-      this.state.startDate.setFullYear(date.getFullYear());
-      this.state.startDate.setMonth(date.getMonth());
-      this.state.startDate.setDate(date.getDate());
+      if (date == null) {
+        if (this.props.type == 'date') {
+          this._clear();
+        } else {
+          const today = new Date();
+          this.props.value.setFullYear(today.getFullYear());
+          this.props.value.setMonth(today.getMonth());
+          this.props.value.setDate(today.getDate());
+        }
+      } else {
+        this.props.value.setFullYear(date.getFullYear());
+        this.props.value.setMonth(date.getMonth());
+        this.props.value.setDate(date.getDate());
+      }
+      this.setState({});
       if (this.props.onChange != null) {
-        this.props.onChange(this.state.startDate);
+        this.props.onChange(this.props.value);
       }
     }
   }
-  _getClassName(type) {
+
+  _getClassName = (type) => {
     return [
       'kuc-',
       type
     ].join('').trim();
   }
 
-  _selectToday() {
+  _selectToday = () => {
     this._handleChangeDate(new Date());
   }
-  _clear() {
-    this.setState({
-      startDate: ''
-    });
+  _clear = () => {
+    this.props.value = '';
+    this.setState({});
     if (this.props.onChange != null) {
       this.props.onChange('');
     }
   }
-  _handleChangeTime(date) {
-    if (this.state.startDate === '') {
-      this.setState({
-        startDate: date
-      });
+  _handleChangeTime = (date) => {
+    if (this.props.value === '') {
+      this.props.value = date;
+      this.setState({});
       if (this.props.onChange != null) {
         this.props.onChange(date);
       }
     } else {
-      this.state.startDate.setHours(date.getHours());
-      this.state.startDate.setMinutes(date.getMinutes());
+      if (date == null) {
+        if (this.props.type == 'time') {
+          this._clear();
+        } else {
+          this.props.value.setHours(0);
+          this.props.value.setMinutes(0);
+        }
+      } else {
+        this.props.value.setHours(date.getHours());
+        this.props.value.setMinutes(date.getMinutes());
+      }
+      this.setState({});
       if (this.props.onChange != null) {
-        this.props.onChange(this.state.startDate);
+        this.props.onChange(this.props.value);
       }
     }
   }
-  _createDateItem() {
+  _createDateItem = () => {
     return (
       <DateTimePicker
         dateFormat="yyyy-MM-dd"
-        locale={this.state.locale}
+        locale={this.props.locale}
         className="kuc-input-date-text"
-        selected={this.state.startDate}
+        selected={this.props.value}
         onChange={this._handleChangeDate}
         disabled={this.props.isDisabled}
       >
@@ -141,15 +128,15 @@ class DateTime extends React.Component {
       </DateTimePicker>
     );
   }
-  _createTimeItem() {
+  _createTimeItem = () => {
     return (
       <DateTimePicker
-        locale={this.state.locale}
+        locale="en"
         className="kuc-input-time-text"
-        timeIntervals={this.state.timeIntervals}
-        timeFormat="HH:mm"
-        dateFormat="HH:mm"
-        selected={this.state.startDate}
+        timeIntervals={this.props.timeIntervals}
+        timeFormat={(this.props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
+        dateFormat={(this.props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
+        selected={this.props.value}
         onChange={this._handleChangeTime}
         showTimeSelect
         showTimeSelectOnly
@@ -158,10 +145,29 @@ class DateTime extends React.Component {
     );
   }
   render() {
+    if (this.props.isVisible === false) {
+      return null;
+    }
+    // render時にデフォルト値をセット
+    if (this.props.type == null) {
+      this.props.type = 'datetime';
+    }
+    if (this.props.value == null) {
+      this.props.value = '';
+    }
+    if (this.props.timeIntervals == null) {
+      this.props.timeIntervals = 30;
+    }
+    if (this.props.locale == null) {
+      this.props.locale = 'ja';
+    }
+    if (this.props.timeFormat == null) {
+      this.props.timeFormat = '24';
+    }
     return (
       <div
         className={this._getClassName(this.props.type)}
-        style={(this.props.isVisible) ? {display: 'none'} : {display: 'inline-flex'}}
+        style={{display: 'inline-flex'}}
       >
         {(this.props.type.indexOf('date') > -1) && this._createDateItem()}
         {(this.props.type.indexOf('time') > -1) && this._createTimeItem()}
@@ -172,11 +178,11 @@ class DateTime extends React.Component {
 DateTime.propTypes = {
   value: PropTypes.object,
   locale: PropTypes.string,
-  type: PropTypes.string,
+  timeFormat: PropTypes.string,
   timeIntervals: PropTypes.number,
+  type: PropTypes.string,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onChange: PropTypes.func,
 };
-
 export default DateTime;
