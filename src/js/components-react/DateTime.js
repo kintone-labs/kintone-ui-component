@@ -5,31 +5,15 @@ import ja from 'date-fns/locale/ja';
 import zh from 'date-fns/locale/zh-CN';
 import en from 'date-fns/locale/en-US';
 
-class DateTime extends React.Component {
+class DateTime extends React.PureComponent {
   constructor(props) {
     super(props);
-    if (this.props.locale == null) {
-      this.props.locale = 'ja';
-    }
-    if (props.locale === 'ja') {
-      this.state = {
-        todayButtonLabel: '今日',
-        clearButtonLabel: '選択を解除',
-      };
-    } else if (props.locale === 'en') {
-      this.state = {
-        todayButtonLabel: 'Today',
-        clearButtonLabel: 'None',
-      };
-    } else if (props.locale === 'zh') {
-      this.state = {
-        todayButtonLabel: '今天',
-        clearButtonLabel: '清空',
-      };
-    }
-
     ja.options.firstWeekContainsDate = 1;
     ja.options.weekStartsOn = 0;
+    en.options.firstWeekContainsDate = 1;
+    en.options.weekStartsOn = 0;
+    zh.options.firstWeekContainsDate = 1;
+    zh.options.weekStartsOn = 0;
     registerLocale('ja', ja);
     registerLocale('zh', zh);
     registerLocale('en', en);
@@ -68,6 +52,31 @@ class DateTime extends React.Component {
       'kuc-',
       type
     ].join('').trim();
+  }
+
+  _getButtonLabel = (locale) => {
+    if (locale === 'ja') {
+      return {
+        today: 'today',
+        clear: 'none'
+      };
+    }
+    if (locale === 'en') {
+      return {
+        today: 'today',
+        clear: 'none'
+      };
+    }
+    if (locale === 'zh') {
+      return {
+        today: '今天',
+        clear: '清空'
+      };
+    }
+    return {
+      today: '',
+      clear: ''
+    }
   }
 
   _selectToday = () => {
@@ -118,10 +127,10 @@ class DateTime extends React.Component {
         <div className="kuc-clender-fotter">
           <tr>
             <td className="kuc-select-today-btn">
-              <a onClick={this._selectToday}>{this.state.todayButtonLabel}</a>
+              <a onClick={this._selectToday}>{this._getButtonLabel(this.props.locale).today}</a>
             </td>
             <td className="kuc-clear-btn">
-              <a onClick={this._clear}>{this.state.clearButtonLabel}</a>
+              <a onClick={this._clear}>{this._getButtonLabel(this.props.locale).clear}</a>
             </td>
           </tr>
         </div>

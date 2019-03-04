@@ -14,7 +14,8 @@
     "compile": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files"
   },
   "dependencies": {
-    "prop-types": "15.6.1"
+    "prop-types": "15.6.1",
+    "react-datepicker": "^2.1.0"
   },
   "devDependencies": {
     "@cybozu/eslint-config": "^3.0.2",
