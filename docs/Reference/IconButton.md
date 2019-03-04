@@ -83,7 +83,7 @@ Set the type of the button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li></ul> Default value is 'insert'.|
+|type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 
 **Returns**
 
@@ -164,7 +164,7 @@ Change color of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|color|String|No|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li></ul> Default value is 'gray'.|
+|color|String|No|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
 
 **Returns**
 
