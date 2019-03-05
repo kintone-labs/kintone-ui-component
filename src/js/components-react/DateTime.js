@@ -164,7 +164,7 @@ class DateTime extends React.PureComponent {
     if (this.props.locale !== 'en' && this.props.locale !== 'zh') {
       this.props.locale = 'ja';
     }
-    if (this.props.timeFormat !== null) {
+    if (this.props.timeFormat !== 'ampm') {
       this.props.timeFormat = '24';
     }
     return (
