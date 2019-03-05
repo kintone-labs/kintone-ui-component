@@ -8,7 +8,6 @@
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
 * [Dropdown](Reference/Dropdown)
-* [FieldGroup](Reference/FieldGroup)
 * [IconButton](Reference/IconButton)
 * [Label](Reference/Label)
 * [MultipleChoice](Reference/MultipleChoice)
