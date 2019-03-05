@@ -1,29 +1,24 @@
 import Control from './Control';
 import FieldGroupReact from '../components-react/FieldGroup';
-import Message from '../constant/Message';
+import React from 'react';
+import {findDOMNode, render} from 'react-dom';
+
+// eslint-disable-next-line react/prefer-stateless-function
+class FieldGroupContent extends React.Component {
+  render() {
+    return (
+      // eslint-disable-next-line react/jsx-filename-extension
+      <div />
+    );
+  }
+}
 
 export default class FieldGroup extends Control {
-  constructor(props_opt) {
-    let props = {};
-    if (props_opt.items) {
-      const items = props_opt.items.map(item => {
-        let itemArr = {};
-        if (typeof item.value === 'string') {
-          itemArr = {
-            'value': item.value
-          };
-        } else {
-          const elem = item.value.render().outerHTML;
-          itemArr = {
-            'value': elem
-          };
-        }
-        return itemArr;
-      });
-      props = {...props_opt, items: items};
-    }
+  constructor(props) {
+    props.children = <FieldGroupContent ref={(e)=>(this.fieldGroupContent = e)} />;
     super(props);
     this._reactComponentClass = FieldGroupReact;
+    this.content = props.content;
   }
 
   setToggle(toggle) {
@@ -42,30 +37,36 @@ export default class FieldGroup extends Control {
     return this._getState().name;
   }
 
-  addItem(item) {
-    const prevState = this._getState();
-    this._setState({items: prevState.items ? prevState.items.concat([item]) : [item]});
+  setContent(content) {
+    this.contentDOMNode.innerHTML = '';
+    this.contentDOMNode.append(content);
+    this.content = content;
   }
 
-  removeItem(index) {
-    if (isNaN(index) && !isFinite(index) || index === '') {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-
-    const items = this._getState().items;
-    if (!items || !items[index]) {
-      return;
-    }
-
-    if (items[index].value === this._getState().value) {
-      this._setState({value: undefined});
-    }
-
-    items.splice(index, 1);
-    this._setState({items: items});
+  getContent() {
+    return this.content;
   }
 
-  getItems() {
-    return this._getState().items;
+  _renderReactObject(callback) {
+    const container = document.createElement('div');
+    this._reactObject = render(
+      this._getReactElement(),
+      container,
+      callback
+    );
+    return container;
+  }
+
+  render() {
+    const newEl = this._renderReactObject(()=>{
+      // eslint-disable-next-line react/no-find-dom-node
+      this.contentDOMNode = findDOMNode(this.fieldGroupContent);
+      this.contentDOMNode.append(this.content);
+    });
+    if (this.el !== undefined) {
+      this.el.parentNode.replaceChild(newEl, this.el);
+    }
+    this.el = newEl;
+    return this.el;
   }
 }

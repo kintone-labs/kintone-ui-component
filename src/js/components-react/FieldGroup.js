@@ -18,23 +18,28 @@ const FieldGroupReact = (props) => {
   const _getClassName = () => {
     return [
       'kuc-fieldgroup-label',
+      'label',
       props.toggle === 'expand' ? 'expand' : 'collapse'
     ].join(' ').trim();
   };
 
-  const _getFieldItems = () => props.items && props.items.map((item, i) => {
-    return (
-      <p key={i} dangerouslySetInnerHTML={{__html: item.value}} />
-    );
-  });
+  const _getArrowClassName = () => {
+    return [
+      'kuc-arrow',
+      props.toggle === 'expand' ? 'down' : 'right'
+    ].join(' ').trim();
+  }
 
   return (
     <div className="kuc-fieldgroup">
       <span role="button" tabIndex="0" className={_getClassName()} onClick={_handleToggleClick}>
+        <span className={_getArrowClassName()} />
         {props.name}
       </span>
       <div className="kuc-fieldgroup-contents">
-        {_getFieldItems()}
+        {
+          props.children
+        }
       </div>
     </div>
   );
@@ -46,6 +51,8 @@ FieldGroupReact.propTypes = {
   items: PropTypes.array,
   onToggle: PropTypes.func,
   isVisible: PropTypes.bool,
+  content: PropTypes.any,
+  children: PropTypes.any
 };
 
 export default FieldGroupReact;
