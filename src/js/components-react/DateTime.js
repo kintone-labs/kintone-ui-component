@@ -27,7 +27,7 @@ class DateTime extends React.PureComponent {
       }
     } else {
       if (date == null) {
-        if (this.props.type == 'date') {
+        if (this.props.type === 'date') {
           this._clear();
         } else {
           const today = new Date();
@@ -55,12 +55,6 @@ class DateTime extends React.PureComponent {
   }
 
   _getButtonLabel = (locale) => {
-    if (locale === 'ja') {
-      return {
-        today: 'today',
-        clear: 'none'
-      };
-    }
     if (locale === 'en') {
       return {
         today: 'today',
@@ -74,9 +68,9 @@ class DateTime extends React.PureComponent {
       };
     }
     return {
-      today: '',
-      clear: ''
-    }
+      today: '今日',
+      clear: '選択を解除'
+    };
   }
 
   _selectToday = () => {
@@ -98,7 +92,7 @@ class DateTime extends React.PureComponent {
       }
     } else {
       if (date == null) {
-        if (this.props.type == 'time') {
+        if (this.props.type === 'time') {
           this._clear();
         } else {
           this.props.value.setHours(0);
@@ -167,10 +161,10 @@ class DateTime extends React.PureComponent {
     if (this.props.timeIntervals == null) {
       this.props.timeIntervals = 30;
     }
-    if (this.props.locale == null) {
+    if (this.props.locale !== 'en' && this.props.locale !== 'zh') {
       this.props.locale = 'ja';
     }
-    if (this.props.timeFormat == null) {
+    if (this.props.timeFormat !== null) {
       this.props.timeFormat = '24';
     }
     return (
