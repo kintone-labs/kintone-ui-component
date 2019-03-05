@@ -21,7 +21,7 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
-|options.color|String|No|The ColorPicker's input value.Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'.<br> Default value is ''|
+|options.color|String|No|The ColorPicker's input value.Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'.<br>If setted color is not valid ,it's value will be changed to #000000.<br> Default value is ''|
 |options.isDisabled|Boolean|No|The ColorPicker will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The ColorPicker will be visible. <br> Default value: 'true'|
 |options.onAccept|Callback|No|Handler for ok button click event|
