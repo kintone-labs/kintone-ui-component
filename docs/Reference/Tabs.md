@@ -1,4 +1,4 @@
-# CheckBox
+# Tab
 
 ## Overview
 ![Tab](../img/tabs.PNG)
