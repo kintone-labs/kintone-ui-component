@@ -5,6 +5,7 @@
 * [QuickStart React](Getting-Started/QuickStart-React)
 ## References
 * [Alert](Reference/Alert)
+* [Attachment](Reference/Attachment)
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
 * [Dropdown](Reference/Dropdown)
