@@ -38,7 +38,7 @@ export default class FieldGroup extends Control {
   }
 
   setContent(content) {
-    this.contentDOMNode.innerHTML = '';
+    this.content.remove();
     this.contentDOMNode.append(content);
     this.content = content;
   }
