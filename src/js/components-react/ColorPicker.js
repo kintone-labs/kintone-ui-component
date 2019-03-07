@@ -254,10 +254,6 @@ export class ColorPicker extends React.PureComponent {
     render() {
       const thisProps = this.props;
 
-      if (this.props.isVisible === false) {
-        return null;
-      }
-
       if (thisProps.isColorSetted) {
         // eslint-disable-next-line react/no-direct-mutation-state
         this.state = {
@@ -269,6 +265,10 @@ export class ColorPicker extends React.PureComponent {
             rgb: thisProps.rgb
           }}
         };
+      }
+
+      if (this.props.isVisible === false) {
+        return null;
       }
 
       if (this.state.status === STATUS_CANCEL) {
