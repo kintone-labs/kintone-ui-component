@@ -179,9 +179,11 @@ export class ColorPicker extends React.PureComponent {
         if (this._hex !== null && this._hex !== undefined) {
           this._hex.input.blur();
         }
-        this.setState({status: STATUS_CANCEL});
+        this.setState({status: STATUS_CLOSE});
+        if (this._hex.input.value === this._replaceHex(this.state.currentColor.hex).toUpperCase()) return;
         const colors = color.toState({source: 'hex', hex: this.state.currentColor.hex});
         this.props.onCancel && this.props.onCancel(colors);
+        this.setState({status: STATUS_CANCEL});
       }
     }
 
