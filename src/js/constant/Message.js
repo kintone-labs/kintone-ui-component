@@ -4,7 +4,8 @@ const Message = {
     INVALID_ARGUMENT: 'Error: invalid function arguments'
   },
   control: {
-    INVALID_EVENT: 'Invalid event, this function accept only '
+    INVALID_EVENT: 'Invalid event, this function accept only ',
+    INVALID_TABLE_FIELDS: 'Invalid table cell field type, this function accept only '
   },
   radioBtn: {
     MISSING_NAME: 'Missing name for radio buttons'

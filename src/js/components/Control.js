@@ -31,38 +31,10 @@ export default class Control {
   }
 
   _handleOnChange = (value) => {
+    this._setStateAfterEventHandler(value);
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnCellChange = (value) => {
-    if (typeof this.cellChange === 'function') {
-      this.cellChange(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnRowAdd = (value) => {
-    if (typeof this.rowAdd === 'function') {
-      this.rowAdd(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnRowRemove = (value) => {
-    if (typeof this.rowRemove === 'function') {
-      this.rowRemove(value);
-    }
-    this._setStateAfterEventHandler(value);
-  }
-
-  _handleOnCellClick = (value) => {
-    if (typeof this.cellClick === 'function') {
-      this.cellClick(value);
-    }
-    this._setStateAfterEventHandler(value);
   }
 
   _handleOnPopupClose = () => {
@@ -80,11 +52,7 @@ export default class Control {
   };
 
   _setStateAfterEventHandler(value) {
-    if (value.tableValue) {
-      this._reactObject.setState({value: value.tableValue});
-    } else {
-      this._reactObject.setState({value});
-    }
+    this._reactObject.setState({value});
   }
 
   _triggerOnChange(value) {
@@ -93,7 +61,7 @@ export default class Control {
 
   _renderReactObject() {
     const container = document.createElement('div');
-    this._reactObject = render(
+    render(
       this._getReactElement(),
       container
     );
@@ -104,7 +72,7 @@ export default class Control {
     const Component = withState(this._reactComponentClass);
     const additionalProps = {onChange: this._handleOnChange, onToggle: this._handleOnToggle};
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} {...additionalProps} />;
+    const reactElement = <Component {...this.props} {...additionalProps} ref={el => (this._reactObject = el)} />;
     return reactElement;
   }
 
