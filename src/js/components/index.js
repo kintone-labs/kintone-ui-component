@@ -1,4 +1,3 @@
-
 import '@babel/polyfill';
 import '../../style';
 import Alert from './Alert';
@@ -13,6 +12,7 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
+import FieldGroup from './FieldGroup';
 import ColorPicker from './ColorPicker';
 import Dialog from './Dialog';
 import TextArea from './TextArea';
@@ -32,6 +32,7 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+  FieldGroup,
   ColorPicker,
   Dialog,
   TextArea,

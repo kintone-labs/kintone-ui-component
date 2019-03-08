@@ -11,6 +11,7 @@ import './checkBox.css';
 import './radioButton.css';
 import './spinner.css';
 import './table.css';
+import './fieldGroup.css';
 import './colorPicker.css';
 import './dialog.css';
 import './textArea.css';
