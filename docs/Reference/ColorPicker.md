@@ -10,7 +10,7 @@
 |3|Saturation|
 |4|Hue|
 |5|RGB input|
-|6|HSC input|
+|6|HSV input|
 |7|OK button|
 |8|Cancel button|
 
