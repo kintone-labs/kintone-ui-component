@@ -5,179 +5,174 @@ import ja from 'date-fns/locale/ja';
 import zh from 'date-fns/locale/zh-CN';
 import en from 'date-fns/locale/en-US';
 
-class DateTime extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    ja.options.firstWeekContainsDate = 1;
-    ja.options.weekStartsOn = 0;
-    en.options.firstWeekContainsDate = 1;
-    en.options.weekStartsOn = 0;
-    zh.options.firstWeekContainsDate = 1;
-    zh.options.weekStartsOn = 0;
-    registerLocale('ja', ja);
-    registerLocale('zh', zh);
-    registerLocale('en', en);
-  }
-  _handleChangeDate = (date) => {
-    if (this.props.value === '') {
-      this.props.value = date;
-      this.setState({});
-      if (this.props.onChange != null) {
-        this.props.onChange(date);
-      }
-    } else {
-      if (date == null) {
-        if (this.props.type === 'date') {
-          this._clear();
-        } else {
-          const today = new Date();
-          this.props.value.setFullYear(today.getFullYear());
-          this.props.value.setMonth(today.getMonth());
-          this.props.value.setDate(today.getDate());
-        }
-      } else {
-        this.props.value.setFullYear(date.getFullYear());
-        this.props.value.setMonth(date.getMonth());
-        this.props.value.setDate(date.getDate());
-      }
-      this.setState({});
-      if (this.props.onChange != null) {
-        this.props.onChange(this.props.value);
-      }
-    }
+const GHOST_EVENT_TIMEOUT = 300;
+// this class is used to fix Safari input focus bug
+class InputWrapper extends React.Component {
+  focus() {
+    this.input.focus();
   }
 
-  _getClassName = (type) => {
-    return [
-      'kuc-',
-      type
-    ].join('').trim();
+  // blur() {
+  //   this.input.blur();
+  // }
+
+  shouldIgnoreEvent(e) {
+    const {target, relatedTarget} = e;
+    if (target.lastEventMs && e.timeStamp < target.lastEventMs + GHOST_EVENT_TIMEOUT) {
+      return true;
+    }
+    target.lastEventMs = e.timeStamp;
+    if (relatedTarget) {
+      relatedTarget.lastEventMs = e.timeStamp;
+    }
+    return false;
   }
 
-  _getButtonLabel = (locale) => {
-    if (locale === 'en') {
-      return {
-        today: 'today',
-        clear: 'none'
-      };
-    }
-    if (locale === 'zh') {
-      return {
-        today: '今天',
-        clear: '清空'
-      };
-    }
-    return {
-      today: '今日',
-      clear: '選択を解除'
-    };
+  allowEvent(e) {
   }
 
-  _selectToday = () => {
-    this._handleChangeDate(new Date());
+  cancelEvent(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    return false;
   }
-  _clear = () => {
-    this.props.value = '';
-    this.setState({});
-    if (this.props.onChange != null) {
-      this.props.onChange('');
-    }
-  }
-  _handleChangeTime = (date) => {
-    if (this.props.value === '') {
-      this.props.value = date;
-      this.setState({});
-      if (this.props.onChange != null) {
-        this.props.onChange(date);
-      }
-    } else {
-      if (date == null) {
-        if (this.props.type === 'time') {
-          this._clear();
-        } else {
-          this.props.value.setHours(0);
-          this.props.value.setMinutes(0);
-        }
-      } else {
-        this.props.value.setHours(date.getHours());
-        this.props.value.setMinutes(date.getMinutes());
-      }
-      this.setState({});
-      if (this.props.onChange != null) {
-        this.props.onChange(this.props.value);
-      }
-    }
-  }
-  _createDateItem = () => {
-    return (
-      <DateTimePicker
-        dateFormat="yyyy-MM-dd"
-        locale={this.props.locale}
-        className="kuc-input-date-text"
-        selected={this.props.value}
-        onChange={this._handleChangeDate}
-        disabled={this.props.isDisabled}
-      >
-        <div className="kuc-clender-fotter">
-          <tr>
-            <td className="kuc-select-today-btn">
-              <a onClick={this._selectToday}>{this._getButtonLabel(this.props.locale).today}</a>
-            </td>
-            <td className="kuc-clear-btn">
-              <a onClick={this._clear}>{this._getButtonLabel(this.props.locale).clear}</a>
-            </td>
-          </tr>
-        </div>
-      </DateTimePicker>
-    );
-  }
-  _createTimeItem = () => {
-    return (
-      <DateTimePicker
-        locale="en"
-        className="kuc-input-time-text"
-        timeIntervals={this.props.timeIntervals}
-        timeFormat={(this.props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
-        dateFormat={(this.props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
-        selected={this.props.value}
-        onChange={this._handleChangeTime}
-        showTimeSelect
-        showTimeSelectOnly
-        disabled={this.props.isDisabled}
-      />
-    );
-  }
+
   render() {
-    if (this.props.isVisible === false) {
-      return null;
-    }
-    // render時にデフォルト値をセット
-    if (this.props.type == null) {
-      this.props.type = 'datetime';
-    }
-    if (this.props.value == null) {
-      this.props.value = '';
-    }
-    if (this.props.timeIntervals == null) {
-      this.props.timeIntervals = 30;
-    }
-    if (this.props.locale !== 'en' && this.props.locale !== 'zh') {
-      this.props.locale = 'ja';
-    }
-    if (this.props.timeFormat !== 'ampm') {
-      this.props.timeFormat = '24';
-    }
-    return (
-      <div
-        className={this._getClassName(this.props.type)}
-        style={{display: 'inline-flex'}}
-      >
-        {(this.props.type.indexOf('date') > -1) && this._createDateItem()}
-        {(this.props.type.indexOf('time') > -1) && this._createTimeItem()}
-      </div>
+    return React.createElement(
+      'input',
+      {
+        ...this.props,
+        ref: (el) => (this.input = el),
+        onFocusCapture: (e) => (this.shouldIgnoreEvent(e) ? this.cancelEvent(e) : this.allowEvent(e)),
+        onBlurCapture: (e) => (this.shouldIgnoreEvent(e) ? this.cancelEvent(e) : this.allowEvent(e)),
+      }
     );
   }
 }
+
+const _getClassName = (type) => {
+  return [
+    'kuc-',
+    type
+  ].join('').trim();
+};
+
+const _getButtonLabel = (locale) => {
+  if (locale === 'en') {
+    return {
+      today: 'Today',
+      clear: 'None'
+    };
+  }
+  if (locale === 'zh') {
+    return {
+      today: '今天',
+      clear: '清空'
+    };
+  }
+  return {
+    today: '今日',
+    clear: '選択を解除'
+  };
+};
+
+const _handleOnTodayClick = (props) => {
+  if (props.onChange) {
+    props.onChange(new Date());
+  }
+};
+
+const _handleOnClearClick = (props) => {
+  if (props.onChange) {
+    props.onChange('');
+  }
+};
+
+const _createDateItem = (props) => {
+  return (
+    <DateTimePicker
+      {...props}
+      dateFormat="yyyy-MM-dd"
+      selected={props.value}
+      className="kuc-input-date-text"
+      customInput={<InputWrapper />}
+    >
+      <div className="kuc-clender-fotter">
+        <tr>
+          <td className="kuc-select-today-btn">
+            <a onClick={() => _handleOnTodayClick(props)}>{_getButtonLabel(props.locale).today}</a>
+          </td>
+          <td className="kuc-clear-btn">
+            <a onClick={() => _handleOnClearClick(props)}>{_getButtonLabel(props.locale).clear}</a>
+          </td>
+        </tr>
+      </div>
+    </DateTimePicker>
+  );
+};
+
+const _createTimeItem = (props) => {
+  return (
+    <DateTimePicker
+      {...props}
+      locale="en"
+      timeFormat={(props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
+      dateFormat={(props.timeFormat === 'ampm') ? 'h:mm aa' : 'HH:mm'}
+      selected={props.value}
+      showTimeSelect
+      showTimeSelectOnly
+      disabled={props.isDisabled}
+      className="kuc-input-time-text"
+      customInput={<InputWrapper />}
+    />
+  );
+};
+
+const DateTime = (props) => {
+  ja.options.firstWeekContainsDate = 1;
+  ja.options.weekStartsOn = 0;
+  en.options.firstWeekContainsDate = 1;
+  en.options.weekStartsOn = 0;
+  zh.options.firstWeekContainsDate = 1;
+  zh.options.weekStartsOn = 0;
+  registerLocale('ja', ja);
+  registerLocale('zh', zh);
+  registerLocale('en', en);
+
+  const options = {...props};
+  if (props.isVisible === false) {
+    return null;
+  }
+  // render時にデフォルト値をセット
+  if (options.type == null) {
+    options.type = 'datetime';
+  }
+  if (options.useWeekdaysShort == null) {
+    options.useWeekdaysShort = true;
+  }
+  if (options.value == null) {
+    options.value = '';
+  }
+  if (options.timeIntervals == null) {
+    options.timeIntervals = 30;
+  }
+  if (options.locale !== 'en' && options.locale !== 'zh') {
+    props.locale = 'ja';
+  }
+  if (options.timeFormat !== 'ampm') {
+    options.timeFormat = '24';
+  }
+  return (
+    <div
+      className={_getClassName(options.type)}
+      style={{display: 'inline-flex'}}
+    >
+      {(options.type.indexOf('date') > -1) && _createDateItem(options)}
+      {(options.type.indexOf('time') > -1) && _createTimeItem(options)}
+    </div>
+  );
+};
+
 DateTime.propTypes = {
   value: PropTypes.object,
   locale: PropTypes.string,
