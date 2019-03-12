@@ -116,7 +116,8 @@ export default class Table {
         throw new Error(Message.common.INVALID_ARGUMENT);
       }
       return {
-        header
+        header,
+        cell: () => {}
       };
     });
   }
@@ -141,6 +142,9 @@ export default class Table {
   }
 
   updateRowData(rowIndex, data, rerender = true, trigger = true, fieldName) {
+    if (!rowIndex || !rowData) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     const rowData = this._mergeDeep(this.data[rowIndex], data);
     const type = 'CELL_CHANGE';
     this.data[rowIndex] = rowData;
@@ -205,7 +209,7 @@ export default class Table {
 Table.Cell = TableCell;
 
 class StatefulTable extends React.Component {
-  propTypes = {
+  static propTypes = {
     data: PropTypes.array.isRequired,
     onRowRemove: PropTypes.func,
     onRowAdd: PropTypes.func,

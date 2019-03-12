@@ -16,7 +16,10 @@ const createTableCell = (type, fieldName, props = {}) => {
   if (!validFieldTypes.some(fieldType => fieldType === type)) {
     throw new Error(Message.control.INVALID_TABLE_FIELDS + '"' + validFieldTypes.join('","') + '"');
   }
-  const init = ({updateRowData, rowIndex, columnIndex, table}) => {
+  if (!fieldName) {
+    throw new Error(Message.common.INVALID_ARGUMENT);
+  }
+  const init = ({updateRowData, rowIndex, table}) => {
     switch (type) {
       case 'text':
         FieldComponent = Text;
