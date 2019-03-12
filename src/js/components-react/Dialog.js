@@ -10,7 +10,9 @@ const Dialog = (props) => {
     <div className="kuc-dialog-container">
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
-          {props.header}
+          {
+            (props.header) ? (props.header) : (<div />)
+          }
           {
             (props.showCloseButton) ?
               (
