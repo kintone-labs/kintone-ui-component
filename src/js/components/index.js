@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import '../../style';
 import Alert from './Alert';
 import Label from './Label';
@@ -11,7 +12,12 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
+import DateTime from './DateTime';
+import FieldGroup from './FieldGroup';
+import ColorPicker from './ColorPicker';
+import Dialog from './Dialog';
 import TextArea from './TextArea';
+import Attachment from './Attachment';
 import createTableCell from './TableCellFactory';
 
 const kintoneUIComponent = {
@@ -27,8 +33,13 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+  DateTime,
+  FieldGroup,
+  ColorPicker,
+  Dialog,
   TextArea,
-  createTableCell
+  Attachment,
+  createTableCell,
 };
 window.kintoneUIComponent = kintoneUIComponent;
 export default kintoneUIComponent;

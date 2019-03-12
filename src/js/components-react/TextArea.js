@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class TextArea extends React.Component {
+export default class TextArea extends React.PureComponent {
   static propTypes = {
     value: PropTypes.string,
     isVisible: PropTypes.bool,
@@ -12,7 +12,6 @@ export default class TextArea extends React.Component {
 
   constructor(props) {
     super(props);
-    this.moving = false;
     this.currentX = null;
     this.currentY = null;
     this.mixTextAreaWidth = 297;
@@ -23,44 +22,39 @@ export default class TextArea extends React.Component {
       textAreaWidth: this.mixTextAreaWidth,
       textAreaHeight: this.mixtTextAreaHeight,
     };
-    window.onmouseup = event => this._onMouseUp(event);
-    window.onmousemove = event => this._onMouseMove(event);
   }
 
-  _onMouseDown(event) {
-    event.stopPropagation();
-    this.moving = true;
-  }
+  _onMouseDown() {
+    const _this = this;
+    const eventMouseMove = document.onmousemove;
+    const eventMouseUp = document.onmouseup;
+    document.onmousemove = (event) => {
+      if (_this.currentX && _this.currentY) {
+        let dx = event.clientX - _this.currentX;
+        if (_this.state.textAreaWidth + dx < _this.mixTextAreaWidth) {
+          dx = 0;
+        }
 
-  _onMouseUp() {
-    this.moving = false;
-    this.currentX = null;
-    this.currentY = null;
-  }
+        let dy = event.clientY - _this.currentY;
+        if (_this.state.textAreaHeight + dy < _this.mixtTextAreaHeight) {
+          dy = 0;
+        }
 
-  _onMouseMove(event) {
-    this.moving && this._onMove(event);
-  }
-
-  _onMove(event) {
-    if (this.currentX && this.currentY) {
-      let dx = event.clientX - this.currentX;
-      if (this.state.textAreaWidth + dx < this.mixTextAreaWidth) {
-        dx = 0;
+        _this.setState(prevState =>({translateX: prevState.translateX + dx,
+          translateY: prevState.translateY + dy,
+          textAreaWidth: prevState.textAreaWidth + dx,
+          textAreaHeight: prevState.textAreaHeight + dy
+        }));
       }
-
-      let dy = event.clientY - this.currentY;
-      if (this.state.textAreaHeight + dy < this.mixtTextAreaHeight) {
-        dy = 0;
-      }
-      this.setState(prevState =>({translateX: prevState.translateX + dx,
-        translateY: prevState.translateY + dy,
-        textAreaWidth: prevState.textAreaWidth + dx,
-        textAreaHeight: prevState.textAreaHeight + dy
-      }));
-    }
-    this.currentX = event.clientX;
-    this.currentY = event.clientY;
+      _this.currentX = event.clientX;
+      _this.currentY = event.clientY;
+    };
+    document.onmouseup = () => {
+      document.onmousemove = eventMouseMove;
+      document.onmouseup = eventMouseUp;
+      _this.currentX = null;
+      _this.currentY = null;
+    };
   }
 
   _onChange = (event) => {

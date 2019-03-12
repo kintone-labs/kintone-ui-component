@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
-const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, columns, isVisible}) => {
+const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, isVisible}) => {
   const _onCellChange = (newValue, tableData, rowIndex, fieldName) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -16,15 +16,26 @@ const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = 
           <TableHeaderRow columns={columns} />
         </div>
       </div>
-      <TableBody {...{columns, data, onRowAdd, onRowRemove, _onCellChange, actionButtonsShown}} />
+      <TableBody {...{columns, data, defaultRowData, onRowAdd, onRowRemove, _onCellChange, actionButtonsShown}} />
     </div>
   );
 };
 Table.propTypes = {
+  data: PropTypes.array.isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({
     header: PropTypes.string.isRequired,
     cell: PropTypes.func.isRequired,
-  })).isRequired
+  })).isRequired,
+  defaultRowData: PropTypes.object.isRequired,
+  onRowAdd: PropTypes.func,
+  onRowRemove: PropTypes.func,
+  onCellChange: PropTypes.func,
+  actionButtonsShown: PropTypes.bool,
+  isVisible: PropTypes.bool
+};
+Table.defaultProps = {
+  isVisible: true,
+  actionButtonsShown: true
 };
 
 const TableHeaderRow = ({columns}) => {
@@ -41,7 +52,7 @@ TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}) => {
+const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}) => {
   if (actionButtonsShown) {
     columns.push({actions: true});
   }
@@ -54,7 +65,7 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _o
             if (actions === true) {
               return (
                 <TableCellActions
-                  {...{key: columnIndex, data, rowIndex, addRow, removeRow}}
+                  {...{key: columnIndex, data, defaultRowData, rowIndex, addRow, removeRow}}
                   dispatch={newState => {
                     if (onRowAdd && newState.type === 'ADD_ROW') {
                       onRowAdd(newState);
@@ -79,8 +90,9 @@ const TableBody = ({columns, data, onRowAdd, onRowRemove, actionButtonsShown, _o
   );
 };
 TableBody.propTypes = {
-  columns: PropTypes.array,
-  data: PropTypes.array,
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+  defaultRowData: PropTypes.object.isRequired,
   actionButtonsShown: PropTypes.bool,
   onRowAdd: PropTypes.func,
   onRowRemove: PropTypes.func,
@@ -107,7 +119,7 @@ const TableCell = ({
   return <div {...tdProps} className="kuc-table-td">{content}</div>;
 };
 
-const TableCellActions = ({data, rowIndex, addRow, removeRow, dispatch}) => {
+const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}) => {
   return (
     <div className="kuc-table-td action-group">
       <span style={{marginRight: '5px'}}>
@@ -118,7 +130,7 @@ const TableCellActions = ({data, rowIndex, addRow, removeRow, dispatch}) => {
           onClick={() =>
             dispatch({
               type: 'ADD_ROW',
-              data: addRow({data, rowIndex}),
+              data: addRow({data, rowIndex, defaultRowData}),
               rowIndex: rowIndex + 1
             })
           }
@@ -144,8 +156,9 @@ const TableCellActions = ({data, rowIndex, addRow, removeRow, dispatch}) => {
   );
 };
 TableCellActions.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
   rowIndex: PropTypes.number,
+  defaultRowData: PropTypes.object.isRequired,
   addRow: PropTypes.func,
   removeRow: PropTypes.func,
   dispatch: PropTypes.func
@@ -162,9 +175,9 @@ const getValueByAccessor = (accessor, data) => {
   }
 };
 
-const addRow = ({data, rowIndex}) => {
+const addRow = ({data, rowIndex, defaultRowData}) => {
   const insertAt = rowIndex + 1;
-  const newData = [...data.slice(0, insertAt), {}, ...data.slice(insertAt)];
+  const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)];
   return newData;
 };
 

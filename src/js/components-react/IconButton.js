@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 
 const IconButton = (props) => {
   const _getClassName = () => {
-    const colors = ['gray', 'blue', 'red', 'green'];
+    const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
     const color = colors.indexOf(props.color) === -1 ? 'gray' : props.color;
+    const shape = props.shape === 'normal' ? 'normal' : '';
     const className = [
       'kuc-icon-btn',
       _getClassSize(),
       props.type === 'remove' && color === 'gray' ? 'hover-danger' : '',
-      color
+      color,
+      shape
     ];
     return className.join(' ').trim();
   };
@@ -23,6 +25,15 @@ const IconButton = (props) => {
         break;
       case 'close':
         classType = 'fa fa-times';
+        break;
+      case 'file':
+        classType = 'fa fa-file';
+        break;
+      case 'right':
+        classType = 'fa fa-chevron-right';
+        break;
+      case 'left':
+        classType = 'fa fa-chevron-left';
         break;
     }
     return classType;
@@ -49,6 +60,7 @@ IconButton.propTypes = {
   text: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.string,
+  shape: PropTypes.string,
   isVisible: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,

@@ -51,6 +51,10 @@ const NotifyPopup = (props) => {
     return style;
   };
 
+  if (props.isVisible === false) {
+    return null;
+  }
+
   return (
     <div>
       <div className={_getClassName()}>
