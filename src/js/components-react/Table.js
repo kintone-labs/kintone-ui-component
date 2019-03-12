@@ -20,6 +20,12 @@ const Table = ({data, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = 
     </div>
   );
 };
+Table.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    header: PropTypes.string.isRequired,
+    cell: PropTypes.func.isRequired,
+  })).isRequired
+};
 
 const TableHeaderRow = ({columns}) => {
   const header = columns.map((data, index) => {
