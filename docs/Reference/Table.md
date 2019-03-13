@@ -1041,7 +1041,7 @@ render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
-### updateRowData(rowIndex, data, rerender, trigger, fieldName)
+### updateRowData(rowIndex, data, rerender, trigger)
 update data of row at rowIndex with new data
 
 **Parameter**
@@ -1052,7 +1052,6 @@ update data of row at rowIndex with new data
 |data|	Object|	Yes|  Data object for the row.|
 |rerender|	Boolean|	No|  If <b>true</b>, will re-render table cells according to new data. <br> Default: <b>true</b>|
 |trigger|	Boolean|	No|  If <b>true</b>, will trigger <b>onCellChange</b> event. <br> Default: <b>true</b>|
-|fieldName|	String|	No|  Name of data property which has changed.|
 
 **Returns**
 <br>None
