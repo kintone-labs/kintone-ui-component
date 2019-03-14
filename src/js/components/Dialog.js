@@ -35,7 +35,7 @@ class FooterJSX extends React.Component {
 
 export default class Dialog extends Control {
 
-  constructor(props) {
+  constructor(props = {}) {
     props.headerJSX = <HeaderJSX ref={(e)=>(this.headerContent = e)} />;
     props.contentJSX = <ContentJSX ref={(e)=>(this.contentContent = e)} />;
     props.footerJSX = <FooterJSX ref={(e)=>(this.footerContent = e)} />;
