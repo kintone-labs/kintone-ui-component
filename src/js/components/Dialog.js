@@ -47,9 +47,11 @@ export default class Dialog extends Control {
   }
 
   setHeader(header) {
-    this.headerDOMNode.innerHTML = '';
     this.header = header;
-    this.headerDOMNode.append(header);
+    if (this.headerDOMNode) {
+      this.headerDOMNode.innerHTML = '';
+      this.headerDOMNode.append(header);
+    }
   }
 
   getHeader() {
@@ -57,9 +59,11 @@ export default class Dialog extends Control {
   }
 
   setContent(content) {
-    this.contentDOMNode.innerHTML = '';
     this.content = content;
-    this.contentDOMNode.append(content);
+    if (this.contentDOMNode) {
+      this.contentDOMNode.innerHTML = '';
+      this.contentDOMNode.append(content);
+    }
   }
 
   getContent() {
@@ -67,9 +71,11 @@ export default class Dialog extends Control {
   }
 
   setFooter(footer) {
-    this.footerDOMNode.innerHTML = '';
     this.footer = footer;
-    this.footerDOMNode.append(footer);
+    if (this.footerDOMNode) {
+      this.footerDOMNode.innerHTML = '';
+      this.footerDOMNode.append(footer);
+    }
   }
 
   getFooter() {
