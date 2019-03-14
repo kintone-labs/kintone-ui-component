@@ -6,12 +6,21 @@ const Dialog = (props) => {
   if (props.isVisible === false) {
     return null;
   }
+  const renderHeader = () => {
+    if (props.headerJSX) {
+      return props.headerJSX;
+    }
+    if (props.header) {
+      return props.header;
+    }
+    return <span />;
+  }
   return (
     <div className="kuc-dialog-container">
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
-            (props.headerJSX) ? (props.headerJSX) : (props.header)
+            renderHeader()
           }
           {
             (props.showCloseButton) ?
