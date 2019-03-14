@@ -111,9 +111,9 @@ export default class Dialog extends Control {
       this.headerDOMNode = findDOMNode(this.headerContent);
       this.contentDOMNode = findDOMNode(this.contentContent);
       this.footerDOMNode = findDOMNode(this.footerContent);
-      this.headerDOMNode.append(this.header || '');
-      this.contentDOMNode.append(this.content || '');
-      this.footerDOMNode.append(this.footer || '');
+      this.headerDOMNode && this.headerDOMNode.append(this.header || '');
+      this.contentDOMNode && this.contentDOMNode.append(this.content || '');
+      this.footerDOMNode && this.footerDOMNode.append(this.footer || '');
     });
     if (this.el !== undefined) {
       this.el.parentNode.replaceChild(newEl, this.el);
