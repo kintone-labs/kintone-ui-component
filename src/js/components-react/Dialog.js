@@ -11,7 +11,7 @@ const Dialog = (props) => {
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
-            (props.header) ? (props.header) : (<div />)
+            (props.headerJSX) ? (props.headerJSX) : (props.header)
           }
           {
             (props.showCloseButton) ?
@@ -28,10 +28,14 @@ const Dialog = (props) => {
           }
         </div>
         <div className="kuc-dialog-body">
-          {props.content}
+          {
+            (props.contentJSX) ? (props.contentJSX) : (props.content)
+          }
         </div>
         <div className="kuc-dialog-footer">
-          {props.footer}
+          {
+            (props.footerJSX) ? (props.footerJSX) : (props.footer)
+          }
         </div>
       </div>
     </div>
@@ -40,8 +44,11 @@ const Dialog = (props) => {
 
 Dialog.propTypes = {
   header: PropTypes.any,
+  headerJSX: PropTypes.any,
   content: PropTypes.any,
+  contentJSX: PropTypes.any,
   footer: PropTypes.any,
+  footerJSX: PropTypes.any,
   isVisible: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   onClose: PropTypes.func

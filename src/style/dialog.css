@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 600px;
 }
 
 .kuc-dialog-close-button {
@@ -54,4 +55,5 @@
     align-items: center;
     justify-content: space-around;
     padding: 15px 20px;
+    max-width: 600px;
 }
