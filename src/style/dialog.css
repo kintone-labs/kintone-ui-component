@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 600px;
 }
 
 .kuc-dialog-close-button {
@@ -44,6 +45,9 @@
     border-top: #e3e7e8 solid 1px;
     background-color: #F7F9FA;
     padding: 15px 20px;
+    overflow-y: auto;
+    max-height: 70vh;
+    max-width: 600px;
 }
 
 .kuc-dialog-footer {
@@ -51,4 +55,5 @@
     align-items: center;
     justify-content: space-around;
     padding: 15px 20px;
+    max-width: 600px;
 }
