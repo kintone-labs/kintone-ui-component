@@ -17,3 +17,4 @@
 * [Spinner](Reference/Spinner)
 * [Table](Reference/Table)
 * [Text](Reference/Text)
+* [Tabs](Reference/Tabs)
