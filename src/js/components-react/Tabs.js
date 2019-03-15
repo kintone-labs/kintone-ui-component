@@ -54,7 +54,6 @@ const TabsReact = props => {
 
 TabsReact.propTypes = {
   items: PropTypes.array,
-  isDisabled: PropTypes.bool,
   onSelect: PropTypes.func,
   value: PropTypes.number,
   isVisible: PropTypes.bool
