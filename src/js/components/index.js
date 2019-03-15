@@ -12,6 +12,7 @@ import RadioButton from './RadioButton';
 import CheckBox from './CheckBox';
 import Spinner from './Spinner';
 import Table from './Table';
+import Tabs from './Tabs';
 import DateTime from './DateTime';
 import FieldGroup from './FieldGroup';
 import ColorPicker from './ColorPicker';
@@ -33,6 +34,7 @@ const kintoneUIComponent = {
   CheckBox,
   Spinner,
   Table,
+  Tabs,
   DateTime,
   FieldGroup,
   ColorPicker,
