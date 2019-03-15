@@ -8,16 +8,28 @@
   font-size: 16px;
 }
 
-:lang(us) *[class|="kuc"] {
+:lang(en) *[class|="kuc"] {
   font-family: 'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 }
 
+:lang(en) *[class|="kuc"] .label{
+    font-family: HelveticaNeueW02-55Roma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
 :lang(ja) *[class|="kuc"] {
-  font-family: 'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    font-family: 'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
+:lang(ja) *[class|="kuc"] .label{
+    font-family: 'メイリオ','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;
 }
 
 :lang(zh) *[class|="kuc"] {
-  font-family: '微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif;
+    font-family: '微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif;
+}
+
+:lang(zh) *[class|="kuc"] .label {
+    font-family: '微软雅黑','Microsoft YaHei','新宋体',NSimSun,STHeiti,Hei,'Heiti SC',sans-serif;
 }
 
 /* Item */
@@ -66,5 +78,33 @@
     font-size: 13px;
     line-height: 1.5;
     position: absolute;
+}
+
+.kuc-arrow {
+    color: #727272;
+    position: relative;
+    margin: 10px 8px 0 0;
+}
+
+.kuc-arrow::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-top: solid 1px currentColor;
+    border-right: solid 1px currentColor;
+}
+
+.kuc-arrow.right:before {
+    top: 4px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.kuc-arrow.down:before {
+    top: 2px;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
 }
 /* Item */

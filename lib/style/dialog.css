@@ -1,0 +1,54 @@
+.kuc-dialog-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+
+.kuc-dialog-wrapper {
+    min-width: 600px;
+    background-color: #FFF;
+}
+
+.kuc-dialog-header {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.kuc-dialog-close-button {
+    font-size: 20px;
+    background-color: #F7F9FA;
+    color: #888888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.kuc-dialog-close-button:hover {
+    cursor: pointer;
+}
+
+.kuc-dialog-body {
+    border-bottom: #e3e7e8 solid 1px;
+    border-top: #e3e7e8 solid 1px;
+    background-color: #F7F9FA;
+    padding: 15px 20px;
+}
+
+.kuc-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 20px;
+}
