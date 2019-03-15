@@ -30,6 +30,9 @@ class TabContentJSX extends React.PureComponent {
 
 export default class Tabs extends AbstractSingleSelection {
   constructor(props_opt) {
+    if (props_opt === undefined) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     if (props_opt.items === undefined) {
       props_opt.items = [];
     }
