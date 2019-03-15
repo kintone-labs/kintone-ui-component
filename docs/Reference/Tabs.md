@@ -16,14 +16,13 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
-|options.items|Array&lt;Object&gt;|No|List of items which will be displayed on tabs.|
-|options.items[].tabName|String|No|String name of tab|
+|options|Object|Yes|An object contains params of constructor.|
+|options.items|Array&lt;Object&gt;|No|List of tabs.|
+|options.items[].tabName|String|Yes|Name of a tab.|
 |options.items[].tabContent|String|No|The value of an item.|
 |options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
-|options.value|Integer|No|Default selected item.|
-|options.isDisabled|Boolean|No|The tab will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The tab will be visible. <br> Default value: 'true'|
+|options.value|Integer|No|Selected tab index.|
+|options.isVisible|Boolean|No|The whole tab component is visible or not. <br> Default value: 'true'|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -40,7 +39,7 @@ var tab = new kintoneUIComponent.Tabs({
   items: [
   {
     tabName: "Tab1",
-    tabContent: 'This is Tab1'
+    tabContent: radioBtn.render()
   },
   {
     tabName: "Tab2",
@@ -91,10 +90,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -127,7 +126,7 @@ var tab = new kintoneUIComponent.Tabs({
   items: [
   {
     tabName: "Tab1",
-    tabContent: 'This is Tab1'
+    tabContent: radioBtn.render()
   },
   {
     tabName: "Tab2",
@@ -178,10 +177,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -194,10 +193,10 @@ Add an item to the end of tab list.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|item|Object|Yes|The item object will be added.|
-|item.tabName|String|No|Display string.|
-|item.tabContent|String|Yes|The value of an item.|
-|item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br> Default value: 'false'|
+|item|Object|Yes|The tab that will be added.|
+|item.tabName|String|Yes|The tab name.|
+|item.tabContent|String|No|The tab content.|
+|item.isDisabled|Boolean|No|Indicate tab will be disabled. <br> Default value: 'false'|
 
 **Returns**
 
@@ -227,7 +226,7 @@ var tab = new kintoneUIComponent.Tabs({
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
  
-var item = { label: "Tab4", value: "This is Tab4", isDisabled: true };
+var item = { tabName: "Tab4", tabContent: "This is Tab4", isDisabled: true };
 tab.addItem(item);
 ```
 
@@ -258,7 +257,7 @@ class Sample extends React.Component {
     }
  
     handleClick = () => {
-        const item = { label: "Tab4", value: "This is Tab4", isDisabled: true };
+        const item = { tabName: "Tab4", tabContent: "This is Tab4", isDisabled: true };
         this.setState(prevState => ({
             items: prevState.items ? prevState.items.concat([item]) : [item]
         }))
@@ -274,23 +273,23 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
 </details>
 
 ### removeItem(index)
-Remove the specific item from tab list.
+Remove the specific tab from tab list.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|index|	Integer|Yes|The position of retrieved item.|
+|index|	Integer|Yes|The position of the tab to be removed.|
 
 **Returns**
 
@@ -319,7 +318,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
 tab.removeItem(0);
 ```
 
@@ -368,10 +366,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement();
     );
 });
 ```
@@ -468,10 +466,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -515,13 +513,12 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
-
 tab.getValue();
 ```
 
 **React**
 ```javascript
-import { RadioButton } from 'kintone-ui-component';
+import { Tabs } from 'kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -546,14 +543,14 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 0
         };
     }
   
     render() {
         return (
          <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <Tabs items={this.state.items} value={this.state.value} onSelect={(item, index) => {this.setState({value: index})}} />
           <button onClick={this.handleClick}>Get Value</button>
          </div>
        );
@@ -602,8 +599,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
- 
 tab.setValue(1);
 ```
 
@@ -647,10 +642,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -693,7 +688,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
 tab.disableItem('Tab2');
 ```
 
@@ -726,7 +720,6 @@ class Sample extends React.Component {
     handleClick = () => {
         const items = [...this.state.items];
         items[0].isDisabled = true;
- 
         this.setState({ items: items });
     }
  
@@ -740,10 +733,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -785,7 +778,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
 tab.enableItem('Tab2');
 ```
 
@@ -819,7 +811,6 @@ class Sample extends React.Component {
     handleClick = () => {
         const items = [...this.state.items];
         items[0].isDisabled = false;
- 
         this.setState({ items: items });
     }
  
@@ -833,10 +824,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -879,7 +870,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
-
 tabSuccess.on("select", function(value, index, last) {
   console.log(value.tabName + " : " + value.tabContent);
 });
@@ -911,8 +901,8 @@ class Sample extends React.Component {
         this.state = { items: items, value: 1};
     }
  
-    handleSelect = (value) => {
-        this.setState({value});
+    handleSelect = (value, index) => {
+        this.setState({value: index});
         console.log(value.tabName + " : " + value.tabContent);
     }
  
@@ -925,10 +915,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -969,7 +959,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
 tab.show();
 ```
 
@@ -1005,6 +994,7 @@ class Sample extends React.Component {
     }
  
     render() {
+        const {isVisible} = this.state;
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} isVisible={isVisible}/>
@@ -1014,10 +1004,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -1058,7 +1048,6 @@ var tab = new kintoneUIComponent.Tabs({
 });
 var el = kintone.app.getHeaderSpaceElement();
 el.appendChild(tab.render());
- 
 tab.hide();
 ```
 
@@ -1094,6 +1083,7 @@ class Sample extends React.Component {
     }
  
     render() {
+        const {isVisible} = this.state;
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} isVisible={isVisible}/>
@@ -1103,10 +1093,10 @@ class Sample extends React.Component {
     }
 }
  
-kintone.events.on('app.record.detail.show', function (event) {
+kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
         <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
