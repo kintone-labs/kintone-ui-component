@@ -1,32 +1,82 @@
+/* eslint-disable react/jsx-filename-extension */
 import TabsReact from '../components-react/Tabs';
-import AbstractTabsSelection from './AbstractTabsSelection';
+import AbstractSingleSelection from './AbstractSingleSelection';
 import Message from '../constant/Message';
-const validEventNames = ['select'];
+import withState from './withState';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Tabs extends AbstractTabsSelection {
-  constructor(props_opt) {
-    let props = {};
-    if (props_opt.items) {
-      const items = props_opt.items.map(item => {
-        let itemArr = {};
-        if (typeof item.tabContent === 'string') {
-          itemArr = {
-            'tabName': item.tabName,
-            'tabContent': item.tabContent
-          };
-        } else {
-          const elem = item.tabContent.render().outerHTML;
-          itemArr = {
-            'tabName': item.tabName,
-            'tabContent': elem
-          };
-        }
-        return itemArr;
-      });
-      props = {...props_opt, items: items};
-    }
+class TabContentJSX extends React.PureComponent {
+  static propTypes = {
+    content: PropTypes.any
+  }
+
+  constructor(props) {
     super(props);
+    this.spanContent = null;
+    this.setSpanContentRef = element => {
+      this.spanContent = element;
+    };
+  }
+
+  componentDidMount = () => {
+    this.spanContent.append(this.props.content);
+  }
+
+  render() {
+    return <span ref={this.setSpanContentRef} />;
+  }
+}
+
+export default class Tabs extends AbstractSingleSelection {
+  constructor(props_opt) {
+    if (props_opt.items === undefined) {
+      props_opt.items = [];
+    }
+    props_opt.items = props_opt.items.map((item, i) => {
+      if (typeof item.tabContent !== 'string') {
+        item.tabContentJSX = <TabContentJSX content={item.tabContent} />;
+      }
+      return item;
+    });
+    super(props_opt);
     this._reactComponentClass = TabsReact;
+    this.props = props_opt;
+    this.onSelect = props_opt.onSelect;
+    this.validEventNames = ['select'];
+  }
+
+  _setDisabledItem(value, isDisabled) {
+    if (!this._getState().items) {
+      return;
+    }
+    const newItems = [...this._getState().items];
+    newItems.forEach((item, i) => {
+      if (item.tabName === value) {
+        newItems[i].isDisabled = isDisabled;
+      }
+    });
+    this._setState({items: newItems});
+  }
+
+  _onSelect = (item, index, last) => {
+    let switchTab = true;
+    if (this.onSelect) {
+      switchTab = this.onSelect(item, index, last);
+      switchTab = switchTab !== undefined ? switchTab : true;
+    }
+    if (switchTab) {
+      this._setState({value: index});
+    }
+    return true;
+  }
+
+  _getReactElement() {
+    const Component = withState(this._reactComponentClass);
+    const additionalProps = {onSelect: this._onSelect};
+    // eslint-disable-next-line react/jsx-filename-extension
+    const reactElement = <Component {...this.props} {...additionalProps} />;
+    return reactElement;
   }
 
   disableItem(value) {
@@ -51,6 +101,14 @@ export default class Tabs extends AbstractTabsSelection {
   }
 
   setValue(value) {
+    if (isNaN(value) && !isFinite(value) || value === '') {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
+
+    const items = this._getState().items;
+    if (!items || !items[value]) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     this._setState({value});
   }
 
@@ -59,13 +117,9 @@ export default class Tabs extends AbstractTabsSelection {
   }
 
   on(eventName, callback) {
-    if (!validEventNames.some(event => event === eventName)) {
-      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
+    if (!this.validEventNames.some(event => event === eventName)) {
+      throw new Error(Message.control.INVALID_EVENT + ' ' + this.validEventNames.join(','));
     }
-    if (validEventNames.some(event => event === eventName)) {
-      this.onSelect = callback;
-    }
-    const formatEventName = 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
-    this._reactObject.setState({[formatEventName]: callback});
+    this['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback;
   }
 }

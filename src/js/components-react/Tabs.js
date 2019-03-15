@@ -10,7 +10,7 @@ const TabsReact = props => {
 
   const _onSelect = (index, last) => {
     if (props.onSelect) {
-      props.onSelect(props.items[index], index, last);
+      return props.onSelect(props.items[index], index, last);
     }
     return true;
   };
@@ -31,17 +31,18 @@ const TabsReact = props => {
 
   const tabPanel = props.items.map((item, i) => {
     return (
-      <TabPanel key={i}>
-        <span dangerouslySetInnerHTML={{__html: item.tabContent}} />
+      <TabPanel key={i} >
+        {item.tabContentJSX ? item.tabContentJSX : item.tabContent}
       </TabPanel>
     );
   });
 
+  const selectedIndex = props.value ? props.value : 0;
   return (
     <Tabs
       className="kuc-tabs-tabs"
       onSelect={_onSelect}
-      defaultIndex={props.value}
+      selectedIndex={selectedIndex}
     >
       <TabList className="kuc-tabs-tab-list">{tabList}</TabList>
       <div className="kuc-tabs-tab-contents">

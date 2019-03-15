@@ -3,11 +3,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import withState from './withState';
 import Message from '../constant/Message';
-const validEventNames = ['click', 'change'];
 export default class Control {
   constructor(props) {
     this.props = props;
     this.events = {};
+    this.validEventNames = ['click', 'change'];
   }
 
   _setState(state) {
@@ -102,8 +102,8 @@ export default class Control {
   }
 
   on(eventName, callback) {
-    if (!validEventNames.some(event => event === eventName)) {
-      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
+    if (!this.validEventNames.some(event => event === eventName)) {
+      throw new Error(Message.control.INVALID_EVENT + ' ' + this.validEventNames.join(','));
     }
     if (eventName === 'change') {
       this.onChange = callback;

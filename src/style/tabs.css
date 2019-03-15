@@ -7,11 +7,12 @@
   list-style-type: none;
   padding: 6px 12px;
   cursor: pointer;
-  min-width: 163px;
+  min-width: 960px;
+  min-height: 650px;
 }
 
 .kuc-tabs-tab-list {
-  margin: 0 0 0 15px;
+  margin: 0 60px 0 15px;
   padding: 0;
 }
 
@@ -43,7 +44,6 @@
 }
 
 .kuc-tabs-tab-contents {
-  min-width: 960px;
   min-height: 650px;
   line-height:25px;
   border-top: 0;
