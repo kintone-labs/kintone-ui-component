@@ -292,6 +292,22 @@ None
 
 **Javascript**
 ```
+var table = new kintoneUIComponent.Table({
+  // inital table data
+  data: [
+    {text: { value: 'this is a text field' }}
+  ],
+  // default row data on row add
+  defaultRowData: {text: { value: 'default text field value' }},
+  columns: [
+    {
+      header: 'Text',
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+    },
+  ]
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
 var value = table.getValue();
 value.forEach(function(rowData) {
   console.log(rowData)
