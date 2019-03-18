@@ -142,7 +142,7 @@ export default class Table {
   }
 
   updateRowData(rowIndex, data, rerender = true, trigger = true, fieldName) {
-    if (!rowIndex || !rowData) {
+    if (rowIndex === undefined || data === undefined) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     const rowData = this._mergeDeep(this.data[rowIndex], data);
