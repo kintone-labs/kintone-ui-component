@@ -11,6 +11,7 @@ $ npm install -g create-react-app
 $ create-react-app my-customization
 $ cd my-customization
 $ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli
+$ npm install uglifyjs-webpack-plugin --save-dev
 $ npm install kintone-ui-component
 $ rm -f src/*
 ```
