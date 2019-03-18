@@ -116,11 +116,10 @@
 ```
 **React**
 ```
-import React, { Component } from 'react';
-import {render} from 'react-dom';
-import { Table, Text} from './js/components-react/index';
+import React from 'react';
+import { Table, Text} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -213,11 +212,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text} from './js/components-react/index';
+import { Table, Text} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -271,7 +270,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -300,11 +299,11 @@ value.forEach(function(rowData) {
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -366,12 +365,12 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
 ### setValue(value)
-Set value for every row in table. The number of rows in table's dependent on the length on this parameters. 
+Set data for every row in table. The number of rows in table's dependent on the length on this parameters. 
 
 **Parameter**
 
@@ -413,11 +412,11 @@ table.setValue([
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -484,7 +483,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -549,11 +548,11 @@ table.on('cellChange', function(event) {
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -609,7 +608,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -649,11 +648,11 @@ table.show();
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -756,11 +755,11 @@ table.hide();
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -823,7 +822,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -864,11 +863,11 @@ table.showActionButtons();
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -930,7 +929,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -971,11 +970,11 @@ table.hideActionButtons();
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1037,7 +1036,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -1091,9 +1090,9 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text', {onChange: function(event){
-          event.rowData.checkbox.value = ['Lemon'];
-          table.updateRowData(event.rowIndex, event.rowData);
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text', {onChange: function({data, rowIndex}){ 
+        data[rowIndex].checkbox.value = ['Lemon'];
+          table.updateRowData(rowIndex, data[rowIndex]);
       }}) }
     },
     {
@@ -1107,11 +1106,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1175,7 +1174,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -1200,8 +1199,6 @@ create a table cell with 1 of the built-in supported components
 |type|	String|	Yes|  Type of built-in cell. <br>Can be one of the following types: <br><ul><li>'text'</li><li>'dropdown'</li><li>'checkbox'</li><li>'multichoice'</li><li>'radio'</li><li>'label'</li><li>'icon'</li><li>'alert'</li></ul>|
 |dataFieldName|	String|	Yes|  Name of the data field associated with the table cell.|
 |props|	Object|	No|  Additional props to pass to component. <br>Can be used to define custom event handler for component.|
-|trigger|	Boolean|	No|  If <b>true</b>, will trigger <b>onCellChange</b> event. <br> Default: <b>true</b>|
-|fieldName|	String|	No|  Name of data property which has changed.|
 
 **Returns**
 <br>[TableCell](#tablecell)
@@ -1230,11 +1227,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React, { Component } from 'react';
+import React from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from './js/components-react/index';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-class App extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1290,7 +1287,7 @@ class App extends Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
