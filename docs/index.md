@@ -18,5 +18,4 @@
 * [Spinner](Reference/Spinner)
 * [Table](Reference/Table)
 * [Text](Reference/Text)
-* [TextArea](Reference/TextArea)
 * [Tabs](Reference/Tabs)
