@@ -54,7 +54,7 @@ var checkbox = new kintoneUIComponent.CheckBox ({
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -133,7 +133,7 @@ body.appendChild(checkbox.render());
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -222,7 +222,7 @@ checkbox.addItem({
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -311,7 +311,7 @@ console.log(firstItem);
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -401,7 +401,7 @@ checkbox.removeItem(0);
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -508,7 +508,7 @@ items.forEach(function(item) {
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -604,7 +604,7 @@ value.forEach(function(item) {
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -693,7 +693,7 @@ checkbox.setValue(['Lemon']);
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -785,7 +785,7 @@ checkbox.disableItem('Orange');
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -877,7 +877,7 @@ checkbox.enableItem('Banana');
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -972,7 +972,7 @@ checkbox.on('change', function(value) {
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1059,7 +1059,7 @@ checkbox.show();
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1139,7 +1139,7 @@ checkbox.hide();
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1219,7 +1219,7 @@ checkbox.disable();
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1299,7 +1299,7 @@ checkbox.enable();
 
 **React**
 ```javascript
-import { CheckBox } from '@kintone/kintone-ui-component';
+import { CheckBox } from 'kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {

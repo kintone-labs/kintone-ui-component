@@ -31,7 +31,7 @@ var button = new kintoneUIComponent.Button({
 ```
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -68,7 +68,7 @@ body.appendChild(button.render());
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -107,7 +107,7 @@ button.setText('submit');
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -146,7 +146,7 @@ button.setType('normal');
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -188,7 +188,7 @@ button.on('click', function(event) {
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -229,7 +229,7 @@ button.show();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -266,7 +266,7 @@ button.hide();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -303,7 +303,7 @@ button.disable();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -340,7 +340,7 @@ button.enable();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Button } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {

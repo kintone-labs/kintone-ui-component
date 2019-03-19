@@ -116,10 +116,11 @@
 ```
 **React**
 ```
-import React from 'react';
-import { Table, Text} from '@kintone/kintone-ui-component';
+import React, { Component } from 'react';
+import {render} from 'react-dom';
+import { Table, Text} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -131,23 +132,25 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
-
+  
   handleRowRemove = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -162,13 +165,14 @@ export default class Plugin extends React.Component {
       },
     ];
     return (
-      <Table
-        columns={columns}
-        data={this.state.tableData}
-        defaultRowData={defaultRowData}
+      <Table 
+        data={this.state.tableData} 
         onRowAdd={this.handleRowAdd}
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={true}
       />
     );
   }
@@ -212,11 +216,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text} from '@kintone/kintone-ui-component';
+import { Table, Text} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -228,23 +232,25 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
-
+  
   handleRowRemove = ({data}) => {
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -259,18 +265,19 @@ export default class Plugin extends React.Component {
       },
     ];
     return (
-      <Table
-        columns={columns}
-        data={this.state.tableData}
-        defaultRowData={defaultRowData}
+      <Table 
+        data={this.state.tableData} 
         onRowAdd={this.handleRowAdd}
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={true}
       />
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -292,22 +299,6 @@ None
 
 **Javascript**
 ```
-var table = new kintoneUIComponent.Table({
-  // inital table data
-  data: [
-    {text: { value: 'this is a text field' }}
-  ],
-  // default row data on row add
-  defaultRowData: {text: { value: 'default text field value' }},
-  columns: [
-    {
-      header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
-    },
-  ]
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
 var value = table.getValue();
 value.forEach(function(rowData) {
   console.log(rowData)
@@ -315,11 +306,11 @@ value.forEach(function(rowData) {
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -331,7 +322,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -341,13 +333,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -364,14 +357,13 @@ export default class Plugin extends React.Component {
     return (
       <div>
         <Table 
-          columns={columns}
-          data={this.state.tableData} 
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={true}
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={true}
         />
         <Button text="Get table value" onClick={() => {
             console.log(this.state.tableData)
@@ -381,12 +373,12 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
 ### setValue(value)
-Set data for every row in table. The number of rows in table's dependent on the length on this parameters. 
+Set value for every row in table. The number of rows in table's dependent on the length on this parameters. 
 
 **Parameter**
 
@@ -428,11 +420,11 @@ table.setValue([
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -444,7 +436,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -454,13 +447,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -477,20 +471,19 @@ export default class Plugin extends React.Component {
     return (
       <div>
         <Table 
-          columns={columns}
-          data={this.state.tableData} 
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={true}
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={true}
         />
         <Button text="Set table value" onClick={() => {
             const tableData = [
-              {text: 'first row'},
-              {text: 'second row'},
-              {text: 'third row'}
+              {text: { value: 'first row' }},
+              {text: { value: 'second row' }},
+              {text: { value: 'third row' }}
             ]
             this.setState({tableData})
           }}
@@ -499,7 +492,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -564,11 +557,11 @@ table.on('cellChange', function(event) {
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -580,7 +573,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -596,7 +590,7 @@ export default class Plugin extends React.Component {
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -612,19 +606,18 @@ export default class Plugin extends React.Component {
     ];
     return (
       <Table
-        columns={columns}
-        data={this.state.tableData}
-        defaultRowData={defaultRowData}
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        actionButtonsShown={true}
-        isVisible={true}
+      data={this.state.tableData} 
+      onRowAdd={this.handleRowAdd}
+      onRowRemove={this.handleRowRemove}
+      onCellChange={this.handleCellChange}
+      columns={columns}
+      actionButtonsShown={true}
+      isVisible={true}
       />
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -664,11 +657,11 @@ table.show();
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -681,7 +674,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -691,13 +685,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, isVisible, defaultRowData} = this.state;
+    const {tableData, isVisible} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -713,15 +708,14 @@ export default class Plugin extends React.Component {
     ];
     return (
       <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={isVisible}
+        <Table 
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={isVisible}
         />
         <Button text="Show table" onClick={() => {
             this.setState({isVisible: true})
@@ -731,7 +725,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -771,11 +764,11 @@ table.hide();
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -788,7 +781,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -798,13 +792,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, isVisible, defaultRowData} = this.state;
+    const {tableData, isVisible} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -820,17 +815,16 @@ export default class Plugin extends React.Component {
     ];
     return (
       <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={isVisible}
+        <Table 
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={isVisible}
         />
-        <Button text="Hide table" onClick={() => {
+        <Button text="Show table" onClick={() => {
             this.setState({isVisible: false})
           }}
         />
@@ -838,7 +832,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -879,11 +872,11 @@ table.showActionButtons();
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -896,7 +889,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -906,13 +900,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, actionButtonsShown, defaultRowData} = this.state;
+    const {tableData, actionButtonsShown} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -928,14 +923,14 @@ export default class Plugin extends React.Component {
     ];
     return (
       <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={actionButtonsShown}
+        <Table 
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={actionButtonsShown}
+        isVisible={isVisible}
         />
         <Button text="Show action buttons" onClick={() => {
             this.setState({actionButtonsShown: true})
@@ -945,7 +940,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -986,11 +980,11 @@ table.hideActionButtons();
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1003,7 +997,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1013,13 +1008,14 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, actionButtonsShown, defaultRowData} = this.state;
+    const {tableData, actionButtonsShown} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1035,14 +1031,14 @@ export default class Plugin extends React.Component {
     ];
     return (
       <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={actionButtonsShown}
+        <Table 
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={actionButtonsShown}
+        isVisible={isVisible}
         />
         <Button text="Hide action buttons" onClick={() => {
             this.setState({actionButtonsShown: false})
@@ -1052,11 +1048,10 @@ export default class Plugin extends React.Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
-### updateRowData(rowIndex, data, rerender, trigger)
+### updateRowData(rowIndex, data, rerender, trigger, fieldName)
 update data of row at rowIndex with new data
 
 **Parameter**
@@ -1067,6 +1062,7 @@ update data of row at rowIndex with new data
 |data|	Object|	Yes|  Data object for the row.|
 |rerender|	Boolean|	No|  If <b>true</b>, will re-render table cells according to new data. <br> Default: <b>true</b>|
 |trigger|	Boolean|	No|  If <b>true</b>, will trigger <b>onCellChange</b> event. <br> Default: <b>true</b>|
+|fieldName|	String|	No|  Name of data property which has changed.|
 
 **Returns**
 <br>None
@@ -1106,9 +1102,9 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text', {onChange: function({data, rowIndex}){ 
-        data[rowIndex].checkbox.value = ['Lemon'];
-          table.updateRowData(rowIndex, data[rowIndex]);
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text', {onChange: function(event){
+          event.rowData.checkbox.value = ['Lemon'];
+          table.updateRowData(event.rowIndex, event.rowData);
       }}) }
     },
     {
@@ -1122,11 +1118,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1138,7 +1134,8 @@ export default class Plugin extends Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1148,13 +1145,14 @@ export default class Plugin extends Component {
     console.log('data: ', data);
   }
 
-  handleCellChange = ({data}) => {
+  handleCellChange = (newValue, data, rowIndex, fieldName) => {
+    data[rowIndex][fieldName] = newValue
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1170,15 +1168,14 @@ export default class Plugin extends Component {
     ];
     return (
       <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={true}
+        <Table 
+        data={this.state.tableData} 
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+        columns={columns}
+        actionButtonsShown={true}
+        isVisible={true}
         />
         <Button text="Update row data" onClick={() => {
             const {tableData} = this.state
@@ -1190,7 +1187,7 @@ export default class Plugin extends Component {
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -1215,6 +1212,8 @@ create a table cell with 1 of the built-in supported components
 |type|	String|	Yes|  Type of built-in cell. <br>Can be one of the following types: <br><ul><li>'text'</li><li>'dropdown'</li><li>'checkbox'</li><li>'multichoice'</li><li>'radio'</li><li>'label'</li><li>'icon'</li><li>'alert'</li></ul>|
 |dataFieldName|	String|	Yes|  Name of the data field associated with the table cell.|
 |props|	Object|	No|  Additional props to pass to component. <br>Can be used to define custom event handler for component.|
+|trigger|	Boolean|	No|  If <b>true</b>, will trigger <b>onCellChange</b> event. <br> Default: <b>true</b>|
+|fieldName|	String|	No|  Name of data property which has changed.|
 
 **Returns**
 <br>[TableCell](#tablecell)
@@ -1243,11 +1242,11 @@ body.appendChild(table.render());
 ```
 **React**
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
+import { Table, Text, Button} from './js/components-react/index';
 
-export default class Plugin extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1259,7 +1258,8 @@ export default class Plugin extends React.Component {
     }
   }
 
-  handleRowAdd = ({data}) => {
+  handleRowAdd = ({data, rowIndex}) => {
+    data[rowIndex] = {...this.state.defaultRowData}
     this.setState({ tableData: data })
     console.log('data: ', data);
   }
@@ -1275,7 +1275,7 @@ export default class Plugin extends React.Component {
   }
 
   render() {
-    const {tableData, defaultRowData} = this.state;
+    const {tableData} = this.state;
     const columns = [
       {
         header: 'Text',
@@ -1291,19 +1291,18 @@ export default class Plugin extends React.Component {
     ];
     return (
       <Table
-        columns={columns}
-        data={this.state.tableData}
-        defaultRowData={defaultRowData}
-        onRowAdd={this.handleRowAdd}
-        onRowRemove={this.handleRowRemove}
-        onCellChange={this.handleCellChange}
-        actionButtonsShown={true}
-        isVisible={true}
+      data={this.state.tableData} 
+      onRowAdd={this.handleRowAdd}
+      onRowRemove={this.handleRowRemove}
+      onCellChange={this.handleCellChange}
+      columns={columns}
+      actionButtonsShown={true}
+      isVisible={true}
       />
     );
   }
 }
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
+render(<App />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 

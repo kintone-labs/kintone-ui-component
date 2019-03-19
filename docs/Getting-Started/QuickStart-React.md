@@ -11,15 +11,14 @@ $ npm install -g create-react-app
 $ create-react-app my-customization
 $ cd my-customization
 $ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli
-$ npm install uglifyjs-webpack-plugin --save-dev
-$ npm install @kintone/kintone-ui-component
+$ npm install kintone-ui-component
 $ rm -f src/*
 ```
 **Step** 2: Add index.js file to src/ folder:
 ```
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Button} from '@kintone/kintone-ui-component';
+import {Button} from 'kintone-ui-component';
 class MyCustomization extends Component {
   constructor(props) {
     super(props);

@@ -18,7 +18,7 @@ var spinner = new kintoneUIComponent.Spinner();
 ```
 **React**
 ```
-import { Spinner } from '@kintone/kintone-ui-component';
+import { Spinner } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -55,7 +55,7 @@ body.appendChild(spinner.render());
 ```
 **React**
 ```
-import { Spinner } from '@kintone/kintone-ui-component';
+import { Spinner } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -91,7 +91,7 @@ spinner.show();
 ```
 **React**
 ```
-import { Spinner } from '@kintone/kintone-ui-component';
+import { Spinner } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -128,7 +128,7 @@ spinner.hide();
 ```
 **React**
 ```
-import { Spinner } from '@kintone/kintone-ui-component';
+import { Spinner } from 'kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {

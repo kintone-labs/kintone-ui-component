@@ -32,7 +32,7 @@ var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'})
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -69,7 +69,7 @@ body.appendChild(alert.render());
 
 **React**
 ```javascript
-import { Alert} from '@kintone/kintone-ui-component';
+import { Alert} from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -108,7 +108,7 @@ alert.setText('Network error');
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -147,7 +147,7 @@ alert.setType('success');
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -189,7 +189,7 @@ alert.on('click', function(event) {
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -229,7 +229,7 @@ alert.show();
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -266,7 +266,7 @@ alert.hide();
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -303,7 +303,7 @@ alert.disable();
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -340,7 +340,7 @@ alert.enable();
 
 **React**
 ```javascript
-import { Alert } from '@kintone/kintone-ui-component';
+import { Alert } from 'kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
