@@ -19,8 +19,8 @@
 |options.header|String, DOM, React Element|No|Header of dialog.|
 |options.content|String, DOM, React Element|No|Content of dialog.|
 |options.footer|String, DOM, React Element|No|Footer of dialog.|
-|options.isVisible|Boolean|No|If set to true, Dialog will show up. Otherwise Dialog will hide.|
-|options.showCloseButton|Boolean|No|If set to true, close button in Item-1 will show up. Otherwise close button will hide.|
+|options.isVisible|Boolean|No|If set to true, Dialog will show up. Otherwise Dialog will hide. Default: true|
+|options.showCloseButton|Boolean|No|If set to true, close button in Item-1 will show up. Otherwise close button will hide. Default: true|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -31,7 +31,7 @@ var myDialog = new kintoneUIComponent.Dialog({
     header: "Dialog header",
     content: "This is content",
     footer: "Footer",
-    isVisible: false,
+    isVisible: true,
     showCloseButton: true
 });
 ```
@@ -152,6 +152,17 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isVisible: true
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     render() {
         return (
             <Dialog
@@ -159,7 +170,7 @@ export default class Plugin extends React.Component {
                 header="Dialog header"
                 content="This is content"
                 footer="Footer"
-                isVisible={true}
+                isVisible={this.state.isVisible}
                 onClose={this.onClose}
             />
         );
@@ -248,12 +259,23 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isVisible: true
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     render() {
         return (
             <Dialog
                 showCloseButton={true}
                 header="Announcement"
-                isVisible={true}
+                isVisible={this.state.isVisible}
                 onClose={this.onClose}
             />
         );
@@ -282,9 +304,11 @@ var myDialog = new kintoneUIComponent.Dialog({
     header: "Dialog header",
     content: "This is content",
     footer: "Footer",
-    isVisible: false,
+    isVisible: true,
     showCloseButton: true
 });
+
+document.body.append(myDialog.render());
  
 myDialog.getHeader(); // return "Dialog header"
 ```
@@ -346,12 +370,23 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isVisible: true
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     render() {
         return (
             <Dialog
                 showCloseButton={true}
                 content="content"
-                isVisible={true}
+                isVisible={this.state.isVisible}
                 onClose={this.onClose}
             />
         );
@@ -383,6 +418,8 @@ var myDialog = new kintoneUIComponent.Dialog({
     isVisible: false,
     showCloseButton: true
 });
+
+document.body.append(myDialog.render());
  
 myDialog.getContent(); // return "This is content"
 ```
@@ -444,12 +481,23 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isVisible: true
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     render() {
         return (
             <Dialog
                 showCloseButton={true}
                 footer="footer"
-                isVisible={true}
+                isVisible={this.state.isVisible}
                 onClose={this.onClose}
             />
         );
@@ -481,6 +529,8 @@ var myDialog = new kintoneUIComponent.Dialog({
     isVisible: false,
     showCloseButton: true
 });
+
+document.body.append(myDialog.render());
  
 myDialog.getFooter(); // return "Footer"
 ```
@@ -490,17 +540,22 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    state = {footer: "Dialog footer"}
+    state = {footer: "Dialog footer", isVisible: true}
     handleClick= () => {
         console.log(this.state.footer);
     };
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     render() {
         return (
             <div>
                 <Dialog
                     showCloseButton={true}
                     footer={this.state.footer}
-                    isVisible={true}
+                    isVisible={this.state.isVisible}
                     onClose={this.onClose}
                 />
                 <button onClick={this.handleClick}>Get Footer</button>
