@@ -10,7 +10,7 @@
 * Create index.js file
 ```
 (function () {
-    kintone.events.on("app.record.detail.show", function (ev) {
+    kintone.events.on("app.record.index.show", function (ev) {
       var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();
       var button = new kintoneUIComponent.Button({ text: 'Submit' });
       kintoneSpaceElement.appendChild(button.render());
@@ -18,7 +18,7 @@
         alert('This is my customization');
       })
     });
-  });
+  })();
 ```
 * Attach index.js file into [kintone app setting](https://help.kintone.com/en/k/user/js_customize.html)
 
