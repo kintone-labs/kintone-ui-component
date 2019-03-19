@@ -37,7 +37,7 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -75,7 +75,7 @@ body.appendChild(colorPicker.render());
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -116,7 +116,7 @@ colorPicker.setColor('#666666');
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -167,7 +167,7 @@ colorPicker.getColor();
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -229,7 +229,7 @@ colorPicker.on('changeComplete', function(color) {
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -276,7 +276,7 @@ colorPicker.show();
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -315,7 +315,7 @@ colorPicker.hide();
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -354,7 +354,7 @@ colorPicker.disable();
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -393,7 +393,7 @@ colorPicker.enable();
 ```
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
