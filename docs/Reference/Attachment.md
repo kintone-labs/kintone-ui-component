@@ -39,7 +39,7 @@ const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', s
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -86,7 +86,7 @@ body.appendChild(attachment.render());
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -143,7 +143,7 @@ button.on('click', () => {
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -205,7 +205,7 @@ button.on('click', () => {
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -263,7 +263,7 @@ attachment.setDropZoneText('Drop files here.');
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -319,7 +319,7 @@ attachment.setBrowseButtonText('Browse');
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -375,7 +375,7 @@ attachment.setFileLimitText('Maximum: 1 GB');
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -431,7 +431,7 @@ attachment.setErrorMessage('Error message');
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -491,7 +491,7 @@ showButton.on('click', () => {
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -558,7 +558,7 @@ hideButton.on('click', () => {
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
   state = {
@@ -628,7 +628,7 @@ attachment.on('fileRemove', (files) => {
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -683,7 +683,7 @@ attachment.show();
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
   state = {
@@ -736,7 +736,7 @@ attachment.hide();
 
 **React**
 ```javascript
-import {Attachment} from 'kintone-ui-component';
+import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
   state = {

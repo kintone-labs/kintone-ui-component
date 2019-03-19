@@ -35,7 +35,7 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -79,7 +79,7 @@ body.appendChild(notifyPopup.render());
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -125,7 +125,7 @@ notifyPopup.setText('Submit failed');
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -171,7 +171,7 @@ notifyPopup.setType('success');
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -220,7 +220,7 @@ notifyPopup.on('click', function(event) {
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -267,7 +267,7 @@ notifyPopup.show();
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -310,7 +310,7 @@ notifyPopup.hide();
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -352,7 +352,7 @@ notifyPopup.disable();
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -396,7 +396,7 @@ notifyPopup.enable();
 ```
 **React**
 ```
-import { NotifyPopup } from 'kintone-ui-component';
+import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {

@@ -518,7 +518,7 @@ tab.getValue();
 
 **React**
 ```javascript
-import { Tabs } from 'kintone-ui-component';
+import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {

@@ -53,7 +53,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -131,7 +131,7 @@ body.appendChild(mulChoice.render());
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -220,7 +220,7 @@ mulChoice.addItem({
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -308,7 +308,7 @@ console.log(firstItem);
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -397,7 +397,7 @@ mulChoice.removeItem(0);
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -503,7 +503,7 @@ items.forEach(function(item) {
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -598,7 +598,7 @@ selectedItems.forEach(function(item) {
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -687,7 +687,7 @@ mulChoice.setValue(['Lemon']);
 **React**
 ```
 
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -778,7 +778,7 @@ mulChoice.disableItem('Orange');
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -869,7 +869,7 @@ mulChoice.enableItem('Banana');
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -963,7 +963,7 @@ mulChoice.on('change', function(value) {
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -1049,7 +1049,7 @@ mulChoice.show();
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1136,7 +1136,7 @@ mulChoice.hide();
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1224,7 +1224,7 @@ mulChoice.disable();
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1312,7 +1312,7 @@ mulChoice.enable();
 ```
 **React**
 ```
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {

@@ -26,7 +26,7 @@ var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', 
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -63,7 +63,7 @@ body.appendChild(iconBtn.render());
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -103,7 +103,7 @@ iconBtn.setType('remove');
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -144,7 +144,7 @@ iconBtn.setSize('small');
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -185,7 +185,7 @@ iconBtn.setColor('green');
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -228,7 +228,7 @@ iconBtn.on('click', function(event) {
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -271,7 +271,7 @@ iconBtn.show();
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -310,7 +310,7 @@ iconBtn.hide();
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -349,7 +349,7 @@ iconBtn.disable();
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -388,7 +388,7 @@ iconBtn.enable();
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {

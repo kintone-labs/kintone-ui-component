@@ -32,7 +32,7 @@
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
@@ -102,7 +102,7 @@ Dom element
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
@@ -182,7 +182,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -261,7 +261,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -358,7 +358,7 @@ The list contains all items of dropdown.
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -449,7 +449,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -539,7 +539,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -628,7 +628,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -720,7 +720,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -813,7 +813,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
@@ -899,7 +899,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -983,7 +983,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -1068,7 +1068,7 @@ None
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -1173,7 +1173,7 @@ dropdown.enable();
 
 **React**
 ```javascript
-import { Dropdown } from 'kintone-ui-component';
+import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
