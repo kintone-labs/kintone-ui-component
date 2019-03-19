@@ -56,7 +56,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -134,7 +134,7 @@ body.appendChild(radioBtn.render());
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -214,7 +214,7 @@ radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -296,7 +296,7 @@ radioBtn.removeItem(0);
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -392,7 +392,7 @@ items.forEach(function(item) {
 ```
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { DropDown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -487,7 +487,7 @@ radioBtn.getValue();
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -580,7 +580,7 @@ radioBtn.setValue('Lemon');
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -675,7 +675,7 @@ radioBtn.disableItem('Orange');
 **React**
 
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -770,7 +770,7 @@ radioBtn.enableItem('Banana');
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -870,7 +870,7 @@ radioBtn.on('change', function(value) {
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -959,7 +959,7 @@ radioBtn.show();
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1043,7 +1043,7 @@ radioBtn.hide();
 ```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1128,7 +1128,7 @@ radioBtn.disable();
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1216,7 +1216,7 @@ radioBtn.enable();
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
