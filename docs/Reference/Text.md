@@ -23,7 +23,7 @@ var text= new kintoneUIComponent.Text({value: '12345'});
 ```
 **React**
 ```
-import {Text} from 'kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -61,7 +61,7 @@ body.appendChild(text.render());
 ```
 **React**
 ```
-import {Text} from 'kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -102,7 +102,7 @@ text.setValue('input text');
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -153,7 +153,7 @@ text.getValue();
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -204,7 +204,7 @@ text.on('click', function(event) {
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -247,7 +247,7 @@ text.show();
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -290,7 +290,7 @@ text.hide();
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -333,7 +333,7 @@ text.disable();
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -376,7 +376,7 @@ text.enable();
 ```
 **React**
 ```
-import { Text} from 'kintone-ui-component';
+import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {

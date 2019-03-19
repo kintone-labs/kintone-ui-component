@@ -32,7 +32,7 @@ var label = new kintoneUIComponent.Label({
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -70,7 +70,7 @@ body.appendChild(label.render());
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -109,7 +109,7 @@ label.setText('Name');
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -148,7 +148,7 @@ label.setTextColor('#e74c3c');
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -187,7 +187,7 @@ label.setBackgroundColor('#e74c3c');
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -226,7 +226,7 @@ label.setRequired(true);
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -268,7 +268,7 @@ label.on('click', function(event) {
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -309,7 +309,7 @@ label.show();
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -347,7 +347,7 @@ label.hide();
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -384,7 +384,7 @@ label.disable();
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -421,7 +421,7 @@ label.enable();
 
 **React**
 ```
-import { Label } from 'kintone-ui-component';
+import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
