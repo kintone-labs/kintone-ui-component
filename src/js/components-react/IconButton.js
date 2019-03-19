@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const IconButton = (props) => {
   const _getClassName = () => {
-    const colors = ['gray', 'blue', 'red', 'green'];
+    const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
     const color = colors.indexOf(props.color) === -1 ? 'gray' : props.color;
     const shape = props.shape === 'normal' ? 'normal' : '';
     const className = [

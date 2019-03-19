@@ -47,6 +47,13 @@
 .kuc-icon-btn.green:hover {
   background-color: #5F973A;
 }
+.kuc-icon-btn.transparent {
+  background-color: transparent;
+  color: #9E9E9E;
+}
+.kuc-icon-btn.transparent:hover {
+  color: #2d8dd6;
+}
 .kuc-icon-btn:disabled,
 .kuc-icon-btn:disabled:hover {
   color: #bababa;

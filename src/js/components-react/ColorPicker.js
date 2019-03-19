@@ -126,7 +126,7 @@ export class ColorPicker extends React.PureComponent {
     }
 
     componentDidMount() {
-      if (this._hex !== null) {
+      if (this._hex !== null && this._hex !== undefined) {
         this._hex.input.disabled = (this.props.isDisabled === true);
       }
       if (this.props.isDisabled) return false;
@@ -136,7 +136,7 @@ export class ColorPicker extends React.PureComponent {
     }
 
     componentDidUpdate() {
-      if (this._hex !== null) {
+      if (this._hex !== null && this._hex !== undefined) {
         this._hex.input.disabled = (this.props.isDisabled === true);
       }
     }
@@ -176,10 +176,14 @@ export class ColorPicker extends React.PureComponent {
 
     _handleMouseDown = (e) => {
       if (this._containDom(this._root, e.target) === false) {
-        this._hex.input.blur();
-        this.setState({status: STATUS_CANCEL});
+        if (this._hex !== null && this._hex !== undefined) {
+          this._hex.input.blur();
+        }
+        this.setState({status: STATUS_CLOSE});
+        if (this._hex.input.value === this._replaceHex(this.state.currentColor.hex).toUpperCase()) return;
         const colors = color.toState({source: 'hex', hex: this.state.currentColor.hex});
         this.props.onCancel && this.props.onCancel(colors);
+        this.setState({status: STATUS_CANCEL});
       }
     }
 
@@ -252,10 +256,6 @@ export class ColorPicker extends React.PureComponent {
     render() {
       const thisProps = this.props;
 
-      if (this.props.isVisible === false) {
-        return null;
-      }
-
       if (thisProps.isColorSetted) {
         // eslint-disable-next-line react/no-direct-mutation-state
         this.state = {
@@ -267,6 +267,10 @@ export class ColorPicker extends React.PureComponent {
             rgb: thisProps.rgb
           }}
         };
+      }
+
+      if (this.props.isVisible === false) {
+        return null;
       }
 
       if (this.state.status === STATUS_CANCEL) {

@@ -57,21 +57,7 @@ export const ColorWrap = (Picker) => {
       return true;
     }
 
-    handleSwatchHover = (data, event) => {
-      const isValidColor = color.simpleCheckForValidColor(data);
-      if (isValidColor) {
-        const colors = color.toState(data, data.h || this.state.oldHue);
-        this.setState(colors);
-        this.props.onSwatchHover && this.props.onSwatchHover(colors, event);
-      }
-    }
-
     render() {
-      const optionalEvents = {};
-      if (this.props.onSwatchHover) {
-        optionalEvents.onSwatchHover = this.handleSwatchHover;
-      }
-
       let isColorSetted = this.state.hasOwnProperty('color');
       const isChanging = this.state.hasOwnProperty('change');
 
@@ -115,7 +101,6 @@ export const ColorWrap = (Picker) => {
           {...this.state}
           isColorSetted={isColorSetted}
           onChange={this.handleChange}
-          {...optionalEvents}
           ref={c => (this.inner = c)}
         />
       );

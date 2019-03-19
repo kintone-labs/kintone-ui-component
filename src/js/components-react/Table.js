@@ -22,7 +22,10 @@ const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChan
 };
 Table.propTypes = {
   data: PropTypes.array.isRequired,
-  columns: PropTypes.array.isRequired,
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    header: PropTypes.string.isRequired,
+    cell: PropTypes.func.isRequired,
+  })).isRequired,
   defaultRowData: PropTypes.object.isRequired,
   onRowAdd: PropTypes.func,
   onRowRemove: PropTypes.func,
