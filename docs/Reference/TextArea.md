@@ -27,7 +27,7 @@ var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -65,7 +65,7 @@ body.appendChild(textArea.render());
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -106,7 +106,7 @@ textArea.setValue('set value into textarea');
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -157,7 +157,7 @@ textArea.getValue();
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -208,7 +208,7 @@ textArea.on('click', function(event) {
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -251,7 +251,7 @@ textArea.show();
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -294,7 +294,7 @@ textArea.hide();
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -337,7 +337,7 @@ textArea.disable();
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -380,7 +380,7 @@ textArea.enable();
 ```
 **React**
 ```
-import {TextArea} from 'kintone-ui-component';
+import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
