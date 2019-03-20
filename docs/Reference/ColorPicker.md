@@ -176,7 +176,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
         <div>
-          <ColorPicker value={this.state.color}  />
+          <ColorPicker color={this.state.color}  />
           <button onClick={this.handleClick}>Get Color</button>
         </div>
       );
@@ -236,7 +236,7 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker value={this.state.color} onAccept={this.handleAccept} 
+            <ColorPicker color={this.state.color} onAccept={this.handleAccept} 
               onCancel={this.handleCancel} onChangeComplete={this.handleChangeComplete} />
         );
     }
@@ -283,7 +283,7 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker value={this.state.color} isVisible={true} />
+            <ColorPicker color={this.state.color} isVisible={true} />
         );
     }
 }
@@ -322,7 +322,7 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker value={this.state.color} isVisible={false} />
+            <ColorPicker color={this.state.color} isVisible={false} />
         );
     }
 }
@@ -361,7 +361,7 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker value={this.state.color} isDisabled={true} />
+            <ColorPicker color={this.state.color} isDisabled={true} />
         );
     }
 }
@@ -400,7 +400,7 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker value={this.state.color} isDisabled={false} />
+            <ColorPicker color={this.state.color} isDisabled={false} />
         );
     }
 }
