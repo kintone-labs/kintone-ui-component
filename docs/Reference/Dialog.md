@@ -318,17 +318,29 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    state = {header: "Announcement"}
+    constructor(props) {
+        super(props)
+        this.state = {
+            isVisible: true,
+            header: 'Announcement'
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     handleClick= () => {
         console.log(this.state.header);
     };
+    
     render() {
         return (
             <div>
                 <Dialog
                     showCloseButton={true}
                     header={this.state.header}
-                    isVisible={true}
+                    isVisible={this.state.isVisible}
                     onClose={this.onClose}
                 />
                 <button onClick={this.handleClick}>Get Header</button>
@@ -429,7 +441,18 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    state = {content: "Dialog content"}
+    constructor(props) {
+        super(props)
+        this.state = {
+            content: "Dialog content",
+            isVisible: true
+        }
+    }
+    onClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
     handleClick= () => {
         console.log(this.state.content);
     };
@@ -439,7 +462,7 @@ export default class Plugin extends React.Component {
                 <Dialog
                     showCloseButton={true}
                     content={this.state.content}
-                    isVisible={true}
+                    isVisible={this.state.isVisible}
                     onClose={this.onClose}
                 />
                 <button onClick={this.handleClick}>Get Content</button>
@@ -526,7 +549,7 @@ var myDialog = new kintoneUIComponent.Dialog({
     header: "Dialog header",
     content: "This is content",
     footer: "Footer",
-    isVisible: false,
+    isVisible: true,
     showCloseButton: true
 });
 
