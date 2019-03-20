@@ -240,7 +240,8 @@ export class ColorPicker extends React.PureComponent {
 
     _containDom = (root, dom) => {
       let point = dom;
-      while (point !== undefined && point !== null && point.tagName.toUpperCase() !== 'BODY') {
+      while (point !== undefined && point !== null 
+        && point.tagName !== undefined && point.tagName !== null && point.tagName.toUpperCase() !== 'BODY') {
         if (point === root) {
           return true;
         }
