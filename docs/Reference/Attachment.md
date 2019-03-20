@@ -193,6 +193,7 @@ None
 
 **Javascript**
 ```javascript
+const body = document.getElementsByTagName("BODY")[0];
 const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 body.appendChild(attachment.render());
  
