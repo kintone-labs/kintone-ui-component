@@ -82,4 +82,9 @@ Dialog.propTypes = {
   onClose: PropTypes.func
 };
 
+Dialog.defaultProps = {
+  isVisible: true,
+  showCloseButton: true
+};
+
 export default Dialog;
