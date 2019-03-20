@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
 const Dialog = (props) => {
+  let hidden
   if (props.isVisible === false) {
-    return null;
+    hidden = 'hidden'
   }
   const renderHeader = () => {
     if (props.header && typeof props.header === 'string') {
@@ -32,9 +33,9 @@ const Dialog = (props) => {
       return props.footerJSX;
     }
     return null;
-  }
+  };
   return (
-    <div className="kuc-dialog-container">
+    <div className={`kuc-dialog-container ${hidden}`}>
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
@@ -79,10 +80,6 @@ Dialog.propTypes = {
   isVisible: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   onClose: PropTypes.func
-};
-Dialog.defaultProps = {
-  isVisible: true,
-  showCloseButton: true
 };
 
 export default Dialog;

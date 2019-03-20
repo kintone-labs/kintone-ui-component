@@ -44,15 +44,12 @@ export default class Dialog extends Control {
     this.header = props.header;
     this.content = props.content;
     this.footer = props.footer;
+    this.props = props;
   }
 
   setHeader(header) {
     this.header = header;
-    this._setState({header});
-    if (this.headerDOMNode) {
-      this.headerDOMNode.innerHTML = '';
-      this.headerDOMNode.append(header);
-    }
+    this._reactObject.setState({header}, this.renderToDOM);
   }
 
   getHeader() {
@@ -61,11 +58,7 @@ export default class Dialog extends Control {
 
   setContent(content) {
     this.content = content;
-    this._setState({content});
-    if (this.contentDOMNode) {
-      this.contentDOMNode.innerHTML = '';
-      this.contentDOMNode.append(content);
-    }
+    this._reactObject.setState({content}, this.renderToDOM);
   }
 
   getContent() {
@@ -74,15 +67,19 @@ export default class Dialog extends Control {
 
   setFooter(footer) {
     this.footer = footer;
-    this._setState({footer});
-    if (this.footerDOMNode) {
-      this.footerDOMNode.innerHTML = '';
-      this.footerDOMNode.append(footer);
-    }
+    this._reactObject.setState({footer}, this.renderToDOM);
   }
 
   getFooter() {
     return this.footer;
+  }
+
+  show() {
+    this._reactObject.setState({isVisible: true}, this.renderToDOM);
+  }
+
+  hide() {
+    this._reactObject.setState({isVisible: false}, this.renderToDOM);
   }
 
   defaultClose = () => {
@@ -101,7 +98,7 @@ export default class Dialog extends Control {
   }
   _renderReactObject(callback) {
     const container = document.createElement('div');
-    this._reactObject = render(
+    render(
       this._getReactElement(),
       container,
       callback
@@ -109,15 +106,26 @@ export default class Dialog extends Control {
     return container;
   }
 
+  renderToDOM = () => {
+    this.headerDOMNode = findDOMNode(this.headerContent);
+    this.contentDOMNode = findDOMNode(this.contentContent);
+    this.footerDOMNode = findDOMNode(this.footerContent);
+    if (this.headerDOMNode) {
+      this.headerDOMNode.innerHTML = '';
+      this.headerDOMNode.append(this.header || '');
+    }
+    if (this.contentDOMNode) {
+      this.contentDOMNode.innerHTML = '';
+      this.contentDOMNode.append(this.content || '');
+    }
+    if (this.footerDOMNode) {
+      this.footerDOMNode.innerHTML = '';
+      this.footerDOMNode.append(this.footer || '');
+    }
+  }
+
   render() {
-    const newEl = this._renderReactObject(()=>{
-      this.headerDOMNode = findDOMNode(this.headerContent);
-      this.contentDOMNode = findDOMNode(this.contentContent);
-      this.footerDOMNode = findDOMNode(this.footerContent);
-      this.headerDOMNode && this.headerDOMNode.append(this.header || '');
-      this.contentDOMNode && this.contentDOMNode.append(this.content || '');
-      this.footerDOMNode && this.footerDOMNode.append(this.footer || '');
-    });
+    const newEl = this._renderReactObject(this.renderToDOM);
     if (this.el !== undefined) {
       this.el.parentNode.replaceChild(newEl, this.el);
     }
