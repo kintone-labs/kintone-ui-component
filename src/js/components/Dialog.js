@@ -48,6 +48,7 @@ export default class Dialog extends Control {
 
   setHeader(header) {
     this.header = header;
+    this._setState({header});
     if (this.headerDOMNode) {
       this.headerDOMNode.innerHTML = '';
       this.headerDOMNode.append(header);
@@ -60,6 +61,7 @@ export default class Dialog extends Control {
 
   setContent(content) {
     this.content = content;
+    this._setState({content});
     if (this.contentDOMNode) {
       this.contentDOMNode.innerHTML = '';
       this.contentDOMNode.append(content);
@@ -72,6 +74,7 @@ export default class Dialog extends Control {
 
   setFooter(footer) {
     this.footer = footer;
+    this._setState({footer});
     if (this.footerDOMNode) {
       this.footerDOMNode.innerHTML = '';
       this.footerDOMNode.append(footer);
