@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
 const Dialog = (props) => {
-  let hidden
+  let hidden;
   if (props.isVisible === false) {
-    hidden = 'hidden'
+    hidden = 'hidden';
   }
   const renderHeader = () => {
-    if (props.header && typeof props.header === 'string') {
+    if (props.header && (React.isValidElement(props.header) || (typeof props.header === 'string'))) {
       return props.header;
     }
     if (props.headerJSX) {
