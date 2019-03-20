@@ -248,9 +248,9 @@ Dialog instance
 ```javascript
 var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Announcement'
-myDialog.setHeader(elements);
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myDialog.render());
+myDialog.setHeader(elements);
 myDialog.show();
 ```
 **React**
@@ -359,9 +359,9 @@ Dialog instance
 ```javascript
 var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Content'
-myDialog.setContent(elements);
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myDialog.render());
+myDialog.setContent(elements);
 myDialog.show();
 ```
 **React**
@@ -470,9 +470,9 @@ Dialog instance
 ```javascript
 var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Footer'
-myDialog.setFooter(elements);
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myDialog.render());
+myDialog.setFooter(elements);
 myDialog.show();
 ```
 **React**
