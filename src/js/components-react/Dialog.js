@@ -7,13 +7,31 @@ const Dialog = (props) => {
     return null;
   }
   const renderHeader = () => {
+    if (props.header && typeof props.header === 'string') {
+      return props.header;
+    }
     if (props.headerJSX) {
       return props.headerJSX;
     }
-    if (props.header) {
-      return props.header;
-    }
     return <span />;
+  };
+  const renderContent = () => {
+    if (props.content && typeof props.content === 'string') {
+      return props.content;
+    }
+    if (props.contentJSX) {
+      return props.contentJSX;
+    }
+    return null;
+  };
+  const renderFooter = () => {
+    if (props.footer && typeof props.footer === 'string') {
+      return props.footer;
+    }
+    if (props.footerJSX) {
+      return props.footerJSX;
+    }
+    return null;
   }
   return (
     <div className="kuc-dialog-container">
@@ -38,12 +56,12 @@ const Dialog = (props) => {
         </div>
         <div className="kuc-dialog-body">
           {
-            (props.contentJSX) ? (props.contentJSX) : (props.content)
+            renderContent()
           }
         </div>
         <div className="kuc-dialog-footer">
           {
-            (props.footerJSX) ? (props.footerJSX) : (props.footer)
+            renderFooter()
           }
         </div>
       </div>
