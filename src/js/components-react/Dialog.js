@@ -17,7 +17,7 @@ const Dialog = (props) => {
     return <span />;
   };
   const renderContent = () => {
-    if (props.content && typeof props.content === 'string') {
+    if (props.content && (typeof props.content === 'string' || React.isValidElement(props.content))) {
       return props.content;
     }
     if (props.contentJSX) {
@@ -26,7 +26,7 @@ const Dialog = (props) => {
     return null;
   };
   const renderFooter = () => {
-    if (props.footer && typeof props.footer === 'string') {
+    if (props.footer && (typeof props.footer === 'string' || React.isValidElement(props.footer))) {
       return props.footer;
     }
     if (props.footerJSX) {
