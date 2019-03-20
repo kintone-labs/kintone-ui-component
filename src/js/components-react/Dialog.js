@@ -3,20 +3,39 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
 const Dialog = (props) => {
+  let hidden;
   if (props.isVisible === false) {
-    return null;
+    hidden = 'hidden';
   }
   const renderHeader = () => {
+    if (props.header && (React.isValidElement(props.header) || (typeof props.header === 'string'))) {
+      return props.header;
+    }
     if (props.headerJSX) {
       return props.headerJSX;
     }
-    if (props.header) {
-      return props.header;
-    }
     return <span />;
-  }
+  };
+  const renderContent = () => {
+    if (props.content && (typeof props.content === 'string' || React.isValidElement(props.content))) {
+      return props.content;
+    }
+    if (props.contentJSX) {
+      return props.contentJSX;
+    }
+    return null;
+  };
+  const renderFooter = () => {
+    if (props.footer && (typeof props.footer === 'string' || React.isValidElement(props.footer))) {
+      return props.footer;
+    }
+    if (props.footerJSX) {
+      return props.footerJSX;
+    }
+    return null;
+  };
   return (
-    <div className="kuc-dialog-container">
+    <div className={`kuc-dialog-container ${hidden}`}>
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
@@ -38,12 +57,12 @@ const Dialog = (props) => {
         </div>
         <div className="kuc-dialog-body">
           {
-            (props.contentJSX) ? (props.contentJSX) : (props.content)
+            renderContent()
           }
         </div>
         <div className="kuc-dialog-footer">
           {
-            (props.footerJSX) ? (props.footerJSX) : (props.footer)
+            renderFooter()
           }
         </div>
       </div>
@@ -61,10 +80,6 @@ Dialog.propTypes = {
   isVisible: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   onClose: PropTypes.func
-};
-Dialog.defaultProps = {
-  isVisible: true,
-  showCloseButton: true
 };
 
 export default Dialog;
