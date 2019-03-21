@@ -20,10 +20,8 @@ nav:
   - QuickStart React: Getting-Started/QuickStart-React.md
 - Reference:
   - Alert: Reference/Alert.md
-  - Attachment: Reference/Attachment.md
   - Button: Reference/Button.md
   - CheckBox: Reference/CheckBox.md
-  - Dialog: Reference/Dialog.md
   - DropDown: Reference/DropDown.md
   - IconButton: Reference/IconButton.md
   - Label: Reference/Label.md
@@ -33,7 +31,6 @@ nav:
   - Spinner: Reference/Spinner.md
   - Table: Reference/Table.md
   - Text: Reference/Text.md
-  - TextArea: Reference/TextArea.md
 
 markdown_extensions:
   - admonition

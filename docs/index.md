@@ -8,7 +8,6 @@
 * [Attachment](Reference/Attachment)
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
-* [ColorPicker](Reference/ColorPicker)
 * [Dialog](Reference/Dialog)
 * [Dropdown](Reference/Dropdown)
 * [IconButton](Reference/IconButton)
@@ -20,4 +19,3 @@
 * [Table](Reference/Table)
 * [Text](Reference/Text)
 * [TextArea](Reference/TextArea)
-* [Tabs](Reference/Tabs)
