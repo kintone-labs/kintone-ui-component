@@ -13,6 +13,28 @@ theme:
   logo:
     icon: 'cloud'
 
+nav:
+- Home: index.md
+- Getting Started:
+  - QuickStart Javascript: Getting-Started/QuickStart-Javascript.md
+  - QuickStart React: Getting-Started/QuickStart-React.md
+- Reference:
+  - Alert: Reference/Alert.md
+  - Attachment: Reference/Attachment.md
+  - Button: Reference/Button.md
+  - CheckBox: Reference/CheckBox.md
+  - Dialog: Reference/Dialog.md
+  - DropDown: Reference/DropDown.md
+  - IconButton: Reference/IconButton.md
+  - Label: Reference/Label.md
+  - MultipleChoice: Reference/MultipleChoice.md
+  - NotifyPopup: Reference/NotifyPopup.md
+  - RadioButton: Reference/RadioButton.md
+  - Spinner: Reference/Spinner.md
+  - Table: Reference/Table.md
+  - Text: Reference/Text.md
+  - TextArea: Reference/TextArea.md
+
 markdown_extensions:
   - admonition
 extra_javascript:
