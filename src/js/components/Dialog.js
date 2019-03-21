@@ -6,7 +6,7 @@ import withState from './withState';
 import DialogReact from '../components-react/Dialog';
 import React from 'react';
 import {render, findDOMNode} from 'react-dom';
-
+import './IEpolyfill';
 
 class HeaderJSX extends React.Component {
   render() {
