@@ -24,7 +24,7 @@ nav:
   - Button: Reference/Button.md
   - CheckBox: Reference/CheckBox.md
   - Dialog: Reference/Dialog.md
-  - DropDown: Reference/DropDown.md
+  - Dropdown: Reference/Dropdown.md
   - IconButton: Reference/IconButton.md
   - Label: Reference/Label.md
   - MultipleChoice: Reference/MultipleChoice.md

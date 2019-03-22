@@ -22,7 +22,7 @@ nav:
   - Alert: Reference/Alert.md
   - Button: Reference/Button.md
   - CheckBox: Reference/CheckBox.md
-  - DropDown: Reference/Dropdown.md
+  - Dropdown: Reference/Dropdown.md
   - IconButton: Reference/IconButton.md
   - Label: Reference/Label.md
   - MultipleChoice: Reference/MultipleChoice.md
