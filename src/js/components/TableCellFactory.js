@@ -77,8 +77,8 @@ const createTableCell = (type, fieldName, props = {}) => {
   };
   const update = ({rowData}) => {
     const cellData = rowData[fieldName] || {};
-    if (cellData && field._reactObject && field.setValue) {
-      field.setValue(cellData.value);
+    if (cellData && field._reactObject) {
+      field._reactObject.setState(cellData);
     }
   };
   return new TableCell({init, update});
