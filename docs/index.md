@@ -10,6 +10,7 @@
 * [CheckBox](Reference/CheckBox)
 * [Dialog](Reference/Dialog)
 * [Dropdown](Reference/Dropdown)
+* [FieldGroup](Reference/FieldGroup)
 * [IconButton](Reference/IconButton)
 * [Label](Reference/Label)
 * [MultipleChoice](Reference/MultipleChoice)
