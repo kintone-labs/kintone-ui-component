@@ -27,8 +27,8 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
 ```
 
 **React**
@@ -85,13 +85,6 @@ class Sample extends React.Component {
         });
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 </details>
 
@@ -119,8 +112,8 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
 ```
 
 **React**
@@ -177,13 +170,6 @@ class Sample extends React.Component {
         });
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 </details>
 
@@ -216,8 +202,8 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
  
 const text = new kintoneUIComponent.Text({ value: "12345" });
 fieldGroup.setContent(text.render());
@@ -260,13 +246,6 @@ class Sample extends React.Component {
         });
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 
 </details>
@@ -302,6 +281,8 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
     })
  
 fieldGroup.getContent();
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
 ```
 
 </details>
@@ -331,9 +312,9 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
- 
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
  
 fieldGroup.setName('New Group Name');
 ```
@@ -370,13 +351,6 @@ class Sample extends React.Component {
         this.setState({ name: 'NEW FIELD GROUP' });
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 
 </details>
@@ -406,8 +380,9 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
  
 fieldGroup.getName();
 ```
@@ -444,13 +419,6 @@ class Sample extends React.Component {
         console.log(this.state.name);
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 
 </details>
@@ -480,10 +448,10 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
- 
- 
+    
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
+
 fieldGroup.setToggle('collapse');
 ```
 
@@ -519,13 +487,6 @@ class Sample extends React.Component {
         this.setState({ toggle: 'collapse' });
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 </details>
 
@@ -554,8 +515,8 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
     })
-var el = kintone.app.record.getSpaceElement('uicomponent');
-el.appendChild(fieldGroup.render());
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
  
 fieldGroup.getToggle();
 ```
@@ -592,13 +553,6 @@ class Sample extends React.Component {
         console.log(this.state.toggle);
     }
 }
- 
-kintone.events.on('app.record.detail.show', function (event) {
-    ReactDOM.render(
-        <Sample />,
-        kintone.app.record.getSpaceElement('uicomponent')
-    );
-});
 ```
 
 </details>
