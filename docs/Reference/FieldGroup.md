@@ -33,7 +33,7 @@ body.appendChild(fieldGroup.render());
 
 **React**
 ```
-import { FieldGroup, RadioButton } from '../src/js/components-react/index';
+import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -118,7 +118,7 @@ body.appendChild(fieldGroup.render());
 
 **React**
 ```
-import { FieldGroup, RadioButton } from '../src/js/components-react/index';
+import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -211,7 +211,7 @@ fieldGroup.setContent(text.render());
 
 **React**
 ```
-import { FieldGroup, Label } from '../src/js/components-react/index';
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -321,7 +321,7 @@ fieldGroup.setName('New Group Name');
 
 **React**
 ```
-import { FieldGroup, Label } from '../src/js/components-react/index';
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -389,7 +389,7 @@ fieldGroup.getName();
 
 **React**
 ```
-import { FieldGroup, Label } from '../src/js/components-react/index';
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -457,7 +457,7 @@ fieldGroup.setToggle('collapse');
 
 **React**
 ```
-import { FieldGroup, Label } from '../src/js/components-react/index';
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -523,7 +523,7 @@ fieldGroup.getToggle();
 
 **React**
 ```
-import { FieldGroup, Label } from '../src/js/components-react/index';
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
