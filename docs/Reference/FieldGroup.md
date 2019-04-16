@@ -14,6 +14,7 @@
 |options.content|DOM Element|No|Content of Field Group.|
 |options.name|String|No|Field group name.|
 |options.toggle|String|No|Set the toggle state. <br> Default value: 'collapse'|
+|options.onToggle|Function|No|Set the toggle function. ※This prop is for react. When you use pure JavaScript interface, there is no need to use this prop.|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
