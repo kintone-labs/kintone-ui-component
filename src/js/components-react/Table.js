@@ -46,7 +46,7 @@ class Table extends Component {
             tableValue: value,
             cell: {
               row: rowIndex,
-              colunm: columnIndex
+              column: columnIndex
             }
           };
           this.props.onCellChange(data);
@@ -60,7 +60,7 @@ class Table extends Component {
         tableValue: this.state.value,
         cell: {
           row: rowIndex,
-          colunm: columnIndex
+          column: columnIndex
         }
       };
       if (this.props.onCellClick) {
