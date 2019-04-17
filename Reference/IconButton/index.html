@@ -107,38 +107,45 @@
       </a>
     
     
-      <header class="md-header" data-md-component="header">
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+  <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
+ 
+      <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://kintone.github.io/kintone-ui-component/" title="kintone UI Component" class="md-header-nav__button md-logo">
+        <a href="https://kintone.github.io/kintone-ui-component/"
+            title="kintone UI Component"
+            class="md-header-nav__button md-logo">
           
             <i class="md-icon">cloud</i>
           
         </a>
       </div>
+ 
+      <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
       </div>
+ 
+      <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            
-              <span class="md-header-nav__topic">
-                kintone UI Component
-              </span>
-              <span class="md-header-nav__topic">
-                IconButton
-              </span>
-            
-          
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="https://kintone.github.io/kintone-ui-component/">kintone UI Component</a> <a style="text-decoration: underline;" href="https://kintone.github.io/kintone-ui-component//latest/versions">v0.2.0</a>
         </div>
       </div>
+ 
+      <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+ 
+          <!-- Search interface -->
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -161,9 +168,10 @@
     </div>
   </div>
 </div>
-          
         
       </div>
+ 
+      <!-- Repository containing source -->
       
         <div class="md-flex__cell md-flex__cell--shrink">
           <div class="md-header-nav__source">
@@ -338,6 +346,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../Attachment/" title="Attachment" class="md-nav__link">
+      Attachment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Button/" title="Button" class="md-nav__link">
       Button
     </a>
@@ -362,8 +382,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../Dialog/" title="Dialog" class="md-nav__link">
+      Dialog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Dropdown/" title="Dropdown" class="md-nav__link">
       Dropdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FieldGroup/" title="FieldGroup" class="md-nav__link">
+      FieldGroup
     </a>
   </li>
 
@@ -439,6 +483,13 @@
           <li class="md-nav__item">
   <a href="#setsizesize" title="setSize(size)" class="md-nav__link">
     setSize(size)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
+    setColor(color)
   </a>
   
 </li>
@@ -578,6 +629,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TextArea/" title="TextArea" class="md-nav__link">
+      TextArea
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -642,6 +705,13 @@
           <li class="md-nav__item">
   <a href="#setsizesize" title="setSize(size)" class="md-nav__link">
     setSize(size)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
+    setColor(color)
   </a>
   
 </li>
@@ -728,7 +798,7 @@
 <td>options.type</td>
 <td>String</td>
 <td>No</td>
-<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li></ul> Default value is 'insert'.</td>
+<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
 </tr>
 <tr>
 <td>options.size</td>
@@ -740,7 +810,7 @@
 <td>options.color</td>
 <td>String</td>
 <td>No</td>
-<td>Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li></ul>Default value is 'gray'.</td>
+<td>Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li><li>'transparent'</li></ul>Default value is 'gray'.</td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -758,8 +828,12 @@
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -769,10 +843,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 </code></pre>
 
 <p></details></p>
@@ -785,8 +855,14 @@ export default class Plugin extends React.Component {
 <p>Dom element</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -796,12 +872,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
 </code></pre>
 
 <p></details></p>
@@ -822,7 +892,7 @@ body.appendChild(iconBtn.render());
 <td>type</td>
 <td>String</td>
 <td>No</td>
-<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li></ul> Default value is 'insert'.</td>
+<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
 </tr>
 </tbody>
 </table>
@@ -830,8 +900,16 @@ body.appendChild(iconBtn.render());
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setType('remove');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -842,14 +920,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.setType('remove');
 </code></pre>
 
 <p></details></p>
@@ -870,7 +940,7 @@ iconBtn.setType('remove');
 <td>size</td>
 <td>String</td>
 <td>No</td>
-<td>The size of of button. The value is one of: <ul><li>  'normall'</li><li> 'small'</li></ul> Default value is 'normal'.</td>
+<td>The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.</td>
 </tr>
 </tbody>
 </table>
@@ -878,8 +948,16 @@ iconBtn.setType('remove');
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setSize('small');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -891,12 +969,52 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
+<p></details></p>
+<h3 id="setcolorcolor">setColor(color)</h3>
+<p>Change color of icon button.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>No</td>
+<td>The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(iconBtn.render());
-
 iconBtn.setSize('small');
+iconBtn.setShape('normal');
+iconBtn.setColor('green');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;IconButton text='insert' size='small' shape='normal' color='green' /&gt;
+        );
+    }
+}
 </code></pre>
 
 <p></details></p>
@@ -931,8 +1049,18 @@ iconBtn.setSize('small');
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.on('click', function(event) {
+    console.log('on click');
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -948,16 +1076,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.on('click', function(event) {
-    console.log('on click');
-});
-</code></pre>
-
 <p></details></p>
 <h3 id="show">show()</h3>
 <p>Display the icon button.</p>
@@ -967,8 +1085,16 @@ iconBtn.on('click', function(event) {
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.show();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -981,14 +1107,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.show();
-</code></pre>
-
 <p></details></p>
 <h3 id="hide">hide()</h3>
 <p>Hide the icon button.</p>
@@ -998,8 +1116,16 @@ iconBtn.show();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.hide();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1012,14 +1138,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.hide();
-</code></pre>
-
 <p></details></p>
 <h3 id="disable">disable()</h3>
 <p>Disabled the icon button.</p>
@@ -1029,8 +1147,16 @@ iconBtn.hide();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.disable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1043,14 +1169,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.disable();
-</code></pre>
-
 <p></details></p>
 <h3 id="enable">enable()</h3>
 <p>Enabled the icon button.</p>
@@ -1060,8 +1178,16 @@ iconBtn.disable();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.enable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { IconButton } from 'kintone-ui-component';
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1072,14 +1198,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.enable();
 </code></pre>
 
 <p></details></p>
@@ -1103,7 +1221,7 @@ iconBtn.enable();
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../Dropdown/" title="Dropdown" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../FieldGroup/" title="FieldGroup" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1112,7 +1230,7 @@ iconBtn.enable();
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Dropdown
+                FieldGroup
               </span>
             </div>
           </a>

@@ -107,38 +107,45 @@
       </a>
     
     
-      <header class="md-header" data-md-component="header">
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+  <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
+ 
+      <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://kintone.github.io/kintone-ui-component/" title="kintone UI Component" class="md-header-nav__button md-logo">
+        <a href="https://kintone.github.io/kintone-ui-component/"
+            title="kintone UI Component"
+            class="md-header-nav__button md-logo">
           
             <i class="md-icon">cloud</i>
           
         </a>
       </div>
+ 
+      <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
       </div>
+ 
+      <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            
-              <span class="md-header-nav__topic">
-                kintone UI Component
-              </span>
-              <span class="md-header-nav__topic">
-                MultipleChoice
-              </span>
-            
-          
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="https://kintone.github.io/kintone-ui-component/">kintone UI Component</a> <a style="text-decoration: underline;" href="https://kintone.github.io/kintone-ui-component//latest/versions">v0.2.0</a>
         </div>
       </div>
+ 
+      <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+ 
+          <!-- Search interface -->
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -161,9 +168,10 @@
     </div>
   </div>
 </div>
-          
         
       </div>
+ 
+      <!-- Repository containing source -->
       
         <div class="md-flex__cell md-flex__cell--shrink">
           <div class="md-header-nav__source">
@@ -338,6 +346,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../Attachment/" title="Attachment" class="md-nav__link">
+      Attachment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Button/" title="Button" class="md-nav__link">
       Button
     </a>
@@ -362,8 +382,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../Dialog/" title="Dialog" class="md-nav__link">
+      Dialog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Dropdown/" title="Dropdown" class="md-nav__link">
       Dropdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FieldGroup/" title="FieldGroup" class="md-nav__link">
+      FieldGroup
     </a>
   </li>
 
@@ -616,6 +660,18 @@
   <li class="md-nav__item">
     <a href="../Text/" title="Text" class="md-nav__link">
       Text
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TextArea/" title="TextArea" class="md-nav__link">
+      TextArea
     </a>
   </li>
 
@@ -880,40 +936,6 @@
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
-<p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
-import React from 'react';
-
-export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = { items: items, value: ['Orange'] };
-    }
-    render() {
-        return (
-            &lt;MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-        );
-    }
-}
-</code></pre>
-
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -937,18 +959,8 @@ export default class Plugin extends React.Component {
 });
 </code></pre>
 
-<p></details></p>
-<h2 id="methods">Methods</h2>
-<h3 id="render">render()</h3>
-<p>Get dom element of component.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>Dom element</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -981,6 +993,16 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
+<p></details></p>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get dom element of component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>Dom element</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -1006,6 +1028,40 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(mulChoice.render());
 
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    constructor(opts) {
+        super(opts);
+        var items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = { items: items, value: ['Orange'] };
+    }
+    render() {
+        return (
+            &lt;MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+        );
+    }
+}
 </code></pre>
 
 <p></details></p>
@@ -1052,40 +1108,6 @@ body.appendChild(mulChoice.render());
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
-<p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
-import React from 'react';
-
-export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        this.state = {
-            items: []
-        }
-    }
-
-    render() {
-        return (
-        &lt;div&gt;
-          &lt;MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-          &lt;button onClick={this.handleClick}&gt;Add item&lt;/button&gt;
-        &lt;/div&gt;
-      );
-    }
-
-    handleClick = () =&gt; {
-      const item = {
-        label: 'Lemon',
-        value: 'Lemon',
-        isDisabled: false
-      };
-      this.setState(prevState =&gt; ({
-        items: prevState.items ? prevState.items.concat([item]) : [item]
-      }))
-    }
-}
-</code></pre>
-
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -1117,6 +1139,40 @@ mulChoice.addItem({
     value: 'Grape',
     isDisabled: false
 });
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    constructor(opts) {
+        super(opts);
+        this.state = {
+            items: []
+        }
+    }
+
+    render() {
+        return (
+        &lt;div&gt;
+          &lt;MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Add item&lt;/button&gt;
+        &lt;/div&gt;
+      );
+    }
+
+    handleClick = () =&gt; {
+      const item = {
+        label: 'Lemon',
+        value: 'Lemon',
+        isDisabled: false
+      };
+      this.setState(prevState =&gt; ({
+        items: prevState.items ? prevState.items.concat([item]) : [item]
+      }))
+    }
+}
 </code></pre>
 
 <p></details></p>
@@ -1176,8 +1232,37 @@ mulChoice.addItem({
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+var firstItem = mulChoice.getItem(0);
+console.log(firstItem);
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1218,35 +1303,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-var firstItem = mulChoice.getItem(0);
-console.log(firstItem);
-</code></pre>
-
 <p></details></p>
 <h3 id="removeitemindex">removeItem(index)</h3>
 <p>Remove the specific item from multiple choice list.</p>
@@ -1273,8 +1329,37 @@ console.log(firstItem);
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+
+mulChoice.removeItem(0);
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1325,35 +1410,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-
-mulChoice.removeItem(0);
-</code></pre>
-
 <p></details></p>
 <h3 id="getitems">getItems()</h3>
 <p>Get all items of the multiple choice.</p>
@@ -1394,8 +1450,39 @@ mulChoice.removeItem(0);
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+var items = mulChoice.getItems();
+items.forEach(function(item) {
+    console.log(item.value + ':' + item.isDisabled);
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1438,37 +1525,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-var items = mulChoice.getItems();
-items.forEach(function(item) {
-    console.log(item.value + ':' + item.isDisabled);
-});
-</code></pre>
-
 <p></details></p>
 <h3 id="getvalue">getValue()</h3>
 <p>Get the checked values of multiple choice.</p>
@@ -1494,8 +1550,39 @@ items.forEach(function(item) {
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+var selectedItems = mulChoice.getValue();
+selectedItems.forEach(function(item) {
+    console.log(item);
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1536,37 +1623,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-var selectedItems = mulChoice.getValue();
-selectedItems.forEach(function(item) {
-    console.log(item);
-});
-</code></pre>
-
 <p></details></p>
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the checked value of multiple choice.</p>
@@ -1593,9 +1649,37 @@ selectedItems.forEach(function(item) {
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+mulChoice.setValue(['Lemon']);
+</code></pre>
+
 <p><strong>React</strong></p>
 <pre><code>
-import { MultipleChoice } from 'kintone-ui-component';
+import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1638,34 +1722,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-mulChoice.setValue(['Lemon']);
-</code></pre>
-
 <p></details></p>
 <h3 id="disableitemvalue">disableItem(value)</h3>
 <p>Set the disabled items of multiple choice.</p>
@@ -1692,8 +1748,37 @@ mulChoice.setValue(['Lemon']);
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+
+mulChoice.disableItem('Orange');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1737,35 +1822,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-
-mulChoice.disableItem('Orange');
-</code></pre>
-
 <p></details></p>
 <h3 id="enableitemvalue">enableItem(value)</h3>
 <p>Set the enable items of multiple choice.</p>
@@ -1792,8 +1848,36 @@ mulChoice.disableItem('Orange');
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+mulChoice.enableItem('Banana');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1837,34 +1921,6 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-mulChoice.enableItem('Banana');
-</code></pre>
-
 <p></details></p>
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for change event</p>
@@ -1897,8 +1953,38 @@ mulChoice.enableItem('Banana');
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(mulChoice.render());
+
+mulChoice.on('change', function(value) {
+    console.log('on change');
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1939,6 +2025,15 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
+<p></details></p>
+<h3 id="show">show()</h3>
+<p>Display the multiple choice.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -1964,22 +2059,11 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(mulChoice.render());
 
-mulChoice.on('change', function(value) {
-    console.log('on change');
-});
+mulChoice.show();
 </code></pre>
 
-<p></details></p>
-<h3 id="show">show()</h3>
-<p>Display the multiple choice.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2021,6 +2105,15 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
+<p></details></p>
+<h3 id="hide">hide()</h3>
+<p>Hide the multiple choice.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -2046,20 +2139,11 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(mulChoice.render());
 
-mulChoice.show();
+mulChoice.hide();
 </code></pre>
 
-<p></details></p>
-<h3 id="hide">hide()</h3>
-<p>Hide the multiple choice.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2101,6 +2185,15 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
+<p></details></p>
+<h3 id="disable">disable()</h3>
+<p>Disabled the multiple choice.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -2126,20 +2219,12 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(mulChoice.render());
 
-mulChoice.hide();
+
+mulChoice.disable();
 </code></pre>
 
-<p></details></p>
-<h3 id="disable">disable()</h3>
-<p>Disabled the multiple choice.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2181,6 +2266,15 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
+<p></details></p>
+<h3 id="enable">enable()</h3>
+<p>Enabled the multiple choice.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
@@ -2207,20 +2301,11 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(mulChoice.render());
 
 
-mulChoice.disable();
+mulChoice.enable();
 </code></pre>
 
-<p></details></p>
-<h3 id="enable">enable()</h3>
-<p>Enabled the multiple choice.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from 'kintone-ui-component';
+<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -2260,35 +2345,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(mulChoice.render());
-
-
-mulChoice.enable();
 </code></pre>
 
 <p></details></p>

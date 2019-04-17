@@ -107,38 +107,45 @@
       </a>
     
     
-      <header class="md-header" data-md-component="header">
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+  <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
+ 
+      <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://kintone.github.io/kintone-ui-component/" title="kintone UI Component" class="md-header-nav__button md-logo">
+        <a href="https://kintone.github.io/kintone-ui-component/"
+            title="kintone UI Component"
+            class="md-header-nav__button md-logo">
           
             <i class="md-icon">cloud</i>
           
         </a>
       </div>
+ 
+      <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
       </div>
+ 
+      <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            
-              <span class="md-header-nav__topic">
-                kintone UI Component
-              </span>
-              <span class="md-header-nav__topic">
-                Text
-              </span>
-            
-          
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="https://kintone.github.io/kintone-ui-component/">kintone UI Component</a> <a style="text-decoration: underline;" href="https://kintone.github.io/kintone-ui-component//latest/versions">v0.2.0</a>
         </div>
       </div>
+ 
+      <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+ 
+          <!-- Search interface -->
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -161,9 +168,10 @@
     </div>
   </div>
 </div>
-          
         
       </div>
+ 
+      <!-- Repository containing source -->
       
         <div class="md-flex__cell md-flex__cell--shrink">
           <div class="md-header-nav__source">
@@ -338,6 +346,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../Attachment/" title="Attachment" class="md-nav__link">
+      Attachment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Button/" title="Button" class="md-nav__link">
       Button
     </a>
@@ -362,8 +382,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../Dialog/" title="Dialog" class="md-nav__link">
+      Dialog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Dropdown/" title="Dropdown" class="md-nav__link">
       Dropdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FieldGroup/" title="FieldGroup" class="md-nav__link">
+      FieldGroup
     </a>
   </li>
 
@@ -578,6 +622,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TextArea/" title="TextArea" class="md-nav__link">
+      TextArea
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -746,8 +802,12 @@
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text= new kintoneUIComponent.Text({value: '12345'});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import {Text} from 'kintone-ui-component';
+<pre><code>import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -759,10 +819,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var text= new kintoneUIComponent.Text({value: '12345'});
 </code></pre>
 
 <p></details></p>
@@ -775,8 +831,14 @@ export default class Plugin extends React.Component {
 <p>Dom element</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import {Text} from 'kintone-ui-component';
+<pre><code>import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -788,12 +850,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
 </code></pre>
 
 <p></details></p>
@@ -822,8 +878,16 @@ body.appendChild(text.render());
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.setValue('input text');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -844,14 +908,6 @@ export default class Plugin extends React.Component {
     };
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.setValue('input text');
 </code></pre>
 
 <p></details></p>
@@ -878,8 +934,16 @@ text.setValue('input text');
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.getValue();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -898,14 +962,6 @@ export default class Plugin extends React.Component {
     };
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.getValue();
 </code></pre>
 
 <p></details></p>
@@ -940,8 +996,18 @@ text.getValue();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.on('click', function(event) {
+    console.log('on click');
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -959,16 +1025,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.on('click', function(event) {
-    console.log('on click');
-});
-</code></pre>
-
 <p></details></p>
 <h3 id="show">show()</h3>
 <p>Display the Text field.</p>
@@ -978,8 +1034,16 @@ text.on('click', function(event) {
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.show();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -997,14 +1061,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.show();
-</code></pre>
-
 <p></details></p>
 <h3 id="hide">hide()</h3>
 <p>Hide the Text field.</p>
@@ -1014,8 +1070,16 @@ text.show();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.hide();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1033,14 +1097,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.hide();
-</code></pre>
-
 <p></details></p>
 <h3 id="disable">disable()</h3>
 <p>Disabled the Text field.</p>
@@ -1050,8 +1106,16 @@ text.hide();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.disable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1069,14 +1133,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.disable();
-</code></pre>
-
 <p></details></p>
 <h3 id="enable">enable()</h3>
 <p>Enabled the Text field.</p>
@@ -1086,8 +1142,16 @@ text.disable();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(text.render());
+
+text.enable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Text} from 'kintone-ui-component';
+<pre><code>import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1103,14 +1167,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var text = new kintoneUIComponent.Text({value: 'input text'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(text.render());
-
-text.enable();
 </code></pre>
 
 <p></details></p>
@@ -1148,6 +1204,20 @@ text.enable();
             </div>
           </a>
         
+        
+          <a href="../TextArea/" title="TextArea" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                TextArea
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
