@@ -8,7 +8,7 @@ export default class RadioButton extends AbstractSingleSelection {
   }
 
   getValue() {
-    return this.inner._getValue();
+    return this._getState().value;
   }
 
   getItems() {

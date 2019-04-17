@@ -1,42 +1,43 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-export default class Label extends Component {
-    static propTypes = {
-      type: PropTypes.string,
-      text: PropTypes.string,
-      isRequired: PropTypes.bool,
-      isVisible: PropTypes.bool,
-      isDisabled: PropTypes.bool,
-      onClick: PropTypes.func,
-      onChange: PropTypes.func,
+const Label = (props) => {
+  const _onClick = () => {
+    if (props.isDisabled) {
+      return null;
     }
+    props.onClick();
+    return true;
+  };
 
-    static defaultProps = {
-      onClick: f => f
-    };
+  if (props.isVisible === false) {
+    return null;
+  }
 
-    _onClick = () => {
-      if (this.props.isDisabled) {
-        return null;
-      }
-      this.props.onClick();
-      return true;
-    }
+  const _style = {
+    color: '' || props.textColor,
+    backgroundColor: '' || props.backgroundColor
+  };
 
-    render() {
-      if (this.props.isVisible === false) {
-        return null;
-      }
-
-      return (
-        <div
-          className="kuc-label"
-          onClick={this._onClick}
-          onChange={this.props.onChange}
-        >
-          {this.props.text}
-          {this.props.isRequired && <span className="kuc-require">*</span>}
-        </div>
-      );
-    }
-}
+  return (
+    <div
+      className="kuc-label"
+      onClick={_onClick}
+    >
+      <span style={_style}>{props.text}</span>
+      {props.isRequired && <span className="kuc-require">*</span>}
+    </div>
+  );
+};
+Label.propTypes = {
+  text: PropTypes.string,
+  isRequired: PropTypes.bool,
+  isVisible: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  textColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  onClick: PropTypes.func,
+};
+Label.defaultProps = {
+  onClick: f => f
+};
+export default Label;

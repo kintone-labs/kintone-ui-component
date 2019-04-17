@@ -7,6 +7,15 @@
   cursor: pointer;
   outline: none;
 }
+.kuc-icon-btn.normal {
+  border: none;
+  border-radius: 0%;
+  color: #9E9E9E;
+  background-color: #EEEEEE;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
 .kuc-icon-btn:hover {
   color: #ffffff;
   background-color: #2d8dd6;
@@ -46,6 +55,13 @@
 }
 .kuc-icon-btn.green:hover {
   background-color: #5F973A;
+}
+.kuc-icon-btn.transparent {
+  background-color: transparent;
+  color: #9E9E9E;
+}
+.kuc-icon-btn.transparent:hover {
+  color: #2d8dd6;
 }
 .kuc-icon-btn:disabled,
 .kuc-icon-btn:disabled:hover {

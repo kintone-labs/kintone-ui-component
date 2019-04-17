@@ -8,7 +8,7 @@ export default class MultipleChoice extends AbstractMultiSelection {
   }
 
   getValue() {
-    return this.inner._getValue();
+    return this._getState().value;
   }
 
   getItems() {

@@ -3,11 +3,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import withState from './withState';
 import Message from '../constant/Message';
-const validEventNames = ['click', 'change'];
 export default class Control {
   constructor(props) {
     this.props = props;
     this.events = {};
+    this.validEventNames = ['click', 'change'];
   }
 
   _setState(state) {
@@ -18,31 +18,40 @@ export default class Control {
   }
 
   _getState() {
-    return this.inner.props;
-  }
-
-  get inner() {
-    return this._reactObject.inner;
+    return this._reactObject.state;
   }
 
   render() {
-    this.el = this._renderReactObject();
+    const newEl = this._renderReactObject();
+    if (this.el !== undefined) {
+      this.el.parentNode.replaceChild(newEl, this.el);
+    }
+    this.el = newEl;
     return this.el;
   }
 
-  refresh() {
-    const newEl = this._renderReactObject();
-    this.el.parentNode.replaceChild(newEl, this.el);
-    this.el = newEl;
-  }
   _handleOnChange = (value) => {
+    this._setStateAfterEventHandler(value);
     if (typeof this.onChange === 'function') {
       this._triggerOnChange(value);
     }
-    this._setStateAfterOnChange(value);
   }
 
-  _setStateAfterOnChange(value) {
+  _handleOnPopupClose = () => {
+    if (typeof this.onClose === 'function') {
+      this.onClose();
+    }
+    this.hide();
+  }
+
+  _handleOnToggle = (toggle) => {
+    if (typeof this.onToggle === 'function') {
+      this.onToggle(toggle);
+    }
+    this._setState({toggle: toggle});
+  };
+
+  _setStateAfterEventHandler(value) {
     this._reactObject.setState({value});
   }
 
@@ -52,33 +61,29 @@ export default class Control {
 
   _renderReactObject() {
     const container = document.createElement('div');
-    this._reactObject = render(
+    render(
       this._getReactElement(),
       container
     );
-
-    this._reactObject.setState({onChange: this._handleOnChange});
-
     return container;
   }
 
   _getReactElement() {
     const Component = withState(this._reactComponentClass);
+    const additionalProps = {onChange: this._handleOnChange, onToggle: this._handleOnToggle};
     // eslint-disable-next-line react/jsx-filename-extension
-    const reactElement = <Component {...this.props} />;
+    const reactElement = <Component {...this.props} {...additionalProps} ref={el => (this._reactObject = el)} />;
     return reactElement;
   }
 
   on(eventName, callback) {
-    if (!validEventNames.some(event => event === eventName)) {
-      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
+    if (!this.validEventNames.some(event => event === eventName)) {
+      throw new Error(Message.control.INVALID_EVENT + ' ' + this.validEventNames.join(','));
     }
-
     if (eventName === 'change') {
       this.onChange = callback;
       return;
     }
-
     this._reactObject.setState({['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)]: callback});
   }
 

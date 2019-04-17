@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import '../../style';
 import Alert from './Alert';
 import Label from './Label';
@@ -11,6 +12,10 @@ import CheckBox from './CheckBox';
 import RadioButton from './RadioButton';
 import Spinner from './Spinner';
 import Table from './Table';
+import FieldGroup from './FieldGroup';
+import Dialog from './Dialog';
+import TextArea from './TextArea';
+import Attachment from './Attachment';
 
 export {Alert};
 export {Label};
@@ -24,3 +29,7 @@ export {CheckBox};
 export {RadioButton};
 export {Spinner};
 export {Table};
+export {FieldGroup};
+export {Dialog};
+export {TextArea};
+export {Attachment};
