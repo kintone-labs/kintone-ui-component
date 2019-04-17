@@ -10,18 +10,23 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
-|options.type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li></ul> Default value is 'insert'.|
+|options.type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 |options.size|String|No|Size of icon button:<ul><li> 'large'</li><li> 'small'</li></ul> Default value is 'large'.|
-|options.color|String|No |Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li></ul>Default value is 'gray'.|
+|options.color|String|No |Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li><li>'transparent'</li></ul>Default value is 'gray'.|
 |options.isDisabled|Boolean|No|The icon button will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The icon button will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
+```
+
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -31,10 +36,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```
-var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 ```
 </details>
 
@@ -53,10 +54,16 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -67,12 +74,6 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-```
 </details>
 
 ### setType(type)
@@ -82,7 +83,7 @@ Set the type of the button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li></ul> Default value is 'insert'.|
+|type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 
 **Returns**
 
@@ -91,10 +92,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setType('remove');
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -106,14 +115,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.setType('remove');
-```
 </details>
 
 ### setSize(size)
@@ -123,7 +124,7 @@ Change size of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|size|String|No|The size of of button. The value is one of: <ul><li>  'normall'</li><li> 'small'</li></ul> Default value is 'normal'.|
+|size|String|No|The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
 
 **Returns**
 
@@ -132,10 +133,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.setSize('small');
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -146,13 +155,46 @@ export default class Plugin extends React.Component {
     }
 }
 ```
+</details>
+
+### setColor(color)
+Change color of icon button.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|color|String|No|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
-
 iconBtn.setSize('small');
+iconBtn.setShape('normal');
+iconBtn.setColor('green');
+```
+
+**React**
+```
+import { IconButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <IconButton text='insert' size='small' shape='normal' color='green' />
+        );
+    }
+}
 ```
 </details>
 
@@ -173,10 +215,20 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.on('click', function(event) {
+    console.log('on click');
+});
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -190,16 +242,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.on('click', function(event) {
-    console.log('on click');
-});
 ```
 </details>
 
@@ -218,10 +260,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.show();
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -232,14 +282,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.show();
 ```
 </details>
 
@@ -257,10 +299,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.hide();
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -271,14 +321,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.hide();
 ```
 </details>
 
@@ -296,10 +338,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.disable();
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -310,14 +360,6 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.disable();
 ```
 </details>
 
@@ -335,10 +377,18 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(iconBtn.render());
+
+iconBtn.enable();
+```
 
 **React**
 ```
-import { IconButton } from 'kintone-ui-component';
+import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -349,13 +399,5 @@ export default class Plugin extends React.Component {
     }
 }
 
-```
-**Javascript**
-```
-var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(iconBtn.render());
-
-iconBtn.enable();
 ```
 </details>

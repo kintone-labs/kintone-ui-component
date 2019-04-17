@@ -5,9 +5,12 @@
 * [QuickStart React](Getting-Started/QuickStart-React)
 ## References
 * [Alert](Reference/Alert)
+* [Attachment](Reference/Attachment)
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
+* [Dialog](Reference/Dialog)
 * [Dropdown](Reference/Dropdown)
+* [FieldGroup](Reference/FieldGroup)
 * [IconButton](Reference/IconButton)
 * [Label](Reference/Label)
 * [MultipleChoice](Reference/MultipleChoice)
@@ -16,3 +19,4 @@
 * [Spinner](Reference/Spinner)
 * [Table](Reference/Table)
 * [Text](Reference/Text)
+* [TextArea](Reference/TextArea)

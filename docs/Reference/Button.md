@@ -22,9 +22,16 @@
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({
+    text: 'Submit',
+    type: 'submit'
+});
+```
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -34,14 +41,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({
-    text: 'Submit',
-    type: 'submit'
-});
 ```
 </details>
 
@@ -60,9 +59,16 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -72,13 +78,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
 ```
 </details>
 
@@ -98,9 +97,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.setText('submit');
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -110,14 +117,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.setText('submit');
 ```
 </details>
 
@@ -137,9 +136,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.setType('normal');
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -149,14 +156,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.setType('normal');
 ```
 </details>
 
@@ -177,9 +176,19 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.on('click', function(event) {
+    console.log('on click');
+});
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -193,16 +202,6 @@ export default class Plugin extends React.Component {
         console.log('on click');
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.on('click', function(event) {
-    console.log('on click');
-});
 ```
 </details>
 
@@ -220,9 +219,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.show();
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -232,14 +239,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.show();
 ```
 </details>
 
@@ -257,9 +256,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.hide();
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -269,14 +276,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.hide();
 ```
 </details>
 
@@ -294,9 +293,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.disable();
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -306,14 +313,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.disable();
 ```
 </details>
 
@@ -331,9 +330,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var button = new kintoneUIComponent.Button({text: 'button'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(button.render());
+button.enable();
+```
+
 **React**
 ```javascript
-import { Button } from 'kintone-ui-component';
+import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -343,13 +350,5 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.enable();
 ```
 </details>
