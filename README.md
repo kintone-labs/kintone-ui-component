@@ -21,7 +21,7 @@ $ create-react-app my-customization
 * Install kintone-ui-component from npm.
 ```
 $ cd my-customization
-$ npm install kintone-ui-component --dev
+$ npm install @kintone/kintone-ui-component --dev
 ```
 * If you don't want to install kintone-ui-component from npm, you can follow below steps to install it.
 ```
