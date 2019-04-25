@@ -1,4 +1,5 @@
 # kintone UI Component
+[![npm version][npm-image]][npm-url]
 
 ## Usage
 
@@ -72,3 +73,7 @@ MIT License
 
 ## Copyright
 Copyright(c) Cybozu, Inc.
+
+
+[npm-image]: https://img.shields.io/npm/v/@kintone/kintone-ui-component.svg
+[npm-url]: https://npmjs.org/package/@kintone/kintone-ui-component
