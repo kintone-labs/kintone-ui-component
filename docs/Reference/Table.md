@@ -45,7 +45,8 @@
 
 **Javascript**
 ```
-(function () {
+(function(){
+  // custom cell containing 2 text fields
   var customCell = function() {
     return {
       init: function({rowData, updateRowData}) {
@@ -76,33 +77,363 @@
       }
     }
   };
-  var table = new kintoneUIComponent.Table({
-    // inital table data
-    data: [
-      {
-        text: { value: 'text field' },
-        text1: { value: 'text field 1' },
-        text2: { value: 'text field 2' }
-      },
-    ],
-    // default row data on row add
-    defaultRowData: {
+
+  // initial data of a table
+  var initialData = [
+    {
       text: { value: 'text field' },
       text1: { value: 'text field 1' },
-      text2: { value: 'text field 2' }
+      text2: { value: 'text field 2' },
+      fruit: {
+        name: 'fruit',
+        items: [
+             {
+                 label: 'Orange',
+                 value: 'Orange',
+                 isDisabled: false
+             },
+             {
+                 label: 'Banana',
+                 value: 'Banana',
+                 isDisabled: true
+             },
+             {
+                 label: 'Lemon',
+                 value: 'Lemon',
+                 isDisabled: true
+             },
+         ],
+        value: 'Banana'
+      },
+      colors: {
+        items: [
+             {
+                 label: 'Red',
+                 value: 'red',
+                 isDisabled: false
+             },
+             {
+                 label: 'Green',
+                 value: 'green',
+                 isDisabled: true
+             },
+             {
+                 label: 'Blue',
+                 value: 'blue',
+                 isDisabled: true
+             },
+         ],
+        value: ['red']
+      },
+      vegetables: {
+        items: [
+             {
+                 label: 'Potato',
+                 value: 'potato',
+                 isDisabled: false
+             },
+             {
+                 label: 'Celery',
+                 value: 'celery',
+                 isDisabled: false
+             },
+             {
+                 label: 'Carrot',
+                 value: 'carrot',
+                 isDisabled: true
+             },
+         ],
+        value: ['potato', 'celery']
+      },
+      toys: {
+        items: [
+             {
+                 label: 'Cars',
+                 value: 'cars',
+                 isDisabled: false
+             },
+             {
+                 label: 'Robots',
+                 value: 'robots',
+                 isDisabled: false
+             },
+             {
+                 label: 'Animals',
+                 value: 'animals',
+                 isDisabled: true
+             },
+         ],
+        value: 'cars'
+      },
+      label: {
+        text: 'Name',
+        textColor: '#e74c3c',
+        backgroundColor: 'yellow',
+        isRequired: true
+      },
+      iconBtn: {
+        type: 'insert',
+        color:'blue',
+        size: 'small'
+      },
+      alert: {
+        text: 'Network error',
+        type: 'error'
+      }
     },
+  ];
+
+  // default row data of a table, this data will be used to create new row
+  var defaultRowData = {
+    text: { value: 'text field' },
+    text1: { value: 'text field 1' },
+    text2: { value: 'text field 2' },
+    fruit: {
+      name: 'fruit',
+      items: [
+           {
+               label: 'Orange',
+               value: 'Orange',
+               isDisabled: false
+           },
+           {
+               label: 'Banana',
+               value: 'Banana',
+               isDisabled: true
+           },
+           {
+               label: 'Lemon',
+               value: 'Lemon',
+               isDisabled: true
+           },
+       ],
+      value: 'Banana'
+    },
+    colors: {
+      items: [
+           {
+               label: 'Red',
+               value: 'red',
+               isDisabled: false
+           },
+           {
+               label: 'Green',
+               value: 'green',
+               isDisabled: true
+           },
+           {
+               label: 'Blue',
+               value: 'blue',
+               isDisabled: true
+           },
+       ],
+      value: ['red']
+    },
+    vegetables: {
+      items: [
+           {
+               label: 'Potato',
+               value: 'potato',
+               isDisabled: false
+           },
+           {
+               label: 'Celery',
+               value: 'celery',
+               isDisabled: true
+           },
+           {
+               label: 'Carrot',
+               value: 'carrot',
+               isDisabled: true
+           },
+       ],
+      value: ['potato', 'celery']
+    },
+    toys: {
+      items: [
+           {
+               label: 'Cars',
+               value: 'cars',
+               isDisabled: false
+           },
+           {
+               label: 'Robots',
+               value: 'robots',
+               isDisabled: false
+           },
+           {
+               label: 'Animals',
+               value: 'animals',
+               isDisabled: true
+           },
+       ],
+      value: 'cars'
+    },
+    label: {
+      text: 'Name',
+      textColor: '#e74c3c',
+      backgroundColor: 'yellow',
+      isRequired: true
+    },
+    iconBtn: {
+      type: 'insert',
+      color:'blue',
+      size: 'small'
+    },
+    alert: {
+      text: 'Network error',
+      type: 'error'
+    }
+  };
+
+  // return this data to override default row data onRowAdd
+  var overriddenRowData = {
+    text: {value: 'overwritten field value'},
+    text1: { value: 'overwritten field1 value' },
+    text2: { value: 'overwritten field2 value' },
+    fruit: {
+      name: 'fruit',
+      items: [
+           {
+               label: 'Orange',
+               value: 'Orange',
+               isDisabled: true
+           },
+           {
+               label: 'Banana',
+               value: 'Banana',
+               isDisabled: false
+           },
+           {
+               label: 'Lemon',
+               value: 'Lemon',
+               isDisabled: false
+           },
+       ],
+      value: 'Banana'
+    },
+    colors: {
+      items: [
+           {
+               label: 'Red',
+               value: 'red',
+               isDisabled: false
+           },
+           {
+               label: 'Green',
+               value: 'green',
+               isDisabled: true
+           },
+           {
+               label: 'Blue',
+               value: 'blue',
+               isDisabled: true
+           },
+       ],
+      value: ['red']
+    },
+    vegetables: {
+      items: [
+           {
+               label: 'Potato',
+               value: 'potato',
+               isDisabled: false
+           },
+           {
+               label: 'Celery',
+               value: 'celery',
+               isDisabled: true
+           },
+           {
+               label: 'Carrot',
+               value: 'carrot',
+               isDisabled: false
+           },
+       ],
+      value: ['potato', 'celery']
+    },
+    toys: {
+      items: [
+           {
+               label: 'Cars',
+               value: 'cars',
+               isDisabled: false
+           },
+           {
+               label: 'Robots',
+               value: 'robots',
+               isDisabled: false
+           },
+           {
+               label: 'Animals',
+               value: 'animals',
+               isDisabled: true
+           },
+       ],
+      value: 'cars'
+    },
+    label: {
+      text: 'Name',
+      textColor: '#e74c3c',
+      backgroundColor: 'yellow',
+      isRequired: true
+    },
+    iconBtn: {
+      type: 'insert',
+      color:'blue',
+      size: 'small'
+    },
+    alert: {
+      text: 'Network error',
+      type: 'error'
+    }
+  };
+
+  var table = new kintoneUIComponent.Table({
+    // initial table data
+    data: initialData,
+    // default row data on row add
+    defaultRowData: defaultRowData,
     onRowAdd: function(e) {
       console.log('table.onAdd', e);
-      return {
-        text: {value: 'overwritten field value'},
-        text1: { value: 'overwritten field1 value' },
-        text2: { value: 'overwritten field2 value' }
-      }
+      // if onRowAdd does not return anything, defaultRowData will be used to create new table row
+      // if below row data is returned, it will override defaultRowData to be used to create new table row
+      return JSON.parse(JSON.stringify(overriddenRowData));
     },
     columns: [
       {
         header: 'Text',
         cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+      },
+      {
+        header: 'Radio',
+        cell: function() { return kintoneUIComponent.createTableCell('radio', 'fruit') }
+      },
+      {
+        header: 'Multichoice',
+        cell: function() { return kintoneUIComponent.createTableCell('multichoice', 'colors') }
+      },
+      {
+        header: 'Checkbox',
+        cell: function() { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') }
+      },
+      {
+        header: 'Dropdown',
+        cell: function() { return kintoneUIComponent.createTableCell('dropdown', 'toys') }
+      },
+      {
+        header: 'Label',
+        cell: function() { return kintoneUIComponent.createTableCell('label', 'label') }
+      },
+      {
+        header: 'Icon Button',
+        cell: function() { return kintoneUIComponent.createTableCell('icon', 'iconBtn', {onClick:function(event){
+          alert('icon button clicked')
+        }}) }
+      },
+      {
+        header: 'Alert',
+        cell: function() { return kintoneUIComponent.createTableCell('alert', 'alert') }
       },
       {
         header: 'Custom cell contains 2 textfields',
@@ -111,7 +442,6 @@
     ]
   });
   kintone.app.getHeaderSpaceElement().appendChild(table.render());
-  window.table_test = table;
 })();
 ```
 **React**
