@@ -11,7 +11,7 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.text|String|No|Caption of label.|
-|options.isRequired|String|No|Display the '*' character at the end of the caption. <br> Default value is false.|
+|options.isRequired|Boolean|No|Display the '*' character at the end of the caption. <br> Default value is false.|
 |options.textColor|String|No|Color of caption. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'|
 |options.backgroundColor|String|No|Color of background. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'|
 |options.isDisabled|Boolean|No|The label will be disabled. <br> Default value: 'false'|
