@@ -84,6 +84,7 @@
       text: { value: 'text field' },
       text1: { value: 'text field 1' },
       text2: { value: 'text field 2' },
+      // initial data of radio buttons
       fruit: {
         name: 'fruit',
         items: [
@@ -105,6 +106,7 @@
          ],
         value: 'Banana'
       },
+      // initial data of multiple choices
       colors: {
         items: [
              {
@@ -125,6 +127,7 @@
          ],
         value: ['red']
       },
+      // initial data of checkbox
       vegetables: {
         items: [
              {
@@ -145,6 +148,7 @@
          ],
         value: ['potato', 'celery']
       },
+      // initial data of dropdown
       toys: {
         items: [
              {
