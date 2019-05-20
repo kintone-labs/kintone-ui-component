@@ -192,6 +192,7 @@
     text: { value: 'text field' },
     text1: { value: 'text field 1' },
     text2: { value: 'text field 2' },
+    // default data of radio buttons
     fruit: {
       name: 'fruit',
       items: [
@@ -213,6 +214,7 @@
        ],
       value: 'Banana'
     },
+    // default data of multiple choices
     colors: {
       items: [
            {
@@ -233,6 +235,7 @@
        ],
       value: ['red']
     },
+    // default data of checkbox
     vegetables: {
       items: [
            {
@@ -253,6 +256,7 @@
        ],
       value: ['potato', 'celery']
     },
+    // default data of dropdown
     toys: {
       items: [
            {
@@ -295,6 +299,7 @@
     text: {value: 'overwritten field value'},
     text1: { value: 'overwritten field1 value' },
     text2: { value: 'overwritten field2 value' },
+    // overriden data of radio buttons
     fruit: {
       name: 'fruit',
       items: [
@@ -316,6 +321,7 @@
        ],
       value: 'Banana'
     },
+    // overriden data of multiple choices
     colors: {
       items: [
            {
@@ -336,6 +342,7 @@
        ],
       value: ['red']
     },
+    // overriden data of checkbox
     vegetables: {
       items: [
            {
@@ -356,6 +363,7 @@
        ],
       value: ['potato', 'celery']
     },
+    // overriden data of dropdown
     toys: {
       items: [
            {
