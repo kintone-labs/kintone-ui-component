@@ -1,0 +1,21 @@
+import React from 'react';
+import '../vendor/Spinner.css'
+
+type SpinnerProps = {
+    isVisible?: boolean
+}
+
+const Spinner = ({isVisible}: SpinnerProps) => {
+    if (isVisible === false) {
+        return null;
+    }
+    return(
+        <div className="kuc-spinner-outer">
+            <div className="kuc-spinner">
+                <div className="kuc-loader" />
+            </div>
+        </div>
+    )
+}
+
+export default Spinner;

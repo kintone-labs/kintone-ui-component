@@ -1,42 +1,54 @@
 {
-  "name": "@kintone/kintone-ui-component",
-  "version": "0.2.0",
-  "main": "lib/js/components-react/index.js",
-  "license": "MIT License",
+	"name": "@kintone/kintone-ui-component",
+	"version": "0.3.0",
+	"description": "Kintone UI Component React",
+  "main": "./lib/commonjs/index.js",
+	"scripts": {
+		"start": "./node_modules/.bin/parcel src/docs/index.html",
+		"build": "./node_modules/.bin/webpack --mode=production",
+		"build:esm": "./node_modules/.bin/tsc && mkdir build/esm/vendor && cp -a src/lib/vendor/. build/esm/vendor/",
+		"build:docs": "./node_modules/.bin/parcel build src/docs/index.js -d dist/docs/"
+	},
   "author": "Cybozu, Inc.",
   "repository": {
     "type": "git",
     "url": "https://github.com/kintone/kintone-ui-component"
   },
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
-    "watch": "cross-env NODE_ENV=production webpack --watch",
-    "compile": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
-    "compile-build": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files && cross-env NODE_ENV=production webpack"
-  },
-  "dependencies": {
-    "prop-types": "15.6.1",
-    "@babel/polyfill": "7.2.5",
-    "react": "16.2.0",
-    "react-dom": "16.2.1"
-  },
-  "devDependencies": {
-    "@cybozu/eslint-config": "^3.0.2",
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-eslint": "8.2.2",
-    "babel-loader": "7.1.2",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.20",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-react-app": "3.1.1",
-    "babel-preset-stage-0": "6.24.1",
-    "cross-env": "5.1.3",
-    "css-loader": "0.28.8",
-    "eslint": "^5.9.0",
-    "extract-text-webpack-plugin": "3.0.2",
-    "style-loader": "0.19.1",
-    "webpack": "3.5.6"
-  }
+	"license": "MIT",
+	"dependencies": {
+		"react": "^16.8.6",
+		"react-dom": "^16.2.0"
+	},
+	"peerDependencies": {
+		"react": "^16.8.6",
+		"react-dom": "^16.2.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.3",
+		"@babel/plugin-proposal-class-properties": "^7.4.0",
+		"@babel/polyfill": "^7.4.4",
+		"@babel/preset-env": "^7.0.0-beta.42",
+		"@babel/preset-react": "^7.0.0-beta.42",
+		"@babel/preset-typescript": "^7.3.3",
+		"@types/node": "^11.13.0",
+		"@types/react": "^16.8.12",
+		"@types/react-dom": "^16.8.3",
+		"babel-core": "6",
+		"babel-loader": "^8.0.0-beta",
+		"babel-plugin-dynamic-import-node": "^2.2.0",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"css-loader": "^2.1.1",
+		"mini-css-extract-plugin": "^0.6.0",
+		"optimize-css-assets-webpack-plugin": "^5.0.1",
+		"parcel-bundler": "^1.6.2",
+		"source-map-loader": "^0.2.4",
+		"style-loader": "^0.23.1",
+		"uglifyjs-webpack-plugin": "^2.1.3",
+		"webpack": "4.19.0",
+		"webpack-cli": "^2.0.12",
+		"webpack-node-externals": "^1.6.0",
+		"typescript": "^3.4.2"
+	}
 }

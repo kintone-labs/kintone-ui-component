@@ -1,65 +1,155 @@
 const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const nodeExternals = require('webpack-node-externals'); 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = (env = {}) => {
-    return {
-        entry: {
-            "kintone-ui-component.min": './src/js/components/index.js'
-        },
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: '[name].js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
+const libraryName = 'kintone-ui-component';
+
+const jsUMDConfig = {
+    entry: __dirname + '/src/legacyJS/js/components/index.js',
+    output: {
+        path: __dirname + '/dist',
+        filename: libraryName + '.min.js',
+        library: libraryName,
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: libraryName + '.min.css'
+        }),
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ["transform-class-properties", "transform-react-remove-prop-types"]
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            presets: ['react', 'stage-0', 'env'],
-                            plugins: ["transform-class-properties", "transform-react-remove-prop-types"]
-                        }
+                            // you can specify a publicPath here
+                            // by default it uses publicPath in webpackOptions.output
+                            publicPath: '../',
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
                     },
+                    'css-loader',
+                ],
+            }
+        ]
+    },
+    resolve: {
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, './public')
+        ]
+    },
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    compress: false,
+                    ecma: 6,
+                    mangle: true
                 },
-                {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: {
-                            loader: 'css-loader',
-                            options: {
-                                minimize: true,
-                                sourceMap: true
-                            }
-                        }
-                    })
-                }
-            ]
-        },
-        watch: env.watch,
-        plugins: [
-            new webpack.DefinePlugin({ // <-- key to reducing React's size
-                'process.env': {
-                    'NODE_ENV': JSON.stringify('production')
-                }
+                sourceMap: true
             }),
-            new webpack.optimize.UglifyJsPlugin({
-                include: /\.min\.js$/,
-                minimize: true,
-                compress: {
-                    warnings: false,
-                    keep_fnames: true
-                },
-                mangle: {
-                    keep_fnames: true
-                },
-            }),
-            new ExtractTextPlugin({
-                filename: '[name].css'
-            })
+            new OptimizeCSSAssetsPlugin({})
+        ]
+    }
+};
+
+const CommonJSConfig = {
+    entry: path.resolve(__dirname, 'src/lib/index.ts'),
+    output: {
+        path: path.resolve(__dirname, './lib/commonjs'),
+        filename: 'index.js',
+        library: 'KintoneUIComponent',
+        libraryTarget: 'commonjs-module'
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
+    externals: [nodeExternals()],
+    devtool: 'source-map',
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: ["source-map-loader"],
+                enforce: "pre"
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/react', "@babel/preset-typescript"]
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
+};
+
+const UMDConfig = {
+    entry: path.resolve(__dirname, 'src/lib/index.ts'),
+    output: {
+        path: path.resolve(__dirname, './lib/umd'),
+        filename: 'index.js',
+        library: 'KintoneUIComponent',
+        libraryTarget: 'umd'
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
+    externals: [nodeExternals()],
+    devtool: 'source-map',
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: ["source-map-loader"],
+                enforce: "pre"
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/react', "@babel/preset-typescript"]
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
         ]
     }
 }
+
+module.exports = [/* CommonJSConfig, UMDConfig,  */jsUMDConfig]
