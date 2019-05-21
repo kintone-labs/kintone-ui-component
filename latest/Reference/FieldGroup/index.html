@@ -797,12 +797,176 @@
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
 <pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+const button = new kintoneUIComponent.Button({
+    text: 'Submit',
+    type: 'submit'
+});
+const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
+const checkbox = new kintoneUIComponent.CheckBox ({
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: false
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: true
+        },
+        {
+            label: 'Lemon',
+            value: 'Lemon',
+            isDisabled: true
+        }
+    ],
+    value: ['Orange', 'Banana']
+});
+const dropdown = new kintoneUIComponent.Dropdown({
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: true
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: false
+        }
+    ],
+    value: 'Banana'
+});
+const insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
+const label = new kintoneUIComponent.Label({text: 'My label', isRequired: true});
+const mulChoice = new kintoneUIComponent.MultipleChoice({
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: false
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: true
+        },
+        {
+            label: 'Lemon',
+            value: 'Lemon',
+            isDisabled: true
+        }
+    ],
+    value: ['Orange', 'Banana']
+});
+const alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+const radioBtn = new kintoneUIComponent.RadioButton({
+    name: &quot;fruit&quot;,
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: false
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: true
+        },
+        {
+            label: 'Lemon',
+            value: 'Lemon',
+            isDisabled: true
+        }
+    ],
+    value: 'Banana'
+});
+const textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+const customCell = function() {
+    return {
+        init: function({rowData, updateRowData}) {
+            const span = document.createElement('span');
+            const textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
+            const textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
+            span.appendChild(textfield1.render());
+            span.appendChild(textfield2.render());
+            textfield1.on('change', function(newValue){
+                updateRowData({text1: {value: newValue}}, false);
+            });
+            textfield2.on('change', function(newValue){
+                updateRowData({text2: {value: newValue}}, false);
+            });
+            this.textfield1 = textfield1;
+            this.textfield2 = textfield2;
+            return span;
+        },
+        update: function({ rowData }) {
+            const text1val = rowData.text1;
+            const text2val = rowData.text2;
+            if (text1val &amp;&amp; this.textfield1._reactObject) {
+                this.textfield1.setValue(text1val.value);
+            }
+            if (text2val &amp;&amp; this.textfield2._reactObject) {
+                this.textfield2.setValue(text2val.value);
+            }
+        }
+    }
+};
+const table = new kintoneUIComponent.Table({
+    // inital table data
+    data: [
+        {
+            text: { value: 'text field' },
+            text1: { value: 'text field 1' },
+            text2: { value: 'text field 2' }
+        }
+    ],
+    // default row data on row add
+    defaultRowData: {
+        text: { value: 'text field' },
+        text1: { value: 'text field 1' },
+        text2: { value: 'text field 2' }
+    },
+    onRowAdd: function(e) {
+        console.log('table.onAdd', e);
+        return {
+            text: {value: 'overwritten field value'},
+            text1: { value: 'overwritten field1 value' },
+            text2: { value: 'overwritten field2 value' }
+        }
+    },
+    columns: [
+        {
+            header: 'Text',
+            cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+        },
+        {
+            header: 'Custom cell contains 2 textfields',
+            cell: function() { return customCell() }
+        }
+    ]
+});
+
+const fieldGroupContent = document.createElement('div')
+
+fieldGroupContent.appendChild(alert.render())
+fieldGroupContent.appendChild(attachment.render())
+fieldGroupContent.appendChild(button.render())
+fieldGroupContent.appendChild(checkbox.render())
+fieldGroupContent.appendChild(dropdown.render())
+fieldGroupContent.appendChild(insertBtn.render())
+fieldGroupContent.appendChild(label.render())
+fieldGroupContent.appendChild(mulChoice.render())
+fieldGroupContent.appendChild(radioBtn.render())
+fieldGroupContent.appendChild(table.render())
+fieldGroupContent.appendChild(text.render())
+fieldGroupContent.appendChild(textArea.render())
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
-      content: text.render(),
-      name: 'Group',
-      toggle: 'expand'
-    })
+    content: fieldGroupContent,
+    name: 'Group',
+    toggle: 'expand'
+})
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(fieldGroup.render());
 </code></pre>
