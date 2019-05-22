@@ -1,5 +1,5 @@
 import React from "react";
-import '../vendor/Button.css'
+import '../../css/Button.css'
 
 type ButtonProps = {
     text?: string, 

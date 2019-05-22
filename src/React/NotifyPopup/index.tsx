@@ -1,5 +1,5 @@
 import React from 'react'
-import '../vendor/NotifyPopup.css'
+import '../../css/NotifyPopup.css'
 import IconButton from '../IconButton/index'
 
 type NotifyPopupProps = {

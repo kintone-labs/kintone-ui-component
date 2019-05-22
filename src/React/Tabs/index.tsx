@@ -1,5 +1,5 @@
 import React from 'react';
-import '../vendor/Tabs.css'
+import '../../css/Tabs.css'
 
 type TabsItem = {
     tabName: string

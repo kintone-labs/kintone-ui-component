@@ -4,7 +4,7 @@ import {format} from './components/Locale'
 
 import Calendar from './components/Calendar'
 
-import "../vendor/DatePicker.css";
+import "../../css/DatePicker.css";
 import {parseStringToDate, parseStringToTime} from './components/utils'
 import TimePicker from "./components/TimePicker";
 

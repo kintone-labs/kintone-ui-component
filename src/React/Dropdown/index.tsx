@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractSingleSelection} from '../index';
-import '../vendor/Dropdown.css'
+import '../../css/Dropdown.css'
 
 type item = {
     value: string,

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../vendor/Spinner.css'
+import '../../css/Spinner.css'
 
 type SpinnerProps = {
     isVisible?: boolean

@@ -1,4 +1,4 @@
-require('./vendor/base.css')
+require('../css/base.css')
 import DatePicker, {Calendar} from './DatePicker'
 import Button from './Button'
 import Label from './Label'

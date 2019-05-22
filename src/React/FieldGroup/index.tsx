@@ -1,5 +1,5 @@
 import React from 'react'
-import '../vendor/FieldGroup.css'
+import '../../css/FieldGroup.css'
 
 type FieldGroupProps = {
     children?: any,
