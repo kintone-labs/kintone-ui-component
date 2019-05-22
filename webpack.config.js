@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const libraryName = 'kintone-ui-component';
 
 const jsUMDConfig = {
-    entry: __dirname + '/src/JS/index.ts',
+    entry: __dirname + '/src/js/index.ts',
     output: {
         path: __dirname + '/dist',
         filename: libraryName + '.min.js',
@@ -88,7 +88,7 @@ const jsUMDConfig = {
 };
 
 const CommonJSConfig = {
-    entry: path.resolve(__dirname, 'src/React/index.ts'),
+    entry: path.resolve(__dirname, 'src/react/index.ts'),
     output: {
         path: path.resolve(__dirname, './dist/commonjs'),
         filename: 'index.js',
@@ -126,7 +126,7 @@ const CommonJSConfig = {
 };
 
 const UMDConfig = {
-    entry: path.resolve(__dirname, 'src/React/index.ts'),
+    entry: path.resolve(__dirname, 'src/react/index.ts'),
     output: {
         path: path.resolve(__dirname, './dist/umd'),
         filename: 'index.js',
