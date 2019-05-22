@@ -19,12 +19,7 @@ class Alert extends Control {
 
         this.element = document.createElement('div')
         this.element.className = this._getClassName()
-        this.rerender()
-    }
-
-    rerender(changedAttr?: Array<string>){
-        super.rerender()
-        this.element.innerHTML = this.text
+        this.rerender(['text', 'type'])
     }
 
     private _getClassName(): string {
@@ -34,6 +29,20 @@ class Alert extends Control {
         ];
     
         return className.join(' ');
+    }
+
+    rerender(changedAttr?: Array<string>){
+        super.rerender()
+        
+        if (!changedAttr) return;
+
+        if (changedAttr.indexOf('text') !== -1) {
+            this.element.innerHTML = this.text
+        }
+
+        if (changedAttr.indexOf('type') !== -1) {
+            this.element.className = this._getClassName()
+        }
     }
 
     setText(text: string):void {
