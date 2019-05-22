@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "build/esm",
+    "outDir": "dist/esm",
     "module": "esnext",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -24,14 +24,9 @@
     "node_modules",
     "src/legacyJS",
     "src/docs",
-    "build",
     "dist",
     "lib",
     "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
     "webpack.config.js"
   ]
 }

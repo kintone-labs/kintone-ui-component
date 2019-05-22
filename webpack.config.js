@@ -79,7 +79,7 @@ const jsUMDConfig = {
 const CommonJSConfig = {
     entry: path.resolve(__dirname, 'src/lib/index.ts'),
     output: {
-        path: path.resolve(__dirname, './lib/commonjs'),
+        path: path.resolve(__dirname, './dist/commonjs'),
         filename: 'index.js',
         library: 'KintoneUIComponent',
         libraryTarget: 'commonjs-module'
@@ -117,7 +117,7 @@ const CommonJSConfig = {
 const UMDConfig = {
     entry: path.resolve(__dirname, 'src/lib/index.ts'),
     output: {
-        path: path.resolve(__dirname, './lib/umd'),
+        path: path.resolve(__dirname, './dist/umd'),
         filename: 'index.js',
         library: 'KintoneUIComponent',
         libraryTarget: 'umd'
@@ -152,4 +152,4 @@ const UMDConfig = {
     }
 }
 
-module.exports = [/* CommonJSConfig, UMDConfig,  */jsUMDConfig]
+module.exports = [CommonJSConfig, UMDConfig, jsUMDConfig]

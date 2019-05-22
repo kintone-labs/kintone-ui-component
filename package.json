@@ -5,8 +5,8 @@
   "main": "./lib/commonjs/index.js",
 	"scripts": {
 		"start": "./node_modules/.bin/parcel src/docs/index.html",
-		"build": "./node_modules/.bin/webpack --mode=production",
-		"build:esm": "./node_modules/.bin/tsc && mkdir build/esm/vendor && cp -a src/lib/vendor/. build/esm/vendor/",
+		"build": "./node_modules/.bin/webpack --mode=production && node scripts/builder.js",
+		"build:esm": "node scripts/builder.js",
 		"build:docs": "./node_modules/.bin/parcel build src/docs/index.js -d dist/docs/"
 	},
   "author": "Cybozu, Inc.",
