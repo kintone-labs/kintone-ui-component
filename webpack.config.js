@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const libraryName = 'kintone-ui-component';
 
 const jsUMDConfig = {
-    entry: __dirname + '/src/legacyJS/js/components/index.js',
+    entry: __dirname + '/src/legacyJS/js/components/index.ts',
     output: {
         path: __dirname + '/dist',
         filename: libraryName + '.min.js',
@@ -31,6 +31,17 @@ const jsUMDConfig = {
                     loader: "babel-loader",
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ["transform-class-properties", "transform-react-remove-prop-types"]
+                    }
+                }
+            },
+            {
+                test: /\.ts?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/react', "@babel/preset-typescript"],
                         plugins: ["transform-class-properties", "transform-react-remove-prop-types"]
                     }
                 }

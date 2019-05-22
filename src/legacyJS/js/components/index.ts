@@ -19,23 +19,23 @@ import Attachment from './Attachment';
 import createTableCell from './TableCellFactory';
 
 const kintoneUIComponent = {
-  Alert,
-  Label,
-  Button,
-  IconButton,
-  Text,
-  Dropdown,
-  NotifyPopup,
-  MultipleChoice,
-  RadioButton,
-  CheckBox,
-  Spinner,
-  Table,
-  FieldGroup,
-  Dialog,
-  TextArea,
-  Attachment,
-  createTableCell,
+    Alert,
+    Label,
+    Button,
+    IconButton,
+    Text,
+    Dropdown,
+    NotifyPopup,
+    MultipleChoice,
+    RadioButton,
+    CheckBox,
+    Spinner,
+    Table,
+    FieldGroup,
+    Dialog,
+    TextArea,
+    Attachment,
+    createTableCell
 };
-window.kintoneUIComponent = kintoneUIComponent;
+window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
