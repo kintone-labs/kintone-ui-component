@@ -1,5 +1,5 @@
 import React from 'react'
-import '../vendor/Text.css'
+import '../../css/Text.css'
 
 type TextProps = {
     value?: string

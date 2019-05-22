@@ -1,5 +1,5 @@
 import React from 'react';
-import '../vendor/Alert.css'
+import '../../css/Alert.css'
 
 type AlertProps = {
     text?: string

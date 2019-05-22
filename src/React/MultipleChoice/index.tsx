@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractMultiSelection} from '../index';
-import '../vendor/MultipleChoice.css'
+import '../../css/MultipleChoice.css'
 
 type item = {
     value: string,

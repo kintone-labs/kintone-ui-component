@@ -1,5 +1,5 @@
 import React from 'react';
-import '../vendor/Item.css'
+import '../../css/Item.css'
 
 type item = {
   value: string,

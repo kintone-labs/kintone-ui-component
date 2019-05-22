@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractMultiSelection} from '../index';
-import '../vendor/CheckBox.css'
+import '../../css/CheckBox.css'
 
 type item = {
     value: string,

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import IconButton from '../IconButton'
-import '../vendor/Dialog.css'
+import '../../css/Dialog.css'
 
 type DialogProps = {
     header: string | ReactElement,

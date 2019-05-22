@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const libraryName = 'kintone-ui-component';
 
 const jsUMDConfig = {
-    entry: __dirname + '/src/legacyJS/js/components/index.ts',
+    entry: __dirname + '/src/JS/index.ts',
     output: {
         path: __dirname + '/dist',
         filename: libraryName + '.min.js',
