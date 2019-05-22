@@ -5,6 +5,9 @@ class Spinner extends Control {
     constructor({
         isDisabled = true,
         isVisible = false
+    } = {
+        isDisabled: true,
+        isVisible: false
     }) {
         super()
         this.isDisabled = isDisabled
