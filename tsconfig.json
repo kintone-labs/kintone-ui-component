@@ -9,7 +9,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src/lib",
+    "rootDir": "src/React",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -20,6 +20,9 @@
     "noUnusedLocals": true,
     "esModuleInterop": true
   },
+  "include": [
+    "src/**/*.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "src/legacyJS",

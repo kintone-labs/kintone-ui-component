@@ -2,7 +2,14 @@
 	"name": "@kintone/kintone-ui-component",
 	"version": "0.3.0",
 	"description": "Kintone UI Component React",
-  "main": "./lib/commonjs/index.js",
+	"main": "./dist/commonjs/index.js",
+	"module": "./dist/esm/index.js",
+	"unpkg": "./dist/kintone-ui-component.min.js",
+	"types": "",
+	"files": [
+    "dist",
+    "index.d.ts"
+  ],
 	"scripts": {
 		"build": "./node_modules/.bin/webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js"
