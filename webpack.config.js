@@ -88,7 +88,7 @@ const jsUMDConfig = {
 };
 
 const CommonJSConfig = {
-    entry: path.resolve(__dirname, 'src/lib/index.ts'),
+    entry: path.resolve(__dirname, 'src/React/index.ts'),
     output: {
         path: path.resolve(__dirname, './dist/commonjs'),
         filename: 'index.js',
@@ -126,7 +126,7 @@ const CommonJSConfig = {
 };
 
 const UMDConfig = {
-    entry: path.resolve(__dirname, 'src/lib/index.ts'),
+    entry: path.resolve(__dirname, 'src/React/index.ts'),
     output: {
         path: path.resolve(__dirname, './dist/umd'),
         filename: 'index.js',

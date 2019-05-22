@@ -20,13 +20,9 @@
     "noUnusedLocals": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src/**/*.d.ts"
-  ],
   "exclude": [
     "node_modules",
     "src/legacyJS",
-    "src/docs",
     "dist",
     "lib",
     "scripts",
