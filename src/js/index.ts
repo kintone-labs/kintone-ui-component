@@ -10,7 +10,7 @@ import Text from '../legacyJS/js/components/Text';
 import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
 import RadioButton from '../legacyJS/js/components/RadioButton';
 import CheckBox from '../legacyJS/js/components/CheckBox';
-import Spinner from '../legacyJS/js/components/Spinner';
+import Spinner from './Spinner';
 import Table from '../legacyJS/js/components/Table';
 import FieldGroup from '../legacyJS/js/components/FieldGroup';
 import Dialog from '../legacyJS/js/components/Dialog';
