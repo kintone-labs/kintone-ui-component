@@ -14,6 +14,6 @@ else if (os.type() === 'Windows_NT') {
     childProcess.spawnSync('xcopy',['"src/lib/vendor"','"dist/esm/vendor"', '/O', '/X', '/E', '/H', '/K'],{stdio: 'inherit'})
 }
 else
-   throw new Error("Unsupported OS found: " + os.type());
+    throw new Error("Unsupported OS found: " + os.type());
 
 console.log('ALL DONE !!!')
