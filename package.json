@@ -10,11 +10,11 @@
 		"build": "./node_modules/.bin/webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js"
 	},
-  "author": "Cybozu, Inc.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kintone/kintone-ui-component"
-  },
+	"author": "Cybozu, Inc.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kintone/kintone-ui-component"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"react": "^16.8.6",

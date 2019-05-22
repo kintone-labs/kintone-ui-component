@@ -24,6 +24,7 @@
   "exclude": [
     "node_modules",
     "src/legacyJS",
+    "src/JS",
     "dist",
     "lib",
     "scripts",
