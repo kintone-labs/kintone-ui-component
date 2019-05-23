@@ -17,6 +17,7 @@ import Dialog from '../legacyJS/js/components/Dialog';
 import TextArea from '../legacyJS/js/components/TextArea';
 import Attachment from '../legacyJS/js/components/Attachment';
 import createTableCell from '../legacyJS/js/components/TableCellFactory';
+import Tabs from './Tabs'
 
 const kintoneUIComponent = {
   Alert,
@@ -36,6 +37,7 @@ const kintoneUIComponent = {
   TextArea,
   Attachment,
   createTableCell,
+  Tabs
 };
 window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
@@ -51,5 +53,6 @@ export {
   RadioButton,
   CheckBox,
   Spinner,
-  Table
+  Table,
+  Tabs
 };

@@ -1,3 +1,9 @@
+type ControlProps = {
+    isDisabled: boolean
+    isVisible: boolean
+    element?: HTMLElement
+}
+
 class Control {
     isDisabled: boolean
     isVisible: boolean
@@ -50,4 +56,5 @@ class Control {
     }
 }
 
+export {ControlProps}
 export default Control
