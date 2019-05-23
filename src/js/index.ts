@@ -5,7 +5,7 @@ import Label from '../legacyJS/js/components/Label';
 import Button from '../legacyJS/js/components/Button';
 import IconButton from '../legacyJS/js/components/IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
-import NotifyPopup from '../legacyJS/js/components/NotifyPopup';
+import NotifyPopup from '../js/NotifyPopup';
 import Text from '../legacyJS/js/components/Text';
 import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
 import RadioButton from '../legacyJS/js/components/RadioButton';
