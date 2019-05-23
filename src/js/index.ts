@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import '../legacyJS/style';
 import Alert from '../legacyJS/js/components/Alert';
-import Label from '../legacyJS/js/components/Label';
+import Label from '../js/Label';
 import Button from '../legacyJS/js/components/Button';
 import IconButton from '../legacyJS/js/components/IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
