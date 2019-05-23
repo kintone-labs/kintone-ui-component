@@ -46,11 +46,18 @@ const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="
 						onBlur={
 							(e)=>{
 								if (e.relatedTarget == null 
-									|| (!e.relatedTarget['classList'].contains('calendar-button') && (!e.relatedTarget['classList'].contains('calendar-button-control')) )
+									|| (
+										!e.relatedTarget['classList'].contains('calendar-button') && 
+										!e.relatedTarget['classList'].contains('calendar-button-control') &&
+										!e.relatedTarget['classList'].contains('date-picker-container')
+										)
 								) {
 									setDateError("")
 									let tempDate = parseStringToDate(e.target.value)
-									if (tempDate instanceof Date && !isNaN(tempDate as any)) {
+									if(!e.target.value) {
+										setPickerDisplay("none")
+									} 
+									else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
 										let returnDate = new Date(date)
 										returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate())
 										onChange(returnDate)
