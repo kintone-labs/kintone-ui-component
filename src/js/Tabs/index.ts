@@ -83,6 +83,39 @@ class Tabs extends Control {
             this.tabContentElement.innerHTML = ''
             this.tabContentElement.append(this.items[this.value].tabContent || '')
         }
+
+        if (changedAttr.indexOf('addItems') !== -1) {
+            let tabComponent = new TabName({
+                tabName: this.items[this.items.length - 1].tabName,
+                tabIndex: this.items.length - 1,
+                onClickTabItem: (tabIndex: number) => {
+                    this.setValue(tabIndex)
+                },
+                isActive: this.items.length - 1 === this.value
+            })
+
+            this.tabNames.push(tabComponent)
+            this.tabNamesElement.appendChild(tabComponent.render())
+        }
+
+        if (changedAttr.indexOf('removeItems') !== -1) {
+            this.tabNamesElement.innerHTML = ''
+            this.items.forEach((item: Tab, index:number) => {
+                let tabComponent = new TabName({
+                    tabName: item.tabName,
+                    tabIndex: index,
+                    onClickTabItem: (tabIndex: number) => {
+                        this.setValue(tabIndex)
+                    },
+                    isActive: index === this.value
+                })
+    
+                this.tabNames.push(tabComponent)
+                this.tabNamesElement.appendChild(tabComponent.render())
+            })
+            this.tabContentElement.innerHTML = ''
+            this.tabContentElement.append(this.items[this.value].tabContent || '')
+        }
     }
 
     setValue(value: number):void {
@@ -92,6 +125,28 @@ class Tabs extends Control {
 
     getValue(): number {
         return this.value
+    }
+
+    addItem(item: Tab) {
+        this.items.push(item)
+        this.rerender(['addItems'])
+    }
+
+    removeItem(index: number) {
+        this.items.splice(index, 1)
+        this.rerender(['removeItems'])
+    }
+
+    getItems(): Array<Tab> {
+        return this.items
+    }
+
+    disableItem(tabName: string) {
+        this.items.forEach((item: Tab, index: number) => {
+            if (item.tabName === tabName) {
+                this.tabNames[index].disable()
+            }
+        })
     }
 }
 
