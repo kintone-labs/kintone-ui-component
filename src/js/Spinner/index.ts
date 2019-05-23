@@ -1,14 +1,10 @@
+import Control from '../Control'
+import { elements } from '../utils/util'
+
 import '../../css/Spinner.css'
-import Control from '../Control';
 
 class Spinner extends Control {
-    constructor({
-        isDisabled = true,
-        isVisible = false
-    } = {
-        isDisabled: true,
-        isVisible: false
-    }) {
+    constructor({ isDisabled = true, isVisible = false } = { isDisabled: true, isVisible: false }) {
         super()
         this.isDisabled = isDisabled
         this.isVisible = isVisible
@@ -17,18 +13,14 @@ class Spinner extends Control {
     }
 
     private _createSpinnerElement() {
-        const loader = document.createElement('div')
-        loader.className = "kuc-loader"
+        const loader = elements(document.createElement('div')).addClass("kuc-loader")
 
-        const spinner = document.createElement('div')
-        spinner.className = "kuc-spinner"
-        spinner.appendChild(loader)
+        const spinner = elements(document.createElement('div')).addClass('kuc-spinner').append(loader)
 
-        const outer = document.createElement('div')
-        outer.className = "kuc-spinner-outer"
-        outer.appendChild(spinner)
+        const outerDOM = document.createElement('div')
+        elements(outerDOM).addClass('kuc-spinner-outer').append(spinner)
 
-        return outer;
+        return outerDOM;
     }
 }
 
