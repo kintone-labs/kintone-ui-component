@@ -24,6 +24,7 @@ class Control {
 
     on(eventName: string, callback: (e?: Event) => void) {
         this.element.addEventListener(eventName,(e: Event)=>{
+            if (this.isDisabled) return
             callback(e)
         })
     }
