@@ -1,16 +1,12 @@
+import Control from '../Control'
+
 import '../../css/Alert.css'
-import Control from '../Control';
 
 class Alert extends Control {
     private text: string
     private type: string
 
-    constructor({
-        text = '',
-        type = 'error',
-        isDisabled = false,
-        isVisible = true
-    }) {
+    constructor({ text = '', type = 'error', isDisabled = false, isVisible = true }) {
         super()
         this.text = text
         this.type = type
@@ -27,13 +23,13 @@ class Alert extends Control {
             'kuc-alert',
             this.type === 'success' ? 'bg-success' : 'bg-danger'
         ];
-    
+
         return className.join(' ');
     }
 
-    rerender(changedAttr?: Array<string>){
+    rerender(changedAttr?: Array<string>) {
         super.rerender()
-        
+
         if (!changedAttr) return;
 
         if (changedAttr.indexOf('text') !== -1) {
@@ -45,12 +41,12 @@ class Alert extends Control {
         }
     }
 
-    setText(text: string):void {
+    setText(text: string): void {
         this.text = text
         this.rerender(['text'])
     }
 
-    setType(type: string):void {
+    setType(type: string): void {
         this.type = type
         this.rerender(['type'])
     }
