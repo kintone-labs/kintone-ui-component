@@ -18,6 +18,7 @@ import TextArea from '../legacyJS/js/components/TextArea';
 import Attachment from '../legacyJS/js/components/Attachment';
 import createTableCell from '../legacyJS/js/components/TableCellFactory';
 import Tabs from './Tabs'
+import ColorPicker from './ColorPicker'
 
 const kintoneUIComponent = {
   Alert,
@@ -37,7 +38,8 @@ const kintoneUIComponent = {
   TextArea,
   Attachment,
   createTableCell,
-  Tabs
+  Tabs,
+  ColorPicker
 };
 window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
@@ -54,5 +56,6 @@ export {
   CheckBox,
   Spinner,
   Table,
-  Tabs
+  Tabs,
+  ColorPicker
 };
