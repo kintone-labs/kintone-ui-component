@@ -34,6 +34,15 @@ class Tabs extends Control {
 
         this.element = document.createElement('div')
         this.element.className = 'kuc-tabs-tabs'
+        
+        this._renderTabNames()
+
+        this._renderTabContent()
+
+        this.rerender()
+    }
+
+    private _renderTabNames() {
         this.tabNamesElement = document.createElement('ul')
         this.tabNamesElement.className = 'kuc-tabs-tab-list'
 
@@ -51,7 +60,9 @@ class Tabs extends Control {
             this.tabNamesElement.appendChild(tabComponent.render())
         })
         this.element.appendChild(this.tabNamesElement)
+    }
 
+    private _renderTabContent() {
         let tabContentWrapper = document.createElement('div')
         tabContentWrapper.className = 'kuc-tabs-tab-contents'
         this.element.appendChild(tabContentWrapper)
@@ -59,8 +70,6 @@ class Tabs extends Control {
         this.tabContentElement = document.createElement('div')
         this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
         tabContentWrapper.appendChild(this.tabContentElement)
-
-        this.rerender()
     }
 
     rerender(changedAttr?: Array<string>){
