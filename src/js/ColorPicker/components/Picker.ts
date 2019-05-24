@@ -38,8 +38,6 @@ class Picker extends Control {
             this._props = {...this._props, ...params}
         }
 
-        console.log(this._props)
-
         this.element = document.createElement('div')
 
         Object.assign(this.element.style, PickerStyle.container)

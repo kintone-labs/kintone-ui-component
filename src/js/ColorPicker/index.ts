@@ -5,8 +5,7 @@ import Picker, {PickerProps} from './components/Picker'
 
 type ColorPickerProps = ControlProps & {
     color: string
-    onAccept: (color: string) => void
-    onCancel: (color: string) => void
+    onChange: (color: string) => void
 }
 
 class ColorPicker extends Control {
@@ -66,12 +65,11 @@ class ColorPicker extends Control {
                 this._props.color = hexString
                 this.oldColor = hexString
                 this.rerender(['color'])
-                this._props.onAccept && this._props.onAccept(this._props.color)
+                this._props.onChange && this._props.onChange(this._props.color)
             },
             onCancel: () => {
                 this._props.color = this.oldColor
                 this.rerender(['color','redraw'])
-                this._props.onCancel && this._props.onCancel(this._props.color)
             },
             onChange: (hexString: string, triggerOnChange: boolean) => {
                 this._props.color = hexString
