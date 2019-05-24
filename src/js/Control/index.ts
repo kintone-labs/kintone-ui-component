@@ -1,53 +1,61 @@
-class Control {
-    isDisabled: boolean
-    isVisible: boolean
-    element: HTMLElement
-
+type ControlProps = {
+    isDisabled?: boolean
+    isVisible?: boolean
+ }
+ 
+ class Control {
+    protected _props: ControlProps = {
+        isDisabled: false,
+        isVisible: true
+    }
+    protected element: HTMLElement
+ 
     rerender(changedAttr?: Array<string>) {
         if (this.element) {
-            if (!this.isVisible) {
+            if (!this._props.isVisible) {
                 this.element.style.display = 'none'
             }
             else {
                 this.element.style.display = ''
             }
-
-            if (this.isDisabled) {
-                this.element.setAttribute('disabled', `${this.isDisabled}`)
+ 
+            if (this._props.isDisabled) {
+                this.element.setAttribute('disabled', `${this._props.isDisabled}`)
             }
         }
     }
-
+ 
     render() {
         return this.element
     }
-
+ 
     on(eventName: string, callback: (e?: Event) => void) {
         this.element.addEventListener(eventName,(e: Event)=>{
-            if (this.isDisabled) return
+            if (this._props.isDisabled) return
             callback(e)
         })
     }
-
-    show() { 
-        this.isVisible = true
+ 
+    show() {
+        this._props.isVisible = true
         this.rerender(['isVisible'])
     }
-
+ 
     hide() {
-        this.isVisible = false
+        this._props.isVisible = false
         this.rerender(['isVisible'])
     }
-
+ 
     disable() {
-        this.isDisabled = true
+        this._props.isDisabled = true
         this.rerender(['isDisabled'])
     }
-
+ 
     enable() {
-        this.isDisabled = false
+        this._props.isDisabled = false
         this.rerender(['isDisabled'])
     }
-}
-
-export default Control
+ }
+ 
+ export {ControlProps}
+ export default Control
