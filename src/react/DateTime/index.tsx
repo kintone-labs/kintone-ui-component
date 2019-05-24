@@ -1,14 +1,22 @@
+import "../../css/DateTime.css";
 import React, { useState, useEffect, createRef } from "react";
 import {en} from './components/Locale'
 import {format} from './components/Locale'
-
-import Calendar from './components/Calendar'
-
-import "../../css/DatePicker.css";
 import {parseStringToDate, parseStringToTime} from './components/utils'
+import Locale from './components/localizationData/locale-dto';
+import Calendar from './components/Calendar'
 import TimePicker from "./components/TimePicker";
 
-const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:any) => {
+type DateTimeConstructorParameters = {
+  date: Date 
+  onChange: Function
+  locale: Locale
+  dateFormat: string
+  mode: string
+  timeFormat: string
+}
+
+const DateTime = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:DateTimeConstructorParameters) => {
 	const [pickerDisplay, setPickerDisplay] = useState("none")
 	const [dateError, setDateError] = useState("")
 	const [timePickerDisplay, setTimePickerDisplay] = useState("none")
@@ -31,10 +39,11 @@ const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="
 			}
 		}
 	}
+
 	return (
 		<div className="date-time-container" ref={wrapperRef}>
 			<div className="date-container">
-				<div className="text-input-container" key={date}>
+				<div className="text-input-container" key={format(date, dateFormat)}>
 					<input
 						type="text"
 						className="text-input"
@@ -46,11 +55,18 @@ const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="
 						onBlur={
 							(e)=>{
 								if (e.relatedTarget == null 
-									|| (!e.relatedTarget['classList'].contains('calendar-button') && (!e.relatedTarget['classList'].contains('calendar-button-control')) )
+									|| (
+										!e.relatedTarget['classList'].contains('calendar-button') && 
+										!e.relatedTarget['classList'].contains('calendar-button-control') &&
+										!e.relatedTarget['classList'].contains('date-picker-container')
+										)
 								) {
 									setDateError("")
 									let tempDate = parseStringToDate(e.target.value)
-									if (tempDate instanceof Date && !isNaN(tempDate as any)) {
+									if(!e.target.value) {
+										setPickerDisplay("none")
+									} 
+									else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
 										let returnDate = new Date(date)
 										returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate())
 										onChange(returnDate)
@@ -106,7 +122,7 @@ const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="
 				<div className="time-container">
 					<input
 						type="text"
-						key={date}
+						key={format(date, dateFormat)}
 						className="text-input"
 						onFocus={() => {
 							setTimePickerDisplay("flex")
@@ -165,8 +181,9 @@ const DatePicker = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="
 	);
 }
 
-export default DatePicker;
+export default DateTime;
 export {
+	DateTimeConstructorParameters,
 	Calendar
 }
 export * from './components/Locale'

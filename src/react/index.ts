@@ -1,5 +1,5 @@
 require('../css/base.css')
-import DatePicker, {Calendar} from './DatePicker'
+import DateTime, {Calendar} from './DateTime'
 import Button from './Button'
 import Label from './Label'
 import Text from './Text'
@@ -22,7 +22,7 @@ import AbstractMultiSelection from './utils/AbstractMultiSelection'
 import Dialog from './Dialog'
 
 export {
-    DatePicker,
+    DateTime,
     Calendar,
     Button,
     Label,

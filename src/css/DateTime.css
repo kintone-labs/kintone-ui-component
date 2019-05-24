@@ -33,6 +33,7 @@
   font-size: 13px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
 }
 
 .time-picker-container {
@@ -49,6 +50,23 @@
   line-height: 16px;
   height: 32px;
   padding: 0;
+  outline: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.month-year-container .label {
+  outline: initial;
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
 }
 
 .date-time-container .month-year-container {
@@ -73,6 +91,7 @@
   line-height: 20px;
   font-family: Arial;
   cursor: pointer;
+
 }
 
 .date-time-container .month-year-container .prev {
@@ -125,6 +144,7 @@
   border: 1px solid #fff;
   color: #333;
   font-size: 10px;
+  line-height: 15px;
 }
 
 .date-time-container .days-container .day {
@@ -175,7 +195,7 @@
   background-color: #E2F2FE
 }
 
-button.day {
+span.day {
   outline: none;
 }
 
