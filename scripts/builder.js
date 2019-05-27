@@ -3,7 +3,7 @@ const os = require('os');
 
 console.log('Transpilling typescript...')
 
-childProcess.spawnSync('./node_modules/.bin/tsc',{stdio: 'inherit'})
+childProcess.spawnSync('./node_modules/typescript/bin/tsc',{stdio: 'inherit'})
 
 if (os.type() === 'Linux' || os.type() === 'Darwin') {
     childProcess.spawnSync('mkdir',['-p','dist/css'],{stdio: 'inherit'})
