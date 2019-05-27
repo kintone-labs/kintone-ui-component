@@ -3,7 +3,7 @@ import '../legacyJS/style';
 import Alert from '../legacyJS/js/components/Alert';
 import Label from '../legacyJS/js/components/Label';
 import Button from '../legacyJS/js/components/Button';
-import IconButton from '../legacyJS/js/components/IconButton';
+import IconButton from '../js/IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
 import NotifyPopup from '../js/NotifyPopup';
 import Text from '../legacyJS/js/components/Text';
@@ -17,6 +17,8 @@ import Dialog from '../legacyJS/js/components/Dialog';
 import TextArea from '../legacyJS/js/components/TextArea';
 import Attachment from '../legacyJS/js/components/Attachment';
 import createTableCell from '../legacyJS/js/components/TableCellFactory';
+import Tabs from './Tabs'
+import ColorPicker from './ColorPicker'
 
 const kintoneUIComponent = {
   Alert,
@@ -36,6 +38,8 @@ const kintoneUIComponent = {
   TextArea,
   Attachment,
   createTableCell,
+  Tabs,
+  ColorPicker
 };
 window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
@@ -51,5 +55,7 @@ export {
   RadioButton,
   CheckBox,
   Spinner,
-  Table
+  Table,
+  Tabs,
+  ColorPicker
 };

@@ -1,6 +1,5 @@
 .kuc-icon-btn {
     border: none;
-    border-radius: 50%;
     color: #9E9E9E;
     background-color: #EEEEEE;
     padding: 0;
@@ -13,6 +12,12 @@
   }
   .kuc-icon-btn.hover-danger:hover {
     background-color: #E44235;
+  }
+  .kuc-icon-btn.normal {
+    border-radius: 2px;
+  }
+  .kuc-icon-btn.circle {
+    border-radius: 50%;
   }
   .kuc-icon-btn.large {
     width: 32px;
