@@ -1,13 +1,19 @@
-import Control from '../Control'
+import Control, { ControlProps } from "../Control"
 import { elements } from '../utils/util'
 
 import '../../css/Spinner.css'
 
 class Spinner extends Control {
-    constructor({ isDisabled = true, isVisible = false } = { isDisabled: true, isVisible: false }) {
+    protected _props: ControlProps = {
+        isDisabled: true,
+        isVisible: false
+    }
+
+    constructor(params) {
         super()
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
+        if (params) {
+            this._props = { ...this._props, ...params }
+        }
         this.element = this._createSpinnerElement()
         this.rerender()
     }
