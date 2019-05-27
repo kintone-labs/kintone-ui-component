@@ -6,8 +6,8 @@ import IconButton from '../IconButton';
 import '../../css/NotifyPopup.css'
 
 type PopupProps = ControlProps & {
-    text: string
-    type: string
+    text?: string
+    type?: string
 }
 
 class NotifyPopup extends Control {
