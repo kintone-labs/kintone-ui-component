@@ -1,28 +1,36 @@
-import Control from '../Control';
+import Control, { ControlProps } from "../Control"
 import { elements } from '../utils/util'
 
 import '../../css/Label.css'
 
+type LabelProps = ControlProps & {
+    text?: string
+    isRequired?: boolean
+    textColor?: string
+    backgroundColor?: string
+}
+
 class Label extends Control {
-    private text: string
-    private isRequired: boolean
-    private textColor: string
-    private backgroundColor: string
+    protected _props: LabelProps = {
+        ...this._props, ...{
+            text: '',
+            isRequired: false,
+            textColor: '',
+            backgroundColor: ''
+        }
+    }
 
     private textEl: any
     private requiredEl: any
     private containerEl: any
 
-    constructor({ text = '', isRequired = false, textColor = '', backgroundColor = '', isDisabled = false, isVisible = true }
-        = { text: '', isRequired: false, textColor: '', backgroundColor: '', isDisabled: false, isVisible: true }) {
+    constructor(params: LabelProps) {
 
         super()
-        this.text = text
-        this.isRequired = isRequired
-        this.textColor = textColor
-        this.backgroundColor = backgroundColor
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
+
+        if (params) {
+            this._props = { ...this._props, ...params }
+        }
 
         this.element = this._createLabelLayout()
         this.rerender(['text', 'isRequired', 'textStyle'])
@@ -44,11 +52,11 @@ class Label extends Control {
         if (!changedAttr) return;
 
         if (changedAttr.indexOf('text') !== -1) {
-            this.textEl.html(this.text)
+            this.textEl.html(this._props.text)
         }
 
         if (changedAttr.indexOf('isRequired') !== -1) {
-            if (this.isRequired) {
+            if (this._props.isRequired) {
                 this.containerEl.append(this.requiredEl)
             } else {
                 this.requiredEl.remove()
@@ -56,29 +64,29 @@ class Label extends Control {
         }
 
         if (changedAttr.indexOf('textStyle') !== -1) {
-            let style = this.textColor !== '' ? `color: ${this.textColor}` : ''
-            style += this.backgroundColor !== '' ? `;background-color: ${this.backgroundColor}` : ''
+            let style = this._props.textColor !== '' ? `color: ${this._props.textColor}` : ''
+            style += this._props.backgroundColor !== '' ? `;background-color: ${this._props.backgroundColor}` : ''
             this.textEl.attr('style', style)
         }
     }
 
     setText(text: string): void {
-        this.text = text
+        this._props.text = text
         this.rerender(['text'])
     }
 
     setRequired(isRequired: boolean): void {
-        this.isRequired = isRequired
+        this._props.isRequired = isRequired
         this.rerender(['isRequired'])
     }
 
     setTextColor(color: string): void {
-        this.textColor = color
+        this._props.textColor = color
         this.rerender(['textStyle'])
     }
 
     setBackgroundColor(color: string): void {
-        this.backgroundColor = color
+        this._props.backgroundColor = color
         this.rerender(['textStyle'])
     }
 }
