@@ -69,11 +69,9 @@ function ColorPicker() {
     return (
         <div ref={wrapperRef}>
             <div>
-                <div>
-                    <input {...inputProps} key={hexString}/>
-                </div>
-                <Picker {...pickerProps} />
+                <input {...inputProps} key={hexString}/>
             </div>
+            <Picker {...pickerProps} />
         </div>
     );
 }
