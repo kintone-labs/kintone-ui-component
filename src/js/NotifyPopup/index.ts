@@ -1,23 +1,32 @@
-import Control from '../Control';
+import Control, { ControlProps } from "../Control"
 import { elements } from '../utils/util'
 
-import IconButton from '../../legacyJS/js/components/IconButton';
+import IconButton from '../IconButton';
 
 import '../../css/NotifyPopup.css'
 
+type PopupProps = ControlProps & {
+    text: string
+    type: string
+}
+
 class NotifyPopup extends Control {
-    private text: string
-    private type: string
+    protected _props: PopupProps = {
+        ...this._props, ...{
+            text: '',
+            type: 'error'
+        }
+    }
 
     private textEl: any
     private closeButton: IconButton
 
-    constructor({ text = '', type = 'error', isDisabled = false, isVisible = true } = { text: '', type: 'error', isDisabled: false, isVisible: true }) {
+    constructor(params: PopupProps) {
         super()
-        this.text = text
-        this.type = type
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
+
+        if (params) {
+            this._props = { ...this._props, ...params }
+        }
 
         this.element = this._createPopupLayout()
         this.closeButton.on('click', () => { this.hide() })
@@ -27,7 +36,7 @@ class NotifyPopup extends Control {
     private _getStyleByType() {
         const style = { bgClass: '', color: '' }
 
-        switch (this.type) {
+        switch (this._props.type) {
             case 'success':
                 style.bgClass = 'bg-success'
                 style.color = 'green'
@@ -68,7 +77,7 @@ class NotifyPopup extends Control {
         if (!changedAttr) return;
 
         if (changedAttr.indexOf('text') !== -1) {
-            this.textEl.html(this.text)
+            this.textEl.html(this._props.text)
         }
 
         if (changedAttr.indexOf('type') !== -1) {
@@ -78,12 +87,12 @@ class NotifyPopup extends Control {
     }
 
     setText(text: string): void {
-        this.text = text
+        this._props.text = text
         this.rerender(['text'])
     }
 
     setType(type: string): void {
-        this.type = type
+        this._props.type = type
         this.rerender(['type'])
     }
 
