@@ -63,7 +63,8 @@ function ColorPicker() {
     const pickerProps = {
         pickerDisplay: pickerDisplay,
         hexString: hexString,
-        onChange: handlePickerChange
+        onChange: handlePickerChange,
+        zIndex: 2000
     };
 
     return (
