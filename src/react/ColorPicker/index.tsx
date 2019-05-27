@@ -25,17 +25,15 @@ function ColorPicker(props: ColorPickerProps) {
     function handleHexInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (isHexString(e.target.value)) {
             setHexString(e.target.value);
-            if (props.onChange) {
+            /* if (props.onChange) {
                 props.onChange(e.target.value)
-            }
+            } */
         }
     }
 
     function handlePickerChange(newHex: string) {
         setHexString(newHex);
-        if (props.onChange) {
-            props.onChange(newHex)
-        }
+        
     }
 
     function handleHexInputFocus() {
@@ -75,6 +73,16 @@ function ColorPicker(props: ColorPickerProps) {
         pickerDisplay: pickerDisplay,
         hexString: hexString,
         onChange: handlePickerChange,
+        onCancel: () => {
+            setPickerDisplay(false);
+            setHexString(props.color);
+            props.onChange(props.color)
+        },
+        onSubmit: (hexString: string) => {
+            setPickerDisplay(false);
+            setHexString(hexString);
+            props.onChange(hexString)
+        },
         zIndex: 2000
     };
 
