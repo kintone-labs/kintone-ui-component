@@ -53,7 +53,8 @@ class Tabs extends Control {
                 onClickTabItem: (tabIndex: number) => {
                     this.setValue(tabIndex)
                 },
-                isActive: index === this._props.value
+                isActive: index === this._props.value,
+                isDisabled: item.isDisabled
             })
 
             this.tabNames.push(tabComponent)
