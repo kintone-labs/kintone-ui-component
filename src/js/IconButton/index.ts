@@ -4,10 +4,10 @@ import '../../css/base.css'
 import '../../css/IconButton.css'
 
 type IconBtnProps = ControlProps & {
-    type: string
-    size: string
-    color: string
-    shape: string
+    type?: string
+    size?: string
+    color?: string
+    shape?: string
 }
 
 class IconButton extends Control {
