@@ -6,7 +6,8 @@ export default {
       padding: "10px",
       fontSize: "13px",
       boxSizing: "border-box",
-      boxShadow: "0 0 8px 2px rgba(0, 0, 0, 0.1)"
+      boxShadow: "0 0 8px 2px rgba(0, 0, 0, 0.1)",
+      zIndex: 2000
     },
   
     hueContainer: {
