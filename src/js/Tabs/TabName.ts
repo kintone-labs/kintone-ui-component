@@ -1,42 +1,45 @@
-import Control from "../Control";
+import Control, {ControlProps} from "../Control";
+type TabNameProps = ControlProps & {
+    isActive: boolean
+    tabName: string
+    tabIndex: number
+    onClickTabItem: (tabIndex: number) => void
+}
+
 
 class TabName extends Control {
-    private isActive: boolean
-    private tabName: string
-    private tabIndex: number
+    protected _props: TabNameProps = {
+        ...this._props, ...{
+            isActive: false,
+            tabName: '',
+            tabIndex: 0,
+            onClickTabItem: (tabIndex: number) => {
 
-    constructor({
-        isActive = false,
-        isDisabled = false,
-        isVisible = true,
-        tabName = '',
-        tabIndex = 0,
-        onClickTabItem = (tabIndex: number) => {
-
+            }
         }
-    }) {
+    }
+
+    constructor(params: TabNameProps) {
         super()
-        this.isActive = isActive
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
-        this.tabName = tabName
-        this.tabIndex = tabIndex
+        if (params) {
+            this._props = {...this._props, ...params}
+        }
 
         let className = "kuc-tabs-container";
-        if (this.isActive) {
+        if (this._props.isActive) {
             className += " kuc-tabs-container-selection";
         }
 
-        if (this.isDisabled) {
+        if (this._props.isDisabled) {
             className += " kuc-tabs-disabled";
             this.element = document.createElement('li')
             this.element.className = className
-            this.element.append(this.tabName)
+            this.element.append(this._props.tabName)
         } else {
             this.element = document.createElement('li')
             this.element.className = className
-            this.element.append(this.tabName)
-            this.on('click', () => onClickTabItem(this.tabIndex));
+            this.element.append(this._props.tabName)
+            this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
         }  
         this.rerender()
     }
@@ -46,7 +49,7 @@ class TabName extends Control {
         if (!changedAttr) return
         if (changedAttr.indexOf('isActive') !== -1) {
             let className = "kuc-tabs-container";
-            if (this.isActive) {
+            if (this._props.isActive) {
                 className += " kuc-tabs-container-selection";
             }
             this.element.className = className
@@ -54,12 +57,12 @@ class TabName extends Control {
     }
 
     select() {
-        this.isActive = true
+        this._props.isActive = true
         this.rerender(['isActive'])
     }
 
     deselect() {
-        this.isActive = false
+        this._props.isActive = false
         this.rerender(['isActive'])
     }
 }
