@@ -8,7 +8,7 @@
 		"type": "git",
 		"url": "https://github.com/kintone/kintone-ui-component"
 	},
-	"sideEffects": ["dist/css/*.css", "src/legacyJS/style/*.css", "src/legacyJS/style/index.js"],
+	"sideEffects": ["dist/css/*.css", "src/legacyJS/style/*.css", "src/legacyJS/style/index.js", "src/css/*.css"],
 	"main": "./dist/commonjs/index.js",
 	"module": "./dist/esm/index.js",
 	"unpkg": "./dist/kintone-ui-component.min.js",
@@ -18,12 +18,12 @@
 		"build:esm": "node scripts/builder.js"
 	},
 	"dependencies": {
-		"react": "16.2.0",
-		"react-dom": "16.2.1"
+		"react": "16.8.6",
+		"react-dom": "16.8.6"
 	},
 	"peerDependencies": {
-		"react": "16.2.0",
-		"react-dom": "16.2.1"
+		"react": "16.8.6",
+		"react-dom": "16.8.6"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.5",
