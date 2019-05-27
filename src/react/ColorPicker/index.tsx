@@ -3,9 +3,14 @@ import ColorPickerStyle from "./ColorPickerStyle";
 import Picker from "./components/Picker";
 import {invertColor, isHexString} from './components/utils'
 
-function ColorPicker() {
+type ColorPickerProps = {
+    color: string
+    onChange: (hexString: string) => void
+}
+
+function ColorPicker(props: ColorPickerProps) {
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const [hexString, setHexString] = useState("#ff0000");
+    const [hexString, setHexString] = useState(props.color || "#ff0000");
     const [pickerDisplay, setPickerDisplay] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -20,11 +25,15 @@ function ColorPicker() {
     function handleHexInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (isHexString(e.target.value)) {
             setHexString(e.target.value);
+            /* if (props.onChange) {
+                props.onChange(e.target.value)
+            } */
         }
     }
 
     function handlePickerChange(newHex: string) {
         setHexString(newHex);
+        
     }
 
     function handleHexInputFocus() {
@@ -63,17 +72,26 @@ function ColorPicker() {
     const pickerProps = {
         pickerDisplay: pickerDisplay,
         hexString: hexString,
-        onChange: handlePickerChange
+        onChange: handlePickerChange,
+        onCancel: () => {
+            setPickerDisplay(false);
+            setHexString(props.color);
+            props.onChange(props.color)
+        },
+        onSubmit: (hexString: string) => {
+            setPickerDisplay(false);
+            setHexString(hexString);
+            props.onChange(hexString)
+        },
+        zIndex: 2000
     };
 
     return (
         <div ref={wrapperRef}>
             <div>
-                <div>
-                    <input {...inputProps} key={hexString}/>
-                </div>
-                <Picker {...pickerProps} />
+                <input {...inputProps} key={hexString}/>
             </div>
+            <Picker {...pickerProps} />
         </div>
     );
 }
