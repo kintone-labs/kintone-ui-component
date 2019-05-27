@@ -18,5 +18,6 @@
 * [RadioButton](Reference/RadioButton)
 * [Spinner](Reference/Spinner)
 * [Table](Reference/Table)
+* [Tabs](Reference/Tabs)
 * [Text](Reference/Text)
 * [TextArea](Reference/TextArea)
