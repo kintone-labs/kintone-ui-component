@@ -1,6 +1,6 @@
 import "../css/DateTime.css";
 import React, { useState, useEffect, createRef } from "react";
-import {en} from './components/Locale'
+import {en, ja, zh} from './components/Locale'
 import {format} from './components/Locale'
 import {parseStringToDate, parseStringToTime} from './components/utils'
 import Locale from './components/localizationData/locale-dto';
@@ -10,13 +10,13 @@ import TimePicker from "./components/TimePicker";
 type DateTimeConstructorParameters = {
 	date: Date 
 	onChange?: Function
-	locale?: Locale
+	locale?: string
 	dateFormat?: string
 	mode?: string
 	timeFormat?: string
 }
 
-const DateTime = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:DateTimeConstructorParameters) => {
+const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:DateTimeConstructorParameters) => {
 	const [pickerDisplay, setPickerDisplay] = useState("none")
 	const [dateError, setDateError] = useState("")
 	const [timePickerDisplay, setTimePickerDisplay] = useState("none")
@@ -40,6 +40,14 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM
 				//setTimePickerDisplay('none')
 			}
 		}
+	}
+
+	let localeObj = ja
+	if (locale === 'en') {
+		localeObj = en
+	}
+	else if (locale === 'zh') {
+		localeObj = zh
 	}
 
 	return (
@@ -101,7 +109,7 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM
 				<Calendar 
 					pickerDisplay={pickerDisplay} 
 					date={date} 
-					locale={locale} 
+					locale={localeObj} 
 					onDateClick={
 						(calendarDate: Date) => {
 							setDateError("")
@@ -170,7 +178,7 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = en, dateFormat="MM
 					}
 					<TimePicker 
 						pickerDisplay={timePickerDisplay} 
-						locale={locale} 
+						locale={localeObj} 
 						onTimeClick={
 							(timePickerDate: Date) => {
 								setTimeError("")
