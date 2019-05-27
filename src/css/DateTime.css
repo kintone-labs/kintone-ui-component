@@ -1,4 +1,5 @@
 .date-time-container {
+  position: relative;
   display: inline-flex;
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
@@ -26,6 +27,7 @@
 
 .date-time-container .date-picker-container, .time-picker-container {
   position: absolute;
+  top: 46px;
   width: 336px;
   background: #fff;
   padding: 32px 32px 24px;
@@ -167,8 +169,10 @@
   background-color: #E54D41;
   color: #FFFFFF;
   margin: 8px 0;
-  padding: 4px 15px;
+  padding: 0 15px;
   font-size: 14px;
+  z-index: 1;
+  position: absolute;
 }
 
 .date-container {
