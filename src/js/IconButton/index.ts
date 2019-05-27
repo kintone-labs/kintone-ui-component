@@ -16,7 +16,7 @@ class IconButton extends Control {
             type: 'insert',
             size: 'large',
             color: 'gray',
-            shape: ''
+            shape: 'circle'
         }
     }
 
@@ -46,7 +46,7 @@ class IconButton extends Control {
     private _getClassName() {
         const colors = ['gray', 'blue', 'red', 'green', 'transparent']
         const color = colors.indexOf(this._props.color) === -1 ? 'gray' : this._props.color
-        const shape = this._props.shape === 'normal' ? 'normal' : ''
+        const shape = this._props.shape === 'normal' ? 'normal' : 'circle'
         const className = [
             'kuc-icon-btn',
             this._getClassSize(),
