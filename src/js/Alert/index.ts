@@ -1,17 +1,26 @@
-import Control from '../Control'
+import Control, { ControlProps } from "../Control"
 
 import '../../css/Alert.css'
 
-class Alert extends Control {
-    private text: string
-    private type: string
+type AlertProps = ControlProps & {
+    text: string
+    type?: string
+}
 
-    constructor({ text = '', type = 'error', isDisabled = false, isVisible = true }) {
+class Alert extends Control {
+    protected _props: AlertProps = {
+        ...this._props, ...{
+            text: '',
+            type: 'error'
+        }
+    }
+
+    constructor(params: AlertProps) {
         super()
-        this.text = text
-        this.type = type
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
+
+        if (params) {
+            this._props = { ...this._props, ...params }
+        }
 
         this.element = document.createElement('div')
         this.element.className = this._getClassName()
@@ -21,7 +30,7 @@ class Alert extends Control {
     private _getClassName(): string {
         const className = [
             'kuc-alert',
-            this.type === 'success' ? 'bg-success' : 'bg-danger'
+            this._props.type === 'success' ? 'bg-success' : 'bg-danger'
         ];
 
         return className.join(' ');
@@ -33,7 +42,7 @@ class Alert extends Control {
         if (!changedAttr) return;
 
         if (changedAttr.indexOf('text') !== -1) {
-            this.element.innerHTML = this.text
+            this.element.innerHTML = this._props.text
         }
 
         if (changedAttr.indexOf('type') !== -1) {
@@ -42,12 +51,12 @@ class Alert extends Control {
     }
 
     setText(text: string): void {
-        this.text = text
+        this._props.text = text
         this.rerender(['text'])
     }
 
     setType(type: string): void {
-        this.type = type
+        this._props.type = type
         this.rerender(['type'])
     }
 }
