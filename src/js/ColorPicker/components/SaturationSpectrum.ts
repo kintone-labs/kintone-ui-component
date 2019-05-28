@@ -16,44 +16,31 @@ type SaturationSpectrumProps = ControlProps & {
 }
 
 class SaturationSpectrum extends Control {
-    private width: number
-    private height: number
+    protected _props: SaturationSpectrumProps = {
+        ...this._props, ...{
+            width: 200,
+            height: 200,
+            rgb: {r: 0, g:0, b:0},
+            onSelect: (rgb = {r: 0, g:0, b:0}, triggerOnChange = false) => {}
+        }
+    }
     private colorCanvas: HTMLCanvasElement
     private containerEl: ClientRect | DOMRect
     private isMouseDown: boolean
-    private rgb: {
-        r:number
-        g:number
-        b:number
-    }
-    private onSelect: (rgb: {
-        r:number
-        g:number
-        b:number
-    }, triggerOnChange: boolean) => void
 
-    constructor({
-        width = 200,
-        height = 200,
-        rgb = {r: 0, g:0, b:0},
-        onSelect = (rgb = {r: 0, g:0, b:0}, triggerOnChange = false) => {},
-        isDisabled = false,
-        isVisible = true
-    }: SaturationSpectrumProps) {
+    constructor(params: SaturationSpectrumProps) {
         super()
 
-        this.width = width
-        this.height = height
-        this.onSelect = onSelect
-        this.rgb = rgb
+        if (params) {
+            this._props = {...this._props, ...params}
+        }
+        
         this.isMouseDown = false
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
         this.element = document.createElement('div')
         this.colorCanvas = document.createElement('canvas')
 
-        this.colorCanvas.width = this.width
-        this.colorCanvas.height = this.height
+        this.colorCanvas.width = this._props.width
+        this.colorCanvas.height = this._props.height
         this.colorCanvas.onmousedown = this.handleMouseDown.bind(this)
         this.colorCanvas.onmouseup = this.handleMouseUp.bind(this)
         this.colorCanvas.onmousemove = this.handleMouseMove.bind(this)
@@ -77,7 +64,7 @@ class SaturationSpectrum extends Control {
         g:number
         b:number
     }) {
-        this.rgb = rgb
+        this._props.rgb = rgb
         this.rerender(['rgb'])
     }
 
@@ -91,18 +78,18 @@ class SaturationSpectrum extends Control {
         if (this.colorCanvas) {
             let ctx = this.colorCanvas.getContext("2d");
             if (ctx) {
-                ctx.fillStyle = `rgb(${this.rgb.r},${this.rgb.g},${this.rgb.b})`;
-                ctx.fillRect(0, 0, this.width, this.height);
-                let grdWhite = ctx.createLinearGradient(0, 0, this.width, 0);
+                ctx.fillStyle = `rgb(${this._props.rgb.r},${this._props.rgb.g},${this._props.rgb.b})`;
+                ctx.fillRect(0, 0, this._props.width, this._props.height);
+                let grdWhite = ctx.createLinearGradient(0, 0, this._props.width, 0);
                 grdWhite.addColorStop(0, "rgb(255,255,255)");
                 grdWhite.addColorStop(1, "transparent");
                 ctx.fillStyle = grdWhite;
-                ctx.fillRect(0, 0, this.width, this.height);
-                let grdBlack = ctx.createLinearGradient(0, 0, 0, this.height);
+                ctx.fillRect(0, 0, this._props.width, this._props.height);
+                let grdBlack = ctx.createLinearGradient(0, 0, 0, this._props.height);
                 grdBlack.addColorStop(0, "transparent");
                 grdBlack.addColorStop(1, "rgb(0,0,0)");
                 ctx.fillStyle = grdBlack;
-                ctx.fillRect(0, 0, this.width, this.height);
+                ctx.fillRect(0, 0, this._props.width, this._props.height);
             }
         }
     }
@@ -128,7 +115,7 @@ class SaturationSpectrum extends Control {
             const ctx = this.colorCanvas.getContext("2d");
             if (ctx) {
                 const imageData = ctx.getImageData(x, y, 1, 1).data;
-                this.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] }, triggerOnChange);
+                this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] }, triggerOnChange);
             }
         } 
     }
@@ -139,7 +126,7 @@ class SaturationSpectrum extends Control {
     }
 
     handleMouseUp(e: MouseEvent) {
-        this.triggerSelect(e.clientX, e.clientY, true);
+        this.triggerSelect(e.clientX, e.clientY, false);
         this.isMouseDown = false
         this.rerender(['isMouseDown'])
     }

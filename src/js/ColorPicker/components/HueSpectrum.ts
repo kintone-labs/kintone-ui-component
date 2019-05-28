@@ -13,33 +13,32 @@ type HueSpectrumProps = ControlProps & {
 }
 
 class HueSpectrum extends Control {
-    private width: number
-    private height: number
-    private onSelect: (rgbObj: RGB) => void
+    protected _props: HueSpectrumProps ={
+        ...this._props, ...{
+            width: 0,
+            height: 0,
+            onSelect: (rgbObj: RGB) => {
+                
+            }
+        }
+    } 
     private colorCanvas: HTMLCanvasElement
     private containerEl: ClientRect | DOMRect
     private isMouseDown: boolean
     private hasInitLayout: boolean
 
-    constructor({
-        width,
-        height,
-        onSelect,
-        isDisabled = false,
-        isVisible = true,
-    }: HueSpectrumProps) {
+    constructor(params: HueSpectrumProps) {
         super()
-        this.width = width
-        this.height = height
-        this.onSelect = onSelect
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
+
+        if (params) {
+            this._props = {...this._props, ...params}
+        }
 
         this.element = document.createElement('div')
         this.colorCanvas = document.createElement('canvas')
 
-        this.colorCanvas.width = this.width
-        this.colorCanvas.height = this.height
+        this.colorCanvas.width = this._props.width
+        this.colorCanvas.height = this._props.height
         this.colorCanvas.onmousedown = this.handleMouseDown.bind(this)
         this.colorCanvas.onmouseup = this.handleMouseUp.bind(this)
         this.colorCanvas.onmousemove = this.handleMouseMove.bind(this)
@@ -55,8 +54,8 @@ class HueSpectrum extends Control {
             
             let ctx = this.colorCanvas.getContext("2d");
             if (ctx) {
-                ctx.rect(0, 0, this.width, this.height);
-                let grd1 = ctx.createLinearGradient(0, 0, 0, this.height);
+                ctx.rect(0, 0, this._props.width, this._props.height);
+                let grd1 = ctx.createLinearGradient(0, 0, 0, this._props.height);
                 grd1.addColorStop(0, "rgb(255, 0, 0)"); // red
                 grd1.addColorStop(0.17, "rgb(255, 0, 255)"); // magenta
                 grd1.addColorStop(0.34, "rgb(0, 0, 255)"); // blue
@@ -111,13 +110,13 @@ class HueSpectrum extends Control {
         if (!this.containerEl) {
             this.initContainerEl();
         }
-        let x = this.width / 2;
+        let x = this._props.width / 2;
         let y = clientY - this.containerEl.top;
         if (this.colorCanvas && this.colorCanvas) {
             const ctx = this.colorCanvas.getContext("2d");
             if (ctx) {
                 const imageData = ctx.getImageData(x, y, 1, 1).data;
-                this.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
+                this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
             }
         }
     }
