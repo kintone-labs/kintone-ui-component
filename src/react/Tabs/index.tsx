@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/Tabs.css'
+import Message from '../../constant/Message'
 
 type TabsItem = {
     tabName: string
@@ -18,6 +19,9 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         <ul className="kuc-tabs-tab-list">
         {
             items.map((item: TabsItem, tabIndex: number) => {
+                if (!item.tabName) {
+                    throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
+                }
                 let className = "kuc-tabs-container";
                 if (value === tabIndex) {
                     className += " kuc-tabs-container-selection";
