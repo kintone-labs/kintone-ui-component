@@ -16,6 +16,9 @@ type TabsProps = {
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
     if (value) {
+        if (typeof value !== 'number') {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
         if (!items || value > items.length - 1 || value < 0) {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }

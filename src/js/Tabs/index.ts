@@ -53,14 +53,12 @@ class Tabs extends Control {
             this._props.items.forEach((item: Tab, index: number) => {
                 if (!item.tabName) {
                     err = Message.tabs.MISSING_TAB_NAME.replace('{{index}}', index.toString())
-                    return
                 }
             })
         }
         if (this._props.value) {
             if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
                 err = Message.common.INVALID_ARGUMENT
-                return
             }
         }
         return err
