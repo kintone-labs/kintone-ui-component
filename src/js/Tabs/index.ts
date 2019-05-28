@@ -53,8 +53,15 @@ class Tabs extends Control {
             this._props.items.forEach((item: Tab, index: number) => {
                 if (!item.tabName) {
                     err = Message.tabs.MISSING_TAB_NAME.replace('{{index}}', index.toString())
+                    return
                 }
             })
+        }
+        if (this._props.value) {
+            if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
+                err = Message.common.INVALID_ARGUMENT
+                return
+            }
         }
         return err
     }
@@ -159,8 +166,10 @@ class Tabs extends Control {
     }
 
     removeItem(index: number) {
-        this._props.items.splice(index, 1)
-        this.rerender(['removeItems'])
+        if (index > 0 && index < this._props.items.length) {
+            this._props.items.splice(index, 1)
+            this.rerender(['removeItems'])
+        }
     }
 
     getItems(): Array<Tab> {

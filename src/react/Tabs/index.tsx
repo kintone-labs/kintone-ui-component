@@ -15,6 +15,11 @@ type TabsProps = {
 }
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
+    if (value) {
+        if (!items || value > items.length - 1 || value < 0) {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+    }
     const tabNames = (
         <ul className="kuc-tabs-tab-list">
         {
