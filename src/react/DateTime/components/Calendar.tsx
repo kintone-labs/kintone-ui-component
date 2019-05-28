@@ -23,9 +23,7 @@ const Calendar = ({
 	const weekDayLabels = getWeekDayLabels(locale);
 	const [displayDate, setDisplayDate] = useState(new Date(date));
 	const displayingDays = getDisplayingDays(displayDate);
-	if (!date) {
-		date = new Date()
-	}
+	let initialDate = date ? new Date(date) : null;
 
 	if (!previousDate) {
 		previousDate = new Date(date)
@@ -44,24 +42,36 @@ const Calendar = ({
 		<div
 			className="date-picker-container"
 			style={{ display: pickerDisplay }}
+			tabIndex={0}
+			onBlur={(e)=>{
+				if (e.relatedTarget == null 
+					|| (
+						!e.relatedTarget['classList'].contains('calendar-button') && 
+						!e.relatedTarget['classList'].contains('calendar-button-control') &&
+						!e.relatedTarget['classList'].contains('date-picker-container')
+						)
+				) {
+					onDateClick(initialDate)
+				}
+			}}
 		>
 			<div className="header">
 				<div className="month-year-container">
-					<button className="prev calendar-button-control" onClick={()=>{
+					<span className="prev calendar-button-control" onClick={()=>{
 						let newDate = new Date(displayDate)
 						newDate.setMonth(newDate.getMonth()-1,1)
 						setDisplayDate(newDate)
-					}} />
+					}} tabIndex={0} />
 					<span className="label">
 						{format(displayDate, "calendartitle", {
 							locale: locale
 						})}
 					</span>
-					<button className="next calendar-button-control" onClick={()=>{
+					<span className="next calendar-button-control" onClick={()=>{
 						let newDate = new Date(displayDate)
 						newDate.setMonth(newDate.getMonth()+1,1)
 						setDisplayDate(newDate)
-					}} />
+					}} tabIndex={0} />
 				</div>
 				<div className="days-container">
 				{weekDayLabels.map((label, index) => {
@@ -80,11 +90,11 @@ const Calendar = ({
 				{displayingDays.map((day, index) => {
 					let className = "day";
 
-					className += isSameMonth(day, displayDate) ? "" : " grayed-out";
+					className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
 					className += isToday(day) ? " today" : "";
-					className += isSameDate(day, date) ? " selected" : "";
+					className += date && isSameDate(day, date) ? " selected" : "";
 					return (
-						<button className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
+						<span className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
 							
 							let returnDate = new Date(date)
 							returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate())
@@ -92,15 +102,15 @@ const Calendar = ({
 							onDateClick(returnDate)
 							setDisplayDate(new Date(day))
 						}}
-						>
+						tabIndex={0} >
 							{format(day, "d")}
-						</button>
+						</span>
 					);
 				})}
 				</div>
 				<div className="quick-selections-container">
-					<button className="today calendar-button" onClick={()=>{setDisplayDate(new Date());onDateClick(today)}}>{locale.today}</button>
-					<button className="none calendar-button" onClick={()=>{onDateClick(null)}}>{locale.none}</button>
+					<span className="today calendar-button" onClick={()=>{setDisplayDate(new Date());onDateClick(today)}} tabIndex={0}>{locale.today}</span>
+					<span className="none calendar-button" onClick={()=>{onDateClick(null)}} tabIndex={0}>{locale.none}</span>
 				</div>
 			</div>
 		</div>

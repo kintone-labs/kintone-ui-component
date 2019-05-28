@@ -8,67 +8,67 @@ type TabNameProps = ControlProps & {
 
 
 class TabName extends Control {
-    protected _props: TabNameProps = {
-        ...this._props, ...{
-            isActive: false,
-            tabName: '',
-            tabIndex: 0,
-            onClickTabItem: (tabIndex: number) => {
+  protected _props: TabNameProps = {
+    ...this._props, ...{
+      isActive: false,
+      tabName: '',
+      tabIndex: 0,
+      onClickTabItem: (tabIndex: number) => {
 
-            }
-        }
+      }
+    }
+  }
+
+  constructor(params: TabNameProps) {
+    super()
+    if (params) {
+      this._props = {...this._props, ...params}
     }
 
-    constructor(params: TabNameProps) {
-        super()
-        if (params) {
-            this._props = {...this._props, ...params}
-        }
-
-        let className = "kuc-tabs-container";
-        if (this._props.isActive) {
-            className += " kuc-tabs-container-selection";
-        }
-
-        if (this._props.isDisabled) {
-            className += " kuc-tabs-disabled";
-            this.element = document.createElement('li')
-            this.element.className = className
-            this.element.append(this._props.tabName)
-        } else {
-            this.element = document.createElement('li')
-            this.element.className = className
-            this.element.append(this._props.tabName)
-            this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
-        }  
-        this.rerender()
+    let className = "kuc-tabs-container";
+    if (this._props.isActive) {
+      className += " kuc-tabs-container-selection";
     }
 
-    rerender(changedAttr?: Array<string>){
-        super.rerender()
-        if (this._props.isDisabled) {
-            let className = "kuc-tabs-container kuc-tabs-disabled";
-            this.element.className = className
-        }
-        if (!changedAttr) return
-        if (changedAttr.indexOf('isActive') !== -1) {
-            let className = "kuc-tabs-container";
-            if (this._props.isActive) {
-                className += " kuc-tabs-container-selection";
-            }
-            this.element.className = className
-        }
-    }
+    if (this._props.isDisabled) {
+      className += " kuc-tabs-disabled";
+      this.element = document.createElement('li')
+      this.element.className = className
+      this.element.append(this._props.tabName)
+    } else {
+      this.element = document.createElement('li')
+      this.element.className = className
+      this.element.append(this._props.tabName)
+      this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
+    }  
+    this.rerender()
+  }
 
-    select() {
-        this._props.isActive = true
-        this.rerender(['isActive'])
+  rerender(changedAttr?: Array<string>){
+    super.rerender()
+    if (this._props.isDisabled) {
+      let className = "kuc-tabs-container kuc-tabs-disabled";
+      this.element.className = className
     }
+    if (!changedAttr) return
+    if (changedAttr.indexOf('isActive') !== -1) {
+      let className = "kuc-tabs-container";
+      if (this._props.isActive) {
+          className += " kuc-tabs-container-selection";
+      }
+      this.element.className = className
+    }
+  }
 
-    deselect() {
-        this._props.isActive = false
-        this.rerender(['isActive'])
-    }
+  select() {
+    this._props.isActive = true
+    this.rerender(['isActive'])
+  }
+
+  deselect() {
+    this._props.isActive = false
+    this.rerender(['isActive'])
+  }
 }
 
-export default TabName
+export default TabName;

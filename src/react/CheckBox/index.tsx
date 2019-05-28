@@ -1,23 +1,23 @@
 import React from 'react';
 import Message from '../constant/Message';
-import { Item, AbstractMultiSelection} from '../index';
-import '../../css/CheckBox.css'
+import {Item, AbstractMultiSelection} from '../index';
+import '../../css/CheckBox.css';
 
 type item = {
-    value: string,
-    label: string,
-    isDisabled: boolean
-  }
+  value: string;
+  label: string;
+  isDisabled: boolean;
+}
 type CheckBoxProps = {
-    items: Array<item>,
-    value: Array<string>,
-    isVisible: boolean,
-    isDisabled: boolean,
-    onChange: (value:Array<string>) => void,
+  items: item[];
+  value: string[];
+  isVisible: boolean;
+  isDisabled: boolean;
+  onChange: (value: string[]) => void;
 };
 
 const CheckBox = (props: CheckBoxProps) => {
-  const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection
+  const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection;
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
     const length = value.length;
