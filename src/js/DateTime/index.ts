@@ -1,7 +1,7 @@
 import Control, {ControlProps} from '../Control'
 import '../../css/DateTime.css'
 import '../../css/Text.css'
-import {en, format} from '../../react/DateTime/components/Locale'
+import {en, ja, zh, format} from '../../react/DateTime/components/Locale'
 import Locale from '../../react/DateTime/components/localizationData/locale-dto'
 import {parseStringToDate, parseStringToTime} from '../../react/DateTime/components/utils'
 import Calendar from './components/Calendar'
@@ -423,6 +423,29 @@ class DateTime extends Control {
         this._calendar.setValue(new Date(date))
         this.rerender(['dateTextInput'])
         this.rerender(['timeTextInput'])
+    }
+  }
+
+  getLocale() {
+    return this._props.locale.name
+  }
+
+  setLocale(locale) {
+    switch(locale) {
+      case 'en':
+        this._props.locale = en
+        break
+      case 'zh':
+        this._props.locale = zh
+        break
+      case 'ja':
+      default:
+        this._props.locale = ja
+        break
+    }
+    if(this._calendar) {
+      this._calendar.setLocale(this._props.locale)
+      this._calendar.rerender(['selectedDate', 'footerButtons'])
     }
   }
 }

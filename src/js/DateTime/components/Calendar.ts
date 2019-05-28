@@ -6,7 +6,7 @@ import {getWeekDayLabels,
 				isSameDate,
 				parseStringToDate
 			} from '../../../react/DateTime/components/utils'
-import {en, format} from '../../../react/DateTime/components/Locale'
+import {ja, format} from '../../../react/DateTime/components/Locale'
 import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
 import Control, { ControlProps } from '../../Control';
 
@@ -19,7 +19,7 @@ type CalendarProps = ControlProps & {
 
 class Calendar extends Control {
 	protected _props: CalendarProps = {
-		locale: en,
+		locale: ja,
 		isDisabled: false,
 		isVisible: false
 	}
@@ -109,14 +109,14 @@ class Calendar extends Control {
 	_renderTodayButton() {
 		const span = document.createElement('span')
 		span.className = 'today calendar-button'
-		span.textContent = 'Today'
+		span.textContent = this._props.locale.today
 		this._todayButton = span
 	}
 
 	_renderNoneButton() {
 		const span = document.createElement('span')
 		span.className = 'none calendar-button'
-		span.textContent = 'None'
+		span.textContent = this._props.locale.none
 		this._noneButton = span
 	}
 
@@ -228,6 +228,10 @@ class Calendar extends Control {
 		return this._props.date
 	}
 
+	setLocale(locale: Locale) {
+		this._props.locale = locale
+	}
+
 	rerender(changedAttr?: Array<string>, options?: object){
 		super.rerender()
 		if(changedAttr.indexOf('selectedDate') !== -1) {
@@ -246,6 +250,10 @@ class Calendar extends Control {
 		}
 		if(changedAttr.indexOf('offsetLeft') !== -1) {
 			this.element.style.left = options['left'] + 'px'
+		}
+		if(changedAttr.indexOf('footerButtons') !== -1) {
+			this._todayButton.textContent = this._props.locale.today
+			this._noneButton.textContent = this._props.locale.none
 		}
 	}
 }
