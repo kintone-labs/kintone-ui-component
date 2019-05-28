@@ -1,5 +1,5 @@
 require('../css/base.css')
-import DatePicker, {Calendar} from './DatePicker'
+import DateTime, {Calendar} from './DateTime'
 import Button from './Button'
 import Label from './Label'
 import Text from './Text'
@@ -23,7 +23,7 @@ import Dialog from './Dialog'
 import Table from '../legacyJS/js/components-react/Table'
 
 export {
-    DatePicker,
+    DateTime,
     Calendar,
     Button,
     Label,
