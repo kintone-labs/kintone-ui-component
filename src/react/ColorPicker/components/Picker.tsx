@@ -16,6 +16,8 @@ type PickerProps = {
     hexString: string
     pickerDisplay?: boolean
     onChange: (hexString: string) => void
+    onCancel: () => void,
+    onSubmit: (hexString: string) => void
 }
 
 export default function Picker(props: PickerProps) {
@@ -66,10 +68,12 @@ export default function Picker(props: PickerProps) {
         </div>
         <div>
             <span>
-                <Button text="OK" type="submit" />
+                <Button text="OK" type="submit" onClick={()=>{
+                    props.onSubmit(hexString)
+                }} />
             </span>
             <span>
-                <Button text="Cancel" />
+                <Button text="Cancel" onClick={props.onCancel} />
             </span>
         </div>
         </div>

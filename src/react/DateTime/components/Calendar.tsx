@@ -24,9 +24,6 @@ const Calendar = ({
 	const [displayDate, setDisplayDate] = useState(new Date(date));
 	const displayingDays = getDisplayingDays(displayDate);
 	let initialDate = date ? new Date(date) : null;
-	if (!date) {
-		date = new Date()
-	}
 
 	if (!previousDate) {
 		previousDate = new Date(date)
@@ -93,9 +90,9 @@ const Calendar = ({
 				{displayingDays.map((day, index) => {
 					let className = "day";
 
-					className += isSameMonth(day, displayDate) ? "" : " grayed-out";
+					className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
 					className += isToday(day) ? " today" : "";
-					className += isSameDate(day, date) ? " selected" : "";
+					className += date && isSameDate(day, date) ? " selected" : "";
 					return (
 						<span className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
 							
