@@ -28,6 +28,77 @@
 
 **Javascript**
 ```
+var tab = new kintoneUIComponent.Tabs({
+    items: [
+        {
+            tabName: "Tab1",
+            tabContent: "This is Tab1"
+        },
+        {
+            tabName: "Tab2",
+            tabContent: "This is Tab2"
+        },
+    　  {
+            tabName: "Tab3",
+            tabContent: "This is Tab3"
+        }
+　  ]
+});
+```
+**React**
+```
+import { Tabs } from '../src/js/components-react/index';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class Sample extends React.Component {
+    constructor(opts) {
+        super(opts);
+        var items = [
+            {
+                tabName: "Tab1",
+                tabContent: 'This is Tab1'
+            },
+            {
+                tabName: "Tab2",
+                tabContent: "This is Tab2"
+            },
+            {
+                tabName: "Tab3",
+                tabContent: "This is Tab3"
+            }
+        ];
+        this.state = { items: items, value: 1};
+    }
+ 
+    render() {
+        return (
+            <div>
+                <Tabs items={this.state.items} value={this.state.value} />
+            </div>
+        );
+    }
+}
+```
+</details>
+
+## Methods
+### render()
+Get dom element of component.
+
+**Parameter**
+
+None
+
+**Returns**
+
+Dom element
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
 var el = kintone.app.getHeaderMenuSpaceElement()
 var button = new kintoneUIComponent.Button({
     text: 'Hello',
@@ -54,6 +125,7 @@ var tab = new kintoneUIComponent.Tabs({
 });
 el.appendChild(tab.render());
 ```
+
 **React**
 ```
 import { Tabs } from '../src/js/components-react/index';
@@ -96,3 +168,16 @@ kintone.events.on('app.record.index.show', function (event) {
     );
 });
 ```
+</details>
+
+### addItem(item)
+Add an item to end of the tab list.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|item|	Object|	Yes|	The new tab to be added.|
+|item.tabName|	String|	Yes|	Name of the new tab.|
+|item.tabContent|	String|	No|	Content of the new tab.|
+|item.isDisabled|	Boolean|	No|	Indicate tab will be disabled when display. <br>Default value: 'false'.|
