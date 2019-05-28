@@ -150,6 +150,9 @@ class Tabs extends Control {
     }
 
     setValue(value: number):void {
+        if (!value) {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
         this._props.value = value
         if (this._validator()) {
             throw new Error(this._validator())
