@@ -1,5 +1,6 @@
 import Control, {ControlProps} from "../Control";
 import TabName from "./TabName";
+import Message from '../../constant/Message'
 
 type Tab = {
     tabName: string
@@ -51,7 +52,7 @@ class Tabs extends Control {
         if (this._props.items) {
             this._props.items.forEach((item: Tab, index: number) => {
                 if (!item.tabName) {
-                    err = `Missing tab name on tab item[${index}]`
+                    err = Message.tabs.MISSING_TAB_NAME.replace('{{index}}', index.toString())
                 }
             })
         }
