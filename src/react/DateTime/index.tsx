@@ -163,11 +163,16 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="
 										let returnDate = new Date(date)
 										returnDate.setHours(tempDate.getHours(), tempDate.getMinutes(), tempDate.getSeconds())
 										onChange(returnDate)
+										setTimePickerDisplay("none")
 										setShowTimePickerError(true)
 									}
 									else if (e.target.value) {
 										setTimeValue(e.target.value)
 										setTimeError("Invalid time")
+										setTimePickerDisplay("none")
+										setShowTimePickerError(true)
+									}
+									else {
 										setTimePickerDisplay("none")
 										setShowTimePickerError(true)
 									}
