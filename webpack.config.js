@@ -164,4 +164,4 @@ const UMDConfig = {
     }
 }
 
-module.exports = [CommonJSConfig, UMDConfig, jsUMDConfig]
+module.exports = [jsUMDConfig]
