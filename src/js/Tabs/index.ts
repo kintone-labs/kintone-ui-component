@@ -85,7 +85,9 @@ class Tabs extends Control {
                     tabNames.deselect()
                 }
             })
-            this.tabContentElement.innerHTML = ''
+            while (this.tabContentElement.firstChild) {
+                this.tabContentElement.removeChild(this.tabContentElement.firstChild);
+            }
             this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
         }
 
@@ -118,7 +120,9 @@ class Tabs extends Control {
                 this.tabNames.push(tabComponent)
                 this.tabNamesElement.appendChild(tabComponent.render())
             })
-            this.tabContentElement.innerHTML = ''
+            while (this.tabContentElement.firstChild) {
+                this.tabContentElement.removeChild(this.tabContentElement.firstChild);
+            }
             this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
         }
     }
