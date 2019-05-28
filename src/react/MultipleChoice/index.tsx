@@ -1,20 +1,20 @@
 import React from 'react';
 import Message from '../constant/Message';
-import { Item, AbstractMultiSelection} from '../index';
-import '../../css/MultipleChoice.css'
+import {Item, AbstractMultiSelection} from '../index';
+import '../../css/MultipleChoice.css';
 
 type item = {
-    value: string,
-    label: string,
-    isDisabled: boolean
-  }
+  value: string;
+  label: string;
+  isDisabled: boolean;
+}
 
 type MultipleChoiceProps = {
-    items: Array<item>,
-    value: Array<string>,
-    isVisible: boolean,
-    isDisabled: boolean,
-    onChange: (value: Array<string>) => void
+  items: item[];
+  value: string[];
+  isVisible: boolean;
+  isDisabled: boolean;
+  onChange: (value: string[]) => void;
 };
 
 const MultipleChoice = (props: MultipleChoiceProps) => {

@@ -1,67 +1,70 @@
 import React from 'react';
-import '../../css/Tabs.css'
+import '../../css/Tabs.css';
 
 type TabsItem = {
-    tabName: string
-    tabContent: any
-    isDisabled: boolean
+  tabName: string;
+  tabContent: any;
+  isDisabled: boolean;
 }
 
 type TabsProps = {
-    items: Array<TabsItem>
-    value: number
-    onClickTabItem: (tabIndex: number) => void
+  items: TabsItem[];
+  value: number;
+  onClickTabItem: (tabIndex: number) => void;
 }
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
-    const tabNames = (
-        <ul className="kuc-tabs-tab-list">
-        {
-            items.map((item: TabsItem, tabIndex: number) => {
-                let className = "kuc-tabs-container";
-                if (value === tabIndex) {
-                    className += " kuc-tabs-container-selection";
-                }
+  const tabNames = (
+    <ul className="kuc-tabs-tab-list">
+      {
+        items.map((item: TabsItem, tabIndex: number) => {
+          let className = 'kuc-tabs-container';
+          if (value === tabIndex) {
+            className += ' kuc-tabs-container-selection';
+          }
 
-                if (item.isDisabled) {
-                    className += " kuc-tabs-disabled";
-                    return (
-                        <li className={className} 
-                            key={tabIndex}>
-                            {item.tabName}
-                        </li>
-                    );
-                } else {
-                    return (
-                        <li className={className} 
-                            key={tabIndex}
-                            onClick={() => onClickTabItem(tabIndex)}
-                        >
-                            {item.tabName}
-                        </li>
-                    );
-                }  
-            })
-        }
-        </ul>
-    );
-    const tabContents = items.map((item: TabsItem, tabIndex: number) => {
-        if (tabIndex !== value) return undefined;
-        else {
+          if (item.isDisabled) {
+            className += ' kuc-tabs-disabled';
             return (
-                <div className="kuc-tabs-tab-contents" key={tabIndex}>
-                    <div>{item.tabContent}</div>
-                </div>
+              <li
+                className={className}
+                key={tabIndex}
+              >
+                {item.tabName}
+              </li>
             );
-        }
-    });
+          }
+          return (
+            <li
+              className={className}
+              key={tabIndex}
+              onClick={() => onClickTabItem(tabIndex)}
+            >
+              {item.tabName}
+            </li>
+          );
+
+        })
+      }
+    </ul>
+  );
+  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+    if (tabIndex !== value) return undefined;
+
     return (
-        <div className="kuc-tabs-tabs">
-            {tabNames}
-            {tabContents}
-        </div>
+      <div className="kuc-tabs-tab-contents" key={tabIndex}>
+        <div>{item.tabContent}</div>
+      </div>
     );
-  
-}
+
+  });
+  return (
+    <div className="kuc-tabs-tabs">
+      {tabNames}
+      {tabContents}
+    </div>
+  );
+
+};
 
 export default Tabs;

@@ -1,20 +1,20 @@
 import React from 'react';
 import Message from '../constant/Message';
-import { Item, AbstractSingleSelection} from '../index';
-import '../../css/RadioButton.css'
+import {Item, AbstractSingleSelection} from '../index';
+import '../../css/RadioButton.css';
 
 type item = {
-  value: string,
-  label: string,
-  isDisabled: boolean
+  value: string;
+  label: string;
+  isDisabled: boolean;
 }
 type DropdownProps = {
-  name: string,
-  value: string,
-  items: Array<item>,
-  isVisible: boolean,
-  isDisabled: boolean,
-  onChange: (value: string) => void
+  name: string;
+  value: string;
+  items: item[];
+  isVisible: boolean;
+  isDisabled: boolean;
+  onChange: (value: string) => void;
 }
 
 const RadioButton = (props: DropdownProps) => {

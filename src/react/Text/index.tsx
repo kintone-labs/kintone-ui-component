@@ -1,36 +1,35 @@
-import React from 'react'
-import '../../css/Text.css'
+import React from 'react';
+import '../../css/Text.css';
 
 type TextProps = {
-    value?: string
-    isDisabled?: boolean
-    isVisible?: boolean,
-    onChange?: (value: string | null) => void,
-    onClick?: (e: React.SyntheticEvent<EventTarget>) => void
+  value?: string;
+  isDisabled?: boolean;
+  isVisible?: boolean;
+  onChange?: (value: string | null) => void;
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}:TextProps) => {
-    const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        onChange && onChange(value);
-    };
-    
-    if (isVisible === false) {
-        return null;
-    }
+const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}: TextProps) => {
+  const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(event.target.value);
+  };
 
-    return (
-        <div className="kuc-input-outer">
-            <input
-                type="text"
-                value={value}
-                className="kuc-input-text"
-                onClick={onClick}
-                onChange={_onChange}
-                disabled={isDisabled}
-            />
-        </div>
-    );
-}
+  if (isVisible === false) {
+    return null;
+  }
 
-export default Text
+  return (
+    <div className="kuc-input-outer">
+      <input
+        type="text"
+        value={value}
+        className="kuc-input-text"
+        onClick={onClick}
+        onChange={_onChange}
+        disabled={isDisabled}
+      />
+    </div>
+  );
+};
+
+export default Text;
