@@ -46,6 +46,10 @@ class TabName extends Control {
 
     rerender(changedAttr?: Array<string>){
         super.rerender()
+        if (this._props.isDisabled) {
+            let className = "kuc-tabs-container kuc-tabs-disabled";
+            this.element.className = className
+        }
         if (!changedAttr) return
         if (changedAttr.indexOf('isActive') !== -1) {
             let className = "kuc-tabs-container";
