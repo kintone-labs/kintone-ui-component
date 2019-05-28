@@ -22,6 +22,9 @@ type ControlProps = {
             if (this._props.isDisabled) {
                 this.element.setAttribute('disabled', `${this._props.isDisabled}`)
             }
+            else {
+                this.element.removeAttribute('disabled')
+            }
         }
     }
  

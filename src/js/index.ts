@@ -1,24 +1,27 @@
-import '@babel/polyfill';
-import '../legacyJS/style';
-import Alert from '../legacyJS/js/components/Alert';
-import Label from '../legacyJS/js/components/Label';
+import '@babel/polyfill'
+import '../legacyJS/style'
+import './polyfill'
+import Spinner from './Spinner'
 import Button from './Button'
-import IconButton from '../legacyJS/js/components/IconButton';
-import Dropdown from '../legacyJS/js/components/Dropdown';
-import NotifyPopup from '../legacyJS/js/components/NotifyPopup';
-import Text from '../legacyJS/js/components/Text';
-import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
-import RadioButton from '../legacyJS/js/components/RadioButton';
-import CheckBox from '../legacyJS/js/components/CheckBox';
-import Spinner from '../legacyJS/js/components/Spinner';
-import Table from '../legacyJS/js/components/Table';
-import FieldGroup from '../legacyJS/js/components/FieldGroup';
-import Dialog from '../legacyJS/js/components/Dialog';
-import TextArea from '../legacyJS/js/components/TextArea';
-import Attachment from '../legacyJS/js/components/Attachment';
-import createTableCell from '../legacyJS/js/components/TableCellFactory';
+import Alert from './Alert'
+import Label from './Label'
+import IconButton from './IconButton'
+import NotifyPopup from './NotifyPopup'
+import DateTime from './DateTime'
 import Tabs from './Tabs'
 import ColorPicker from './ColorPicker'
+
+import RadioButton from '../legacyJS/js/components/RadioButton'
+import Dropdown from '../legacyJS/js/components/Dropdown'
+import MultipleChoice from '../legacyJS/js/components/MultipleChoice'
+import CheckBox from '../legacyJS/js/components/CheckBox'
+import Text from '../legacyJS/js/components/Text'
+import TextArea from '../legacyJS/js/components/TextArea'
+import Attachment from '../legacyJS/js/components/Attachment'
+import FieldGroup from '../legacyJS/js/components/FieldGroup'
+import Dialog from '../legacyJS/js/components/Dialog'
+import Table from '../legacyJS/js/components/Table'
+import createTableCell from '../legacyJS/js/components/TableCellFactory'
 
 const kintoneUIComponent = {
   Alert,
@@ -27,6 +30,7 @@ const kintoneUIComponent = {
   IconButton,
   Text,
   Dropdown,
+  DateTime,
   NotifyPopup,
   MultipleChoice,
   RadioButton,
@@ -41,11 +45,11 @@ const kintoneUIComponent = {
   Tabs,
   ColorPicker
 };
-window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
 export {
   Alert,
   Label,
+  DateTime,
   Button,
   IconButton,
   Text,
