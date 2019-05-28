@@ -1,4 +1,4 @@
-import "../css/DateTime.css";
+import "../../css/DateTime.css";
 import React, { useState, useEffect, createRef } from "react";
 import {en, ja, zh} from './components/Locale'
 import {format} from './components/Locale'
