@@ -6,6 +6,7 @@ import Label from '../legacyJS/js/components/Label';
 import Button from '../legacyJS/js/components/Button';
 import IconButton from '../legacyJS/js/components/IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
+import DateTime from '../js/DateTime';
 import NotifyPopup from '../legacyJS/js/components/NotifyPopup';
 import Text from '../legacyJS/js/components/Text';
 import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
@@ -28,6 +29,7 @@ const kintoneUIComponent = {
   IconButton,
   Text,
   Dropdown,
+  DateTime,
   NotifyPopup,
   MultipleChoice,
   RadioButton,
@@ -42,11 +44,11 @@ const kintoneUIComponent = {
   Tabs,
   ColorPicker
 };
-window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
 export {
   Alert,
   Label,
+  DateTime,
   Button,
   IconButton,
   Text,
