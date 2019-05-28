@@ -228,7 +228,7 @@ class Calendar extends Control {
 		return this._props.date
 	}
 
-	rerender(changedAttr?: Array<string>){
+	rerender(changedAttr?: Array<string>, options?: object){
 		super.rerender()
 		if(changedAttr.indexOf('selectedDate') !== -1) {
 			this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
@@ -243,6 +243,9 @@ class Calendar extends Control {
 			this._displayDaysSpans.forEach((dayLabel)=>{
 				this._daysContainer.appendChild(dayLabel)
 			})
+		}
+		if(changedAttr.indexOf('offsetLeft') !== -1) {
+			this.element.style.left = options['left'] + 'px'
 		}
 	}
 }

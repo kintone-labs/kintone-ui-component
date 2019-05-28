@@ -1,9 +1,11 @@
 import Control, {ControlProps} from '../Control'
 import '../../css/DateTime.css'
+import '../../css/Text.css'
 import {en, format} from '../../react/DateTime/components/Locale'
 import Locale from '../../react/DateTime/components/localizationData/locale-dto'
 import {parseStringToDate, parseStringToTime} from '../../react/DateTime/components/utils'
 import Calendar from './components/Calendar'
+import TimePicker from './components/TimePicker'
 
 type DateTimeProps = ControlProps & {
   value?: Date
@@ -23,15 +25,23 @@ class DateTime extends Control {
     timeFormat: 'HH:mm'
   }}
   protected element: HTMLElement
-  private _dateContainer: HTMLElement
+  private _textInputsContainer: HTMLElement
   private _dateTextInput: HTMLInputElement
+  private _timeTextInput: HTMLInputElement
   private _dateErrorDiv: HTMLElement
   private _calendar: Calendar
+
+  private _timePicker: TimePicker
+  private _time:Date = new Date()
 
   constructor(params:DateTimeProps = {}) {
     super()
     if(params) {
       this._props = {...this._props, ...params}
+    }
+    if(this._props.type === 'time' || this._props.type === 'datetime') {
+      this._time = this._props.value
+      this._time.setSeconds(0)
     }
   }
 
@@ -52,7 +62,6 @@ class DateTime extends Control {
   rerender(changedAttr?: Array<string>){
     super.rerender()
     if(changedAttr.indexOf('dateTextInput') !== -1) {
-      // this._dateErrorDiv.style.display = 'none'
       if(this._props.value) {
         this._dateTextInput.value = format(this._props.value, 'MM/dd/YYYY', {
           locale: this._props.locale
@@ -61,13 +70,49 @@ class DateTime extends Control {
 			else {
         this._dateTextInput.value = ''
       }
-		}
+    }
+    if(changedAttr.indexOf('timeTextInput') !== -1) {
+      this._timeTextInput.value = format(this._time, 'HH:mm')
+    }
+    if(changedAttr.indexOf('isDisabled') !== -1) {
+      if(this._calendar) {
+        this._calendar.hide()
+      }
+      if(this._timePicker) {
+        this._timePicker.hide()
+      }
+      if(this._timeTextInput) {
+        if(this._props.isDisabled) {
+          this._timeTextInput.setAttribute('disabled', `${this._props.isDisabled}`)
+        }
+        else {
+          this._timeTextInput.removeAttribute('disabled')
+        }
+      }
+      if(this._dateTextInput) {
+        if(this._props.isDisabled) {
+          this._dateTextInput.setAttribute('disabled', `${this._props.isDisabled}`)
+        }
+        else {
+          this._dateTextInput.removeAttribute('disabled')
+        }
+      }
+    }
   }
 
   private _renderContainer() {
     const container = document.createElement('div')
     container.classList.add('date-time-container')
     this.element = container
+
+    this._renderTextInputsContainer()
+    container.appendChild(this._textInputsContainer)
+  }
+
+  private _renderTextInputsContainer() {
+    const textInputsContainer = document.createElement('div')
+    textInputsContainer.classList.add('text-input-container')
+    this._textInputsContainer = textInputsContainer
   }
 
   private _renderDateInputErrorLabel() {
@@ -82,11 +127,9 @@ class DateTime extends Control {
   }
 
   private _renderDateTextInput() {
-    const dateTextInputContainer = document.createElement('div')
-    dateTextInputContainer.classList.add('text-input-container')
     const dateTextInput = document.createElement('input')
     dateTextInput.type = 'text'
-    dateTextInput.classList.add('text-input')
+    dateTextInput.className = 'kuc-input-text text-input'
     dateTextInput.value = format(this._props.value, this._props.dateFormat)
     
     // event handlers
@@ -95,6 +138,7 @@ class DateTime extends Control {
         this._props.value = null
       }
       this._calendar.setValue(this._props.value)
+      this._calendar.rerender(['offsetLeft'], {left: dateTextInput.offsetLeft})
       this._calendar.show()
     }
     dateTextInput.onfocus = () => {
@@ -105,22 +149,158 @@ class DateTime extends Control {
     dateTextInput.onblur = (e) => {
       this._onClickOutside(e)
     }
+    dateTextInput.onkeydown = (e) => {
+      if(e.key === 'Tab') {
+        this._calendar.hide()
+      }
+    }
     //
 
     this._dateTextInput = dateTextInput
-    dateTextInputContainer.appendChild(dateTextInput)
-    return dateTextInputContainer
+    this._textInputsContainer.appendChild(dateTextInput)
+  }
+
+  private _renderTimeTextInput() {
+    const timeTextInputContainer = document.createElement('div')
+    timeTextInputContainer.classList.add('text-input-container')
+    const timeTextInput = document.createElement('input')
+    timeTextInput.type = 'text'
+    timeTextInput.className = 'kuc-input-text text-input time'
+    timeTextInput.value = format(this._time, 'HH:mm')
+    timeTextInput.maxLength = 5
+    
+    // event handlers
+    timeTextInput.onclick = () => {
+      if(timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5) {
+        timeTextInput.setSelectionRange(3,5)
+      } else {
+        timeTextInput.setSelectionRange(0,2)
+      }
+      this._timePicker.rerender(['offsetLeft'], {left: timeTextInput.offsetLeft})
+      this._timePicker.show()
+    }
+    timeTextInput.onfocus = (e) => {
+      setTimeout(()=>{
+        timeTextInput.setSelectionRange(0,2)
+        e.preventDefault()
+        e.stopImmediatePropagation()
+        e.stopPropagation()
+      },1)
+    }
+    timeTextInput.onkeydown = (e) => {
+      switch(e.key) {
+        case 'Tab':
+          if(timeTextInput.selectionStart !== 3 && timeTextInput.selectionEnd !== 5) {
+            e.preventDefault()
+            timeTextInput.setSelectionRange(3,5)
+            this._timePicker.hide()
+          }
+          break
+        case 'ArrowLeft':
+          e.preventDefault()
+          timeTextInput.setSelectionRange(0,2)
+          this._timePicker.hide()
+          break
+        case 'ArrowRight': 
+          e.preventDefault()
+          timeTextInput.setSelectionRange(3,5)
+          this._timePicker.hide()
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          if(timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5) {
+            this._changeMinutesBy(1)
+          } else {
+            this._changeHoursBy(1)
+          }
+          this._timePicker.hide()
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          if(timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5) {
+            this._changeMinutesBy(-1)
+          } else {
+            this._changeHoursBy(-1)
+          }
+          this._timePicker.hide()
+          break
+        default:
+          if (!/[0-9]/.test(e.key)) {
+            e.preventDefault()
+          }
+          break
+      }
+    }
+    timeTextInput.onkeyup = (e) => {
+      if (/[0-9]/.test(e.key)) {
+        e.preventDefault()
+        const newTime = parseStringToTime(timeTextInput.value);
+        if(timeTextInput.selectionStart >= 3 && timeTextInput.selectionStart <= 5) {
+          // minutes are being edited
+          let previousMinutes
+          if(this._time.getMinutes() > 10) {
+            previousMinutes = (''+this._time.getMinutes())[1]
+          } else {
+            previousMinutes = (''+this._time.getMinutes())
+          }
+          if(parseInt(previousMinutes) > 5) {
+            previousMinutes = '0'
+          }
+          newTime.setMinutes(parseInt(previousMinutes + '' + newTime.getMinutes()))
+          timeTextInput.value = format(newTime, 'HH:mm')
+          timeTextInput.setSelectionRange(3,5)
+        } else {
+          // hours are being edited
+          let previousHours
+          if(this._time.getHours() > 10) {
+            previousHours = (''+this._time.getHours())[1]
+          } else {
+            previousHours = (''+this._time.getHours())
+          }
+          if(parseInt(previousHours) > 2) {
+            previousHours = '0'
+          }
+          newTime.setHours(parseInt(previousHours + '' + newTime.getHours()))
+          timeTextInput.value = format(newTime, 'HH:mm')
+          timeTextInput.setSelectionRange(0,2)
+        }
+        this._time = new Date(newTime)
+      }
+    }
+    timeTextInput.onblur = (e) => {
+      if(e.relatedTarget && 
+        this._timePicker.getPickerElement().contains(e.relatedTarget as Node)
+      ) {
+        return
+      }
+      // set value
+      const newTime = parseStringToTime(timeTextInput.value)
+      this._time.setHours(newTime.getHours())
+      this._time.setMinutes(newTime.getMinutes())
+      //
+      this._timePicker.hide()
+    }
+    this._timeTextInput = timeTextInput
+  }
+
+  private _changeMinutesBy(minutes: number) {
+    this._time.setMinutes(this._time.getMinutes() + minutes)
+    this.rerender(['timeTextInput'])
+    this._timeTextInput.setSelectionRange(3,5)
+  }
+
+  private _changeHoursBy(hours: number) {
+    this._time.setHours(this._time.getHours() + hours)
+    this.rerender(['timeTextInput'])
+    this._timeTextInput.setSelectionRange(0,2)
   }
 
   private _renderDate() { 
-    const dateContainer = document.createElement('div')
-    dateContainer.classList.add('date-container')
-    dateContainer.appendChild(this._renderDateTextInput())
-    this._dateContainer = dateContainer
-
+    // render date text input
+    this._renderDateTextInput()
     // render date input error
     this._renderDateInputErrorLabel()
-    this._dateContainer.appendChild(this._dateErrorDiv)
+    this._textInputsContainer.appendChild(this._dateErrorDiv)
     
     // render calendar
     const calendar = new Calendar({
@@ -128,23 +308,29 @@ class DateTime extends Control {
       onClickOutside: this._onClickOutside,
       onDateClick: this._onCalendarDateClick
     })
-    this._dateContainer.appendChild(calendar.render())
-    this.element.appendChild(dateContainer)
+    this._textInputsContainer.appendChild(calendar.render())
     this._calendar = calendar
 
     return this.element
   }
 
   private _renderTime() {
+    // render time text input 
+    this._renderTimeTextInput()
+    this._textInputsContainer.appendChild(this._timeTextInput)
+
+    // render time picker
+    const timePicker = new TimePicker({onTimeClick: (date) => this._onTimeClick(date)})
+    this._timePicker = timePicker
+    this._textInputsContainer.appendChild(timePicker.render())
+    //
+
     return this.element
   }
 
   private _renderDateTime() {
-    const dateEl = this._renderDate()
-    const timeEl = this._renderTime()
-    const dateTimeEl = document.createElement('div')
-    dateTimeEl.appendChild(dateEl)
-    dateTimeEl.appendChild(timeEl)
+    this._renderDate()
+    this._renderTime()
     return this.element
   }
 
@@ -192,6 +378,52 @@ class DateTime extends Control {
     // rerender DateTextInput
     this._props.value = date
     this.rerender(['dateTextInput'])
+  }
+
+  private _onTimeClick = (date: Date) => {
+    // set time value
+    this._time = date
+    // close time picker
+    this._timePicker.hide()
+    // rerender value and focus text input
+    this.rerender(['timeTextInput'])
+    this._timeTextInput.focus()
+  }
+
+  getValue(): Date {
+    switch (this._props.type) {
+      case 'date':
+        return this._props.value
+      case 'time':
+        return this._time
+      case 'datetime':
+      default:
+        const value = new Date(this._props.value)
+        value.setHours(this._time.getHours())
+        value.setMinutes(this._time.getMinutes())
+        return value
+    }
+  }
+
+  setValue(date: Date) {
+    switch (this._props.type) {
+      case 'date':
+        this._props.value = new Date(date)
+        this._calendar.setValue(new Date(date))
+        this.rerender(['dateTextInput'])
+        break
+      case 'time':
+        this._time = new Date(date)
+        this.rerender(['timeTextInput'])
+        break
+      case 'datetime':
+      default:
+        this._props.value = new Date(date)
+        this._time = new Date(date)
+        this._calendar.setValue(new Date(date))
+        this.rerender(['dateTextInput'])
+        this.rerender(['timeTextInput'])
+    }
   }
 }
 
