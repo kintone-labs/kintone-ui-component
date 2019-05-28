@@ -10,7 +10,7 @@
 	},
 	"sideEffects": ["dist/css/*.css", "src/legacyJS/style/*.css", "src/legacyJS/style/index.js", "src/css/*.css", "src/js/polyfill.ts"],
 	"main": "./dist/commonjs/index.js",
-	"module": "./dist/esm/index.js",
+	"module": "./dist/esm/react/index.js",
 	"unpkg": "./dist/kintone-ui-component.min.js",
 	"types": "dist/esm/index.d.ts",
 	"scripts": {

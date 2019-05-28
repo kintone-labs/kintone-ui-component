@@ -20,6 +20,7 @@ import MultipleChoice from './MultipleChoice'
 import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
 import Dialog from './Dialog'
+import Table from '../legacyJS/js/components-react/Table'
 
 export {
     DatePicker,
@@ -43,5 +44,6 @@ export {
     MultipleChoice,
     AbstractSingleSelection,
     AbstractMultiSelection,
-    Dialog
+    Dialog,
+    Table
 }
