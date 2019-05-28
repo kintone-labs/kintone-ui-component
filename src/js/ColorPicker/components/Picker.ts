@@ -4,7 +4,7 @@ import SaturationSpectrum, {SaturationSpectrumProps} from './SaturationSpectrum'
 import HueSpectrum, {HueSpectrumProps, RGB} from './HueSpectrum'
 import { hexToRgb, rgbToHex, rgbToHsv } from "./utils";
 import {RGBInput, HSVInput} from './TextInput'
-import Button from '../../../legacyJS/js/components/Button'
+import Button from '../../../js/Button'
 type PickerProps = ControlProps & {
     hexString: string,
     onChange: (hexString: string, triggerOnChange: boolean) => void
