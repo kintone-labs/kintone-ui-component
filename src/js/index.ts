@@ -1,16 +1,18 @@
 import '@babel/polyfill';
 import '../legacyJS/style';
+import './polyfill'
 import Alert from './Alert';
-import Label from '../legacyJS/js/components/Label';
+import Label from './Label';
 import Button from '../legacyJS/js/components/Button';
-import IconButton from '../legacyJS/js/components/IconButton';
+import IconButton from './IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
-import NotifyPopup from '../legacyJS/js/components/NotifyPopup';
+import NotifyPopup from './NotifyPopup';
+import DateTime from './DateTime';
 import Text from '../legacyJS/js/components/Text';
 import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
 import RadioButton from '../legacyJS/js/components/RadioButton';
 import CheckBox from '../legacyJS/js/components/CheckBox';
-import Spinner from '../legacyJS/js/components/Spinner';
+import Spinner from './Spinner';
 import Table from '../legacyJS/js/components/Table';
 import FieldGroup from '../legacyJS/js/components/FieldGroup';
 import Dialog from '../legacyJS/js/components/Dialog';
@@ -27,6 +29,7 @@ const kintoneUIComponent = {
   IconButton,
   Text,
   Dropdown,
+  DateTime,
   NotifyPopup,
   MultipleChoice,
   RadioButton,
@@ -41,11 +44,11 @@ const kintoneUIComponent = {
   Tabs,
   ColorPicker
 };
-window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
 export {
   Alert,
   Label,
+  DateTime,
   Button,
   IconButton,
   Text,

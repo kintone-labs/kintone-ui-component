@@ -1,7 +1,8 @@
 .date-time-container {
+  position: relative;
   display: inline-flex;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo,
-    sans-serif;
+  /* font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo,
+    sans-serif; */
 }
 
 .date-time-container .text-input {
@@ -16,6 +17,11 @@
   border: 1px solid #e3e7e8;
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
 }
+
+.date-time-container .text-input.time {
+  width: 80px;
+}
+
 .date-time-container .text-input:focus {
   border-color: #3498db;
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
@@ -26,6 +32,7 @@
 
 .date-time-container .date-picker-container, .time-picker-container {
   position: absolute;
+  top: 46px;
   width: 336px;
   background: #fff;
   padding: 32px 32px 24px;
@@ -33,6 +40,7 @@
   font-size: 13px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
 }
 
 .time-picker-container {
@@ -41,6 +49,7 @@
   flex-flow: row wrap;
   overflow-y: scroll;
   height: 180px;
+  top: 46px;
 }
 
 .date-time-container .month-year-container,
@@ -49,6 +58,23 @@
   line-height: 16px;
   height: 32px;
   padding: 0;
+  outline: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.month-year-container .label {
+  outline: initial;
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
 }
 
 .date-time-container .month-year-container {
@@ -73,6 +99,7 @@
   line-height: 20px;
   font-family: Arial;
   cursor: pointer;
+
 }
 
 .date-time-container .month-year-container .prev {
@@ -125,6 +152,7 @@
   border: 1px solid #fff;
   color: #333;
   font-size: 10px;
+  line-height: 15px;
 }
 
 .date-time-container .days-container .day {
@@ -147,8 +175,10 @@
   background-color: #E54D41;
   color: #FFFFFF;
   margin: 8px 0;
-  padding: 4px 15px;
+  padding: 0 15px;
   font-size: 14px;
+  z-index: 1;
+  position: absolute;
 }
 
 .date-container {
@@ -162,20 +192,23 @@
 .kuc-time-list-item {
   width: 100%;
   text-align: left;
-  padding: 10px 16px 10px 25px;
+  padding: 8px 16px 8px 25px;
   cursor: pointer;
   box-sizing: border-box;
   background-color: transparent;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
+  display: block;
+  line-height: 14px;
+  -webkit-user-select: none;
 }
 
 .kuc-time-list-item:hover {
   background-color: #E2F2FE
 }
 
-button.day {
+span.day {
   outline: none;
 }
 
