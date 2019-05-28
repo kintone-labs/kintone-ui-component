@@ -13,9 +13,10 @@ type DateTimeConstructorParameters = {
 	dateFormat?: string
 	mode?: string
 	timeFormat?: string
+	isDisabled?: boolean
 }
 
-const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:DateTimeConstructorParameters) => {
+const DateTime = ({date, isDisabled = false, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="MM/dd/YYYY", mode="date", timeFormat="HH:mm"}:DateTimeConstructorParameters) => {
 	const [pickerDisplay, setPickerDisplay] = useState("none")
 	const [showPickerError, setShowPickerError] = useState(true)
 	const [dateError, setDateError] = useState("")
@@ -60,6 +61,7 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="
 						<input
 							type="text"
 							className="text-input"
+							disabled={isDisabled}
 							onFocus={() => {
 								setPickerDisplay("block")
 								setShowPickerError(false)
@@ -113,30 +115,33 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="
 							<span>{dateError}</span>
 						</div>
 					}
-					<Calendar 
-						pickerDisplay={pickerDisplay} 
-						date={date} 
-						locale={localeObj} 
-						onDateClick={
-							(calendarDate: Date) => {
-								setDateError("")
-								if (calendarDate) {
-									let tempDate = new Date()
-									if (date) {
-										tempDate = new Date(date)
+					{
+						!isDisabled &&
+						<Calendar 
+							pickerDisplay={pickerDisplay} 
+							date={date} 
+							locale={localeObj} 
+							onDateClick={
+								(calendarDate: Date) => {
+									setDateError("")
+									if (calendarDate) {
+										let tempDate = new Date()
+										if (date) {
+											tempDate = new Date(date)
+										}
+										tempDate.setFullYear(calendarDate.getFullYear(), calendarDate.getMonth(), calendarDate.getDate())
+										onChange(tempDate)
 									}
-									tempDate.setFullYear(calendarDate.getFullYear(), calendarDate.getMonth(), calendarDate.getDate())
-									onChange(tempDate)
+									else {
+										onChange(null)
+										setInputValue("")
+									}
+									setPickerDisplay("none")
+									setShowPickerError(true)
 								}
-								else {
-									onChange(null)
-									setInputValue("")
-								}
-								setPickerDisplay("none")
-								setShowPickerError(true)
 							}
-						}
-					/>
+						/>
+					}
 				</div>
 				
 			}
@@ -145,6 +150,7 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="
 				<div className="time-container">
 					<input
 						type="text"
+						disabled={isDisabled}
 						key={`${format(date, timeFormat)}-${timeError}`}
 						className="text-input"
 						onFocus={() => {
@@ -195,22 +201,25 @@ const DateTime = ({date, onChange=(date: Date)=> {} ,locale = 'ja', dateFormat="
 							<span>{timeError}</span>
 						</div>
 					}
-					<TimePicker 
-						pickerDisplay={timePickerDisplay} 
-						locale={localeObj} 
-						onTimeClick={
-							(timePickerDate: Date) => {
-								setTimeError("")
-								let tempDate = new Date()
-								if (date) tempDate = new Date(date)
-								tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes())
-								setTimeValue(format(date, timeFormat))
-								onChange(tempDate)
-								setTimePickerDisplay("none")
-								setShowTimePickerError(true)
+					{
+						!isDisabled && 
+						<TimePicker 
+							pickerDisplay={timePickerDisplay} 
+							locale={localeObj} 
+							onTimeClick={
+								(timePickerDate: Date) => {
+									setTimeError("")
+									let tempDate = new Date()
+									if (date) tempDate = new Date(date)
+									tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes())
+									setTimeValue(format(date, timeFormat))
+									onChange(tempDate)
+									setTimePickerDisplay("none")
+									setShowTimePickerError(true)
+								}
 							}
-						}
-					/>
+						/>
+					}
 				</div>	
 			}
 		</div>
