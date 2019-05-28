@@ -32,6 +32,10 @@ class Tabs extends Control {
             this._props = {...this._props, ...params}
         }
 
+        if (this._validator()) {
+            throw new Error(this._validator())
+        }
+
         this.element = document.createElement('div')
         this.element.className = 'kuc-tabs-tabs'
         
@@ -40,6 +44,18 @@ class Tabs extends Control {
         this._renderTabContent()
 
         this.rerender()
+    }
+
+    private _validator(): string | null {
+        let err = null
+        if (this._props.items) {
+            this._props.items.forEach((item: Tab, index: number) => {
+                if (!item.tabName) {
+                    err = `Missing tab name on tab item[${index}]`
+                }
+            })
+        }
+        return err
     }
 
     private _renderTabNames() {
