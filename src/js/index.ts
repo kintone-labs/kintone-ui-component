@@ -4,7 +4,7 @@ import './polyfill'
 import Alert from '../legacyJS/js/components/Alert';
 import Label from '../legacyJS/js/components/Label';
 import Button from '../legacyJS/js/components/Button';
-import IconButton from '../legacyJS/js/components/IconButton';
+import IconButton from './IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
 import DateTime from '../js/DateTime';
 import NotifyPopup from '../legacyJS/js/components/NotifyPopup';
