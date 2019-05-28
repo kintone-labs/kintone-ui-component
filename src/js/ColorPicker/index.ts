@@ -2,6 +2,7 @@ import Control, {ControlProps} from "../Control";
 import ColorPickerStyle from "./ColorPickerStyle";
 import {invertColor, isHexString} from './components/utils'
 import Picker, {PickerProps} from './components/Picker'
+import Message from '../../constant/Message'
 
 type ColorPickerProps = ControlProps & {
     color: string
@@ -102,6 +103,9 @@ class ColorPicker extends Control {
         if (isHexString(hexString)) {
             this._props.color = hexString
             this.rerender(['color', 'redraw'])
+        }
+        else {
+            throw new Error(Message.colorPicker.INVALID_COLOR)
         }
     }
 
