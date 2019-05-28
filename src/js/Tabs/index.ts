@@ -153,6 +153,9 @@ class Tabs extends Control {
 
     setValue(value: number):void {
         this._props.value = value
+        if (this._validator()) {
+            throw new Error(this._validator())
+        }
         this.rerender(['value'])
     }
 
@@ -162,6 +165,9 @@ class Tabs extends Control {
 
     addItem(item: Tab) {
         this._props.items.push(item)
+        if (this._validator()) {
+            throw new Error(this._validator())
+        }
         this.rerender(['addItems'])
     }
 
