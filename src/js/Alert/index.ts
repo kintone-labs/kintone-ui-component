@@ -1,22 +1,22 @@
 import '../../css/Alert.css'
-import Control from '../Control';
+import Control, {ControlProps} from '../Control';
+
+type AlertProps = ControlProps & {
+    text: string
+    type: string
+}
 
 class Alert extends Control {
-    private text: string
-    private type: string
+    _props: AlertProps = {
+        text: '',
+        type: 'error'
+    }
 
-    constructor({
-        text = '',
-        type = 'error',
-        isDisabled = false,
-        isVisible = true
-    }) {
+    constructor(params:AlertProps) {
         super()
-        this.text = text
-        this.type = type
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
-
+        if(params) {
+            this._props = {...this._props, ...params}
+        }
         this.element = document.createElement('div')
         this.element.className = this._getClassName()
         this.rerender()
@@ -24,25 +24,25 @@ class Alert extends Control {
 
     rerender(changedAttr?: Array<string>){
         super.rerender()
-        this.element.innerHTML = this.text
+        this.element.innerHTML = this._props.text
     }
 
     private _getClassName(): string {
         const className = [
             'kuc-alert',
-            this.type === 'success' ? 'bg-success' : 'bg-danger'
+            this._props.type === 'success' ? 'bg-success' : 'bg-danger'
         ];
     
         return className.join(' ');
     }
 
     setText(text: string):void {
-        this.text = text
+        this._props.text = text
         this.rerender(['text'])
     }
 
     setType(type: string):void {
-        this.type = type
+        this._props.type = type
         this.rerender(['type'])
     }
 }

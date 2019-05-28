@@ -11,9 +11,10 @@ const jsUMDConfig = {
     output: {
         path: __dirname + '/dist',
         filename: libraryName + '.min.js',
-        library: libraryName,
+        library: 'kintoneUIComponent',
         libraryTarget: 'umd',
-        umdNamedDefine: true
+        umdNamedDefine: true,
+        globalObject: `(typeof self !== 'undefined' ? self : this)`
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -1,6 +1,6 @@
 import en from './localizationData/en'
-import cn from './localizationData/cn'
-import jp from './localizationData/jp'
+import zh from './localizationData/zh'
+import ja from './localizationData/ja'
 
 const seperators = ["/", "-", " ", ":"]
 
@@ -82,15 +82,15 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
 
 const Locale: any = {
     en: en,
-    cn: cn,
-    jp: jp,
+    zh: zh,
+    ja: ja,
     format: format
 }
 
 export default Locale
 export {
     en,
-    cn,
-    jp,
+    zh,
+    ja,
     format
 }

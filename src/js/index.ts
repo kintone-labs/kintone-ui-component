@@ -1,11 +1,13 @@
 import '@babel/polyfill';
 import '../legacyJS/style';
+import './polyfill'
 import Alert from '../legacyJS/js/components/Alert';
 import Label from '../legacyJS/js/components/Label';
 import Button from '../legacyJS/js/components/Button';
 import IconButton from './IconButton';
 import Dropdown from '../legacyJS/js/components/Dropdown';
 import NotifyPopup from './NotifyPopup';
+import DateTime from './DateTime';
 import Text from '../legacyJS/js/components/Text';
 import MultipleChoice from '../legacyJS/js/components/MultipleChoice';
 import RadioButton from '../legacyJS/js/components/RadioButton';
@@ -27,6 +29,7 @@ const kintoneUIComponent = {
   IconButton,
   Text,
   Dropdown,
+  DateTime,
   NotifyPopup,
   MultipleChoice,
   RadioButton,
@@ -41,11 +44,11 @@ const kintoneUIComponent = {
   Tabs,
   ColorPicker
 };
-window['kintoneUIComponent'] = kintoneUIComponent;
 export default kintoneUIComponent;
 export {
   Alert,
   Label,
+  DateTime,
   Button,
   IconButton,
   Text,

@@ -18,6 +18,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
+    "allowJs": true,
     "declaration": true,
     "declarationDir": "dist/esm"
   },

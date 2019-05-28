@@ -1,5 +1,5 @@
 require('../css/base.css')
-import DatePicker, {Calendar} from './DatePicker'
+import DateTime, {Calendar} from './DateTime'
 import Button from './Button'
 import Label from './Label'
 import Text from './Text'
@@ -20,9 +20,10 @@ import MultipleChoice from './MultipleChoice'
 import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
 import Dialog from './Dialog'
+import Table from '../legacyJS/js/components-react/Table'
 
 export {
-    DatePicker,
+    DateTime,
     Calendar,
     Button,
     Label,
@@ -43,5 +44,6 @@ export {
     MultipleChoice,
     AbstractSingleSelection,
     AbstractMultiSelection,
-    Dialog
+    Dialog,
+    Table
 }
