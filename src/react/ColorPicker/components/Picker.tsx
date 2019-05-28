@@ -4,7 +4,7 @@ import HueSpectrum from "./HueSpectrum";
 import SaturationSpectrum from "./SaturationSpectrum";
 import { RGBInput, HSVInput } from "./TextInput";
 import { hexToRgb, rgbToHex, rgbToHsv } from "./utils";
-import Button from "../../Button/index";
+import Button from "../../Button";
 
 type RGB = {
     r: number

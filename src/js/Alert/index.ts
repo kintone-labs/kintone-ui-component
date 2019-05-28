@@ -1,48 +1,61 @@
+import Control, { ControlProps } from "../Control"
 import '../../css/Alert.css'
-import Control from '../Control';
+
+type AlertProps = ControlProps & {
+    text: string
+    type?: string
+}
 
 class Alert extends Control {
-    private text: string
-    private type: string
-
-    constructor({
-        text = '',
-        type = 'error',
-        isDisabled = false,
-        isVisible = true
-    }) {
-        super()
-        this.text = text
-        this.type = type
-        this.isDisabled = isDisabled
-        this.isVisible = isVisible
-
-        this.element = document.createElement('div')
-        this.element.className = this._getClassName()
-        this.rerender()
+    protected _props: AlertProps = {
+        ...this._props, ...{
+            text: '',
+            type: 'error'
+        }
     }
 
-    rerender(changedAttr?: Array<string>){
+    constructor(params: AlertProps) {
+        super()
+        if (params) {
+            this._props = { ...this._props, ...params }
+        }
+      
+        this.element = document.createElement('div')
+        this.element.className = this._getClassName()
+        this.rerender(['text', 'type'])
+    }
+
+    rerender(changedAttr?: Array<string>) {
         super.rerender()
-        this.element.innerHTML = this.text
+
+        if (!changedAttr) return;
+
+        if (changedAttr.indexOf('text') !== -1) {
+            this.element.innerHTML = this._props.text
+        }
+
+        if (changedAttr.indexOf('type') !== -1) {
+            this.element.className = this._getClassName()
+        }
     }
 
     private _getClassName(): string {
         const className = [
             'kuc-alert',
-            this.type === 'success' ? 'bg-success' : 'bg-danger'
+            this._props.type === 'success' ? 'bg-success' : 'bg-danger'
         ];
-    
+
         return className.join(' ');
     }
 
     setText(text: string):void {
-        this.text = text
+        this._props.text = text
         this.rerender(['text'])
     }
 
+
     setType(type: string):void {
-        this.type = type
+        this._props.type = type
         this.rerender(['type'])
     }
 }

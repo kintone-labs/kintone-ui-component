@@ -45,6 +45,9 @@ const isToday = (day: Date) => day.toDateString() === (new Date()).toDateString(
 const isSameDate = (day1: Date, day2: Date) => day1.toDateString() === day2.toDateString();
 
 const parseStringToDate = (dateString: string) => {
+    if (isNaN(dateString.split("/")[1] as any) || isNaN(dateString.split("/")[0] as any) || isNaN(dateString.split("/")[2] as any)) {
+        return null
+    }
     let dateData = {
         date: parseInt(dateString.split("/")[1],10),
         month: parseInt(dateString.split("/")[0],10) - 1,
@@ -57,6 +60,9 @@ const parseStringToTime = (timeString: string) => {
     let timeData = {
         hour: parseInt(timeString.split(":")[0],10),
         minute: parseInt(timeString.split(":")[1],10)
+    }
+    if (timeData.hour < 0 || timeData.hour > 24 || timeData.minute < 0 || timeData.minute > 60) {
+        return null
     }
     let result = new Date()
     result.setHours(timeData.hour)

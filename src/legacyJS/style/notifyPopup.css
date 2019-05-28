@@ -1,8 +1,8 @@
 .kuc-notify {
     user-select: none;
-    top: 0;
+    top: 30px;
     left: 50%;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%);
     min-height: 70px;
     max-height: 150px;
     min-width: 170px;
@@ -10,11 +10,6 @@
     position: fixed;
     overflow: auto;
     z-index: 2000;
-    transition: all 0.25s;
-}
-.kuc-notify.show {
-    top: 30px;
-    transform: translate(-50%, 0%);
 }
 .kuc-notify.bg-danger {
     background: #e74c3c;
@@ -40,4 +35,10 @@
     position: absolute;
     cursor:pointer;
     width:30px;
+}
+.kuc-notify .kuc-icon-btn:disabled,
+.kuc-notify .kuc-icon-btn:disabled:hover {
+    color: rgba(255, 255, 255, 0.5);
+    border: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }

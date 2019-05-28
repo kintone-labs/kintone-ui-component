@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../css/base.css'
 import '../../css/IconButton.css'
 
 type IconButtonProps = {
@@ -15,7 +16,7 @@ const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onCli
     const _getClassName = () => {
         const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
         const colorResult = colors.indexOf(color) === -1 ? 'gray' : color;
-        const shapeResult = shape === 'normal' ? 'normal' : '';
+        const shapeResult = shape === 'normal' ? 'normal' : 'circle';
         const className = [
             'kuc-icon-btn',
             _getClassSize(),

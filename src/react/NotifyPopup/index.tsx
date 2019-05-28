@@ -11,10 +11,10 @@ type NotifyPopupProps = {
     onClose?: () => void
 }
 
-const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
+const NotifyPopup = ({ text, type, isDisabled, isVisible, onClick, onClose }: NotifyPopupProps) => {
     const _handleClosePopup = () => {
         if (isDisabled) {
-          return false;
+            return false;
         }
         onClose && onClose();
         return true;
@@ -44,12 +44,11 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
     const _getClassName = () => {
         const className = [
             'kuc-notify',
-            isVisible === false ? '' : 'show',
             _getStyleByType().bgClass
         ];
         return className.join(' ').trim();
     };
-    
+
     const _onClick = () => {
         if (isDisabled) {
             return false;
@@ -62,21 +61,12 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
         return null;
     }
 
-    return(
+    return (
         <div>
             <div className={_getClassName()}>
-                <div
-                    className="kuc-notify-title"
-                    onClick={_onClick}
-                >
-                    {text}
-                </div>
+                <div className="kuc-notify-title" onClick={_onClick} >{text}</div>
                 <div className="kuc-close-button">
-                <IconButton
-                    onClick={_handleClosePopup}
-                    type="close"
-                    color={_getStyleByType().color}
-                />
+                    <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
                 </div>
             </div>
         </div>
