@@ -7,7 +7,7 @@ import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 
 type DateTimeConstructorParameters = {
-  date: Date;
+  value: Date;
   onChange?: Function;
   locale?: string;
   dateFormat?: string;
@@ -17,7 +17,7 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  date,
+  value,
   isDisabled = false,
   onChange = (newDate: Date) => {},
   locale = 'ja',
@@ -63,7 +63,7 @@ const DateTime = ({
       {
         (mode === 'datetime' || mode === 'date') &&
         <div className="date-container">
-          <div className="text-input-container" key={`${format(date, dateFormat)}-${dateError}`}>
+          <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
             <input
               type="text"
               className="text-input"
@@ -73,12 +73,12 @@ const DateTime = ({
                 setShowPickerError(false);
                 setTimePickerDisplay('none');
               }}
-              defaultValue={date && !dateError ? format(date, dateFormat) : inputValue}
+              defaultValue={value && !dateError ? format(value, dateFormat) : inputValue}
               onBlur={(e) => {
                 if (e.relatedTarget == null ||
-                (!e.relatedTarget.classList.contains('calendar-button') &&
-                !e.relatedTarget.classList.contains('calendar-button-control') &&
-                !e.relatedTarget.classList.contains('date-picker-container'))) {
+                (!(e.relatedTarget as HTMLElement).classList.contains('calendar-button') &&
+                !(e.relatedTarget as HTMLElement).classList.contains('calendar-button-control') &&
+                !(e.relatedTarget as HTMLElement).classList.contains('date-picker-container'))) {
                   setDateError('');
                   const tempDate = parseStringToDate(e.target.value);
                   if (!e.target.value) {
@@ -86,7 +86,7 @@ const DateTime = ({
                     setPickerDisplay('none');
                     setShowPickerError(true);
                   } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-                    const returnDate = new Date(date);
+                    const returnDate = new Date(value);
                     returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
                     onChange(returnDate);
                     setPickerDisplay('none');
@@ -118,15 +118,15 @@ const DateTime = ({
             !isDisabled &&
             <Calendar
               pickerDisplay={pickerDisplay}
-              date={date}
+              date={value}
               locale={localeObj}
               onDateClick={
                 (calendarDate: Date) => {
                   setDateError('');
                   if (calendarDate) {
                     let tempDate = new Date();
-                    if (date) {
-                      tempDate = new Date(date);
+                    if (value) {
+                      tempDate = new Date(value);
                     }
                     tempDate.setFullYear(calendarDate.getFullYear(), calendarDate.getMonth(), calendarDate.getDate());
                     onChange(tempDate);
@@ -149,22 +149,22 @@ const DateTime = ({
           <input
             type="text"
             disabled={isDisabled}
-            key={`${format(date, timeFormat)}-${timeError}`}
+            key={`${format(value, timeFormat)}-${timeError}`}
             className="text-input"
             onFocus={() => {
               setTimePickerDisplay('flex');
               setPickerDisplay('none');
               setShowTimePickerError(false);
             }}
-            defaultValue={date && !timeError ? format(date, timeFormat) : timeValue}
+            defaultValue={value && !timeError ? format(value, timeFormat) : timeValue}
             onBlur={
               (e)=>{
-                if (e.relatedTarget === null || !e.relatedTarget.classList.contains('kuc-time-list-item')) {
+                if (e.relatedTarget === null || !(e.relatedTarget as HTMLElement).classList.contains('kuc-time-list-item')) {
                   setTimeError('');
                   const tempDate = parseStringToTime(e.target.value);
 
                   if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-                    const returnDate = new Date(date);
+                    const returnDate = new Date(value);
                     returnDate.setHours(tempDate.getHours(), tempDate.getMinutes(), tempDate.getSeconds());
                     onChange(returnDate);
                     setTimePickerDisplay('none');
@@ -206,9 +206,9 @@ const DateTime = ({
                 (timePickerDate: Date) => {
                   setTimeError('');
                   let tempDate = new Date();
-                  if (date) tempDate = new Date(date);
+                  if (value) tempDate = new Date(value);
                   tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
-                  setTimeValue(format(date, timeFormat));
+                  setTimeValue(format(value, timeFormat));
                   onChange(tempDate);
                   setTimePickerDisplay('none');
                   setShowTimePickerError(true);
