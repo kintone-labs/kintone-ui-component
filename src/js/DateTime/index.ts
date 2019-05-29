@@ -375,19 +375,26 @@ class DateTime extends Control {
   }
 
   private _onClickOutside = (e: FocusEvent) => {
-    if (
-      e.relatedTarget == null ||
-      (
-        !(e.relatedTarget as HTMLElement).classList.contains('calendar-button') &&
-        !(e.relatedTarget as HTMLElement).classList.contains('date-picker-container') &&
-        !(e.relatedTarget as HTMLElement).classList.contains('day') &&
-        e.relatedTarget !== this._dateTextInput
-      )
+    let relatedTarget = e.relatedTarget ||
+            e['explicitOriginalTarget'] ||
+            document.activeElement; // IE11
+
+    const calendar = this._calendar.getElement()
+    if(calendar.contains(relatedTarget as HTMLElement)) {
+      if(calendar['setActive']) {
+        calendar['setActive']()
+      }
+    }
+    if(relatedTarget === null ||
+      (relatedTarget !== calendar && 
+      !calendar.contains(relatedTarget as HTMLElement) &&
+      relatedTarget !== this._dateTextInput)
     ) {
       this._calendar.hide();
     }
+
     if (e.target === this._dateTextInput &&
-      (e.relatedTarget == null || !(e.relatedTarget as HTMLElement).classList.contains('day'))
+      (relatedTarget === null || !(relatedTarget as HTMLElement).classList.contains('day'))
     ) {
       this._checkDateInputError();
     }
