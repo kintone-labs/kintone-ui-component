@@ -108,14 +108,14 @@ class Calendar extends Control {
 
   _renderTodayButton() {
     const span = document.createElement('span');
-    span.className = 'today calendar-button';
+    span.className = 'today calendar-button-control';
     span.textContent = this._props.locale.today;
     this._todayButton = span;
   }
 
   _renderNoneButton() {
     const span = document.createElement('span');
-    span.className = 'none calendar-button';
+    span.className = 'none calendar-button-control';
     span.textContent = this._props.locale.none;
     this._noneButton = span;
   }
@@ -197,7 +197,6 @@ class Calendar extends Control {
     };
     this.element.appendChild(this._quickSelectionsContainer);
 
-    // TODO event handler
     this.element.onblur = (e) => {
       if (this._props.onClickOutside) {
         this._props.onClickOutside(e);
@@ -255,6 +254,10 @@ class Calendar extends Control {
       this._todayButton.textContent = this._props.locale.today;
       this._noneButton.textContent = this._props.locale.none;
     }
+  }
+
+  getElement() {
+    return this.element
   }
 }
 
