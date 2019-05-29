@@ -1,15 +1,15 @@
-import Control, {ControlProps} from "../../Control";
+import Control, {ControlProps} from '../../Control';
 
 type RGB = {
-    r: number
-    g: number
-    b: number
+  r: number;
+  g: number;
+  b: number;
 }
 
 type HueSpectrumProps = ControlProps & {
-    width: number
-    height: number
-    onSelect: (rgbObj: RGB) => void
+  width: number;
+  height: number;
+  onSelect: (rgbObj: RGB) => void;
 }
 
 class HueSpectrum extends Control {
@@ -48,6 +48,7 @@ class HueSpectrum extends Control {
 
         this.initLayout();
     }
+  
 
     initLayout() {
         if (!this.hasInitLayout && this.colorCanvas) {
@@ -69,58 +70,52 @@ class HueSpectrum extends Control {
             }
         }
     }
+  
 
-    rerender(changedAttr?: Array<string>) {
-        super.rerender()
-        if (!changedAttr) return;
-        if (changedAttr.indexOf('isMouseDown') !== -1) {
-            // this.fillSatSpectrumCanvas();
-        }
+  initContainerEl() {
+    if (this.element) {
+      this.containerEl = this.element.getBoundingClientRect();
     }
+  }
 
-    initContainerEl() {
-        if (this.element) {
-            this.containerEl = this.element.getBoundingClientRect()
-        }
-    }
+  handleMouseLeave() {
+    this.isMouseDown = false;
+    this.rerender(['isMouseDown']);
+  }
 
-    handleMouseLeave() {
-        this.isMouseDown = false
-        this.rerender(['isMouseDown'])
+  handleMouseMove(e: MouseEvent) {
+    if (this.isMouseDown) {
+      this.triggerSelect(e.clientY);
     }
+  }
 
-    handleMouseMove(e: MouseEvent) {
-        if (this.isMouseDown) {
-            this.triggerSelect(e.clientY);
-        }
-    }
+  handleMouseDown() {
+    this.isMouseDown = true;
+    this.rerender(['isMouseDown']);
+  }
 
-    handleMouseDown() {
-        this.isMouseDown = true
-        this.rerender(['isMouseDown'])
-    }
+  handleMouseUp(e: MouseEvent) {
+    this.triggerSelect(e.clientY);
+    this.isMouseDown = false;
+    this.rerender(['isMouseDown']);
+  }
 
-    handleMouseUp(e: MouseEvent) {
-        this.triggerSelect(e.clientY);
-        this.isMouseDown = false
-        this.rerender(['isMouseDown'])
-    }
-
-    triggerSelect(clientY: number) {
-        if (!this.containerEl) {
-            this.initContainerEl();
-        }
-        let x = this._props.width / 2;
-        let y = clientY - this.containerEl.top;
-        if (this.colorCanvas && this.colorCanvas) {
-            const ctx = this.colorCanvas.getContext("2d");
-            if (ctx) {
-                const imageData = ctx.getImageData(x, y, 1, 1).data;
-                this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
-            }
-        }
-    }
+  triggerSelect(clientY: number) {
+      if (!this.containerEl) {
+          this.initContainerEl();
+      }
+      let x = this._props.width / 2;
+      let y = clientY - this.containerEl.top;
+      if (this.colorCanvas && this.colorCanvas) {
+          const ctx = this.colorCanvas.getContext("2d");
+          if (ctx) {
+              const imageData = ctx.getImageData(x, y, 1, 1).data;
+              this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
+          }
+      }
+  }
+  
 }
 
-export {HueSpectrumProps, RGB}
-export default HueSpectrum
+export {HueSpectrumProps, RGB};
+export default HueSpectrum;

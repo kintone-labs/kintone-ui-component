@@ -49,17 +49,22 @@ export default kintoneUIComponent;
 export {
   Alert,
   Label,
-  DateTime,
   Button,
   IconButton,
   Text,
   Dropdown,
+  DateTime,
   NotifyPopup,
   MultipleChoice,
   RadioButton,
   CheckBox,
   Spinner,
   Table,
+  FieldGroup,
+  Dialog,
+  TextArea,
+  Attachment,
+  createTableCell,
   Tabs,
   ColorPicker
 };

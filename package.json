@@ -8,14 +8,21 @@
 		"type": "git",
 		"url": "https://github.com/kintone/kintone-ui-component"
 	},
-	"sideEffects": ["dist/esm/css/*.css", "src/legacyJS/style/*.css", "src/legacyJS/style/index.js", "src/css/*.css", "src/js/polyfill.ts"],
+	"sideEffects": [
+		"dist/esm/css/*.css",
+		"src/legacyJS/style/*.css",
+		"src/legacyJS/style/index.js",
+		"src/css/*.css",
+		"src/js/polyfill.ts"
+	],
 	"main": "./dist/esm/react/index.js",
 	"module": "./dist/esm/react/index.js",
 	"unpkg": "./dist/kintone-ui-component.min.js",
 	"types": "./dist/esm/react/index.d.ts",
 	"scripts": {
 		"build": "./node_modules/.bin/webpack --mode=production && node scripts/builder.js",
-		"build:esm": "node scripts/builder.js"
+		"build:esm": "node scripts/builder.js",
+		"transpile": "tsc"
 	},
 	"dependencies": {
 		"react": "16.8.6",
@@ -32,7 +39,7 @@
 		"@babel/preset-env": "7.4.5",
 		"@babel/preset-react": "7.0.0",
 		"@babel/preset-typescript": "7.3.3",
-		"@cybozu/eslint-config": "^3.0.2",
+		"@cybozu/eslint-config": "4.0.1",
 		"@types/node": "11.13.0",
 		"@types/react": "16.8.12",
 		"@types/react-dom": "16.8.3",
@@ -43,7 +50,7 @@
 		"babel-plugin-transform-react-remove-prop-types": "0.4.20",
 		"babel-plugin-transform-runtime": "6.23.0",
 		"css-loader": "0.28.8",
-		"eslint": "^5.9.0",
+		"eslint": "5.9.0",
 		"mini-css-extract-plugin": "0.6.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
 		"prop-types": "15.6.1",

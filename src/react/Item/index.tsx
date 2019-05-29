@@ -1,22 +1,22 @@
 import React from 'react';
-import '../../css/Item.css'
+import '../../css/Item.css';
 
 type item = {
-  value: string,
-  label: string,
-  isDisabled: boolean
+  value: string;
+  label: string;
+  isDisabled: boolean;
 }
 
 type ItemProps = {
-  item: item,
-  isVisible?: boolean,
-  isDisabled: boolean,
-  selected: boolean,
-  onClick?: (item: item) => void,
-  onChange?: (item: item) => void,
-  name?: string,
-  type?: string,
-  className?: string
+  item: item;
+  isVisible?: boolean;
+  isDisabled: boolean;
+  selected: boolean;
+  onClick?: (item: item) => void;
+  onChange?: (item: item) => void;
+  name?: string;
+  type?: string;
+  className?: string;
 };
 
 const Item = (props: ItemProps) => {
