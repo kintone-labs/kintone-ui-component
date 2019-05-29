@@ -11,7 +11,7 @@ type DateTimeConstructorParameters = {
   onChange?: Function;
   locale?: string;
   dateFormat?: string;
-  mode?: string;
+  type?: string;
   timeFormat?: string;
   isDisabled?: boolean;
 }
@@ -22,7 +22,7 @@ const DateTime = ({
   onChange = (newDate: Date) => {},
   locale = 'ja',
   dateFormat = 'MM/dd/YYYY',
-  mode = 'date',
+  type = 'date',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(true);
@@ -61,7 +61,7 @@ const DateTime = ({
   return (
     <div className="date-time-container" ref={wrapperRef}>
       {
-        (mode === 'datetime' || mode === 'date') &&
+        (type === 'datetime' || type === 'date') &&
         <div className="date-container">
           <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
             <input
@@ -144,7 +144,7 @@ const DateTime = ({
 
       }
       {
-        (mode === 'datetime' || mode === 'time') &&
+        (type === 'datetime' || type === 'time') &&
         <div className="time-container">
           <input
             type="text"
