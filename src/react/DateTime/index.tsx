@@ -22,7 +22,7 @@ const DateTime = ({
   onChange = (newDate: Date) => {},
   locale = 'ja',
   dateFormat = 'MM/dd/YYYY',
-  type = 'date',
+  type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(true);
@@ -56,6 +56,10 @@ const DateTime = ({
     localeObj = en;
   } else if (locale === 'zh') {
     localeObj = zh;
+  }
+
+  if (type !== 'datetime' && type !== 'date' && type !== 'time') {
+    type = 'datetime'
   }
 
   return (
