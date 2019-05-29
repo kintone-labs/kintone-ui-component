@@ -12,6 +12,9 @@ const Message = {
     },
     tabs: {
         MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]'
+    },
+    colorPicker: {
+        INVALID_COLOR: 'Invalid color string'
     }
 };
   
