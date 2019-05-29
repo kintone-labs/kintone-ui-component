@@ -33,6 +33,7 @@ nav:
   - RadioButton: Reference/RadioButton.md
   - Spinner: Reference/Spinner.md
   - Table: Reference/Table.md
+  - Tabs: Reference/Tabs.md
   - Text: Reference/Text.md
   - TextArea: Reference/TextArea.md
 
