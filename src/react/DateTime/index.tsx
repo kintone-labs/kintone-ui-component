@@ -157,7 +157,7 @@ const DateTime = ({
               type="text"
               disabled={isDisabled}
               key={`${format(value, timeFormat)}-${timeError}`}
-              className="text-input"
+              className="text-input time"
               onFocus={() => {
                 setTimePickerDisplay('flex');
                 setPickerDisplay('none');
