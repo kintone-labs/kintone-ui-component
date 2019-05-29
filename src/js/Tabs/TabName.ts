@@ -48,19 +48,20 @@ class TabName extends Control {
     super.rerender()
     if (!changedAttr) return
     if (changedAttr.indexOf('isActive') !== -1) {
-      let className = "kuc-tabs-container";
       if (this._props.isActive) {
-        className += " kuc-tabs-container-selection";
+        this.element.classList.add('kuc-tabs-container-selection')
       }
-      this.element.className = className
+      else {
+        this.element.classList.remove('kuc-tabs-container-selection')
+      }
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
-      let className = "kuc-tabs-container";
       if (this._props.isDisabled) {
-        className += " kuc-tabs-disabled"
-        this.element.className = className
+        this.element.classList.add('kuc-tabs-disabled')
       }
-      this.element.className = className
+      else {
+        this.element.classList.remove('kuc-tabs-disabled')
+      }
     }
   }
 
