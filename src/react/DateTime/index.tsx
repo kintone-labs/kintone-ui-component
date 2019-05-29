@@ -17,7 +17,7 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  value,
+  value =  new Date(),
   isDisabled = false,
   onChange = (newDate: Date) => {},
   locale = 'ja',

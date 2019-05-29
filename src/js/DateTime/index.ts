@@ -72,7 +72,7 @@ class DateTime extends Control {
     super.rerender();
     if (changedAttr.indexOf('dateTextInput') !== -1) {
       if (this._props.value) {
-        this._dateTextInput.value = format(this._props.value, 'MM/dd/YYYY', {
+        this._dateTextInput.value = format(this._props.value, this._props.dateFormat, {
           locale: this._props.locale
         });
       } else {
