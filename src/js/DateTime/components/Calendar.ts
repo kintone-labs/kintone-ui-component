@@ -197,7 +197,6 @@ class Calendar extends Control {
     };
     this.element.appendChild(this._quickSelectionsContainer);
 
-    // TODO event handler
     this.element.onblur = (e) => {
       if (this._props.onClickOutside) {
         this._props.onClickOutside(e);
