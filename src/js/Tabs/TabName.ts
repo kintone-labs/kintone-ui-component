@@ -39,22 +39,26 @@ class TabName extends Control {
       this.element = document.createElement('li')
       this.element.className = className
       this.element.append(this._props.tabName)
-      this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
     }  
+    this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
     this.rerender()
   }
 
   rerender(changedAttr?: Array<string>){
     super.rerender()
-    if (this._props.isDisabled) {
-      let className = "kuc-tabs-container kuc-tabs-disabled";
-      this.element.className = className
-    }
     if (!changedAttr) return
     if (changedAttr.indexOf('isActive') !== -1) {
       let className = "kuc-tabs-container";
       if (this._props.isActive) {
-          className += " kuc-tabs-container-selection";
+        className += " kuc-tabs-container-selection";
+      }
+      this.element.className = className
+    }
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      let className = "kuc-tabs-container";
+      if (this._props.isDisabled) {
+        className += " kuc-tabs-disabled"
+        this.element.className = className
       }
       this.element.className = className
     }

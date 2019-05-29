@@ -50,16 +50,16 @@ class Tabs extends Control {
   private _validator(): string | null {
     let err = null
     if (this._props.items) {
-        this._props.items.forEach((item: Tab, index: number) => {
-            if (!item.tabName) {
-                err = Message.tabs.MISSING_TAB_NAME.replace('{{index}}', index.toString())
-            }
-        })
+      this._props.items.forEach((item: Tab, index: number) => {
+        if (!item.tabName) {
+          err = Message.tabs.MISSING_TAB_NAME.replace('{{index}}', index.toString())
+        }
+      })
     }
     if (this._props.value) {
-        if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
-            err = Message.common.INVALID_ARGUMENT
-        }
+      if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
+        err = Message.common.INVALID_ARGUMENT
+      }
     }
     return err
   }
@@ -118,7 +118,7 @@ class Tabs extends Control {
         tabName: this._props.items[this._props.items.length - 1].tabName,
         tabIndex: this._props.items.length - 1,
         onClickTabItem: (tabIndex: number) => {
-            this.setValue(tabIndex)
+          this.setValue(tabIndex)
         },
         isActive: this._props.items.length - 1 === this._props.value
       })
@@ -152,7 +152,7 @@ class Tabs extends Control {
   }
 
   setValue(value: number):void {
-    if (!value) {
+    if (!value && value !== 0) {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
     this._props.value = value
