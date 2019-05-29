@@ -6,6 +6,8 @@ import {invertColor, isHexString} from './components/utils';
 type ColorPickerProps = {
   color: string;
   onChange: (hexString: string) => void;
+  isDisabled?: boolean;
+  isVisible?: boolean
 }
 
 function ColorPicker(props: ColorPickerProps) {
@@ -13,6 +15,12 @@ function ColorPicker(props: ColorPickerProps) {
   const [hexString, setHexString] = useState(props.color || '#ff0000');
   const [pickerDisplay, setPickerDisplay] = useState(false);
   const [focus, setFocus] = useState(false);
+
+  let isVisible = true
+
+  if (props.isVisible === false) {
+    isVisible = props.isVisible
+  }
 
   const inputProps = {
     type: 'text',
@@ -26,8 +34,8 @@ function ColorPicker(props: ColorPickerProps) {
     if (isHexString(e.target.value)) {
       setHexString(e.target.value);
       /* if (props.onChange) {
-                props.onChange(e.target.value)
-            } */
+          props.onChange(e.target.value)
+      } */
     }
   }
 
@@ -86,14 +94,19 @@ function ColorPicker(props: ColorPickerProps) {
     zIndex: 2000
   };
 
-  return (
-    <div ref={wrapperRef}>
-      <div>
-        <input {...inputProps} key={hexString} />
+  if (isVisible) {
+    return (
+      <div ref={wrapperRef}>
+        <div>
+          <input {...inputProps} key={hexString} />
+        </div>
+        <Picker {...pickerProps} />
       </div>
-      <Picker {...pickerProps} />
-    </div>
-  );
+    );
+  }
+  else {
+    return <div></div>
+  }
 }
 
 export default ColorPicker;
