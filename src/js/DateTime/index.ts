@@ -64,6 +64,7 @@ class DateTime extends Control {
         this._renderDateTime();
         break;
     }
+    super.rerender()
     return this.element
   }
 
@@ -294,11 +295,17 @@ class DateTime extends Control {
       }
     };
     this._timeTextInput.onblur = (e) => {
-      if (e.relatedTarget &&
-        this._timePicker.getPickerElement().contains(e.relatedTarget as Node)
+      let relatedTarget = e.relatedTarget ||
+            e['explicitOriginalTarget'] ||
+            document.activeElement; // IE11
+
+      if (relatedTarget &&
+        this._timePicker.getElement().contains(relatedTarget as Node)
       ) {
+        e.preventDefault()
         return;
       }
+
       // set value
       const newTime = parseStringToTime(this._timeTextInput.value);
       this._time.setHours(newTime.getHours());
