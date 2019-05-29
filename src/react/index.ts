@@ -22,6 +22,9 @@ import AbstractMultiSelection from './utils/AbstractMultiSelection'
 import Dialog from './Dialog'
 import Table from '../legacyJS/js/components-react/Table'
 
+// remove when implement new component
+import '../css/Table.css'
+
 export {
     DateTime,
     Calendar,
