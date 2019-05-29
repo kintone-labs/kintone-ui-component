@@ -255,7 +255,7 @@ class TimePicker extends Control {
     }
   }
 
-  getPickerElement() {
+  getElement() {
     return this.element;
   }
 }
