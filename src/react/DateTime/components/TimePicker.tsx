@@ -208,10 +208,10 @@ const TimePicker = ({pickerDisplay='none', locale, onTimeClick}:TimePickerProps)
             {
                 timeList12H.map((timeObj, index) => {
                     return(
-                        <button 
+                        <span 
                             className="kuc-time-list-item" 
+                            tabIndex={0}
                             key={`time-${index}`}
-                            value={timeObj.value}
                             onClick = {(e)=>{
                                 let tempDate = new Date()
                                 let hour = parseInt(timeObj.value.split(":")[0],10)
@@ -223,7 +223,7 @@ const TimePicker = ({pickerDisplay='none', locale, onTimeClick}:TimePickerProps)
                         {
                             timeObj.label
                         }
-                        </button>
+                        </span>
                     )
                 })
             }
