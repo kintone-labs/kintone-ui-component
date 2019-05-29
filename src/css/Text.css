@@ -18,5 +18,6 @@
 .kuc-input-text:disabled {
     cursor: not-allowed;
     background-color: #E7E6E6;
+    color: #888888;
     box-shadow: none;
 }

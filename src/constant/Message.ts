@@ -16,6 +16,9 @@ const Message = {
     },
     datetime: {
         INVALID_LOCALE: `Invalid locale. This function accepts only the following locales: ${availableLocales}`
+    },
+    colorPicker: {
+        INVALID_COLOR: 'Invalid color string'
     }
 };
   
