@@ -27,7 +27,8 @@ function ColorPicker(props: ColorPickerProps) {
     defaultValue: hexString,
     onBlur: handleHexInputChange,
     onFocus: handleHexInputFocus,
-    style: getInputStyle()
+    style: getInputStyle(),
+    disabled: props.isDisabled || false
   };
 
   function handleHexInputChange(e: React.ChangeEvent<HTMLInputElement>) {

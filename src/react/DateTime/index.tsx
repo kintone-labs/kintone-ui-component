@@ -7,7 +7,7 @@ import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 
 type DateTimeConstructorParameters = {
-  value: Date;
+  value?: Date;
   onChange?: Function;
   locale?: string;
   dateFormat?: string;
