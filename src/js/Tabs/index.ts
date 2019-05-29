@@ -69,18 +69,18 @@ class Tabs extends Control {
     this.tabNamesElement.className = 'kuc-tabs-tab-list'
 
     this._props.items.forEach((item: Tab, index:number) => {
-        let tabComponent = new TabName({
-            tabName: item.tabName,
-            tabIndex: index,
-            onClickTabItem: (tabIndex: number) => {
-                this.setValue(tabIndex)
-            },
-            isActive: index === this._props.value,
-            isDisabled: item.isDisabled
-        })
+      let tabComponent = new TabName({
+        tabName: item.tabName,
+        tabIndex: index,
+        onClickTabItem: (tabIndex: number) => {
+          this.setValue(tabIndex)
+        },
+        isActive: index === this._props.value,
+        isDisabled: item.isDisabled
+      })
 
-        this.tabNames.push(tabComponent)
-        this.tabNamesElement.appendChild(tabComponent.render())
+      this.tabNames.push(tabComponent)
+      this.tabNamesElement.appendChild(tabComponent.render())
     })
     this.element.appendChild(this.tabNamesElement)
   }
@@ -100,15 +100,15 @@ class Tabs extends Control {
     if (!changedAttr) return;
     if (changedAttr.indexOf('value') !== -1) {
       this.tabNames.forEach((tabNames: TabName, index: number) => {
-          if (index === this._props.value) {
-              tabNames.select()
-          }
-          else {
-              tabNames.deselect()
-          }
+        if (index === this._props.value) {
+          tabNames.select()
+        }
+        else {
+          tabNames.deselect()
+        }
       })
       while (this.tabContentElement.firstChild) {
-          this.tabContentElement.removeChild(this.tabContentElement.firstChild);
+        this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
       this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
     }
@@ -128,22 +128,24 @@ class Tabs extends Control {
     }
 
     if (changedAttr.indexOf('removeItems') !== -1) {
-      this.tabNamesElement.innerHTML = ''
+      while (this.tabNamesElement.firstChild) {
+        this.tabNamesElement.removeChild(this.tabNamesElement.firstChild);
+      }
       this._props.items.forEach((item: Tab, index:number) => {
-          let tabComponent = new TabName({
-              tabName: item.tabName,
-              tabIndex: index,
-              onClickTabItem: (tabIndex: number) => {
-                  this.setValue(tabIndex)
-              },
-              isActive: index === this._props.value
-          })
+        let tabComponent = new TabName({
+          tabName: item.tabName,
+          tabIndex: index,
+          onClickTabItem: (tabIndex: number) => {
+            this.setValue(tabIndex)
+          },
+          isActive: index === this._props.value
+        })
 
-          this.tabNames.push(tabComponent)
-          this.tabNamesElement.appendChild(tabComponent.render())
+        this.tabNames.push(tabComponent)
+        this.tabNamesElement.append(tabComponent.render())
       })
       while (this.tabContentElement.firstChild) {
-          this.tabContentElement.removeChild(this.tabContentElement.firstChild);
+        this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
       this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
     }
@@ -190,6 +192,15 @@ class Tabs extends Control {
       }
     })
   }
+
+  enableItem(tabName: string) {
+    this._props.items.forEach((item: Tab, index: number) => {
+      if (item.tabName === tabName) {
+        this.tabNames[index].enable()
+      }
+    })
+  }
+
 }
 
 export {TabsProps}

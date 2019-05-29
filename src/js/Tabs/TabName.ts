@@ -1,9 +1,9 @@
 import Control, {ControlProps} from "../Control";
 type TabNameProps = ControlProps & {
-    isActive: boolean
-    tabName: string
-    tabIndex: number
-    onClickTabItem: (tabIndex: number) => void
+  isActive: boolean
+  tabName: string
+  tabIndex: number
+  onClickTabItem: (tabIndex: number) => void
 }
 
 
