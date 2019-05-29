@@ -23,6 +23,7 @@ nav:
   - Attachment: Reference/Attachment.md
   - Button: Reference/Button.md
   - CheckBox: Reference/CheckBox.md
+  - ColorPicker: Reference/ColorPicker.md
   - Dialog: Reference/Dialog.md
   - Dropdown: Reference/Dropdown.md
   - FieldGroup: Reference/FieldGroup.md
