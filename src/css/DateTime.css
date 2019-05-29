@@ -32,7 +32,6 @@
 
 .date-time-container .date-picker-container, .time-picker-container {
   position: absolute;
-  top: 46px;
   width: 350px;
   background: #fff;
   padding: 32px 32px 24px;
@@ -49,7 +48,6 @@
   flex-flow: row wrap;
   overflow-y: scroll;
   height: 180px;
-  top: 46px;
 }
 
 .date-time-container .month-year-container,
