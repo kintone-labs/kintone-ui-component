@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
+import '../../../css/Table.css';
+
 const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, isVisible}) => {
   const _onCellChange = (newValue, tableData, rowIndex, fieldName) => {
     if (onCellChange) {
