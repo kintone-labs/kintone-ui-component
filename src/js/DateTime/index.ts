@@ -6,6 +6,7 @@ import Locale from '../../react/DateTime/components/localizationData/locale-dto'
 import {parseStringToDate, parseStringToTime} from '../../react/DateTime/components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import Message from '../../constant/Message';
 
 type DateTimeProps = ControlProps & {
   value?: Date;
@@ -42,7 +43,7 @@ class DateTime extends Control {
       this._props = {...this._props, ...params};
     }
     if(this._props.type === 'date' || this._props.type === 'datetime') {
-      this.setLocale(params.locale)
+      this.setLocale(this._props.locale)
     }
     if (this._props.type === 'time' || this._props.type === 'datetime') {
       this._time = this._props.value;
@@ -442,7 +443,14 @@ class DateTime extends Control {
     }
   }
 
-  setValue(date: Date) {
+  setValue(date_opt: any) {
+    let date = date_opt
+    if (date === null) {
+      date = new Date();
+    } else if(date === undefined || !(date instanceof Date)) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+
     switch (this._props.type) {
       case 'date':
         this._props.value = new Date(date);
@@ -467,7 +475,10 @@ class DateTime extends Control {
     return this._locale.name;
   }
 
-  setLocale(locale: string) {
+  setLocale(locale: any) {
+    if(typeof locale !== 'string') {
+      throw new Error(Message.datetime.INVALID_LOCALE)
+    }
     switch (locale) {
       case 'en':
         this._locale = en;

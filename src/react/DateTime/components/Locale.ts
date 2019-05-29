@@ -80,11 +80,14 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
   }
 };
 
+const availableLocales = 'ja, en, zh';
+
 const Locale: any = {
   en: en,
   zh: zh,
   ja: ja,
-  format: format
+  format: format,
+  availableLocales: availableLocales
 };
 
 export default Locale;
@@ -92,5 +95,6 @@ export {
   en,
   zh,
   ja,
-  format
+  format,
+  availableLocales
 };
