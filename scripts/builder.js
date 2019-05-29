@@ -5,7 +5,7 @@ const path = require('path')
 console.log('Transpilling typescript...')
 
 if (os.type() === 'Linux' || os.type() === 'Darwin') {
-    childProcess.spawnSync('./node_modules/typescript/bin/tsc',{stdio: 'inherit'})
+    childProcess.spawnSync('npm',['run','transpile'],{stdio: 'inherit'})
     childProcess.spawnSync('mkdir',['-p','dist/esm/css'],{stdio: 'inherit'})
     childProcess.spawnSync('cp',['-a','src/css/.','dist/esm/css/'], {stdio: 'inherit'})
 }
