@@ -10,7 +10,7 @@ import TimePicker from './components/TimePicker';
 type DateTimeProps = ControlProps & {
   value?: Date;
   type?: string;
-  locale?: Locale;
+  locale?: string;
   dateFormat?: string;
   timeFormat?: string;
   timeIntervals?: number;
@@ -21,7 +21,7 @@ class DateTime extends Control {
     ...{
       value: new Date(),
       type: 'datetime',
-      locale: en,
+      locale: 'ja',
       dateFormat: 'MM/dd/YYYY',
       timeFormat: 'HH:mm'
     }}
@@ -31,6 +31,7 @@ class DateTime extends Control {
   private _timeTextInput: HTMLInputElement
   private _dateErrorDiv: HTMLElement
   private _calendar: Calendar
+  private _locale: Locale = ja
 
   private _timePicker: TimePicker
   private _time: Date = new Date()
@@ -39,6 +40,9 @@ class DateTime extends Control {
     super();
     if (params) {
       this._props = {...this._props, ...params};
+    }
+    if(this._props.type === 'date' || this._props.type === 'datetime') {
+      this.setLocale(params.locale)
     }
     if (this._props.type === 'time' || this._props.type === 'datetime') {
       this._time = this._props.value;
@@ -49,15 +53,18 @@ class DateTime extends Control {
   render() {
     this._renderContainer();
     switch (this._props.type) {
-      case 'datetime':
-        return this._renderDateTime();
       case 'date':
-        return this._renderDate();
+        this._renderDate();
+        break;
       case 'time':
-        return this._renderTime();
+        this._renderTime();
+        break;
+      case 'datetime':
       default:
-        return this._renderDateTime();
+        this._renderDateTime();
+        break;
     }
+    return this.element
   }
 
   rerender(changedAttr?: string[]) {
@@ -129,6 +136,7 @@ class DateTime extends Control {
     dateTextInput.type = 'text';
     dateTextInput.className = 'kuc-input-text text-input';
     dateTextInput.value = format(this._props.value, this._props.dateFormat);
+    dateTextInput.disabled = this._props.isDisabled
 
     // event handlers
     dateTextInput.onclick = () => {
@@ -162,6 +170,7 @@ class DateTime extends Control {
     const timeTextInputContainer = document.createElement('div');
     timeTextInputContainer.classList.add('text-input-container');
     const timeTextInput = document.createElement('input');
+    timeTextInput.disabled = this._props.isDisabled
     timeTextInput.type = 'text';
     timeTextInput.className = 'kuc-input-text text-input time';
     timeTextInput.value = format(this._time, 'HH:mm');
@@ -322,7 +331,8 @@ class DateTime extends Control {
     const calendar = new Calendar({
       date: this._props.value,
       onClickOutside: this._onClickOutside,
-      onDateClick: this._onCalendarDateClick
+      onDateClick: this._onCalendarDateClick,
+      locale: this._locale
     });
     this._textInputsContainer.appendChild(calendar.render());
     this._calendar = calendar;
@@ -440,24 +450,24 @@ class DateTime extends Control {
   }
 
   getLocale(): string {
-    return this._props.locale.name;
+    return this._locale.name;
   }
 
   setLocale(locale: string) {
     switch (locale) {
       case 'en':
-        this._props.locale = en;
+        this._locale = en;
         break;
       case 'zh':
-        this._props.locale = zh;
+        this._locale = zh;
         break;
       case 'ja':
       default:
-        this._props.locale = ja;
+        this._locale = ja;
         break;
     }
     if (this._calendar) {
-      this._calendar.setLocale(this._props.locale);
+      this._calendar.setLocale(this._locale);
       this._calendar.rerender(['selectedDate', 'footerButtons']);
     }
   }
