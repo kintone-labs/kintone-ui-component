@@ -1,0 +1,365 @@
+# DateTime
+
+## Overview
+![ColorPicker](../img/datetime.PNG)
+
+|Number|	Description|
+| --- | --- |
+|1|date form|	
+|2|time form|
+|3|date picker|	
+|4|select today button|
+|5|clear button|
+|6|selected item pointer|
+|7|today pointer|
+|8|time picker|
+
+## Constructor
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | - | --- | ----- |
+|options|Object|No|An object contains params of constructor.|
+|options.value|Date|No|	The Default DateTime Value.|
+|options.type|Boolean|No|The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>|
+|options.dateFormat|String|No|The date format showed on date picker.<br>Default format: MM/dd/YYYY|
+|options.isVisible|Boolean|No|The DatePicker will be visible.<br>Default value: 'true'|
+|options.isDisable|Boolean|No|The DateTime field will be disabled. <br>Default value: 'false'|
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+            />
+        );
+    }
+}
+```
+
+</details>
+
+## Methods
+### render()
+Get dom element of component.
+
+**Parameter**
+
+None
+
+**Returns**
+
+Dom element
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+(function() {
+    "use strict";  
+    kintone.events.on('app.record.detail.show', function(event) {
+        const date = new Date();
+        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en', timeIntervals: 20});
+        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        space.appendChild(dateTime.render());
+    });
+})();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+            />
+        );
+    }
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+    );
+});
+```
+
+</details>
+
+### getValue()
+Get the value of datetime field.
+
+**Parameter**
+
+None
+
+**Returns**
+
+| Name| Type| Description |
+| --- | --- | --- |
+|value|	Date|The value of datetime field.|
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+(function() {
+    "use strict";  
+    kintone.events.on('app.record.detail.show', function(event) {
+        const date = new Date();
+        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
+        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        space.appendChild(dateTime.render());
+        dateTime.getValue();
+    });
+})();
+```
+
+**React**
+```
+import { DateTime } from '../src/js/components-react/index';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime value={this.state.value} onChange={(value) => {this.setState({value})}}/>
+                <button onClick={this.handleClick}>Get Value </button>
+            </div>
+        );
+    }
+    handleClick= () => {
+        console.log(this.state.value);
+    };
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+    );
+});
+```
+
+</details>
+
+### setValue(value)
+Set the value of datetime field.
+
+**Parameter**
+
+| Name| Type| Required | Description |
+| --- | --- | --- | --- |
+|value|	Date| Yes | The value of datetime field.|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+(function() {
+    "use strict";  
+    kintone.events.on('app.record.detail.show', function(event) {
+        var dateTime = new kintoneUIComponent.DateTime({type: 'datetime', locale: 'en'});
+        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        space.appendChild(dateTime.render());
+        dateTime.setValue(new Date());
+    });
+})();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime value={this.state.value} onChange={(value) => {this.setState({value})}}/>
+                <button onClick={this.handleClick}>Set Value </button>
+            </div>
+        );
+    }
+    handleClick= () => {
+        this.setState({value: new Date('1995-12-17T03:24:00')})
+    };
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+    );
+});
+```
+
+</details>
+
+### getLocale()
+Get the setting of language.
+
+**Parameter**
+
+None
+
+**Returns**
+
+| Name| Type | Description |
+| --- | --- | --- |
+|locale| String |The setting of TimeZone and language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+(function() {
+    "use strict";  
+    kintone.events.on('app.record.detail.show', function(event) {
+        const date = new Date();
+        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
+        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        space.appendChild(dateTime.render());
+        dateTime.getLocale();
+    });
+})();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {locale: 'ja'};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime locale={this.state.locale} onChange={(value) => {this.setState({value})}}/>
+                <button onClick={this.handleClick}>Get Locale </button>
+            </div>
+        );
+    }
+    handleClick= () => {
+        console.log(this.state.locale);
+    };
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+    );
+});
+```
+
+</details>
+
+### setLocale(locale)
+Set the language setting.
+
+**Parameters**
+
+| Name| Type | Required | Description |
+| --- | --- | --- | --- |
+|locale| String | Yes | The setting of TimeZone and language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+(function() {
+    "use strict";  
+    kintone.events.on('app.record.detail.show', function(event) {
+        const date = new Date();
+        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime'});
+        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        space.appendChild(dateTime.render());
+        dateTime.setLocale('en');
+    });
+})();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {locale: 'en'};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime locale={this.state.locale} onChange={(value) => {this.setState({value})}}/>
+                <button onClick={this.handleClick}>Set Locale </button>
+            </div>
+        );
+    }
+    handleClick= () => {
+        this.setState({locale: 'ja'})
+    };
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+    );
+});
+```
+
+</details>

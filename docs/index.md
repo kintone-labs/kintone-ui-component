@@ -9,6 +9,7 @@
 * [Button](Reference/Button)
 * [CheckBox](Reference/CheckBox)
 * [ColorPicker](Reference/ColorPicker)
+* [DateTime](Reference/DateTime)
 * [Dialog](Reference/Dialog)
 * [Dropdown](Reference/Dropdown)
 * [FieldGroup](Reference/FieldGroup)
