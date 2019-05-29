@@ -1,4 +1,5 @@
 import '../../css/DateTime.css';
+import '../../css/Text.css';
 import React, {useState, useEffect, createRef} from 'react';
 import {en, ja, zh, format} from './components/Locale';
 
@@ -73,7 +74,7 @@ const DateTime = ({
             <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
               <input
                 type="text"
-                className="text-input"
+                className="kuc-input-text text-input"
                 disabled={isDisabled}
                 onFocus={() => {
                   setPickerDisplay('block');
@@ -157,7 +158,7 @@ const DateTime = ({
               type="text"
               disabled={isDisabled}
               key={`${format(value, timeFormat)}-${timeError}`}
-              className="text-input time"
+              className="kuc-input-text text-input time"
               onFocus={() => {
                 setTimePickerDisplay('flex');
                 setPickerDisplay('none');
