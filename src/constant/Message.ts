@@ -12,7 +12,8 @@ const Message = {
         MISSING_NAME: 'Missing name for radio buttons'
     },
     tabs: {
-        MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]'
+        MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]',
+        MISSING_NEW_ITEM_TABNAME: 'Missing tab name.'
     },
     datetime: {
         INVALID_LOCALE: `Invalid locale. This function accepts only the following locales: ${availableLocales}`

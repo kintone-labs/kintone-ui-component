@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../../../css/TextArea.css';
+
 export default class TextArea extends React.PureComponent {
   static propTypes = {
     value: PropTypes.string,

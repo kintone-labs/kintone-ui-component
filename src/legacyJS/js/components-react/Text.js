@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../../../css/Text.css';
+
 const Text = (props) => {
   const _onChange = (event) => {
     const value = event.target.value;

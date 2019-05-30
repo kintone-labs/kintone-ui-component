@@ -167,6 +167,12 @@ class Tabs extends Control {
   }
 
   addItem(item: Tab) {
+    if (!item) {
+      throw Message.common.INVALID_ARGUMENT
+    }
+    if (!item.tabName) {
+      throw Message.tabs.MISSING_NEW_ITEM_TABNAME
+    }
     this._props.items.push(item)
     if (this._validator()) {
       throw new Error(this._validator())
@@ -175,9 +181,15 @@ class Tabs extends Control {
   }
 
   removeItem(index: number) {
+    if (typeof index !== 'number') {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
     if (index > 0 && index < this._props.items.length) {
       this._props.items.splice(index, 1)
       this.rerender(['removeItems'])
+    }
+    else {
+      throw new Error(Message.common.INVALID_ARGUMENT)
     }
   }
 
@@ -186,6 +198,9 @@ class Tabs extends Control {
   }
 
   disableItem(tabName: string) {
+    if (!tabName) {
+      throw Message.common.INVALID_ARGUMENT
+    }
     this._props.items.forEach((item: Tab, index: number) => {
       if (item.tabName === tabName) {
         this.tabNames[index].disable()
@@ -194,6 +209,9 @@ class Tabs extends Control {
   }
 
   enableItem(tabName: string) {
+    if (!tabName) {
+      throw Message.common.INVALID_ARGUMENT
+    }
     this._props.items.forEach((item: Tab, index: number) => {
       if (item.tabName === tabName) {
         this.tabNames[index].enable()

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 
+import '../../../css/Dialog.css';
+
 const Dialog = (props) => {
   let hidden;
   if (props.isVisible === false) {

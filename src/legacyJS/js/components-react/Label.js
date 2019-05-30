@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/Label.css';
 const Label = (props) => {
   const _onClick = () => {
     if (props.isDisabled) {

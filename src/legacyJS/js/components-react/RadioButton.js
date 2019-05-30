@@ -4,6 +4,8 @@ import AbstractSingleSelection from './AbstractSingleSelection';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import '../../../css/RadioButton.css';
+
 const RadioButton = (props) => {
   if (!props.name) {
     throw new Error(Message.radioBtn.MISSING_NAME);
