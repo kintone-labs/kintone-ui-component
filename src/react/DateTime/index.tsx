@@ -39,6 +39,9 @@ const DateTime = ({
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
+  if(typeof isDisabled !== 'boolean') {
+    isDisabled = false
+  }
   useEffect(()=>{
     document.addEventListener('mousedown', handleClickOutside, true);
     return ()=>{
