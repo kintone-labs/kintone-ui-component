@@ -39,6 +39,9 @@ class DateTime extends Control {
 
   constructor(params: DateTimeProps = {}) {
     super();
+    if(typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
     if (params) {
       this._props = {...this._props, ...params};
     }
