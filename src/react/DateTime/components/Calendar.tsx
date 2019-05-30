@@ -8,7 +8,8 @@ type CalendarProps = {
 	date: Date,
 	locale?: Locale,
 	pickerDisplay?: string,
-	onDateClick?: (date:Date | null) => void
+	onDateClick?: (date:Date | null) => void,
+	calRef: any
 }
 
 let previousDate:Date
@@ -18,6 +19,7 @@ const Calendar = ({
 	locale = en, 
 	pickerDisplay = 'block',
 	onDateClick=(date: Date)=> {},
+	calRef
 }: CalendarProps) => {
 	const today = new Date();
 	const weekDayLabels = getWeekDayLabels(locale);
@@ -39,17 +41,16 @@ const Calendar = ({
 	})
 
 	return (
-		<div
+		<div ref={calRef}
 			className="date-picker-container"
 			style={{ display: pickerDisplay }}
-			tabIndex={0}
+			tabIndex={-1}
 			onBlur={(e)=>{
-				if (e.relatedTarget == null 
-					|| (
-						!e.relatedTarget['classList'].contains('calendar-button') && 
-						!e.relatedTarget['classList'].contains('calendar-button-control') &&
-						!e.relatedTarget['classList'].contains('date-picker-container')
-						)
+				let relatedTarget = e.relatedTarget ||
+            e['explicitOriginalTarget'] ||
+						document.activeElement; // IE11
+				if(
+					!calRef.current.contains(relatedTarget as HTMLElement)
 				) {
 					onDateClick(initialDate)
 				}
@@ -61,8 +62,8 @@ const Calendar = ({
 						let newDate = new Date(displayDate)
 						newDate.setMonth(newDate.getMonth()-1,1)
 						setDisplayDate(newDate)
-					}} tabIndex={0} />
-					<span className="label">
+					}} tabIndex={-1} />
+					<span className="label" tabIndex={-32768}>
 						{format(displayDate, "calendartitle", {
 							locale: locale
 						})}
@@ -71,7 +72,7 @@ const Calendar = ({
 						let newDate = new Date(displayDate)
 						newDate.setMonth(newDate.getMonth()+1,1)
 						setDisplayDate(newDate)
-					}} tabIndex={0} />
+					}} tabIndex={-1} />
 				</div>
 				<div className="days-container">
 				{weekDayLabels.map((label, index) => {
