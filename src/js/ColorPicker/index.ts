@@ -34,6 +34,8 @@ class ColorPicker extends Control {
     this.element = document.createElement('div');
     this._renderInput();
     this._renderPicker();
+
+    this.rerender()
   }
 
   private _renderInput() {
@@ -41,6 +43,7 @@ class ColorPicker extends Control {
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
     this.inputElement.value = this._props.color;
+    this.inputElement.disabled = this._props.isDisabled
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
@@ -73,6 +76,7 @@ class ColorPicker extends Control {
         this.rerender(['color', 'redraw']);
       },
       onChange: (hexString: string, triggerOnChange: boolean) => {
+        
         this._props.color = hexString;
         if (triggerOnChange) {
           this.rerender(['color', 'redraw']);
@@ -93,19 +97,26 @@ class ColorPicker extends Control {
       Object.assign(this.inputElement.style, inputStyle);
     }
 
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      this.inputElement.disabled = this._props.isDisabled
+      if (this._props.isDisabled) {
+        this.Picker.setPickerDisplay(false);
+      }
+    }
+
     if (changedAttr.indexOf('redraw') !== -1) {
       this.Picker.setHexString(this._props.color);
     }
   }
 
   setColor(hexString: string) {
-      if (isHexString(hexString)) {
-          this._props.color = hexString
-          this.rerender(['color', 'redraw'])
-      }
-      else {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
-      }
+    if (isHexString(hexString)) {
+      this._props.color = hexString
+      this.rerender(['color', 'redraw'])
+    }
+    else {
+      throw new Error(Message.colorPicker.INVALID_COLOR)
+    }
   }
 
   getColor(): string {
