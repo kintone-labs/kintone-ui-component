@@ -12,7 +12,7 @@ type ColorPickerProps = {
 }
 
 function ColorPicker(props: ColorPickerProps) {
-  if (!isHexString(props.color)) {
+  if (props.color && !isHexString(props.color)) {
     throw new Error(Message.colorPicker.INVALID_COLOR)
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
