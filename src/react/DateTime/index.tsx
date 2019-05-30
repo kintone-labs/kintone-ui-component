@@ -37,6 +37,7 @@ const DateTime = ({
   const [timeValue, setTimeValue] = useState('');
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+  const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
   useEffect(()=>{
     document.addEventListener('mousedown', handleClickOutside, true);
@@ -88,7 +89,7 @@ const DateTime = ({
                       e['explicitOriginalTarget'] ||
                       document.activeElement; // IE11
 
-                  const calendar = (calendarRef.current as HTMLDivElement)
+                  const calendar = calendarRef.current as HTMLDivElement
                   if(
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
                   ) {
@@ -173,7 +174,11 @@ const DateTime = ({
               defaultValue={value && !timeError ? format(value, timeFormat) : timeValue}
               onBlur={
                 (e)=>{
-                  if (e.relatedTarget === null || !(e.relatedTarget as HTMLElement).classList.contains('kuc-time-list-item')) {
+                  let relatedTarget = e.relatedTarget ||
+                      e['explicitOriginalTarget'] ||
+                      document.activeElement; // IE11
+                  const timePicker = timeRef.current as HTMLDivElement
+                  if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget as HTMLElement)) {
                     setTimeError('');
                     const tempDate = parseStringToTime(e.target.value);
   
@@ -214,8 +219,8 @@ const DateTime = ({
             {
               !isDisabled &&
               <TimePicker
+                timeRef={timeRef}
                 pickerDisplay={timePickerDisplay}
-                locale={localeObj}
                 onTimeClick={
                   (timePickerDate: Date) => {
                     setTimeError('');

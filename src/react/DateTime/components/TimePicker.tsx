@@ -1,5 +1,4 @@
 import React from 'react'
-import Locale from './localizationData/locale-dto';
 
 const timeList12H = [
     {
@@ -198,13 +197,13 @@ const timeList12H = [
 
 type TimePickerProps = {
     pickerDisplay?: string,
-    locale: Locale,
+    timeRef: any
     onTimeClick: (date: Date | null) => void
 }
 
-const TimePicker = ({pickerDisplay='none', locale, onTimeClick}:TimePickerProps) => {
+const TimePicker = ({pickerDisplay='none', timeRef, onTimeClick}:TimePickerProps) => {
     return(
-        <div className="time-picker-container" style={{display: pickerDisplay}}>
+        <div className="time-picker-container" style={{display: pickerDisplay}} ref={timeRef}>
             {
                 timeList12H.map((timeObj, index) => {
                     return(
