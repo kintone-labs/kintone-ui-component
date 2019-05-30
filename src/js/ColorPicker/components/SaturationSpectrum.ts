@@ -127,7 +127,7 @@ class SaturationSpectrum extends Control {
   }
 
   handleMouseUp(e: MouseEvent) {
-    this.triggerSelect(e.clientX, e.clientY, true);
+    this.triggerSelect(e.clientX, e.clientY, false);
     this.isMouseDown = false;
     this.rerender(['isMouseDown']);
   }
