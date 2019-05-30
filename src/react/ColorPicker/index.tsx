@@ -5,18 +5,20 @@ import {invertColor, isHexString} from './components/utils';
 import Message from '../../constant/Message';
 
 type ColorPickerProps = {
-  color: string;
-  onChange: (hexString: string) => void;
+  color?: string;
+  onChange?: (hexString: string) => void;
   isDisabled?: boolean;
   isVisible?: boolean
 }
 
 function ColorPicker(props: ColorPickerProps) {
-  if (props.color && !isHexString(props.color)) {
+  
+  let defaultColor = props.color || '#ff0000'
+  if (!isHexString(defaultColor)) {
     throw new Error(Message.colorPicker.INVALID_COLOR)
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [hexString, setHexString] = useState(props.color || '#ff0000');
+  const [hexString, setHexString] = useState(defaultColor);
   const [pickerDisplay, setPickerDisplay] = useState(false);
   const [focus, setFocus] = useState(false);
 
@@ -88,13 +90,13 @@ function ColorPicker(props: ColorPickerProps) {
     onChange: handlePickerChange,
     onCancel: () => {
       setPickerDisplay(false);
-      setHexString(props.color);
-      props.onChange(props.color);
+      setHexString(defaultColor);
+      props.onChange && props.onChange(defaultColor);
     },
     onSubmit: (newHexString: string) => {
       setPickerDisplay(false);
       setHexString(newHexString);
-      props.onChange(newHexString);
+      props.onChange && props.onChange(newHexString);
     },
     zIndex: 2000
   };
