@@ -209,16 +209,19 @@ class DateTime extends Control {
           }
           break;
         case 'ArrowLeft':
+        case 'Left':
           e.preventDefault();
           this._timeTextInput.setSelectionRange(0, 2);
           this._timePicker.hide();
           break;
         case 'ArrowRight':
+        case 'Right':
           e.preventDefault();
           this._timeTextInput.setSelectionRange(3, 5);
           this._timePicker.hide();
           break;
         case 'ArrowUp':
+        case 'Up':
           e.preventDefault();
           if (this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5) {
             this._changeMinutesBy(1);
@@ -228,6 +231,7 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         case 'ArrowDown':
+        case 'Down':
           e.preventDefault();
           if (this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5) {
             this._changeMinutesBy(-1);
