@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
+import Message from '../../constant/Message';
 
 type ColorPickerProps = {
   color: string;
@@ -11,6 +12,9 @@ type ColorPickerProps = {
 }
 
 function ColorPicker(props: ColorPickerProps) {
+  if (!isHexString(props.color)) {
+    throw new Error(Message.colorPicker.INVALID_COLOR)
+  }
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [hexString, setHexString] = useState(props.color || '#ff0000');
   const [pickerDisplay, setPickerDisplay] = useState(false);

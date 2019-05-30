@@ -29,6 +29,9 @@ class ColorPicker extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    if (!isHexString(this._props.color)) {
+      throw new Error(Message.colorPicker.INVALID_COLOR)
+    }
     this.oldColor = this._props.color;
     this.focus = false;
     this.element = document.createElement('div');
