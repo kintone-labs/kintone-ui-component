@@ -1,3 +1,4 @@
+import {availableLocales} from '../react/DateTime/components/Locale'
 const Message = {
     common: {
         SELECTTION_DUPLICATE_VALUE: 'The selection has duplicate value',
@@ -13,6 +14,13 @@ const Message = {
     tabs: {
         MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]',
         MISSING_NEW_ITEM_TABNAME: 'Missing tab name.'
+        MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]'
+    },
+    datetime: {
+        INVALID_LOCALE: `Invalid locale. This function accepts only the following locales: ${availableLocales}`
+    },
+    colorPicker: {
+        INVALID_COLOR: 'Invalid color string'
     }
 };
   

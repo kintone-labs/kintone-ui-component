@@ -33,7 +33,8 @@
 } */
 
 .kuc-fieldgroup-contents {
-    margin-left: 0;
+    margin-left: 8px;
+    margin-bottom: 12px;
     white-space: nowrap;
     word-wrap: normal;
 }

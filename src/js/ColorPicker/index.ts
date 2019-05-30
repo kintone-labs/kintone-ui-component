@@ -1,7 +1,8 @@
-import Control, {ControlProps} from '../Control';
-import ColorPickerStyle from './ColorPickerStyle';
-import {invertColor, isHexString} from './components/utils';
-import Picker, {PickerProps} from './components/Picker';
+import Control, {ControlProps} from "../Control";
+import ColorPickerStyle from "./ColorPickerStyle";
+import {invertColor, isHexString} from './components/utils'
+import Picker, {PickerProps} from './components/Picker'
+import Message from '../../constant/Message'
 
 type ColorPickerProps = ControlProps & {
   color: string;
@@ -12,7 +13,7 @@ class ColorPicker extends Control {
   protected _props: ColorPickerProps = {
     ...this._props,
     ...{
-      color: '',
+      color: '#ff0000',
       onAccept: (color: string) => {},
       onCancel: (color: string) => {}
     }
@@ -98,10 +99,13 @@ class ColorPicker extends Control {
   }
 
   setColor(hexString: string) {
-    if (isHexString(hexString)) {
-      this._props.color = hexString;
-      this.rerender(['color', 'redraw']);
-    }
+      if (isHexString(hexString)) {
+          this._props.color = hexString
+          this.rerender(['color', 'redraw'])
+      }
+      else {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
+      }
   }
 
   getColor(): string {
