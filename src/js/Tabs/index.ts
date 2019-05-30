@@ -28,7 +28,9 @@ class Tabs extends Control {
 
   constructor(params: TabsProps) {
     super()
-
+    if(typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
     if (params) {
       this._props = {...this._props, ...params}
     }

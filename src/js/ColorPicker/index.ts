@@ -26,12 +26,20 @@ class ColorPicker extends Control {
 
   constructor(params: ColorPickerProps) {
     super();
+    if(typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
     if (params) {
       this._props = {...this._props, ...params};
     }
     if (!isHexString(this._props.color)) {
       throw new Error(Message.colorPicker.INVALID_COLOR)
     }
+
+    if (typeof this._props.isDisabled !== 'boolean') {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    
     this.oldColor = this._props.color;
     this.focus = false;
     this.element = document.createElement('div');
