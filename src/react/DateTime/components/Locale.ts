@@ -47,7 +47,7 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
     case 'm':
       return `${dateObj.minute}`;
     case 'calendartitle':
-      if (locale.name === 'jp' || locale.name === 'cn') return `${dateObj.year}年${dateObj.month + 1}月`;
+      if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年${dateObj.month + 1}月`;
       return `${locale.monthNames[dateObj.month]} ${dateObj.year}`;
     default:
       break;
