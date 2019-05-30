@@ -66,6 +66,12 @@ class ColorPicker extends Control {
       this.focus = true;
       this.Picker.setPickerDisplay(true);
     };
+
+    document.addEventListener('mousedown',(e: MouseEvent) => {
+      if (!(e.target as HTMLElement).contains(this.element)) {
+        this.Picker.setPickerDisplay(false);
+      }
+    })
     inputContainer.appendChild(this.inputElement);
 
     const inputStyle = this.getInputStyle();
