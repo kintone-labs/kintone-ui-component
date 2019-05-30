@@ -17,16 +17,16 @@ function rgbToHex(r: number, g: number, b: number) {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
-function rgbToHsv(r: number, g: number, b: number) {
-  r /= 255;
-  g /= 255;
-  b /= 255;
+function rgbToHsv(r_opt: number, g_opt: number, b_opt: number) {
+  const r = r_opt / 255,
+    g = g_opt / 255,
+    b = b_opt / 255;
 
   const max = Math.max(r, g, b),
     min = Math.min(r, g, b);
-  let h,
-    s,
-    v = max;
+  let h = 0,
+    s = 0;
+  const v = max;
 
   const d = max - min;
   s = max === 0 ? 0 : d / max;
@@ -65,18 +65,19 @@ function hsvToRgb(h: number, s: number, v: number) {
   const t = v * (1 - (1 - f) * s);
 
   switch (i % 6) {
-    case 0: r = v, g = t, b = p; break;
-    case 1: r = q, g = v, b = p; break;
-    case 2: r = p, g = v, b = t; break;
-    case 3: r = p, g = q, b = v; break;
-    case 4: r = t, g = p, b = v; break;
-    case 5: r = v, g = p, b = q; break;
+    case 0: r = v; g = t; b = p; break;
+    case 1: r = q; g = v; b = p; break;
+    case 2: r = p; g = v; b = t; break;
+    case 3: r = p; g = q; b = v; break;
+    case 4: r = t; g = p; b = v; break;
+    case 5: r = v; g = p; b = q; break;
   }
 
-  return {r: r * 255, g: g * 255, b: b * 255};
+  return {r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255)};
 }
 
-const invertColor = (hex: string) => {
+const invertColor = (hex_opt: string) => {
+  let hex = hex_opt;
   if (hex.indexOf('#') === 0) {
     hex = hex.slice(1);
   }
@@ -96,8 +97,8 @@ const invertColor = (hex: string) => {
   return '#' + padZero(r) + padZero(g) + padZero(b);
 };
 
-const padZero = (str: string, len?: number) => {
-  len = len || 2;
+const padZero = (str: string, len_opt?: number) => {
+  const len = len_opt || 2;
   const zeros = new Array(len).join('0');
   return (zeros + str).slice(-len);
 };
