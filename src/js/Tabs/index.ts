@@ -175,9 +175,15 @@ class Tabs extends Control {
   }
 
   removeItem(index: number) {
+    if (typeof index !== 'number') {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
     if (index > 0 && index < this._props.items.length) {
       this._props.items.splice(index, 1)
       this.rerender(['removeItems'])
+    }
+    else {
+      throw new Error(Message.common.INVALID_ARGUMENT)
     }
   }
 
