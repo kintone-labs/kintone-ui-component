@@ -2,6 +2,8 @@ import React, { CSSProperties } from "react";
 import TextInputStyle from "./TextInputStyle";
 import {rgbToHex, hsvToRgb} from './utils'
 
+import Message from '../../../constant/Message'
+
 type TextInputProps = {
     label: string
     value: string
@@ -33,7 +35,11 @@ export default function TextInput({label, value, onChange}: TextInputProps) {
 function RGBInput({rgb, onChange}: RGBObj) {
     const handleChangeRGBInput = (value: string, objectKey: string) => {
         try {
-            rgb[objectKey.toLowerCase()] = parseInt(value || "0",10)
+            let intValue = parseInt(value || "0",10)
+            if (intValue < 0 || intValue > 255) {
+                throw new Error(Message.colorPicker.INVALID_COLOR)
+            }
+            rgb[objectKey.toLowerCase()] = intValue
             onChange(rgbToHex(rgb.r, rgb.g, rgb.b))
         } catch (error) {
             console.error(error)
@@ -60,6 +66,10 @@ type HSVObj = {
 function HSVInput({hsv, onChange}: HSVObj) {
     const handleChangeHSVInput = (value: string, objectKey: string) => {
         try {
+            let floatValue = parseFloat(value || "0")
+            if (floatValue < 0 || floatValue > 1) {
+                throw new Error(Message.colorPicker.INVALID_COLOR)
+            }
             hsv[objectKey.toLowerCase()] = parseFloat(value || "0")
             let rgb = hsvToRgb(hsv.h, hsv.s, hsv.v)
             onChange(rgbToHex(rgb.r, rgb.g, rgb.b))
