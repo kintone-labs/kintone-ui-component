@@ -4,6 +4,8 @@ import AbstractSingleSelection from './AbstractSingleSelection';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../../../css/Dropdown.css';
+
 export default class Dropdown extends React.PureComponent {
   static propTypes = {
     name: PropTypes.string,

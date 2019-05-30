@@ -4,6 +4,8 @@ import AbstractMultiSelection from './AbstractMultiSelection';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../../../css/CheckBox.css';
+
 const CheckBox = (props) => {
   const _handleItemClick = (itemValue) => {
     const value = props.value ? props.value.slice() : [];

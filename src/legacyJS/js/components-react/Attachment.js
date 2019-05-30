@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AttachmentFileItem from './AttachmentFileItem';
 
+import '../../../css/Attachment.css';
+
 const Attachment = (props) => {
   if (props.isVisible === false) {
     return null;
