@@ -8,7 +8,8 @@ type CalendarProps = {
 	date: Date,
 	locale?: Locale,
 	pickerDisplay?: string,
-	onDateClick?: (date:Date | null) => void,
+	hasSelection?: boolean,
+	onDateClick?: (date:Date | null, previousDate:Date | null) => void,
 	calRef: any
 }
 
@@ -18,6 +19,7 @@ const Calendar = ({
 	date,
 	locale = en, 
 	pickerDisplay = 'block',
+	hasSelection = false,
 	onDateClick=(date: Date)=> {},
 	calRef
 }: CalendarProps) => {
@@ -30,10 +32,10 @@ const Calendar = ({
 	if (!previousDate) {
 		previousDate = new Date(date)
 	}
-
 	useEffect(()=>{
 		if (date) {
 			if (!isSameDate(date,previousDate)) {
+				console.log()
 				setDisplayDate(new Date(date))
 				previousDate = new Date(date)
 			}
@@ -50,9 +52,11 @@ const Calendar = ({
             e['explicitOriginalTarget'] ||
 						document.activeElement; // IE11
 				if(
-					!calRef.current.contains(relatedTarget as HTMLElement)
+					calRef.current !== relatedTarget && 
+					!calRef.current.contains(relatedTarget as HTMLElement) &&
+					pickerDisplay !== 'none'
 				) {
-					onDateClick(initialDate)
+					onDateClick(null, null)
 				}
 			}}
 		>
@@ -93,14 +97,14 @@ const Calendar = ({
 
 					className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
 					className += isToday(day) ? " today" : "";
-					className += date && isSameDate(day, date) ? " selected" : "";
+					className += date && isSameDate(day, date) && hasSelection ? " selected" : "";
 					return (
 						<span className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
 							
 							let returnDate = new Date(date)
 							returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate())
 							
-							onDateClick(returnDate)
+							onDateClick(returnDate, null)
 							setDisplayDate(new Date(day))
 						}}
 						tabIndex={0} >
@@ -110,8 +114,8 @@ const Calendar = ({
 				})}
 				</div>
 				<div className="quick-selections-container">
-					<span className="today calendar-button" onClick={()=>{setDisplayDate(new Date());onDateClick(today)}} tabIndex={0}>{locale.today}</span>
-					<span className="none calendar-button" onClick={()=>{onDateClick(null)}} tabIndex={0}>{locale.none}</span>
+					<span className="today calendar-button" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
+					<span className="none calendar-button" onClick={()=>{onDateClick(null, previousDate);}} tabIndex={-1}>{locale.none}</span>
 				</div>
 			</div>
 		</div>
