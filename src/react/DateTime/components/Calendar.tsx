@@ -63,7 +63,7 @@ const Calendar = ({
 						newDate.setMonth(newDate.getMonth()-1,1)
 						setDisplayDate(newDate)
 					}} tabIndex={-1} />
-					<span className="label" tabIndex={-32768}>
+					<span className="label">
 						{format(displayDate, "calendartitle", {
 							locale: locale
 						})}
