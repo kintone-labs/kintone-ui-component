@@ -22,7 +22,7 @@ export default function TextInput({label, value, onChange}: TextInputProps) {
         <div>
             <span style={TextInputStyle.label as CSSProperties}>{label}</span>
             <span>
-                <input type="text" style={TextInputStyle.input as CSSProperties} value={value} onChange={(e)=>{
+                <input type="text" style={TextInputStyle.input as CSSProperties} value={value} onBlur={(e)=>{
                     onChange(e.target.value, label)
                 }}/>
             </span>

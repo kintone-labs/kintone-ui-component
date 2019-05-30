@@ -169,10 +169,10 @@ class HSVInput extends Control {
 
     this.hInput = new TextInput({
       label: 'H',
-      value: this._props.hsv.h.toString(),
+      value: this._props.hsv.h.toFixed(1),
       onChange: (value: string) => {
         try {
-          this._props.hsv.h = parseInt(value || '0', 10);
+          this._props.hsv.h = parseFloat(value || '0');
           const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
           this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
         } catch (error) {
@@ -185,10 +185,10 @@ class HSVInput extends Control {
 
     this.sInput = new TextInput({
       label: 'S',
-      value: this._props.hsv.s.toString(),
+      value: this._props.hsv.s.toFixed(1),
       onChange: (value: string) => {
         try {
-          this._props.hsv.s = parseInt(value || '0', 10);
+          this._props.hsv.s = parseFloat(value || '0');
           const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
           this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
         } catch (error) {
@@ -201,10 +201,10 @@ class HSVInput extends Control {
 
     this.vInput = new TextInput({
       label: 'V',
-      value: this._props.hsv.v.toString(),
+      value: this._props.hsv.v.toFixed(1),
       onChange: (value: string) => {
         try {
-          this._props.hsv.v = parseInt(value || '0', 10);
+          this._props.hsv.v = parseFloat(value || '0');
           const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
           this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
         } catch (error) {
@@ -220,9 +220,9 @@ class HSVInput extends Control {
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('hsv') !== -1) {
-      this.hInput.setValue(this._props.hsv.h.toString());
-      this.sInput.setValue(this._props.hsv.s.toString());
-      this.vInput.setValue(this._props.hsv.v.toString());
+      this.hInput.setValue(this._props.hsv.h.toFixed(1));
+      this.sInput.setValue(this._props.hsv.s.toFixed(1));
+      this.vInput.setValue(this._props.hsv.v.toFixed(1));
     }
   }
 
