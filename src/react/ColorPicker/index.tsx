@@ -11,16 +11,20 @@ type ColorPickerProps = {
   isVisible?: boolean
 }
 
+let previouseHex: string
+
 function ColorPicker(props: ColorPickerProps) {
-  
-  let defaultColor = props.color || '#ff0000'
-  if (!isHexString(defaultColor)) {
+  if (props.color && !isHexString(props.color)) {
     throw new Error(Message.colorPicker.INVALID_COLOR)
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [hexString, setHexString] = useState(defaultColor);
+  const [hexString, setHexString] = useState(props.color || "#FF0000");
   const [pickerDisplay, setPickerDisplay] = useState(false);
   const [focus, setFocus] = useState(false);
+
+  if (!previouseHex) {
+		previouseHex = props.color || "#FF0000"
+	}
 
   let isVisible = true
 
@@ -64,6 +68,10 @@ function ColorPicker(props: ColorPickerProps) {
   }
 
   useEffect(() => {
+    if (props.color && props.color !== previouseHex) {
+      setHexString(props.color)
+      previouseHex = props.color
+    }
     document.addEventListener('mousedown', handleClickOutside, true);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside, true);
@@ -90,8 +98,8 @@ function ColorPicker(props: ColorPickerProps) {
     onChange: handlePickerChange,
     onCancel: () => {
       setPickerDisplay(false);
-      setHexString(defaultColor);
-      props.onChange && props.onChange(defaultColor);
+      setHexString(props.color || "#FF0000");
+      props.onChange && props.onChange(props.color || "#FF0000");
     },
     onSubmit: (newHexString: string) => {
       setPickerDisplay(false);
