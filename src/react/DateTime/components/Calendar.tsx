@@ -25,17 +25,14 @@ const Calendar = ({
 }: CalendarProps) => {
 	const today = new Date();
 	const weekDayLabels = getWeekDayLabels(locale);
-	const [displayDate, setDisplayDate] = useState(new Date(date));
+	const [displayDate, setDisplayDate] = useState(date?new Date(date):new Date());
 	const displayingDays = getDisplayingDays(displayDate);
-	let initialDate = date ? new Date(date) : null;
-
 	if (!previousDate) {
 		previousDate = new Date(date)
 	}
 	useEffect(()=>{
 		if (date) {
 			if (!isSameDate(date,previousDate)) {
-				console.log()
 				setDisplayDate(new Date(date))
 				previousDate = new Date(date)
 			}

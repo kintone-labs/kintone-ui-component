@@ -34,9 +34,9 @@ const DateTime = ({
   const [showTimePickerError, setShowTimePickerError] = useState(true);
   const [timeError, setTimeError] = useState('');
   const [inputValue, setInputValue] = useState(format(value, dateFormat));
-  const [timeValue, setTimeValue] = useState('');
+  const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true)
-  const timeDateValue = new Date(value);
+  const [timeDateValue, setTimeDateValue] = useState(new Date(value));
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -71,6 +71,14 @@ const DateTime = ({
                   setPickerDisplay('block');
                   setTimePickerDisplay('none');
                   // set input text to date if there is a selected date
+                  if(hasSelection) {
+                    const dateValue = new Date(value)
+                    dateValue.setDate(dateValue.getDate()-1)
+                    setTimeDateValue(dateValue)
+                    setTimeout(()=>{
+                      setTimeDateValue(new Date(value))
+                    },1)
+                  }
                 }}
                 value={inputValue}
                 onBlur={(e) => {
@@ -122,7 +130,7 @@ const DateTime = ({
               <Calendar
                 calRef={calendarRef}
                 pickerDisplay={pickerDisplay}
-                date={value}
+                date={timeDateValue}
                 locale={localeObj}
                 hasSelection={hasSelection}
                 onDateClick={
@@ -173,7 +181,7 @@ const DateTime = ({
                 setPickerDisplay('none');
                 setShowTimePickerError(false);
               }}
-              defaultValue={timeDateValue && !timeError ? format(timeDateValue, timeFormat) : timeValue}
+              value={timeValue}
               onBlur={
                 (e)=>{
                   let relatedTarget = e.relatedTarget ||
@@ -202,6 +210,9 @@ const DateTime = ({
                   }
                 }
               }
+              onChange={(e)=>{
+                setTimeValue(e.target.value)
+              }}
               onKeyDown={
                 (e) => {
                   if (e.key === 'Tab') {
@@ -231,8 +242,9 @@ const DateTime = ({
                     tempDate.setDate(value.getDate())
                     tempDate.setMonth(value.getMonth())
                     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
-                    
-                    setTimeValue(format(timeDateValue, timeFormat));
+
+                    console.log(tempDate)
+                    setTimeValue(format(tempDate, timeFormat));
                     onChange(tempDate);
                     setTimePickerDisplay('none');
                     setShowTimePickerError(true);
