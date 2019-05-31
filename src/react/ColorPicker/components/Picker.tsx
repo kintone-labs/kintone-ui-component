@@ -38,10 +38,11 @@ export default function Picker(props: PickerProps) {
     }
 
     if (props.hexString !== hexString) {
+        let newRGB = hexToRgb(props.hexString)
         setHexString(props.hexString);
-        setRGB(hexToRgb(props.hexString));
-        setSaturationBackground(rgb)
-        setHSV(rgbToHsv(rgb.r, rgb.g, rgb.b));
+        setRGB(newRGB);
+        setSaturationBackground(newRGB)
+        setHSV(rgbToHsv(newRGB.r, newRGB.g, newRGB.b));
     }
 
     const saturationProps = {
