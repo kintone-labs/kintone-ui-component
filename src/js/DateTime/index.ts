@@ -203,6 +203,7 @@ class DateTime extends Control {
       }, 1);
     };
     this._timeTextInput.onkeydown = (e) => {
+      e.preventDefault();
       switch (e.key) {
         case 'Tab':
           if (this._timeTextInput.selectionStart !== 3 && this._timeTextInput.selectionEnd !== 5) {
@@ -244,9 +245,6 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         default:
-          if (!/[0-9]/.test(e.key)) {
-            e.preventDefault();
-          }
           break;
       }
     };

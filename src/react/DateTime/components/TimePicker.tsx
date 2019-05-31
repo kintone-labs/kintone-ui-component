@@ -209,7 +209,7 @@ const TimePicker = ({pickerDisplay='none', timeRef, onTimeClick}:TimePickerProps
                     return(
                         <span 
                             className="kuc-time-list-item" 
-                            tabIndex={0}
+                            tabIndex={-1}
                             key={`time-${index}`}
                             onClick = {(e)=>{
                                 let tempDate = new Date()
