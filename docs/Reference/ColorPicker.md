@@ -217,7 +217,7 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(colorPicker.render());
  
-colorPicker.onChange = function(color) {
+colorPicker.on('change', function(color) {
     console.log(color.hex);
 });
 ```
@@ -231,16 +231,10 @@ export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
     render() {
         return (
-            <ColorPicker color={this.state.color} onChange={this.handleChangeComplete} />
+            <ColorPicker color={this.state.color} onChange={this.handleChange} />
         );
     }
-    handleAccept = (color) => {
-        console.log(color.hex);
-    };
-    handleCancel = (color) => {
-        console.log(color.hex);
-    };
-    handleChangeComplete = (color) => {
+    handleChange = (color) => {
         console.log(color.hex);
     };
 }
