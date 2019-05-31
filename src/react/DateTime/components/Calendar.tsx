@@ -111,8 +111,8 @@ const Calendar = ({
 				})}
 				</div>
 				<div className="quick-selections-container">
-					<span className="today calendar-button" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
-					<span className="none calendar-button" onClick={()=>{onDateClick(null, previousDate);}} tabIndex={-1}>{locale.none}</span>
+					<span className="today calendar-button-control" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
+					<span className="none calendar-button-control" onClick={()=>{onDateClick(null, previousDate);}} tabIndex={-1}>{locale.none}</span>
 				</div>
 			</div>
 		</div>
