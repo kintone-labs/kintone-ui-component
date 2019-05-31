@@ -2,6 +2,7 @@ import Control, {ControlProps} from '../../Control';
 import TextInputStyle from './TextInputStyle';
 import {rgbToHex, hsvToRgb} from './utils';
 import {RGB} from './HueSpectrum';
+import Message from '../../../constant/Message'
 
 type TextInputProps = ControlProps & {
   label: string;
@@ -84,12 +85,12 @@ class RGBInput extends Control {
       label: 'R',
       value: this._props.rgb.r.toString(),
       onChange: (value: string) => {
-        try {
-          this._props.rgb.r = parseInt(value || '0', 10);
-          this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let intValue = parseInt(value || "0",10)
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.rgb.r = intValue;
+        this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -99,12 +100,12 @@ class RGBInput extends Control {
       label: 'G',
       value: this._props.rgb.g.toString(),
       onChange: (value: string) => {
-        try {
-          this._props.rgb.g = parseInt(value || '0', 10);
-          this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let intValue = parseInt(value || "0",10)
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.rgb.g = intValue;
+        this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -114,12 +115,12 @@ class RGBInput extends Control {
       label: 'B',
       value: this._props.rgb.b.toString(),
       onChange: (value: string) => {
-        try {
-          this._props.rgb.b = parseInt(value || '0', 10);
-          this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let intValue = parseInt(value || "0",10)
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.rgb.b = intValue;
+        this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -169,15 +170,15 @@ class HSVInput extends Control {
 
     this.hInput = new TextInput({
       label: 'H',
-      value: this._props.hsv.h.toString(),
+      value: this._props.hsv.h.toFixed(1),
       onChange: (value: string) => {
-        try {
-          this._props.hsv.h = parseInt(value || '0', 10);
-          const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
-          this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let floatValue = parseFloat(value || "0")
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.hsv.h = floatValue;
+        const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
+        this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -185,15 +186,15 @@ class HSVInput extends Control {
 
     this.sInput = new TextInput({
       label: 'S',
-      value: this._props.hsv.s.toString(),
+      value: this._props.hsv.s.toFixed(1),
       onChange: (value: string) => {
-        try {
-          this._props.hsv.s = parseInt(value || '0', 10);
-          const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
-          this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let floatValue = parseFloat(value || "0")
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
+            throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.hsv.s = floatValue;
+        const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
+        this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -201,15 +202,15 @@ class HSVInput extends Control {
 
     this.vInput = new TextInput({
       label: 'V',
-      value: this._props.hsv.v.toString(),
+      value: this._props.hsv.v.toFixed(1),
       onChange: (value: string) => {
-        try {
-          this._props.hsv.v = parseInt(value || '0', 10);
-          const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
-          this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
-        } catch (error) {
-          // console.error(error);
+        let floatValue = parseFloat(value || "0")
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
+          throw new Error(Message.colorPicker.INVALID_COLOR)
         }
+        this._props.hsv.v = floatValue;
+        const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
+        this._props.onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
       },
       isVisible: true
     } as TextInputProps);
@@ -220,9 +221,9 @@ class HSVInput extends Control {
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('hsv') !== -1) {
-      this.hInput.setValue(this._props.hsv.h.toString());
-      this.sInput.setValue(this._props.hsv.s.toString());
-      this.vInput.setValue(this._props.hsv.v.toString());
+      this.hInput.setValue(this._props.hsv.h.toFixed(1));
+      this.sInput.setValue(this._props.hsv.s.toFixed(1));
+      this.vInput.setValue(this._props.hsv.v.toFixed(1));
     }
   }
 

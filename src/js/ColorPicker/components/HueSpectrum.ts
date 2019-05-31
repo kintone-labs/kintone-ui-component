@@ -51,24 +51,24 @@ class HueSpectrum extends Control {
   
 
     initLayout() {
-        if (!this.hasInitLayout && this.colorCanvas) {
-            
-            let ctx = this.colorCanvas.getContext("2d");
-            if (ctx) {
-                ctx.rect(0, 0, this._props.width, this._props.height);
-                let grd1 = ctx.createLinearGradient(0, 0, 0, this._props.height);
-                grd1.addColorStop(0, "rgb(255, 0, 0)"); // red
-                grd1.addColorStop(0.17, "rgb(255, 0, 255)"); // magenta
-                grd1.addColorStop(0.34, "rgb(0, 0, 255)"); // blue
-                grd1.addColorStop(0.51, "rgb(0, 255, 255)"); // aqua
-                grd1.addColorStop(0.68, "rgb(0, 255, 0)"); // green
-                grd1.addColorStop(0.85, "rgb(255, 255, 0)"); // yellow
-                grd1.addColorStop(1, "rgb(255, 0, 0)"); // red
-                ctx.fillStyle = grd1;
-                ctx.fill();
-                this.hasInitLayout = true
-            }
+      if (!this.hasInitLayout && this.colorCanvas) {
+          
+        let ctx = this.colorCanvas.getContext("2d");
+        if (ctx) {
+          ctx.rect(0, 0, this._props.width, this._props.height);
+          let grd1 = ctx.createLinearGradient(0, 0, 0, this._props.height);
+          grd1.addColorStop(0, "rgb(255, 0, 0)"); // red
+          grd1.addColorStop(0.17, "rgb(255, 0, 255)"); // magenta
+          grd1.addColorStop(0.34, "rgb(0, 0, 255)"); // blue
+          grd1.addColorStop(0.51, "rgb(0, 255, 255)"); // aqua
+          grd1.addColorStop(0.68, "rgb(0, 255, 0)"); // green
+          grd1.addColorStop(0.85, "rgb(255, 255, 0)"); // yellow
+          grd1.addColorStop(1, "rgb(255, 0, 0)"); // red
+          ctx.fillStyle = grd1;
+          ctx.fill();
+          this.hasInitLayout = true
         }
+      }
     }
   
 
@@ -102,16 +102,16 @@ class HueSpectrum extends Control {
 
   triggerSelect(clientY: number) {
       if (!this.containerEl) {
-          this.initContainerEl();
+        this.initContainerEl();
       }
       let x = this._props.width / 2;
       let y = clientY - this.containerEl.top;
       if (this.colorCanvas && this.colorCanvas) {
-          const ctx = this.colorCanvas.getContext("2d");
-          if (ctx) {
-              const imageData = ctx.getImageData(x, y, 1, 1).data;
-              this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
-          }
+        const ctx = this.colorCanvas.getContext("2d");
+        if (ctx) {
+          const imageData = ctx.getImageData(x, y, 1, 1).data;
+          this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });
+        }
       }
   }
   

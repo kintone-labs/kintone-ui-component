@@ -2,19 +2,29 @@ import React, {useState, useEffect, useRef} from 'react';
 import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
+import Message from '../../constant/Message';
 
 type ColorPickerProps = {
-  color: string;
-  onChange: (hexString: string) => void;
+  color?: string;
+  onChange?: (hexString: string) => void;
   isDisabled?: boolean;
   isVisible?: boolean
 }
 
+let previouseHex: string
+
 function ColorPicker(props: ColorPickerProps) {
+  if (props.color && !isHexString(props.color)) {
+    throw new Error(Message.colorPicker.INVALID_COLOR)
+  }
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [hexString, setHexString] = useState(props.color || '#ff0000');
+  const [hexString, setHexString] = useState(props.color || "#FF0000");
   const [pickerDisplay, setPickerDisplay] = useState(false);
   const [focus, setFocus] = useState(false);
+
+  if (!previouseHex) {
+		previouseHex = props.color || "#FF0000"
+	}
 
   let isVisible = true
 
@@ -58,6 +68,10 @@ function ColorPicker(props: ColorPickerProps) {
   }
 
   useEffect(() => {
+    if (props.color && props.color !== previouseHex) {
+      setHexString(props.color)
+      previouseHex = props.color
+    }
     document.addEventListener('mousedown', handleClickOutside, true);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside, true);
@@ -84,13 +98,13 @@ function ColorPicker(props: ColorPickerProps) {
     onChange: handlePickerChange,
     onCancel: () => {
       setPickerDisplay(false);
-      setHexString(props.color);
-      props.onChange(props.color);
+      setHexString(props.color || "#FF0000");
+      props.onChange && props.onChange(props.color || "#FF0000");
     },
     onSubmit: (newHexString: string) => {
       setPickerDisplay(false);
       setHexString(newHexString);
-      props.onChange(newHexString);
+      props.onChange && props.onChange(newHexString);
     },
     zIndex: 2000
   };

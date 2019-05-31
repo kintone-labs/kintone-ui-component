@@ -1,5 +1,7 @@
 import Control, {ControlProps} from '../Control';
 
+import '../../css/Button.css'
+
 type ButtonProps = ControlProps & {
   text: string;
   type: 'normal' | 'submit';
@@ -15,6 +17,9 @@ class Button extends Control {
   }
   constructor(params: ButtonProps) {
     super();
+    if(typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
     if (params) {
       this._props = {...this._props, ...params};
     }

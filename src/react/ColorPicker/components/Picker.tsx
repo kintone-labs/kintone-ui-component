@@ -22,13 +22,15 @@ type PickerProps = {
 
 export default function Picker(props: PickerProps) {
     const [hexString, setHexString] = useState(props.hexString);
-    const rgb = hexToRgb(hexString);
-    const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+    const [rgb, setRGB] = useState(hexToRgb(hexString))
+    const [hsv, setHSV] = useState(rgbToHsv(rgb.r, rgb.g, rgb.b))
 
     const [saturationBackground, setSaturationBackground] = useState(rgb);
 
     function handleHue(newRgb: RGB) {
         setSaturationBackground(newRgb);
+        setRGB(newRgb);
+        setHSV(rgbToHsv(rgb.r, rgb.g, rgb.b));
     }
 
     function handleSaturation(newRgb: RGB) {
@@ -36,7 +38,11 @@ export default function Picker(props: PickerProps) {
     }
 
     if (props.hexString !== hexString) {
+        let newRGB = hexToRgb(props.hexString)
         setHexString(props.hexString);
+        setRGB(newRGB);
+        setSaturationBackground(newRGB)
+        setHSV(rgbToHsv(newRGB.r, newRGB.g, newRGB.b));
     }
 
     const saturationProps = {
@@ -73,7 +79,13 @@ export default function Picker(props: PickerProps) {
                 }} />
             </span>
             <span>
-                <Button text="Cancel" onClick={props.onCancel} />
+                <Button text="Cancel" onClick={() => {
+                    let oldRGB = hexToRgb(props.hexString);
+                    setSaturationBackground(oldRGB)
+                    setRGB(oldRGB);
+                    setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
+                    props.onCancel()
+                }} />
             </span>
         </div>
         </div>

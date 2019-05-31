@@ -165,9 +165,14 @@ class Picker extends Control {
     }
   }
 
+  setRGB(hexString: string) {
+    const tempRGB = hexToRgb(this._props.hexString);
+    this.rgbInput.setRGB(tempRGB);
+    this.hsvInput.setHSV(rgbToHsv(tempRGB.r, tempRGB.g, tempRGB.b));
+  }
+
   setHexString(hexString: string) {
     this._props.hexString = hexString;
-    this.saturationSpectrum.setRGB(hexToRgb(this._props.hexString));
     this.rerender(['hexString']);
   }
 

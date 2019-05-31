@@ -2,6 +2,8 @@ import React, { CSSProperties } from "react";
 import TextInputStyle from "./TextInputStyle";
 import {rgbToHex, hsvToRgb} from './utils'
 
+import Message from '../../../constant/Message'
+
 type TextInputProps = {
     label: string
     value: string
@@ -22,7 +24,7 @@ export default function TextInput({label, value, onChange}: TextInputProps) {
         <div>
             <span style={TextInputStyle.label as CSSProperties}>{label}</span>
             <span>
-                <input type="text" style={TextInputStyle.input as CSSProperties} value={value} onChange={(e)=>{
+                <input type="text" style={TextInputStyle.input as CSSProperties} key={value} defaultValue={value} onBlur={(e)=>{
                     onChange(e.target.value, label)
                 }}/>
             </span>
@@ -33,7 +35,11 @@ export default function TextInput({label, value, onChange}: TextInputProps) {
 function RGBInput({rgb, onChange}: RGBObj) {
     const handleChangeRGBInput = (value: string, objectKey: string) => {
         try {
-            rgb[objectKey.toLowerCase()] = parseInt(value || "0",10)
+            let intValue = parseInt(value || "0",10)
+            if (isNaN(value as any) || intValue < 0 || intValue > 255) {
+                throw new Error(Message.colorPicker.INVALID_COLOR)
+            }
+            rgb[objectKey.toLowerCase()] = intValue
             onChange(rgbToHex(rgb.r, rgb.g, rgb.b))
         } catch (error) {
             console.error(error)
@@ -60,7 +66,11 @@ type HSVObj = {
 function HSVInput({hsv, onChange}: HSVObj) {
     const handleChangeHSVInput = (value: string, objectKey: string) => {
         try {
-            hsv[objectKey.toLowerCase()] = parseInt(value || "0",10)
+            let floatValue = parseFloat(value || "0")
+            if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
+                throw new Error(Message.colorPicker.INVALID_COLOR)
+            }
+            hsv[objectKey.toLowerCase()] = floatValue
             let rgb = hsvToRgb(hsv.h, hsv.s, hsv.v)
             onChange(rgbToHex(rgb.r, rgb.g, rgb.b))
         } catch (error) {
@@ -69,9 +79,9 @@ function HSVInput({hsv, onChange}: HSVObj) {
     }
     return (
         <div>
-            <TextInput label="H" value={`${hsv.h}`} onChange={handleChangeHSVInput}/>
-            <TextInput label="S" value={`${hsv.s}`} onChange={handleChangeHSVInput}/>
-            <TextInput label="V" value={`${hsv.v}`} onChange={handleChangeHSVInput}/>
+            <TextInput label="H" value={`${hsv.h.toFixed(1)}`} onChange={handleChangeHSVInput}/>
+            <TextInput label="S" value={`${hsv.s.toFixed(1)}`} onChange={handleChangeHSVInput}/>
+            <TextInput label="V" value={`${hsv.v.toFixed(1)}`} onChange={handleChangeHSVInput}/>
         </div>
     );
 }

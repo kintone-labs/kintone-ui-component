@@ -26,14 +26,27 @@ class ColorPicker extends Control {
 
   constructor(params: ColorPickerProps) {
     super();
+    if(typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
     if (params) {
       this._props = {...this._props, ...params};
     }
+    if (!isHexString(this._props.color)) {
+      throw new Error(Message.colorPicker.INVALID_COLOR)
+    }
+
+    if (typeof this._props.isDisabled !== 'boolean') {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    
     this.oldColor = this._props.color;
     this.focus = false;
     this.element = document.createElement('div');
     this._renderInput();
     this._renderPicker();
+
+    this.rerender()
   }
 
   private _renderInput() {
@@ -41,17 +54,24 @@ class ColorPicker extends Control {
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
     this.inputElement.value = this._props.color;
+    this.inputElement.disabled = this._props.isDisabled
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
         this._props.color = (e.target as HTMLInputElement).value;
-        this.rerender(['color']);
+        this.rerender(['color', 'redraw']);
       }
     };
     this.inputElement.onfocus = () => {
       this.focus = true;
       this.Picker.setPickerDisplay(true);
     };
+
+    document.addEventListener('mousedown',(e: MouseEvent) => {
+      if (!this.element.contains(e.target as HTMLElement)) {
+        this.Picker.setPickerDisplay(false);
+      }
+    })
     inputContainer.appendChild(this.inputElement);
 
     const inputStyle = this.getInputStyle();
@@ -90,7 +110,15 @@ class ColorPicker extends Control {
     if (changedAttr.indexOf('color') !== -1) {
       this.inputElement.value = this._props.color;
       const inputStyle = this.getInputStyle();
+      this.Picker.setRGB(this._props.color);
       Object.assign(this.inputElement.style, inputStyle);
+    }
+
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      this.inputElement.disabled = this._props.isDisabled
+      if (this._props.isDisabled) {
+        this.Picker.setPickerDisplay(false);
+      }
     }
 
     if (changedAttr.indexOf('redraw') !== -1) {
@@ -99,13 +127,13 @@ class ColorPicker extends Control {
   }
 
   setColor(hexString: string) {
-      if (isHexString(hexString)) {
-          this._props.color = hexString
-          this.rerender(['color', 'redraw'])
-      }
-      else {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
-      }
+    if (isHexString(hexString)) {
+      this._props.color = hexString
+      this.rerender(['color', 'redraw'])
+    }
+    else {
+      throw new Error(Message.colorPicker.INVALID_COLOR)
+    }
   }
 
   getColor(): string {
