@@ -78,7 +78,13 @@ export default function Picker(props: PickerProps) {
                 }} />
             </span>
             <span>
-                <Button text="Cancel" onClick={props.onCancel} />
+                <Button text="Cancel" onClick={() => {
+                    let oldRGB = hexToRgb(props.hexString);
+                    setSaturationBackground(oldRGB)
+                    setRGB(oldRGB);
+                    setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
+                    props.onCancel()
+                }} />
             </span>
         </div>
         </div>
