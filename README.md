@@ -6,8 +6,8 @@
 ### For javascript
 #### Step 1: Use below files  from './dist' folder
 ```
- ./dist/kintone-ui-component.min.js
- ./dist/kintone-ui-component.min.css
+./dist/kintone-ui-component.min.js
+./dist/kintone-ui-component.min.css
 ```
 #### Step 2: Upload them to kintone following help site. ([Setting JavaScript Customization on kintone](https://help.kintone.com/en/k/user/js_customize.html)) Or add the copied URL.
 
@@ -22,7 +22,7 @@ $ create-react-app my-customization
 * Install kintone-ui-component from npm.
 ```
 $ cd my-customization
-$ npm install @kintone/kintone-ui-component --dev
+$ npm install @kintone/kintone-ui-component
 ```
 * If you don't want to install kintone-ui-component from npm, you can follow below steps to install it.
 ```
@@ -42,7 +42,6 @@ $ npm link ../kintone-ui-component
 * Git
 ```
 
-### For javaScript
 ```
 $ git clone https://github.com/kintone/kintone-ui-component.git
 $ cd kintone-ui-component
@@ -53,19 +52,7 @@ $ npm run build
 ```
 ./dist/kintone-ui-component.min.js
 ./dist/kintone-ui-component.min.css
-```
-
-### For React
-```
-$ git clone https://github.com/kintone/kintone-ui-component.git
-$ cd kintone-ui-component
-$ npm install
-$ npm run compile
-
-```
-#### Output
-```
-./lib/
+./dist/esm
 ```
 
 ## License
