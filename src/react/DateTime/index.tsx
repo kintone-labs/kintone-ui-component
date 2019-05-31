@@ -42,6 +42,8 @@ const DateTime = ({
     const newTime = new Date(timeDateValue)
     newTime.setSeconds(0)
     newTime.setMinutes(timeDateValue.getMinutes() + minutes)
+    newTime.setMonth(timeDateValue.getMonth())
+    newTime.setDate(timeDateValue.getDate())
     setTimeDateValue(newTime)
     onChange(newTime)
     setTimeout(()=>{
@@ -53,8 +55,10 @@ const DateTime = ({
     const newTime = new Date(timeDateValue)
     newTime.setSeconds(0)
     newTime.setHours(timeDateValue.getHours() + hours)
-    setTimeDateValue(newTime)
-    onChange(newTime)
+    newTime.setMonth(timeDateValue.getMonth())
+    newTime.setDate(timeDateValue.getDate())
+    setTimeDateValue(new Date(newTime))
+    onChange(new Date(newTime))
     setTimeout(()=>{
       setTimeValue(format(newTime, timeFormat))
       timeInput.setSelectionRange(0,2)
@@ -350,8 +354,10 @@ const DateTime = ({
                   let previousHours: string;
                   if (timeDateValue.getHours() > 10) {
                     previousHours = ('' + timeDateValue.getHours())[1];
-                  } else {
+                  } else if (timeDateValue.getHours() === 10) {
                     previousHours = ('' + timeDateValue.getHours())[0];
+                  } else {
+                    previousHours = ('' + timeDateValue.getHours());
                   }
                   if (parseInt(previousHours, 10) > 2) {
                     previousHours = '0';
@@ -361,6 +367,8 @@ const DateTime = ({
                   timeTextInput.setSelectionRange(0, 2);
                 }
                 newTime.setSeconds(0)
+                newTime.setMonth(timeDateValue.getMonth())
+                newTime.setDate(timeDateValue.getDate())
                 setTimeValue(format(newTime, timeFormat))
                 setTimeDateValue(new Date(newTime));
                 onChange(new Date(newTime))
