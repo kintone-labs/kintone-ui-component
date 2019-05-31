@@ -1,6 +1,6 @@
 import '../../css/DateTime.css';
 import '../../css/Text.css';
-import React, {useState, createRef} from 'react';
+import React, {useState, createRef, useEffect} from 'react';
 import {en, ja, zh, format} from './components/Locale';
 
 import {parseStringToDate, parseStringToTime} from './components/utils';
@@ -31,8 +31,6 @@ const DateTime = ({
   const [showPickerError, setShowPickerError] = useState(true);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
-  const [showTimePickerError, setShowTimePickerError] = useState(true);
-  const [timeError, setTimeError] = useState('');
   const [inputValue, setInputValue] = useState(format(value, dateFormat));
   const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true)
@@ -40,6 +38,101 @@ const DateTime = ({
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+  const _changeMinutesBy = (minutes: number, timeInput: HTMLInputElement) => {
+    const newTime = new Date(timeDateValue)
+    newTime.setSeconds(0)
+    newTime.setMinutes(timeDateValue.getMinutes() + minutes)
+    setTimeDateValue(newTime)
+    setTimeValue(format(newTime, timeFormat))
+    onChange(newTime)
+    setTimeout(() => {
+      timeInput.setSelectionRange(3, 5);
+    }, 1)
+    
+  }
+  const _changeHoursBy = (hours: number, timeInput: HTMLInputElement) => {
+    const newTime = new Date(timeDateValue)
+    newTime.setSeconds(0)
+    newTime.setHours(timeDateValue.getHours() + hours)
+    setTimeDateValue(newTime)
+    setTimeValue(format(newTime, timeFormat))
+    onChange(newTime)
+    setTimeout(() => {
+      timeInput.setSelectionRange(0, 2);
+    }, 1)
+  }
+  const timeInputKeydownHandler = (e: React.KeyboardEvent) => {
+    const timeTextInput = e.target as HTMLInputElement
+    timeTextInput.selectionStart
+    switch (e.key) {
+      case 'Tab':
+        if (timeTextInput.selectionStart !== 3 && timeTextInput.selectionEnd !== 5) {
+          e.preventDefault();
+          setTimePickerDisplay('none')
+          timeTextInput.setSelectionRange(3, 5);
+        }
+        break;
+      case 'ArrowLeft':
+      case 'Left':
+        e.preventDefault();
+        timeTextInput.setSelectionRange(0, 2);
+        setTimePickerDisplay('none')
+        break;
+      case 'ArrowRight':
+      case 'Right':
+        e.preventDefault();
+        timeTextInput.setSelectionRange(3, 5);
+        setTimePickerDisplay('none')
+        break;
+      case 'ArrowUp':
+      case 'Up':
+        e.preventDefault();
+        if (timeTextInput.selectionStart && timeTextInput.selectionEnd &&
+          timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5) {
+          _changeMinutesBy(1, e.target as HTMLInputElement);
+        } else {
+          _changeHoursBy(1, e.target as HTMLInputElement);
+        }
+        setTimePickerDisplay('none')
+        break;
+      case 'ArrowDown':
+      case 'Down':
+        e.preventDefault();
+        if (timeTextInput.selectionStart && timeTextInput.selectionEnd &&
+          timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5) {
+          _changeMinutesBy(-1, e.target as HTMLInputElement);
+        } else {
+          _changeHoursBy(-1, e.target as HTMLInputElement);
+        }
+        setTimePickerDisplay('none')
+        break;
+      default:
+        if (!/[0-9]/.test(e.key)) {
+          e.preventDefault();
+        }
+        break;
+    }
+  }
+
+  useEffect(()=>{
+    const newTimeDateValue = new Date(timeDateValue)
+    let setNewTimeDateValue = false
+    if(value.getDate() !== timeDateValue.getDate()) {
+      newTimeDateValue.setDate(value.getDate())
+      setNewTimeDateValue = true
+    }
+    if(value.getMonth() !== timeDateValue.getMonth()) {
+      newTimeDateValue.setDate(value.getDate())
+      setNewTimeDateValue = true
+    }
+    if(value.getFullYear() !== timeDateValue.getFullYear()) {
+      newTimeDateValue.setFullYear(value.getFullYear())
+      setNewTimeDateValue = true
+    }
+    if(setNewTimeDateValue) {
+      setTimeDateValue(newTimeDateValue)
+    }
+  })
 
   if(typeof isDisabled !== 'boolean') {
     isDisabled = false
@@ -174,14 +267,29 @@ const DateTime = ({
             <input
               type="text"
               disabled={isDisabled}
-              key={`${format(timeDateValue, timeFormat)}-${timeError}`}
+              maxLength={5}
               className="kuc-input-text text-input time"
-              onFocus={() => {
+              onClick={(e) => {
+                const timeTextInput = e.target as HTMLInputElement
+                if (timeTextInput.selectionStart &&
+                  (timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5)) {
+                  timeTextInput.setSelectionRange(3, 5);
+                } else {
+                  timeTextInput.setSelectionRange(0, 2);
+                }
                 setTimePickerDisplay('flex');
                 setPickerDisplay('none');
-                setShowTimePickerError(false);
               }}
-              value={timeValue}
+              onFocus={(e) => {
+                const timeInput = e.target as HTMLInputElement
+                setTimeout(()=>{
+                  timeInput.setSelectionRange(0, 2);
+                  e.preventDefault();
+                  e.stopPropagation();
+                }, 1);
+                setTimePickerDisplay('flex');
+                setPickerDisplay('none');
+              }}
               onBlur={
                 (e)=>{
                   let relatedTarget = e.relatedTarget ||
@@ -189,46 +297,76 @@ const DateTime = ({
                       document.activeElement; // IE11
                   const timePicker = timeRef.current as HTMLDivElement
                   if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget as HTMLElement)) {
-                    setTimeError('');
-                    const tempDate = parseStringToTime(e.target.value);
-  
-                    if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-                      const returnDate = new Date(timeDateValue);
-                      returnDate.setHours(tempDate.getHours(), tempDate.getMinutes(), tempDate.getSeconds());
-                      onChange(returnDate);
-                      setTimePickerDisplay('none');
-                      setShowTimePickerError(true);
-                    } else if (e.target.value) {
-                      setTimeValue(e.target.value);
-                      setTimeError('Invalid time');
-                      setTimePickerDisplay('none');
-                      setShowTimePickerError(true);
-                    } else {
-                      setTimePickerDisplay('none');
-                      setShowTimePickerError(true);
-                    }
+                    setTimePickerDisplay('none');
                   }
                 }
               }
+              value={timeValue}
               onChange={(e)=>{
-                setTimeValue(e.target.value)
+                const timeTextInput = e.target as HTMLInputElement;
+                let newTime = parseStringToTime(timeTextInput.value);
+                if(!newTime) {
+                  newTime = new Date(timeDateValue)
+                } else {
+                  newTime.setDate(timeDateValue.getDate())
+                  newTime.setMonth(timeDateValue.getMonth())
+                  newTime.setFullYear(timeDateValue.getFullYear())
+                }
+                if (timeTextInput.selectionStart &&
+                  timeTextInput.selectionStart >= 3 && timeTextInput.selectionStart <= 5) {
+                  // minutes are being edited
+                  // for case when more then 1 key is being held down
+                  if(newTime.getMinutes() === timeDateValue.getMinutes()) {
+                    timeTextInput.value = format(newTime, 'HH:mm');
+                    timeTextInput.setSelectionRange(3, 5);
+                    e.preventDefault()
+                    return
+                  }
+                  let previousMinutes: string;
+                  if (timeDateValue.getMinutes() > 10) {
+                    previousMinutes = ('' + timeDateValue.getMinutes())[1];
+                  } else {
+                    previousMinutes = ('' + timeDateValue.getMinutes());
+                  }
+                  if (parseInt(previousMinutes, 10) > 5) {
+                    previousMinutes = '0';
+                  }
+                  newTime.setMinutes(parseInt(previousMinutes + '' + newTime.getMinutes(), 10));
+                  timeTextInput.value = format(newTime, 'HH:mm');
+                  timeTextInput.setSelectionRange(3, 5);
+                } else {
+                  // hours are being edited
+                  // for case when more then 1 key is being held down
+                  if(newTime.getHours() === timeDateValue.getHours()) {
+                    timeTextInput.value = format(newTime, 'HH:mm');
+                    timeTextInput.setSelectionRange(0, 2);
+                    e.preventDefault()
+                    return
+                  }
+                  let previousHours: string;
+                  if (timeDateValue.getHours() > 10) {
+                    previousHours = ('' + timeDateValue.getHours())[1];
+                  } else {
+                    previousHours = ('' + timeDateValue.getHours())[0];
+                  }
+                  if (parseInt(previousHours, 10) > 2) {
+                    previousHours = '0';
+                  }
+                  newTime.setHours(parseInt(previousHours + '' + newTime.getHours(), 10));
+                  timeTextInput.value = format(newTime, 'HH:mm');
+                  timeTextInput.setSelectionRange(0, 2);
+                }
+                newTime.setSeconds(0)
+                setTimeValue(format(newTime, timeFormat))
+                setTimeDateValue(new Date(newTime));
+                onChange(new Date(newTime))
               }}
               onKeyDown={
                 (e) => {
-                  if (e.key === 'Tab') {
-                    setTimePickerDisplay('none');
-                    setShowTimePickerError(true);
-  
-                  }
+                  timeInputKeydownHandler(e)
                 }
               }
             />
-            {
-              (timeError && showTimePickerError) &&
-              <div className="label-error">
-                <span>{timeError}</span>
-              </div>
-            }
             {
               !isDisabled &&
               <TimePicker
@@ -236,18 +374,16 @@ const DateTime = ({
                 pickerDisplay={timePickerDisplay}
                 onTimeClick={
                   (timePickerDate: Date) => {
-                    setTimeError('');
                     let tempDate = new Date();
                     if (timeDateValue) tempDate = new Date(timeDateValue);
                     tempDate.setDate(value.getDate())
                     tempDate.setMonth(value.getMonth())
                     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
+                    tempDate.setSeconds(0)
 
-                    console.log(tempDate)
                     setTimeValue(format(tempDate, timeFormat));
                     onChange(tempDate);
                     setTimePickerDisplay('none');
-                    setShowTimePickerError(true);
                   }
                 }
               />

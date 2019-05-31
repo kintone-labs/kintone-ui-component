@@ -250,8 +250,8 @@ class TimePicker extends Control {
 
   rerender(changedAttr?: string[], options?: object) {
     super.rerender();
-    if (changedAttr.indexOf('offsetLeft') !== -1) {
-      this.element.style.left = options.left + 'px';
+    if (changedAttr.indexOf('offsetLeft') !== -1 && options['left']) {
+      this.element.style.left = options['left'] + 'px';
     }
   }
 
