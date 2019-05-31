@@ -241,3 +241,151 @@ export default class Plugin extends React.Component {
 ```
 
 </details>
+
+### show()
+Display ColorPicker.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(myColorPicker.render());
+myColorPicker.show();
+```
+
+**React**
+```
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <ColorPicker color='#FF0000' isVisible={true} />
+        );
+    }
+}
+```
+</details>
+
+### hide()
+Hide ColorPicker.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(myColorPicker.render());
+myColorPicker.hide();
+```
+
+**React**
+```
+import { Button } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <ColorPicker color='#FF0000' isVisible={false} />
+        );
+    }
+}
+```
+</details>
+
+### disable()
+Disable ColorPicker.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(myColorPicker.render());
+myColorPicker.disable();
+```
+
+**React**
+```
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <ColorPicker color='#FF0000' isDisabled={true} />
+        );
+    }
+}
+```
+</details>
+
+### enable()
+Enable ColorPicker.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(myColorPicker.render());
+myColorPicker.enable();
+```
+
+**React**
+```
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <ColorPicker color="#FF0000" isDisabled={false} />
+        );
+    }
+}
+```
+</details>
