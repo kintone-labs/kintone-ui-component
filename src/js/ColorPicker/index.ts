@@ -59,7 +59,7 @@ class ColorPicker extends Control {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
         this._props.color = (e.target as HTMLInputElement).value;
-        this.rerender(['color']);
+        this.rerender(['color', 'redraw']);
       }
     };
     this.inputElement.onfocus = () => {
