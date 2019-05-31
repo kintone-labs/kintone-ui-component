@@ -153,6 +153,12 @@ class ColorPicker extends Control {
     }
     return style;
   }
+
+  on(eventName: string, callback: (hexString: string) => void) {
+    if (eventName === 'change') {
+      this._props.onChange = callback
+    }
+  }
 }
 
 export default ColorPicker;

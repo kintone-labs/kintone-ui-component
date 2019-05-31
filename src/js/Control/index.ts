@@ -30,7 +30,7 @@ class Control {
     return this.element;
   }
 
-  on(eventName: string, callback: (e?: Event) => void) {
+  on(eventName: string, callback: (params?: any) => void) {
     this.element.addEventListener(eventName, (e: Event)=>{
       if (this._props.isDisabled) return;
       callback(e);
