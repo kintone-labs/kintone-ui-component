@@ -5,6 +5,7 @@ import '../../css/Button.css'
 type ButtonProps = ControlProps & {
   text: string;
   type: 'normal' | 'submit';
+  onClick?: (e: Event) => void
 }
 
 class Button extends Control {
@@ -12,7 +13,8 @@ class Button extends Control {
     ...this._props,
     ...{
       text: 'Button',
-      type: 'normal'
+      type: 'normal',
+      onClick: () => {}
     }
   }
   constructor(params: ButtonProps) {
@@ -26,6 +28,8 @@ class Button extends Control {
     this.element = document.createElement('button');
     this.element.className = this._getClassName();
     this.element.innerHTML = this._props.text;
+
+    this.element.addEventListener('click', this._props.onClick)
 
   }
 

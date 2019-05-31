@@ -14,7 +14,7 @@ type DateTimeProps = ControlProps & {
   locale?: string;
   dateFormat?: string;
   timeFormat?: string;
-  timeIntervals?: number;
+  onChange?: (date: Date) => void
 }
 
 class DateTime extends Control {
@@ -24,7 +24,8 @@ class DateTime extends Control {
       type: 'datetime',
       locale: 'ja',
       dateFormat: 'MM/dd/YYYY',
-      timeFormat: 'HH:mm'
+      timeFormat: 'HH:mm',
+      onChange: (date) => {}
     }}
   protected element: HTMLElement
   private _textInputsContainer: HTMLElement
@@ -82,6 +83,7 @@ class DateTime extends Control {
       } else {
         this._dateTextInput.value = '';
       }
+      // this._props.onChange && this._props.onChange(this._props.value)
     }
     if (changedAttr.indexOf('timeTextInput') !== -1) {
       this._timeTextInput.value = format(this._time, 'HH:mm');
