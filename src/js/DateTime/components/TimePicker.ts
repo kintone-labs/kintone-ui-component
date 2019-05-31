@@ -232,6 +232,7 @@ class TimePicker extends Control {
         const minute = parseInt(timeObj.value.split(':')[1], 10);
         tempDate.setHours(hour);
         tempDate.setMinutes(minute);
+        tempDate.setSeconds(0)
         if (this._props.onTimeClick) {
           this._props.onTimeClick(tempDate);
         }
@@ -250,8 +251,8 @@ class TimePicker extends Control {
 
   rerender(changedAttr?: string[], options?: object) {
     super.rerender();
-    if (changedAttr.indexOf('offsetLeft') !== -1) {
-      this.element.style.left = options.left + 'px';
+    if (changedAttr.indexOf('offsetLeft') !== -1 && options['left']) {
+      this.element.style.left = options['left'] + 'px';
     }
   }
 
