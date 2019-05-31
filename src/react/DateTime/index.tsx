@@ -166,6 +166,9 @@ const DateTime = ({
                 onFocus={(e) => {
                   setPickerDisplay('block');
                   setTimePickerDisplay('none');
+                  if(showPickerError) {
+                    setHasSelection(false)
+                  }
                   if(!showPickerError && hasSelection) {
                     const temporary = new Date(parseStringToDate(e.target.value) as Date)
                     const dateValue = new Date(parseStringToDate(e.target.value) as Date)
