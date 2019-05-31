@@ -68,7 +68,7 @@ class ColorPicker extends Control {
     };
 
     document.addEventListener('mousedown',(e: MouseEvent) => {
-      if (!(e.target as HTMLElement).contains(this.element)) {
+      if (!this.element.contains(e.target as HTMLElement)) {
         this.Picker.setPickerDisplay(false);
       }
     })
