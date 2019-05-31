@@ -232,6 +232,7 @@ class TimePicker extends Control {
         const minute = parseInt(timeObj.value.split(':')[1], 10);
         tempDate.setHours(hour);
         tempDate.setMinutes(minute);
+        tempDate.setSeconds(0)
         if (this._props.onTimeClick) {
           this._props.onTimeClick(tempDate);
         }
