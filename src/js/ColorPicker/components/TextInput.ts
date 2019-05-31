@@ -86,7 +86,7 @@ class RGBInput extends Control {
       value: this._props.rgb.r.toString(),
       onChange: (value: string) => {
         let intValue = parseInt(value || "0",10)
-        if (isNaN(intValue) || intValue < 0 || intValue > 255) {
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
           throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.rgb.r = intValue;
@@ -101,7 +101,7 @@ class RGBInput extends Control {
       value: this._props.rgb.g.toString(),
       onChange: (value: string) => {
         let intValue = parseInt(value || "0",10)
-        if (isNaN(intValue) || intValue < 0 || intValue > 255) {
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
           throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.rgb.g = intValue;
@@ -116,7 +116,7 @@ class RGBInput extends Control {
       value: this._props.rgb.b.toString(),
       onChange: (value: string) => {
         let intValue = parseInt(value || "0",10)
-        if (isNaN(intValue) || intValue < 0 || intValue > 255) {
+        if (isNaN(value as any) || intValue < 0 || intValue > 255) {
           throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.rgb.b = intValue;
@@ -173,7 +173,7 @@ class HSVInput extends Control {
       value: this._props.hsv.h.toFixed(1),
       onChange: (value: string) => {
         let floatValue = parseFloat(value || "0")
-        if (isNaN(floatValue) || floatValue < 0 || floatValue > 1) {
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
           throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.hsv.h = floatValue;
@@ -189,7 +189,7 @@ class HSVInput extends Control {
       value: this._props.hsv.s.toFixed(1),
       onChange: (value: string) => {
         let floatValue = parseFloat(value || "0")
-        if (isNaN(floatValue) || floatValue < 0 || floatValue > 1) {
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
             throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.hsv.s = floatValue;
@@ -205,7 +205,7 @@ class HSVInput extends Control {
       value: this._props.hsv.v.toFixed(1),
       onChange: (value: string) => {
         let floatValue = parseFloat(value || "0")
-        if (isNaN(floatValue) || floatValue < 0 || floatValue > 1) {
+        if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
           throw new Error(Message.colorPicker.INVALID_COLOR)
         }
         this._props.hsv.v = floatValue;
