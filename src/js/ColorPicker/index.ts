@@ -93,7 +93,6 @@ class ColorPicker extends Control {
         this.rerender(['color', 'redraw']);
       },
       onChange: (hexString: string, triggerOnChange: boolean) => {
-        
         this._props.color = hexString;
         if (triggerOnChange) {
           this.rerender(['color', 'redraw']);
@@ -111,6 +110,7 @@ class ColorPicker extends Control {
     if (changedAttr.indexOf('color') !== -1) {
       this.inputElement.value = this._props.color;
       const inputStyle = this.getInputStyle();
+      this.Picker.setRGB(this._props.color);
       Object.assign(this.inputElement.style, inputStyle);
     }
 
