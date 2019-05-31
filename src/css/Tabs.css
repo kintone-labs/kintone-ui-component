@@ -6,7 +6,6 @@
     position: relative;
     list-style-type: none;
     padding: 6px 12px;
-    cursor: pointer;
     min-width: 960px;
     min-height: 650px;
   }
@@ -31,6 +30,7 @@
     border-left: solid 1px #c4c7c7;
     text-align: center;
     font-size: 16px;
+    cursor: pointer;
   }
   
   .kuc-tabs-container-selection {
