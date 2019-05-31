@@ -67,8 +67,6 @@ function HSVInput({hsv, onChange}: HSVObj) {
     const handleChangeHSVInput = (value: string, objectKey: string) => {
         try {
             let floatValue = parseFloat(value || "0")
-            console.log(value)
-            console.log(isNaN(value as any))
             if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
                 throw new Error(Message.colorPicker.INVALID_COLOR)
             }
