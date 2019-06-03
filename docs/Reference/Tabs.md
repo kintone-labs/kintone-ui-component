@@ -99,7 +99,6 @@ Dom element
 
 **Javascript**
 ```
-var el = kintone.app.getHeaderMenuSpaceElement()
 var button = new kintoneUIComponent.Button({
     text: 'Hello',
     type: 'submit'
@@ -123,7 +122,11 @@ var tab = new kintoneUIComponent.Tabs({
         }
 　  ]
 });
-el.appendChild(tab.render());
+
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderMenuSpaceElement()
+    el.appendChild(tab.render());
+});
 ```
 
 **React**
@@ -203,11 +206,13 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
- 
-var item = { tabName: "Tab4", tabContent: "This is Tab4", isDisabled: true };
-tab.addItem(item);
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderMenuSpaceElement();
+    var item = { tabName: "Tab4", tabContent: "This is Tab4", isDisabled: true };
+
+    el.appendChild(tab.render());
+    tab.addItem(item);
+});
 ```
 
 **React**
@@ -297,10 +302,12 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
- 
-tab.removeItem(0);
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderMenuSpaceElement();
+
+    el.appendChild(tab.render());
+    tab.removeItem(0);
+});
 ```
 
 **React**
@@ -358,7 +365,7 @@ kintone.events.on('app.record.index.show', function (event) {
 
 </details>
 
-### getItems()
+### ()
 Get all tabs.
 
 **Parameter**
@@ -375,6 +382,91 @@ The array contains all tabs.
 |items[].tabName | String|	Name of the new tab.|
 |items[].tabContent| String|	Content of the tab.|
 |items[].isDisabled| Boolean| Indicate tab is disabled when display.|
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var tab = new kintoneUIComponent.Tabs({
+    items: [
+        {
+            tabName: "Tab1",
+            tabContent: 'This is Tab1'
+        },
+        {
+            tabName: "Tab2",
+            tabContent: "This is Tab2"
+        },
+        　{
+            tabName: "Tab3",
+            tabContent: "This is Tab3"
+        }
+    ]
+});
+
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderMenuSpaceElement();
+    el.appendChild(tab.render());
+
+    var items = tab.getItems();
+    items.forEach(function(item) {
+        console.log(item);
+    });
+});
+```
+
+**React**
+```
+import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class Sample extends React.Component {
+    constructor(opts) {
+        super(opts);
+        var items = [
+            {
+                tabName: "Tab1",
+                tabContent: 'This is Tab1'
+            },
+            {
+                tabName: "Tab2",
+                tabContent: "This is Tab2"
+            },
+            {
+                tabName: "Tab3",
+                tabContent: "This is Tab3"
+            }
+        ];
+        this.state = { items: items, value: 1};
+    }
+ 
+    handleClick = () => {
+        this.state.items.forEach(item => {
+            console.log(item);
+        });
+    }
+ 
+    render() {
+        return (
+            <div>
+                <Tabs items={this.state.items} value={this.state.value} />
+                <button onClick={this.handleClick}>Get Items</button>
+            </div>
+        );
+    }
+}
+ 
+kintone.events.on('app.record.index.show', function (event) {
+    ReactDOM.render(
+        <Sample />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
+```
+
+</details>
 
 ### getValue()
 Remove item at specific index of tab list.
@@ -410,11 +502,13 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
- 
- 
-tab.getValue();
+
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderSpaceElement();
+    el.appendChild(tab.render());
+
+    console.log(tab.getValue());
+});
 ```
 
 **React**
@@ -499,11 +593,12 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
- 
- 
-tab.setValue(1);
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderSpaceElement();
+    el.appendChild(tab.render());
+
+    tab.setValue(1);
+});
 ```
 
 **React**
@@ -590,9 +685,12 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
-tab.disableItem('Tab2');
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderSpaceElement();
+    el.appendChild(tab.render());
+
+    tab.disableItem('Tab2');
+});
 ```
 
 **React**
@@ -673,7 +771,8 @@ var tab = new kintoneUIComponent.Tabs({
         },
         {
             tabName: "Tab2",
-            tabContent: "This is Tab2"
+            tabContent: "This is Tab2",
+            isDisabled: true
         },
     　  {
             tabName: "Tab3",
@@ -681,9 +780,12 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-var el = kintone.app.getHeaderSpaceElement();
-el.appendChild(tab.render());
-tab.enableItem('Tab2');
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderSpaceElement();
+    el.appendChild(tab.render());
+
+    tab.enableItem('Tab2');
+});
 ```
 
 **React**
