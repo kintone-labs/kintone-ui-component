@@ -146,7 +146,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -201,7 +201,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -258,7 +258,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -304,7 +304,7 @@ export default class Plugin extends React.Component {
     }
 }
 
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -348,7 +348,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -392,7 +392,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -436,7 +436,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.detail.show', function(event) {
+kintone.events.on('app.record.index.show', function(event) {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
