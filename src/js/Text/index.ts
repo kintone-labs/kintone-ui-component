@@ -13,6 +13,7 @@ class Text extends Control {
     }
   }
   private inputEl: any;
+
   constructor(params: TextProps) {
     super();
     if(typeof params.isDisabled !== 'boolean') {
@@ -42,6 +43,7 @@ class Text extends Control {
       this.inputEl.value = this._props.value;
     }
   }
+  
   setValue(value: string) {
       this._props.value = value;
       this.rerender(['value']);
