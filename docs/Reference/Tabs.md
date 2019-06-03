@@ -365,7 +365,7 @@ kintone.events.on('app.record.index.show', function (event) {
 
 </details>
 
-### ()
+### getItems()
 Get all tabs.
 
 **Parameter**
@@ -469,7 +469,7 @@ kintone.events.on('app.record.index.show', function (event) {
 </details>
 
 ### getValue()
-Remove item at specific index of tab list.
+Get index of selected item.
 
 **Parameter**
 
