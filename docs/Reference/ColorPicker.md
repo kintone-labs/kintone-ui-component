@@ -21,9 +21,9 @@
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
 |options|Object|No|An object contains params of constructor.|
-|options.color|HEX String|No|The ColorPicker's input value. If setted color is not valid ,it's value will be changed to #000000.<br>Default value is '#ff0000'.|
+|options.color|HEX String|No|The ColorPicker's input value. If setted color is not valid, an error will be displayed.<br>Default value is '#FF0000'.|
 |options.isDisabled|Boolean|No|The ColorPicker will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The ColorPicker will be visible.|
+|options.isVisible|Boolean|No|The ColorPicker will be visible. <br> Default value: 'true'|
 |options.onChange|Callback|No|Handler for color change event.|
 
 <details class="tab-container" open>
@@ -69,8 +69,10 @@ Dom element
 **Javascript**
 ```
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-var el = kintone.app.getHeaderMenuSpaceElement()
-el.appendChild(colorPicker.render());
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderMenuSpaceElement();
+    el.appendChild(colorPicker.render());
+});
 ```
 
 **React**
@@ -214,11 +216,13 @@ None
 **Javascript**
 ```
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(colorPicker.render());
- 
 colorPicker.on('change', function(color) {
-    console.log(color.hex);
+    console.log(color);
+});
+
+kintone.events.on('app.record.index.show', function(event) {
+    var el = kintone.app.getHeaderSpaceElement();
+    el.appendChild(colorPicker.render());
 });
 ```
 
@@ -235,7 +239,7 @@ export default class Plugin extends React.Component {
         );
     }
     handleChange = (color) => {
-        console.log(color.hex);
+        console.log(color);
     };
 }
 ```
