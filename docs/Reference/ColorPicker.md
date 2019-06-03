@@ -70,7 +70,7 @@ Dom element
 ```
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderMenuSpaceElement();
+    var el = kintone.app.getHeaderSpaceElement();
     el.appendChild(colorPicker.render());
 });
 ```
