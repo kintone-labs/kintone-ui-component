@@ -124,7 +124,7 @@ var tab = new kintoneUIComponent.Tabs({
 });
 
 kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderMenuSpaceElement()
+    var el = kintone.app.getHeaderSpaceElement()
     el.appendChild(tab.render());
 });
 ```
@@ -207,7 +207,7 @@ var tab = new kintoneUIComponent.Tabs({
     ]
 });
 kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderMenuSpaceElement();
+    var el = kintone.app.getHeaderSpaceElement();
     var item = { tabName: "Tab4", tabContent: "This is Tab4", isDisabled: true };
 
     el.appendChild(tab.render());
@@ -303,7 +303,7 @@ var tab = new kintoneUIComponent.Tabs({
     ]
 });
 kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderMenuSpaceElement();
+    var el = kintone.app.getHeaderSpaceElement();
 
     el.appendChild(tab.render());
     tab.removeItem(0);
@@ -406,7 +406,7 @@ var tab = new kintoneUIComponent.Tabs({
 });
 
 kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderMenuSpaceElement();
+    var el = kintone.app.getHeaderSpaceElement();
     el.appendChild(tab.render());
 
     var items = tab.getItems();
