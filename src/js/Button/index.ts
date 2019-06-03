@@ -30,7 +30,7 @@ class Button extends Control {
     this.element.innerHTML = this._props.text;
 
     this.element.addEventListener('click', this._props.onClick)
-
+    this.rerender()
   }
 
   rerender(changedAttr?: string[]) {
