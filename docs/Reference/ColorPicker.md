@@ -79,6 +79,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 import { ColorPicker } from 'kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
     state = {color: ''}
@@ -90,7 +91,7 @@ export default class Plugin extends React.Component {
 }
 kintone.events.on('app.record.index.show', function (event) {
     ReactDOM.render(
-        <Sample />,
+        <Plugin />,
         kintone.app.getHeaderSpaceElement()
     );
 });
@@ -126,6 +127,7 @@ colorPicker.setColor('#666666');
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
@@ -144,6 +146,12 @@ export default class Plugin extends React.Component {
         });
     };
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 
 </details>
@@ -176,6 +184,7 @@ colorPicker.getColor();
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
@@ -192,6 +201,12 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 
 </details>
@@ -230,6 +245,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
     state = {color: '#FF0000'}
@@ -242,6 +258,12 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 
 </details>
@@ -272,6 +294,7 @@ myColorPicker.show();
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     render() {
@@ -280,6 +303,13 @@ export default class Plugin extends React.Component {
         );
     }
 }
+
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 </details>
 
@@ -309,6 +339,7 @@ myColorPicker.hide();
 ```
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     render() {
@@ -317,6 +348,12 @@ export default class Plugin extends React.Component {
         );
     }
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 </details>
 
@@ -346,6 +383,7 @@ myColorPicker.disable();
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     render() {
@@ -354,6 +392,12 @@ export default class Plugin extends React.Component {
         );
     }
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 </details>
 
@@ -383,6 +427,7 @@ myColorPicker.enable();
 ```
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     render() {
@@ -391,5 +436,11 @@ export default class Plugin extends React.Component {
         );
     }
 }
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <Plugin />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
 ```
 </details>
