@@ -1,8 +1,7 @@
 import Control, {ControlProps} from '../Control';
-import { element, any } from 'prop-types';
 
 type TextProps = ControlProps & {
-  value: string;
+  value?: string;
 }
 
 class Text extends Control {
@@ -12,7 +11,7 @@ class Text extends Control {
       value: ''
     }
   }
-  private inputEl: any;
+  private inputEl: HTMLInputElement;
 
   constructor(params: TextProps) {
     super();
