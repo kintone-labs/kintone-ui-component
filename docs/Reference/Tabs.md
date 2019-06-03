@@ -131,7 +131,7 @@ kintone.events.on('app.record.index.show', function(event) {
 
 **React**
 ```
-import { Tabs } from '../src/js/components-react/index';
+import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -365,7 +365,7 @@ kintone.events.on('app.record.index.show', function (event) {
 
 </details>
 
-### getItems()
+### getItems()
 Get all tabs.
 
 **Parameter**
