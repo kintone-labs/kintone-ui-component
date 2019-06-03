@@ -77,7 +77,7 @@ kintone.events.on('app.record.index.show', function(event) {
 
 **React**
 ```
-import { ColorPicker } from 'kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
   
