@@ -387,15 +387,18 @@ None
 
 **Javascript**
 ```
-var myDateTime = new kintoneUIComponent.ColorPicker({value: new Date()});
-var container = kintone.app.getHeaderSpaceElement();
-container.appendChild(myDateTime.render());
-myDateTime.show();
+var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
+
+kintone.events.on('app.record.index.show', function(event) {
+    var container = kintone.app.getHeaderSpaceElement();
+    container.appendChild(myDateTime.render());
+    myDateTime.show();
+});
 ```
 
 **React**
 ```
-import { ColorPicker } from '@kintone/kintone-ui-component';
+import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -441,10 +444,13 @@ None
 
 **Javascript**
 ```
-var myDateTime = new kintoneUIComponent.ColorPicker({value: new Date()});
-var container = kintone.app.getHeaderSpaceElement();
-container.appendChild(myDateTime.render());
-myDateTime.hide();
+var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
+
+kintone.events.on('app.record.index.show', function(event) {
+    var container = kintone.app.getHeaderSpaceElement();
+    container.appendChild(myDateTime.render());
+    myDateTime.hide();
+});
 ```
 
 **React**
@@ -495,9 +501,12 @@ None
 **Javascript**
 ```
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
-var container = kintone.app.getHeaderSpaceElement();
-container.appendChild(myDateTime.render());
-myDateTime.disable();
+
+kintone.events.on('app.record.index.show', function(event) {
+    var container = kintone.app.getHeaderSpaceElement();
+    container.appendChild(myDateTime.render());
+    myDateTime.disable();
+});
 ```
 
 **React**
@@ -548,9 +557,12 @@ None
 **Javascript**
 ```
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date(), isDisabled: false});
-var container = kintone.app.getHeaderSpaceElement();
-container.appendChild(myDateTime.render());
-myDateTime.enable();
+
+kintone.events.on('app.record.index.show', function(event) {
+    var container = kintone.app.getHeaderSpaceElement();
+    container.appendChild(myDateTime.render());
+    myDateTime.enable();
+});
 ```
 
 **React**
