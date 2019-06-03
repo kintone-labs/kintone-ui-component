@@ -55,6 +55,13 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
+kintone.events.on('app.record.index.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.getHeaderSpaceElement()
+    ) 
+    return event;
+});
 ```
 
 </details>
@@ -80,8 +87,8 @@ Dom element
     "use strict";  
     kintone.events.on('app.record.detail.show', function(event) {
         const date = new Date();
-        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en', timeIntervals: 20});
-        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
+        const space = kintone.app.getHeaderSpaceElement();
         space.appendChild(dateTime.render());
     });
 })();
@@ -110,7 +117,7 @@ class DateTimeComponent extends React.Component {
 kintone.events.on('app.record.detail.show', function(event) {
     ReactDOM.render(
         <DateTimeComponent />,
-        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -140,7 +147,7 @@ None
     kintone.events.on('app.record.detail.show', function(event) {
         const date = new Date();
         var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
-        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        const space = kintone.app.getHeaderSpaceElement();
         space.appendChild(dateTime.render());
         dateTime.getValue();
     });
@@ -149,7 +156,7 @@ None
 
 **React**
 ```
-import { DateTime } from '../src/js/components-react/index';
+import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -172,7 +179,7 @@ class DateTimeComponent extends React.Component {
 kintone.events.on('app.record.detail.show', function(event) {
     ReactDOM.render(
         <DateTimeComponent />,
-        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -201,7 +208,7 @@ None
     "use strict";  
     kintone.events.on('app.record.detail.show', function(event) {
         var dateTime = new kintoneUIComponent.DateTime({type: 'datetime', locale: 'en'});
-        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        const space = kintone.app.getHeaderSpaceElement();
         space.appendChild(dateTime.render());
         dateTime.setValue(new Date());
     });
@@ -233,7 +240,7 @@ class DateTimeComponent extends React.Component {
 kintone.events.on('app.record.detail.show', function(event) {
     ReactDOM.render(
         <DateTimeComponent />,
-        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -263,7 +270,7 @@ None
     kintone.events.on('app.record.detail.show', function(event) {
         const date = new Date();
         var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
-        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        const space = kintone.app.getHeaderSpaceElement();
         space.appendChild(dateTime.render());
         dateTime.getLocale();
     });
@@ -295,7 +302,7 @@ class DateTimeComponent extends React.Component {
 kintone.events.on('app.record.detail.show', function(event) {
     ReactDOM.render(
         <DateTimeComponent />,
-        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
@@ -325,7 +332,7 @@ None
     kintone.events.on('app.record.detail.show', function(event) {
         const date = new Date();
         var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime'});
-        const space = kintone.app.record.getSpaceElement('DATE_TIME_SPACE');
+        const space = kintone.app.getHeaderSpaceElement();
         space.appendChild(dateTime.render());
         dateTime.setLocale('en');
     });
@@ -357,9 +364,222 @@ class DateTimeComponent extends React.Component {
 kintone.events.on('app.record.detail.show', function(event) {
     ReactDOM.render(
         <DateTimeComponent />,
-        kintone.app.record.getSpaceElement('DATE_TIME_SPACE')
+        kintone.app.getHeaderSpaceElement()
     );
 });
 ```
 
+</details>
+
+### show()
+Display DateTime.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myDateTime = new kintoneUIComponent.ColorPicker({value: new Date()});
+var container = kintone.app.getHeaderSpaceElement();
+container.appendChild(myDateTime.render());
+myDateTime.show();
+```
+
+**React**
+```
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isVisible={true}
+            />
+        );
+    }
+}
+
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
+```
+</details>
+
+### hide()
+Hide DateTime.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myDateTime = new kintoneUIComponent.ColorPicker({value: new Date()});
+var container = kintone.app.getHeaderSpaceElement();
+container.appendChild(myDateTime.render());
+myDateTime.hide();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isVisible={false}
+            />
+        );
+    }
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
+```
+</details>
+
+### disable()
+Disable DateTime.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
+var container = kintone.app.getHeaderSpaceElement();
+container.appendChild(myDateTime.render());
+myDateTime.disable();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isDisabled={true}
+            />
+        );
+    }
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
+```
+</details>
+
+### enable()
+Enable DateTime.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```
+var myDateTime = new kintoneUIComponent.DateTime({value: new Date(), isDisabled: false});
+var container = kintone.app.getHeaderSpaceElement();
+container.appendChild(myDateTime.render());
+myDateTime.enable();
+```
+
+**React**
+```
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            <DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isDisabled={false}
+            />
+        );
+    }
+}
+kintone.events.on('app.record.detail.show', function(event) {
+    ReactDOM.render(
+        <DateTimeComponent />,
+        kintone.app.getHeaderSpaceElement()
+    );
+});
+```
 </details>
