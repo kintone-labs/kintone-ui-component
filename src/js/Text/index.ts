@@ -44,8 +44,8 @@ class Text extends Control {
   }
   
   setValue(value: string) {
-      this._props.value = value;
-      this.rerender(['value']);
+    this._props.value = value;
+    this.rerender(['value']);
   }
 
   getValue() {
