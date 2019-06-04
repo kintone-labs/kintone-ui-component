@@ -1,7 +1,6 @@
 module.exports = {
-    extends: ["@cybozu", "@cybozu/eslint-config/presets/react"],
-    parser: "babel-eslint",
+    extends: "@cybozu/eslint-config/presets/typescript",
     rules: {
-        "no-invalid-this": 0
+        "no-undef": 0
     }
 };
