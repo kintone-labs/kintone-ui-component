@@ -15,7 +15,7 @@ class Text extends Control {
 
   constructor(params: TextProps) {
     super();
-    if(typeof params.isDisabled !== 'boolean') {
+    if(typeof params !== 'undefined' && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }
     if (params) {
