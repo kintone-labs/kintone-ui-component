@@ -23,8 +23,6 @@ nav:
   - Attachment: Reference/Attachment.md
   - Button: Reference/Button.md
   - CheckBox: Reference/CheckBox.md
-  - ColorPicker: Reference/ColorPicker.md
-  - DateTime: Reference/DateTime.md
   - Dialog: Reference/Dialog.md
   - Dropdown: Reference/Dropdown.md
   - FieldGroup: Reference/FieldGroup.md
@@ -35,7 +33,6 @@ nav:
   - RadioButton: Reference/RadioButton.md
   - Spinner: Reference/Spinner.md
   - Table: Reference/Table.md
-  - Tabs: Reference/Tabs.md
   - Text: Reference/Text.md
   - TextArea: Reference/TextArea.md
 
@@ -46,4 +43,4 @@ extra_javascript:
 extra_css:
   - 'style/extra.css'
 extra:
-    version: '0.3.0'
+    version: '0.2.0'

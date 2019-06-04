@@ -1,1 +1,0 @@
-# kintone-ui-component
