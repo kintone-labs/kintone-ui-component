@@ -9,7 +9,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|Yes|The object contains params of constructor.|
+|options|Object|No|The object contains params of constructor.|
 |options.value|String|No|The value of text field. <br> Default value: '{empty text}'|
 |options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
