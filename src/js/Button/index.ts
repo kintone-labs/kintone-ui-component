@@ -25,12 +25,6 @@ class Button extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    this.element = document.createElement('button');
-    this.element.className = this._getClassName();
-    this.element.innerHTML = this._props.text;
-
-    this.element.addEventListener('click', this._props.onClick)
-    this.rerender()
   }
 
   rerender(changedAttr?: string[]) {
@@ -54,11 +48,29 @@ class Button extends Control {
     this.rerender(['type']);
   }
 
+  render() {
+    const div = this._createLayout()
+    this.rerender()
+    return div
+  }
+
   private _getClassName() {
     return [
       'kuc-btn',
       this._props.type === 'submit' ? 'submit' : 'normal'
     ].join(' ').trim();
+  }
+
+  private _createLayout() {
+    this.element = document.createElement('button');
+    this.element.className = this._getClassName();
+    this.element.innerHTML = this._props.text;
+    if(this._props.onClick) {
+      this.element.addEventListener('click', this._props.onClick)
+    }
+    const div = document.createElement('div');
+    div.appendChild(this.element);
+    return div
   }
 }
 
