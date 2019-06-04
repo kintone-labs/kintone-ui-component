@@ -49,9 +49,9 @@ class Button extends Control {
   }
 
   render() {
-    const div = this._createLayout()
+    this._createLayout()
     this.rerender()
-    return div
+    return super.render()
   }
 
   private _getClassName() {
@@ -68,9 +68,6 @@ class Button extends Control {
     if(this._props.onClick) {
       this.element.addEventListener('click', this._props.onClick)
     }
-    const div = document.createElement('div');
-    div.appendChild(this.element);
-    return div
   }
 }
 
