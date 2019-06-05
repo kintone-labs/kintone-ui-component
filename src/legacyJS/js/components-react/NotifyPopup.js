@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
+import '../../../css/NotifyPopup.css';
 
 const NotifyPopup = (props) => {
   const _handleClosePopup = () => {

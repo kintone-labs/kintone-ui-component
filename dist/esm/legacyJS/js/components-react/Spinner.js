@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/Spinner.css';
 var Spinner = function (props) {
     if (props.isVisible === false) {
         return null;

@@ -1,6 +1,7 @@
 require('../css/base.css');
 import DateTime, { Calendar } from './DateTime';
 import Tabs from './Tabs';
+import Text from './Text';
 import ColorPicker from './ColorPicker';
 import Spinner from '../legacyJS/js/components-react/Spinner';
 import Button from '../legacyJS/js/components-react/Button';
@@ -15,7 +16,6 @@ import RadioButton from '../legacyJS/js/components-react/RadioButton';
 import Dropdown from '../legacyJS/js/components-react/Dropdown';
 import MultipleChoice from '../legacyJS/js/components-react/MultipleChoice';
 import CheckBox from '../legacyJS/js/components-react/CheckBox';
-import Text from '../legacyJS/js/components-react/Text';
 import TextArea from '../legacyJS/js/components-react/TextArea';
 import Attachment from '../legacyJS/js/components-react/Attachment';
 import FieldGroup from '../legacyJS/js/components-react/FieldGroup';

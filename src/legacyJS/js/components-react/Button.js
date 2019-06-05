@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/Button.css';
 
 const Button = (props) => {
   const _getClassName = () => {
