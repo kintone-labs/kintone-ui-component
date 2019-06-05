@@ -1,11 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../../../react/IconButton';
+import IconButton from '../IconButton';
+import '../../css/Table.css';
 
-import '../../../css/Table.css';
+type TableColumn = {
+  header?: string,
+  tdProps?: Function,
+  cell: Function
+}
+type ActionFlag = {
+  actions: boolean
+}
+type TableProps = {
+  data: object[], 
+  columns: (TableColumn | ActionFlag)[],
+  defaultRowData: object[], 
+  onRowAdd?: Function, 
+  onRowRemove?: Function,
+  onCellChange?: Function,
+  actionButtonsShown?: boolean, 
+  isVisible?: boolean
+}
+type TableBodyProps = {
+  columns: (TableColumn | ActionFlag)[],
+  data: object[], 
+  defaultRowData: object[], 
+  onRowAdd?: Function, 
+  onRowRemove?: Function,
+  _onCellChange?: Function,
+  actionButtonsShown?: boolean
+}
+type TableHeaderProps = {
+  columns: (TableColumn | ActionFlag)[],
+}
+type CellRendererProps = {
+  rowData: object;
+  rowIndex: number;
+  columnIndex: number;
+  'onCellChange': () => void;
+}
 
-const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, isVisible}) => {
-  const _onCellChange = (newValue, tableData, rowIndex, fieldName) => {
+const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
+  const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
       onCellChange({rowIndex, data: tableData, fieldName});
@@ -22,39 +58,22 @@ const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChan
     </div>
   );
 };
-Table.propTypes = {
-  data: PropTypes.array.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    header: PropTypes.string.isRequired,
-    cell: PropTypes.func.isRequired,
-  })).isRequired,
-  defaultRowData: PropTypes.object.isRequired,
-  onRowAdd: PropTypes.func,
-  onRowRemove: PropTypes.func,
-  onCellChange: PropTypes.func,
-  actionButtonsShown: PropTypes.bool,
-  isVisible: PropTypes.bool
-};
-Table.defaultProps = {
-  isVisible: true,
-  actionButtonsShown: true
-};
 
-const TableHeaderRow = ({columns}) => {
+const TableHeaderRow = ({columns}:TableHeaderProps) => {
   const header = columns.map((data, index) => {
-    return data.header ? (
+    return (data as TableColumn).header ? (
       <div key={'Table_Header_Column_' + index} className="kuc-table-th">
-        <span className="kuc-header-label">{data.header}</span>
+        <span className="kuc-header-label">{(data as TableColumn).header}</span>
       </div>
     ) : '';
   });
-  return header;
+  return <React.Fragment>{header}</React.Fragment>;
 };
 TableHeaderRow.propTypes = {
   columns: PropTypes.array,
 };
 
-const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}) => {
+const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}: TableBodyProps) => {
   if (actionButtonsShown) {
     columns.push({actions: true});
   }
@@ -63,7 +82,8 @@ const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, action
       {data.map((rowData, rowIndex) => (
         <div className="kuc-table-tr" key={rowIndex}>
           {columns.map((column, columnIndex) => {
-            const {cell, accessor, actions, tdProps} = column;
+            const {actions} = (column as ActionFlag)
+            const {cell, tdProps} = (column as TableColumn);
             if (actions === true) {
               return (
                 <TableCellActions
@@ -82,7 +102,7 @@ const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, action
             return (
               <TableCell
                 key={columnIndex}
-                {...{rowData, rowIndex, columnIndex, accessor, cell, _onCellChange, tdProps}}
+                {...{rowData, rowIndex, columnIndex, cell, _onCellChange, tdProps}}
               />
             );
           })}
@@ -91,34 +111,22 @@ const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, action
     </div>
   );
 };
-TableBody.propTypes = {
-  columns: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
-  defaultRowData: PropTypes.object.isRequired,
-  actionButtonsShown: PropTypes.bool,
-  onRowAdd: PropTypes.func,
-  onRowRemove: PropTypes.func,
-  _onCellChange: PropTypes.func,
-};
 
 const TableCell = ({
   rowData,
   rowIndex,
   columnIndex,
-  accessor,
-  cell = () => '',
+  cell,
   _onCellChange,
-  tdProps: tdPropsFn
+  tdProps
 }) => {
-  const cellProps = {rowData, rowIndex, columnIndex};
+  const cellProps: CellRendererProps = {rowData, rowIndex, columnIndex, 'onCellChange': () => {}};
   if (typeof _onCellChange === 'function') {
     cellProps.onCellChange = _onCellChange;
   }
-  const content = accessor
-    ? getValueByAccessor(accessor, rowData)
-    : cell(cellProps);
-  const tdProps = tdPropsFn ? tdPropsFn(cellProps) : {};
-  return <div {...tdProps} className="kuc-table-td">{content}</div>;
+  const content = cell(cellProps);
+  const tdPropsObj = tdProps ? tdProps(cellProps) : {};
+  return <div {...tdPropsObj} className="kuc-table-td">{content}</div>;
 };
 
 const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}) => {
