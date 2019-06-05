@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/Alert.css';
 
 const Alert = (props) => {
   const _getClassName = () => {

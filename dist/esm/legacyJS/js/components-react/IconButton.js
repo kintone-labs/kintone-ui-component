@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/IconButton.css';
 var IconButton = function (props) {
     var _getClassName = function () {
         var colors = ['gray', 'blue', 'red', 'green', 'transparent'];
