@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../../css/IconButton.css';
 
 const IconButton = (props) => {
   const _getClassName = () => {
