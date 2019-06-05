@@ -33,6 +33,14 @@ type TableBodyProps = {
 type TableHeaderProps = {
   columns: (TableColumn | ActionFlag)[],
 }
+type TableCellProps = {
+  rowData: object,
+  rowIndex: number,
+  columnIndex: number,
+  cell: (cellProps: CellRendererProps) => HTMLElement,
+  _onCellChange: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
+  tdProps?: Function
+}
 type CellRendererProps = {
   rowData: object;
   rowIndex: number;
@@ -119,7 +127,7 @@ const TableCell = ({
   cell,
   _onCellChange,
   tdProps
-}) => {
+}: TableCellProps) => {
   const cellProps: CellRendererProps = {rowData, rowIndex, columnIndex, 'onCellChange': () => {}};
   if (typeof _onCellChange === 'function') {
     cellProps.onCellChange = _onCellChange;
