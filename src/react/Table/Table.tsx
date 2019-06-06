@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import '../../css/Table.css';
 
 type TableColumn = {
   header?: string,
   tdProps?: Function,
-  cell: Function
+  cell: (cellProps: CellRendererProps) => string | JSX.Element
 }
 type ActionFlag = {
   actions: boolean
@@ -27,7 +26,7 @@ type TableBodyProps = {
   defaultRowData: object[], 
   onRowAdd?: Function, 
   onRowRemove?: Function,
-  _onCellChange?: Function,
+  _onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
   actionButtonsShown?: boolean
 }
 type TableHeaderProps = {
@@ -37,15 +36,28 @@ type TableCellProps = {
   rowData: object,
   rowIndex: number,
   columnIndex: number,
-  cell: (cellProps: CellRendererProps) => HTMLElement,
-  _onCellChange: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
+  cell: (cellProps: CellRendererProps) => string | JSX.Element,
+  _onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
   tdProps?: Function
 }
 type CellRendererProps = {
   rowData: object;
   rowIndex: number;
   columnIndex: number;
-  'onCellChange': () => void;
+  onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void
+}
+type TableCellActionsProps = {
+  data: object[],
+  rowIndex: number,
+  defaultRowData: object,
+  addRow: Function,
+  removeRow: Function,
+  dispatch: (newState: object) => void
+}
+type RowEventProps = {
+  data: object[], 
+  rowIndex: number, 
+  defaultRowData?: object
 }
 
 const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
@@ -77,9 +89,6 @@ const TableHeaderRow = ({columns}:TableHeaderProps) => {
   });
   return <React.Fragment>{header}</React.Fragment>;
 };
-TableHeaderRow.propTypes = {
-  columns: PropTypes.array,
-};
 
 const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}: TableBodyProps) => {
   if (actionButtonsShown) {
@@ -97,10 +106,10 @@ const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, action
                 <TableCellActions
                   {...{key: columnIndex, data, defaultRowData, rowIndex, addRow, removeRow}}
                   dispatch={newState => {
-                    if (onRowAdd && newState.type === 'ADD_ROW') {
+                    if (onRowAdd && newState['type'] === 'ADD_ROW') {
                       onRowAdd(newState);
                     }
-                    if (onRowRemove && newState.type === 'REMOVE_ROW') {
+                    if (onRowRemove && newState['type'] === 'REMOVE_ROW') {
                       onRowRemove(newState);
                     }
                   }}
@@ -128,7 +137,7 @@ const TableCell = ({
   _onCellChange,
   tdProps
 }: TableCellProps) => {
-  const cellProps: CellRendererProps = {rowData, rowIndex, columnIndex, 'onCellChange': () => {}};
+  const cellProps: CellRendererProps = {rowData, rowIndex, columnIndex};
   if (typeof _onCellChange === 'function') {
     cellProps.onCellChange = _onCellChange;
   }
@@ -137,7 +146,7 @@ const TableCell = ({
   return <div {...tdPropsObj} className="kuc-table-td">{content}</div>;
 };
 
-const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}) => {
+const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}: TableCellActionsProps) => {
   return (
     <div className="kuc-table-td action-group">
       <span style={{marginRight: '5px'}}>
@@ -173,33 +182,14 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
     </div>
   );
 };
-TableCellActions.propTypes = {
-  data: PropTypes.array.isRequired,
-  rowIndex: PropTypes.number,
-  defaultRowData: PropTypes.object.isRequired,
-  addRow: PropTypes.func,
-  removeRow: PropTypes.func,
-  dispatch: PropTypes.func
-};
 
-const getValueByAccessor = (accessor, data) => {
-  switch (typeof accessor) {
-    case 'string':
-      return data[accessor];
-    case 'function':
-      return accessor(data);
-    default:
-      return '';
-  }
-};
-
-const addRow = ({data, rowIndex, defaultRowData}) => {
+const addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
   const insertAt = rowIndex + 1;
   const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)];
   return newData;
 };
 
-const removeRow = ({data, rowIndex}) => {
+const removeRow = ({data, rowIndex}:RowEventProps) => {
   return data.filter((item, index) => index !== rowIndex);
 };
 
