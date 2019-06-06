@@ -21,7 +21,6 @@ import TextArea from '../legacyJS/js/components-react/TextArea'
 import Attachment from '../legacyJS/js/components-react/Attachment'
 import FieldGroup from '../legacyJS/js/components-react/FieldGroup'
 import Dialog from '../legacyJS/js/components-react/Dialog'
-import Table from '../legacyJS/js/components-react/Table'
 
 export {
     DateTime,
@@ -45,6 +44,7 @@ export {
     MultipleChoice,
     AbstractSingleSelection,
     AbstractMultiSelection,
-    Dialog,
-    Table
+    Dialog
 }
+
+export * from './Table'
