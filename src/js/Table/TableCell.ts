@@ -1,5 +1,12 @@
+type TableCellProps = {
+  init?: Function, 
+  update?: Function
+}
+
 export default class TableCell {
-  constructor({init, update} = {}) {
+  private _init: Function
+  private _update: Function
+  constructor({init, update}: TableCellProps = {}) {
     this._init = init;
     this._update = update;
   }

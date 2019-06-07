@@ -194,4 +194,4 @@ const removeRow = ({data, rowIndex}:RowEventProps) => {
 };
 
 export default Table;
-export {Table, TableColumn, CellRendererProps}
+export {Table, TableColumn, CellRendererProps, ActionFlag, RowEventProps}

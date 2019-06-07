@@ -1,0 +1,337 @@
+import Control, {ControlProps} from '../Control'
+import TableCell from './TableCell'
+import Message from '../../constant/Message'
+import IconButton from '../IconButton'
+import {ActionFlag, RowEventProps} from '../../react/Table'
+import '../../css/Table.css'
+
+const validEventNames = ['rowAdd', 'rowRemove', 'cellChange']
+
+type TableColumnJS = {
+  header?: string,
+  cell: () => TableCell
+}
+
+type CellRendererPropsJS = {
+  rowData: object
+  rowIndex: number
+  columnIndex: number
+  onCellChange?: Function
+}
+
+type TableProps = ControlProps & {
+  data: object[], 
+  defaultRowData: object, 
+  columns: (TableColumnJS | ActionFlag)[], 
+  actionButtonsShown?: boolean, 
+  onRowAdd?: Function, 
+  onRowRemove?: Function,
+  onCellChange?: Function
+}
+
+export default class Table extends Control {
+  protected _props: TableProps = {
+    data: [],
+    defaultRowData: {},
+    columns: [],
+    actionButtonsShown: true
+  }
+  private _tableHeaderContainer: HTMLElement
+  private _tableBodyContainer: HTMLElement
+
+  constructor(params: TableProps) {
+    super()
+    if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled
+    }
+    if(typeof params === 'object' && params !== null && typeof params.isVisible !== 'boolean') {
+      delete params.isVisible
+    }
+    if (params) {
+      this._props = {...this._props, ...params}
+    }
+    this._props.columns.push({actions: this._props.actionButtonsShown})
+  }
+
+  private _handleOnChange = ({type, rowIndex, data}) => {
+    if (type === 'ADD_ROW') {
+      let newRowData
+      if (this._props.onRowAdd) {
+        newRowData = this._props.onRowAdd({rowIndex, data})
+      }
+      if (!newRowData || newRowData === undefined) {
+        newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData))
+      }
+      data[rowIndex] = newRowData
+    }
+    this._props.data = data
+    this._renderCells()
+    this._triggerChange({type, rowIndex, data})
+  }
+
+  private _addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
+    const insertAt = rowIndex + 1
+    const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)]
+    this._props.data = newData
+    this._renderTableRows()
+    this._renderCells()
+    return newData
+  }
+  
+  private _removeRow = ({data, rowIndex}:RowEventProps) => {
+    this._props.data = data.filter((item, index) => index !== rowIndex)
+    this._renderTableRows(true)
+    this._renderCells()
+    // return data.filter((item, index) => index !== rowIndex)
+  }
+
+  private _triggerChange(...args) {
+    const {type} = args[0]
+    delete args[0].type
+    if (type === 'REMOVE_ROW' && this._props.onRowRemove) {
+      this._props.onRowRemove(...args)
+    }
+    if (type === 'CELL_CHANGE' && this._props.onCellChange) {
+      this._props.onCellChange(...args)
+    }
+  }
+
+  private _renderCells() {
+    const table = this._props
+    const rowsEl = [...this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')]
+    for (const [rowIndex, rowEl] of rowsEl.entries()) {
+      const rowData = this._props.data[rowIndex]
+      const updateRowData = this.updateRowData.bind(this, rowIndex)
+      for (const [columnIndex, {cell}] of (this._props.columns as TableColumnJS[]).entries()) {
+        const cellTemplate = cell
+        if(cellTemplate) {
+          const cellElement = rowEl.childNodes[columnIndex]
+          let element: HTMLElement
+          let cellInstance: TableCell
+          if (cellElement.childNodes.length === 0) {
+            cellInstance = cellTemplate()
+            element = cellInstance.init({
+              table,
+              rowData,
+              rowIndex,
+              columnIndex,
+              updateRowData
+            })
+            cellElement.appendChild(element)
+            cellElement['__tableCellInstance'] = cellInstance
+          }
+          cellInstance = cellElement['__tableCellInstance']
+          cellInstance.update({table, rowData, rowIndex, columnIndex, element})
+        }
+      }
+    }
+  }
+
+  private _isObject(item: object) {
+    return (item && typeof item === 'object' && !Array.isArray(item))
+  }
+
+  private _mergeDeep(target: object, source: object) {
+    const output = Object.assign({}, target)
+    if (this._isObject(target) && this._isObject(source)) {
+      Object.keys(source).forEach(key => {
+        if (this._isObject(source[key])) {
+          if (!(key in target)) Object.assign(output, {[key]: source[key]})
+          else output[key] = this._mergeDeep(target[key], source[key])
+        } else {
+          Object.assign(output, {[key]: source[key]})
+        }
+      })
+    }
+    return output
+  }
+
+  private _validateRequired() {
+    if (
+      !Array.isArray(this._props.data) ||
+      !Array.isArray(this._props.columns) ||
+      typeof this._props.defaultRowData !== 'object'
+    ) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+  }
+
+  private _renderTableContainer() {
+    const tableContainer = document.createElement('div')
+    tableContainer.className = 'kuc-table'
+    tableContainer.style.display =this._props.isVisible ? 'table' : 'none'
+    this.element = tableContainer
+  }
+
+  private _renderTableHeadersContainer() {
+    const tableHeader = document.createElement('div')
+    tableHeader.className = 'kuc-table-thead'
+    const tableTr = document.createElement('div')
+    tableTr.className = 'kuc-table-tr'
+    this._tableHeaderContainer = tableTr
+    tableHeader.appendChild(tableTr)
+    this.element.appendChild(tableHeader)
+  }
+
+  private _renderTableHeaders() {
+    this._props.columns.forEach((data) => {
+      const tableHeaderText = (data as TableColumnJS).header
+      if(tableHeaderText) {
+        const headerTr = document.createElement('div')
+        const span = document.createElement('span')
+        span.className = 'kuc-header-label'
+        span.textContent = tableHeaderText
+        headerTr.className = 'kuc-table-th'
+        headerTr.appendChild(span)
+        this._tableHeaderContainer.appendChild(headerTr)
+      }
+    })
+  }
+
+  private _renderTableBodyContainer() {
+    const tableBody = document.createElement('div')
+    tableBody.className = 'kuc-table-tbody'
+    this.element.appendChild(tableBody)
+    this._tableBodyContainer = tableBody
+  }
+
+  private _renderTableCellActions(rowIndex) {
+    const tableCellDiv = document.createElement('div')
+    tableCellDiv.className = 'kuc-table-td action-group'
+    const span1 = document.createElement('span')
+    span1.style.marginRight = '5px'
+    tableCellDiv.appendChild(span1)
+    const iconButton = new IconButton({type: 'insert', color: 'blue', size: 'small'})
+    const iconButtonDom = iconButton.render()
+    iconButton.on('click', () => {
+      this._dispatch({
+        type: 'ADD_ROW',
+        data: this._addRow({data: this._props.data, rowIndex, defaultRowData: this._props.defaultRowData}),
+        rowIndex: rowIndex + 1
+      })
+    })
+    span1.appendChild(iconButtonDom)
+    if(this._props.data.length > 1) {
+      const span2 = document.createElement('span')
+      const iconButton2 = new IconButton({type: 'remove', color: 'gray', size: 'small'})
+      const iconButtonDom2 = iconButton2.render()
+      iconButton2.on('click', () => {
+        this._dispatch({
+          type: 'REMOVE_ROW',
+          data: this._removeRow({data: this._props.data, rowIndex, defaultRowData: this._props.defaultRowData}),
+          rowIndex: rowIndex
+        })
+      })
+      span2.appendChild(iconButtonDom2)
+      tableCellDiv.appendChild(span2)
+    }
+    return tableCellDiv
+  }
+
+  private _dispatch(eventOption) {
+    if (this._props.onRowAdd && eventOption['type'] === 'ADD_ROW') {
+      this._props.onRowAdd(eventOption)
+    }
+    if (this._props.onRowRemove && eventOption['type'] === 'REMOVE_ROW') {
+      this._props.onRowRemove(eventOption)
+    }
+  }
+
+  private _renderTableRows(rerender = false) {
+    if(rerender) {
+      this._tableBodyContainer.innerHTML = ''
+    }
+    this._props.data.forEach((rowData, rowIndex) => {
+      if(!this._tableBodyContainer.children.namedItem(rowIndex.toString()) || rerender) {
+        const tableRow = document.createElement('div')
+        tableRow.className = 'kuc-table-tr'
+        tableRow.id = rowIndex.toString()
+        this._props.columns.forEach((column) => {
+          const {actions} = (column as ActionFlag)
+          if (actions === true) {
+            const actionCell = this._renderTableCellActions(rowIndex)
+            actionCell.id = rowIndex + '_action'
+            tableRow.appendChild(actionCell)
+          } else {
+            const div = document.createElement('div')
+            div.className = 'kuc-table-td'
+            tableRow.appendChild(div)
+          }
+        })
+        this._tableBodyContainer.appendChild(tableRow)
+      } else {
+        const tableRow = this._tableBodyContainer.children.namedItem(rowIndex.toString())
+        const actionCell = this._renderTableCellActions(rowIndex)
+        actionCell.id = rowIndex + '_action'
+        tableRow.replaceChild(actionCell, tableRow.children.namedItem(rowIndex + '_action'))
+      }
+    })
+  }
+
+  updateRowData(rowIndex: number, data: object[], rerender = true, trigger = true, fieldName:string) {
+    if (rowIndex === undefined || data === undefined) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    const rowData = this._mergeDeep(this._props.data[rowIndex], data)
+    const type = 'CELL_CHANGE'
+    this._props.data[rowIndex] = rowData
+    if (rerender) {
+      this._renderCells()
+    }
+    if (trigger) {
+      if (fieldName) {
+        this._triggerChange({type, data: this._props.data, rowIndex, fieldName})
+      } else {
+        this._triggerChange({type, data: this._props.data, rowIndex})
+      }
+    }
+  }
+
+  render() {
+    this._renderTableContainer()
+    this._renderTableHeadersContainer()
+    this._renderTableHeaders()
+    this._renderTableBodyContainer()
+    this._renderTableRows()
+    this._renderCells()
+    return this.element
+  }
+
+  // showActionButtons() {
+  //   const actionButtonsShown = true
+  //   if (this._reactObject) {
+  //     this._reactObject.setState({actionButtonsShown})
+  //   }
+  // }
+
+  // hideActionButtons() {
+  //   const actionButtonsShown = false
+  //   if (this._reactObject) {
+  //     this._reactObject.setState({actionButtonsShown})
+  //   }
+  // }
+
+  // getValue() {
+  //   return this.data
+  // }
+
+  // setValue(data) {
+  //   if (!Array.isArray(data)) {
+  //     throw new Error(Message.common.INVALID_ARGUMENT)
+  //   }
+  //   this.data = data
+  //   if (this._reactObject) {
+  //     this._reactObject.setState({data}, () => {
+  //       // rerender cells
+  //       this._renderCells()
+  //     })
+  //   }
+  // }
+
+  // on(eventName, callback) {
+  //   if (!validEventNames.some(event => event === eventName)) {
+  //     throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
+  //   }
+  //   this['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback
+  // }
+}

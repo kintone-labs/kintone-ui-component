@@ -1,18 +1,18 @@
 import TableCell from './TableCell';
-import Text from './Text';
-import Dropdown from './Dropdown';
-import CheckBox from './CheckBox';
-import MultipleChoice from './MultipleChoice';
-import RadioButton from './RadioButton';
-import Label from './Label';
-import IconButton from './IconButton';
-import Alert from './Alert';
-import Message from '../constant/Message';
+import Text from '../Text';
+// import Dropdown from '../Dropdown';
+// import CheckBox from '../CheckBox';
+// import MultipleChoice from '../MultipleChoice';
+// import RadioButton from '../RadioButton';
+import Label from '../Label';
+import IconButton from '../IconButton';
+import Alert from '../Alert';
+import Message from '../../constant/Message';
 const validFieldTypes = ['text', 'dropdown', 'checkbox', 'multichoice', 'radio', 'label', 'icon', 'alert'];
 
-const createTableCell = (type, fieldName, props = {}) => {
-  let field;
-  let FieldComponent;
+const createTableCell = (type: string, fieldName: string, props: any = {}) => {
+  let field: any;
+  let FieldComponent: any;
   if (!validFieldTypes.some(fieldType => fieldType === type)) {
     throw new Error(Message.control.INVALID_TABLE_FIELDS + '"' + validFieldTypes.join('","') + '"');
   }
@@ -24,19 +24,19 @@ const createTableCell = (type, fieldName, props = {}) => {
       case 'text':
         FieldComponent = Text;
         break;
-      case 'dropdown':
-        FieldComponent = Dropdown;
-        break;
-      case 'checkbox':
-        FieldComponent = CheckBox;
-        break;
-      case 'multichoice':
-        FieldComponent = MultipleChoice;
-        break;
-      case 'radio':
-        table.data[rowIndex][fieldName].name += '_' + rowIndex;
-        FieldComponent = RadioButton;
-        break;
+      // case 'dropdown':
+      //   FieldComponent = Dropdown;
+      //   break;
+      // case 'checkbox':
+      //   FieldComponent = CheckBox;
+      //   break;
+      // case 'multichoice':
+      //   FieldComponent = MultipleChoice;
+      //   break;
+      // case 'radio':
+      //   table.data[rowIndex][fieldName].name += '_' + rowIndex;
+      //   FieldComponent = RadioButton;
+      //   break;
       case 'label':
         FieldComponent = Label;
         break;
@@ -59,9 +59,9 @@ const createTableCell = (type, fieldName, props = {}) => {
       case 'checkbox':
       case 'multichoice':
       case 'radio':
-        field.on('change', (value) => {
+        field.on('change', (e) => {
           const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
-          rowData[fieldName].value = value;
+          rowData[fieldName].value = e.target.value;
           updateRowData(rowData, false, true, fieldName);
           // if has custom on change call it
           if (props && props.onChange) {
@@ -77,8 +77,11 @@ const createTableCell = (type, fieldName, props = {}) => {
   };
   const update = ({rowData}) => {
     const cellData = rowData[fieldName] || {};
-    if (cellData && field._reactObject && field.setValue) {
+    if (cellData && field.setValue) {
       field.setValue(cellData.value);
+    }
+    if (cellData && field.setText) {
+      field.setText(cellData.value);
     }
   };
   return new TableCell({init, update});

@@ -5,6 +5,8 @@ import DateTime from './DateTime'
 import Tabs from './Tabs'
 import Text from './Text'
 import ColorPicker from './ColorPicker'
+import Table from './Table'
+import createTableCell from './Table/TableCellFactory'
 import Spinner from '../legacyJS/js/components/Spinner'
 import Button from '../legacyJS/js/components/Button'
 import Alert from '../legacyJS/js/components/Alert'
@@ -20,8 +22,6 @@ import TextArea from '../legacyJS/js/components/TextArea'
 import Attachment from '../legacyJS/js/components/Attachment'
 import FieldGroup from '../legacyJS/js/components/FieldGroup'
 import Dialog from '../legacyJS/js/components/Dialog'
-import Table from '../legacyJS/js/components/Table'
-import createTableCell from '../legacyJS/js/components/TableCellFactory'
 
 const kintoneUIComponent = {
   Alert,
