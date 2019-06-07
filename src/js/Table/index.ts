@@ -53,22 +53,6 @@ export default class Table extends Control {
     this._props.columns.push({actions: this._props.actionButtonsShown})
   }
 
-  private _handleOnChange = ({type, rowIndex, data}) => {
-    if (type === 'ADD_ROW') {
-      let newRowData
-      if (this._props.onRowAdd) {
-        newRowData = this._props.onRowAdd({rowIndex, data})
-      }
-      if (!newRowData || newRowData === undefined) {
-        newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData))
-      }
-      data[rowIndex] = newRowData
-    }
-    this._props.data = data
-    this._renderCells()
-    this._triggerChange({type, rowIndex, data})
-  }
-
   private _addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
     const insertAt = rowIndex + 1
     const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)]
@@ -261,9 +245,19 @@ export default class Table extends Control {
         this._tableBodyContainer.appendChild(tableRow)
       } else {
         const tableRow = this._tableBodyContainer.children.namedItem(rowIndex.toString())
-        const actionCell = this._renderTableCellActions(rowIndex)
-        actionCell.id = rowIndex + '_action'
-        tableRow.replaceChild(actionCell, tableRow.children.namedItem(rowIndex + '_action'))
+        if(this._props.actionButtonsShown) {
+          const actionCell = this._renderTableCellActions(rowIndex)
+          actionCell.id = rowIndex + '_action'
+          if(tableRow.children.namedItem(rowIndex + '_action')) {
+            tableRow.replaceChild(actionCell, tableRow.children.namedItem(rowIndex + '_action'))
+          } else {
+            tableRow.appendChild(actionCell)
+          }
+        } else {
+          if(tableRow.children.namedItem(rowIndex + '_action')) {
+            tableRow.removeChild(tableRow.children.namedItem(rowIndex + '_action'))
+          }
+        }
       }
     })
   }
@@ -297,41 +291,33 @@ export default class Table extends Control {
     return this.element
   }
 
-  // showActionButtons() {
-  //   const actionButtonsShown = true
-  //   if (this._reactObject) {
-  //     this._reactObject.setState({actionButtonsShown})
-  //   }
-  // }
+  showActionButtons() {
+    this._props.actionButtonsShown = true
+    this._renderTableRows()
+  }
 
-  // hideActionButtons() {
-  //   const actionButtonsShown = false
-  //   if (this._reactObject) {
-  //     this._reactObject.setState({actionButtonsShown})
-  //   }
-  // }
+  hideActionButtons() {
+    this._props.actionButtonsShown = false
+    this._renderTableRows()
+  }
 
-  // getValue() {
-  //   return this.data
-  // }
+  getValue() {
+    return this._props.data
+  }
 
-  // setValue(data) {
-  //   if (!Array.isArray(data)) {
-  //     throw new Error(Message.common.INVALID_ARGUMENT)
-  //   }
-  //   this.data = data
-  //   if (this._reactObject) {
-  //     this._reactObject.setState({data}, () => {
-  //       // rerender cells
-  //       this._renderCells()
-  //     })
-  //   }
-  // }
+  setValue(data) {
+    if (!Array.isArray(data)) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    this._props.data = data
+    this._renderTableRows(true)
+    this._renderCells()
+  }
 
-  // on(eventName, callback) {
-  //   if (!validEventNames.some(event => event === eventName)) {
-  //     throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
-  //   }
-  //   this['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback
-  // }
+  on(eventName, callback) {
+    if (!validEventNames.some(event => event === eventName)) {
+      throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
+    }
+    this._props['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback
+  }
 }
