@@ -27,6 +27,7 @@ class Button extends Control {
       this._props = {...this._props, ...params};
     }
     this._createLayout()
+    this.rerender(['isDisabled', 'isVisible'])
   }
 
   rerender(changedAttr?: string[]) {

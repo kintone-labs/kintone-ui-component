@@ -33,7 +33,7 @@ class IconButton extends Control {
     }
 
     this.element = this._createLayout();
-    this.rerender(['btnStyle', 'iconStyle']);
+    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible']);
   }
 
   private _createLayout() {
