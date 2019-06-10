@@ -30,13 +30,29 @@ class Button extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender();
+    // super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('type') !== -1) {
       this.btnEl.className = this._getClassName();
     }
     if (changedAttr.indexOf('text') !== -1) {
       this.btnEl.innerHTML = this._props.text;
+    }
+
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      if (this._props.isDisabled) {
+        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      } else {
+        this.btnEl.removeAttribute('disabled');
+      }
+    }
+
+    if (changedAttr.indexOf('isVisible') !== -1) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
     }
   }
 

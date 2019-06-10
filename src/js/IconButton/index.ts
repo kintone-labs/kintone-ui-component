@@ -96,7 +96,7 @@ class IconButton extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender();
+    // super.rerender();
 
     if (!changedAttr) return;
 
@@ -106,6 +106,22 @@ class IconButton extends Control {
 
     if (changedAttr.indexOf('iconStyle') !== -1) {
       this.iconEl.className = this._getClassType();
+    }
+
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      if (this._props.isDisabled) {
+        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      } else {
+        this.btnEl.removeAttribute('disabled');
+      }
+    }
+
+    if (changedAttr.indexOf('isVisible') !== -1) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
     }
   }
 
