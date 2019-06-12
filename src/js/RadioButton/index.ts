@@ -1,13 +1,9 @@
 import Control, {ControlProps} from '../Control';
 import Message from '../../constant/Message';
-import Item from './Item';
+import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 
-type item = {
-  value: string;
-  label?: string;
-  isDisabled?: boolean;
-};
+import '../../css/RadioButton.css'
 
 type RadioButtonProps = ControlProps & {
   name: string;

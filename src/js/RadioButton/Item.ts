@@ -1,5 +1,7 @@
 import Control, { ControlProps } from '../Control';
 
+import '../../css/Item.css';
+
 type item = {
   value: string;
   label?: string;
@@ -86,3 +88,4 @@ class Item extends Control {
 }
 
 export default Item;
+export {item};
