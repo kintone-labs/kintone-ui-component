@@ -17,6 +17,7 @@ class Button extends Control {
       onClick: () => {}
     }
   }
+  private btnEl: HTMLButtonElement
   constructor(params: ButtonProps) {
     super();
     if(typeof params.isDisabled !== 'boolean') {
@@ -25,16 +26,34 @@ class Button extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    this._createLayout()
+    this.rerender(['isDisabled', 'isVisible'])
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender();
+    // super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('type') !== -1) {
-      this.element.className = this._getClassName();
+      this.btnEl.className = this._getClassName();
     }
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text;
+      this.btnEl.innerHTML = this._props.text;
+    }
+
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      if (this._props.isDisabled) {
+        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      } else {
+        this.btnEl.removeAttribute('disabled');
+      }
+    }
+
+    if (changedAttr.indexOf('isVisible') !== -1) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
     }
   }
 
@@ -48,12 +67,6 @@ class Button extends Control {
     this.rerender(['type']);
   }
 
-  render() {
-    this._createLayout()
-    this.rerender()
-    return super.render()
-  }
-
   private _getClassName() {
     return [
       'kuc-btn',
@@ -61,13 +74,24 @@ class Button extends Control {
     ].join(' ').trim();
   }
 
-  private _createLayout() {
-    this.element = document.createElement('button');
-    this.element.className = this._getClassName();
-    this.element.innerHTML = this._props.text;
-    if(this._props.onClick) {
-      this.element.addEventListener('click', this._props.onClick)
+  on(eventName: string, callback: (params?: any) => void) {
+    if (eventName === 'click') {
+      this._props.onClick = callback
     }
+  }
+
+  private _createLayout() {
+    this.btnEl = document.createElement('button');
+    this.btnEl.className = this._getClassName();
+    this.btnEl.innerHTML = this._props.text;
+    if(this._props.onClick) {
+      this.btnEl.addEventListener('click', (e) => {
+        if (this._props.isDisabled) return;
+        this._props.onClick(e)
+      })
+    }
+    this.element = document.createElement('div')
+    this.element.appendChild(this.btnEl)
   }
 }
 
