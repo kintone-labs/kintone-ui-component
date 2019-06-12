@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 import Message from '../../constant/Message';
-import Item from '../Item/index';
+import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 
 type item = {
