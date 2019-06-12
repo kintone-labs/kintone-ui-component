@@ -1,8 +1,8 @@
 import TableCell from './TableCell';
 import Text from '../Text';
 // import Dropdown from '../Dropdown';
-// import CheckBox from '../CheckBox';
-// import MultipleChoice from '../MultipleChoice';
+import CheckBox from '../CheckBox';
+import MultipleChoice from '../MultipleChoice';
 // import RadioButton from '../RadioButton';
 import Label from '../Label';
 import IconButton from '../IconButton';
@@ -27,12 +27,12 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       // case 'dropdown':
       //   FieldComponent = Dropdown;
       //   break;
-      // case 'checkbox':
-      //   FieldComponent = CheckBox;
-      //   break;
-      // case 'multichoice':
-      //   FieldComponent = MultipleChoice;
-      //   break;
+      case 'checkbox':
+        FieldComponent = CheckBox;
+        break;
+      case 'multichoice':
+        FieldComponent = MultipleChoice;
+        break;
       // case 'radio':
       //   table.data[rowIndex][fieldName].name += '_' + rowIndex;
       //   FieldComponent = RadioButton;
@@ -55,10 +55,6 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
     // assign listeners
     switch (type) {
       case 'text':
-      case 'dropdown':
-      case 'checkbox':
-      case 'multichoice':
-      case 'radio':
         field.on('change', (e) => {
           const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
           rowData[fieldName].value = e.target.value;
@@ -70,6 +66,22 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
           }
         });
         break;
+      case 'dropdown':
+      case 'checkbox':
+      case 'multichoice':
+      case 'radio':
+          field.on('change', (value) => {
+            const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
+            rowData[fieldName].value = value;
+            updateRowData(rowData, false, true, fieldName);
+            console.log(table.data)
+            // if has custom on change call it
+            if (props && props.onChange) {
+              const data = table.data;
+              props.onChange({data, rowIndex, fieldName});
+            }
+          });
+          break;
       default:
         break;
     }

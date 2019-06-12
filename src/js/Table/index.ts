@@ -50,12 +50,14 @@ export default class Table extends Control {
     if (params) {
       this._props = {...this._props, ...params}
     }
+    this._validateRequired()
     this._props.columns.push({actions: this._props.actionButtonsShown})
   }
 
-  private _addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
+  private _addRow = ({data, rowIndex}:RowEventProps) => {
     const insertAt = rowIndex + 1
-    const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)]
+    const defaultData = JSON.parse(JSON.stringify(this._props.defaultRowData));
+    const newData = [...data.slice(0, insertAt), defaultData, ...data.slice(insertAt)]
     this._props.data = newData
     this._renderTableRows()
     this._renderCells()
@@ -194,6 +196,7 @@ export default class Table extends Control {
         rowIndex: rowIndex + 1
       })
     })
+    iconButtonDom.style.display = 'inline-block'
     span1.appendChild(iconButtonDom)
     if(this._props.data.length > 1) {
       const span2 = document.createElement('span')
@@ -202,10 +205,11 @@ export default class Table extends Control {
       iconButton2.on('click', () => {
         this._dispatch({
           type: 'REMOVE_ROW',
-          data: this._removeRow({data: this._props.data, rowIndex, defaultRowData: this._props.defaultRowData}),
+          data: this._removeRow({data: this._props.data, rowIndex}),
           rowIndex: rowIndex
         })
       })
+      iconButtonDom2.style.display = 'inline-block'
       span2.appendChild(iconButtonDom2)
       tableCellDiv.appendChild(span2)
     }
