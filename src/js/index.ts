@@ -1,6 +1,7 @@
 import '@babel/polyfill'
-import '../legacyJS/style'
 import './polyfill'
+import '../legacyJS/style'
+import '../css/base.css'
 import DateTime from './DateTime'
 import Tabs from './Tabs'
 import Text from './Text'
