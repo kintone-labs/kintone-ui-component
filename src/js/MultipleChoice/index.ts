@@ -4,7 +4,6 @@ import {ItemData} from '../MultipleChoice/Item'
 import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
 
-import '../../css/base.css'
 import '../../css/MultipleChoice.css'
 
 type MultipleChoiceProps = ControlProps & {

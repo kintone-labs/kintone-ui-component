@@ -1,6 +1,5 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/base.css';
 import '../../css/IconButton.css';
 
 type IconBtnProps = ControlProps & {
