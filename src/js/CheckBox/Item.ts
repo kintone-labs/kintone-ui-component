@@ -71,15 +71,6 @@ class Item extends Control {
         }
     }
 
-    enable(){
-        super.enable()
-        this.rerender(['isSelected', 'isDisabled'])
-    }
-
-    disable(){
-        super.disable()
-        this.rerender(['isSelected', 'isDisabled'])
-    }
 
     getValue(){
         return this._props.value;
@@ -92,6 +83,15 @@ class Item extends Control {
 
     deselect() {
         this._props.isSelected = false
+        this.rerender(['isSelected', 'isDisabled'])
+    }
+    disable() {
+        this._props.isDisabled = true
+        this.rerender(['isSelected', 'isDisabled'])
+    }
+    
+    enable() {
+        this._props.isDisabled = false
         this.rerender(['isSelected', 'isDisabled'])
     }
 
