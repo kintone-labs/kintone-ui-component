@@ -123,6 +123,18 @@ class MultipleChoice extends Control {
         }
     }
 
+    getItem(index: number): ItemData {
+        if (typeof index !== 'number') {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+
+        if (index >= 0 && index < this._props.items.length) {
+            return this._props.items[index]
+        } else {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+    }
+
     getItems(): Array<ItemData> {
         return this._props.items
     }
