@@ -65,7 +65,6 @@ class Item extends Control {
         this.rerender()
     }
     rerender(changedAttr?: Array<string>){
-        super.rerender()
         if (!changedAttr) return;
         let className = "kuc-list-item";
         if (changedAttr.indexOf('isSelected') !== -1) {
