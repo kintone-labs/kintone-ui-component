@@ -42,7 +42,7 @@ class MultipleChoice extends Control {
 
         this._renderItemList()
 
-        this.rerender()
+        this.rerender(['isDisabled', 'isVisible'])
     }
 
     private _renderItemList() {
