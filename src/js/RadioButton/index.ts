@@ -80,6 +80,11 @@ class RadioButton extends Control {
     this._props.onChange && this._props.onChange(this._props.value);
   };
 
+  render() {
+    this.rerender();
+    return super.render();
+  }
+
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (!changedAttr) return;

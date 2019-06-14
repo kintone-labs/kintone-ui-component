@@ -32,6 +32,11 @@ class Text extends Control {
     this.element.appendChild(this.inputEl);
   }
 
+  render() {
+    this.rerender();
+    return super.render();
+  }
+
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (this._props.isDisabled) {
