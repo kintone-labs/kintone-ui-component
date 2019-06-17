@@ -112,10 +112,10 @@
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
-
+ 
       <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://kintone.github.io/kintone-ui-component/0.1.5"
+        <a href="https://kintone.github.io/kintone-ui-component/"
             title="kintone UI Component"
             class="md-header-nav__button md-logo">
           
@@ -123,27 +123,27 @@
           
         </a>
       </div>
-
+ 
       <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button"
             for="__drawer"></label>
       </div>
-
+ 
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="/0.1.5">kintone UI Component</a> <a style="text-decoration: underline;" href="/latest/versions">v0.1.5</a>
+            <a href="/">kintone UI Component</a> <a style="text-decoration: underline;" href="/latest/versions">v0.3.0</a>
         </div>
       </div>
-
+ 
       <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
         
           <label class="md-icon md-icon--search md-header-nav__button"
               for="__search"></label>
-
+ 
           <!-- Search interface -->
           
 <div class="md-search" data-md-component="search" role="dialog">
@@ -170,7 +170,7 @@
 </div>
         
       </div>
-
+ 
       <!-- Repository containing source -->
       
         <div class="md-flex__cell md-flex__cell--shrink">
@@ -346,6 +346,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../Attachment/" title="Attachment" class="md-nav__link">
+      Attachment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Button/" title="Button" class="md-nav__link">
       Button
     </a>
@@ -370,8 +382,56 @@
 
 
   <li class="md-nav__item">
+    <a href="../ColorPicker/" title="ColorPicker" class="md-nav__link">
+      ColorPicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DateTime/" title="DateTime" class="md-nav__link">
+      DateTime
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Dialog/" title="Dialog" class="md-nav__link">
+      Dialog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Dropdown/" title="Dropdown" class="md-nav__link">
       Dropdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FieldGroup/" title="FieldGroup" class="md-nav__link">
+      FieldGroup
     </a>
   </li>
 
@@ -452,6 +512,20 @@
           <li class="md-nav__item">
   <a href="#settexttext" title="setText(text)" class="md-nav__link">
     setText(text)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settextcolorcolor" title="setTextColor(color)" class="md-nav__link">
+    setTextColor(color)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setbackgroundcolorcolor" title="setBackgroundColor(color)" class="md-nav__link">
+    setBackgroundColor(color)
   </a>
   
 </li>
@@ -580,8 +654,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../Tabs/" title="Tabs" class="md-nav__link">
+      Tabs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Text/" title="Text" class="md-nav__link">
       Text
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TextArea/" title="TextArea" class="md-nav__link">
+      TextArea
     </a>
   </li>
 
@@ -643,6 +741,20 @@
           <li class="md-nav__item">
   <a href="#settexttext" title="setText(text)" class="md-nav__link">
     setText(text)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settextcolorcolor" title="setTextColor(color)" class="md-nav__link">
+    setTextColor(color)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setbackgroundcolorcolor" title="setBackgroundColor(color)" class="md-nav__link">
+    setBackgroundColor(color)
   </a>
   
 </li>
@@ -740,9 +852,21 @@
 </tr>
 <tr>
 <td>options.isRequired</td>
-<td>String</td>
+<td>Boolean</td>
 <td>No</td>
 <td>Display the '*' character at the end of the caption. <br> Default value is false.</td>
+</tr>
+<tr>
+<td>options.textColor</td>
+<td>String</td>
+<td>No</td>
+<td>Color of caption. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'</td>
+</tr>
+<tr>
+<td>options.backgroundColor</td>
+<td>String</td>
+<td>No</td>
+<td>Color of background. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'</td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -760,25 +884,26 @@
 </table>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({
+    text: 'Name',
+    textColor: '#e74c3c',
+    backgroundColor: 'yellow',
+    isRequired: true
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
     render() {
         return (
-            &lt;Label text='Name' isRequired={true} /&gt;
+            &lt;Label text='Name' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} /&gt;
         );
     }
 }
-
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({
-    text: 'Name',
-    isRequired: true
-});
 </code></pre>
 
 <p></details></p>
@@ -791,8 +916,14 @@ export default class Plugin extends React.Component {
 <p>Dom element</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -802,12 +933,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
 </code></pre>
 
 <p></details></p>
@@ -836,8 +961,15 @@ body.appendChild(label.render());
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong>  </p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.setText('Name');
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -849,11 +981,96 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p><strong>Javascript</strong>  </p>
+<p></details></p>
+<h3 id="settextcolorcolor">setTextColor(color)</h3>
+<p>Set color of caption.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>Yes</td>
+<td>Color of caption.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
-label.setText('Name');
+label.setTextColor('#e74c3c');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Label text='Name' textColor='red' /&gt;
+        );
+    }
+}
+</code></pre>
+
+<p></details></p>
+<h3 id="setbackgroundcolorcolor">setBackgroundColor(color)</h3>
+<p>Set color of background.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>Yes</td>
+<td>Color of background.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.setBackgroundColor('#e74c3c');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Label text='Name' backgroundColor='yellow' /&gt;
+        );
+    }
+}
 </code></pre>
 
 <p></details></p>
@@ -882,8 +1099,15 @@ label.setText('Name');
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.setRequired(true);
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -893,13 +1117,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.setRequired(true);
 </code></pre>
 
 <p></details></p>
@@ -934,8 +1151,17 @@ label.setRequired(true);
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.on('click', function(event) {
+    console.log('on click');
+});
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -951,15 +1177,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.on('click', function(event) {
-    console.log('on click');
-});
-</code></pre>
-
 <p></details></p>
 <h3 id="show">show()</h3>
 <p>Display the Label.</p>
@@ -969,8 +1186,15 @@ label.on('click', function(event) {
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.show();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -983,13 +1207,6 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.show();
-</code></pre>
-
 <p></details></p>
 <h3 id="hide">hide()</h3>
 <p>Hide the Label.</p>
@@ -999,8 +1216,15 @@ label.show();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.hide();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1010,14 +1234,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.hide();
 </code></pre>
 
 <p></details></p>
@@ -1029,8 +1245,15 @@ label.hide();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.disable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1040,14 +1263,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.disable();
 </code></pre>
 
 <p></details></p>
@@ -1059,8 +1274,15 @@ label.disable();
 <p>None</p>
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+label.enable();
+</code></pre>
+
 <p><strong>React</strong></p>
-<pre><code>import { Label } from 'kintone-ui-component';
+<pre><code>import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1070,14 +1292,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-</code></pre>
-
-<p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(label.render());
-label.enable();
 </code></pre>
 
 <p></details></p>
