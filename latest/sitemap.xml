@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/</loc>
+     <loc>http://127.0.0.1/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Getting-Started/QuickStart-Javascript/</loc>
+     <loc>http://127.0.0.1/Getting-Started/QuickStart-Javascript/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Getting-Started/QuickStart-React/</loc>
+     <loc>http://127.0.0.1/Getting-Started/QuickStart-React/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Alert/</loc>
+     <loc>http://127.0.0.1/Reference/Alert/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Attachment/</loc>
+     <loc>http://127.0.0.1/Reference/Attachment/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Button/</loc>
+     <loc>http://127.0.0.1/Reference/Button/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/CheckBox/</loc>
+     <loc>http://127.0.0.1/Reference/CheckBox/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/ColorPicker/</loc>
+     <loc>http://127.0.0.1/Reference/ColorPicker/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/DateTime/</loc>
+     <loc>http://127.0.0.1/Reference/DateTime/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Dialog/</loc>
+     <loc>http://127.0.0.1/Reference/Dialog/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Dropdown/</loc>
+     <loc>http://127.0.0.1/Reference/Dropdown/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/FieldGroup/</loc>
+     <loc>http://127.0.0.1/Reference/FieldGroup/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/IconButton/</loc>
+     <loc>http://127.0.0.1/Reference/IconButton/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Label/</loc>
+     <loc>http://127.0.0.1/Reference/Label/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/MultipleChoice/</loc>
+     <loc>http://127.0.0.1/Reference/MultipleChoice/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/NotifyPopup/</loc>
+     <loc>http://127.0.0.1/Reference/NotifyPopup/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/RadioButton/</loc>
+     <loc>http://127.0.0.1/Reference/RadioButton/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Spinner/</loc>
+     <loc>http://127.0.0.1/Reference/Spinner/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Table/</loc>
+     <loc>http://127.0.0.1/Reference/Table/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Tabs/</loc>
+     <loc>http://127.0.0.1/Reference/Tabs/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/Text/</loc>
+     <loc>http://127.0.0.1/Reference/Text/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://kintone.github.io/kintone-ui-component/Reference/TextArea/</loc>
+     <loc>http://127.0.0.1/Reference/TextArea/</loc>
      <lastmod>2019-06-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
