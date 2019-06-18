@@ -6,7 +6,7 @@
 
       <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="{{ config.site_url }}{{ config.extra.version }}"
+        <a href="{{base_url}}"
             title="{{ config.site_name }}"
             class="md-header-nav__button md-logo">
           {% if config.theme.logo.icon %}
@@ -27,7 +27,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="{{ config.site_url }}{{ config.extra.version }}">{{ config.site_name }}</a> <a style="text-decoration: underline;" href="{{ config.site_url }}latest/versions">v{{ config.extra.version }}</a>
+            <a href="{{base_url}}">{{ config.site_name }}</a> <a style="text-decoration: underline;" href="{{base_url}}/../latest/versions">v{{ config.extra.version }}</a>
         </div>
       </div>
 
