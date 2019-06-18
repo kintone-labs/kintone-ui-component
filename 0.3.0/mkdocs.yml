@@ -1,6 +1,5 @@
 site_name: kintone UI Component
 repo_url: https://github.com/kintone/kintone-ui-component
-site_url: https://kintone.github.io/kintone-ui-component/
 edit_uri: ''
 
 theme:
@@ -46,4 +45,4 @@ extra_javascript:
 extra_css:
   - 'style/extra.css'
 extra:
-    version: '0.3.1'
+    version: '0.3.0'
