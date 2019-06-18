@@ -22,7 +22,6 @@ class Dropdown extends Control {
       items: []
     }
   };
-  //private label?: string;
 
   private itemComps: Item[] = [];
   private dropdownEl: HTMLElement;
@@ -107,12 +106,8 @@ class Dropdown extends Control {
   };
 
   private _handleItemClick = (item: item) => {
-    console.log('くりっく！！');
-    console.log(item);
     this._props.value = item.value;
     this.label = item.label || '';
-    console.log(this._props.value);
-    console.log(this.label);
     this._hideItems();
     this.rerender(['item']);
     this._props.onChange && this._props.onChange(this._props.value);
@@ -125,7 +120,9 @@ class Dropdown extends Control {
 
     const outerEl = this._createDom('div', 'kuc-dropdown-outer');
     this.dropdownEl = this._createDom('div', this.className.join(' ').trim());
-    this.dropdownEl.onclick = this._handleDropdownClick;
+    if (!this._props.isDisabled) {
+      this.dropdownEl.onclick = this._handleDropdownClick;
+    }
 
     const selectedEl = this._createDom('div', 'kuc-dropdown-selected');
     const selectedNameEl = this._createDom(
@@ -171,6 +168,11 @@ class Dropdown extends Control {
     subcontainerEl.appendChild(this.listOuterEl);
     return subcontainerEl;
   };
+
+  render() {
+    this.rerender();
+    return super.render();
+  }
 
   rerender(changedAttr?: string[]) {
     super.rerender();
