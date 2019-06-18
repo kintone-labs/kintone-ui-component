@@ -21,6 +21,8 @@ class NotifyPopup extends Control {
 
   private textEl: any
   private closeButton: IconButton
+  private containerEl: HTMLElement
+  private _onClick = (e: Event) => {}
 
   constructor(params: PopupProps) {
     super();
@@ -28,8 +30,12 @@ class NotifyPopup extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    this.containerEl = this._createPopupLayout()
 
-    this.element = this._createPopupLayout();
+    const wrapperDiv = document.createElement('div')
+    wrapperDiv.appendChild(this.containerEl)
+     
+    this.element = wrapperDiv;
     this.closeButton.on('click', () => {
       this.hide();
     });
@@ -59,12 +65,20 @@ class NotifyPopup extends Control {
     const containerDOM = document.createElement('div');
 
     this.textEl = elements(document.createElement('div')).addClass('kuc-notify-title').appendTo(containerDOM);
+    this.textEl.on('click', (e) => {
+      if (this._props.isDisabled) return;
+      this._onClick(e)
+    })
 
     this.closeButton = new IconButton({type: 'close'});
 
     elements(document.createElement('div')).addClass('kuc-close-button').appendTo(containerDOM).append(this.closeButton.render());
 
     return containerDOM;
+  }
+
+  on(eventName: string, callback: (params?: any) => void) {
+    if (eventName === 'click') this._onClick = callback
   }
 
   private _getClassName() {
@@ -84,7 +98,7 @@ class NotifyPopup extends Control {
     }
 
     if (changedAttr.indexOf('type') !== -1) {
-      this.element.className = this._getClassName();
+      this.containerEl.className = this._getClassName();
       this.closeButton.setColor(this._getStyleByType().color);
     }
   }

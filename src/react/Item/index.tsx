@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/base.css'
 import '../../css/Item.css';
 
 type item = {

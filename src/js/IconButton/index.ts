@@ -1,6 +1,5 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/base.css';
 import '../../css/IconButton.css';
 
 type IconBtnProps = ControlProps & {
@@ -23,6 +22,7 @@ class IconButton extends Control {
 
   private btnEl: HTMLElement
   private iconEl: HTMLElement
+  private _onClick = (e: Event) => {}
 
   constructor(params: IconBtnProps) {
     super();
@@ -32,16 +32,23 @@ class IconButton extends Control {
     }
 
     this.element = this._createLayout();
-    this.rerender(['btnStyle', 'iconStyle']);
+    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible']);
   }
 
   private _createLayout() {
     this.btnEl = document.createElement('button');
+    this.btnEl.addEventListener('click', (e) => {
+      if (this._props.isDisabled) return;
+      this._onClick(e)
+    })
     this.iconEl = document.createElement('i');
 
     this.btnEl.appendChild(this.iconEl);
 
-    return this.btnEl;
+    const containerEl = document.createElement('div')
+    containerEl.appendChild(this.btnEl)
+
+    return containerEl;
   }
 
   private _getClassName() {
@@ -88,7 +95,7 @@ class IconButton extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender();
+    // super.rerender();
 
     if (!changedAttr) return;
 
@@ -98,6 +105,22 @@ class IconButton extends Control {
 
     if (changedAttr.indexOf('iconStyle') !== -1) {
       this.iconEl.className = this._getClassType();
+    }
+
+    if (changedAttr.indexOf('isDisabled') !== -1) {
+      if (this._props.isDisabled) {
+        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      } else {
+        this.btnEl.removeAttribute('disabled');
+      }
+    }
+
+    if (changedAttr.indexOf('isVisible') !== -1) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
     }
   }
 
@@ -121,6 +144,11 @@ class IconButton extends Control {
     this.rerender(['btnStyle']);
   }
 
+  on(eventName: string, callback: (params?: any) => void) {
+    if (eventName === 'click') {
+      this._onClick = callback
+    }
+  }
 }
 
 export default IconButton;
