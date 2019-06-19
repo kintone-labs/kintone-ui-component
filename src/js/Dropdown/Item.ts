@@ -1,4 +1,6 @@
 import Control, { ControlProps } from '../Control';
+import { mdiCheckBold } from '@mdi/js'
+import '../../css/Item.css';
 
 type item = {
   value: string;
@@ -48,10 +50,7 @@ class Item extends Control {
     this.element.className = className.join(' ').trim();
     const iconEl = document.createElement('span');
     iconEl.className = 'kuc-icon-check';
-    const iEl = document.createElement('i');
-    iEl.className = 'fa fa-check';
-    iEl.setAttribute('aria-hidden', 'true');
-    iconEl.appendChild(iEl);
+    iconEl.appendChild(this._createCheckIconEl());
     const labelEl = document.createElement('span');
     labelEl.className = 'kuc-list-item-label';
     labelEl.innerText = this._props.item.label;
@@ -61,6 +60,16 @@ class Item extends Control {
       this._props.onClick(this._props.item);
     });
   }
+
+  private _createCheckIconEl() {
+    const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    pathEl.setAttribute('d', mdiCheckBold)
+
+    const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svgEl.appendChild(pathEl)
+
+    return svgEl
+}
 
   rerender(changedAttr?: string[]) {
     super.rerender();

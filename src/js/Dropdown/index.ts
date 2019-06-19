@@ -2,6 +2,9 @@ import Control, { ControlProps } from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
+import { mdiChevronDown } from '@mdi/js'
+
+import '../../css/Dropdown.css'
 
 type item = {
   value: string;
@@ -113,6 +116,16 @@ class Dropdown extends Control {
     this._props.onChange && this._props.onChange(this._props.value);
   };
 
+  private _createDownIconEl() {
+    const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    pathEl.setAttribute('d', mdiChevronDown)
+
+    const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svgEl.appendChild(pathEl)
+
+    return svgEl
+  }
+
   private _renderSubContainer = () => {
     const subcontainerEl = this._createDom('div', 'kuc-dropdown-sub-container');
     subcontainerEl.setAttribute('tabIndex', '-1');
@@ -133,9 +146,7 @@ class Dropdown extends Control {
     this.nameLabelEl = this._createDom('span');
     this.nameLabelEl.innerText = this.label || '';
     const iconEl = this._createDom('span', 'icon-arrow-down');
-    const iconImgEl = this._createDom('i', 'fa fa-angle-down');
-    iconImgEl.setAttribute('aria-hidden', 'true');
-    iconEl.appendChild(iconImgEl);
+    iconEl.appendChild(this._createDownIconEl());
 
     selectedNameEl.appendChild(this.nameLabelEl);
     selectedNameEl.appendChild(iconEl);
