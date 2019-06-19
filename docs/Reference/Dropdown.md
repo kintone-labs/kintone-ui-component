@@ -3,8 +3,6 @@
 ## Overview
 ![Dropdown](../img/dropdown.PNG)
 
-![Dropdown](../img/dropdown.PNG)
-
 |Number|	Description|
 | --- | --- |
 |1|	Main area|	
@@ -12,6 +10,7 @@
 |3|Selected item|	
 |4|Not selected item|
 |5|Disabled item|
+|6|Hover item|
 
 ## Constructor
 
