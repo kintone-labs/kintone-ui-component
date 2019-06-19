@@ -1,5 +1,7 @@
 import Control, {ControlProps} from '../Control';
 
+import '../../css/Text.css'
+
 type TextProps = ControlProps & {
   value?: string;
 }
@@ -30,6 +32,11 @@ class Text extends Control {
     this.element.appendChild(this.inputEl);
   }
 
+  render() {
+    this.rerender();
+    return super.render();
+  }
+
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (this._props.isDisabled) {
@@ -43,6 +50,13 @@ class Text extends Control {
     }
   }
   
+  on(eventName: string, callback: (params?: any) => void) {
+    this.inputEl.addEventListener(eventName, (e: Event)=>{
+      if (this._props.isDisabled) return;
+      callback(e);
+    });
+  }
+
   setValue(value: string) {
     this._props.value = value;
     this.rerender(['value']);

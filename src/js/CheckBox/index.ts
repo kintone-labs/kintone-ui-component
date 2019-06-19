@@ -42,7 +42,7 @@ class Checkbox extends Control {
 
         this._renderItemList()
 
-        this.rerender()
+        this.rerender(['isDisabled', 'isVisible'])
     }
 
     private _renderItemList() {
@@ -125,6 +125,18 @@ class Checkbox extends Control {
         }
     }
 
+    getItem(index: number): ItemData {
+        if (typeof index !== 'number') {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+
+        if (index >= 0 && index < this._props.items.length) {
+            return this._props.items[index]
+        } else {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+    }
+
     getItems(): Array<ItemData> {
         return this._props.items
     }
@@ -135,6 +147,7 @@ class Checkbox extends Control {
         }
         this._props.items.forEach((item: ItemData, index: number) => {
             if (item.value === value) {
+                item.isDisabled = true
                 this.itemList[index].disable()
             }
         })
@@ -146,13 +159,13 @@ class Checkbox extends Control {
         }
         this._props.items.forEach((item: ItemData, index: number) => {
             if (item.value === value) {
+                item.isDisabled = false
                 this.itemList[index].enable()
             }
         })
     }
 
     rerender(changedAttr?: Array<string>){
-        super.rerender()
         if (!changedAttr) return;
         if (changedAttr.indexOf('value') !== -1) {
             this.itemList.forEach((item: Item, index: number) => {
@@ -175,6 +188,30 @@ class Checkbox extends Control {
             
             this.itemList.push(itemComponent)
             this.checkboxContentWrapper.appendChild(itemComponent.render())
+        }
+
+        if (changedAttr.indexOf('isDisabled') !== -1) {
+            if (this._props.isDisabled) {
+                this.itemList.forEach((item: Item, index: number) => {
+                    if(!this._props.items[index].isDisabled){
+                        item.disable()
+                    }
+                })
+            } else {
+                this.itemList.forEach((item: Item, index: number) => {
+                    if(!this._props.items[index].isDisabled){
+                        item.enable()
+                    }
+                })
+            }
+        }
+        
+        if (changedAttr.indexOf('isVisible') !== -1) {
+            if (!this._props.isVisible) {
+                this.element.style.display = 'none';
+              } else {
+                this.element.style.display = '';
+            }
         }
     }
 
