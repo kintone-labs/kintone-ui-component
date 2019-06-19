@@ -130,59 +130,56 @@ const Attachment = (props: AttachmentProps) => {
 
   return (
     <div className="kuc-attachment-outer">
-      <div className="kuc-attachment-value">
-        <div
-          className="kuc-attachment-file"
-          onDragOver={_onDragOver}
-          onDragEnter={_onDragEnter}
-          onDragLeave={_onDragLeave}
-        >
-          <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
-            <div
-              className="kuc-attachment-file-droppable-text"
-              ref={(dropElement) => {
-                if (dropElement) dropZoneElement = dropElement;
-              }}
-            >
-              {props.dropZoneText || 'Drop files here.'}
-            </div>
+      <div
+        className="kuc-attachment-file"
+        onDragOver={_onDragOver}
+        onDragEnter={_onDragEnter}
+        onDragLeave={_onDragLeave}
+      >
+        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
+          <div
+            className="kuc-attachment-file-droppable-text"
+            ref={(dropElement) => {
+              if (dropElement) dropZoneElement = dropElement;
+            }}
+          >
+            {props.dropZoneText || 'Drop files here.'}
           </div>
-          <div className="kuc-attachment-file-filelist" />
-          <div className="kuc-attachment-file-filelist kuc-attachment-file-filelist-list">
-            {Array.isArray(props.files) && props.files.map((file, index) => (
-              <AttachmentFileItem
-                key={index}
-                index={index}
-                fileName={file.name}
-                fileSize={file.size}
-                onFileRemove={_removeFile}
-              />
-            ))}
-          </div>
-          <a className="kuc-attachment-file-upload-button" tabIndex={-1}>
-            <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || 'Browse'}</span>
-            <div className="kuc-attachment-file-upload-html5">
-              <input
-                type="file"
-                multiple
-                ref={(element) => {
-                  if (element) inputElement = element;
-                }}
-                onClick={() => {
-                  inputElement.value = '';
-                }}
-                onChange={_addFiles}
-              />
-            </div>
-          </a>
-          <p className="kuc-attachment-file-constraints">{props.fileLimitText}</p>
         </div>
-        {props.isErrorVisible === true && (
-          <div className="kuc-attachment-file-error">
-            <span>{props.errorMessage}</span>
+        <div className="kuc-attachment-file-filelist kuc-attachment-file-filelist-list">
+          {Array.isArray(props.files) && props.files.map((file, index) => (
+            <AttachmentFileItem
+              key={index}
+              index={index}
+              fileName={file.name}
+              fileSize={file.size}
+              onFileRemove={_removeFile}
+            />
+          ))}
+        </div>
+        <a className="kuc-attachment-file-upload-button" tabIndex={-1}>
+          <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || 'Browse'}</span>
+          <div className="kuc-attachment-file-upload-html5">
+            <input
+              type="file"
+              multiple
+              ref={(element) => {
+                if (element) inputElement = element;
+              }}
+              onClick={() => {
+                inputElement.value = '';
+              }}
+              onChange={_addFiles}
+            />
           </div>
-        )}
+        </a>
+        <p className="kuc-attachment-file-constraints">{props.fileLimitText}</p>
       </div>
+      {props.isErrorVisible === true && (
+        <div className="kuc-attachment-file-error">
+          <span>{props.errorMessage}</span>
+        </div>
+      )}
     </div>
   );
 };

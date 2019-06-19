@@ -26,14 +26,14 @@ class Attachment extends Control {
         dropZoneText: 'Drop files here.'
     }
   }
-  private _onFileRemove: (params?: any) => void
-  private _onFileAdd: (params?: any) => void
-  private listFileEl: HTMLDivElement
-  private attachInputEl: HTMLInputElement
-  private attachInputTextEl: HTMLSpanElement
-  private droppableFileEl: HTMLDivElement
-  private constraintsFileEl: HTMLDivElement
-  private fileErrorEl: HTMLSpanElement
+  private _onFileRemove: (params?: any) => void = () => {};
+  private _onFileAdd: (params?: any) => void = () => {};
+  private listFileEl: HTMLDivElement;
+  private attachInputEl: HTMLInputElement;
+  private attachInputTextEl: HTMLSpanElement;
+  private droppableFileEl: HTMLDivElement;
+  private constraintsFileEl: HTMLDivElement;
+  private fileErrorEl: HTMLSpanElement;
   private dropZoneElement: HTMLDivElement;
   private dragEnterCounter = 0;
 
@@ -159,11 +159,7 @@ class Attachment extends Control {
   private createContainerEL() {
     let container = document.createElement('div');
     container.className = 'kuc-attachment-outer';
-
-    let containerChildren = document.createElement('div');
-    containerChildren.className = 'kuc-attachment-value';
-    containerChildren.appendChild(this.createAttachDnDContainerEL());
-    container.appendChild(containerChildren);
+    container.appendChild(this.createAttachDnDContainerEL());
 
     return container;
   }

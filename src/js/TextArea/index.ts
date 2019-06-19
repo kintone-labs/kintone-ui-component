@@ -2,31 +2,24 @@ import Control, {ControlProps} from '../Control';
 import '../../css/TextArea.css';
 type TextAreaProps = {
     value: string;
-    isVisible: boolean;
-    isDisabled: boolean;
     onClick: (e: any) => void;
     onChange: (e: any) => void;
 }
 
 class TextArea extends Control {
-    protected _props: TextAreaProps = this._props
+  protected _props: ControlProps & TextAreaProps = this._props
+  private _onClick: (params?: any) => void = () => {}
+  private _onChange: (params?: any) => void = () => {}
+  private textAreaWidth= 297;
+  private textAreaHeight= 123;
 
-    private textarea: HTMLTextAreaElement
-
-    private _onClick: (params?: any) => void
-    private _onChange: (params?: any) => void
-
-    private textAreaWidth= 297;
-    private textAreaHeight= 123;
-
-  constructor(params: TextAreaProps) {
-    
+  constructor(params: ControlProps & TextAreaProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};
     }
 
-    this.element = this.createContainerEL();
+    this.element = this.createTextareaEL();
     this.rerender(Object.keys(this._props));
   }
 
@@ -34,15 +27,15 @@ class TextArea extends Control {
     super.rerender(changedAttr);
     if (!changedAttr) return;
     if (changedAttr.indexOf('value') !== -1) {
-        this.textarea.innerText = this._props.value;
+        this.element.innerText = this._props.value;
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
         if (this._props.isDisabled) {
-            this.textarea.setAttribute('disabled', `${this._props.isDisabled}`);
-            this.textarea.style.resize = 'none';
+            this.element.setAttribute('disabled', `${this._props.isDisabled}`);
+            this.element.style.resize = 'none';
         } else {
-            this.textarea.style.resize = 'both';
-            this.textarea.removeAttribute('disabled');
+            this.element.style.resize = 'both';
+            this.element.removeAttribute('disabled');
         }
     }
   }
@@ -66,25 +59,15 @@ class TextArea extends Control {
     this.rerender(['isDisabled']);
    }
 
-  private createContainerEL() {
-    let container = document.createElement('div');
-    container.className = 'kuc-textarea-outer';
-    container.style.width = this.textAreaWidth + 'px';
-    container.style.height = this.textAreaHeight + 'px';
-    container.appendChild(this.createTextareaEL());
-
-    return container;
-  }
-
   private createTextareaEL() {
-    this.textarea = document.createElement('textarea');
-    this.textarea.className = 'kuc-textarea';
-    this.textarea.onclick = (e) => {this._onClick(e)};
-    this.textarea.onchange = (e) => {this._onChange(e.target.value)};
-    this.textarea.style.width = '100%'
-    this.textarea.style.height = '100%'
+    const textarea = document.createElement('textarea');
+    textarea.className = 'kuc-textarea';
+    textarea.onclick = (e) => {this._onClick(e)};
+    textarea.onchange = (e) => {this._onChange((<HTMLInputElement>e.target).value)};
+    textarea.style.width = this.textAreaWidth + 'px';
+    textarea.style.height = this.textAreaHeight + 'px';
 
-    return this.textarea;
+    return textarea;
   }
 
   on(eventName: string, callback: (params?: any) => void) {

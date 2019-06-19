@@ -20,18 +20,14 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
   }
 
   return (
-    <div
-      className="kuc-textarea-outer"
-    >
-      <textarea
-        value={value}
-        className="kuc-textarea"
-        onClick={onClick}
-        onChange={_onChange}
-        disabled={isDisabled}
-        style={{resize: isDisabled? 'none': 'both'}}
-      />
-    </div>
+    <textarea
+      value={value}
+      className="kuc-textarea"
+      onClick={onClick}
+      onChange={_onChange}
+      disabled={isDisabled}
+      style={{resize: isDisabled? 'none': 'both'}}
+    />
   );
 };
 
