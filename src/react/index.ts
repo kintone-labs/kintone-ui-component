@@ -15,7 +15,7 @@ import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
 
 import RadioButton from '../legacyJS/js/components-react/RadioButton'
-import Dropdown from '../legacyJS/js/components-react/Dropdown'
+import Dropdown from './Dropdown'
 import TextArea from '../legacyJS/js/components-react/TextArea'
 import Attachment from '../legacyJS/js/components-react/Attachment'
 import FieldGroup from '../legacyJS/js/components-react/FieldGroup'
