@@ -5,7 +5,7 @@
     "module": "es6",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "sourceMap": false,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src/react",
