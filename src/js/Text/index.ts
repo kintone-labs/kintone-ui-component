@@ -13,7 +13,6 @@ class Text extends Control {
       value: ''
     }
   }
-  private inputEl: HTMLInputElement;
 
   constructor(params: TextProps) {
     super();
