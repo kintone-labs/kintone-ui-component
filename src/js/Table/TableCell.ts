@@ -11,14 +11,14 @@ export default class TableCell {
     this._update = update;
   }
 
-  init(...args) {
+  init(...args: any[]) {
     if (this._init) {
       return this._init(...args);
     }
     return false;
   }
 
-  update(...args) {
+  update(...args: any[]) {
     if (this._update) {
       this._update(...args);
     }

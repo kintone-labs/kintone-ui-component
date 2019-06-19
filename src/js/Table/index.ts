@@ -12,6 +12,12 @@ type TableColumnJS = {
   cell: () => TableCell
 }
 
+type DispatchParams = {
+  type: string,
+  data?: object[],
+  rowIndex: number
+}
+
 type TableProps = ControlProps & {
   data: object[], 
   defaultRowData: object, 
@@ -58,20 +64,19 @@ export default class Table extends Control {
   }
   
   private _removeRow = ({data, rowIndex}:RowEventProps) => {
-    this._props.data = data.filter((item, index) => index !== rowIndex)
+    this._props.data = data.filter((_, index) => index !== rowIndex)
     this._renderTableRows(true)
     this._renderCells()
-    // return data.filter((item, index) => index !== rowIndex)
   }
 
-  private _triggerChange(...args) {
-    const {type} = args[0]
-    delete args[0].type
+  private _triggerChange(args: { type: string; data?: object[]; rowIndex?: number; fieldName?: string; }) {
+    const {type} = args
+    delete args.type
     if (type === 'REMOVE_ROW' && this._props.onRowRemove) {
-      this._props.onRowRemove(...args)
+      this._props.onRowRemove(args)
     }
     if (type === 'CELL_CHANGE' && this._props.onCellChange) {
-      this._props.onCellChange(...args)
+      this._props.onCellChange(args)
     }
   }
 
@@ -198,7 +203,6 @@ export default class Table extends Control {
       iconButton2.on('click', () => {
         this._dispatch({
           type: 'REMOVE_ROW',
-          data: this._removeRow({data: this._props.data, rowIndex}),
           rowIndex: rowIndex
         })
       })
@@ -209,12 +213,15 @@ export default class Table extends Control {
     return tableCellDiv
   }
 
-  private _dispatch(eventOption) {
+  private _dispatch(eventOption: DispatchParams) {
     if (this._props.onRowAdd && eventOption['type'] === 'ADD_ROW') {
       this._props.onRowAdd(eventOption)
     }
-    if (this._props.onRowRemove && eventOption['type'] === 'REMOVE_ROW') {
-      this._props.onRowRemove(eventOption)
+    if(eventOption['type'] === 'REMOVE_ROW') {
+      this._removeRow({data: this._props.data, rowIndex: eventOption['rowIndex']})
+      if (this._props.onRowRemove) {
+        this._props.onRowRemove(eventOption)
+      }
     }
   }
 
@@ -222,7 +229,7 @@ export default class Table extends Control {
     if(rerender) {
       this._tableBodyContainer.innerHTML = ''
     }
-    this._props.data.forEach((rowData, rowIndex) => {
+    this._props.data.forEach((_, rowIndex) => {
       if(!this._tableBodyContainer.children.namedItem(rowIndex.toString()) || rerender) {
         const tableRow = document.createElement('div')
         tableRow.className = 'kuc-table-tr'
@@ -302,7 +309,7 @@ export default class Table extends Control {
     return this._props.data
   }
 
-  setValue(data) {
+  setValue(data: object[]) {
     if (!Array.isArray(data)) {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
@@ -311,7 +318,7 @@ export default class Table extends Control {
     this._renderCells()
   }
 
-  on(eventName, callback) {
+  on(eventName: string, callback: Function) {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
     }

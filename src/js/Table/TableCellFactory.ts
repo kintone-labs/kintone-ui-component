@@ -1,9 +1,9 @@
 import TableCell from './TableCell';
 import Text from '../Text';
-// import Dropdown from '../Dropdown';
+import Dropdown from '../Dropdown';
 import CheckBox from '../CheckBox';
 import MultipleChoice from '../MultipleChoice';
-// import RadioButton from '../RadioButton';
+import RadioButton from '../RadioButton';
 import Label from '../Label';
 import IconButton from '../IconButton';
 import Alert from '../Alert';
@@ -24,19 +24,19 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       case 'text':
         FieldComponent = Text;
         break;
-      // case 'dropdown':
-      //   FieldComponent = Dropdown;
-      //   break;
+      case 'dropdown':
+        FieldComponent = Dropdown;
+        break;
       case 'checkbox':
         FieldComponent = CheckBox;
         break;
       case 'multichoice':
         FieldComponent = MultipleChoice;
         break;
-      // case 'radio':
-      //   table.data[rowIndex][fieldName].name += '_' + rowIndex;
-      //   FieldComponent = RadioButton;
-      //   break;
+      case 'radio':
+        table.data[rowIndex][fieldName].name += '_' + rowIndex;
+        FieldComponent = RadioButton;
+        break;
       case 'label':
         FieldComponent = Label;
         break;
@@ -55,9 +55,9 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
     // assign listeners
     switch (type) {
       case 'text':
-        field.on('change', (e) => {
+        field.on('change', (e: Event) => {
           const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
-          rowData[fieldName].value = e.target.value;
+          rowData[fieldName].value = (e.target as HTMLInputElement).value;
           updateRowData(rowData, false, true, fieldName);
           // if has custom on change call it
           if (props && props.onChange) {
@@ -70,11 +70,10 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       case 'checkbox':
       case 'multichoice':
       case 'radio':
-          field.on('change', (value) => {
+          field.on('change', (value: string[] | string) => {
             const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
             rowData[fieldName].value = value;
             updateRowData(rowData, false, true, fieldName);
-            console.log(table.data)
             // if has custom on change call it
             if (props && props.onChange) {
               const data = table.data;
