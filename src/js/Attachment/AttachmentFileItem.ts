@@ -9,17 +9,20 @@ type AttachmentFileItemProps = {
 class AttachmentFileItem{
     protected _props: AttachmentFileItemProps;
     protected element: HTMLDivElement
+    private GB = 1073741824;
+    private MB = 1048576;
+    private KB = 1024;
   constructor(params: AttachmentFileItemProps) {
     this._props = {...params};
     this.element = this.createItemContainerEl();
   }
   _formatFileSize(size: number) {
-    if (size >= 1073741824) {
-      return Math.round(size / 1073741824) + ' GB';
-    } else if (size >= 1048576) {
-      return Math.round(size / 1048576) + ' MB';
-    } else if (size >= 1024) {
-      return Math.round(size / 1024) + ' KB';
+    if (size >= this.GB) {
+      return Math.round(size / this.GB) + ' GB';
+    } else if (size >= this.MB) {
+      return Math.round(size / this.MB) + ' MB';
+    } else if (size >= this.KB) {
+      return Math.round(size / this.KB) + ' KB';
     }
     return Math.round(size) + ' bytes';
   };

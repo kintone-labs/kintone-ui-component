@@ -1,19 +1,19 @@
 import Control, {ControlProps} from '../Control';
 import '../../css/TextArea.css';
-type TextAreaProps = {
+type TextAreaProps = ControlProps & {
     value: string;
     onClick: (e: any) => void;
     onChange: (e: any) => void;
 }
 
 class TextArea extends Control {
-  protected _props: ControlProps & TextAreaProps = this._props
+  protected _props: TextAreaProps = this._props
   private _onClick: (params?: any) => void = () => {}
   private _onChange: (params?: any) => void = () => {}
   private textAreaWidth= 297;
   private textAreaHeight= 123;
 
-  constructor(params: ControlProps & TextAreaProps) {
+  constructor(params: TextAreaProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};
@@ -48,16 +48,6 @@ class TextArea extends Control {
   getValue(){
       return this._props.value;
   }
-
-  disable(){
-      this._props.isDisabled = true
-      this.rerender(['isDisabled']);
-  }
-
-  enable(){
-    this._props.isDisabled = false
-    this.rerender(['isDisabled']);
-   }
 
   private createTextareaEL() {
     const textarea = document.createElement('textarea');

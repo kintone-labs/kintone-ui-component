@@ -11,14 +11,17 @@ const AttachmentFileItem = ({index, fileName, fileSize, onFileRemove}: Attachmen
   const _removeFile = () => {
     onFileRemove(index);
   };
+  const GB = 1073741824;
+  const MB = 1048576;
+  const KB = 1024;
 
   const _formatFileSize = (size: number) => {
-    if (size >= 1073741824) {
-      return Math.round(size / 1073741824) + ' GB';
-    } else if (size >= 1048576) {
-      return Math.round(size / 1048576) + ' MB';
-    } else if (size >= 1024) {
-      return Math.round(size / 1024) + ' KB';
+    if (size >= GB) {
+      return Math.round(size / GB) + ' GB';
+    } else if (size >= MB) {
+      return Math.round(size / MB) + ' MB';
+    } else if (size >= KB) {
+      return Math.round(size / KB) + ' KB';
     }
     return Math.round(size) + ' bytes';
   };
