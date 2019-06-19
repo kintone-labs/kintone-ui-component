@@ -38,7 +38,8 @@ const Attachment = (props: AttachmentProps) => {
 
   const _addFiles = (event: any) => {
     if (props.onFilesAdd) {
-      const addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+      let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+      addedFiles = Object.values(addedFiles);
       props.onFilesAdd([...props.files, ...addedFiles]);
     }
   };
@@ -58,7 +59,6 @@ const Attachment = (props: AttachmentProps) => {
         }
       }
     }
-
     return true;
   };
 
@@ -78,7 +78,6 @@ const Attachment = (props: AttachmentProps) => {
         }
       }
     }
-
     return false;
   };
 
@@ -145,7 +144,7 @@ const Attachment = (props: AttachmentProps) => {
                 if (dropElement) dropZoneElement = dropElement;
               }}
             >
-              {props.dropZoneText}
+              {props.dropZoneText || 'Drop files here.'}
             </div>
           </div>
           <div className="kuc-attachment-file-filelist" />
@@ -161,7 +160,7 @@ const Attachment = (props: AttachmentProps) => {
             ))}
           </div>
           <a className="kuc-attachment-file-upload-button" tabIndex={-1}>
-            <span className="kuc-attachment-file-upload-button-text">{props.browseButtonText}</span>
+            <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || 'Browse'}</span>
             <div className="kuc-attachment-file-upload-html5">
               <input
                 type="file"
