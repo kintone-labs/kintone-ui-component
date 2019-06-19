@@ -12,13 +12,6 @@ type TableColumnJS = {
   cell: () => TableCell
 }
 
-type CellRendererPropsJS = {
-  rowData: object
-  rowIndex: number
-  columnIndex: number
-  onCellChange?: Function
-}
-
 type TableProps = ControlProps & {
   data: object[], 
   defaultRowData: object, 
