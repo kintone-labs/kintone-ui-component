@@ -23,13 +23,11 @@ class Text extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    this.element = document.createElement('div');
-    this.element.className = 'kuc-input-outer';
-    this.inputEl = document.createElement('input');
-    this.inputEl.className = 'kuc-input-text';
-    this.inputEl.setAttribute('type', 'text');
-    this.inputEl.value = this._props.value;
-    this.element.appendChild(this.inputEl);
+    
+    this.element = document.createElement('input');
+    this.element.className = 'kuc-input-text';
+    this.element.setAttribute('type', 'text');
+    (this.element as HTMLInputElement).value = this._props.value;
   }
 
   render() {
@@ -40,18 +38,18 @@ class Text extends Control {
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (this._props.isDisabled) {
-      this.inputEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      this.element.setAttribute('disabled', `${this._props.isDisabled}`);
     } else {
-      this.inputEl.removeAttribute('disabled');
+      this.element.removeAttribute('disabled');
     }
     if (!changedAttr) return;
     if (changedAttr.indexOf('value') !== -1) {
-      this.inputEl.value = this._props.value;
+      (this.element as HTMLInputElement).value = this._props.value;
     }
   }
   
   on(eventName: string, callback: (params?: any) => void) {
-    this.inputEl.addEventListener(eventName, (e: Event)=>{
+    this.element.addEventListener(eventName, (e: Event)=>{
       if (this._props.isDisabled) return;
       callback(e);
     });
