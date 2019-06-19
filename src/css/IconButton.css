@@ -82,10 +82,12 @@
   }
   .kuc-icon-btn:disabled,
   .kuc-icon-btn:disabled:hover {
-    color: #bababa;
-    border: 1px solid #e3e7e8;
     background-color: #dbdcdd;
     cursor: not-allowed;
     box-shadow: none;
+  }
+  .kuc-icon-btn:disabled svg path,
+  .kuc-icon-btn:disabled:hover svg path{
+    fill: #bababa;
   }
   
