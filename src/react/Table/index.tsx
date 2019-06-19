@@ -2,6 +2,13 @@ import React from 'react';
 import IconButton from '../IconButton';
 import '../../css/Table.css';
 
+type onChangeFunction = (
+  newValue: any, 
+  tableData: object[], 
+  rowIndex: number, 
+  fieldName: string
+) => void
+
 type TableColumn = {
   header?: string,
   tdProps?: Function,
@@ -26,7 +33,7 @@ type TableBodyProps = {
   defaultRowData: object[], 
   onRowAdd?: Function, 
   onRowRemove?: Function,
-  _onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
+  _onCellChange?: onChangeFunction,
   actionButtonsShown?: boolean
 }
 type TableHeaderProps = {
@@ -37,14 +44,14 @@ type TableCellProps = {
   rowIndex: number,
   columnIndex: number,
   cell: (cellProps: CellRendererProps) => string | JSX.Element,
-  _onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void,
+  _onCellChange?: onChangeFunction,
   tdProps?: Function
 }
 type CellRendererProps = {
   rowData: object;
   rowIndex: number;
   columnIndex: number;
-  onCellChange?: (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => void
+  onCellChange?: onChangeFunction
 }
 type TableCellActionsProps = {
   data: object[],
