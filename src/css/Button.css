@@ -18,7 +18,7 @@
     box-shadow: none;
 }
 .kuc-btn.normal {
-    display: inline-block;
+    display: block;
     box-sizing: border-box;
     padding: 0 16px;
     min-width: 163px;
@@ -38,7 +38,7 @@
 }
 
 .kuc-btn.submit {
-    display: inline-block;
+    display: block;
     box-sizing: border-box;
     padding: 0 16px;
     min-width: 163px;
