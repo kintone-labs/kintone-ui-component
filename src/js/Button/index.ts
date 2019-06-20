@@ -17,7 +17,6 @@ class Button extends Control {
       onClick: () => {}
     }
   }
-  private btnEl: HTMLButtonElement
   constructor(params: ButtonProps) {
     super();
     if(typeof params.isDisabled !== 'boolean') {
@@ -34,17 +33,17 @@ class Button extends Control {
     // super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('type') !== -1) {
-      this.btnEl.className = this._getClassName();
+      this.element.className = this._getClassName();
     }
     if (changedAttr.indexOf('text') !== -1) {
-      this.btnEl.innerHTML = this._props.text;
+      this.element.innerHTML = this._props.text;
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._props.isDisabled) {
-        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`);
+        this.element.setAttribute('disabled', `${this._props.isDisabled}`);
       } else {
-        this.btnEl.removeAttribute('disabled');
+        this.element.removeAttribute('disabled');
       }
     }
 
@@ -75,23 +74,19 @@ class Button extends Control {
   }
 
   on(eventName: string, callback: (params?: any) => void) {
-    if (eventName === 'click') {
-      this._props.onClick = callback
-    }
+    this.element.addEventListener(eventName, (e) => {
+      if (this._props.isDisabled) return;
+      callback(e)
+    })
   }
 
   private _createLayout() {
-    this.btnEl = document.createElement('button');
-    this.btnEl.className = this._getClassName();
-    this.btnEl.innerHTML = this._props.text;
+    this.element = document.createElement('button');
+    this.element.className = this._getClassName();
+    this.element.innerHTML = this._props.text;
     if(this._props.onClick) {
-      this.btnEl.addEventListener('click', (e) => {
-        if (this._props.isDisabled) return;
-        this._props.onClick(e)
-      })
+      this.on('click', this._props.onClick)
     }
-    this.element = document.createElement('div')
-    this.element.appendChild(this.btnEl)
   }
 }
 

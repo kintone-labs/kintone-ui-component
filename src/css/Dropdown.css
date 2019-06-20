@@ -49,9 +49,16 @@
     position: absolute;
     right: 15px;
 }
-.kuc-dropdown-selected-name .icon-arrow-down i {
-    font-size: 22px;
+.kuc-dropdown-selected-name .icon-arrow-down svg {
+    width: 24px;
+    height: 24px;
     vertical-align: middle;
+}
+.kuc-dropdown-selected-name .icon-arrow-down svg path{
+    fill: #3498db;
+}
+.kuc-dropdown.kuc-dropdown-disable .kuc-dropdown-selected-name .icon-arrow-down svg path{
+    fill: #888;
 }
 .kuc-dropdown-sub-container .kuc-list-outer {
     position: absolute;

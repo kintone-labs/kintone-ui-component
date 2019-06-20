@@ -2,6 +2,9 @@ import Control, { ControlProps } from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
+import { mdiChevronDown } from '@mdi/js'
+
+import '../../css/Dropdown.css'
 
 type item = {
   value: string;
@@ -63,10 +66,6 @@ class Dropdown extends Control {
           return (this.label = item.label);
         }
       });
-    this.className = [
-      'kuc-dropdown',
-      this._props.isDisabled ? 'kuc-dropdown-disable' : ''
-    ];
 
     this.element = this._createDom('div', 'kuc-dropdown-container');
     const subcontainerEl = this._renderSubContainer();
@@ -83,6 +82,7 @@ class Dropdown extends Control {
     }
     return element;
   }
+
   private _showItems = () => {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
@@ -113,7 +113,21 @@ class Dropdown extends Control {
     this._props.onChange && this._props.onChange(this._props.value);
   };
 
+  private _createDownIconEl() {
+    const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    pathEl.setAttribute('d', mdiChevronDown)
+
+    const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svgEl.appendChild(pathEl)
+
+    return svgEl
+  }
+
   private _renderSubContainer = () => {
+    this.className = [
+      'kuc-dropdown',
+      this._props.isDisabled ? 'kuc-dropdown-disable' : ''
+    ];
     const subcontainerEl = this._createDom('div', 'kuc-dropdown-sub-container');
     subcontainerEl.setAttribute('tabIndex', '-1');
     subcontainerEl.onblur = this._handleClickOutside;
@@ -133,9 +147,7 @@ class Dropdown extends Control {
     this.nameLabelEl = this._createDom('span');
     this.nameLabelEl.innerText = this.label || '';
     const iconEl = this._createDom('span', 'icon-arrow-down');
-    const iconImgEl = this._createDom('i', 'fa fa-angle-down');
-    iconImgEl.setAttribute('aria-hidden', 'true');
-    iconEl.appendChild(iconImgEl);
+    iconEl.appendChild(this._createDownIconEl());
 
     selectedNameEl.appendChild(this.nameLabelEl);
     selectedNameEl.appendChild(iconEl);
@@ -188,6 +200,7 @@ class Dropdown extends Control {
     this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
+        this.label = item.label;
       }
     });
     this.rerender(['value']);
@@ -230,7 +243,15 @@ class Dropdown extends Control {
     });
     this.rerender(['item']);
   }
+  disable() {
+    this._props.isDisabled = true;
+    this.rerender(['isDisabled']);
+  }
 
+  enable() {
+    this._props.isDisabled = false;
+    this.rerender(['isDisabled']);
+  }
   on(eventName: string, callback: (params?: any) => void) {
     if (eventName === 'change') {
       this._props.onChange = callback;

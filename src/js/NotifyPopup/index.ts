@@ -30,12 +30,8 @@ class NotifyPopup extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    this.containerEl = this._createPopupLayout()
+    this.element = this._createPopupLayout()
 
-    const wrapperDiv = document.createElement('div')
-    wrapperDiv.appendChild(this.containerEl)
-     
-    this.element = wrapperDiv;
     this.closeButton.on('click', () => {
       this.hide();
     });
@@ -98,7 +94,7 @@ class NotifyPopup extends Control {
     }
 
     if (changedAttr.indexOf('type') !== -1) {
-      this.containerEl.className = this._getClassName();
+      this.element.className = this._getClassName();
       this.closeButton.setColor(this._getStyleByType().color);
     }
   }

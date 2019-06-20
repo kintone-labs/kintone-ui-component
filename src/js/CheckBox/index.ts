@@ -23,7 +23,6 @@ class Checkbox extends Control {
     }
 
     private itemList: Array<Item> = []
-    private checkboxContentWrapper: HTMLDivElement
 
     constructor(params: CheckboxProps) {
         super()
@@ -37,8 +36,6 @@ class Checkbox extends Control {
         if (this._validator()) {
           throw new Error(this._validator())
         }
-    
-        this.element = document.createElement('div')
 
         this._renderItemList()
 
@@ -46,8 +43,8 @@ class Checkbox extends Control {
     }
 
     private _renderItemList() {
-        this.checkboxContentWrapper = document.createElement('div')
-        this.checkboxContentWrapper.className = 'kuc-input-checkbox'
+        this.element = document.createElement('div')
+        this.element.className = 'kuc-input-checkbox'
 
         this._props.items.forEach((item: ItemData, index:number) => {
             let itemComponent = new Item({
@@ -56,9 +53,8 @@ class Checkbox extends Control {
                 onChange: this._handleItemChange.bind(this)
             })
             this.itemList.push(itemComponent)
-            this.checkboxContentWrapper.appendChild(itemComponent.render())
+            this.element.appendChild(itemComponent.render())
         })
-        this.element.appendChild(this.checkboxContentWrapper)
     }
     
     private _validator(): string | null {
@@ -113,7 +109,7 @@ class Checkbox extends Control {
         if (index >= 0 && index < this._props.items.length) {
             const removeItem = this._props.items.splice(index, 1)
             this.itemList.splice(index, 1)
-            this.checkboxContentWrapper.childNodes[index].remove()
+            this.element.childNodes[index].remove()
             const removeItemValue = removeItem[0].value
             const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
             if(selectedRemoveIndex > -1) {
@@ -187,7 +183,7 @@ class Checkbox extends Control {
             })
             
             this.itemList.push(itemComponent)
-            this.checkboxContentWrapper.appendChild(itemComponent.render())
+            this.element.appendChild(itemComponent.render())
         }
 
         if (changedAttr.indexOf('isDisabled') !== -1) {

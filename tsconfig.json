@@ -8,7 +8,7 @@
     "sourceMap": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src/react",
+    "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
