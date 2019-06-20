@@ -16,11 +16,11 @@ import MultipleChoice from './MultipleChoice'
 import CheckBox from './CheckBox'
 import RadioButton from './RadioButton'
 import Dropdown from './Dropdown'
+import Dialog from './Dialog' 
 
 import TextArea from '../legacyJS/js/components/TextArea'
 import Attachment from '../legacyJS/js/components/Attachment'
 import FieldGroup from '../legacyJS/js/components/FieldGroup'
-import Dialog from '../legacyJS/js/components/Dialog'
 import Table from '../legacyJS/js/components/Table'
 import createTableCell from '../legacyJS/js/components/TableCellFactory'
 
