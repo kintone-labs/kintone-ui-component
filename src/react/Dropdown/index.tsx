@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
+import { mdiChevronDown } from '@mdi/js'
 import '../../css/Dropdown.css';
 
 type item = {
@@ -89,7 +90,11 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
                 <span>{index !== -1 && items[index].label}</span>
-                <span className="icon-arrow-down"><i className="fa fa-angle-down" aria-hidden="true" /></span>
+                <span className="icon-arrow-down">
+                  <svg>
+                    <path d={mdiChevronDown} />
+                  </svg>
+                </span>
               </span>
             </div>
           </div>

@@ -23,7 +23,6 @@ class MultipleChoice extends Control {
     }
 
     private itemList: Array<Item> = []
-    private multiChoiceWrapper: HTMLDivElement
 
     constructor(params: MultipleChoiceProps) {
         super()
@@ -37,8 +36,6 @@ class MultipleChoice extends Control {
         if (this._validator()) {
           throw new Error(this._validator())
         }
-    
-        this.element = document.createElement('div')
 
         this._renderItemList()
 
@@ -46,8 +43,8 @@ class MultipleChoice extends Control {
     }
 
     private _renderItemList() {
-        this.multiChoiceWrapper = document.createElement('div')
-        this.multiChoiceWrapper.className = 'kuc-multiple-list kuc-list-outer'
+        this.element = document.createElement('div')
+        this.element.className = 'kuc-multiple-list kuc-list-outer'
 
         this._props.items.forEach((item: ItemData, index:number) => {
             let itemComponent = new Item({
@@ -57,9 +54,8 @@ class MultipleChoice extends Control {
             })
             
             this.itemList.push(itemComponent)
-            this.multiChoiceWrapper.appendChild(itemComponent.render())
+            this.element.appendChild(itemComponent.render())
         })
-        this.element.appendChild(this.multiChoiceWrapper)
     }
     
     private _validator(): string | null {
@@ -111,7 +107,7 @@ class MultipleChoice extends Control {
         if (index >= 0 && index < this._props.items.length) {
             const removeItem = this._props.items.splice(index, 1)
             this.itemList.splice(index, 1)
-            this.multiChoiceWrapper.childNodes[index].remove()
+            this.element.childNodes[index].remove()
             const removeItemValue = removeItem[0].value
             const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
             if(selectedRemoveIndex > -1) {
@@ -184,7 +180,7 @@ class MultipleChoice extends Control {
                 onClick: this._handleItemChange.bind(this)
             })
             this.itemList.push(itemComponent)
-            this.multiChoiceWrapper.appendChild(itemComponent.render())
+            this.element.appendChild(itemComponent.render())
         }
 
         if (changedAttr.indexOf('isDisabled') !== -1) {
