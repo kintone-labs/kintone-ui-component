@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../css/base.css';
-import '../../css/IconButton.css';
+import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
+import '../../css/IconButton.css'
 
 type IconButtonProps = {
   type?: string;
@@ -9,7 +9,7 @@ type IconButtonProps = {
   isDisabled?: boolean;
   isVisible?: boolean;
   shape?: string;
-  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void
 }
 
 const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onClick}: IconButtonProps) => {
@@ -24,47 +24,47 @@ const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onCli
       colorResult,
       shapeResult
     ];
-    return className.join(' ').trim();
-  };
-  const _getClassType = () => {
-    let classType = 'fa fa-plus';
+    return className.join(' ').trim()
+  }
+
+  const _getIconData = () => {
+    let iconData = mdiPlus;
     switch (type) {
       case 'insert':
-        break;
+        break
       case 'remove':
-        classType = 'fa fa-minus';
-        break;
+        iconData = mdiMinus
+        break
       case 'close':
-        classType = 'fa fa-times';
-        break;
+        iconData = mdiClose
+        break
       case 'file':
-        classType = 'fa fa-file';
-        break;
+        iconData = mdiFile
+        break
       case 'right':
-        classType = 'fa fa-chevron-right';
+        iconData = mdiChevronRight
         break;
       case 'left':
-        classType = 'fa fa-chevron-left';
-        break;
+        iconData = mdiChevronLeft
+        break
     }
-    return classType;
-  };
+    return iconData
+  }
+
   const _getClassSize = () => {
-    const className = size === 'small' ? 'small' : 'large';
-    return className;
+    const className = size === 'small' ? 'small' : 'large'
+    return className
   };
   if (isVisible === false) {
     return null;
   }
   return (
-    <button
-      className={_getClassName()}
-      onClick={onClick}
-      disabled={isDisabled}
-    >
-      <i className={_getClassType()} />
+    <button className={_getClassName()} onClick={onClick} disabled={isDisabled} >
+      <svg>
+        <path d={_getIconData()}/>
+      </svg>
     </button>
   );
 };
 
-export default IconButton;
+export default IconButton

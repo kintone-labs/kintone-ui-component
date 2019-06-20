@@ -1,6 +1,6 @@
-import Control, {ControlProps} from '../Control';
-
-import '../../css/IconButton.css';
+import Control, {ControlProps} from '../Control'
+import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
+import '../../css/IconButton.css'
 
 type IconBtnProps = ControlProps & {
   type?: string;
@@ -20,18 +20,19 @@ class IconButton extends Control {
     }
   }
 
-  private iconEl: HTMLElement
+  private iconEl: SVGSVGElement
+  private pathEl: SVGPathElement
   private _onClick = (e: Event) => {}
 
   constructor(params: IconBtnProps) {
     super();
 
     if (params) {
-      this._props = {...this._props, ...params};
+      this._props = {...this._props, ...params}
     }
 
-    this.element = this._createLayout();
-    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible']);
+    this.element = this._createLayout()
+    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible'])
   }
 
   private _createLayout() {
@@ -40,7 +41,10 @@ class IconButton extends Control {
       if (this._props.isDisabled) return;
       this._onClick(e)
     })
-    this.iconEl = document.createElement('i');
+
+    this.pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    this.iconEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    this.iconEl.appendChild(this.pathEl)
 
     btnEl.appendChild(this.iconEl);
 
@@ -49,7 +53,7 @@ class IconButton extends Control {
 
   private _getClassName() {
     const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
-    const color = colors.indexOf(this._props.color) === -1 ? 'gray' : this._props.color;
+    const color = colors.indexOf(this._props.color) === -1 ? 'gray' : this._props.color
     const shape = this._props.shape === 'normal' ? 'normal' : 'circle';
     const className = [
       'kuc-icon-btn',
@@ -62,44 +66,43 @@ class IconButton extends Control {
   }
 
   private _getClassSize = () => {
-    const className = this._props.size === 'small' ? 'small' : 'large';
+    const className = this._props.size === 'small' ? 'small' : 'large'
     return className;
   }
 
-  private _getClassType() {
-    let classType = 'fa fa-plus';
+  private _getIconData() {
+    let iconData = mdiPlus;
     switch (this._props.type) {
       case 'insert':
-        break;
+        break
       case 'remove':
-        classType = 'fa fa-minus';
-        break;
+        iconData = mdiMinus
+        break
       case 'close':
-        classType = 'fa fa-times';
-        break;
+        iconData = mdiClose
+        break
       case 'file':
-        classType = 'fa fa-file';
-        break;
+        iconData = mdiFile
+        break
       case 'right':
-        classType = 'fa fa-chevron-right';
+        iconData = mdiChevronRight
         break;
       case 'left':
-        classType = 'fa fa-chevron-left';
-        break;
+        iconData = mdiChevronLeft
+        break
     }
-    return classType;
+    return iconData
   }
 
   rerender(changedAttr?: string[]) {
-
-    if (!changedAttr) return;
+    if (!changedAttr) return
 
     if (changedAttr.indexOf('btnStyle') !== -1) {
       this.element.className = this._getClassName();
     }
 
     if (changedAttr.indexOf('iconStyle') !== -1) {
-      this.iconEl.className = this._getClassType();
+      this.pathEl.setAttribute('d', this._getIconData())
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
@@ -112,9 +115,9 @@ class IconButton extends Control {
 
     if (changedAttr.indexOf('isVisible') !== -1) {
       if (!this._props.isVisible) {
-        this.element.style.display = 'none';
+        this.element.style.display = 'none'
       } else {
-        this.element.style.display = '';
+        this.element.style.display = ''
       }
     }
   }
@@ -131,12 +134,12 @@ class IconButton extends Control {
 
   setShape(shape: string): void {
     this._props.shape = shape;
-    this.rerender(['btnStyle']);
+    this.rerender(['btnStyle'])
   }
 
   setColor(color: string): void {
     this._props.color = color;
-    this.rerender(['btnStyle']);
+    this.rerender(['btnStyle'])
   }
 
   on(eventName: string, callback: (params?: any) => void) {
@@ -146,4 +149,4 @@ class IconButton extends Control {
   }
 }
 
-export default IconButton;
+export default IconButton
