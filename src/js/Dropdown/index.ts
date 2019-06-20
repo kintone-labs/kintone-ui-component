@@ -66,10 +66,6 @@ class Dropdown extends Control {
           return (this.label = item.label);
         }
       });
-    this.className = [
-      'kuc-dropdown',
-      this._props.isDisabled ? 'kuc-dropdown-disable' : ''
-    ];
 
     this.element = this._createDom('div', 'kuc-dropdown-container');
     const subcontainerEl = this._renderSubContainer();
@@ -86,6 +82,7 @@ class Dropdown extends Control {
     }
     return element;
   }
+
   private _showItems = () => {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
@@ -127,6 +124,10 @@ class Dropdown extends Control {
   }
 
   private _renderSubContainer = () => {
+    this.className = [
+      'kuc-dropdown',
+      this._props.isDisabled ? 'kuc-dropdown-disable' : ''
+    ];
     const subcontainerEl = this._createDom('div', 'kuc-dropdown-sub-container');
     subcontainerEl.setAttribute('tabIndex', '-1');
     subcontainerEl.onblur = this._handleClickOutside;
@@ -199,6 +200,7 @@ class Dropdown extends Control {
     this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
+        this.label = item.label;
       }
     });
     this.rerender(['value']);
@@ -241,7 +243,15 @@ class Dropdown extends Control {
     });
     this.rerender(['item']);
   }
+  disable() {
+    this._props.isDisabled = true;
+    this.rerender(['isDisabled']);
+  }
 
+  enable() {
+    this._props.isDisabled = false;
+    this.rerender(['isDisabled']);
+  }
   on(eventName: string, callback: (params?: any) => void) {
     if (eventName === 'change') {
       this._props.onChange = callback;

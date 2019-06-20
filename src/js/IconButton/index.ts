@@ -20,7 +20,6 @@ class IconButton extends Control {
     }
   }
 
-  private btnEl: HTMLElement
   private iconEl: SVGSVGElement
   private pathEl: SVGPathElement
   private _onClick = (e: Event) => {}
@@ -37,9 +36,9 @@ class IconButton extends Control {
   }
 
   private _createLayout() {
-    this.btnEl = document.createElement('button')
-    this.btnEl.addEventListener('click', (e) => {
-      if (this._props.isDisabled) return
+    let btnEl = document.createElement('button');
+    btnEl.addEventListener('click', (e) => {
+      if (this._props.isDisabled) return;
       this._onClick(e)
     })
 
@@ -47,12 +46,9 @@ class IconButton extends Control {
     this.iconEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
     this.iconEl.appendChild(this.pathEl)
 
-    this.btnEl.appendChild(this.iconEl);
+    btnEl.appendChild(this.iconEl);
 
-    const containerEl = document.createElement('div')
-    containerEl.appendChild(this.btnEl)
-
-    return containerEl;
+    return btnEl;
   }
 
   private _getClassName() {
@@ -102,7 +98,7 @@ class IconButton extends Control {
     if (!changedAttr) return
 
     if (changedAttr.indexOf('btnStyle') !== -1) {
-      this.btnEl.className = this._getClassName();
+      this.element.className = this._getClassName();
     }
 
     if (changedAttr.indexOf('iconStyle') !== -1) {
@@ -111,9 +107,9 @@ class IconButton extends Control {
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._props.isDisabled) {
-        this.btnEl.setAttribute('disabled', `${this._props.isDisabled}`)
+        this.element.setAttribute('disabled', `${this._props.isDisabled}`);
       } else {
-        this.btnEl.removeAttribute('disabled');
+        this.element.removeAttribute('disabled');
       }
     }
 

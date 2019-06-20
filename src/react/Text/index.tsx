@@ -19,16 +19,14 @@ const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}: 
   }
 
   return (
-    <div className="kuc-input-outer">
-      <input
-        type="text"
-        value={value}
-        className="kuc-input-text"
-        onClick={onClick}
-        onChange={_onChange}
-        disabled={isDisabled}
-      />
-    </div>
+    <input
+      type="text"
+      value={value}
+      className="kuc-input-text"
+      onClick={onClick}
+      onChange={_onChange}
+      disabled={isDisabled}
+    />
   );
 };
 
