@@ -1,28 +1,33 @@
+import Control, {ControlProps} from '../Control';
 import '../../css/Attachment.css';
-type AttachmentFileItemProps = {
+type AttachmentFileItemProps = ControlProps & {
     index: number;
     fileName: string;
     fileSize: number;
     onFileRemove: (index: number) => void;
   }
 
-class AttachmentFileItem{
-    protected _props: AttachmentFileItemProps;
+class AttachmentFileItem extends Control{
+    protected _props: AttachmentFileItemProps = this._props;
     protected element: HTMLDivElement
-    private GB = 1073741824;
-    private MB = 1048576;
-    private KB = 1024;
+    private ONE_GB = 1073741824;
+    private ONE_MB = 1048576;
+    private ONE_KB = 1024;
   constructor(params: AttachmentFileItemProps) {
+    super()
     this._props = {...params};
+    if (!this._props.onFileRemove || typeof this._props.onFileRemove !== 'function') {
+      this._props.onFileRemove = () => {};
+    }
     this.element = this.createItemContainerEl();
   }
   _formatFileSize(size: number) {
-    if (size >= this.GB) {
-      return Math.round(size / this.GB) + ' GB';
-    } else if (size >= this.MB) {
-      return Math.round(size / this.MB) + ' MB';
-    } else if (size >= this.KB) {
-      return Math.round(size / this.KB) + ' KB';
+    if (size >= this.ONE_GB) {
+      return Math.round(size / this.ONE_GB) + ' GB';
+    } else if (size >= this.ONE_MB) {
+      return Math.round(size / this.ONE_MB) + ' MB';
+    } else if (size >= this.ONE_KB) {
+      return Math.round(size / this.ONE_KB) + ' KB';
     }
     return Math.round(size) + ' bytes';
   };
@@ -58,10 +63,6 @@ class AttachmentFileItem{
     container.appendChild(actionContainerEl);
 
     return container;
-  }
-  render() {
-      this.element = this.createItemContainerEl();
-      return this.element;
   }
 
   onRemove = (event) => {

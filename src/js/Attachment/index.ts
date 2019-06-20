@@ -29,9 +29,7 @@ class Attachment extends Control {
   private _onFileRemove: (params?: any) => void = () => {};
   private _onFileAdd: (params?: any) => void = () => {};
   private listFileEl: HTMLDivElement;
-  private attachInputEl: HTMLInputElement;
   private attachInputTextEl: HTMLSpanElement;
-  private droppableFileEl: HTMLDivElement;
   private constraintsFileEl: HTMLDivElement;
   private fileErrorEl: HTMLSpanElement;
   private dropZoneElement: HTMLDivElement;
@@ -73,6 +71,17 @@ class Attachment extends Control {
             })
             this.listFileEl.appendChild(itemFile.render());
         });
+    }
+
+    if (changedAttr.indexOf('isErrorVisible') !== -1) {
+        this.fileErrorEl.style.display = 'none';
+        if (this._props.isErrorVisible === true) {
+          this.fileErrorEl.style.display = 'block';
+        }
+    }
+
+    if (changedAttr.indexOf('errorMessage') !== -1) {
+      this.fileErrorEl.innerText = this._props.errorMessage;
     }
   }
 
@@ -122,14 +131,17 @@ class Attachment extends Control {
 
   setErrorMessage(text: string) {
     this._props.errorMessage = text
+    this.rerender(['errorMessage'])
   }
   
   showError() {
-    this.element.appendChild(this.createFileErrorEl());
+    this._props.isErrorVisible = true;
+    this.rerender(['isErrorVisible'])
   }
 
   hideError() {
-    this.fileErrorEl.parentNode.removeChild(this.fileErrorEl);
+    this._props.isErrorVisible = false;
+    this.rerender(['isErrorVisible'])
   }
   
   on(eventName: string, callback: (params?: any) => void) {
@@ -150,10 +162,11 @@ class Attachment extends Control {
     let errorEl = document.createElement('span');
     errorEl.innerHTML = this._props.errorMessage;
 
-    this.fileErrorEl = document.createElement('div');
-    this.fileErrorEl.className = 'kuc-attachment-file-error';
-    this.fileErrorEl.appendChild(errorEl);
-    return this.fileErrorEl;
+    const fileErrorEl = document.createElement('div');
+    fileErrorEl.className = 'kuc-attachment-file-error';
+    fileErrorEl.style.display = 'none';
+    fileErrorEl.appendChild(errorEl);
+    return fileErrorEl;
   }
 
   private createContainerEL() {
@@ -161,6 +174,8 @@ class Attachment extends Control {
     container.className = 'kuc-attachment-outer';
     container.appendChild(this.createAttachDnDContainerEL());
 
+    this.fileErrorEl = this.createFileErrorEl();
+    container.appendChild(this.fileErrorEl);
     return container;
   }
 
@@ -180,7 +195,6 @@ class Attachment extends Control {
         }
       }
     }
-
     return false;
   };
 
@@ -199,7 +213,6 @@ class Attachment extends Control {
         }
       }
     }
-
     return true;
   };
 
@@ -219,7 +232,6 @@ class Attachment extends Control {
   };
 
   private _onDragEnter = (event: DragEvent) => {
-      console.log(1)
     this.dragEnterCounter++;
     if (this.dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
       event.preventDefault();
@@ -259,30 +271,31 @@ class Attachment extends Control {
     container.ondragleave = this._onDragLeave
 
     container.appendChild(this.createAttachDnDEL())
-    container.appendChild(this.createlistFileEL())
+    this.listFileEl = this.createlistFileEL()
+    container.appendChild(this.listFileEl)
     container.appendChild(this.renderAttachInputEl())
-    container.appendChild(this.createFileConstraintsEL())
+    this.constraintsFileEl = this.createFileConstraintsEL()
+    container.appendChild(this.constraintsFileEl)
     return container;
   }
 
   private createAttachDnDEL() {
-    this.droppableFileEl = document.createElement('div');
-    this.droppableFileEl.className = 'kuc-attachment-file-droppable'
-    this.droppableFileEl.style.display = 'none'
-    this.droppableFileEl.ondrop = this._onDrop
+    const droppableFileEl = document.createElement('div');
+    droppableFileEl.className = 'kuc-attachment-file-droppable'
+    droppableFileEl.style.display = 'none'
+    droppableFileEl.ondrop = this._onDrop
 
-    let droppableTextEl = document.createElement('div');
-    droppableTextEl.className = 'kuc-attachment-file-droppable-text'
-    this.dropZoneElement = droppableTextEl
+    this.dropZoneElement = document.createElement('div');
+    this.dropZoneElement.className = 'kuc-attachment-file-droppable-text'
 
-    this.droppableFileEl.appendChild(droppableTextEl);
-    return this.droppableFileEl;
+    droppableFileEl.appendChild(this.dropZoneElement);
+    return droppableFileEl;
   }
 
   private createlistFileEL() {
-    this.listFileEl = document.createElement('div');
-    this.listFileEl.classList.add('kuc-attachment-file-filelist', 'kuc-attachment-file-filelist-list');
-    return this.listFileEl;
+    const listFileEl = document.createElement('div');
+    listFileEl.classList.add('kuc-attachment-file-filelist', 'kuc-attachment-file-filelist-list');
+    return listFileEl;
   }
 
   private renderAttachInputEl() {
@@ -294,25 +307,25 @@ class Attachment extends Control {
     this.attachInputTextEl.className = 'kuc-attachment-file-upload-button-text';
     attachInputContainerEl.appendChild(this.attachInputTextEl)
 
-    this.attachInputEl = document.createElement('input');
-    this.attachInputEl.setAttribute("type", "file");
-    this.attachInputEl.setAttribute("multiple", "true");
-    this.attachInputEl.onchange = (e) => {
+    const attachInputEl = document.createElement('input');
+    attachInputEl.setAttribute("type", "file");
+    attachInputEl.setAttribute("multiple", "true");
+    attachInputEl.onchange = (e) => {
         this._addFiles(e)
     }
 
     let wrapInputEl = document.createElement('div');
     wrapInputEl.className = 'kuc-attachment-file-upload-html5';
-    wrapInputEl.appendChild(this.attachInputEl);
+    wrapInputEl.appendChild(attachInputEl);
     attachInputContainerEl.appendChild(wrapInputEl)
 
     return attachInputContainerEl;
   }
 
   private createFileConstraintsEL() {
-    this.constraintsFileEl = document.createElement('div');
-    this.constraintsFileEl.classList.add('kuc-attachment-file-constraints');
-    return this.constraintsFileEl;
+    const constraintsFileEl = document.createElement('div');
+    constraintsFileEl.classList.add('kuc-attachment-file-constraints');
+    return constraintsFileEl
   }
 
 }

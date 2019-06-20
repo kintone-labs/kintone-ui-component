@@ -11,7 +11,7 @@ type TextAreaProps = {
 
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
 
-  const _onChange = (event: any) => {
+  const _onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(event.target.value);
   };
 
