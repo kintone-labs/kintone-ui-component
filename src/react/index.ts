@@ -11,6 +11,7 @@ import NotifyPopup from './NotifyPopup'
 import Item from './Item'
 import MultipleChoice from './MultipleChoice'
 import CheckBox from './CheckBox'
+import Dialog from './Dialog'
 import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
 
@@ -19,7 +20,6 @@ import Dropdown from '../legacyJS/js/components-react/Dropdown'
 import TextArea from '../legacyJS/js/components-react/TextArea'
 import Attachment from '../legacyJS/js/components-react/Attachment'
 import FieldGroup from '../legacyJS/js/components-react/FieldGroup'
-import Dialog from '../legacyJS/js/components-react/Dialog'
 import Table from '../legacyJS/js/components-react/Table'
 
 export {
