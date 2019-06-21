@@ -23,9 +23,6 @@ import Dialog from './Dialog'
 import TextArea from './TextArea'
 import Attachment from './Attachment'
 import FieldGroup from '../legacyJS/js/components/FieldGroup'
-import Table from '../legacyJS/js/components/Table'
-import createTableCell from '../legacyJS/js/components/TableCellFactory'
-import Dialog from '../legacyJS/js/components/Dialog'
 
 const kintoneUIComponent = {
   Alert,
