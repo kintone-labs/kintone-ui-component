@@ -39,7 +39,9 @@ const Attachment = (props: AttachmentProps) => {
   const _addFiles = (event: any) => {
     if (props.onFilesAdd) {
       let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-      addedFiles = Object.values(addedFiles);
+      addedFiles = Object.keys(addedFiles).map((e) => {
+        return addedFiles[e]
+      });
       props.onFilesAdd([...props.files, ...addedFiles]);
     }
   };

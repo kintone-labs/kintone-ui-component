@@ -87,7 +87,9 @@ class Attachment extends Control {
 
   private _addFiles(event: any){
       let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-      addedFiles = Object.values(addedFiles);
+      addedFiles = Object.keys(addedFiles).map((e) => {
+        return addedFiles[e]
+      })
       this._props.files = [...this._props.files, ...addedFiles];
       
       addedFiles.forEach((file, index) => {

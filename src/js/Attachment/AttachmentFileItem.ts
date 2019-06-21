@@ -34,7 +34,8 @@ class AttachmentFileItem extends Control{
 
   createItemContainerEl() {
     let container = document.createElement('div');
-    container.classList.add('kuc-attachment_delete', 'kuc-attachment-file-item');
+    container.classList.add('kuc-attachment_delete');
+    container.classList.add('kuc-attachment-file-item');
 
     let fileNameEl = document.createElement('div');
     fileNameEl.classList.add('kuc-attachment_file_name');
