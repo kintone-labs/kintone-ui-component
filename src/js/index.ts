@@ -18,11 +18,11 @@ import MultipleChoice from './MultipleChoice'
 import CheckBox from './CheckBox'
 import RadioButton from './RadioButton'
 import Dropdown from './Dropdown'
+import Dialog from './Dialog' 
 
 import TextArea from './TextArea'
 import Attachment from './Attachment'
 import FieldGroup from '../legacyJS/js/components/FieldGroup'
-import Dialog from '../legacyJS/js/components/Dialog'
 
 const kintoneUIComponent = {
   Alert,
