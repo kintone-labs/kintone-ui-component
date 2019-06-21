@@ -134,7 +134,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.2</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.1</a>
         </div>
       </div>
  
@@ -498,8 +498,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#settypetype" title="setType(type)" class="md-nav__link">
-    setType(type)
+  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
+    setColor(color)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setshapeshape" title="setShape(shape)" class="md-nav__link">
+    setShape(shape)
   </a>
   
 </li>
@@ -512,8 +519,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
-    setColor(color)
+  <a href="#settypetype" title="setType(type)" class="md-nav__link">
+    setType(type)
   </a>
   
 </li>
@@ -732,8 +739,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#settypetype" title="setType(type)" class="md-nav__link">
-    setType(type)
+  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
+    setColor(color)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setshapeshape" title="setShape(shape)" class="md-nav__link">
+    setShape(shape)
   </a>
   
 </li>
@@ -746,8 +760,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setcolorcolor" title="setColor(color)" class="md-nav__link">
-    setColor(color)
+  <a href="#settypetype" title="setType(type)" class="md-nav__link">
+    setType(type)
   </a>
   
 </li>
@@ -831,22 +845,28 @@
 <td>The object contains params of constructor.</td>
 </tr>
 <tr>
-<td>options.type</td>
+<td>options.color</td>
 <td>String</td>
 <td>No</td>
-<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
+<td>Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li><li>'transparent'</li></ul>Default value is 'gray'.</td>
 </tr>
 <tr>
 <td>options.size</td>
 <td>String</td>
 <td>No</td>
-<td>Size of icon button:<ul><li> 'large'</li><li> 'small'</li></ul> Default value is 'large'.</td>
+<td>Size of icon button:<ul><li> 'normal'</li><li> 'small'</li></ul> Default value is 'normal'.</td>
 </tr>
 <tr>
-<td>options.color</td>
+<td>options.shape</td>
 <td>String</td>
 <td>No</td>
-<td>Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li><li>'transparent'</li></ul>Default value is 'gray'.</td>
+<td>The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+</tr>
+<tr>
+<td>options.type</td>
+<td>String</td>
+<td>No</td>
+<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -911,8 +931,8 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 <p></details></p>
-<h3 id="settypetype">setType(type)</h3>
-<p>Set the type of the button.</p>
+<h3 id="setcolorcolor">setColor(color)</h3>
+<p>Change color of icon button.</p>
 <p><strong>Parameter</strong></p>
 <table>
 <thead>
@@ -925,10 +945,10 @@ export default class Plugin extends React.Component {
 </thead>
 <tbody>
 <tr>
-<td>type</td>
+<td>color</td>
 <td>String</td>
 <td>No</td>
-<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
+<td>The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.</td>
 </tr>
 </tbody>
 </table>
@@ -940,8 +960,7 @@ export default class Plugin extends React.Component {
 <pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(iconBtn.render());
-
-iconBtn.setType('remove');
+iconBtn.setColor('green');
 </code></pre>
 
 <p><strong>React</strong></p>
@@ -951,11 +970,56 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            &lt;IconButton type='insert' size='small' type='remove'/&gt;
+            &lt;IconButton type='insert' color='green' /&gt;
         );
     }
 }
+</code></pre>
 
+<p></details></p>
+<h3 id="setshapeshape">setShape(shape)</h3>
+<p>Change shape of icon button.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shape</td>
+<td>String</td>
+<td>Yes</td>
+<td>The shape of the button. The value is one of: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(iconBtn.render());
+iconBtn.setShape('normal');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import { IconButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;IconButton type='insert' shape='normal' /&gt;
+        );
+    }
+}
 </code></pre>
 
 <p></details></p>
@@ -1006,8 +1070,8 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 <p></details></p>
-<h3 id="setcolorcolor">setColor(color)</h3>
-<p>Change color of icon button.</p>
+<h3 id="settypetype">setType(type)</h3>
+<p>Set the type of the button.</p>
 <p><strong>Parameter</strong></p>
 <table>
 <thead>
@@ -1020,10 +1084,10 @@ export default class Plugin extends React.Component {
 </thead>
 <tbody>
 <tr>
-<td>color</td>
+<td>type</td>
 <td>String</td>
 <td>No</td>
-<td>The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.</td>
+<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
 </tr>
 </tbody>
 </table>
@@ -1035,9 +1099,8 @@ export default class Plugin extends React.Component {
 <pre><code>var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(iconBtn.render());
-iconBtn.setSize('small');
-iconBtn.setShape('normal');
-iconBtn.setColor('green');
+
+iconBtn.setType('remove');
 </code></pre>
 
 <p><strong>React</strong></p>
@@ -1047,10 +1110,11 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            &lt;IconButton text='insert' size='small' shape='normal' color='green' /&gt;
+            &lt;IconButton type='insert'/&gt;
         );
     }
 }
+
 </code></pre>
 
 <p></details></p>
