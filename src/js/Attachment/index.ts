@@ -21,6 +21,7 @@ class Attachment extends Control {
   protected _props: AttachmentProps = {
     ...this._props,
     ...{
+        files: [],
         browseButtonText: 'Browse',
         dropZoneText: 'Drop files here.'
     }
