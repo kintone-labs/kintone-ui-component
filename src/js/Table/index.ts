@@ -323,7 +323,7 @@ export default class Table extends Control {
     this._renderCells()
   }
 
-  on(eventName: string, callback: (eventOptions: DispatchParams) => void) {
+  on(eventName: string, callback: HandlerFunction) {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
     }
