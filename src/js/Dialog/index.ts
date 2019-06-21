@@ -1,5 +1,4 @@
 import Control, {ControlProps} from '../Control';
-import {elements} from '../utils/util';
 import IconButton from '../IconButton';
 
 import '../../css/Dialog.css';
