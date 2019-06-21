@@ -2,16 +2,29 @@ import React from 'react';
 import IconButton from '../IconButton';
 import '../../css/Table.css';
 
-type onChangeFunction = (
+type DispatchParams = {
+  type: string,
+  data?: object[],
+  rowIndex: number,
+  fieldName?: string
+}
+
+type OnChangeCallbackParams = {
+  rowIndex: number, 
+  data: object[], 
+  fieldName: string
+}
+
+type HandlerFunction = (
   newValue: any, 
   tableData: object[], 
   rowIndex: number, 
-  fieldName: string
+  fieldName?: string
 ) => void
 
 type TableColumn = {
   header?: string,
-  tdProps?: Function,
+  tdProps?: (cellProps: CellRendererProps) => object,
   cell: (cellProps: CellRendererProps) => string | JSX.Element
 }
 type ActionFlag = {
@@ -21,9 +34,9 @@ type TableProps = {
   data: object[], 
   columns: (TableColumn | ActionFlag)[],
   defaultRowData: object[], 
-  onRowAdd?: Function, 
-  onRowRemove?: Function,
-  onCellChange?: Function,
+  onRowAdd?: (newState: DispatchParams) => void, 
+  onRowRemove?: (newState: DispatchParams) => void,
+  onCellChange?: (eventOptions: OnChangeCallbackParams) => void,
   actionButtonsShown?: boolean, 
   isVisible?: boolean
 }
@@ -31,9 +44,9 @@ type TableBodyProps = {
   columns: (TableColumn | ActionFlag)[],
   data: object[], 
   defaultRowData: object[], 
-  onRowAdd?: Function, 
-  onRowRemove?: Function,
-  _onCellChange?: onChangeFunction,
+  onRowAdd?: (newState: DispatchParams) => void, 
+  onRowRemove?: (newState: DispatchParams) => void,
+  _onCellChange?: HandlerFunction,
   actionButtonsShown?: boolean
 }
 type TableHeaderProps = {
@@ -44,22 +57,22 @@ type TableCellProps = {
   rowIndex: number,
   columnIndex: number,
   cell: (cellProps: CellRendererProps) => string | JSX.Element,
-  _onCellChange?: onChangeFunction,
-  tdProps?: Function
+  _onCellChange?: HandlerFunction,
+  tdProps?: (cellProps: CellRendererProps) => object
 }
 type CellRendererProps = {
   rowData: object;
   rowIndex: number;
   columnIndex: number;
-  onCellChange?: onChangeFunction
+  onCellChange?: HandlerFunction
 }
 type TableCellActionsProps = {
   data: object[],
   rowIndex: number,
   defaultRowData: object,
-  addRow: Function,
-  removeRow: Function,
-  dispatch: (newState: object) => void
+  addRow: (options: RowEventProps) => object[],
+  removeRow: (options: RowEventProps) => object[],
+  dispatch: (newState: DispatchParams) => void
 }
 type RowEventProps = {
   data: object[], 

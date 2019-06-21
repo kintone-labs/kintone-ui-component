@@ -15,17 +15,22 @@ type TableColumnJS = {
 type DispatchParams = {
   type: string,
   data?: object[],
-  rowIndex: number
+  rowIndex: number,
+  fieldName?: string
 }
+
+type HandlerFunction = (
+  eventOptions: DispatchParams
+) => void
 
 type TableProps = ControlProps & {
   data: object[], 
   defaultRowData: object, 
   columns: (TableColumnJS | ActionFlag)[], 
   actionButtonsShown?: boolean, 
-  onRowAdd?: Function, 
-  onRowRemove?: Function,
-  onCellChange?: Function
+  onRowAdd?: HandlerFunction, 
+  onRowRemove?: HandlerFunction,
+  onCellChange?: HandlerFunction
 }
 
 export default class Table extends Control {
@@ -69,7 +74,7 @@ export default class Table extends Control {
     this._renderCells()
   }
 
-  private _triggerChange(args: { type: string; data?: object[]; rowIndex?: number; fieldName?: string; }) {
+  private _triggerChange(args: DispatchParams) {
     const {type} = args
     delete args.type
     if (type === 'REMOVE_ROW' && this._props.onRowRemove) {
@@ -318,7 +323,7 @@ export default class Table extends Control {
     this._renderCells()
   }
 
-  on(eventName: string, callback: Function) {
+  on(eventName: string, callback: (eventOptions: DispatchParams) => void) {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','))
     }
