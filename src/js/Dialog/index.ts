@@ -50,7 +50,7 @@ class Dialog extends Control {
         if(this._props.showCloseButton){
             var spanEl = document.createElement('span');
             spanEl.className = 'kuc-dialog-close-button';
-            this._closeButton = new IconButton({type: 'close', shape: 'normal'});
+            this._closeButton = new IconButton({type: 'close'});
             spanEl.appendChild(this._closeButton.render());
             this._closeButton.on('click', () => {
                 this.hide();
