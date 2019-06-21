@@ -3,7 +3,7 @@ import IconButton from '../IconButton';
 import '../../css/Dialog.css';
 var Dialog = function (_a) {
     var header = _a.header, content = _a.content, footer = _a.footer, _b = _a.isVisible, isVisible = _b === void 0 ? true : _b, _c = _a.showCloseButton, showCloseButton = _c === void 0 ? true : _c, onClose = _a.onClose;
-    var hidden;
+    var hidden = '';
     if (isVisible === false) {
         hidden = 'hidden';
     }
