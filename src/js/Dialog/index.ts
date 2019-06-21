@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 import IconButton from '../IconButton';
-
+import Message from '../../constant/Message'
 import '../../css/Dialog.css';
 
 type DialogProps = ControlProps & {
@@ -35,6 +35,10 @@ class Dialog extends Control {
           this._props = {...this._props, ...params};
         }
          
+        const error = this._validator()
+        if (error) {
+            throw new Error(error)
+        }
         this.element = this._createDialogLayout();
         this.rerender(['isVisible']);
     }
@@ -111,7 +115,37 @@ class Dialog extends Control {
         }
     }
 
+    private _validator(): string | null {
+        let err = null
+
+        if (typeof this._props.header != 'string' &&  !(this._props.header instanceof HTMLElement)){
+            err = Message.common.INVALID_ARGUMENT
+        }
+
+        if (typeof this._props.footer != 'string' &&  !(this._props.footer instanceof HTMLElement)){
+             err = Message.common.INVALID_ARGUMENT
+        }
+
+        if (typeof this._props.content != 'string' &&  !(this._props.content instanceof HTMLElement)){
+             err = Message.common.INVALID_ARGUMENT
+        }
+
+        if (typeof this._props.showCloseButton !== 'boolean'){
+             err = Message.common.INVALID_ARGUMENT
+        }
+        
+        if (typeof this._props.isVisible !== 'boolean'){
+             err = Message.common.INVALID_ARGUMENT
+        }
+
+        return err
+    }
+
     setHeader(headerContent: string | HTMLElement): void {
+        if (typeof headerContent != 'string' &&  !(headerContent instanceof HTMLElement)){
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+        
         this._props.header = headerContent;
         this.rerender(['header']);
     }
@@ -121,6 +155,10 @@ class Dialog extends Control {
     }
 
     setFooter(footerContent: string | HTMLElement): void {
+        if (typeof footerContent != 'string' &&  !(footerContent instanceof HTMLElement)){
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+
         this._props.footer = footerContent;
         this.rerender(['footer']);
     }
@@ -130,6 +168,10 @@ class Dialog extends Control {
     }
 
     setContent(bodyContent: string | HTMLElement): void {
+        if (typeof bodyContent != 'string' &&  !(bodyContent instanceof HTMLElement)){
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+
         this._props.content = bodyContent;
         this.rerender(['content']);
     }
