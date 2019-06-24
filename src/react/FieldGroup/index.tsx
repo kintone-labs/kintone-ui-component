@@ -38,7 +38,7 @@ const FieldGroup = ({children, name, toggle, onToggle, isVisible}: FieldGroupPro
     <div className="kuc-fieldgroup">
       <span role="button" tabIndex={0} className={_getClassName()} onClick={_handleToggleClick}>
         <span className={_getArrowClassName()} />
-        {name}
+        <span>{name}</span>
       </span>
       <div className="kuc-fieldgroup-contents">
         {
