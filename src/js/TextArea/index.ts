@@ -58,20 +58,19 @@ class TextArea extends Control {
       return this._props.value;
   }
 
-  _onMouseDown() {
+  _onMouseDown =() => {
       if (this._props.isDisabled) return;
-    const _this = this;
     const eventMouseMove = document.onmousemove;
     const eventMouseUp = document.onmouseup;
     document.onmousemove = (event) => {
-      if (_this.currentX && _this.currentY) {
-        let dx = event.clientX - _this.currentX;
-        if (_this.textAreaWidth + dx < _this.mixTextAreaWidth) {
+      if (this.currentX && this.currentY) {
+        let dx = event.clientX - this.currentX;
+        if (this.textAreaWidth + dx < this.mixTextAreaWidth) {
           dx = 0;
         }
 
-        let dy = event.clientY - _this.currentY;
-        if (_this.textAreaHeight + dy < _this.mixtTextAreaHeight) {
+        let dy = event.clientY - this.currentY;
+        if (this.textAreaHeight + dy < this.mixtTextAreaHeight) {
           dy = 0;
         }
 
@@ -84,14 +83,14 @@ class TextArea extends Control {
         this.textAreaEl.style.height = this.textAreaHeight + 'px'
         this.resizeEl.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`
       }
-      _this.currentX = event.clientX;
-      _this.currentY = event.clientY;
+      this.currentX = event.clientX;
+      this.currentY = event.clientY;
     };
     document.onmouseup = () => {
       document.onmousemove = eventMouseMove;
       document.onmouseup = eventMouseUp;
-      _this.currentX = null;
-      _this.currentY = null;
+      this.currentX = null;
+      this.currentY = null;
     };
   }
 
