@@ -1,6 +1,5 @@
 import React from 'react'
 import { mdiCheckBold } from '@mdi/js'
-import '../../css/base.css'
 import '../../css/Item.css'
 
 type item = {
