@@ -1,5 +1,6 @@
 import React from 'react';
 import IconButton from '../IconButton';
+import '../css/font.css'
 import '../../css/Table.css';
 
 type DispatchParams = {

@@ -1,4 +1,3 @@
-import '../css/font.css'
 import DateTime, {Calendar} from './DateTime'
 import Tabs from './Tabs'
 import Text from './Text'

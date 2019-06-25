@@ -4,6 +4,8 @@ import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
 import Message from '../../constant/Message';
 
+import '../css/font.css'
+
 type ColorPickerProps = {
   color?: string;
   onChange?: (hexString: string) => void;
