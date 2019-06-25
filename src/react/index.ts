@@ -18,7 +18,7 @@ import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
 import TextArea from './TextArea'
 import Attachment from './Attachment'
-import FieldGroup from '../legacyJS/js/components-react/FieldGroup'
+import FieldGroup from './FieldGroup'
 
 export {
     DateTime,
