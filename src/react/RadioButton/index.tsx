@@ -8,7 +8,7 @@ type item = {
   label: string;
   isDisabled: boolean;
 }
-type DropdownProps = {
+type RadioButtonProps = {
   name: string;
   value: string;
   items: item[];
@@ -17,7 +17,7 @@ type DropdownProps = {
   onChange: (value: string) => void;
 }
 
-const RadioButton = (props: DropdownProps) => {
+const RadioButton = (props: RadioButtonProps) => {
   if (!props.name) {
     throw new Error(Message.radioBtn.MISSING_NAME);
   }
