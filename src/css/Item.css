@@ -51,10 +51,11 @@
 .kuc-list-item-selected .kuc-icon-check svg {
     width: 24px;
     height: 24px;
+    transform: scale(0.6);
+    transform-origin: 0px 0px;
 }
 .kuc-list-item-selected .kuc-icon-check svg path{
     fill: #3498db;
-    transform: scale(0.6);
 }
 .kuc-list-item-disable .kuc-icon-check svg path{
     fill: #888888;
