@@ -1,6 +1,6 @@
 import React from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
-import '../css/font.css'
+import '../../css/font.css'
 import '../../css/Attachment.css';
 
 type FileObject = {
