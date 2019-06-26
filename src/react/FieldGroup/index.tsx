@@ -2,14 +2,14 @@ import React from 'react';
 import '../../css/FieldGroup.css';
 
 type FieldGroupProps = {
-  children?: any;
+  content?: any;
   name?: string;
   toggle?: string;
   onToggle?: (toggle: string) => void;
   isVisible?: boolean;
 }
 
-const FieldGroup = ({children, name, toggle, onToggle, isVisible}: FieldGroupProps) => {
+const FieldGroup = ({content, name, toggle, onToggle, isVisible}: FieldGroupProps) => {
   if (isVisible === false) {
     return null;
   }
@@ -42,7 +42,7 @@ const FieldGroup = ({children, name, toggle, onToggle, isVisible}: FieldGroupPro
       </span>
       <div className="kuc-fieldgroup-contents">
         {
-          children
+          content
         }
       </div>
     </div>
