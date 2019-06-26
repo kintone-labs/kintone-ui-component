@@ -35,10 +35,13 @@ type TableProps = ControlProps & {
 
 export default class Table extends Control {
   protected _props: TableProps = {
-    data: [],
-    defaultRowData: {},
-    columns: [],
-    actionButtonsShown: true
+    ...this._props,
+    ...{
+      data: [],
+      defaultRowData: {},
+      columns: [],
+      actionButtonsShown: true
+    }
   }
   private _tableHeaderContainer: HTMLElement
   private _tableBodyContainer: HTMLElement
