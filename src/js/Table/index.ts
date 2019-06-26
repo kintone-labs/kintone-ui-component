@@ -21,7 +21,7 @@ type DispatchParams = {
 
 type HandlerFunction = (
   eventOptions: DispatchParams
-) => void
+) => void | object
 
 type TableProps = ControlProps & {
   data: object[], 
@@ -63,11 +63,10 @@ export default class Table extends Control {
 
   private _addRow = ({data, rowIndex}:RowEventProps) => {
     const insertAt = rowIndex + 1
-    const defaultData = JSON.parse(JSON.stringify(this._props.defaultRowData));
-    const newData = [...data.slice(0, insertAt), defaultData, ...data.slice(insertAt)]
+    const newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData));
+    const newData = [...data.slice(0, insertAt), newRowData, ...data.slice(insertAt)]
     this._props.data = newData
-    this._renderTableRows()
-    this._renderCells()
+    
     return newData
   }
   
@@ -222,8 +221,15 @@ export default class Table extends Control {
   }
 
   private _dispatch(eventOption: DispatchParams) {
-    if (this._props.onRowAdd && eventOption['type'] === 'ADD_ROW') {
-      this._props.onRowAdd(eventOption)
+    if (eventOption['type'] === 'ADD_ROW') {
+      if(this._props.onRowAdd) {
+        const newRowData = this._props.onRowAdd(eventOption)
+        if(newRowData) {
+          this._props.data[eventOption.rowIndex] = newRowData
+        }
+      }
+      this._renderTableRows()
+      this._renderCells()
     }
     if(eventOption['type'] === 'REMOVE_ROW') {
       this._removeRow({data: this._props.data, rowIndex: eventOption['rowIndex']})
