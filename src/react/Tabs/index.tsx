@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/font.css'
 import '../../css/Tabs.css'
 import Message from '../../constant/Message'
 

@@ -7,6 +7,8 @@ import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 
+import '../css/font.css'
+
 type DateTimeConstructorParameters = {
   value?: Date;
   onChange?: Function;
