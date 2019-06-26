@@ -1,6 +1,6 @@
 import React from 'react'
 import { mdiCheckBold } from '@mdi/js'
-import '../css/font.css'
+import '../../css/font.css'
 import '../../css/Item.css'
 
 type item = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/font.css'
+import '../../css/font.css'
 import '../../css/Label.css';
 type LabelProps = {
   text?: string;
