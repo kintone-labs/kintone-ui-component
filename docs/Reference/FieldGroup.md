@@ -379,12 +379,13 @@ fieldGroup.setContent(text.render());
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
- 
+
 class Sample extends React.Component {
   constructor(opts) {
         super(opts);
         this.state = {
-            content: <Label text='Field Group Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} />,
+            content: <Label text='Field Group Content Label' textColor='#e74c3c'
+            backgroundColor='yellow' isRequired={true} />,
             radioValue: 'Orange',
             name: 'Group',
             toggle: 'expand'
@@ -397,18 +398,23 @@ class Sample extends React.Component {
                     name={this.state.name}
                     toggle={this.state.toggle}
                     onToggle={this._handleToggleClick}
+                    content={this.state.content}
                 >
-                    <Label text='Field Group Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} />
                 </FieldGroup>
-                <button onClick={this.handleClick}>Add Item</button>
+                <button onClick={this.handleClick}>Set Item</button>
             </div>
         );
     }
- 
+
     _handleToggleClick = () => {
         this.setState({
             toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
         });
+    }
+    handleClick = () => {
+      this.setState({
+        content: <Label text='updated Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} />
+      });
     }
 }
 ```
@@ -449,7 +455,50 @@ fieldGroup.getContent();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(fieldGroup.render());
 ```
+**React**
+```
+import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class Sample extends React.Component {
+  constructor(opts) {
+        super(opts);
+        this.state = {
+            content: <Label text='Field Group Content Label' textColor='#e74c3c'
+            backgroundColor='yellow' isRequired={true} />,
+            radioValue: 'Orange',
+            name: 'Group',
+            toggle: 'expand'
+        };
+    }
+    render() {
+        return (
+            <div>
+                <FieldGroup
+                    name={this.state.name}
+                    toggle={this.state.toggle}
+                    onToggle={this._handleToggleClick}
+                    content={this.state.content}
+                >
+                </FieldGroup>
+                <button onClick={this.handleClick}>Get Item</button>
+            </div>
+        );
+    }
 
+    _handleToggleClick = () => {
+        this.setState({
+            toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
+        });
+    }
+    handleClick = () => {
+      console.log(this.state.content)
+    }
+}
+```
+
+</details>
 </details>
 
 ### setName(name)
