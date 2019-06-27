@@ -92,7 +92,7 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       field.setValue(cellData.value);
     }
     if (cellData && field.setText) {
-      field.setText(cellData.value);
+      field.setText(cellData.text);
     }
   };
   return new TableCell({init, update});

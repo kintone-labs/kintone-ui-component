@@ -1,5 +1,6 @@
 import React from 'react';
 import IconButton from '../IconButton';
+import '../../css/font.css'
 import '../../css/Table.css';
 
 type DispatchParams = {
@@ -169,7 +170,7 @@ const TableCell = ({
 const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}: TableCellActionsProps) => {
   return (
     <div className="kuc-table-td action-group">
-      <span style={{marginRight: '5px'}}>
+      <span style={{marginRight: '5px', display:'inline-block'}}>
         <IconButton
           type="insert"
           color="blue"
@@ -184,7 +185,7 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
         />
       </span>
       {data.length > 1 &&
-        <span>
+        <span style={{display:'inline-block'}}>
           <IconButton
             type="remove"
             color="gray"

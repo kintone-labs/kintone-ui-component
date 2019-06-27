@@ -1,5 +1,6 @@
 import React, {ReactElement} from 'react';
 import IconButton from '../IconButton';
+import '../../css/font.css'
 import '../../css/Dialog.css';
 import Message from '../constant/Message';
 
@@ -13,7 +14,7 @@ type DialogProps = {
   onClose: () => void;
 };
 
-const Dialog = ({header, content, footer, isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
+const Dialog = ({header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';

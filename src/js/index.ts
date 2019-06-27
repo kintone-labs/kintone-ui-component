@@ -1,7 +1,7 @@
 import '@babel/polyfill'
 import './polyfill'
 import '../legacyJS/style'
-import '../css/base.css'
+import '../css/font.css'
 import DateTime from './DateTime'
 import Tabs from './Tabs'
 import Text from './Text'
@@ -19,10 +19,9 @@ import CheckBox from './CheckBox'
 import RadioButton from './RadioButton'
 import Dropdown from './Dropdown'
 import Dialog from './Dialog' 
-
 import TextArea from './TextArea'
 import Attachment from './Attachment'
-import FieldGroup from '../legacyJS/js/components/FieldGroup'
+import FieldGroup from './FieldGroup'
 
 const kintoneUIComponent = {
   Alert,

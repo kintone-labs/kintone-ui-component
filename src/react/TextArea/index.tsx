@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import '../../css/font.css'
 import '../../css/TextArea.css';
 
 type TextAreaProps = {

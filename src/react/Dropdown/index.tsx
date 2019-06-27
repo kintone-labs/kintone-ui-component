@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import { mdiChevronDown } from '@mdi/js'
+import '../../css/font.css'
 import '../../css/Dropdown.css';
 
 type item = {

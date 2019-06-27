@@ -41,13 +41,10 @@
     height: 16px;
   }
   .kuc-icon-btn.small svg {
-    top: 2px;
-    left: 2px;
-    width: 12px;
-    height: 12px;
-  }
-  .kuc-icon-btn.small svg path {
-    transform: scale(0.5);
+    width: 24px;
+    height: 24px;
+    transform: scale(.5);
+    transform-origin: -4px -4px;
   }
   .kuc-icon-btn.blue {
     background-color: #2d8dd6;
