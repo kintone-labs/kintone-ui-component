@@ -1,7 +1,6 @@
 .kuc-textarea-outer {
     position: relative;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
     min-height: 125px;
     min-width: 299px;
 }
