@@ -1,7 +1,8 @@
 import React from 'react';
+import '../../css/font.css';
 import '../../css/FieldGroup.css';
 var FieldGroup = function (_a) {
-    var children = _a.children, name = _a.name, toggle = _a.toggle, onToggle = _a.onToggle, isVisible = _a.isVisible;
+    var content = _a.content, name = _a.name, toggle = _a.toggle, onToggle = _a.onToggle, isVisible = _a.isVisible;
     if (isVisible === false) {
         return null;
     }
@@ -25,7 +26,7 @@ var FieldGroup = function (_a) {
     return (React.createElement("div", { className: "kuc-fieldgroup" },
         React.createElement("span", { role: "button", tabIndex: 0, className: _getClassName(), onClick: _handleToggleClick },
             React.createElement("span", { className: _getArrowClassName() }),
-            name),
-        React.createElement("div", { className: "kuc-fieldgroup-contents" }, children)));
+            React.createElement("span", null, name)),
+        React.createElement("div", { className: "kuc-fieldgroup-contents" }, content)));
 };
 export default FieldGroup;

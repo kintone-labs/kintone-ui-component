@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import '../../css/font.css';
 import '../../css/Dialog.css';
 declare type DialogProps = {
     header: string | ReactElement;

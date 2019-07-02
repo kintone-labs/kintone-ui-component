@@ -2,6 +2,7 @@
 import '../../css/DateTime.css';
 import '../../css/Text.css';
 import Calendar from './components/Calendar';
+import '../../css/font.css';
 declare type DateTimeConstructorParameters = {
     value?: Date;
     onChange?: Function;

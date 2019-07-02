@@ -5,6 +5,7 @@ import { en, ja, zh, format } from './components/Locale';
 import { parseStringToDate, parseStringToTime } from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import '../../css/font.css';
 var DateTime = function (_a) {
     var _b = _a.value, value = _b === void 0 ? new Date() : _b, _c = _a.isDisabled, isDisabled = _c === void 0 ? false : _c, _d = _a.isVisible, isVisible = _d === void 0 ? true : _d, _e = _a.onChange, onChange = _e === void 0 ? function (newDate) { } : _e, _f = _a.locale, locale = _f === void 0 ? 'ja' : _f, _g = _a.dateFormat, dateFormat = _g === void 0 ? 'MM/dd/YYYY' : _g, _h = _a.type, type = _h === void 0 ? 'datetime' : _h, _j = _a.timeFormat, timeFormat = _j === void 0 ? 'HH:mm' : _j;
     var _k = useState('none'), pickerDisplay = _k[0], setPickerDisplay = _k[1];

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/base.css';
+import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import '../../css/IconButton.css';
 var IconButton = function (_a) {
     var type = _a.type, size = _a.size, _b = _a.color, color = _b === void 0 ? '' : _b, isDisabled = _a.isDisabled, isVisible = _a.isVisible, shape = _a.shape, onClick = _a.onClick;
@@ -16,28 +16,28 @@ var IconButton = function (_a) {
         ];
         return className.join(' ').trim();
     };
-    var _getClassType = function () {
-        var classType = 'fa fa-plus';
+    var _getIconData = function () {
+        var iconData = mdiPlus;
         switch (type) {
             case 'insert':
                 break;
             case 'remove':
-                classType = 'fa fa-minus';
+                iconData = mdiMinus;
                 break;
             case 'close':
-                classType = 'fa fa-times';
+                iconData = mdiClose;
                 break;
             case 'file':
-                classType = 'fa fa-file';
+                iconData = mdiFile;
                 break;
             case 'right':
-                classType = 'fa fa-chevron-right';
+                iconData = mdiChevronRight;
                 break;
             case 'left':
-                classType = 'fa fa-chevron-left';
+                iconData = mdiChevronLeft;
                 break;
         }
-        return classType;
+        return iconData;
     };
     var _getClassSize = function () {
         var className = size === 'small' ? 'small' : 'large';
@@ -47,6 +47,7 @@ var IconButton = function (_a) {
         return null;
     }
     return (React.createElement("button", { className: _getClassName(), onClick: onClick, disabled: isDisabled },
-        React.createElement("i", { className: _getClassType() })));
+        React.createElement("svg", null,
+            React.createElement("path", { d: _getIconData() }))));
 };
 export default IconButton;

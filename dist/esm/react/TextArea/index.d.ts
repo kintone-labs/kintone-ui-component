@@ -1,4 +1,6 @@
 /// <reference types="react" />
+import '../../css/font.css';
+import '../../css/TextArea.css';
 declare type TextAreaProps = {
     value: string;
     isVisible: boolean;

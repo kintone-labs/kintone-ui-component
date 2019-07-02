@@ -4,15 +4,18 @@ var AttachmentFileItem = function (_a) {
     var _removeFile = function () {
         onFileRemove(index);
     };
+    var ONE_GB = 1073741824;
+    var ONE_MB = 1048576;
+    var ONE_KB = 1024;
     var _formatFileSize = function (size) {
-        if (size >= 1073741824) {
-            return Math.round(size / 1073741824) + ' GB';
+        if (size >= ONE_GB) {
+            return Math.round(size / ONE_GB) + ' GB';
         }
-        else if (size >= 1048576) {
-            return Math.round(size / 1048576) + ' MB';
+        else if (size >= ONE_MB) {
+            return Math.round(size / ONE_MB) + ' MB';
         }
-        else if (size >= 1024) {
-            return Math.round(size / 1024) + ' KB';
+        else if (size >= ONE_KB) {
+            return Math.round(size / ONE_KB) + ' KB';
         }
         return Math.round(size) + ' bytes';
     };

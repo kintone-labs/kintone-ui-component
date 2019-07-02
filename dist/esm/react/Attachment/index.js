@@ -1,5 +1,6 @@
 import React from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
+import '../../css/font.css';
 import '../../css/Attachment.css';
 var Attachment = function (props) {
     if (props.isVisible === false) {
@@ -17,8 +18,11 @@ var Attachment = function (props) {
     };
     var _addFiles = function (event) {
         if (props.onFilesAdd) {
-            var addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-            props.onFilesAdd(props.files.concat(addedFiles));
+            var addedFiles_1 = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+            addedFiles_1 = Object.keys(addedFiles_1).map(function (e) {
+                return addedFiles_1[e];
+            });
+            props.onFilesAdd(props.files.concat(addedFiles_1));
         }
     };
     var _isFileDrop = function (event) {
@@ -97,26 +101,26 @@ var Attachment = function (props) {
         }
     };
     return (React.createElement("div", { className: "kuc-attachment-outer" },
-        React.createElement("div", { className: "kuc-attachment-value" },
-            React.createElement("div", { className: "kuc-attachment-file", onDragOver: _onDragOver, onDragEnter: _onDragEnter, onDragLeave: _onDragLeave },
-                React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: 'none' }, onDrop: _onDrop },
-                    React.createElement("div", { className: "kuc-attachment-file-droppable-text", ref: function (dropElement) {
-                            if (dropElement)
-                                dropZoneElement = dropElement;
-                        } }, props.dropZoneText)),
-                React.createElement("div", { className: "kuc-attachment-file-filelist" }),
-                React.createElement("div", { className: "kuc-attachment-file-filelist kuc-attachment-file-filelist-list" }, Array.isArray(props.files) && props.files.map(function (file, index) { return (React.createElement(AttachmentFileItem, { key: index, index: index, fileName: file.name, fileSize: file.size, onFileRemove: _removeFile })); })),
-                React.createElement("a", { className: "kuc-attachment-file-upload-button", tabIndex: -1 },
-                    React.createElement("span", { className: "kuc-attachment-file-upload-button-text" }, props.browseButtonText),
-                    React.createElement("div", { className: "kuc-attachment-file-upload-html5" },
-                        React.createElement("input", { type: "file", multiple: true, ref: function (element) {
-                                if (element)
-                                    inputElement = element;
-                            }, onClick: function () {
-                                inputElement.value = '';
-                            }, onChange: _addFiles }))),
-                React.createElement("p", { className: "kuc-attachment-file-constraints" }, props.fileLimitText)),
-            props.isErrorVisible === true && (React.createElement("div", { className: "kuc-attachment-file-error" },
-                React.createElement("span", null, props.errorMessage))))));
+        React.createElement("div", { className: "kuc-attachment-file", onDragOver: _onDragOver, onDragEnter: _onDragEnter, onDragLeave: _onDragLeave },
+            React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: 'none' }, onDrop: _onDrop },
+                React.createElement("div", { className: "kuc-attachment-file-droppable-text", ref: function (dropElement) {
+                        if (dropElement)
+                            dropZoneElement = dropElement;
+                    } }, props.dropZoneText || 'Drop files here.')),
+            React.createElement("div", { className: "kuc-attachment-file-filelist kuc-attachment-file-filelist-list" }, Array.isArray(props.files) && props.files.map(function (file, index) { return (React.createElement(AttachmentFileItem, { key: index, index: index, fileName: file.name, fileSize: file.size, onFileRemove: _removeFile })); })),
+            React.createElement("a", { className: "kuc-attachment-file-upload-button", tabIndex: -1 },
+                React.createElement("span", { className: "kuc-attachment-file-upload-button-text" },
+                    " ",
+                    props.browseButtonText || 'Browse'),
+                React.createElement("div", { className: "kuc-attachment-file-upload-html5" },
+                    React.createElement("input", { type: "file", multiple: true, ref: function (element) {
+                            if (element)
+                                inputElement = element;
+                        }, onClick: function () {
+                            inputElement.value = '';
+                        }, onChange: _addFiles }))),
+            React.createElement("p", { className: "kuc-attachment-file-constraints" }, props.fileLimitText)),
+        props.isErrorVisible === true && (React.createElement("div", { className: "kuc-attachment-file-error" },
+            React.createElement("span", null, props.errorMessage)))));
 };
 export default Attachment;

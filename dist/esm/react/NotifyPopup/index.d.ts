@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../css/font.css';
 import '../../css/NotifyPopup.css';
 declare type NotifyPopupProps = {
     text?: string;

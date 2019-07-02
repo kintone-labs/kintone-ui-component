@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/font.css';
 import '../../css/Button.css';
 var Button = function (_a) {
     var text = _a.text, type = _a.type, isDisabled = _a.isDisabled, isVisible = _a.isVisible, onClick = _a.onClick;

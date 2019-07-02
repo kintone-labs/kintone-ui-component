@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/font.css';
 import '../../css/Alert.css';
 declare type AlertProps = {
     text?: string;

@@ -14,9 +14,12 @@
 .kuc-list-item {
     position: relative;
     font-size: 14px;
-    padding: 1px 16px 8px 10px;
+    padding: 6px 16px 8px 10px;
     line-height: 1;
     cursor: pointer;
+}
+.kuc-list-item:hover, .kuc-list-item:active {
+    background-color: #e2f2fe;
 }
 .kuc-list-item-selected {
     background: none;
@@ -44,6 +47,18 @@
     font-size: 13px;
     line-height: 1.5;
     position: absolute;
+}
+.kuc-list-item-selected .kuc-icon-check svg {
+    width: 24px;
+    height: 24px;
+    transform: scale(0.6);
+    transform-origin: 0px 0px;
+}
+.kuc-list-item-selected .kuc-icon-check svg path{
+    fill: #3498db;
+}
+.kuc-list-item-disable .kuc-icon-check svg path{
+    fill: #888888;
 }
 
 .kuc-arrow {

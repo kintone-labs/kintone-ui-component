@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/font.css';
 import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';
 var NotifyPopup = function (_a) {
@@ -47,10 +48,9 @@ var NotifyPopup = function (_a) {
     if (isVisible === false) {
         return null;
     }
-    return (React.createElement("div", null,
-        React.createElement("div", { className: _getClassName() },
-            React.createElement("div", { className: "kuc-notify-title", onClick: _onClick }, text),
-            React.createElement("div", { className: "kuc-close-button" },
-                React.createElement(IconButton, { onClick: _handleClosePopup, type: "close", color: _getStyleByType().color })))));
+    return (React.createElement("div", { className: _getClassName() },
+        React.createElement("div", { className: "kuc-notify-title", onClick: _onClick }, text),
+        React.createElement("div", { className: "kuc-close-button" },
+            React.createElement(IconButton, { onClick: _handleClosePopup, type: "close", color: _getStyleByType().color }))));
 };
 export default NotifyPopup;

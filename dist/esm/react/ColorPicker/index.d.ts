@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../css/font.css';
 declare type ColorPickerProps = {
     color?: string;
     onChange?: (hexString: string) => void;

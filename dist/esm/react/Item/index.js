@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../css/base.css';
+import { mdiCheckBold } from '@mdi/js';
+import '../../css/font.css';
 import '../../css/Item.css';
 var Item = function (props) {
     var _onClick = function () {
@@ -36,7 +37,8 @@ var Item = function (props) {
     ];
     return (React.createElement("div", { onClick: _onClick, className: className.join(' ').trim() },
         React.createElement("span", { className: "kuc-icon-check" },
-            React.createElement("i", { className: "fa fa-check", "aria-hidden": "true" })),
+            React.createElement("svg", null,
+                React.createElement("path", { d: mdiCheckBold }))),
         React.createElement("span", { className: "kuc-list-item-label" }, props.item.label)));
 };
 export default Item;

@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../css/font.css';
 import '../../css/Attachment.css';
 declare type FileObject = {
     name: string;

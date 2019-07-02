@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/font.css';
 import '../../css/Label.css';
 declare type LabelProps = {
     text?: string;

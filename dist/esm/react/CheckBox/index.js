@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractMultiSelection } from '../index';
+import '../../css/font.css';
 import '../../css/CheckBox.css';
 var CheckBox = function (props) {
     var _hasDuplicatedItems = AbstractMultiSelection._hasDuplicatedItems, _hasValidValue = AbstractMultiSelection._hasValidValue;

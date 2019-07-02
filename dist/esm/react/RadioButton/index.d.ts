@@ -1,11 +1,12 @@
 /// <reference types="react" />
+import '../../css/font.css';
 import '../../css/RadioButton.css';
 declare type item = {
     value: string;
     label: string;
     isDisabled: boolean;
 };
-declare type DropdownProps = {
+declare type RadioButtonProps = {
     name: string;
     value: string;
     items: item[];
@@ -13,5 +14,5 @@ declare type DropdownProps = {
     isDisabled: boolean;
     onChange: (value: string) => void;
 };
-declare const RadioButton: (props: DropdownProps) => JSX.Element | null;
+declare const RadioButton: (props: RadioButtonProps) => JSX.Element | null;
 export default RadioButton;

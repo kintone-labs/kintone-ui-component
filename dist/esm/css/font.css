@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-@import url("https://js.kintone.com/font-awesome/v4.7.0/css/font-awesome.min.css");
-
-*[class|="kuc"] {
-  color: #333;
-  word-wrap: break-word;
-  font-size: 16px;
-}
-
 :lang(en) *[class|="kuc"] {
   font-family: 'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 }

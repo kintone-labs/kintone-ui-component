@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import '../../css/base.css';
+import '../../css/font.css';
 import '../../css/Item.css';
 declare type item = {
     value: string;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractSingleSelection } from '../index';
+import '../../css/font.css';
 import '../../css/RadioButton.css';
 var RadioButton = function (props) {
     if (!props.name) {

@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../css/font.css';
 import '../../css/CheckBox.css';
 declare type item = {
     value: string;

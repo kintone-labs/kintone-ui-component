@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../css/font.css';
 import '../../css/Tabs.css';
 declare type TabsItem = {
     tabName: string;

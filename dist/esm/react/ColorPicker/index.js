@@ -4,6 +4,7 @@ import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
 import { invertColor, isHexString } from './components/utils';
 import Message from '../../constant/Message';
+import '../../css/font.css';
 var previouseHex;
 function ColorPicker(props) {
     if (props.color && !isHexString(props.color)) {
