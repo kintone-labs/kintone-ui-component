@@ -11,16 +11,14 @@ import NotifyPopup from './NotifyPopup'
 import Item from './Item'
 import MultipleChoice from './MultipleChoice'
 import CheckBox from './CheckBox'
+import Dialog from './Dialog'
+import RadioButton from './RadioButton'
+import Dropdown from './Dropdown'
 import AbstractSingleSelection from './utils/AbstractSingleSelection'
 import AbstractMultiSelection from './utils/AbstractMultiSelection'
-
-import RadioButton from '../legacyJS/js/components-react/RadioButton'
-import Dropdown from '../legacyJS/js/components-react/Dropdown'
-import TextArea from '../legacyJS/js/components-react/TextArea'
-import Attachment from '../legacyJS/js/components-react/Attachment'
-import FieldGroup from '../legacyJS/js/components-react/FieldGroup'
-import Dialog from '../legacyJS/js/components-react/Dialog'
-import Table from '../legacyJS/js/components-react/Table'
+import TextArea from './TextArea'
+import Attachment from './Attachment'
+import FieldGroup from './FieldGroup'
 
 export {
     DateTime,
@@ -44,6 +42,7 @@ export {
     MultipleChoice,
     AbstractSingleSelection,
     AbstractMultiSelection,
-    Dialog,
-    Table
+    Dialog
 }
+
+export * from './Table'

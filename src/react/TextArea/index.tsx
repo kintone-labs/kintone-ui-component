@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import '../../css/font.css'
+import '../../css/TextArea.css';
 
 type TextAreaProps = {
   value: string;
@@ -9,13 +11,10 @@ type TextAreaProps = {
 }
 
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
+
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
-
-  const [translateX, setTranslateX] = useState(0);
-  const [translateY, setTranslateY] = useState(0);
-  const [textAreaWidth, setTextAreaWidth] = useState(mixTextAreaWidth);
-  const [textAreaHeight, setTextAreaHeight] = useState(mixtTextAreaHeight);
+  const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight})
   const [isResizing, setIsResizing] = useState(false);
 
   useEffect(
@@ -25,19 +24,22 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
       document.onmousemove = (event) => {
         if (isResizing && currentX && currentY) {
           let dx = event.clientX - currentX;
-          if (textAreaWidth + dx < mixTextAreaWidth) {
+          if (sizeConfig.textAreaWidth + dx < mixTextAreaWidth) {
             dx = 0;
           }
 
           let dy = event.clientY - currentY;
-          if (textAreaHeight + dy < mixtTextAreaHeight) {
+          if (sizeConfig.textAreaHeight + dy < mixtTextAreaHeight) {
             dy = 0;
           }
 
-          setTranslateX(translateX + dx);
-          setTranslateY(translateY + dy);
-          setTextAreaWidth(textAreaWidth + dx);
-          setTextAreaHeight(textAreaHeight + dy);
+          let config = {
+            translateX: sizeConfig.translateX + dx,
+             translateY: sizeConfig.translateY + dy, 
+             textAreaWidth: sizeConfig.textAreaWidth + dx,
+              textAreaHeight: sizeConfig.textAreaHeight + dy
+            }
+            setSizeConfig(config);
         }
         currentX = event.clientX;
         currentY = event.clientY;
@@ -52,7 +54,7 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
     }
   );
 
-  const _onChange = (event: any) => {
+  const _onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(event.target.value);
   };
 
@@ -63,7 +65,6 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
   return (
     <div
       className="kuc-textarea-outer"
-      style={{width: textAreaWidth + 'px', height: textAreaHeight + 'px'}}
     >
       <textarea
         value={value}
@@ -71,11 +72,11 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
         onClick={onClick}
         onChange={_onChange}
         disabled={isDisabled}
-        style={{width: textAreaWidth + 'px', height: textAreaHeight + 'px'}}
+        style={{width: sizeConfig.textAreaWidth + 'px', height: sizeConfig.textAreaHeight + 'px'}}
       />
       <div
         className="kuc-textarea-resize"
-        style={{transform: `translate(${translateX}px, ${translateY}px)`}}
+        style={{transform: `translate(${sizeConfig.translateX}px, ${sizeConfig.translateY}px)`}}
         onMouseDown={()=>{
           setIsResizing(true);
         }}

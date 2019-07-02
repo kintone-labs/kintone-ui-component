@@ -1,6 +1,7 @@
-import React from 'react';
-import '../../css/base.css'
-import '../../css/Item.css';
+import React from 'react'
+import { mdiCheckBold } from '@mdi/js'
+import '../../css/font.css'
+import '../../css/Item.css'
 
 type item = {
   value: string;
@@ -69,11 +70,12 @@ const Item = (props: ItemProps) => {
     props.isDisabled ? 'kuc-list-item-disable' : ''
   ];
   return (
-    <div
-      onClick={_onClick}
-      className={className.join(' ').trim()}
-    >
-      <span className="kuc-icon-check"><i className="fa fa-check" aria-hidden="true" /></span>
+    <div onClick={_onClick} className={className.join(' ').trim()} >
+      <span className="kuc-icon-check">
+        <svg>
+          <path d={mdiCheckBold} />
+        </svg>
+      </span>
       <span className="kuc-list-item-label">{props.item.label}</span>
     </div>
   );
