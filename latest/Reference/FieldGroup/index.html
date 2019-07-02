@@ -134,7 +134,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.1</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.2</a>
         </div>
       </div>
  
@@ -832,7 +832,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 const button = new kintoneUIComponent.Button({
     text: 'Submit',
     type: 'submit'
@@ -1008,11 +1008,10 @@ body.appendChild(fieldGroup.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
+export default class Sample extends React.Component {
     constructor(opts) {
         super(opts);
         var items = [
@@ -1073,7 +1072,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
       content: text.render(),
@@ -1085,12 +1084,11 @@ body.appendChild(fieldGroup.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
-  constructor(opts) {
+export default class Sample extends React.Component {
+    constructor(opts) {
         super(opts);
         var items = [
             {
@@ -1166,7 +1164,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">const radioBtn = new kintoneUIComponent.RadioButton({
       items: [{ label: 'Orange', value: 'orange' }, { label: 'Banana', value: 'banana' }],
       value: 'orange',
       name: 'Fruit'
@@ -1185,15 +1183,15 @@ fieldGroup.setContent(text.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
-  constructor(opts) {
+export default class Sample extends React.Component {
+    constructor(opts) {
         super(opts);
         this.state = {
-            content: &lt;Label text='Field Group Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} /&gt;,
+            content: &lt;Label text='Field Group Content Label' textColor='#e74c3c'
+            backgroundColor='yellow' isRequired={true} /&gt;,
             radioValue: 'Orange',
             name: 'Group',
             toggle: 'expand'
@@ -1206,10 +1204,10 @@ class Sample extends React.Component {
                     name={this.state.name}
                     toggle={this.state.toggle}
                     onToggle={this._handleToggleClick}
+                    content={this.state.content}
                 &gt;
-                    &lt;Label text='Field Group Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} /&gt;
                 &lt;/FieldGroup&gt;
-                &lt;button onClick={this.handleClick}&gt;Add Item&lt;/button&gt;
+                &lt;button onClick={this.handleClick}&gt;Set Item&lt;/button&gt;
             &lt;/div&gt;
         );
     }
@@ -1218,6 +1216,11 @@ class Sample extends React.Component {
         this.setState({
             toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
         });
+    }
+    handleClick = () =&gt; {
+      this.setState({
+        content: &lt;Label text='updated Content Label' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} /&gt;
+      });
     }
 }
 </code></pre>
@@ -1249,7 +1252,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">const radioBtn = new kintoneUIComponent.RadioButton({
       items: [{ label: 'Orange', value: 'orange' }, { label: 'Banana', value: 'banana' }],
       value: 'orange',
       name: 'Fruit'
@@ -1266,7 +1269,49 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(fieldGroup.render());
 </code></pre>
 
-<p></details></p>
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Sample extends React.Component {
+    constructor(opts) {
+        super(opts);
+        this.state = {
+            content: &lt;Label text='Field Group Content Label' textColor='#e74c3c'
+            backgroundColor='yellow' isRequired={true} /&gt;,
+            radioValue: 'Orange',
+            name: 'Group',
+            toggle: 'expand'
+        };
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;FieldGroup
+                    name={this.state.name}
+                    toggle={this.state.toggle}
+                    onToggle={this._handleToggleClick}
+                    content={this.state.content}
+                &gt;
+                &lt;/FieldGroup&gt;
+                &lt;button onClick={this.handleClick}&gt;Get Item&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+
+    _handleToggleClick = () =&gt; {
+        this.setState({
+            toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
+        });
+    }
+    handleClick = () =&gt; {
+      console.log(this.state.content)
+    }
+}
+</code></pre>
+
+<p></details>
+</details></p>
 <h3 id="setnamename">setName(name)</h3>
 <p>Set the name for the field group.</p>
 <p><strong>Parameter</strong></p>
@@ -1293,7 +1338,7 @@ body.appendChild(fieldGroup.render());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
       content: text.render(),
@@ -1308,12 +1353,11 @@ fieldGroup.setName('New Group Name');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
-  constructor(opts) {
+export default class Sample extends React.Component {
+    constructor(opts) {
         super(opts);
         this.state = { name: 'Group', toggle: 'expand' };
     }
@@ -1365,7 +1409,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
       content: text.render(),
@@ -1380,12 +1424,11 @@ fieldGroup.getName();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
-  constructor(opts) {
+export default class Sample extends React.Component {
+    constructor(opts) {
         super(opts);
         this.state = { name: 'Group', toggle: 'expand' };
     }
@@ -1439,7 +1482,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
       items: text.render(),
@@ -1454,11 +1497,10 @@ fieldGroup.setToggle('collapse');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
+export default class Sample extends React.Component {
     constructor(opts) {
         super(opts);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -1511,7 +1553,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
+<pre><code class="javascript">const text = new kintoneUIComponent.Text({ value: &quot;12345&quot; });
 
 const fieldGroup = new kintoneUIComponent.FieldGroup({
       content: text.render(),
@@ -1525,12 +1567,11 @@ fieldGroup.getToggle();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { FieldGroup, Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Sample extends React.Component {
-  constructor(opts) {
+export default class Sample extends React.Component {
+    constructor(opts) {
         super(opts);
         this.state = { name: 'Group', toggle: 'expand' };
     }
