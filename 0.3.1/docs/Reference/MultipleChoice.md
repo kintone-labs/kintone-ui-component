@@ -9,7 +9,6 @@
 |2|	Selected item|
 |3|Not selected item|	
 |4|Disabled item|
-|5|Hover item|
 
 ## Constructor
 
