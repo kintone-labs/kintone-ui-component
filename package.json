@@ -18,7 +18,9 @@
 	"unpkg": "./dist/kintone-ui-component.min.js",
 	"types": "./dist/esm/react/index.d.ts",
 	"scripts": {
-		"build": "webpack --mode=production && node scripts/builder.js",
+		"build": "NODE_ENV=production webpack --mode=production && node scripts/builder.js",
+		"build:umd": "NODE_ENV=production webpack --mode=production",
+		"build:umd:dev": "NODE_ENV=development webpack --mode=development",
 		"build:esm": "node scripts/builder.js",
 		"transpile": "tsc"
 	},
