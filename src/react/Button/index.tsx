@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import '../../css/font.css'
 import '../../css/Button.css';
 
 type ButtonProps = {
+  style?: CSSProperties
   text?: string;
   type?: string;
   isDisabled?: boolean;
@@ -10,7 +11,7 @@ type ButtonProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Button = ({text, type, isDisabled, isVisible, onClick}: ButtonProps) => {
+const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps) => {
   const _getClassName = () => {
     return [
       'kuc-btn',
@@ -21,7 +22,7 @@ const Button = ({text, type, isDisabled, isVisible, onClick}: ButtonProps) => {
     return null;
   }
   return (
-    <button onClick={onClick} className={_getClassName()} disabled={isDisabled}>
+    <button style={style} onClick={onClick} className={_getClassName()} disabled={isDisabled}>
       {text}
     </button>
   );

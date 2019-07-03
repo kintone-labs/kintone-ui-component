@@ -24,6 +24,7 @@ export default function Picker(props: PickerProps) {
     const [hexString, setHexString] = useState(props.hexString);
     const [rgb, setRGB] = useState(hexToRgb(hexString))
     const [hsv, setHSV] = useState(rgbToHsv(rgb.r, rgb.g, rgb.b))
+    const [fromSat, setFromSat] = useState(false);
 
     const [saturationBackground, setSaturationBackground] = useState(rgb);
 
@@ -34,6 +35,7 @@ export default function Picker(props: PickerProps) {
     }
 
     function handleSaturation(newRgb: RGB) {
+        setFromSat(true);
         props.onChange(rgbToHex(newRgb.r, newRgb.g, newRgb.b));
     }
 
@@ -41,7 +43,7 @@ export default function Picker(props: PickerProps) {
         let newRGB = hexToRgb(props.hexString)
         setHexString(props.hexString);
         setRGB(newRGB);
-        setSaturationBackground(newRGB)
+        !fromSat && setSaturationBackground(newRGB)
         setHSV(rgbToHsv(newRGB.r, newRGB.g, newRGB.b));
     }
 
@@ -73,20 +75,16 @@ export default function Picker(props: PickerProps) {
             <HSVInput hsv={hsv} onChange={props.onChange}/>
         </div>
         <div>
-            <span>
-                <Button text="OK" type="submit" onClick={()=>{
-                    props.onSubmit(hexString)
-                }} />
-            </span>
-            <span>
-                <Button text="Cancel" onClick={() => {
-                    let oldRGB = hexToRgb(props.hexString);
-                    setSaturationBackground(oldRGB)
-                    setRGB(oldRGB);
-                    setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
-                    props.onCancel()
-                }} />
-            </span>
+            <Button style={{display: 'inline-block'}} text="OK" type="submit" onClick={()=>{
+                props.onSubmit(hexString)
+            }} />
+            <Button style={{display: 'inline-block'}} text="Cancel" onClick={() => {
+                let oldRGB = hexToRgb(props.hexString);
+                setSaturationBackground(oldRGB)
+                setRGB(oldRGB);
+                setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
+                props.onCancel()
+            }} />
         </div>
         </div>
     );
