@@ -90,7 +90,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
           <div className={className.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
-                <span>{index !== -1 && items[index].label}</span>
+                <span className="kuc-dropdown-selected-label">{index !== -1 && items[index].label}</span>
                 <span className="icon-arrow-down">
                   <svg>
                     <path d={mdiChevronDown} />
