@@ -10,8 +10,6 @@
 	},
 	"sideEffects": [
 		"dist/esm/css/*.css",
-		"src/legacyJS/style/*.css",
-		"src/legacyJS/style/index.js",
 		"src/css/*.css",
 		"src/js/polyfill.ts"
 	],
