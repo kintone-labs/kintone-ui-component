@@ -11,7 +11,7 @@ type CheckboxProps = ControlProps & {
     onChange: (value: Array<string>) => void
 }
 
-class Checkbox extends Control {
+class CheckBox extends Control {
     protected _props: CheckboxProps = {
       ...this._props, ...{
         items: [],
@@ -235,5 +235,4 @@ class Checkbox extends Control {
     }
 }
 
-export default Checkbox
-  
+export default CheckBox
