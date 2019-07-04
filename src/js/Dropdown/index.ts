@@ -144,7 +144,7 @@ class Dropdown extends Control {
       'kuc-dropdown-selected-name'
     );
 
-    this.nameLabelEl = this._createDom('span');
+    this.nameLabelEl = this._createDom('span', 'kuc-dropdown-selected-label');
     this.nameLabelEl.innerText = this.label || '';
     const iconEl = this._createDom('span', 'icon-arrow-down');
     iconEl.appendChild(this._createDownIconEl());
