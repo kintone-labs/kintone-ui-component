@@ -32,6 +32,7 @@ export default function Picker(props: PickerProps) {
         setSaturationBackground(newRgb);
         setRGB(newRgb);
         setHSV(rgbToHsv(rgb.r, rgb.g, rgb.b));
+        props.onChange(rgbToHex(newRgb.r, newRgb.g, newRgb.b));
     }
 
     function handleSaturation(newRgb: RGB) {
