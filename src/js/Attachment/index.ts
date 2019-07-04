@@ -90,19 +90,19 @@ class Attachment extends Control {
       addedFiles = Object.keys(addedFiles).map((e) => {
         return addedFiles[e]
       })
-      this._props.files = [...this._props.files, ...addedFiles];
       
-      addedFiles.forEach((file, index) => {
+      addedFiles.forEach((file: object, index: number) => {
         let itemFile = new AttachmentFileItem({
-          index:this._props.files + index,
-          fileName:file.name,
-          fileSize:file.size,
+          index: this._props.files.length + index,
+          fileName:file['name'],
+          fileSize:file['size'],
           onFileRemove:(index) => {
             this._removeFile(index)
           }
         })
         this.listFileEl.appendChild(itemFile.render());
-    });
+      });
+      this._props.files = [...this._props.files, ...addedFiles];
     this._onFileAdd(this._props.files)
   };
 
@@ -155,7 +155,7 @@ class Attachment extends Control {
       }
   }
 
-  private _removeFile = (index) =>{
+  private _removeFile = (index: number) =>{
       this._props.files.splice(index, 1);
       this._onFileRemove(this._props.files)
   }
@@ -182,7 +182,7 @@ class Attachment extends Control {
   }
 
   private _isFileOrDirectoryDrag = (event: DragEvent) => {
-    if (event.dataTransfer.items !== undefined) {
+    if (event.dataTransfer && event.dataTransfer.items !== undefined) {
       for (let i = 0; i < event.dataTransfer.items.length; i++) {
         if (event.dataTransfer.items[i].kind.toLowerCase() === 'file') {
           return true;
@@ -190,7 +190,7 @@ class Attachment extends Control {
       }
     }
 
-    if (event.dataTransfer.types !== undefined) {
+    if (event.dataTransfer && event.dataTransfer.types !== undefined) {
       for (let i = 0; i < event.dataTransfer.types.length; i++) {
         if (event.dataTransfer.types[i].toLowerCase() === 'files') {
           return true;
@@ -202,12 +202,12 @@ class Attachment extends Control {
 
   private _isFileDrop = function(event: DragEvent) {
     // handle IE
-    if (event.dataTransfer.files.length === 0) {
+    if (event.dataTransfer && event.dataTransfer.files.length === 0) {
       return false;
     }
 
     // handle Chrome, Firefox, Edge, Safari
-    if (event.dataTransfer.items) {
+    if (event.dataTransfer && event.dataTransfer.items) {
       for (let i = 0; i < event.dataTransfer.items.length; i++) {
         if (typeof (event.dataTransfer.items[i].webkitGetAsEntry) === 'function'
                 && event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {

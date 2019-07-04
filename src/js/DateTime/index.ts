@@ -9,7 +9,7 @@ import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
 
 type DateTimeProps = ControlProps & {
-  value?: Date;
+  value?: Date | null;
   type?: string;
   locale?: string;
   dateFormat?: string;
@@ -49,7 +49,7 @@ class DateTime extends Control {
     if(this._props.type === 'date' || this._props.type === 'datetime') {
       this.setLocale(this._props.locale)
     }
-    if (this._props.type === 'time' || this._props.type === 'datetime') {
+    if (this._props.value && (this._props.type === 'time' || this._props.type === 'datetime')) {
       this._time = this._props.value;
       this._time.setSeconds(0);
     }
@@ -73,10 +73,10 @@ class DateTime extends Control {
     return this.element
   }
 
-  rerender(changedAttr?: string[]) {
+  rerender(changedAttr: string[]) {
     super.rerender();
     if (changedAttr.indexOf('dateTextInput') !== -1) {
-      if (this._props.value) {
+      if (this._props.value && this._props.dateFormat) {
         this._dateTextInput.value = format(this._props.value, this._props.dateFormat, {
           locale: this._props.locale
         });
@@ -142,8 +142,12 @@ class DateTime extends Control {
     const dateTextInput = document.createElement('input');
     dateTextInput.type = 'text';
     dateTextInput.className = 'kuc-input-text text-input';
-    dateTextInput.value = format(this._props.value, this._props.dateFormat);
-    dateTextInput.disabled = this._props.isDisabled
+    if(this._props.value && this._props.dateFormat) {
+      dateTextInput.value = format(this._props.value, this._props.dateFormat);
+    }
+    if(this._props.isDisabled) {
+      dateTextInput.disabled = this._props.isDisabled
+    }
 
     // event handlers
     dateTextInput.onclick = () => {
@@ -177,7 +181,9 @@ class DateTime extends Control {
     const timeTextInputContainer = document.createElement('div');
     timeTextInputContainer.classList.add('text-input-container');
     const timeTextInput = document.createElement('input');
-    timeTextInput.disabled = this._props.isDisabled
+    if(this._props.isDisabled) {
+      timeTextInput.disabled = this._props.isDisabled      
+    }
     timeTextInput.type = 'text';
     timeTextInput.className = 'kuc-input-text text-input time';
     timeTextInput.value = format(this._time, 'HH:mm');
@@ -188,7 +194,9 @@ class DateTime extends Control {
 
   private _registerTimeTextInputEvents() {
     this._timeTextInput.onclick = () => {
-      if (this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5) {
+      if ( this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+        this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5
+      ) {
         this._timeTextInput.setSelectionRange(3, 5);
       } else {
         this._timeTextInput.setSelectionRange(0, 2);
@@ -229,7 +237,9 @@ class DateTime extends Control {
         case 'ArrowUp':
         case 'Up':
           e.preventDefault();
-          if (this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5) {
+          if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+            this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5
+          ) {
             this._changeMinutesBy(1);
           } else {
             this._changeHoursBy(1);
@@ -239,7 +249,9 @@ class DateTime extends Control {
         case 'ArrowDown':
         case 'Down':
           e.preventDefault();
-          if (this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5) {
+          if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+            this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5
+          ) {
             this._changeMinutesBy(-1);
           } else {
             this._changeHoursBy(-1);
@@ -256,7 +268,9 @@ class DateTime extends Control {
         if(!newTime) {
           newTime = new Date(this._time)
         }
-        if (this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5) {
+        if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+          this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
+        ) {
           // minutes are being edited
           // for case when more then 1 key is being held down
           if(newTime.getMinutes() === this._time.getMinutes()) {
@@ -316,8 +330,10 @@ class DateTime extends Control {
 
       // set value
       const newTime = parseStringToTime(this._timeTextInput.value);
-      this._time.setHours(newTime.getHours());
-      this._time.setMinutes(newTime.getMinutes());
+      if(newTime) {
+        this._time.setHours(newTime.getHours());
+        this._time.setMinutes(newTime.getMinutes());
+      }
       //
       this._timePicker.hide();
     };
@@ -435,19 +451,23 @@ class DateTime extends Control {
     this._timeTextInput.focus();
   }
 
-  getValue(): Date {
-    const value = new Date(this._props.value);
-    switch (this._props.type) {
-      case 'date':
-        return value;
-      case 'time':
-        return this._time;
-      case 'datetime':
-      default:
-        value.setHours(this._time.getHours());
-        value.setMinutes(this._time.getMinutes());
-        return value;
+  getValue(): Date | undefined {
+    let value
+    if(this._props.value) {
+      value = new Date(this._props.value);
+      switch (this._props.type) {
+        case 'date':
+          return value;
+        case 'time':
+          return this._time;
+        case 'datetime':
+        default:
+          value.setHours(this._time.getHours());
+          value.setMinutes(this._time.getMinutes());
+          return value;
+      }
     }
+    return value
   }
 
   setValue(date_opt: any) {

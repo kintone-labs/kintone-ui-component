@@ -55,13 +55,21 @@ class Item extends Control {
       generateGUID();
     this.value = params.item.value;
     this.element = document.createElement('span');
-    this.element.className = this._props.className;
+    if(this._props.className) {
+      this.element.className = this._props.className;
+    }
     this.inputEl = document.createElement('input');
     this.inputEl.id = this.id;
-    this.inputEl.name = this._props.name;
-    this.inputEl.type = this._props.type;
+    if(this._props.name) {
+      this.inputEl.name = this._props.name;
+    }
+    if(this._props.type) {
+      this.inputEl.type = this._props.type;
+    }
     this.inputEl.checked = this._props.selected;
-    this.inputEl.disabled = this._props.isDisabled;
+    if(this._props.isDisabled) {
+      this.inputEl.disabled = this._props.isDisabled;
+    }
     const labelEl = document.createElement('label');
     labelEl.htmlFor = this.id;
     labelEl.innerText = this._props.item.label || '';

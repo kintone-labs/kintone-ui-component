@@ -142,4 +142,4 @@ const reactUMDConfig = {
     }
 }
 
-module.exports = [reactUMDConfig]
+module.exports = [jsUMDConfig, reactUMDConfig]

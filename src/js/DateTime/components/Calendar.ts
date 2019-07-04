@@ -11,7 +11,7 @@ import Locale from '../../../react/DateTime/components/localizationData/locale-d
 import Control, {ControlProps} from '../../Control';
 
 type CalendarProps = ControlProps & {
-  date?: Date;
+  date?: Date | null;
   locale?: Locale;
   onDateClick?: (date: Date | null) => void;
   onClickOutside?: (e: FocusEvent) => void;
@@ -109,14 +109,18 @@ class Calendar extends Control {
   _renderTodayButton() {
     const span = document.createElement('span');
     span.className = 'today calendar-button-control';
-    span.textContent = this._props.locale.today;
+    if(this._props.locale) {
+      span.textContent = this._props.locale.today;
+    }
     this._todayButton = span;
   }
 
   _renderNoneButton() {
     const span = document.createElement('span');
     span.className = 'none calendar-button-control';
-    span.textContent = this._props.locale.none;
+    if(this._props.locale) {
+      span.textContent = this._props.locale.none;
+    }
     this._noneButton = span;
   }
 
@@ -208,22 +212,22 @@ class Calendar extends Control {
 
   _setOnclickForDaysLabels(daySpan: HTMLElement) {
     daySpan.onclick = () => {
-      if (this._props.onDateClick) {
+      if (this._props.onDateClick && daySpan.dataset.date) {
         this._props.onDateClick(parseStringToDate(daySpan.dataset.date));
       }
     };
   }
 
-  setValue(date: Date | null) {
-    this._props.date = date;
-    if (date !== null) {
+  setValue(date: Date | undefined | null) {
+    if (date) {
+      this._props.date = date;
       this._displayDate = new Date(date);
+      // rerender self
+      this.rerender(['selectedDate']);
     }
-    // rerender self
-    this.rerender(['selectedDate']);
   }
 
-  getValue(): Date {
+  getValue(): Date | null | undefined {
     return this._props.date;
   }
 
@@ -231,7 +235,7 @@ class Calendar extends Control {
     this._props.locale = locale;
   }
 
-  rerender(changedAttr?: string[], options?: object) {
+  rerender(changedAttr: string[], options?: object) {
     super.rerender();
     if (changedAttr.indexOf('selectedDate') !== -1) {
       this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
@@ -247,10 +251,10 @@ class Calendar extends Control {
         this._daysContainer.appendChild(dayLabel);
       });
     }
-    if (changedAttr.indexOf('offsetLeft') !== -1) {
-      this.element.style.left = options.left + 'px';
+    if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
+      this.element.style.left = options['left'] + 'px';
     }
-    if (changedAttr.indexOf('footerButtons') !== -1) {
+    if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
       this._todayButton.textContent = this._props.locale.today;
       this._noneButton.textContent = this._props.locale.none;
     }

@@ -21,7 +21,6 @@ class NotifyPopup extends Control {
 
   private textEl: any
   private closeButton: IconButton
-  private containerEl: HTMLElement
   private _onClick = (e: Event) => {}
 
   constructor(params: PopupProps) {
@@ -61,7 +60,7 @@ class NotifyPopup extends Control {
     const containerDOM = document.createElement('div');
 
     this.textEl = elements(document.createElement('div')).addClass('kuc-notify-title').appendTo(containerDOM);
-    this.textEl.on('click', (e) => {
+    this.textEl.on('click', (e: Event) => {
       if (this._props.isDisabled) return;
       this._onClick(e)
     })

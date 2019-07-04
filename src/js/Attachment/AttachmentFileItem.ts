@@ -48,8 +48,8 @@ class AttachmentFileItem extends Control{
 
     let actionInputEl = document.createElement('button');
     actionInputEl.setAttribute('type','button')
-    actionInputEl.onclick = (e) =>{
-        this.onRemove(e);
+    actionInputEl.onclick = () =>{
+      this.onRemove();
     }
     actionContainerEl.appendChild(actionInputEl);
     container.appendChild(actionContainerEl);
@@ -66,10 +66,9 @@ class AttachmentFileItem extends Control{
     return container;
   }
 
-  onRemove = (event) => {
-      this._props.onFileRemove(this._props.index);
-      const itemToremove = event.target.parentNode.parentNode;
-      itemToremove.parentNode.removeChild(itemToremove);
+  onRemove = () => {
+    this._props.onFileRemove(this._props.index);
+    this.element.remove();
   }
 }
 
