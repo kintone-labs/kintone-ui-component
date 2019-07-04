@@ -20,7 +20,7 @@ const _hasDuplicatedItems = (items: Array<ItemData>) => {
   };
   
   const _hasValidValue = (items: Array<ItemData>, value: string | Array<string>) => {
-    const validValues = [];
+    const validValues: string[] = [];
     items.forEach((item) => {
       validValues.push(item.value);
     });

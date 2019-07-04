@@ -11,7 +11,7 @@
                 var argArr = Array.prototype.slice.call(arguments),
                     docFrag = document.createDocumentFragment();
                 
-                argArr.forEach(function (argItem) {
+                argArr.forEach(function (argItem: any) {
                     var isNode = argItem instanceof Node;
                     docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
                 });
@@ -42,7 +42,7 @@
               var argArr = Array.prototype.slice.call(arguments),
                 docFrag = document.createDocumentFragment();
               
-              argArr.forEach(function (argItem) {
+              argArr.forEach(function (argItem: any) {
                 var isNode = argItem instanceof Node;
                 docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
               });

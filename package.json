@@ -9,22 +9,20 @@
 		"url": "https://github.com/kintone/kintone-ui-component"
 	},
 	"sideEffects": [
-		"dist/esm/css/*.css",
+		"esm/css/*.css",
 		"src/css/*.css",
 		"src/js/polyfill.ts"
 	],
-	"main": "./dist/esm/react/index.js",
-	"module": "./dist/esm/react/index.js",
-	"unpkg": "./dist/kintone-ui-component.min.js",
-	"types": "./dist/esm/react/index.d.ts",
+	"main": "./esm/react/index.js",
+	"module": "./esm/react/index.js",
+	"unpkg": "./dist/js/kintone-ui-component.min.js",
+	"types": "index.d.ts",
 	"scripts": {
-		"build": "webpack --mode=production && node scripts/builder.js",
+		"build": "NODE_ENV=production webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
+		"build:umd": "NODE_ENV=production webpack --mode=production",
+		"build:umd:dev": "NODE_ENV=development webpack --mode=development",
 		"transpile": "tsc"
-	},
-	"dependencies": {
-		"react": "16.8.6",
-		"react-dom": "16.8.6"
 	},
 	"peerDependencies": {
 		"react": "16.8.6",

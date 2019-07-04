@@ -5,15 +5,15 @@ import '../../css/Item.css';
 type ItemData = {
     value: string
     label: string
-    isDisabled?: boolean
+    isDisabled: boolean
 }
 
 type ItemProps = ControlProps & {
     value: string
     label: string
     className?: string;
-    isDisabled?: boolean 
-    isSelected?: boolean;
+    isDisabled: boolean 
+    isSelected: boolean;
     onChange?: (item: Item) => void;
 }
 
@@ -53,7 +53,9 @@ class Item extends Control {
         
         this.inputCheckboxElement.addEventListener('change', (e) => {
             this._props.isSelected = this.inputCheckboxElement.checked;
-            this._props.onChange(this)
+            if(this._props.onChange) {
+                this._props.onChange(this)
+            }
         })
         
         this.rerender()

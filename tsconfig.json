@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist/esm",
+    "outDir": "esm",
     "module": "es6",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -19,17 +19,15 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "dist/esm"
+    "declarationDir": "esm"
   },
   "exclude": [
     "node_modules",
-    "src/legacyJS",
-    "src/js",
     "dist",
+    "esm",
     "lib",
     "scripts",
     "webpack.config.js",
-    "src/React/**/*.d.ts"
   ]
 }
   
