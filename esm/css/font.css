@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+:lang(en) *[class|="kuc"] {
+  font-family: 'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
+:lang(en) *[class|="kuc"] .label{
+    font-family: HelveticaNeueW02-55Roma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
+:lang(ja) *[class|="kuc"] {
+    font-family: 'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
+:lang(ja) *[class|="kuc"] .label{
+    font-family: 'メイリオ','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;
+}
+
+:lang(zh) *[class|="kuc"] {
+    font-family: '微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif;
+}
+
+:lang(zh) *[class|="kuc"] .label {
+    font-family: '微软雅黑','Microsoft YaHei','新宋体',NSimSun,STHeiti,Hei,'Heiti SC',sans-serif;
+}
