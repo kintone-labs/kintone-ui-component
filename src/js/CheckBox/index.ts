@@ -1,6 +1,5 @@
 import Control, {ControlProps} from '../Control'
-import Item from '../Checkbox/Item'
-import {ItemData} from '../Checkbox/Item'
+import Item, {ItemData} from '../CheckBox/Item'
 import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
 import '../../css/Checkbox.css'
