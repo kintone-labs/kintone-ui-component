@@ -7,7 +7,7 @@ const libraryName = 'kintone-ui-component';
 const jsUMDConfig = {
     entry: __dirname + '/src/js/index.ts',
     output: {
-        path: __dirname + '/dist/js/',
+        path: __dirname + '/dist/',
         filename: libraryName + '.min.js',
         library: 'kintoneUIComponent',
         libraryTarget: 'umd',
