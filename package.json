@@ -13,6 +13,7 @@
 		"src/css/*.css",
 		"src/js/polyfill.ts"
 	],
+	"files": ["dist", "esm"],
 	"main": "./esm/react/index.js",
 	"module": "./esm/react/index.js",
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
