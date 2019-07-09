@@ -198,7 +198,7 @@ const timeList12H = [
 type TimePickerProps = ControlProps & {
   timeIntervals?: number;
   timeFormat?: string;
-  onTimeClick?: (date: Date | null) => void;
+  onTimeClick?: (date: Date) => void;
 }
 
 class TimePicker extends Control {
@@ -249,9 +249,9 @@ class TimePicker extends Control {
     return this.element;
   }
 
-  rerender(changedAttr?: string[], options?: object) {
+  rerender(changedAttr: string[], options?: object) {
     super.rerender();
-    if (changedAttr.indexOf('offsetLeft') !== -1 && options['left']) {
+    if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
       this.element.style.left = options['left'] + 'px';
     }
   }

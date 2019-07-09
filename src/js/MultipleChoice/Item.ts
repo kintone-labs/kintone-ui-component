@@ -5,15 +5,15 @@ import '../../css/Item.css';
 type ItemData = {
     value: string
     label: string
-    isDisabled?: boolean
+    isDisabled: boolean
 }
 
 type ItemProps = ControlProps & {
     value: string
     label: string
     className?: string;
-    isDisabled?: boolean 
-    isSelected?: boolean;
+    isDisabled: boolean 
+    isSelected: boolean;
     onClick?: (item: Item) => void;
 }
 
@@ -55,7 +55,9 @@ class Item extends Control {
 
         this.on('click',(e) => {
             this._props.isSelected = !this._props.isSelected;
-            this._props.onClick(this)
+            if(this._props.onClick) {
+                this._props.onClick(this)
+            }
             this.rerender(['isSelected'])
         });
         

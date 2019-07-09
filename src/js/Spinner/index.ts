@@ -9,7 +9,7 @@ class Spinner extends Control {
     isVisible: false
   }
 
-  constructor(params) {
+  constructor(params: ControlProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};
