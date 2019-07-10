@@ -38,6 +38,13 @@ nav:
   - Tabs: Reference/Tabs.md
   - Text: Reference/Text.md
   - TextArea: Reference/TextArea.md
+- Guides:
+  - Table: 
+    - Simple table usage with built-in column types (JS): Guides/Table/SimpleTableUsage.md
+    - Advanced table usage with built-in column types (JS): Guides/Table/AdvancedTableUsage.md
+    - Create custom cell with DOM elements (JS): Guides/Table/CustomTableCellNoComponent.md
+    - Create custom cell with ui components (JS): Guides/Table/CustomTableCellWithComponent.md
+    - Implement cell change handler (React): Guides/Table/ReactOnCellChangeExplain.md
 
 markdown_extensions:
   - admonition
