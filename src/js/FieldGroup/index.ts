@@ -39,7 +39,9 @@ class FieldGroup extends Control {
     this.fgTabArrow = document.createElement('span');
     this.fgTabArrow.className = this._getArrowClassName();
     this.fgTabLabel = document.createElement('span');
-    this.fgTabLabel.innerText = this._props.name;
+    if(this._props.name) {
+      this.fgTabLabel.innerText = this._props.name;
+    }
     this.fgTab.appendChild(this.fgTabArrow);
     this.fgTab.appendChild(this.fgTabLabel);
 

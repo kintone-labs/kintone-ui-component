@@ -72,10 +72,12 @@ class RadioButton extends Control {
 
   private _handleItemClick = (itemEl: any) => {
     const inputEl = itemEl.target;
-    this.itemComps.forEach(item => {
+    this.itemComps.some(item => {
       if (item.id === inputEl.id) {
-        return (this._props.value = item.value);
+        this._props.value = item.value;
+        return true
       }
+      return false
     });
     this._props.onChange && this._props.onChange(this._props.value);
   };
@@ -135,7 +137,7 @@ class RadioButton extends Control {
       return false;
     }
     this._props.items.splice(index, 1);
-    this.rerender(['item']);
+    return this.rerender(['item']);
   }
 
   disableItem(value: string) {

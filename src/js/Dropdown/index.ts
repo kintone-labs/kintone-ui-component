@@ -61,10 +61,12 @@ class Dropdown extends Control {
     }
 
     this._props.items &&
-      this._props.items.forEach((item: item, i) => {
+      this._props.items.some((item: item) => {
         if (item.value === this._props.value) {
-          return (this.label = item.label);
+          this.label = item.label
+          return true
         }
+        return false
       });
 
     this.element = this._createDom('div', 'kuc-dropdown-container');
@@ -223,7 +225,7 @@ class Dropdown extends Control {
       return false;
     }
     this._props.items.splice(index, 1);
-    this.rerender(['item']);
+    return this.rerender(['item']);
   }
 
   disableItem(value: string) {

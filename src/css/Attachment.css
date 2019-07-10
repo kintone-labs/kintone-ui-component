@@ -42,6 +42,10 @@
     text-decoration: none;
 }
 
+.kuc-attachment-file-upload-button:focus-within {
+    border: 1px solid #3498db;
+}
+
 .kuc-attachment-file-upload-button-text {
     color: #3498db;
     font-size: 14px;

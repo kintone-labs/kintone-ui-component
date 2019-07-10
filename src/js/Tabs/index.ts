@@ -51,8 +51,8 @@ class Tabs extends Control {
     this.rerender()
   }
 
-  private _validator(): string | null {
-    let err = null
+  private _validator(): string | undefined {
+    let err
     if (this._props.items) {
       this._props.items.forEach((item: Tab, index: number) => {
         if (!item.tabName) {
