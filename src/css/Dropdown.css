@@ -1,6 +1,8 @@
+.kuc-dropdown-container,
 .kuc-dropdown-sub-container,
 .kuc-dropdown-outer {
     display: inline-block;
+    height: 40px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -11,11 +13,6 @@
     display: inline-block;
     overflow: hidden;
     box-sizing: border-box;
-    margin-right: 0;
-    padding: 0 16px;
-    min-width: 80px;
-    max-width: 280px;
-    height: 48px;
     border: 1px solid #e3e7e8;
     background-color: #f7f9fa;
     box-shadow: 1px 1px 1px #fff inset;
@@ -36,22 +33,31 @@
     color: #888;
 }
 .kuc-dropdown-selected {
-    min-width: 118px;
-    height: 48px;
-    padding-right: 48px;
+    width: 139px;
+    height: 38px;
+    padding-right: 39px;
 }
 .kuc-dropdown-selected-name {
     color: #3498db;
     font-size: 14px;
-    line-height: 48px;
+    line-height: 38px;
+}
+.kuc-dropdown-selected-label {
+    padding-left: 24px;
+    width: 114px;
+    height: 38px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .kuc-dropdown-selected-name .icon-arrow-down {
     position: absolute;
-    right: 15px;
 }
 .kuc-dropdown-selected-name .icon-arrow-down svg {
     width: 24px;
     height: 24px;
+    padding: 0 7px;
     vertical-align: middle;
 }
 .kuc-dropdown-selected-name .icon-arrow-down svg path{
@@ -62,8 +68,15 @@
 }
 .kuc-dropdown-sub-container .kuc-list-outer {
     position: absolute;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 400px;
     min-width: 280px;
     z-index: 2000;
+    padding: 8px 0;
+}
+.kuc-dropdown-sub-container .kuc-list-outer .kuc-list-item {
+    padding: 8px 16px 8px 25px
+}
+.kuc-dropdown-sub-container .kuc-list-outer .kuc-list-item-selected {
+    padding: 8px 16px 8px 8px
 }

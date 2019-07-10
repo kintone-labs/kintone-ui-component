@@ -2,7 +2,7 @@ import Control, { ControlProps } from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-import { mdiChevronDown } from '@mdi/js'
+import { mdilChevronDown } from '@mdi/light-js'
 
 import '../../css/Dropdown.css'
 
@@ -117,7 +117,7 @@ class Dropdown extends Control {
 
   private _createDownIconEl() {
     const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
-    pathEl.setAttribute('d', mdiChevronDown)
+    pathEl.setAttribute('d', mdilChevronDown)
 
     const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
     svgEl.appendChild(pathEl)
@@ -146,7 +146,7 @@ class Dropdown extends Control {
       'kuc-dropdown-selected-name'
     );
 
-    this.nameLabelEl = this._createDom('span');
+    this.nameLabelEl = this._createDom('span', 'kuc-dropdown-selected-label');
     this.nameLabelEl.innerText = this.label || '';
     const iconEl = this._createDom('span', 'icon-arrow-down');
     iconEl.appendChild(this._createDownIconEl());
