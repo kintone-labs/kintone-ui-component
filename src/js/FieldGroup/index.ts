@@ -30,8 +30,6 @@ class FieldGroup extends Control {
     }
     this.element = document.createElement('div');
     this.element.className = 'kuc-fieldgroup';
-    const container = document.createElement('div');
-    container.className = 'kuc-fieldgroup-container';
     
     this.fgTab = document.createElement('span');
     this.fgTab.className = this._getClassName();
@@ -52,9 +50,9 @@ class FieldGroup extends Control {
     if (this._props.content) {
       this.fgContents.appendChild(this._props.content);
     }
-    container.appendChild(this.fgTab);
-    container.appendChild(this.fgContents);
-    this.element.appendChild(container);
+
+    this.element.appendChild(this.fgTab);
+    this.element.appendChild(this.fgContents);
   }
 
   private _getClassName() {
