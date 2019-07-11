@@ -8,13 +8,16 @@ type FieldGroupProps = {
   toggle?: string;
   onToggle?: (toggle: string) => void;
   isVisible?: boolean;
+  children?: any;
 }
 
-const FieldGroup = ({content, name, toggle, onToggle, isVisible}: FieldGroupProps) => {
+const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
   if (isVisible === false) {
     return null;
   }
-
+  if (children) {
+    content = children;
+  }
   const _handleToggleClick = () => {
     const toggleState = toggle === 'expand' ? 'collapse' : 'expand';
     onToggle && onToggle(toggleState);
@@ -37,14 +40,16 @@ const FieldGroup = ({content, name, toggle, onToggle, isVisible}: FieldGroupProp
 
   return (
     <div className="kuc-fieldgroup">
-      <span role="button" tabIndex={0} className={_getClassName()} onClick={_handleToggleClick}>
-        <span className={_getArrowClassName()} />
-        <span>{name}</span>
-      </span>
-      <div className="kuc-fieldgroup-contents">
-        {
-          content
-        }
+      <div className="kuc-fieldgroup-container">
+        <span role="button" tabIndex={0} className={_getClassName()} onClick={_handleToggleClick}>
+          <span className={_getArrowClassName()} />
+          <span>{name}</span>
+        </span>
+        <div className="kuc-fieldgroup-contents">
+          {
+            content
+          }
+        </div>
       </div>
     </div>
   );
