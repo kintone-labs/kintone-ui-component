@@ -91,7 +91,7 @@ export default class Table extends Control {
 
   private _renderCells() {
     const table = this._props
-    const rowsEl = [].slice.call(document.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
+    const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
     const columns = [].slice.call(this._props.columns as TableColumnJS[])
     for (const [rowIndex, rowEl] of rowsEl.entries()) {
       const rowData = this._props.data[rowIndex]
