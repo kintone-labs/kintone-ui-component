@@ -7,6 +7,7 @@
     border-style: solid;
     display: inline-block;
     max-width: 98%;
+    min-width: 517px;
     margin: 4px 10px 4px 8px;
     padding: 0px 8px;
 }
@@ -21,11 +22,6 @@
     border: 1px solid transparent;
 }
 
-.kuc-fieldgroup-label.collapse {
-    margin: 12px 0 0 8px;
-    padding: 4px 8px 0 24px;
-}
-
 .kuc-fieldgroup-label:focus {
     outline: 0;
     border: 1px solid #3498db;
@@ -37,7 +33,7 @@
     word-wrap: normal;
     overflow-x: auto;
 }
-  
+
 .kuc-fieldgroup-label.collapse + .kuc-fieldgroup-contents {
-    visibility: collapse;
+    display: none;
 }
