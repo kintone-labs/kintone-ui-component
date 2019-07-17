@@ -3,9 +3,6 @@
 ## Quick start
 * [QuickStart Javascript](Getting-Started/QuickStart-Javascript)
 * [QuickStart React](Getting-Started/QuickStart-React)
-
-> All components are displayed as block (vertically), except for [Table](Reference/Table), [NotifyPopup](Reference/NotifyPopup), [Dialog](Reference/Dialog) and [Spinner](Reference/Spinner) components.
-
 ## References
 * [Alert](Reference/Alert)
 * [Attachment](Reference/Attachment)
