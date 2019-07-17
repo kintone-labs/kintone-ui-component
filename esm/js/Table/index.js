@@ -55,7 +55,7 @@ var Table = /** @class */ (function (_super) {
     };
     Table.prototype._renderCells = function () {
         var table = this._props;
-        var rowsEl = [].slice.call(document.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'));
+        var rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'));
         var columns = [].slice.call(this._props.columns);
         for (var _i = 0, _a = rowsEl.entries(); _i < _a.length; _i++) {
             var _b = _a[_i], rowIndex = _b[0], rowEl = _b[1];

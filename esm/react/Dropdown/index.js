@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Message from '../constant/Message';
 import { Item, AbstractSingleSelection } from '../index';
-import { mdiChevronDown } from '@mdi/js';
+import { mdilChevronDown } from '@mdi/light-js';
 import '../../css/font.css';
 import '../../css/Dropdown.css';
 var Dropdown = function (_a) {
@@ -59,10 +59,10 @@ var Dropdown = function (_a) {
                 React.createElement("div", { className: className.join(' ').trim() },
                     React.createElement("div", { className: "kuc-dropdown-selected" },
                         React.createElement("span", { className: "kuc-dropdown-selected-name" },
-                            React.createElement("span", null, index !== -1 && items[index].label),
+                            React.createElement("span", { className: "kuc-dropdown-selected-label" }, index !== -1 && items[index].label),
                             React.createElement("span", { className: "icon-arrow-down" },
                                 React.createElement("svg", null,
-                                    React.createElement("path", { d: mdiChevronDown }))))))),
+                                    React.createElement("path", { d: mdilChevronDown }))))))),
             React.createElement("div", { style: _getItemsStyle(), className: "kuc-list-outer" }, listItemEl))));
 };
 export default Dropdown;

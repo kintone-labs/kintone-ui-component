@@ -10,20 +10,23 @@ export default function Picker(props) {
     var _a = useState(props.hexString), hexString = _a[0], setHexString = _a[1];
     var _b = useState(hexToRgb(hexString)), rgb = _b[0], setRGB = _b[1];
     var _c = useState(rgbToHsv(rgb.r, rgb.g, rgb.b)), hsv = _c[0], setHSV = _c[1];
-    var _d = useState(rgb), saturationBackground = _d[0], setSaturationBackground = _d[1];
+    var _d = useState(false), fromSat = _d[0], setFromSat = _d[1];
+    var _e = useState(rgb), saturationBackground = _e[0], setSaturationBackground = _e[1];
     function handleHue(newRgb) {
         setSaturationBackground(newRgb);
         setRGB(newRgb);
         setHSV(rgbToHsv(rgb.r, rgb.g, rgb.b));
+        props.onChange(rgbToHex(newRgb.r, newRgb.g, newRgb.b));
     }
     function handleSaturation(newRgb) {
+        setFromSat(true);
         props.onChange(rgbToHex(newRgb.r, newRgb.g, newRgb.b));
     }
     if (props.hexString !== hexString) {
         var newRGB = hexToRgb(props.hexString);
         setHexString(props.hexString);
         setRGB(newRGB);
-        setSaturationBackground(newRGB);
+        !fromSat && setSaturationBackground(newRGB);
         setHSV(rgbToHsv(newRGB.r, newRGB.g, newRGB.b));
     }
     var saturationProps = {
@@ -44,16 +47,14 @@ export default function Picker(props) {
             React.createElement("br", null),
             React.createElement(HSVInput, { hsv: hsv, onChange: props.onChange })),
         React.createElement("div", null,
-            React.createElement("span", null,
-                React.createElement(Button, { text: "OK", type: "submit", onClick: function () {
-                        props.onSubmit(hexString);
-                    } })),
-            React.createElement("span", null,
-                React.createElement(Button, { text: "Cancel", onClick: function () {
-                        var oldRGB = hexToRgb(props.hexString);
-                        setSaturationBackground(oldRGB);
-                        setRGB(oldRGB);
-                        setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
-                        props.onCancel();
-                    } })))));
+            React.createElement(Button, { style: { display: 'inline-block' }, text: "OK", type: "submit", onClick: function () {
+                    props.onSubmit(hexString);
+                } }),
+            React.createElement(Button, { style: { display: 'inline-block' }, text: "Cancel", onClick: function () {
+                    var oldRGB = hexToRgb(props.hexString);
+                    setSaturationBackground(oldRGB);
+                    setRGB(oldRGB);
+                    setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));
+                    props.onCancel();
+                } }))));
 }

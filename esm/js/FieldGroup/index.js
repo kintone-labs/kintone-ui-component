@@ -14,6 +14,8 @@ var FieldGroup = /** @class */ (function (_super) {
         }
         _this.element = document.createElement('div');
         _this.element.className = 'kuc-fieldgroup';
+        var container = document.createElement('div');
+        container.className = 'kuc-fieldgroup-container';
         _this.fgTab = document.createElement('span');
         _this.fgTab.className = _this._getClassName();
         _this.fgTab.setAttribute('role', 'button');
@@ -32,8 +34,9 @@ var FieldGroup = /** @class */ (function (_super) {
         if (_this._props.content) {
             _this.fgContents.appendChild(_this._props.content);
         }
-        _this.element.appendChild(_this.fgTab);
-        _this.element.appendChild(_this.fgContents);
+        container.appendChild(_this.fgTab);
+        container.appendChild(_this.fgContents);
+        _this.element.appendChild(container);
         return _this;
     }
     FieldGroup.prototype._getClassName = function () {

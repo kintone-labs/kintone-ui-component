@@ -2,9 +2,12 @@ import React from 'react';
 import '../../css/font.css';
 import '../../css/FieldGroup.css';
 var FieldGroup = function (_a) {
-    var content = _a.content, name = _a.name, toggle = _a.toggle, onToggle = _a.onToggle, isVisible = _a.isVisible;
+    var content = _a.content, name = _a.name, toggle = _a.toggle, onToggle = _a.onToggle, isVisible = _a.isVisible, children = _a.children;
     if (isVisible === false) {
         return null;
+    }
+    if (children) {
+        content = children;
     }
     var _handleToggleClick = function () {
         var toggleState = toggle === 'expand' ? 'collapse' : 'expand';
@@ -24,9 +27,10 @@ var FieldGroup = function (_a) {
         ].join(' ').trim();
     };
     return (React.createElement("div", { className: "kuc-fieldgroup" },
-        React.createElement("span", { role: "button", tabIndex: 0, className: _getClassName(), onClick: _handleToggleClick },
-            React.createElement("span", { className: _getArrowClassName() }),
-            React.createElement("span", null, name)),
-        React.createElement("div", { className: "kuc-fieldgroup-contents" }, content)));
+        React.createElement("div", { className: "kuc-fieldgroup-container" },
+            React.createElement("span", { role: "button", tabIndex: 0, className: _getClassName(), onClick: _handleToggleClick },
+                React.createElement("span", { className: _getArrowClassName() }),
+                React.createElement("span", null, name)),
+            React.createElement("div", { className: "kuc-fieldgroup-contents" }, content))));
 };
 export default FieldGroup;

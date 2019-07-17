@@ -3,7 +3,7 @@ import Control from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-import { mdiChevronDown } from '@mdi/js';
+import { mdilChevronDown } from '@mdi/light-js';
 import '../../css/Dropdown.css';
 var Dropdown = /** @class */ (function (_super) {
     tslib_1.__extends(Dropdown, _super);
@@ -54,7 +54,7 @@ var Dropdown = /** @class */ (function (_super) {
             }
             var selectedEl = _this._createDom('div', 'kuc-dropdown-selected');
             var selectedNameEl = _this._createDom('span', 'kuc-dropdown-selected-name');
-            _this.nameLabelEl = _this._createDom('span');
+            _this.nameLabelEl = _this._createDom('span', 'kuc-dropdown-selected-label');
             _this.nameLabelEl.innerText = _this.label || '';
             var iconEl = _this._createDom('span', 'icon-arrow-down');
             iconEl.appendChild(_this._createDownIconEl());
@@ -119,7 +119,7 @@ var Dropdown = /** @class */ (function (_super) {
     };
     Dropdown.prototype._createDownIconEl = function () {
         var pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        pathEl.setAttribute('d', mdiChevronDown);
+        pathEl.setAttribute('d', mdilChevronDown);
         var svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgEl.appendChild(pathEl);
         return svgEl;

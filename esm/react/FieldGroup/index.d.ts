@@ -7,6 +7,7 @@ declare type FieldGroupProps = {
     toggle?: string;
     onToggle?: (toggle: string) => void;
     isVisible?: boolean;
+    children?: any;
 };
-declare const FieldGroup: ({ content, name, toggle, onToggle, isVisible }: FieldGroupProps) => JSX.Element | null;
+declare const FieldGroup: ({ content, name, toggle, onToggle, isVisible, children }: FieldGroupProps) => JSX.Element | null;
 export default FieldGroup;
