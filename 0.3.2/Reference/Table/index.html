@@ -555,33 +555,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guides" title="Guides" class="md-nav__link">
-    Guides
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple-table-usage-with-built-in-column-types-js" title="Simple table usage with built-in column types (JS)" class="md-nav__link">
-    Simple table usage with built-in column types (JS)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advanced-table-usage-with-built-in-column-types-js" title="Advanced table usage with built-in column types (JS)" class="md-nav__link">
-    Advanced table usage with built-in column types (JS)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#methods" title="Methods" class="md-nav__link">
     Methods
   </a>
@@ -723,114 +696,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Guides
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Guides
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
-    
-    <label class="md-nav__link" for="nav-4-1">
-      Table
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-1">
-        Table
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Guides/Table/SimpleTableUsage/" title="Simple table usage with built-in column types (JS)" class="md-nav__link">
-      Simple table usage with built-in column types (JS)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Guides/Table/AdvancedTableUsage/" title="Advanced table usage with built-in column types (JS)" class="md-nav__link">
-      Advanced table usage with built-in column types (JS)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Guides/Table/CustomTableCellNoComponent/" title="Create custom cell with DOM elements (JS)" class="md-nav__link">
-      Create custom cell with DOM elements (JS)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Guides/Table/CustomTableCellWithComponent/" title="Create custom cell with ui components (JS)" class="md-nav__link">
-      Create custom cell with ui components (JS)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Guides/Table/ReactOnCellChangeExplain/" title="Implement cell change handler (React)" class="md-nav__link">
-      Implement cell change handler (React)
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -862,33 +727,6 @@
   <a href="#constructor" title="Constructor" class="md-nav__link">
     Constructor
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#guides" title="Guides" class="md-nav__link">
-    Guides
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple-table-usage-with-built-in-column-types-js" title="Simple table usage with built-in column types (JS)" class="md-nav__link">
-    Simple table usage with built-in column types (JS)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advanced-table-usage-with-built-in-column-types-js" title="Advanced table usage with built-in column types (JS)" class="md-nav__link">
-    Advanced table usage with built-in column types (JS)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1076,13 +914,13 @@
 <td>The row template.</td>
 </tr>
 <tr>
-<td>options.columns[columnIndex].cell</td>
+<td>options.columns[x].cell</td>
 <td>Function</td>
 <td>Yes</td>
-<td>Returns cell template object. Cell template object must implement init and update functions <br> - init: to return DOM element for initializing cell's DOM <br> - update: to update DOM of the cell based on the data returned <br><br><b>Related guides:</b><br><a href="../../Guides/Table/CustomTableCellNoComponent/">Create custom cell with DOM elements (JS)</a><br><a href="../../Guides/Table/CustomTableCellWithComponent/">Create custom cell with kintone UI Components (JS)</a></td>
+<td>Returns cell template object. Cell template object must implement init and update functions <br> - init: to return DOM element for initializing cell's DOM <br> - update: to update DOM of the cell based on the data returned</td>
 </tr>
 <tr>
-<td>options.columns[columnIndex].header</td>
+<td>options.columns[x].header</td>
 <td>String</td>
 <td>Yes</td>
 <td>Header of column.</td>
@@ -1103,7 +941,7 @@
 <td>options.onCellChange</td>
 <td>Callback</td>
 <td>No</td>
-<td>Handler for cell change event. <br>Return row data object to overwrite default row data object.<br><br><b>Related guides:<br></b><a href="../../Guides/Table/ReactOnCellChangeExplain/">Implement cell change handler (React)</a></td>
+<td>Handler for cell change event. <br>Return row data object to overwrite default row data object.</td>
 </tr>
 <tr>
 <td>options.onRowAdd</td>
@@ -1119,10 +957,482 @@
 </tr>
 </tbody>
 </table>
-<h2 id="guides">Guides</h2>
-<p>Below are some guides to show and explain how to work with this table component</p>
-<h4 id="simple-table-usage-with-built-in-column-types-js"><a href="../../Guides/Table/SimpleTableUsage/">Simple table usage with built-in column types (JS)</a></h4>
-<h4 id="advanced-table-usage-with-built-in-column-types-js"><a href="../../Guides/Table/AdvancedTableUsage/">Advanced table usage with built-in column types (JS)</a></h4>
+<p><details class="tab-container" open>
+<Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code>(function(){
+  // custom cell containing 2 text fields
+  var customCell = function() {
+    return {
+      init: function({rowData, updateRowData}) {
+        var span = document.createElement('span');
+        var textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
+        var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
+        span.appendChild(textfield1.render());
+        span.appendChild(textfield2.render());
+        textfield1.on('change', function(newValue){
+          updateRowData({text1: {value: newValue}}, false);
+        });
+        textfield2.on('change', function(newValue){
+          updateRowData({text2: {value: newValue}}, false);
+        });
+        this.textfield1 = textfield1;
+        this.textfield2 = textfield2;
+        return span;
+      },
+      update: function({ rowData }) {
+        var text1val = rowData.text1;
+        var text2val = rowData.text2;
+        if (text1val &amp;&amp; this.textfield1._reactObject) {
+          this.textfield1.setValue(text1val.value);
+        }
+        if (text2val &amp;&amp; this.textfield2._reactObject) {
+          this.textfield2.setValue(text2val.value);
+        }
+      }
+    }
+  };
+
+  // initial data of a table
+  var initialData = [
+    {
+      text: { value: 'text field' },
+      text1: { value: 'text field 1' },
+      text2: { value: 'text field 2' },
+      // initial data of radio buttons
+      fruit: {
+        name: 'fruit',
+        items: [
+             {
+                 label: 'Orange',
+                 value: 'Orange',
+                 isDisabled: false
+             },
+             {
+                 label: 'Banana',
+                 value: 'Banana',
+                 isDisabled: true
+             },
+             {
+                 label: 'Lemon',
+                 value: 'Lemon',
+                 isDisabled: true
+             },
+         ],
+        value: 'Banana'
+      },
+      // initial data of multiple choices
+      colors: {
+        items: [
+             {
+                 label: 'Red',
+                 value: 'red',
+                 isDisabled: false
+             },
+             {
+                 label: 'Green',
+                 value: 'green',
+                 isDisabled: true
+             },
+             {
+                 label: 'Blue',
+                 value: 'blue',
+                 isDisabled: true
+             },
+         ],
+        value: ['red']
+      },
+      // initial data of checkbox
+      vegetables: {
+        items: [
+             {
+                 label: 'Potato',
+                 value: 'potato',
+                 isDisabled: false
+             },
+             {
+                 label: 'Celery',
+                 value: 'celery',
+                 isDisabled: false
+             },
+             {
+                 label: 'Carrot',
+                 value: 'carrot',
+                 isDisabled: true
+             },
+         ],
+        value: ['potato', 'celery']
+      },
+      // initial data of dropdown
+      toys: {
+        items: [
+             {
+                 label: 'Cars',
+                 value: 'cars',
+                 isDisabled: false
+             },
+             {
+                 label: 'Robots',
+                 value: 'robots',
+                 isDisabled: false
+             },
+             {
+                 label: 'Animals',
+                 value: 'animals',
+                 isDisabled: true
+             },
+         ],
+        value: 'cars'
+      },
+      label: {
+        text: 'Name',
+        textColor: '#e74c3c',
+        backgroundColor: 'yellow',
+        isRequired: true
+      },
+      iconBtn: {
+        type: 'insert',
+        color:'blue',
+        size: 'small'
+      },
+      alert: {
+        text: 'Network error',
+        type: 'error'
+      }
+    },
+  ];
+
+  // default row data of a table, this data will be used to create new row
+  var defaultRowData = {
+    text: { value: 'text field' },
+    text1: { value: 'text field 1' },
+    text2: { value: 'text field 2' },
+    // default data of radio buttons
+    fruit: {
+      name: 'fruit',
+      items: [
+           {
+               label: 'Orange',
+               value: 'Orange',
+               isDisabled: false
+           },
+           {
+               label: 'Banana',
+               value: 'Banana',
+               isDisabled: true
+           },
+           {
+               label: 'Lemon',
+               value: 'Lemon',
+               isDisabled: true
+           },
+       ],
+      value: 'Banana'
+    },
+    // default data of multiple choices
+    colors: {
+      items: [
+           {
+               label: 'Red',
+               value: 'red',
+               isDisabled: false
+           },
+           {
+               label: 'Green',
+               value: 'green',
+               isDisabled: true
+           },
+           {
+               label: 'Blue',
+               value: 'blue',
+               isDisabled: true
+           },
+       ],
+      value: ['red']
+    },
+    // default data of checkbox
+    vegetables: {
+      items: [
+           {
+               label: 'Potato',
+               value: 'potato',
+               isDisabled: false
+           },
+           {
+               label: 'Celery',
+               value: 'celery',
+               isDisabled: true
+           },
+           {
+               label: 'Carrot',
+               value: 'carrot',
+               isDisabled: true
+           },
+       ],
+      value: ['potato', 'celery']
+    },
+    // default data of dropdown
+    toys: {
+      items: [
+           {
+               label: 'Cars',
+               value: 'cars',
+               isDisabled: false
+           },
+           {
+               label: 'Robots',
+               value: 'robots',
+               isDisabled: false
+           },
+           {
+               label: 'Animals',
+               value: 'animals',
+               isDisabled: true
+           },
+       ],
+      value: 'cars'
+    },
+    label: {
+      text: 'Name',
+      textColor: '#e74c3c',
+      backgroundColor: 'yellow',
+      isRequired: true
+    },
+    iconBtn: {
+      type: 'insert',
+      color:'blue',
+      size: 'small'
+    },
+    alert: {
+      text: 'Network error',
+      type: 'error'
+    }
+  };
+
+  // return this data to override default row data onRowAdd
+  var overriddenRowData = {
+    text: {value: 'overwritten field value'},
+    text1: { value: 'overwritten field1 value' },
+    text2: { value: 'overwritten field2 value' },
+    // overriden data of radio buttons
+    fruit: {
+      name: 'fruit',
+      items: [
+           {
+               label: 'Orange',
+               value: 'Orange',
+               isDisabled: true
+           },
+           {
+               label: 'Banana',
+               value: 'Banana',
+               isDisabled: false
+           },
+           {
+               label: 'Lemon',
+               value: 'Lemon',
+               isDisabled: false
+           },
+       ],
+      value: 'Banana'
+    },
+    // overriden data of multiple choices
+    colors: {
+      items: [
+           {
+               label: 'Red',
+               value: 'red',
+               isDisabled: false
+           },
+           {
+               label: 'Green',
+               value: 'green',
+               isDisabled: true
+           },
+           {
+               label: 'Blue',
+               value: 'blue',
+               isDisabled: true
+           },
+       ],
+      value: ['red']
+    },
+    // overriden data of checkbox
+    vegetables: {
+      items: [
+           {
+               label: 'Potato',
+               value: 'potato',
+               isDisabled: false
+           },
+           {
+               label: 'Celery',
+               value: 'celery',
+               isDisabled: true
+           },
+           {
+               label: 'Carrot',
+               value: 'carrot',
+               isDisabled: false
+           },
+       ],
+      value: ['potato', 'celery']
+    },
+    // overriden data of dropdown
+    toys: {
+      items: [
+           {
+               label: 'Cars',
+               value: 'cars',
+               isDisabled: false
+           },
+           {
+               label: 'Robots',
+               value: 'robots',
+               isDisabled: false
+           },
+           {
+               label: 'Animals',
+               value: 'animals',
+               isDisabled: true
+           },
+       ],
+      value: 'cars'
+    },
+    label: {
+      text: 'Name',
+      textColor: '#e74c3c',
+      backgroundColor: 'yellow',
+      isRequired: true
+    },
+    iconBtn: {
+      type: 'insert',
+      color:'blue',
+      size: 'small'
+    },
+    alert: {
+      text: 'Network error',
+      type: 'error'
+    }
+  };
+
+  var table = new kintoneUIComponent.Table({
+    // initial table data
+    data: initialData,
+    // default row data on row add
+    defaultRowData: defaultRowData,
+    onRowAdd: function(e) {
+      console.log('table.onAdd', e);
+      // if onRowAdd does not return anything, defaultRowData will be used to create new table row
+      // if below row data is returned, it will override defaultRowData to be used to create new table row
+      return JSON.parse(JSON.stringify(overriddenRowData));
+    },
+    columns: [
+      {
+        header: 'Text',
+        cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+      },
+      {
+        header: 'Radio',
+        cell: function() { return kintoneUIComponent.createTableCell('radio', 'fruit') }
+      },
+      {
+        header: 'Multichoice',
+        cell: function() { return kintoneUIComponent.createTableCell('multichoice', 'colors') }
+      },
+      {
+        header: 'Checkbox',
+        cell: function() { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') }
+      },
+      {
+        header: 'Dropdown',
+        cell: function() { return kintoneUIComponent.createTableCell('dropdown', 'toys') }
+      },
+      {
+        header: 'Label',
+        cell: function() { return kintoneUIComponent.createTableCell('label', 'label') }
+      },
+      {
+        header: 'Icon Button',
+        cell: function() { return kintoneUIComponent.createTableCell('icon', 'iconBtn', {onClick:function(event){
+          alert('icon button clicked')
+        }}) }
+      },
+      {
+        header: 'Alert',
+        cell: function() { return kintoneUIComponent.createTableCell('alert', 'alert') }
+      },
+      {
+        header: 'Custom cell contains 2 textfields',
+        cell: function() { return customCell() }
+      },
+    ]
+  });
+  kintone.app.getHeaderSpaceElement().appendChild(table.render());
+})();
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code>import React from 'react';
+import { Table, Text} from '@kintone/kintone-ui-component';
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        {text: 'this is a text field'}
+      ],
+      // default row data on row add
+      defaultRowData: {text: 'default text field value'}
+    }
+  }
+
+  handleRowAdd = ({data}) =&gt; {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleRowRemove = ({data}) =&gt; {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleCellChange = ({data}) =&gt; {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  render() {
+    const {tableData, defaultRowData} = this.state;
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({ rowIndex, onCellChange }) =&gt; {
+          return (
+            &lt;Text
+              value={tableData[rowIndex].text}
+              onChange={newValue =&gt; onCellChange(newValue, tableData, rowIndex, 'text')}
+            /&gt;
+          )
+        }
+      },
+    ];
+    return (
+      &lt;Table
+        columns={columns}
+        data={this.state.tableData}
+        defaultRowData={defaultRowData}
+        onRowAdd={this.handleRowAdd}
+        onRowRemove={this.handleRowRemove}
+        onCellChange={this.handleCellChange}
+      /&gt;
+    );
+  }
+}
+</code></pre>
+
+<p></details></p>
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
