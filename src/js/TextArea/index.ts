@@ -18,8 +18,8 @@ class TextArea extends Control {
   private mixTextAreaWidth = 297
   private mixtTextAreaHeight = 123
 
-  private currentX = null
-  private currentY = null
+  private currentX: number | null = null
+  private currentY: number | null = null
   private translateX = 0
   private translateY = 0
   

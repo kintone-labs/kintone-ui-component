@@ -19,7 +19,7 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
   if (!fieldName) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
-  const init = ({updateRowData, rowIndex, table}) => {
+  const init = ({updateRowData, rowIndex, table}: any) => {
     switch (type) {
       case 'text':
         FieldComponent = Text;
@@ -86,7 +86,7 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
     }
     return dom;
   };
-  const update = ({rowData}) => {
+  const update = ({rowData}: any) => {
     const cellData = rowData[fieldName] || {};
     if (cellData && field.setValue) {
       field.setValue(cellData.value);

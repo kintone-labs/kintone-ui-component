@@ -1,7 +1,7 @@
 class Elements {
-  private elArr = []
+  private elArr: HTMLElement[] = []
 
-  constructor(selector) {
+  constructor(selector: string | HTMLElement) {
     if (typeof selector === 'string') {
       const elNodeList = document.querySelectorAll(selector);
       this.elArr = Array.prototype.slice.call(elNodeList);
@@ -10,26 +10,26 @@ class Elements {
     }
   }
 
-  on(eventName, callbackFunction) {
-    this.each((el) => {
+  on(eventName: string, callbackFunction: EventListener) {
+    this.each((el: HTMLElement) => {
       el.addEventListener(eventName, callbackFunction);
     });
     return this;
   }
 
-  each(callbackFunction) {
-    this.elArr.forEach((el, index) => {
-      callbackFunction(el, index);
+  each(callbackFunction: (el: HTMLElement)=>void) {
+    this.elArr.forEach((el) => {
+      callbackFunction(el);
     }, this);
   }
 
-  data(dataKey, dataValue) {
+  data(dataKey: number, dataValue: any) {
     const prefixKey = 'data-';
     if (typeof dataValue === 'undefined') {
       return this.elArr[0].getAttribute(prefixKey + dataKey);
     }
     try {
-      this.elArr.forEach(function(el) {
+      this.elArr.forEach(() => {
         this.attr(prefixKey + dataKey, dataValue);
       }, this);
     } catch (e) {
@@ -38,7 +38,7 @@ class Elements {
     return this;
   }
 
-  attr(attrKey, attrValue) {
+  attr(attrKey: string, attrValue: any) {
     if (this.elArr.length === 0) {
       return typeof attrValue !== 'undefined' ? this : null;
     }
@@ -51,27 +51,27 @@ class Elements {
     return this.elArr[0].getAttribute(attrKey);
   }
 
-  removeAttr(attrKey) {
+  removeAttr(attrKey: string) {
     this.elArr.forEach((el) => {
       el.removeAttribute(attrKey);
     }, this);
     return this;
   }
 
-  val(value) {
+  val(value: any) {
     if (this.elArr.length === 0) {
       return typeof value !== 'undefined' ? this : null;
     }
     if (typeof value !== 'undefined') {
       this.elArr.forEach((el) => {
-        el.value = value;
+        el['value'] = value;
       }, this);
       return this;
     }
-    return this.elArr[0].value;
+    return this.elArr[0]['value'];
   }
 
-  html(value) {
+  html(value: any) {
     if (this.elArr.length === 0) {
       return typeof value !== 'undefined' ? this : null;
     }
@@ -97,14 +97,16 @@ class Elements {
     }
     this.elArr.forEach((el) => {
       try {
-        el.parentNode.removeChild(el);
+        if(el.parentNode) {
+          el.parentNode.removeChild(el);
+        }
       } catch (e) {
         //
       }
     }, this);
   }
 
-  trigger(eventName) {
+  trigger(eventName: string) {
     if (this.elArr.length === 0) {
       return;
     }
@@ -125,7 +127,7 @@ class Elements {
     }, this);
   }
 
-  addClass(className) {
+  addClass(className: string) {
     try {
       this.elArr.forEach((el) => {
         const classNameArr = el.className.split(' ');
@@ -140,7 +142,7 @@ class Elements {
     }
   }
 
-  removeClass(class_name) {
+  removeClass(class_name: string) {
     try {
       if (!this.hasClass(class_name)) {
         return this;
@@ -157,7 +159,7 @@ class Elements {
     }
   }
 
-  hasClass(class_name) {
+  hasClass(class_name: string) {
     if (typeof class_name === 'undefined') {
       return false;
     }
@@ -169,16 +171,18 @@ class Elements {
     }
   }
 
-  append(elements) {
+  append(elements: Elements[]|HTMLElement[]|Elements|HTMLElement) {
     try {
-      this.elArr.forEach(function(currentEl) {
-        if (elements.constructor === Array) {
-          elements.forEach((el) => {
-            currentEl.appendChild(el.elArr ? el.elArr[0] || null : el);
+      this.elArr.forEach((currentEl) => {
+        if (Array.isArray(elements)) {
+          elements.forEach((el: Elements | HTMLElement) => {
+            let child = (el as Elements).elArr ? (el as Elements).elArr[0] || null : el as HTMLElement
+            currentEl.appendChild(child);
           });
           return this;
         }
-        currentEl.appendChild(elements.elArr ? elements.elArr[0] || null : elements);
+        let child = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement
+        currentEl.appendChild(child);
         return this;
       }, this);
       return this;
@@ -187,17 +191,17 @@ class Elements {
     }
   }
 
-  appendTo(elements) {
+  appendTo(elements: Elements[]|HTMLElement[]|Elements|HTMLElement) {
     try {
-      this.elArr.forEach(function(currentEl) {
-        if (elements.constructor === Array) {
-          elements.forEach((elChild) => {
-            const ele = elChild.elArr ? elChild.elArr[0] || null : elChild;
+      this.elArr.forEach((currentEl) => {
+        if (Array.isArray(elements)) {
+          elements.forEach((elChild: Elements | HTMLElement) => {
+            const ele = (elChild as Elements).elArr ? (elChild as Elements).elArr[0] || null : elChild as HTMLElement;
             ele.appendChild(currentEl);
           });
           return this;
         }
-        const ele = elements.elArr ? elements.elArr[0] || null : elements;
+        const ele = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement;
         ele.appendChild(currentEl);
         return this;
       }, this);
@@ -208,18 +212,18 @@ class Elements {
     }
   }
 
-  prepend(element) {
+  prepend(elements: Elements[]|HTMLElement[]|Elements|HTMLElement) {
     try {
       this.elArr.forEach((currentEl) => {
-        if (element.constructor === Array) {
-          element.forEach((el) => {
-            currentEl.insertBefore(el.elArr ? el.elArr[0] || null : el,
+        if (Array.isArray(elements)) {
+          elements.forEach((el: Elements | HTMLElement) => {
+            currentEl.insertBefore((el as Elements).elArr ? (el as Elements).elArr[0] || null : el as HTMLElement,
               currentEl.firstChild);
           });
           return this;
         }
-        currentEl.insertBefore(element.elArr ? element.elArr[0] || null : element,
-          currentEl.firstChild);
+        let domElement = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement
+        currentEl.insertBefore(domElement, currentEl.firstChild);
         return this;
       });
       return this;
@@ -229,7 +233,7 @@ class Elements {
   }
 }
 
-const elements = function(selector) {
+const elements = function(selector: any) {
   return new Elements(selector);
 };
 
