@@ -14,8 +14,6 @@ class Text extends Control {
     }
   }
 
-  private _onChange: (params?: any) => void = () => {}
-
   constructor(params: TextProps) {
     super();
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
@@ -31,10 +29,6 @@ class Text extends Control {
     if(this._props.value) {
       (this.element as HTMLInputElement).value = this._props.value;
     }
-    this.element.onchange = (e) => {
-      this._props.value = (e.target as HTMLInputElement).value;
-      this._onChange(e);
-    };
   }
 
   render() {
@@ -56,10 +50,6 @@ class Text extends Control {
   }
   
   on(eventName: string, callback: (params?: any) => void) {
-    if(eventName === 'change') {
-      this._onChange = callback;
-      return;
-    }
     this.element.addEventListener(eventName, (e: Event)=>{
       if (this._props.isDisabled) return;
       callback(e);
