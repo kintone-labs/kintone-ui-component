@@ -16,9 +16,7 @@ export default function HueSpectrum(props: HueSpectrumProps) {
     const w = props.width;
     const h = props.height;
     const container = useRef<HTMLDivElement>(null);
-    // const container = createRef<HTMLDivElement>();
     const hueCanvas = useRef<HTMLCanvasElement>(null);
-    // const hueCanvas = createRef<HTMLCanvasElement>();
     const [hasInitLayout, setHasInitLayout] = useState(false);
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
@@ -58,11 +56,6 @@ export default function HueSpectrum(props: HueSpectrumProps) {
         }   
     }
 
-    function initContainerEl() {
-        if (container && container.current) {
-            setContainerEl(container.current.getBoundingClientRect());
-        }
-    }
 
     function handleMouseDown() {
         setIsMouseDown(true);
@@ -70,12 +63,18 @@ export default function HueSpectrum(props: HueSpectrumProps) {
 
     function handleMouseUp(e: React.MouseEvent<EventTarget>) {
         triggerSelect(e.clientY);
+        if (container && container.current) {
+            setContainerEl(container.current.getBoundingClientRect());
+        }
         setIsMouseDown(false);
     }
 
     function handleMouseMove(e: React.MouseEvent<EventTarget>) {
         if (isMouseDown) {
             triggerSelect(e.clientY);
+            if (container && container.current) {
+                setContainerEl(container.current.getBoundingClientRect());
+            }
         }
     }
 
@@ -85,7 +84,6 @@ export default function HueSpectrum(props: HueSpectrumProps) {
 
     useEffect(() => {
         initLayout();
-        initContainerEl();
     });
 
     return (
