@@ -137,7 +137,8 @@ const DateTime = ({
     if(setNewTimeDateValue && !pickerDisplay) {
       setTimeDateValue(newTimeDateValue)
     }
-  })
+    setInputValue(format(value, dateFormat))
+  }, [value])
 
   if(typeof isDisabled !== 'boolean') {
     isDisabled = false
