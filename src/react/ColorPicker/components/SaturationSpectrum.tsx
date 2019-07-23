@@ -57,24 +57,26 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
         }
     }
 
+    function initContainerEl() {
+        if (container && container.current) {	
+            setContainerEl(container.current.getBoundingClientRect());	
+        }	
+    }
+
     function handleMouseDown() {
         setIsMouseDown(true);
     }
 
     function handleMouseUp(e: React.MouseEvent<EventTarget>) {
         triggerSelect(e.clientX, e.clientY);
-        if (container && container.current) {
-            setContainerEl(container.current.getBoundingClientRect());
-        }
+        initContainerEl();
         setIsMouseDown(false);
     }
 
     function handleMouseMove(e: React.MouseEvent<EventTarget>) {
         if (isMouseDown) {
             triggerSelect(e.clientX, e.clientY);
-            if (container && container.current) {
-                setContainerEl(container.current.getBoundingClientRect());
-            }
+            initContainerEl();
         }
     }
 
