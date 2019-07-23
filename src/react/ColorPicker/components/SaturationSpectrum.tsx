@@ -58,9 +58,9 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
     }
 
     function initContainerEl() {
-        if (container && container.current) {	
-            setContainerEl(container.current.getBoundingClientRect());	
-        }	
+        if (container && container.current) {
+            setContainerEl(container.current.getBoundingClientRect());
+        }
     }
 
     function handleMouseDown() {

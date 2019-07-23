@@ -57,9 +57,9 @@ export default function HueSpectrum(props: HueSpectrumProps) {
     }
 
     function initContainerEl() {
-        if (container && container.current) {	
-            setContainerEl(container.current.getBoundingClientRect());	
-        }	
+        if (container && container.current) {
+            setContainerEl(container.current.getBoundingClientRect());
+        }
     }
 
     function handleMouseDown() {
