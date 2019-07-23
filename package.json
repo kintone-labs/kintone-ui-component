@@ -22,10 +22,10 @@
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
 	"types": "index.d.ts",
 	"scripts": {
-		"build": "NODE_ENV=production webpack --mode=production && node scripts/builder.js",
+		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
-		"build:umd": "NODE_ENV=production webpack --mode=production",
-		"build:umd:dev": "NODE_ENV=development webpack --mode=development",
+		"build:umd": "webpack --mode=production",
+		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc"
 	},
 	"dependencies": {
