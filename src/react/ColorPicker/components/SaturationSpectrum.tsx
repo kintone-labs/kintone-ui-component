@@ -69,12 +69,14 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
 
     function handleMouseUp(e: React.MouseEvent<EventTarget>) {
         triggerSelect(e.clientX, e.clientY);
+        initContainerEl();
         setIsMouseDown(false);
     }
 
     function handleMouseMove(e: React.MouseEvent<EventTarget>) {
         if (isMouseDown) {
-        triggerSelect(e.clientX, e.clientY);
+            triggerSelect(e.clientX, e.clientY);
+            initContainerEl();
         }
     }
 
@@ -84,7 +86,6 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
 
     useEffect(() => {
         fillSatSpectrumCanvas();
-        initContainerEl();
     });
 
     return (
