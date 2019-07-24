@@ -29,6 +29,7 @@ const DateTime = ({
   dateFormat = 'MM/dd/YYYY',
   type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
+  const [defaultValue, setDefaultValue] = useState(value);
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
@@ -120,6 +121,13 @@ const DateTime = ({
   }
 
   useEffect(()=>{
+    if(defaultValue !== value) {
+      setDefaultValue(value);
+      setInputValue(format(value, dateFormat));
+      setTimeValue(format(value, timeFormat));
+      setTimeDateValue(new Date(value));
+    }
+
     const newTimeDateValue = new Date(timeDateValue)
     let setNewTimeDateValue = false
     if(value.getDate() !== timeDateValue.getDate()) {
