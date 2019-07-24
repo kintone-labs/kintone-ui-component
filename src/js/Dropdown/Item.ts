@@ -53,11 +53,15 @@ class Item extends Control {
     iconEl.appendChild(this._createCheckIconEl());
     const labelEl = document.createElement('span');
     labelEl.className = 'kuc-list-item-label';
-    labelEl.innerText = this._props.item.label;
+    if(this._props.item.label) {
+      labelEl.innerText = this._props.item.label;
+    }
     this.element.appendChild(iconEl);
     this.element.appendChild(labelEl);
     this.on('click',(e) => {
-      this._props.onClick(this._props.item);
+      if(this._props.onClick) {
+        this._props.onClick(this._props.item);
+      }
     });
   }
 

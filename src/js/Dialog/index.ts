@@ -48,7 +48,9 @@ class Dialog extends Control {
 
         this._headerDivEl = document.createElement('div');
         this._headerDivEl.className = 'kuc-dialog-header';
-        this._headerDivEl.append(this._props.header);
+        if(this._props.header) {
+            this._headerDivEl.append(this._props.header);
+        }
 
         if(this._props.showCloseButton){
             var spanEl = document.createElement('span');
@@ -63,11 +65,15 @@ class Dialog extends Control {
 
         this._footerDivEl = document.createElement('div');
         this._footerDivEl.className = 'kuc-dialog-footer';
-        this._footerDivEl.append(this._props.footer);
+        if(this._props.footer) {
+            this._footerDivEl.append(this._props.footer);
+        }
 
         this._bodyContentDivEl = document.createElement('div');
-        this._bodyContentDivEl.className = 'kuc-dialog-body';   
-        this._bodyContentDivEl.append(this._props.content);
+        this._bodyContentDivEl.className = 'kuc-dialog-body';
+        if(this._props.content) { 
+            this._bodyContentDivEl.append(this._props.content);
+        }   
 
         var wrapper = document.createElement('div'); 
         wrapper.className = 'kuc-dialog-wrapper';
@@ -89,21 +95,27 @@ class Dialog extends Control {
             while (this._headerDivEl.childNodes.length > 1 && this._headerDivEl.firstChild) {
                 this._headerDivEl.removeChild(this._headerDivEl.firstChild);
             }
-           this._headerDivEl.prepend(this._props.header);
+            if(this._props.header) {
+                this._headerDivEl.prepend(this._props.header);
+            }
         }
 
         if (changedAttr.indexOf('footer') !== -1) {
             while (this._footerDivEl.firstChild) {
                 this._footerDivEl.removeChild(this._footerDivEl.firstChild);
             }
-           this._footerDivEl.append(this._props.footer);
+            if(this._props.footer) {
+                this._footerDivEl.append(this._props.footer);
+            }
         }
 
         if (changedAttr.indexOf('content') !== -1) {
             while (this._bodyContentDivEl.firstChild) {
                 this._bodyContentDivEl.removeChild(this._bodyContentDivEl.firstChild);
             }
-           this._bodyContentDivEl.append(this._props.content);
+            if(this._props.content) {
+                this._bodyContentDivEl.append(this._props.content);
+            }
         }
 
         if (changedAttr.indexOf('isVisible') !== -1) {
@@ -150,7 +162,7 @@ class Dialog extends Control {
         this.rerender(['header']);
     }
 
-    getHeader(): string | HTMLElement {
+    getHeader(): string | HTMLElement | undefined {
         return this._props.header;
     }
 
@@ -163,7 +175,7 @@ class Dialog extends Control {
         this.rerender(['footer']);
     }
 
-    getFooter(): string | HTMLElement {
+    getFooter(): string | HTMLElement | undefined {
         return this._props.footer;
     }
 
@@ -176,7 +188,7 @@ class Dialog extends Control {
         this.rerender(['content']);
     }
 
-    getContent(): string | HTMLElement {
+    getContent(): string | HTMLElement | undefined {
         return this._props.content;
     }
     

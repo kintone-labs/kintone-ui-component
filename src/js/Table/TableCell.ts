@@ -4,8 +4,8 @@ type TableCellProps = {
 }
 
 export default class TableCell {
-  private _init: Function
-  private _update: Function
+  private _init?: Function
+  private _update?: Function
   constructor({init, update}: TableCellProps = {}) {
     this._init = init;
     this._update = update;

@@ -58,7 +58,9 @@ export default class Table extends Control {
       this._props = {...this._props, ...params}
     }
     this._validateRequired()
-    this._props.columns.push({actions: this._props.actionButtonsShown})
+    if(this._props.actionButtonsShown !== undefined) {
+      this._props.columns.push({actions: this._props.actionButtonsShown})
+    }
   }
 
   private _addRow = ({data, rowIndex}:RowEventProps) => {
@@ -89,15 +91,16 @@ export default class Table extends Control {
 
   private _renderCells() {
     const table = this._props
-    const rowsEl = [...this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr')]
+    const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
+    const columns = [].slice.call(this._props.columns as TableColumnJS[])
     for (const [rowIndex, rowEl] of rowsEl.entries()) {
       const rowData = this._props.data[rowIndex]
       const updateRowData = this.updateRowData.bind(this, rowIndex)
-      for (const [columnIndex, {cell}] of (this._props.columns as TableColumnJS[]).entries()) {
+      for (const [columnIndex, {cell}] of columns.entries()) {
         const cellTemplate = cell
         if(cellTemplate) {
           const cellElement = rowEl.childNodes[columnIndex]
-          let element: HTMLElement
+          let element: HTMLElement | null = null
           let cellInstance: TableCell
           if (cellElement.childNodes.length === 0) {
             cellInstance = cellTemplate()
@@ -186,7 +189,7 @@ export default class Table extends Control {
     this._tableBodyContainer = tableBody
   }
 
-  private _renderTableCellActions(rowIndex) {
+  private _renderTableCellActions(rowIndex: number) {
     const tableCellDiv = document.createElement('div')
     tableCellDiv.className = 'kuc-table-td action-group'
     const span1 = document.createElement('span')
@@ -244,7 +247,8 @@ export default class Table extends Control {
       this._tableBodyContainer.innerHTML = ''
     }
     this._props.data.forEach((_, rowIndex) => {
-      if(!this._tableBodyContainer.children.namedItem(rowIndex.toString()) || rerender) {
+      const tableRow = this._tableBodyContainer.children.namedItem(rowIndex.toString())
+      if(!tableRow || rerender) {
         const tableRow = document.createElement('div')
         tableRow.className = 'kuc-table-tr'
         tableRow.id = rowIndex.toString()
@@ -262,19 +266,17 @@ export default class Table extends Control {
         })
         this._tableBodyContainer.appendChild(tableRow)
       } else {
-        const tableRow = this._tableBodyContainer.children.namedItem(rowIndex.toString())
+        const child = tableRow.children.namedItem(rowIndex + '_action')
         if(this._props.actionButtonsShown) {
           const actionCell = this._renderTableCellActions(rowIndex)
           actionCell.id = rowIndex + '_action'
-          if(tableRow.children.namedItem(rowIndex + '_action')) {
-            tableRow.replaceChild(actionCell, tableRow.children.namedItem(rowIndex + '_action'))
+          if(child) {
+            tableRow.replaceChild(actionCell, child)
           } else {
             tableRow.appendChild(actionCell)
           }
-        } else {
-          if(tableRow.children.namedItem(rowIndex + '_action')) {
-            tableRow.removeChild(tableRow.children.namedItem(rowIndex + '_action'))
-          }
+        } else if(child) {
+          tableRow.removeChild(child)
         }
       }
     })

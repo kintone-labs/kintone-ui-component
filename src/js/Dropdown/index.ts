@@ -2,7 +2,7 @@ import Control, { ControlProps } from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-import { mdiChevronDown } from '@mdi/js'
+import { mdilChevronDown } from '@mdi/light-js'
 
 import '../../css/Dropdown.css'
 
@@ -61,10 +61,12 @@ class Dropdown extends Control {
     }
 
     this._props.items &&
-      this._props.items.forEach((item: item, i) => {
+      this._props.items.some((item: item) => {
         if (item.value === this._props.value) {
-          return (this.label = item.label);
+          this.label = item.label
+          return true
         }
+        return false
       });
 
     this.element = this._createDom('div', 'kuc-dropdown-container');
@@ -115,7 +117,7 @@ class Dropdown extends Control {
 
   private _createDownIconEl() {
     const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
-    pathEl.setAttribute('d', mdiChevronDown)
+    pathEl.setAttribute('d', mdilChevronDown)
 
     const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
     svgEl.appendChild(pathEl)
@@ -144,7 +146,7 @@ class Dropdown extends Control {
       'kuc-dropdown-selected-name'
     );
 
-    this.nameLabelEl = this._createDom('span');
+    this.nameLabelEl = this._createDom('span', 'kuc-dropdown-selected-label');
     this.nameLabelEl.innerText = this.label || '';
     const iconEl = this._createDom('span', 'icon-arrow-down');
     iconEl.appendChild(this._createDownIconEl());
@@ -223,7 +225,7 @@ class Dropdown extends Control {
       return false;
     }
     this._props.items.splice(index, 1);
-    this.rerender(['item']);
+    return this.rerender(['item']);
   }
 
   disableItem(value: string) {

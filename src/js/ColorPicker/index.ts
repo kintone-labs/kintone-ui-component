@@ -54,7 +54,9 @@ class ColorPicker extends Control {
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
     this.inputElement.value = this._props.color;
-    this.inputElement.disabled = this._props.isDisabled
+    if(this._props.isDisabled) {
+      this.inputElement.disabled = this._props.isDisabled
+    }
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
@@ -114,7 +116,7 @@ class ColorPicker extends Control {
       Object.assign(this.inputElement.style, inputStyle);
     }
 
-    if (changedAttr.indexOf('isDisabled') !== -1) {
+    if (changedAttr.indexOf('isDisabled') !== -1 && this._props.isDisabled) {
       this.inputElement.disabled = this._props.isDisabled
       if (this._props.isDisabled) {
         this.Picker.setPickerDisplay(false);
