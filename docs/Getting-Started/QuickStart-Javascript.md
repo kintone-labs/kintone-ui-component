@@ -30,48 +30,48 @@ import {Button} from '@kintone/kintone-ui-component/esm/js'
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) => {
-    return {
-        entry: {
-            "my-customization.min": './src/index.js'
+  return {
+    entry: {
+      "my-customization.min": './src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader'
+          }
         },
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: '[name].js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                      { loader: "style-loader" },
-                      { loader: "css-loader" }
-                    ]
-                }
-            ]
-        },
-        watch: env.watch,
-        optimization: {
-            minimizer: [
-                new UglifyJsPlugin({ 
-                    include: /\.min\.js$/,
-                })
-            ]
+        {
+          test: /\.css$/,
+          use: [
+            { loader: "style-loader" },
+            { loader: "css-loader" }
+          ]
         }
+      ]
+    },
+    watch: env.watch,
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          include: /\.min\.js$/,
+        })
+      ]
     }
+  }
 }
 ```
 **Step** 4: Add a script to buiding by webpack to package.json
 ```
 "scripts": {
-    "build-webpack": "cross-env NODE_ENV=production webpack",
-    ...
+  "build-webpack": "cross-env NODE_ENV=production webpack",
+  ...
 }
 ```
 * Run command to build customization file
