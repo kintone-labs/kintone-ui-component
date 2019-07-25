@@ -4,7 +4,7 @@
 * [Nodejs](https://nodejs.org/en/)
 * [Git](https://git-scm.com/)
 
-## Create a customization
+## ESM usage with JSX
 **Step** 1: Run commands
 ```
 $ npm install -g create-react-app
@@ -15,7 +15,7 @@ $ npm install uglifyjs-webpack-plugin --save-dev
 $ npm install @kintone/kintone-ui-component
 $ rm -f src/*
 ```
-**Step** 2: Add index.js file to src/ folder:
+**Step** 2: Add index.jsx file to src/ folder:
 ```
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -27,7 +27,7 @@ class MyCustomization extends Component {
  
   render() {
     return (
-        <Button text='Submit' type='success' onClick={function() {alert('This is my customization');}}/>
+        <Button text='Submit' type='submit' onClick={function() {alert('This is my customization');}}/>
     );
   }
 }
@@ -101,5 +101,34 @@ result:
 * ./dist/my-customization.min.js
 ```
 * Attach my-customization.min.js into [kintone app setting](https://help.kintone.com/en/k/user/js_customize.html)
+
+![](../img/result.PNG)
+
+## UMD usage without JSX
+*  Attach 'react' and 'react-dom' UMD scripts into kintone app
+```
+https://unpkg.com/react@16/umd/react.production.min.js
+https://unpkg.com/react-dom@16/umd/react-dom.production.min.js
+``` 
+*  Attach 2 below files from './dist' folder in [kintone-ui-component](https://github.com/kintone/kintone-ui-component/tree/master) into kintone app
+```
+ ./dist/react/kintone-ui-component.min.js
+ ./dist/react/kintone-ui-component.min.css
+```
+* Create index.js file
+```
+(function () {
+  kintone.events.on("app.record.index.show", function (ev) {
+    var kintoneSpaceElement = kintone.app.getHeaderSpaceElement();
+    ReactDOM.render(
+      React.createElement(kintoneUIComponent.Button, {text: 'Submit', type: 'submit', onClick: function(){
+        alert('This is my customization');
+      }}),
+      kintoneSpaceElement
+    );
+  });
+})();
+```
+* Attach index.js file into [kintone app setting](https://help.kintone.com/en/k/user/js_customize.html)
 
 ![](../img/result.PNG)
