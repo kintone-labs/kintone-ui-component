@@ -77,7 +77,7 @@ const reactUMDConfig = (_, argv) => {
         entry: path.resolve(__dirname, 'src/react/index.ts'),
         output: {
             path: __dirname + '/dist/react/',
-            filename: libraryName + '.js',
+            filename: libraryName + 'min.js',
             library: 'kintoneUIComponent',
             libraryTarget: 'umd',
             umdNamedDefine: true,
@@ -88,7 +88,7 @@ const reactUMDConfig = (_, argv) => {
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
-                filename: libraryName + '.css'
+                filename: libraryName + 'min.css'
             }),
         ],
         resolve: {
@@ -141,6 +141,21 @@ const reactUMDConfig = (_, argv) => {
                         'css-loader',
                     ],
                 }
+            ]
+        },
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({
+                    cache: true,
+                    parallel: true,
+                    uglifyOptions: {
+                        compress: argv.mode === 'production',
+                        ecma: 6,
+                        mangle: true
+                    },
+                    sourceMap: argv.mode === 'development'
+                }),
+                new OptimizeCSSAssetsPlugin({})
             ]
         }
     }
