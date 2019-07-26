@@ -21,7 +21,7 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  value =  new Date(),
+  value = new Date(),
   isDisabled = false,
   isVisible = true,
   onChange = (newDate: Date) => {},
@@ -137,7 +137,8 @@ const DateTime = ({
     if(setNewTimeDateValue && !pickerDisplay) {
       setTimeDateValue(newTimeDateValue)
     }
-  })
+    setInputValue(format(value, dateFormat))
+  }, [value])
 
   if(typeof isDisabled !== 'boolean') {
     isDisabled = false
@@ -211,8 +212,8 @@ const DateTime = ({
                   }
 
                   let relatedTarget = e.relatedTarget ||
-                      e['explicitOriginalTarget'] ||
-                      document.activeElement; // IE11
+                    e['explicitOriginalTarget'] ||
+                    document.activeElement; // IE11
                   const calendar = calendarRef.current as HTMLDivElement
                   if(
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
@@ -285,7 +286,7 @@ const DateTime = ({
               />
             }
           </div>
-  
+
         }
         {
           (type === 'datetime' || type === 'time') &&
@@ -320,8 +321,8 @@ const DateTime = ({
               onBlur={
                 (e)=>{
                   let relatedTarget = e.relatedTarget ||
-                      e['explicitOriginalTarget'] ||
-                      document.activeElement; // IE11
+                    e['explicitOriginalTarget'] ||
+                    document.activeElement; // IE11
                   const timePicker = timeRef.current as HTMLDivElement
                   if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget as HTMLElement)) {
                     setTimePickerDisplay('none');

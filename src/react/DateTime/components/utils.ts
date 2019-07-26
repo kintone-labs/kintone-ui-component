@@ -21,6 +21,30 @@ const getWeekDayLabels = (locale: any) => {
   return labels;
 };
 
+const getMonthLabels = (locale: any) => {
+  let monthNames = locale.monthNames
+  let labels: any = []
+  monthNames.forEach((month: any) => {
+    let label = {}
+    label['label'] = month
+    label['value'] = month
+    labels.push(label)
+  })
+  return labels
+}
+
+const getYearLabels = (value: any) => {
+  let currentYear = parseInt(value)
+  let years: any = []
+  for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
+    let year = {}
+    year['label'] = i + ''
+    year['value'] = i + ''
+    years.push(year)
+  }
+  return years
+}
+
 const getDisplayingDays = (date: Date) => {
   const startDayOfMonth = new Date(date);
   startDayOfMonth.setDate(1);
@@ -71,6 +95,8 @@ const parseStringToTime = (timeString: string) => {
 };
 
 export {
+  getYearLabels,
+  getMonthLabels,
   getWeekDays,
   getWeekDayLabels,
   getDisplayingDays,
