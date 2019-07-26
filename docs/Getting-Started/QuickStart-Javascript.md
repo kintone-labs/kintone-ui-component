@@ -7,7 +7,6 @@ $ mkdir my-customization
 $ cd my-customization
 $ npm init -y
 $ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli
-$ npm install uglifyjs-webpack-plugin --save-dev
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 ```
@@ -28,7 +27,6 @@ import {Button} from '@kintone/kintone-ui-component/esm/js'
 **Step** 3: Add webpack.config.js file to my-customization/ folder 
 ```
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) => {
   return {
     entry: {
@@ -56,14 +54,7 @@ module.exports = (env = {}) => {
         }
       ]
     },
-    watch: env.watch,
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          include: /\.min\.js$/,
-        })
-      ]
-    }
+    watch: env.watch
   }
 }
 ```
