@@ -77,7 +77,7 @@ const reactUMDConfig = (_, argv) => {
         entry: path.resolve(__dirname, 'src/react/index.ts'),
         output: {
             path: __dirname + '/dist/react/',
-            filename: libraryName + 'min.js',
+            filename: libraryName + '.min.js',
             library: 'kintoneUIComponent',
             libraryTarget: 'umd',
             umdNamedDefine: true,
@@ -88,7 +88,7 @@ const reactUMDConfig = (_, argv) => {
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
-                filename: libraryName + 'min.css'
+                filename: libraryName + '.min.css'
             }),
         ],
         resolve: {
