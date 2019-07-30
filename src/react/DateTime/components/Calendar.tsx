@@ -31,12 +31,14 @@ const Calendar = ({
 	const [displayMonth, setDisplayMonth] = useState(format(displayDate, 'calendarmonth', { locale: locale }))
 	const [displayYear, setDisplayYear] = useState(format(displayDate, 'calendaryear', { locale: locale }))
 	const displayingDays = getDisplayingDays(displayDate);
-	const scrollToSeletedOptions = (isMonth: boolean) => {
+
+	const scrollToSeletedOptions = () => {
 		let styleScroll: any = { block: "center" }
-		if (isMonth) {
-			document.getElementsByClassName('kuc-list-item-selected')[0].scrollIntoView(styleScroll)
+		let selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected')
+		for (let i = 0; i < selectedItems.length; i++) {
+			let item = selectedItems[i];
+			item.scrollIntoView(styleScroll)
 		}
-		document.getElementsByClassName('kuc-list-item-selected')[1].scrollIntoView(styleScroll)
 	}
 	if (!previousDate) {
 		previousDate = new Date(date)
@@ -76,27 +78,56 @@ const Calendar = ({
 						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
 						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
-						setDisplayYear(newDate.getFullYear().toString())
+						if (locale === en)
+							setDisplayYear(newDate.getFullYear().toString())
+						else
+							setDisplayYear(newDate.getFullYear().toString() + '年')
 					}} tabIndex={-1} />
 					<div className="kuc-calendar-dropdown-row" tabIndex={-1}>
-						<Dropdown items={getMonthLabels(locale)} value={displayMonth}
-							onChange={(value) => {
-								let newDate = new Date(displayDate)
-								newDate.setMonth(locale.monthNames.indexOf(value), 1)
-								setDisplayMonth(value)
-								setDisplayDate(newDate)
-								setDisplayYear(newDate.getFullYear().toString())
-								scrollToSeletedOptions(true)
-							}}></Dropdown>
-						<Dropdown items={getYearLabels(displayYear)} value={displayYear}
-							onChange={(value) => {
-								let newDate = new Date(displayDate)
-								newDate.setFullYear(parseInt(value), displayDate.getMonth(), 1)
-								setDisplayYear(value)
-								setDisplayDate(newDate)
-								setDisplayYear(newDate.getFullYear().toString())
-								scrollToSeletedOptions(false)
-							}}></Dropdown>
+						{locale === en ?
+							<div>
+								<Dropdown items={getMonthLabels(locale)} value={displayMonth}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setMonth(locale.monthNames.indexOf(value), 1)
+										setDisplayMonth(value)
+										setDisplayDate(newDate)
+										setDisplayYear(newDate.getFullYear().toString())
+										scrollToSeletedOptions()
+									}}></Dropdown>
+								<Dropdown items={getYearLabels(displayYear)} value={displayYear}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setFullYear(parseInt(value), displayDate.getMonth(), 1)
+										setDisplayYear(value)
+										setDisplayDate(newDate)
+										scrollToSeletedOptions()
+									}}></Dropdown>
+							</div>
+							:
+							<div>
+								<Dropdown items={getYearLabels(displayYear)} value={displayYear}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										let currentYear: any = value
+										currentYear = currentYear.replace('年', '')
+										currentYear = parseInt(value)
+										newDate.setFullYear(parseInt(currentYear), displayDate.getMonth(), 1)
+										setDisplayYear(value)
+										setDisplayDate(newDate)
+										scrollToSeletedOptions()
+									}}></Dropdown>
+								<Dropdown items={getMonthLabels(locale)} value={displayMonth}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setMonth(locale.monthNames.indexOf(value), 1)
+										setDisplayMonth(value)
+										setDisplayDate(newDate)
+										setDisplayYear(newDate.getFullYear().toString() + '年')
+										scrollToSeletedOptions()
+									}}></Dropdown>
+							</div>
+						}
 					</div>
 					<span className="next calendar-button-control" onClick={() => {
 						let newDate = new Date(displayDate)
@@ -104,7 +135,10 @@ const Calendar = ({
 						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
 						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
-						setDisplayYear(newDate.getFullYear().toString())
+						if (locale === en)
+							setDisplayYear(newDate.getFullYear().toString())
+						else
+							setDisplayYear(newDate.getFullYear().toString() + '年')
 					}} tabIndex={-1} />
 				</div>
 				<div className="days-container">
@@ -143,7 +177,7 @@ const Calendar = ({
 					})}
 				</div>
 				<div className="quick-selections-container">
-					<span className="today calendar-button-control" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
+				<span className="today calendar-button-control" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
 					<span className="none calendar-button-control" onClick={()=>{onDateClick(null, previousDate);}} tabIndex={-1}>{locale.none}</span>
 				</div>
 			</div>

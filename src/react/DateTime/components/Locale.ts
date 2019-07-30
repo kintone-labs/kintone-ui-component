@@ -52,6 +52,9 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
     case 'calendarmonth':
       if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.month + 1}月`;
       return `${locale.monthNames[dateObj.month]}`;
+    case 'calendaryear':
+      if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年`;
+      return `${dateObj.year}`;
     default:
       break;
   }
@@ -76,7 +79,7 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
       return getDateData(dateObj, 'calendarmonth', option.locale);
     }
     if (dateFormat === 'calendaryear') {
-      return getDateData(dateObj, 'YYYY', option.locale);
+      return getDateData(dateObj, 'calendaryear', option.locale);
     }
     const seperator = getSeperator(dateFormat);
     let formattedDate = dateFormat.split(seperator);
