@@ -31,6 +31,13 @@ const Calendar = ({
 	const [displayMonth, setDisplayMonth] = useState(format(displayDate, 'calendarmonth', { locale: locale }))
 	const [displayYear, setDisplayYear] = useState(format(displayDate, 'calendaryear', { locale: locale }))
 	const displayingDays = getDisplayingDays(displayDate);
+	const scrollToSeletedOptions = (isMonth: boolean) => {
+		let styleScroll: any = { block: "center" }
+		if (isMonth) {
+			document.getElementsByClassName('kuc-list-item-selected')[0].scrollIntoView(styleScroll)
+		}
+		document.getElementsByClassName('kuc-list-item-selected')[1].scrollIntoView(styleScroll)
+	}
 	if (!previousDate) {
 		previousDate = new Date(date)
 	}
@@ -69,6 +76,7 @@ const Calendar = ({
 						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
 						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
+						setDisplayYear(newDate.getFullYear().toString())
 					}} tabIndex={-1} />
 					<div className="kuc-calendar-dropdown-row" tabIndex={-1}>
 						<Dropdown items={getMonthLabels(locale)} value={displayMonth}
@@ -77,6 +85,8 @@ const Calendar = ({
 								newDate.setMonth(locale.monthNames.indexOf(value), 1)
 								setDisplayMonth(value)
 								setDisplayDate(newDate)
+								setDisplayYear(newDate.getFullYear().toString())
+								scrollToSeletedOptions(true)
 							}}></Dropdown>
 						<Dropdown items={getYearLabels(displayYear)} value={displayYear}
 							onChange={(value) => {
@@ -84,6 +94,8 @@ const Calendar = ({
 								newDate.setFullYear(parseInt(value), displayDate.getMonth(), 1)
 								setDisplayYear(value)
 								setDisplayDate(newDate)
+								setDisplayYear(newDate.getFullYear().toString())
+								scrollToSeletedOptions(false)
 							}}></Dropdown>
 					</div>
 					<span className="next calendar-button-control" onClick={() => {
@@ -92,6 +104,7 @@ const Calendar = ({
 						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
 						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
+						setDisplayYear(newDate.getFullYear().toString())
 					}} tabIndex={-1} />
 				</div>
 				<div className="days-container">
