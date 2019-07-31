@@ -103,7 +103,6 @@ var DateTime = /** @class */ (function (_super) {
             else {
                 this._dateTextInput.value = '';
             }
-            // this._props.onChange && this._props.onChange(this._props.value)
         }
         if (changedAttr.indexOf('timeTextInput') !== -1) {
             this._timeTextInput.value = format(this._time, 'HH:mm');
@@ -137,13 +136,6 @@ var DateTime = /** @class */ (function (_super) {
         var container = document.createElement('div');
         container.classList.add('date-time-container');
         this.element = container;
-        this._renderTextInputsContainer();
-        container.appendChild(this._textInputsContainer);
-    };
-    DateTime.prototype._renderTextInputsContainer = function () {
-        var textInputsContainer = document.createElement('div');
-        textInputsContainer.classList.add('text-input-container');
-        this._textInputsContainer = textInputsContainer;
     };
     DateTime.prototype._renderDateInputErrorLabel = function () {
         var dateError = document.createElement('div');
@@ -188,9 +180,7 @@ var DateTime = /** @class */ (function (_super) {
                 _this._calendar.hide();
             }
         };
-        //
         this._dateTextInput = dateTextInput;
-        this._textInputsContainer.appendChild(dateTextInput);
     };
     DateTime.prototype._renderTimeTextInput = function () {
         var timeTextInputContainer = document.createElement('div');
@@ -363,11 +353,14 @@ var DateTime = /** @class */ (function (_super) {
         this._timeTextInput.setSelectionRange(0, 2);
     };
     DateTime.prototype._renderDate = function () {
+        var dateContainer = document.createElement('div');
+        dateContainer.className = 'date-container';
         // render date text input
         this._renderDateTextInput();
         // render date input error
+        dateContainer.appendChild(this._dateTextInput);
         this._renderDateInputErrorLabel();
-        this._textInputsContainer.appendChild(this._dateErrorDiv);
+        dateContainer.appendChild(this._dateErrorDiv);
         // render calendar
         var calendar = new Calendar({
             date: this._props.value,
@@ -375,20 +368,23 @@ var DateTime = /** @class */ (function (_super) {
             onDateClick: this._onCalendarDateClick,
             locale: this._locale
         });
-        this._textInputsContainer.appendChild(calendar.render());
+        dateContainer.appendChild(calendar.render());
         this._calendar = calendar;
+        this.element.appendChild(dateContainer);
         return this.element;
     };
     DateTime.prototype._renderTime = function () {
         var _this = this;
+        var timeContainer = document.createElement('div');
+        timeContainer.className = 'time-container';
         // render time text input
         this._renderTimeTextInput();
-        this._textInputsContainer.appendChild(this._timeTextInput);
+        timeContainer.appendChild(this._timeTextInput);
         // render time picker
         var timePicker = new TimePicker({ onTimeClick: function (date) { return _this._onTimeClick(date); } });
         this._timePicker = timePicker;
-        this._textInputsContainer.appendChild(timePicker.render());
-        //
+        timeContainer.appendChild(timePicker.render());
+        this.element.appendChild(timeContainer);
         return this.element;
     };
     DateTime.prototype._renderDateTime = function () {

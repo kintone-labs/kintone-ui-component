@@ -8,6 +8,7 @@ var Text = /** @class */ (function (_super) {
         _this._props = tslib_1.__assign({}, _this._props, {
             value: ''
         });
+        _this._onChange = function () { };
         if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
@@ -20,6 +21,10 @@ var Text = /** @class */ (function (_super) {
         if (_this._props.value) {
             _this.element.value = _this._props.value;
         }
+        _this.element.onchange = function (e) {
+            _this._props.value = e.target.value;
+            _this._onChange(e);
+        };
         return _this;
     }
     Text.prototype.render = function () {
@@ -42,6 +47,10 @@ var Text = /** @class */ (function (_super) {
     };
     Text.prototype.on = function (eventName, callback) {
         var _this = this;
+        if (eventName === 'change') {
+            this._onChange = callback;
+            return;
+        }
         this.element.addEventListener(eventName, function (e) {
             if (_this._props.isDisabled)
                 return;

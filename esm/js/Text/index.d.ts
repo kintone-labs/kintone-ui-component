@@ -5,6 +5,7 @@ declare type TextProps = ControlProps & {
 };
 declare class Text extends Control {
     protected _props: TextProps;
+    private _onChange;
     constructor(params: TextProps);
     render(): HTMLElement;
     rerender(changedAttr?: string[]): void;

@@ -54,15 +54,15 @@ var Table = /** @class */ (function (_super) {
         }
     };
     Table.prototype._renderCells = function () {
+        var _this = this;
         var table = this._props;
         var rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'));
         var columns = [].slice.call(this._props.columns);
-        for (var _i = 0, _a = rowsEl.entries(); _i < _a.length; _i++) {
-            var _b = _a[_i], rowIndex = _b[0], rowEl = _b[1];
-            var rowData = this._props.data[rowIndex];
-            var updateRowData = this.updateRowData.bind(this, rowIndex);
-            for (var _c = 0, _d = columns.entries(); _c < _d.length; _c++) {
-                var _e = _d[_c], columnIndex = _e[0], cell = _e[1].cell;
+        rowsEl.forEach(function (rowEl, rowIndex) {
+            var rowData = _this._props.data[rowIndex];
+            var updateRowData = _this.updateRowData.bind(_this, rowIndex);
+            columns.forEach(function (_a, columnIndex) {
+                var cell = _a.cell;
                 var cellTemplate = cell;
                 if (cellTemplate) {
                     var cellElement = rowEl.childNodes[columnIndex];
@@ -77,14 +77,16 @@ var Table = /** @class */ (function (_super) {
                             columnIndex: columnIndex,
                             updateRowData: updateRowData
                         });
-                        cellElement.appendChild(element);
+                        if (element) {
+                            cellElement.appendChild(element);
+                        }
                         cellElement['__tableCellInstance'] = cellInstance;
                     }
                     cellInstance = cellElement['__tableCellInstance'];
                     cellInstance.update({ table: table, rowData: rowData, rowIndex: rowIndex, columnIndex: columnIndex, element: element });
                 }
-            }
-        }
+            });
+        });
     };
     Table.prototype._isObject = function (item) {
         return (item && typeof item === 'object' && !Array.isArray(item));

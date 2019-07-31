@@ -3,9 +3,7 @@ export default function HueSpectrum(props) {
     var w = props.width;
     var h = props.height;
     var container = useRef(null);
-    // const container = createRef<HTMLDivElement>();
     var hueCanvas = useRef(null);
-    // const hueCanvas = createRef<HTMLCanvasElement>();
     var _a = useState(false), hasInitLayout = _a[0], setHasInitLayout = _a[1];
     var _b = useState(false), isMouseDown = _b[0], setIsMouseDown = _b[1];
     var _c = useState(), containerEl = _c[0], setContainerEl = _c[1];
@@ -51,11 +49,13 @@ export default function HueSpectrum(props) {
     }
     function handleMouseUp(e) {
         triggerSelect(e.clientY);
+        initContainerEl();
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
             triggerSelect(e.clientY);
+            initContainerEl();
         }
     }
     function handleMouseLeave() {
@@ -63,7 +63,6 @@ export default function HueSpectrum(props) {
     }
     useEffect(function () {
         initLayout();
-        initContainerEl();
     });
     return (React.createElement("div", { ref: container },
         React.createElement("canvas", { ref: hueCanvas, width: w, height: h, style: { cursor: "crosshair" }, onMouseDown: handleMouseDown, onMouseUp: handleMouseUp, onMouseMove: handleMouseMove, onMouseLeave: handleMouseLeave })));

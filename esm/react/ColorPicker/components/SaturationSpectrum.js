@@ -48,11 +48,13 @@ export default function SaturationSpectrum(props) {
     }
     function handleMouseUp(e) {
         triggerSelect(e.clientX, e.clientY);
+        initContainerEl();
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
             triggerSelect(e.clientX, e.clientY);
+            initContainerEl();
         }
     }
     function handleMouseLeave() {
@@ -60,7 +62,6 @@ export default function SaturationSpectrum(props) {
     }
     useEffect(function () {
         fillSatSpectrumCanvas();
-        initContainerEl();
     });
     return (React.createElement("div", { ref: container },
         React.createElement("canvas", { ref: satCanvas, width: w, height: h, style: { cursor: "crosshair" }, onMouseDown: handleMouseDown, onMouseUp: handleMouseUp, onMouseMove: handleMouseMove, onMouseLeave: handleMouseLeave })));

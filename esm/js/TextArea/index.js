@@ -61,7 +61,7 @@ var TextArea = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('value') !== -1) {
-            this.textAreaEl.innerText = this._props.value;
+            this.textAreaEl.value = this._props.value;
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {

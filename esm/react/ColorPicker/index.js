@@ -77,11 +77,13 @@ function ColorPicker(props) {
         onChange: handlePickerChange,
         onCancel: function () {
             setPickerDisplay(false);
+            setFocus(false);
             setHexString(props.color || "#FF0000");
             props.onChange && props.onChange(props.color || "#FF0000");
         },
         onSubmit: function (newHexString) {
             setPickerDisplay(false);
+            setFocus(false);
             setHexString(newHexString);
             props.onChange && props.onChange(newHexString);
         },

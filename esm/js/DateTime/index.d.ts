@@ -12,7 +12,6 @@ declare type DateTimeProps = ControlProps & {
 declare class DateTime extends Control {
     protected _props: DateTimeProps;
     protected element: HTMLElement;
-    private _textInputsContainer;
     private _dateTextInput;
     private _timeTextInput;
     private _dateErrorDiv;
@@ -24,7 +23,6 @@ declare class DateTime extends Control {
     render(): HTMLElement;
     rerender(changedAttr: string[]): void;
     private _renderContainer;
-    private _renderTextInputsContainer;
     private _renderDateInputErrorLabel;
     private _renderDateTextInput;
     private _renderTimeTextInput;

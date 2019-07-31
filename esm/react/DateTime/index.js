@@ -8,14 +8,15 @@ import TimePicker from './components/TimePicker';
 import '../../css/font.css';
 var DateTime = function (_a) {
     var _b = _a.value, value = _b === void 0 ? new Date() : _b, _c = _a.isDisabled, isDisabled = _c === void 0 ? false : _c, _d = _a.isVisible, isVisible = _d === void 0 ? true : _d, _e = _a.onChange, onChange = _e === void 0 ? function (newDate) { } : _e, _f = _a.locale, locale = _f === void 0 ? 'ja' : _f, _g = _a.dateFormat, dateFormat = _g === void 0 ? 'MM/dd/YYYY' : _g, _h = _a.type, type = _h === void 0 ? 'datetime' : _h, _j = _a.timeFormat, timeFormat = _j === void 0 ? 'HH:mm' : _j;
-    var _k = useState('none'), pickerDisplay = _k[0], setPickerDisplay = _k[1];
-    var _l = useState(false), showPickerError = _l[0], setShowPickerError = _l[1];
-    var _m = useState(''), dateError = _m[0], setDateError = _m[1];
-    var _o = useState('none'), timePickerDisplay = _o[0], setTimePickerDisplay = _o[1];
-    var _p = useState(format(value, dateFormat)), inputValue = _p[0], setInputValue = _p[1];
-    var _q = useState(format(value, timeFormat)), timeValue = _q[0], setTimeValue = _q[1];
-    var _r = useState(true), hasSelection = _r[0], setHasSelection = _r[1];
-    var _s = useState(new Date(value)), timeDateValue = _s[0], setTimeDateValue = _s[1];
+    var _k = useState(value), defaultValue = _k[0], setDefaultValue = _k[1];
+    var _l = useState('none'), pickerDisplay = _l[0], setPickerDisplay = _l[1];
+    var _m = useState(false), showPickerError = _m[0], setShowPickerError = _m[1];
+    var _o = useState(''), dateError = _o[0], setDateError = _o[1];
+    var _p = useState('none'), timePickerDisplay = _p[0], setTimePickerDisplay = _p[1];
+    var _q = useState(format(value, dateFormat)), inputValue = _q[0], setInputValue = _q[1];
+    var _r = useState(format(value, timeFormat)), timeValue = _r[0], setTimeValue = _r[1];
+    var _s = useState(true), hasSelection = _s[0], setHasSelection = _s[1];
+    var _t = useState(new Date(value)), timeDateValue = _t[0], setTimeDateValue = _t[1];
     var wrapperRef = createRef();
     var calendarRef = createRef();
     var timeRef = createRef();
@@ -99,6 +100,12 @@ var DateTime = function (_a) {
         }
     };
     useEffect(function () {
+        if (defaultValue !== value) {
+            setDefaultValue(value);
+            setInputValue(format(value, dateFormat));
+            setTimeValue(format(value, timeFormat));
+            setTimeDateValue(new Date(value));
+        }
         var newTimeDateValue = new Date(timeDateValue);
         var setNewTimeDateValue = false;
         if (value.getDate() !== timeDateValue.getDate()) {
