@@ -28,7 +28,6 @@ class DateTime extends Control {
       onChange: (date) => {}
     }}
   protected element: HTMLElement
-  private _textInputsContainer: HTMLElement
   private _dateTextInput: HTMLInputElement
   private _timeTextInput: HTMLInputElement
   private _dateErrorDiv: HTMLElement
@@ -83,7 +82,6 @@ class DateTime extends Control {
       } else {
         this._dateTextInput.value = '';
       }
-      // this._props.onChange && this._props.onChange(this._props.value)
     }
     if (changedAttr.indexOf('timeTextInput') !== -1) {
       this._timeTextInput.value = format(this._time, 'HH:mm');
@@ -116,16 +114,8 @@ class DateTime extends Control {
     const container = document.createElement('div');
     container.classList.add('date-time-container');
     this.element = container;
-
-    this._renderTextInputsContainer();
-    container.appendChild(this._textInputsContainer);
   }
 
-  private _renderTextInputsContainer() {
-    const textInputsContainer = document.createElement('div');
-    textInputsContainer.classList.add('text-input-container');
-    this._textInputsContainer = textInputsContainer;
-  }
 
   private _renderDateInputErrorLabel() {
     const dateError = document.createElement('div');
@@ -171,10 +161,8 @@ class DateTime extends Control {
         this._calendar.hide();
       }
     };
-    //
 
     this._dateTextInput = dateTextInput;
-    this._textInputsContainer.appendChild(dateTextInput);
   }
 
   private _renderTimeTextInput() {
@@ -352,11 +340,14 @@ class DateTime extends Control {
   }
 
   private _renderDate() {
+    const dateContainer = document.createElement('div');
+    dateContainer.className = 'date-container';
     // render date text input
     this._renderDateTextInput();
     // render date input error
+    dateContainer.appendChild(this._dateTextInput);
     this._renderDateInputErrorLabel();
-    this._textInputsContainer.appendChild(this._dateErrorDiv);
+    dateContainer.appendChild(this._dateErrorDiv);
 
     // render calendar
     const calendar = new Calendar({
@@ -365,22 +356,25 @@ class DateTime extends Control {
       onDateClick: this._onCalendarDateClick,
       locale: this._locale
     });
-    this._textInputsContainer.appendChild(calendar.render());
+    dateContainer.appendChild(calendar.render());
     this._calendar = calendar;
+    this.element.appendChild(dateContainer);
 
     return this.element;
   }
 
   private _renderTime() {
+    const timeContainer = document.createElement('div');
+    timeContainer.className = 'time-container';
     // render time text input
     this._renderTimeTextInput();
-    this._textInputsContainer.appendChild(this._timeTextInput);
+    timeContainer.appendChild(this._timeTextInput);
 
     // render time picker
     const timePicker = new TimePicker({onTimeClick: (date) => this._onTimeClick(date)});
     this._timePicker = timePicker;
-    this._textInputsContainer.appendChild(timePicker.render());
-    //
+    timeContainer.appendChild(timePicker.render());
+    this.element.appendChild(timeContainer);
 
     return this.element;
   }

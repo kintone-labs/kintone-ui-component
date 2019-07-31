@@ -100,11 +100,13 @@ function ColorPicker(props: ColorPickerProps) {
     onChange: handlePickerChange,
     onCancel: () => {
       setPickerDisplay(false);
+      setFocus(false);
       setHexString(props.color || "#FF0000");
       props.onChange && props.onChange(props.color || "#FF0000");
     },
     onSubmit: (newHexString: string) => {
       setPickerDisplay(false);
+      setFocus(false);
       setHexString(newHexString);
       props.onChange && props.onChange(newHexString);
     },

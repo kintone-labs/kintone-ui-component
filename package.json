@@ -1,6 +1,6 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
@@ -20,24 +20,24 @@
 	"main": "./esm/react/index.js",
 	"module": "./esm/react/index.js",
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
-	"types": "index.d.ts",
+	"types": "./esm/react/index.d.ts",
 	"scripts": {
-		"build": "NODE_ENV=production webpack --mode=production && node scripts/builder.js",
+		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
-		"build:umd": "NODE_ENV=production webpack --mode=production",
-		"build:umd:dev": "NODE_ENV=development webpack --mode=development",
+		"build:umd": "webpack --mode=production",
+		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc"
 	},
 	"dependencies": {
 		"react": "16.8.6",
 		"react-dom": "16.8.6",
 		"@mdi/js": "3.6.95",
-		"@mdi/light-js": "0.2.63"
+		"@mdi/light-js": "0.2.63",
+		"@babel/polyfill": "7.2.5"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.5",
 		"@babel/plugin-proposal-class-properties": "7.4.0",
-		"@babel/polyfill": "7.2.5",
 		"@babel/preset-env": "7.4.5",
 		"@babel/preset-react": "7.0.0",
 		"@babel/preset-typescript": "7.3.3",

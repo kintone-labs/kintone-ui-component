@@ -93,10 +93,10 @@ export default class Table extends Control {
     const table = this._props
     const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
     const columns = [].slice.call(this._props.columns as TableColumnJS[])
-    for (const [rowIndex, rowEl] of rowsEl.entries()) {
+    rowsEl.forEach((rowEl: HTMLElement, rowIndex: number) => {
       const rowData = this._props.data[rowIndex]
       const updateRowData = this.updateRowData.bind(this, rowIndex)
-      for (const [columnIndex, {cell}] of columns.entries()) {
+      columns.forEach(({cell}: TableColumnJS, columnIndex: number) => {
         const cellTemplate = cell
         if(cellTemplate) {
           const cellElement = rowEl.childNodes[columnIndex]
@@ -111,16 +111,17 @@ export default class Table extends Control {
               columnIndex,
               updateRowData
             })
-            cellElement.appendChild(element)
+            if(element) {
+              cellElement.appendChild(element)
+            }
             cellElement['__tableCellInstance'] = cellInstance
           }
           cellInstance = cellElement['__tableCellInstance']
           cellInstance.update({table, rowData, rowIndex, columnIndex, element})
         }
-      }
-    }
+      })
+    })
   }
-
   private _isObject(item: object) {
     return (item && typeof item === 'object' && !Array.isArray(item))
   }
