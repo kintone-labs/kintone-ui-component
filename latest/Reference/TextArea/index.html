@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.11e41852.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
       
@@ -53,7 +53,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.20ef595d.js"></script>
     
     
       
@@ -63,6 +63,7 @@
       
     
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
     
       <link rel="stylesheet" href="../../style/extra.css">
     
@@ -102,7 +103,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#textarea" tabindex="1" class="md-skip">
+      <a href="#textarea" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -134,7 +135,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.3</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.4</a>
         </div>
       </div>
  
@@ -850,13 +851,16 @@
 </tr>
 </tbody>
 </table>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -871,7 +875,8 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -879,15 +884,18 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -902,7 +910,8 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the value of textarea field.</p>
 <p><strong>Parameter</strong></p>
@@ -926,9 +935,11 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -936,7 +947,8 @@ body.appendChild(textArea.render());
 textArea.setValue('set value into textarea');
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -960,7 +972,8 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="getvalue">getValue()</h3>
 <p>Get the value of textarea field.</p>
 <p><strong>Parameter</strong></p>
@@ -982,9 +995,11 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -992,7 +1007,8 @@ body.appendChild(textArea.render());
 textArea.getValue();
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1014,7 +1030,8 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for a event of component</p>
 <p><strong>Parameter</strong></p>
@@ -1044,9 +1061,11 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1056,7 +1075,8 @@ textArea.on('click', function(event) {
 });
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1075,16 +1095,19 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="show">show()</h3>
 <p>Display the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1092,7 +1115,8 @@ body.appendChild(textArea.render());
 textArea.show();
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1111,16 +1135,19 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="hide">hide()</h3>
 <p>Hide the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1128,7 +1155,8 @@ body.appendChild(textArea.render());
 textArea.hide();
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1147,16 +1175,19 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="disable">disable()</h3>
 <p>Disabled the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1164,7 +1195,8 @@ body.appendChild(textArea.render());
 textArea.disable();
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1183,16 +1215,19 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="enable">enable()</h3>
 <p>Enabled the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1200,7 +1235,8 @@ body.appendChild(textArea.render());
 textArea.enable();
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code>import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1219,7 +1255,7 @@ export default class Plugin extends React.Component {
 
 </code></pre>
 
-<p></details></p>
+</details>
                 
                   
                 
@@ -1277,7 +1313,7 @@ export default class Plugin extends React.Component {
       
     </div>
     
-      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      <script src="../../assets/javascripts/application.9e1f3b71.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       

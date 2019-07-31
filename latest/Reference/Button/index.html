@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.11e41852.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
       
@@ -53,7 +53,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.20ef595d.js"></script>
     
     
       
@@ -63,6 +63,7 @@
       
     
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
     
       <link rel="stylesheet" href="../../style/extra.css">
     
@@ -102,7 +103,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#button" tabindex="1" class="md-skip">
+      <a href="#button" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -134,7 +135,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.3</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.4</a>
         </div>
       </div>
  
@@ -860,16 +861,19 @@
 </tr>
 </tbody>
 </table>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({
     text: 'Submit',
     type: 'submit'
 });
 </code></pre>
 
-<p><strong>React</strong></p>
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -882,7 +886,8 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -890,15 +895,19 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -911,7 +920,8 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="settexttext">setText(text)</h3>
 <p>Set displayed text in button.</p>
 <p><strong>Parameter</strong></p>
@@ -935,16 +945,20 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.setText('submit');
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -957,7 +971,8 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="settypetype">setType(type)</h3>
 <p>Set the displayed type for button.</p>
 <p><strong>Parameter</strong></p>
@@ -981,16 +996,20 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.setType('normal');
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1003,7 +1022,8 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="oneventname-callback">on(eventName, callback)</h3>
 <p>Register callback for click event</p>
 <p><strong>Parameter</strong></p>
@@ -1033,9 +1053,11 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
@@ -1044,7 +1066,9 @@ button.on('click', function(event) {
 });
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1061,23 +1085,28 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="show">show()</h3>
 <p>Display button.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.show();
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1090,23 +1119,28 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="hide">hide()</h3>
 <p>Hide button.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.hide();
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1119,23 +1153,28 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="disable">disable()</h3>
 <p>Disable button.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.disable();
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1148,23 +1187,28 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
+
 <h3 id="enable">enable()</h3>
 <p>Enable button.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<p><details class="tab-container" open>
-<Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+
 <pre><code class="javascript">var button = new kintoneUIComponent.Button({text: 'button'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(button.render());
 button.enable();
 </code></pre>
 
-<p><strong>React</strong></p>
+
+**React**
+
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1177,7 +1221,7 @@ export default class Plugin extends React.Component {
 }
 </code></pre>
 
-<p></details></p>
+</details>
                 
                   
                 
@@ -1249,7 +1293,7 @@ export default class Plugin extends React.Component {
       
     </div>
     
-      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      <script src="../../assets/javascripts/application.9e1f3b71.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
