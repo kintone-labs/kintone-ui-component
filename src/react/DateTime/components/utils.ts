@@ -37,20 +37,15 @@ const getYearLabels = (value: any, locale: any) => {
   let currentYear: any = value.replace('年', '')
   currentYear = parseInt(value)
   let years: any = []
-  if (locale === 'en') {
-    for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
-      let year = {}
-      year['label'] = i + ''
-      year['value'] = i + ''
-      years.push(year)
-    }
-  } else {
-    for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
-      let year = {}
-      year['label'] = i + '年'
-      year['value'] = i + '年'
-      years.push(year)
-    }
+  let prefix: any = ''
+  if (locale !== 'en') {
+    prefix = '年'
+  }
+  for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
+    let year = {}
+    year['label'] = i + prefix
+    year['value'] = i + prefix
+    years.push(year)
   }
   return years
 }
