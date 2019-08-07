@@ -1,4 +1,4 @@
-import {format} from './Locale';
+import { format } from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -15,7 +15,7 @@ const getWeekDayLabels = (locale: any) => {
   const date = new Date();
   const eachDayOfWeek = getWeekDays(date);
   const labels = eachDayOfWeek.map(day => {
-    return format(day, 'E', {locale: locale});
+    return format(day, 'E', { locale: locale });
   });
 
   return labels;
@@ -33,15 +33,24 @@ const getMonthLabels = (locale: any) => {
   return labels
 }
 
-const getYearLabels = (value: any) => {
+const getYearLabels = (value: any, locale: any) => {
   let currentYear: any = value.replace('年', '')
   currentYear = parseInt(value)
   let years: any = []
-  for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
-    let year = {}
-    year['label'] = i + '年'
-    year['value'] = i + '年'
-    years.push(year)
+  if (locale === 'en') {
+    for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
+      let year = {}
+      year['label'] = i + ''
+      year['value'] = i + ''
+      years.push(year)
+    }
+  } else {
+    for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
+      let year = {}
+      year['label'] = i + '年'
+      year['value'] = i + '年'
+      years.push(year)
+    }
   }
   return years
 }
