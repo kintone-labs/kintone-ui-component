@@ -390,7 +390,7 @@ class DateTime extends Control {
     if (this._dateTextInput.value === '') {
       this._props.value = null;
     } else {
-      const tempDate = parseStringToDate(this._dateTextInput.value);
+      const tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
       if (tempDate instanceof Date && !isNaN(tempDate as any)) {
         this._props.value = tempDate;
       } else {
