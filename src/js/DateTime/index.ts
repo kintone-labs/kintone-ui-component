@@ -250,78 +250,27 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         default:
-          const isNumber = /^[0-9]$/i.test(String.fromCharCode(e.which || e.keyCode));
+          e.preventDefault();
+          const key = String.fromCharCode(e.which || e.keyCode);
+          const isNumber = /^[0-9]$/i.test(key);
           if (!isNumber) {
-            e.preventDefault();
             if (this._timeTextInput.dataset.previousValidTime &&
               this._timeTextInput.dataset.previousValidTime != this._timeTextInput.value) {
+              let previousSelectionStart = 0;
+              let previousSelectionEnd = 2;
+              if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+                this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
+              ) {
+                previousSelectionStart = 3;
+                previousSelectionEnd = 5;
+              }
               this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime
+              this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
             }
+          } else {
+            this._setTimeValueOnInput(key);
           }
           break;
-      }
-    };
-    this._timeTextInput.onkeyup = (e) => {
-      const isNumber = /^[0-9]$/i.test(String.fromCharCode(e.which || e.keyCode));
-      console.log(e)
-      console.log(isNumber);
-      if (isNumber) {
-        let newTime = parseStringToTime(this._timeTextInput.value);
-        if (!newTime) {
-          newTime = new Date(this._time)
-        }
-        if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
-          this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
-        ) {
-          // minutes are being edited
-          // for case when more then 1 key is being held down
-          if (newTime.getMinutes() === this._time.getMinutes()) {
-            this._timeTextInput.value = format(newTime, 'HH:mm');
-            this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
-            this._timeTextInput.setSelectionRange(3, 5);
-            e.preventDefault()
-            return
-          }
-          let previousMinutes: string;
-          if (this._time.getMinutes() > 10) {
-            previousMinutes = ('' + this._time.getMinutes())[1];
-          } else {
-            previousMinutes = ('' + this._time.getMinutes());
-          }
-          if (parseInt(previousMinutes, 10) > 5) {
-            previousMinutes = '0';
-          }
-          newTime.setMinutes(parseInt(previousMinutes + '' + newTime.getMinutes(), 10));
-          this._timeTextInput.value = format(newTime, 'HH:mm');
-          this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
-          this._timeTextInput.setSelectionRange(3, 5);
-        } else {
-          // hours are being edited
-          // for case when more then 1 key is being held down
-          if (newTime.getHours() === this._time.getHours()) {
-            this._timeTextInput.value = format(newTime, 'HH:mm');
-            this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
-            this._timeTextInput.setSelectionRange(0, 2);
-            e.preventDefault()
-            return
-          }
-          let previousHours: string;
-          if (this._time.getHours() > 10) {
-            previousHours = ('' + this._time.getHours())[1];
-          } else {
-            previousHours = ('' + this._time.getHours());
-          }
-          if (parseInt(previousHours, 10) > 2) {
-            previousHours = '0';
-          }
-          newTime.setHours(parseInt(previousHours + '' + newTime.getHours(), 10));
-          this._timeTextInput.value = format(newTime, 'HH:mm');
-          this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
-          this._timeTextInput.setSelectionRange(0, 2);
-        }
-        this._time = new Date(newTime);
-      } else {
-        e.preventDefault();
       }
     };
     this._timeTextInput.onblur = (e) => {
@@ -335,17 +284,50 @@ class DateTime extends Control {
         e.preventDefault()
         return;
       }
-
-      // set value
-      const newTime = parseStringToTime(this._timeTextInput.value);
-      if (newTime) {
-        this._time.setHours(newTime.getHours());
-        this._time.setMinutes(newTime.getMinutes());
-      }
-      //
       this._timePicker.hide();
     };
   }
+
+  private _setTimeValueOnInput = (key: string) => {
+    let newTime = parseStringToTime(this._timeTextInput.value);
+    if (!newTime) {
+      newTime = new Date(this._time)
+    }
+    if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+      this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
+    ) {
+      // minutes are being edited
+      let previousMinutes: string;
+      if (this._time.getMinutes() > 10) {
+        previousMinutes = ('' + this._time.getMinutes())[1];
+      } else {
+        previousMinutes = ('' + this._time.getMinutes());
+      }
+      if (parseInt(previousMinutes, 10) > 5) {
+        previousMinutes = '0';
+      }
+      newTime.setMinutes(parseInt(previousMinutes + key, 10));
+      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
+      this._timeTextInput.setSelectionRange(3, 5);
+    } else {
+      // hours are being edited
+      let previousHours: string;
+      if (this._time.getHours() > 10) {
+        previousHours = ('' + this._time.getHours())[1];
+      } else {
+        previousHours = ('' + this._time.getHours());
+      }
+      if (parseInt(previousHours, 10) > 2) {
+        previousHours = '0';
+      }
+      newTime.setHours(parseInt(previousHours + key, 10));
+      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
+      this._timeTextInput.setSelectionRange(0, 2);
+    }
+    this._time = new Date(newTime);
+  };
 
   private _changeMinutesBy(minutes: number) {
     this._time.setMinutes(this._time.getMinutes() + minutes);
