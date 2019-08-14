@@ -1,4 +1,4 @@
-import { format } from './Locale';
+import { format, getSeperator } from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -44,21 +44,22 @@ const isSameMonth = (day1: Date, day2: Date) => day1.getMonth() === day2.getMont
 const isToday = (day: Date) => day.toDateString() === (new Date()).toDateString();
 const isSameDate = (day1: Date, day2: Date) => day1.toDateString() === day2.toDateString();
 
-const parseStringToDate = (dateString: string, dateFormat?: string, delimiter: string = '/') => {
+const parseStringToDate = (dateString: string, dateFormat?: string) => {
+  const formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
+  const delimiter = getSeperator(formatLowerCase);
   if (isNaN(dateString.split(delimiter)[1] as any) || isNaN(dateString.split(delimiter)[0] as any) || isNaN(dateString.split(delimiter)[2] as any)) {
     return null;
   }
-  var formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
-  var formatItems = formatLowerCase.split(delimiter);
-  var dateItems = dateString.split(delimiter);
-  var monthIndex = formatItems.indexOf("mm");
-  var dayIndex = formatItems.indexOf("dd");
-  var yearIndex = formatItems.indexOf("yyyy");
-  var day = parseInt(dateItems[dayIndex]);
-  var month = parseInt(dateItems[monthIndex]);
+  let formatItems = formatLowerCase.split(delimiter);
+  let dateItems = dateString.split(delimiter);
+  let monthIndex = formatItems.indexOf("mm");
+  let dayIndex = formatItems.indexOf("dd");
+  let yearIndex = formatItems.indexOf("yyyy");
+  let day = parseInt(dateItems[dayIndex]);
+  let month = parseInt(dateItems[monthIndex]);
   month -= 1;
-  var year = parseInt(dateItems[yearIndex]);
-  var formatedDate = new Date(year, month, day);
+  let year = parseInt(dateItems[yearIndex]);
+  let formatedDate = new Date(year, month, day);
   return formatedDate;
 };
 
