@@ -205,6 +205,7 @@ class DateTime extends Control {
       }, 1);
     };
     this._timeTextInput.onkeydown = (e) => {
+      e.preventDefault();
       switch (e.key) {
         case 'Tab':
           if (this._timeTextInput.selectionStart !== 3 && this._timeTextInput.selectionEnd !== 5) {
@@ -215,19 +216,16 @@ class DateTime extends Control {
           break;
         case 'ArrowLeft':
         case 'Left':
-          e.preventDefault();
           this._timeTextInput.setSelectionRange(0, 2);
           this._timePicker.hide();
           break;
         case 'ArrowRight':
         case 'Right':
-          e.preventDefault();
           this._timeTextInput.setSelectionRange(3, 5);
           this._timePicker.hide();
           break;
         case 'ArrowUp':
         case 'Up':
-          e.preventDefault();
           if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
             this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5
           ) {
@@ -239,7 +237,6 @@ class DateTime extends Control {
           break;
         case 'ArrowDown':
         case 'Down':
-          e.preventDefault();
           if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
             this._timeTextInput.selectionStart >= 2 && this._timeTextInput.selectionStart <= 5
           ) {
@@ -250,25 +247,18 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         default:
-          e.preventDefault();
-          const key = String.fromCharCode(e.which || e.keyCode);
-          const isNumber = /^[0-9]$/i.test(key);
-          if (!isNumber) {
-            if (this._timeTextInput.dataset.previousValidTime &&
-              this._timeTextInput.dataset.previousValidTime != this._timeTextInput.value) {
-              let previousSelectionStart = 0;
-              let previousSelectionEnd = 2;
-              if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
-                this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
-              ) {
-                previousSelectionStart = 3;
-                previousSelectionEnd = 5;
-              }
-              this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime
-              this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
+          const isNumber = /^[0-9]$/i.test(e.key);
+          if(isNumber) {
+            // check for case strange 2-byte numbers are inputted (like in Japanese language)
+            const key = String.fromCharCode(e.which || e.keyCode);
+            const isReallyNumber = /^[0-9]$/i.test(key);
+            if(!isReallyNumber) {
+              this._setTextInputValueToPreviousValidValue();
+            } else {
+              this._setTimeValueOnInput(key);
             }
           } else {
-            this._setTimeValueOnInput(key);
+            this._setTextInputValueToPreviousValidValue();
           }
           break;
       }
@@ -286,6 +276,22 @@ class DateTime extends Control {
       }
       this._timePicker.hide();
     };
+  }
+
+  private _setTextInputValueToPreviousValidValue = () => {
+    if (this._timeTextInput.dataset.previousValidTime &&
+      this._timeTextInput.dataset.previousValidTime != this._timeTextInput.value) {
+      let previousSelectionStart = 0;
+      let previousSelectionEnd = 2;
+      if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+        this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
+      ) {
+        previousSelectionStart = 3;
+        previousSelectionEnd = 5;
+      }
+      this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime
+      this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
+    }
   }
 
   private _setTimeValueOnInput = (key: string) => {
