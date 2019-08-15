@@ -247,18 +247,17 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         default:
-          const isNumber = /^[0-9]$/i.test(e.key);
-          if(isNumber) {
-            // check for case strange 2-byte numbers are inputted (like in Japanese language)
-            const key = String.fromCharCode(e.which || e.keyCode);
-            const isReallyNumber = /^[0-9]$/i.test(key);
-            if(!isReallyNumber) {
-              this._setTextInputValueToPreviousValidValue();
-            } else {
-              this._setTimeValueOnInput(key);
-            }
-          } else {
+          let keyCode = e.keyCode || e.which;
+          if (keyCode >= 96 && keyCode <= 105) {
+              // Numpad keys
+              keyCode -= 48;
+          }
+          const key = String.fromCharCode(keyCode);
+          const isNumber = /^[0-9]$/i.test(key);
+          if(!isNumber) {
             this._setTextInputValueToPreviousValidValue();
+          } else {
+            this._setTimeValueOnInput(key);
           }
           break;
       }
