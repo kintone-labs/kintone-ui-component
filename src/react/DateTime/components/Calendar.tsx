@@ -82,8 +82,7 @@ const Calendar = ({
               const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
               setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              if (locale === en) setDisplayYear(newDate.getFullYear().toString());
-              else setDisplayYear(newDate.getFullYear().toString() + '年');
+              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />
@@ -153,8 +152,7 @@ const Calendar = ({
               const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
               setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              if (locale === en) setDisplayYear(newDate.getFullYear().toString());
-              else setDisplayYear(newDate.getFullYear().toString() + '年');
+              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />
