@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels} from './utils';
-import {en, format} from './Locale';
+import {ja, en, format} from './Locale';
 
 import Locale from './localizationData/locale-dto';
 import {Dropdown} from '../../index';
@@ -19,12 +19,13 @@ let previousDate: Date;
 
 const Calendar = ({
   date,
-  locale = en,
+  locale = ja,
   pickerDisplay = 'block',
   hasSelection = false,
   onDateClick = () => {},
   calRef
 }: CalendarProps) => {
+  console.log(locale);
   const today = new Date();
   const weekDayLabels = getWeekDayLabels(locale);
   const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());
