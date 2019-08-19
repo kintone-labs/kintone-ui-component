@@ -1,0 +1,41 @@
+.date-picker-container .kuc-dropdown-selected-label {
+    color: black;
+    padding-left: 0ch;
+    display: inline;
+}
+
+.date-picker-container .kuc-dropdown-selected {
+    width: auto;
+    /* padding-right: 0px; */
+    text-align: left;
+}
+
+.date-picker-container .kuc-dropdown, .date-picker-container .kuc-dropdown-selected-name {
+    color: #a2a2a2;
+    background-color: white;
+    font-size: 13px;
+    border: 0ch;
+}
+
+.date-picker-container .kuc-dropdown-selected-name .icon-arrow-down svg path {
+    fill: #a2a2a2;
+}
+
+.date-picker-container .kuc-dropdown-sub-container .kuc-list-outer {
+    outline: none;
+    text-align: left;
+    max-height: 300px;
+}
+
+.date-picker-container {
+    outline: none;
+}
+
+.kuc-calendar-dropdown-row {
+    outline: none;
+    position: absolute;
+    top: -1vh;
+    left: 10%;
+    width: 90%;
+    text-align: center;
+}

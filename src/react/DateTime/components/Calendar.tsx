@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import {getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate} from './utils'
+import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels } from './utils'
 import {en} from './Locale'
 import {format} from './Locale'
 import Locale from './localizationData/locale-dto';
+import { Dropdown } from '../../index'
+import '../../../css/DropdownCalendar.css'
 
 type CalendarProps = {
 	date: Date,
@@ -17,7 +19,7 @@ let previousDate:Date
 
 const Calendar = ({
 	date,
-	locale = en, 
+	locale = en,
 	pickerDisplay = 'block',
 	hasSelection = false,
 	onDateClick=(date: Date)=> {},
@@ -26,7 +28,18 @@ const Calendar = ({
 	const today = new Date();
 	const weekDayLabels = getWeekDayLabels(locale);
 	const [displayDate, setDisplayDate] = useState(date?new Date(date):new Date());
+	const [displayMonth, setDisplayMonth] = useState(format(displayDate, 'calendarmonth', { locale: locale }))
+	const [displayYear, setDisplayYear] = useState(format(displayDate, 'calendaryear', { locale: locale }))
 	const displayingDays = getDisplayingDays(displayDate);
+
+	const scrollToSeletedOptions = () => {
+		let styleScroll: any = { block: "center" }
+		let selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected')
+		for (let i = 0; i < selectedItems.length; i++) {
+			let item = selectedItems[i];
+			item.scrollIntoView(styleScroll)
+		}
+	}
 	if (!previousDate) {
 		previousDate = new Date(date)
 	}
@@ -46,10 +59,10 @@ const Calendar = ({
 			tabIndex={-1}
 			onBlur={(e)=>{
 				let relatedTarget = e.relatedTarget ||
-            e['explicitOriginalTarget'] ||
-						document.activeElement; // IE11
+					e['explicitOriginalTarget'] ||
+					document.activeElement; // IE11
 				if(
-					calRef.current !== relatedTarget && 
+					calRef.current !== relatedTarget &&
 					!calRef.current.contains(relatedTarget as HTMLElement) &&
 					pickerDisplay !== 'none'
 				) {
@@ -62,56 +75,109 @@ const Calendar = ({
 					<span className="prev calendar-button-control" onClick={()=>{
 						let newDate = new Date(displayDate)
 						newDate.setMonth(newDate.getMonth()-1,1)
+						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
+						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
+						if (locale === en)
+							setDisplayYear(newDate.getFullYear().toString())
+						else
+							setDisplayYear(newDate.getFullYear().toString() + '年')
 					}} tabIndex={-1} />
-					<span className="label">
-						{format(displayDate, "calendartitle", {
-							locale: locale
-						})}
-					</span>
-					<span className="next calendar-button-control" onClick={()=>{
+					<div className="kuc-calendar-dropdown-row" tabIndex={-1}>
+						{locale === en ?
+							<div>
+								<Dropdown items={getMonthLabels(locale)} value={displayMonth}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setMonth(locale.monthNames.indexOf(value), 1)
+										setDisplayMonth(value)
+										setDisplayDate(newDate)
+										setDisplayYear(newDate.getFullYear().toString())
+										scrollToSeletedOptions()
+									}}></Dropdown>
+								<Dropdown items={getYearLabels(displayYear)} value={displayYear}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setFullYear(parseInt(value), displayDate.getMonth(), 1)
+										setDisplayYear(value)
+										setDisplayDate(newDate)
+										scrollToSeletedOptions()
+									}}></Dropdown>
+							</div>
+							:
+							<div>
+								<Dropdown items={getYearLabels(displayYear)} value={displayYear}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										let currentYear: any = value
+										currentYear = currentYear.replace('年', '')
+										currentYear = parseInt(value)
+										newDate.setFullYear(parseInt(currentYear), displayDate.getMonth(), 1)
+										setDisplayYear(value)
+										setDisplayDate(newDate)
+										scrollToSeletedOptions()
+									}}></Dropdown>
+								<Dropdown items={getMonthLabels(locale)} value={displayMonth}
+									onChange={(value) => {
+										let newDate = new Date(displayDate)
+										newDate.setMonth(locale.monthNames.indexOf(value), 1)
+										setDisplayMonth(value)
+										setDisplayDate(newDate)
+										setDisplayYear(newDate.getFullYear().toString() + '年')
+										scrollToSeletedOptions()
+									}}></Dropdown>
+							</div>
+						}
+					</div>
+					<span className="next calendar-button-control" onClick={() => {
 						let newDate = new Date(displayDate)
-						newDate.setMonth(newDate.getMonth()+1,1)
+						newDate.setMonth(newDate.getMonth() + 1, 1)
+						let newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label
+						setDisplayMonth(newDisplayMonth)
 						setDisplayDate(newDate)
+						if (locale === en)
+							setDisplayYear(newDate.getFullYear().toString())
+						else
+							setDisplayYear(newDate.getFullYear().toString() + '年')
 					}} tabIndex={-1} />
 				</div>
 				<div className="days-container">
-				{weekDayLabels.map((label, index) => {
-					const notWeekend = index !== 0 && index !== 6;
-					return (
-					<span
-						className={
-							notWeekend ? "wday-header" : "wday-header grayed-out"
-						}
-						key={`wday-header-${index}`}
-					>
-						{label}
-					</span>
-					);
-				})}
-				{displayingDays.map((day, index) => {
-					let className = "day";
+					{weekDayLabels.map((label, index) => {
+						const notWeekend = index !== 0 && index !== 6;
+						return (
+							<span
+								className={
+									notWeekend ? "wday-header" : "wday-header grayed-out"
+								}
+								key={`wday-header-${index}`}
+							>
+								{label}
+							</span>
+						);
+					})}
+					{displayingDays.map((day, index) => {
+						let className = "day";
 
-					className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
-					className += isToday(day) ? " today" : "";
-					className += date && isSameDate(day, date) && hasSelection ? " selected" : "";
-					return (
-						<span className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
-							
-							let returnDate = new Date(date)
-							returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate())
-							
-							onDateClick(returnDate, null)
-							setDisplayDate(new Date(day))
-						}}
-						tabIndex={0} >
-							{format(day, "d")}
-						</span>
-					);
-				})}
+						className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
+						className += isToday(day) ? " today" : "";
+						className += date && isSameDate(day, date) && hasSelection ? " selected" : "";
+						return (
+							<span className={`${className} calendar-button`} key={`day-${index}`} onClick={()=>{
+
+								let returnDate = new Date(date)
+								returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate())
+
+								onDateClick(returnDate, null)
+								setDisplayDate(new Date(day))
+							}}
+								tabIndex={0} >
+								{format(day, "d")}
+							</span>
+						);
+					})}
 				</div>
 				<div className="quick-selections-container">
-					<span className="today calendar-button-control" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
+				<span className="today calendar-button-control" onClick={()=>{setDisplayDate(new Date());onDateClick(today, null)}}>{locale.today}</span>
 					<span className="none calendar-button-control" onClick={()=>{onDateClick(null, previousDate);}} tabIndex={-1}>{locale.none}</span>
 				</div>
 			</div>
