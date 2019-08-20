@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels} from './utils';
-import {en, format} from './Locale';
+import {ja, en, format} from './Locale';
 
 import Locale from './localizationData/locale-dto';
 import {Dropdown} from '../../index';
@@ -19,12 +19,13 @@ let previousDate: Date;
 
 const Calendar = ({
   date,
-  locale = en,
+  locale = ja,
   pickerDisplay = 'block',
   hasSelection = false,
   onDateClick = () => {},
   calRef
 }: CalendarProps) => {
+  console.log(locale);
   const today = new Date();
   const weekDayLabels = getWeekDayLabels(locale);
   const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());
@@ -81,8 +82,7 @@ const Calendar = ({
               const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
               setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              if (locale === en) setDisplayYear(newDate.getFullYear().toString());
-              else setDisplayYear(newDate.getFullYear().toString() + '年');
+              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />
@@ -152,8 +152,7 @@ const Calendar = ({
               const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
               setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              if (locale === en) setDisplayYear(newDate.getFullYear().toString());
-              else setDisplayYear(newDate.getFullYear().toString() + '年');
+              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />

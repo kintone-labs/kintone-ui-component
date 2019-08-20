@@ -1,4 +1,4 @@
-import { format } from './Locale';
+import { format, en } from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -38,7 +38,7 @@ const getYearLabels = (value: any, locale: any) => {
   currentYear = parseInt(value)
   let years: any = []
   let prefix: any = ''
-  if (locale !== 'en') {
+  if (locale !== en) {
     prefix = '年'
   }
   for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
