@@ -8,14 +8,14 @@ import {getWeekDayLabels,
   getMonthLabels,
   getYearLabels
 } from '../../../react/DateTime/components/utils';
-import {ja, format} from '../../../react/DateTime/components/Locale';
+import {ja, en, format} from '../../../react/DateTime/components/Locale';
 import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
 import Control, {ControlProps} from '../../Control';
 import Dropdown from '../../Dropdown';
-
+import '../../../css/DropdownCalendar.css'
 type CalendarProps = ControlProps & {
   date?: Date | null;
-  locale?: Locale;
+  locale: Locale;
   onDateClick?: (date: Date | null) => void;
   onClickOutside?: (e: FocusEvent) => void;
 }
@@ -33,6 +33,8 @@ class Calendar extends Control {
   private _previousButton: HTMLElement
   private _nextButton: HTMLElement
   private _displayDate: Date = new Date()
+  private _displayMonth: string
+  private _displayYear: string
   // private _displayLabel: HTMLElement
   private _displayMonthDropdown: Dropdown
   private _displayYearDropdown: Dropdown
@@ -48,6 +50,8 @@ class Calendar extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    this._displayMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
+    this._displayYear = format(this._displayDate, 'calendaryear', {locale: this._props.locale});
   }
 
   _renderCalendarContainer() {
@@ -75,24 +79,55 @@ class Calendar extends Control {
     span.className = 'prev calendar-button-control';
     span.onclick = () => {
       this._displayDate.setMonth(this._displayDate.getMonth() - 1);
+      this._displayMonth = this._displayDate.getMonth() + '';
+      this.rerender(['monthYearDropdown']);
       this.rerender(['selectedDate']);
     };
     this._previousButton = span;
   }
 
+  _scrollToSeletedOptions = () => {
+    const styleScroll: any = {block: 'center'};
+    const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected');
+    for (let i = 0; i < selectedItems.length; i++) {
+      const item = selectedItems[i];
+      item.scrollIntoView(styleScroll);
+    }
+  };
+
   _renderDisplayMonthDropdown() {
-    // const span = document.createElement('span');
-    // span.className = 'label';
-    // span.textContent = monthName;
-    const currentMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
-    const monthDropdown = new Dropdown({value: currentMonth, items: getMonthLabels(this._props.locale)});
+    const monthDropdown = new Dropdown({value: this._displayMonth, items: getMonthLabels(this._props.locale)});
+    monthDropdown.element.onclick = () => {
+      this._scrollToSeletedOptions();
+    }
+    monthDropdown.on('change', (value) => {
+      let newDate = new Date(this._displayDate);
+      newDate.setMonth(this._props.locale.monthNames.indexOf(value), 1);
+      this._displayMonth = value;
+      this._displayDate = newDate;
+      this._scrollToSeletedOptions();
+      this.rerender(['selectedDate']);
+    });
     this._displayMonthDropdown = monthDropdown;
   }
 
+  _onChangeCreateYearDropdown = (value:any) => {
+      let newDate = new Date(this._displayDate);
+      let currentYear = Number(value.replace('年', ''));
+      newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
+      this._displayYear = value;
+      this._displayDate = newDate;
+      this._displayYearDropdown.setItems(getYearLabels(this._displayYear,this._props.locale));     
+      this.rerender(['selectedDate']);
+  }
+
   _renderDisplayYearDropdown(){
-    const currentYear =  format(this._displayDate, 'calendaryear', {locale: this._props.locale});
-    const yearDropdown = new Dropdown({value: currentYear, items: getYearLabels(currentYear,this._props.locale)});
+    const yearDropdown = new Dropdown({value: this._displayYear, items: getYearLabels(this._displayYear,this._props.locale)});
+    yearDropdown.element.onclick = () => {
+      this._scrollToSeletedOptions();
+    }
     this._displayYearDropdown = yearDropdown;
+    this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown);
   }
 
   _renderNextButton() {
@@ -100,6 +135,7 @@ class Calendar extends Control {
     span.className = 'next calendar-button-control';
     span.onclick = () => {
       this._displayDate.setMonth(this._displayDate.getMonth() + 1);
+      this.rerender(['monthYearDropdown']);
       this.rerender(['selectedDate']);
     };
     this._nextButton = span;
@@ -185,9 +221,13 @@ class Calendar extends Control {
     // render calendar header elements
     this._calendarHeader.appendChild(this._monthYearContainer);
     this._monthYearContainer.appendChild(this._previousButton);
-    this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
-    this._monthYearContainer.appendChild(this._displayYearDropdown.render());
-    // this._monthYearContainer.appendChild(this._displayLabel);
+    if(this._props.locale === en) {
+      this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
+      this._monthYearContainer.appendChild(this._displayYearDropdown.render());
+    } else {
+      this._monthYearContainer.appendChild(this._displayYearDropdown.render());
+      this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
+    }
     this._monthYearContainer.appendChild(this._nextButton);
     this.element.appendChild(this._calendarHeader);
 
@@ -203,8 +243,13 @@ class Calendar extends Control {
     // render calendar footer
     this._quickSelectionsContainer.appendChild(this._todayButton);
     this._quickSelectionsContainer.appendChild(this._noneButton);
-    this._todayButton.onclick = (e) => {
+    this._todayButton.onclick = () => {
       if (this._props.onDateClick) {
+        let currentDate = new Date();
+        this._displayMonth = getMonthLabels(this._props.locale)[currentDate.getMonth()].label;
+        this._displayYear = format(currentDate, 'calendaryear', {locale: this._props.locale});
+        this._displayMonthDropdown.setValue(this._displayMonth);
+        this._displayYearDropdown.setValue(this._displayYear);
         this._props.onDateClick(new Date());
       }
     };
@@ -252,9 +297,6 @@ class Calendar extends Control {
   rerender(changedAttr: string[], options?: object) {
     super.rerender();
     if (changedAttr.indexOf('selectedDate') !== -1) {
-      // this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
-      //   locale: this._props.locale
-      // });
       this._daysContainer.innerHTML = '';
       this._renderWeekDaysLabels();
       this._weekDayLabelsSpans.forEach((weekLabel)=>{
@@ -264,6 +306,12 @@ class Calendar extends Control {
       this._displayDaysSpans.forEach((dayLabel)=>{
         this._daysContainer.appendChild(dayLabel);
       });
+    }
+    if (changedAttr.indexOf('monthYearDropdown') !== -1) {
+      this._displayMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
+      this._displayYear = format(this._displayDate, 'calendaryear', {locale: this._props.locale});
+      this._displayMonthDropdown.setValue(this._displayMonth);
+      this._displayYearDropdown.setValue(this._displayYear);
     }
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
       this.element.style.left = options['left'] + 'px';
