@@ -142,7 +142,7 @@ const DateTime = ({
       newTimeDateValue.setFullYear(value.getFullYear())
       setNewTimeDateValue = true
     }
-    if(setNewTimeDateValue && !pickerDisplay) {
+    if(setNewTimeDateValue && pickerDisplay === 'none') {
       setTimeDateValue(newTimeDateValue)
     }
     setInputValue(format(value, dateFormat))

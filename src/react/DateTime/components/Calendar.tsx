@@ -28,8 +28,6 @@ const Calendar = ({
   const today = new Date();
   const weekDayLabels = getWeekDayLabels(locale);
   const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());
-  const [displayMonth, setDisplayMonth] = useState(format(displayDate, 'calendarmonth', {locale: locale}));
-  const [displayYear, setDisplayYear] = useState(format(displayDate, 'calendaryear', {locale: locale}));
   const displayingDays = getDisplayingDays(displayDate);
   const dropDownsRowRef = useRef<HTMLDivElement>(null);
 
@@ -47,8 +45,9 @@ const Calendar = ({
   useEffect(()=>{
     if (date) {
       if (!isSameDate(date, previousDate)) {
-        setDisplayDate(new Date(date));
-        previousDate = new Date(date);
+        const newDate = new Date(date);
+        setDisplayDate(newDate);
+        previousDate = newDate;
       }
     }
   }, [date]);
@@ -58,6 +57,7 @@ const Calendar = ({
       // if selected add class selected
       const selectedDropdownOuter = e.target.closest('.kuc-dropdown-outer');
       if(dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
+        scrollToSeletedOptions();
         if(selectedDropdownOuter.classList.contains('selected')) {
           selectedDropdownOuter.classList.remove('selected')
         } else {
@@ -112,10 +112,7 @@ const Calendar = ({
             onClick={()=>{
               const newDate = new Date(displayDate);
               newDate.setMonth(newDate.getMonth() - 1, 1);
-              const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
-              setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />
@@ -124,23 +121,20 @@ const Calendar = ({
               <React.Fragment>
                 <Dropdown
                   items={getMonthLabels(locale)}
-                  value={displayMonth}
+                  value={getMonthLabels(locale)[displayDate.getMonth()].label}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     newDate.setMonth(locale.monthNames.indexOf(value), 1);
-                    setDisplayMonth(value);
                     setDisplayDate(newDate);
-                    setDisplayYear(newDate.getFullYear().toString());
                     scrollToSeletedOptions();
                   }}
                 />
                 <Dropdown
-                  items={getYearLabels(displayYear, locale)}
-                  value={displayYear}
+                  items={getYearLabels(displayDate.getFullYear().toString(), locale)}
+                  value={format(displayDate, 'calendaryear', {locale})}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     newDate.setFullYear(parseInt(value, 10), displayDate.getMonth(), 1);
-                    setDisplayYear(value);
                     setDisplayDate(newDate);
                     scrollToSeletedOptions();
                   }}
@@ -149,28 +143,25 @@ const Calendar = ({
               :
               <React.Fragment>
                 <Dropdown
-                  items={getYearLabels(displayYear, locale)}
-                  value={displayYear}
+                  items={getYearLabels(displayDate.getFullYear().toString(), locale)}
+                  value={format(displayDate, 'calendaryear', {locale})}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     let currentYear: any = value;
                     currentYear = currentYear.replace('年', '');
                     currentYear = parseInt(value, 10);
                     newDate.setFullYear(parseInt(currentYear, 10), displayDate.getMonth(), 1);
-                    setDisplayYear(value);
                     setDisplayDate(newDate);
                     scrollToSeletedOptions();
                   }}
                 />
                 <Dropdown
                   items={getMonthLabels(locale)}
-                  value={displayMonth}
+                  value={getMonthLabels(locale)[displayDate.getMonth()].label}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     newDate.setMonth(locale.monthNames.indexOf(value), 1);
-                    setDisplayMonth(value);
                     setDisplayDate(newDate);
-                    setDisplayYear(newDate.getFullYear().toString() + '年');
                     scrollToSeletedOptions();
                   }}
                 />
@@ -182,10 +173,7 @@ const Calendar = ({
             onClick={() => {
               const newDate = new Date(displayDate);
               newDate.setMonth(newDate.getMonth() + 1, 1);
-              const newDisplayMonth = getMonthLabels(locale)[newDate.getMonth()].label;
-              setDisplayMonth(newDisplayMonth);
               setDisplayDate(newDate);
-              setDisplayYear(format(newDate, 'calendaryear', {locale}));
             }}
             tabIndex={-1}
           />
