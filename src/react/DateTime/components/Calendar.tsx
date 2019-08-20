@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels} from './utils';
 import {ja, en, format} from './Locale';
 
@@ -25,13 +25,13 @@ const Calendar = ({
   onDateClick = () => {},
   calRef
 }: CalendarProps) => {
-  console.log(locale);
   const today = new Date();
   const weekDayLabels = getWeekDayLabels(locale);
   const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());
   const [displayMonth, setDisplayMonth] = useState(format(displayDate, 'calendarmonth', {locale: locale}));
   const [displayYear, setDisplayYear] = useState(format(displayDate, 'calendaryear', {locale: locale}));
   const displayingDays = getDisplayingDays(displayDate);
+  const dropDownsRowRef = useRef<HTMLDivElement>(null);
 
   const scrollToSeletedOptions = () => {
     const styleScroll: any = {block: 'center'};
@@ -52,6 +52,39 @@ const Calendar = ({
       }
     }
   }, [date]);
+
+  const _handleDropdownSelection = (e: any) => {
+    if (dropDownsRowRef.current) {
+      // if selected add class selected
+      const selectedDropdownOuter = e.target.closest('.kuc-dropdown-outer');
+      if(dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
+        if(selectedDropdownOuter.classList.contains('selected')) {
+          selectedDropdownOuter.classList.remove('selected')
+        } else {
+          _clearAllDropdownSelections();
+          selectedDropdownOuter.classList.add('selected');
+        }
+      } else {
+        _clearAllDropdownSelections();
+      }
+    }
+  };
+
+  const _clearAllDropdownSelections = () => {
+    if(dropDownsRowRef.current) {
+      // clear all selected children from selected class
+      let outerList = dropDownsRowRef.current.getElementsByClassName('kuc-dropdown-outer');
+      let outerListArray = [].slice.call(outerList);
+      outerListArray.forEach((item: any) => {
+        item.classList.remove('selected');
+      })
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', _handleDropdownSelection);
+    return () => document.removeEventListener('mousedown', _handleDropdownSelection);
+  });
 
   return (
     <div
@@ -86,9 +119,9 @@ const Calendar = ({
             }}
             tabIndex={-1}
           />
-          <div className="kuc-calendar-dropdown-row" tabIndex={-1}>
+          <div ref={dropDownsRowRef} className="kuc-calendar-dropdown-row" tabIndex={-1}>
             {locale === en ?
-              <div>
+              <React.Fragment>
                 <Dropdown
                   items={getMonthLabels(locale)}
                   value={displayMonth}
@@ -112,9 +145,9 @@ const Calendar = ({
                     scrollToSeletedOptions();
                   }}
                 />
-              </div>
+              </React.Fragment>
               :
-              <div>
+              <React.Fragment>
                 <Dropdown
                   items={getYearLabels(displayYear, locale)}
                   value={displayYear}
@@ -141,7 +174,7 @@ const Calendar = ({
                     scrollToSeletedOptions();
                   }}
                 />
-              </div>
+              </React.Fragment>
             }
           </div>
           <span

@@ -1,3 +1,14 @@
+
+.date-picker-container .kuc-dropdown-sub-container,
+.date-picker-container .kuc-dropdown-container,
+.date-picker-container .kuc-dropdown-outer {
+    height: 100%;
+}
+
+.kuc-dropdown-outer {
+    padding: 5px;
+}
+
 .date-picker-container .kuc-dropdown-selected-label {
     color: black;
     padding-left: 0ch;
@@ -6,8 +17,9 @@
 
 .date-picker-container .kuc-dropdown-selected {
     width: auto;
-    /* padding-right: 0px; */
     text-align: left;
+    padding-right: 22px;
+    height: 22px;
 }
 
 .date-picker-container .kuc-dropdown, .date-picker-container .kuc-dropdown-selected-name {
@@ -15,16 +27,23 @@
     background-color: white;
     font-size: 13px;
     border: 0ch;
+    line-height: 22px;
+}
+
+.date-picker-container .kuc-dropdown-selected-name .icon-arrow-down svg {
+    box-sizing: border-box;
+    padding: 0;
 }
 
 .date-picker-container .kuc-dropdown-selected-name .icon-arrow-down svg path {
     fill: #a2a2a2;
 }
 
-.date-picker-container .kuc-dropdown-sub-container .kuc-list-outer {
+.date-picker-container .kuc-list-outer {
     outline: none;
     text-align: left;
     max-height: 300px;
+    top: 40px;
 }
 
 .date-picker-container {
@@ -38,4 +57,12 @@
     left: 10%;
     width: 90%;
     text-align: center;
+}
+
+.date-picker-container .kuc-dropdown-outer {
+    border: solid 1px transparent;
+}
+
+.date-picker-container .kuc-dropdown-outer.selected {
+    border-color: #3498db;
 }
