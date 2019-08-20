@@ -13,6 +13,7 @@
     color: black;
     padding-left: 0ch;
     display: inline;
+    font-weight: bold;
 }
 
 .date-picker-container .kuc-dropdown:hover {
@@ -37,6 +38,7 @@
 .date-picker-container .kuc-dropdown-selected-name .icon-arrow-down svg {
     box-sizing: border-box;
     padding: 0;
+    height: 26px;
 }
 
 .date-picker-container .kuc-dropdown-selected-name .icon-arrow-down svg path {
@@ -56,10 +58,8 @@
 
 .kuc-calendar-dropdown-row {
     outline: none;
-    position: absolute;
-    top: -1vh;
-    left: 10%;
-    width: 90%;
+    position: relative;
+    top: -7px;
     text-align: center;
 }
 
