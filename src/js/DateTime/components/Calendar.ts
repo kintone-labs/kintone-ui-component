@@ -4,11 +4,14 @@ import {getWeekDayLabels,
   isSameMonth,
   isToday,
   isSameDate,
-  parseStringToDate
+  parseStringToDate,
+  getMonthLabels,
+  getYearLabels
 } from '../../../react/DateTime/components/utils';
 import {ja, format} from '../../../react/DateTime/components/Locale';
 import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
 import Control, {ControlProps} from '../../Control';
+import Dropdown from '../../Dropdown';
 
 type CalendarProps = ControlProps & {
   date?: Date | null;
@@ -30,7 +33,9 @@ class Calendar extends Control {
   private _previousButton: HTMLElement
   private _nextButton: HTMLElement
   private _displayDate: Date = new Date()
-  private _displayLabel: HTMLElement
+  // private _displayLabel: HTMLElement
+  private _displayMonthDropdown: Dropdown
+  private _displayYearDropdown: Dropdown
   private _daysContainer: HTMLElement
   private _quickSelectionsContainer: HTMLElement
   private _todayButton: HTMLElement
@@ -75,13 +80,19 @@ class Calendar extends Control {
     this._previousButton = span;
   }
 
-  _renderDisplayDateLabel() {
-    const span = document.createElement('span');
-    span.className = 'label';
-    span.textContent = format(this._displayDate, 'calendartitle', {
-      locale: this._props.locale
-    });
-    this._displayLabel = span;
+  _renderDisplayMonthDropdown() {
+    // const span = document.createElement('span');
+    // span.className = 'label';
+    // span.textContent = monthName;
+    const currentMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
+    const monthDropdown = new Dropdown({value: currentMonth, items: getMonthLabels(this._props.locale)});
+    this._displayMonthDropdown = monthDropdown;
+  }
+
+  _renderDisplayYearDropdown(){
+    const currentYear =  format(this._displayDate, 'calendaryear', {locale: this._props.locale});
+    const yearDropdown = new Dropdown({value: currentYear, items: getYearLabels(currentYear,this._props.locale)});
+    this._displayYearDropdown = yearDropdown;
   }
 
   _renderNextButton() {
@@ -161,7 +172,8 @@ class Calendar extends Control {
     this._renderCalendarHeader();
     this._renderMonthYearContainer();
     this._renderPreviousButton();
-    this._renderDisplayDateLabel();
+    this._renderDisplayMonthDropdown();
+    this._renderDisplayYearDropdown();
     this._renderNextButton();
     this._renderDaysContainer();
     this._renderWeekDaysLabels();
@@ -173,7 +185,9 @@ class Calendar extends Control {
     // render calendar header elements
     this._calendarHeader.appendChild(this._monthYearContainer);
     this._monthYearContainer.appendChild(this._previousButton);
-    this._monthYearContainer.appendChild(this._displayLabel);
+    this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
+    this._monthYearContainer.appendChild(this._displayYearDropdown.render());
+    // this._monthYearContainer.appendChild(this._displayLabel);
     this._monthYearContainer.appendChild(this._nextButton);
     this.element.appendChild(this._calendarHeader);
 
@@ -238,9 +252,9 @@ class Calendar extends Control {
   rerender(changedAttr: string[], options?: object) {
     super.rerender();
     if (changedAttr.indexOf('selectedDate') !== -1) {
-      this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
-        locale: this._props.locale
-      });
+      // this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
+      //   locale: this._props.locale
+      // });
       this._daysContainer.innerHTML = '';
       this._renderWeekDaysLabels();
       this._weekDayLabelsSpans.forEach((weekLabel)=>{
