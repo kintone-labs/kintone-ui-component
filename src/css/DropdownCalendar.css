@@ -48,7 +48,8 @@
     outline: none;
     text-align: left;
     max-height: 300px;
-    top: 40px;
+    top: 32px;
+    margin-top:0; 
 }
 
 .date-picker-container {
@@ -56,14 +57,18 @@
 }
 
 .kuc-calendar-dropdown-row {
+    display: inline-flex;
+    justify-content: center;
+    flex-basis: calc(100% - 48px);
+    text-align: center;
     outline: none;
     position: relative;
     top: -7px;
-    text-align: center;
 }
 
 .date-picker-container .kuc-dropdown-outer {
     border: solid 1px transparent;
+    box-sizing: border-box;
 }
 
 .date-picker-container .kuc-dropdown-outer.selected {
