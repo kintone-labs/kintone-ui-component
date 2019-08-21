@@ -220,6 +220,11 @@ class Dropdown extends Control {
     this.rerender(['item']);
   }
 
+  setItems(items: Array<item>) {
+    this._props.items = items;
+    this.rerender(['item']);
+  }
+
   removeItem(index: number) {
     if (this._props.items.length <= index) {
       return false;
