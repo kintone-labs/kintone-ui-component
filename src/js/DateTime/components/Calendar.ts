@@ -35,7 +35,7 @@ class Calendar extends Control {
   private _displayDate: Date = new Date()
   private _displayMonth: string
   private _displayYear: string
-  // private _displayLabel: HTMLElement
+  private _monthYearDropdownsRow: HTMLElement
   private _displayMonthDropdown: Dropdown
   private _displayYearDropdown: Dropdown
   private _daysContainer: HTMLElement
@@ -71,6 +71,10 @@ class Calendar extends Control {
   _renderMonthYearContainer() {
     const monthYearContainer = document.createElement('div');
     monthYearContainer.className = 'month-year-container';
+    const monthYearDropdownsRow = document.createElement('div');
+    monthYearDropdownsRow.tabIndex = -1;
+    monthYearDropdownsRow.classList.add('kuc-calendar-dropdown-row');
+    this._monthYearDropdownsRow = monthYearDropdownsRow;
     this._monthYearContainer = monthYearContainer;
   }
 
@@ -221,12 +225,13 @@ class Calendar extends Control {
     // render calendar header elements
     this._calendarHeader.appendChild(this._monthYearContainer);
     this._monthYearContainer.appendChild(this._previousButton);
+    this._monthYearContainer.appendChild(this._monthYearDropdownsRow);
     if(this._props.locale === en) {
-      this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
-      this._monthYearContainer.appendChild(this._displayYearDropdown.render());
+      this._monthYearDropdownsRow.appendChild(this._displayMonthDropdown.render());
+      this._monthYearDropdownsRow.appendChild(this._displayYearDropdown.render());
     } else {
-      this._monthYearContainer.appendChild(this._displayYearDropdown.render());
-      this._monthYearContainer.appendChild(this._displayMonthDropdown.render());
+      this._monthYearDropdownsRow.appendChild(this._displayYearDropdown.render());
+      this._monthYearDropdownsRow.appendChild(this._displayMonthDropdown.render());
     }
     this._monthYearContainer.appendChild(this._nextButton);
     this.element.appendChild(this._calendarHeader);
