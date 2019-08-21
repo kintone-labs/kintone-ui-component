@@ -54,32 +54,12 @@ const Calendar = ({
 
   const _handleDropdownSelection = (e: any) => {
     if (dropDownsRowRef.current) {
-      // if selected add class selected
       const selectedDropdownOuter = e.target.closest('.kuc-dropdown-outer');
       if(dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
-        scrollToSeletedOptions();
-        if(selectedDropdownOuter.classList.contains('selected')) {
-          selectedDropdownOuter.classList.remove('selected')
-        } else {
-          _clearAllDropdownSelections();
-          selectedDropdownOuter.classList.add('selected');
-        }
-      } else {
-        _clearAllDropdownSelections();
+        setTimeout(scrollToSeletedOptions,100)
       }
     }
   };
-
-  const _clearAllDropdownSelections = () => {
-    if(dropDownsRowRef.current) {
-      // clear all selected children from selected class
-      let outerList = dropDownsRowRef.current.getElementsByClassName('kuc-dropdown-outer');
-      let outerListArray = [].slice.call(outerList);
-      outerListArray.forEach((item: any) => {
-        item.classList.remove('selected');
-      })
-    }
-  }
 
   useEffect(() => {
     document.addEventListener('mousedown', _handleDropdownSelection);
