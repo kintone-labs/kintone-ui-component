@@ -108,5 +108,6 @@ export {
   zh,
   ja,
   format,
+  getSeperator,
   availableLocales
 };

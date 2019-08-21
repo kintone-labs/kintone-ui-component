@@ -181,8 +181,8 @@ const DateTime = ({
                     setHasSelection(false)
                   }
                   if(!showPickerError && hasSelection) {
-                    const temporary = new Date(parseStringToDate(e.target.value) as Date)
-                    const dateValue = new Date(parseStringToDate(e.target.value) as Date)
+                    const temporary = new Date(parseStringToDate(e.target.value, dateFormat) as Date)
+                    const dateValue = new Date(parseStringToDate(e.target.value, dateFormat) as Date)
                     temporary.setSeconds(timeDateValue.getSeconds())
                     temporary.setMinutes(timeDateValue.getMinutes())
                     temporary.setHours(timeDateValue.getHours())
@@ -199,7 +199,7 @@ const DateTime = ({
                 }}
                 value={inputValue}
                 onBlur={(e) => {
-                  const tempDate = parseStringToDate(e.target.value);
+                  const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date|null = null;
                   if (!e.target.value) {
                     const todayDate = new Date()
