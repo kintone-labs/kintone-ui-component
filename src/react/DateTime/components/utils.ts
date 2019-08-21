@@ -1,4 +1,4 @@
-import {format} from './Locale';
+import { format, getSeperator } from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -15,7 +15,7 @@ const getWeekDayLabels = (locale: any) => {
   const date = new Date();
   const eachDayOfWeek = getWeekDays(date);
   const labels = eachDayOfWeek.map(day => {
-    return format(day, 'E', {locale: locale});
+    return format(day, 'E', { locale: locale });
   });
 
   return labels;
@@ -44,16 +44,23 @@ const isSameMonth = (day1: Date, day2: Date) => day1.getMonth() === day2.getMont
 const isToday = (day: Date) => day.toDateString() === (new Date()).toDateString();
 const isSameDate = (day1: Date, day2: Date) => day1.toDateString() === day2.toDateString();
 
-const parseStringToDate = (dateString: string) => {
-  if (isNaN(dateString.split('/')[1] as any) || isNaN(dateString.split('/')[0] as any) || isNaN(dateString.split('/')[2] as any)) {
+const parseStringToDate = (dateString: string, dateFormat?: string) => {
+  const formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
+  const delimiter = getSeperator(formatLowerCase);
+  if (isNaN(dateString.split(delimiter)[1] as any) || isNaN(dateString.split(delimiter)[0] as any) || isNaN(dateString.split(delimiter)[2] as any)) {
     return null;
   }
-  const dateData = {
-    date: parseInt(dateString.split('/')[1], 10),
-    month: parseInt(dateString.split('/')[0], 10) - 1,
-    year: parseInt(dateString.split('/')[2], 10)
-  };
-  return new Date(dateData.year, dateData.month, dateData.date);
+  let formatItems = formatLowerCase.split(delimiter);
+  let dateItems = dateString.split(delimiter);
+  let monthIndex = formatItems.indexOf("mm");
+  let dayIndex = formatItems.indexOf("dd");
+  let yearIndex = formatItems.indexOf("yyyy");
+  let day = parseInt(dateItems[dayIndex]);
+  let month = parseInt(dateItems[monthIndex]);
+  month -= 1;
+  let year = parseInt(dateItems[yearIndex]);
+  let formatedDate = new Date(year, month, day);
+  return formatedDate;
 };
 
 const parseStringToTime = (timeString: string) => {
