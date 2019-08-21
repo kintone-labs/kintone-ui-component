@@ -101,9 +101,9 @@ class Calendar extends Control {
 
   _renderDisplayMonthDropdown() {
     const monthDropdown = new Dropdown({value: this._displayMonth, items: getMonthLabels(this._props.locale)});
-    monthDropdown.element.onclick = () => {
+    monthDropdown.on('listItemsShown', () => {
       this._scrollToSeletedOptions();
-    }
+    });
     monthDropdown.on('change', (value) => {
       let newDate = new Date(this._displayDate);
       newDate.setMonth(this._props.locale.monthNames.indexOf(value), 1);
@@ -127,9 +127,9 @@ class Calendar extends Control {
 
   _renderDisplayYearDropdown(){
     const yearDropdown = new Dropdown({value: this._displayYear, items: getYearLabels(this._displayYear,this._props.locale)});
-    yearDropdown.element.onclick = () => {
+    yearDropdown.on('listItemsShown', () => {
       this._scrollToSeletedOptions();
-    }
+    });
     this._displayYearDropdown = yearDropdown;
     this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown);
   }

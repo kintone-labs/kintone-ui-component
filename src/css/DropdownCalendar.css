@@ -70,7 +70,3 @@
     border: solid 1px transparent;
     box-sizing: border-box;
 }
-
-.date-picker-container .kuc-dropdown-outer.selected {
-    border-color: #3498db;
-}
