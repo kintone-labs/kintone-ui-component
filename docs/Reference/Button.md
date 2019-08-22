@@ -198,7 +198,7 @@ export default class Plugin extends React.Component {
         );
     }
  
-    handleButtonClick(event) {
+    handleButtonClick = (event) => {
         console.log('on click');
     }
 }

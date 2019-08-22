@@ -44,7 +44,7 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function(){
   // custom cell containing 2 text fields
   var customCell = function() {
@@ -457,7 +457,7 @@
 })();
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import { Table, Text} from '@kintone/kintone-ui-component';
 
@@ -534,7 +534,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -553,7 +553,7 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text} from '@kintone/kintone-ui-component';
@@ -633,7 +633,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -656,7 +656,7 @@ value.forEach(function(rowData) {
 });
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -744,7 +744,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -769,7 +769,7 @@ table.setValue([
 ]);
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -876,7 +876,7 @@ Register callback for an event
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -905,7 +905,7 @@ table.on('cellChange', function(event) {
 });
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -985,7 +985,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1005,7 +1005,7 @@ body.appendChild(table.render());
 table.show();
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1092,7 +1092,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1112,7 +1112,7 @@ body.appendChild(table.render());
 table.hide();
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1127,7 +1127,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       isVisible: true
-    }
+    };
   }
 
   handleRowAdd = ({data}) => {
@@ -1199,7 +1199,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1220,7 +1220,7 @@ body.appendChild(table.render());
 table.showActionButtons();
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1235,7 +1235,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       actionButtonsShown: false
-    }
+    };
   }
 
   handleRowAdd = ({data}) => {
@@ -1306,7 +1306,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1327,7 +1327,7 @@ body.appendChild(table.render());
 table.hideActionButtons();
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1342,7 +1342,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       actionButtonsShown: true
-    }
+    };
   }
 
   handleRowAdd = ({data}) => {
@@ -1417,7 +1417,7 @@ update data of row at rowIndex with new data
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1463,7 +1463,7 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1477,7 +1477,7 @@ export default class Plugin extends Component {
       ],
       // default row data on row add
       defaultRowData: {text: 'default text field value'}
-    }
+    };
   }
 
   handleRowAdd = ({data}) => {
@@ -1565,7 +1565,7 @@ create a table cell with 1 of the built-in supported components
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1584,7 +1584,7 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
 **React**
-```
+```javascript
 import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1598,7 +1598,7 @@ export default class Plugin extends React.Component {
       ],
       // default row data on row add
       defaultRowData: {text: 'default text field value'}
-    }
+    };
   }
 
   handleRowAdd = ({data}) => {

@@ -31,7 +31,7 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -55,14 +55,14 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 });
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        var items = [
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -106,7 +106,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -133,14 +133,14 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        var items = [
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -188,7 +188,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -212,18 +212,18 @@ body.appendChild(radioBtn.render());
 radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```
 **React**
-```
+```javascript
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [],
             value: undefined
-        }
+        };
     }
   
     render() {
@@ -266,7 +266,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -295,20 +295,20 @@ body.appendChild(radioBtn.render());
 radioBtn.removeItem(0);
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [{
                 label: 'Lemon',
                 value: 'Lemon',
                 isDisabled: true
             }]
-        }
+        };
     }
   
     render() {
@@ -359,7 +359,7 @@ The list contains all items of dropdown.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -391,14 +391,14 @@ items.forEach(function(item) {
 });
 ```
 **React**
-```
+```javascript
 import { DropDown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -456,7 +456,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -485,15 +485,15 @@ body.appendChild(radioBtn.render());
 radioBtn.getValue();
 ```
 **React**
-```
+```javascript
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -550,7 +550,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -579,14 +579,14 @@ body.appendChild(radioBtn.render());
 radioBtn.setValue('Lemon');
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -644,7 +644,7 @@ None
 
 **Javascript**
 
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -674,14 +674,14 @@ radioBtn.disableItem('Orange');
 ```
 **React**
 
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -740,7 +740,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -769,14 +769,14 @@ body.appendChild(radioBtn.render());
 radioBtn.enableItem('Banana');
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -838,7 +838,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -869,14 +869,14 @@ radioBtn.on('change', function(value) {
 });
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -929,7 +929,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -958,14 +958,14 @@ body.appendChild(radioBtn.render());
 radioBtn.show();
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1013,7 +1013,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -1042,14 +1042,14 @@ body.appendChild(radioBtn.render());
 radioBtn.hide();
 ```
 **React**
-```
+```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1097,7 +1097,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -1126,15 +1126,15 @@ body.appendChild(radioBtn.render());
 radioBtn.disable();
 ```
 **React**
-```
+```javascript
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1162,7 +1162,7 @@ export default class Plugin extends React.Component {
             <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={true} />
         );
     }
-    handleChange(value) {
+    handleChange = (value) => {
             this.setState({value});
         }
 }
@@ -1185,7 +1185,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
      items: [
@@ -1214,15 +1214,15 @@ body.appendChild(radioBtn.render());
 radioBtn.enable();
 ```
 **React**
-```
+```javascript
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1250,7 +1250,7 @@ export default class Plugin extends React.Component {
             <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={false} />
         );
     }
-    handleChange(value) {
+    handleChange = (value) => {
             this.setState({value});
         }
 }

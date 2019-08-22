@@ -202,9 +202,9 @@ import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -286,9 +286,9 @@ import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -378,8 +378,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             content: <Label text='Field Group Content Label' textColor='#e74c3c'
             backgroundColor='yellow' isRequired={true} />,
@@ -458,8 +458,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             content: <Label text='Field Group Content Label' textColor='#e74c3c'
             backgroundColor='yellow' isRequired={true} />,
@@ -535,8 +535,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = { name: 'Group', toggle: 'expand' };
     }
     render() {
@@ -602,8 +602,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = { name: 'Group', toggle: 'expand' };
     }
     render() {
@@ -669,8 +669,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = { name: 'Group', toggle: 'expand' };
     }
     render() {
@@ -734,8 +734,8 @@ import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = { name: 'Group', toggle: 'expand' };
     }
     render() {

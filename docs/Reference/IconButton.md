@@ -21,12 +21,12 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', size: 'small'});
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -56,14 +56,14 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -94,7 +94,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -102,7 +102,7 @@ iconBtn.setColor('green');
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -133,7 +133,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -141,7 +141,7 @@ iconBtn.setShape('normal');
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -172,7 +172,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -181,7 +181,7 @@ iconBtn.setSize('small');
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -212,7 +212,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -221,7 +221,7 @@ iconBtn.setType('remove');
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -254,7 +254,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -265,7 +265,7 @@ iconBtn.on('click', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -275,7 +275,7 @@ export default class Plugin extends React.Component {
             <IconButton type='insert' size='small' color='blue' onClick={this.handleClick} />
         );
     }
-    handleClick() {
+    handleClick = () => {
         console.log('on click');
     }
 }
@@ -299,7 +299,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -308,7 +308,7 @@ iconBtn.show();
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -338,7 +338,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -347,7 +347,7 @@ iconBtn.hide();
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -377,7 +377,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -386,7 +386,7 @@ iconBtn.disable();
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -416,7 +416,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
@@ -425,7 +425,7 @@ iconBtn.enable();
 ```
 
 **React**
-```
+```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
