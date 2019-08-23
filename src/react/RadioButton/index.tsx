@@ -1,22 +1,22 @@
-import React from 'react';
-import Message from '../constant/Message';
-import {Item, AbstractSingleSelection} from '../index';
-import '../../css/font.css'
-import '../../css/RadioButton.css';
+import React from "react";
+import Message from "../constant/Message";
+import { Item, AbstractSingleSelection } from "../index";
+import "../../css/font.css";
+import "../../css/RadioButton.css";
 
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 type RadioButtonProps = {
   name: string;
   value: string;
   items: item[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string) => void;
-}
+};
 
 const RadioButton = (props: RadioButtonProps) => {
   if (!props.name) {
@@ -35,23 +35,23 @@ const RadioButton = (props: RadioButtonProps) => {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  const items = props.items && props.items.map((item, i) => {
-    return (
-      <Item
-        key={i}
-        selected={props.value === item.value}
-        onChange={(item_prop) => AbstractSingleSelection._handleItemClick(item_prop, props.onChange)}
-        item={item}
-        isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
-        type="radio"
-        name={props.name}
-        className="kuc-input-radio-item"
-      />
-    );
-  });
+  const items =
+    props.items &&
+    props.items.map((item, i) => {
+      return (
+        <Item
+          key={i}
+          selected={props.value === item.value}
+          onChange={item_prop => AbstractSingleSelection._handleItemClick(item_prop, props.onChange)}
+          item={item}
+          isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
+          type="radio"
+          name={props.name}
+          className="kuc-input-radio-item"
+        />
+      );
+    });
 
-  return (
-    <div className="kuc-input-radio">{items}</div>
-  );
+  return <div className="kuc-input-radio">{items}</div>;
 };
 export default RadioButton;

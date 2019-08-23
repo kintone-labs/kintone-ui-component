@@ -1,12 +1,12 @@
-import React from 'react';
-import AttachmentFileItem from './AttachmentFileItem';
-import '../../css/font.css'
-import '../../css/Attachment.css';
+import React from "react";
+import AttachmentFileItem from "./AttachmentFileItem";
+import "../../css/font.css";
+import "../../css/Attachment.css";
 
 type FileObject = {
   name: string;
   size: number;
-}
+};
 
 type AttachmentProps = {
   dropZoneText: string;
@@ -14,7 +14,7 @@ type AttachmentProps = {
   fileLimitText: string;
   errorMessage: string;
   isErrorVisible: boolean;
-  isVisible: boolean;
+  isVisible?: boolean;
   files: FileObject[];
   onFilesAdd: (files: FileObject[]) => void;
   onFileRemove: (files: FileObject[]) => void;
@@ -40,8 +40,8 @@ const Attachment = (props: AttachmentProps) => {
   const _addFiles = (event: any) => {
     if (props.onFilesAdd) {
       let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-      addedFiles = Object.keys(addedFiles).map((e) => {
-        return addedFiles[e]
+      addedFiles = Object.keys(addedFiles).map(e => {
+        return addedFiles[e];
       });
       props.onFilesAdd([...props.files, ...addedFiles]);
     }
@@ -56,8 +56,10 @@ const Attachment = (props: AttachmentProps) => {
     // handle Chrome, Firefox, Edge, Safari
     if (event.dataTransfer.items) {
       for (let i = 0; i < event.dataTransfer.items.length; i++) {
-        if (typeof (event.dataTransfer.items[i].webkitGetAsEntry) === 'function'
-                && event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
+        if (
+          typeof event.dataTransfer.items[i].webkitGetAsEntry === "function" &&
+          event.dataTransfer.items[i].webkitGetAsEntry().isDirectory
+        ) {
           return false;
         }
       }
@@ -68,7 +70,7 @@ const Attachment = (props: AttachmentProps) => {
   const _isFileOrDirectoryDrag = (event: React.DragEvent) => {
     if (event.dataTransfer.items !== undefined) {
       for (let i = 0; i < event.dataTransfer.items.length; i++) {
-        if (event.dataTransfer.items[i].kind.toLowerCase() === 'file') {
+        if (event.dataTransfer.items[i].kind.toLowerCase() === "file") {
           return true;
         }
       }
@@ -76,7 +78,7 @@ const Attachment = (props: AttachmentProps) => {
 
     if (event.dataTransfer.types !== undefined) {
       for (let i = 0; i < event.dataTransfer.types.length; i++) {
-        if (event.dataTransfer.types[i].toLowerCase() === 'files') {
+        if (event.dataTransfer.types[i].toLowerCase() === "files") {
           return true;
         }
       }
@@ -109,12 +111,12 @@ const Attachment = (props: AttachmentProps) => {
       const attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
 
       if (attachmentFileElement) {
-        attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
-        attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
-        dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
-        dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
+        attachmentFileElement.style.height = attachmentFileElement.offsetHeight - 16 * 2 + "px";
+        attachmentFileElement.className = "kuc-attachment-file kuc-attachment-drag-drop-active";
+        dropZoneElement.style.width = attachmentFileElement.offsetWidth - 4 + "px";
+        dropZoneElement.style.height = attachmentFileElement.offsetHeight - 4 + "px";
       }
-      if (fileDroppableElement) fileDroppableElement.style.display = '';
+      if (fileDroppableElement) fileDroppableElement.style.display = "";
     }
   };
 
@@ -124,53 +126,43 @@ const Attachment = (props: AttachmentProps) => {
       const fileDroppableElement = dropZoneElement.parentElement;
       const attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
       if (attachmentFileElement) {
-        attachmentFileElement.style.height = 'auto';
-        attachmentFileElement.className = 'kuc-attachment-file';
+        attachmentFileElement.style.height = "auto";
+        attachmentFileElement.className = "kuc-attachment-file";
       }
-      if (fileDroppableElement) fileDroppableElement.style.display = 'none';
+      if (fileDroppableElement) fileDroppableElement.style.display = "none";
     }
   };
 
   return (
     <div className="kuc-attachment-outer">
-      <div
-        className="kuc-attachment-file"
-        onDragOver={_onDragOver}
-        onDragEnter={_onDragEnter}
-        onDragLeave={_onDragLeave}
-      >
-        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
+      <div className="kuc-attachment-file" onDragOver={_onDragOver} onDragEnter={_onDragEnter} onDragLeave={_onDragLeave}>
+        <div className="kuc-attachment-file-droppable" style={{ display: "none" }} onDrop={_onDrop}>
           <div
             className="kuc-attachment-file-droppable-text"
-            ref={(dropElement) => {
+            ref={dropElement => {
               if (dropElement) dropZoneElement = dropElement;
             }}
           >
-            {props.dropZoneText || 'Drop files here.'}
+            {props.dropZoneText || "Drop files here."}
           </div>
         </div>
         <div className="kuc-attachment-file-filelist kuc-attachment-file-filelist-list">
-          {Array.isArray(props.files) && props.files.map((file, index) => (
-            <AttachmentFileItem
-              key={index}
-              index={index}
-              fileName={file.name}
-              fileSize={file.size}
-              onFileRemove={_removeFile}
-            />
-          ))}
+          {Array.isArray(props.files) &&
+            props.files.map((file, index) => (
+              <AttachmentFileItem key={index} index={index} fileName={file.name} fileSize={file.size} onFileRemove={_removeFile} />
+            ))}
         </div>
         <a className="kuc-attachment-file-upload-button" tabIndex={-1}>
-          <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || 'Browse'}</span>
+          <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || "Browse"}</span>
           <div className="kuc-attachment-file-upload-html5">
             <input
               type="file"
               multiple
-              ref={(element) => {
+              ref={element => {
                 if (element) inputElement = element;
               }}
               onClick={() => {
-                inputElement.value = '';
+                inputElement.value = "";
               }}
               onChange={_addFiles}
             />

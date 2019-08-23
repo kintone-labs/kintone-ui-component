@@ -1,20 +1,20 @@
-import React from 'react';
-import Message from '../constant/Message';
-import {Item, AbstractMultiSelection} from '../index';
-import '../../css/font.css'
-import '../../css/MultipleChoice.css';
+import React from "react";
+import Message from "../constant/Message";
+import { Item, AbstractMultiSelection } from "../index";
+import "../../css/font.css";
+import "../../css/MultipleChoice.css";
 
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 
 type MultipleChoiceProps = {
   items: item[];
   value: string[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string[]) => void;
 };
 
@@ -39,18 +39,20 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
   if (props.isVisible === false) {
     return null;
   }
-  const items = props.items && props.items.map((item, i) => {
-    const isSelected = props.value ? props.value.some(value => value === item.value) : false;
-    return (
-      <Item
-        key={i}
-        selected={isSelected}
-        onClick={() => _handleItemClick(item.value)}
-        item={item}
-        isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
-      />
-    );
-  });
+  const items =
+    props.items &&
+    props.items.map((item, i) => {
+      const isSelected = props.value ? props.value.some(value => value === item.value) : false;
+      return (
+        <Item
+          key={i}
+          selected={isSelected}
+          onClick={() => _handleItemClick(item.value)}
+          item={item}
+          isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
+        />
+      );
+    });
 
   if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
@@ -60,15 +62,8 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  const className = [
-    'kuc-multiple-list kuc-list-outer ',
-    props.isDisabled ? 'kuc-multiple-list-disable' : ''
-  ];
+  const className = ["kuc-multiple-list kuc-list-outer ", props.isDisabled ? "kuc-multiple-list-disable" : ""];
 
-  return (
-    <div className={className.join(' ').trim()}>
-      {items}
-    </div>
-  );
+  return <div className={className.join(" ").trim()}>{items}</div>;
 };
 export default MultipleChoice;
