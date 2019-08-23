@@ -21,8 +21,7 @@ const jsUMDConfig = (_, argv) => {
         // Options similar to the same options in webpackOptions.output
         // both options are optional
         filename: libraryName + ".min.css"
-      }),
-      new CopyWebpackPlugin([{ from: "esm", to: "../../typescript/esm" }, { from: "esm", to: "../../react/esm" }])
+      })
     ],
     module: {
       rules: [
