@@ -1,17 +1,17 @@
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 
-type items = item[]
+type items = item[];
 
 const _hasDuplicatedItems = (items: items) => {
   const unique = {};
   let isUnique = true;
   if (items) {
-    items.forEach((val) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
+    items.forEach(val => {
+      if (typeof unique[val.value] !== "undefined") {
         isUnique = false;
       }
       unique[val.value] = 0;
@@ -23,7 +23,7 @@ const _hasDuplicatedItems = (items: items) => {
 
 const _hasValidValue = (items: items, value: any) => {
   const validValues: string[] = [];
-  items.forEach((item) => {
+  items.forEach(item => {
     validValues.push(item.value);
   });
 
@@ -36,4 +36,4 @@ const _hasValidValue = (items: items, value: any) => {
   }
   return false;
 };
-export default {_hasDuplicatedItems, _hasValidValue};
+export default { _hasDuplicatedItems, _hasValidValue };

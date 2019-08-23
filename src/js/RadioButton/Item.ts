@@ -1,6 +1,6 @@
-import Control, { ControlProps } from '../Control';
+import Control, { ControlProps } from "../Control";
 
-import '../../css/Item.css';
+import "../../css/Item.css";
 
 type item = {
   value: string;
@@ -20,7 +20,7 @@ class Item extends Control {
   protected _props: ItemProps = {
     ...this._props,
     ...{
-      type: 'default'
+      type: "default"
     }
   };
   private inputEl: HTMLInputElement;
@@ -29,11 +29,7 @@ class Item extends Control {
 
   constructor(params: ItemProps) {
     super();
-    if (
-      typeof params === 'object' &&
-      params !== null &&
-      typeof params.isDisabled !== 'boolean'
-    ) {
+    if (typeof params === "object" && params !== null && typeof params.isDisabled !== "boolean") {
       delete params.isDisabled;
     }
     if (params) {
@@ -46,33 +42,27 @@ class Item extends Control {
         .substring(1);
     };
 
-    this.id =
-      new Date().getTime() +
-      '-' +
-      generateGUID() +
-      '-' +
-      generateGUID() +
-      generateGUID();
+    this.id = new Date().getTime() + "-" + generateGUID() + "-" + generateGUID() + generateGUID();
     this.value = params.item.value;
-    this.element = document.createElement('span');
-    if(this._props.className) {
+    this.element = document.createElement("span");
+    if (this._props.className) {
       this.element.className = this._props.className;
     }
-    this.inputEl = document.createElement('input');
+    this.inputEl = document.createElement("input");
     this.inputEl.id = this.id;
-    if(this._props.name) {
+    if (this._props.name) {
       this.inputEl.name = this._props.name;
     }
-    if(this._props.type) {
+    if (this._props.type) {
       this.inputEl.type = this._props.type;
     }
     this.inputEl.checked = this._props.selected;
-    if(this._props.isDisabled) {
+    if (this._props.isDisabled) {
       this.inputEl.disabled = this._props.isDisabled;
     }
-    const labelEl = document.createElement('label');
+    const labelEl = document.createElement("label");
     labelEl.htmlFor = this.id;
-    labelEl.innerText = this._props.item.label || '';
+    labelEl.innerText = this._props.item.label || "";
     this.element.appendChild(this.inputEl);
     this.element.appendChild(labelEl);
   }
@@ -80,15 +70,15 @@ class Item extends Control {
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (this._props.isDisabled) {
-      this.inputEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      this.inputEl.setAttribute("disabled", `${this._props.isDisabled}`);
     } else {
-      this.inputEl.removeAttribute('disabled');
+      this.inputEl.removeAttribute("disabled");
     }
     if (!changedAttr) return;
   }
 
   on(eventName: string, callback: (params?: any) => void) {
-    this.inputEl.addEventListener(eventName, (e: Event)=>{
+    this.inputEl.addEventListener(eventName, (e: Event) => {
       if (this._props.isDisabled) return;
       callback(e);
     });
@@ -96,4 +86,4 @@ class Item extends Control {
 }
 
 export default Item;
-export {item};
+export { item };

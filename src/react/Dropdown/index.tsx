@@ -1,27 +1,27 @@
-import React, {useState, useEffect, useRef} from 'react';
-import Message from '../constant/Message';
-import {Item, AbstractSingleSelection} from '../index';
-import { mdilChevronDown } from '@mdi/light-js'
-import '../../css/font.css'
-import '../../css/Dropdown.css';
+import React, { useState, useEffect, useRef } from "react";
+import Message from "../constant/Message";
+import { Item, AbstractSingleSelection } from "../index";
+import { mdilChevronDown } from "@mdi/light-js";
+import "../../css/font.css";
+import "../../css/Dropdown.css";
 
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 type DropdownProps = {
   value: string;
   items: item[];
   isVisible?: boolean;
   isDisabled?: boolean;
   onChange: (value: string) => void;
-}
+};
 
-const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
+const Dropdown = ({ value, items, isVisible, isDisabled, onChange = () => {} }: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
+  const { _hasDuplicatedItems, _hasValidValue, _handleItemClick } = AbstractSingleSelection;
 
   const _showItems = () => {
     setVisibleItems(!isVisibleItems);
@@ -37,12 +37,12 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', _handleClickOutside);
-    return () => document.removeEventListener('mousedown', _handleClickOutside);
+    document.addEventListener("mousedown", _handleClickOutside);
+    return () => document.removeEventListener("mousedown", _handleClickOutside);
   });
 
   const _getItemsStyle = () => {
-    const display = isVisibleItems && !isDisabled ? {display: 'block'} : {display: 'none'};
+    const display = isVisibleItems && !isDisabled ? { display: "block" } : { display: "none" };
     return display;
   };
 
@@ -58,36 +58,37 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  const listItemEl = items && items.map((item: item, i) => {
-    return (
-      <Item
-        key={i}
-        selected={value === item.value}
-        onClick={(item_prop) => {
-          _handleItemClick(item_prop, onChange); _hideItems();
-        }}
-        item={item}
-        isDisabled={item.isDisabled}
-      />
-    );
-  });
+  const listItemEl =
+    items &&
+    items.map((item: item, i) => {
+      return (
+        <Item
+          key={i}
+          selected={value === item.value}
+          onClick={item_prop => {
+            _handleItemClick(item_prop, onChange);
+            _hideItems();
+          }}
+          item={item}
+          isDisabled={item.isDisabled}
+        />
+      );
+    });
 
   let index = -1;
-  items && items.forEach((item: item, i) => {
-    if (item.value === value) {
-      index = i;
-    }
-  });
+  items &&
+    items.forEach((item: item, i) => {
+      if (item.value === value) {
+        index = i;
+      }
+    });
 
-  const className = [
-    'kuc-dropdown',
-    isDisabled ? 'kuc-dropdown-disable' : ''
-  ];
+  const className = ["kuc-dropdown", isDisabled ? "kuc-dropdown-disable" : ""];
   return (
     <div className="kuc-dropdown-container" ref={ref}>
       <div className="kuc-dropdown-sub-container">
         <div className="kuc-dropdown-outer" onClick={_showItems}>
-          <div className={className.join(' ').trim()}>
+          <div className={className.join(" ").trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
                 <span className="kuc-dropdown-selected-label">{index !== -1 && items[index].label}</span>

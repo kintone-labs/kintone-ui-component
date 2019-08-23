@@ -1,24 +1,24 @@
-import React from 'react';
-import Message from '../constant/Message';
-import {Item, AbstractMultiSelection} from '../index';
-import '../../css/font.css'
-import '../../css/CheckBox.css';
+import React from "react";
+import Message from "../constant/Message";
+import { Item, AbstractMultiSelection } from "../index";
+import "../../css/font.css";
+import "../../css/CheckBox.css";
 
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 type CheckBoxProps = {
   items: item[];
   value: string[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string[]) => void;
 };
 
 const CheckBox = (props: CheckBoxProps) => {
-  const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection;
+  const { _hasDuplicatedItems, _hasValidValue } = AbstractMultiSelection;
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
     const length = value.length;
@@ -63,10 +63,6 @@ const CheckBox = (props: CheckBoxProps) => {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  return (
-    <div className="kuc-input-checkbox">
-      {items}
-    </div>
-  );
+  return <div className="kuc-input-checkbox">{items}</div>;
 };
 export default CheckBox;
