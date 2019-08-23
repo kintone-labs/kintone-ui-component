@@ -1,6 +1,6 @@
-import Control, { ControlProps } from '../Control';
-import { ItemData } from '../MultipleChoice/Item';
-import '../../css/MultipleChoice.css';
+import Control, { ControlProps } from "../Control";
+import { ItemData } from "../MultipleChoice/Item";
+import "../../css/MultipleChoice.css";
 declare type MultipleChoiceProps = ControlProps & {
     items?: Array<ItemData>;
     value?: Array<string>;

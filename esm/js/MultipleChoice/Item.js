@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
-import Control from '../Control';
-import { mdiCheckBold } from '@mdi/js';
-import '../../css/Item.css';
+import Control from "../Control";
+import { mdiCheckBold } from "@mdi/js";
+import "../../css/Item.css";
 var Item = /** @class */ (function (_super) {
     tslib_1.__extends(Item, _super);
     function Item(params) {
@@ -9,7 +9,7 @@ var Item = /** @class */ (function (_super) {
         _this._props = tslib_1.__assign({}, _this._props, {
             isSelected: false,
             isDisabled: false,
-            className: "",
+            className: ""
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
@@ -21,29 +21,29 @@ var Item = /** @class */ (function (_super) {
         if (_this._props.isDisabled) {
             className += " kuc-list-item-disable";
         }
-        _this.element = document.createElement('div');
+        _this.element = document.createElement("div");
         _this.element.className = className;
-        var spanIconCheckElement = document.createElement('span');
-        spanIconCheckElement.className = 'kuc-icon-check';
+        var spanIconCheckElement = document.createElement("span");
+        spanIconCheckElement.className = "kuc-icon-check";
         spanIconCheckElement.appendChild(_this._createCheckIconEl());
-        var spanListItemLabelElement = document.createElement('span');
-        spanListItemLabelElement.className = 'kuc-list-item-label';
+        var spanListItemLabelElement = document.createElement("span");
+        spanListItemLabelElement.className = "kuc-list-item-label";
         spanListItemLabelElement.append(_this._props.label);
         _this.element.appendChild(spanIconCheckElement);
         _this.element.appendChild(spanListItemLabelElement);
-        _this.on('click', function (e) {
+        _this.on("click", function (e) {
             _this._props.isSelected = !_this._props.isSelected;
             if (_this._props.onClick) {
                 _this._props.onClick(_this);
             }
-            _this.rerender(['isSelected']);
+            _this.rerender(["isSelected"]);
         });
         _this.rerender();
         return _this;
     }
     Item.prototype._createCheckIconEl = function () {
         var pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        pathEl.setAttribute('d', mdiCheckBold);
+        pathEl.setAttribute("d", mdiCheckBold);
         var svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgEl.appendChild(pathEl);
         return svgEl;
@@ -52,12 +52,12 @@ var Item = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         var className = "kuc-list-item";
-        if (changedAttr.indexOf('isSelected') !== -1) {
+        if (changedAttr.indexOf("isSelected") !== -1) {
             if (this._props.isSelected) {
                 className += " kuc-list-item-selected";
             }
         }
-        if (changedAttr.indexOf('isDisabled') !== -1) {
+        if (changedAttr.indexOf("isDisabled") !== -1) {
             if (this._props.isDisabled) {
                 className += " kuc-list-item-disable";
             }
@@ -69,19 +69,19 @@ var Item = /** @class */ (function (_super) {
     };
     Item.prototype.select = function () {
         this._props.isSelected = true;
-        this.rerender(['isSelected', 'isDisabled']);
+        this.rerender(["isSelected", "isDisabled"]);
     };
     Item.prototype.deselect = function () {
         this._props.isSelected = false;
-        this.rerender(['isSelected', 'isDisabled']);
+        this.rerender(["isSelected", "isDisabled"]);
     };
     Item.prototype.disable = function () {
         this._props.isDisabled = true;
-        this.rerender(['isSelected', 'isDisabled']);
+        this.rerender(["isSelected", "isDisabled"]);
     };
     Item.prototype.enable = function () {
         this._props.isDisabled = false;
-        this.rerender(['isSelected', 'isDisabled']);
+        this.rerender(["isSelected", "isDisabled"]);
     };
     return Item;
 }(Control));

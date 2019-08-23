@@ -1,16 +1,14 @@
 import * as tslib_1 from "tslib";
-import Control from '../Control';
-import '../../css/Item.css';
+import Control from "../Control";
+import "../../css/Item.css";
 var Item = /** @class */ (function (_super) {
     tslib_1.__extends(Item, _super);
     function Item(params) {
         var _this = _super.call(this) || this;
         _this._props = tslib_1.__assign({}, _this._props, {
-            type: 'default'
+            type: "default"
         });
-        if (typeof params === 'object' &&
-            params !== null &&
-            typeof params.isDisabled !== 'boolean') {
+        if (typeof params === "object" && params !== null && typeof params.isDisabled !== "boolean") {
             delete params.isDisabled;
         }
         if (params) {
@@ -21,19 +19,13 @@ var Item = /** @class */ (function (_super) {
                 .toString(16)
                 .substring(1);
         };
-        _this.id =
-            new Date().getTime() +
-                '-' +
-                generateGUID() +
-                '-' +
-                generateGUID() +
-                generateGUID();
+        _this.id = new Date().getTime() + "-" + generateGUID() + "-" + generateGUID() + generateGUID();
         _this.value = params.item.value;
-        _this.element = document.createElement('span');
+        _this.element = document.createElement("span");
         if (_this._props.className) {
             _this.element.className = _this._props.className;
         }
-        _this.inputEl = document.createElement('input');
+        _this.inputEl = document.createElement("input");
         _this.inputEl.id = _this.id;
         if (_this._props.name) {
             _this.inputEl.name = _this._props.name;
@@ -45,9 +37,9 @@ var Item = /** @class */ (function (_super) {
         if (_this._props.isDisabled) {
             _this.inputEl.disabled = _this._props.isDisabled;
         }
-        var labelEl = document.createElement('label');
+        var labelEl = document.createElement("label");
         labelEl.htmlFor = _this.id;
-        labelEl.innerText = _this._props.item.label || '';
+        labelEl.innerText = _this._props.item.label || "";
         _this.element.appendChild(_this.inputEl);
         _this.element.appendChild(labelEl);
         return _this;
@@ -55,10 +47,10 @@ var Item = /** @class */ (function (_super) {
     Item.prototype.rerender = function (changedAttr) {
         _super.prototype.rerender.call(this);
         if (this._props.isDisabled) {
-            this.inputEl.setAttribute('disabled', "" + this._props.isDisabled);
+            this.inputEl.setAttribute("disabled", "" + this._props.isDisabled);
         }
         else {
-            this.inputEl.removeAttribute('disabled');
+            this.inputEl.removeAttribute("disabled");
         }
         if (!changedAttr)
             return;

@@ -3,7 +3,7 @@ var _hasDuplicatedItems = function (items) {
     var isUnique = true;
     if (items) {
         items.forEach(function (val) {
-            if (typeof (unique[val.value]) !== 'undefined') {
+            if (typeof unique[val.value] !== "undefined") {
                 isUnique = false;
             }
             unique[val.value] = 0;

@@ -5,7 +5,7 @@ import "../../css/TextArea.css";
 type TextAreaProps = {
   value: string;
   isVisible?: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   onClick: (e: any) => void;
   onChange: (e: any) => void;
 };

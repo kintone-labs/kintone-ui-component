@@ -1,7 +1,7 @@
 declare type item = {
     value: string;
     label: string;
-    isDisabled: boolean;
+    isDisabled?: boolean;
 };
 declare const _default: {
     _handleItemClick: (item: item, onChange: (value: string) => void) => void;

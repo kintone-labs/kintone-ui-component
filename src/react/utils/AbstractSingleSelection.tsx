@@ -1,10 +1,10 @@
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 
-type items = item[]
+type items = item[];
 
 const _handleItemClick = (item: item, onChange: (value: string) => void) => {
   const value = item.value;
@@ -16,7 +16,7 @@ const _hasDuplicatedItems = (items: items) => {
   let isUnique = true;
   if (items) {
     items.forEach((val: item) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
+      if (typeof unique[val.value] !== "undefined") {
         isUnique = false;
       }
       unique[val.value] = 0;
@@ -29,8 +29,11 @@ const _hasValidValue = (items: items, value: string) => {
   if (value === undefined) {
     return true;
   }
-  return items && items.some(item => {
-    return item.value === value;
-  });
+  return (
+    items &&
+    items.some(item => {
+      return item.value === value;
+    })
+  );
 };
-export default {_handleItemClick, _hasDuplicatedItems, _hasValidValue};
+export default { _handleItemClick, _hasDuplicatedItems, _hasValidValue };

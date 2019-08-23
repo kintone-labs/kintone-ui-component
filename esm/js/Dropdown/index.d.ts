@@ -1,5 +1,5 @@
-import Control, { ControlProps } from '../Control';
-import '../../css/Dropdown.css';
+import Control, { ControlProps } from "../Control";
+import "../../css/Dropdown.css";
 declare type item = {
     value: string;
     label?: string;

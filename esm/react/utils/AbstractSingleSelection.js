@@ -7,7 +7,7 @@ var _hasDuplicatedItems = function (items) {
     var isUnique = true;
     if (items) {
         items.forEach(function (val) {
-            if (typeof (unique[val.value]) !== 'undefined') {
+            if (typeof unique[val.value] !== "undefined") {
                 isUnique = false;
             }
             unique[val.value] = 0;
@@ -19,8 +19,9 @@ var _hasValidValue = function (items, value) {
     if (value === undefined) {
         return true;
     }
-    return items && items.some(function (item) {
-        return item.value === value;
-    });
+    return (items &&
+        items.some(function (item) {
+            return item.value === value;
+        }));
 };
 export default { _handleItemClick: _handleItemClick, _hasDuplicatedItems: _hasDuplicatedItems, _hasValidValue: _hasValidValue };

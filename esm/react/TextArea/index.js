@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import '../../css/font.css';
-import '../../css/TextArea.css';
+import React, { useState, useEffect } from "react";
+import "../../css/font.css";
+import "../../css/TextArea.css";
 var TextArea = function (_a) {
     var value = _a.value, isVisible = _a.isVisible, isDisabled = _a.isDisabled, onChange = _a.onChange, onClick = _a.onClick;
     var mixTextAreaWidth = 297;
     var mixtTextAreaHeight = 123;
-    var _b = useState({ translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight }), sizeConfig = _b[0], setSizeConfig = _b[1];
+    var _b = useState({
+        translateX: 0,
+        translateY: 0,
+        textAreaWidth: mixTextAreaWidth,
+        textAreaHeight: mixtTextAreaHeight
+    }), sizeConfig = _b[0], setSizeConfig = _b[1];
     var _c = useState(false), isResizing = _c[0], setIsResizing = _c[1];
     useEffect(function () {
         var currentX;
@@ -46,7 +51,7 @@ var TextArea = function (_a) {
         return null;
     }
     return (React.createElement("div", { className: "kuc-textarea-outer" },
-        React.createElement("textarea", { value: value, className: "kuc-textarea", onClick: onClick, onChange: _onChange, disabled: isDisabled, style: { width: sizeConfig.textAreaWidth + 'px', height: sizeConfig.textAreaHeight + 'px' } }),
+        React.createElement("textarea", { value: value, className: "kuc-textarea", onClick: onClick, onChange: _onChange, disabled: isDisabled, style: { width: sizeConfig.textAreaWidth + "px", height: sizeConfig.textAreaHeight + "px" } }),
         React.createElement("div", { className: "kuc-textarea-resize", style: { transform: "translate(" + sizeConfig.translateX + "px, " + sizeConfig.translateY + "px)" }, onMouseDown: function () {
                 setIsResizing(true);
             } })));

@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import '../../css/font.css';
-import '../../css/Attachment.css';
+import "../../css/font.css";
+import "../../css/Attachment.css";
 declare type FileObject = {
     name: string;
     size: number;
@@ -11,7 +11,7 @@ declare type AttachmentProps = {
     fileLimitText: string;
     errorMessage: string;
     isErrorVisible: boolean;
-    isVisible: boolean;
+    isVisible?: boolean;
     files: FileObject[];
     onFilesAdd: (files: FileObject[]) => void;
     onFileRemove: (files: FileObject[]) => void;

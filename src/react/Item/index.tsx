@@ -1,18 +1,18 @@
-import React from 'react'
-import { mdiCheckBold } from '@mdi/js'
-import '../../css/font.css'
-import '../../css/Item.css'
+import React from "react";
+import { mdiCheckBold } from "@mdi/js";
+import "../../css/font.css";
+import "../../css/Item.css";
 
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
-}
+  isDisabled?: boolean;
+};
 
 type ItemProps = {
   item: item;
   isVisible?: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   selected: boolean;
   onClick?: (item: item) => void;
   onChange?: (item: item) => void;
@@ -48,29 +48,18 @@ const Item = (props: ItemProps) => {
     return null;
   }
 
-  if (props.type === 'checkbox' || props.type === 'radio') {
-    const id = new Date().getTime() + '-' + generateGUID() + '-' + generateGUID() + generateGUID();
+  if (props.type === "checkbox" || props.type === "radio") {
+    const id = new Date().getTime() + "-" + generateGUID() + "-" + generateGUID() + generateGUID();
     return (
       <span className={props.className}>
-        <input
-          name={props.name}
-          id={id}
-          disabled={props.isDisabled}
-          type={props.type}
-          checked={props.selected}
-          onChange={_onChange}
-        />
-        <label htmlFor={id}>{props.item.label}
-        </label>
+        <input name={props.name} id={id} disabled={props.isDisabled} type={props.type} checked={props.selected} onChange={_onChange} />
+        <label htmlFor={id}>{props.item.label}</label>
       </span>
     );
   }
-  const className = ['kuc-list-item',
-    props.selected ? 'kuc-list-item-selected' : '',
-    props.isDisabled ? 'kuc-list-item-disable' : ''
-  ];
+  const className = ["kuc-list-item", props.selected ? "kuc-list-item-selected" : "", props.isDisabled ? "kuc-list-item-disable" : ""];
   return (
-    <div onClick={_onClick} className={className.join(' ').trim()} >
+    <div onClick={_onClick} className={className.join(" ").trim()}>
       <span className="kuc-icon-check">
         <svg>
           <path d={mdiCheckBold} />

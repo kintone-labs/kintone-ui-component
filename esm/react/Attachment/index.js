@@ -1,7 +1,7 @@
-import React from 'react';
-import AttachmentFileItem from './AttachmentFileItem';
-import '../../css/font.css';
-import '../../css/Attachment.css';
+import React from "react";
+import AttachmentFileItem from "./AttachmentFileItem";
+import "../../css/font.css";
+import "../../css/Attachment.css";
 var Attachment = function (props) {
     if (props.isVisible === false) {
         return null;
@@ -33,8 +33,8 @@ var Attachment = function (props) {
         // handle Chrome, Firefox, Edge, Safari
         if (event.dataTransfer.items) {
             for (var i = 0; i < event.dataTransfer.items.length; i++) {
-                if (typeof (event.dataTransfer.items[i].webkitGetAsEntry) === 'function'
-                    && event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
+                if (typeof event.dataTransfer.items[i].webkitGetAsEntry === "function" &&
+                    event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
                     return false;
                 }
             }
@@ -44,14 +44,14 @@ var Attachment = function (props) {
     var _isFileOrDirectoryDrag = function (event) {
         if (event.dataTransfer.items !== undefined) {
             for (var i = 0; i < event.dataTransfer.items.length; i++) {
-                if (event.dataTransfer.items[i].kind.toLowerCase() === 'file') {
+                if (event.dataTransfer.items[i].kind.toLowerCase() === "file") {
                     return true;
                 }
             }
         }
         if (event.dataTransfer.types !== undefined) {
             for (var i = 0; i < event.dataTransfer.types.length; i++) {
-                if (event.dataTransfer.types[i].toLowerCase() === 'files') {
+                if (event.dataTransfer.types[i].toLowerCase() === "files") {
                     return true;
                 }
             }
@@ -78,13 +78,13 @@ var Attachment = function (props) {
             var fileDroppableElement = dropZoneElement.parentElement;
             var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
             if (attachmentFileElement) {
-                attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
-                attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
-                dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
-                dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
+                attachmentFileElement.style.height = attachmentFileElement.offsetHeight - 16 * 2 + "px";
+                attachmentFileElement.className = "kuc-attachment-file kuc-attachment-drag-drop-active";
+                dropZoneElement.style.width = attachmentFileElement.offsetWidth - 4 + "px";
+                dropZoneElement.style.height = attachmentFileElement.offsetHeight - 4 + "px";
             }
             if (fileDroppableElement)
-                fileDroppableElement.style.display = '';
+                fileDroppableElement.style.display = "";
         }
     };
     var _onDragLeave = function () {
@@ -93,31 +93,32 @@ var Attachment = function (props) {
             var fileDroppableElement = dropZoneElement.parentElement;
             var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
             if (attachmentFileElement) {
-                attachmentFileElement.style.height = 'auto';
-                attachmentFileElement.className = 'kuc-attachment-file';
+                attachmentFileElement.style.height = "auto";
+                attachmentFileElement.className = "kuc-attachment-file";
             }
             if (fileDroppableElement)
-                fileDroppableElement.style.display = 'none';
+                fileDroppableElement.style.display = "none";
         }
     };
     return (React.createElement("div", { className: "kuc-attachment-outer" },
         React.createElement("div", { className: "kuc-attachment-file", onDragOver: _onDragOver, onDragEnter: _onDragEnter, onDragLeave: _onDragLeave },
-            React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: 'none' }, onDrop: _onDrop },
+            React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: "none" }, onDrop: _onDrop },
                 React.createElement("div", { className: "kuc-attachment-file-droppable-text", ref: function (dropElement) {
                         if (dropElement)
                             dropZoneElement = dropElement;
-                    } }, props.dropZoneText || 'Drop files here.')),
-            React.createElement("div", { className: "kuc-attachment-file-filelist kuc-attachment-file-filelist-list" }, Array.isArray(props.files) && props.files.map(function (file, index) { return (React.createElement(AttachmentFileItem, { key: index, index: index, fileName: file.name, fileSize: file.size, onFileRemove: _removeFile })); })),
+                    } }, props.dropZoneText || "Drop files here.")),
+            React.createElement("div", { className: "kuc-attachment-file-filelist kuc-attachment-file-filelist-list" }, Array.isArray(props.files) &&
+                props.files.map(function (file, index) { return (React.createElement(AttachmentFileItem, { key: index, index: index, fileName: file.name, fileSize: file.size, onFileRemove: _removeFile })); })),
             React.createElement("a", { className: "kuc-attachment-file-upload-button", tabIndex: -1 },
                 React.createElement("span", { className: "kuc-attachment-file-upload-button-text" },
                     " ",
-                    props.browseButtonText || 'Browse'),
+                    props.browseButtonText || "Browse"),
                 React.createElement("div", { className: "kuc-attachment-file-upload-html5" },
                     React.createElement("input", { type: "file", multiple: true, ref: function (element) {
                             if (element)
                                 inputElement = element;
                         }, onClick: function () {
-                            inputElement.value = '';
+                            inputElement.value = "";
                         }, onChange: _addFiles }))),
             React.createElement("p", { className: "kuc-attachment-file-constraints" }, props.fileLimitText)),
         props.isErrorVisible === true && (React.createElement("div", { className: "kuc-attachment-file-error" },

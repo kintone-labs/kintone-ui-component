@@ -1,15 +1,15 @@
-import Control, { ControlProps } from '../Control';
-import '../../css/Item.css';
+import Control, { ControlProps } from "../Control";
+import "../../css/Item.css";
 declare type ItemData = {
     value: string;
     label: string;
-    isDisabled: boolean;
+    isDisabled?: boolean;
 };
 declare type ItemProps = ControlProps & {
     value: string;
     label: string;
     className?: string;
-    isDisabled: boolean;
+    isDisabled?: boolean;
     isSelected: boolean;
     onClick?: (item: Item) => void;
 };

@@ -1,8 +1,8 @@
-import React from 'react';
-import Message from '../constant/Message';
-import { Item, AbstractMultiSelection } from '../index';
-import '../../css/font.css';
-import '../../css/MultipleChoice.css';
+import React from "react";
+import Message from "../constant/Message";
+import { Item, AbstractMultiSelection } from "../index";
+import "../../css/font.css";
+import "../../css/MultipleChoice.css";
 var MultipleChoice = function (props) {
     var _handleItemClick = function (itemValue) {
         var value = props.value ? props.value.slice() : [];
@@ -23,20 +23,18 @@ var MultipleChoice = function (props) {
     if (props.isVisible === false) {
         return null;
     }
-    var items = props.items && props.items.map(function (item, i) {
-        var isSelected = props.value ? props.value.some(function (value) { return value === item.value; }) : false;
-        return (React.createElement(Item, { key: i, selected: isSelected, onClick: function () { return _handleItemClick(item.value); }, item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled }));
-    });
+    var items = props.items &&
+        props.items.map(function (item, i) {
+            var isSelected = props.value ? props.value.some(function (value) { return value === item.value; }) : false;
+            return (React.createElement(Item, { key: i, selected: isSelected, onClick: function () { return _handleItemClick(item.value); }, item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled }));
+        });
     if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
     if (!AbstractMultiSelection._hasValidValue(props.items, props.value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    var className = [
-        'kuc-multiple-list kuc-list-outer ',
-        props.isDisabled ? 'kuc-multiple-list-disable' : ''
-    ];
-    return (React.createElement("div", { className: className.join(' ').trim() }, items));
+    var className = ["kuc-multiple-list kuc-list-outer ", props.isDisabled ? "kuc-multiple-list-disable" : ""];
+    return React.createElement("div", { className: className.join(" ").trim() }, items);
 };
 export default MultipleChoice;

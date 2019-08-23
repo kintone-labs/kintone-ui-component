@@ -1,8 +1,8 @@
-import React from 'react';
-import Message from '../constant/Message';
-import { Item, AbstractMultiSelection } from '../index';
-import '../../css/font.css';
-import '../../css/CheckBox.css';
+import React from "react";
+import Message from "../constant/Message";
+import { Item, AbstractMultiSelection } from "../index";
+import "../../css/font.css";
+import "../../css/CheckBox.css";
 var CheckBox = function (props) {
     var _hasDuplicatedItems = AbstractMultiSelection._hasDuplicatedItems, _hasValidValue = AbstractMultiSelection._hasValidValue;
     var _handleItemClick = function (itemValue) {
@@ -36,6 +36,6 @@ var CheckBox = function (props) {
     if (!_hasValidValue(props.items, props.value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    return (React.createElement("div", { className: "kuc-input-checkbox" }, items));
+    return React.createElement("div", { className: "kuc-input-checkbox" }, items);
 };
 export default CheckBox;
