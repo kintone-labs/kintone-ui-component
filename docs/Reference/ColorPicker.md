@@ -30,17 +30,20 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    state = {color: ''}
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
     render() {
         return (
             <ColorPicker color={this.state.color} />
@@ -67,7 +70,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 kintone.events.on('app.record.index.show', function(event) {
     var el = kintone.app.getHeaderSpaceElement();
@@ -76,20 +79,23 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
-    state = {color: ''}
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
     render() {
         return (
             <ColorPicker color={this.state.color} />
         );
     }
 }
-kintone.events.on('app.record.index.show', function (event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -116,7 +122,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(colorPicker.render());
@@ -124,14 +130,16 @@ colorPicker.setColor('#666666');
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
-  
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
         <div>
@@ -146,7 +154,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -173,7 +181,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
     body.appendChild(colorPicker.render());
@@ -181,14 +189,16 @@ colorPicker.getColor();
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
-  
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
             <div>
@@ -201,7 +211,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -229,7 +239,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
@@ -242,13 +252,16 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
   
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
             <ColorPicker color={this.state.color} onChange={this.handleChange} />
@@ -258,7 +271,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -283,7 +296,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myColorPicker.render());
@@ -291,7 +304,7 @@ myColorPicker.show();
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -304,7 +317,7 @@ export default class Plugin extends React.Component {
     }
 }
 
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -328,7 +341,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myColorPicker.render());
@@ -336,7 +349,7 @@ myColorPicker.hide();
 ```
 
 **React**
-```
+```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -348,7 +361,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -372,7 +385,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myColorPicker.render());
@@ -380,7 +393,7 @@ myColorPicker.disable();
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -392,7 +405,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()
@@ -416,7 +429,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myColorPicker.render());
@@ -424,7 +437,7 @@ myColorPicker.enable();
 ```
 
 **React**
-```
+```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -436,7 +449,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <Plugin />,
         kintone.app.getHeaderSpaceElement()

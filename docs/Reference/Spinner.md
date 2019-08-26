@@ -13,11 +13,11 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var spinner = new kintoneUIComponent.Spinner();
 ```
 **React**
-```
+```javascript
 import { Spinner } from '@kintone/kintone-ui-component';
 import React from 'react';
    
@@ -48,13 +48,13 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
 **React**
-```
+```javascript
 import { Spinner } from '@kintone/kintone-ui-component';
 import React from 'react';
    
@@ -83,14 +83,14 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 spinner.show();
 ```
 **React**
-```
+```javascript
 import { Spinner } from '@kintone/kintone-ui-component';
 import React from 'react';
    
@@ -120,14 +120,14 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var spinner = new kintoneUIComponent.Spinner();
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 spinner.hide();
 ```
 **React**
-```
+```javascript
 import { Spinner } from '@kintone/kintone-ui-component';
 import React from 'react';
    
