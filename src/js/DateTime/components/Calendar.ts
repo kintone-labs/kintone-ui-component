@@ -145,7 +145,11 @@ class Calendar extends Control {
       let className = 'day';
       className += this._displayDate && isSameMonth(day, this._displayDate) ? '' : ' grayed-out';
       className += isToday(day) ? ' today' : '';
-      className += this._props.date && isSameDate(day, this._props.date) ? ' selected' : '';
+      if (this._props.date && isSameDate(day, this._props.date)) {
+        className += " selected";
+      } else if (!this._props.date && className.includes(" selected")) {
+        daySpan.classList.remove(" selected");
+      }
       daySpan.className = className;
       daySpan.tabIndex = 0;
       daySpan.textContent = format(day, 'd');
