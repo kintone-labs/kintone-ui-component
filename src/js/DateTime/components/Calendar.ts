@@ -228,6 +228,9 @@ class Calendar extends Control {
       this._displayDate = new Date(date);
       // rerender self
       this.rerender(['selectedDate']);
+    }else {
+      this._props.date = null;
+      this.rerender(["selectedDate"]);
     }
   }
 
