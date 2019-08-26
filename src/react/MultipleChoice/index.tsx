@@ -7,14 +7,14 @@ import '../../css/MultipleChoice.css';
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 type MultipleChoiceProps = {
   items: item[];
   value: string[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string[]) => void;
 };
 

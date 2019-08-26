@@ -7,13 +7,13 @@ import '../../css/CheckBox.css';
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 type CheckBoxProps = {
   items: item[];
   value: string[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string[]) => void;
 };
 
