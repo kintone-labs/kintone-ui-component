@@ -145,13 +145,9 @@ class Calendar extends Control {
       let className = 'day';
       className += this._displayDate && isSameMonth(day, this._displayDate) ? '' : ' grayed-out';
       className += isToday(day) ? ' today' : '';
-      if (this._props.date && isSameDate(day, this._props.date)) {
-        className += " selected";
-      } else if (!this._props.date && className.includes(" selected")) {
-        daySpan.classList.remove(" selected");
-      }
-      daySpan.className = className;
-      daySpan.tabIndex = 0;
+      className += this._props.date && isSameDate(day, this._props.date) ? ' selected' : '';
+      daySpan.className = className;  
+      daySpan.tabIndex = 0; 
       daySpan.textContent = format(day, 'd');
       daySpan.dataset.date = format(day, 'MM/dd/YYYY');
       this._setOnclickForDaysLabels(daySpan);
@@ -224,14 +220,10 @@ class Calendar extends Control {
 
   setValue(date: Date | undefined | null) {
     if (date) {
-      this._props.date = date;
       this._displayDate = new Date(date);
-      // rerender self
-      this.rerender(['selectedDate']);
-    }else {
-      this._props.date = null;
-      this.rerender(["selectedDate"]);
-    }
+    }     
+    this._props.date = date;
+    this.rerender(["selectedDate"]);
   }
 
   getValue(): Date | null | undefined {
