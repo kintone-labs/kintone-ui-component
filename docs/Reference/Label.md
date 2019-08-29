@@ -21,7 +21,7 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({
     text: 'Name',
     textColor: '#e74c3c',
@@ -31,7 +31,7 @@ var label = new kintoneUIComponent.Label({
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -62,14 +62,14 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -100,7 +100,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**	
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -108,7 +108,7 @@ label.setText('Name');
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -139,7 +139,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```	
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -147,7 +147,7 @@ label.setTextColor('#e74c3c');
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -178,7 +178,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```	
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -186,7 +186,7 @@ label.setBackgroundColor('#e74c3c');
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -217,7 +217,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```	
+```javascript	
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -225,7 +225,7 @@ label.setRequired(true);
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -257,7 +257,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -267,7 +267,7 @@ label.on('click', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -277,7 +277,7 @@ export default class Plugin extends React.Component {
             <Label text='Name' isRequired={true} onClick={this.handleClick} />
         );
     }
-   handleClick(){
+   handleClick = () => {
         console.log('click');
    }
     }
@@ -300,7 +300,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -308,7 +308,7 @@ label.show();
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -338,7 +338,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -346,7 +346,7 @@ label.hide();
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -375,7 +375,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -383,7 +383,7 @@ label.disable();
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
@@ -412,7 +412,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
@@ -420,7 +420,7 @@ label.enable();
 ```
 
 **React**
-```
+```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  

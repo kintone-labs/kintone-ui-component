@@ -41,7 +41,12 @@ import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    state = {isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
+    }
      
     onClose = () => {
         this.setState({isVisible: false})
@@ -97,7 +102,12 @@ import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    state = {isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
+    }
      
     onClose = () => {
         this.setState({isVisible: false})
@@ -153,10 +163,10 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -260,10 +270,10 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -319,11 +329,11 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true,
             header: 'Announcement'
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -383,10 +393,10 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -442,11 +452,11 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             content: "Dialog content",
             isVisible: true
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -505,10 +515,10 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () => {
         this.setState({
@@ -563,7 +573,13 @@ import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    state = {footer: "Dialog footer", isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            footer: "Dialog footer",
+            isVisible: true
+        };
+    }
     handleClick= () => {
         console.log(this.state.footer);
     };

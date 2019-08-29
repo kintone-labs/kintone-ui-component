@@ -22,7 +22,8 @@
 | --- | - | --- | ----- |
 |options|Object|No|An object contains params of constructor.|
 |options.value|Date|No|	The Default DateTime Value.|
-|options.type|Boolean|No|The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>|
+|options.type|String|No|The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>Default value: 'datetime'|
+|options.locale|String|No|The setting of language <br> <ul><li>ja</li><li>en</li><li>zh</li></ul>Default value: 'ja'|
 |options.dateFormat|String|No|The date format showed on date picker.<br>Supported format:<br>Seperator: "/", "-", " ", ":" <br>Day of week:<br><ul><li>E (Week Day Short): Su, Mo...</li><li>EE (Week Day Medium): Sun, Mon...</li><li>EEE (Week Day): Sunday, Monday...</li></ul><br>Date:<br><ul><li>d (Date Short): 1,2 ...</li><li>dd (Date Full): 01, 02...</li></ul><br>Month:<br><ul><li>MM (Month Number): 01, 02 ...</li><li>MMM (Month Text Short): Jan, Feb...</li><li>MMMM (Month Text Long): January, February...</li></ul><br>Year:<br><ul><li>YYYY (Year): 2019, 2020...</li></ul><br>Default format: MM/dd/YYYY|
 |options.isVisible|Boolean|No|The DatePicker will be visible.<br>Default value: 'true'|
 |options.isDisabled|Boolean|No|The DateTime field will be disabled. <br>Default value: 'false'|
@@ -31,12 +32,12 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var dateTime = new kintoneUIComponent.DateTime({value: date, type: 'datetime', locale: 'en'});
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -55,7 +56,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -82,7 +83,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function() {
     "use strict";  
     kintone.events.on('app.record.index.show', function(event) {
@@ -95,7 +96,7 @@ Dom element
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -114,7 +115,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -141,7 +142,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function() {
     "use strict";  
     kintone.events.on('app.record.index.show', function(event) {
@@ -155,7 +156,7 @@ None
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -176,7 +177,7 @@ class DateTimeComponent extends React.Component {
         console.log(this.state.value);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -203,7 +204,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function() {
     "use strict";  
     kintone.events.on('app.record.index.show', function(event) {
@@ -216,7 +217,7 @@ None
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -237,7 +238,7 @@ class DateTimeComponent extends React.Component {
         this.setState({value: new Date('1995-12-17T03:24:00')})
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -258,13 +259,13 @@ None
 
 | Name| Type | Description |
 | --- | --- | --- |
-|locale| String |The setting of TimeZone and language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
+|locale| String |The setting of language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function() {
     "use strict";  
     kintone.events.on('app.record.index.show', function(event) {
@@ -278,7 +279,7 @@ None
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -299,7 +300,7 @@ class DateTimeComponent extends React.Component {
         console.log(this.state.locale);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -316,7 +317,7 @@ Set the language setting.
 
 | Name| Type | Required | Description |
 | --- | --- | --- | --- |
-|locale| String | Yes | The setting of TimeZone and language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
+|locale| String | Yes | The setting of language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul>|
 
 **Returns**
 
@@ -326,7 +327,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 (function() {
     "use strict";  
     kintone.events.on('app.record.index.show', function(event) {
@@ -340,7 +341,7 @@ None
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -361,7 +362,7 @@ class DateTimeComponent extends React.Component {
         this.setState({locale: 'ja'})
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -386,7 +387,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
 
 kintone.events.on('app.record.index.show', function(event) {
@@ -397,7 +398,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -419,7 +420,7 @@ class DateTimeComponent extends React.Component {
     }
 }
 
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -443,7 +444,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
 
 kintone.events.on('app.record.index.show', function(event) {
@@ -454,7 +455,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -475,7 +476,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -499,7 +500,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
 
 kintone.events.on('app.record.index.show', function(event) {
@@ -510,7 +511,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -531,7 +532,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()
@@ -555,7 +556,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var myDateTime = new kintoneUIComponent.DateTime({value: new Date(), isDisabled: false});
 
 kintone.events.on('app.record.index.show', function(event) {
@@ -566,7 +567,7 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -587,7 +588,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
         <DateTimeComponent />,
         kintone.app.getHeaderSpaceElement()

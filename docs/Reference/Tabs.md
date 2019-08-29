@@ -27,7 +27,7 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -46,15 +46,15 @@ var tab = new kintoneUIComponent.Tabs({
 });
 ```
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -98,7 +98,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var button = new kintoneUIComponent.Button({
     text: 'Hello',
     type: 'submit'
@@ -130,15 +130,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -189,7 +189,7 @@ Add an item to end of the tab list.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -216,15 +216,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -285,7 +285,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -311,15 +311,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -387,7 +387,7 @@ The array contains all tabs.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -417,15 +417,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -485,7 +485,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -512,14 +512,14 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1',
@@ -576,7 +576,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -602,15 +602,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -668,7 +668,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -694,15 +694,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1'
@@ -762,7 +762,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var tab = new kintoneUIComponent.Tabs({
     items: [
         {
@@ -789,15 +789,15 @@ kintone.events.on('app.record.index.show', function(event) {
 ```
 
 **React**
-```
+```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: "Tab1",
                 tabContent: 'This is Tab1',

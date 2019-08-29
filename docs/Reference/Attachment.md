@@ -43,10 +43,11 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
- 
+
   handleFilesAdd = (files) => {
     this.setState({files});
   };
@@ -90,8 +91,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -147,8 +149,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -210,8 +213,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -268,8 +272,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -324,8 +329,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -380,8 +386,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -436,8 +443,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -496,8 +504,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -562,8 +571,9 @@ hideButton.on('click', () => {
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -633,8 +643,9 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -687,8 +698,9 @@ attachment.show();
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {
@@ -740,8 +752,9 @@ attachment.hide();
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 export default class Plugin extends React.Component {
-  state = {
-    files: [],
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
   };
  
   handleFilesAdd = (files) => {

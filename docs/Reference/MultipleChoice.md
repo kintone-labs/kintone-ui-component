@@ -30,7 +30,7 @@
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -53,14 +53,14 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 });
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -104,7 +104,7 @@ Dom element
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -131,14 +131,14 @@ body.appendChild(mulChoice.render());
 
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -187,7 +187,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -220,13 +220,13 @@ mulChoice.addItem({
 });
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: []
         }
@@ -279,7 +279,7 @@ The item at given position.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -308,14 +308,14 @@ var firstItem = mulChoice.getItem(0);
 console.log(firstItem);
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        let items= [
+    constructor(props) {
+        super(props);
+        const items= [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -368,7 +368,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -397,13 +397,13 @@ body.appendChild(mulChoice.render());
 mulChoice.removeItem(0);
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -472,7 +472,7 @@ Multiple choice list item.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -503,14 +503,14 @@ items.forEach(function(item) {
 });
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -567,7 +567,7 @@ List of checked items.
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -598,14 +598,14 @@ selectedItems.forEach(function(item) {
 });
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -658,7 +658,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -686,15 +686,15 @@ body.appendChild(mulChoice.render());
 mulChoice.setValue(['Lemon']);
 ```
 **React**
-```
+```javascript
 
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -749,7 +749,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -778,14 +778,14 @@ body.appendChild(mulChoice.render());
 mulChoice.disableItem('Orange');
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -841,7 +841,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -869,14 +869,14 @@ body.appendChild(mulChoice.render());
 mulChoice.enableItem('Banana');
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -933,7 +933,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -963,14 +963,14 @@ mulChoice.on('change', function(value) {
 });
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1021,7 +1021,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -1049,14 +1049,14 @@ body.appendChild(mulChoice.render());
 mulChoice.show();
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1108,7 +1108,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -1136,14 +1136,14 @@ body.appendChild(mulChoice.render());
 mulChoice.hide();
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1195,7 +1195,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -1224,14 +1224,14 @@ body.appendChild(mulChoice.render());
 mulChoice.disable();
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1283,7 +1283,7 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-```
+```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
@@ -1312,14 +1312,14 @@ body.appendChild(mulChoice.render());
 mulChoice.enable();
 ```
 **React**
-```
+```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
