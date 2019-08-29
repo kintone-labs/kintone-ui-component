@@ -5,14 +5,14 @@ import '../../css/Item.css';
 type ItemData = {
     value: string
     label: string
-    isDisabled: boolean
+    isDisabled?: boolean
 }
 
 type ItemProps = ControlProps & {
     value: string
     label: string
     className?: string;
-    isDisabled: boolean 
+    isDisabled?: boolean 
     isSelected: boolean;
     onClick?: (item: Item) => void;
 }
