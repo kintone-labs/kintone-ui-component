@@ -91,4 +91,4 @@ var Locale = {
     availableLocales: availableLocales
 };
 export default Locale;
-export { en, zh, ja, format, availableLocales };
+export { en, zh, ja, format, getSeperator, availableLocales };

@@ -22,6 +22,62 @@ var DateTime = /** @class */ (function (_super) {
         });
         _this._locale = ja;
         _this._time = new Date();
+        _this._setTextInputValueToPreviousValidValue = function () {
+            if (_this._timeTextInput.dataset.previousValidTime &&
+                _this._timeTextInput.dataset.previousValidTime != _this._timeTextInput.value) {
+                var previousSelectionStart = 0;
+                var previousSelectionEnd = 2;
+                if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
+                    _this._timeTextInput.selectionStart >= 3 && _this._timeTextInput.selectionStart <= 5) {
+                    previousSelectionStart = 3;
+                    previousSelectionEnd = 5;
+                }
+                _this._timeTextInput.value = _this._timeTextInput.dataset.previousValidTime;
+                _this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
+            }
+        };
+        _this._setTimeValueOnInput = function (key) {
+            var newTime = parseStringToTime(_this._timeTextInput.value);
+            if (!newTime) {
+                newTime = new Date(_this._time);
+            }
+            if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
+                _this._timeTextInput.selectionStart >= 3 && _this._timeTextInput.selectionStart <= 5) {
+                // minutes are being edited
+                var previousMinutes = void 0;
+                if (_this._time.getMinutes() > 10) {
+                    previousMinutes = ('' + _this._time.getMinutes())[1];
+                }
+                else {
+                    previousMinutes = ('' + _this._time.getMinutes());
+                }
+                if (parseInt(previousMinutes, 10) > 5) {
+                    previousMinutes = '0';
+                }
+                newTime.setMinutes(parseInt(previousMinutes + key, 10));
+                _this._timeTextInput.value = format(newTime, 'HH:mm');
+                _this._timeTextInput.dataset.previousValidTime = _this._timeTextInput.value;
+                _this._timeTextInput.setSelectionRange(3, 5);
+            }
+            else {
+                // hours are being edited
+                var previousHours = void 0;
+                if (_this._time.getHours() > 10) {
+                    previousHours = ('' + _this._time.getHours())[1];
+                }
+                else {
+                    previousHours = ('' + _this._time.getHours());
+                }
+                if (parseInt(previousHours, 10) > 2) {
+                    previousHours = '0';
+                }
+                newTime.setHours(parseInt(previousHours + key, 10));
+                _this._timeTextInput.value = format(newTime, 'HH:mm');
+                _this._timeTextInput.dataset.previousValidTime = _this._timeTextInput.value;
+                _this._timeTextInput.setSelectionRange(0, 2);
+            }
+            _this._time = new Date(newTime);
+        };
         _this._onClickOutside = function (e) {
             var relatedTarget = e.relatedTarget ||
                 e['explicitOriginalTarget'] ||
@@ -106,6 +162,7 @@ var DateTime = /** @class */ (function (_super) {
         }
         if (changedAttr.indexOf('timeTextInput') !== -1) {
             this._timeTextInput.value = format(this._time, 'HH:mm');
+            this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._calendar) {
@@ -193,6 +250,7 @@ var DateTime = /** @class */ (function (_super) {
         timeTextInput.className = 'kuc-input-text text-input time';
         timeTextInput.value = format(this._time, 'HH:mm');
         timeTextInput.maxLength = 5;
+        timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
         this._timeTextInput = timeTextInput;
         this._registerTimeTextInputEvents();
     };
@@ -229,19 +287,16 @@ var DateTime = /** @class */ (function (_super) {
                     break;
                 case 'ArrowLeft':
                 case 'Left':
-                    e.preventDefault();
                     _this._timeTextInput.setSelectionRange(0, 2);
                     _this._timePicker.hide();
                     break;
                 case 'ArrowRight':
                 case 'Right':
-                    e.preventDefault();
                     _this._timeTextInput.setSelectionRange(3, 5);
                     _this._timePicker.hide();
                     break;
                 case 'ArrowUp':
                 case 'Up':
-                    e.preventDefault();
                     if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
                         _this._timeTextInput.selectionStart >= 2 && _this._timeTextInput.selectionStart <= 5) {
                         _this._changeMinutesBy(1);
@@ -253,7 +308,6 @@ var DateTime = /** @class */ (function (_super) {
                     break;
                 case 'ArrowDown':
                 case 'Down':
-                    e.preventDefault();
                     if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
                         _this._timeTextInput.selectionStart >= 2 && _this._timeTextInput.selectionStart <= 5) {
                         _this._changeMinutesBy(-1);
@@ -264,63 +318,20 @@ var DateTime = /** @class */ (function (_super) {
                     _this._timePicker.hide();
                     break;
                 default:
+                    var keyCode = e.keyCode || e.which;
+                    if (keyCode >= 96 && keyCode <= 105) {
+                        // Numpad keys
+                        keyCode -= 48;
+                    }
+                    var key = String.fromCharCode(keyCode);
+                    var isNumber = /^[0-9]$/i.test(key);
+                    if (!isNumber) {
+                        _this._setTextInputValueToPreviousValidValue();
+                    }
+                    else {
+                        _this._setTimeValueOnInput(key);
+                    }
                     break;
-            }
-        };
-        this._timeTextInput.onkeyup = function (e) {
-            if (/[0-9]/.test(e.key)) {
-                var newTime = parseStringToTime(_this._timeTextInput.value);
-                if (!newTime) {
-                    newTime = new Date(_this._time);
-                }
-                if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
-                    _this._timeTextInput.selectionStart >= 3 && _this._timeTextInput.selectionStart <= 5) {
-                    // minutes are being edited
-                    // for case when more then 1 key is being held down
-                    if (newTime.getMinutes() === _this._time.getMinutes()) {
-                        _this._timeTextInput.value = format(newTime, 'HH:mm');
-                        _this._timeTextInput.setSelectionRange(3, 5);
-                        e.preventDefault();
-                        return;
-                    }
-                    var previousMinutes = void 0;
-                    if (_this._time.getMinutes() > 10) {
-                        previousMinutes = ('' + _this._time.getMinutes())[1];
-                    }
-                    else {
-                        previousMinutes = ('' + _this._time.getMinutes());
-                    }
-                    if (parseInt(previousMinutes, 10) > 5) {
-                        previousMinutes = '0';
-                    }
-                    newTime.setMinutes(parseInt(previousMinutes + '' + newTime.getMinutes(), 10));
-                    _this._timeTextInput.value = format(newTime, 'HH:mm');
-                    _this._timeTextInput.setSelectionRange(3, 5);
-                }
-                else {
-                    // hours are being edited
-                    // for case when more then 1 key is being held down
-                    if (newTime.getHours() === _this._time.getHours()) {
-                        _this._timeTextInput.value = format(newTime, 'HH:mm');
-                        _this._timeTextInput.setSelectionRange(0, 2);
-                        e.preventDefault();
-                        return;
-                    }
-                    var previousHours = void 0;
-                    if (_this._time.getHours() > 10) {
-                        previousHours = ('' + _this._time.getHours())[1];
-                    }
-                    else {
-                        previousHours = ('' + _this._time.getHours());
-                    }
-                    if (parseInt(previousHours, 10) > 2) {
-                        previousHours = '0';
-                    }
-                    newTime.setHours(parseInt(previousHours + '' + newTime.getHours(), 10));
-                    _this._timeTextInput.value = format(newTime, 'HH:mm');
-                    _this._timeTextInput.setSelectionRange(0, 2);
-                }
-                _this._time = new Date(newTime);
             }
         };
         this._timeTextInput.onblur = function (e) {
@@ -332,13 +343,6 @@ var DateTime = /** @class */ (function (_super) {
                 e.preventDefault();
                 return;
             }
-            // set value
-            var newTime = parseStringToTime(_this._timeTextInput.value);
-            if (newTime) {
-                _this._time.setHours(newTime.getHours());
-                _this._time.setMinutes(newTime.getMinutes());
-            }
-            //
             _this._timePicker.hide();
         };
     };
@@ -398,7 +402,7 @@ var DateTime = /** @class */ (function (_super) {
             this._props.value = null;
         }
         else {
-            var tempDate = parseStringToDate(this._dateTextInput.value);
+            var tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
             if (tempDate instanceof Date && !isNaN(tempDate)) {
                 this._props.value = tempDate;
             }

@@ -3,7 +3,7 @@ import Control from '../Control';
 import Item from '../CheckBox/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
-import '../../css/Checkbox.css';
+import '../../css/CheckBox.css';
 var CheckBox = /** @class */ (function (_super) {
     tslib_1.__extends(CheckBox, _super);
     function CheckBox(params) {

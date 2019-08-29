@@ -27,6 +27,8 @@ declare class DateTime extends Control {
     private _renderDateTextInput;
     private _renderTimeTextInput;
     private _registerTimeTextInputEvents;
+    private _setTextInputValueToPreviousValidValue;
+    private _setTimeValueOnInput;
     private _changeMinutesBy;
     private _changeHoursBy;
     private _renderDate;
