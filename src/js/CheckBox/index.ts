@@ -2,7 +2,7 @@ import Control, {ControlProps} from '../Control'
 import Item, {ItemData} from '../CheckBox/Item'
 import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
-import '../../css/Checkbox.css'
+import '../../css/CheckBox.css'
 
 type CheckboxProps = ControlProps & {
     items?: Array<ItemData>
@@ -72,8 +72,6 @@ class CheckBox extends Control {
         return err
     }
 
-
-
     setValue(value: Array<string>):void {
         if (!value && Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT)
@@ -86,7 +84,6 @@ class CheckBox extends Control {
         
         this.rerender(['value'])
     }
-
 
     getValue(): Array<string> | undefined {
         return this._props.value
