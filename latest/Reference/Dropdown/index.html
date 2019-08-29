@@ -989,9 +989,9 @@
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1056,9 +1056,9 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1158,12 +1158,12 @@ dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [],
             value: undefined
-        }
+        };
     }
 
     render() {
@@ -1244,8 +1244,8 @@ console.log(firstItem);
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -1259,7 +1259,7 @@ export default class Plugin extends React.Component {
                 isDisabled: false
             }
             ]
-        }
+        };
     }
 
     render() {
@@ -1358,9 +1358,9 @@ list.forEach(function(item) {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1451,9 +1451,9 @@ console.log(selectedItem);
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1546,9 +1546,9 @@ dropdown.setValue('Orange');
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1641,9 +1641,9 @@ dropdown.disableItem('Orange');
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1739,9 +1739,9 @@ dropdown.enableItem('Banana');
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1845,9 +1845,9 @@ dropdown.on('change', function(value) {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1920,9 +1920,9 @@ dropdown.show();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1995,9 +1995,9 @@ dropdown.hide();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2071,9 +2071,9 @@ dropdown.disable();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2145,9 +2145,9 @@ dropdown.enable();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',

@@ -977,7 +977,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1000,13 +1000,13 @@
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1044,7 +1044,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1071,13 +1071,13 @@ body.appendChild(mulChoice.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1149,7 +1149,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1182,12 +1182,12 @@ mulChoice.addItem({
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: []
         }
@@ -1273,7 +1273,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1302,13 +1302,13 @@ console.log(firstItem);
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        let items= [
+    constructor(props) {
+        super(props);
+        const items= [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1370,7 +1370,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1399,12 +1399,12 @@ mulChoice.removeItem(0);
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -1491,7 +1491,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1522,13 +1522,13 @@ items.forEach(function(item) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1591,7 +1591,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1622,13 +1622,13 @@ selectedItems.forEach(function(item) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1690,7 +1690,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1718,14 +1718,14 @@ mulChoice.setValue(['Lemon']);
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>
+<pre><code class="javascript">
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1789,7 +1789,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1818,13 +1818,13 @@ mulChoice.disableItem('Orange');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1889,7 +1889,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -1917,13 +1917,13 @@ mulChoice.enableItem('Banana');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1994,7 +1994,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -2024,13 +2024,13 @@ mulChoice.on('change', function(value) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2075,7 +2075,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -2103,13 +2103,13 @@ mulChoice.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2155,7 +2155,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -2183,13 +2183,13 @@ mulChoice.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2235,7 +2235,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -2264,13 +2264,13 @@ mulChoice.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2316,7 +2316,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var mulChoice = new kintoneUIComponent.MultipleChoice({
+<pre><code class="javascript">var mulChoice = new kintoneUIComponent.MultipleChoice({
        items: [
             {
                 label: 'Orange',
@@ -2345,13 +2345,13 @@ mulChoice.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { MultipleChoice } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',

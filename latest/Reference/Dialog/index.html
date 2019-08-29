@@ -901,7 +901,12 @@
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
+    }
 
     onClose = () =&gt; {
         this.setState({isVisible: false})
@@ -950,7 +955,12 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
+    }
 
     onClose = () =&gt; {
         this.setState({isVisible: false})
@@ -999,10 +1009,10 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1107,10 +1117,10 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1159,11 +1169,11 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true,
             header: 'Announcement'
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1231,10 +1241,10 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1283,11 +1293,11 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             content: &quot;Dialog content&quot;,
             isVisible: true
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1354,10 +1364,10 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: true
-        }
+        };
     }
     onClose = () =&gt; {
         this.setState({
@@ -1405,7 +1415,13 @@ myDialog.getFooter(); // return &quot;Footer&quot;
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {footer: &quot;Dialog footer&quot;, isVisible: true}
+    constructor(props) {
+        super(props);
+        this.state = {
+            footer: &quot;Dialog footer&quot;,
+            isVisible: true
+        };
+    }
     handleClick= () =&gt; {
         console.log(this.state.footer);
     };

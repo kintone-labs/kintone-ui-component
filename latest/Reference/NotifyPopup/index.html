@@ -875,20 +875,22 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} /&gt;
@@ -909,7 +911,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -919,13 +921,15 @@ body.appendChild(notifyPopup.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
-    }
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
+    }  
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} /&gt;
@@ -962,7 +966,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -973,13 +977,15 @@ notifyPopup.setText('Submit failed');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} /&gt;
@@ -1016,7 +1022,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1027,13 +1033,15 @@ notifyPopup.setType('success');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} /&gt;
@@ -1076,7 +1084,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1089,13 +1097,15 @@ notifyPopup.on('click', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} onClick={this.handleClick} /&gt;
@@ -1118,7 +1128,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1129,13 +1139,15 @@ notifyPopup.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} /&gt;
@@ -1154,7 +1166,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1165,7 +1177,7 @@ notifyPopup.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1188,7 +1200,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1199,13 +1211,15 @@ notifyPopup.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} isDisabled={true} /&gt;
@@ -1225,7 +1239,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
@@ -1236,13 +1250,15 @@ notifyPopup.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {
-        isVisible: true
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
     }
+
     render() {
         return (
             &lt;NotifyPopup text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=&gt;(this.setState({isVisible: false}))} isDisabled={false} /&gt;

@@ -965,7 +965,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -989,13 +989,13 @@
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        var items = [
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1033,7 +1033,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1060,13 +1060,13 @@ body.appendChild(radioBtn.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        var items = [
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1138,7 +1138,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1162,17 +1162,17 @@ radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>
+<pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [],
             value: undefined
-        }
+        };
     }
 
     render() {
@@ -1224,7 +1224,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1253,19 +1253,19 @@ radioBtn.removeItem(0);
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [{
                 label: 'Lemon',
                 value: 'Lemon',
                 isDisabled: true
             }]
-        }
+        };
     }
 
     render() {
@@ -1334,7 +1334,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1366,13 +1366,13 @@ items.forEach(function(item) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { DropDown } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { DropDown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1435,7 +1435,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1464,14 +1464,14 @@ radioBtn.getValue();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>
+<pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1537,7 +1537,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1566,13 +1566,13 @@ radioBtn.setValue('Lemon');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1638,7 +1638,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1667,13 +1667,13 @@ radioBtn.disableItem('Orange');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1741,7 +1741,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1770,13 +1770,13 @@ radioBtn.enableItem('Banana');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1851,7 +1851,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1882,13 +1882,13 @@ radioBtn.on('change', function(value) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1935,7 +1935,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -1964,13 +1964,13 @@ radioBtn.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2012,7 +2012,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -2041,13 +2041,13 @@ radioBtn.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { RadioButton } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2089,7 +2089,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -2118,14 +2118,14 @@ radioBtn.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>
+<pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2153,7 +2153,7 @@ export default class Plugin extends React.Component {
             &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={true} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
             this.setState({value});
         }
 }
@@ -2170,7 +2170,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var radioBtn = new kintoneUIComponent.RadioButton({
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
      name: &quot;fruit&quot;,
      items: [
             {
@@ -2199,14 +2199,14 @@ radioBtn.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>
+<pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-       var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2234,7 +2234,7 @@ export default class Plugin extends React.Component {
             &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange.bind(this)}  isDisabled={false} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
             this.setState({value});
         }
 }

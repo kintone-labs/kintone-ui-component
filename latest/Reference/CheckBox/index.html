@@ -1000,9 +1000,9 @@
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1071,9 +1071,9 @@ body.appendChild(checkbox.render());
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1182,8 +1182,8 @@ checkbox.addItem({
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: []
         }
@@ -1302,8 +1302,8 @@ console.log(firstItem);
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -1322,7 +1322,7 @@ export default class Plugin extends React.Component {
                     isDisabled: true
                 }
             ]
-        }
+        };
     }
 
     render() {
@@ -1399,8 +1399,8 @@ checkbox.removeItem(0);
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -1419,7 +1419,7 @@ export default class Plugin extends React.Component {
                     isDisabled: true
                 }
             ]
-        }
+        };
     }
 
     render() {
@@ -1522,9 +1522,9 @@ items.forEach(function(item) {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1622,9 +1622,9 @@ value.forEach(function(item) {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1718,9 +1718,9 @@ checkbox.setValue(['Lemon']);
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1816,9 +1816,9 @@ checkbox.disableItem('Orange');
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1915,9 +1915,9 @@ checkbox.enableItem('Banana');
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2022,9 +2022,9 @@ checkbox.on('change', function(value) {
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2101,9 +2101,9 @@ checkbox.show();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2173,9 +2173,9 @@ checkbox.hide();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2245,9 +2245,9 @@ checkbox.disable();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -2317,9 +2317,9 @@ checkbox.enable();
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',

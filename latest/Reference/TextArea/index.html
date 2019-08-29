@@ -853,15 +853,18 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: ''}
+    constructor(props) {
+      super(props);
+      this.state = { value: ''};
+    }
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
@@ -882,17 +885,20 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: ''}
+    constructor(props) {
+      super(props);
+      this.state = { value: ''};
+    }
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
@@ -929,7 +935,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -937,12 +943,14 @@ textArea.setValue('set value into textarea');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
-
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }
     render() {
         return (
         &lt;div&gt;
@@ -985,7 +993,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -993,12 +1001,14 @@ textArea.getValue();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
-
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }
     render() {
         return (
         &lt;div&gt;
@@ -1047,7 +1057,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1057,17 +1067,20 @@ textArea.on('click', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() =&gt; {console.log('click')}} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
             this.setState({value});
             console.log('value: ' + value);
     }
@@ -1085,7 +1098,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1093,17 +1106,20 @@ textArea.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }    
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={true} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
         this.setState({value});
         console.log('value: ' + value);
     }
@@ -1121,7 +1137,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1129,17 +1145,20 @@ textArea.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }    
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={false} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
         this.setState({value});
         console.log('value: ' + value);
     }
@@ -1157,7 +1176,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1165,17 +1184,20 @@ textArea.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={true} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
         this.setState({value});
         console.log('value: ' + value);
     }
@@ -1193,7 +1215,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1201,17 +1223,20 @@ textArea.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = { value: 'textarea'}
+    constructor(props) {
+      super(props);
+      this.state = { value: 'textarea'};
+    }
     render() {
         return (
             &lt;TextArea value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={false} /&gt;
         );
     }
-    handleChange(value) {
+    handleChange = (value) =&gt; {
         this.setState({value});
         console.log('value: ' + value);
     }

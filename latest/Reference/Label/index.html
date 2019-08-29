@@ -885,7 +885,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({
     text: 'Name',
     textColor: '#e74c3c',
     backgroundColor: 'yellow',
@@ -894,7 +894,7 @@
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -917,13 +917,13 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -962,14 +962,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong>  </p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.setText('Name');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1008,14 +1008,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.setTextColor('#e74c3c');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1054,14 +1054,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.setBackgroundColor('#e74c3c');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1100,14 +1100,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.setRequired(true);
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1152,7 +1152,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.on('click', function(event) {
@@ -1161,7 +1161,7 @@ label.on('click', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1170,7 +1170,7 @@ export default class Plugin extends React.Component {
             &lt;Label text='Name' isRequired={true} onClick={this.handleClick} /&gt;
         );
     }
-   handleClick(){
+   handleClick = () =&gt; {
         console.log('click');
    }
     }
@@ -1187,14 +1187,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1217,14 +1217,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1246,14 +1246,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1275,14 +1275,14 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var label = new kintoneUIComponent.Label({text: 'label'});
+<pre><code class="javascript">var label = new kintoneUIComponent.Label({text: 'label'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(label.render());
 label.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Label } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {

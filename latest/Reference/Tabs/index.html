@@ -877,7 +877,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -896,14 +896,14 @@
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -941,7 +941,7 @@ class Sample extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var button = new kintoneUIComponent.Button({
+<pre><code class="javascript">var button = new kintoneUIComponent.Button({
     text: 'Hello',
     type: 'submit'
 });
@@ -972,14 +972,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1056,7 +1056,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1082,14 +1082,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1158,7 +1158,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1183,14 +1183,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1275,7 +1275,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1304,14 +1304,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1377,7 +1377,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1403,13 +1403,13 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1',
@@ -1474,7 +1474,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1499,14 +1499,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1572,7 +1572,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1597,14 +1597,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1'
@@ -1672,7 +1672,7 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var tab = new kintoneUIComponent.Tabs({
+<pre><code class="javascript">var tab = new kintoneUIComponent.Tabs({
     items: [
         {
             tabName: &quot;Tab1&quot;,
@@ -1698,14 +1698,14 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Tabs } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Sample extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 tabName: &quot;Tab1&quot;,
                 tabContent: 'This is Tab1',

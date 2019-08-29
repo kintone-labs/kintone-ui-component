@@ -887,15 +887,18 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    state = {color: ''}
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
     render() {
         return (
             &lt;ColorPicker color={this.state.color} /&gt;
@@ -915,7 +918,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 kintone.events.on('app.record.index.show', function(event) {
     var el = kintone.app.getHeaderSpaceElement();
     el.appendChild(colorPicker.render());
@@ -923,19 +926,22 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
-    state = {color: ''}
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
     render() {
         return (
             &lt;ColorPicker color={this.state.color} /&gt;
         );
     }
 }
-kintone.events.on('app.record.index.show', function (event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -970,20 +976,22 @@ kintone.events.on('app.record.index.show', function (event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(colorPicker.render());
 colorPicker.setColor('#666666');
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
-
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
         &lt;div&gt;
@@ -998,7 +1006,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1031,20 +1039,22 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(colorPicker.render());
 colorPicker.getColor();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
-
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
             &lt;div&gt;
@@ -1057,7 +1067,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1098,7 +1108,7 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
 });
@@ -1110,12 +1120,15 @@ kintone.events.on('app.record.index.show', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
-    state = {color: '#FF0000'}
+    constructor(props) {
+        super(props);
+        this.state = {color: '#FF0000'};
+    };
     render() {
         return (
             &lt;ColorPicker color={this.state.color} onChange={this.handleChange} /&gt;
@@ -1125,7 +1138,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1143,14 +1156,14 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1162,7 +1175,7 @@ export default class Plugin extends React.Component {
     }
 }
 
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1180,14 +1193,14 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { Button } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1198,7 +1211,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1216,14 +1229,14 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.disable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1234,7 +1247,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()
@@ -1252,14 +1265,14 @@ kintone.events.on('app.record.index.show', function(event) {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.enable();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1270,7 +1283,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', function(event) {
+kintone.events.on('app.record.index.show', (event) =&gt; {
     ReactDOM.render(
         &lt;Plugin /&gt;,
         kintone.app.getHeaderSpaceElement()

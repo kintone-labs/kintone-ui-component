@@ -960,7 +960,7 @@
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>(function(){
+<pre><code class="javascript">(function(){
   // custom cell containing 2 text fields
   var customCell = function() {
     return {
@@ -1373,7 +1373,7 @@
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import { Table, Text} from '@kintone/kintone-ui-component';
 
 export default class Plugin extends React.Component {
@@ -1443,7 +1443,7 @@ export default class Plugin extends React.Component {
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -1462,7 +1462,7 @@ body.appendChild(table.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text} from '@kintone/kintone-ui-component';
 
@@ -1548,7 +1548,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -1571,7 +1571,7 @@ value.forEach(function(rowData) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -1667,7 +1667,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -1692,7 +1692,7 @@ table.setValue([
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -1872,7 +1872,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -1901,7 +1901,7 @@ table.on('cellChange', function(event) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -1974,7 +1974,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -1994,7 +1994,7 @@ table.show();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2074,7 +2074,7 @@ render(&lt;App /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -2094,7 +2094,7 @@ table.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2108,7 +2108,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       isVisible: true
-    }
+    };
   }
 
   handleRowAdd = ({data}) =&gt; {
@@ -2174,7 +2174,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -2195,7 +2195,7 @@ table.showActionButtons();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2209,7 +2209,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       actionButtonsShown: false
-    }
+    };
   }
 
   handleRowAdd = ({data}) =&gt; {
@@ -2274,7 +2274,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -2295,7 +2295,7 @@ table.hideActionButtons();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2309,7 +2309,7 @@ export default class Plugin extends React.Component {
       // default row data on row add
       defaultRowData: {text: 'default text field value'},
       actionButtonsShown: true
-    }
+    };
   }
 
   handleRowAdd = ({data}) =&gt; {
@@ -2409,7 +2409,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {
@@ -2455,7 +2455,7 @@ body.appendChild(table.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2468,7 +2468,7 @@ export default class Plugin extends Component {
       ],
       // default row data on row add
       defaultRowData: {text: 'default text field value'}
-    }
+    };
   }
 
   handleRowAdd = ({data}) =&gt; {
@@ -2577,7 +2577,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p><details class="tab-container" open>
 <Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code>var table = new kintoneUIComponent.Table({
+<pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
     {text: { value: 'this is a text field' }}
@@ -2596,7 +2596,7 @@ body.appendChild(table.render());
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code>import React from 'react';
+<pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
@@ -2609,7 +2609,7 @@ export default class Plugin extends React.Component {
       ],
       // default row data on row add
       defaultRowData: {text: 'default text field value'}
-    }
+    };
   }
 
   handleRowAdd = ({data}) =&gt; {
