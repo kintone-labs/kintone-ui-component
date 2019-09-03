@@ -22,7 +22,30 @@ import TextArea from './TextArea'
 import Attachment from './Attachment'
 import FieldGroup from './FieldGroup'
 
-const kintoneUIComponent = {
+// const kintoneUIComponent = {
+//   Alert,
+//   Label,
+//   Button,
+//   IconButton,
+//   Text,
+//   Dropdown,
+//   DateTime,
+//   NotifyPopup,
+//   MultipleChoice,
+//   RadioButton,
+//   CheckBox,
+//   Spinner,
+//   Table,
+//   FieldGroup,
+//   Dialog,
+//   TextArea,
+//   Attachment,
+//   createTableCell,
+//   Tabs,
+//   ColorPicker
+// };
+// export default kintoneUIComponent;
+export{
   Alert,
   Label,
   Button,
@@ -43,27 +66,5 @@ const kintoneUIComponent = {
   createTableCell,
   Tabs,
   ColorPicker
-};
-export default kintoneUIComponent;
-export {
-  Alert,
-  Label,
-  Button,
-  IconButton,
-  Text,
-  Dropdown,
-  DateTime,
-  NotifyPopup,
-  MultipleChoice,
-  RadioButton,
-  CheckBox,
-  Spinner,
-  Table,
-  FieldGroup,
-  Dialog,
-  TextArea,
-  Attachment,
-  createTableCell,
-  Tabs,
-  ColorPicker
-};
+}
+

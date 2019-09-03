@@ -1,6 +1,8 @@
 type ControlProps = {
   isDisabled?: boolean;
   isVisible?: boolean;
+  style?:object;
+  className?:string;
 }
 
 class Control {
@@ -9,6 +11,7 @@ class Control {
     isVisible: true
   }
   protected element: HTMLElement
+
 
   rerender(changedAttr?: string[]) {
     if (this.element) {
@@ -55,6 +58,20 @@ class Control {
   enable() {
     this._props.isDisabled = false;
     this.rerender(['isDisabled']);
+  }
+  setClassName(className:string){
+    if(className){
+      this.element.classList.add(className)
+    }
+  }
+  setStyle(style:object){
+    if(style && Object.keys(style).length>0){
+      for (const key in style) {
+        if (style.hasOwnProperty(key)) {
+          this.element.style[key]= style[key];
+        }
+      }
+    }
   }
 }
 
