@@ -1,6 +1,6 @@
 import '../../css/DateTime.css';
 import '../../css/Text.css';
-import React, {useState, createRef, useEffect} from 'react';
+import React, {useState, createRef, useEffect, CSSProperties} from 'react';
 import {en, ja, zh, format} from './components/Locale';
 
 import {parseStringToDate, parseStringToTime} from './components/utils';
@@ -10,6 +10,8 @@ import TimePicker from './components/TimePicker';
 import '../../css/font.css'
 
 type DateTimeConstructorParameters = {
+  style?: CSSProperties;
+  className?: string;
   value?: Date;
   onChange?: Function;
   locale?: string;
@@ -21,6 +23,8 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
+  style, 
+  className,
   value =  new Date(),
   isDisabled = false,
   isVisible = true,
@@ -164,7 +168,7 @@ const DateTime = ({
 
   if (isVisible) {
     return (
-      <div className="date-time-container" ref={wrapperRef}>
+      <div style={style} className={`date-time-container ${className}`} ref={wrapperRef}>
         {
           (type === 'datetime' || type === 'date') &&
           <div className="date-container">
