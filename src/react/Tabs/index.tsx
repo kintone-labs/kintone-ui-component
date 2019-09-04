@@ -10,14 +10,14 @@ type TabsItem = {
 }
 
 type TabsProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   items: TabsItem[];
   value: number;
   onClickTabItem: (tabIndex: number) => void;
 }
 
-const Tabs = ({style, className, items, value, onClickTabItem}: TabsProps) => {
+const Tabs = ({setStyles, setClassName, items, value, onClickTabItem}: TabsProps) => {
   if (value) {
     if (typeof value !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
@@ -66,7 +66,7 @@ const Tabs = ({style, className, items, value, onClickTabItem}: TabsProps) => {
     if (tabIndex !== value) return undefined;
 
     return (
-      <div style={style} className={`kuc-tabs-tab-contents ${className}`} key={tabIndex}>
+      <div style={setStyles} className={`kuc-tabs-tab-contents ${setClassName}`} key={tabIndex}>
         <div>{item.tabContent}</div>
       </div>
     );
