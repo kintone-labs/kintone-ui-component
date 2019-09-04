@@ -360,7 +360,7 @@ Set style dom element of control.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|style|object|Yes|Set style dom element for all component|
+|style|object|Yes|Set style dom element for all component contains key of Style Object Properties for references: https://www.w3schools.com/jsref/dom_obj_style.asp |
 
 **Returns**
 
