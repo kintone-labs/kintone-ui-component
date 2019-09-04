@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import IconButton from '../IconButton';
 import '../../css/font.css'
 import '../../css/Table.css';
@@ -32,6 +32,8 @@ type ActionFlag = {
   actions: boolean
 }
 type TableProps = {
+  style?: CSSProperties;
+  className?: string;
   data: object[], 
   columns: (TableColumn | ActionFlag)[],
   defaultRowData: object[], 
@@ -81,7 +83,7 @@ type RowEventProps = {
   defaultRowData?: object
 }
 
-const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
+const Table = ({style, className, data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
   const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -89,7 +91,7 @@ const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChan
     }
   };
   return (
-    <div className="kuc-table" style={{display: isVisible ? 'table' : 'none'}}>
+    <div className={`kuc-table ${className}`} style={{display: isVisible ? 'table' : 'none', ...style}}>
       <div className="kuc-table-thead">
         <div className="kuc-table-tr">
           <TableHeaderRow columns={columns} />
