@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, CSSProperties} from 'react';
 import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
@@ -7,6 +7,8 @@ import Message from '../../constant/Message';
 import '../../css/font.css'
 
 type ColorPickerProps = {
+  style?: CSSProperties;
+  className?: string;
   color?: string;
   onChange?: (hexString: string) => void;
   isDisabled?: boolean;
@@ -115,7 +117,7 @@ function ColorPicker(props: ColorPickerProps) {
 
   if (isVisible) {
     return (
-      <div ref={wrapperRef}>
+      <div ref={wrapperRef} style={props.style} className={props.className}>
         <div>
           <input {...inputProps} key={hexString} />
         </div>
