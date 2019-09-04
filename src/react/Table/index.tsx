@@ -32,8 +32,8 @@ type ActionFlag = {
   actions: boolean
 }
 type TableProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   data: object[], 
   columns: (TableColumn | ActionFlag)[],
   defaultRowData: object[], 
@@ -83,7 +83,7 @@ type RowEventProps = {
   defaultRowData?: object
 }
 
-const Table = ({style, className, data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
+const Table = ({setStyles, setClassName, data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
   const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -91,7 +91,7 @@ const Table = ({style, className, data, columns, defaultRowData, onRowAdd, onRow
     }
   };
   return (
-    <div className={`kuc-table ${className}`} style={{display: isVisible ? 'table' : 'none', ...style}}>
+    <div className={`kuc-table ${setClassName}`} style={{display: isVisible ? 'table' : 'none', ...setStyles}}>
       <div className="kuc-table-thead">
         <div className="kuc-table-tr">
           <TableHeaderRow columns={columns} />
