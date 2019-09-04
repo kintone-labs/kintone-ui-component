@@ -9,8 +9,8 @@ type FileObject = {
 }
 
 type AttachmentProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   dropZoneText: string;
   browseButtonText: string;
   fileLimitText: string;
@@ -134,7 +134,7 @@ const Attachment = (props: AttachmentProps) => {
   };
 
   return (
-    <div className={`kuc-attachment-outer ${props.className}`} style={props.style}>
+    <div className={`kuc-attachment-outer ${props.setClassName}`} style={props.setStyles}>
       <div
         className="kuc-attachment-file"
         onDragOver={_onDragOver}
