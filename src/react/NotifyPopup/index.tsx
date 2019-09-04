@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import '../../css/font.css'
 import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';
 
 type NotifyPopupProps = {
+  style?: CSSProperties;
+  className?: string;
   text?: string;
   type?: string;
   isDisabled?: boolean;
@@ -12,7 +14,7 @@ type NotifyPopupProps = {
   onClose?: () => void;
 }
 
-const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
+const NotifyPopup = ({style, className, text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
   const _handleClosePopup = () => {
     if (isDisabled) {
       return false;
@@ -63,7 +65,7 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
   }
 
   return (
-    <div className={_getClassName()}>
+    <div style={style} className={`${_getClassName()} ${className}`}>
       <div className="kuc-notify-title" onClick={_onClick} >{text}</div>
       <div className="kuc-close-button">
         <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
