@@ -11,8 +11,8 @@ type item = {
 }
 
 type MultipleChoiceProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   items: item[];
   value: string[];
   isVisible: boolean;
@@ -68,7 +68,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
   ];
 
   return (
-    <div style={props.style} className={`${className.join(' ').trim()} ${props.className}`}>
+    <div style={props.setStyles} className={`${className.join(' ').trim()} ${props.setClassName}`}>
       {items}
     </div>
   );
