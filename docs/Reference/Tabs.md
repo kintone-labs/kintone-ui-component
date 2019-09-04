@@ -559,6 +559,91 @@ export default class Plugin extends React.Component {
 
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var tab = new kintoneUIComponent.Tabs({
+    items: [
+        {
+            tabName: "Tab1",
+            tabContent: 'This is Tab1'
+        },
+        {
+            tabName: "Tab2",
+            tabContent: "This is Tab2"
+        },
+    　  { 
+            tabName: "Tab3",
+            tabContent: "This is Tab3"
+        }
+    ]
+});
+tab.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(tab.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var tab = new kintoneUIComponent.Tabs({
+    items: [
+        {
+            tabName: "Tab1",
+            tabContent: 'This is Tab1'
+        },
+        {
+            tabName: "Tab2",
+            tabContent: "This is Tab2"
+        },
+    　  { 
+            tabName: "Tab3",
+            tabContent: "This is Tab3"
+        }
+    ]
+});
+
+tab.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(tab.render());
+```
+
+</details>
+
+
 ### setValue(value)
 Set the selected value for the tab.
 

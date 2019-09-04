@@ -76,6 +76,59 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var text = new kintoneUIComponent.Text({value: 'input text'});
+text.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var text = new kintoneUIComponent.Text({value: 'input text'});
+text.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
+```
+
+</details>
+
 ### setValue(value)
 Set the value of text field.
 

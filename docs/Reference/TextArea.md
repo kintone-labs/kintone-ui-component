@@ -80,6 +80,59 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+textArea.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(textArea.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+textArea.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(textArea.render());
+```
+
+</details>
+
 ### setValue(value)
 Set the value of textarea field.
 
