@@ -10,8 +10,8 @@ type item = {
   isDisabled: boolean;
 }
 type CheckBoxProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   items: item[];
   value: string[];
   isVisible: boolean;
@@ -66,7 +66,7 @@ const CheckBox = (props: CheckBoxProps) => {
   }
 
   return (
-    <div className={`kuc-input-checkbox ${props.className}`} style={props.style} >
+    <div className={`kuc-input-checkbox ${props.setClassName}`} style={props.setStyles} >
       {items}
     </div>
   );
