@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractMultiSelection} from '../index';
 import '../../css/font.css'
@@ -11,6 +11,8 @@ type item = {
 }
 
 type MultipleChoiceProps = {
+  style?: CSSProperties;
+  className?: string;
   items: item[];
   value: string[];
   isVisible: boolean;
@@ -66,7 +68,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
   ];
 
   return (
-    <div className={className.join(' ').trim()}>
+    <div style={props.style} className={`${className.join(' ').trim()} ${props.className}`}>
       {items}
     </div>
   );
