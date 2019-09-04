@@ -11,8 +11,8 @@ type item = {
   isDisabled: boolean;
 }
 type DropdownProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   value: string;
   items: item[];
   isVisible?: boolean;
@@ -20,7 +20,7 @@ type DropdownProps = {
   onChange: (value: string) => void;
 }
 
-const Dropdown = ({style, className, value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
+const Dropdown = ({setStyles, setClassName, value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
@@ -86,7 +86,7 @@ const Dropdown = ({style, className, value, items, isVisible, isDisabled, onChan
     isDisabled ? 'kuc-dropdown-disable' : ''
   ];
   return (
-    <div style={style} className={`kuc-dropdown-container ${className}`} ref={ref}>
+    <div style={setStyles} className={`kuc-dropdown-container ${setClassName}`} ref={ref}>
       <div className="kuc-dropdown-sub-container">
         <div className="kuc-dropdown-outer" onClick={_showItems}>
           <div className={_getClassName.join(' ').trim()}>
