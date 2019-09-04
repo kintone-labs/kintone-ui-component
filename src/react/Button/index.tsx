@@ -3,8 +3,8 @@ import '../../css/font.css'
 import '../../css/Button.css';
 
 type ButtonProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   text?: string;
   type?: string;
   isDisabled?: boolean;
@@ -12,7 +12,7 @@ type ButtonProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Button = ({className, text, type, isDisabled, isVisible, onClick, style}: ButtonProps) => {
+const Button = ({setClassName, text, type, isDisabled, isVisible, onClick, setStyles}: ButtonProps) => {
   const _getClassName = () => {
     return [
       'kuc-btn',
@@ -23,7 +23,7 @@ const Button = ({className, text, type, isDisabled, isVisible, onClick, style}: 
     return null;
   }
   return (
-    <button style={style} onClick={onClick} className={`${_getClassName()} ${className}`} disabled={isDisabled}>
+    <button style={setStyles} onClick={onClick} className={`${_getClassName()} ${setClassName}`} disabled={isDisabled}>
       {text}
     </button>
   );
