@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import '../../css/font.css'
 import '../../css/Tabs.css'
 import Message from '../../constant/Message'
@@ -10,12 +10,14 @@ type TabsItem = {
 }
 
 type TabsProps = {
+  style?: CSSProperties;
+  className?: string;
   items: TabsItem[];
   value: number;
   onClickTabItem: (tabIndex: number) => void;
 }
 
-const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
+const Tabs = ({style, className, items, value, onClickTabItem}: TabsProps) => {
   if (value) {
     if (typeof value !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
@@ -64,7 +66,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
     if (tabIndex !== value) return undefined;
 
     return (
-      <div className="kuc-tabs-tab-contents" key={tabIndex}>
+      <div style={style} className={`kuc-tabs-tab-contents ${className}`} key={tabIndex}>
         <div>{item.tabContent}</div>
       </div>
     );
