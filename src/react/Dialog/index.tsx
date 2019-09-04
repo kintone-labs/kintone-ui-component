@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, CSSProperties} from 'react';
 import IconButton from '../IconButton';
 import '../../css/font.css'
 import '../../css/Dialog.css';
@@ -6,6 +6,8 @@ import Message from '../constant/Message';
 
 
 type DialogProps = {
+  style?: CSSProperties;
+  className?: string;
   header: string | ReactElement;
   content: string | ReactElement;
   footer: string | ReactElement;
@@ -14,7 +16,7 @@ type DialogProps = {
   onClose: () => void;
 };
 
-const Dialog = ({header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
+const Dialog = ({style, className, header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';
@@ -40,7 +42,7 @@ const Dialog = ({header = '', content = '', footer = '', isVisible = true, showC
   }
 
   return (
-    <div className={`kuc-dialog-container ${hidden}`}>
+    <div style={style} className={`kuc-dialog-container ${hidden} ${className}`}>
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
