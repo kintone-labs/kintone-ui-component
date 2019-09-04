@@ -7,8 +7,8 @@ import Message from '../../constant/Message';
 import '../../css/font.css'
 
 type ColorPickerProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   color?: string;
   onChange?: (hexString: string) => void;
   isDisabled?: boolean;
@@ -117,7 +117,7 @@ function ColorPicker(props: ColorPickerProps) {
 
   if (isVisible) {
     return (
-      <div ref={wrapperRef} style={props.style} className={props.className}>
+      <div ref={wrapperRef} style={props.setStyles} className={props.setClassName}>
         <div>
           <input {...inputProps} key={hexString} />
         </div>
