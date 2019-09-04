@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/font.css'
 import '../../css/Attachment.css';
@@ -9,6 +9,8 @@ type FileObject = {
 }
 
 type AttachmentProps = {
+  style?: CSSProperties;
+  className?: string;
   dropZoneText: string;
   browseButtonText: string;
   fileLimitText: string;
@@ -132,7 +134,7 @@ const Attachment = (props: AttachmentProps) => {
   };
 
   return (
-    <div className="kuc-attachment-outer">
+    <div className={`kuc-attachment-outer ${props.className}`} style={props.style}>
       <div
         className="kuc-attachment-file"
         onDragOver={_onDragOver}
