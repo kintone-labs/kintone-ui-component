@@ -3,8 +3,8 @@ import '../../css/font.css'
 import '../../css/Text.css';
 
 type TextProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   value?: string;
   isDisabled?: boolean;
   isVisible?: boolean;
@@ -12,7 +12,7 @@ type TextProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Text = ({style, className, value, isDisabled = false, isVisible = true, onChange, onClick}: TextProps) => {
+const Text = ({setStyles, setClassName, value, isDisabled = false, isVisible = true, onChange, onClick}: TextProps) => {
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event.target.value);
   };
@@ -23,10 +23,10 @@ const Text = ({style, className, value, isDisabled = false, isVisible = true, on
 
   return (
     <input
-      style={style}
+      style={setStyles}
       type="text"
       value={value}
-      className={`kuc-input-text ${className}`}
+      className={`kuc-input-text ${setClassName}`}
       onClick={onClick}
       onChange={_onChange}
       disabled={isDisabled}
