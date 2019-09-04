@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, CSSProperties} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import { mdilChevronDown } from '@mdi/light-js'
@@ -11,6 +11,8 @@ type item = {
   isDisabled: boolean;
 }
 type DropdownProps = {
+  style?: CSSProperties;
+  className?: string;
   value: string;
   items: item[];
   isVisible?: boolean;
@@ -18,7 +20,7 @@ type DropdownProps = {
   onChange: (value: string) => void;
 }
 
-const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
+const Dropdown = ({style, className, value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
@@ -79,15 +81,15 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
     }
   });
 
-  const className = [
+  const _getClassName = [
     'kuc-dropdown',
     isDisabled ? 'kuc-dropdown-disable' : ''
   ];
   return (
-    <div className="kuc-dropdown-container" ref={ref}>
+    <div style={style} className={`kuc-dropdown-container ${className}`} ref={ref}>
       <div className="kuc-dropdown-sub-container">
         <div className="kuc-dropdown-outer" onClick={_showItems}>
-          <div className={className.join(' ').trim()}>
+          <div className={_getClassName.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
                 <span className="kuc-dropdown-selected-label">{index !== -1 && items[index].label}</span>
