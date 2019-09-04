@@ -6,8 +6,8 @@ import Message from '../constant/Message';
 
 
 type DialogProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   header: string | ReactElement;
   content: string | ReactElement;
   footer: string | ReactElement;
@@ -16,7 +16,7 @@ type DialogProps = {
   onClose: () => void;
 };
 
-const Dialog = ({style, className, header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
+const Dialog = ({setStyles, setClassName, header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';
@@ -42,7 +42,7 @@ const Dialog = ({style, className, header = '', content = '', footer = '', isVis
   }
 
   return (
-    <div style={style} className={`kuc-dialog-container ${hidden} ${className}`}>
+    <div style={setStyles} className={`kuc-dialog-container ${hidden} ${setClassName}`}>
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
