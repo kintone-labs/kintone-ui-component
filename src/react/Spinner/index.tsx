@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import '../../css/Spinner.css';
 
 type SpinnerProps = {
+  style?: CSSProperties;
+  className?: string;
   isVisible?: boolean;
 }
 
-const Spinner = ({isVisible}: SpinnerProps) => {
+const Spinner = ({isVisible, style, className}: SpinnerProps) => {
   if (isVisible === false) {
     return null;
   }
   return (
-    <div className="kuc-spinner-outer">
+    <div style={style} className={`kuc-spinner-outer ${className}`}>
       <div className="kuc-spinner">
         <div className="kuc-loader" />
       </div>
