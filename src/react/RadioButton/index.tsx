@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import '../../css/font.css'
@@ -10,6 +10,8 @@ type item = {
   isDisabled: boolean;
 }
 type RadioButtonProps = {
+  style?: CSSProperties;
+  className?: string;
   name: string;
   value: string;
   items: item[];
@@ -51,7 +53,7 @@ const RadioButton = (props: RadioButtonProps) => {
   });
 
   return (
-    <div className="kuc-input-radio">{items}</div>
+    <div style={props.style} className={`kuc-input-radio ${props.className}`}>{items}</div>
   );
 };
 export default RadioButton;
