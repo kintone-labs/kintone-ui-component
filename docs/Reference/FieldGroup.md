@@ -336,6 +336,81 @@ export default class Sample extends React.Component {
 ```
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+const radioBtn = new kintoneUIComponent.RadioButton({
+      items: [{ label: 'Orange', value: 'orange' }, { label: 'Banana', value: 'banana' }],
+      value: 'orange',
+      name: 'Fruit'
+});
+ 
+const fieldGroup = new kintoneUIComponent.FieldGroup({
+      content: radioBtn.render(),
+      name: 'Group',
+      toggle: 'expand'
+})
+fieldGroup.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+const radioBtn = new kintoneUIComponent.RadioButton({
+      items: [{ label: 'Orange', value: 'orange' }, { label: 'Banana', value: 'banana' }],
+      value: 'orange',
+      name: 'Fruit'
+});
+ 
+const fieldGroup = new kintoneUIComponent.FieldGroup({
+      content: radioBtn.render(),
+      name: 'Group',
+      toggle: 'expand'
+})
+fieldGroup.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
+```
+
+</details>
+
+
+
 ### setContent(content)
 Add an item to end of the field group.
 

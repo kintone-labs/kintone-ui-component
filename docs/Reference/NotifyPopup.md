@@ -100,6 +100,65 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+notifyPopup.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var notifyPopup = new kintoneUIComponent.NotifyPopup({
+    text: 'Submit sucessffully',
+    type: 'success'
+});
+notifyPopup.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(notifyPopup.render());
+```
+
+</details>
+
 ### setText(text)
 Setting the displayed text on popup.
 

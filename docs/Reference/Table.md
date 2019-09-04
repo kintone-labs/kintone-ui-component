@@ -727,6 +727,86 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
+### setStyle(style)
+Set style of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var table = new kintoneUIComponent.Table({
+  // inital table data
+  data: [
+    {text: { value: 'this is a text field' }}
+  ],
+  // default row data on row add
+  defaultRowData: {text: { value: 'default text field value' }},
+  columns: [
+    {
+      header: 'Text',
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+    },
+  ]
+});
+table.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className of container dom element.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var table = new kintoneUIComponent.Table({
+  // inital table data
+  data: [
+    {text: { value: 'this is a text field' }}
+  ],
+  // default row data on row add
+  defaultRowData: {text: { value: 'default text field value' }},
+  columns: [
+    {
+      header: 'Text',
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+    },
+  ]
+});
+
+table.setClassName("class1 class2");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+```
+
+</details>
+
 ### setValue(value)
 Set data for every row in table. The number of rows in table's dependent on the length on this parameters. 
 
