@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import '../../css/font.css'
 import '../../css/FieldGroup.css';
 
 type FieldGroupProps = {
+  style?: CSSProperties;
+  className?: string;
   content?: any;
   name?: string;
   toggle?: string;
@@ -11,7 +13,7 @@ type FieldGroupProps = {
   children?: any;
 }
 
-const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
+const FieldGroup = ({style, className, content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
   if (isVisible === false) {
     return null;
   }
@@ -39,7 +41,7 @@ const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: Fiel
   };
 
   return (
-    <div className="kuc-fieldgroup">
+    <div style={style} className={`kuc-fieldgroup ${className}`}>
       <div className="kuc-fieldgroup-container">
         <span role="button" tabIndex={0} className={_getClassName()} onClick={_handleToggleClick}>
           <span className={_getArrowClassName()} />
