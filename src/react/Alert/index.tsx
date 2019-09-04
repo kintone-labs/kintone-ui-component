@@ -3,8 +3,8 @@ import '../../css/font.css'
 import '../../css/Alert.css';
 
 type AlertProps = {
-  style?: CSSProperties;
-  className?: string; 
+  setStyles?: CSSProperties;
+  setClassName?: string; 
   text?: string;
   type?: string;
   isDisabled?: boolean;
@@ -12,7 +12,7 @@ type AlertProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Alert = ({style, className, text, type, isDisabled, isVisible, onClick}: AlertProps) => {
+const Alert = ({setStyles, setClassName, text, type, isDisabled, isVisible, onClick}: AlertProps) => {
   const _getClassName = () => {
     const className = [
       'kuc-alert',
@@ -37,8 +37,8 @@ const Alert = ({style, className, text, type, isDisabled, isVisible, onClick}: A
 
   return (
     <div
-      style={style}
-      className={`${_getClassName()} ${className}`}
+      style={setStyles}
+      className={`${_getClassName()} ${setClassName}`}
       onClick={_onClick}
     >
       {text}
