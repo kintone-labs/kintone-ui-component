@@ -3,8 +3,8 @@ import '../../css/font.css'
 import '../../css/FieldGroup.css';
 
 type FieldGroupProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   content?: any;
   name?: string;
   toggle?: string;
@@ -13,7 +13,7 @@ type FieldGroupProps = {
   children?: any;
 }
 
-const FieldGroup = ({style, className, content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
+const FieldGroup = ({setStyles, setClassName, content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
   if (isVisible === false) {
     return null;
   }
@@ -41,7 +41,7 @@ const FieldGroup = ({style, className, content, name, toggle, onToggle, isVisibl
   };
 
   return (
-    <div style={style} className={`kuc-fieldgroup ${className}`}>
+    <div style={setStyles} className={`kuc-fieldgroup ${setClassName}`}>
       <div className="kuc-fieldgroup-container">
         <span role="button" tabIndex={0} className={_getClassName()} onClick={_handleToggleClick}>
           <span className={_getArrowClassName()} />
