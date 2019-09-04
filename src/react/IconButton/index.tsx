@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 import '../../css/IconButton.css'
 
 type IconButtonProps = {
+  style?: CSSProperties;
+  className?: string;
   type?: string;
   size?: string;
   color?: string;
@@ -12,7 +14,7 @@ type IconButtonProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void
 }
 
-const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onClick}: IconButtonProps) => {
+const IconButton = ({style, className, type, size, color = '', isDisabled, isVisible, shape, onClick}: IconButtonProps) => {
   const _getClassName = () => {
     const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
     const colorResult = colors.indexOf(color) === -1 ? 'gray' : color;
@@ -59,7 +61,7 @@ const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onCli
     return null;
   }
   return (
-    <button className={_getClassName()} onClick={onClick} disabled={isDisabled} >
+    <button style={style} className={`${_getClassName()} ${className}`} onClick={onClick} disabled={isDisabled} >
       <svg>
         <path d={_getIconData()}/>
       </svg>
