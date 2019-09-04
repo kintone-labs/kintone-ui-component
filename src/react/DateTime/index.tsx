@@ -10,8 +10,8 @@ import TimePicker from './components/TimePicker';
 import '../../css/font.css'
 
 type DateTimeConstructorParameters = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   value?: Date;
   onChange?: Function;
   locale?: string;
@@ -23,8 +23,8 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  style, 
-  className,
+  setStyles, 
+  setClassName,
   value =  new Date(),
   isDisabled = false,
   isVisible = true,
@@ -168,7 +168,7 @@ const DateTime = ({
 
   if (isVisible) {
     return (
-      <div style={style} className={`date-time-container ${className}`} ref={wrapperRef}>
+      <div style={setStyles} className={`date-time-container ${setClassName}`} ref={wrapperRef}>
         {
           (type === 'datetime' || type === 'date') &&
           <div className="date-container">
