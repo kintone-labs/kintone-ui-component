@@ -360,7 +360,7 @@ Set style dom element of control.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|style|object|Yes|Set style dom element for all component contains key of Style Object Properties for references: https://www.w3schools.com/jsref/dom_obj_style.asp |
+|style|object|Yes|Set the style for container dom element. For Key of Style Object Properties, please read references: https://www.w3schools.com/jsref/dom_obj_style.asp |
 
 **Returns**
 
@@ -387,7 +387,7 @@ Set className dom element of control.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|className|string|Yes|Set className dom element for all component|
+|className|string|Yes|Set className for container dom element. Add trailing space for multiple className|
 
 **Returns**
 
@@ -399,7 +399,7 @@ None
 **Javascript**
 ```javascript
 var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-alert.setClassName("new-alert");
+alert.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(alert.render());
 ```
