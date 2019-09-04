@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractMultiSelection} from '../index';
 import '../../css/font.css'
@@ -10,6 +10,8 @@ type item = {
   isDisabled: boolean;
 }
 type CheckBoxProps = {
+  style?: CSSProperties;
+  className?: string;
   items: item[];
   value: string[];
   isVisible: boolean;
@@ -64,7 +66,7 @@ const CheckBox = (props: CheckBoxProps) => {
   }
 
   return (
-    <div className="kuc-input-checkbox">
+    <div className={`kuc-input-checkbox ${props.className}`} style={props.style} >
       {items}
     </div>
   );
