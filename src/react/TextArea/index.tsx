@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, CSSProperties} from 'react';
 import '../../css/font.css'
 import '../../css/TextArea.css';
 
 type TextAreaProps = {
+  style?: CSSProperties;
+  className?: string;
   value: string;
   isVisible: boolean;
   isDisabled: boolean;
@@ -10,7 +12,7 @@ type TextAreaProps = {
   onChange: (e: any) => void;
 }
 
-const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
+const TextArea = ({style, className, value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
 
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
@@ -64,7 +66,8 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
 
   return (
     <div
-      className="kuc-textarea-outer"
+      style={style}
+      className={`kuc-textarea-outer ${className}`}
     >
       <textarea
         value={value}
