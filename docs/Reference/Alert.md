@@ -352,3 +352,56 @@ export default class Plugin extends React.Component {
 }
 ```
 </details>
+
+### setStyle(style)
+Set style dom element of control.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|style|object|Yes|Set style dom element for all component|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+alert.setStyle({background:"blue",fontSize:'20px'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+```
+
+</details>
+
+
+### setClassName(className)
+Set className dom element of control.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|className|string|Yes|Set className dom element for all component|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+alert.setClassName("new-alert");
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+```
+
+</details>
