@@ -10,8 +10,8 @@ type item = {
   isDisabled: boolean;
 }
 type RadioButtonProps = {
-  style?: CSSProperties;
-  className?: string;
+  setStyles?: CSSProperties;
+  setClassName?: string;
   name: string;
   value: string;
   items: item[];
@@ -53,7 +53,7 @@ const RadioButton = (props: RadioButtonProps) => {
   });
 
   return (
-    <div style={props.style} className={`kuc-input-radio ${props.className}`}>{items}</div>
+    <div style={props.setStyles} className={`kuc-input-radio ${props.setClassName}`}>{items}</div>
   );
 };
 export default RadioButton;
