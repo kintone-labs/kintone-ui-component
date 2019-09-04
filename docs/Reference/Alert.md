@@ -354,7 +354,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### setStyle(style)
-Set style dom element of control.
+Set style of container dom element.
 
 **Parameter**
 
@@ -381,7 +381,7 @@ body.appendChild(alert.render());
 
 
 ### setClassName(className)
-Set className dom element of control.
+Set className of container dom element.
 
 **Parameter**
 
