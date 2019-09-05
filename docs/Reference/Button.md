@@ -159,7 +159,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -178,9 +178,22 @@ None
 **Javascript**
 ```javascript
 var button = new kintoneUIComponent.Button({text: 'button'});
-button.setStyle({background:"blue",fontSize:'20px'});
+button.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(button.render());
+```
+**React**
+```javascript
+import { Button } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Button text='Submit' type='normal' setStyles={{background:"blue", fontSize:'20px'}} />
+        );
+    }
+}
 ```
 
 </details>
@@ -210,6 +223,19 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(button.render());
 ```
 
+**React**
+```javascript
+import { Button } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Button text='Submit' type='normal' setClassName="class1 class2" />
+        );
+    }
+}
+```
 </details>
 
 ### on(eventName, callback)
