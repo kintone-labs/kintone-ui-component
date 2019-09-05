@@ -336,7 +336,7 @@ export default class Sample extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -365,11 +365,65 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
       name: 'Group',
       toggle: 'expand'
 })
-fieldGroup.setStyle({background:"blue",fontSize:'20px'});
+fieldGroup.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(fieldGroup.render());
 ```
-
+**React**
+```javascript
+import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Sample extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: false
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: false
+            },
+        ];
+        this.state = {
+            items: items,
+            radioValue: 'Orange',
+            name: 'Group',
+            toggle: 'expand'
+        };
+    }
+ 
+    render() {
+        return (
+            <div>
+                <FieldGroup
+                    setStyles={{background:"blue", fontSize:'20px'}}
+                    name={this.state.name}
+                    toggle={this.state.toggle}
+                    onToggle={this._handleToggleClick}
+                >
+                    <RadioButton name='radio' items={this.state.items} value={this.state.radioValue} onChange={(radioValue) => {this.setState({radioValue})}} />
+                </FieldGroup>
+            </div>
+        );
+    }
+ 
+    _handleToggleClick = () => {
+        this.setState({
+            toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
+        });
+    }
+}
+```
 </details>
 
 
@@ -406,10 +460,62 @@ fieldGroup.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(fieldGroup.render());
 ```
-
+**React**
+```javascript
+import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Sample extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: false
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: false
+            },
+        ];
+        this.state = {
+            items: items,
+            radioValue: 'Orange',
+            name: 'Group',
+            toggle: 'expand'
+        };
+    }
+ 
+    render() {
+        return (
+            <div>
+                <FieldGroup
+                    setClassName="class1 class2"
+                    name={this.state.name}
+                    toggle={this.state.toggle}
+                    onToggle={this._handleToggleClick}
+                >
+                    <RadioButton name='radio' items={this.state.items} value={this.state.radioValue} onChange={(radioValue) => {this.setState({radioValue})}} />
+                </FieldGroup>
+            </div>
+        );
+    }
+ 
+    _handleToggleClick = () => {
+        this.setState({
+            toggle: this.state.toggle === 'expand' ? 'collapse' : 'expand'
+        });
+    }
+}
+```
 </details>
-
-
 
 ### setContent(content)
 Add an item to end of the field group.
