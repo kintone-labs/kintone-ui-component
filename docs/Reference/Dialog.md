@@ -238,7 +238,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -257,9 +257,28 @@ None
 **Javascript**
 ```javascript
 var myDialog = new kintoneUIComponent.Dialog();
-myDialog.setStyle({background:"blue",fontSize:'20px'});
+myDialog.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myDialog.render());
+```
+**React**
+```javascript
+import { Dialog } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Dialog
+                setStyles={{background:"blue", fontSize:'20px'}}
+                showCloseButton={true}
+                header="Dialog header"
+                content="This is content"
+                footer="Footer"
+            />
+        );
+    }
+}
 ```
 
 </details>
@@ -289,7 +308,25 @@ myDialog.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(myDialog.render());
 ```
-
+**React**
+```javascript
+import { Dialog } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Dialog
+                setClassName="class1 class2"
+                showCloseButton={true}
+                header="Dialog header"
+                content="This is content"
+                footer="Footer"
+            />
+        );
+    }
+}
+```
 </details>
 
 
