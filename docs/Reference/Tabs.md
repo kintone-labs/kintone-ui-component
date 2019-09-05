@@ -559,7 +559,7 @@ export default class Plugin extends React.Component {
 
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -593,11 +593,45 @@ var tab = new kintoneUIComponent.Tabs({
         }
     ]
 });
-tab.setStyle({background:"blue",fontSize:'20px'});
+tab.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tab.render());
 ```
-
+**React**
+```javascript
+import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class Sample extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                tabName: "Tab1",
+                tabContent: 'This is Tab1'
+            },
+            {
+                tabName: "Tab2",
+                tabContent: "This is Tab2"
+            },
+            {
+                tabName: "Tab3",
+                tabContent: "This is Tab3"
+            }
+        ];
+        this.state = { items: items, value: 1};
+    }
+ 
+    render() {
+        return (
+            <div>
+                <Tabs setStyles={{background:"blue", fontSize:'20px'}} items={this.state.items} value={this.state.value} />
+            </div>
+        );
+    }
+}
+```
 </details>
 
 
@@ -640,7 +674,41 @@ tab.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tab.render());
 ```
-
+**React**
+```javascript
+import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+ 
+class Sample extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                tabName: "Tab1",
+                tabContent: 'This is Tab1'
+            },
+            {
+                tabName: "Tab2",
+                tabContent: "This is Tab2"
+            },
+            {
+                tabName: "Tab3",
+                tabContent: "This is Tab3"
+            }
+        ];
+        this.state = { items: items, value: 1};
+    }
+ 
+    render() {
+        return (
+            <div>
+                <Tabs setClassName="class1 class2" items={this.state.items} value={this.state.value} />
+            </div>
+        );
+    }
+}
+```
 </details>
 
 
