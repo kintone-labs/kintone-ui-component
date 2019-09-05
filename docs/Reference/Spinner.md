@@ -142,7 +142,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -161,11 +161,23 @@ None
 **Javascript**
 ```javascript
 var spinner = new kintoneUIComponent.Spinner();
-spinner.setStyle({background:"blue",fontSize:'20px'});
+spinner.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
-
+**React**
+```javascript
+import { Spinner } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Spinner setStyles={{background:"blue", fontSize:'20px'}}/>
+        );
+    }
+}
+```
 </details>
 
 
@@ -192,5 +204,17 @@ spinner.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
-
+**React**
+```javascript
+import { Spinner } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Spinner setClassName="class1 class2"/>
+        );
+    }
+}
+```
 </details>
