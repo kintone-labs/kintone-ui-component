@@ -83,7 +83,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -102,11 +102,23 @@ None
 **Javascript**
 ```javascript
 var label = new kintoneUIComponent.Label({text: 'label'});
-label.setStyle({background:"blue",fontSize:'20px'});
+label.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
 ```
-
+**React**
+```javascript
+import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Label text='Name' setStyles={{background:"blue", fontSize:'20px'}} isRequired={true} />
+        );
+    }
+}
+```
 </details>
 
 
@@ -133,7 +145,19 @@ label.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
 ```
-
+**React**
+```javascript
+import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Label text='Name' setClassName="class1 class2" isRequired={true} />
+        );
+    }
+}
+```
 </details>
 
 
