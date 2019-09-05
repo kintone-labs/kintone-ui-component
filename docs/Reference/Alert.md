@@ -353,7 +353,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -372,9 +372,23 @@ None
 **Javascript**
 ```javascript
 var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-alert.setStyle({background:"blue",fontSize:'20px'});
+alert.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(alert.render());
+```
+
+**React**
+```javascript
+import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Alert text='Network error' type='error' setStyles={{background:"blue", fontSize:'20px'}} />
+        ); 
+    }
+}
 ```
 
 </details>
@@ -403,5 +417,17 @@ alert.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(alert.render());
 ```
-
+**React**
+```javascript
+import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <Alert text='Network error' type='error' setClassName="class1 class2" />
+        );
+    }
+}
+```
 </details>
