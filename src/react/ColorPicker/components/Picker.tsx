@@ -76,10 +76,10 @@ export default function Picker(props: PickerProps) {
                 <HSVInput hsv={hsv} onChange={props.onChange}/>
             </div>
             <div>
-                <Button style={{display: 'inline-block'}} text="OK" type="submit" onClick={()=>{
+                <Button setStyles={{display: 'inline-block'}} text="OK" type="submit" onClick={()=>{
                     props.onSubmit(hexString)
                 }} />
-                <Button style={{display: 'inline-block'}} text="Cancel" onClick={() => {
+                <Button setStyles={{display: 'inline-block'}} text="Cancel" onClick={() => {
                     let oldRGB = hexToRgb(props.hexString);
                     setSaturationBackground(oldRGB)
                     setRGB(oldRGB);
