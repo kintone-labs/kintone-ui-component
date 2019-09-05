@@ -6,13 +6,13 @@ import '../../css/Item.css'
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 type ItemProps = {
   item: item;
   isVisible?: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   selected: boolean;
   onClick?: (item: item) => void;
   onChange?: (item: item) => void;
