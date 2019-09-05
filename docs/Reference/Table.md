@@ -727,7 +727,7 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -759,11 +759,82 @@ var table = new kintoneUIComponent.Table({
     },
   ]
 });
-table.setStyle({background:"blue",fontSize:'20px'});
+table.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
 
+**React**
+```javascript
+import React from 'react';
+import {render} from 'react-dom';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        {text: 'this is a text field'}
+      ],
+      // default row data on row add
+      defaultRowData: {text: 'default text field value'}
+    }
+  }
+
+  handleRowAdd = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+  
+  handleRowRemove = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleCellChange = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  render() {
+    const {tableData, defaultRowData} = this.state;
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({ rowIndex, onCellChange }) => {
+          return (
+            <Text
+              value={tableData[rowIndex].text}
+              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
+            />
+          )
+        }
+      },
+    ];
+    return (
+      <div>
+        <Table 
+          setStyles={{background:"blue", fontSize:'20px'}} 
+          columns={columns}
+          data={this.state.tableData} 
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={true}
+        />
+        <Button text="Get table value" onClick={() => {
+            console.log(this.state.tableData)
+          }}
+        />
+      </div>
+    );
+  }
+}
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
+```
 </details>
 
 
@@ -805,6 +876,77 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 ```
 
+**React**
+```javascript
+import React from 'react';
+import {render} from 'react-dom';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        {text: 'this is a text field'}
+      ],
+      // default row data on row add
+      defaultRowData: {text: 'default text field value'}
+    }
+  }
+
+  handleRowAdd = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+  
+  handleRowRemove = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleCellChange = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  render() {
+    const {tableData, defaultRowData} = this.state;
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({ rowIndex, onCellChange }) => {
+          return (
+            <Text
+              value={tableData[rowIndex].text}
+              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
+            />
+          )
+        }
+      },
+    ];
+    return (
+      <div>
+        <Table 
+          setClassName="class1 class2"
+          columns={columns}
+          data={this.state.tableData} 
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={true}
+        />
+        <Button text="Get table value" onClick={() => {
+            console.log(this.state.tableData)
+          }}
+        />
+      </div>
+    );
+  }
+}
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
+```
 </details>
 
 ### setValue(value)
