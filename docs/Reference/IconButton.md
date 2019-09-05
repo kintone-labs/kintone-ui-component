@@ -77,7 +77,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -96,11 +96,23 @@ None
 **Javascript**
 ```javascript
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
-iconBtn.setStyle({background:"blue",fontSize:'20px'});
+iconBtn.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
 ```
-
+**React**
+```javascript
+import { IconButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <IconButton setStyles={{background:"blue", fontSize:'20px'}} type='insert' size='small' color='blue' />
+        );
+    }
+}
+```
 </details>
 
 
@@ -126,6 +138,18 @@ var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 iconBtn.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
+```
+```javascript
+import { IconButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            <IconButton setClassName="class1 class2" type='insert' size='small' color='blue' />
+        );
+    }
+}
 ```
 
 </details>
