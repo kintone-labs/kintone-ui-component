@@ -520,7 +520,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -553,9 +553,54 @@ var dropdown = new kintoneUIComponent.Dropdown({
     ],
     value: 'Banana'
 });
-dropdown.setStyle({background:"blue",fontSize:'20px'});
+dropdown.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(dropdown.render());
+```
+
+**React**
+```javascript
+import { Dropdown } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+         <div>
+          <Dropdown 
+            setStyles={{background:"blue", fontSize:'20px'}}
+            items={this.state.items} 
+            value={this.state.value} 
+            onChange={(value) => {this.setState({value})}} />
+         </div>
+        );
+    }
+}
 ```
 
 </details>
@@ -599,6 +644,50 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(dropdown.render());
 ```
 
+**React**
+```javascript
+import { Dropdown } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+         <div>
+          <Dropdown 
+            setClassName="class1 class2"
+            items={this.state.items} 
+            value={this.state.value} 
+            onChange={(value) => {this.setState({value})}} />
+         </div>
+        );
+    }
+}
+```
 </details>
 
 
