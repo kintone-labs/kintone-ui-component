@@ -100,7 +100,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -122,11 +122,29 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
-notifyPopup.setStyle({background:"blue",fontSize:'20px'});
+notifyPopup.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
 ```
+**React**
+```javascript
+import { NotifyPopup } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
+    }  
 
+    render() {
+        return (
+            <NotifyPopup setStyles={{background:"blue", fontSize:'20px'}} text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
+        );
+    }
+}
+
+```
 </details>
 
 
@@ -156,7 +174,25 @@ notifyPopup.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
 ```
+**React**
+```javascript
+import { NotifyPopup } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {isVisible: true};
+    }  
 
+    render() {
+        return (
+            <NotifyPopup setClassName="class1 class2" text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
+        );
+    }
+}
+
+```
 </details>
 
 ### setText(text)
