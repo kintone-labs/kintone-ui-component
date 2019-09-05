@@ -82,7 +82,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -101,11 +101,28 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({value: 'input text'});
-text.setStyle({background:"blue",fontSize:'20px'});
+text.setStyles({background:"blue",fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 ```
+**React**
+```javascript
+import {Text} from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: ''};
+    };
+    render() {
+        return (
+            <Text setStyles={{background:"blue", fontSize:'20px'}} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        );
+    }
+}
 
+```
 </details>
 
 
@@ -132,7 +149,24 @@ text.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 ```
+**React**
+```javascript
+import {Text} from '@kintone/kintone-ui-component';
+import React from 'react';
+ 
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: ''};
+    };
+    render() {
+        return (
+            <Text setClassName="class1 class2" value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        );
+    }
+}
 
+```
 </details>
 
 ### setValue(value)
