@@ -779,7 +779,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -798,11 +798,41 @@ None
 **Javascript**
 ```javascript
 const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
-attachment.setStyle({background:"blue",fontSize:'20px'});
+attachment.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(attachment.render());
 ```
 
+**React**
+```javascript
+import {Attachment} from '@kintone/kintone-ui-component';
+import React from 'react';
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
+  };
+ 
+  handleFilesAdd = (files) => {
+    this.setState({files});
+  };
+ 
+  handleFileRemove = (files) => {
+    this.setState({files});
+  };
+ 
+  render() {
+    return (
+      <Attachment
+        setStyles={{background:"blue", fontSize:'20px'}}
+        files={this.state.files}
+        onFilesAdd={this.handleFilesAdd}
+        onFileRemove={this.handleFileRemove}
+      />
+    );
+  }
+}
+```
 </details>
 
 
@@ -828,6 +858,37 @@ const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', s
 attachment.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(attachment.render());
+```
+
+**React**
+```javascript
+import {Attachment} from '@kintone/kintone-ui-component';
+import React from 'react';
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {files: []};
+  };
+ 
+  handleFilesAdd = (files) => {
+    this.setState({files});
+  };
+ 
+  handleFileRemove = (files) => {
+    this.setState({files});
+  };
+ 
+  render() {
+    return (
+      <Attachment
+        setClassName="class1 class2"
+        files={this.state.files}
+        onFilesAdd={this.handleFilesAdd}
+        onFileRemove={this.handleFileRemove}
+      />
+    );
+  }
+}
 ```
 
 </details>
