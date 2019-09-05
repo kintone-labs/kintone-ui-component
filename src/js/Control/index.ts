@@ -64,7 +64,7 @@ class Control {
       this.element.classList.add(className)
     }
   }
-  setStyle(style:object){
+  setStyles(style:object){
     if(style && Object.keys(style).length>0){
       for (const key in style) {
         if (style.hasOwnProperty(key)) {
