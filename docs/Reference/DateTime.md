@@ -187,7 +187,7 @@ kintone.events.on('app.record.index.show', (event) => {
 
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -206,11 +206,35 @@ None
 **Javascript**
 ```javascript
 var dateTime = new kintoneUIComponent.DateTime({type: 'datetime', locale: 'en'});
-dateTime.setStyle({background:"blue",fontSize:'20px'});
+dateTime.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(dateTime.render());
 ```
 
+**React**
+```javascript
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime
+                    setStyles={{background:"blue", fontSize:'20px'}}
+                    value={this.state.value} 
+                    onChange={(value) => {this.setState({value})}}
+                />
+            </div>
+        );
+    }
+}
+```
 </details>
 
 
@@ -239,6 +263,30 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(dateTime.render());
 ```
 
+**React**
+```javascript
+import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            <div>
+                <DateTime
+                    setClassName="class1 class2"
+                    value={this.state.value} 
+                    onChange={(value) => {this.setState({value})}}
+                />
+            </div>
+        );
+    }
+}
+```
 </details>
 
 
