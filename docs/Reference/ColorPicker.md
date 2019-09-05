@@ -105,7 +105,7 @@ kintone.events.on('app.record.index.show', (event) => {
 
 </details>
 
-### setStyle(style)
+### setStyles(style)
 Set style of container dom element.
 
 **Parameter**
@@ -124,11 +124,29 @@ None
 **Javascript**
 ```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-colorPicker.setStyle({background:"blue",fontSize:'20px'});
+colorPicker.setStyles({background:"blue", fontSize:'20px'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(colorPicker.render());
 ```
 
+**React**
+```javascript
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+  
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
+    render() {
+        return (
+            <ColorPicker color={this.state.color} setStyles={{background:"blue", fontSize:'20px'}} />
+        );
+    }
+}
+```
 </details>
 
 
@@ -155,6 +173,25 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.setClassName("class1 class2");
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(colorPicker.render());
+```
+
+**React**
+```javascript
+import { ColorPicker } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+  
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {color: ''};
+    };
+    render() {
+        return (
+            <ColorPicker color={this.state.color} setClassName="class1 class2" />
+        );
+    }
+}
 ```
 
 </details>
