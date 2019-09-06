@@ -16,6 +16,7 @@ type DropdownProps = ControlProps & {
   value: string;
   items: item[];
   onChange?: (params?: any) => void;
+  listItemsShown?: (params?: any) => void;
 };
 
 class Dropdown extends Control {
@@ -85,9 +86,10 @@ class Dropdown extends Control {
     return element;
   }
 
-  private _showItems = () => {
+  private _showItems = (e: any) => {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
+    this._props.listItemsShown && this._props.listItemsShown(e);
   };
 
   private _hideItems = () => {
@@ -95,12 +97,12 @@ class Dropdown extends Control {
     this.listOuterEl.setAttribute('style', 'display: none');
   };
 
-  private _handleDropdownClick = () => {
+  private _handleDropdownClick = (e: any) => {
     if (this.isListVisible) {
       this._hideItems();
       return;
     }
-    this._showItems();
+    this._showItems(e);
   };
 
   private _handleClickOutside = () => {
@@ -220,6 +222,11 @@ class Dropdown extends Control {
     this.rerender(['item']);
   }
 
+  setItems(items: Array<item>) {
+    this._props.items = items;
+    this.rerender(['item']);
+  }
+
   removeItem(index: number) {
     if (this._props.items.length <= index) {
       return false;
@@ -258,6 +265,9 @@ class Dropdown extends Control {
     if (eventName === 'change') {
       this._props.onChange = callback;
       this.rerender(['item']);
+    }
+    if (eventName === 'listItemsShown') {
+      this._props.listItemsShown = callback;
     }
   }
 }
