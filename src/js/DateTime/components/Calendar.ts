@@ -284,11 +284,10 @@ class Calendar extends Control {
 
   setValue(date: Date | undefined | null) {
     if (date) {
-      this._props.date = date;
       this._displayDate = new Date(date);
-      // rerender self
-      this.rerender(['selectedDate']);
     }
+    this._props.date = date;
+    this.rerender(["selectedDate"]);
   }
 
   getValue(): Date | null | undefined {
