@@ -18,6 +18,8 @@
 |options.type|String|No|Style of the button: <ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
 |options.isDisabled|Boolean|No|The button will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The button will be visible. <br>  Default value: 'true'|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

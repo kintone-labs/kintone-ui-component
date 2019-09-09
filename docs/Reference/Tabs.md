@@ -22,6 +22,8 @@
 |options.columns[x].tabContent|String|No|The value of an item.|
 |options.columns[x].isDisabled|Boolean|No|Indicate if tab will be disabled. <br> Default value: 'false'|
 |options.value|Integer|No|Index of selected tab.|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|   
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

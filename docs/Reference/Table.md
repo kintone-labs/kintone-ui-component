@@ -39,6 +39,8 @@
 |options.onCellChange|Callback|No|Handler for cell change event. <br>Return row data object to overwrite default row data object.|
 |options.onRowAdd|Callback|No|Handler for row add event|
 |options.onRowRemove|Callback|No|Handler for row remove event|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|   
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

@@ -16,6 +16,8 @@
 |options.backgroundColor|String|No|Color of background. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'|
 |options.isDisabled|Boolean|No|The label will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The label will be visible. <br> Default value: 'true'|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

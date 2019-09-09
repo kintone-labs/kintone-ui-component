@@ -3,11 +3,14 @@
 ## Overview
 ![Spinner](../img/spinner.PNG)
 
-## Constructor
+## Constructor  
+**Parameter**  
 
-**Parameter**
-
-None
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|options|Object|No|The object contains params of constructor.|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|   
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

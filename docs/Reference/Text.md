@@ -13,6 +13,8 @@
 |options.value|String|No|The value of text field. <br> Default value: ''|
 |options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|  
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

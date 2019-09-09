@@ -28,6 +28,8 @@
 |options.files[].name|String|No|The file name|
 |options.files[].size|String|No|The file size|
 |options.isVisible|Boolean|No|The attachment component will be visible.<br>Default value: true|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

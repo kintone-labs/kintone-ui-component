@@ -15,6 +15,8 @@
 |options.name|String|No|Field group name.|
 |options.toggle|String|No|Set the toggle state. <br> Default value: 'collapse'|
 |options.onToggle|Function|No|Set the toggle function. ※This prop is for react. When you use pure JavaScript interface, there is no need to use this prop.|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

@@ -21,6 +21,8 @@
 |options.footer|String, DOM, React Element|No|Footer of dialog.|
 |options.isVisible|Boolean|No|If set to true, Dialog will show up. Otherwise Dialog will hide. Default: true|
 |options.showCloseButton|Boolean|No|If set to true, close button in Item-1 will show up. Otherwise close button will hide. Default: true|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|  
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

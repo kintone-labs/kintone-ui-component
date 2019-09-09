@@ -25,6 +25,8 @@
 |options.isDisabled|Boolean|No|The ColorPicker will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The ColorPicker will be visible. <br> Default value: 'true'|
 |options.onChange|Callback|No|Handler for color change event.|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>

@@ -25,6 +25,8 @@
 |options.value|Array<String>|No|List of checked item.<br> If the 'options.value[]' is nonexistent value, the error will be displayed|
 |options.isDisabled|Boolean|No|The multiple choices will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The multiple choices will be visible. <br> Default value: 'true'|
+|options.style|Object|No|The css style of component|
+|options.className|String|No|The css class name of component|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
