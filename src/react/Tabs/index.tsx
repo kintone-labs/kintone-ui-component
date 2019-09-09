@@ -1,7 +1,13 @@
 import React from 'react';
-import '../../css/font.css'
-import '../../css/Tabs.css'
 import Message from '../../constant/Message'
+
+import fontStyle from '../../style/Font'
+import tabsStyle from '../../style/Tabs'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(tabsStyle)
 
 type TabsItem = {
   tabName: string;

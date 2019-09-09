@@ -7,7 +7,11 @@ import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 
-import '../../css/font.css'
+import fontStyle from '../../style/Font'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
 
 type DateTimeConstructorParameters = {
   value?: Date;

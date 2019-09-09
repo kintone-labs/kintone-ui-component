@@ -1,6 +1,7 @@
 import Control, {ControlProps} from '../Control'
 import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
-import '../../css/IconButton.css'
+
+import style from '../../style/IconButton'
 
 type IconBtnProps = ControlProps & {
   type?: string;
@@ -25,7 +26,7 @@ class IconButton extends Control {
   private _onClick = (e: Event) => {}
 
   constructor(params: IconBtnProps) {
-    super();
+    super([style])
 
     if (params) {
       this._props = {...this._props, ...params}

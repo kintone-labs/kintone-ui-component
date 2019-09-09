@@ -1,8 +1,14 @@
 import React from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
-import '../../css/font.css'
-import '../../css/RadioButton.css';
+
+import fontStyle from '../../style/Font'
+import radioButtonStyle from '../../style/RadioButton'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(radioButtonStyle)
 
 type item = {
   value: string;

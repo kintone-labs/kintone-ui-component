@@ -1,7 +1,13 @@
 import React from 'react';
-import '../../css/font.css'
-import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';
+
+import fontStyle from '../../style/Font'
+import notifyPopupStyle from '../../style/NotifyPopup'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(notifyPopupStyle)
 
 type NotifyPopupProps = {
   text?: string;

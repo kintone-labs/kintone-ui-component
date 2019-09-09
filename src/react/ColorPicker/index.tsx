@@ -4,7 +4,11 @@ import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
 import Message from '../../constant/Message';
 
-import '../../css/font.css'
+import fontStyle from '../../style/Font'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
 
 type ColorPickerProps = {
   color?: string;

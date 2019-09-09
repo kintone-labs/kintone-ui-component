@@ -1,7 +1,13 @@
 import React from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
-import '../../css/font.css'
-import '../../css/Attachment.css';
+
+import fontStyle from '../../style/Font'
+import attachmentStyle from '../../style/Attachment'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(attachmentStyle)
 
 type FileObject = {
   name: string;

@@ -1,6 +1,7 @@
 import Control, {ControlProps} from '../Control';
 import { mdiCheckBold } from '@mdi/js'
-import '../../css/Item.css';
+
+import style from '../../style/Item'
 
 type ItemData = {
     value: string
@@ -27,7 +28,7 @@ class Item extends Control {
     }
 
     constructor(params: ItemProps) {
-        super()
+        super([style])
         if (params) {
           this._props = {...this._props, ...params}
         }

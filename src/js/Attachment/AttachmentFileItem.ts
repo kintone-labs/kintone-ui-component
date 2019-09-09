@@ -1,5 +1,7 @@
 import Control, {ControlProps} from '../Control';
-import '../../css/Attachment.css';
+
+import style from '../../style/Attachment'
+
 type AttachmentFileItemProps = ControlProps & {
     index: number;
     fileName: string;
@@ -14,7 +16,7 @@ class AttachmentFileItem extends Control{
     private ONE_MB = 1048576;
     private ONE_KB = 1024;
   constructor(params: AttachmentFileItemProps) {
-    super()
+    super([style])
     this._props = {...params};
     if (!this._props.onFileRemove || typeof this._props.onFileRemove !== 'function') {
       this._props.onFileRemove = () => {};

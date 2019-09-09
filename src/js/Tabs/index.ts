@@ -2,7 +2,7 @@ import Control, {ControlProps} from "../Control";
 import TabName from "./TabName";
 import Message from '../../constant/Message'
 
-import '../../css/Tabs.css'
+import style from '../../style/Tabs'
 
 type Tab = {
   tabName: string
@@ -29,7 +29,7 @@ class Tabs extends Control {
   private tabContentElement: HTMLDivElement 
 
   constructor(params: TabsProps) {
-    super()
+    super([style])
     if(typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

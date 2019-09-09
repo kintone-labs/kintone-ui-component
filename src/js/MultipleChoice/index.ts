@@ -3,8 +3,7 @@ import Item from '../MultipleChoice/Item'
 import {ItemData} from '../MultipleChoice/Item'
 import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
-
-import '../../css/MultipleChoice.css'
+import style from '../../style/MultipleChoice'
 
 type MultipleChoiceProps = ControlProps & {
     items?: Array<ItemData>
@@ -25,7 +24,7 @@ class MultipleChoice extends Control {
     private itemList: Array<Item> = []
 
     constructor(params: MultipleChoiceProps) {
-        super()
+        super([style])
         if(typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }

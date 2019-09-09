@@ -2,7 +2,8 @@ import Control, {ControlProps} from '../Control'
 import Item, {ItemData} from '../CheckBox/Item'
 import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
-import '../../css/CheckBox.css'
+
+import style from '../../style/CheckBox'
 
 type CheckboxProps = ControlProps & {
     items?: Array<ItemData>
@@ -24,7 +25,7 @@ class CheckBox extends Control {
     private itemList: Array<Item> = []
 
     constructor(params: CheckboxProps) {
-        super()
+        super([style])
         if(typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }

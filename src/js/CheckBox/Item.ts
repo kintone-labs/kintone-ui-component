@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/Item.css';
+import style from '../../style/Item'
 
 type ItemData = {
     value: string
@@ -28,7 +28,7 @@ class Item extends Control {
 
     private inputCheckboxElement: HTMLInputElement
     constructor(params: ItemProps) {
-        super()
+        super([style])
         if (params) {
           this._props = {...this._props, ...params}
         }

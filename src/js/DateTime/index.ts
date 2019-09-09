@@ -1,12 +1,13 @@
 import Control, { ControlProps } from '../Control';
-import '../../css/DateTime.css';
-import '../../css/Text.css';
 import { en, ja, zh, format } from '../../react/DateTime/components/Locale';
 import Locale from '../../react/DateTime/components/localizationData/locale-dto';
 import { parseStringToDate, parseStringToTime } from '../../react/DateTime/components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
+
+import dateTimeStyle from '../../style/DateTime';
+import textStyle from '../../style/Text'
 
 type DateTimeProps = ControlProps & {
   value?: Date | null;
@@ -40,7 +41,7 @@ class DateTime extends Control {
   private _time: Date = new Date()
 
   constructor(params: DateTimeProps = {}) {
-    super();
+    super([dateTimeStyle, textStyle])
     if (typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

@@ -1,9 +1,14 @@
 import React, {ReactElement} from 'react';
 import IconButton from '../IconButton';
-import '../../css/font.css'
-import '../../css/Dialog.css';
 import Message from '../constant/Message';
 
+import fontStyle from '../../style/Font'
+import dialogStyle from '../../style/Dialog'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(dialogStyle)
 
 type DialogProps = {
   header: string | ReactElement;

@@ -1,3 +1,5 @@
+import injectStyle from '../../react/utils/injectStyle'
+
 type ControlProps = {
   isDisabled?: boolean;
   isVisible?: boolean;
@@ -9,6 +11,12 @@ class Control {
     isVisible: true
   }
   protected element: HTMLElement
+
+  constructor(styles: any[] = []){
+    styles.forEach(style => {
+      injectStyle(style)
+    });
+  }
 
   rerender(changedAttr?: string[]) {
     if (this.element) {

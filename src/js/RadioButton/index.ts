@@ -3,7 +3,7 @@ import Message from '../../constant/Message';
 import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 
-import '../../css/RadioButton.css'
+import style from '../../style/RadioButton'
 
 type RadioButtonProps = ControlProps & {
   name: string;
@@ -23,7 +23,7 @@ class RadioButton extends Control {
   private itemComps: Item[] = [];
 
   constructor(params: RadioButtonProps) {
-    super();
+    super([style])
     if (!params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }

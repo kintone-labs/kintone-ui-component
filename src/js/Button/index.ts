@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/Button.css'
+import style from '../../style/Button'
 
 type ButtonProps = ControlProps & {
   text: string;
@@ -18,7 +18,7 @@ class Button extends Control {
     }
   }
   constructor(params: ButtonProps) {
-    super();
+    super([style])
     if(typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

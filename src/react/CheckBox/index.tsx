@@ -1,8 +1,14 @@
 import React from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractMultiSelection} from '../index';
-import '../../css/font.css'
-import '../../css/CheckBox.css';
+
+import fontStyle from '../../style/Font'
+import checkBoxStyle from '../../style/CheckBox'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(checkBoxStyle)
 
 type item = {
   value: string;

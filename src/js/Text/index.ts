@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/Text.css'
+import style from '../../style/Text'
 
 type TextProps = ControlProps & {
   value?: string;
@@ -17,7 +17,7 @@ class Text extends Control {
   private _onChange: (params?: any) => void = () => {}
 
   constructor(params: TextProps) {
-    super();
+    super([style])
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

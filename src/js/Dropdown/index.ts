@@ -4,7 +4,7 @@ import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import { mdilChevronDown } from '@mdi/light-js'
 
-import '../../css/Dropdown.css'
+import style from '../../style/Dropdown'
 
 type item = {
   value: string;
@@ -36,7 +36,7 @@ class Dropdown extends Control {
   private isListVisible: boolean = false;
 
   constructor(params: DropdownProps) {
-    super();
+    super([style])
     if (
       typeof params === 'object' &&
       params !== null &&

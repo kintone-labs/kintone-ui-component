@@ -2,8 +2,14 @@ import React, {useState, useEffect, useRef} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import { mdilChevronDown } from '@mdi/light-js'
-import '../../css/font.css'
-import '../../css/Dropdown.css';
+
+import fontStyle from '../../style/Font'
+import dropdownStyle from '../../style/Dropdown'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(dropdownStyle)
 
 type item = {
   value: string;

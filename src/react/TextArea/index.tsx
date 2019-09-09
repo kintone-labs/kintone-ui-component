@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import '../../css/font.css'
-import '../../css/TextArea.css';
+
+import fontStyle from '../../style/Font'
+import textAreaStyle from '../../style/TextArea'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(textAreaStyle)
 
 type TextAreaProps = {
   value: string;

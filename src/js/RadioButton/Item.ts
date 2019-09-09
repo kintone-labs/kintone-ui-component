@@ -1,6 +1,6 @@
 import Control, { ControlProps } from '../Control';
 
-import '../../css/Item.css';
+import style from '../../style/Item'
 
 type item = {
   value: string;
@@ -28,7 +28,7 @@ class Item extends Control {
   public value: string;
 
   constructor(params: ItemProps) {
-    super();
+    super([style])
     if (
       typeof params === 'object' &&
       params !== null &&

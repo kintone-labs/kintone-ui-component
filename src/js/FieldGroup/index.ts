@@ -1,5 +1,6 @@
 import Control, {ControlProps} from '../Control';
-import '../../css/FieldGroup.css';
+
+import style from '../../style/FieldGroup'
 
 type FieldGroupProps = ControlProps & {
   content?: any;
@@ -24,7 +25,7 @@ class FieldGroup extends Control {
   private fgContents: HTMLElement;
 
   constructor(params: FieldGroupProps) {
-    super();
+    super([style])
     if (params) {
       this._props = { ...this._props, ...params };
     }

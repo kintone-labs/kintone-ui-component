@@ -3,7 +3,8 @@ import TableCell from './TableCell'
 import Message from '../../constant/Message'
 import IconButton from '../IconButton'
 import {ActionFlag, RowEventProps} from '../../react/Table'
-import '../../css/Table.css'
+
+import style from '../../style/Table'
 
 const validEventNames = ['rowAdd', 'rowRemove', 'cellChange']
 
@@ -47,7 +48,7 @@ export default class Table extends Control {
   private _tableBodyContainer: HTMLElement
 
   constructor(params: TableProps) {
-    super()
+    super([style])
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

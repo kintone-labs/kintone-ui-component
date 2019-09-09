@@ -1,6 +1,12 @@
 import React from 'react';
-import '../../css/font.css'
-import '../../css/Alert.css';
+
+import fontStyle from '../../style/Font'
+import alertStyle from '../../style/Alert'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(alertStyle)
 
 type AlertProps = {
   text?: string;

@@ -1,6 +1,8 @@
 import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from "./AttachmentFileItem";
-import '../../css/Attachment.css';
+
+import style from '../../style/Attachment'
+
 type FileObject = {
     name: string;
     size: number;
@@ -36,7 +38,7 @@ class Attachment extends Control {
   private dragEnterCounter = 0;
 
   constructor(params: AttachmentProps) {
-    super();
+    super([style])
     if (params) {
       this._props = {...this._props, ...params};
     }

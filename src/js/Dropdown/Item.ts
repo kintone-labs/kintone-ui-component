@@ -1,6 +1,7 @@
 import Control, { ControlProps } from '../Control';
 import { mdiCheckBold } from '@mdi/js'
-import '../../css/Item.css';
+
+import style from '../../style/Item'
 
 type item = {
   value: string;
@@ -29,7 +30,7 @@ class Item extends Control {
   public item: item;
 
   constructor(params: ItemProps) {
-    super();
+    super([style])
     if (
       typeof params === 'object' &&
       params !== null &&

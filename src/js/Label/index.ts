@@ -1,7 +1,7 @@
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
 
-import '../../css/Label.css';
+import style from '../../style/Label'
 
 type LabelProps = ControlProps & {
   text?: string;
@@ -27,7 +27,7 @@ class Label extends Control {
 
   constructor(params: LabelProps) {
 
-    super();
+    super([style])
 
     if (params) {
       this._props = {...this._props, ...params};

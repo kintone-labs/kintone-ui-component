@@ -1,7 +1,13 @@
 import React from 'react'
 import { mdiCheckBold } from '@mdi/js'
-import '../../css/font.css'
-import '../../css/Item.css'
+
+import fontStyle from '../../style/Font'
+import itemStyle from '../../style/Item'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(itemStyle)
 
 type item = {
   value: string;

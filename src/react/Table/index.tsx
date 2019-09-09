@@ -1,7 +1,13 @@
 import React from 'react';
 import IconButton from '../IconButton';
-import '../../css/font.css'
-import '../../css/Table.css';
+
+import fontStyle from '../../style/Font'
+import tableStyle from '../../style/Table'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(tableStyle)
 
 type DispatchParams = {
   type: string,

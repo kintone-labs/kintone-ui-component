@@ -1,6 +1,13 @@
 import React from 'react';
-import '../../css/font.css'
-import '../../css/Label.css';
+
+import fontStyle from '../../style/Font'
+import labelStyle from '../../style/Label'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(fontStyle)
+injectStyle(labelStyle)
+
 type LabelProps = {
   text?: string;
   textColor?: string;

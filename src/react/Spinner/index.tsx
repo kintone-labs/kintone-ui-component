@@ -1,5 +1,10 @@
 import React from 'react';
-import '../../css/Spinner.css';
+
+import spinnerStyle from '../../style/Spinner'
+import injectStyle from '../utils/injectStyle'
+
+// inject style, call for each style object
+injectStyle(spinnerStyle)
 
 type SpinnerProps = {
   isVisible?: boolean;

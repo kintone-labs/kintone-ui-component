@@ -1,7 +1,8 @@
 import Control, {ControlProps} from '../Control';
 import IconButton from '../IconButton';
 import Message from '../../constant/Message'
-import '../../css/Dialog.css';
+
+import style from '../../style/Dialog'
 
 type DialogProps = ControlProps & {
     header?: string | HTMLElement;
@@ -29,7 +30,7 @@ class Dialog extends Control {
     private _containerEl: HTMLElement
 
     constructor(params: DialogProps) {
-        super();
+        super([style])
     
         if (params) {
           this._props = {...this._props, ...params};

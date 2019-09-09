@@ -1,5 +1,6 @@
 import Control, {ControlProps} from '../Control';
-import '../../css/Alert.css';
+
+import style from '../../style/Alert'
 
 type AlertProps = ControlProps & {
   text: string;
@@ -16,7 +17,7 @@ class Alert extends Control {
   }
 
   constructor(params: AlertProps) {
-    super();
+    super([style])
     if (params) {
       this._props = {...this._props, ...params};
     }

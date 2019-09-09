@@ -1,5 +1,7 @@
 import Control, {ControlProps} from '../Control'
-import '../../css/TextArea.css'
+
+import style from '../../style/TextArea'
+
 type TextAreaProps = ControlProps & {
     value: string
     onClick: (e: any) => void
@@ -25,7 +27,7 @@ class TextArea extends Control {
   
 
   constructor(params: TextAreaProps) {
-    super()
+    super([style])
     if (params) {
       this._props = {...this._props, ...params}
     }

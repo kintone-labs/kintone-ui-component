@@ -3,7 +3,7 @@ import {elements} from '../utils/util';
 
 import IconButton from '../IconButton';
 
-import '../../css/NotifyPopup.css';
+import style from '../../style/NotifyPopup'
 
 type PopupProps = ControlProps & {
   text?: string;
@@ -24,7 +24,7 @@ class NotifyPopup extends Control {
   private _onClick = (e: Event) => {}
 
   constructor(params: PopupProps) {
-    super();
+    super([style])
 
     if (params) {
       this._props = {...this._props, ...params};

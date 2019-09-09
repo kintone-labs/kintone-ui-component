@@ -1,7 +1,7 @@
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
 
-import '../../css/Spinner.css';
+import style from '../../style/Spinner'
 
 class Spinner extends Control {
   protected _props: ControlProps = {
@@ -10,7 +10,7 @@ class Spinner extends Control {
   }
 
   constructor(params: ControlProps) {
-    super();
+    super([style])
     if (params) {
       this._props = {...this._props, ...params};
     }
