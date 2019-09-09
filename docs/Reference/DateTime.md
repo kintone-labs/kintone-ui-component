@@ -226,7 +226,7 @@ class DateTimeComponent extends React.Component {
         return (
             <div>
                 <DateTime
-                    setStyles={{background:"blue", fontSize:'20px'}}
+                    style={{background:"blue", fontSize:'20px'}}
                     value={this.state.value} 
                     onChange={(value) => {this.setState({value})}}
                 />
@@ -278,7 +278,7 @@ class DateTimeComponent extends React.Component {
         return (
             <div>
                 <DateTime
-                    setClassName="class1 class2"
+                    className="class1 class2"
                     value={this.state.value} 
                     onChange={(value) => {this.setState({value})}}
                 />

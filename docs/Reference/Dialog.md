@@ -270,7 +270,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <Dialog
-                setStyles={{background:"blue", fontSize:'20px'}}
+                style={{background:"blue", fontSize:'20px'}}
                 showCloseButton={true}
                 header="Dialog header"
                 content="This is content"
@@ -317,7 +317,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <Dialog
-                setClassName="class1 class2"
+                className="class1 class2"
                 showCloseButton={true}
                 header="Dialog header"
                 content="This is content"

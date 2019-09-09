@@ -108,7 +108,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton setStyles={{background:"blue", fontSize:'20px'}} type='insert' size='small' color='blue' />
+            <IconButton style={{background:"blue", fontSize:'20px'}} type='insert' size='small' color='blue' />
         );
     }
 }
@@ -146,7 +146,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <IconButton setClassName="class1 class2" type='insert' size='small' color='blue' />
+            <IconButton className="class1 class2" type='insert' size='small' color='blue' />
         );
     }
 }

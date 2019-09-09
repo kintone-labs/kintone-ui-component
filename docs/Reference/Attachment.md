@@ -824,7 +824,7 @@ export default class Plugin extends React.Component {
   render() {
     return (
       <Attachment
-        setStyles={{background:"blue", fontSize:'20px'}}
+        style={{background:"blue", fontSize:'20px'}}
         files={this.state.files}
         onFilesAdd={this.handleFilesAdd}
         onFileRemove={this.handleFileRemove}
@@ -881,7 +881,7 @@ export default class Plugin extends React.Component {
   render() {
     return (
       <Attachment
-        setClassName="class1 class2"
+        className="class1 class2"
         files={this.state.files}
         onFilesAdd={this.handleFilesAdd}
         onFileRemove={this.handleFileRemove}

@@ -114,7 +114,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Label text='Name' setStyles={{background:"blue", fontSize:'20px'}} isRequired={true} />
+            <Label text='Name' style={{background:"blue", fontSize:'20px'}} isRequired={true} />
         );
     }
 }
@@ -153,7 +153,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Label text='Name' setClassName="class1 class2" isRequired={true} />
+            <Label text='Name' className="class1 class2" isRequired={true} />
         );
     }
 }

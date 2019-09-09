@@ -121,7 +121,7 @@ export default class Plugin extends React.Component {
     }
     render() {
         return (
-            <TextArea setStyles={{background:"blue", fontSize:'20px'}} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <TextArea style={{background:"blue", fontSize:'20px'}} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }
@@ -165,7 +165,7 @@ export default class Plugin extends React.Component {
     }
     render() {
         return (
-            <TextArea setClassName="class1 class2" value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <TextArea className="class1 class2" value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }

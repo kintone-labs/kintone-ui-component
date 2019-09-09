@@ -593,7 +593,7 @@ export default class Plugin extends React.Component {
         return (
          <div>
           <Dropdown 
-            setStyles={{background:"blue", fontSize:'20px'}}
+            style={{background:"blue", fontSize:'20px'}}
             items={this.state.items} 
             value={this.state.value} 
             onChange={(value) => {this.setState({value})}} />
@@ -679,7 +679,7 @@ export default class Plugin extends React.Component {
         return (
          <div>
           <Dropdown 
-            setClassName="class1 class2"
+            className="class1 class2"
             items={this.state.items} 
             value={this.state.value} 
             onChange={(value) => {this.setState({value})}} />

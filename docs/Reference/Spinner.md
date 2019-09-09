@@ -173,7 +173,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Spinner setStyles={{background:"blue", fontSize:'20px'}}/>
+            <Spinner style={{background:"blue", fontSize:'20px'}}/>
         );
     }
 }
@@ -212,7 +212,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Spinner setClassName="class1 class2"/>
+            <Spinner className="class1 class2"/>
         );
     }
 }

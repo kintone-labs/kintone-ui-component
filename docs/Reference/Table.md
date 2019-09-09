@@ -815,7 +815,7 @@ export default class Plugin extends React.Component {
     return (
       <div>
         <Table 
-          setStyles={{background:"blue", fontSize:'20px'}} 
+          style={{background:"blue", fontSize:'20px'}} 
           columns={columns}
           data={this.state.tableData} 
           defaultRowData={defaultRowData}
@@ -927,7 +927,7 @@ export default class Plugin extends React.Component {
     return (
       <div>
         <Table 
-          setClassName="class1 class2"
+          className="class1 class2"
           columns={columns}
           data={this.state.tableData} 
           defaultRowData={defaultRowData}

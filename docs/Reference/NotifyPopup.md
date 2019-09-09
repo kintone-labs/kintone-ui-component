@@ -139,7 +139,7 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            <NotifyPopup setStyles={{background:"blue", fontSize:'20px'}} text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
+            <NotifyPopup style={{background:"blue", fontSize:'20px'}} text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
         );
     }
 }
@@ -187,7 +187,7 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            <NotifyPopup setClassName="class1 class2" text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
+            <NotifyPopup className="class1 class2" text='Submit successfully' type='success' isVisible={this.state.isVisible} onClose={()=>(this.setState({isVisible: false}))} />
         );
     }
 }

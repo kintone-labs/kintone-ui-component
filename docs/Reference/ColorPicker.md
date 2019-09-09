@@ -142,7 +142,7 @@ export default class Plugin extends React.Component {
     };
     render() {
         return (
-            <ColorPicker color={this.state.color} setStyles={{background:"blue", fontSize:'20px'}} />
+            <ColorPicker color={this.state.color} style={{background:"blue", fontSize:'20px'}} />
         );
     }
 }
@@ -188,7 +188,7 @@ export default class Plugin extends React.Component {
     };
     render() {
         return (
-            <ColorPicker color={this.state.color} setClassName="class1 class2" />
+            <ColorPicker color={this.state.color} className="class1 class2" />
         );
     }
 }

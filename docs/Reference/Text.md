@@ -117,7 +117,7 @@ export default class Plugin extends React.Component {
     };
     render() {
         return (
-            <Text setStyles={{background:"blue", fontSize:'20px'}} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <Text style={{background:"blue", fontSize:'20px'}} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }
@@ -161,7 +161,7 @@ export default class Plugin extends React.Component {
     };
     render() {
         return (
-            <Text setClassName="class1 class2" value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <Text className="class1 class2" value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }

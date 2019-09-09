@@ -406,7 +406,7 @@ export default class Sample extends React.Component {
         return (
             <div>
                 <FieldGroup
-                    setStyles={{background:"blue", fontSize:'20px'}}
+                    style={{background:"blue", fontSize:'20px'}}
                     name={this.state.name}
                     toggle={this.state.toggle}
                     onToggle={this._handleToggleClick}
@@ -497,7 +497,7 @@ export default class Sample extends React.Component {
         return (
             <div>
                 <FieldGroup
-                    setClassName="class1 class2"
+                    className="class1 class2"
                     name={this.state.name}
                     toggle={this.state.toggle}
                     onToggle={this._handleToggleClick}

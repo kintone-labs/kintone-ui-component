@@ -611,7 +611,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
          <div>
-          <RadioButton setStyles={{background:"blue", fontSize:'20px'}} name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <RadioButton style={{background:"blue", fontSize:'20px'}} name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
          </div>
        );
     }
@@ -699,7 +699,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
          <div>
-          <RadioButton setClassName="class1 class2" name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <RadioButton className="class1 class2" name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
          </div>
        );
     }

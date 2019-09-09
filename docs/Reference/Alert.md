@@ -385,7 +385,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Alert text='Network error' type='error' setStyles={{background:"blue", fontSize:'20px'}} />
+            <Alert text='Network error' type='error' style={{background:"blue", fontSize:'20px'}} />
         ); 
     }
 }
@@ -425,7 +425,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Alert text='Network error' type='error' setClassName="class1 class2" />
+            <Alert text='Network error' type='error' className="class1 class2" />
         );
     }
 }

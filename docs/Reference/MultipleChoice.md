@@ -714,7 +714,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
         <div>
-          <MultipleChoice setStyles={{background:"blue", fontSize:'20px'}} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <MultipleChoice style={{background:"blue", fontSize:'20px'}} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         </div>
       );
     }
@@ -796,7 +796,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
         <div>
-          <MultipleChoice setClassName="class1 class2" items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <MultipleChoice className="class1 class2" items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         </div>
       );
     }

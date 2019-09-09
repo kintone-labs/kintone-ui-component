@@ -626,7 +626,7 @@ class Sample extends React.Component {
     render() {
         return (
             <div>
-                <Tabs setStyles={{background:"blue", fontSize:'20px'}} items={this.state.items} value={this.state.value} />
+                <Tabs style={{background:"blue", fontSize:'20px'}} items={this.state.items} value={this.state.value} />
             </div>
         );
     }
@@ -703,7 +703,7 @@ class Sample extends React.Component {
     render() {
         return (
             <div>
-                <Tabs setClassName="class1 class2" items={this.state.items} value={this.state.value} />
+                <Tabs className="class1 class2" items={this.state.items} value={this.state.value} />
             </div>
         );
     }

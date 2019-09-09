@@ -190,7 +190,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='normal' setStyles={{background:"blue", fontSize:'20px'}} />
+            <Button text='Submit' type='normal' style={{background:"blue", fontSize:'20px'}} />
         );
     }
 }
@@ -231,7 +231,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='normal' setClassName="class1 class2" />
+            <Button text='Submit' type='normal' className="class1 class2" />
         );
     }
 }
