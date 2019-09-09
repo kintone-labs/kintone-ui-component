@@ -1,3 +1,4 @@
+import fontStyle from '../../style/Font'
 import injectStyle from '../../react/utils/injectStyle'
 
 type ControlProps = {
@@ -13,6 +14,7 @@ class Control {
   protected element: HTMLElement
 
   constructor(styles: any[] = []){
+    injectStyle(fontStyle)
     styles.forEach(style => {
       injectStyle(style)
     });

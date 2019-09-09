@@ -1,5 +1,3 @@
-import '../../css/DateTime.css';
-import '../../css/Text.css';
 import React, {useState, createRef, useEffect} from 'react';
 import {en, ja, zh, format} from './components/Locale';
 
@@ -8,10 +6,14 @@ import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 
 import fontStyle from '../../style/Font'
+import dateTimeStyle from '../../style/DateTime'
+import textStyle from '../../style/TextArea'
 import injectStyle from '../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)
+injectStyle(dateTimeStyle)
+injectStyle(textStyle)
 
 type DateTimeConstructorParameters = {
   value?: Date;
