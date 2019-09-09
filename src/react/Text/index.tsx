@@ -2,7 +2,7 @@ import React from 'react';
 
 import fontStyle from '../../style/Font'
 import textStyle from '../../style/Text'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

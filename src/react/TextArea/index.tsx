@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import fontStyle from '../../style/Font'
 import textAreaStyle from '../../style/TextArea'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

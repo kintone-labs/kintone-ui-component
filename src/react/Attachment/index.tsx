@@ -3,7 +3,7 @@ import AttachmentFileItem from './AttachmentFileItem';
 
 import fontStyle from '../../style/Font'
 import attachmentStyle from '../../style/Attachment'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

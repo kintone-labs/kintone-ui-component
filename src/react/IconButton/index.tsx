@@ -2,7 +2,7 @@ import React from 'react';
 import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 
 import iconButtonStyle from '../../style/IconButton'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(iconButtonStyle)

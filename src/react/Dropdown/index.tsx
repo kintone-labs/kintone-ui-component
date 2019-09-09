@@ -5,7 +5,7 @@ import { mdilChevronDown } from '@mdi/light-js'
 
 import fontStyle from '../../style/Font'
 import dropdownStyle from '../../style/Dropdown'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

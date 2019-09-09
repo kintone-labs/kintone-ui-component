@@ -4,7 +4,7 @@ import {Item, AbstractSingleSelection} from '../index';
 
 import fontStyle from '../../style/Font'
 import radioButtonStyle from '../../style/RadioButton'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

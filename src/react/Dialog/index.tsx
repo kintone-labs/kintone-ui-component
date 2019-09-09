@@ -4,7 +4,7 @@ import Message from '../constant/Message';
 
 import fontStyle from '../../style/Font'
 import dialogStyle from '../../style/Dialog'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

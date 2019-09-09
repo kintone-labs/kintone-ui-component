@@ -1,5 +1,5 @@
 import fontStyle from '../../style/Font'
-import injectStyle from '../../react/utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 type ControlProps = {
   isDisabled?: boolean;

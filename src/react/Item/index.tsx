@@ -3,7 +3,7 @@ import { mdiCheckBold } from '@mdi/js'
 
 import fontStyle from '../../style/Font'
 import itemStyle from '../../style/Item'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)

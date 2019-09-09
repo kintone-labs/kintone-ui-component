@@ -3,7 +3,7 @@ import IconButton from '../IconButton';
 
 import fontStyle from '../../style/Font'
 import tableStyle from '../../style/Table'
-import injectStyle from '../utils/injectStyle'
+import injectStyle from '../../utils/injectStyle'
 
 // inject style, call for each style object
 injectStyle(fontStyle)
