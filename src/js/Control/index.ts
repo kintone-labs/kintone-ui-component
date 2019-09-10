@@ -30,8 +30,8 @@ class Control {
   }
 
   render() {
-    if(this._props.style && Object.keys(this._props.style).length>0){
-      this.setStyles(this._props.style);
+    if(this._props.style && Object.keys(this._props.style).length > 0){
+      this._applyStyles();
     }
     if(this._props.className){
       this.setClassName(this._props.className)
@@ -71,13 +71,19 @@ class Control {
     }
   }
   setStyles(style:object){
-    if(style && Object.keys(style).length > 0 && this._props.style){
-      let newStyle = style;
+    if(style && Object.keys(style).length > 0){
       if(this._props.style) {
-        newStyle = Object.assign(this._props.style, style);
+        this._props.style = Object.assign(this._props.style, style);
+      } else {
+        this._props.style = style
       }
-      for (const key in newStyle) {
-          this.element.style[key]= newStyle[key];
+      this._applyStyles()
+    }
+  }
+  _applyStyles() {
+    if(this._props.style) {
+      for (const key in this._props.style) {
+        this.element.style[key]= this._props.style[key];
       }
     }
   }
