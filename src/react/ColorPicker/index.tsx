@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
-import {invertColor, isHexString} from './components/utils';
+import {isHexString} from './components/utils';
 import Message from '../../constant/Message';
 
 import fontStyle from '../../style/Font'
 import injectStyle from '../../utils/injectStyle'
+import {getStyle} from '../../style/ColorPicker'
 
 // inject style, call for each style object
 injectStyle(fontStyle)
@@ -43,7 +43,7 @@ function ColorPicker(props: ColorPickerProps) {
     defaultValue: hexString,
     onBlur: handleHexInputChange,
     onFocus: handleHexInputFocus,
-    style: getInputStyle(),
+    className: getClassName(),
     disabled: props.isDisabled || false
   };
 
@@ -84,18 +84,13 @@ function ColorPicker(props: ColorPickerProps) {
     };
   });
 
-  function getInputStyle() {
-    let style = {
-      backgroundColor: hexString,
-      color: invertColor(hexString)
-    };
-
-    style = {...style, ...ColorPickerStyle.input};
+  function getClassName() {
+    var className = 'kuc-color-picker-input'
 
     if (focus) {
-      style = {...style, ...ColorPickerStyle.inputFocus};
+      className = 'kuc-color-picker-input-focus'
     }
-    return style;
+    return className
   }
 
   const pickerProps = {
@@ -118,6 +113,8 @@ function ColorPicker(props: ColorPickerProps) {
   };
 
   if (isVisible) {
+    var style = getStyle(focus, hexString)
+    injectStyle(style)
     return (
       <div ref={wrapperRef}>
         <div>

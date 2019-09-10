@@ -1,8 +1,12 @@
-import React, { CSSProperties } from "react";
-import TextInputStyle from "./TextInputStyle";
+import React from "react";
 import {rgbToHex, hsvToRgb} from './utils'
 
 import Message from '../../../constant/Message'
+
+import textInputStyle from '../../../style/TextInput'
+import injectStyle from '../../../utils/injectStyle'
+
+injectStyle(textInputStyle)
 
 type TextInputProps = {
     label: string
@@ -22,9 +26,9 @@ type RGBObj = {
 export default function TextInput({label, value, onChange}: TextInputProps) {
     return (
         <div>
-            <span style={TextInputStyle.label as CSSProperties}>{label}</span>
+            <span className='kuc-color-picker-text-label'>{label}</span>
             <span>
-                <input type="text" style={TextInputStyle.input as CSSProperties} key={value} defaultValue={value} onBlur={(e)=>{
+                <input type="text" className='kuc-color-picker-text-input' key={value} defaultValue={value} onBlur={(e)=>{
                     onChange(e.target.value, label)
                 }}/>
             </span>

@@ -1,8 +1,10 @@
 import Control, {ControlProps} from "../Control";
-import ColorPickerStyle from "./ColorPickerStyle";
-import {invertColor, isHexString} from './components/utils'
+import {isHexString} from './components/utils'
 import Picker, {PickerProps} from './components/Picker'
 import Message from '../../constant/Message'
+
+import {getStyle} from '../../style/ColorPicker'
+import injectStyle from '../../utils/injectStyle';
 
 type ColorPickerProps = ControlProps & {
   color: string;
@@ -76,9 +78,9 @@ class ColorPicker extends Control {
     })
     inputContainer.appendChild(this.inputElement);
 
-    const inputStyle = this.getInputStyle();
-
-    Object.assign(this.inputElement.style, inputStyle);
+    const className = this._getClassName()
+    this.inputElement.classList.add(className)
+    injectStyle(getStyle(this.focus, this._props.color))
   }
 
   private _renderPicker() {
@@ -111,9 +113,10 @@ class ColorPicker extends Control {
     if (!changedAttr) return;
     if (changedAttr.indexOf('color') !== -1) {
       this.inputElement.value = this._props.color;
-      const inputStyle = this.getInputStyle();
       this.Picker.setRGB(this._props.color);
-      Object.assign(this.inputElement.style, inputStyle);
+      const className = this._getClassName()
+      this.inputElement.classList.add(className)
+      injectStyle(getStyle(this.focus, this._props.color))
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1 && this._props.isDisabled) {
@@ -142,18 +145,12 @@ class ColorPicker extends Control {
     return this._props.color;
   }
 
-  getInputStyle() {
-    let style = {
-      backgroundColor: this._props.color,
-      color: invertColor(this._props.color)
-    };
-
-    style = {...style, ...ColorPickerStyle.input};
-
+  _getClassName() {
+    var className = 'kuc-color-picker-input';
     if (this.focus) {
-      style = {...style, ...ColorPickerStyle.inputFocus};
+      className = 'kuc-color-picker-input-focus';
     }
-    return style;
+    return className;
   }
 
   on(eventName: string, callback: (hexString: string) => void) {

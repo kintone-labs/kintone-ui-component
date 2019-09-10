@@ -1,10 +1,14 @@
 import React, { useState, CSSProperties } from "react";
-import PickerStyle from "./PickerStyle";
 import HueSpectrum from "./HueSpectrum";
 import SaturationSpectrum from "./SaturationSpectrum";
 import { RGBInput, HSVInput } from "./TextInput";
 import { hexToRgb, rgbToHex, rgbToHsv } from "./utils";
 import Button from "../../Button";
+
+import pickerStyle from '../../../style/Picker'
+import injectStyle from '../../../utils/injectStyle'
+
+injectStyle(pickerStyle)
 
 type RGB = {
     r: number
@@ -57,20 +61,16 @@ export default function Picker(props: PickerProps) {
 
     return (
         <div
-            style={{
-                ...PickerStyle.container,
-                ...{
-                display: props.pickerDisplay ? "block" : "none"
-                }
-            } as CSSProperties}
+            className='kuc-color-picker-container'
+            style={{display: props.pickerDisplay ? "block" : "none" } as CSSProperties}
         >
-            <div style={PickerStyle.saturationContainer}>
+            <div className='kuc-color-picker-saturation-container'>
                 <SaturationSpectrum {...saturationProps} />
             </div>
-            <div style={PickerStyle.hueContainer as CSSProperties}>
+            <div className='kuc-color-picker-hue-container'>
                 <HueSpectrum width={30} height={200} onSelect={handleHue} />
             </div>
-            <div style={PickerStyle.inputContainer}>
+            <div className='kuc-color-picker-input-container'>
                 <RGBInput rgb={rgb} onChange={props.onChange}/>
                 <br />
                 <HSVInput hsv={hsv} onChange={props.onChange}/>

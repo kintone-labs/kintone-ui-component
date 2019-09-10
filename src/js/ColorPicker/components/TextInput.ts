@@ -1,8 +1,9 @@
 import Control, {ControlProps} from '../../Control';
-import TextInputStyle from './TextInputStyle';
 import {rgbToHex, hsvToRgb} from './utils';
 import {RGB} from './HueSpectrum';
 import Message from '../../../constant/Message'
+
+import textInputStyle from '../../../style/TextInput'
 
 type TextInputProps = ControlProps & {
   label: string;
@@ -16,7 +17,7 @@ class TextInput extends Control {
   private inputElement: HTMLInputElement
 
   constructor(params: TextInputProps) {
-    super();
+    super([textInputStyle]);
 
     if (params) {
       this._props = {...this._props, ...params};
@@ -25,14 +26,14 @@ class TextInput extends Control {
     this.element = document.createElement('div');
 
     const labelContainer = document.createElement('span');
-    Object.assign(labelContainer.style, TextInputStyle.label);
+    labelContainer.classList.add('kuc-color-picker-text-label')
     labelContainer.append(this._props.label);
 
     this.element.appendChild(labelContainer);
 
     const inputContainer = document.createElement('span');
     this.inputElement = document.createElement('input');
-    Object.assign(this.inputElement.style, TextInputStyle.input);
+    this.inputElement.classList.add('kuc-color-picker-text-input')
     this.inputElement.value = this._props.value;
     this.inputElement.onchange = (e: Event) => {
       this._props.onChange((e.target as HTMLInputElement).value);

@@ -1,10 +1,12 @@
 import Control, {ControlProps} from '../../Control';
-import PickerStyle from './PickerStyle';
 import SaturationSpectrum, {SaturationSpectrumProps} from './SaturationSpectrum';
 import HueSpectrum, {HueSpectrumProps, RGB} from './HueSpectrum';
 import {hexToRgb, rgbToHex, rgbToHsv} from './utils';
 import {RGBInput, HSVInput} from './TextInput';
 import Button from '../../../js/Button';
+
+import pickerStyle from '../../../style/Picker'
+
 type PickerProps = ControlProps & {
   hexString: string;
   onChange: (hexString: string, triggerOnChange: boolean) => void;
@@ -34,14 +36,14 @@ class Picker extends Control {
   private cancelButton: Button
 
   constructor(params: PickerProps) {
-    super();
+    super([pickerStyle]);
     if (params) {
       this._props = {...this._props, ...params};
     }
 
     this.element = document.createElement('div');
 
-    Object.assign(this.element.style, PickerStyle.container);
+    this.element.classList.add('kuc-color-picker-container')
 
     this.rerender();
 
@@ -84,21 +86,21 @@ class Picker extends Control {
 
   private _renderHue() {
     const hueContainer = document.createElement('div');
-    Object.assign(hueContainer.style, PickerStyle.hueContainer);
+    hueContainer.classList.add('kuc-color-picker-hue-container')
     hueContainer.appendChild(this.hueSpectrum.render());
     this.element.appendChild(hueContainer);
   }
 
   private _renderSaturation() {
     const saturationContainer = document.createElement('div');
-    Object.assign(saturationContainer.style, PickerStyle.saturationContainer);
+    saturationContainer.classList.add('kuc-color-picker-saturation-container')
     saturationContainer.appendChild(this.saturationSpectrum.render());
     this.element.appendChild(saturationContainer);
   }
 
   private _renderInput() {
     const inputGroupContainer = document.createElement('div');
-    Object.assign(inputGroupContainer.style, PickerStyle.inputContainer);
+    inputGroupContainer.classList.add('kuc-color-picker-input-container')
     this.element.appendChild(inputGroupContainer);
 
     const tempRGB = hexToRgb(this._props.hexString);
