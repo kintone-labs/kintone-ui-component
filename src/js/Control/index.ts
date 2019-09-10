@@ -8,10 +8,11 @@ type ControlProps = {
 class Control {
   protected _props: ControlProps = {
     isDisabled: false,
-    isVisible: true
+    isVisible: true,
+    style:{},
+    className:""
   }
   protected element: HTMLElement
-
 
   rerender(changedAttr?: string[]) {
     if (this.element) {
@@ -20,7 +21,6 @@ class Control {
       } else {
         this.element.style.display = '';
       }
-
       if (this._props.isDisabled) {
         this.element.setAttribute('disabled', `${this._props.isDisabled}`);
       } else {
@@ -30,6 +30,12 @@ class Control {
   }
 
   render() {
+    if(this._props.style && Object.keys(this._props.style).length>0){
+      this.setStyles(this._props.style);
+    }
+    if(this._props.className){
+      this.setClassName(this._props.className)
+    }
     return this.element;
   }
 
@@ -61,15 +67,14 @@ class Control {
   }
   setClassName(className:string){
     if(className){
-      this.element.classList.add(className)
+      this.element.classList.add(className);
     }
   }
   setStyles(style:object){
-    if(style && Object.keys(style).length>0){
-      for (const key in style) {
-        if (style.hasOwnProperty(key)) {
-          this.element.style[key]= style[key];
-        }
+    if(style && Object.keys(style).length>0 && this._props.style){
+      let newStyle= Object.assign(this._props.style,style);
+      for (const key in newStyle) {
+          this.element.style[key]= newStyle[key];
       }
     }
   }
