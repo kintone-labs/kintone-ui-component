@@ -71,16 +71,11 @@ class Control {
     }
   }
   setStyles(style:object){
-    if(style && Object.keys(style).length>0){
-      for (const key in style) {
-        if (style.hasOwnProperty(key)) {
-          this.element.style[key]= style[key];
-          if(this._props.style){
-            this._props.style[key]=style[key];
-          }
-        }
+    if(style && Object.keys(style).length>0 && this._props.style){
+      let newStyle= Object.assign(this._props.style,style);
+      for (const key in newStyle) {
+          this.element.style[key]= newStyle[key];
       }
-     
     }
   }
 }
