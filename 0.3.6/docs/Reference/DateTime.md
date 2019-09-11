@@ -13,8 +13,6 @@
 |6|selected item pointer|
 |7|today pointer|
 |8|time picker|
-|9|year selection dropdown|
-|10|month selection dropdown|
 
 ## Constructor
 
