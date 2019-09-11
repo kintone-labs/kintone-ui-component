@@ -79,6 +79,7 @@
 .date-time-container .month-year-container {
   text-transform: uppercase;
   border-bottom: 1px solid #e3e7e8;
+  display: flex;
 }
 
 .date-time-container .month-year-container .label {
@@ -89,8 +90,9 @@
 
 .date-time-container .month-year-container .prev,
 .date-time-container .month-year-container .next {
-  position: absolute;
-  width: 38px;
+  position: relative;
+  display: inline-flex;
+  width: 24px;
   height: 24px;
   top: -2px;
   font-size: 24px;
@@ -98,23 +100,24 @@
   line-height: 20px;
   font-family: Arial;
   cursor: pointer;
-
 }
 
 .date-time-container .month-year-container .prev {
-  left: 0;
+  text-align: start;
 }
 
 .date-time-container .month-year-container .prev:before {
   content: "\2039";
+  width: 24px;
 }
 
 .date-time-container .month-year-container .next {
-  right: 0;
+  text-align: end;
 }
 
 .date-time-container .month-year-container .next:before {
   content: "\203A";
+  width: 24px;
 }
 
 .date-time-container .quick-selections-container .today,
