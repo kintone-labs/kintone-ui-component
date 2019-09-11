@@ -14,20 +14,21 @@ var Dropdown = /** @class */ (function (_super) {
         });
         _this.itemComps = [];
         _this.isListVisible = false;
-        _this._showItems = function () {
+        _this._showItems = function (e) {
             _this.isListVisible = true;
             _this.listOuterEl.setAttribute('style', 'display: block');
+            _this._props.listItemsShown && _this._props.listItemsShown(e);
         };
         _this._hideItems = function () {
             _this.isListVisible = false;
             _this.listOuterEl.setAttribute('style', 'display: none');
         };
-        _this._handleDropdownClick = function () {
+        _this._handleDropdownClick = function (e) {
             if (_this.isListVisible) {
                 _this._hideItems();
                 return;
             }
-            _this._showItems();
+            _this._showItems(e);
         };
         _this._handleClickOutside = function () {
             _this._hideItems();
@@ -157,6 +158,10 @@ var Dropdown = /** @class */ (function (_super) {
         this._props.items.push(item);
         this.rerender(['item']);
     };
+    Dropdown.prototype.setItems = function (items) {
+        this._props.items = items;
+        this.rerender(['item']);
+    };
     Dropdown.prototype.removeItem = function (index) {
         if (this._props.items.length <= index) {
             return false;
@@ -192,6 +197,9 @@ var Dropdown = /** @class */ (function (_super) {
         if (eventName === 'change') {
             this._props.onChange = callback;
             this.rerender(['item']);
+        }
+        if (eventName === 'listItemsShown') {
+            this._props.listItemsShown = callback;
         }
     };
     return Dropdown;

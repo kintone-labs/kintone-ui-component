@@ -120,10 +120,11 @@ var DateTime = function (_a) {
             newTimeDateValue.setFullYear(value.getFullYear());
             setNewTimeDateValue = true;
         }
-        if (setNewTimeDateValue && !pickerDisplay) {
+        if (setNewTimeDateValue && pickerDisplay === 'none') {
             setTimeDateValue(newTimeDateValue);
         }
-    });
+        setInputValue(format(value, dateFormat));
+    }, [value]);
     if (typeof isDisabled !== 'boolean') {
         isDisabled = false;
     }

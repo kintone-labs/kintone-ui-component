@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import Locale from './localizationData/locale-dto';
+import '../../../css/DropdownCalendar.css';
 declare type CalendarProps = {
     date: Date;
     locale?: Locale;

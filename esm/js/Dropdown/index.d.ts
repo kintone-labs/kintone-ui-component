@@ -9,6 +9,7 @@ declare type DropdownProps = ControlProps & {
     value: string;
     items: item[];
     onChange?: (params?: any) => void;
+    listItemsShown?: (params?: any) => void;
 };
 declare class Dropdown extends Control {
     protected _props: DropdownProps;
@@ -34,6 +35,7 @@ declare class Dropdown extends Control {
     getValue(): string;
     getItems(): item[];
     addItem(item: item): void;
+    setItems(items: Array<item>): void;
     removeItem(index: number): false | void;
     disableItem(value: string): void;
     enableItem(value: string): void;

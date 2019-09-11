@@ -1,8 +1,9 @@
 import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
 import Control, { ControlProps } from '../../Control';
+import '../../../css/DropdownCalendar.css';
 declare type CalendarProps = ControlProps & {
     date?: Date | null;
-    locale?: Locale;
+    locale: Locale;
     onDateClick?: (date: Date | null) => void;
     onClickOutside?: (e: FocusEvent) => void;
 };
@@ -14,7 +15,11 @@ declare class Calendar extends Control {
     private _previousButton;
     private _nextButton;
     private _displayDate;
-    private _displayLabel;
+    private _displayMonth;
+    private _displayYear;
+    private _monthYearDropdownsRow;
+    private _displayMonthDropdown;
+    private _displayYearDropdown;
     private _daysContainer;
     private _quickSelectionsContainer;
     private _todayButton;
@@ -26,7 +31,10 @@ declare class Calendar extends Control {
     _renderCalendarHeader(): void;
     _renderMonthYearContainer(): void;
     _renderPreviousButton(): void;
-    _renderDisplayDateLabel(): void;
+    _scrollToSeletedOptions: () => void;
+    _renderDisplayMonthDropdown(): void;
+    _onChangeCreateYearDropdown: (value: any) => void;
+    _renderDisplayYearDropdown(): void;
     _renderNextButton(): void;
     _renderDaysContainer(): void;
     _renderQuickSelectionsContainer(): void;

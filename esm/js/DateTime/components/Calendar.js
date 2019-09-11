@@ -1,7 +1,9 @@
 import * as tslib_1 from "tslib";
-import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate } from '../../../react/DateTime/components/utils';
-import { ja, format } from '../../../react/DateTime/components/Locale';
+import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, getMonthLabels, getYearLabels } from '../../../react/DateTime/components/utils';
+import { ja, en, format } from '../../../react/DateTime/components/Locale';
 import Control from '../../Control';
+import Dropdown from '../../Dropdown';
+import '../../../css/DropdownCalendar.css';
 var Calendar = /** @class */ (function (_super) {
     tslib_1.__extends(Calendar, _super);
     function Calendar(params) {
@@ -12,9 +14,28 @@ var Calendar = /** @class */ (function (_super) {
             isVisible: false
         };
         _this._displayDate = new Date();
+        _this._scrollToSeletedOptions = function () {
+            var styleScroll = { block: 'center' };
+            var selectedItems = document.getElementsByClassName('kuc-list-item-selected');
+            for (var i = 0; i < selectedItems.length; i++) {
+                var item = selectedItems[i];
+                item.scrollIntoView(styleScroll);
+            }
+        };
+        _this._onChangeCreateYearDropdown = function (value) {
+            var newDate = new Date(_this._displayDate);
+            var currentYear = Number(value.replace('年', ''));
+            newDate.setFullYear(currentYear, _this._displayDate.getMonth(), 1);
+            _this._displayYear = value;
+            _this._displayDate = newDate;
+            _this._displayYearDropdown.setItems(getYearLabels(_this._displayYear, _this._props.locale));
+            _this.rerender(['selectedDate']);
+        };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
+        _this._displayMonth = format(_this._displayDate, 'calendarmonth', { locale: _this._props.locale });
+        _this._displayYear = format(_this._displayDate, 'calendaryear', { locale: _this._props.locale });
         return _this;
     }
     Calendar.prototype._renderCalendarContainer = function () {
@@ -32,6 +53,10 @@ var Calendar = /** @class */ (function (_super) {
     Calendar.prototype._renderMonthYearContainer = function () {
         var monthYearContainer = document.createElement('div');
         monthYearContainer.className = 'month-year-container';
+        var monthYearDropdownsRow = document.createElement('div');
+        monthYearDropdownsRow.tabIndex = -1;
+        monthYearDropdownsRow.classList.add('kuc-calendar-dropdown-row');
+        this._monthYearDropdownsRow = monthYearDropdownsRow;
         this._monthYearContainer = monthYearContainer;
     };
     Calendar.prototype._renderPreviousButton = function () {
@@ -40,17 +65,36 @@ var Calendar = /** @class */ (function (_super) {
         span.className = 'prev calendar-button-control';
         span.onclick = function () {
             _this._displayDate.setMonth(_this._displayDate.getMonth() - 1);
+            _this._displayMonth = _this._displayDate.getMonth() + '';
+            _this.rerender(['monthYearDropdown']);
             _this.rerender(['selectedDate']);
         };
         this._previousButton = span;
     };
-    Calendar.prototype._renderDisplayDateLabel = function () {
-        var span = document.createElement('span');
-        span.className = 'label';
-        span.textContent = format(this._displayDate, 'calendartitle', {
-            locale: this._props.locale
+    Calendar.prototype._renderDisplayMonthDropdown = function () {
+        var _this = this;
+        var monthDropdown = new Dropdown({ value: this._displayMonth, items: getMonthLabels(this._props.locale) });
+        monthDropdown.on('listItemsShown', function () {
+            _this._scrollToSeletedOptions();
         });
-        this._displayLabel = span;
+        monthDropdown.on('change', function (value) {
+            var newDate = new Date(_this._displayDate);
+            newDate.setMonth(_this._props.locale.monthNames.indexOf(value), 1);
+            _this._displayMonth = value;
+            _this._displayDate = newDate;
+            _this._scrollToSeletedOptions();
+            _this.rerender(['selectedDate']);
+        });
+        this._displayMonthDropdown = monthDropdown;
+    };
+    Calendar.prototype._renderDisplayYearDropdown = function () {
+        var _this = this;
+        var yearDropdown = new Dropdown({ value: this._displayYear, items: getYearLabels(this._displayYear, this._props.locale) });
+        yearDropdown.on('listItemsShown', function () {
+            _this._scrollToSeletedOptions();
+        });
+        this._displayYearDropdown = yearDropdown;
+        this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown);
     };
     Calendar.prototype._renderNextButton = function () {
         var _this = this;
@@ -58,6 +102,7 @@ var Calendar = /** @class */ (function (_super) {
         span.className = 'next calendar-button-control';
         span.onclick = function () {
             _this._displayDate.setMonth(_this._displayDate.getMonth() + 1);
+            _this.rerender(['monthYearDropdown']);
             _this.rerender(['selectedDate']);
         };
         this._nextButton = span;
@@ -125,7 +170,8 @@ var Calendar = /** @class */ (function (_super) {
         this._renderCalendarHeader();
         this._renderMonthYearContainer();
         this._renderPreviousButton();
-        this._renderDisplayDateLabel();
+        this._renderDisplayMonthDropdown();
+        this._renderDisplayYearDropdown();
         this._renderNextButton();
         this._renderDaysContainer();
         this._renderWeekDaysLabels();
@@ -136,7 +182,15 @@ var Calendar = /** @class */ (function (_super) {
         // render calendar header elements
         this._calendarHeader.appendChild(this._monthYearContainer);
         this._monthYearContainer.appendChild(this._previousButton);
-        this._monthYearContainer.appendChild(this._displayLabel);
+        this._monthYearContainer.appendChild(this._monthYearDropdownsRow);
+        if (this._props.locale === en) {
+            this._monthYearDropdownsRow.appendChild(this._displayMonthDropdown.render());
+            this._monthYearDropdownsRow.appendChild(this._displayYearDropdown.render());
+        }
+        else {
+            this._monthYearDropdownsRow.appendChild(this._displayYearDropdown.render());
+            this._monthYearDropdownsRow.appendChild(this._displayMonthDropdown.render());
+        }
         this._monthYearContainer.appendChild(this._nextButton);
         this.element.appendChild(this._calendarHeader);
         // render days elements
@@ -150,8 +204,13 @@ var Calendar = /** @class */ (function (_super) {
         // render calendar footer
         this._quickSelectionsContainer.appendChild(this._todayButton);
         this._quickSelectionsContainer.appendChild(this._noneButton);
-        this._todayButton.onclick = function (e) {
+        this._todayButton.onclick = function () {
             if (_this._props.onDateClick) {
+                var currentDate = new Date();
+                _this._displayMonth = getMonthLabels(_this._props.locale)[currentDate.getMonth()].label;
+                _this._displayYear = format(currentDate, 'calendaryear', { locale: _this._props.locale });
+                _this._displayMonthDropdown.setValue(_this._displayMonth);
+                _this._displayYearDropdown.setValue(_this._displayYear);
                 _this._props.onDateClick(new Date());
             }
         };
@@ -178,11 +237,10 @@ var Calendar = /** @class */ (function (_super) {
     };
     Calendar.prototype.setValue = function (date) {
         if (date) {
-            this._props.date = date;
             this._displayDate = new Date(date);
-            // rerender self
-            this.rerender(['selectedDate']);
         }
+        this._props.date = date;
+        this.rerender(["selectedDate"]);
     };
     Calendar.prototype.getValue = function () {
         return this._props.date;
@@ -194,9 +252,6 @@ var Calendar = /** @class */ (function (_super) {
         var _this = this;
         _super.prototype.rerender.call(this);
         if (changedAttr.indexOf('selectedDate') !== -1) {
-            this._displayLabel.textContent = format(this._displayDate, 'calendartitle', {
-                locale: this._props.locale
-            });
             this._daysContainer.innerHTML = '';
             this._renderWeekDaysLabels();
             this._weekDayLabelsSpans.forEach(function (weekLabel) {
@@ -206,6 +261,12 @@ var Calendar = /** @class */ (function (_super) {
             this._displayDaysSpans.forEach(function (dayLabel) {
                 _this._daysContainer.appendChild(dayLabel);
             });
+        }
+        if (changedAttr.indexOf('monthYearDropdown') !== -1) {
+            this._displayMonth = format(this._displayDate, 'calendarmonth', { locale: this._props.locale });
+            this._displayYear = format(this._displayDate, 'calendaryear', { locale: this._props.locale });
+            this._displayMonthDropdown.setValue(this._displayMonth);
+            this._displayYearDropdown.setValue(this._displayYear);
         }
         if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
             this.element.style.left = options['left'] + 'px';

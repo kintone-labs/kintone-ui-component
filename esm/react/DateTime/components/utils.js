@@ -1,4 +1,4 @@
-import { format, getSeperator } from './Locale';
+import { format, en, getSeperator, } from './Locale';
 var getWeekDays = function (date) {
     var startDate = new Date(date);
     startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -17,6 +17,33 @@ var getWeekDayLabels = function (locale) {
         return format(day, 'E', { locale: locale });
     });
     return labels;
+};
+var getMonthLabels = function (locale) {
+    var monthNames = locale.monthNames;
+    var labels = [];
+    monthNames.forEach(function (month) {
+        var label = {};
+        label['label'] = month;
+        label['value'] = month;
+        labels.push(label);
+    });
+    return labels;
+};
+var getYearLabels = function (value, locale) {
+    var currentYear = value.replace('年', '');
+    currentYear = parseInt(value);
+    var years = [];
+    var prefix = '';
+    if (locale !== en) {
+        prefix = '年';
+    }
+    for (var i = (currentYear - 100); i <= (currentYear + 100); i++) {
+        var year = {};
+        year['label'] = i + prefix;
+        year['value'] = i + prefix;
+        years.push(year);
+    }
+    return years;
 };
 var getDisplayingDays = function (date) {
     var startDayOfMonth = new Date(date);
@@ -67,4 +94,4 @@ var parseStringToTime = function (timeString) {
     result.setMinutes(timeData.minute);
     return result;
 };
-export { getWeekDays, getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, parseStringToTime };
+export { getYearLabels, getMonthLabels, getWeekDays, getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, parseStringToTime };

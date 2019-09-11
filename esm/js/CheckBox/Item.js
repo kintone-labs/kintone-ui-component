@@ -19,7 +19,7 @@ var Item = /** @class */ (function (_super) {
         var inputCheckboxID = new Date().getTime() + '-' + _this.generateGUID() + '-' + _this.generateGUID();
         inputCheckboxElement.type = 'checkbox';
         inputCheckboxElement.checked = _this._props.isSelected;
-        inputCheckboxElement.disabled = _this._props.isDisabled;
+        inputCheckboxElement.disabled = _this._props.isDisabled || false;
         inputCheckboxElement.id = inputCheckboxID;
         _this.inputCheckboxElement = inputCheckboxElement;
         _this.element.appendChild(inputCheckboxElement);
@@ -43,7 +43,7 @@ var Item = /** @class */ (function (_super) {
             this.inputCheckboxElement.checked = this._props.isSelected;
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
-            this.inputCheckboxElement.disabled = this._props.isDisabled;
+            this.inputCheckboxElement.disabled = this._props.isDisabled || false;
         }
     };
     Item.prototype.getValue = function () {

@@ -1,24 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate } from './utils';
-import { en } from './Locale';
-import { format } from './Locale';
+import React, { useState, useEffect, useRef } from 'react';
+import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels } from './utils';
+import { ja, en, format } from './Locale';
+import { Dropdown } from '../../index';
+import '../../../css/DropdownCalendar.css';
 var previousDate;
 var Calendar = function (_a) {
-    var date = _a.date, _b = _a.locale, locale = _b === void 0 ? en : _b, _c = _a.pickerDisplay, pickerDisplay = _c === void 0 ? 'block' : _c, _d = _a.hasSelection, hasSelection = _d === void 0 ? false : _d, _e = _a.onDateClick, onDateClick = _e === void 0 ? function (date) { } : _e, calRef = _a.calRef;
+    var date = _a.date, _b = _a.locale, locale = _b === void 0 ? ja : _b, _c = _a.pickerDisplay, pickerDisplay = _c === void 0 ? 'block' : _c, _d = _a.hasSelection, hasSelection = _d === void 0 ? false : _d, _e = _a.onDateClick, onDateClick = _e === void 0 ? function () { } : _e, calRef = _a.calRef;
     var today = new Date();
     var weekDayLabels = getWeekDayLabels(locale);
     var _f = useState(date ? new Date(date) : new Date()), displayDate = _f[0], setDisplayDate = _f[1];
     var displayingDays = getDisplayingDays(displayDate);
+    var dropDownsRowRef = useRef(null);
+    var scrollToSeletedOptions = function () {
+        var styleScroll = { block: 'center' };
+        var selectedItems = document.getElementsByClassName('kuc-list-item-selected');
+        for (var i = 0; i < selectedItems.length; i++) {
+            var item = selectedItems[i];
+            item.scrollIntoView(styleScroll);
+        }
+    };
     if (!previousDate) {
         previousDate = new Date(date);
     }
     useEffect(function () {
         if (date) {
             if (!isSameDate(date, previousDate)) {
-                setDisplayDate(new Date(date));
-                previousDate = new Date(date);
+                var newDate = new Date(date);
+                setDisplayDate(newDate);
+                previousDate = newDate;
             }
         }
+    }, [date]);
+    var _handleDropdownSelection = function (e) {
+        if (dropDownsRowRef.current) {
+            var selectedDropdownOuter = e.target.closest('.kuc-dropdown-outer');
+            if (dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
+                setTimeout(scrollToSeletedOptions, 100);
+            }
+        }
+    };
+    useEffect(function () {
+        document.addEventListener('mousedown', _handleDropdownSelection);
+        return function () { return document.removeEventListener('mousedown', _handleDropdownSelection); };
     });
     return (React.createElement("div", { ref: calRef, className: "date-picker-container", style: { display: pickerDisplay }, tabIndex: -1, onBlur: function (e) {
             var relatedTarget = e.relatedTarget ||
@@ -37,9 +60,37 @@ var Calendar = function (_a) {
                         newDate.setMonth(newDate.getMonth() - 1, 1);
                         setDisplayDate(newDate);
                     }, tabIndex: -1 }),
-                React.createElement("span", { className: "label" }, format(displayDate, "calendartitle", {
-                    locale: locale
-                })),
+                React.createElement("div", { ref: dropDownsRowRef, className: "kuc-calendar-dropdown-row", tabIndex: -1 }, locale === en ?
+                    React.createElement(React.Fragment, null,
+                        React.createElement(Dropdown, { items: getMonthLabels(locale), value: getMonthLabels(locale)[displayDate.getMonth()].label, onChange: function (value) {
+                                var newDate = new Date(displayDate);
+                                newDate.setMonth(locale.monthNames.indexOf(value), 1);
+                                setDisplayDate(newDate);
+                                scrollToSeletedOptions();
+                            } }),
+                        React.createElement(Dropdown, { items: getYearLabels(displayDate.getFullYear().toString(), locale), value: format(displayDate, 'calendaryear', { locale: locale }), onChange: function (value) {
+                                var newDate = new Date(displayDate);
+                                newDate.setFullYear(parseInt(value, 10), displayDate.getMonth(), 1);
+                                setDisplayDate(newDate);
+                                scrollToSeletedOptions();
+                            } }))
+                    :
+                        React.createElement(React.Fragment, null,
+                            React.createElement(Dropdown, { items: getYearLabels(displayDate.getFullYear().toString(), locale), value: format(displayDate, 'calendaryear', { locale: locale }), onChange: function (value) {
+                                    var newDate = new Date(displayDate);
+                                    var currentYear = value;
+                                    currentYear = currentYear.replace('年', '');
+                                    currentYear = parseInt(value, 10);
+                                    newDate.setFullYear(parseInt(currentYear, 10), displayDate.getMonth(), 1);
+                                    setDisplayDate(newDate);
+                                    scrollToSeletedOptions();
+                                } }),
+                            React.createElement(Dropdown, { items: getMonthLabels(locale), value: getMonthLabels(locale)[displayDate.getMonth()].label, onChange: function (value) {
+                                    var newDate = new Date(displayDate);
+                                    newDate.setMonth(locale.monthNames.indexOf(value), 1);
+                                    setDisplayDate(newDate);
+                                    scrollToSeletedOptions();
+                                } }))),
                 React.createElement("span", { className: "next calendar-button-control", onClick: function () {
                         var newDate = new Date(displayDate);
                         newDate.setMonth(newDate.getMonth() + 1, 1);
@@ -48,22 +99,27 @@ var Calendar = function (_a) {
             React.createElement("div", { className: "days-container" },
                 weekDayLabels.map(function (label, index) {
                     var notWeekend = index !== 0 && index !== 6;
-                    return (React.createElement("span", { className: notWeekend ? "wday-header" : "wday-header grayed-out", key: "wday-header-" + index }, label));
+                    return (React.createElement("span", { className: notWeekend ? 'wday-header' : 'wday-header grayed-out', key: "wday-header-" + index }, label));
                 }),
                 displayingDays.map(function (day, index) {
-                    var className = "day";
-                    className += displayDate && isSameMonth(day, displayDate) ? "" : " grayed-out";
-                    className += isToday(day) ? " today" : "";
-                    className += date && isSameDate(day, date) && hasSelection ? " selected" : "";
+                    var className = 'day';
+                    className += displayDate && isSameMonth(day, displayDate) ? '' : ' grayed-out';
+                    className += isToday(day) ? ' today' : '';
+                    className += date && isSameDate(day, date) && hasSelection ? ' selected' : '';
                     return (React.createElement("span", { className: className + " calendar-button", key: "day-" + index, onClick: function () {
                             var returnDate = new Date(date);
                             returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
                             onDateClick(returnDate, null);
                             setDisplayDate(new Date(day));
-                        }, tabIndex: 0 }, format(day, "d")));
+                        }, tabIndex: 0 }, format(day, 'd')));
                 })),
             React.createElement("div", { className: "quick-selections-container" },
-                React.createElement("span", { className: "today calendar-button-control", onClick: function () { setDisplayDate(new Date()); onDateClick(today, null); } }, locale.today),
-                React.createElement("span", { className: "none calendar-button-control", onClick: function () { onDateClick(null, previousDate); }, tabIndex: -1 }, locale.none)))));
+                React.createElement("span", { className: "today calendar-button-control", onClick: function () {
+                        setDisplayDate(new Date());
+                        onDateClick(today, null);
+                    } }, locale.today),
+                React.createElement("span", { className: "none calendar-button-control", onClick: function () {
+                        onDateClick(null, previousDate);
+                    }, tabIndex: -1 }, locale.none)))));
 };
 export default Calendar;
