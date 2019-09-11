@@ -56,7 +56,6 @@
 		"mini-css-extract-plugin": "0.6.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
 		"prop-types": "15.6.1",
-		"source-map-loader": "0.2.4",
 		"style-loader": "0.19.1",
 		"typescript": "3.4.2",
 		"uglifyjs-webpack-plugin": "2.1.3",
