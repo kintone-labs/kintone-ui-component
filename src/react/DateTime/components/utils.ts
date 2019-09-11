@@ -1,4 +1,4 @@
-import { format, getSeperator } from './Locale';
+import { format, en, getSeperator, } from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -20,6 +20,35 @@ const getWeekDayLabels = (locale: any) => {
 
   return labels;
 };
+
+const getMonthLabels = (locale: any) => {
+  let monthNames = locale.monthNames
+  let labels: any = []
+  monthNames.forEach((month: any) => {
+    let label = {}
+    label['label'] = month
+    label['value'] = month
+    labels.push(label)
+  })
+  return labels
+}
+
+const getYearLabels = (value: any, locale: any) => {
+  let currentYear: any = value.replace('年', '')
+  currentYear = parseInt(value)
+  let years: any = []
+  let prefix: any = ''
+  if (locale !== en) {
+    prefix = '年'
+  }
+  for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
+    let year = {}
+    year['label'] = i + prefix
+    year['value'] = i + prefix
+    years.push(year)
+  }
+  return years
+}
 
 const getDisplayingDays = (date: Date) => {
   const startDayOfMonth = new Date(date);
@@ -78,6 +107,8 @@ const parseStringToTime = (timeString: string) => {
 };
 
 export {
+  getYearLabels,
+  getMonthLabels,
   getWeekDays,
   getWeekDayLabels,
   getDisplayingDays,

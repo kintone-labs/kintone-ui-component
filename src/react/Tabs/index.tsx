@@ -6,7 +6,7 @@ import Message from '../../constant/Message'
 type TabsItem = {
   tabName: string;
   tabContent: any;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 type TabsProps = {

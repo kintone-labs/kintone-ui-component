@@ -8,7 +8,7 @@ import '../../css/Dropdown.css';
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 type DropdownProps = {
   value: string;
