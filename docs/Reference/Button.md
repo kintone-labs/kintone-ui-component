@@ -111,9 +111,22 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+     super(props);
+     this.state={
+        text:"Submit"
+    }
+   }
+    setText=(text)=>{
+        this.setState({text})
+    }
+
     render() {
         return (
-            <Button text='Submit' type='normal' />
+           <div>
+                <Button text={this.state.text} type='normal' />
+                <button onClick={()=>this.setText("New Button")}>setText</button>
+           </div>
         );
     }
 }
@@ -150,9 +163,23 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            type:"Submit",
+            text:"text"
+        }
+   }
+    setType=(type)=>{
+        this.setState({type})
+    }
+
     render() {
         return (
-            <Button text='Submit' type='normal' />
+           <div>
+                <Button text={this.state.text} type={this.state.type} />
+                <button onClick={()=>this.setType("submit")}>setText</button>
+           </div>
         );
     }
 }
@@ -233,9 +260,24 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state={
+        isVisible:false,
+        text:"avc"
+    }
+   }
+
+    show=()=>{
+        this.setState({isVisible:true})
+    }
+
     render() {
         return (
-            <Button text="button" isVisible={true} />
+           <div>
+                <Button text={this.state.text} isVisible={this.state.isVisible} />
+                <button onClick={()=>this.show()}>show</button>
+           </div>
         );
     }
 }
@@ -270,9 +312,24 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+     super(props);
+     this.state={
+        isVisible:true,
+        text:"avc"
+    }
+   }
+
+    hide=()=>{
+        this.setState({isVisible:false})
+    }
+
     render() {
         return (
-            <Button text="button" isVisible={false} />
+           <div>
+                <Button text={this.state.text} isVisible={this.state.isVisible} />
+                <button onClick={()=>this.hide()}>hide</button>
+           </div>
         );
     }
 }
@@ -307,11 +364,25 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <Button text="button" isDisabled={true} />
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: false,
+      text: "avc"
+    };
+  }
+  disable = () => {
+    this.setState({ isDisabled: true });
+  };
+
+  render() {
+    return (
+      <div>
+        <Button text={this.state.text} isDisabled={this.state.isDisabled} />
+        <button onClick={() => this.disable()}>disable</button>
+      </div>
+    );
+  }
 }
 ```
 </details>
@@ -344,11 +415,25 @@ import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <Button text="button" isDisabled={false} />
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+        isDisabled: true,
+        text: "avc"
+    };
+  }
+  enable = () => {
+    this.setState({ isDisabled: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <Button text={this.state.text} isDisabled={this.state.isDisabled} />
+        <button onClick={() => this.enable()}>enable</button>
+      </div>
+    );
+  }
 }
 ```
 </details>
