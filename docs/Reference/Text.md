@@ -199,11 +199,8 @@ Register callback for an event of Text component
 |eventName |String |Yes|Name of event: <ul><li>'click'</li><li>'change'</li></ul>|
 |callback|function |Yes|The callback function call when the event occurs|
 
-**Returns**
-
-| Name| Type| Description |
-| --- | --- | --- |
-|event |Object| event data of callback function
+**Returns**  
+None
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
