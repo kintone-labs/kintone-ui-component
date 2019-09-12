@@ -10,7 +10,7 @@
 $ npm install -g create-react-app
 $ create-react-app my-customization
 $ cd my-customization
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli
+$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli webpack babel-loader
 $ npm install uglifyjs-webpack-plugin --save-dev
 $ npm install @kintone/kintone-ui-component
 $ rm -f src/*
@@ -92,7 +92,7 @@ module.exports = (env = {}) => {
     ...
 }
 ```
-* Run command to build customization file
+* Run command to build the customization file
 ```
 $ npm run build-webpack
 ```
