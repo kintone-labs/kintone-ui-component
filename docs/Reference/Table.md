@@ -55,11 +55,11 @@
         var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
         span.appendChild(textfield1.render());
         span.appendChild(textfield2.render());
-        textfield1.on('change', function(newValue){
-          updateRowData({text1: {value: newValue}}, false);
+        textfield1.on('change', function(event){
+          updateRowData({text1: {value: event.target.value}}, false);
         });
-        textfield2.on('change', function(newValue){
-          updateRowData({text2: {value: newValue}}, false);
+        textfield2.on('change', function(event){
+          updateRowData({text2: {value: event.target.value}}, false);
         });
         this.textfield1 = textfield1;
         this.textfield2 = textfield2;
@@ -869,8 +869,8 @@ Register callback for an event
 ||event.rowIndex|	Interger|	Position of the removed row in the table|
 | cellChange| event|	object|	Callback data|
 ||event.data |Array&lt;Object&gt;|Values of the table|
-||data.rowIndex|	Interger|	Position of the changed row in the table|
-||data.fieldName|	String|	name of the data property which changed |
+||event.rowIndex|	Interger|	Position of the changed row in the table|
+||event.fieldName|	String|	name of the data property which changed |
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
