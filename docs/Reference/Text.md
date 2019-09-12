@@ -11,39 +11,39 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.value|String|No|The value of text field. <br> Default value: ''|
-|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
+|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: **false**|
+|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: **true**|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var text= new kintoneUIComponent.Text({value: '12345'});
+var text= new kintoneUIComponent.Text({value: 'input text'});
 ```
 **React**
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: ''};
+        this.state = { value: 'input text'};
     };
     render() {
         return (
             <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ## Methods
 ### render()
-Get dom element of component.
+Get DOM element of Text component.
 
 **Parameter**
 
@@ -51,7 +51,7 @@ None
 
 **Returns**
 
-Dom element
+DOM element
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -66,30 +66,32 @@ body.appendChild(text.render());
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
-export default class Plugin extends React.Component {
-    constructor(props) {
+import ReactDOM from 'react-dom'
+
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: ''};
+        this.state = { value: 'input text'};
     };
     render() {
         return (
             <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
-    }
-}
+    };
+};
 
+ReactDOM.render(<Plugin />,document.getElementById('root'))
 ```
 </details>
 
-### setValue(value)
-Set the value of text field.
+### setValue(text)
+Set the input content value of text field
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|text|	String|	Yes|	The value of text field.|
+|text|String|Yes|The input content value|
 
 **Returns**
 
@@ -110,32 +112,32 @@ text.setValue('input text');
 ```javascript
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
-export default class Plugin extends React.Component {
-    constructor(props) {
+
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'input text' };
     };
     render() {
         return (
-        <div>
-          <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Click</button>
-        </div>
-      );
-    }
-    handleClick= () => {
+            <div>
+                <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
+                <button onClick={this.handleClick}>Click</button>
+            </div>
+        );
+    };
+    handleClick = () => {
         this.setState({
-            value: 'samp 1'
+            value: 'set value'
         });
     };
-}
+};
 
 ```
 </details>
 
 ### getValue()
-Get the value of text field.
+Get the input content value of text field
 
 **Parameter**
 
@@ -145,7 +147,7 @@ None
 
 |Name|Type|Description|
 |---|---|---|
-|value|	String|	The value of text field.|
+|value|	String|	The input content value|
 
 
 <details class="tab-container" open>
@@ -157,47 +159,51 @@ var text = new kintoneUIComponent.Text({value: 'input text'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 
-text.getValue();
+console.log(text.getValue());
 ```
 **React**
 ```javascript
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'input text' };
     };
+
     render() {
         return (
-        <div>
-          <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Click</button>
-        </div>
-      );
-    }
-    handleClick= () => {
+            <div>
+                <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
+                <button onClick={this.handleClick}>Click</button>
+            </div>
+        );
+    };
+
+    handleClick = () => {
         console.log(this.state.value);
     };
-}
+};
 
 ```
 </details>
 
-### on(eventName, callBack)
-Register callback for a event of component
+### on(eventName, callback)
+Register callback for an event of Text component
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |eventName |String |Yes|Name of event: <ul><li>'click'</li><li>'change'</li></ul>|
-|callback|function |Yes|callback|
+|callback|function |Yes|The callback function call when the event occurs|
 
 **Returns**
 
-None
+| Name| Type| Description |
+| --- | --- | --- |
+|event |Object| event data of callback function
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -209,7 +215,12 @@ var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 
 text.on('click', function(event) {
-    console.log('on click');
+    console.log('onclick event');
+    console.log('value: ' + event.target.value);
+});
+
+text.on('change', function(event) {
+    console.log('onchange event');
     console.log('value: ' + event.target.value);
 });
 ```
@@ -218,27 +229,35 @@ text.on('click', function(event) {
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'input text' };
     };
+    
     render() {
         return (
-            <Text value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() => {console.log('click')}} />
+            <Text 
+                value={this.state.value}
+                onChange={this.handleChange.bind(this)}
+                onClick={() => { 
+                    console.log('click');
+                }} 
+            />
         );
-    }
-    handleChange = (value) => {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
-}
+    };
+
+    handleChange = (value: string) => {
+        this.setState({ value });
+        console.log('onchange value: ' + value);
+    };
+};
 
 ```
 </details>
 
 ### show()
-Display the Text field.
+Display the Text component.
 
 **Parameter**
 
@@ -264,27 +283,24 @@ text.show();
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'Text is visible'};
     };
+
     render() {
         return (
-            <Text value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={true} />
+            <Text value={this.state.value} isVisible={true} />
         );
-    }
-    handleChange = (value) => {
-        this.setState({value});
-        console.log('value: ' + value);
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ### hide()
-Hide the Text field.
+Hide the Text component.
 
 **Parameter**
 
@@ -310,27 +326,24 @@ text.hide();
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
-    };  
+        this.state = { value: 'Text is invisible'};
+    };
+
     render() {
         return (
-            <Text value={this.state.value} onChange={this.handleChange.bind(this)} isVisible={false} />
+            <Text value={this.state.value} isVisible={false} />
         );
-    }
-    handleChange = (value) => {
-        this.setState({value});
-        console.log('value: ' + value);
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ### disable()
-Disabled the Text field.
+Disabled the Text component.
 
 **Parameter**
 
@@ -345,7 +358,7 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({value: 'input text'});
+var text = new kintoneUIComponent.Text({value: 'Text is disabled'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 
@@ -356,27 +369,24 @@ text.disable();
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'Text is disabled'};
     };
+
     render() {
         return (
-            <Text value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={true} />
+            <Text value={this.state.value} isDisabled={true} />
         );
-    }
-    handleChange = (value) => {
-        this.setState({value});
-        console.log('value: ' + value);
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ### enable()
-Enabled the Text field.
+Enabled the Text component.
 
 **Parameter**
 
@@ -391,7 +401,7 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({value: 'input text'});
+var text = new kintoneUIComponent.Text({value: 'Text is enabled'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 
@@ -402,21 +412,16 @@ text.enable();
 import { Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component {
-    constructor(props) {
+export default class Plugin extends React.Component<{}, { value: string }> {
+    constructor(props: any) {
         super(props);
-        this.state = { value: '1'};
+        this.state = { value: 'Text is enabled'};
     };
     render() {
         return (
-            <Text value={this.state.value} onChange={this.handleChange.bind(this)} isDisabled={false} />
+            <Text value={this.state.value} isDisabled={false} />
         );
-    }
-    handleChange = (value) => {
-        this.setState({value});
-        console.log('value: ' + value);
-    }
-}
-
+    };
+};
 ```
 </details>
