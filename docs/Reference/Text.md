@@ -84,14 +84,14 @@ ReactDOM.render(<Plugin />,document.getElementById('root'))
 ```
 </details>
 
-### setValue(text)
+### setValue(value)
 Set the input content value of text field
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|text|String|Yes|The input content value|
+|value|String|Yes|The input content value|
 
 **Returns**
 
