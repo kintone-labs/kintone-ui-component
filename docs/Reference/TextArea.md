@@ -13,7 +13,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
+|options|Object|No|The object contains parameters of constructor.|
 |options.value|String|No|The value of textarea field.|
 |options.isDisabled|Boolean|No|The textarea field will be disabled. <br> Default value: **false**|
 |options.isVisible|Boolean|No|The textarea field will be visible. <br> Default value: **true**|
@@ -30,8 +30,8 @@ var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
       super(props);
       this.state = { value: 'textarea'};
     };
@@ -72,8 +72,8 @@ import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom'
 
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea' };
     };
@@ -85,7 +85,7 @@ export default class Plugin extends React.Component<{}, { value: string }> {
     };
 };
 
-ReactDOM.render(<Plugin />, document.getElementById('root'))
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -107,19 +107,24 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+var textArea = new kintoneUIComponent.TextArea({ value: 'textarea' });
+var btn = new kintoneUIComponent.Button({ text: 'Click' });
+
+btn.on('click', function () {
+    textArea.setValue('set value into textarea');
+});
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(textArea.render());
-
-textArea.setValue('set value into textarea');
+body.appendChild(btn.render());
 ```
 **React**
 ```javascript
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea' };
     };
@@ -173,8 +178,8 @@ console.log(textArea.getValue());
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea' };
     };
@@ -230,8 +235,8 @@ textArea.on('change', function(event) {
 import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea' };
     };
@@ -248,7 +253,7 @@ export default class Plugin extends React.Component<{}, { value: string }> {
         );
     };
 
-    handleChange = (value: string) => {
+    handleChange = (value) => {
         this.setState({ value });
         console.log('onchange: ' + value);
     };
@@ -288,8 +293,8 @@ body.appendChild(textArea.render());
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string, isVisible: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea', isVisible: false };
     };
@@ -307,7 +312,7 @@ export default class Plugin extends React.Component<{}, { value: string, isVisib
                 />
             </div>
         );
-    }
+    };
 };
 
 ```
@@ -344,8 +349,8 @@ body.appendChild(textArea.render());
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string, isVisible: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea', isVisible: true };
     };
@@ -400,8 +405,8 @@ body.appendChild(textArea.render());
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string, isDisabled: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea', isDisabled: false };
     };
@@ -456,8 +461,8 @@ body.appendChild(textArea.render());
 import {TextArea, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string, isDisabled: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Textarea', isDisabled: true };
     };
