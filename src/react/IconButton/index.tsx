@@ -12,7 +12,11 @@ type IconButtonProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void
 }
 
-const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onClick}: IconButtonProps) => {
+const IconButton = (props?: IconButtonProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {type, size, color = '', isDisabled, isVisible, shape, onClick}=props;
   const _getClassName = () => {
     const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
     const colorResult = colors.indexOf(color) === -1 ? 'gray' : color;

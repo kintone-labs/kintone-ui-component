@@ -6,7 +6,7 @@ import Message from '../../constant/Message'
 
 type ColorPickerProps = ControlProps & {
   color: string;
-  onChange: (color: string) => void;
+  onChange?: (color: string) => void;
 }
 
 class ColorPicker extends Control {
@@ -24,8 +24,11 @@ class ColorPicker extends Control {
   private Picker: Picker
   private focus: boolean
 
-  constructor(params: ColorPickerProps) {
+  constructor(params?: ColorPickerProps) {
     super();
+    if(!params){
+      return;
+    }
     if(typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

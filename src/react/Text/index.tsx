@@ -10,7 +10,11 @@ type TextProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}: TextProps) => {
+const Text = (props?: TextProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {value, isDisabled = false, isVisible = true, onChange, onClick}=props;
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event.target.value);
   };

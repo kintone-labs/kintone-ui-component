@@ -36,8 +36,11 @@ class Dropdown extends Control {
   private className: string[];
   private isListVisible: boolean = false;
 
-  constructor(params: DropdownProps) {
+  constructor(params?:DropdownProps) {
     super();
+     if(! params || params && Object.keys(params).length === 0){
+      return;
+    }
     if (
       typeof params === 'object' &&
       params !== null &&

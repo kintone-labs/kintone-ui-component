@@ -11,7 +11,11 @@ type FieldGroupProps = {
   children?: any;
 }
 
-const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
+const FieldGroup = (props?: FieldGroupProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {content, name, toggle, onToggle, isVisible, children}=props;
   if (isVisible === false) {
     return null;
   }

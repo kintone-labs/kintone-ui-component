@@ -12,7 +12,11 @@ type NotifyPopupProps = {
   onClose?: () => void;
 }
 
-const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
+const NotifyPopup = (props?: NotifyPopupProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {text, type, isDisabled, isVisible, onClick, onClose}=props;
   const _handleClosePopup = () => {
     if (isDisabled) {
       return false;

@@ -10,7 +10,7 @@ type item = {
 }
 
 type ItemProps = {
-  item: item;
+  item?: item;
   isVisible?: boolean;
   isDisabled?: boolean;
   selected: boolean;
@@ -23,10 +23,10 @@ type ItemProps = {
 
 const Item = (props: ItemProps) => {
   const _onClick = () => {
-    if (props.isDisabled) {
+    if (props.isDisabled ) {
       return false;
     }
-    props.onClick && props.onClick(props.item);
+    props.onClick && props.item && props.onClick(props.item);
     return true;
   };
 
@@ -34,7 +34,7 @@ const Item = (props: ItemProps) => {
     if (props.isDisabled) {
       return false;
     }
-    props.onChange && props.onChange(props.item);
+    props.onChange  && props.item && props.onChange(props.item);
     return true;
   };
 
@@ -60,7 +60,7 @@ const Item = (props: ItemProps) => {
           checked={props.selected}
           onChange={_onChange}
         />
-        <label htmlFor={id}>{props.item.label}
+        <label htmlFor={id}>{props.item ? props.item.label:""}
         </label>
       </span>
     );
@@ -76,7 +76,7 @@ const Item = (props: ItemProps) => {
           <path d={mdiCheckBold} />
         </svg>
       </span>
-      <span className="kuc-list-item-label">{props.item.label}</span>
+      <span className="kuc-list-item-label">{props.item ? props.item.label:""}</span>
     </div>
   );
 };

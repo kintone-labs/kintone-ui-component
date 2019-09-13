@@ -5,7 +5,11 @@ type SpinnerProps = {
   isVisible?: boolean;
 }
 
-const Spinner = ({isVisible}: SpinnerProps) => {
+const Spinner = (props?: SpinnerProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {isVisible}=props;
   if (isVisible === false) {
     return null;
   }

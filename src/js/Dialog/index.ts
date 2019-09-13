@@ -28,9 +28,11 @@ class Dialog extends Control {
     private _closeButton: IconButton
     private _containerEl: HTMLElement
 
-    constructor(params: DialogProps) {
+    constructor(params?: DialogProps) {
         super();
-    
+        if(!params){
+            return;
+          }
         if (params) {
           this._props = {...this._props, ...params};
         }

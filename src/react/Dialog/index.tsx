@@ -6,15 +6,19 @@ import Message from '../constant/Message';
 
 
 type DialogProps = {
-  header: string | ReactElement;
-  content: string | ReactElement;
-  footer: string | ReactElement;
+  header?: string | ReactElement;
+  content?: string | ReactElement;
+  footer?: string | ReactElement;
   isVisible?: boolean;
-  showCloseButton: boolean;
-  onClose: () => void;
+  showCloseButton?: boolean;
+  onClose?: () => void;
 };
 
-const Dialog = ({header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
+const Dialog = (props?: DialogProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}=props;
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';

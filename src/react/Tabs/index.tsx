@@ -4,18 +4,22 @@ import '../../css/Tabs.css'
 import Message from '../../constant/Message'
 
 type TabsItem = {
-  tabName: string;
-  tabContent: any;
+  tabName?: string;
+  tabContent?: any;
   isDisabled?: boolean;
 }
 
 type TabsProps = {
-  items: TabsItem[];
-  value: number;
+  items?: TabsItem[];
+  value?: number;
   onClickTabItem: (tabIndex: number) => void;
 }
 
-const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
+const Tabs = (props?: TabsProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {items, value, onClickTabItem}=props;
   if (value) {
     if (typeof value !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
@@ -26,7 +30,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   }
     const tabNames = (
         <ul className="kuc-tabs-tab-list">
-        {
+        {items &&
           items.map((item: TabsItem, tabIndex: number) => {
             if (!item.tabName) {
               throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
@@ -60,7 +64,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         }
     </ul>
   );
-  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+  const tabContents = items && items.map((item: TabsItem, tabIndex: number) => {
     if (tabIndex !== value) return undefined;
 
     return (

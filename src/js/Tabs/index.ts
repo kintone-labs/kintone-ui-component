@@ -28,8 +28,11 @@ class Tabs extends Control {
   private tabNames: Array<TabName> = []
   private tabContentElement: HTMLDivElement 
 
-  constructor(params: TabsProps) {
+  constructor(params?: TabsProps) {
     super()
+    if(!params){
+      return;
+    }
     if(typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

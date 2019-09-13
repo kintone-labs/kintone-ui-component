@@ -24,8 +24,11 @@ class MultipleChoice extends Control {
 
     private itemList: Array<Item> = []
 
-    constructor(params: MultipleChoiceProps) {
+    constructor(params?: MultipleChoiceProps) {
         super()
+        if(!params){
+            return;
+          }
         if(typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }

@@ -9,7 +9,6 @@ type AlertProps = {
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
-
 const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
   const _getClassName = () => {
     const className = [

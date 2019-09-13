@@ -24,7 +24,7 @@ class TextArea extends Control {
   private translateY = 0
   
 
-  constructor(params: TextAreaProps) {
+  constructor(params?: TextAreaProps) {
     super()
     if (params) {
       this._props = {...this._props, ...params}

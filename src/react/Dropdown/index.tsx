@@ -11,14 +11,18 @@ type item = {
   isDisabled?: boolean;
 }
 type DropdownProps = {
-  value: string;
-  items: item[];
+  value?: string;
+  items?: item[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
-const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
+const Dropdown = (props?: DropdownProps) => {
+  if(!props || (props&& Object.keys(props).length === 0)){
+    return null;
+  }
+  let {value="", items=[], isVisible, isDisabled, onChange = () => {}}=props;
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
@@ -58,7 +62,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  const listItemEl = items && items.map((item: item, i) => {
+  const listItemEl = items.map((item: item, i) => {
     return (
       <Item
         key={i}
@@ -107,5 +111,5 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
     </div>
   );
 };
-
+Dropdown.defaultProps={};
 export default Dropdown;

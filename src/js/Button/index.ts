@@ -17,8 +17,11 @@ class Button extends Control {
       onClick: () => {}
     }
   }
-  constructor(params: ButtonProps) {
+  constructor(params?: ButtonProps) {
     super();
+    if(!params){
+      return;
+    }
     if(typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

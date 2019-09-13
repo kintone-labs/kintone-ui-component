@@ -11,7 +11,11 @@ type LabelProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Label = ({text, textColor, backgroundColor, isRequired, isDisabled, isVisible, onClick}: LabelProps) => {
+const Label = (props?: LabelProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
+  let {text, textColor, backgroundColor, isRequired, isDisabled, isVisible, onClick}=props;
   const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
     if (isDisabled) {
       return null;

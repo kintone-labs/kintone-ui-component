@@ -22,8 +22,11 @@ class RadioButton extends Control {
 
   private itemComps: Item[] = [];
 
-  constructor(params: RadioButtonProps) {
+  constructor(params?: RadioButtonProps) {
     super();
+    if(!params){
+      return;
+    }
     if (!params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }

@@ -11,7 +11,11 @@ type ButtonProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps) => {
+const Button = (props?: ButtonProps) => {
+  if(!props){
+    return null;
+  }
+  let {text, type, isDisabled, isVisible, onClick, style}=props;
   const _getClassName = () => {
     return [
       'kuc-btn',

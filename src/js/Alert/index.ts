@@ -15,7 +15,7 @@ class Alert extends Control {
     }
   }
 
-  constructor(params: AlertProps) {
+  constructor(params?: AlertProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};

@@ -23,8 +23,11 @@ class CheckBox extends Control {
 
     private itemList: Array<Item> = []
 
-    constructor(params: CheckboxProps) {
+    constructor(params?: CheckboxProps) {
         super()
+        if(!params){
+            return;
+          }
         if(typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }

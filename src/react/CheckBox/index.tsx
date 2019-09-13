@@ -10,14 +10,17 @@ type item = {
   isDisabled?: boolean;
 }
 type CheckBoxProps = {
-  items: item[];
-  value: string[];
+  items?: item[];
+  value?: string[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string[]) => void;
+  onChange?: (value: string[]) => void;
 };
 
-const CheckBox = (props: CheckBoxProps) => {
+const CheckBox = (props?: CheckBoxProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
   const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection;
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
@@ -33,7 +36,9 @@ const CheckBox = (props: CheckBoxProps) => {
     if (!include) {
       value.push(itemValue);
     }
-    props.onChange(value);
+    if(props.onChange){
+      props.onChange(value);
+    }
   };
 
   if (props.isVisible === false || !props.items) {

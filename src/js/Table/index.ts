@@ -46,8 +46,9 @@ export default class Table extends Control {
   private _tableHeaderContainer: HTMLElement
   private _tableBodyContainer: HTMLElement
 
-  constructor(params: TableProps) {
+  constructor(params?: TableProps) {
     super()
+    
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

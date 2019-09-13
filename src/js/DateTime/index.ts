@@ -39,8 +39,11 @@ class DateTime extends Control {
   private _timePicker: TimePicker
   private _time: Date = new Date()
 
-  constructor(params: DateTimeProps = {}) {
+  constructor(params?: DateTimeProps) {
     super();
+    if(!params){
+      return;
+    }
     if (typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }

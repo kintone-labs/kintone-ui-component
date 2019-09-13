@@ -35,7 +35,7 @@ class Attachment extends Control {
   private dropZoneElement: HTMLDivElement;
   private dragEnterCounter = 0;
 
-  constructor(params: AttachmentProps) {
+  constructor(params?: AttachmentProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};

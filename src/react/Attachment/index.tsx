@@ -9,18 +9,23 @@ type FileObject = {
 }
 
 type AttachmentProps = {
-  dropZoneText: string;
-  browseButtonText: string;
-  fileLimitText: string;
-  errorMessage: string;
-  isErrorVisible: boolean;
+  dropZoneText?: string;
+  browseButtonText?: string;
+  fileLimitText?: string;
+  errorMessage?: string;
+  isErrorVisible?: boolean;
   isVisible?: boolean;
-  files: FileObject[];
-  onFilesAdd: (files: FileObject[]) => void;
-  onFileRemove: (files: FileObject[]) => void;
+  files?: FileObject[];
+  onFilesAdd: (files?: FileObject[]) => void;
+  onFileRemove: (files?: FileObject[]) => void;
 };
 
+
+
 const Attachment = (props: AttachmentProps) => {
+  if(!props){
+    return null;
+  }
   if (props.isVisible === false) {
     return null;
   }
@@ -30,7 +35,7 @@ const Attachment = (props: AttachmentProps) => {
   let dragEnterCounter = 0;
 
   const _removeFile = (index: number) => {
-    if (props.onFileRemove) {
+    if (props.onFileRemove && props.files) {
       const files = [...props.files];
       files.splice(index, 1);
       props.onFileRemove(files);
@@ -38,7 +43,7 @@ const Attachment = (props: AttachmentProps) => {
   };
 
   const _addFiles = (event: any) => {
-    if (props.onFilesAdd) {
+    if (props.onFilesAdd && props.files) {
       let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
       addedFiles = Object.keys(addedFiles).map((e) => {
         return addedFiles[e]
@@ -186,5 +191,14 @@ const Attachment = (props: AttachmentProps) => {
     </div>
   );
 };
-
+Attachment.defaultProps={
+  dropZoneText: "",
+  browseButtonText:"",
+  fileLimitText: "",
+  errorMessage: "",
+  isErrorVisible: false,
+  files: [],
+  onFilesAdd: () => {},
+  onFileRemove: () => {},
+}
 export default Attachment;

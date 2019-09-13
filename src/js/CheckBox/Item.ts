@@ -27,7 +27,7 @@ class Item extends Control {
     }
 
     private inputCheckboxElement: HTMLInputElement
-    constructor(params: ItemProps) {
+    constructor(params?: ItemProps) {
         super()
         if (params) {
           this._props = {...this._props, ...params}

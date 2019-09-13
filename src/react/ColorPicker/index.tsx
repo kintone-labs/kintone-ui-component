@@ -15,7 +15,10 @@ type ColorPickerProps = {
 
 let previouseHex: string
 
-function ColorPicker(props: ColorPickerProps) {
+function ColorPicker(props?: ColorPickerProps) {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
   if (props.color && !isHexString(props.color)) {
     throw new Error(Message.colorPicker.INVALID_COLOR)
   }

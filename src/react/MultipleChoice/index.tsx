@@ -11,14 +11,17 @@ type item = {
 }
 
 type MultipleChoiceProps = {
-  items: item[];
-  value: string[];
+  items?: item[];
+  value?: string[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string[]) => void;
+  onChange?: (value: string[]) => void;
 };
 
-const MultipleChoice = (props: MultipleChoiceProps) => {
+const MultipleChoice = (props?: MultipleChoiceProps) => {
+  if(!props || (props && Object.keys(props).length ===0)){
+    return null
+  }
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
     const length = value.length;
@@ -33,7 +36,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     if (!include) {
       value.push(itemValue);
     }
-    props.onChange(value);
+   props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false) {
@@ -52,11 +55,11 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     );
   });
 
-  if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
+  if (props.items && AbstractMultiSelection._hasDuplicatedItems(props.items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
-  if (!AbstractMultiSelection._hasValidValue(props.items, props.value)) {
+  if (props.items && !AbstractMultiSelection._hasValidValue(props.items, props.value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
