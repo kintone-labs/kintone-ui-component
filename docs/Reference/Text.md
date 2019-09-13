@@ -9,7 +9,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
+|options|Object|No|The object contains parameters of constructor.|
 |options.value|String|No|The value of text field. <br> Default value: ''|
 |options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: **false**|
 |options.isVisible|Boolean|No|The text field will be visible. <br> Default value: **true**|
@@ -26,14 +26,14 @@ var text= new kintoneUIComponent.Text({value: 'input text'});
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'input text'};
     };
     render() {
         return (
-            <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <Text value={this.state.value} />
         );
     };
 };
@@ -68,19 +68,19 @@ import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom'
 
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'input text'};
     };
     render() {
         return (
-            <Text value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <Text value={this.state.value} />
         );
     };
 };
 
-ReactDOM.render(<Plugin />,document.getElementById('root'))
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -103,18 +103,23 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({value: 'input text'});
+var btn = new kintoneUIComponent.Button({text: 'Click'});
+
+btn.on('click', function() {
+    text.setValue('set value input text');
+});
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-
-text.setValue('input text');
+body.appendChild(btn.render());
 ```
 **React**
 ```javascript
-import { Text} from '@kintone/kintone-ui-component';
+import {Text, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'input text' };
     };
@@ -122,7 +127,7 @@ export default class Plugin extends React.Component<{}, { value: string }> {
         return (
             <div>
                 <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
-                <button onClick={this.handleClick}>Click</button>
+                <Button text='Click' onClick={this.handleClick} />
             </div>
         );
     };
@@ -163,11 +168,11 @@ console.log(text.getValue());
 ```
 **React**
 ```javascript
-import { Text} from '@kintone/kintone-ui-component';
+import {Text, Button} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'input text' };
     };
@@ -176,7 +181,7 @@ export default class Plugin extends React.Component<{}, { value: string }> {
         return (
             <div>
                 <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
-                <button onClick={this.handleClick}>Click</button>
+                <Button text='Get Value' onClick={this.handleClick} />
             </div>
         );
     };
@@ -223,11 +228,11 @@ text.on('change', function(event) {
 ```
 **React**
 ```javascript
-import { Text} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'input text' };
     };
@@ -244,7 +249,7 @@ export default class Plugin extends React.Component<{}, { value: string }> {
         );
     };
 
-    handleChange = (value: string) => {
+    handleChange = (value) => {
         this.setState({ value });
         console.log('onchange value: ' + value);
     };
@@ -285,8 +290,8 @@ body.appendChild(btn.render());
 import { Text, Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string, isVisible: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Text is visible', isVisible: false };
     };
@@ -326,10 +331,10 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({value: 'input text', isVisible: true});
-var btn = new kintoneUIComponent.Button({ text: 'Hide', type: 'normal' })
+var btn = new kintoneUIComponent.Button({ text: 'Hide', type: 'normal' });
 btn.on('click', function () {
     text.hide();
-})
+});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 body.appendChild(btn.render());
@@ -339,8 +344,8 @@ body.appendChild(btn.render());
 import { Text, Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string, isVisible: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Text is invisible', isVisible: true };
     };
@@ -381,10 +386,10 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({ value: 'Text is disabled' });
-var btn = new kintoneUIComponent.Button({ text: 'Disable', type: 'normal' })
+var btn = new kintoneUIComponent.Button({ text: 'Disable', type: 'normal' });
 btn.on('click', function () {
     text.disable();
-})
+});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 body.appendChild(btn.render());
@@ -394,8 +399,8 @@ body.appendChild(btn.render());
 import { Text, Button } from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Plugin extends React.Component<{}, { value: string, isDisabled: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Text is disabled', isDisabled: false };
     };
@@ -415,8 +420,6 @@ export default class Plugin extends React.Component<{}, { value: string, isDisab
         );
     };
 };
-
-
 ```
 </details>
 
@@ -437,10 +440,10 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({ value: 'Text is enabled', isDisabled: true });
-var btn = new kintoneUIComponent.Button({ text: 'Enabled', type: 'normal' })
+var btn = new kintoneUIComponent.Button({ text: 'Enabled', type: 'normal' });
 btn.on('click', function () {
     text.enable();
-})
+});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 body.appendChild(btn.render());
@@ -450,8 +453,8 @@ body.appendChild(btn.render());
 import { Text, Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Plugin extends React.Component<{}, { value: string, isDisabled: boolean }> {
-    constructor(props: any) {
+export default class Plugin extends React.Component {
+    constructor(props) {
         super(props);
         this.state = { value: 'Text is enabled', isDisabled: true };
     };
