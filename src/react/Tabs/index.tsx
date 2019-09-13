@@ -5,17 +5,21 @@ import Message from '../../constant/Message'
 
 type TabsItem = {
   tabName: string;
-  tabContent: any;
+  tabContent?: any;
   isDisabled?: boolean;
 }
 
 type TabsProps = {
-  items: TabsItem[];
-  value: number;
-  onClickTabItem: (tabIndex: number) => void;
+  items?: TabsItem[];
+  value?: number;
+  onClickTabItem?: (tabIndex: number) => void;
 }
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
+  const _onClickTabItem = (tabIndex: number) => {
+    onClickTabItem && onClickTabItem(tabIndex);
+  };
+
   if (value) {
     if (typeof value !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
@@ -24,8 +28,9 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
   }
+  if (items) {
     const tabNames = (
-        <ul className="kuc-tabs-tab-list">
+      <ul className="kuc-tabs-tab-list">
         {
           items.map((item: TabsItem, tabIndex: number) => {
             if (!item.tabName) {
@@ -51,32 +56,31 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
               <li
                 className={className}
                 key={tabIndex}
-                onClick={() => onClickTabItem(tabIndex)}
+                onClick={() => _onClickTabItem(tabIndex)}
               >
                 {item.tabName}
               </li>
             );
           })
         }
-    </ul>
-  );
-  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
-    if (tabIndex !== value) return undefined;
-
+      </ul>
+    );
+    const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+      if (tabIndex !== value) return undefined;
+      return (
+        <div className="kuc-tabs-tab-contents" key={tabIndex}>
+          <div>{item.tabContent}</div>
+        </div>
+      );
+    });
     return (
-      <div className="kuc-tabs-tab-contents" key={tabIndex}>
-        <div>{item.tabContent}</div>
+      <div className="kuc-tabs-tabs">
+        {tabNames}
+        {tabContents}
       </div>
     );
-
-  });
-  return (
-    <div className="kuc-tabs-tabs">
-      {tabNames}
-      {tabContents}
-    </div>
-  );
-
+  }
+  return null;
 };
 
 export default Tabs;
