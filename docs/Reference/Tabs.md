@@ -135,7 +135,7 @@ Add a tab-pane to end of the list of the tabs.
 | --- | --- | --- | --- |
 |item|	Object|	Yes|	The new tab-pane to be added.|
 |item.tabName|	String|	Yes|	Name of the new tab-pane.|
-|item.tabContent|	String|	No|	Content of the new tab-pane.|
+|item.tabContent|	String or DOM|	No|	Content of the new tab-pane.|
 |item.isDisabled|	Boolean|	No|New tab-pane will be disabled when display. <br>Default value: **false**.|
 
 <details class="tab-container" open>
