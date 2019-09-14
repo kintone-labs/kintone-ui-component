@@ -1,7 +1,7 @@
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 type items = item[]

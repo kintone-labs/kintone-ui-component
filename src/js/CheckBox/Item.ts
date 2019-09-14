@@ -5,14 +5,14 @@ import '../../css/Item.css';
 type ItemData = {
     value: string
     label: string
-    isDisabled: boolean
+    isDisabled?: boolean
 }
 
 type ItemProps = ControlProps & {
     value: string
     label: string
     className?: string;
-    isDisabled: boolean 
+    isDisabled?: boolean 
     isSelected: boolean;
     onChange?: (item: Item) => void;
 }
@@ -40,7 +40,7 @@ class Item extends Control {
         const inputCheckboxID = new Date().getTime() + '-' + this.generateGUID() + '-' + this.generateGUID()
         inputCheckboxElement.type = 'checkbox'
         inputCheckboxElement.checked = this._props.isSelected
-        inputCheckboxElement.disabled = this._props.isDisabled
+        inputCheckboxElement.disabled = this._props.isDisabled || false;
         inputCheckboxElement.id = inputCheckboxID
         
         this.inputCheckboxElement = inputCheckboxElement
@@ -69,7 +69,7 @@ class Item extends Control {
             this.inputCheckboxElement.checked = this._props.isSelected 
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
-            this.inputCheckboxElement.disabled = this._props.isDisabled
+            this.inputCheckboxElement.disabled = this._props.isDisabled || false
         }
     }
 

@@ -7,14 +7,14 @@ import '../../css/RadioButton.css';
 type item = {
   value: string;
   label: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 type RadioButtonProps = {
   name: string;
   value: string;
   items: item[];
-  isVisible: boolean;
-  isDisabled: boolean;
+  isVisible?: boolean;
+  isDisabled?: boolean;
   onChange: (value: string) => void;
 }
 

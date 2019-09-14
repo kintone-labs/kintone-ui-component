@@ -1,4 +1,4 @@
-import { format } from './Locale';
+import { format, en, getSeperator, } from './Locale';
 var getWeekDays = function (date) {
     var startDate = new Date(date);
     startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -18,6 +18,33 @@ var getWeekDayLabels = function (locale) {
     });
     return labels;
 };
+var getMonthLabels = function (locale) {
+    var monthNames = locale.monthNames;
+    var labels = [];
+    monthNames.forEach(function (month) {
+        var label = {};
+        label['label'] = month;
+        label['value'] = month;
+        labels.push(label);
+    });
+    return labels;
+};
+var getYearLabels = function (value, locale) {
+    var currentYear = value.replace('年', '');
+    currentYear = parseInt(value);
+    var years = [];
+    var prefix = '';
+    if (locale !== en) {
+        prefix = '年';
+    }
+    for (var i = (currentYear - 100); i <= (currentYear + 100); i++) {
+        var year = {};
+        year['label'] = i + prefix;
+        year['value'] = i + prefix;
+        years.push(year);
+    }
+    return years;
+};
 var getDisplayingDays = function (date) {
     var startDayOfMonth = new Date(date);
     startDayOfMonth.setDate(1);
@@ -36,16 +63,23 @@ var getDisplayingDays = function (date) {
 var isSameMonth = function (day1, day2) { return day1.getMonth() === day2.getMonth(); };
 var isToday = function (day) { return day.toDateString() === (new Date()).toDateString(); };
 var isSameDate = function (day1, day2) { return day1.toDateString() === day2.toDateString(); };
-var parseStringToDate = function (dateString) {
-    if (isNaN(dateString.split('/')[1]) || isNaN(dateString.split('/')[0]) || isNaN(dateString.split('/')[2])) {
+var parseStringToDate = function (dateString, dateFormat) {
+    var formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
+    var delimiter = getSeperator(formatLowerCase);
+    if (isNaN(dateString.split(delimiter)[1]) || isNaN(dateString.split(delimiter)[0]) || isNaN(dateString.split(delimiter)[2])) {
         return null;
     }
-    var dateData = {
-        date: parseInt(dateString.split('/')[1], 10),
-        month: parseInt(dateString.split('/')[0], 10) - 1,
-        year: parseInt(dateString.split('/')[2], 10)
-    };
-    return new Date(dateData.year, dateData.month, dateData.date);
+    var formatItems = formatLowerCase.split(delimiter);
+    var dateItems = dateString.split(delimiter);
+    var monthIndex = formatItems.indexOf("mm");
+    var dayIndex = formatItems.indexOf("dd");
+    var yearIndex = formatItems.indexOf("yyyy");
+    var day = parseInt(dateItems[dayIndex]);
+    var month = parseInt(dateItems[monthIndex]);
+    month -= 1;
+    var year = parseInt(dateItems[yearIndex]);
+    var formatedDate = new Date(year, month, day);
+    return formatedDate;
 };
 var parseStringToTime = function (timeString) {
     var timeData = {
@@ -60,4 +94,4 @@ var parseStringToTime = function (timeString) {
     result.setMinutes(timeData.minute);
     return result;
 };
-export { getWeekDays, getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, parseStringToTime };
+export { getYearLabels, getMonthLabels, getWeekDays, getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, parseStringToTime };

@@ -4,7 +4,7 @@ import '../../css/Tabs.css';
 declare type TabsItem = {
     tabName: string;
     tabContent: any;
-    isDisabled: boolean;
+    isDisabled?: boolean;
 };
 declare type TabsProps = {
     items: TabsItem[];

@@ -21,7 +21,7 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  value =  new Date(),
+  value = new Date(),
   isDisabled = false,
   isVisible = true,
   onChange = (newDate: Date) => {},
@@ -142,10 +142,11 @@ const DateTime = ({
       newTimeDateValue.setFullYear(value.getFullYear())
       setNewTimeDateValue = true
     }
-    if(setNewTimeDateValue && !pickerDisplay) {
+    if(setNewTimeDateValue && pickerDisplay === 'none') {
       setTimeDateValue(newTimeDateValue)
     }
-  })
+    setInputValue(format(value, dateFormat))
+  }, [value])
 
   if(typeof isDisabled !== 'boolean') {
     isDisabled = false
@@ -180,8 +181,8 @@ const DateTime = ({
                     setHasSelection(false)
                   }
                   if(!showPickerError && hasSelection) {
-                    const temporary = new Date(parseStringToDate(e.target.value) as Date)
-                    const dateValue = new Date(parseStringToDate(e.target.value) as Date)
+                    const temporary = new Date(parseStringToDate(e.target.value, dateFormat) as Date)
+                    const dateValue = new Date(parseStringToDate(e.target.value, dateFormat) as Date)
                     temporary.setSeconds(timeDateValue.getSeconds())
                     temporary.setMinutes(timeDateValue.getMinutes())
                     temporary.setHours(timeDateValue.getHours())
@@ -198,7 +199,7 @@ const DateTime = ({
                 }}
                 value={inputValue}
                 onBlur={(e) => {
-                  const tempDate = parseStringToDate(e.target.value);
+                  const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date|null = null;
                   if (!e.target.value) {
                     const todayDate = new Date()
@@ -219,8 +220,8 @@ const DateTime = ({
                   }
 
                   let relatedTarget = e.relatedTarget ||
-                      e['explicitOriginalTarget'] ||
-                      document.activeElement; // IE11
+                    e['explicitOriginalTarget'] ||
+                    document.activeElement; // IE11
                   const calendar = calendarRef.current as HTMLDivElement
                   if(
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
@@ -293,7 +294,7 @@ const DateTime = ({
               />
             }
           </div>
-  
+
         }
         {
           (type === 'datetime' || type === 'time') &&
@@ -328,8 +329,8 @@ const DateTime = ({
               onBlur={
                 (e)=>{
                   let relatedTarget = e.relatedTarget ||
-                      e['explicitOriginalTarget'] ||
-                      document.activeElement; // IE11
+                    e['explicitOriginalTarget'] ||
+                    document.activeElement; // IE11
                   const timePicker = timeRef.current as HTMLDivElement
                   if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget as HTMLElement)) {
                     setTimePickerDisplay('none');

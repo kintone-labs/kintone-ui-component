@@ -1,6 +1,6 @@
 import Control, { ControlProps } from '../Control';
 import { ItemData } from '../CheckBox/Item';
-import '../../css/Checkbox.css';
+import '../../css/CheckBox.css';
 declare type CheckboxProps = ControlProps & {
     items?: Array<ItemData>;
     value?: Array<string>;

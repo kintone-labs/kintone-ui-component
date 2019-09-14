@@ -51,6 +51,14 @@ var getDateData = function (dateObj, dateCode, locale) {
             if (locale.name === 'ja' || locale.name === 'zh')
                 return dateObj.year + "\u5E74" + (dateObj.month + 1) + "\u6708";
             return locale.monthNames[dateObj.month] + " " + dateObj.year;
+        case 'calendarmonth':
+            if (locale.name === 'ja' || locale.name === 'zh')
+                return dateObj.month + 1 + "\u6708";
+            return "" + locale.monthNames[dateObj.month];
+        case 'calendaryear':
+            if (locale.name === 'ja' || locale.name === 'zh')
+                return dateObj.year + "\u5E74";
+            return "" + dateObj.year;
         default:
             break;
     }
@@ -70,6 +78,12 @@ var format = function (dirtyDate, dateFormat, option) {
         };
         if (dateFormat === 'calendartitle') {
             return getDateData(dateObj_1, 'calendartitle', option.locale);
+        }
+        if (dateFormat === 'calendarmonth') {
+            return getDateData(dateObj_1, 'calendarmonth', option.locale);
+        }
+        if (dateFormat === 'calendaryear') {
+            return getDateData(dateObj_1, 'calendaryear', option.locale);
         }
         var seperator = getSeperator(dateFormat);
         var formattedDate = dateFormat.split(seperator);
@@ -91,4 +105,4 @@ var Locale = {
     availableLocales: availableLocales
 };
 export default Locale;
-export { en, zh, ja, format, availableLocales };
+export { en, zh, ja, format, getSeperator, availableLocales };

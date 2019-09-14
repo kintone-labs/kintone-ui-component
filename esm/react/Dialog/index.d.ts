@@ -5,7 +5,7 @@ declare type DialogProps = {
     header: string | ReactElement;
     content: string | ReactElement;
     footer: string | ReactElement;
-    isVisible: boolean;
+    isVisible?: boolean;
     showCloseButton: boolean;
     onClose: () => void;
 };

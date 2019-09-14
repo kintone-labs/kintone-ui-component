@@ -4,7 +4,7 @@ import '../../css/Dropdown.css';
 declare type item = {
     value: string;
     label: string;
-    isDisabled: boolean;
+    isDisabled?: boolean;
 };
 declare type DropdownProps = {
     value: string;

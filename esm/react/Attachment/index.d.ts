@@ -11,7 +11,7 @@ declare type AttachmentProps = {
     fileLimitText: string;
     errorMessage: string;
     isErrorVisible: boolean;
-    isVisible: boolean;
+    isVisible?: boolean;
     files: FileObject[];
     onFilesAdd: (files: FileObject[]) => void;
     onFileRemove: (files: FileObject[]) => void;

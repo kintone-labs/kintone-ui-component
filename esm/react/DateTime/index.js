@@ -120,10 +120,11 @@ var DateTime = function (_a) {
             newTimeDateValue.setFullYear(value.getFullYear());
             setNewTimeDateValue = true;
         }
-        if (setNewTimeDateValue && !pickerDisplay) {
+        if (setNewTimeDateValue && pickerDisplay === 'none') {
             setTimeDateValue(newTimeDateValue);
         }
-    });
+        setInputValue(format(value, dateFormat));
+    }, [value]);
     if (typeof isDisabled !== 'boolean') {
         isDisabled = false;
     }
@@ -149,8 +150,8 @@ var DateTime = function (_a) {
                                     setHasSelection(false);
                                 }
                                 if (!showPickerError && hasSelection) {
-                                    var temporary = new Date(parseStringToDate(e.target.value));
-                                    var dateValue_1 = new Date(parseStringToDate(e.target.value));
+                                    var temporary = new Date(parseStringToDate(e.target.value, dateFormat));
+                                    var dateValue_1 = new Date(parseStringToDate(e.target.value, dateFormat));
                                     temporary.setSeconds(timeDateValue.getSeconds());
                                     temporary.setMinutes(timeDateValue.getMinutes());
                                     temporary.setHours(timeDateValue.getHours());
@@ -164,7 +165,7 @@ var DateTime = function (_a) {
                                     }, 1);
                                 }
                             }, value: inputValue, onBlur: function (e) {
-                                var tempDate = parseStringToDate(e.target.value);
+                                var tempDate = parseStringToDate(e.target.value, dateFormat);
                                 var returnDate = null;
                                 if (!e.target.value) {
                                     var todayDate = new Date();
