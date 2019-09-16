@@ -171,8 +171,8 @@ Add an item to dropdown list.
 | --- | --- | --- | --- |
 |item|	Object|	Yes|The item will be added to dropdown list.|
 |item.value|String|Yes|The value of an item.|
-|item.label|String|Yes|Display string.|
-|item.isDisabled|Boolean|Yes|Indicate item will be disabled when display. <br>Default value: 'false' |
+|item.label|String|No|Display string.|
+|item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br>Default value: 'false' |
 
 **Returns**
 
