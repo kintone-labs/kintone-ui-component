@@ -27,7 +27,7 @@ class Item extends Control {
   public id: string;
   public value: string;
 
-  constructor(params?: ItemProps) {
+  constructor(params: ItemProps) {
     super();
     if(!params){
       return;

@@ -10,7 +10,7 @@ type item = {
   isDisabled?: boolean;
 }
 type RadioButtonProps = {
-  name?: string;
+  name: string;
   value?: string;
   items?: item[];
   isVisible?: boolean;
@@ -18,7 +18,7 @@ type RadioButtonProps = {
   onChange: (value: string) => void;
 }
 
-const RadioButton = (props?: RadioButtonProps) => {
+const RadioButton = (props: RadioButtonProps) => {
   if(!props || (props && Object.keys(props).length ===0)){
     return null
   }

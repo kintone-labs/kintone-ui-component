@@ -6,7 +6,7 @@ import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import '../../css/RadioButton.css'
 
 type RadioButtonProps = ControlProps & {
-  name?: string;
+  name: string;
   value?: string;
   items?: item[];
   onChange?: (params?: any) => void;
@@ -40,17 +40,19 @@ class RadioButton extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
-    if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
-      throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
-    }
-
-    if (
-      !AbstractSingleSelection._hasValidValue(
-        this._props.items,
-        this._props.value
-      )
-    ) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
+    if(this._props.items){
+      if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
+        throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+      }
+  
+      if (
+        !AbstractSingleSelection._hasValidValue(
+          this._props.items,
+          this._props.value
+        )
+      ) {
+        throw new Error(Message.common.INVALID_ARGUMENT);
+      }
     }
     this.element = document.createElement('div');
     this.element.className = 'kuc-input-radio';
