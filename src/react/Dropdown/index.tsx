@@ -108,5 +108,5 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
     </div>
   );
 };
-Dropdown.defaultProps={};
+
 export default Dropdown;
