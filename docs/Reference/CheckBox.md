@@ -18,7 +18,7 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items which will be displayed on checkbox.|
-|options.items[].value|String|Yes|String value of item <br> If the value is duplicate, the error message will be displayed|
+|options.items[].value|String|Conditional|String value of item. This is required if <b>options.items[]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
 |options.items[].label|String|No|	String label of item|
 |options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
 |options.value|Array<String>|No|List of checked item.|
