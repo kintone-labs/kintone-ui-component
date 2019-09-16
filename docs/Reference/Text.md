@@ -126,12 +126,12 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
-                <Button text='Click' onClick={this.handleClick} />
+                <Text value={this.state.value} />
+                <Button text='Click' onClick={this.setValue} />
             </div>
         );
     };
-    handleClick = () => {
+    setValue = () => {
         this.setState({
             value: 'set value'
         });
@@ -180,13 +180,13 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <Text value={this.state.value} onChange={(value) => { this.setState({ value }) }} />
-                <Button text='Get Value' onClick={this.handleClick} />
+                <Text value={this.state.value} />
+                <Button text='Get Value' onClick={this.getValue} />
             </div>
         );
     };
 
-    handleClick = () => {
+    getValue = () => {
         console.log(this.state.value);
     };
 };
@@ -241,15 +241,17 @@ export default class Plugin extends React.Component {
         return (
             <Text 
                 value={this.state.value}
-                onChange={this.handleChange.bind(this)}
-                onClick={() => { 
-                    console.log('click');
-                }} 
+                onChange={this.onChange.bind(this)}
+                onClick={this.onClick} 
             />
         );
     };
 
-    handleChange = (value) => {
+    onClick = () => {
+        console.log('click');
+    };
+
+    onChange = (value) => {
         this.setState({ value });
         console.log('onchange value: ' + value);
     };
@@ -296,6 +298,9 @@ export default class Plugin extends React.Component {
         this.state = { value: 'Text is visible', isVisible: false };
     };
 
+    show = () => {
+        this.setState({ isVisible: true });
+    };
     render() {
         return (
             <div>
@@ -303,9 +308,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Show'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isVisible: true })
-                    }}
+                    onClick={this.show}
                 />
             </div>
         );
@@ -350,6 +353,9 @@ export default class Plugin extends React.Component {
         this.state = { value: 'Text is invisible', isVisible: true };
     };
 
+    hide = () => {
+        this.setState({ isVisible: false });
+    };
     render() {
         return (
             <div>
@@ -357,9 +363,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Hide'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isVisible: false })
-                    }}
+                    onClick={this.hide}
                 />
             </div>
         );
@@ -404,7 +408,9 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = { value: 'Text is disabled', isDisabled: false };
     };
-
+    disable = () => {
+        this.setState({isDisabled: true });
+    };
     render() {
         return (
             <div>
@@ -412,9 +418,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Disable'
                     type='normal'
-                    onClick={() => {
-                        this.setState({isDisabled: true })
-                    }}
+                    onClick={this.disable}
                 />
             </div>
         );
@@ -458,6 +462,9 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = { value: 'Text is enabled', isDisabled: true };
     };
+    enable = () => {
+        this.setState({isDisabled: false });
+    };
 
     render() {
         return (
@@ -466,9 +473,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Enabled'
                     type='normal'
-                    onClick={() => {
-                        this.setState({isDisabled: false })
-                    }}
+                    onClick={this.enable}
                 />
             </div>
         );
