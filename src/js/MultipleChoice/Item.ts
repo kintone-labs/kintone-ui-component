@@ -3,14 +3,14 @@ import { mdiCheckBold } from '@mdi/js'
 import '../../css/Item.css';
 
 type ItemData = {
-    value: string
-    label: string
+    value?: string
+    label?: string
     isDisabled?: boolean
 }
 
 type ItemProps = ControlProps & {
-    value: string
-    label: string
+    value?: string
+    label?: string
     className?: string;
     isDisabled?: boolean 
     isSelected: boolean;
@@ -49,7 +49,7 @@ class Item extends Control {
         spanIconCheckElement.appendChild(this._createCheckIconEl());
         const spanListItemLabelElement = document.createElement('span');
         spanListItemLabelElement.className = 'kuc-list-item-label'; 
-        spanListItemLabelElement.append(this._props.label);
+        this._props.label ? spanListItemLabelElement.append(this._props.label) : ""
         this.element.appendChild(spanIconCheckElement);
         this.element.appendChild(spanListItemLabelElement);
 
@@ -92,7 +92,7 @@ class Item extends Control {
 
 
     getValue(){
-        return this._props.value;
+        return this._props.value || "";
     }
 
     select() {

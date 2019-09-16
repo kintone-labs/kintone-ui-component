@@ -9,7 +9,7 @@ import '../../css/MultipleChoice.css'
 type MultipleChoiceProps = ControlProps & {
     items?: Array<ItemData>
     value?: Array<string>
-    onChange: (value: Array<string> | undefined) => void
+    onChange?: (value: Array<string> | undefined) => void
 }
 
 class MultipleChoice extends Control {
@@ -116,7 +116,7 @@ class MultipleChoice extends Control {
             const removeItem = this._props.items.splice(index, 1)
             this.itemList.splice(index, 1)
             this.element.childNodes[index].remove()
-            const removeItemValue = removeItem[0].value
+            const removeItemValue = removeItem[0].value || ""
             if(this._props.value) {
                 const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
                 if(selectedRemoveIndex > -1) {
@@ -191,7 +191,7 @@ class MultipleChoice extends Control {
 
         if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
             let selected = false;
-            if(this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
+            if(this._props.value && this._props.value.indexOf((this._props.items[this._props.items.length - 1].value) || "")) {
                 selected = true
             }
             let itemComponent = new Item({

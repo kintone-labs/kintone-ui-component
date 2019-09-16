@@ -9,7 +9,7 @@ import '../../css/CheckBox.css'
 type CheckboxProps = ControlProps & {
     items?: Array<ItemData> 
     value?: Array<string>
-    onChange: (value?: Array<string>) => void
+    onChange?: (value?: Array<string>) => void
 }
 
 class CheckBox extends Control {
