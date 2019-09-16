@@ -13,6 +13,8 @@ sidebar_label: Alert
 |2|Error alert|
 |3|Display text|
 
+
+
 ## Constructor
 **Parameter**
 
@@ -27,9 +29,14 @@ sidebar_label: Alert
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -39,10 +46,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 ```
 </details>
 
@@ -61,9 +64,16 @@ Dom element
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+```
+
 **React**
 ```javascript
-import { Alert} from 'kintone-ui-component';
+import { Alert} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -73,13 +83,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
 ```
 </details>
 
@@ -99,9 +102,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.setText('Network error');
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -111,14 +122,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.setText('Network error');
 ```
 </details>
 
@@ -138,9 +141,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.setType('success');
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -150,15 +161,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.setType('success');
 ```
 </details>
 
@@ -179,9 +181,19 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.on('click', function(event) {
+    console.log('on click');
+});
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -194,16 +206,6 @@ export default class Plugin extends React.Component {
         console.log('click');
    }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.on('click', function(event) {
-    console.log('on click');
-});
 ```
 </details>
 
@@ -221,9 +223,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.show();
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -233,14 +243,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.show();
 ```
 </details>
 
@@ -258,9 +260,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.hide();
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -270,14 +280,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.hide();
 ```
 </details>
 
@@ -295,9 +297,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.disable();
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -307,14 +317,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.disable();
 ```
 </details>
 
@@ -332,9 +334,17 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```javascript
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(alert.render());
+alert.enable();
+```
+
 **React**
 ```javascript
-import { Alert } from 'kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -344,13 +354,5 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
-```
-**Javascript**
-```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.enable();
 ```
 </details>

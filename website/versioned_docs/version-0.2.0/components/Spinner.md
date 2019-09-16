@@ -1,7 +1,8 @@
 ---
-id: spinner
+id: version-0.2.0-spinner
 title: Spinner
 sidebar_label: Spinner
+original_id: spinner
 ---
 
 ## Overview

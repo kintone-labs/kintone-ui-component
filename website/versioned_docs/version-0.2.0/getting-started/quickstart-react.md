@@ -1,7 +1,8 @@
 ---
-id: quickstart-react
+id: version-0.2.0-quickstart-react
 title: Quickstart React
 sidebar_label: Quickstart React
+original_id: quickstart-react
 ---
 
 ## Requirement

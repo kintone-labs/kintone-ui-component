@@ -1,7 +1,8 @@
 ---
-id: checkbox
+id: version-0.2.0-checkbox
 title: CheckBox
 sidebar_label: CheckBox
+original_id: checkbox
 ---
 
 ## Overview

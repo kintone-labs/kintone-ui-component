@@ -1,7 +1,8 @@
 ---
-id: table
+id: version-0.2.0-table
 title: Table
 sidebar_label: Table
+original_id: table
 ---
 
 ## Overview

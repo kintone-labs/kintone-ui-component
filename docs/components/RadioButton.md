@@ -34,40 +34,6 @@ sidebar_label: RadioButton
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
-**React**
-```
-import { RadioButton } from 'kintone-ui-component';
-import React from 'react';
-   
-export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        var items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items, value: 'Lemon'};
-    }
-    render() {
-        return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-        );
-    }
-}
-```
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -92,26 +58,9 @@ var radioBtn = new kintoneUIComponent.RadioButton({
     value: 'Banana'
 });
 ```
-</details>
-
-## Methods
-### render()
-Get dom element of component.
-
-**Parameter**
-
-None
-
-**Returns**
-
-Dom element
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -143,6 +92,23 @@ export default class Plugin extends React.Component {
     }
 }
 ```
+</details>
+
+## Methods
+### render()
+Get dom element of component.
+
+**Parameter**
+
+None
+
+**Returns**
+
+Dom element
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -170,6 +136,40 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 ```
+**React**
+```
+import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        var items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {items: items, value: 'Lemon'};
+    }
+    render() {
+        return (
+            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        );
+    }
+}
+```
 </details>
 
 ### addItem(item)
@@ -191,10 +191,34 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+     name: "fruit",
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            }
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
+```
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -227,30 +251,6 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            }
-        ],
-    value: 'Banana'
-});
-
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
-
-radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
-```
 </details>
 
 ### removeItem(index)
@@ -269,9 +269,38 @@ None
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+     name: "fruit",
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.removeItem(0);
+```
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -310,35 +339,6 @@ export default class Plugin extends React.Component {
 }
 
 ```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ],
-    value: 'Banana'
-});
-
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
-
-radioBtn.removeItem(0);
-```
 </details>
 
 ### getItems()
@@ -362,9 +362,41 @@ The list contains all items of dropdown.
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
+**Javascript**
+```
+var radioBtn = new kintoneUIComponent.RadioButton({
+     name: "fruit",
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+ 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(radioBtn.render());
+
+var items = radioBtn.getItems();
+items.forEach(function(item) {
+    console.log(item);
+});
+```
 **React**
 ```
-import { DropDown } from 'kintone-ui-component';
+import { DropDown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -407,6 +439,26 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### getValue()
+Get the selected item in radio button.
+
+**Parameter**
+
+None
+
+**Returns**
+
+|Name|Type|Description|
+|---|---|---|
+|value|	String	|The value of the selected item|
+
+
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -430,39 +482,16 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-var items = radioBtn.getItems();
-items.forEach(function(item) {
-    console.log(item);
-});
+radioBtn.getValue();
 ```
-</details>
-
-### getValue()
-Get the selected item in radio button.
-
-**Parameter**
-
-None
-
-**Returns**
-
-|Name|Type|Description|
-|---|---|---|
-|value|	String	|The value of the selected item|
-
-
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -506,6 +535,24 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### setValue(value)
+Set the selected item for radio button.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|value|String|	Yes|Selected value in radio button.|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -533,29 +580,11 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.getValue();
+radioBtn.setValue('Lemon');
 ```
-</details>
-
-### setValue(value)
-Set the selected item for radio button.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|Selected value in radio button.|
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -599,7 +628,26 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### disableItem(value)
+Set the disabled item for the radio button.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|value|String|	Yes|The value of an item in radio button.|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
+
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
@@ -626,30 +674,12 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.setValue('Lemon');
+radioBtn.disableItem('Orange');
 ```
-</details>
-
-### disableItem(value)
-Set the disabled item for the radio button.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|The value of an item in radio button.|
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -695,8 +725,25 @@ export default class Plugin extends React.Component {
     }
 }
 ```
-**Javascript**
+</details>
 
+### enableItem(value)
+Set the enabled item for radio button.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|value|String|	Yes|Selected value in radio button.|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
      name: "fruit",
@@ -719,33 +766,15 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
-
+ 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.disableItem('Orange');
+radioBtn.enableItem('Banana');
 ```
-</details>
-
-### enableItem(value)
-Set the enabled item for radio button.
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|Selected value in radio button.|
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -792,6 +821,26 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+
+### on(eventName, callBack)
+Register callback for change event
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|eventName|	String|	Yes|Name of event: <ul><li>'change'</li></ul>|
+|callback|function |Yes|callback|
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -815,35 +864,17 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.enableItem('Banana');
+radioBtn.on('change', function(value) {
+    console.log('on change');
+});
 ```
-</details>
-
-
-### on(eventName, callBack)
-Register callback for change event
-
-**Parameter**
-
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|eventName|	String|	Yes|Name of event: <ul><li>'change'</li></ul>|
-|callback|function |Yes|callback|
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -885,6 +916,22 @@ export default class Plugin extends React.Component {
 
 
 ```
+</details>
+
+### show()
+Display the radio button.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -908,33 +955,15 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
-
+ 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.on('change', function(value) {
-    console.log('on change');
-});
+radioBtn.show();
 ```
-</details>
-
-### show()
-Display the radio button.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -971,6 +1000,22 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### hide()
+Hide the radio button.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -994,31 +1039,15 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.show();
+radioBtn.hide();
 ```
-</details>
-
-### hide()
-Hide the radio button.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1055,6 +1084,22 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### disable()
+Disabled the radio button.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -1078,32 +1123,16 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
-
+ 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.hide();
+radioBtn.disable();
 ```
-</details>
-
-### disable()
-Disabled the radio button.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1143,6 +1172,22 @@ export default class Plugin extends React.Component {
 }
 
 ```
+</details>
+
+### enable()
+Enabled the radio button.
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
 **Javascript**
 ```
 var radioBtn = new kintoneUIComponent.RadioButton({
@@ -1166,32 +1211,16 @@ var radioBtn = new kintoneUIComponent.RadioButton({
         ],
     value: 'Banana'
 });
- 
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(radioBtn.render());
 
-radioBtn.disable();
+radioBtn.enable();
 ```
-</details>
-
-### enable()
-Enabled the radio button.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
 **React**
 ```
 
-import { RadioButton } from 'kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -1230,34 +1259,5 @@ export default class Plugin extends React.Component {
         }
 }
 
-```
-**Javascript**
-```
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ],
-    value: 'Banana'
-});
-
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
-
-radioBtn.enable();
 ```
 </details>

@@ -7,9 +7,12 @@
     ],
     "API Reference": [
       "components/alert",
+      "components/attachment",
       "components/button", 
       "components/checkbox",
+      "components/dialog",
       "components/dropdown",
+      "components/fieldgroup",
       "components/iconbutton",
       "components/label",
       "components/multiplechoice",
@@ -17,7 +20,8 @@
       "components/radiobutton",
       "components/spinner",
       "components/table",
-      "components/text"
+      "components/text",
+      "components/textarea"
     ]
   }
 }

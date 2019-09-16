@@ -1,7 +1,8 @@
 ---
-id: text
+id: version-0.2.0-text
 title: Text
 sidebar_label: Text
+original_id: text
 ---
 
 ## Overview

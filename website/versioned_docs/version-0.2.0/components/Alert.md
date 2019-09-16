@@ -1,16 +1,20 @@
 ---
-id: button
-title: Button
-sidebar_label: Button
+id: version-0.2.0-alert
+title: Alert
+sidebar_label: Alert
+original_id: alert
 ---
 
 ## Overview
-![Button](assets/button.PNG)
+![Favicon](assets/alert.PNG)
 
 |Number|	Description|
 | --- | --- |
-|1|	Normal button|	
-|2|Submit button|
+|1|Success alert|	
+|2|Error alert|
+|3|Display text|
+
+
 
 ## Constructor
 **Parameter**
@@ -18,30 +22,28 @@ sidebar_label: Button
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
-|options.text|String|No|Text will be displayed in button.|
-|options.type|String|No|Style of the button: <ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
-|options.isDisabled|Boolean|No|The button will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The button will be visible. <br>  Default value: 'true'|
+|options.text|String|Yes|The content of alert.|
+|options.type|String|No|The type of alert: <ul><li> 'error' </li><li> 'success' </li></ul> Default value is 'error'. |
+|options.isDisabled|Boolean|No|The alert will be disabled. <br> Default value: 'false'|
+|options.isVisible|Boolean|No|The alert will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({
-    text: 'Submit',
-    type: 'submit'
-});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 ```
+
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='submit' isDisabled={false} isVisible={true} />
+            <Alert text='Network error' type='error'/>
         );
     }
 }
@@ -65,20 +67,20 @@ Dom element
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
+body.appendChild(alert.render());
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='submit' isDisabled={false} isVisible={true} />
+            <Alert text='Network error' type='error'/>
         );
     }
 }
@@ -86,13 +88,13 @@ export default class Plugin extends React.Component {
 </details>
 
 ### setText(text)
-Set displayed text in button.
+Set the content of alert.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|text|	String|	Yes|Display text in button|
+|text|	String|	Yes|The content of alert. <br> If text is undefined, null or true, The alert will be displayed blank.|
 
 **Returns**
 
@@ -103,21 +105,21 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.setText('submit');
+body.appendChild(alert.render());
+alert.setText('Network error');
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='normal' />
+            <Alert text='Network error' type='error'/>
         );
     }
 }
@@ -125,13 +127,13 @@ export default class Plugin extends React.Component {
 </details>
 
 ### setType(type)
-Set the displayed type for button.
+Set the type of alert.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|Style of the button:<ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
+|type|	String|	No| The type of alert. <ul><li>"success": success alert.</li><li>"error": error alert </li></ul> Default value is "error".|
 
 **Returns**
 
@@ -142,29 +144,29 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.setType('normal');
+body.appendChild(alert.render());
+alert.setType('success');
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text='Submit' type='normal' />
+            <Alert text='Network error' type='error'/>
         );
     }
 }
 ```
 </details>
 
-### on(eventName, callback)
-Register callback for click event
+### on(eventName, callBack)
+The callBack function will be execute after user click the alert.
 
 **Parameter**
 
@@ -182,35 +184,34 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.on('click', function(event) {
+body.appendChild(alert.render());
+alert.on('click', function(event) {
     console.log('on click');
 });
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button onClick={this.handleButtonClick} />
+            <Alert text='Network error' type='error' onClick={this.handleClick}/>
         );
     }
- 
-    handleButtonClick(event) {
-        console.log('on click');
-    }
+   handleClick(){
+        console.log('click');
+   }
 }
 ```
 </details>
 
 ### show()
-Display button.
+Display the Alert.
 
 **Parameter**
 
@@ -225,21 +226,21 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.show();
+body.appendChild(alert.render());
+alert.show();
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text="button" isVisible={true} />
+            <Alert text='Network error' type='error' isVisible={true}/>
         );
     }
 }
@@ -247,7 +248,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### hide()
-Hide button.
+Hide the Alert.
 
 **Parameter**
 
@@ -262,21 +263,21 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.hide();
+body.appendChild(alert.render());
+alert.hide();
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text="button" isVisible={false} />
+            <Alert text='Network error' type='error' isVisible={false}/>
         );
     }
 }
@@ -284,7 +285,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### disable()
-Disable button.
+Disable the Alert.
 
 **Parameter**
 
@@ -299,21 +300,21 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.disable();
+body.appendChild(alert.render());
+alert.disable();
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text="button" isDisabled={true} />
+            <Alert text='Network error' type='error' isDisabled={true}/>
         );
     }
 }
@@ -321,7 +322,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### enable()
-Enable button.
+Enable the Alert.
 
 **Parameter**
 
@@ -336,21 +337,21 @@ None
 
 **Javascript**
 ```javascript
-var button = new kintoneUIComponent.Button({text: 'button'});
+var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(button.render());
-button.enable();
+body.appendChild(alert.render());
+alert.enable();
 ```
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Button text="button" isDisabled={false} />
+            <Alert text='Network error' type='error' isDisabled={false}/>
         );
     }
 }
