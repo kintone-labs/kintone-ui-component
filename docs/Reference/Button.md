@@ -178,7 +178,7 @@ export default class Plugin extends React.Component {
         return (
            <div>
                 <Button text={this.state.text} type={this.state.type} />
-                <button onClick={()=>this.setType("submit")}>setText</button>
+                <button onClick={()=>this.setType("submit")}>Set Type</button>
            </div>
         );
     }
