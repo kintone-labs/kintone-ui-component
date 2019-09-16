@@ -29,16 +29,17 @@ const RadioButton = (props?: RadioButtonProps) => {
   if (props.isVisible === false) {
     return null;
   }
-  if(!props.items || !props.value){
+  if(!props || (props && Object.keys(props).length) === 0){
     return null;
   }
-  if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
-    throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+  if(props.items){
+    if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
+      throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+    }
+    if (props.value && !AbstractSingleSelection._hasValidValue(props.items, props.value)) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
   }
-  if (!AbstractSingleSelection._hasValidValue(props.items, props.value)) {
-    throw new Error(Message.common.INVALID_ARGUMENT);
-  }
-
   const items = props.items && props.items.map((item, i) => {
     return (
       <Item

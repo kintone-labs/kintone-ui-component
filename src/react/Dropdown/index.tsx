@@ -6,8 +6,8 @@ import '../../css/font.css'
 import '../../css/Dropdown.css';
 
 type item = {
-  value: string;
-  label: string;
+  value?: string;
+  label?: string;
   isDisabled?: boolean;
 }
 type DropdownProps = {
@@ -19,7 +19,7 @@ type DropdownProps = {
 }
 
 const Dropdown = (props?: DropdownProps) => {
-  if(!props || (props&& Object.keys(props).length === 0)){
+  if(!props || (props && Object.keys(props).length === 0)){
     return null;
   }
   let {value="", items=[], isVisible, isDisabled, onChange = () => {}}=props;
@@ -53,14 +53,15 @@ const Dropdown = (props?: DropdownProps) => {
   if (isVisible === false) {
     return null;
   }
-
   if (_hasDuplicatedItems(items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
-
+  
   if (!_hasValidValue(items, value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
+  
+
 
   const listItemEl = items.map((item: item, i) => {
     return (
@@ -69,7 +70,7 @@ const Dropdown = (props?: DropdownProps) => {
         selected={value === item.value}
         onClick={(item_prop) => {
           _handleItemClick(item_prop, onChange); _hideItems();
-        }}
+        }} 
         item={item}
         isDisabled={item.isDisabled}
       />

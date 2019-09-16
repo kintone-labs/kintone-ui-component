@@ -1,6 +1,6 @@
 type ItemData = {
-  value: string
-  label: string
+  value?: string
+  label?: string
   isDisabled?: boolean
 }
 
@@ -9,10 +9,10 @@ const _hasDuplicatedItems = (items: Array<ItemData>) => {
     let isUnique = true;
     if (items) {
       items.forEach((val) => {
-        if (typeof (unique[val.value]) !== 'undefined') {
+        if (val.value && typeof (unique[val.value]) !== 'undefined') {
           isUnique = false;
         }
-        unique[val.value] = 0;
+       val.value ? unique[val.value] = 0 : "";
       });
     }
   
@@ -22,7 +22,7 @@ const _hasDuplicatedItems = (items: Array<ItemData>) => {
   const _hasValidValue = (items: Array<ItemData>, value: string | Array<string>) => {
     const validValues: string[] = [];
     items.forEach((item) => {
-      validValues.push(item.value);
+      item.value ? validValues.push(item.value) : "";
     });
   
     if (value === undefined) {

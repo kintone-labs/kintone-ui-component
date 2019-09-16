@@ -76,7 +76,7 @@ type TableCellActionsProps = {
   dispatch: (newState: DispatchParams) => void
 }
 type RowEventProps = {
-  data: object[], 
+  data?: object[], 
   rowIndex: number, 
   defaultRowData?: object
 }

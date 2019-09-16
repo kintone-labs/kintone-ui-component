@@ -6,9 +6,9 @@ import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import '../../css/RadioButton.css'
 
 type RadioButtonProps = ControlProps & {
-  name: string;
-  value: string;
-  items: item[];
+  name?: string;
+  value?: string;
+  items?: item[];
   onChange?: (params?: any) => void;
 };
 
@@ -55,7 +55,7 @@ class RadioButton extends Control {
     this.element = document.createElement('div');
     this.element.className = 'kuc-input-radio';
     this.itemComps =
-      this._props.items &&
+      this._props.items ?
       this._props.items.map(item => {
         const newItem = new Item({
           selected: this._props.value === item.value,
@@ -67,7 +67,7 @@ class RadioButton extends Control {
         });
         newItem.on('change', this._handleItemClick);
         return newItem;
-      });
+      }) : [] 
     this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
@@ -96,7 +96,7 @@ class RadioButton extends Control {
     while (this.element.firstChild)
       this.element.removeChild(this.element.firstChild);
     this.itemComps =
-      this._props.items &&
+      this._props.items ?
       this._props.items.map(item => {
         const newItem = new Item({
           selected: this._props.value === item.value,
@@ -108,14 +108,14 @@ class RadioButton extends Control {
         });
         newItem.on('change', this._handleItemClick);
         return newItem;
-      });
+      }) : [] ;
     this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
   }
 
   setValue(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
       }
@@ -131,20 +131,20 @@ class RadioButton extends Control {
   }
 
   addItem(item: item) {
-    this._props.items.push(item);
+    this._props.items && this._props.items.push(item);
     this.rerender(['item']);
   }
 
   removeItem(index: number) {
-    if (this._props.items.length <= index) {
+    if (this._props.items && this._props.items.length <= index) {
       return false;
     }
-    this._props.items.splice(index, 1);
+    this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);
   }
 
   disableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
       }
@@ -153,7 +153,7 @@ class RadioButton extends Control {
   }
 
   enableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;
       }

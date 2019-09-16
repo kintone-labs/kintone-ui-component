@@ -2,8 +2,8 @@ import React from 'react';
 
 type AttachmentFileItemProps = {
   index: number;
-  fileName: string;
-  fileSize: number;
+  fileName?: string;
+  fileSize?: number;
   onFileRemove: (index: number) => void;
 }
 
@@ -32,7 +32,7 @@ const AttachmentFileItem = ({index, fileName, fileSize, onFileRemove}: Attachmen
       <div className="kuc-attachment_file_action">
         <button type="button" onClick={_removeFile} />
       </div>
-      <div className="kuc-attachment_file_size">{_formatFileSize(fileSize)}</div>
+      <div className="kuc-attachment_file_size">{fileSize ? _formatFileSize(fileSize):null}</div>
       <div className="kuc-attachment_clearer" />
     </div>
   );

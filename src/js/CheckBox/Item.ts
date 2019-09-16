@@ -3,14 +3,14 @@ import Control, {ControlProps} from '../Control';
 import '../../css/Item.css';
 
 type ItemData = {
-    value: string
-    label: string
+    value?: string 
+    label?: string
     isDisabled?: boolean
 }
 
 type ItemProps = ControlProps & {
-    value: string
-    label: string
+    value?: string
+    label?: string
     className?: string;
     isDisabled?: boolean 
     isSelected: boolean;
@@ -45,10 +45,11 @@ class Item extends Control {
         
         this.inputCheckboxElement = inputCheckboxElement
         this.element.appendChild(inputCheckboxElement)
-
+        
+        let { label = "" }=this._props;
         const labelForCheckboxElement = document.createElement('label')
         labelForCheckboxElement.htmlFor = inputCheckboxID;
-        labelForCheckboxElement.append(this._props.label)
+        labelForCheckboxElement.append(label)
         this.element.appendChild(labelForCheckboxElement)
         
         this.inputCheckboxElement.addEventListener('change', (e) => {
@@ -75,7 +76,7 @@ class Item extends Control {
 
 
     getValue(){
-        return this._props.value;
+        return this._props.value || "";
     }
 
     select() {

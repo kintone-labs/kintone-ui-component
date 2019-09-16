@@ -2,7 +2,7 @@ import Control, {ControlProps} from '../Control';
 import '../../css/Alert.css';
 
 type AlertProps = ControlProps & {
-  text: string;
+  text?: string;
   type?: string;
 }
 
@@ -30,9 +30,8 @@ class Alert extends Control {
     super.rerender();
 
     if (!changedAttr) return;
-
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text;
+      this.element.innerHTML = this._props.text || "";
     }
 
     if (changedAttr.indexOf('type') !== -1) {

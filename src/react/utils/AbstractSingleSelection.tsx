@@ -1,13 +1,14 @@
 type item = {
-  value: string;
-  label: string;
+  value?: string;
+  label?: string;
   isDisabled?: boolean;
 }
 
 type items = item[]
 
 const _handleItemClick = (item: item, onChange: (value: string) => void) => {
-  const value = item.value;
+
+  const value = item.value || "";
   onChange(value);
 };
 
@@ -16,10 +17,10 @@ const _hasDuplicatedItems = (items: items) => {
   let isUnique = true;
   if (items) {
     items.forEach((val: item) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
+      if (val.value && typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
-      unique[val.value] = 0;
+      val.value ? unique[val.value] = 0 : {}
     });
   }
   return !isUnique;

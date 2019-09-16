@@ -5,7 +5,7 @@ import Picker, {PickerProps} from './components/Picker'
 import Message from '../../constant/Message'
 
 type ColorPickerProps = ControlProps & {
-  color: string;
+  color?: string;
   onChange?: (color: string) => void;
 }
 
@@ -35,7 +35,8 @@ class ColorPicker extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    if (!isHexString(this._props.color)) {
+    let { color = "#ff0000" }= this._props;
+    if (!isHexString(color)) {
       throw new Error(Message.colorPicker.INVALID_COLOR)
     }
 
@@ -43,7 +44,7 @@ class ColorPicker extends Control {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
     
-    this.oldColor = this._props.color;
+    this.oldColor = color;
     this.focus = false;
     this.element = document.createElement('div');
     this._renderInput();
@@ -53,17 +54,18 @@ class ColorPicker extends Control {
   }
 
   private _renderInput() {
+    let { color = "#ff0000" }= this._props;
     const inputContainer = document.createElement('div');
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
-    this.inputElement.value = this._props.color;
+    this.inputElement.value = color;
     if(this._props.isDisabled) {
       this.inputElement.disabled = this._props.isDisabled
     }
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
-        this._props.color = (e.target as HTMLInputElement).value;
+        color = (e.target as HTMLInputElement).value;
         this.rerender(['color', 'redraw']);
       }
     };
@@ -85,20 +87,22 @@ class ColorPicker extends Control {
   }
 
   private _renderPicker() {
+    let { color = "#ff0000" }= this._props;
+
     this.Picker = new Picker({
-      hexString: this._props.color,
+      hexString: color,
       onAccept: (hexString: string) => {
-        this._props.color = hexString;
+        color = hexString;
         this.oldColor = hexString;
         this.rerender(['color']);
-        this._props.onChange && this._props.onChange(this._props.color);
+        this._props.onChange && this._props.onChange(color);
       },
       onCancel: () => {
-        this._props.color = this.oldColor;
+        color = this.oldColor;
         this.rerender(['color', 'redraw']);
       },
       onChange: (hexString: string, triggerOnChange: boolean) => {
-        this._props.color = hexString;
+        color = hexString;
         if (triggerOnChange) {
           this.rerender(['color', 'redraw']);
         } else {
@@ -110,12 +114,13 @@ class ColorPicker extends Control {
   }
 
   rerender(changedAttr?: string[]) {
+    let { color = "#ff0000" }= this._props;
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('color') !== -1) {
-      this.inputElement.value = this._props.color;
+      this.inputElement.value = color;
       const inputStyle = this.getInputStyle();
-      this.Picker.setRGB(this._props.color);
+      this.Picker.setRGB(color);
       Object.assign(this.inputElement.style, inputStyle);
     }
 
@@ -127,7 +132,7 @@ class ColorPicker extends Control {
     }
 
     if (changedAttr.indexOf('redraw') !== -1) {
-      this.Picker.setHexString(this._props.color);
+      this.Picker.setHexString(color);
     }
   }
 
@@ -142,13 +147,15 @@ class ColorPicker extends Control {
   }
 
   getColor(): string {
-    return this._props.color;
+    let { color = "#ff0000" }= this._props;
+    return color;
   }
 
   getInputStyle() {
+    let { color = "#ff0000" }= this._props;
     let style = {
-      backgroundColor: this._props.color,
-      color: invertColor(this._props.color)
+      backgroundColor: color,
+      color: invertColor(color)
     };
 
     style = {...style, ...ColorPickerStyle.input};

@@ -4,8 +4,10 @@ import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
 import '../../css/CheckBox.css'
 
+
+
 type CheckboxProps = ControlProps & {
-    items?: Array<ItemData>
+    items?: Array<ItemData> 
     value?: Array<string>
     onChange: (value?: Array<string>) => void
 }
@@ -63,12 +65,13 @@ class CheckBox extends Control {
     
     private _validator(): string | undefined {
         let err
-        if (this._props.items && AbstractMultiSelection._hasDuplicatedItems(this._props.items)) {
+        let { items=[] }= this._props;
+        if (AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE
         }
         
-        if (this._props.items && this._props.value && 
-            !AbstractMultiSelection._hasValidValue(this._props.items, this._props.value)
+        if (items && this._props.value && 
+            !AbstractMultiSelection._hasValidValue(items, this._props.value)
         ) {
             err = Message.common.INVALID_ARGUMENT
         }
@@ -115,7 +118,7 @@ class CheckBox extends Control {
                 const removeItem = this._props.items.splice(index, 1)
                 this.itemList.splice(index, 1)
                 this.element.childNodes[index].remove()
-                const removeItemValue = removeItem[0].value
+                let removeItemValue =removeItem[0].value ? removeItem[0].value: "";
                 const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
                 if(selectedRemoveIndex > -1) {
                     this._props.value.splice(selectedRemoveIndex, 1)
@@ -191,8 +194,12 @@ class CheckBox extends Control {
         }
 
         if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-            let selected = false;
-            if(this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
+            let selected = false;      
+            let lastItem =this._props.items[this._props.items.length - 1].value;
+            if(!lastItem){
+                return;
+            }  
+            if(this._props.value && this._props.value.indexOf(lastItem)) {
                 selected = true
             }
             let itemComponent = new Item({

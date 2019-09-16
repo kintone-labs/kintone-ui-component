@@ -4,8 +4,8 @@ import '../../css/font.css'
 import '../../css/Attachment.css';
 
 type FileObject = {
-  name: string;
-  size: number;
+  name?: string;
+  size?: number;
 }
 
 type AttachmentProps = {
