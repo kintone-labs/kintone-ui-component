@@ -8,8 +8,8 @@ import '../../css/Table.css'
 const validEventNames = ['rowAdd', 'rowRemove', 'cellChange']
 
 type TableColumnJS = {
-  header?: string,
-  cell?: () => TableCell
+  header: string,
+  cell: () => TableCell
 }
 
 type DispatchParams = {
