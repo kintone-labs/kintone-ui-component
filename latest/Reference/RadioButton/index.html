@@ -909,7 +909,7 @@
 <tr>
 <td>options</td>
 <td>Object</td>
-<td>No</td>
+<td>Yes</td>
 <td>The object contains params of constructor.</td>
 </tr>
 <tr>
@@ -925,19 +925,19 @@
 <td>List of item which displayed in radio button.</td>
 </tr>
 <tr>
-<td>options.items[].value</td>
+<td>options.items[x].value</td>
 <td>String</td>
-<td>Yes</td>
-<td>The value of an item.If the value is duplicate, the error will be displayed</td>
+<td>Conditional</td>
+<td>The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed</td>
 </tr>
 <tr>
-<td>options.items[].label</td>
+<td>options.items[x].label</td>
 <td>String</td>
 <td>No</td>
 <td>Display string.</td>
 </tr>
 <tr>
-<td>options.items[].isDisabled</td>
+<td>options.items[x].isDisabled</td>
 <td>Boolean</td>
 <td>No</td>
 <td>Indicate item will be disabled when display. Default value is false.</td>
