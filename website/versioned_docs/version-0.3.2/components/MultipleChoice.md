@@ -1,7 +1,8 @@
 ---
-id: multiplechoice
+id: version-0.3.2-multiplechoice
 title: MultipleChoice
 sidebar_label: MultipleChoice
+original_id: multiplechoice
 ---
 
 ## Overview

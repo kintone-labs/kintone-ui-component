@@ -1,7 +1,8 @@
 ---
-id: dropdown
+id: version-0.3.2-dropdown
 title: Dropdown
 sidebar_label: Dropdown
+original_id: dropdown
 ---
 
 ## Overview
