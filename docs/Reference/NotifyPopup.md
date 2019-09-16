@@ -153,7 +153,7 @@ export default class Plugin extends React.Component {
         this.state = { text: 'Here is NotifyPopup' };
     };
 
-    handleClickToSetTextNotifyPopup = () => {
+    setText = () => {
         this.setState({ text: 'Set text' });
     };
 
@@ -164,7 +164,7 @@ export default class Plugin extends React.Component {
                     text={this.state.text}
                     type='success'
                 />
-                <Button text='Set text' onClick={this.handleClickToSetTextNotifyPopup} />
+                <Button text='Set text' onClick={this.setText} />
             </div>
         );
     };
@@ -215,7 +215,7 @@ export default class Plugin extends React.Component {
         this.state = { type: 'success' };
     };
 
-    handleClickToSetTypeNotifyPopup = () => {
+    setType = () => {
         this.setState({ type: 'infor' });
     };
 
@@ -226,7 +226,7 @@ export default class Plugin extends React.Component {
                     text='Here is NotifyPopup'
                     type={this.state.type}
                 />
-                <Button text='Set type' onClick={this.handleClickToSetTypeNotifyPopup} />
+                <Button text='Set type' onClick={this.setType} />
             </div>
         );
     };
@@ -281,12 +281,12 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: true };
     };
 
-    handleClickToCloseNotifyPopup = () => {
+    onClose = () => {
         console.log('NotifyPopup onClose');
         this.setState({isVisible: false});
     };
 
-    handleClick = () => {
+    onClick = () => {
         console.log('NotifyPopup onClick');
     }
     render() {
@@ -295,8 +295,8 @@ export default class Plugin extends React.Component {
                 text='Here is NotifyPopup'
                 type='success'
                 isVisible={this.state.isVisible}
-                onClose={this.handleClickToCloseNotifyPopup}
-                onClick={this.handleClick}
+                onClose={this.onClose}
+                onClick={this.onClick}
             />
         );
     };
@@ -345,7 +345,7 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: false };
     };
 
-    handleClick = () => {
+    show = () => {
         this.setState({isVisible: true});
     };
 
@@ -357,7 +357,7 @@ export default class Plugin extends React.Component {
                     type='success'
                     isVisible={this.state.isVisible}
                 />
-                <Button text='Show NotifyPopup' onClick={this.handleClick} />
+                <Button text='Show NotifyPopup' onClick={this.show} />
             </div>
         );
     };
@@ -404,7 +404,7 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: true };
     };
 
-    handleClick = () => {
+    hide = () => {
         this.setState({isVisible: false});
     };
 
@@ -416,7 +416,7 @@ export default class Plugin extends React.Component {
                     type='success'
                     isVisible={this.state.isVisible}
                 />
-                <Button text='Hide NotifyPopup' onClick={this.handleClick} />
+                <Button text='Hide NotifyPopup' onClick={this.hide} />
             </div>
         );
     };
@@ -464,7 +464,7 @@ export default class Plugin extends React.Component {
         this.state = { isDisabled: false, isVisible: true };
     };
 
-    handleClick = () => {
+    disable = () => {
         this.setState({isDisabled: true});
     };
 
@@ -480,7 +480,7 @@ export default class Plugin extends React.Component {
                         this.setState({isVisible: false})
                     }}
                 />
-                <Button text='Disable NotifyPopup' onClick={this.handleClick} />
+                <Button text='Disable NotifyPopup' onClick={this.disable} />
             </div>
         );
     };
@@ -529,7 +529,7 @@ export default class Plugin extends React.Component {
         this.state = { isDisabled: true, isVisible: true };
     };
 
-    handleClick = () => {
+    enable = () => {
         this.setState({isDisabled: false});
     };
 
@@ -545,7 +545,7 @@ export default class Plugin extends React.Component {
                         this.setState({isVisible: false})
                     }}
                 />
-                <Button text='Enable NotifyPopup' onClick={this.handleClick} />
+                <Button text='Enable NotifyPopup' onClick={this.enable} />
             </div>
         );
     };
