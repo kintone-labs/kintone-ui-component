@@ -337,12 +337,12 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = { isRequired: false };
     };
-    handleClick = () => {
+    onClick = () => {
         console.log('Label onClick');
     };
     render() {
         return (
-            <Label text='This is Label' onClick={this.handleClick} />
+            <Label text='This is Label' onClick={this.onClick} />
         );
     };
 };
@@ -500,14 +500,14 @@ export default class Plugin extends React.Component {
         this.setState({ isDisabled: true });
     };
 
-    handleClick = () => {
+    onClick = () => {
         console.log('Label onClick');
     };
 
     render() {
         return (
             <div>
-                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.handleClick} />
+                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.onClick} />
                 <Button text='Disable label' onClick={this.disable} />
             </div>
         );
@@ -560,14 +560,14 @@ export default class Plugin extends React.Component {
         this.setState({ isDisabled: false });
     };
 
-    handleClick = () => {
+    onClick = () => {
         console.log('Label onClick');
     };
 
     render() {
         return (
             <div>
-                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.handleClick} />
+                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.onClick} />
                 <Button text='Enable label' onClick={this.enable} />
             </div>
         );
