@@ -17,7 +17,7 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
-|options.text|String|Yes|The content of alert.|
+|options.text|String|No|The content of alert.|
 |options.type|String|No|The type of alert: <ul><li> 'error' </li><li> 'success' </li></ul> Default value is 'error'. |
 |options.isDisabled|Boolean|No|The alert will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The alert will be visible. <br> Default value: 'true'|
