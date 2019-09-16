@@ -146,7 +146,6 @@ body.appendChild(btn.render());
 ```javascript
 import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
 import React from 'react';
-   
 
 export default class Plugin extends React.Component {
     constructor(props) {
