@@ -110,7 +110,7 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: false };
     };
 
-    handleClick = () => {
+    show = () => {
         this.setState({ isVisible: true });
     };
 
@@ -118,7 +118,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Spinner isVisible={this.state.isVisible} />
-                <Button text='Open spinner' onClick={this.handleClick} />
+                <Button text='Open spinner' onClick={this.show} />
             </div>
         );
     };
@@ -164,10 +164,13 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = { isVisible: true };
     };
+    hide = () => {
+        this.setState({ isVisible: false });
+    };
 
     componentDidMount() {
         setTimeout(() => {
-            this.setState({ isVisible: false });
+            this.hide();
         }, 3000);
     };
 
