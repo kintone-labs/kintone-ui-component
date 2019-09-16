@@ -5,7 +5,7 @@ import Message from '../../constant/Message'
 import '../../css/Tabs.css'
 
 type Tab = {
-  tabName?: string
+  tabName: string
   tabContent?: string | HTMLElement
   isDisabled?: boolean
 }

@@ -4,7 +4,7 @@ import '../../css/Tabs.css'
 import Message from '../../constant/Message'
 
 type TabsItem = {
-  tabName?: string;
+  tabName: string;
   tabContent?: any;
   isDisabled?: boolean;
 }
@@ -15,11 +15,7 @@ type TabsProps = {
   onClickTabItem: (tabIndex: number) => void;
 }
 
-const Tabs = (props?: TabsProps) => {
-  if(!props || (props && Object.keys(props).length ===0)){
-    return null
-  }
-  let {items, value, onClickTabItem}=props;
+const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   if (value) {
     if (typeof value !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
