@@ -240,7 +240,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setHeader()
+### setHeader(header)
 Set header for Dialog.
 
 **Parameter**
@@ -363,7 +363,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setContent()
+### setContent(content)
 Set content for Dialog.
 
 **Parameter**
@@ -485,7 +485,7 @@ export default class Plugin extends React.Component {
 ```
 </details>
 
-### setFooter()
+### setFooter(footer)
 Set footer for Dialog.
 
 **Parameter**
