@@ -72,10 +72,8 @@ Dom element
 **Javascript**
 ```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(colorPicker.render());
 ```
 
 **React**
@@ -154,12 +152,6 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -211,12 +203,6 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -244,11 +230,6 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
 });
-
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
 ```
 
 **React**
@@ -271,12 +252,6 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -328,13 +303,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 </details>
 
@@ -385,12 +353,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 </details>
 
@@ -441,12 +403,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 </details>
 
@@ -497,11 +453,5 @@ export default class Plugin extends React.Component {
     );
   }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 </details>
