@@ -898,7 +898,7 @@
 <tr>
 <td>options</td>
 <td>Object</td>
-<td>No</td>
+<td>Yes</td>
 <td>The object contains the params of constructor.</td>
 </tr>
 <tr>
@@ -910,31 +910,31 @@
 <tr>
 <td>options.columns</td>
 <td>Array&lt;Object&gt;</td>
-<td>No</td>
+<td>Yes</td>
 <td>The row template.</td>
 </tr>
 <tr>
 <td>options.columns[x].cell</td>
 <td>Function</td>
-<td>Conditional</td>
-<td>Returns cell template object. This is required if <b>options.columns[x]</b> is specified.<br>Cell template object must implement init and update functions <br> - init: to return DOM element for initializing cell's DOM <br> - update: to update DOM of the cell based on the data returned</td>
+<td>Yes</td>
+<td>Returns cell template object. Cell template object must implement init and update functions <br> - init: to return DOM element for initializing cell's DOM <br> - update: to update DOM of the cell based on the data returned</td>
 </tr>
 <tr>
 <td>options.columns[x].header</td>
 <td>String</td>
-<td>Conditional</td>
-<td>Header of column. This is required if <b>options.columns[x]</b> is specified.</td>
+<td>Yes</td>
+<td>Header of column.</td>
 </tr>
 <tr>
 <td>options.data</td>
 <td>Array&lt;Object&gt;</td>
-<td>No</td>
+<td>Yes</td>
 <td>The value of table. <br> Refer to the <a href="#getvalue">getValue()</a> and <a href="#setvaluevalue">setValue(value)</a> for more information</td>
 </tr>
 <tr>
 <td>options.defaultRowData</td>
 <td>Object</td>
-<td>No</td>
+<td>Yes</td>
 <td>The default value of new row.</td>
 </tr>
 <tr>
@@ -1857,13 +1857,13 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </tr>
 <tr>
 <td></td>
-<td>data.rowIndex</td>
+<td>event.rowIndex</td>
 <td>Interger</td>
 <td>Position of the changed row in the table</td>
 </tr>
 <tr>
 <td></td>
-<td>data.fieldName</td>
+<td>event.fieldName</td>
 <td>String</td>
 <td>name of the data property which changed</td>
 </tr>
