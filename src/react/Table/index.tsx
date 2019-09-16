@@ -24,9 +24,9 @@ type HandlerFunction = (
 ) => void
 
 type TableColumn = {
-  header?: string,
+  header: string,
   tdProps?: (cellProps: CellRendererProps) => object,
-  cell?: (cellProps: CellRendererProps) => string | JSX.Element
+  cell: (cellProps: CellRendererProps) => string | JSX.Element
 }
 type ActionFlag = {
   actions: boolean
@@ -81,11 +81,16 @@ type RowEventProps = {
   defaultRowData?: object
 }
 
-const Table = (propsTable?: TableProps) => {
-  if(!propsTable){
-    return null;
-  }
-  let {data=[], columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}=propsTable;
+const Table = ({
+  data, 
+  columns, 
+  defaultRowData, 
+  onRowAdd, 
+  onRowRemove, 
+  onCellChange, 
+  actionButtonsShown, 
+  isVisible
+}: TableProps) => {
   const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
