@@ -133,12 +133,12 @@ export default class Plugin extends React.Component {
         return (
         <div>
           <TextArea value={this.state.value} />
-          <Button text='Click' onClick={this.handleClick} />
+          <Button text='Click' onClick={this.setValue} />
         </div>
       );
     };
 
-    handleClick= () => {
+    setValue= () => {
         this.setState({
             value: 'set value into textarea'
         });
@@ -188,11 +188,11 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <TextArea value={this.state.value} />
-                <Button text='Click' onClick={this.handleClick} />
+                <Button text='Click' onClick={this.getValue} />
             </div>
         );
     }
-    handleClick = () => {
+    getValue = () => {
         console.log(this.state.value);
     };
 };
@@ -245,7 +245,7 @@ export default class Plugin extends React.Component {
         return (
             <TextArea
                 value={this.state.value}
-                onChange={this.handleChange.bind(this)}
+                onChange={this.onChange.bind(this)}
                 onClick={() => {
                     console.log('onclick')
                 }} 
@@ -253,7 +253,7 @@ export default class Plugin extends React.Component {
         );
     };
 
-    handleChange = (value) => {
+    onChange = (value) => {
         this.setState({ value });
         console.log('onchange: ' + value);
     };
@@ -299,6 +299,10 @@ export default class Plugin extends React.Component {
         this.state = { value: 'Textarea', isVisible: false };
     };
 
+    show = () => {
+        this.setState({ isVisible: true });
+    };
+
     render() {
         return (
             <div>
@@ -306,9 +310,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Show'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isVisible: true })
-                    }}
+                    onClick={this.show}
                 />
             </div>
         );
@@ -355,6 +357,10 @@ export default class Plugin extends React.Component {
         this.state = { value: 'Textarea', isVisible: true };
     };
 
+    hide = () => {
+        this.setState({ isVisible: false });
+    };
+
     render() {
         return (
             <div>
@@ -362,9 +368,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Hide'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isVisible: false })
-                    }}
+                    onClick={this.hide}
                 />
             </div>
         );
@@ -411,6 +415,10 @@ export default class Plugin extends React.Component {
         this.state = { value: 'Textarea', isDisabled: false };
     };
 
+    disable = () => {
+        this.setState({ isDisabled: true });
+    };
+
     render() {
         return (
             <div>
@@ -418,9 +426,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Disable'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isDisabled: true })
-                    }}
+                    onClick={this.disable}
                 />
             </div>
         );
@@ -466,7 +472,9 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = { value: 'Textarea', isDisabled: true };
     };
-
+    enable = () => {
+        this.setState({ isDisabled: false });
+    };
     render() {
         return (
             <div>
@@ -474,9 +482,7 @@ export default class Plugin extends React.Component {
                 <Button
                     text='Enable'
                     type='normal'
-                    onClick={() => {
-                        this.setState({ isDisabled: false })
-                    }}
+                    onClick={this.enable}
                 />
             </div>
         );
