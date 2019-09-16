@@ -12,7 +12,7 @@ type TabsItem = {
 type TabsProps = {
   items?: TabsItem[];
   value?: number;
-  onClickTabItem: (tabIndex: number) => void;
+  onClickTabItem?: (tabIndex: number) => void;
 }
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
@@ -51,7 +51,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
               <li
                 className={className}
                 key={tabIndex}
-                onClick={() => onClickTabItem(tabIndex)}
+                onClick={() => onClickTabItem && onClickTabItem(tabIndex)}
               >
                 {item.tabName}
               </li>
