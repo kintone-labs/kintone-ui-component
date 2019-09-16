@@ -140,7 +140,7 @@ Set the displayed type for button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|Style of the button:<ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
+|type|String|Yes|Style of the button:<ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
 
 **Returns**
 
