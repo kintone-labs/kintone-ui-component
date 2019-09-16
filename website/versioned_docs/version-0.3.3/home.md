@@ -1,7 +1,8 @@
 ---
-id: home
+id: version-0.3.3-home
 title: Getting Started
 sidebar_label: Getting Started
+original_id: home
 ---
 
 ## Quick start
