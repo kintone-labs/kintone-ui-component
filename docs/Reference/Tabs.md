@@ -186,7 +186,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items };
     };
 
-    handleClick = () => {
+    addItem = () => {
         const item = { tabName: "Tab 4"};
         items.push(item);
         this.setState({items});
@@ -196,7 +196,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button onClick={this.handleClick} text='Add Tab' />
+                <Button onClick={this.addItem} text='Add Tab' />
             </div>
         );
     };
@@ -264,7 +264,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items };
     };
 
-    handleClick = () => {
+    removeItem = () => {
         items.splice(0, 1);
         this.setState({items});
     };
@@ -273,7 +273,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button text='Remove Tab' onClick={this.handleClick} />
+                <Button text='Remove Tab' onClick={this.removeItem} />
             </div>
         );
     };
@@ -346,7 +346,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items };
     };
 
-    handleClick = () => {
+    getItems = () => {
         this.state.items.forEach(item => {
             console.log(item);
         });
@@ -356,7 +356,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button text='Get tabs' onClick={this.handleClick} />
+                <Button text='Get tabs' onClick={this.getItems} />
             </div>
         );
     };
@@ -423,7 +423,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items, value: 1 };
     };
 
-    handleClick = () => {
+    getValue = () => {
         console.log(this.state.value);
     };
 
@@ -431,7 +431,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Get value' onClick={this.handleClick} />
+                <Button text='Get value' onClick={this.getValue} />
             </div>
         );
     };
@@ -502,7 +502,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items, value: 1 };
     };
 
-    handleClick = () => {
+    setValue = () => {
         this.setState({value: 2});
     };
 
@@ -510,7 +510,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Set value' onClick={this.handleClick} />
+                <Button text='Set value' onClick={this.setValue} />
             </div>
         );
     };
@@ -581,7 +581,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items, value: 1 };
     };
 
-    handleClick = () => {
+    disableItem = () => {
         let items = [...this.state.items];
         items[2].isDisabled = true;
         this.setState({items: items});
@@ -591,7 +591,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Disable tab3' onClick={this.handleClick} />
+                <Button text='Disable tab3' onClick={this.disableItem} />
             </div>
         );
     };
@@ -663,7 +663,7 @@ export default class Plugin extends React.Component {
         this.state = { items: items, value: 1 };
     };
 
-    handleClick = () => {
+    enableItem = () => {
         const items = [...this.state.items];
         items[0].isDisabled = false;
         this.setState({ items: items });
@@ -673,7 +673,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Enable tab1' onClick={this.handleClick} />
+                <Button text='Enable tab1' onClick={this.enableItem} />
             </div>
         );
     };
