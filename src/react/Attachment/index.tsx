@@ -16,8 +16,8 @@ type AttachmentProps = {
   isErrorVisible?: boolean;
   isVisible?: boolean;
   files?: FileObject[];
-  onFilesAdd: (files?: FileObject[]) => void;
-  onFileRemove: (files?: FileObject[]) => void;
+  onFilesAdd?: (files?: FileObject[]) => void;
+  onFileRemove?: (files?: FileObject[]) => void;
 };
 
 
@@ -191,14 +191,5 @@ const Attachment = (props: AttachmentProps) => {
     </div>
   );
 };
-Attachment.defaultProps={
-  dropZoneText: "",
-  browseButtonText:"",
-  fileLimitText: "",
-  errorMessage: "",
-  isErrorVisible: false,
-  files: [],
-  onFilesAdd: () => {},
-  onFileRemove: () => {},
-}
+
 export default Attachment;

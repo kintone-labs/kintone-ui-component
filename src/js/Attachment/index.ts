@@ -24,6 +24,7 @@ class Attachment extends Control {
         files: [],
         browseButtonText: 'Browse',
         dropZoneText: 'Drop files here.',
+        isErrorVisible: false,
     }
   }
   private _onFileRemove: (params?: any) => void = () => {};
@@ -54,32 +55,28 @@ class Attachment extends Control {
     if (changedAttr.indexOf('fileLimitText') !== -1) {
         this.constraintsFileEl.innerText = this._props.fileLimitText || "";
     }
-
     if (changedAttr.indexOf('dropZoneText') !== -1) {
         this.dropZoneElement.innerText = this._props.dropZoneText || ""
     }
-
     if (changedAttr.indexOf('files') !== -1 && Array.isArray(this._props.files)) {
-        this._props.files.forEach((file, index) => {
-            let itemFile = new AttachmentFileItem({
-              index:index,
-              fileName:file.name,
-              fileSize:file.size,
-              onFileRemove:(index) => {
-                this._removeFile(index)
-              }
-            })
-            this.listFileEl.appendChild(itemFile.render());
-        });
+      this._props.files.forEach((file, index) => {
+          let itemFile = new AttachmentFileItem({
+            index:index,
+            fileName:file.name,
+            fileSize:file.size,
+            onFileRemove:(index) => {
+              this._removeFile(index)
+            }
+          })
+          this.listFileEl.appendChild(itemFile.render());
+      });
     }
-
     if (changedAttr.indexOf('isErrorVisible') !== -1) {
         this.fileErrorEl.style.display = 'none';
         if (this._props.isErrorVisible === true) {
           this.fileErrorEl.style.display = 'block';
         }
     }
-
     if (changedAttr.indexOf('errorMessage') !== -1) {
       this.fileErrorEl.innerText = this._props.errorMessage || "";
     }
