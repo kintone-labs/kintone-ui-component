@@ -1,7 +1,8 @@
 ---
-id: datetime
+id: version-0.3.6-datetime
 title: DateTime
 sidebar_label: DateTime
+original_id: datetime
 ---
 
 ## Overview

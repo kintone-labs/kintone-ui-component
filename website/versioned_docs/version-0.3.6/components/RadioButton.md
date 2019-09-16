@@ -1,7 +1,8 @@
 ---
-id: radiobutton
+id: version-0.3.6-radiobutton
 title: RadioButton
 sidebar_label: RadioButton
+original_id: radiobutton
 ---
 
 ## Overview

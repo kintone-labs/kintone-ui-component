@@ -1,7 +1,8 @@
 ---
-id: fieldgroup
+id: version-0.3.6-fieldgroup
 title: FieldGroup
 sidebar_label: FieldGroup
+original_id: fieldgroup
 ---
 
 ## Overview

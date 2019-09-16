@@ -1,7 +1,8 @@
 ---
-id: tabs
+id: version-0.3.6-tabs
 title: Tabs
 sidebar_label: Tabs
+original_id: tabs
 ---
 
 ## Overview

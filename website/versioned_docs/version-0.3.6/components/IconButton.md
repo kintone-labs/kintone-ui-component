@@ -1,7 +1,8 @@
 ---
-id: iconbutton
+id: version-0.3.6-iconbutton
 title: IconButton
 sidebar_label: IconButton
+original_id: iconbutton
 ---
 
 ## Overview

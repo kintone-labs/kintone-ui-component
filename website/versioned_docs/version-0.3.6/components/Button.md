@@ -1,7 +1,8 @@
 ---
-id: button
+id: version-0.3.6-button
 title: Button
 sidebar_label: Button
+original_id: button
 ---
 
 ## Overview

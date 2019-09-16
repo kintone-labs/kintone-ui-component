@@ -1,7 +1,8 @@
 ---
-id: colorpicker
+id: version-0.3.6-colorpicker
 title: ColorPicker
 sidebar_label: ColorPicker
+original_id: colorpicker
 ---
 
 ## Overview

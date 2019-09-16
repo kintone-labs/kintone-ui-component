@@ -1,7 +1,8 @@
 ---
-id: dialog
+id: version-0.3.6-dialog
 title: Dialog
 sidebar_label: Dialog
+original_id: dialog
 ---
 
 ## Overview

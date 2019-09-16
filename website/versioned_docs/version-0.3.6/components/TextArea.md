@@ -1,7 +1,8 @@
 ---
-id: textarea
+id: version-0.3.6-textarea
 title: TextArea
 sidebar_label: TextArea
+original_id: textarea
 ---
 
 ## Overview

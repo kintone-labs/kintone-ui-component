@@ -1,7 +1,8 @@
 ---
-id: attachment
+id: version-0.3.6-attachment
 title: Attachment
 sidebar_label: Attachment
+original_id: attachment
 ---
 
 ## Overview

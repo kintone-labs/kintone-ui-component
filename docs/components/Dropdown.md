@@ -59,9 +59,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -133,9 +133,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
     
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -214,12 +214,12 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [],
             value: undefined
-        }
+        };
     }
    
     render() {
@@ -294,8 +294,8 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
+    constructor(props) {
+        super(props);
         this.state = {
             items: [
                 {
@@ -309,7 +309,7 @@ export default class Plugin extends React.Component {
                 isDisabled: false
             }
             ]
-        }
+        };
     }
    
     render() {
@@ -393,9 +393,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -482,9 +482,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -571,9 +571,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -660,9 +660,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -752,9 +752,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -847,9 +847,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -931,9 +931,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1015,9 +1015,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1100,9 +1100,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1182,9 +1182,9 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
+    constructor(props) {
+        super(props);
+        const items = [
             {
                 label: 'Orange',
                 value: 'Orange',

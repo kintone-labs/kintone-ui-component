@@ -1,7 +1,8 @@
 ---
-id: notifypopup
+id: version-0.3.6-notifypopup
 title: NotifyPopup
 sidebar_label: NotifyPopup
+original_id: notifypopup
 ---
 
 ## Overview
