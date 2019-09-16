@@ -1,7 +1,8 @@
 ---
-id: quickstart-javascript
+id: version-0.3.5-quickstart-javascript
 title: Quickstart Javascript
 sidebar_label: Quickstart Javascript
+original_id: quickstart-javascript
 ---
 
 ## ESM usage

@@ -7,7 +7,7 @@ original_id: home
 
 ## Quick start
 * [Quick start Javascript](getting-started/quickstart-javascript)
-* [Quick start React](getting-started/quickStart-react)
+* [Quick start React](getting-started/quickstart-react)
 ## References
 * [Alert](components/alert)
 * [Button](components/button)

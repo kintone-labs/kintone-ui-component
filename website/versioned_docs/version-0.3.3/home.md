@@ -7,7 +7,7 @@ original_id: home
 
 ## Quick start
 * [Quick start Javascript](getting-started/quickstart-javascript)
-* [Quick start React](getting-started/quickStart-react)
+* [Quick start React](getting-started/quickstart-react)
 
 > All components are displayed as block (vertically), except for [Table](components/table), [NotifyPopup](components/notifypopup), [Dialog](components/dialog) and [Spinner](components/spinner) components.
 
