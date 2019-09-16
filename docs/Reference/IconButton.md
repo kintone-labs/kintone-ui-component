@@ -84,7 +84,7 @@ Change color of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|color|String|No|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
+|color|String|Yes|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
 
 **Returns**
 
@@ -187,7 +187,7 @@ Change size of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|size|String|No|The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
+|size|String|Yes|The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
 
 **Returns**
 
