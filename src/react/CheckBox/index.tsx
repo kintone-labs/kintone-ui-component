@@ -6,7 +6,7 @@ import '../../css/CheckBox.css';
 
 type item = {
   value: string;
-  label: string;
+  label?: string;
   isDisabled?: boolean;
 }
 type CheckBoxProps = {

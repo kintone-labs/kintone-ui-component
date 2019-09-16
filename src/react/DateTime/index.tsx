@@ -20,19 +20,15 @@ type DateTimeConstructorParameters = {
   isVisible?: boolean
 }
 
-const DateTime = (props?: DateTimeConstructorParameters) => {
-  if(!props){
-    return;
-  }
-  let {
-    value = new Date(),
-    isDisabled = false,
-    isVisible = true,
-    onChange = (newDate: Date) => {},
-    locale = 'ja',
-    dateFormat = 'MM/dd/YYYY',
-    type = 'datetime',
-    timeFormat = 'HH:mm'}=props;
+const DateTime = ({
+  value = new Date(),
+  isDisabled = false,
+  isVisible = true,
+  onChange = (newDate: Date) => {},
+  locale = 'ja',
+  dateFormat = 'MM/dd/YYYY',
+  type = 'datetime',
+  timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
   const [defaultValue, setDefaultValue] = useState(value);
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);

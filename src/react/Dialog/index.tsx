@@ -14,11 +14,14 @@ type DialogProps = {
   onClose?: () => void;
 };
 
-const Dialog = (props?: DialogProps) => {
-  if(!props || (props && Object.keys(props).length ===0)){
-    return null
-  }
-  let {header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}=props;
+const Dialog = ({
+  header = '', 
+  content = '', 
+  footer = '', 
+  isVisible = true, 
+  showCloseButton = true, 
+  onClose
+}: DialogProps) => {
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';

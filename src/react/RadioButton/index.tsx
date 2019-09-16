@@ -15,7 +15,7 @@ type RadioButtonProps = {
   items?: item[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
 const RadioButton = (props: RadioButtonProps) => {
@@ -59,4 +59,5 @@ const RadioButton = (props: RadioButtonProps) => {
     <div className="kuc-input-radio">{items}</div>
   );
 };
+
 export default RadioButton;
