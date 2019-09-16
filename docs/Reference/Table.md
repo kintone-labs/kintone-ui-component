@@ -29,16 +29,16 @@
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|The object contains the params of constructor.|
-|options.actionButtonsShown|Boolean|No|Show the action buttons when this parameter is True. <br>Default: True|
-|options.columns|Array&lt;Object&gt;|Yes|The row template.|
-|options.columns[x].cell|Function|Yes|Returns cell template object. Cell template object must implement init and update functions <br> - init: to return DOM element for initializing cell's DOM <br> - update: to update DOM of the cell based on the data returned|
-|options.columns[x].header|String|Yes|Header of column.|
-|options.data|Array&lt;Object&gt;|Yes|The value of table. <br> Refer to the [getValue()](#getvalue) and [setValue(value)](#setvaluevalue) for more information |
-|options.defaultRowData|Object|Yes|The default value of new row.|
+|options|Object|No|The object contains the parameters of constructor.|
+|options.columns|Array&lt;Object&gt;|No|The row template.|
+|options.columns[x].header|String|No|Header of column.|
+|options.columns[x].cell|Function|No|Returns cell template object. Cell template object must implement **init** and **update** functions. <br> - **init**: to return DOM element for initializing cell's DOM. <br> - **update**: to update DOM of the cell based on the data returned.|
+|options.data|Array&lt;Object&gt;|No|The value of table. <br> Refer to the [getValue()](#getvalue) and [setValue(value)](#setvaluevalue) for more information. |
+|options.defaultRowData|Object|No|The default value of new row.|
+|options.actionButtonsShown|Boolean|No|Show the action buttons when this parameter is **True**. <br>Default: **True**|
+|options.onRowAdd|Callback|No|Handler for row add event. <br>Return row data object to overwrite default row data object.|
+|options.onRowRemove|Callback|No|Handler for row remove event. <br>Return row data object.|
 |options.onCellChange|Callback|No|Handler for cell change event. <br>Return row data object to overwrite default row data object.|
-|options.onRowAdd|Callback|No|Handler for row add event|
-|options.onRowRemove|Callback|No|Handler for row remove event|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -55,11 +55,11 @@
         var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
         span.appendChild(textfield1.render());
         span.appendChild(textfield2.render());
-        textfield1.on('change', function(newValue){
-          updateRowData({text1: {value: newValue}}, false);
+        textfield1.on('change', function(event){
+          updateRowData({text1: {value: event.target.value}}, false);
         });
-        textfield2.on('change', function(newValue){
-          updateRowData({text2: {value: newValue}}, false);
+        textfield2.on('change', function(event){
+          updateRowData({text2: {value: event.target.value}}, false);
         });
         this.textfield1 = textfield1;
         this.textfield2 = textfield2;
@@ -459,6 +459,7 @@
 **React**
 ```javascript
 import React from 'react';
+import {render} from 'react-dom';
 import { Table, Text} from '@kintone/kintone-ui-component';
 
 export default class Plugin extends React.Component {
@@ -515,6 +516,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
@@ -650,10 +652,16 @@ var table = new kintoneUIComponent.Table({
 });
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
+
+var button = new kintoneUIComponent.Button({text: 'Get Values', type: 'normal'});
+button.on('click', () => {
 var value = table.getValue();
-value.forEach(function(rowData) {
-  console.log(rowData)
+    value.forEach(rowData => {
+      console.log(rowData);
 });
+});
+
+body.appendChild(button.render());
 ```
 **React**
 ```javascript
@@ -762,11 +770,16 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
  
+var button = new kintoneUIComponent.Button({text: 'Set Values', type: 'normal'});
+button.on('click', () => {
 table.setValue([
   {text: { value: 'first row' }},
   {text: { value: 'second row' }},
   {text: { value: 'third row' }}
 ]);
+});
+
+body.appendChild(button.render());
 ```
 **React**
 ```javascript
@@ -852,7 +865,7 @@ Register callback for an event
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|eventName|	String|	Yes|Name of events: <ul><li>'rowAdd' <ul><li>The 'rowAdd' event occurs when adding a new row in the table </li></ul> </li><li>'rowRemove'<ul><li>The 'rowRemove' event occurs when removing a row in the table</li></ul> </li> <li>'cellChange'<ul><li>The 'cellChange' event occurs when the value of an element bellow has been changed:<ul><li>Text</li><li>Drodown</li><li>RadioButton</li><li>MultipleChoice</li><li>CheckBox</li></ul> </li> </ul></li></ul>|
+|eventName|	String|	Yes|Name of events: <ul><li>'rowAdd' <ul><li>The 'rowAdd' event occurs when adding a new row in the table.</li></ul> </li><li>'rowRemove'<ul><li>The 'rowRemove' event occurs when removing a row in the table.</li></ul> </li> <li>'cellChange'<ul><li>The 'cellChange' event occurs when the value of an element bellow has been changed:<ul><li>Text</li><li>Drodown</li><li>RadioButton</li><li>MultipleChoice</li><li>CheckBox</li></ul><li>For custom cells templates, you must call updateRowData provided to **init** callback to trigger cellChange event.</li></li> </ul></li></ul>|
 |callback|function |Yes|callback|
 
 **Returns**
@@ -861,16 +874,16 @@ Register callback for an event
 
 |Event| Name| Type| Description |
 | --- | --- | --- | --- |
-|rowAdd|	event |	Object |Callback data|
-||event.data |Array&lt;Object&gt;|Current values of the table|
-||event.rowIndex|	Interger|	Position of the new row in the table|
-|rowRemove |event|	object|	Callback data|
-||event.data |Array&lt;Object&gt;|Current values of the table|
-||event.rowIndex|	Interger|	Position of the removed row in the table|
-| cellChange| event|	object|	Callback data|
-||event.data |Array&lt;Object&gt;|Values of the table|
-||data.rowIndex|	Interger|	Position of the changed row in the table|
-||data.fieldName|	String|	name of the data property which changed |
+|rowAdd|	event |	Object |Callback data.|
+||event.data |Array&lt;Object&gt;|Current values of the table.|
+||event.rowIndex|	Interger|	Position of the new row in the table.|
+|rowRemove |event|	object|	Callback data.|
+||event.data |Array&lt;Object&gt;|Current values of the table.|
+||event.rowIndex|	Interger|	Position of the removed row in the table.|
+| cellChange| event|	object|	Callback data.|
+||event.data |Array&lt;Object&gt;|Values of the table.|
+||event.rowIndex|	Interger|	Position of the changed row in the table.|
+||event.fieldName|	String|	name of the data property which changed.|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
@@ -970,222 +983,8 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
-### show()
-Display the table
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-```javascript
-var table = new kintoneUIComponent.Table({
-  // inital table data
-  data: [
-    {text: { value: 'this is a text field' }}
-  ],
-  // default row data on row add
-  defaultRowData: {text: { value: 'default text field value' }},
-  columns: [
-    {
-      header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
-    },
-  ]
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
-table.show();
-```
-**React**
-```javascript
-import React from 'react';
-import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
-
-export default class Plugin extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tableData: [
-        {text: 'this is a text field'}
-      ],
-      // default row data on row add
-      defaultRowData: {text: 'default text field value'},
-      isVisible: false
-    }
-  }
-
-  handleRowAdd = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-  
-  handleRowRemove = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-
-  handleCellChange = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-
-  render() {
-    const {tableData, isVisible, defaultRowData} = this.state;
-    const columns = [
-      {
-        header: 'Text',
-        cell: ({ rowIndex, onCellChange }) => {
-          return (
-            <Text
-              value={tableData[rowIndex].text}
-              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
-            />
-          )
-        }
-      },
-    ];
-    return (
-      <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={isVisible}
-        />
-        <Button text="Show table" onClick={() => {
-            this.setState({isVisible: true})
-          }}
-        />
-      </div>
-    );
-  }
-}
-render(<App />, kintone.app.getHeaderSpaceElement());
-```
-</details>
-
-### hide()
-Hide the table
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-```javascript
-var table = new kintoneUIComponent.Table({
-  // inital table data
-  data: [
-    {text: { value: 'this is a text field' }}
-  ],
-  // default row data on row add
-  defaultRowData: {text: { value: 'default text field value' }},
-  columns: [
-    {
-      header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
-    },
-  ]
-});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(table.render());
-table.hide();
-```
-**React**
-```javascript
-import React from 'react';
-import {render} from 'react-dom';
-import { Table, Text, Button} from '@kintone/kintone-ui-component';
-
-export default class Plugin extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tableData: [
-        {text: 'this is a text field'}
-      ],
-      // default row data on row add
-      defaultRowData: {text: 'default text field value'},
-      isVisible: true
-    };
-  }
-
-  handleRowAdd = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-  
-  handleRowRemove = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-
-  handleCellChange = ({data}) => {
-    this.setState({ tableData: data })
-    console.log('data: ', data);
-  }
-
-  render() {
-    const {tableData, isVisible, defaultRowData} = this.state;
-    const columns = [
-      {
-        header: 'Text',
-        cell: ({ rowIndex, onCellChange }) => {
-          return (
-            <Text
-              value={tableData[rowIndex].text}
-              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
-            />
-          )
-        }
-      },
-    ];
-    return (
-      <div>
-        <Table
-          columns={columns}
-          data={this.state.tableData}
-          defaultRowData={defaultRowData}
-          onRowAdd={this.handleRowAdd}
-          onRowRemove={this.handleRowRemove}
-          onCellChange={this.handleCellChange}
-          actionButtonsShown={true}
-          isVisible={isVisible}
-        />
-        <Button text="Hide table" onClick={() => {
-            this.setState({isVisible: false})
-          }}
-        />
-      </div>
-    );
-  }
-}
-render(<Plugin />, kintone.app.getHeaderSpaceElement());
-```
-</details>
-
 ### showActionButtons()
-Display table action buttons
+Display table action buttons.
 
 **Parameter**
 
@@ -1213,11 +1012,16 @@ var table = new kintoneUIComponent.Table({
       cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
     },
   ],
-  actionButtonsShown: false,
+  actionButtonsShown: false
 });
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
-table.showActionButtons();
+
+var button = new kintoneUIComponent.Button({text: 'Show action buttons', type: 'normal'});
+button.on('click', () => {
+  table.showActionButtons();
+});
+body.appendChild(button.render());
 ```
 **React**
 ```javascript
@@ -1236,7 +1040,7 @@ export default class Plugin extends React.Component {
       defaultRowData: {text: 'default text field value'},
       actionButtonsShown: false
     };
-  }
+    }
 
   handleRowAdd = ({data}) => {
     this.setState({ tableData: data })
@@ -1292,7 +1096,7 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 </details>
 
 ### hideActionButtons()
-Hide table action buttons
+Hide table action buttons.
 
 **Parameter**
 
@@ -1324,7 +1128,12 @@ var table = new kintoneUIComponent.Table({
 });
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
-table.hideActionButtons();
+
+var button = new kintoneUIComponent.Button({text: 'Hide action buttons', type: 'normal'});
+button.on('click', () => {
+  table.hideActionButtons();
+});
+body.appendChild(button.render());
 ```
 **React**
 ```javascript
@@ -1399,7 +1208,7 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 </details>
 
 ### updateRowData(rowIndex, data, rerender, trigger)
-update data of row at rowIndex with new data
+Update data of row at rowIndex with new data
 
 **Parameter**
 
@@ -1421,43 +1230,47 @@ update data of row at rowIndex with new data
 var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
-    {
-      text: { value: 'this is a text field' },
+      {
+        text: { value: 'this is a text field1' },
+        checkbox: {
+          items: [
+            { label: 'Orange', value: 'Orange', isDisabled: false },
+            { label: 'Banana', value: 'Banana', isDisabled: true },
+            { label: 'Lemon', value: 'Lemon', isDisabled: true },
+  ],
+          value: ['Orange', 'Banana']
+        },
+      }
+    ],
+  // default row data on row add
+    defaultRowData: {
+      text: { value: 'default text field value' },
       checkbox: {
         items: [
-          {label: 'Orange', value: 'Orange', isDisabled: false},
-          {label: 'Banana', value: 'Banana', isDisabled: true},
-          {label: 'Lemon', value: 'Lemon', isDisabled: true},
+          { label: 'Orange', value: 'Orange', isDisabled: false },
+          { label: 'Banana', value: 'Banana', isDisabled: true },
+          { label: 'Lemon', value: 'Lemon', isDisabled: true },
         ],
         value: ['Orange', 'Banana']
       },
-    }
-  ],
-  // default row data on row add
-  defaultRowData: {
-    text: { value: 'default text field value' },
-    checkbox: {
-      items: [
-        {label: 'Orange', value: 'Orange', isDisabled: false},
-        {label: 'Banana', value: 'Banana', isDisabled: true},
-        {label: 'Lemon', value: 'Lemon', isDisabled: true},
-      ],
-      value: ['Orange', 'Banana']
     },
-  },
   columns: [
     {
       header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text', {onChange: function({data, rowIndex}){ 
-        data[rowIndex].checkbox.value = ['Lemon'];
-          table.updateRowData(rowIndex, data[rowIndex]);
-      }}) }
+        cell: function () {
+          return kintoneUIComponent.createTableCell('text', 'text', {
+            onChange: function ({ data, rowIndex }) {
+              data[rowIndex].checkbox.value = ['Lemon'];
+              table.updateRowData(rowIndex, data[rowIndex]);
+            }
+          })
+        }
     },
-    {
-      header: 'Checkbox',
-      cell: function () { return kintoneUIComponent.createTableCell('checkbox', 'checkbox') }
-    },
-  ]
+      {
+        header: 'Checkbox',
+        cell: function () { return kintoneUIComponent.createTableCell('checkbox', 'checkbox') }
+      }
+    ]
 });
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
@@ -1468,7 +1281,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
 
-export default class Plugin extends Component {
+export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1537,7 +1350,7 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 </details>
 
 ### createTableCell(type, dataFieldName, props)
-create a table cell with 1 of the built-in supported components
+Create a table cell with 1 of the built-in supported components
 
 !!! note
     Below is the list components that can be created with createTableCell:
@@ -1632,6 +1445,227 @@ export default class Plugin extends React.Component {
       },
     ];
     return (
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+        actionButtonsShown={true}
+        isVisible={true}
+        />
+    );
+  }
+}
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
+```
+</details>
+
+### show()
+Display the table
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var table = new kintoneUIComponent.Table({
+  // inital table data
+  data: [
+    {text: { value: 'this is a text field' }}
+  ],
+  // default row data on row add
+  defaultRowData: {text: { value: 'default text field value' }},
+  columns: [
+    {
+      header: 'Text',
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+    },
+  ],
+  isVisible: false
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+
+var button = new kintoneUIComponent.Button({text: 'Show table', type: 'normal'});
+button.on('click', () => {
+  table.show();
+});
+body.appendChild(button.render());
+```
+**React**
+```javascript
+import React from 'react';
+import {render} from 'react-dom';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        {text: 'this is a text field'}
+      ],
+      // default row data on row add
+      defaultRowData: {text: 'default text field value'},
+      isVisible: false
+    }
+  }
+
+  handleRowAdd = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+  
+  handleRowRemove = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleCellChange = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  render() {
+    const {tableData, isVisible, defaultRowData} = this.state;
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({ rowIndex, onCellChange }) => {
+          return (
+            <Text
+              value={tableData[rowIndex].text}
+              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
+            />
+          )
+        }
+      },
+    ];
+    return (
+      <div>
+        <Table
+          columns={columns}
+          data={this.state.tableData}
+          defaultRowData={defaultRowData}
+          onRowAdd={this.handleRowAdd}
+          onRowRemove={this.handleRowRemove}
+          onCellChange={this.handleCellChange}
+          actionButtonsShown={true}
+          isVisible={isVisible}
+        />
+        <Button text="Show table" onClick={() => {
+            this.setState({isVisible: true})
+          }}
+        />
+      </div>
+    );
+  }
+}
+render(<Plugin />, kintone.app.getHeaderSpaceElement());
+```
+</details>
+
+### hide()
+Hide the table
+
+**Parameter**
+
+None
+
+**Returns**
+
+None
+
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var table = new kintoneUIComponent.Table({
+  // inital table data
+  data: [
+    {text: { value: 'this is a text field' }}
+  ],
+  // default row data on row add
+  defaultRowData: {text: { value: 'default text field value' }},
+  columns: [
+    {
+      header: 'Text',
+      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+    },
+  ],
+  isVisible: true
+});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(table.render());
+
+var button = new kintoneUIComponent.Button({text: 'Hide table', type: 'normal'});
+button.on('click', () => {
+  table.hide();
+});
+body.appendChild(button.render());
+```
+**React**
+```javascript
+import React from 'react';
+import {render} from 'react-dom';
+import { Table, Text, Button} from '@kintone/kintone-ui-component';
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        {text: 'this is a text field'}
+      ],
+      // default row data on row add
+      defaultRowData: {text: 'default text field value'},
+      isVisible: true
+    };
+  }
+
+  handleRowAdd = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+  
+  handleRowRemove = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  handleCellChange = ({data}) => {
+    this.setState({ tableData: data })
+    console.log('data: ', data);
+  }
+
+  render() {
+    const {tableData, isVisible, defaultRowData} = this.state;
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({ rowIndex, onCellChange }) => {
+          return (
+            <Text
+              value={tableData[rowIndex].text}
+              onChange={newValue => onCellChange(newValue, tableData, rowIndex, 'text')}
+            />
+          )
+        }
+      },
+    ];
+    return (
+      <div>
       <Table
         columns={columns}
         data={this.state.tableData}
@@ -1640,8 +1674,13 @@ export default class Plugin extends React.Component {
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
         actionButtonsShown={true}
-        isVisible={true}
+          isVisible={isVisible}
+        />
+        <Button text="Hide table" onClick={() => {
+            this.setState({isVisible: false})
+          }}
       />
+      </div>
     );
   }
 }
