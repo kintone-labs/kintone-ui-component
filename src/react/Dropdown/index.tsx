@@ -6,7 +6,7 @@ import '../../css/font.css'
 import '../../css/Dropdown.css';
 
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 }
@@ -18,11 +18,7 @@ type DropdownProps = {
   onChange?: (value: string) => void;
 }
 
-const Dropdown = (props?: DropdownProps) => {
-  if(!props || (props && Object.keys(props).length === 0)){
-    return null;
-  }
-  let {value="", items=[], isVisible, isDisabled, onChange = () => {}}=props;
+const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
@@ -63,7 +59,7 @@ const Dropdown = (props?: DropdownProps) => {
   
 
 
-  const listItemEl = items.map((item: item, i) => {
+  const listItemEl = items && items.map((item: item, i) => {
     return (
       <Item
         key={i}
@@ -95,7 +91,7 @@ const Dropdown = (props?: DropdownProps) => {
           <div className={className.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
-                <span className="kuc-dropdown-selected-label">{index !== -1 && items[index].label}</span>
+                <span className="kuc-dropdown-selected-label">{index !== -1 && items && items[index].label}</span>
                 <span className="icon-arrow-down">
                   <svg>
                     <path d={mdilChevronDown} />

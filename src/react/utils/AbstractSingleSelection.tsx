@@ -1,18 +1,18 @@
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 }
 
 type items = item[]
 
-const _handleItemClick = (item: item, onChange: (value: string) => void) => {
+const _handleItemClick = (item: item, onChange?: (value: string) => void) => {
 
   const value = item.value || "";
-  onChange(value);
+  onChange && onChange(value);
 };
 
-const _hasDuplicatedItems = (items: items) => {
+const _hasDuplicatedItems = (items?: items) => {
   const unique = {};
   let isUnique = true;
   if (items) {
@@ -26,7 +26,7 @@ const _hasDuplicatedItems = (items: items) => {
   return !isUnique;
 };
 
-const _hasValidValue = (items: items, value: string) => {
+const _hasValidValue = (items?: items, value?: string) => {
   if (value === undefined) {
     return true;
   }

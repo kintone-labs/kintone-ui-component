@@ -7,7 +7,7 @@ import { mdilChevronDown } from '@mdi/light-js'
 import '../../css/Dropdown.css'
 
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 };

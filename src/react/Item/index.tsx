@@ -4,7 +4,7 @@ import '../../css/font.css'
 import '../../css/Item.css'
 
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 }

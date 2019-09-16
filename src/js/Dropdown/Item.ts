@@ -3,7 +3,7 @@ import { mdiCheckBold } from '@mdi/js'
 import '../../css/Item.css';
 
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 };

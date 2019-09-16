@@ -1,5 +1,5 @@
 type item = {
-  value?: string;
+  value: string;
   label?: string;
   isDisabled?: boolean;
 }
@@ -11,9 +11,6 @@ const _hasDuplicatedItems = (items?: items) => {
   let isUnique = true;
   if (items) {
     items.forEach((val: item) => {
-      if(!val.value){
-        return;
-      }
       if ( typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
