@@ -310,11 +310,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={true} />
-        );
-    }
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+  }
+  handleShow = () => {
+    this.setState({ isVisible: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Show</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
+    );
+  }
 }
 
 kintone.events.on('app.record.index.show', (event) => {
@@ -355,11 +367,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={false} />
-        );
-    }
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: true
+    };
+  }
+  handleHide = () => {
+    this.setState({ isVisible: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Hide</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
+    );
+  }
 }
 kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
@@ -399,11 +423,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isDisabled={true} />
-        );
-    }
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: false
+    };
+  }
+  handleDisable = () => {
+    this.setState({ isDisabled: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Disable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
+    );
+  }
 }
 kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
@@ -443,11 +479,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color="#FF0000" isDisabled={false} />
-        );
-    }
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true
+    };
+  }
+  handleEnable= () => {
+    this.setState({ isDisabled: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Enable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
+    );
+  }
 }
 kintone.events.on('app.record.index.show', (event) => {
     ReactDOM.render(
