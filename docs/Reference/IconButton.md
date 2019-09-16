@@ -107,9 +107,21 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+     constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+      }
+    }
+    handleSetColor=()=>{
+        this.setState({color:"blue"})
+    }
     render() {
         return (
-            <IconButton type='insert' color='green' />
+            <div>
+                <button onClick={this.handleSetColor}>Set Color</button>
+                <IconButton type='insert' color={this.state.color} />
+            </div>
         );
     }
 }
@@ -146,9 +158,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          shape:"circle"
+      }
+    }
+    handleSetShape=()=>{
+        this.setState({shape:"normal"})
+    }
     render() {
         return (
-            <IconButton type='insert' shape='normal' />
+            <div>
+                <button onClick={this.handleSetShape}>Set Shape</button>
+                <IconButton type='insert' color={this.state.color} shape={this.state.shape}/>
+            </div>
         );
     }
 }
@@ -186,9 +211,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          size:"normal"
+      }
+    }
+    handleSetSize=()=>{
+        this.setState({size:"small"})
+    }
     render() {
         return (
-            <IconButton type='insert' size='small' />
+            <div>
+                <button onClick={this.handleSetSize}>Set Size</button>
+                <IconButton type='insert' color={this.state.color} size={this.state.size}/>
+            </div>
         );
     }
 }
@@ -226,9 +264,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          type:'insert'
+      }
+    }
+    handleSetType=()=>{
+        this.setState({type:"remove"})
+    }
     render() {
         return (
-            <IconButton type='insert'/>
+            <div>
+                <button onClick={this.handleSetType}>Set type</button>
+                <IconButton  color={this.state.color} type={this.state.type}/>
+            </div>
         );
     }
 }
@@ -313,9 +364,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          isVisible:false
+      }
+    }
+    handleShow=()=>{
+        this.setState({isVisible:true})
+    }
     render() {
         return (
-            <IconButton type='insert' size='small' color='blue' isVisible={true} />
+            <div>
+                <button onClick={this.handleShow}>Show</button>
+                <IconButton  color={this.state.color} isVisible={this.state.isVisible}/>
+            </div>
         );
     }
 }
@@ -352,9 +416,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          isVisible:true
+      }
+    }
+    handleHide=()=>{
+        this.setState({isVisible:false})
+    }
     render() {
         return (
-            <IconButton type='insert' size='small' color='blue' isVisible={false} />
+            <div>
+                <button onClick={this.handleHide}>Hide</button>
+                <IconButton  color={this.state.color} isVisible={this.state.isVisible}/>
+            </div>
         );
     }
 }
@@ -391,9 +468,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          isDisabled:false
+      }
+    }
+    handleDisable=()=>{
+        this.setState({isDisabled:true})
+    }
     render() {
         return (
-            <IconButton type='insert' size='small' color='blue' isDisabled={true} />
+            <div>
+                <button onClick={this.handleDisable}>Disable</button>
+                <IconButton  color={this.state.color} isDisabled={this.state.isDisabled}/>
+            </div>
         );
     }
 }
@@ -430,9 +520,22 @@ import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state={
+          color:"red",
+          isDisabled:true
+      }
+    }
+    handleEnable=()=>{
+        this.setState({isDisabled:false})
+    }
     render() {
         return (
-            <IconButton type='insert' size='small' color='blue' isDisabled={false} />
+            <div>
+                <button onClick={this.handleEnable}>Enable</button>
+                <IconButton  color={this.state.color} isDisabled={this.state.isDisabled}/>
+            </div>
         );
     }
 }
