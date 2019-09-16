@@ -240,7 +240,7 @@ Set the type of the button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
+|type|String|Yes|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 
 **Returns**
 
