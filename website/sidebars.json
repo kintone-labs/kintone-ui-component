@@ -1,0 +1,23 @@
+{
+  "docs": {
+    "Kintone UI Component": [
+      "home",
+      "getting-started/quickstart-javascript", 
+      "getting-started/quickstart-react"
+    ],
+    "API Reference": [
+      "components/alert",
+      "components/button", 
+      "components/checkbox",
+      "components/dropdown",
+      "components/iconbutton",
+      "components/label",
+      "components/multiplechoice",
+      "components/notifypopup",
+      "components/radiobutton",
+      "components/spinner",
+      "components/table",
+      "components/text"
+    ]
+  }
+}

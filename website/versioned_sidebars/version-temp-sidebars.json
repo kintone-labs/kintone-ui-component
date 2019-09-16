@@ -1,0 +1,28 @@
+{
+  "version-temp-docs": {
+    "Developer Guide": [
+      "version-temp-getting-started"
+    ],
+    "API Reference": [
+      "version-temp-components/alert",
+      "version-temp-components/attachment",
+      "version-temp-components/button",
+      "version-temp-components/checkbox",
+      "version-temp-components/colorpicker",
+      "version-temp-components/datetime",
+      "version-temp-components/dialog",
+      "version-temp-components/dropdown",
+      "version-temp-components/fieldgroup",
+      "version-temp-components/iconbutton",
+      "version-temp-components/label",
+      "version-temp-components/multiplechoice",
+      "version-temp-components/notifypopup",
+      "version-temp-components/radiobutton",
+      "version-temp-components/spinner",
+      "version-temp-components/table",
+      "version-temp-components/tabs",
+      "version-temp-components/text",
+      "version-temp-components/textarea"
+    ]
+  }
+}

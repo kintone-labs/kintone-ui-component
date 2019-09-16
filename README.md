@@ -1,42 +1,5 @@
-# kintone UI Component
-[![npm version][npm-image]][npm-url]
+# Kintone UI Components
 
-## Usage
-[kintone UI Component Quickstart](https://kintone.github.io/kintone-ui-component/latest/#quick-start)
-
-## Document
-[kintone UI Component](https://kintone.github.io/kintone-ui-component)
-
-## How to build
-
-### Requirement
-```
-* Node.js
-* Git
-```
-
-```
-$ git clone https://github.com/kintone/kintone-ui-component.git
-$ cd kintone-ui-component
-$ npm install
-$ npm run build
-```
-#### Output
-```
-./dist/kintone-ui-component.min.js
-./dist/kintone-ui-component.min.css
-./dist/react/kintone-ui-component.min.js
-./dist/react/kintone-ui-component.min.css
-./dist/esm/react
-./dist/esm/js
-```
-
-## License
-MIT License
-
-## Copyright
-Copyright(c) Cybozu, Inc.
-
-
-[npm-image]: https://img.shields.io/npm/v/@kintone/kintone-ui-component.svg
-[npm-url]: https://npmjs.org/package/@kintone/kintone-ui-component
+- To create a new page, [follow this guide](./NEW-PAGE.md)
+- To deploy a new version, [follow this guide](./DEPLOY.md)
+- To add new translation, [follow this guide](./TRANSLATION.md)

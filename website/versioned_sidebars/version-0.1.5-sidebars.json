@@ -1,0 +1,23 @@
+{
+  "version-0.1.5-docs": {
+    "Kintone UI Component": [
+      "version-0.1.5-home",
+      "version-0.1.5-getting-started/quickstart-javascript",
+      "version-0.1.5-getting-started/quickstart-react"
+    ],
+    "API Reference": [
+      "version-0.1.5-components/alert",
+      "version-0.1.5-components/button",
+      "version-0.1.5-components/checkbox",
+      "version-0.1.5-components/dropdown",
+      "version-0.1.5-components/iconbutton",
+      "version-0.1.5-components/label",
+      "version-0.1.5-components/multiplechoice",
+      "version-0.1.5-components/notifypopup",
+      "version-0.1.5-components/radiobutton",
+      "version-0.1.5-components/spinner",
+      "version-0.1.5-components/table",
+      "version-0.1.5-components/text"
+    ]
+  }
+}
