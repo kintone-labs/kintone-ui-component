@@ -17,8 +17,8 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
-|options.name|String|No|Name of radio button for submit.<br> If value isn't set, the error message will be displayed.|
+|options|Object|Yes|The object contains params of constructor.|
+|options.name|String|Yes|Name of radio button for submit.<br> If value isn't set, the error message will be displayed.|
 |options.items|Array&lt;Object&gt;|No|List of item which displayed in radio button.|
 |options.items[].value|String|No|The value of an item.If the value is duplicate, the error will be displayed|
 |options.items[].label|String|No|Display string.|
