@@ -1,7 +1,8 @@
 ---
-id: home
+id: version-0.3.0-home
 title: Getting Started
 sidebar_label: Getting Started
+original_id: home
 ---
 
 ## Quick start
@@ -14,13 +15,16 @@ sidebar_label: Getting Started
 * [CheckBox](components/checkbox)
 * [ColorPicker](components/colorpicker)
 * [DateTime](components/datetime)
+* [Dialog](components/dialog)
 * [Dropdown](components/dropdown)
+* [FieldGroup](components/fieldgroup)
 * [IconButton](components/iconButton)
 * [Label](components/label)
 * [MultipleChoice](components/multiplechoice)
 * [NotifyPopup](components/notifypopup)
 * [RadioButton](components/radiobutton)
 * [Spinner](components/spinner)
-* [Tabs](components/tabs)
 * [Table](components/table)
+* [Tabs](components/tabs)
 * [Text](components/text)
+* [TextArea](components/textarea)

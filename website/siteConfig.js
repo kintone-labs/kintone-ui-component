@@ -28,13 +28,13 @@ const siteConfig = {
   title: 'kintone UI Component', // Title for your website.
   tagline: 'Documentation for kintone UI Component',
   url: 'https://phongnhat19.github.io', // Your website URL
-  baseUrl: '/kuc-doc/', // Base URL for your project */
+  baseUrl: '/kintone-ui-component/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'kuc-doc',
+  projectName: 'kintone-ui-component',
   organizationName: 'phongnhat19',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
