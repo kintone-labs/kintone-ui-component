@@ -175,7 +175,7 @@ Add an item to the end of checkbox list.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|item|Object|	Yes|The item will be added to multile choices list.|
+|item|Object|Yes|The item will be added to checkbox list.|
 |item.value|String|Yes|The value of an item.|
 |item.label|String|No|Display string.|
 |item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br> Default value: 'false'|
@@ -996,7 +996,6 @@ export default class Plugin extends React.Component {
             },
         ];
         const value= ['Orange', 'Banana']
-
         this.state = {items: items,value};
     }
 
