@@ -93,12 +93,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
