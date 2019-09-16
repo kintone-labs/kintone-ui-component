@@ -97,8 +97,8 @@ None
 
 **Javascript**	
 ```javascript
-var label = new Label({text: 'This is Label'});
-var btn = new Button({ text: 'Set text of Label', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = new kintoneUIComponent.Button({ text: 'Set text of Label', type: 'normal' })
 btn.on('click', function () {
     label.setText('Set text')
 });
@@ -152,8 +152,8 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label'});
-var btn = new Button({ text: 'Set color of Label', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = new kintoneUIComponent.Button({ text: 'Set color of Label', type: 'normal' })
 btn.on('click', function () {
     label.setTextColor('#e74c3c');
 });
@@ -207,8 +207,8 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label'});
-var btn = new Button({ text: 'Set background color of Label', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = new kintoneUIComponent.Button({ text: 'Set background color of Label', type: 'normal' })
 btn.on('click', function () {
     label.setBackgroundColor('#e74c3c');
 });
@@ -262,8 +262,8 @@ None
 
 **Javascript**
 ```javascript	
-var label = new Label({text: 'This is Label'});
-var btn = new Button({ text: 'Set required', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = new kintoneUIComponent.Button({ text: 'Set required', type: 'normal' })
 btn.on('click', function () {
     label.setRequired(true);
 });
@@ -318,7 +318,7 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
 label.on('click', function () {
     console.log('Label onClick');
 });
@@ -365,8 +365,8 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label', isVisible: false});
-var btn = new Button({ text: 'Show label', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label', isVisible: false});
+var btn = new kintoneUIComponent.Button({ text: 'Show label', type: 'normal' })
 btn.on('click', function () {
     label.show()
 });
@@ -419,8 +419,8 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label'});
-var btn = new Button({ text: 'Hide label', type: 'normal' })
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = new kintoneUIComponent.Button({ text: 'Hide label', type: 'normal' })
 btn.on('click', function () {
     label.hide()
 });
@@ -472,11 +472,11 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
 label.on('click', function () {
    console.log('Label onClick');
 });
-var btn = new Button({ text: 'Disable label', type: 'normal' })
+var btn = new kintoneUIComponent.Button({ text: 'Disable label', type: 'normal' })
 btn.on('click', function () {
     label.disable()
 });
@@ -532,11 +532,11 @@ None
 
 **Javascript**
 ```javascript
-var label = new Label({text: 'This is Label', isDisabled: true});
+var label = new kintoneUIComponent.Label({text: 'This is Label', isDisabled: true});
 label.on('click', function () {
    console.log('Label onClick');
 });
-var btn = new Button({ text: 'Enable label', type: 'normal' })
+var btn = new kintoneUIComponent.Button({ text: 'Enable label', type: 'normal' })
 btn.on('click', function () {
     label.enable()
 });
