@@ -30,9 +30,6 @@ class Dialog extends Control {
 
     constructor(params?: DialogProps) {
         super();
-        if(!params){
-            return;
-          }
         if (params) {
           this._props = {...this._props, ...params};
         }

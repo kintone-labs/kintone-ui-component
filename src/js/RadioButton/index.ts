@@ -20,14 +20,11 @@ class RadioButton extends Control {
     }
   };
 
-  private itemComps: Item[] = [];
+  private itemComps?: Item[] = [];
 
   constructor(params?: RadioButtonProps) {
     super();
-    if(!params){
-      return;
-    }
-    if (!params.name) {
+    if (params && !params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }
     if (
@@ -57,7 +54,7 @@ class RadioButton extends Control {
     this.element = document.createElement('div');
     this.element.className = 'kuc-input-radio';
     this.itemComps =
-      this._props.items ?
+      this._props.items &&
       this._props.items.map(item => {
         const newItem = new Item({
           selected: this._props.value === item.value,
@@ -69,15 +66,15 @@ class RadioButton extends Control {
         });
         newItem.on('change', this._handleItemClick);
         return newItem;
-      }) : [] 
-    this.itemComps.forEach(item => {
+      });
+    this.itemComps && this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
   }
 
   private _handleItemClick = (itemEl: any) => {
     const inputEl = itemEl.target;
-    this.itemComps.some(item => {
+    this.itemComps && this.itemComps.some(item => {
       if (item.id === inputEl.id) {
         this._props.value = item.value;
         return true
@@ -98,7 +95,7 @@ class RadioButton extends Control {
     while (this.element.firstChild)
       this.element.removeChild(this.element.firstChild);
     this.itemComps =
-      this._props.items ?
+      this._props.items &&
       this._props.items.map(item => {
         const newItem = new Item({
           selected: this._props.value === item.value,
@@ -110,8 +107,8 @@ class RadioButton extends Control {
         });
         newItem.on('change', this._handleItemClick);
         return newItem;
-      }) : [] ;
-    this.itemComps.forEach(item => {
+      });
+    this.itemComps && this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
   }

@@ -2,8 +2,8 @@ import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from "./AttachmentFileItem";
 import '../../css/Attachment.css';
 type FileObject = {
-    name: string;
-    size: number;
+    name?: string;
+    size?: number;
 }
 
 type AttachmentProps = ControlProps & {

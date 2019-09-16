@@ -17,10 +17,7 @@ type CheckBoxProps = {
   onChange?: (value: string[]) => void;
 };
 
-const CheckBox = (props?: CheckBoxProps) => {
-  if(!props || (props && Object.keys(props).length ===0)){
-    return null
-  }
+const CheckBox = (props: CheckBoxProps) => {
   const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection;
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
@@ -74,4 +71,5 @@ const CheckBox = (props?: CheckBoxProps) => {
     </div>
   );
 };
+
 export default CheckBox;

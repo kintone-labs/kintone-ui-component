@@ -87,22 +87,20 @@ class ColorPicker extends Control {
   }
 
   private _renderPicker() {
-    let { color = "#ff0000" }= this._props;
-
     this.Picker = new Picker({
-      hexString: color,
+      hexString: this._props.color || "#ff0000",
       onAccept: (hexString: string) => {
-        color = hexString;
+        this._props.color = hexString;
         this.oldColor = hexString;
         this.rerender(['color']);
-        this._props.onChange && this._props.onChange(color);
+        this._props.onChange && this._props.onChange(hexString);
       },
       onCancel: () => {
-        color = this.oldColor;
+        this._props.color = this.oldColor;
         this.rerender(['color', 'redraw']);
       },
       onChange: (hexString: string, triggerOnChange: boolean) => {
-        color = hexString;
+        this._props.color = hexString;
         if (triggerOnChange) {
           this.rerender(['color', 'redraw']);
         } else {
@@ -114,13 +112,12 @@ class ColorPicker extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    let { color = "#ff0000" }= this._props;
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('color') !== -1) {
-      this.inputElement.value = color;
+      this.inputElement.value = this._props.color || "#ff0000";
       const inputStyle = this.getInputStyle();
-      this.Picker.setRGB(color);
+      this.Picker.setRGB(this._props.color || "#ff0000");
       Object.assign(this.inputElement.style, inputStyle);
     }
 
@@ -132,7 +129,7 @@ class ColorPicker extends Control {
     }
 
     if (changedAttr.indexOf('redraw') !== -1) {
-      this.Picker.setHexString(color);
+      this.Picker.setHexString(this._props.color || "#ff0000");
     }
   }
 
@@ -147,15 +144,13 @@ class ColorPicker extends Control {
   }
 
   getColor(): string {
-    let { color = "#ff0000" }= this._props;
-    return color;
+    return this._props.color || "#ff0000";
   }
 
   getInputStyle() {
-    let { color = "#ff0000" }= this._props;
     let style = {
-      backgroundColor: color,
-      color: invertColor(color)
+      backgroundColor: this._props.color || "#ff0000",
+      color: invertColor(this._props.color || "#ff0000")
     };
 
     style = {...style, ...ColorPickerStyle.input};

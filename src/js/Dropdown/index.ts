@@ -38,9 +38,6 @@ class Dropdown extends Control {
 
   constructor(params?:DropdownProps) {
     super();
-     if(! params || params && Object.keys(params).length === 0){
-      return;
-    }
     if (
       typeof params === 'object' &&
       params !== null &&

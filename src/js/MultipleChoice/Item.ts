@@ -49,7 +49,7 @@ class Item extends Control {
         spanIconCheckElement.appendChild(this._createCheckIconEl());
         const spanListItemLabelElement = document.createElement('span');
         spanListItemLabelElement.className = 'kuc-list-item-label'; 
-        this._props.label ? spanListItemLabelElement.append(this._props.label) : ""
+        spanListItemLabelElement.append(this._props.label || "");
         this.element.appendChild(spanIconCheckElement);
         this.element.appendChild(spanListItemLabelElement);
 

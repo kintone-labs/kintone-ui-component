@@ -19,17 +19,10 @@ type RadioButtonProps = {
 }
 
 const RadioButton = (props: RadioButtonProps) => {
-  if(!props || (props && Object.keys(props).length ===0)){
-    return null
-  }
   if (!props.name) {
     throw new Error(Message.radioBtn.MISSING_NAME);
   }
-
   if (props.isVisible === false) {
-    return null;
-  }
-  if(!props || (props && Object.keys(props).length) === 0){
     return null;
   }
   if(props.items){

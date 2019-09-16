@@ -23,9 +23,6 @@ type AttachmentProps = {
 
 
 const Attachment = (props: AttachmentProps) => {
-  if(!props){
-    return null;
-  }
   if (props.isVisible === false) {
     return null;
   }

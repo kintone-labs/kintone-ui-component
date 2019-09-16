@@ -48,10 +48,6 @@ export default class Table extends Control {
 
   constructor(params?: TableProps) {
     super()
-    if(!params){
-      return;
-    }
-    
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }
@@ -80,7 +76,7 @@ export default class Table extends Control {
   }
   
   private _removeRow = ({data, rowIndex}:RowEventProps) => {
-    this._props.data = data ? data.filter((_, index) => index !== rowIndex):[];
+    this._props.data = data && data.filter((_, index) => index !== rowIndex);
     this._renderTableRows(true)
     this._renderCells()
   }
@@ -101,7 +97,7 @@ export default class Table extends Control {
     const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
     const columns = [].slice.call(this._props.columns as TableColumnJS[])
     rowsEl.forEach((rowEl: HTMLElement, rowIndex: number) => {
-      const rowData = this._props.data ? this._props.data[rowIndex] : {}
+      const rowData = this._props.data && this._props.data[rowIndex]
       const updateRowData = this.updateRowData.bind(this, rowIndex)
       columns.forEach(({cell}: TableColumnJS, columnIndex: number) => {
         const cellTemplate = cell

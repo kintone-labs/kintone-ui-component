@@ -14,14 +14,7 @@ type DialogProps = {
   onClose?: () => void;
 };
 
-const Dialog = ({
-  header = '', 
-  content = '', 
-  footer = '', 
-  isVisible = true, 
-  showCloseButton = true, 
-  onClose
-}: DialogProps) => {
+const Dialog = ({header = '', content = '', footer = '', isVisible = true, showCloseButton = true, onClose}: DialogProps) => {
   let hidden = '';
   if (isVisible === false) {
     hidden = 'hidden';

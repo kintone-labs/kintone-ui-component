@@ -70,7 +70,7 @@ type CellRendererProps = {
 type TableCellActionsProps = {
   data: object[],
   rowIndex: number,
-  defaultRowData: object,
+  defaultRowData?: object[],
   addRow: (options?: RowEventProps) => object[],
   removeRow: (options: RowEventProps) => object[],
   dispatch: (newState: DispatchParams) => void
@@ -81,16 +81,7 @@ type RowEventProps = {
   defaultRowData?: object
 }
 
-const Table = ({
-  data, 
-  columns, 
-  defaultRowData, 
-  onRowAdd, 
-  onRowRemove, 
-  onCellChange, 
-  actionButtonsShown, 
-  isVisible
-}: TableProps) => {
+const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
   const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -110,10 +101,7 @@ const Table = ({
 };
 
 const TableHeaderRow = ({columns}:TableHeaderProps) => {
-  if(!columns){
-    return null;
-  }
-  const header = columns.map((data, index) => {
+  const header = columns && columns.map((data, index) => {
     return (data as TableColumn).header ? (
       <div key={'Table_Header_Column_' + index} className="kuc-table-th">
         <span className="kuc-header-label">{(data as TableColumn).header}</span>
@@ -123,21 +111,13 @@ const TableHeaderRow = ({columns}:TableHeaderProps) => {
   return <React.Fragment>{header}</React.Fragment>;
 };
 
-const TableBody = (propsTableBody?: TableBodyProps) => {
-  if(!propsTableBody || (propsTableBody && Object.keys(propsTableBody).length === 0)){
-    return null;
-  }
-  let {columns, data=[], defaultRowData=[], onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}=propsTableBody;
-  if(!columns || !data ){
-    return null;
-  }
-
+const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}: TableBodyProps) => {
   if (actionButtonsShown) {
-    columns.push({actions: true});
+    columns && columns.push({actions: true});
   }
   return (
     <div className="kuc-table-tbody">
-      {data.map((rowData, rowIndex) => (
+      {data && data.map((rowData, rowIndex) => (
         <div className="kuc-table-tr" key={rowIndex}>
           {columns && columns.map((column, columnIndex) => {
             const {actions} = (column as ActionFlag)
@@ -170,18 +150,14 @@ const TableBody = (propsTableBody?: TableBodyProps) => {
   );
 };
 
-const TableCell = (propsCell: TableCellProps) => {
-  if(!propsCell ||(propsCell && Object.keys(propsCell).length === 0) ){
-    return null;
-  }
-  let {
-    rowData,
-    rowIndex,
-    columnIndex,
-    cell,
-    _onCellChange,
-    tdProps
-  }= propsCell;
+const TableCell = ({
+  rowData,
+  rowIndex,
+  columnIndex,
+  cell,
+  _onCellChange,
+  tdProps
+}: TableCellProps) => {
   const cellProps: CellRendererProps = {rowData, rowIndex, columnIndex};
   if (typeof _onCellChange === 'function') {
     cellProps.onCellChange = _onCellChange;
@@ -191,11 +167,7 @@ const TableCell = (propsCell: TableCellProps) => {
   return <div {...tdPropsObj} className="kuc-table-td">{content}</div>;
 };
 
-const TableCellActions = (propsTableCellAction: TableCellActionsProps) => {
-  if(!propsTableCellAction || (propsTableCellAction && Object.keys(propsTableCellAction).length === 0)){
-    return null;
-  }
-  let {data, rowIndex, defaultRowData, addRow, removeRow, dispatch}=propsTableCellAction;
+const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, dispatch}: TableCellActionsProps) => {
   return (
     <div className="kuc-table-td action-group">
       <span style={{marginRight: '5px', display:'inline-block'}}>

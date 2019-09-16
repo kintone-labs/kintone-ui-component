@@ -4,8 +4,6 @@ import AbstractMultiSelection from '../utils/AbstractMultiSelection'
 import Message from '../../constant/Message'
 import '../../css/CheckBox.css'
 
-
-
 type CheckboxProps = ControlProps & {
     items?: Array<ItemData> 
     value?: Array<string>
@@ -27,10 +25,7 @@ class CheckBox extends Control {
 
     constructor(params?: CheckboxProps) {
         super()
-        if(!params){
-            return;
-          }
-        if(typeof params.isDisabled !== 'boolean') {
+        if(params && typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }
         if (params) {
@@ -65,13 +60,12 @@ class CheckBox extends Control {
     
     private _validator(): string | undefined {
         let err
-        let { items=[] }= this._props;
-        if (AbstractMultiSelection._hasDuplicatedItems(items)) {
+        if (AbstractMultiSelection._hasDuplicatedItems(this._props.items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE
         }
         
-        if (items && this._props.value && 
-            !AbstractMultiSelection._hasValidValue(items, this._props.value)
+        if (this._props.items && this._props.value && 
+            !AbstractMultiSelection._hasValidValue(this._props.items, this._props.value)
         ) {
             err = Message.common.INVALID_ARGUMENT
         }
@@ -194,12 +188,8 @@ class CheckBox extends Control {
         }
 
         if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-            let selected = false;      
-            let lastItem =this._props.items[this._props.items.length - 1].value;
-            if(!lastItem){
-                return;
-            }  
-            if(this._props.value && this._props.value.indexOf(lastItem)) {
+            let selected = false;
+            if(this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
                 selected = true
             }
             let itemComponent = new Item({

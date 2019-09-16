@@ -30,10 +30,7 @@ class Tabs extends Control {
 
   constructor(params?: TabsProps) {
     super()
-    if(!params){
-      return;
-    }
-    if(typeof params.isDisabled !== 'boolean') {
+    if(params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }
     if (params) {
@@ -73,11 +70,9 @@ class Tabs extends Control {
   private _renderTabNames() {
     this.tabNamesElement = document.createElement('ul')
     this.tabNamesElement.className = 'kuc-tabs-tab-list'
-    let {items=[]}=this._props;
-    items.forEach((item: Tab, index:number) => {
-      let tabName =item.tabName || "";
+    this._props.items && this._props.items.forEach((item: Tab, index:number) => {
       let tabComponent = new TabName({
-        tabName,
+        tabName: item.tabName,
         tabIndex: index,
         onClickTabItem: (tabIndex: number) => {
           this.setValue(tabIndex)
@@ -93,7 +88,6 @@ class Tabs extends Control {
   }
 
   private _renderTabContent() {
-  
     let tabContentWrapper = document.createElement('div')
     tabContentWrapper.className = 'kuc-tabs-tab-contents'
     this.element.appendChild(tabContentWrapper)
@@ -127,7 +121,7 @@ class Tabs extends Control {
 
     if (changedAttr.indexOf('addItems') !== -1) {
       let tabComponent = new TabName({
-        tabName: this._props.items[this._props.items.length - 1].tabName || "",
+        tabName: this._props.items[this._props.items.length - 1].tabName,
         tabIndex: this._props.items.length - 1,
         onClickTabItem: (tabIndex: number) => {
           this.setValue(tabIndex)
@@ -145,7 +139,7 @@ class Tabs extends Control {
       }
       this._props.items.forEach((item: Tab, index:number) => {
         let tabComponent = new TabName({
-          tabName: item.tabName || "",
+          tabName: item.tabName,
           tabIndex: index,
           onClickTabItem: (tabIndex: number) => {
             this.setValue(tabIndex)

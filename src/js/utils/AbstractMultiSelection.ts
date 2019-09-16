@@ -4,7 +4,7 @@ type ItemData = {
   isDisabled?: boolean
 }
 
-const _hasDuplicatedItems = (items: Array<ItemData>) => {
+const _hasDuplicatedItems = (items?: Array<ItemData>) => {
     const unique = {};
     let isUnique = true;
     if (items) {
@@ -19,11 +19,13 @@ const _hasDuplicatedItems = (items: Array<ItemData>) => {
     return !isUnique;
   };
   
-  const _hasValidValue = (items: Array<ItemData>, value: string | Array<string>) => {
+  const _hasValidValue = (items?: Array<ItemData>, value?: string | Array<string>) => {
     const validValues: string[] = [];
-    items.forEach((item) => {
-      item.value ? validValues.push(item.value) : "";
-    });
+    if (items) { 
+      items.forEach((item) => {
+        item.value ? validValues.push(item.value) : "";
+      });
+    }
   
     if (value === undefined) {
       return true;

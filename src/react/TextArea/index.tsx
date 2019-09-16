@@ -10,7 +10,7 @@ type TextAreaProps = {
   onChange?: (e: any) => void;
 }
 
-const TextArea = ({value, isVisible, isDisabled, onChange, onClick}:TextAreaProps) => {
+const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
   const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight})

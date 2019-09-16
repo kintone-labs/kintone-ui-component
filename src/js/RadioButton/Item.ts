@@ -9,7 +9,7 @@ type item = {
 };
 
 type ItemProps = ControlProps & {
-  item?: item;
+  item: item;
   selected: boolean;
   name?: string;
   type?: string;
@@ -29,9 +29,6 @@ class Item extends Control {
 
   constructor(params: ItemProps) {
     super();
-    if(!params){
-      return;
-    }
     if (
       typeof params === 'object' &&
       params !== null &&
@@ -56,7 +53,7 @@ class Item extends Control {
       '-' +
       generateGUID() +
       generateGUID();
-    this.value =  params.item && params.item.value ? params.item.value : "";
+    this.value = params.item.value;
     this.element = document.createElement('span');
     if(this._props.className) {
       this.element.className = this._props.className;
@@ -75,7 +72,7 @@ class Item extends Control {
     }
     const labelEl = document.createElement('label');
     labelEl.htmlFor = this.id;
-    labelEl.innerText = this._props.item && this._props.item.label || '';
+    labelEl.innerText = this._props.item.label || '';
     this.element.appendChild(this.inputEl);
     this.element.appendChild(labelEl);
   }

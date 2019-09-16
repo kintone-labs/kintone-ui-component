@@ -18,10 +18,7 @@ type MultipleChoiceProps = {
   onChange?: (value: string[]) => void;
 };
 
-const MultipleChoice = (props?: MultipleChoiceProps) => {
-  if(!props || (props && Object.keys(props).length ===0)){
-    return null
-  }
+const MultipleChoice = (props: MultipleChoiceProps) => {
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
     const length = value.length;

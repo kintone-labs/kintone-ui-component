@@ -18,9 +18,6 @@ class Text extends Control {
 
   constructor(params?: TextProps) {
     super();
-    if(!params || (params && Object.keys(params).length === 0)){
-      return;
-    }
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }
