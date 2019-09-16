@@ -42,16 +42,15 @@ class Item extends Control {
         inputCheckboxElement.checked = this._props.isSelected
         inputCheckboxElement.disabled = this._props.isDisabled || false;
         inputCheckboxElement.id = inputCheckboxID
-        
+
         this.inputCheckboxElement = inputCheckboxElement
         this.element.appendChild(inputCheckboxElement)
-        
-        let { label = "" }=this._props;
+
         const labelForCheckboxElement = document.createElement('label')
         labelForCheckboxElement.htmlFor = inputCheckboxID;
-        labelForCheckboxElement.append(label)
+        labelForCheckboxElement.append(this._props.label || "")
         this.element.appendChild(labelForCheckboxElement)
-        
+
         this.inputCheckboxElement.addEventListener('change', (e) => {
             this._props.isSelected = this.inputCheckboxElement.checked;
             if(this._props.onChange) {
