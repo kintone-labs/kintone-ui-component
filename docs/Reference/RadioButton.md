@@ -20,9 +20,9 @@
 |options|Object|Yes|The object contains params of constructor.|
 |options.name|String|Yes|Name of radio button for submit.<br> If value isn't set, the error message will be displayed.|
 |options.items|Array&lt;Object&gt;|No|List of item which displayed in radio button.|
-|options.items[].value|String|Conditional|The value of an item. This is required if <b>options.items[]</b> is specified.<br>If the value is duplicate, the error will be displayed|
-|options.items[].label|String|No|Display string.|
-|options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
+|options.items[x].value|String|Conditional|The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed|
+|options.items[x].label|String|No|Display string.|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
 |options.value|String|No|Default selected item.|
 |options.isDisabled|Boolean|No|The radio button will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The radio button will be visible. <br> Default value: 'true'|

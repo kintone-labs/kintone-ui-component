@@ -18,9 +18,9 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items which will be displayed on checkbox.|
-|options.items[].value|String|Conditional|String value of item. This is required if <b>options.items[]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
-|options.items[].label|String|No|	String label of item|
-|options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
+|options.items[x].value|String|Conditional|String value of item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
+|options.items[x].label|String|No|	String label of item|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
 |options.value|Array<String>|No|List of checked item.|
 |options.isDisabled|Boolean|No|The checkBox will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The checkBox will be visible. <br> Default value: 'true'|
