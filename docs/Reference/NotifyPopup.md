@@ -133,18 +133,18 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success'
 });
-var btn = new kintoneUIComponent.Button({ text: 'Set text of NotifyPopup', type: 'normal' })
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Set text of NotifyPopup';
+btn.onclick = function() {
     notifyPopup.setText('Set text');
-});
-
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -160,11 +160,8 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <NotifyPopup
-                    text={this.state.text}
-                    type='success'
-                />
-                <Button text='Set text' onClick={this.setText} />
+                <NotifyPopup text={this.state.text} type='success' />
+                <button onClick={this.setText}>Set text</button>
             </div>
         );
     };
@@ -195,18 +192,18 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
 });
-var btn = new kintoneUIComponent.Button({ text: 'Set type of NotifyPopup', type: 'normal' })
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Set type of NotifyPopup';
+btn.onclick = function() {
     notifyPopup.setType('infor');
-});
-
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -222,11 +219,8 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <NotifyPopup
-                    text='Here is NotifyPopup'
-                    type={this.state.type}
-                />
-                <Button text='Set type' onClick={this.setType} />
+                <NotifyPopup text='Here is NotifyPopup' type={this.state.type}/>
+                <button onClick={this.setType}>Set type</button>
             </div>
         );
     };
@@ -326,17 +320,18 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     type: 'success',
     isVisible: false
 });
-var btn = new kintoneUIComponent.Button({ text: 'Show NotifyPopup', type: 'normal' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Show NotifyPopup';
+btn.onclick = function() {
     notifyPopup.show();
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -357,7 +352,7 @@ export default class Plugin extends React.Component {
                     type='success'
                     isVisible={this.state.isVisible}
                 />
-                <Button text='Show NotifyPopup' onClick={this.show} />
+                <button onClick={this.show}>Show NotifyPopup</button>
             </div>
         );
     };
@@ -385,17 +380,18 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
 });
-var btn = new kintoneUIComponent.Button({ text: 'Hide NotifyPopup', type: 'normal' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Hide NotifyPopup';
+btn.onclick = function() {
     notifyPopup.hide();
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -416,7 +412,7 @@ export default class Plugin extends React.Component {
                     type='success'
                     isVisible={this.state.isVisible}
                 />
-                <Button text='Hide NotifyPopup' onClick={this.hide} />
+                <button onClick={this.hide}>Hide NotifyPopup</button>
             </div>
         );
     };
@@ -444,18 +440,19 @@ None
 var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
-});
-var btn = new kintoneUIComponent.Button({ text: 'Disable NotifyPopup', type: 'normal' });
-btn.on('click', function () {
+};
+var btn = document.createElement('button'); 
+btn.textContent = 'Disable NotifyPopup';
+btn.onclick = function() {
     notifyPopup.disable();
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -480,7 +477,7 @@ export default class Plugin extends React.Component {
                         this.setState({isVisible: false})
                     }}
                 />
-                <Button text='Disable NotifyPopup' onClick={this.disable} />
+                <button onClick={this.disable} >Disable NotifyPopup</button>
             </div>
         );
     };
@@ -510,17 +507,18 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     type: 'success',
     isDisabled: true
 });
-var btn = new kintoneUIComponent.Button({ text: 'Enable NotifyPopup', type: 'normal' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent: 'Enable NotifyPopup';
+btn.onclick = function() {
     notifyPopup.enable();
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { NotifyPopup, Button } from '@kintone/kintone-ui-component';
+import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -545,7 +543,7 @@ export default class Plugin extends React.Component {
                         this.setState({isVisible: false})
                     }}
                 />
-                <Button text='Enable NotifyPopup' onClick={this.enable} />
+                <button onClick={this.enable}>Enable NotifyPopup</button>
             </div>
         );
     };
