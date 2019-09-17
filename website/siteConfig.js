@@ -107,11 +107,11 @@ const siteConfig = {
   ],
   scripts: [
     'https://unpkg.com/@kintone/kintone-ui-component@0.3.3/dist/kintone-ui-component.min.js',
-    '/kuc-doc/js/extra.js'
+    '/kintone-ui-component/js/extra.js'
   ],
   stylesheets: [
     'https://unpkg.com/@kintone/kintone-ui-component@0.3.3/dist/kintone-ui-component.min.css',
-    '/kuc-doc/css/custom.css'
+    '/kintone-ui-component/css/custom.css'
   ],
   algolia: {
     apiKey: 'ee3709e597874e0d5c43b75e16a42c11',
