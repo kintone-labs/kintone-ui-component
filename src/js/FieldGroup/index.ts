@@ -23,7 +23,7 @@ class FieldGroup extends Control {
   private fgTabLabel: HTMLElement;
   private fgContents: HTMLElement;
 
-  constructor(params: FieldGroupProps) {
+  constructor(params?: FieldGroupProps) {
     super();
     if (params) {
       this._props = { ...this._props, ...params };

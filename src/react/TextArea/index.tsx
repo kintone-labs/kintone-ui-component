@@ -3,15 +3,14 @@ import '../../css/font.css'
 import '../../css/TextArea.css';
 
 type TextAreaProps = {
-  value: string;
+  value?: string;
   isVisible?: boolean;
   isDisabled?: boolean;
-  onClick: (e: any) => void;
-  onChange: (e: any) => void;
+  onClick?: (e: any) => void;
+  onChange?: (e: any) => void;
 }
 
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
-
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
   const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight})
@@ -55,7 +54,7 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
   );
 
   const _onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(event.target.value);
+    onChange && onChange(event.target.value);
   };
 
   if (isVisible === false) {

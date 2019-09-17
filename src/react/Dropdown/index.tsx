@@ -7,15 +7,15 @@ import '../../css/Dropdown.css';
 
 type item = {
   value: string;
-  label: string;
+  label?: string;
   isDisabled?: boolean;
 }
 type DropdownProps = {
-  value: string;
-  items: item[];
+  value?: string;
+  items?: item[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
 const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
@@ -49,14 +49,15 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   if (isVisible === false) {
     return null;
   }
-
   if (_hasDuplicatedItems(items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
-
+  
   if (!_hasValidValue(items, value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
+  
+
 
   const listItemEl = items && items.map((item: item, i) => {
     return (
@@ -65,7 +66,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
         selected={value === item.value}
         onClick={(item_prop) => {
           _handleItemClick(item_prop, onChange); _hideItems();
-        }}
+        }} 
         item={item}
         isDisabled={item.isDisabled}
       />
@@ -90,7 +91,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
           <div className={className.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
-                <span className="kuc-dropdown-selected-label">{index !== -1 && items[index].label}</span>
+                <span className="kuc-dropdown-selected-label">{index !== -1 && items && items[index].label}</span>
                 <span className="icon-arrow-down">
                   <svg>
                     <path d={mdilChevronDown} />

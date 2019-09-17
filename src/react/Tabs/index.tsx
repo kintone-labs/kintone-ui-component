@@ -5,14 +5,14 @@ import Message from '../../constant/Message'
 
 type TabsItem = {
   tabName: string;
-  tabContent: any;
+  tabContent?: any;
   isDisabled?: boolean;
 }
 
 type TabsProps = {
-  items: TabsItem[];
-  value: number;
-  onClickTabItem: (tabIndex: number) => void;
+  items?: TabsItem[];
+  value?: number;
+  onClickTabItem?: (tabIndex: number) => void;
 }
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
@@ -26,7 +26,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   }
     const tabNames = (
         <ul className="kuc-tabs-tab-list">
-        {
+        {items &&
           items.map((item: TabsItem, tabIndex: number) => {
             if (!item.tabName) {
               throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
@@ -51,7 +51,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
               <li
                 className={className}
                 key={tabIndex}
-                onClick={() => onClickTabItem(tabIndex)}
+                onClick={() => onClickTabItem && onClickTabItem(tabIndex)}
               >
                 {item.tabName}
               </li>
@@ -60,7 +60,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         }
     </ul>
   );
-  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+  const tabContents = items && items.map((item: TabsItem, tabIndex: number) => {
     if (tabIndex !== value) return undefined;
 
     return (

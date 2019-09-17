@@ -2,19 +2,19 @@ import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from "./AttachmentFileItem";
 import '../../css/Attachment.css';
 type FileObject = {
-    name: string;
-    size: number;
+    name?: string;
+    size?: number;
 }
 
 type AttachmentProps = ControlProps & {
-    dropZoneText: string;
-    browseButtonText: string;
-    fileLimitText: string;
-    errorMessage: string;
-    isErrorVisible: boolean;
-    files: FileObject[];
-    onFilesAdd: (files: FileObject[]) => void;
-    onFileRemove: (files: FileObject[]) => void;
+    dropZoneText?: string;
+    browseButtonText?: string;
+    fileLimitText?: string;
+    errorMessage?: string;
+    isErrorVisible?: boolean;
+    files?: FileObject[];
+    onFilesAdd?: (files: FileObject[]) => void;
+    onFileRemove?: (files: FileObject[]) => void;
 }
 
 class Attachment extends Control {
@@ -23,7 +23,8 @@ class Attachment extends Control {
     ...{
         files: [],
         browseButtonText: 'Browse',
-        dropZoneText: 'Drop files here.'
+        dropZoneText: 'Drop files here.',
+        isErrorVisible: false,
     }
   }
   private _onFileRemove: (params?: any) => void = () => {};
@@ -35,12 +36,12 @@ class Attachment extends Control {
   private dropZoneElement: HTMLDivElement;
   private dragEnterCounter = 0;
 
-  constructor(params: AttachmentProps) {
+  constructor(params?: AttachmentProps) {
     super();
     if (params) {
-      this._props = {...this._props, ...params};
+      this._props = {...this._props, ...params,};
     }
-
+    
     this.element = this.createContainerEL();
     this.rerender(Object.keys(this._props));
   }
@@ -49,39 +50,35 @@ class Attachment extends Control {
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('browseButtonText') !== -1) {
-        this.attachInputTextEl.innerText = this._props.browseButtonText;
+        this.attachInputTextEl.innerText = this._props.browseButtonText || "";
     }
     if (changedAttr.indexOf('fileLimitText') !== -1) {
-        this.constraintsFileEl.innerText = this._props.fileLimitText;
+        this.constraintsFileEl.innerText = this._props.fileLimitText || "";
     }
-
     if (changedAttr.indexOf('dropZoneText') !== -1) {
-        this.dropZoneElement.innerText = this._props.dropZoneText
+        this.dropZoneElement.innerText = this._props.dropZoneText || ""
     }
-
     if (changedAttr.indexOf('files') !== -1 && Array.isArray(this._props.files)) {
-        this._props.files.forEach((file, index) => {
-            let itemFile = new AttachmentFileItem({
-              index:index,
-              fileName:file.name,
-              fileSize:file.size,
-              onFileRemove:(index) => {
-                this._removeFile(index)
-              }
-            })
-            this.listFileEl.appendChild(itemFile.render());
-        });
+      this._props.files.forEach((file, index) => {
+          let itemFile = new AttachmentFileItem({
+            index:index,
+            fileName:file.name,
+            fileSize:file.size,
+            onFileRemove:(index) => {
+              this._removeFile(index)
+            }
+          })
+          this.listFileEl.appendChild(itemFile.render());
+      });
     }
-
     if (changedAttr.indexOf('isErrorVisible') !== -1) {
         this.fileErrorEl.style.display = 'none';
         if (this._props.isErrorVisible === true) {
           this.fileErrorEl.style.display = 'block';
         }
     }
-
     if (changedAttr.indexOf('errorMessage') !== -1) {
-      this.fileErrorEl.innerText = this._props.errorMessage;
+      this.fileErrorEl.innerText = this._props.errorMessage || "";
     }
   }
 
@@ -93,7 +90,7 @@ class Attachment extends Control {
       
       addedFiles.forEach((file: object, index: number) => {
         let itemFile = new AttachmentFileItem({
-          index: this._props.files.length + index,
+          index: this._props.files && this._props.files.length + index,
           fileName:file['name'],
           fileSize:file['size'],
           onFileRemove:(index) => {
@@ -102,7 +99,10 @@ class Attachment extends Control {
         })
         this.listFileEl.appendChild(itemFile.render());
       });
-      this._props.files = [...this._props.files, ...addedFiles];
+      if(this._props.files){
+        this._props.files = [...this._props.files, ...addedFiles];
+
+      }
     this._onFileAdd(this._props.files)
   };
 
@@ -156,13 +156,13 @@ class Attachment extends Control {
   }
 
   private _removeFile = (index: number) =>{
-      this._props.files.splice(index, 1);
+    this._props.files &&  this._props.files.splice(index, 1);
       this._onFileRemove(this._props.files)
   }
 
   private createFileErrorEl() {
     let errorEl = document.createElement('span');
-    errorEl.innerHTML = this._props.errorMessage;
+    errorEl.innerHTML = this._props.errorMessage || "";
 
     const fileErrorEl = document.createElement('div');
     fileErrorEl.className = 'kuc-attachment-file-error';
