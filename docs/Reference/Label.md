@@ -9,46 +9,41 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
+|options|Object|No|The object contains parameters of constructor.|
 |options.text|String|No|Caption of label.|
-|options.isRequired|Boolean|No|Display the '*' character at the end of the caption. <br> Default value is false.|
-|options.textColor|String|No|Color of caption. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'|
-|options.backgroundColor|String|No|Color of background. <br> Can set like 'red' or '#e74c3c' or 'rgba(0, 0, 0, 1)'|
-|options.isDisabled|Boolean|No|The label will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The label will be visible. <br> Default value: 'true'|
+|options.isRequired|Boolean|No|Display **'*'** character at the end of caption. <br> Default value is **false**.|
+|options.textColor|String|No|Color of caption. <br> Can set using the following formats: <ul><li>**Color Names**: red, yellow, black, etc.</li><li>**HEX:** #e74c3c, #0000ff, etc.</li><li>**RGBA:** rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul>|
+|options.backgroundColor|String|No|Color of background. <br> Can set using the following formats: <ul><li>**Color Names**: red, yellow, black, etc.</li><li>**HEX:** #e74c3c, #0000ff, etc.</li><li>**RGBA:** rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul>|
+|options.isDisabled|Boolean|No|The label will be disabled. <br> Default value: **false**|
+|options.isVisible|Boolean|No|The label will be visible. <br> Default value: **true**|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({
-    text: 'Name',
-    textColor: '#e74c3c',
-    backgroundColor: 'yellow',
-    isRequired: true
-});
+var label = new kintoneUIComponent.Label({ text: 'This is Label' });
 ```
 
 **React**
 ```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Label text='Name' textColor='#e74c3c' backgroundColor='yellow' isRequired={true} />
+            <Label text='This is Label' />
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 
 ## Methods
 ### render()
-Get dom element of component.
+Get DOM element of Label component.
 
 **Parameter**
 
@@ -56,14 +51,14 @@ None
 
 **Returns**
 
-Dom element
+DOM element
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
 ```
@@ -72,19 +67,20 @@ body.appendChild(label.render());
 ```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
     render() {
         return (
-            <Label text='Name' isRequired={true} />
+            <Label text='This is Label' />
         );
-    }
-}
+    };
+};
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
 ### setText(text)
-Set the value of text field.
+Setting text of Label component.
 
 **Parameter**
 
@@ -101,29 +97,46 @@ None
 
 **Javascript**	
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set text of Label';
+btn.onclick = function() {
+    label.setText('Set text')
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.setText('Name');
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { text: 'This is Label' };
+    };
+
+    setText = () => {
+        this.setState({ text: 'Set text' });
+    };
+    
     render() {
         return (
-            <Label text='Name' isRequired={true} />
+            <div>
+                <Label text={this.state.text} />
+                <button onClick={this.setText}>Set text</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### setTextColor(color)
-Set color of caption.
+Setting color of caption.
 
 **Parameter**
 
@@ -140,29 +153,46 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set color of Label';
+btn.onclick = function() {
+    label.setTextColor('#e74c3c');
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.setTextColor('#e74c3c');
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { textColor: 'black' };
+    };
+
+    setTextColor = () => {
+        this.setState({ textColor: 'red' });
+    };
+
     render() {
         return (
-            <Label text='Name' textColor='red' />
+            <div>
+                <Label text='This is Label' textColor={this.state.textColor} />
+                <button onClick={this.setTextColor}>Set color of Label</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### setBackgroundColor(color)
-Set color of background.
+Setting color of background of Label component.
 
 **Parameter**
 
@@ -179,35 +209,52 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set background color of Label';
+btn.onclick = function() {
+    label.setBackgroundColor('#e74c3c');
+});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.setBackgroundColor('#e74c3c');
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { backgroundColor: 'white' };
+    };
+
+    setBackgroundColor = () => {
+        this.setState({ backgroundColor: 'red' });
+    };
+
     render() {
         return (
-            <Label text='Name' backgroundColor='yellow' />
+            <div>
+                <Label text='This is Label' backgroundColor={this.state.backgroundColor} />
+                <button onClick={this.setBackgroundColor}>Set background color of Label</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### setRequired(required)
-Set the required for the label.
+Setting the required for Label component.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|required|Boolean|Yes|Required option.<ul><li>This parameter is 'true':  The *  character will be displayed at the end of the caption. </li><li>This parameter is 'false': The *  character will be hidden</ul></li>|
+|required|Boolean|Yes|Required options:<ul><li>**true**: The * character will be displayed at the end of the caption. </li><li>**false**: The * character will be hidden</ul></li>|
 
 **Returns**
 
@@ -218,36 +265,53 @@ None
 
 **Javascript**
 ```javascript	
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set required';
+btn.onclick = function() {
+    label.setRequired(true);
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.setRequired(true);
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isRequired: false };
+    };
+
+    setRequired = () => {
+        this.setState({ isRequired: true });
+    };
+
     render() {
         return (
-            <Label text='Name' isRequired={true} />
+            <div>
+                <Label text='This is Label' isRequired={this.state.isRequired} />
+                <button onClick={this.setRequired}>Set required</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### on(eventName, callBack)
-Register callback for click event
+Register callback for an event of Label component.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |eventName|	String|	Yes|Name of event: <ul><li>'click'</li></ul>|
-|callback|function |Yes|callback|
+|callback|function |Yes|The callback function call when the event occurs|
 
 **Returns**
 
@@ -258,12 +322,13 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+label.on('click', function () {
+    console.log('Label onClick');
+});
+
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.on('click', function(event) {
-    console.log('on click');
-});
 ```
 
 **React**
@@ -272,21 +337,24 @@ import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isRequired: false };
+    };
+    onClick = () => {
+        console.log('Label onClick');
+    };
     render() {
         return (
-            <Label text='Name' isRequired={true} onClick={this.handleClick} />
+            <Label text='This is Label' onClick={this.onClick} />
         );
-    }
-   handleClick = () => {
-        console.log('click');
-   }
-    }
-
+    };
+};
 ```
 </details>
 
 ### show()
-Display the Label.
+Display Label component.
 
 **Parameter**
 
@@ -301,30 +369,47 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label', isVisible: false});
+var btn = document.createElement('button'); 
+btn.textContent = 'Show label';
+btn.onclick = function() {
+    label.show()
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.show();
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: false };
+    };
+
+    show = () => {
+        this.setState({ isVisible: true });
+    };
+
     render() {
         return (
-            <Label text='Name' isRequired={true}  isVisible={true} />
+            <div>
+                <Label text='This is Label' isVisible={this.state.isVisible} />
+                <button onClick={this.show}>Show label</button>
+            </div>
         );
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ### hide()
-Hide the Label.
+Hide Label component.
 
 **Parameter**
 
@@ -339,29 +424,46 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Hide label';
+btn.onclick = function() {
+    label.hide()
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.hide();
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: true };
+    };
+
+    hide = () => {
+        this.setState({ isVisible: false });
+    };
+
     render() {
         return (
-            <Label text='Name' isRequired={true}  isVisible={false} />
+            <div>
+                <Label text='This is Label' isVisible={this.state.isVisible} />
+                <button onClick={this.hide}>Hide label</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### disable()
-Disabled the Label.
+Disabled Label component.
 
 **Parameter**
 
@@ -376,29 +478,53 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label'});
+label.on('click', function () {
+   console.log('Label onClick');
+});
+var btn = document.createElement('button'); 
+btn.textContent = 'Disable label';
+btn.onclick = function() {
+    label.disable()
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.disable();
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Label } from '@kintone/kintone-ui-component';
+import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isDisabled: false };
+    };
+
+    disable = () => {
+        this.setState({ isDisabled: true });
+    };
+
+    onClick = () => {
+        console.log('Label onClick');
+    };
+
     render() {
         return (
-            <Label text='Name' isRequired={true}  isDisabled={true} />
+            <div>
+                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.onClick} />
+                <button onClick={this.disable}>Disable label</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
 
 ### enable()
-Enabled the Label.
+Enabled Label component.
 
 **Parameter**
 
@@ -413,10 +539,18 @@ None
 
 **Javascript**
 ```javascript
-var label = new kintoneUIComponent.Label({text: 'label'});
+var label = new kintoneUIComponent.Label({text: 'This is Label', isDisabled: true});
+label.on('click', function () {
+   console.log('Label onClick');
+});
+var btn = document.createElement('button'); 
+btn.textContent = 'Enable label';
+btn.onclick = function() {
+    label.enable()
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
-label.enable();
+body.appendChild(btn);
 ```
 
 **React**
@@ -425,11 +559,27 @@ import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isDisabled: true };
+    };
+
+    enable = () => {
+        this.setState({ isDisabled: false });
+    };
+
+    onClick = () => {
+        console.log('Label onClick');
+    };
+
     render() {
         return (
-            <Label text='Name' isRequired={true}  isDisabled={false} />
+            <div>
+                <Label text='This is Label' isDisabled={this.state.isDisabled} onClick={this.onClick} />
+                <button onClick={this.enable}>Enable label</button>
+            </div>
         );
-    }
-}
+    };
+};
 ```
 </details>
