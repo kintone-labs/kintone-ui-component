@@ -37,8 +37,8 @@
 |options.defaultRowData|Object|No|The default value of new row.|
 |options.actionButtonsShown|Boolean|No|Show the action buttons when this parameter is **True**. <br>Default: **True**|
 |options.onRowAdd|Callback|No|Handler for row add event. <br>Return row data object to overwrite default row data object.|
-|options.onRowRemove|Callback|No|Handler for row remove event. <br>Return row data object.|
-|options.onCellChange|Callback|No|Handler for cell change event. <br>Return row data object to overwrite default row data object.|
+|options.onRowRemove|Callback|No|Handler for row remove event.|
+|options.onCellChange|Callback|No|Handler for cell change event.|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
