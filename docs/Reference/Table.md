@@ -1082,6 +1082,7 @@ export default class Plugin extends React.Component {
           onRowRemove={this.handleRowRemove}
           onCellChange={this.handleCellChange}
           actionButtonsShown={actionButtonsShown}
+          isVisible={true}
         />
         <Button text="Show action buttons" onClick={() => {
             this.setState({actionButtonsShown: true})
@@ -1194,6 +1195,7 @@ export default class Plugin extends React.Component {
           onRowRemove={this.handleRowRemove}
           onCellChange={this.handleCellChange}
           actionButtonsShown={actionButtonsShown}
+          isVisible={true}
         />
         <Button text="Hide action buttons" onClick={() => {
             this.setState({actionButtonsShown: false})
@@ -1452,8 +1454,8 @@ export default class Plugin extends React.Component {
           onRowAdd={this.handleRowAdd}
           onRowRemove={this.handleRowRemove}
           onCellChange={this.handleCellChange}
-        actionButtonsShown={true}
-        isVisible={true}
+          actionButtonsShown={true}
+          isVisible={true}
         />
     );
   }
@@ -1674,7 +1676,7 @@ export default class Plugin extends React.Component {
         onRowRemove={this.handleRowRemove}
         onCellChange={this.handleCellChange}
         actionButtonsShown={true}
-          isVisible={isVisible}
+        isVisible={isVisible}
         />
         <Button text="Hide table" onClick={() => {
             this.setState({isVisible: false})
