@@ -22,10 +22,9 @@ const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps
     return null;
   }
   return (
-    <button style={style} onClick={onClick} className={_getClassName()} disabled={isDisabled}>
+    <button style={style} onClick={onClick && onClick} className={_getClassName()} disabled={isDisabled}>
       {text}
     </button>
   );
 };
-
 export default Button;

@@ -6,15 +6,15 @@ import '../../css/CheckBox.css';
 
 type item = {
   value: string;
-  label: string;
+  label?: string;
   isDisabled?: boolean;
 }
 type CheckBoxProps = {
-  items: item[];
-  value: string[];
+  items?: item[];
+  value?: string[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string[]) => void;
+  onChange?: (value: string[]) => void;
 };
 
 const CheckBox = (props: CheckBoxProps) => {
@@ -33,12 +33,13 @@ const CheckBox = (props: CheckBoxProps) => {
     if (!include) {
       value.push(itemValue);
     }
-    props.onChange(value);
+   props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false || !props.items) {
     return null;
   }
+
   const items = props.items.map((item, i) => {
     const isSelected = props.value ? props.value.some(value => value === item.value) : false;
     return (
