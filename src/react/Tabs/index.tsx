@@ -55,7 +55,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
           <li
             className={className}
             key={tabIndex}
-            onClick={() => onClickTabItem && onClickTabItem(tabIndex)}
+            onClick={() => _onClickTabItem(tabIndex)}
           >
             {item.tabName}
           </li>
@@ -64,7 +64,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
     }
     </ul>
   );
-  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+  const tabContents = items && items.map((item: TabsItem, tabIndex: number) => {
     if (tabIndex !== value) return undefined;
     return (
       <div className="kuc-tabs-tab-contents" key={tabIndex}>

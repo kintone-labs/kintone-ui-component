@@ -84,7 +84,9 @@ class Tabs extends Control {
         isActive: index === this._props.value,
         isDisabled: item.isDisabled
       })
-    }
+      this.tabNames.push(tabComponent)
+      this.tabNamesElement.appendChild(tabComponent.render())
+    })
     this.element.appendChild(this.tabNamesElement)
   }
 
