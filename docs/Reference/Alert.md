@@ -112,11 +112,15 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    state = {
-    text: "abc",
-    type: "error",
-    isDisabled:false
-    };
+    constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            type: "error",
+            isDisabled:false
+        };
+    }
+
     setText = (text) => {
         this.setState({ text });
     };
@@ -162,10 +166,14 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    state = {
-        text: "abc",
-        type: "error"
-    };
+     constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            type: "error"
+        };
+    }
+
     setType = (type) => {
         this.setState({ type });
     };
@@ -254,11 +262,14 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-   state = {
-        text: "abc",
-        isVisible:false
-    };
-
+    constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            isVisible:false
+        };
+    
+    }
     show = () => {
         this.setState({ isVisible:true });
     };
@@ -303,11 +314,13 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    state = {
-        text: "abc",
-        isVisible:true
-    };
-
+    constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            isVisible:true
+        };
+    }
     hide = () => {
         this.setState({ isVisible:false });
     };
@@ -352,10 +365,13 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    state = {
-        text: "abc",
-        isDisabled:false
-    };
+    constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            isDisabled:false
+        };
+    }
     disable = () => {
         this.setState({ isDisabled:true });
     };
@@ -401,11 +417,13 @@ import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    state = {
-        text: "abc",
-        isDisabled:true
-    };
-
+    constructor(props){
+        super(props);
+        state = {
+            text: "abc",
+            isDisabled:true
+        };
+    }
     enable = () => {
         this.setState({ isDisabled:false });
     };
