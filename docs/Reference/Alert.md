@@ -118,7 +118,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             type: "error",
             isDisabled:false
@@ -174,7 +174,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
      constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             type: "error"
         };
@@ -274,7 +274,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             isVisible:false
         };
@@ -328,7 +328,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             isVisible:true
         };
@@ -381,7 +381,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             isDisabled:false
         };
@@ -435,7 +435,7 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
-        state = {
+        this.state = {
             text: "abc",
             isDisabled:true
         };
