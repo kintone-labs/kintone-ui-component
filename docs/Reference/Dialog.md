@@ -16,7 +16,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
+|options|Object|No|The object contains parameters of constructor.|
 |options.header|String, DOM, React Element|No|Header of Dialog.|
 |options.content|String, DOM, React Element|No|Content of Dialog.|
 |options.footer|String, DOM, React Element|No|Footer of Dialog.|

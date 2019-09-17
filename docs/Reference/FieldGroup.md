@@ -17,7 +17,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|The object contains params of constructor.|
+|options|Object|No|The object contains parameters of constructor.|
 |options.content|DOM Element|No|Content of Field Group.|
 |options.name|String|No|Field group name.|
 |options.toggle|String|No|Set the toggle state. <br> Default value: 'collapse'<br> Following value can be set:<ul><li>collapse</li><li>expand</li>|
@@ -369,20 +369,25 @@ const radioBtn = new kintoneUIComponent.RadioButton({
     name: 'Fruit'
 });
 
-const fieldGroup = new kintoneUIComponent.FieldGroup({
-    content: radioBtn.render(),
-    name: 'Group',
-    toggle: 'expand'
-})
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(fieldGroup.render());
-
 const button = new kintoneUIComponent.Button({ text: 'Set content', type: 'normal' });
 button.on('click', function () {
     const text = new kintoneUIComponent.Text({ value: "12345" });
     fieldGroup.setContent(text.render());
 });
-body.appendChild(button.render());
+
+const fieldGroupContent = document.createElement('div')
+
+fieldGroupContent.appendChild(radioBtn.render())
+fieldGroupContent.appendChild(button.render())
+
+const fieldGroup = new kintoneUIComponent.FieldGroup({
+    content: fieldGroupContent,
+    name: 'Group',
+    toggle: 'expand'
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
 ```
 
 **React**
@@ -531,21 +536,24 @@ None
 ```javascript
 const text = new kintoneUIComponent.Text({ value: "12345" });
 
-const fieldGroup = new kintoneUIComponent.FieldGroup({
-    content: text.render(),
-    name: 'Group',
-    toggle: 'expand'
-})
-
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(fieldGroup.render());
-
 const button = new kintoneUIComponent.Button({ text: 'Set name', type: 'normal' });
 button.on('click', function () {
     fieldGroup.setName('New Group Name');
 });
 
-body.appendChild(button.render());
+const fieldGroupContent = document.createElement('div')
+
+fieldGroupContent.appendChild(text.render())
+fieldGroupContent.appendChild(button.render())
+
+const fieldGroup = new kintoneUIComponent.FieldGroup({
+    content: fieldGroupContent,
+    name: 'Group',
+    toggle: 'expand'
+});
+
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(fieldGroup.render());
 ```
 
 **React**
@@ -670,21 +678,24 @@ None
 ```javascript
 const text = new kintoneUIComponent.Text({ value: "12345" });
 
+const button = new kintoneUIComponent.Button({ text: 'Set toggle is collapse', type: 'normal' });
+button.on('click', function () {
+    fieldGroup.setToggle('collapse');
+});
+
+const fieldGroupContent = document.createElement('div')
+
+fieldGroupContent.appendChild(text.render())
+fieldGroupContent.appendChild(button.render())
+
 const fieldGroup = new kintoneUIComponent.FieldGroup({
-    content: text.render(),
+    content: fieldGroupContent,
     name: 'Group',
     toggle: 'expand'
 });
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(fieldGroup.render());
-
-const button = new kintoneUIComponent.Button({ text: 'Set toggle is collapse', type: 'normal' });
-button.on('click', function () {
-    fieldGroup.setToggle('collapse');
-});
-
-body.appendChild(button.render());
 ```
 
 **React**

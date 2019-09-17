@@ -653,15 +653,15 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 
-var button = new kintoneUIComponent.Button({text: 'Get Values', type: 'normal'});
-button.on('click', () => {
-var value = table.getValue();
-    value.forEach(rowData => {
-      console.log(rowData);
-});
-});
-
-body.appendChild(button.render());
+var button = document.createElement('button');
+button.innerText = 'Get value';
+button.onclick = function () {
+  var value = table.getValue();
+  value.forEach(rowData => {
+    console.log(rowData);
+  });
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -696,6 +696,10 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    console.log(this.state.tableData)
+  }
+
   render() {
     const {tableData, defaultRowData} = this.state;
     const columns = [
@@ -723,10 +727,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={true}
           isVisible={true}
         />
-        <Button text="Get table value" onClick={() => {
-            console.log(this.state.tableData)
-          }}
-        />
+        <button onClick={this.handleClick}>Get table value</button>
       </div>
     );
   }
@@ -769,17 +770,17 @@ var table = new kintoneUIComponent.Table({
 });
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
- 
-var button = new kintoneUIComponent.Button({text: 'Set Values', type: 'normal'});
-button.on('click', () => {
-table.setValue([
-  {text: { value: 'first row' }},
-  {text: { value: 'second row' }},
-  {text: { value: 'third row' }}
-]);
-});
 
-body.appendChild(button.render());
+var button = document.createElement('button');
+button.innerText = 'Set Values';
+button.onclick = function () {
+  table.setValue([
+    {text: { value: 'first row' }},
+    {text: { value: 'second row' }},
+    {text: { value: 'third row' }}
+  ]);
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -814,6 +815,15 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    const tableData = [
+      {text: 'first row'},
+      {text: 'second row'},
+      {text: 'third row'}
+    ]
+    this.setState({tableData})
+  }
+
   render() {
     const {tableData, defaultRowData} = this.state;
     const columns = [
@@ -841,15 +851,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={true}
           isVisible={true}
         />
-        <Button text="Set table value" onClick={() => {
-            const tableData = [
-              {text: 'first row'},
-              {text: 'second row'},
-              {text: 'third row'}
-            ]
-            this.setState({tableData})
-          }}
-        />
+        <button onClick={this.handleClick}>Set table value</button>
       </div>
     );
   }
@@ -1017,11 +1019,12 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 
-var button = new kintoneUIComponent.Button({text: 'Show action buttons', type: 'normal'});
-button.on('click', () => {
+var button = document.createElement('button');
+button.innerText = 'Show action buttons';
+button.onclick = function () {
   table.showActionButtons();
-});
-body.appendChild(button.render());
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -1057,6 +1060,10 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    this.setState({actionButtonsShown: true})
+  }
+
   render() {
     const {tableData, actionButtonsShown, defaultRowData} = this.state;
     const columns = [
@@ -1084,10 +1091,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={actionButtonsShown}
           isVisible={true}
         />
-        <Button text="Show action buttons" onClick={() => {
-            this.setState({actionButtonsShown: true})
-          }}
-        />
+        <button onClick={this.handleClick}>Show action buttons</button>
       </div>
     );
   }
@@ -1130,11 +1134,12 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 
-var button = new kintoneUIComponent.Button({text: 'Hide action buttons', type: 'normal'});
-button.on('click', () => {
+var button = document.createElement('button');
+button.innerText = 'Hide action buttons';
+button.onclick = function () {
   table.hideActionButtons();
-});
-body.appendChild(button.render());
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -1170,6 +1175,10 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    this.setState({actionButtonsShown: false});
+  }
+
   render() {
     const {tableData, actionButtonsShown, defaultRowData} = this.state;
     const columns = [
@@ -1197,10 +1206,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={actionButtonsShown}
           isVisible={true}
         />
-        <Button text="Hide action buttons" onClick={() => {
-            this.setState({actionButtonsShown: false})
-          }}
-        />
+        <button onClick={this.handleClick}>Hide action buttons</button>
       </div>
     );
   }
@@ -1310,6 +1316,12 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    const {tableData} = this.state;
+    tableData[0].text = 'Updated text field value';
+    this.setState({tableData});
+  }
+
   render() {
     const {tableData, defaultRowData} = this.state;
     const columns = [
@@ -1337,12 +1349,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={true}
           isVisible={true}
         />
-        <Button text="Update row data" onClick={() => {
-            const {tableData} = this.state
-            tableData[0].text = 'Updated text field value'
-            this.setState({tableData})
-          }}
-        />
+        <button onClick={this.handleClick}>Update row data</button>
       </div>
     );
   }
@@ -1498,11 +1505,12 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 
-var button = new kintoneUIComponent.Button({text: 'Show table', type: 'normal'});
-button.on('click', () => {
+var button = document.createElement('button');
+button.innerText = 'Show table';
+button.onclick = function () {
   table.show();
-});
-body.appendChild(button.render());
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -1538,6 +1546,10 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    this.setState({isVisible: true});
+  }
+
   render() {
     const {tableData, isVisible, defaultRowData} = this.state;
     const columns = [
@@ -1565,10 +1577,7 @@ export default class Plugin extends React.Component {
           actionButtonsShown={true}
           isVisible={isVisible}
         />
-        <Button text="Show table" onClick={() => {
-            this.setState({isVisible: true})
-          }}
-        />
+        <button onClick={this.handleClick}>Show table</button>
       </div>
     );
   }
@@ -1611,11 +1620,12 @@ var table = new kintoneUIComponent.Table({
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(table.render());
 
-var button = new kintoneUIComponent.Button({text: 'Hide table', type: 'normal'});
-button.on('click', () => {
+var button = document.createElement('button');
+button.innerText = 'Hide table';
+button.onclick = function () {
   table.hide();
-});
-body.appendChild(button.render());
+};
+body.appendChild(button);
 ```
 **React**
 ```javascript
@@ -1651,6 +1661,10 @@ export default class Plugin extends React.Component {
     console.log('data: ', data);
   }
 
+  handleClick = () => {
+    this.setState({isVisible: false})
+  }
+
   render() {
     const {tableData, isVisible, defaultRowData} = this.state;
     const columns = [
@@ -1678,10 +1692,7 @@ export default class Plugin extends React.Component {
         actionButtonsShown={true}
         isVisible={isVisible}
         />
-        <Button text="Hide table" onClick={() => {
-            this.setState({isVisible: false})
-          }}
-      />
+      <button onClick={this.handleClick}>Hide table</button>
       </div>
     );
   }
@@ -1696,6 +1707,6 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|The object contains the params of constructor.|
+|options|Object|Yes|The object contains the parameters of constructor.|
 |options.init|Function|Yes|Cell initialization callback.<br>Used to initialize DOM of a cell|
 |options.update|Function|Yes|Cell update callback.<br>Used to update DOM of a cell.|
