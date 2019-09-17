@@ -155,21 +155,20 @@ var items = [{
 }];
 
 var tabs = new kintoneUIComponent.Tabs({ items });
-var newTab = { tabName: "Tab 4", tabContent: "This is Tab 4" }
-
-var btn = new kintoneUIComponent.Button({ text: 'Add Tab' });
-btn.on('click', function () {
+var newTab = { tabName: "Tab 4", tabContent: "This is Tab 4" };
+var btn = document.createElement('button'); 
+btn.textContent = 'Add Tab';
+btn.onclick = function() {
     tabs.addItem(newTab);
-});
-
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tabs.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 const items = [{
@@ -196,7 +195,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button onClick={this.addItem} text='Add Tab' />
+                <button onClick={this.addItem}>Add Tab</button>
             </div>
         );
     };
@@ -235,19 +234,20 @@ var items = [{
 }];
 
 var tabs = new kintoneUIComponent.Tabs({ items });
-var btn = new kintoneUIComponent.Button({ text: 'Remove Tab' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Remove Tab';
+btn.onclick = function() {
     tabs.removeItem(0);
-});
+};
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tabs.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 const items = [{
@@ -273,7 +273,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button text='Remove Tab' onClick={this.removeItem} />
+                <button onClick={this.removeItem}>Remove Tab</button>
             </div>
         );
     };
@@ -329,7 +329,7 @@ body.appendChild(tabs.render());
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 const items = [{
@@ -356,7 +356,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} />
-                <Button text='Get tabs' onClick={this.getItems} />
+                <button onClick={this.getItems}>Get Tabs</button>
             </div>
         );
     };
@@ -403,7 +403,7 @@ body.appendChild(tabs.render());
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
   
 const items = [{
@@ -431,7 +431,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Get value' onClick={this.getValue} />
+                <button onClick={this.getValue}>Get value</button>
             </div>
         );
     };
@@ -470,19 +470,20 @@ var items = [{
 }];
 
 var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
-var btn = new kintoneUIComponent.Button({ text: 'Set value' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Set value';
+btn.onclick = function() {
     tabs.setValue(2);
-});
+};
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tabs.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 const items = [{
@@ -510,7 +511,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Set value' onClick={this.setValue} />
+                <button onClick={this.setValue}>Set value</button>
             </div>
         );
     };
@@ -549,19 +550,20 @@ var items = [{
 }];
 
 var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
-var btn = new kintoneUIComponent.Button({ text: 'Disable Tab 3' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Disable Tab 3';
+btn.onclick = function() {
     tabs.disableItem('Tab 3');
-});
+};
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tabs.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 const items = [{
@@ -591,7 +593,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Disable tab3' onClick={this.disableItem} />
+                <button onClick={this.disableItem}>Disable tab3</button>
             </div>
         );
     };
@@ -631,19 +633,20 @@ var items = [{
 }];
 
 var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
-var btn = new kintoneUIComponent.Button({ text: 'Enable Tab 3' });
-btn.on('click', function () {
+var btn = document.createElement('button'); 
+btn.textContent = 'Enable Tab 3';
+btn.onclick = function() {
    tabs.enableItem('Tab 3');
-});
+};
 
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(tabs.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 
 **React**
 ```javascript
-import { Tabs, Button } from '@kintone/kintone-ui-component';
+import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
 const items = [{
     tabName: "Tab1",
@@ -673,7 +676,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Tabs items={this.state.items} value={this.state.value} />
-                <Button text='Enable tab1' onClick={this.enableItem} />
+                <button onClick={this.enableItem}>Enable tab1</button>
             </div>
         );
     };
