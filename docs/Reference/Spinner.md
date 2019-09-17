@@ -7,14 +7,17 @@
 
 **Parameter**
 
-None
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|options|Object|No|The object contains parameters of constructor.|
+|options.isVisible|Boolean|No|The spinner will be visible. <br> Default value: **false**|
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var spinner = new kintoneUIComponent.Spinner();
+var spinner = new kintoneUIComponent.Spinner({isVisible: true});
 ```
 **React**
 ```javascript
@@ -26,15 +29,15 @@ export default class Plugin extends React.Component {
         return (
             <Spinner isVisible={true}/>
         );
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ## Methods
 ### render()
-Get dom element of component.
+Get DOM element of Spinner component.
 
 **Parameter**
 
@@ -42,14 +45,14 @@ None
 
 **Returns**
 
-Dom element
+DOM element
 
 <details class="tab-container" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var spinner = new kintoneUIComponent.Spinner();
+var spinner = new kintoneUIComponent.Spinner({isVisible: true});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
 ```
@@ -57,19 +60,22 @@ body.appendChild(spinner.render());
 ```javascript
 import { Spinner } from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     render() {
         return (
             <Spinner isVisible={true}/>
         );
-    }
-}
+    };
+};
+
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
 ### show()
-Display the spinner.
+Display Spinner component.
 
 **Parameter**
 
@@ -85,28 +91,45 @@ None
 **Javascript**
 ```javascript
 var spinner = new kintoneUIComponent.Spinner();
+var btn =  document.createElement('button'); 
+btn.textContent = 'Open spinner';
+btn.onclick = function() {
+    spinner.show();
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
-spinner.show();
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { Spinner } from '@kintone/kintone-ui-component';
+import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: false };
+    };
+
+    show = () => {
+        this.setState({ isVisible: true });
+    };
+
     render() {
         return (
-            <Spinner isVisible={true}/>
+            <div>
+                <Spinner isVisible={this.state.isVisible} />
+                <button onClick={this.show}>Open spinner</button>
+            </div>
         );
-    }
-}
+    };
+};
 
 ```
 </details>
 
 ### hide()
-Hide the spinner.
+Hide Spinner component.
 
 **Parameter**
 
@@ -121,23 +144,38 @@ None
 
 **Javascript**
 ```javascript
-var spinner = new kintoneUIComponent.Spinner();
+var spinner = new kintoneUIComponent.Spinner({ isVisible: true });
+setTimeout(() => {
+    spinner.hide();
+}, 3000);
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
-spinner.hide();
 ```
 **React**
 ```javascript
-import { Spinner } from '@kintone/kintone-ui-component';
+import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: true };
+    };
+    hide = () => {
+        this.setState({ isVisible: false });
+    };
+    componentDidMount() {
+        setTimeout(() => {
+            this.hide();
+        }, 3000);
+    };
+
     render() {
         return (
-            <Spinner isVisible={false}/>
+            <Spinner isVisible={this.state.isVisible} />
         );
-    }
-}
+    };
+};
 
 ```
 </details>

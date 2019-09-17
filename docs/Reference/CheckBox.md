@@ -175,7 +175,7 @@ Add an item to the end of checkbox list.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|item|String|	Yes|The item will be added to multile choices list.|
+|item|Object|Yes|The item will be added to checkbox list.|
 |item.value|String|Yes|The value of an item.|
 |item.label|String|No|Display string.|
 |item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br> Default value: 'false'|
@@ -271,7 +271,7 @@ The item at given position.
 
 | Name| Type| Description |
 | --- | --- | --- |
-|item|	String|the item of the checkbox|
+|item|	Object|the item of the checkbox|
 |item.value|String|The value of an item.|
 |item.label|String|Display string.|
 |item.isDisabled|Boolean|Indicate item will be disabled when display.|
@@ -744,7 +744,7 @@ Set the disabled item of checkbox.
 
 |Name|	Type|	Required|	Description|
 | --- | --- | --- |---|
-|value|	Array<String> |	Yes|The array contains checked value in list.|
+|value|	String |	Yes|The array contains checked value in list.|
 
 
 **Returns**
@@ -837,7 +837,7 @@ Set the enable item of checkbox.
 
 |Name|	Type|	Required|	Description|
 | --- | --- | --- |---|
-|value|	Array<String> |	Yes|The array contains checked value in list.|
+|value|	String |	Yes|The array contains checked value in list.|
 
 **Returns**
 
@@ -995,7 +995,8 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        const value= ['Orange', 'Banana']
+        this.state = {items: items,value};
     }
 
     render() {
@@ -1004,11 +1005,10 @@ export default class Plugin extends React.Component {
         );
     }
 
-    handleChange= () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
+    handleChange= (value) => {
+        this.setState({value})
+        console.log("onChange",value);
+        
     }
 }
 ```
@@ -1063,33 +1063,43 @@ import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
+   constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isVisible: false };
+  }
 
-    render() {
-        return (
-            <CheckBox value={this.state.value} isVisible={true} items={this.state.items} onChange={(value) => {this.setState({value})}}/>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isVisible={this.state.isVisible}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isVisible: true })}>Show</button>
+      </div>
+    );
+  }
 }
 ```
 </details>
@@ -1144,32 +1154,42 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isVisible: true };
+  }
 
-    render() {
-        return (
-            <CheckBox value={this.state.value} isVisible={false} items={this.state.items} onChange={(value) => {this.setState({value})}}/>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isVisible={this.state.isVisible}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isVisible: false })}>Hide</button>
+      </div>
+    );
+  }
 }
 ```
 </details>
@@ -1224,32 +1244,42 @@ import React from 'react';
 
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
- 
-    render() {
-        return (
-            <CheckBox isDisabled={true} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
-        );
-    }
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isDisabled: false };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isDisabled={this.state.isDisabled}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isDisabled: true })}>Disable</button>
+      </div>
+    );
+  }
 }
 ```
 </details>
@@ -1303,33 +1333,43 @@ import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
- 
-    render() {
-        return (
-            <CheckBox isDisabled={false} items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}}/>
-        );
-    }
+     constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isDisabled: true };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isDisabled={this.state.isDisabled}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isDisabled: false })}>Enable</button>
+      </div>
+    );
+  }
 }
 ```
 </details>

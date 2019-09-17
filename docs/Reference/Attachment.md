@@ -18,7 +18,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|No|An object contains params of constructor.|
+|options|Object|No|An object contains parameter of the constructor.|
 |options.dropZoneText|String|No|Text will show when the file is dragged over the attachment field. (item 7)<br>Default value: 'Drop files here.'|
 |options.browseButtonText|String|No|Text of the browse button. (item 4)<br>Default value: 'Browse'|
 |options.fileLimitText|String|No|Text of the file limit warn part. (item 5)|
@@ -26,7 +26,7 @@
 |options.isErrorVisible|Boolean|No|Only when it is **true**, "errorMessage" will show.<br>Default value: false|
 |options.files|Array&lt;Object&gt;|No|File objects (ref. [https://developer.mozilla.org/en-US/docs/Web/API/File](https://developer.mozilla.org/en-US/docs/Web/API/File))<br>Or objects contain "name" and "size"|
 |options.files[].name|String|No|The file name|
-|options.files[].size|String|No|The file size|
+|options.files[].size|Integer|No|The file size|
 |options.isVisible|Boolean|No|The attachment component will be visible.<br>Default value: true|
 
 <details class="tab-container" open>
@@ -120,7 +120,7 @@ Set the files of attachment field.
 | --- | --- | --- | --- |
 |files|Array&lt;Object&gt;|Yes|File objects (ref. [https://developer.mozilla.org/en-US/docs/Web/API/File](https://developer.mozilla.org/en-US/docs/Web/API/File))<br>Or objects contain "name" and "size"|
 |files[].name|String|No|The file name|
-|files[].size|String|No|The file size|
+|files[].size|Integer|No|The file size|
 
 **Returns**
 
@@ -179,7 +179,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### getFiles()
-Get all files information of attachment field.
+Get all files information on attachment field.
 
 **Parameter**
 
@@ -274,25 +274,30 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [],dropZoneText:"Drop files here." };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  setDropZoneText = dropZoneText => {
+    this.setState({ dropZoneText });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        dropZoneText="Drop files here."
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <button onClick={()=>this.setDropZoneText("new drop file")}>setDropZoneText</button>
+        <Attachment
+          files={this.state.files}
+          dropZoneText={this.state.dropZoneText}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+      </div>
     );
   }
 }
@@ -331,25 +336,30 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], browseButtonText: "Browse" };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  browseButtonText = browseButtonText => {
+    this.setState({ browseButtonText });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        browseButtonText="Browse"
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          browseButtonText={this.state.browseButtonText}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.browseButtonText("new browse")}>Set Browse Button Text</button>
+      </div>
     );
   }
 }
@@ -388,25 +398,30 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], fileLimitText: "Maximum: 1 GB" };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  setFileLimitText = fileLimitText => {
+    this.setState({ fileLimitText });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        fileLimitText="Maximum: 1 GB"
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          fileLimitText={this.state.fileLimitText}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.setFileLimitText("new file limit text")}>Set File Limit Text</button>
+      </div>
     );
   }
 }
@@ -443,27 +458,32 @@ import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-  constructor(props) {
+   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], errorMessage: "error message" };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  setErrorMessage = errorMessage => {
+    this.setState({ errorMessage });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        errorMessage="Error message"
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          errorMessage={this.state.errorMessage}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.setErrorMessage("new error message")}>Set Error Message</button>
+      </div>
     );
   }
 }
@@ -506,26 +526,31 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], errorMessage: "error message",isErrorVisible:false };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  showError = () => {
+    this.setState({ isErrorVisible: true });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        errorMessage="Error message"
-        isErrorVisible={true}
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          errorMessage={this.state.errorMessage}
+          isErrorVisible={this.state.isErrorVisible}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.showError()}>Show error</button>
+      </div>
     );
   }
 }
@@ -573,26 +598,31 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], errorMessage: "error message",isErrorVisible:true };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  hideError = () => {
+    this.setState({ isErrorVisible: false });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        errorMessage="Error message"
-        isErrorVisible={false}
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          errorMessage={this.state.errorMessage}
+          isErrorVisible={this.state.isErrorVisible}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.hideError()}>Hide error</button>
+      </div>
     );
   }
 }
@@ -700,25 +730,30 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], errorMessage: "error message",isVisible:false };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  show = () => {
+    this.setState({ isVisible: true });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        isVisible={true}
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          isVisible={this.state.isVisible}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.show()}>Show</button>
+      </div>
     );
   }
 }
@@ -754,25 +789,30 @@ import React from 'react';
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {files: []};
+    this.state = { files: [], errorMessage: "error message",isVisible:true };
+  }
+
+  handleFilesAdd = files => {
+    this.setState({ files });
   };
- 
-  handleFilesAdd = (files) => {
-    this.setState({files});
+
+  handleFileRemove = files => {
+    this.setState({ files });
   };
- 
-  handleFileRemove = (files) => {
-    this.setState({files});
+  show = () => {
+    this.setState({ isVisible: false });
   };
- 
   render() {
     return (
-      <Attachment
-        files={this.state.files}
-        isVisible={false}
-        onFilesAdd={this.handleFilesAdd}
-        onFileRemove={this.handleFileRemove}
-      />
+      <div>
+        <Attachment
+          files={this.state.files}
+          isVisible={this.state.isVisible}
+          onFilesAdd={this.handleFilesAdd}
+          onFileRemove={this.handleFileRemove}
+        />
+        <button onClick={()=>this.hide()}>Hide</button>
+      </div>
     );
   }
 }

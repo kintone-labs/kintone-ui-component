@@ -171,8 +171,8 @@ Add an item to dropdown list.
 | --- | --- | --- | --- |
 |item|	Object|	Yes|The item will be added to dropdown list.|
 |item.value|String|Yes|The value of an item.|
-|item.label|String|Yes|Display string.|
-|item.isDisabled|Boolean|Yes|Indicate item will be disabled when display. <br>Default value: 'false' |
+|item.label|String|No|Display string.|
+|item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br>Default value: 'false' |
 
 **Returns**
 
@@ -210,14 +210,17 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            value: undefined
+            items: [{
+                label:"hehe",
+                value:"123"
+            }],
+            value: "123"
         };
     }
-   
+
     render() {
         return (
          <div>
@@ -226,7 +229,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick= () => {
       const item = {
         label: 'Lemon',
@@ -290,7 +293,7 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         this.state = {
             items: [
@@ -304,31 +307,29 @@ export default class Plugin extends React.Component {
                 value: 'Banana',
                 isDisabled: false
             }
-            ]
+            ],
+            value:"Orange"
         };
+        
     }
-   
+
+    handleClick= (index) => {
+      let {items}=this.state;      
+      items = items.slice(index+1);
+      let value = items[0].value;
+      this.setState({items,value});
+    };
+
     render() {
         return (
          <div>
           <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Remove Item</button>
+          <button onClick={()=>this.handleClick(0)}>Remove Item</button>
          </div>
         );
     }
-   
-    handleClick= () => {
-      this.setState(prevState => {
-        if (prevState.items[0]) {
-           if (this.state.value === prevState.items[0].value) {
-             prevState.value = undefined;
-           }
-           prevState.items.splice(0, 1)
-           return prevState;
-        }
-        return prevState;
-      });
-    };
+
+    
 }
 
 ```
@@ -390,41 +391,47 @@ import React from 'react';
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
-   
-    render() {
-        return (
-         <div>
-          <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Get Items</button>
-         </div>
-        );
-    }
-   
-    handleClick = () => {
-        this.state.items.forEach(item => {
-            console.log(item);
-        });
-    }
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, value: "Banana" };
+  }
+
+  render() {
+    return (
+      <div>
+        <Dropdown
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={this.handleClick}>Get Items</button>
+      </div>
+    );
+  }
+
+  handleClick = () => {
+    this.state.items.forEach(item => {
+      console.log(item);
+    });
+  };
 }
 
 ```
@@ -948,18 +955,21 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isVisible:false
         };
     }
-   
+    handleShow=()=>{
+        this.setState({isVisible:true})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
-        );
-    }
+            <div>
+                <button onClick={this.handleShow}>Show</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isVisible={this.state.isVisible} />
 
-    handleChange = (value) => {
-        this.setState({value});
+            </div>
+        );
     }
 }
 
@@ -1011,7 +1021,7 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+    c  constructor(props) {
         super(props);
         const items = [
             {
@@ -1032,19 +1042,20 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isVisible:true
         };
     }
-   
+    handleHide=()=>{
+        this.setState({isVisible:false})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
+            <div>
+                <button onClick={this.handleHide}>Hide</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isVisible={this.state.isVisible} />
+            </div>
         );
-        
-    }
-
-    handleChange = (value) => {
-            this.setState({value});
     }
 }
 
@@ -1096,7 +1107,7 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+      constructor(props) {
         super(props);
         const items = [
             {
@@ -1117,17 +1128,21 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isDisabled:false
         };
     }
-   
+    handleDisable=()=>{
+        this.setState({isDisabled:true})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={true} />
-        ); 
-    }
-    handleChange = (value) => {
-         this.setState({value});
+            <div>
+                <button onClick={this.handleDisable}>Disable</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isDisabled={this.state.isDisabled} />
+
+            </div>
+        );
     }
 }
 
@@ -1178,7 +1193,7 @@ import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -1199,19 +1214,21 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isDisabled:true
         };
     }
-   
+    handleEnable=()=>{
+        this.setState({isDisabled:false})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={false} />
-        );
-        
-    }
+            <div>
+                <button onClick={this.handleEnable}>Enable</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isDisabled={this.state.isDisabled} />
 
-    handleChange = (value) => {
-        this.setState({value});
+            </div>
+        );
     }
 }
 
