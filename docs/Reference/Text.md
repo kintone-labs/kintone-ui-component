@@ -102,20 +102,19 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({value: 'input text'});
-var btn = new kintoneUIComponent.Button({text: 'Click'});
-
-btn.on('click', function() {
+var text = new kintoneUIComponent.Text({ value: 'input text' });
+var btn = document.createElement('button');
+btn.textContent = 'Click';
+btn.onclick = function() {
     text.setValue('set value input text');
-});
-
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import {Text, Button} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -127,7 +126,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} />
-                <Button text='Click' onClick={this.setValue} />
+                <button onClick={this.setValue}>Click</button>
             </div>
         );
     };
@@ -168,7 +167,7 @@ console.log(text.getValue());
 ```
 **React**
 ```javascript
-import {Text, Button} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -181,7 +180,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} />
-                <Button text='Get Value' onClick={this.getValue} />
+                <button onClick={this.getValue}>Get Value</button>
             </div>
         );
     };
@@ -278,18 +277,19 @@ None
 ```javascript
 
 var text = new kintoneUIComponent.Text({value: 'input text', isVisible: false});
-var btn = new kintoneUIComponent.Button({ text: 'Show', type: 'normal' })
-btn.on('click', function () {
+var btn = document.createElement('button');
+btn.textContent = 'Show';
+btn.onclick = function() {
     text.show();
-})
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 
 ```
 **React**
 ```javascript
-import { Text, Button } from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -305,11 +305,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} isVisible={this.state.isVisible} />
-                <Button
-                    text='Show'
-                    type='normal'
-                    onClick={this.show}
-                />
+                <button onClick={this.show}>Show</button>
             </div>
         );
     };
@@ -334,17 +330,18 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({value: 'input text', isVisible: true});
-var btn = new kintoneUIComponent.Button({ text: 'Hide', type: 'normal' });
-btn.on('click', function () {
-    text.hide();
-});
+var btn = document.createElement('button');
+btn.textContent = 'Hide';
+btn.onclick = function() {
+     text.hide();
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { Text, Button } from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -360,11 +357,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} isVisible={this.state.isVisible} />
-                <Button
-                    text='Hide'
-                    type='normal'
-                    onClick={this.hide}
-                />
+                <button onClick={this.hide}>Hide</button>
             </div>
         );
     };
@@ -390,17 +383,18 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({ value: 'Text is disabled' });
-var btn = new kintoneUIComponent.Button({ text: 'Disable', type: 'normal' });
-btn.on('click', function () {
-    text.disable();
-});
+var btn = document.createElement('button');
+btn.textContent = 'Disable';
+btn.onclick = function() {
+     text.disable();
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { Text, Button } from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
@@ -415,11 +409,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} isDisabled={this.state.isDisabled} />
-                <Button
-                    text='Disable'
-                    type='normal'
-                    onClick={this.disable}
-                />
+                <button onClick={this.disable}>Disable</button>
             </div>
         );
     };
@@ -444,17 +434,18 @@ None
 **Javascript**
 ```javascript
 var text = new kintoneUIComponent.Text({ value: 'Text is enabled', isDisabled: true });
-var btn = new kintoneUIComponent.Button({ text: 'Enabled', type: 'normal' });
-btn.on('click', function () {
-    text.enable();
-});
+var btn = document.createElement('button');
+btn.textContent = 'Enabled';
+btn.onclick = function() {
+     text.enable();
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { Text, Button } from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -470,11 +461,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Text value={this.state.value} isDisabled={this.state.isDisabled} />
-                <Button
-                    text='Enabled'
-                    type='normal'
-                    onClick={this.enable}
-                />
+                <button onClick={this.enable}>Enabled</button>
             </div>
         );
     };
