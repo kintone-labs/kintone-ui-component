@@ -8,7 +8,7 @@ type ButtonProps = {
   type?: string;
   isDisabled?: boolean;
   isVisible?: boolean;
-  onClick: (e: React.SyntheticEvent<EventTarget>) => void;
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
 const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps) => {
@@ -27,5 +27,4 @@ const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps
     </button>
   );
 };
-
 export default Button;
