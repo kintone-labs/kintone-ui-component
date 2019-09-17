@@ -91,17 +91,18 @@ None
 **Javascript**
 ```javascript
 var spinner = new kintoneUIComponent.Spinner();
-var btn = new kintoneUIComponent.Button({ text: 'Open spinner' });
-btn.on('click', function () {
+var btn =  document.createElement('button'); 
+btn.textContent = 'Open spinner';
+btn.onclick = function() {
     spinner.show();
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(spinner.render());
-body.appendChild(btn.render());
+body.appendChild(btn);
 ```
 **React**
 ```javascript
-import { Spinner, Button } from '@kintone/kintone-ui-component';
+import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -118,7 +119,7 @@ export default class Plugin extends React.Component {
         return (
             <div>
                 <Spinner isVisible={this.state.isVisible} />
-                <Button text='Open spinner' onClick={this.show} />
+                <button onClick={this.show}>Open spinner</button>
             </div>
         );
     };
@@ -144,19 +145,15 @@ None
 **Javascript**
 ```javascript
 var spinner = new kintoneUIComponent.Spinner({ isVisible: true });
-var label = new kintoneUIComponent.Label({ text: 'Spinner will hide after 3s' });
-
 setTimeout(() => {
     spinner.hide();
 }, 3000);
-
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(label.render());
 body.appendChild(spinner.render());
 ```
 **React**
 ```javascript
-import { Spinner, Label } from '@kintone/kintone-ui-component';
+import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -167,7 +164,6 @@ export default class Plugin extends React.Component {
     hide = () => {
         this.setState({ isVisible: false });
     };
-
     componentDidMount() {
         setTimeout(() => {
             this.hide();
@@ -176,10 +172,7 @@ export default class Plugin extends React.Component {
 
     render() {
         return (
-            <div>
-                <Label text='Spinner will hide after 3s' />
-                <Spinner isVisible={this.state.isVisible} />
-            </div>
+            <Spinner isVisible={this.state.isVisible} />
         );
     };
 };
