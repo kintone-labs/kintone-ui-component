@@ -76,9 +76,11 @@ export default class Table extends Control {
   }
   
   private _removeRow = ({data, rowIndex}:RowEventProps) => {
-    this._props.data = data && data.filter((_, index) => index !== rowIndex);
+    const currentData = data && data.filter((_, index) => index !== rowIndex)
+    this._props.data = currentData
     this._renderTableRows(true)
     this._renderCells()
+    return currentData
   }
 
   private _triggerChange(args: DispatchParams) {
@@ -217,6 +219,7 @@ export default class Table extends Control {
       iconButton2.on('click', () => {
         this._dispatch({
           type: 'REMOVE_ROW',
+          data: this._removeRow({data: this._props.data, rowIndex}),
           rowIndex: rowIndex
         })
       })
@@ -239,7 +242,6 @@ export default class Table extends Control {
       this._renderCells()
     }
     if(eventOption['type'] === 'REMOVE_ROW') {
-      this._removeRow({data: this._props.data, rowIndex: eventOption['rowIndex']})
       if (this._props.onRowRemove) {
         this._props.onRowRemove(eventOption)
       }
