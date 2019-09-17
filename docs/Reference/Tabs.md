@@ -16,9 +16,9 @@
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|An object contains params of constructor.|
+|options|Object|No|An object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of tabs.|
-|options.columns[x].tabName|String|Yes|Name of a tab.|
+|options.columns[x].tabName|String|Conditional|Name of a tab. This is required if <b>options.columns[x]</b> is specified.|
 |options.columns[x].tabContent|String|No|The value of an item.|
 |options.columns[x].isDisabled|Boolean|No|Indicate if tab will be disabled. <br> Default value: 'false'|
 |options.value|Integer|No|Index of selected tab.|

@@ -10,7 +10,7 @@
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options|Object|Yes|The object contains params of constructor.|
+|options|Object|No|The object contains params of constructor.|
 |options.content|DOM Element|No|Content of Field Group.|
 |options.name|String|No|Field group name.|
 |options.toggle|String|No|Set the toggle state. <br> Default value: 'collapse'|
