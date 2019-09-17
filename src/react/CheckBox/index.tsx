@@ -33,14 +33,13 @@ const CheckBox = (props: CheckBoxProps) => {
     if (!include) {
       value.push(itemValue);
     }
-    if(props.onChange){
-      props.onChange(value);
-    }
+    props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false || !props.items) {
     return null;
   }
+
   const items = props.items.map((item, i) => {
     const isSelected = props.value ? props.value.some(value => value === item.value) : false;
     return (

@@ -1,5 +1,5 @@
 type ItemData = {
-  value?: string
+  value: string
   label?: string
   isDisabled?: boolean
 }

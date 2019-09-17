@@ -288,7 +288,7 @@ export default class Table extends Control {
     })
   }
 
-  updateRowData(rowIndex: number, data: object[], rerender = true, trigger = true, fieldName:string) {
+  updateRowData(rowIndex: number, data: object[], rerender = true, trigger = true, fieldName:string = '') {
     if (rowIndex === undefined || data === undefined) {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }

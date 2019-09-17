@@ -23,7 +23,6 @@ class TextArea extends Control {
   private translateX = 0
   private translateY = 0
   
-
   constructor(params?: TextAreaProps) {
     super()
     if (params) {

@@ -3,7 +3,7 @@ import Control, {ControlProps} from '../Control';
 import '../../css/Item.css';
 
 type ItemData = {
-    value: string 
+    value: string
     label?: string
     isDisabled?: boolean
 }

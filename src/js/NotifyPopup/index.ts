@@ -22,16 +22,19 @@ class NotifyPopup extends Control {
   private textEl: any
   private closeButton: IconButton
   private _onClick = (e: Event) => {}
+  private _onClose = (e: Event) => {}
 
   constructor(params?: PopupProps) {
     super();
 
     if (params) {
-      this._props = {...this._props, ...params};
+      this._props = { ...this._props, ...params };
     }
     this.element = this._createPopupLayout()
 
-    this.closeButton.on('click', () => {
+    this.closeButton.on('click', (e: Event) => {
+      if (this._props.isDisabled) return;
+      this._onClose(e);
       this.hide();
     });
     this.rerender(['text', 'type']);
@@ -73,7 +76,14 @@ class NotifyPopup extends Control {
   }
 
   on(eventName: string, callback: (params?: any) => void) {
-    if (eventName === 'click') this._onClick = callback
+    if (eventName === 'click') {
+      this._onClick = callback;
+      return;
+    }
+    if (eventName === 'close') {
+      this._onClose = callback;
+      return;
+    }
   }
 
   private _getClassName() {

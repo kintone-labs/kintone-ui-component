@@ -34,11 +34,11 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
 
           let config = {
             translateX: sizeConfig.translateX + dx,
-             translateY: sizeConfig.translateY + dy, 
-             textAreaWidth: sizeConfig.textAreaWidth + dx,
-              textAreaHeight: sizeConfig.textAreaHeight + dy
-            }
-            setSizeConfig(config);
+            translateY: sizeConfig.translateY + dy,
+            textAreaWidth: sizeConfig.textAreaWidth + dx,
+            textAreaHeight: sizeConfig.textAreaHeight + dy
+          }
+          setSizeConfig(config);
         }
         currentX = event.clientX;
         currentY = event.clientY;
