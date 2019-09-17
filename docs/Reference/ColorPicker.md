@@ -72,10 +72,8 @@ Dom element
 **Javascript**
 ```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(colorPicker.render());
 ```
 
 **React**
@@ -95,12 +93,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -154,12 +146,6 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -211,12 +197,6 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -244,11 +224,6 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
 });
-
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
 ```
 
 **React**
@@ -271,12 +246,6 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
 ```
 
 </details>
@@ -310,19 +279,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={true} />
-        );
-    }
-}
-
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+  }
+  handleShow = () => {
+    this.setState({ isVisible: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Show</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
     );
-});
+  }
+}
 ```
 </details>
 
@@ -355,18 +329,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={false} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: true
+    };
+  }
+  handleHide = () => {
+    this.setState({ isVisible: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Hide</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
     );
-});
+  }
+}
 ```
 </details>
 
@@ -399,18 +379,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isDisabled={true} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: false
+    };
+  }
+  handleDisable = () => {
+    this.setState({ isDisabled: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Disable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
     );
-});
+  }
+}
 ```
 </details>
 
@@ -443,17 +429,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color="#FF0000" isDisabled={false} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true
+    };
+  }
+  handleEnable= () => {
+    this.setState({ isDisabled: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Enable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
     );
-});
+  }
+}
 ```
 </details>

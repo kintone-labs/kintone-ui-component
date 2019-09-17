@@ -140,7 +140,7 @@ Set the displayed type for button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|No|Style of the button:<ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
+|type|String|Yes|Style of the button:<ul><li> 'normal' </li><li> 'submit' </li></ul> Default value: 'normal'|
 
 **Returns**
 
@@ -178,7 +178,7 @@ export default class Plugin extends React.Component {
         return (
            <div>
                 <Button text={this.state.text} type={this.state.type} />
-                <button onClick={()=>this.setType("submit")}>setText</button>
+                <button onClick={()=>this.setType("submit")}>Set Type</button>
            </div>
         );
     }

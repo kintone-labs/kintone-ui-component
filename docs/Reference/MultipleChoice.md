@@ -19,7 +19,7 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items which will be displayed on multiple choices.|
-|options.items[].value|String|Yes|String value of item <br> If the value is duplicate, the error message will be displayed|
+|options.items[].value|String|No|String value of item <br> If the value is duplicate, the error message will be displayed|
 |options.items[].label|String|No|	String label of item|
 |options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'.|
 |options.value|Array<String>|No|List of checked item.<br> If the 'options.value[]' is nonexistent value, the error will be displayed|
@@ -227,29 +227,40 @@ import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            items: []
-        }
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = { items: items, value: ['Orange'] };
     }
-  
+    handleAddItem=(item)=>{
+        this.state.items.push(item);
+        this.setState({items:this.state.items});
+    }
     render() {
+        let item={
+            label: 'Lemon1',
+            value: 'Lemon1',
+        }
         return (
-        <div>
-          <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Add item</button>
-        </div>
-      );
-    }
-  
-    handleClick = () => {
-      const item = {
-        label: 'Lemon',
-        value: 'Lemon',
-        isDisabled: false
-      };
-      this.setState(prevState => ({
-        items: prevState.items ? prevState.items.concat([item]) : [item]
-      }))
+            <div>
+                <button onClick={()=>this.handleAddItem(item)}>Add Item</button>
+                <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            </div>
+        );
     }
 }
 ```
@@ -281,24 +292,25 @@ The item at given position.
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
+  items: [
+       {
+           label: 'Orange',
+           value: 'Orange',
+           isDisabled: false
+       },
+       {
+           label: 'Banana',
+           value: 'Banana',
+           isDisabled: true
+       },
+       {
+           label: 'Lemon',
+           value: 'Lemon',
+           isDisabled: true
+       },
+],
+value: ['Orange', 'Banana'],
+onChange:(e)=>{console.log(e)}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -569,24 +581,25 @@ List of checked items.
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
+  items: [
+       {
+           label: 'Orange',
+           value: 'Orange',
+           isDisabled: false
+       },
+       {
+           label: 'Banana',
+           value: 'Banana',
+           isDisabled: true
+       },
+       {
+           label: 'Lemon',
+           value: 'Lemon',
+           isDisabled: true
+       },
+],
+value: ['Orange', 'Banana'],
+onChange:(e)=>{console.log(e);}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -594,7 +607,7 @@ body.appendChild(mulChoice.render());
 
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
-    console.log(item);
+console.log(item);
 });
 ```
 **React**
@@ -603,7 +616,7 @@ import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -622,9 +635,9 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items, value: ['Orange', 'Banana'] };
     }
- 
+
     render() {
         return (
         <div>
@@ -633,7 +646,7 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-  
+
     handleClick = () => {
        console.log(this.state.value);
     }
@@ -660,30 +673,33 @@ None
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
+    items: [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ],
+    onChange: e => {
+      console.log(e);
+    },
+    value: ["Orange", "Banana"]
+  });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render());
+  var body = document.getElementsByTagName("BODY")[0];
+  body.appendChild(mulChoice.render());
 
-mulChoice.setValue(['Lemon']);
+  mulChoice.setValue(["Lemon"]);
 ```
 **React**
 ```javascript
@@ -952,7 +968,8 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+     onChange:(e)=>{console.log(e)}
 });
  
 var body = document.getElementsByTagName("BODY")[0];
@@ -968,7 +985,7 @@ import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
   
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -996,11 +1013,9 @@ export default class Plugin extends React.Component {
         );
     }
 
-    handleChange= () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
+    handleChange= (e) => {
+        console.log("change",e);
+        
     }
 }
 ```
@@ -1040,7 +1055,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)},
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1073,20 +1090,18 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isVisible:false};
     }
- 
+    handleShow=()=>{
+        this.setState({isVisible:true})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isVisible={true} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleShow}>Show</button>
+                <MultipleChoice value={this.state.value} isVisible={this.state.isVisible} items={this.state.items}/>
+            </div>
         );
-    }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
     }
 }
 
@@ -1127,7 +1142,8 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+     onChange:(e)=>{console.log(e)}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1160,20 +1176,18 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isVisible:true};
     }
- 
+    handleHide=()=>{
+        this.setState({isVisible:false})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isVisible={false} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleHide}>Hide</button>
+                <MultipleChoice value={this.state.value} isVisible={this.state.isVisible} items={this.state.items}/>
+            </div>
         );
-    }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
     }
 }
 
@@ -1214,7 +1228,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)}
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1229,7 +1245,7 @@ import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
  
 export default class Plugin extends React.Component {
-    constructor(props) {
+     constructor(props) {
         super(props);
         const items = [
             {
@@ -1248,20 +1264,18 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isDisabled:false};
     }
- 
+    handleDisable=()=>{
+        this.setState({isDisabled:true})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isDisabled={true} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleDisable}>Disable</button>
+                <MultipleChoice value={this.state.value} isDisabled={this.state.isDisabled} items={this.state.items}/>
+            </div>
         );
-    }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
     }
 }
 
@@ -1302,7 +1316,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+    value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)}
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1336,20 +1352,18 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isDisabled:true};
     }
- 
+    handleEnable=()=>{
+        this.setState({isDisabled:false})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isDisabled={false} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleEnable}>Enable</button>
+                <MultipleChoice value={this.state.value} isDisabled={this.state.isDisabled} items={this.state.items}/>
+            </div>
         );
-    }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
     }
 }
 

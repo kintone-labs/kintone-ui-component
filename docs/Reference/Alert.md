@@ -62,9 +62,11 @@ Dom element
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+})()
 ```
 
 **React**
@@ -100,10 +102,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.setText('Network error');
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.setText('Network error');
+})()
 ```
 
 **React**
@@ -154,10 +158,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.setType('success');
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.setType('success');
+})()
 ```
 
 **React**
@@ -208,12 +214,14 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.on('click', function(event) {
-    console.log('on click');
-});
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.on('click', function(event) {
+        console.log('on click');
+    }); 
+})()
 ```
 
 **React**
@@ -250,10 +258,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.show();
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.show();
+})()
 ```
 
 **React**
@@ -302,10 +312,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.hide();
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.hide();
+})()
 ```
 
 **React**
@@ -353,10 +365,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.disable();
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.disable();
+})()
 ```
 
 **React**
@@ -405,10 +419,12 @@ None
 
 **Javascript**
 ```javascript
-var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(alert.render());
-alert.enable();
+(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName("BODY")[0];
+    body.appendChild(alert.render());
+    alert.enable();
+})()
 ```
 
 **React**
