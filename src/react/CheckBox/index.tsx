@@ -33,7 +33,7 @@ const CheckBox = (props: CheckBoxProps) => {
     if (!include) {
       value.push(itemValue);
     }
-   props.onChange && props.onChange(value);
+    props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false || !props.items) {
@@ -70,4 +70,5 @@ const CheckBox = (props: CheckBoxProps) => {
     </div>
   );
 };
+
 export default CheckBox;

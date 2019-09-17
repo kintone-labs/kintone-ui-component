@@ -37,8 +37,7 @@ class TextArea extends Control {
     super.rerender(changedAttr)
     if (!changedAttr) return
     if (changedAttr.indexOf('value') !== -1) {
-      if(this._props.value)
-        this.textAreaEl.value = this._props.value;
+        this.textAreaEl.value = this._props.value || ""
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
         if (this._props.isDisabled) {

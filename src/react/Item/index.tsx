@@ -60,7 +60,7 @@ const Item = (props: ItemProps) => {
           checked={props.selected}
           onChange={_onChange}
         />
-        <label htmlFor={id}>{props.item.label}
+        <label htmlFor={id}>{props.item.label || ""}
         </label>
       </span>
     );
@@ -76,7 +76,7 @@ const Item = (props: ItemProps) => {
           <path d={mdiCheckBold} />
         </svg>
       </span>
-      <span className="kuc-list-item-label">{props.item.label}</span>
+      <span className="kuc-list-item-label">{props.item.label || ""}</span>
     </div>
   );
 };

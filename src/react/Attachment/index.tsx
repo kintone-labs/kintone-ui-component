@@ -16,9 +16,11 @@ type AttachmentProps = {
   isErrorVisible?: boolean;
   isVisible?: boolean;
   files?: FileObject[];
-  onFilesAdd: (files: FileObject[]) => void;
-  onFileRemove: (files: FileObject[]) => void;
+  onFilesAdd?: (files?: FileObject[]) => void;
+  onFileRemove?: (files?: FileObject[]) => void;
 };
+
+
 
 const Attachment = (props: AttachmentProps) => {
   if (props.isVisible === false) {

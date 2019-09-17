@@ -13,8 +13,8 @@ type item = {
 };
 
 type DropdownProps = ControlProps & {
-  value: string;
-  items: item[];
+  value?: string;
+  items?: item[];
   onChange?: (params?: any) => void;
   listItemsShown?: (params?: any) => void;
 };
@@ -27,7 +27,7 @@ class Dropdown extends Control {
     }
   };
 
-  private itemComps: Item[] = [];
+  private itemComps?: Item[] = [];
   private dropdownEl: HTMLElement;
   private nameLabelEl: HTMLElement;
   private listOuterEl: HTMLElement;
@@ -36,7 +36,7 @@ class Dropdown extends Control {
   private className: string[];
   private isListVisible: boolean = false;
 
-  constructor(params: DropdownProps) {
+  constructor(params?:DropdownProps) {
     super();
     if (
       typeof params === 'object' &&
@@ -48,10 +48,11 @@ class Dropdown extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
+
     if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
       throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
-
+    
     if (
       !AbstractSingleSelection._hasValidValue(
         this._props.items,
@@ -168,18 +169,19 @@ class Dropdown extends Control {
     this.itemComps =
       this._props.items &&
       this._props.items.map(item => {
-        const newItem = new Item({
-          selected: this._props.value === item.value,
-          item: item,
-          isDisabled: this._props.isDisabled || item.isDisabled,
-          onClick: this._handleItemClick
-        });
-        return newItem;
+          const newItem = new Item({
+            selected: this._props.value === item.value,
+            item: item,
+            isDisabled: this._props.isDisabled || item.isDisabled,
+            onClick: this._handleItemClick
+          });
+          return newItem;
       });
-    this.itemComps.forEach(item => {
-      this.listOuterEl.appendChild(item.render());
-    });
-
+    if(this.itemComps){
+      this.itemComps.forEach(item => {
+        this.listOuterEl.appendChild(item.render());
+      });
+    }
     subcontainerEl.appendChild(outerEl);
     subcontainerEl.appendChild(this.listOuterEl);
     return subcontainerEl;
@@ -201,7 +203,7 @@ class Dropdown extends Control {
   }
 
   setValue(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
         this.label = item.label;
@@ -218,7 +220,7 @@ class Dropdown extends Control {
   }
 
   addItem(item: item) {
-    this._props.items.push(item);
+    this._props.items && this._props.items.push(item);
     this.rerender(['item']);
   }
 
@@ -228,15 +230,15 @@ class Dropdown extends Control {
   }
 
   removeItem(index: number) {
-    if (this._props.items.length <= index) {
+    if (this._props.items && this._props.items.length <= index) {
       return false;
     }
-    this._props.items.splice(index, 1);
+    this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);
   }
 
   disableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
       }
@@ -245,7 +247,7 @@ class Dropdown extends Control {
   }
 
   enableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;
       }

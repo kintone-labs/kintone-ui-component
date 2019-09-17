@@ -28,59 +28,56 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
   }
-  if (items) {
-    const tabNames = (
-      <ul className="kuc-tabs-tab-list">
-        {
-          items.map((item: TabsItem, tabIndex: number) => {
-            if (!item.tabName) {
-              throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
-            }
-            let className = "kuc-tabs-container";
-            if (value === tabIndex) {
-              className += " kuc-tabs-container-selection";
-            }
-
-            if (item.isDisabled) {
-              className += ' kuc-tabs-disabled';
-              return (
-                <li
-                  className={className}
-                  key={tabIndex}
-                >
-                  {item.tabName}
-                </li>
-              );
-            }
-            return (
-              <li
-                className={className}
-                key={tabIndex}
-                onClick={() => _onClickTabItem(tabIndex)}
-              >
-                {item.tabName}
-              </li>
-            );
-          })
+  const tabNames = (
+    <ul className="kuc-tabs-tab-list">
+    {items &&
+      items.map((item: TabsItem, tabIndex: number) => {
+        if (!item.tabName) {
+          throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
         }
-      </ul>
-    );
-    const tabContents = items.map((item: TabsItem, tabIndex: number) => {
-      if (tabIndex !== value) return undefined;
-      return (
-        <div className="kuc-tabs-tab-contents" key={tabIndex}>
-          <div>{item.tabContent}</div>
-        </div>
-      );
-    });
+        let className = "kuc-tabs-container";
+        if (value === tabIndex) {
+          className += " kuc-tabs-container-selection";
+        }
+
+        if (item.isDisabled) {
+          className += ' kuc-tabs-disabled';
+          return (
+            <li
+              className={className}
+              key={tabIndex}
+            >
+              {item.tabName}
+            </li>
+          );
+        }
+        return (
+          <li
+            className={className}
+            key={tabIndex}
+            onClick={() => onClickTabItem && onClickTabItem(tabIndex)}
+          >
+            {item.tabName}
+          </li>
+        );
+      })
+    }
+    </ul>
+  );
+  const tabContents = items.map((item: TabsItem, tabIndex: number) => {
+    if (tabIndex !== value) return undefined;
     return (
-      <div className="kuc-tabs-tabs">
-        {tabNames}
-        {tabContents}
+      <div className="kuc-tabs-tab-contents" key={tabIndex}>
+        <div>{item.tabContent}</div>
       </div>
     );
-  }
-  return null;
+  });
+  return (
+    <div className="kuc-tabs-tabs">
+      {tabNames}
+      {tabContents}
+    </div>
+  );
 };
 
 export default Tabs;

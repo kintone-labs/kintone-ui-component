@@ -25,7 +25,7 @@ class Label extends Control {
   private requiredEl: any
   private containerEl: any
 
-  constructor(params: LabelProps) {
+  constructor(params?: LabelProps) {
 
     super();
 

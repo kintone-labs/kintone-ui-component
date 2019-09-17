@@ -39,7 +39,6 @@ class Tabs extends Control {
     if (params) {
       this._props = {...this._props, ...params}
     }
-
     if (this._validator()) {
       throw new Error(this._validator())
     }
@@ -74,21 +73,16 @@ class Tabs extends Control {
   private _renderTabNames() {
     this.tabNamesElement = document.createElement('ul')
     this.tabNamesElement.className = 'kuc-tabs-tab-list'
-    if (this._props.items) {
-      this._props.items.forEach((item: Tab, index: number) => {
-        let tabComponent = new TabName({
-          tabName: item.tabName,
-          tabIndex: index,
-          onClickTabItem: (tabIndex: number) => {
+    this._props.items && this._props.items.forEach((item: Tab, index:number) => {
+      let tabComponent = new TabName({
+        tabName: item.tabName,
+        tabIndex: index,
+        onClickTabItem: (tabIndex: number) => {
             this._onClickTabItem(tabIndex)
             this.setValue(tabIndex)
-          },
-          isActive: index === this._props.value,
-          isDisabled: item.isDisabled
-        })
-
-        this.tabNames.push(tabComponent)
-        this.tabNamesElement.appendChild(tabComponent.render())
+        },
+        isActive: index === this._props.value,
+        isDisabled: item.isDisabled
       })
     }
     this.element.appendChild(this.tabNamesElement)
@@ -100,15 +94,15 @@ class Tabs extends Control {
     this.element.appendChild(tabContentWrapper)
 
     this.tabContentElement = document.createElement('div')
-    if (this._props.items && this._props.value !== undefined && this._props.value !== null) {
-      this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
+    if(this._props.items && this._props.value){
+      this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
     }
     tabContentWrapper.appendChild(this.tabContentElement)
   }
 
   rerender(changedAttr?: Array<string>) {
     super.rerender()
-    if (!changedAttr) return;
+    if (!changedAttr || !this._props.items) return;
     if (changedAttr.indexOf('value') !== -1) {
       this.tabNames.forEach((tabNames: TabName, index: number) => {
         if (index === this._props.value) {
@@ -121,8 +115,7 @@ class Tabs extends Control {
       while (this.tabContentElement.firstChild) {
         this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
-      
-      if (this._props.items && this._props.value !== undefined && this._props.value !== null) {
+      if (this._props.items && this._props.value){
         this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
       }
     }
@@ -167,7 +160,7 @@ class Tabs extends Control {
       while (this.tabContentElement.firstChild) {
         this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
-      if (this._props.items && this._props.value !== undefined && this._props.value !== null) {
+      if(this._props.items && this._props.value){
         this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
       }
     }
@@ -195,9 +188,8 @@ class Tabs extends Control {
     if (!item.tabName) {
       throw Message.tabs.MISSING_NEW_ITEM_TABNAME
     }
-    if (this._props.items) {
-      this._props.items.push(item)
-    }
+
+    this._props.items && this._props.items.push(item)
     if (this._validator()) {
       throw new Error(this._validator())
     }
@@ -208,11 +200,9 @@ class Tabs extends Control {
     if (typeof index !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
-    if (this._props.items) {
-      if (index >= 0 && index < this._props.items.length) {
-        this._props.items.splice(index, 1)
-        this.rerender(['removeItems'])
-      }
+    if (index >= 0 && this._props.items && index < this._props.items.length) {
+      this._props.items.splice(index, 1)
+      this.rerender(['removeItems'])
     }
     else {
       throw new Error(Message.common.INVALID_ARGUMENT)
@@ -227,26 +217,22 @@ class Tabs extends Control {
     if (!tabName) {
       throw Message.common.INVALID_ARGUMENT
     }
-    if (this._props.items) {
-      this._props.items.forEach((item: Tab, index: number) => {
-        if (item.tabName === tabName) {
-          this.tabNames[index].disable()
-        }
-      })
-    }
+    this._props.items && this._props.items.forEach((item: Tab, index: number) => {
+      if (item.tabName === tabName) {
+        this.tabNames[index].disable()
+      }
+    })
   }
 
   enableItem(tabName: string) {
     if (!tabName) {
       throw Message.common.INVALID_ARGUMENT
     }
-    if (this._props.items) {
-      this._props.items.forEach((item: Tab, index: number) => {
-        if (item.tabName === tabName) {
-          this.tabNames[index].enable()
-        }
-      })
-    }
+    this._props.items && this._props.items.forEach((item: Tab, index: number) => {
+      if (item.tabName === tabName) {
+        this.tabNames[index].enable()
+      }
+    })
   }
 
   on(eventName: string, callback: (params?: any) => void) {
@@ -259,7 +245,6 @@ class Tabs extends Control {
       callback(e);
     });
   }
-
 }
 
 export { TabsProps }

@@ -24,7 +24,7 @@ class NotifyPopup extends Control {
   private _onClick = (e: Event) => {}
   private _onClose = (e: Event) => {}
 
-  constructor(params: PopupProps) {
+  constructor(params?: PopupProps) {
     super();
 
     if (params) {
