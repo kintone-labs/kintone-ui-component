@@ -1,9 +1,9 @@
 import Control, {ControlProps} from '../Control'
 import '../../css/TextArea.css'
 type TextAreaProps = ControlProps & {
-    value: string
-    onClick: (e: any) => void
-    onChange: (e: any) => void
+    value?: string
+    onClick?: (e: any) => void
+    onChange?: (e: any) => void
 }
 
 class TextArea extends Control {
@@ -23,8 +23,7 @@ class TextArea extends Control {
   private translateX = 0
   private translateY = 0
   
-
-  constructor(params: TextAreaProps) {
+  constructor(params?: TextAreaProps) {
     super()
     if (params) {
       this._props = {...this._props, ...params}
@@ -38,7 +37,8 @@ class TextArea extends Control {
     super.rerender(changedAttr)
     if (!changedAttr) return
     if (changedAttr.indexOf('value') !== -1) {
-        this.textAreaEl.value = this._props.value
+      if(this._props.value)
+        this.textAreaEl.value = this._props.value;
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
         if (this._props.isDisabled) {

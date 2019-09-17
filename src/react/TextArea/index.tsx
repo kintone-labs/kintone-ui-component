@@ -3,11 +3,11 @@ import '../../css/font.css'
 import '../../css/TextArea.css';
 
 type TextAreaProps = {
-  value: string;
+  value?: string;
   isVisible?: boolean;
   isDisabled?: boolean;
-  onClick: (e: any) => void;
-  onChange: (e: any) => void;
+  onClick?: (e: any) => void;
+  onChange?: (e: any) => void;
 }
 
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
@@ -35,11 +35,11 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
 
           let config = {
             translateX: sizeConfig.translateX + dx,
-             translateY: sizeConfig.translateY + dy, 
-             textAreaWidth: sizeConfig.textAreaWidth + dx,
-              textAreaHeight: sizeConfig.textAreaHeight + dy
-            }
-            setSizeConfig(config);
+            translateY: sizeConfig.translateY + dy,
+            textAreaWidth: sizeConfig.textAreaWidth + dx,
+            textAreaHeight: sizeConfig.textAreaHeight + dy
+          }
+          setSizeConfig(config);
         }
         currentX = event.clientX;
         currentY = event.clientY;
@@ -55,7 +55,8 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
   );
 
   const _onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(event.target.value);
+    if(onChange)
+      onChange(event.target.value);
   };
 
   if (isVisible === false) {
