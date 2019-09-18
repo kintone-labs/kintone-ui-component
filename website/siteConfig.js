@@ -78,11 +78,8 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-light',
   },
-
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
@@ -106,12 +103,16 @@ const siteConfig = {
     RemarkablePlugins.KUCComponentRenderer,
   ],
   scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
     'https://unpkg.com/@kintone/kintone-ui-component@0.3.3/dist/kintone-ui-component.min.js',
-    '/kintone-ui-component/js/extra.js'
+    '/kintone-ui-component/js/extra.js',
+    '/kintone-ui-component/js/code-block-buttons.js'
   ],
   stylesheets: [
     'https://unpkg.com/@kintone/kintone-ui-component@0.3.3/dist/kintone-ui-component.min.css',
-    '/kintone-ui-component/css/custom.css'
+    '/kintone-ui-component/css/custom.css',
+    '/kintone-ui-component/css/code-block-buttons.css'
   ],
   algolia: {
     apiKey: 'ee3709e597874e0d5c43b75e16a42c11',
