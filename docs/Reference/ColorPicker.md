@@ -202,7 +202,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### on(eventName, callback)
-Register callback for click event
+Register callback for an event
 
 **Parameter**
 
