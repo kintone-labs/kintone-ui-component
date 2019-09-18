@@ -23,7 +23,7 @@
 |options.toggle|String|No|Set the toggle state. <br> Default value: 'collapse'<br> Following value can be set:<ul><li>collapse</li><li>expand</li>|
 |options.onToggle|Function|No|Set the toggle function. <br>※This prop is for react. When you use pure JavaScript interface, there is no need to use this prop.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -271,7 +271,7 @@ None
 
 DOM element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -358,7 +358,7 @@ Add an item to end of Field Group.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -449,7 +449,7 @@ None
 | --- | --- | --- | --- |
 |content|	DOM|	Yes|The content of Field Group.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -529,7 +529,7 @@ Set the name for Field Group.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -604,7 +604,7 @@ None
 | --- | --- | --- |
 |name|	String|	The content of Field Group.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -671,7 +671,7 @@ Set the toggle state for Field Group.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -745,7 +745,7 @@ None
 | --- | --- | --- |
 |toggle|	String|	The toggle state of Field Group.<u><li>collapse</li><li>expand</li></ul>|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
