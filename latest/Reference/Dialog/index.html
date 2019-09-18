@@ -871,11 +871,9 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -885,8 +883,7 @@
 });
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -918,7 +915,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get DOM element of component.</p>
@@ -926,11 +922,9 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>DOM element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -943,8 +937,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myDialog.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
 import {render} from 'react-dom';
@@ -978,18 +971,15 @@ render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the Dialog.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -1002,8 +992,7 @@ body.appendChild(myDialog.render());
 myDialog.show();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1035,18 +1024,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the Dialog.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -1059,8 +1045,7 @@ body.appendChild(myDialog.render());
 myDialog.hide();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1080,7 +1065,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="setheaderheader">setHeader(header)</h3>
 <p>Set header for Dialog.</p>
 <p><strong>Parameter</strong></p>
@@ -1104,11 +1088,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>Dialog instance</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Announcement'
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
@@ -1117,8 +1099,7 @@ myDialog.setHeader(elements);
 myDialog.show();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1148,18 +1129,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="getheader">getHeader()</h3>
 <p>Get header of Dialog.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Header of Dialog: string | DOM | React Element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -1173,8 +1151,7 @@ document.body.append(myDialog.render());
 console.log('Header: ', myDialog.getHeader()); // return &quot;Dialog header&quot;
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1212,7 +1189,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="setcontentcontent">setContent(content)</h3>
 <p>Set content for Dialog.</p>
 <p><strong>Parameter</strong></p>
@@ -1236,11 +1212,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>Dialog instance</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Content'
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
@@ -1249,8 +1223,7 @@ myDialog.setContent(elements);
 myDialog.show();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1280,18 +1253,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="getcontent">getContent()</h3>
 <p>Get content of Dialog.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Content of Dialog: string | DOM | React Element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -1305,8 +1275,7 @@ document.body.append(myDialog.render());
 console.log('Content: ', myDialog.getContent()); // return &quot;This is content&quot;
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1343,7 +1312,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="setfooterfooter">setFooter(footer)</h3>
 <p>Set footer for Dialog.</p>
 <p><strong>Parameter</strong></p>
@@ -1367,11 +1335,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>Dialog instance</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog();
 var elements = 'Footer'
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
@@ -1380,8 +1346,7 @@ myDialog.setFooter(elements);
 myDialog.show();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1411,18 +1376,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="getfooter">getFooter()</h3>
 <p>Get footer of Dialog.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Footer of Dialog: string | DOM | React Element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var myDialog = new kintoneUIComponent.Dialog({
     header: &quot;Dialog header&quot;,
     content: &quot;This is content&quot;,
@@ -1436,8 +1398,7 @@ document.body.append(myDialog.render());
 console.log('Footer: ', myDialog.getFooter()); // return &quot;Footer&quot;
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
 

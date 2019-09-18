@@ -833,16 +833,13 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -861,7 +858,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get DOM element of TextArea component.</p>
@@ -869,18 +865,15 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>DOM element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom'
@@ -902,7 +895,6 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
-
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the input content value of textarea field.   </p>
 <p><strong>Parameter</strong></p>
@@ -926,11 +918,9 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({ value: 'textarea' });
 var btn = document.createElement('button');
 btn.textContent = 'Set Value';
@@ -942,8 +932,7 @@ body.appendChild(textArea.render());
 body.appendChild(btn);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -972,7 +961,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="getvalue">getValue()</h3>
 <p>Get the input content of textarea field.</p>
 <p><strong>Parameter</strong></p>
@@ -994,11 +982,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1006,8 +992,7 @@ body.appendChild(textArea.render());
 console.log(textArea.getValue());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1032,7 +1017,6 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callback)</h3>
 <p>Register callback for an event of TextArea component</p>
 <p><strong>Parameter</strong></p>
@@ -1062,11 +1046,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1080,8 +1062,7 @@ textArea.on('change', function(event) {
 });
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1111,18 +1092,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the TextArea component.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isVisible: false});
 var btn = document.createElement('button'); 
 btn.textContent = 'Show';
@@ -1135,8 +1113,7 @@ body.appendChild(btn);
 body.appendChild(textArea.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1161,18 +1138,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the TextArea component.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isVisible: true});
 var btn = document.createElement('button'); 
 btn.textContent = 'Hide';
@@ -1184,8 +1158,7 @@ body.appendChild(btn);
 body.appendChild(textArea.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1212,18 +1185,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disabled the TextArea component.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new TextArea({value: 'textarea'});
 var btn = document.createElement('button'); 
 btn.textContent = 'Disable';
@@ -1235,8 +1205,7 @@ body.appendChild(btn);
 body.appendChild(textArea.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1263,18 +1232,15 @@ export default class Plugin extends React.Component {
 </code></pre>
 
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enabled the TextArea component.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var textArea = new TextArea({value: 'textarea', isDisabled: true});
 var btn = document.createElement('button'); 
 btn.textContent = 'Enable';
@@ -1287,8 +1253,7 @@ body.appendChild(btn);
 body.appendChild(textArea.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 

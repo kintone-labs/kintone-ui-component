@@ -940,11 +940,9 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">(function(){
   // custom cell containing 2 text fields
   var customCell = function() {
@@ -1357,8 +1355,7 @@
 })();
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text} from '@kintone/kintone-ui-component';
@@ -1421,7 +1418,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -1429,11 +1425,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1452,8 +1446,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(table.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text} from '@kintone/kintone-ui-component';
@@ -1516,7 +1509,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="getvalue">getValue()</h3>
 <p>Get value of all rows in the table.</p>
 <p><strong>Parameter</strong></p>
@@ -1538,11 +1530,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1571,8 +1561,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1644,7 +1633,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set data for every row in table. The number of rows in table's dependent on the length on this parameters. </p>
 <p><strong>Parameter</strong></p>
@@ -1668,11 +1656,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1702,8 +1688,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1780,7 +1765,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for an event</p>
 <p><strong>Parameter</strong></p>
@@ -1883,11 +1867,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -1916,8 +1898,7 @@ table.on('cellChange', function(event) {
 });
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -1982,18 +1963,15 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="showactionbuttons">showActionButtons()</h3>
 <p>Display table action buttons.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2020,8 +1998,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2094,18 +2071,15 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="hideactionbuttons">hideActionButtons()</h3>
 <p>Hide table action buttons.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2132,8 +2106,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2206,7 +2179,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="updaterowdatarowindex-data-rerender-trigger">updateRowData(rowIndex, data, rerender, trigger)</h3>
 <p>Update data of row at rowIndex with new data</p>
 <p><strong>Parameter</strong></p>
@@ -2248,11 +2220,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </table>
 <p><strong>Returns</strong>
 <br>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2302,8 +2272,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(table.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2377,7 +2346,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="createtablecelltype-datafieldname-props">createTableCell(type, dataFieldName, props)</h3>
 <p>Create a table cell with 1 of the built-in supported components</p>
 <div class="admonition note">
@@ -2425,11 +2393,9 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </table>
 <p><strong>Returns</strong>
 <br><a href="#tablecell">TableCell</a></p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2448,8 +2414,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(table.render());
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2514,18 +2479,15 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the table</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2552,8 +2514,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2626,18 +2587,15 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the table</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="javascript">var table = new kintoneUIComponent.Table({
   // inital table data
   data: [
@@ -2664,8 +2622,7 @@ button.onclick = function () {
 body.appendChild(button);
 </code></pre>
 
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="javascript">import React from 'react';
 import {render} from 'react-dom';
 import { Table, Text, Button} from '@kintone/kintone-ui-component';
@@ -2738,7 +2695,6 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 
 </details>
-
 <h3 id="tablecell">TableCell</h3>
 <p><strong>Constructor</strong></p>
 <table>
