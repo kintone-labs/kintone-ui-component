@@ -35,8 +35,7 @@ class ColorPicker extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    let { color = "#ff0000" }= this._props;
-    if (!isHexString(color)) {
+    if (this._props.color && !isHexString(this._props.color)) {
       throw new Error(Message.colorPicker.INVALID_COLOR)
     }
 
@@ -44,7 +43,7 @@ class ColorPicker extends Control {
       throw new Error(Message.common.INVALID_ARGUMENT)
     }
     
-    this.oldColor = color;
+    this.oldColor = this._props.color || "#ff0000";
     this.focus = false;
     this.element = document.createElement('div');
     this._renderInput();
@@ -54,18 +53,17 @@ class ColorPicker extends Control {
   }
 
   private _renderInput() {
-    let { color = "#ff0000" }= this._props;
     const inputContainer = document.createElement('div');
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
-    this.inputElement.value = color;
+    this.inputElement.value = this._props.color || "#ff0000";
     if(this._props.isDisabled) {
       this.inputElement.disabled = this._props.isDisabled
     }
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
       if (isHexString((e.target as HTMLInputElement).value)) {
-        color = (e.target as HTMLInputElement).value;
+        this._props.color = (e.target as HTMLInputElement).value;
         this.rerender(['color', 'redraw']);
       }
     };
