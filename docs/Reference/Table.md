@@ -40,7 +40,7 @@
 |options.onRowRemove|Callback|No|Handler for row remove event.|
 |options.onCellChange|Callback|No|Handler for cell change event.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -532,7 +532,7 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -631,7 +631,7 @@ None
 | --- | --- | --- |
 |value|	Array&lt;Object&gt;|Value of all rows in the table |
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -749,7 +749,7 @@ Set data for every row in table. The number of rows in table's dependent on the 
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -887,7 +887,7 @@ Register callback for an event
 ||event.rowIndex|	Interger|	Position of the changed row in the table.|
 ||event.fieldName|	String|	name of the data property which changed.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -996,7 +996,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1111,7 +1111,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1230,7 +1230,7 @@ Update data of row at rowIndex with new data
 **Returns**
 <br>None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1383,7 +1383,7 @@ Create a table cell with 1 of the built-in supported components
 **Returns**
 <br>[TableCell](#tablecell)
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1482,7 +1482,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1597,7 +1597,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
