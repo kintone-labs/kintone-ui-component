@@ -24,6 +24,9 @@ class RadioButton extends Control {
 
   constructor(params?: RadioButtonProps) {
     super();
+    if(!params){
+      throw new Error(Message.common.PARAMS_REQUIRED);
+    }
     if (params && !params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }

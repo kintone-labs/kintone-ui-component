@@ -2,7 +2,9 @@ import {availableLocales} from '../react/DateTime/components/Locale'
 const Message = {
     common: {
         SELECTTION_DUPLICATE_VALUE: 'The selection has duplicate value',
-        INVALID_ARGUMENT: 'Error: invalid function arguments'
+        INVALID_ARGUMENT: 'Error: invalid function arguments',
+        PARAMS_REQUIRED: "Params is required"
+
     },
     control: {
         INVALID_EVENT: 'Invalid event, this function accept only ',
