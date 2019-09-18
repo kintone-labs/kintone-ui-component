@@ -77,7 +77,7 @@ class CheckBox extends Control {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }
         if (this._validator(this._props.items, value)) {
-          throw new Error(this._validator(this._props.items, value))
+            throw new Error(this._validator(this._props.items, value))
         }
         this._props.value = value;
         
@@ -97,7 +97,7 @@ class CheckBox extends Control {
         }
         const itemsToCheck = this._props.items.concat(item);
         if (this._validator(itemsToCheck)) {
-             throw new Error(this._validator(itemsToCheck))
+            throw new Error(this._validator(itemsToCheck))
         }
         this._props.items = itemsToCheck;
         this.rerender(['addItems'])
