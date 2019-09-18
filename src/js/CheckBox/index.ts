@@ -32,8 +32,8 @@ class CheckBox extends Control {
           this._props = {...this._props, ...params}
         }
         
-        if (this._validator(this._props.items, this._props.value)) {
-          throw new Error(this._validator(this._props.items, this._props.value))
+        if (this._validator()) {
+          throw new Error(this._validator())
         }
 
         this._renderItemList()
@@ -58,14 +58,14 @@ class CheckBox extends Control {
         }
     }
     
-    private _validator(items?: ItemData[], value?: string[]): string | undefined {
+    private _validator(): string | undefined {
         let err
-        if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
+        if (this._props.items && AbstractMultiSelection._hasDuplicatedItems(this._props.items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE
         }
         
-        if (items && value && 
-            !AbstractMultiSelection._hasValidValue(items, value)
+        if (this._props.items && this._props.value && 
+            !AbstractMultiSelection._hasValidValue(this._props.items, this._props.value)
         ) {
             err = Message.common.INVALID_ARGUMENT
         }
@@ -76,8 +76,9 @@ class CheckBox extends Control {
         if (!value && Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }
-        if (this._validator(this._props.items, value)) {
-          throw new Error(this._validator(this._props.items, value))
+        
+        if (this._validator()) {
+            throw new Error(this._validator())
         }
         this._props.value = value;
         
@@ -95,11 +96,10 @@ class CheckBox extends Control {
         if(!this._props.items) {
             this._props.items = []
         }
-        const itemsToCheck = this._props.items.concat(item);
-        if (this._validator(itemsToCheck)) {
-             throw new Error(this._validator(itemsToCheck))
+        this._props.items.push(item)
+        if (this._validator()) {
+            throw new Error(this._validator())
         }
-        this._props.items = itemsToCheck;
         this.rerender(['addItems'])
     }
 
@@ -137,21 +137,6 @@ class CheckBox extends Control {
             }
         }
         return undefined
-    }
-
-    setItems(items: Array<ItemData>) {
-        if (!items || !Array.isArray(items)) {
-            throw new Error(Message.common.INVALID_ARGUMENT)
-        }
-        // It isn't need to check hasValidValue
-        if (this._validator(items)) {
-            throw new Error(this._validator(items))
-        }
-        this._props.items = items
-        this.itemList = []
-        this._props.value = []
-        this._renderItemList()
-        this.rerender(['isDisabled'])
     }
 
     getItems(): Array<ItemData> | undefined {
