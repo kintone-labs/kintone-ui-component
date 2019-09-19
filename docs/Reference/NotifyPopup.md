@@ -37,7 +37,7 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
 ```javascript
 import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -83,7 +83,7 @@ body.appendChild(notifyPopup.render());
 import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
-   
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -107,7 +107,6 @@ export default class Plugin extends React.Component {
 };
 
 ReactDOM.render(<Plugin />, document.getElementById('root'));
-
 ```
 </details>
 
@@ -146,6 +145,7 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -166,7 +166,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -205,6 +205,7 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -225,7 +226,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -268,7 +269,8 @@ body.appendChild(notifyPopup.render());
 ```javascript
 import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -295,7 +297,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -333,6 +335,7 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -357,6 +360,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -393,7 +397,8 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -417,6 +422,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -454,7 +460,8 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -482,7 +489,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -520,7 +527,8 @@ body.appendChild(btn);
 ```javascript
 import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -548,6 +556,6 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
