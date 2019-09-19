@@ -41,7 +41,7 @@ const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', s
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -89,7 +89,7 @@ body.appendChild(attachment.render());
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -108,6 +108,8 @@ export default class Plugin extends React.Component {
     return (<Attachment files={this.state.files} onFilesAdd={this.handleFilesAdd} onFileRemove={this.handleFileRemove} />);
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -147,7 +149,8 @@ button.on('click', () => {
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -175,6 +178,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -211,7 +215,8 @@ button.on('click', () => {
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -239,6 +244,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -270,7 +277,8 @@ attachment.setDropZoneText('Drop files here.');
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -301,6 +309,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -332,7 +342,8 @@ attachment.setBrowseButtonText('Browse');
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -363,6 +374,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -394,7 +407,8 @@ attachment.setFileLimitText('Maximum: 1 GB');
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -425,6 +439,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -456,7 +472,8 @@ attachment.setErrorMessage('Error message');
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
    constructor(props) {
     super(props);
@@ -487,6 +504,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -522,7 +540,8 @@ showButton.on('click', () => {
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -554,6 +573,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -595,6 +616,8 @@ hideButton.on('click', () => {
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -626,6 +649,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -671,7 +696,8 @@ attachment.on('fileRemove', (files) => {
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -698,6 +724,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -727,6 +755,8 @@ attachment.show();
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -757,6 +787,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -786,6 +818,8 @@ attachment.hide();
 ```javascript
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -816,5 +850,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>

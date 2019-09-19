@@ -70,6 +70,7 @@ body.appendChild(button.render());
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     render() {
@@ -78,6 +79,8 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -109,6 +112,7 @@ button.setText('submit');
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -130,6 +134,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -161,6 +166,7 @@ button.setType('normal');
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -183,6 +189,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -217,6 +224,7 @@ button.on('click', function(event) {
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     render() {
@@ -229,6 +237,7 @@ export default class Plugin extends React.Component {
         console.log('on click');
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -258,6 +267,7 @@ button.show();
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -281,6 +291,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -310,6 +321,7 @@ button.hide();
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -333,6 +345,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -362,6 +375,7 @@ button.disable();
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -384,6 +398,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -413,6 +428,7 @@ button.enable();
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -435,5 +451,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

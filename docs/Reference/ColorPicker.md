@@ -37,8 +37,7 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -80,7 +79,7 @@ body.appendChild(colorPicker.render());
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -93,6 +92,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -124,9 +124,7 @@ colorPicker.setColor('#666666');
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-import ReactDOM from 'react-dom';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -146,6 +144,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -178,7 +177,7 @@ colorPicker.getColor();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -197,6 +196,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -230,7 +230,7 @@ colorPicker.on('change', function(color) {
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -246,6 +246,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -276,7 +277,7 @@ myColorPicker.show();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -297,6 +298,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -326,7 +328,7 @@ myColorPicker.hide();
 ```javascript
 import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -347,6 +349,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -376,7 +379,7 @@ myColorPicker.disable();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -397,6 +400,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -426,7 +430,7 @@ myColorPicker.enable();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -447,5 +451,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

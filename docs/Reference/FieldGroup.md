@@ -7,7 +7,7 @@
 |Number|	Description|
 | --- | --- |
 |1| Expanding icon.|
-|2| Field roup name.|
+|2| Field group name.|
 |3| Display item zone.<br>When the width of display items is over 517px, the width of Field Group component changes according to display items.<br>If the width of Field Group component is over the width of its parent DOM, scroll bar is shown.|
 |4| Collapse icon.|
 
@@ -199,8 +199,6 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
     name: 'Group',
     toggle: 'expand'
 })
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(fieldGroup.render());
 ```
 
 **React**
@@ -208,7 +206,7 @@ body.appendChild(fieldGroup.render());
 import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
  
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         const items = [
@@ -291,9 +289,8 @@ body.appendChild(fieldGroup.render());
 ```javascript
 import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
-import { render } from 'react-dom';
- 
-export default class Sample extends React.Component {
+import Reactdom from "react-dom"; 
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         const items = [
@@ -341,7 +338,7 @@ export default class Sample extends React.Component {
         });
     }
 }
-render(<Sample />, kintone.app.getHeaderSpaceElement());
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -394,8 +391,9 @@ body.appendChild(fieldGroup.render());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -432,6 +430,7 @@ export default class Sample extends React.Component {
       });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -475,8 +474,9 @@ console.log(fieldGroup.getContent());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -511,6 +511,7 @@ export default class Sample extends React.Component {
       console.log(this.state.content)
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -560,8 +561,9 @@ body.appendChild(fieldGroup.render());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -587,6 +589,7 @@ export default class Sample extends React.Component {
         this.setState({ name: 'NEW FIELD GROUP' });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -627,8 +630,9 @@ console.log(fieldGroup.getName());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -654,6 +658,7 @@ export default class Sample extends React.Component {
         console.log(this.state.name);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -702,8 +707,9 @@ body.appendChild(fieldGroup.render());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -729,6 +735,7 @@ export default class Sample extends React.Component {
         this.setState({ toggle: 'collapse' });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -767,8 +774,9 @@ console.log(fieldGroup.getToggle());
 ```javascript
 import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -794,6 +802,7 @@ export default class Sample extends React.Component {
         console.log(this.state.toggle);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>

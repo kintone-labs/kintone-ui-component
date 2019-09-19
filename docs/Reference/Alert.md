@@ -170,7 +170,7 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
 export default class Plugin extends React.Component {
      constructor(props){
         super(props);
@@ -192,6 +192,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -228,7 +229,8 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -239,6 +241,7 @@ export default class Plugin extends React.Component {
         console.log('click');
    }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -270,7 +273,7 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -293,6 +296,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -324,7 +328,8 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -346,6 +351,8 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>
 
@@ -377,7 +384,8 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -400,6 +408,8 @@ export default class Plugin extends React.Component {
         );
     }
 }
+
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -431,7 +441,8 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -454,5 +465,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
+
 ```
 </details>

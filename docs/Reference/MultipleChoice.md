@@ -55,8 +55,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 **React**
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
-import React from 'react';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -134,6 +133,7 @@ body.appendChild(mulChoice.render());
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -163,12 +163,13 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### addItem(item)
 
-Add an item to the end of multile choices list.
+Add an item to the end of multiple choices list.
 
 **Parameter**
 
@@ -223,6 +224,7 @@ mulChoice.addItem({
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -263,6 +265,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -323,6 +326,7 @@ console.log(firstItem);
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -360,6 +364,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.items[0]);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -412,6 +417,7 @@ mulChoice.removeItem(0);
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -459,6 +465,7 @@ export default class Plugin extends React.Component {
    });
  };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -518,6 +525,7 @@ items.forEach(function(item) {
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -557,6 +565,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -614,6 +623,7 @@ console.log(item);
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -651,6 +661,7 @@ export default class Plugin extends React.Component {
        console.log(this.state.value);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -706,6 +717,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -745,6 +757,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -797,6 +810,7 @@ mulChoice.disableItem('Orange');
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -837,6 +851,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -888,6 +903,7 @@ mulChoice.enableItem('Banana');
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -928,6 +944,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -983,6 +1000,7 @@ mulChoice.on('change', function(value) {
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1018,6 +1036,7 @@ export default class Plugin extends React.Component {
         
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1069,6 +1088,7 @@ mulChoice.show();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1104,7 +1124,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1155,6 +1175,7 @@ mulChoice.hide();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1190,7 +1211,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1243,6 +1264,7 @@ mulChoice.disable();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1278,7 +1300,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1331,6 +1353,7 @@ mulChoice.enable();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1366,6 +1389,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

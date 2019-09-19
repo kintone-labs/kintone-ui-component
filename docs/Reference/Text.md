@@ -11,8 +11,8 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains parameters of constructor.|
 |options.value|String|No|The value of text field. <br> Default value: ''|
-|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: **false**|
-|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: **true**|
+|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
+|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
@@ -25,7 +25,7 @@ var text= new kintoneUIComponent.Text({value: 'input text'});
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +37,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+
 
 ```
 </details>

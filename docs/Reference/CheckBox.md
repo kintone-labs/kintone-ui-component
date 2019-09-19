@@ -20,7 +20,7 @@
 |options.items|Array&lt;Object&gt;|No|List of items which will be displayed on checkbox.|
 |options.items[x].value|String|Conditional|String value of item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
 |options.items[x].label|String|No|	String label of item|
-|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'|
 |options.value|Array<String>|No|List of checked item.|
 |options.isDisabled|Boolean|No|The checkBox will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The checkBox will be visible. <br> Default value: 'true'|
@@ -56,7 +56,6 @@ var checkbox = new kintoneUIComponent.CheckBox ({
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
-
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -135,6 +134,7 @@ body.appendChild(checkbox.render());
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -165,6 +165,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -224,6 +225,7 @@ checkbox.addItem({
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -253,6 +255,7 @@ export default class Plugin extends React.Component {
       }))
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -313,6 +316,7 @@ console.log(firstItem);
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -351,6 +355,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.items[0])
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -403,6 +408,7 @@ checkbox.removeItem(0);
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -450,6 +456,7 @@ export default class Plugin extends React.Component {
       });
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -510,6 +517,7 @@ items.forEach(function(item) {
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -549,6 +557,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -606,6 +615,7 @@ value.forEach(function(item) {
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -643,6 +653,7 @@ export default class Plugin extends React.Component {
        console.log(this.state.value);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -695,6 +706,7 @@ checkbox.setValue(['Lemon']);
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -734,6 +746,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -787,6 +800,7 @@ checkbox.disableItem('Orange');
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -827,6 +841,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -879,6 +894,7 @@ checkbox.enableItem('Banana');
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -919,6 +935,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -974,6 +991,7 @@ checkbox.on('change', function(value) {
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1011,6 +1029,7 @@ export default class Plugin extends React.Component {
         
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1061,6 +1080,7 @@ checkbox.show();
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1101,6 +1121,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1151,6 +1172,7 @@ checkbox.hide();
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1191,6 +1213,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1241,6 +1264,7 @@ checkbox.disable();
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1281,6 +1305,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1331,6 +1356,7 @@ checkbox.enable();
 ```javascript
 import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
 
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1371,5 +1397,6 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

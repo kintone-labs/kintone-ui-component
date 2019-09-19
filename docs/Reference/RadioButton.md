@@ -57,8 +57,7 @@ var radioBtn = new kintoneUIComponent.RadioButton({
 **React**
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
-import React from 'react';
-   
+import React from 'react';   
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -136,6 +135,7 @@ body.appendChild(radioBtn.render());
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -165,6 +165,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -216,6 +217,7 @@ radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -246,6 +248,7 @@ export default class Plugin extends React.Component {
       }))
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -298,6 +301,7 @@ radioBtn.removeItem(0);
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -334,7 +338,7 @@ export default class Plugin extends React.Component {
      });
    };
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -395,6 +399,7 @@ items.forEach(function(item) {
 ```javascript
 import { DropDown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -434,7 +439,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -490,6 +495,7 @@ console.log(radioBtn.getValue());
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -530,7 +536,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -583,6 +589,7 @@ radioBtn.setValue('Lemon');
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -623,7 +630,7 @@ export default class Plugin extends React.Component {
         this.setState({value: 'Orange'});
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -678,6 +685,7 @@ radioBtn.disableItem('Orange');
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -721,6 +729,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -773,6 +782,7 @@ radioBtn.enableItem('Banana');
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -816,7 +826,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -873,6 +883,7 @@ radioBtn.on('change', function(value) {
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -909,9 +920,8 @@ export default class Plugin extends React.Component {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
-
-
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -962,6 +972,7 @@ radioBtn.show();
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1001,7 +1012,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1052,6 +1063,7 @@ radioBtn.hide();
 ```javascript
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1091,7 +1103,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1143,6 +1155,7 @@ radioBtn.disable();
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1182,7 +1195,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1234,6 +1247,7 @@ radioBtn.enable();
 
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1273,6 +1287,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

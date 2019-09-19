@@ -39,8 +39,7 @@ var myDialog = new kintoneUIComponent.Dialog({
 **React**
 ```javascript
 import {Dialog} from '@kintone/kintone-ui-component';
-import React from 'react';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -101,8 +100,7 @@ body.appendChild(myDialog.render());
 ```javascript
 import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
-import {render} from 'react-dom';
-  
+import Reactdom from "react-dom";  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -128,7 +126,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-render(<Plugin />, document.getElementById('root'));
+Reactdom.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -163,6 +161,7 @@ myDialog.show();
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -189,6 +188,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -223,6 +223,7 @@ myDialog.hide();
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     render() {
@@ -237,6 +238,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -269,6 +271,7 @@ myDialog.show();
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -293,6 +296,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -328,7 +332,8 @@ console.log('Header: ', myDialog.getHeader()); // return "Dialog header"
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -360,6 +365,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -392,6 +398,7 @@ myDialog.show();
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -416,6 +423,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -451,6 +459,7 @@ console.log('Content: ', myDialog.getContent()); // return "This is content"
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -482,6 +491,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -514,6 +524,7 @@ myDialog.show();
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -538,6 +549,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -573,6 +585,7 @@ console.log('Footer: ', myDialog.getFooter()); // return "Footer"
 ```javascript
 import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -604,5 +617,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

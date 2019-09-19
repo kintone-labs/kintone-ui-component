@@ -10,7 +10,7 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains parameters of constructor.|
-|options.isVisible|Boolean|No|The spinner will be visible. <br> Default value: **false**|
+|options.isVisible|Boolean|No|The spinner will be visible. <br> Default value: 'false'|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>

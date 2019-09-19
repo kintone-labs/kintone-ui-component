@@ -28,8 +28,7 @@ var insertBtn = new kintoneUIComponent.IconButton({type: 'insert',color:'blue', 
 **React**
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
-import React from 'react';
- 
+import React from 'react'; 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -66,6 +65,7 @@ body.appendChild(iconBtn.render());
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     render() {
@@ -74,6 +74,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -105,6 +106,7 @@ iconBtn.setColor('green');
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -125,6 +127,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -156,6 +159,7 @@ iconBtn.setShape('normal');
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -177,6 +181,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -209,6 +214,7 @@ iconBtn.setSize('small');
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -230,6 +236,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -262,6 +269,7 @@ iconBtn.setType('remove');
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -283,7 +291,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -319,6 +327,7 @@ iconBtn.on('click', function(event) {
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     render() {
@@ -330,7 +339,7 @@ export default class Plugin extends React.Component {
         console.log('on click');
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -362,6 +371,7 @@ iconBtn.show();
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -383,7 +393,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -414,6 +424,7 @@ iconBtn.hide();
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -435,7 +446,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -466,6 +477,7 @@ iconBtn.disable();
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -487,7 +499,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -518,6 +530,7 @@ iconBtn.enable();
 ```javascript
 import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -539,6 +552,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
