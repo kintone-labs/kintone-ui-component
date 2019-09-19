@@ -326,7 +326,7 @@ myColorPicker.hide();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
  
