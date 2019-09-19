@@ -397,7 +397,7 @@ items.forEach(function(item) {
 ```
 **React**
 ```javascript
-import { DropDown } from '@kintone/kintone-ui-component';
+import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
    
@@ -1006,7 +1006,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleShow}>Show</button>
+                <button onClick={this.handleShow}>Show</button>
                 <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isVisible={this.state.isVisible} />
             </div>
         );
@@ -1097,7 +1097,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleShow}>Hide</button>
+                <button onClick={this.handleHide}>Hide</button>
                 <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isVisible={this.state.isVisible} />
             </div>
         );
