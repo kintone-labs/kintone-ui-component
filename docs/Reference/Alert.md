@@ -114,7 +114,8 @@ None
 ```javascript
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);
@@ -137,6 +138,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin/>, kintoneSpaceElement);
 ```
 </details>
 
@@ -171,6 +173,7 @@ None
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
      constructor(props){
         super(props);
@@ -274,6 +277,7 @@ None
 import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
     constructor(props){
         super(props);

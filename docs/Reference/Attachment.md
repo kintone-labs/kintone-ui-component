@@ -90,6 +90,7 @@ body.appendChild(attachment.render());
 import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
