@@ -104,7 +104,8 @@ body.appendChild(btn);
 ```javascript
 import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
-   
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -124,7 +125,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -155,6 +156,7 @@ body.appendChild(spinner.render());
 ```javascript
 import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -176,6 +178,6 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
