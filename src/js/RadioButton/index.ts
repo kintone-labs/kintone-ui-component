@@ -156,7 +156,8 @@ class RadioButton extends Control {
     if(!this._props.items) {
       this._props.items = []
     }
-    const itemsToCheck = this._props.items.concat(item);
+    const itemsToCheck: item[] = Object.assign([], this._props.items);
+    itemsToCheck.push(item)
     const validationErr = this._validator(itemsToCheck)
     if (validationErr) {
       throw new Error(validationErr)
