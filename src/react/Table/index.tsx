@@ -206,7 +206,7 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
 };
 
 const addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
-  if(!data || !rowIndex || !defaultRowData){
+  if(!data || !defaultRowData){
     return [];
   }
   const insertAt = rowIndex + 1;
