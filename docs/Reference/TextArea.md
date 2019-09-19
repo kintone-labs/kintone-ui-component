@@ -228,7 +228,7 @@ textArea.on('click', function(event) {
     console.log('onclick', event.target.value);
 });
 
-textArea.on('change', function(event) {
+textArea.on('change', function(value) {
     console.log('onchange', value);
 });
 ```
