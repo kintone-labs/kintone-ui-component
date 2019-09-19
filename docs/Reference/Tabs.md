@@ -16,9 +16,9 @@
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|An object contains parameters of constructor.|
+|options|Object|No|An object contains parameters of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of tabs.|
-|options.items[x].tabName|String|Optional|Name of a tab-pane. <br> If options.items exist, the name of a tab-pane must be required|
+|options.items[x].tabName|String|Conditional|Name of a tab-pane. <br> If options.items[x] exist, the name of a tab-pane is required|
 |options.items[x].tabContent|String or DOM |No|The content of a tab-pane.|
 |options.items[x].isDisabled|Boolean|No|Indicate if tab-pane will be disabled. <br> Default value: **false**|
 |options.value|Integer|No|Index of selected tab-pane. <br>If the value is non-existent, the **INVALID_ARGUMENT** message will be displayed|

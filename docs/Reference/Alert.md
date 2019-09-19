@@ -287,7 +287,7 @@ export default class Plugin extends React.Component {
     render() {
         return (
         <div>
-            <button onClick={()=>this.isVisible()}>Show</button>
+            <button onClick={()=>this.show()}>Show</button>
             <Alert text={this.state.text} isVisible={this.state.isVisible} />
         </div>
         );

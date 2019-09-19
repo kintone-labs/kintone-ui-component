@@ -494,7 +494,6 @@ var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: "datet
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(dateTime.render());
 dateTime.enable();
-});
 ```
 
 **React**
