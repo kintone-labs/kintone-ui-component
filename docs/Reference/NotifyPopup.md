@@ -446,7 +446,7 @@ None
 var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
-};
+});
 var btn = document.createElement('button'); 
 btn.textContent = 'Disable NotifyPopup';
 btn.onclick = function() {
@@ -515,7 +515,7 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
     isDisabled: true
 });
 var btn = document.createElement('button'); 
-btn.textContent: 'Enable NotifyPopup';
+btn.textContent = 'Enable NotifyPopup';
 btn.onclick = function() {
     notifyPopup.enable();
 };
