@@ -42,7 +42,6 @@ var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'dateti
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -88,7 +87,7 @@ body.appendChild(dateTime.render());
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -104,6 +103,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -136,7 +136,7 @@ body.appendChild(dateTime.render());
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -154,6 +154,7 @@ class DateTimeComponent extends React.Component {
         console.log(this.state.value);
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -186,7 +187,7 @@ dateTime.setValue(new Date());
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -204,6 +205,7 @@ class DateTimeComponent extends React.Component {
         this.setState({value: new Date('1995-12-17T03:24:00')})
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -236,7 +238,7 @@ console.log(dateTime.getLocale());
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -254,6 +256,7 @@ class DateTimeComponent extends React.Component {
         console.log(this.state.locale);
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -286,7 +289,7 @@ dateTime.setLocale('en');
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
     constructor(props){
         super(props);
@@ -304,6 +307,7 @@ class DateTimeComponent extends React.Component {
         this.setState({locale: 'ja'})
     };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -334,7 +338,7 @@ dateTime.show();
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
  
 class DateTimeComponent extends React.Component {
     constructor(props){
@@ -359,6 +363,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -392,7 +397,7 @@ dateTime.hide();
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
  
 class DateTimeComponent extends React.Component {
    constructor(props){
@@ -417,6 +422,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -446,7 +452,7 @@ dateTime.disable();
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
  
 class DateTimeComponent extends React.Component {
      constructor(props){
@@ -471,6 +477,7 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -500,7 +507,7 @@ dateTime.enable();
 ```javascript
 import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from 'react-dom';
  
 class DateTimeComponent extends React.Component {
     constructor(props){
@@ -525,6 +532,6 @@ class DateTimeComponent extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

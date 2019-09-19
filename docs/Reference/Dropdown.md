@@ -53,7 +53,6 @@ var dropdown = new kintoneUIComponent.Dropdown({
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
-    
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -127,6 +126,7 @@ var body = document.getElementsByTagName("BODY")[0];
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
     
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -157,6 +157,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -208,6 +209,7 @@ dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -241,7 +243,7 @@ export default class Plugin extends React.Component {
       }))
     };
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -291,6 +293,7 @@ console.log(firstItem);
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -327,11 +330,9 @@ export default class Plugin extends React.Component {
           <button onClick={()=>this.handleClick(0)}>Remove Item</button>
          </div>
         );
-    }
-
-    
+    } 
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -388,6 +389,7 @@ list.forEach(function(item) {
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -433,7 +435,7 @@ export default class Plugin extends React.Component {
     });
   };
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -483,6 +485,7 @@ console.log(selectedItem);
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -523,7 +526,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -572,6 +575,7 @@ dropdown.setValue('Orange');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -612,7 +616,7 @@ export default class Plugin extends React.Component {
         this.setState({value: 'Orange'});
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -661,6 +665,7 @@ dropdown.disableItem('Orange');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -704,7 +709,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -753,6 +758,7 @@ dropdown.enableItem('Banana');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -796,7 +802,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -848,6 +854,7 @@ dropdown.on('change', function(value) {
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -884,8 +891,8 @@ export default class Plugin extends React.Component {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
-
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -932,6 +939,7 @@ dropdown.show();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -972,7 +980,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1019,6 +1027,7 @@ dropdown.hide();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     c  constructor(props) {
@@ -1058,7 +1067,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1105,6 +1114,7 @@ dropdown.disable();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
       constructor(props) {
@@ -1145,7 +1155,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1191,6 +1201,7 @@ dropdown.enable();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1231,6 +1242,6 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
