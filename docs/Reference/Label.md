@@ -219,7 +219,7 @@ var btn = document.createElement('button');
 btn.textContent = 'Set background color of Label';
 btn.onclick = function() {
     label.setBackgroundColor('#e74c3c');
-});
+};
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(label.render());
 body.appendChild(btn);
