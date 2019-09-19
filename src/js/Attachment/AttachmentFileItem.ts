@@ -69,8 +69,8 @@ class AttachmentFileItem extends Control{
   }
 
   onRemove = () => {
-    if(this._props.index && this._props.onFileRemove){
-      this._props.onFileRemove(this._props.index);
+    if(this._props.onFileRemove){
+      this._props.onFileRemove(this._props.index || 0);
       this.element.remove();
     }
   }
