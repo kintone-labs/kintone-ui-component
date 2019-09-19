@@ -37,7 +37,6 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
 ```
 </details>
 
@@ -66,7 +65,7 @@ body.appendChild(text.render());
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -116,6 +115,7 @@ body.appendChild(btn);
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -136,7 +136,7 @@ export default class Plugin extends React.Component {
         });
     };
 };
-
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -169,7 +169,8 @@ console.log(text.getValue());
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -189,7 +190,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     };
 };
-
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -229,7 +230,8 @@ text.on('change', function(event) {
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -255,7 +257,7 @@ export default class Plugin extends React.Component {
         console.log('onchange value: ' + value);
     };
 };
-
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -291,6 +293,7 @@ body.appendChild(btn);
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -310,6 +313,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -343,7 +347,8 @@ body.appendChild(btn);
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -362,7 +367,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -396,7 +401,8 @@ body.appendChild(btn);
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -414,6 +420,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
@@ -447,6 +454,7 @@ body.appendChild(btn);
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -466,5 +474,6 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
