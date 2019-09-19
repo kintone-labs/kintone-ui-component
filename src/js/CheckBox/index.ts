@@ -31,9 +31,9 @@ class CheckBox extends Control {
         if (params) {
           this._props = {...this._props, ...params}
         }
-        
-        if (this._validator(this._props.items, this._props.value)) {
-          throw new Error(this._validator(this._props.items, this._props.value))
+        const validationErr = this._validator(this._props.items, this._props.value)
+        if (validationErr) {
+          throw new Error(validationErr)
         }
 
         this._renderItemList()
@@ -76,8 +76,9 @@ class CheckBox extends Control {
         if (!value && Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }
-        if (this._validator(this._props.items, value)) {
-            throw new Error(this._validator(this._props.items, value))
+        const validationErr = this._validator(this._props.items, value)
+        if (validationErr) {
+            throw new Error(validationErr)
         }
         this._props.value = value;
         
@@ -96,8 +97,9 @@ class CheckBox extends Control {
             this._props.items = []
         }
         const itemsToCheck = this._props.items.concat(item);
-        if (this._validator(itemsToCheck)) {
-            throw new Error(this._validator(itemsToCheck))
+        const validationErr = this._validator(itemsToCheck);
+        if (validationErr) {
+            throw new Error(validationErr)
         }
         this._props.items = itemsToCheck;
         this.rerender(['addItems'])
@@ -144,8 +146,9 @@ class CheckBox extends Control {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }
         // It isn't need to check hasValidValue
-        if (this._validator(items)) {
-            throw new Error(this._validator(items))
+        const validationErr = this._validator(items)
+        if (validationErr) {
+            throw new Error(validationErr)
         }
         this._props.items = items
         this.itemList = []
