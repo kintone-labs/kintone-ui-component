@@ -67,6 +67,7 @@ body.appendChild(label.render());
 ```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     render() {
@@ -112,6 +113,7 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -132,6 +134,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -168,7 +171,8 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -188,6 +192,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -224,7 +229,8 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -244,6 +250,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -280,7 +287,8 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -300,6 +308,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -335,7 +344,8 @@ body.appendChild(label.render());
 ```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+import ReactDOM from 'react-dom';
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -350,6 +360,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -384,6 +395,7 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -404,7 +416,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -439,6 +451,7 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -459,6 +472,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -496,6 +510,7 @@ body.appendChild(btn);
 ```javascript
 import {Label} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -520,6 +535,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
 
@@ -557,6 +573,7 @@ body.appendChild(btn);
 ```javascript
 import { Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -581,5 +598,6 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 </details>
