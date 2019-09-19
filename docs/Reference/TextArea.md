@@ -229,7 +229,7 @@ textArea.on('click', function(event) {
 });
 
 textArea.on('change', function(event) {
-    console.log('onchange', event.target.value);
+    console.log('onchange', value);
 });
 ```
 **React**
@@ -389,7 +389,7 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new TextArea({value: 'textarea'});
+var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var btn = document.createElement('button'); 
 btn.textContent = 'Disable';
 btn.onclick = function() {
@@ -444,7 +444,7 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new TextArea({value: 'textarea', isDisabled: true});
+var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isDisabled: true});
 var btn = document.createElement('button'); 
 btn.textContent = 'Enable';
 btn.onclick = function() {
