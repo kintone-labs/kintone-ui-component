@@ -688,7 +688,8 @@ export default class Plugin extends React.Component {
     render() {
         return (
             <div>
-                <Tabs items={this.state.items} value={this.state.value} />
+                <Tabs items={this.state.items} value={this.state.value} 
+                onClickTabItem={(value) => this.setState({ value })}/>
                 <button onClick={this.enableItem}>Enable tab1</button>
             </div>
         );
