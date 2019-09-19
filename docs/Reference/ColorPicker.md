@@ -291,7 +291,7 @@ export default class Plugin extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleHide}>Show</button>
+        <button onClick={this.handleShow}>Show</button>
         <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
       </div>
     );
@@ -391,7 +391,7 @@ export default class Plugin extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleHide}>Disable</button>
+        <button onClick={this.handleDisable}>Disable</button>
         <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
       </div>
     );
@@ -441,7 +441,7 @@ export default class Plugin extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleHide}>Enable</button>
+        <button onClick={this.handleEnable}>Enable</button>
         <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
       </div>
     );

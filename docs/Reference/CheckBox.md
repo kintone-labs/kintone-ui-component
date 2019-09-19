@@ -744,7 +744,7 @@ Set the disabled item of checkbox.
 
 |Name|	Type|	Required|	Description|
 | --- | --- | --- |---|
-|value|	String |	Yes|The array contains checked value in list.|
+|value|	String |	Yes|The value of the checkbox item you want to disable.|
 
 
 **Returns**
@@ -837,7 +837,7 @@ Set the enable item of checkbox.
 
 |Name|	Type|	Required|	Description|
 | --- | --- | --- |---|
-|value|	String |	Yes|The array contains checked value in list.|
+|value|	String |	Yes|The value of the checkbox item you want to enable.|
 
 **Returns**
 

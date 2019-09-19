@@ -84,7 +84,7 @@ Change color of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|color|String|Yes|The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
+|color|String|Yes|The color of the button. The value is one of the following: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.|
 
 **Returns**
 
@@ -135,7 +135,7 @@ Change shape of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|shape|String|Yes|The shape of the button. The value is one of: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.|
+|shape|String|Yes|The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.|
 
 **Returns**
 
@@ -187,7 +187,7 @@ Change size of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|size|String|Yes|The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
+|size|String|Yes|The size of the button. The value is one of the following: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
 
 **Returns**
 
@@ -240,7 +240,7 @@ Set the type of the button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|Yes|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
+|type|String|Yes|The type of button. The value is one of following: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 
 **Returns**
 

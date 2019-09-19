@@ -630,7 +630,7 @@ export default class Plugin extends React.Component {
 </details>
 
 ### on(eventName, callBack)
-Register callback for change event
+Register callback for an event
 
 **Parameter**
 
@@ -799,7 +799,7 @@ export default class Plugin extends React.Component {
   handleFileRemove = files => {
     this.setState({ files });
   };
-  show = () => {
+  hide = () => {
     this.setState({ isVisible: false });
   };
   render() {
