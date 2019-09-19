@@ -82,6 +82,7 @@ type RowEventProps = {
 }
 
 const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
+
   const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
@@ -206,7 +207,7 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
 };
 
 const addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
-  if(!data || !rowIndex || !defaultRowData){
+  if(!data || !defaultRowData){
     return [];
   }
   const insertAt = rowIndex + 1;
