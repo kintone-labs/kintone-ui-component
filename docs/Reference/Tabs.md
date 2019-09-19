@@ -16,7 +16,7 @@
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|An object contains parameters of constructor.|
+|options|Object|No|An object contains parameters of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of tabs.|
 |options.items[x].tabName|String|Optional|Name of a tab-pane. <br> If options.items exist, the name of a tab-pane must be required|
 |options.items[x].tabContent|String or DOM |No|The content of a tab-pane.|
@@ -170,6 +170,7 @@ body.appendChild(btn);
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: "Tab 1",
@@ -200,6 +201,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -249,6 +251,7 @@ body.appendChild(btn);
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
  
 const items = [{
     tabName: "Tab 1",
@@ -278,6 +281,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -331,6 +335,7 @@ body.appendChild(tabs.render());
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: "Tab 1",
@@ -361,6 +366,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -405,6 +411,7 @@ body.appendChild(tabs.render());
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
   
 const items = [{
     tabName: "Tab1",
@@ -436,6 +443,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -485,6 +493,7 @@ body.appendChild(btn);
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: "Tab1",
@@ -516,6 +525,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -565,6 +575,7 @@ body.appendChild(btn);
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: "Tab1",
@@ -598,6 +609,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
@@ -648,6 +660,7 @@ body.appendChild(btn);
 ```javascript
 import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 const items = [{
     tabName: "Tab1",
     tabContent: 'This is Tab1',
@@ -681,6 +694,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>   
@@ -728,6 +742,8 @@ body.appendChild(tabs.render());
 ```javascript
 import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 const items = [{
     tabName: "Tab1",
     tabContent: 'This is Tab1',
@@ -755,6 +771,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(<Plugin />, document.getElementById('root'));
 ```
 
 </details>
