@@ -20,15 +20,15 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items will be displayed on dropdown.|
-|options.items[].value|String|Yes|The value of an item.<br>If the value is duplicate, the error will be displayed|
-|options.items[].label|String|No|The label of an item.|
-|options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
+|options.items[x].value|String|Conditional|The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed|
+|options.items[x].label|String|No|The label of an item.|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
 |options.value|String|No|Default selected value. <br> If the 'options.value' is nonexistent value, the error will be displayed|
 |options.isDisabled|Boolean|No|The dropdown will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The dropdown will be visible. <br> Default value: 'true'|
 
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -53,7 +53,6 @@ var dropdown = new kintoneUIComponent.Dropdown({
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
-    
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -98,7 +97,7 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -127,6 +126,7 @@ var body = document.getElementsByTagName("BODY")[0];
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
     
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -157,6 +157,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -171,14 +172,14 @@ Add an item to dropdown list.
 | --- | --- | --- | --- |
 |item|	Object|	Yes|The item will be added to dropdown list.|
 |item.value|String|Yes|The value of an item.|
-|item.label|String|Yes|Display string.|
-|item.isDisabled|Boolean|Yes|Indicate item will be disabled when display. <br>Default value: 'false' |
+|item.label|String|No|Display string.|
+|item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br>Default value: 'false' |
 
 **Returns**
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -208,16 +209,20 @@ dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            value: undefined
+            items: [{
+                label:"hehe",
+                value:"123"
+            }],
+            value: "123"
         };
     }
-   
+
     render() {
         return (
          <div>
@@ -226,7 +231,7 @@ export default class Plugin extends React.Component {
          </div>
         );
     }
-   
+
     handleClick= () => {
       const item = {
         label: 'Lemon',
@@ -238,7 +243,7 @@ export default class Plugin extends React.Component {
       }))
     };
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -257,7 +262,7 @@ Remove an item at specific position in dropdown's list.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -288,9 +293,10 @@ console.log(firstItem);
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         this.state = {
             items: [
@@ -304,33 +310,29 @@ export default class Plugin extends React.Component {
                 value: 'Banana',
                 isDisabled: false
             }
-            ]
+            ],
+            value:"Orange"
         };
+        
     }
-   
+
+    handleClick= (index) => {
+      let {items}=this.state;      
+      items = items.slice(index+1);
+      let value = items[0].value;
+      this.setState({items,value});
+    };
+
     render() {
         return (
          <div>
           <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Remove Item</button>
+          <button onClick={()=>this.handleClick(0)}>Remove Item</button>
          </div>
         );
-    }
-   
-    handleClick= () => {
-      this.setState(prevState => {
-        if (prevState.items[0]) {
-           if (this.state.value === prevState.items[0].value) {
-             prevState.value = undefined;
-           }
-           prevState.items.splice(0, 1)
-           return prevState;
-        }
-        return prevState;
-      });
-    };
+    } 
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -354,7 +356,7 @@ The list contains all items of dropdown.
 |items[].value|String|The value of an item.|
 |items[].isDisabled|Boolean|Indicate item was disabled.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -387,46 +389,53 @@ list.forEach(function(item) {
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {items: items};
-    }
-   
-    render() {
-        return (
-         <div>
-          <Dropdown items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Get Items</button>
-         </div>
-        );
-    }
-   
-    handleClick = () => {
-        this.state.items.forEach(item => {
-            console.log(item);
-        });
-    }
-}
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, value: "Banana" };
+  }
 
+  render() {
+    return (
+      <div>
+        <Dropdown
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={this.handleClick}>Get Items</button>
+      </div>
+    );
+  }
+
+  handleClick = () => {
+    this.state.items.forEach(item => {
+      console.log(item);
+    });
+  };
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -445,7 +454,7 @@ None
 |---|---|---|
 |value	|String	|The value of the selected item|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -476,6 +485,7 @@ console.log(selectedItem);
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -516,7 +526,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -535,7 +545,7 @@ Set the selected value for dropdown.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -565,6 +575,7 @@ dropdown.setValue('Orange');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -605,7 +616,7 @@ export default class Plugin extends React.Component {
         this.setState({value: 'Orange'});
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -624,7 +635,7 @@ Set the disabled item for dropdown.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -654,6 +665,7 @@ dropdown.disableItem('Orange');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -697,7 +709,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -716,7 +728,7 @@ Set the enabled item for dropdown.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -746,6 +758,7 @@ dropdown.enableItem('Banana');
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -789,7 +802,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -809,7 +822,7 @@ Register callback for change event
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -841,6 +854,7 @@ dropdown.on('change', function(value) {
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -877,8 +891,8 @@ export default class Plugin extends React.Component {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
-
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -895,7 +909,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -925,6 +939,7 @@ dropdown.show();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -948,21 +963,24 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isVisible:false
         };
     }
-   
+    handleShow=()=>{
+        this.setState({isVisible:true})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={true} />
+            <div>
+                <button onClick={this.handleShow}>Show</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isVisible={this.state.isVisible} />
+
+            </div>
         );
     }
-
-    handleChange = (value) => {
-        this.setState({value});
-    }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -979,7 +997,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1009,9 +1027,10 @@ dropdown.hide();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+    c  constructor(props) {
         super(props);
         const items = [
             {
@@ -1032,22 +1051,23 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isVisible:true
         };
     }
-   
+    handleHide=()=>{
+        this.setState({isVisible:false})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isVisible={false} />
+            <div>
+                <button onClick={this.handleHide}>Hide</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isVisible={this.state.isVisible} />
+            </div>
         );
-        
-    }
-
-    handleChange = (value) => {
-            this.setState({value});
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1064,7 +1084,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1094,9 +1114,10 @@ dropdown.disable();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+      constructor(props) {
         super(props);
         const items = [
             {
@@ -1117,20 +1138,24 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isDisabled:false
         };
     }
-   
+    handleDisable=()=>{
+        this.setState({isDisabled:true})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={true} />
-        ); 
-    }
-    handleChange = (value) => {
-         this.setState({value});
+            <div>
+                <button onClick={this.handleDisable}>Disable</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isDisabled={this.state.isDisabled} />
+
+            </div>
+        );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1145,7 +1170,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1176,9 +1201,10 @@ dropdown.enable();
 ```javascript
 import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
    
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -1199,21 +1225,23 @@ export default class Plugin extends React.Component {
         ];
         this.state = {
             items: items,
-            value: 'Banana'
+            value: 'Banana',
+            isDisabled:true
         };
     }
-   
+    handleEnable=()=>{
+        this.setState({isDisabled:false})
+    }
    render() {
         return (
-            <Dropdown items={this.state.items}  value={this.state.value} onChange={this.handleChange}  isDisabled={false} />
-        );
-        
-    }
+            <div>
+                <button onClick={this.handleEnable}>Enable</button>
+                <Dropdown items={this.state.items}  value={this.state.value} isDisabled={this.state.isDisabled} />
 
-    handleChange = (value) => {
-        this.setState({value});
+            </div>
+        );
     }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>

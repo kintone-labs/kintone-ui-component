@@ -11,10 +11,10 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains parameters of constructor.|
 |options.value|String|No|The value of text field. <br> Default value: ''|
-|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: **false**|
-|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: **true**|
+|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
+|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -25,7 +25,7 @@ var text= new kintoneUIComponent.Text({value: 'input text'});
 ```javascript
 import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -52,7 +52,7 @@ None
 
 DOM element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -96,7 +96,7 @@ Set the input content value of text field
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -154,7 +154,7 @@ None
 |value|	String|	The input content value|
 
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -207,7 +207,7 @@ Register callback for an event of Text component
 **Returns**  
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -272,7 +272,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -328,7 +328,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -382,7 +382,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -435,7 +435,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**

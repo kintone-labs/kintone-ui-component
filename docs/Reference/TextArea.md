@@ -18,7 +18,7 @@
 |options.isDisabled|Boolean|No|The textarea field will be disabled. <br> Default value: **false**|
 |options.isVisible|Boolean|No|The textarea field will be visible. <br> Default value: **true**|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -57,7 +57,7 @@ None
 
 DOM element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -102,7 +102,7 @@ Set the input content value of textarea field.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -162,7 +162,7 @@ None
 |value|	String|	The input content value of textarea field.|
 
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -215,7 +215,7 @@ Register callback for an event of TextArea component
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -275,7 +275,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -329,7 +329,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -384,7 +384,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -439,7 +439,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**

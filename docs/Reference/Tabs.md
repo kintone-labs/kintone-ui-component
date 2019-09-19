@@ -18,12 +18,12 @@
 | --- | - | --- | ----- |
 |options|Object|No|An object contains parameters of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of tabs.|
-|options.items[x].tabName|String|Optional|Name of a tab-pane. <br> If options.items exist, the name of a tab-pane must be required|
+|options.items[x].tabName|String|Conditional|Name of a tab-pane. <br> If options.items[x] exist, the name of a tab-pane is required|
 |options.items[x].tabContent|String or DOM |No|The content of a tab-pane.|
-|options.items[x].isDisabled|Boolean|No|Indicate if tab-pane will be disabled. <br> Default value: **false**|
+|options.items[x].isDisabled|Boolean|No|Indicate if tab-pane will be disabled. <br> Default value:  'false'|
 |options.value|Integer|No|Index of selected tab-pane. <br>If the value is non-existent, the **INVALID_ARGUMENT** message will be displayed|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -78,7 +78,7 @@ None
 
 DOM element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -138,7 +138,7 @@ Add a tab-pane to end of the list of the tabs.
 |item.tabContent|	String or DOM|	No|	Content of the new tab-pane.|
 |item.isDisabled|	Boolean|	No|New tab-pane will be disabled when display. <br>Default value: **false**.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -219,7 +219,7 @@ Remove a tab-pane at a specific index in the list of the tabs.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -304,7 +304,7 @@ The array contains all tabs.
 |items[].tabContent| String|Content of a tab-pane.|
 |items[].isDisabled| Boolean| A tab-pane is disabled when display.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -384,7 +384,7 @@ None
 | --- | --- | --- |
 |value|	Interger|The index position of selected tab-pane.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -461,7 +461,7 @@ Set selected tab-pane by index.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -543,7 +543,7 @@ Disable a tab-pane.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -627,7 +627,7 @@ Enable a tab.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -713,7 +713,7 @@ Register callback for an event of Tabs component
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
