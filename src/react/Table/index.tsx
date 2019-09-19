@@ -34,7 +34,7 @@ type ActionFlag = {
 type TableProps = {
   data: object[], 
   columns: (TableColumn | ActionFlag)[],
-  defaultRowData: object[], 
+  defaultRowData: object, 
   onRowAdd?: (newState: DispatchParams) => void, 
   onRowRemove?: (newState: DispatchParams) => void,
   onCellChange?: (eventOptions: OnChangeCallbackParams) => void,
@@ -44,7 +44,7 @@ type TableProps = {
 type TableBodyProps = {
   columns: (TableColumn | ActionFlag)[],
   data: object[], 
-  defaultRowData: object[], 
+  defaultRowData: object, 
   onRowAdd?: (newState: DispatchParams) => void, 
   onRowRemove?: (newState: DispatchParams) => void,
   _onCellChange?: HandlerFunction,
