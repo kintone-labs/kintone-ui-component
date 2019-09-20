@@ -74,7 +74,7 @@ class RadioButton extends Control {
     this._props.onChange && this._props.onChange(this._props.value);
   };
 
-  private _validator(items: item[], value?: string): string | undefined {
+  private _validator(items?: item[], value?: string): string | undefined {
     let err
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE

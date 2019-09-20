@@ -177,7 +177,7 @@ class Dropdown extends Control {
     return subcontainerEl;
   };
 
-  private _validator(items: item[], value?: string): string | undefined {
+  private _validator(items?: item[], value?: string): string | undefined {
     let err
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE
@@ -213,7 +213,7 @@ class Dropdown extends Control {
     if (validationErr) {
       throw new Error(validationErr)
     }
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
         this.label = item.label;
