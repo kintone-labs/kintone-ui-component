@@ -29,11 +29,13 @@
 		"transpile": "tsc"
 	},
 	"dependencies": {
-		"react": "16.8.6",
-		"react-dom": "16.8.6",
 		"@mdi/js": "3.6.95",
 		"@mdi/light-js": "0.2.63",
 		"@babel/polyfill": "7.2.5"
+	},
+	"peerDependencies": {
+		"react": "16.8.6",
+		"react-dom": "16.8.6"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.5",
@@ -56,7 +58,6 @@
 		"mini-css-extract-plugin": "0.6.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
 		"prop-types": "15.6.1",
-		"source-map-loader": "0.2.4",
 		"style-loader": "0.19.1",
 		"typescript": "3.4.2",
 		"uglifyjs-webpack-plugin": "2.1.3",
