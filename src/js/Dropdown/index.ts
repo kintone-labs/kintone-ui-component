@@ -48,20 +48,10 @@ class Dropdown extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
-
-    if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
-      throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+    const validationErr = this._validator(this._props.items, this._props.value)
+    if (validationErr) {
+      throw new Error(validationErr)
     }
-    
-    if (
-      !AbstractSingleSelection._hasValidValue(
-        this._props.items,
-        this._props.value
-      )
-    ) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-
     this._props.items &&
       this._props.items.some((item: item) => {
         if (item.value === this._props.value) {
@@ -187,6 +177,19 @@ class Dropdown extends Control {
     return subcontainerEl;
   };
 
+  private _validator(items: item[], value?: string): string | undefined {
+    let err
+    if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
+      err = Message.common.SELECTTION_DUPLICATE_VALUE
+    }
+    if (items && value && 
+      !AbstractSingleSelection._hasValidValue(items, value)
+    ) {
+      err = Message.common.INVALID_ARGUMENT
+    }
+    return err
+  }
+
   render() {
     this.rerender();
     return super.render();
@@ -203,7 +206,14 @@ class Dropdown extends Control {
   }
 
   setValue(value: string) {
-    this._props.items && this._props.items.forEach(item => {
+    if (!value) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    const validationErr = this._validator(this._props.items, value)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
         this.label = item.label;
@@ -220,11 +230,31 @@ class Dropdown extends Control {
   }
 
   addItem(item: item) {
-    this._props.items && this._props.items.push(item);
+    if (!item) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    if(!this._props.items) {
+      this._props.items = []
+    }
+    const itemsToCheck: item[] = Object.assign([], this._props.items);
+    itemsToCheck.push(item)
+    const validationErr = this._validator(itemsToCheck)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.items = itemsToCheck;
     this.rerender(['item']);
   }
 
   setItems(items: Array<item>) {
+    if (!items || !Array.isArray(items)) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    // It isn't need to check hasValidValue
+    const validationErr = this._validator(items)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
     this._props.items = items;
     this.rerender(['item']);
   }
