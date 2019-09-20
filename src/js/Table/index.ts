@@ -8,7 +8,7 @@ import '../../css/Table.css'
 const validEventNames = ['rowAdd', 'rowRemove', 'cellChange']
 
 type TableColumnJS = {
-  header?: string,
+  header: string,
   cell: () => TableCell
 }
 
@@ -24,9 +24,9 @@ type HandlerFunction = (
 ) => void | object
 
 type TableProps = ControlProps & {
-  data: object[], 
-  defaultRowData: object, 
-  columns: (TableColumnJS | ActionFlag)[], 
+  data?: object[], 
+  defaultRowData?: object, 
+  columns?: (TableColumnJS | ActionFlag)[], 
   actionButtonsShown?: boolean, 
   onRowAdd?: HandlerFunction, 
   onRowRemove?: HandlerFunction,
@@ -46,7 +46,7 @@ export default class Table extends Control {
   private _tableHeaderContainer: HTMLElement
   private _tableBodyContainer: HTMLElement
 
-  constructor(params: TableProps) {
+  constructor(params?: TableProps) {
     super()
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
@@ -59,12 +59,15 @@ export default class Table extends Control {
     }
     this._validateRequired()
     if(this._props.actionButtonsShown !== undefined) {
-      this._props.columns.push({actions: this._props.actionButtonsShown})
+      this._props.columns && this._props.columns.push({actions: this._props.actionButtonsShown})
     }
   }
 
   private _addRow = ({data, rowIndex}:RowEventProps) => {
-    const insertAt = rowIndex + 1
+    if(!data || !rowIndex){
+      return;
+    }
+    const insertAt = rowIndex + 1 
     const newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData));
     const newData = [...data.slice(0, insertAt), newRowData, ...data.slice(insertAt)]
     this._props.data = newData
@@ -73,7 +76,7 @@ export default class Table extends Control {
   }
   
   private _removeRow = ({data, rowIndex}:RowEventProps) => {
-    const currentData = data.filter((_, index) => index !== rowIndex)
+    const currentData = data && data.filter((_, index) => index !== rowIndex)
     this._props.data = currentData
     this._renderTableRows(true)
     this._renderCells()
@@ -96,7 +99,7 @@ export default class Table extends Control {
     const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
     const columns = [].slice.call(this._props.columns as TableColumnJS[])
     rowsEl.forEach((rowEl: HTMLElement, rowIndex: number) => {
-      const rowData = this._props.data[rowIndex]
+      const rowData = this._props.data && this._props.data[rowIndex]
       const updateRowData = this.updateRowData.bind(this, rowIndex)
       columns.forEach(({cell}: TableColumnJS, columnIndex: number) => {
         const cellTemplate = cell
@@ -171,7 +174,7 @@ export default class Table extends Control {
   }
 
   private _renderTableHeaders() {
-    this._props.columns.forEach((data) => {
+   this._props.columns && this._props.columns.forEach((data) => {
       const tableHeaderText = (data as TableColumnJS).header
       if(tableHeaderText) {
         const headerTr = document.createElement('div')
@@ -209,7 +212,7 @@ export default class Table extends Control {
     })
     iconButtonDom.style.display = 'inline-block'
     span1.appendChild(iconButtonDom)
-    if(this._props.data.length > 1) {
+    if(this._props.data && this._props.data.length > 1) {
       const span2 = document.createElement('span')
       const iconButton2 = new IconButton({type: 'remove', color: 'gray', size: 'small'})
       const iconButtonDom2 = iconButton2.render()
@@ -231,8 +234,8 @@ export default class Table extends Control {
     if (eventOption['type'] === 'ADD_ROW') {
       if(this._props.onRowAdd) {
         const newRowData = this._props.onRowAdd(eventOption)
-        if(newRowData) {
-          this._props.data[eventOption.rowIndex] = newRowData
+        if(newRowData && this._props.data) {
+         this._props.data[eventOption.rowIndex] = newRowData
         }
       }
       this._renderTableRows()
@@ -249,13 +252,13 @@ export default class Table extends Control {
     if(rerender) {
       this._tableBodyContainer.innerHTML = ''
     }
-    this._props.data.forEach((_, rowIndex) => {
+    this._props.data && this._props.data.forEach((_, rowIndex) => {
       const tableRow = this._tableBodyContainer.children.namedItem(rowIndex.toString())
       if(!tableRow || rerender) {
         const tableRow = document.createElement('div')
         tableRow.className = 'kuc-table-tr'
         tableRow.id = rowIndex.toString()
-        this._props.columns.forEach((column) => {
+        this._props.columns && this._props.columns.forEach((column) => {
           const {actions} = (column as ActionFlag)
           if (actions === true) {
             const actionCell = this._renderTableCellActions(rowIndex)
@@ -285,9 +288,12 @@ export default class Table extends Control {
     })
   }
 
-  updateRowData(rowIndex: number, data: object[], rerender = true, trigger = true, fieldName:string) {
+  updateRowData(rowIndex: number, data: object[], rerender = true, trigger = true, fieldName:string = '') {
     if (rowIndex === undefined || data === undefined) {
       throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    if(!this._props.data){
+      return;
     }
     const rowData = this._mergeDeep(this._props.data[rowIndex], data)
     const type = 'CELL_CHANGE'
