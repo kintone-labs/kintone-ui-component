@@ -19,14 +19,14 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
 |options.items|Array&lt;Object&gt;|No|List of items which will be displayed on multiple choices.|
-|options.items[].value|String|Yes|String value of item <br> If the value is duplicate, the error message will be displayed|
-|options.items[].label|String|No|	String label of item|
-|options.items[].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'.|
+|options.items[x].value|String|Conditional|String value of item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
+|options.items[x].label|String|No|	String label of item|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'.|
 |options.value|Array<String>|No|List of checked item.<br> If the 'options.value[]' is nonexistent value, the error will be displayed|
 |options.isDisabled|Boolean|No|The multiple choices will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The multiple choices will be visible. <br> Default value: 'true'|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -55,8 +55,7 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
 **React**
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
-import React from 'react';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -100,7 +99,7 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -134,6 +133,7 @@ body.appendChild(mulChoice.render());
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -163,18 +163,19 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### addItem(item)
 
-Add an item to the end of multile choices list.
+Add an item to the end of multiple choices list.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|item|	Object|	Yes|The item will be added to multile choices list.|
+|item|	Object|	Yes|The item will be added to multiple choices list.|
 |item.value|String|Yes|The value of an item.|
 |item.label|String|No|Display string.|
 |item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br> Default value: 'false'|
@@ -183,7 +184,7 @@ Add an item to the end of multile choices list.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -223,35 +224,48 @@ mulChoice.addItem({
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            items: []
-        }
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = { items: items, value: ['Orange'] };
     }
-  
+    handleAddItem=(item)=>{
+        this.state.items.push(item);
+        this.setState({items:this.state.items});
+    }
     render() {
+        let item={
+            label: 'Lemon1',
+            value: 'Lemon1',
+        }
         return (
-        <div>
-          <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Add item</button>
-        </div>
-      );
-    }
-  
-    handleClick = () => {
-      const item = {
-        label: 'Lemon',
-        value: 'Lemon',
-        isDisabled: false
-      };
-      this.setState(prevState => ({
-        items: prevState.items ? prevState.items.concat([item]) : [item]
-      }))
+            <div>
+                <button onClick={()=>this.handleAddItem(item)}>Add Item</button>
+                <MultipleChoice items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            </div>
+        );
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -275,30 +289,31 @@ The item at given position.
 |item.label|String|Display string.|
 |item.isDisabled|Boolean|Indicate item will be disabled when display.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
+  items: [
+       {
+           label: 'Orange',
+           value: 'Orange',
+           isDisabled: false
+       },
+       {
+           label: 'Banana',
+           value: 'Banana',
+           isDisabled: true
+       },
+       {
+           label: 'Lemon',
+           value: 'Lemon',
+           isDisabled: true
+       },
+],
+value: ['Orange', 'Banana'],
+onChange:(e)=>{console.log(e)}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -311,6 +326,7 @@ console.log(firstItem);
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -348,6 +364,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.items[0]);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -364,7 +381,7 @@ Remove the specific item from multiple choice list.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -400,6 +417,7 @@ mulChoice.removeItem(0);
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -447,6 +465,7 @@ export default class Plugin extends React.Component {
    });
  };
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -468,7 +487,7 @@ Multiple choice list item.
 |items[].label|String|Display string.|
 |items[].isDisabled|Boolean|Indicate item will be disabled when display.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -506,6 +525,7 @@ items.forEach(function(item) {
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -545,6 +565,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -563,30 +584,31 @@ List of checked items.
 | --- | --- | --- |
 |value|	Array&lt;String&gt;|List selected values of the multiple choice.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
+  items: [
+       {
+           label: 'Orange',
+           value: 'Orange',
+           isDisabled: false
+       },
+       {
+           label: 'Banana',
+           value: 'Banana',
+           isDisabled: true
+       },
+       {
+           label: 'Lemon',
+           value: 'Lemon',
+           isDisabled: true
+       },
+],
+value: ['Orange', 'Banana'],
+onChange:(e)=>{console.log(e);}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -594,16 +616,17 @@ body.appendChild(mulChoice.render());
 
 var selectedItems = mulChoice.getValue();
 selectedItems.forEach(function(item) {
-    console.log(item);
+console.log(item);
 });
 ```
 **React**
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -622,9 +645,9 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items, value: ['Orange', 'Banana'] };
     }
- 
+
     render() {
         return (
         <div>
@@ -633,11 +656,12 @@ export default class Plugin extends React.Component {
         </div>
       );
     }
-  
+
     handleClick = () => {
        console.log(this.state.value);
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -654,42 +678,46 @@ Set the checked value of multiple choice.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
 var mulChoice = new kintoneUIComponent.MultipleChoice({
-       items: [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-     ],
-     value: ['Orange', 'Banana']
-});
+    items: [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ],
+    onChange: e => {
+      console.log(e);
+    },
+    value: ["Orange", "Banana"]
+  });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(mulChoice.render());
+  var body = document.getElementsByTagName("BODY")[0];
+  body.appendChild(mulChoice.render());
 
-mulChoice.setValue(['Lemon']);
+  mulChoice.setValue(["Lemon"]);
 ```
 **React**
 ```javascript
 
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -729,6 +757,7 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -745,7 +774,7 @@ Set the disabled items of multiple choice.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -781,6 +810,7 @@ mulChoice.disableItem('Orange');
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -821,6 +851,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -837,7 +868,7 @@ Set the enable items of multiple choice.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -872,6 +903,7 @@ mulChoice.enableItem('Banana');
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -912,6 +944,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -929,7 +962,7 @@ Register callback for change event
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -952,7 +985,8 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+     onChange:(e)=>{console.log(e)}
 });
  
 var body = document.getElementsByTagName("BODY")[0];
@@ -966,9 +1000,10 @@ mulChoice.on('change', function(value) {
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
         const items = [
             {
@@ -996,13 +1031,12 @@ export default class Plugin extends React.Component {
         );
     }
 
-    handleChange= () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
+    handleChange= (e) => {
+        console.log("change",e);
+        
     }
 }
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1017,7 +1051,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1040,7 +1074,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)},
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1052,6 +1088,7 @@ mulChoice.show();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1073,23 +1110,21 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isVisible:false};
     }
- 
+    handleShow=()=>{
+        this.setState({isVisible:true})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isVisible={true} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleShow}>Show</button>
+                <MultipleChoice value={this.state.value} isVisible={this.state.isVisible} items={this.state.items}/>
+            </div>
         );
     }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
-    }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1104,7 +1139,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1127,7 +1162,8 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+     onChange:(e)=>{console.log(e)}
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1139,6 +1175,7 @@ mulChoice.hide();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1160,23 +1197,21 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isVisible:true};
     }
- 
+    handleHide=()=>{
+        this.setState({isVisible:false})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isVisible={false} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleHide}>Hide</button>
+                <MultipleChoice value={this.state.value} isVisible={this.state.isVisible} items={this.state.items}/>
+            </div>
         );
     }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
-    }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1191,7 +1226,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1214,7 +1249,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+     value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)}
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1227,9 +1264,10 @@ mulChoice.disable();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    constructor(props) {
+     constructor(props) {
         super(props);
         const items = [
             {
@@ -1248,23 +1286,21 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isDisabled:false};
     }
- 
+    handleDisable=()=>{
+        this.setState({isDisabled:true})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isDisabled={true} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleDisable}>Disable</button>
+                <MultipleChoice value={this.state.value} isDisabled={this.state.isDisabled} items={this.state.items}/>
+            </div>
         );
     }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
-    }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -1279,7 +1315,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -1302,7 +1338,9 @@ var mulChoice = new kintoneUIComponent.MultipleChoice({
                 isDisabled: true
             },
      ],
-     value: ['Orange', 'Banana']
+    value: ['Orange', 'Banana'],
+    onChange:(e)=>{console.log(e)}
+
 });
 
 var body = document.getElementsByTagName("BODY")[0];
@@ -1315,6 +1353,7 @@ mulChoice.enable();
 ```javascript
 import { MultipleChoice } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1336,22 +1375,20 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items};
+        this.state = {items: items,isDisabled:true};
     }
- 
+    handleEnable=()=>{
+        this.setState({isDisabled:false})
+    }
     render() {
         return (
-            <MultipleChoice value={this.state.value} isDisabled={false} items={this.state.items} onClick={this.handleClick}/>
+            <div>
+                <button onClick={this.handleEnable}>Enable</button>
+                <MultipleChoice value={this.state.value} isDisabled={this.state.isDisabled} items={this.state.items}/>
+            </div>
         );
     }
- 
-    handleClick = () => {
-        const items = [...this.state.items];
-
-        items[1].isDisabled = false;
-        this.setState({ items: items });
-    }
 }
-
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
