@@ -9,7 +9,7 @@ import '../../css/MultipleChoice.css'
 type MultipleChoiceProps = ControlProps & {
     items?: Array<ItemData>
     value?: Array<string>
-    onChange: (value: Array<string> | undefined) => void
+    onChange?: (value: Array<string> | undefined) => void
 }
 
 class MultipleChoice extends Control {
@@ -24,9 +24,9 @@ class MultipleChoice extends Control {
 
     private itemList: Array<Item> = []
 
-    constructor(params: MultipleChoiceProps) {
+    constructor(params?: MultipleChoiceProps) {
         super()
-        if(typeof params.isDisabled !== 'boolean') {
+        if(params && typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }
         if (params) {

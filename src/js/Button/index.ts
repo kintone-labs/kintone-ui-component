@@ -3,8 +3,8 @@ import Control, {ControlProps} from '../Control';
 import '../../css/Button.css'
 
 type ButtonProps = ControlProps & {
-  text: string;
-  type: 'normal' | 'submit';
+  text?: string;
+  type?: 'normal' | 'submit';
   onClick?: (e: Event) => void
 }
 
@@ -17,9 +17,9 @@ class Button extends Control {
       onClick: () => {}
     }
   }
-  constructor(params: ButtonProps) {
+  constructor(params?: ButtonProps) {
     super();
-    if(typeof params.isDisabled !== 'boolean') {
+    if(params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled
     }
     if (params) {
@@ -36,7 +36,7 @@ class Button extends Control {
       this.element.className = this._getClassName();
     }
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text;
+      this.element.innerHTML = this._props.text || "";
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
@@ -83,7 +83,7 @@ class Button extends Control {
   private _createLayout() {
     this.element = document.createElement('button');
     this.element.className = this._getClassName();
-    this.element.innerHTML = this._props.text;
+    this.element.innerHTML = this._props.text || "";
     if(this._props.onClick) {
       this.on('click', this._props.onClick)
     }

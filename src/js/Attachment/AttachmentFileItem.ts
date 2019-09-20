@@ -1,10 +1,10 @@
 import Control, {ControlProps} from '../Control';
 import '../../css/Attachment.css';
 type AttachmentFileItemProps = ControlProps & {
-    index: number;
-    fileName: string;
-    fileSize: number;
-    onFileRemove: (index: number) => void;
+    index?: number;
+    fileName?: string;
+    fileSize?: number;
+    onFileRemove?: (index: number) => void;
   }
 
 class AttachmentFileItem extends Control{
@@ -13,9 +13,11 @@ class AttachmentFileItem extends Control{
     private ONE_GB = 1073741824;
     private ONE_MB = 1048576;
     private ONE_KB = 1024;
-  constructor(params: AttachmentFileItemProps) {
+  constructor(params?: AttachmentFileItemProps) {
     super()
-    this._props = {...params};
+    if(params){
+      this._props = {...params};
+    }
     if (!this._props.onFileRemove || typeof this._props.onFileRemove !== 'function') {
       this._props.onFileRemove = () => {};
     }
@@ -39,8 +41,8 @@ class AttachmentFileItem extends Control{
 
     let fileNameEl = document.createElement('div');
     fileNameEl.classList.add('kuc-attachment_file_name');
-    fileNameEl.setAttribute('title',this._props.fileName)
-    fileNameEl.innerText = this._props.fileName
+    fileNameEl.setAttribute('title',this._props.fileName || "")
+    fileNameEl.innerText = this._props.fileName || ""
     container.appendChild(fileNameEl);
 
     let actionContainerEl = document.createElement('div');
@@ -56,7 +58,7 @@ class AttachmentFileItem extends Control{
 
     let fileSizeEl = document.createElement('div');
     fileSizeEl.classList.add('kuc-attachment_file_size');
-    fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
+    fileSizeEl.innerText = this._formatFileSize(this._props.fileSize || 0);
     container.appendChild(fileSizeEl);
 
     let clearEl = document.createElement('div');
@@ -67,8 +69,10 @@ class AttachmentFileItem extends Control{
   }
 
   onRemove = () => {
-    this._props.onFileRemove(this._props.index);
-    this.element.remove();
+    if(this._props.onFileRemove){
+      this._props.onFileRemove(this._props.index || 0);
+      this.element.remove();
+    }
   }
 }
 

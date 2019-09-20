@@ -5,9 +5,9 @@ import Message from '../../constant/Message'
 import '../../css/CheckBox.css'
 
 type CheckboxProps = ControlProps & {
-    items?: Array<ItemData>
+    items?: Array<ItemData> 
     value?: Array<string>
-    onChange: (value?: Array<string>) => void
+    onChange?: (value?: Array<string>) => void
 }
 
 class CheckBox extends Control {
@@ -23,9 +23,9 @@ class CheckBox extends Control {
 
     private itemList: Array<Item> = []
 
-    constructor(params: CheckboxProps) {
+    constructor(params?: CheckboxProps) {
         super()
-        if(typeof params.isDisabled !== 'boolean') {
+        if(params && typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }
         if (params) {
@@ -115,7 +115,7 @@ class CheckBox extends Control {
                 const removeItem = this._props.items.splice(index, 1)
                 this.itemList.splice(index, 1)
                 this.element.childNodes[index].remove()
-                const removeItemValue = removeItem[0].value
+                let removeItemValue =removeItem[0].value ? removeItem[0].value: "";
                 const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
                 if(selectedRemoveIndex > -1) {
                     this._props.value.splice(selectedRemoveIndex, 1)
