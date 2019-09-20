@@ -64,10 +64,10 @@ export default class Table extends Control {
   }
 
   private _addRow = ({data, rowIndex}:RowEventProps) => {
-    if(!data || !rowIndex){
-      return;
+    if(!data){
+      return []; 
     }
-    const insertAt = rowIndex + 1 
+    const insertAt = rowIndex + 1;
     const newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData));
     const newData = [...data.slice(0, insertAt), newRowData, ...data.slice(insertAt)]
     this._props.data = newData
