@@ -62,7 +62,7 @@ class Tabs extends Control {
         }
       })
     }
-    if (this._props.value) {
+    if (this._props.value !== undefined) {
       if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
         err = Message.common.INVALID_ARGUMENT
       }
@@ -96,7 +96,7 @@ class Tabs extends Control {
     this.element.appendChild(tabContentWrapper)
 
     this.tabContentElement = document.createElement('div')
-    if(this._props.items && this._props.value){
+    if(this._props.items && this._props.value !== undefined){
       this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
     }
     tabContentWrapper.appendChild(this.tabContentElement)
@@ -117,7 +117,7 @@ class Tabs extends Control {
       while (this.tabContentElement.firstChild) {
         this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
-      if (this._props.items && this._props.value){
+      if (this._props.items && this._props.value !== undefined){
         this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
       }
     }
@@ -162,7 +162,7 @@ class Tabs extends Control {
       while (this.tabContentElement.firstChild) {
         this.tabContentElement.removeChild(this.tabContentElement.firstChild);
       }
-      if(this._props.items && this._props.value){
+      if(this._props.items && this._props.value !== undefined){
         this.tabContentElement.append(this._props.items[this._props.value].tabContent || '')
       }
     }
