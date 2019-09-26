@@ -6,7 +6,7 @@
 $ mkdir my-customization
 $ cd my-customization
 $ npm init -y
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli
+$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli babel-loader @babel/core
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 ```
@@ -58,14 +58,14 @@ module.exports = (env = {}) => {
   }
 }
 ```
-**Step** 4: Add a script to buiding by webpack to package.json
+**Step** 4: Add a script for buiding by webpack to package.json
 ```
 "scripts": {
   "build-webpack": "cross-env NODE_ENV=production webpack",
   ...
 }
 ```
-* Run command to build customization file
+* Run command to build the customization file
 ```
 $ npm run build-webpack
 ```
@@ -79,7 +79,7 @@ result:
 
 ## UMD usage
 
-*  Attach 2 below files from './dist' folder in [kintone-ui-component](https://github.com/kintone/kintone-ui-component/tree/master) into kintone app
+*  Attach 2 below files from './dist' the folder in [kintone-ui-component](https://github.com/kintone/kintone-ui-component/tree/master) into kintone app
 ```
  ./dist/kintone-ui-component.min.js
  ./dist/kintone-ui-component.min.css

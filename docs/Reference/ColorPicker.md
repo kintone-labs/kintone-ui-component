@@ -26,7 +26,7 @@
 |options.isVisible|Boolean|No|The ColorPicker will be visible. <br> Default value: 'true'|
 |options.onChange|Callback|No|Handler for color change event.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -37,8 +37,7 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -66,23 +65,21 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
 var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(colorPicker.render());
 ```
 
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -95,12 +92,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -118,7 +110,7 @@ Set the color of colorpicker .
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -132,9 +124,7 @@ colorPicker.setColor('#666666');
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-import ReactDOM from 'react-dom';
-  
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -154,12 +144,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -177,7 +162,7 @@ None
 | --- | --- | --- |
 |color|	String|The color of colorpicker.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -192,7 +177,7 @@ colorPicker.getColor();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -211,18 +196,13 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
 
 ### on(eventName, callback)
-Register callback for click event
+Register callback for an event
 
 **Parameter**
 
@@ -235,7 +215,7 @@ Register callback for click event
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -244,18 +224,13 @@ var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
 });
-
-kintone.events.on('app.record.index.show', function(event) {
-    var el = kintone.app.getHeaderSpaceElement();
-    el.appendChild(colorPicker.render());
-});
 ```
 
 **React**
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
   
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -271,12 +246,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
-    );
-});
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 
 </details>
@@ -292,7 +262,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -307,22 +277,28 @@ myColorPicker.show();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={true} />
-        );
-    }
-}
-
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+  }
+  handleShow = () => {
+    this.setState({ isVisible: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleShow}>Show</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
     );
-});
+  }
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -337,7 +313,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -350,23 +326,30 @@ myColorPicker.hide();
 
 **React**
 ```javascript
-import { Button } from '@kintone/kintone-ui-component';
+import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isVisible={false} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: true
+    };
+  }
+  handleHide = () => {
+    this.setState({ isVisible: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleHide}>Hide</button>
+        <ColorPicker color="#FF0000" isVisible={this.state.isVisible} />
+      </div>
     );
-});
+  }
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -381,7 +364,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -396,21 +379,28 @@ myColorPicker.disable();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color='#FF0000' isDisabled={true} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: false
+    };
+  }
+  handleDisable = () => {
+    this.setState({ isDisabled: true });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleDisable}>Disable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
     );
-});
+  }
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
@@ -425,7 +415,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
@@ -440,20 +430,27 @@ myColorPicker.enable();
 ```javascript
 import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from "react-dom";
  
 export default class Plugin extends React.Component {
-    render() {
-        return (
-            <ColorPicker color="#FF0000" isDisabled={false} />
-        );
-    }
-}
-kintone.events.on('app.record.index.show', (event) => {
-    ReactDOM.render(
-        <Plugin />,
-        kintone.app.getHeaderSpaceElement()
+    constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true
+    };
+  }
+  handleEnable= () => {
+    this.setState({ isDisabled: false });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleEnable}>Enable</button>
+        <ColorPicker color="#FF0000" isDisabled={this.state.isDisabled} />
+      </div>
     );
-});
+  }
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
