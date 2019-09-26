@@ -58,7 +58,7 @@ export default class Table extends Control {
       this._props = {...this._props, ...params}
     }
     this._validateRequired()
-    if(this._props.actionButtonsShown !== undefined) {
+    if(this._props.actionButtonsShown === true) {
       this._props.columns && this._props.columns.push({actions: this._props.actionButtonsShown})
     }
   }
