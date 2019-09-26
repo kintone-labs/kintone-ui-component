@@ -571,7 +571,7 @@ When using this function in pure js, selected value is released.
 | --- | --- | --- | --- |
 |options|	Object|No|A object contains params of constructor.|
 |options.items|	Array&lt;Object&gt;|Yes|List of items which will be displayed on checkbox.|
-|options.items[x].value|String|Yes|If the value is duplicate, the SELECTION_DUPLICATE_VALUE message will be displayed.|
+|options.items[x].value|String|Yes|If the value is duplicate, the error message will be displayed.|
 |options.items[x].label|String|No|Display string.|
 |options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display.<br>Default value: 'false'.|
 

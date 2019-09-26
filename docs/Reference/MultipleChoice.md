@@ -570,7 +570,7 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### setItems(items)
-Set all items of the checkbox.
+Set all items of the multiple choices list.
 When using this function in pure js, selected value is released.
 
 **Parameter**
@@ -578,8 +578,8 @@ When using this function in pure js, selected value is released.
 | Name| Type| Required | Description |
 | --- | --- | --- | --- |
 |options| Object | No |A object contains params of constructor. |
-|options.items | Array&lt;Object&gt; | Yes |List of items which will be displayed on checkbox. |
-|options.items[x].value| String | Yes |If the value is duplicate, the SELECTION_DUPLICATE_VALUE message will be displayed. |
+|options.items | Array&lt;Object&gt; | Yes |List of items which will be displayed on multiple choice. |
+|options.items[x].value| String | Yes |If the value is duplicate, the error message will be displayed. |
 |options.items[x].label| String | No |Display string. |
 |options.items[x].isDisabled| Boolean| No | Indicate item will be disabled when display.<br>Default value: 'false'. |
 
