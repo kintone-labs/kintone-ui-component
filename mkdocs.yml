@@ -47,4 +47,4 @@ extra_javascript:
 extra_css:
   - 'style/extra.css'
 extra:
-    version: '0.3.8'
+    version: '0.3.9'
