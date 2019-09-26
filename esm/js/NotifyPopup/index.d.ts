@@ -9,7 +9,8 @@ declare class NotifyPopup extends Control {
     private textEl;
     private closeButton;
     private _onClick;
-    constructor(params: PopupProps);
+    private _onClose;
+    constructor(params?: PopupProps);
     private _getStyleByType;
     private _createPopupLayout;
     on(eventName: string, callback: (params?: any) => void): void;

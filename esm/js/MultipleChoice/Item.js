@@ -28,7 +28,7 @@ var Item = /** @class */ (function (_super) {
         spanIconCheckElement.appendChild(_this._createCheckIconEl());
         var spanListItemLabelElement = document.createElement('span');
         spanListItemLabelElement.className = 'kuc-list-item-label';
-        spanListItemLabelElement.append(_this._props.label);
+        spanListItemLabelElement.append(_this._props.label || "");
         _this.element.appendChild(spanIconCheckElement);
         _this.element.appendChild(spanListItemLabelElement);
         _this.on('click', function (e) {
@@ -65,7 +65,7 @@ var Item = /** @class */ (function (_super) {
         this.element.className = className;
     };
     Item.prototype.getValue = function () {
-        return this._props.value;
+        return this._props.value || "";
     };
     Item.prototype.select = function () {
         this._props.isSelected = true;

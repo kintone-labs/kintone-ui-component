@@ -18,7 +18,7 @@ var MultipleChoice = function (props) {
         if (!include) {
             value.push(itemValue);
         }
-        props.onChange(value);
+        props.onChange && props.onChange(value);
     };
     if (props.isVisible === false) {
         return null;
@@ -27,10 +27,10 @@ var MultipleChoice = function (props) {
         var isSelected = props.value ? props.value.some(function (value) { return value === item.value; }) : false;
         return (React.createElement(Item, { key: i, selected: isSelected, onClick: function () { return _handleItemClick(item.value); }, item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled }));
     });
-    if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
+    if (props.items && AbstractMultiSelection._hasDuplicatedItems(props.items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
-    if (!AbstractMultiSelection._hasValidValue(props.items, props.value)) {
+    if (props.items && !AbstractMultiSelection._hasValidValue(props.items, props.value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }
     var className = [

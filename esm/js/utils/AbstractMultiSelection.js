@@ -3,19 +3,21 @@ var _hasDuplicatedItems = function (items) {
     var isUnique = true;
     if (items) {
         items.forEach(function (val) {
-            if (typeof (unique[val.value]) !== 'undefined') {
+            if (val.value && typeof (unique[val.value]) !== 'undefined') {
                 isUnique = false;
             }
-            unique[val.value] = 0;
+            val.value ? unique[val.value] = 0 : "";
         });
     }
     return !isUnique;
 };
 var _hasValidValue = function (items, value) {
     var validValues = [];
-    items.forEach(function (item) {
-        validValues.push(item.value);
-    });
+    if (items) {
+        items.forEach(function (item) {
+            item.value ? validValues.push(item.value) : "";
+        });
+    }
     if (value === undefined) {
         return true;
     }

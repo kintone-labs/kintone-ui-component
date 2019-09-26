@@ -10,7 +10,6 @@ import Message from '../../constant/Message';
 var DateTime = /** @class */ (function (_super) {
     tslib_1.__extends(DateTime, _super);
     function DateTime(params) {
-        if (params === void 0) { params = {}; }
         var _this = _super.call(this) || this;
         _this._props = tslib_1.__assign({}, _this._props, {
             value: new Date(),
@@ -116,7 +115,7 @@ var DateTime = /** @class */ (function (_super) {
             _this.rerender(['timeTextInput']);
             _this._timeTextInput.focus();
         };
-        if (typeof params.isDisabled !== 'boolean') {
+        if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
         if (params) {

@@ -10,10 +10,14 @@ var AttachmentFileItem = /** @class */ (function (_super) {
         _this.ONE_MB = 1048576;
         _this.ONE_KB = 1024;
         _this.onRemove = function () {
-            _this._props.onFileRemove(_this._props.index);
-            _this.element.remove();
+            if (_this._props.onFileRemove) {
+                _this._props.onFileRemove(_this._props.index || 0);
+                _this.element.remove();
+            }
         };
-        _this._props = tslib_1.__assign({}, params);
+        if (params) {
+            _this._props = tslib_1.__assign({}, params);
+        }
         if (!_this._props.onFileRemove || typeof _this._props.onFileRemove !== 'function') {
             _this._props.onFileRemove = function () { };
         }
@@ -40,8 +44,8 @@ var AttachmentFileItem = /** @class */ (function (_super) {
         container.classList.add('kuc-attachment-file-item');
         var fileNameEl = document.createElement('div');
         fileNameEl.classList.add('kuc-attachment_file_name');
-        fileNameEl.setAttribute('title', this._props.fileName);
-        fileNameEl.innerText = this._props.fileName;
+        fileNameEl.setAttribute('title', this._props.fileName || "");
+        fileNameEl.innerText = this._props.fileName || "";
         container.appendChild(fileNameEl);
         var actionContainerEl = document.createElement('div');
         actionContainerEl.classList.add('kuc-attachment_file_action');
@@ -54,7 +58,7 @@ var AttachmentFileItem = /** @class */ (function (_super) {
         container.appendChild(actionContainerEl);
         var fileSizeEl = document.createElement('div');
         fileSizeEl.classList.add('kuc-attachment_file_size');
-        fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
+        fileSizeEl.innerText = this._formatFileSize(this._props.fileSize || 0);
         container.appendChild(fileSizeEl);
         var clearEl = document.createElement('div');
         clearEl.classList.add('kuc-attachment_clearer');

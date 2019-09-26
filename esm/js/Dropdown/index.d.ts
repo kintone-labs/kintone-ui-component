@@ -6,21 +6,21 @@ declare type item = {
     isDisabled?: boolean;
 };
 declare type DropdownProps = ControlProps & {
-    value: string;
-    items: item[];
+    value?: string;
+    items?: item[];
     onChange?: (params?: any) => void;
     listItemsShown?: (params?: any) => void;
 };
 declare class Dropdown extends Control {
     protected _props: DropdownProps;
-    private itemComps;
+    private itemComps?;
     private dropdownEl;
     private nameLabelEl;
     private listOuterEl;
     private label?;
     private className;
     private isListVisible;
-    constructor(params: DropdownProps);
+    constructor(params?: DropdownProps);
     private _createDom;
     private _showItems;
     private _hideItems;
@@ -29,11 +29,12 @@ declare class Dropdown extends Control {
     private _handleItemClick;
     private _createDownIconEl;
     private _renderSubContainer;
+    private _validator;
     render(): HTMLElement;
     rerender(changedAttr?: string[]): void;
     setValue(value: string): void;
-    getValue(): string;
-    getItems(): item[];
+    getValue(): string | undefined;
+    getItems(): item[] | undefined;
     addItem(item: item): void;
     setItems(items: Array<item>): void;
     removeItem(index: number): false | void;

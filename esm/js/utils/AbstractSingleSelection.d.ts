@@ -4,7 +4,7 @@ declare type item = {
     isDisabled?: boolean;
 };
 declare const _default: {
-    _hasDuplicatedItems: (items: item[]) => boolean;
-    _hasValidValue: (items: item[], value: string) => boolean;
+    _hasDuplicatedItems: (items?: item[] | undefined) => boolean;
+    _hasValidValue: (items?: item[] | undefined, value?: string | undefined) => boolean | undefined;
 };
 export default _default;

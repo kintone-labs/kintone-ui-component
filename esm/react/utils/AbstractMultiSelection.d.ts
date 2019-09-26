@@ -1,6 +1,6 @@
 declare type item = {
     value: string;
-    label: string;
+    label?: string;
     isDisabled?: boolean;
 };
 declare const _default: {

@@ -19,7 +19,7 @@ var Table = function (_a) {
 };
 var TableHeaderRow = function (_a) {
     var columns = _a.columns;
-    var header = columns.map(function (data, index) {
+    var header = columns && columns.map(function (data, index) {
         return data.header ? (React.createElement("div", { key: 'Table_Header_Column_' + index, className: "kuc-table-th" },
             React.createElement("span", { className: "kuc-header-label" }, data.header))) : '';
     });
@@ -28,9 +28,9 @@ var TableHeaderRow = function (_a) {
 var TableBody = function (_a) {
     var columns = _a.columns, data = _a.data, defaultRowData = _a.defaultRowData, onRowAdd = _a.onRowAdd, onRowRemove = _a.onRowRemove, actionButtonsShown = _a.actionButtonsShown, _onCellChange = _a._onCellChange;
     if (actionButtonsShown) {
-        columns.push({ actions: true });
+        columns && columns.push({ actions: true });
     }
-    return (React.createElement("div", { className: "kuc-table-tbody" }, data.map(function (rowData, rowIndex) { return (React.createElement("div", { className: "kuc-table-tr", key: rowIndex }, columns.map(function (column, columnIndex) {
+    return (React.createElement("div", { className: "kuc-table-tbody" }, data && data.map(function (rowData, rowIndex) { return (React.createElement("div", { className: "kuc-table-tr", key: rowIndex }, columns && columns.map(function (column, columnIndex) {
         var actions = column.actions;
         var _a = column, cell = _a.cell, tdProps = _a.tdProps;
         if (actions === true) {
@@ -52,7 +52,7 @@ var TableCell = function (_a) {
     if (typeof _onCellChange === 'function') {
         cellProps.onCellChange = _onCellChange;
     }
-    var content = cell(cellProps);
+    var content = cell ? cell(cellProps) : "";
     var tdPropsObj = tdProps ? tdProps(cellProps) : {};
     return React.createElement("div", tslib_1.__assign({}, tdPropsObj, { className: "kuc-table-td" }), content);
 };
@@ -61,13 +61,13 @@ var TableCellActions = function (_a) {
     return (React.createElement("div", { className: "kuc-table-td action-group" },
         React.createElement("span", { style: { marginRight: '5px', display: 'inline-block' } },
             React.createElement(IconButton, { type: "insert", color: "blue", size: "small", onClick: function () {
-                    return dispatch({
+                    dispatch({
                         type: 'ADD_ROW',
-                        data: addRow({ data: data, rowIndex: rowIndex, defaultRowData: defaultRowData }),
+                        data: addRow ? addRow({ data: data, rowIndex: rowIndex, defaultRowData: defaultRowData }) : [],
                         rowIndex: rowIndex + 1
                     });
                 } })),
-        data.length > 1 &&
+        data && data.length > 1 &&
             React.createElement("span", { style: { display: 'inline-block' } },
                 React.createElement(IconButton, { type: "remove", color: "gray", size: "small", onClick: function () {
                         return dispatch({
@@ -79,13 +79,16 @@ var TableCellActions = function (_a) {
 };
 var addRow = function (_a) {
     var data = _a.data, rowIndex = _a.rowIndex, defaultRowData = _a.defaultRowData;
+    if (!data || !defaultRowData) {
+        return [];
+    }
     var insertAt = rowIndex + 1;
     var newData = data.slice(0, insertAt).concat([tslib_1.__assign({}, defaultRowData)], data.slice(insertAt));
     return newData;
 };
 var removeRow = function (_a) {
     var data = _a.data, rowIndex = _a.rowIndex;
-    return data.filter(function (item, index) { return index !== rowIndex; });
+    return data ? data.filter(function (item, index) { return index !== rowIndex; }) : [];
 };
 export default Table;
 export { Table };

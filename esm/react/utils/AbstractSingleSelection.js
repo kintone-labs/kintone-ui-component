@@ -1,16 +1,16 @@
 var _handleItemClick = function (item, onChange) {
-    var value = item.value;
-    onChange(value);
+    var value = item.value || "";
+    onChange && onChange(value);
 };
 var _hasDuplicatedItems = function (items) {
     var unique = {};
     var isUnique = true;
     if (items) {
         items.forEach(function (val) {
-            if (typeof (unique[val.value]) !== 'undefined') {
+            if (val.value && typeof (unique[val.value]) !== 'undefined') {
                 isUnique = false;
             }
-            unique[val.value] = 0;
+            val.value ? unique[val.value] = 0 : {};
         });
     }
     return !isUnique;

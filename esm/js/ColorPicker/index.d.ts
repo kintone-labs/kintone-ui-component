@@ -1,7 +1,7 @@
 import Control, { ControlProps } from "../Control";
 declare type ColorPickerProps = ControlProps & {
-    color: string;
-    onChange: (color: string) => void;
+    color?: string;
+    onChange?: (color: string) => void;
 };
 declare class ColorPicker extends Control {
     protected _props: ColorPickerProps;
@@ -9,7 +9,7 @@ declare class ColorPicker extends Control {
     private inputElement;
     private Picker;
     private focus;
-    constructor(params: ColorPickerProps);
+    constructor(params?: ColorPickerProps);
     private _renderInput;
     private _renderPicker;
     rerender(changedAttr?: string[]): void;

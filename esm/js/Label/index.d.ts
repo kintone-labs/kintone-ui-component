@@ -11,7 +11,7 @@ declare class Label extends Control {
     private textEl;
     private requiredEl;
     private containerEl;
-    constructor(params: LabelProps);
+    constructor(params?: LabelProps);
     private _createLabelLayout;
     rerender(changedAttr?: string[]): void;
     setText(text: string): void;

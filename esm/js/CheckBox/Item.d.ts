@@ -2,12 +2,12 @@ import Control, { ControlProps } from '../Control';
 import '../../css/Item.css';
 declare type ItemData = {
     value: string;
-    label: string;
+    label?: string;
     isDisabled?: boolean;
 };
 declare type ItemProps = ControlProps & {
-    value: string;
-    label: string;
+    value?: string;
+    label?: string;
     className?: string;
     isDisabled?: boolean;
     isSelected: boolean;
@@ -16,7 +16,7 @@ declare type ItemProps = ControlProps & {
 declare class Item extends Control {
     protected _props: ItemProps;
     private inputCheckboxElement;
-    constructor(params: ItemProps);
+    constructor(params?: ItemProps);
     rerender(changedAttr?: Array<string>): void;
     getValue(): string;
     select(): void;

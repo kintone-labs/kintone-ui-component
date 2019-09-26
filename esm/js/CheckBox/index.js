@@ -15,14 +15,15 @@ var CheckBox = /** @class */ (function (_super) {
             isVisible: true,
         });
         _this.itemList = [];
-        if (typeof params.isDisabled !== 'boolean') {
+        if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
-        if (_this._validator()) {
-            throw new Error(_this._validator());
+        var validationErr = _this._validator(_this._props.items, _this._props.value);
+        if (validationErr) {
+            throw new Error(validationErr);
         }
         _this._renderItemList();
         _this.rerender(['isDisabled', 'isVisible']);
@@ -40,13 +41,13 @@ var CheckBox = /** @class */ (function (_super) {
             });
         }
     };
-    CheckBox.prototype._validator = function () {
+    CheckBox.prototype._validator = function (items, value) {
         var err;
-        if (this._props.items && AbstractMultiSelection._hasDuplicatedItems(this._props.items)) {
+        if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE;
         }
-        if (this._props.items && this._props.value &&
-            !AbstractMultiSelection._hasValidValue(this._props.items, this._props.value)) {
+        if (items && value &&
+            !AbstractMultiSelection._hasValidValue(items, value)) {
             err = Message.common.INVALID_ARGUMENT;
         }
         return err;
@@ -55,8 +56,9 @@ var CheckBox = /** @class */ (function (_super) {
         if (!value && Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
-        if (this._validator()) {
-            throw new Error(this._validator());
+        var validationErr = this._validator(this._props.items, value);
+        if (validationErr) {
+            throw new Error(validationErr);
         }
         this._props.value = value;
         this.rerender(['value']);
@@ -71,10 +73,13 @@ var CheckBox = /** @class */ (function (_super) {
         if (!this._props.items) {
             this._props.items = [];
         }
-        this._props.items.push(item);
-        if (this._validator()) {
-            throw new Error(this._validator());
+        var itemsToCheck = Object.assign([], this._props.items);
+        itemsToCheck.push(item);
+        var validationErr = this._validator(itemsToCheck);
+        if (validationErr) {
+            throw new Error(validationErr);
         }
+        this._props.items = itemsToCheck;
         this.rerender(['addItems']);
     };
     CheckBox.prototype.removeItem = function (index) {
@@ -86,7 +91,7 @@ var CheckBox = /** @class */ (function (_super) {
                 var removeItem = this._props.items.splice(index, 1);
                 this.itemList.splice(index, 1);
                 this.element.childNodes[index].remove();
-                var removeItemValue = removeItem[0].value;
+                var removeItemValue = removeItem[0].value ? removeItem[0].value : "";
                 var selectedRemoveIndex = this._props.value.indexOf(removeItemValue);
                 if (selectedRemoveIndex > -1) {
                     this._props.value.splice(selectedRemoveIndex, 1);
@@ -110,6 +115,21 @@ var CheckBox = /** @class */ (function (_super) {
             }
         }
         return undefined;
+    };
+    CheckBox.prototype.setItems = function (items) {
+        if (!items || !Array.isArray(items)) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        // It isn't need to check hasValidValue
+        var validationErr = this._validator(items);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
+        this._props.items = items;
+        this.itemList = [];
+        this._props.value = [];
+        this._renderItemList();
+        this.rerender(['isDisabled']);
     };
     CheckBox.prototype.getItems = function () {
         return this._props.items;

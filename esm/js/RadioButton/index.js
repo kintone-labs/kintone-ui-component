@@ -14,7 +14,7 @@ var RadioButton = /** @class */ (function (_super) {
         _this.itemComps = [];
         _this._handleItemClick = function (itemEl) {
             var inputEl = itemEl.target;
-            _this.itemComps.some(function (item) {
+            _this.itemComps && _this.itemComps.some(function (item) {
                 if (item.id === inputEl.id) {
                     _this._props.value = item.value;
                     return true;
@@ -23,7 +23,7 @@ var RadioButton = /** @class */ (function (_super) {
             });
             _this._props.onChange && _this._props.onChange(_this._props.value);
         };
-        if (!params.name) {
+        if (params && !params.name) {
             throw new Error(Message.radioBtn.MISSING_NAME);
         }
         if (typeof params === 'object' &&
@@ -34,11 +34,9 @@ var RadioButton = /** @class */ (function (_super) {
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
-        if (AbstractSingleSelection._hasDuplicatedItems(_this._props.items)) {
-            throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
-        }
-        if (!AbstractSingleSelection._hasValidValue(_this._props.items, _this._props.value)) {
-            throw new Error(Message.common.INVALID_ARGUMENT);
+        var validationErr = _this._validator(_this._props.items, _this._props.value);
+        if (validationErr) {
+            throw new Error(validationErr);
         }
         _this.element = document.createElement('div');
         _this.element.className = 'kuc-input-radio';
@@ -56,11 +54,22 @@ var RadioButton = /** @class */ (function (_super) {
                     newItem.on('change', _this._handleItemClick);
                     return newItem;
                 });
-        _this.itemComps.forEach(function (item) {
+        _this.itemComps && _this.itemComps.forEach(function (item) {
             _this.element.appendChild(item.render());
         });
         return _this;
     }
+    RadioButton.prototype._validator = function (items, value) {
+        var err;
+        if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
+            err = Message.common.SELECTTION_DUPLICATE_VALUE;
+        }
+        if (items && value &&
+            !AbstractSingleSelection._hasValidValue(items, value)) {
+            err = Message.common.INVALID_ARGUMENT;
+        }
+        return err;
+    };
     RadioButton.prototype.render = function () {
         this.rerender();
         return _super.prototype.render.call(this);
@@ -86,38 +95,64 @@ var RadioButton = /** @class */ (function (_super) {
                     newItem.on('change', _this._handleItemClick);
                     return newItem;
                 });
-        this.itemComps.forEach(function (item) {
+        this.itemComps && this.itemComps.forEach(function (item) {
             _this.element.appendChild(item.render());
         });
     };
     RadioButton.prototype.setValue = function (value) {
-        var _this = this;
-        this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                _this._props.value = item.value;
-            }
-        });
+        if (!value) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        var validationErr = this._validator(this._props.items, value);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
+        this._props.value = value;
         this.rerender(['value']);
     };
     RadioButton.prototype.getValue = function () {
         return this._props.value;
     };
+    RadioButton.prototype.setItems = function (items) {
+        if (!items || !Array.isArray(items)) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        // It isn't need to check hasValidValue
+        var validaErr = this._validator(items);
+        if (validaErr) {
+            throw new Error(validaErr);
+        }
+        this._props.items = items;
+        this.rerender(['item']);
+    };
     RadioButton.prototype.getItems = function () {
         return this._props.items;
     };
     RadioButton.prototype.addItem = function (item) {
-        this._props.items.push(item);
+        if (!item) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        if (!this._props.items) {
+            this._props.items = [];
+        }
+        var itemsToCheck = Object.assign([], this._props.items);
+        itemsToCheck.push(item);
+        var validationErr = this._validator(itemsToCheck);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
+        this._props.items = itemsToCheck;
         this.rerender(['item']);
     };
     RadioButton.prototype.removeItem = function (index) {
-        if (this._props.items.length <= index) {
+        if (this._props.items && this._props.items.length <= index) {
             return false;
         }
-        this._props.items.splice(index, 1);
+        this._props.items && this._props.items.splice(index, 1);
         return this.rerender(['item']);
     };
     RadioButton.prototype.disableItem = function (value) {
-        this._props.items.forEach(function (item) {
+        this._props.items && this._props.items.forEach(function (item) {
             if (item.value === value) {
                 item.isDisabled = true;
             }
@@ -125,7 +160,7 @@ var RadioButton = /** @class */ (function (_super) {
         this.rerender(['item']);
     };
     RadioButton.prototype.enableItem = function (value) {
-        this._props.items.forEach(function (item) {
+        this._props.items && this._props.items.forEach(function (item) {
             if (item.value === value) {
                 item.isDisabled = false;
             }

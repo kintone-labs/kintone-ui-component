@@ -29,7 +29,7 @@ var Item = function (props) {
         var id = new Date().getTime() + '-' + generateGUID() + '-' + generateGUID() + generateGUID();
         return (React.createElement("span", { className: props.className },
             React.createElement("input", { name: props.name, id: id, disabled: props.isDisabled, type: props.type, checked: props.selected, onChange: _onChange }),
-            React.createElement("label", { htmlFor: id }, props.item.label)));
+            React.createElement("label", { htmlFor: id }, props.item.label || "")));
     }
     var className = ['kuc-list-item',
         props.selected ? 'kuc-list-item-selected' : '',
@@ -39,6 +39,6 @@ var Item = function (props) {
         React.createElement("span", { className: "kuc-icon-check" },
             React.createElement("svg", null,
                 React.createElement("path", { d: mdiCheckBold }))),
-        React.createElement("span", { className: "kuc-list-item-label" }, props.item.label)));
+        React.createElement("span", { className: "kuc-list-item-label" }, props.item.label || "")));
 };
 export default Item;

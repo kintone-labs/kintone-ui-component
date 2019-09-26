@@ -40,7 +40,7 @@ var TextArea = function (_a) {
         };
     });
     var _onChange = function (event) {
-        onChange(event.target.value);
+        onChange && onChange(event.target.value);
     };
     if (isVisible === false) {
         return null;

@@ -16,6 +16,9 @@ var Table = /** @class */ (function (_super) {
         });
         _this._addRow = function (_a) {
             var data = _a.data, rowIndex = _a.rowIndex;
+            if (!data) {
+                return [];
+            }
             var insertAt = rowIndex + 1;
             var newRowData = JSON.parse(JSON.stringify(_this._props.defaultRowData));
             var newData = data.slice(0, insertAt).concat([newRowData], data.slice(insertAt));
@@ -24,9 +27,11 @@ var Table = /** @class */ (function (_super) {
         };
         _this._removeRow = function (_a) {
             var data = _a.data, rowIndex = _a.rowIndex;
-            _this._props.data = data.filter(function (_, index) { return index !== rowIndex; });
+            var currentData = data && data.filter(function (_, index) { return index !== rowIndex; });
+            _this._props.data = currentData;
             _this._renderTableRows(true);
             _this._renderCells();
+            return currentData;
         };
         if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
@@ -39,7 +44,7 @@ var Table = /** @class */ (function (_super) {
         }
         _this._validateRequired();
         if (_this._props.actionButtonsShown !== undefined) {
-            _this._props.columns.push({ actions: _this._props.actionButtonsShown });
+            _this._props.columns && _this._props.columns.push({ actions: _this._props.actionButtonsShown });
         }
         return _this;
     }
@@ -59,7 +64,7 @@ var Table = /** @class */ (function (_super) {
         var rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'));
         var columns = [].slice.call(this._props.columns);
         rowsEl.forEach(function (rowEl, rowIndex) {
-            var rowData = _this._props.data[rowIndex];
+            var rowData = _this._props.data && _this._props.data[rowIndex];
             var updateRowData = _this.updateRowData.bind(_this, rowIndex);
             columns.forEach(function (_a, columnIndex) {
                 var cell = _a.cell;
@@ -134,7 +139,7 @@ var Table = /** @class */ (function (_super) {
     };
     Table.prototype._renderTableHeaders = function () {
         var _this = this;
-        this._props.columns.forEach(function (data) {
+        this._props.columns && this._props.columns.forEach(function (data) {
             var tableHeaderText = data.header;
             if (tableHeaderText) {
                 var headerTr = document.createElement('div');
@@ -171,13 +176,14 @@ var Table = /** @class */ (function (_super) {
         });
         iconButtonDom.style.display = 'inline-block';
         span1.appendChild(iconButtonDom);
-        if (this._props.data.length > 1) {
+        if (this._props.data && this._props.data.length > 1) {
             var span2 = document.createElement('span');
             var iconButton2 = new IconButton({ type: 'remove', color: 'gray', size: 'small' });
             var iconButtonDom2 = iconButton2.render();
             iconButton2.on('click', function () {
                 _this._dispatch({
                     type: 'REMOVE_ROW',
+                    data: _this._removeRow({ data: _this._props.data, rowIndex: rowIndex }),
                     rowIndex: rowIndex
                 });
             });
@@ -191,7 +197,7 @@ var Table = /** @class */ (function (_super) {
         if (eventOption['type'] === 'ADD_ROW') {
             if (this._props.onRowAdd) {
                 var newRowData = this._props.onRowAdd(eventOption);
-                if (newRowData) {
+                if (newRowData && this._props.data) {
                     this._props.data[eventOption.rowIndex] = newRowData;
                 }
             }
@@ -199,7 +205,6 @@ var Table = /** @class */ (function (_super) {
             this._renderCells();
         }
         if (eventOption['type'] === 'REMOVE_ROW') {
-            this._removeRow({ data: this._props.data, rowIndex: eventOption['rowIndex'] });
             if (this._props.onRowRemove) {
                 this._props.onRowRemove(eventOption);
             }
@@ -211,13 +216,13 @@ var Table = /** @class */ (function (_super) {
         if (rerender) {
             this._tableBodyContainer.innerHTML = '';
         }
-        this._props.data.forEach(function (_, rowIndex) {
+        this._props.data && this._props.data.forEach(function (_, rowIndex) {
             var tableRow = _this._tableBodyContainer.children.namedItem(rowIndex.toString());
             if (!tableRow || rerender) {
                 var tableRow_1 = document.createElement('div');
                 tableRow_1.className = 'kuc-table-tr';
                 tableRow_1.id = rowIndex.toString();
-                _this._props.columns.forEach(function (column) {
+                _this._props.columns && _this._props.columns.forEach(function (column) {
                     var actions = column.actions;
                     if (actions === true) {
                         var actionCell = _this._renderTableCellActions(rowIndex);
@@ -253,8 +258,12 @@ var Table = /** @class */ (function (_super) {
     Table.prototype.updateRowData = function (rowIndex, data, rerender, trigger, fieldName) {
         if (rerender === void 0) { rerender = true; }
         if (trigger === void 0) { trigger = true; }
+        if (fieldName === void 0) { fieldName = ''; }
         if (rowIndex === undefined || data === undefined) {
             throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        if (!this._props.data) {
+            return;
         }
         var rowData = this._mergeDeep(this._props.data[rowIndex], data);
         var type = 'CELL_CHANGE';

@@ -2,12 +2,12 @@ import Control, { ControlProps } from '../Control';
 import '../../css/Item.css';
 declare type ItemData = {
     value: string;
-    label: string;
+    label?: string;
     isDisabled?: boolean;
 };
 declare type ItemProps = ControlProps & {
-    value: string;
-    label: string;
+    value?: string;
+    label?: string;
     className?: string;
     isDisabled?: boolean;
     isSelected: boolean;

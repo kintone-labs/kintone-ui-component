@@ -13,7 +13,7 @@ declare class FieldGroup extends Control {
     private fgTabArrow;
     private fgTabLabel;
     private fgContents;
-    constructor(params: FieldGroupProps);
+    constructor(params?: FieldGroupProps);
     private _getClassName;
     private _getArrowClassName;
     private _handleToggleClick;

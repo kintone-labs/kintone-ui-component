@@ -13,8 +13,9 @@ var Tabs = /** @class */ (function (_super) {
             isDisabled: false,
             isVisible: true
         });
+        _this._onClickTabItem = function () { };
         _this.tabNames = [];
-        if (typeof params.isDisabled !== 'boolean') {
+        if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
         if (params) {
@@ -39,7 +40,7 @@ var Tabs = /** @class */ (function (_super) {
                 }
             });
         }
-        if (this._props.value) {
+        if (this._props.value !== undefined) {
             if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
                 err = Message.common.INVALID_ARGUMENT;
             }
@@ -50,11 +51,12 @@ var Tabs = /** @class */ (function (_super) {
         var _this = this;
         this.tabNamesElement = document.createElement('ul');
         this.tabNamesElement.className = 'kuc-tabs-tab-list';
-        this._props.items.forEach(function (item, index) {
+        this._props.items && this._props.items.forEach(function (item, index) {
             var tabComponent = new TabName({
                 tabName: item.tabName,
                 tabIndex: index,
                 onClickTabItem: function (tabIndex) {
+                    _this._onClickTabItem(tabIndex);
                     _this.setValue(tabIndex);
                 },
                 isActive: index === _this._props.value,
@@ -70,13 +72,15 @@ var Tabs = /** @class */ (function (_super) {
         tabContentWrapper.className = 'kuc-tabs-tab-contents';
         this.element.appendChild(tabContentWrapper);
         this.tabContentElement = document.createElement('div');
-        this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+        if (this._props.items && this._props.value !== undefined) {
+            this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+        }
         tabContentWrapper.appendChild(this.tabContentElement);
     };
     Tabs.prototype.rerender = function (changedAttr) {
         var _this = this;
         _super.prototype.rerender.call(this);
-        if (!changedAttr)
+        if (!changedAttr || !this._props.items)
             return;
         if (changedAttr.indexOf('value') !== -1) {
             this.tabNames.forEach(function (tabNames, index) {
@@ -90,40 +94,50 @@ var Tabs = /** @class */ (function (_super) {
             while (this.tabContentElement.firstChild) {
                 this.tabContentElement.removeChild(this.tabContentElement.firstChild);
             }
-            this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+            if (this._props.items && this._props.value !== undefined) {
+                this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+            }
         }
         if (changedAttr.indexOf('addItems') !== -1) {
-            var tabComponent = new TabName({
-                tabName: this._props.items[this._props.items.length - 1].tabName,
-                tabIndex: this._props.items.length - 1,
-                onClickTabItem: function (tabIndex) {
-                    _this.setValue(tabIndex);
-                },
-                isActive: this._props.items.length - 1 === this._props.value
-            });
-            this.tabNames.push(tabComponent);
-            this.tabNamesElement.appendChild(tabComponent.render());
+            if (this._props.items) {
+                var tabComponent = new TabName({
+                    tabName: this._props.items[this._props.items.length - 1].tabName,
+                    tabIndex: this._props.items.length - 1,
+                    onClickTabItem: function (tabIndex) {
+                        _this._onClickTabItem(tabIndex);
+                        _this.setValue(tabIndex);
+                    },
+                    isActive: this._props.items.length - 1 === this._props.value
+                });
+                this.tabNames.push(tabComponent);
+                this.tabNamesElement.appendChild(tabComponent.render());
+            }
         }
         if (changedAttr.indexOf('removeItems') !== -1) {
             while (this.tabNamesElement.firstChild) {
                 this.tabNamesElement.removeChild(this.tabNamesElement.firstChild);
             }
-            this._props.items.forEach(function (item, index) {
-                var tabComponent = new TabName({
-                    tabName: item.tabName,
-                    tabIndex: index,
-                    onClickTabItem: function (tabIndex) {
-                        _this.setValue(tabIndex);
-                    },
-                    isActive: index === _this._props.value
+            if (this._props.items) {
+                this._props.items.forEach(function (item, index) {
+                    var tabComponent = new TabName({
+                        tabName: item.tabName,
+                        tabIndex: index,
+                        onClickTabItem: function (tabIndex) {
+                            _this._onClickTabItem(tabIndex);
+                            _this.setValue(tabIndex);
+                        },
+                        isActive: index === _this._props.value
+                    });
+                    _this.tabNames.push(tabComponent);
+                    _this.tabNamesElement.append(tabComponent.render());
                 });
-                _this.tabNames.push(tabComponent);
-                _this.tabNamesElement.append(tabComponent.render());
-            });
+            }
             while (this.tabContentElement.firstChild) {
                 this.tabContentElement.removeChild(this.tabContentElement.firstChild);
             }
-            this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+            if (this._props.items && this._props.value !== undefined) {
+                this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+            }
         }
     };
     Tabs.prototype.setValue = function (value) {
@@ -146,7 +160,7 @@ var Tabs = /** @class */ (function (_super) {
         if (!item.tabName) {
             throw Message.tabs.MISSING_NEW_ITEM_TABNAME;
         }
-        this._props.items.push(item);
+        this._props.items && this._props.items.push(item);
         if (this._validator()) {
             throw new Error(this._validator());
         }
@@ -156,7 +170,7 @@ var Tabs = /** @class */ (function (_super) {
         if (typeof index !== 'number') {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
-        if (index >= 0 && index < this._props.items.length) {
+        if (index >= 0 && this._props.items && index < this._props.items.length) {
             this._props.items.splice(index, 1);
             this.rerender(['removeItems']);
         }
@@ -172,7 +186,7 @@ var Tabs = /** @class */ (function (_super) {
         if (!tabName) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items.forEach(function (item, index) {
+        this._props.items && this._props.items.forEach(function (item, index) {
             if (item.tabName === tabName) {
                 _this.tabNames[index].disable();
             }
@@ -183,10 +197,22 @@ var Tabs = /** @class */ (function (_super) {
         if (!tabName) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items.forEach(function (item, index) {
+        this._props.items && this._props.items.forEach(function (item, index) {
             if (item.tabName === tabName) {
                 _this.tabNames[index].enable();
             }
+        });
+    };
+    Tabs.prototype.on = function (eventName, callback) {
+        var _this = this;
+        if (eventName === 'clickTabItem') {
+            this._onClickTabItem = callback;
+            return;
+        }
+        this.element.addEventListener(eventName, function (e) {
+            if (_this._props.isDisabled)
+                return;
+            callback(e);
         });
     };
     return Tabs;

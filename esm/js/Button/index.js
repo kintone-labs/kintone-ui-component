@@ -10,7 +10,7 @@ var Button = /** @class */ (function (_super) {
             type: 'normal',
             onClick: function () { }
         });
-        if (typeof params.isDisabled !== 'boolean') {
+        if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
         if (params) {
@@ -28,7 +28,7 @@ var Button = /** @class */ (function (_super) {
             this.element.className = this._getClassName();
         }
         if (changedAttr.indexOf('text') !== -1) {
-            this.element.innerHTML = this._props.text;
+            this.element.innerHTML = this._props.text || "";
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {
@@ -72,7 +72,7 @@ var Button = /** @class */ (function (_super) {
     Button.prototype._createLayout = function () {
         this.element = document.createElement('button');
         this.element.className = this._getClassName();
-        this.element.innerHTML = this._props.text;
+        this.element.innerHTML = this._props.text || "";
         if (this._props.onClick) {
             this.on('click', this._props.onClick);
         }

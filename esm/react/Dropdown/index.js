@@ -59,7 +59,7 @@ var Dropdown = function (_a) {
                 React.createElement("div", { className: className.join(' ').trim() },
                     React.createElement("div", { className: "kuc-dropdown-selected" },
                         React.createElement("span", { className: "kuc-dropdown-selected-name" },
-                            React.createElement("span", { className: "kuc-dropdown-selected-label" }, index !== -1 && items[index].label),
+                            React.createElement("span", { className: "kuc-dropdown-selected-label" }, index !== -1 && items && items[index].label),
                             React.createElement("span", { className: "icon-arrow-down" },
                                 React.createElement("svg", null,
                                     React.createElement("path", { d: mdilChevronDown }))))))),

@@ -9,13 +9,14 @@ var Attachment = /** @class */ (function (_super) {
         _this._props = tslib_1.__assign({}, _this._props, {
             files: [],
             browseButtonText: 'Browse',
-            dropZoneText: 'Drop files here.'
+            dropZoneText: 'Drop files here.',
+            isErrorVisible: false,
         });
         _this._onFileRemove = function () { };
         _this._onFileAdd = function () { };
         _this.dragEnterCounter = 0;
         _this._removeFile = function (index) {
-            _this._props.files.splice(index, 1);
+            _this._props.files && _this._props.files.splice(index, 1);
             _this._onFileRemove(_this._props.files);
         };
         _this._isFileOrDirectoryDrag = function (event) {
@@ -106,13 +107,13 @@ var Attachment = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('browseButtonText') !== -1) {
-            this.attachInputTextEl.innerText = this._props.browseButtonText;
+            this.attachInputTextEl.innerText = this._props.browseButtonText || "";
         }
         if (changedAttr.indexOf('fileLimitText') !== -1) {
-            this.constraintsFileEl.innerText = this._props.fileLimitText;
+            this.constraintsFileEl.innerText = this._props.fileLimitText || "";
         }
         if (changedAttr.indexOf('dropZoneText') !== -1) {
-            this.dropZoneElement.innerText = this._props.dropZoneText;
+            this.dropZoneElement.innerText = this._props.dropZoneText || "";
         }
         if (changedAttr.indexOf('files') !== -1 && Array.isArray(this._props.files)) {
             this._props.files.forEach(function (file, index) {
@@ -134,7 +135,7 @@ var Attachment = /** @class */ (function (_super) {
             }
         }
         if (changedAttr.indexOf('errorMessage') !== -1) {
-            this.fileErrorEl.innerText = this._props.errorMessage;
+            this.fileErrorEl.innerText = this._props.errorMessage || "";
         }
     };
     Attachment.prototype._addFiles = function (event) {
@@ -145,7 +146,7 @@ var Attachment = /** @class */ (function (_super) {
         });
         addedFiles.forEach(function (file, index) {
             var itemFile = new AttachmentFileItem({
-                index: _this._props.files.length + index,
+                index: _this._props.files && _this._props.files.length + index,
                 fileName: file['name'],
                 fileSize: file['size'],
                 onFileRemove: function (index) {
@@ -154,7 +155,9 @@ var Attachment = /** @class */ (function (_super) {
             });
             _this.listFileEl.appendChild(itemFile.render());
         });
-        this._props.files = this._props.files.concat(addedFiles);
+        if (this._props.files) {
+            this._props.files = this._props.files.concat(addedFiles);
+        }
         this._onFileAdd(this._props.files);
     };
     ;
@@ -200,7 +203,7 @@ var Attachment = /** @class */ (function (_super) {
     };
     Attachment.prototype.createFileErrorEl = function () {
         var errorEl = document.createElement('span');
-        errorEl.innerHTML = this._props.errorMessage;
+        errorEl.innerHTML = this._props.errorMessage || "";
         var fileErrorEl = document.createElement('div');
         fileErrorEl.className = 'kuc-attachment-file-error';
         fileErrorEl.style.display = 'none';

@@ -1,9 +1,9 @@
 import Control, { ControlProps } from '../Control';
 import '../../css/TextArea.css';
 declare type TextAreaProps = ControlProps & {
-    value: string;
-    onClick: (e: any) => void;
-    onChange: (e: any) => void;
+    value?: string;
+    onClick?: (e: any) => void;
+    onChange?: (e: any) => void;
 };
 declare class TextArea extends Control {
     protected _props: TextAreaProps;
@@ -19,10 +19,10 @@ declare class TextArea extends Control {
     private currentY;
     private translateX;
     private translateY;
-    constructor(params: TextAreaProps);
+    constructor(params?: TextAreaProps);
     rerender(changedAttr?: string[]): void;
     setValue(text: string): void;
-    getValue(): string;
+    getValue(): string | undefined;
     _onMouseDown: () => void;
     private createContainerEL;
     private createTextareaEL;

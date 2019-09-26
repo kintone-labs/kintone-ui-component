@@ -3,7 +3,7 @@ import '../../css/font.css';
 import '../../css/Item.css';
 declare type item = {
     value: string;
-    label: string;
+    label?: string;
     isDisabled?: boolean;
 };
 declare type ItemProps = {

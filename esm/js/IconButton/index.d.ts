@@ -11,7 +11,7 @@ declare class IconButton extends Control {
     private iconEl;
     private pathEl;
     private _onClick;
-    constructor(params: IconBtnProps);
+    constructor(params?: IconBtnProps);
     private _createLayout;
     private _getClassName;
     private _getClassSize;

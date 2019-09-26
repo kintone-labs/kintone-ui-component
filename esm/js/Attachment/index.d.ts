@@ -1,18 +1,18 @@
 import Control, { ControlProps } from '../Control';
 import '../../css/Attachment.css';
 declare type FileObject = {
-    name: string;
-    size: number;
+    name?: string;
+    size?: number;
 };
 declare type AttachmentProps = ControlProps & {
-    dropZoneText: string;
-    browseButtonText: string;
-    fileLimitText: string;
-    errorMessage: string;
-    isErrorVisible: boolean;
-    files: FileObject[];
-    onFilesAdd: (files: FileObject[]) => void;
-    onFileRemove: (files: FileObject[]) => void;
+    dropZoneText?: string;
+    browseButtonText?: string;
+    fileLimitText?: string;
+    errorMessage?: string;
+    isErrorVisible?: boolean;
+    files?: FileObject[];
+    onFilesAdd?: (files: FileObject[]) => void;
+    onFileRemove?: (files: FileObject[]) => void;
 };
 declare class Attachment extends Control {
     protected _props: AttachmentProps;
@@ -24,11 +24,11 @@ declare class Attachment extends Control {
     private fileErrorEl;
     private dropZoneElement;
     private dragEnterCounter;
-    constructor(params: AttachmentProps);
+    constructor(params?: AttachmentProps);
     rerender(changedAttr?: string[]): void;
     private _addFiles;
     setFiles(files: Array<FileObject>): void;
-    getFiles(): FileObject[];
+    getFiles(): FileObject[] | undefined;
     setDropZoneText(text: string): void;
     setBrowseButtonText(text: string): void;
     setFileLimitText(text: string): void;

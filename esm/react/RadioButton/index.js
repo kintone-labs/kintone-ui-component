@@ -10,11 +10,13 @@ var RadioButton = function (props) {
     if (props.isVisible === false) {
         return null;
     }
-    if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
-        throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
-    }
-    if (!AbstractSingleSelection._hasValidValue(props.items, props.value)) {
-        throw new Error(Message.common.INVALID_ARGUMENT);
+    if (props.items) {
+        if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
+            throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+        }
+        if (props.value && !AbstractSingleSelection._hasValidValue(props.items, props.value)) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
     }
     var items = props.items && props.items.map(function (item, i) {
         return (React.createElement(Item, { key: i, selected: props.value === item.value, onChange: function (item_prop) { return AbstractSingleSelection._handleItemClick(item_prop, props.onChange); }, item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled, type: "radio", name: props.name, className: "kuc-input-radio-item" }));

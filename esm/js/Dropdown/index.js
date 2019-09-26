@@ -77,9 +77,11 @@ var Dropdown = /** @class */ (function (_super) {
                         });
                         return newItem;
                     });
-            _this.itemComps.forEach(function (item) {
-                _this.listOuterEl.appendChild(item.render());
-            });
+            if (_this.itemComps) {
+                _this.itemComps.forEach(function (item) {
+                    _this.listOuterEl.appendChild(item.render());
+                });
+            }
             subcontainerEl.appendChild(outerEl);
             subcontainerEl.appendChild(_this.listOuterEl);
             return subcontainerEl;
@@ -92,11 +94,9 @@ var Dropdown = /** @class */ (function (_super) {
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
-        if (AbstractSingleSelection._hasDuplicatedItems(_this._props.items)) {
-            throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
-        }
-        if (!AbstractSingleSelection._hasValidValue(_this._props.items, _this._props.value)) {
-            throw new Error(Message.common.INVALID_ARGUMENT);
+        var validationErr = _this._validator(_this._props.items, _this._props.value);
+        if (validationErr) {
+            throw new Error(validationErr);
         }
         _this._props.items &&
             _this._props.items.some(function (item) {
@@ -125,6 +125,17 @@ var Dropdown = /** @class */ (function (_super) {
         svgEl.appendChild(pathEl);
         return svgEl;
     };
+    Dropdown.prototype._validator = function (items, value) {
+        var err;
+        if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
+            err = Message.common.SELECTTION_DUPLICATE_VALUE;
+        }
+        if (items && value &&
+            !AbstractSingleSelection._hasValidValue(items, value)) {
+            err = Message.common.INVALID_ARGUMENT;
+        }
+        return err;
+    };
     Dropdown.prototype.render = function () {
         this.rerender();
         return _super.prototype.render.call(this);
@@ -140,7 +151,14 @@ var Dropdown = /** @class */ (function (_super) {
     };
     Dropdown.prototype.setValue = function (value) {
         var _this = this;
-        this._props.items.forEach(function (item) {
+        if (!value) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        var validationErr = this._validator(this._props.items, value);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
+        this._props.items && this._props.items.forEach(function (item) {
             if (item.value === value) {
                 _this._props.value = item.value;
                 _this.label = item.label;
@@ -155,22 +173,42 @@ var Dropdown = /** @class */ (function (_super) {
         return this._props.items;
     };
     Dropdown.prototype.addItem = function (item) {
-        this._props.items.push(item);
+        if (!item) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        if (!this._props.items) {
+            this._props.items = [];
+        }
+        var itemsToCheck = Object.assign([], this._props.items);
+        itemsToCheck.push(item);
+        var validationErr = this._validator(itemsToCheck);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
+        this._props.items = itemsToCheck;
         this.rerender(['item']);
     };
     Dropdown.prototype.setItems = function (items) {
+        if (!items || !Array.isArray(items)) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        // It isn't need to check hasValidValue
+        var validationErr = this._validator(items);
+        if (validationErr) {
+            throw new Error(validationErr);
+        }
         this._props.items = items;
         this.rerender(['item']);
     };
     Dropdown.prototype.removeItem = function (index) {
-        if (this._props.items.length <= index) {
+        if (this._props.items && this._props.items.length <= index) {
             return false;
         }
-        this._props.items.splice(index, 1);
+        this._props.items && this._props.items.splice(index, 1);
         return this.rerender(['item']);
     };
     Dropdown.prototype.disableItem = function (value) {
-        this._props.items.forEach(function (item) {
+        this._props.items && this._props.items.forEach(function (item) {
             if (item.value === value) {
                 item.isDisabled = true;
             }
@@ -178,7 +216,7 @@ var Dropdown = /** @class */ (function (_super) {
         this.rerender(['item']);
     };
     Dropdown.prototype.enableItem = function (value) {
-        this._props.items.forEach(function (item) {
+        this._props.items && this._props.items.forEach(function (item) {
             if (item.value === value) {
                 item.isDisabled = false;
             }

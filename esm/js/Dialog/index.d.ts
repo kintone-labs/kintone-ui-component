@@ -13,7 +13,7 @@ declare class Dialog extends Control {
     private _bodyContentDivEl;
     private _closeButton;
     private _containerEl;
-    constructor(params: DialogProps);
+    constructor(params?: DialogProps);
     private _createDialogLayout;
     rerender(changedAttr?: string[]): void;
     private _validator;

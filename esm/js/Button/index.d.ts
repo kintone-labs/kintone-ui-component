@@ -1,13 +1,13 @@
 import Control, { ControlProps } from '../Control';
 import '../../css/Button.css';
 declare type ButtonProps = ControlProps & {
-    text: string;
-    type: 'normal' | 'submit';
+    text?: string;
+    type?: 'normal' | 'submit';
     onClick?: (e: Event) => void;
 };
 declare class Button extends Control {
     protected _props: ButtonProps;
-    constructor(params: ButtonProps);
+    constructor(params?: ButtonProps);
     rerender(changedAttr?: string[]): void;
     setText(text: string): void;
     setType(type: 'normal' | 'submit'): void;

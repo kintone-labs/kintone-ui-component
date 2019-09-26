@@ -1,10 +1,10 @@
 import Control, { ControlProps } from '../Control';
 import '../../css/Attachment.css';
 declare type AttachmentFileItemProps = ControlProps & {
-    index: number;
-    fileName: string;
-    fileSize: number;
-    onFileRemove: (index: number) => void;
+    index?: number;
+    fileName?: string;
+    fileSize?: number;
+    onFileRemove?: (index: number) => void;
 };
 declare class AttachmentFileItem extends Control {
     protected _props: AttachmentFileItemProps;
@@ -12,7 +12,7 @@ declare class AttachmentFileItem extends Control {
     private ONE_GB;
     private ONE_MB;
     private ONE_KB;
-    constructor(params: AttachmentFileItemProps);
+    constructor(params?: AttachmentFileItemProps);
     _formatFileSize(size: number): string;
     createItemContainerEl(): HTMLDivElement;
     onRemove: () => void;

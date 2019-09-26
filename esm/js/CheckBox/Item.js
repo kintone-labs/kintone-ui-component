@@ -25,7 +25,7 @@ var Item = /** @class */ (function (_super) {
         _this.element.appendChild(inputCheckboxElement);
         var labelForCheckboxElement = document.createElement('label');
         labelForCheckboxElement.htmlFor = inputCheckboxID;
-        labelForCheckboxElement.append(_this._props.label);
+        labelForCheckboxElement.append(_this._props.label || "");
         _this.element.appendChild(labelForCheckboxElement);
         _this.inputCheckboxElement.addEventListener('change', function (e) {
             _this._props.isSelected = _this.inputCheckboxElement.checked;
@@ -47,7 +47,7 @@ var Item = /** @class */ (function (_super) {
         }
     };
     Item.prototype.getValue = function () {
-        return this._props.value;
+        return this._props.value || "";
     };
     Item.prototype.select = function () {
         this._props.isSelected = true;

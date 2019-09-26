@@ -19,7 +19,7 @@ var CheckBox = function (props) {
         if (!include) {
             value.push(itemValue);
         }
-        props.onChange(value);
+        props.onChange && props.onChange(value);
     };
     if (props.isVisible === false || !props.items) {
         return null;

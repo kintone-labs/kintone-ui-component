@@ -22,7 +22,7 @@ var Alert = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('text') !== -1) {
-            this.element.innerHTML = this._props.text;
+            this.element.innerHTML = this._props.text || "";
         }
         if (changedAttr.indexOf('type') !== -1) {
             this.element.className = this._getClassName();

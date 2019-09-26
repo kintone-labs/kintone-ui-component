@@ -12,11 +12,15 @@ var NotifyPopup = /** @class */ (function (_super) {
             type: 'error'
         });
         _this._onClick = function (e) { };
+        _this._onClose = function (e) { };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
         _this.element = _this._createPopupLayout();
-        _this.closeButton.on('click', function () {
+        _this.closeButton.on('click', function (e) {
+            if (_this._props.isDisabled)
+                return;
+            _this._onClose(e);
             _this.hide();
         });
         _this.rerender(['text', 'type']);
@@ -53,8 +57,14 @@ var NotifyPopup = /** @class */ (function (_super) {
         return containerDOM;
     };
     NotifyPopup.prototype.on = function (eventName, callback) {
-        if (eventName === 'click')
+        if (eventName === 'click') {
             this._onClick = callback;
+            return;
+        }
+        if (eventName === 'close') {
+            this._onClose = callback;
+            return;
+        }
     };
     NotifyPopup.prototype._getClassName = function () {
         var className = [

@@ -10,14 +10,14 @@ var Attachment = function (props) {
     var inputElement;
     var dragEnterCounter = 0;
     var _removeFile = function (index) {
-        if (props.onFileRemove) {
+        if (props.onFileRemove && props.files) {
             var files = props.files.slice();
             files.splice(index, 1);
             props.onFileRemove(files);
         }
     };
     var _addFiles = function (event) {
-        if (props.onFilesAdd) {
+        if (props.onFilesAdd && props.files) {
             var addedFiles_1 = event.dataTransfer ? event.dataTransfer.files : event.target.files;
             addedFiles_1 = Object.keys(addedFiles_1).map(function (e) {
                 return addedFiles_1[e];
