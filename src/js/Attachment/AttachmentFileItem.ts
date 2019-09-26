@@ -24,10 +24,7 @@ class AttachmentFileItem extends Control{
     this.element = this.createItemContainerEl();
   }
   _formatFileSize(size: number) {
-    let {fileSize}= this._props;
-    if(typeof fileSize === "boolean" || typeof fileSize === "string" || fileSize === null || fileSize === undefined){
-      return "NAN bytes";
-    } else if (size >= this.ONE_GB) {
+    if (size >= this.ONE_GB) {
       return Math.round(size / this.ONE_GB) + ' GB';
     } else if (size >= this.ONE_MB) {
       return Math.round(size / this.ONE_MB) + ' MB';
@@ -61,7 +58,11 @@ class AttachmentFileItem extends Control{
 
     let fileSizeEl = document.createElement('div');
     fileSizeEl.classList.add('kuc-attachment_file_size');
-    fileSizeEl.innerText = this._formatFileSize(this._props.fileSize || 0);
+    if(typeof this._props.fileSize === "number"){
+      fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
+    }else{
+      fileSizeEl.innerText= "NAN bytes"
+    }
     container.appendChild(fileSizeEl);
 
     let clearEl = document.createElement('div');
