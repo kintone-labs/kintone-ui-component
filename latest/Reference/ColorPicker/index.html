@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -875,8 +875,7 @@
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -909,7 +908,7 @@ body.appendChild(colorPicker.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -922,6 +921,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -959,9 +959,7 @@ colorPicker.setColor('#666666');
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -981,6 +979,7 @@ export default class Plugin extends React.Component {
         });
     };
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1017,7 +1016,7 @@ colorPicker.getColor();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1036,11 +1035,12 @@ export default class Plugin extends React.Component {
         console.log(this.state.color);
     };
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
 <h3 id="oneventname-callback">on(eventName, callback)</h3>
-<p>Register callback for click event</p>
+<p>Register callback for an event</p>
 <p><strong>Parameter</strong></p>
 <table>
 <thead>
@@ -1080,7 +1080,7 @@ colorPicker.on('change', function(color) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1096,6 +1096,7 @@ export default class Plugin extends React.Component {
         console.log(color);
     };
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1117,7 +1118,7 @@ myColorPicker.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1132,12 +1133,13 @@ export default class Plugin extends React.Component {
   render() {
     return (
       &lt;div&gt;
-        &lt;button onClick={this.handleHide}&gt;Show&lt;/button&gt;
+        &lt;button onClick={this.handleShow}&gt;Show&lt;/button&gt;
         &lt;ColorPicker color=&quot;#FF0000&quot; isVisible={this.state.isVisible} /&gt;
       &lt;/div&gt;
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1157,9 +1159,9 @@ myColorPicker.hide();
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1180,6 +1182,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1201,7 +1204,7 @@ myColorPicker.disable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1216,12 +1219,13 @@ export default class Plugin extends React.Component {
   render() {
     return (
       &lt;div&gt;
-        &lt;button onClick={this.handleHide}&gt;Disable&lt;/button&gt;
+        &lt;button onClick={this.handleDisable}&gt;Disable&lt;/button&gt;
         &lt;ColorPicker color=&quot;#FF0000&quot; isDisabled={this.state.isDisabled} /&gt;
       &lt;/div&gt;
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1243,7 +1247,7 @@ myColorPicker.enable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1258,12 +1262,13 @@ export default class Plugin extends React.Component {
   render() {
     return (
       &lt;div&gt;
-        &lt;button onClick={this.handleHide}&gt;Enable&lt;/button&gt;
+        &lt;button onClick={this.handleEnable}&gt;Enable&lt;/button&gt;
         &lt;ColorPicker color=&quot;#FF0000&quot; isDisabled={this.state.isDisabled} /&gt;
       &lt;/div&gt;
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

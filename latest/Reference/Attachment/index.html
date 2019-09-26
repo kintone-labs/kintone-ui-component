@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -998,6 +998,7 @@ body.appendChild(attachment.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1017,6 +1018,8 @@ export default class Plugin extends React.Component {
     return (&lt;Attachment files={this.state.files} onFilesAdd={this.handleFilesAdd} onFileRemove={this.handleFileRemove} /&gt;);
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1073,6 +1076,7 @@ button.on('click', () =&gt; {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1101,6 +1105,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1142,6 +1147,7 @@ button.on('click', () =&gt; {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1170,6 +1176,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1208,6 +1216,7 @@ attachment.setDropZoneText('Drop files here.');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1239,6 +1248,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1277,6 +1288,7 @@ attachment.setBrowseButtonText('Browse');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1308,6 +1320,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1346,6 +1360,7 @@ attachment.setFileLimitText('Maximum: 1 GB');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1377,6 +1392,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1415,6 +1432,7 @@ attachment.setErrorMessage('Error message');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1446,6 +1464,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1473,6 +1492,7 @@ showButton.on('click', () =&gt; {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1505,6 +1525,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1538,6 +1560,8 @@ hideButton.on('click', () =&gt; {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -1569,11 +1593,13 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
-<p>Register callback for change event</p>
+<p>Register callback for an event</p>
 <p><strong>Parameter</strong></p>
 <table>
 <thead>
@@ -1645,6 +1671,7 @@ attachment.on('fileRemove', (files) =&gt; {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1672,6 +1699,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1693,6 +1722,8 @@ attachment.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -1723,6 +1754,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -1744,6 +1777,8 @@ attachment.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
 export default class Plugin extends React.Component {
   constructor(props) {
     super(props);
@@ -1757,7 +1792,7 @@ export default class Plugin extends React.Component {
   handleFileRemove = files =&gt; {
     this.setState({ files });
   };
-  show = () =&gt; {
+  hide = () =&gt; {
     this.setState({ isVisible: false });
   };
   render() {
@@ -1774,6 +1809,8 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>

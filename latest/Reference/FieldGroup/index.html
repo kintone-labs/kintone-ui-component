@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -782,7 +782,7 @@
 </tr>
 <tr>
 <td>2</td>
-<td>Field roup name.</td>
+<td>Field group name.</td>
 </tr>
 <tr>
 <td>3</td>
@@ -1012,15 +1012,13 @@ const fieldGroup = new kintoneUIComponent.FieldGroup({
     name: 'Group',
     toggle: 'expand'
 })
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(fieldGroup.render());
 </code></pre>
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         const items = [
@@ -1095,9 +1093,8 @@ body.appendChild(fieldGroup.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
-import { render } from 'react-dom';
-
-export default class Sample extends React.Component {
+import Reactdom from &quot;react-dom&quot;; 
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         const items = [
@@ -1145,7 +1142,7 @@ export default class Sample extends React.Component {
         });
     }
 }
-render(&lt;Sample /&gt;, kintone.app.getHeaderSpaceElement());
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1205,8 +1202,9 @@ body.appendChild(fieldGroup.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -1243,6 +1241,7 @@ export default class Sample extends React.Component {
       });
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1293,8 +1292,9 @@ console.log(fieldGroup.getContent());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -1329,6 +1329,7 @@ export default class Sample extends React.Component {
       console.log(this.state.content)
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1385,8 +1386,9 @@ body.appendChild(fieldGroup.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -1412,6 +1414,7 @@ export default class Sample extends React.Component {
         this.setState({ name: 'NEW FIELD GROUP' });
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1456,8 +1459,9 @@ console.log(fieldGroup.getName());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -1483,6 +1487,7 @@ export default class Sample extends React.Component {
         console.log(this.state.name);
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1537,8 +1542,9 @@ body.appendChild(fieldGroup.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -1564,6 +1570,7 @@ export default class Sample extends React.Component {
         this.setState({ toggle: 'collapse' });
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1607,8 +1614,9 @@ console.log(fieldGroup.getToggle());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { FieldGroup, Label } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
-export default class Sample extends React.Component {
+export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = { name: 'Group', toggle: 'expand' };
@@ -1634,6 +1642,7 @@ export default class Sample extends React.Component {
         console.log(this.state.toggle);
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

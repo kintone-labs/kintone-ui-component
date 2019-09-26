@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -836,7 +836,7 @@
 <tr>
 <td>options</td>
 <td>Object</td>
-<td>Yes</td>
+<td>No</td>
 <td>An object contains parameters of constructor.</td>
 </tr>
 <tr>
@@ -848,8 +848,8 @@
 <tr>
 <td>options.items[x].tabName</td>
 <td>String</td>
-<td>Optional</td>
-<td>Name of a tab-pane. <br> If options.items exist, the name of a tab-pane must be required</td>
+<td>Conditional</td>
+<td>Name of a tab-pane. <br> If options.items[x] exist, the name of a tab-pane is required</td>
 </tr>
 <tr>
 <td>options.items[x].tabContent</td>
@@ -861,7 +861,7 @@
 <td>options.items[x].isDisabled</td>
 <td>Boolean</td>
 <td>No</td>
-<td>Indicate if tab-pane will be disabled. <br> Default value: <strong>false</strong></td>
+<td>Indicate if tab-pane will be disabled. <br> Default value:  'false'</td>
 </tr>
 <tr>
 <td>options.value</td>
@@ -1032,6 +1032,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab 1&quot;,
@@ -1062,6 +1063,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1117,6 +1119,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab 1&quot;,
@@ -1146,6 +1149,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1214,6 +1218,7 @@ body.appendChild(tabs.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab 1&quot;,
@@ -1244,6 +1249,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1292,6 +1298,7 @@ body.appendChild(tabs.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab1&quot;,
@@ -1323,6 +1330,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1378,6 +1386,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab1&quot;,
@@ -1409,6 +1418,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1464,6 +1474,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const items = [{
     tabName: &quot;Tab1&quot;,
@@ -1497,6 +1508,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1553,6 +1565,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Tabs} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 const items = [{
     tabName: &quot;Tab1&quot;,
     tabContent: 'This is Tab1',
@@ -1580,12 +1593,14 @@ export default class Plugin extends React.Component {
     render() {
         return (
             &lt;div&gt;
-                &lt;Tabs items={this.state.items} value={this.state.value} /&gt;
+                &lt;Tabs items={this.state.items} value={this.state.value} 
+                onClickTabItem={(value) =&gt; this.setState({ value })}/&gt;
                 &lt;button onClick={this.enableItem}&gt;Enable tab1&lt;/button&gt;
             &lt;/div&gt;
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1644,6 +1659,8 @@ body.appendChild(tabs.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Tabs } from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 const items = [{
     tabName: &quot;Tab1&quot;,
     tabContent: 'This is Tab1',
@@ -1671,6 +1688,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>

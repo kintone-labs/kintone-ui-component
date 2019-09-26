@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -884,6 +884,7 @@ body.appendChild(button.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     render() {
@@ -892,6 +893,8 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
 </code></pre>
 
 </details>
@@ -930,6 +933,7 @@ button.setText('submit');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -951,6 +955,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -989,6 +994,7 @@ button.setType('normal');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1011,6 +1017,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1057,6 +1064,7 @@ button.on('click', function(event) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     render() {
@@ -1069,6 +1077,7 @@ export default class Plugin extends React.Component {
         console.log('on click');
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1090,6 +1099,7 @@ button.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1113,6 +1123,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1134,6 +1145,7 @@ button.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1157,6 +1169,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1178,6 +1191,7 @@ button.disable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1200,6 +1214,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1221,6 +1236,7 @@ button.enable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1243,6 +1259,7 @@ export default class Plugin extends React.Component {
     );
   }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

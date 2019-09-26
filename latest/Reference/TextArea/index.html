@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -876,7 +876,7 @@ body.appendChild(textArea.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -935,6 +935,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -957,7 +958,7 @@ export default class Plugin extends React.Component {
         });
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -995,6 +996,7 @@ console.log(textArea.getValue());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1014,6 +1016,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     };
 };
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1057,14 +1060,15 @@ textArea.on('click', function(event) {
     console.log('onclick', event.target.value);
 });
 
-textArea.on('change', function(event) {
-    console.log('onchange', event.target.value);
+textArea.on('change', function(value) {
+    console.log('onchange', value);
 });
 </code></pre>
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1088,7 +1092,7 @@ export default class Plugin extends React.Component {
         console.log('onchange: ' + value);
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1116,6 +1120,7 @@ body.appendChild(textArea.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1134,7 +1139,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1161,6 +1166,7 @@ body.appendChild(textArea.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1181,7 +1187,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1194,7 +1200,7 @@ export default class Plugin extends React.Component {
 <details class="tab-container" open="">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var textArea = new TextArea({value: 'textarea'});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var btn = document.createElement('button'); 
 btn.textContent = 'Disable';
 btn.onclick = function() {
@@ -1208,6 +1214,7 @@ body.appendChild(textArea.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1228,7 +1235,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -1241,7 +1248,7 @@ export default class Plugin extends React.Component {
 <details class="tab-container" open="">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var textArea = new TextArea({value: 'textarea', isDisabled: true});
+<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isDisabled: true});
 var btn = document.createElement('button'); 
 btn.textContent = 'Enable';
 btn.onclick = function() {
@@ -1256,6 +1263,7 @@ body.appendChild(textArea.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1274,7 +1282,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
 </code></pre>
 
 </details>

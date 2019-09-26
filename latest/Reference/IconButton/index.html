@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -873,8 +873,7 @@
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
-import React from 'react';
-
+import React from 'react'; 
 export default class Plugin extends React.Component {
     render() {
         return (
@@ -903,6 +902,7 @@ body.appendChild(iconBtn.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     render() {
@@ -911,6 +911,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -931,7 +932,7 @@ export default class Plugin extends React.Component {
 <td>color</td>
 <td>String</td>
 <td>Yes</td>
-<td>The size of of button. The value is one of: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.</td>
+<td>The color of the button. The value is one of the following: <ul><li>  'gray'</li><li> 'blue'</li><li> 'red'</li><li> 'green'</li><li>'transparent'</li></ul> Default value is 'gray'.</td>
 </tr>
 </tbody>
 </table>
@@ -949,6 +950,7 @@ iconBtn.setColor('green');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -969,6 +971,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -989,7 +992,7 @@ export default class Plugin extends React.Component {
 <td>shape</td>
 <td>String</td>
 <td>Yes</td>
-<td>The shape of the button. The value is one of: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+<td>The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
 </tr>
 </tbody>
 </table>
@@ -1007,6 +1010,7 @@ iconBtn.setShape('normal');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1028,6 +1032,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1048,7 +1053,7 @@ export default class Plugin extends React.Component {
 <td>size</td>
 <td>String</td>
 <td>Yes</td>
-<td>The size of of button. The value is one of: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.</td>
+<td>The size of the button. The value is one of the following: <ul><li>  'normal'</li><li> 'small'</li></ul> Default value is 'normal'.</td>
 </tr>
 </tbody>
 </table>
@@ -1067,6 +1072,7 @@ iconBtn.setSize('small');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1088,6 +1094,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1108,7 +1115,7 @@ export default class Plugin extends React.Component {
 <td>type</td>
 <td>String</td>
 <td>Yes</td>
-<td>The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
+<td>The type of button. The value is one of following: <ul><li> 'insert'</li><li> 'remove'</li><li>'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.</td>
 </tr>
 </tbody>
 </table>
@@ -1127,6 +1134,7 @@ iconBtn.setType('remove');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1148,7 +1156,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1196,6 +1204,7 @@ iconBtn.on('click', function(event) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     render() {
@@ -1207,7 +1216,7 @@ export default class Plugin extends React.Component {
         console.log('on click');
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1230,6 +1239,7 @@ iconBtn.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1251,7 +1261,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1274,6 +1284,7 @@ iconBtn.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1295,7 +1306,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1318,6 +1329,7 @@ iconBtn.disable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1339,7 +1351,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1362,6 +1374,7 @@ iconBtn.enable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { IconButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1383,7 +1396,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

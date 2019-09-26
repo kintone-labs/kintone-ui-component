@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -885,8 +885,7 @@
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Dialog} from '@kintone/kintone-ui-component';
-import React from 'react';
-
+import React from 'react';  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -940,8 +939,7 @@ body.appendChild(myDialog.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Dialog} from '@kintone/kintone-ui-component';
 import React from 'react';
-import {render} from 'react-dom';
-
+import Reactdom from &quot;react-dom&quot;;  
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -967,7 +965,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-render(&lt;Plugin /&gt;, document.getElementById('root'));
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -995,6 +993,7 @@ myDialog.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1021,6 +1020,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1048,6 +1048,7 @@ myDialog.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     render() {
@@ -1062,6 +1063,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1102,6 +1104,7 @@ myDialog.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1126,6 +1129,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1154,6 +1158,7 @@ console.log('Header: ', myDialog.getHeader()); // return &quot;Dialog header&quo
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1186,6 +1191,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1226,6 +1232,7 @@ myDialog.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1250,6 +1257,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1278,6 +1286,7 @@ console.log('Content: ', myDialog.getContent()); // return &quot;This is content
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1309,6 +1318,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1349,6 +1359,7 @@ myDialog.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1373,6 +1384,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1401,6 +1413,7 @@ console.log('Footer: ', myDialog.getFooter()); // return &quot;Footer&quot;
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dialog } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1432,6 +1445,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

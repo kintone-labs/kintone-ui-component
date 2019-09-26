@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -478,6 +478,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setitemsitems" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getvalue" class="md-nav__link">
     getValue()
   </a>
@@ -764,6 +771,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setitemsitems" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getvalue" class="md-nav__link">
     getValue()
   </a>
@@ -970,7 +984,6 @@
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
-
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -1037,6 +1050,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1067,6 +1081,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1139,6 +1154,7 @@ dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1172,7 +1188,7 @@ export default class Plugin extends React.Component {
       }))
     };
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1228,6 +1244,7 @@ console.log(firstItem);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -1264,11 +1281,9 @@ export default class Plugin extends React.Component {
           &lt;button onClick={()=&gt;this.handleClick(0)}&gt;Remove Item&lt;/button&gt;
          &lt;/div&gt;
         );
-    }
-
-
+    } 
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1340,6 +1355,7 @@ list.forEach(function(item) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1385,7 +1401,150 @@ export default class Plugin extends React.Component {
     });
   };
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
 
+</details>
+<h3 id="setitemsitems">setItems(items)</h3>
+<p>Set all items of the dropdown list.
+When using this function in pure js, selected value is released.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>A object contains params of constructor.</td>
+</tr>
+<tr>
+<td>options.items</td>
+<td>Array&lt;Object&gt;</td>
+<td>Yes</td>
+<td>List of items will be displayed on dropdown.</td>
+</tr>
+<tr>
+<td>options.items[x].value</td>
+<td>String</td>
+<td>Yes</td>
+<td>If the value is duplicate, the error message will be displayed.</td>
+</tr>
+<tr>
+<td>options.items[x].label</td>
+<td>String</td>
+<td>No</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>options.items[x].isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate item will be disabled when display.<br>Default value: 'false'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var dropdown = new kintoneUIComponent.Dropdown({
+  items: [
+    {
+      label: 'Orange',
+      value: 'Orange',
+      isDisabled: true
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      isDisabled: false
+    }
+  ],
+  value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dropdown.render());
+
+var newItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+    isDisabled: true
+  },
+  {
+    label: 'Grapes',
+    value: 'Grapes',
+    isDisabled: false
+  }
+];
+dropdown.setItems(newItems);
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { DropDown } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+  constructor(opts) {
+    super(opts);
+    this.state = {
+      items: [
+        {
+          label: 'Orange',
+          value: 'Orange',
+          isDisabled: true
+        },
+        {
+          label: 'Banana',
+          value: 'Banana',
+          isDisabled: false
+        }
+      ],
+      value: 'Banana'
+    };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;Dropdown
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value =&gt; {
+            this.setState({ value });
+          }}
+        /&gt;
+        &lt;button onClick={this.handleClick}&gt;Set Items&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  handleClick = () =&gt; {
+    const newItems = [
+      {
+        label: 'Apple',
+        value: 'Apple',
+        isDisabled: true
+      },
+      {
+        label: 'Grapes',
+        value: 'Grapes',
+        isDisabled: false
+      }
+    ];
+    this.setState({ items: newItems, value: 'Apple' });
+  };
+}
 </code></pre>
 
 </details>
@@ -1439,6 +1598,7 @@ console.log(selectedItem);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1479,7 +1639,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1534,6 +1694,7 @@ dropdown.setValue('Orange');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1574,7 +1735,7 @@ export default class Plugin extends React.Component {
         this.setState({value: 'Orange'});
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1629,6 +1790,7 @@ dropdown.disableItem('Orange');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1672,7 +1834,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1727,6 +1889,7 @@ dropdown.enableItem('Banana');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1770,7 +1933,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1833,6 +1996,7 @@ dropdown.on('change', function(value) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1869,8 +2033,8 @@ export default class Plugin extends React.Component {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
-
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1908,6 +2072,7 @@ dropdown.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1948,7 +2113,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1986,6 +2151,7 @@ dropdown.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     c  constructor(props) {
@@ -2025,7 +2191,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -2063,6 +2229,7 @@ dropdown.disable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
       constructor(props) {
@@ -2103,7 +2270,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -2141,6 +2308,7 @@ dropdown.enable();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
    constructor(props) {
@@ -2181,7 +2349,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>

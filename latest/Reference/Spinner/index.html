@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -733,7 +733,7 @@
 <td>options.isVisible</td>
 <td>Boolean</td>
 <td>No</td>
-<td>The spinner will be visible. <br> Default value: <strong>false</strong></td>
+<td>The spinner will be visible. <br> Default value: 'false'</td>
 </tr>
 </tbody>
 </table>
@@ -813,6 +813,7 @@ body.appendChild(btn);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -833,7 +834,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>
@@ -857,6 +858,7 @@ body.appendChild(spinner.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import {Spinner} from '@kintone/kintone-ui-component';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -878,7 +880,7 @@ export default class Plugin extends React.Component {
         );
     };
 };
-
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
 
 </details>

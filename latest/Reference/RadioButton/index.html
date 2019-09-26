@@ -121,7 +121,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.8</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.3.9</a>
         </div>
       </div>
  
@@ -550,6 +550,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setitemsitems" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getvalue" class="md-nav__link">
     getValue()
   </a>
@@ -764,6 +771,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setitemsitems" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getvalue" class="md-nav__link">
     getValue()
   </a>
@@ -892,14 +906,14 @@
 <tr>
 <td>options</td>
 <td>Object</td>
-<td>Yes</td>
+<td>No</td>
 <td>The object contains params of constructor.</td>
 </tr>
 <tr>
 <td>options.name</td>
 <td>String</td>
-<td>Yes</td>
-<td>Name of radio button for submit.<br> If value isn't set, the error message will be displayed.</td>
+<td>Conditional</td>
+<td>Name of radio button for submit.<br> Name is required if options exists.<br> If value isn't set, the error message will be displayed.</td>
 </tr>
 <tr>
 <td>options.items</td>
@@ -973,8 +987,7 @@
 
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
-import React from 'react';
-
+import React from 'react';   
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -1045,6 +1058,7 @@ body.appendChild(radioBtn.render());
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1074,6 +1088,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1148,6 +1163,7 @@ radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 <pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
   constructor(props) {
@@ -1178,6 +1194,7 @@ export default class Plugin extends React.Component {
       }))
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1238,6 +1255,7 @@ radioBtn.removeItem(0);
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1274,7 +1292,7 @@ export default class Plugin extends React.Component {
      });
    };
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1350,8 +1368,9 @@ items.forEach(function(item) {
 </code></pre>
 
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DropDown } from '@kintone/kintone-ui-component';
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1391,7 +1410,157 @@ export default class Plugin extends React.Component {
         });
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
 
+</details>
+<h3 id="setitemsitems">setItems(items)</h3>
+<p>Set all items of the radio button list.
+When using this function in pure js, selected value is released.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>A object contains params of constructor.</td>
+</tr>
+<tr>
+<td>options.items</td>
+<td>Array&lt;Object&gt;</td>
+<td>Yes</td>
+<td>List of items will be displayed in radio button.</td>
+</tr>
+<tr>
+<td>options.items[x].value</td>
+<td>String</td>
+<td>Yes</td>
+<td>If the value is duplicate, the error message will be displayed.</td>
+</tr>
+<tr>
+<td>options.items[x].label</td>
+<td>String</td>
+<td>No</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>options.items[x].isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate item will be disabled when display.<br>Default value: 'false'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+  name: 'fruit',
+  items: [
+    {
+      label: 'Orange',
+      value: 'Orange',
+      isDisabled: false
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      isDisabled: true
+    },
+    {
+      label: 'Lemon',
+      value: 'Lemon',
+      isDisabled: true
+    }
+  ],
+  value: 'Banana'
+});
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(radioBtn.render());
+
+var newItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+    isDisabled: true
+  },
+  {
+    label: 'Grapes',
+    value: 'Grapes',
+    isDisabled: false
+  }
+];
+radioBtn.setItems(newItems);
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+  constructor(opts) {
+    super(opts);
+    this.state = {
+      items: [
+        {
+          label: 'Orange',
+          value: 'Orange',
+          isDisabled: true
+        },
+        {
+          label: 'Banana',
+          value: 'Banana',
+          isDisabled: false
+        }
+      ],
+      value: 'Banana'
+    };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;RadioButton
+          name=&quot;fruit&quot;
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value =&gt; {
+            this.setState({ value });
+          }}
+        /&gt;
+        &lt;button onClick={this.handleClick}&gt;Set Items&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  handleClick = () =&gt; {
+    const newItems = [
+      {
+        label: 'Apple',
+        value: 'Apple',
+        isDisabled: true
+      },
+      {
+        label: 'Grapes',
+        value: 'Grapes',
+        isDisabled: false
+      }
+    ];
+    this.setState({ items: newItems, value: 'Apple' });
+  };
+}
 </code></pre>
 
 </details>
@@ -1451,6 +1620,7 @@ console.log(radioBtn.getValue());
 <pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1491,7 +1661,7 @@ export default class Plugin extends React.Component {
         console.log(this.state.value);
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1552,6 +1722,7 @@ radioBtn.setValue('Lemon');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1592,7 +1763,7 @@ export default class Plugin extends React.Component {
         this.setState({value: 'Orange'});
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1653,6 +1824,7 @@ radioBtn.disableItem('Orange');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1696,6 +1868,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1756,6 +1929,7 @@ radioBtn.enableItem('Banana');
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1799,7 +1973,7 @@ export default class Plugin extends React.Component {
         this.setState({ items: items });
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1868,6 +2042,7 @@ radioBtn.on('change', function(value) {
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -1904,9 +2079,8 @@ export default class Plugin extends React.Component {
             this.setState({value});
             console.log('value: ' + value);
         }
-    }
-
-
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -1950,6 +2124,7 @@ radioBtn.show();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -1983,13 +2158,13 @@ export default class Plugin extends React.Component {
     render() {
         return (
             &lt;div&gt;
-                &lt;button onClick={this.handleShow}&gt;Show&lt;/button&gt;
+                &lt;button onClick={this.handleShow}&gt;Show&lt;/button&gt;
                 &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isVisible={this.state.isVisible} /&gt;
             &lt;/div&gt;
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -2033,6 +2208,7 @@ radioBtn.hide();
 <p><strong>React</strong></p>
 <pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -2066,13 +2242,13 @@ export default class Plugin extends React.Component {
     render() {
         return (
             &lt;div&gt;
-                &lt;button onClick={this.handleShow}&gt;Hide&lt;/button&gt;
+                &lt;button onClick={this.handleHide}&gt;Hide&lt;/button&gt;
                 &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isVisible={this.state.isVisible} /&gt;
             &lt;/div&gt;
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -2117,6 +2293,7 @@ radioBtn.disable();
 <pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
      constructor(props) {
@@ -2156,7 +2333,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
@@ -2201,6 +2378,7 @@ radioBtn.enable();
 <pre><code class="javascript">
 import { RadioButton } from '@kintone/kintone-ui-component';
 import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
 
 export default class Plugin extends React.Component {
     constructor(props) {
@@ -2240,7 +2418,7 @@ export default class Plugin extends React.Component {
         );
     }
 }
-
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
 
 </details>
