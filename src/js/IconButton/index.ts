@@ -24,7 +24,7 @@ class IconButton extends Control {
   private pathEl: SVGPathElement
   private _onClick = (e: Event) => {}
 
-  constructor(params: IconBtnProps) {
+  constructor(params?: IconBtnProps) {
     super();
 
     if (params) {

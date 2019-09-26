@@ -13,8 +13,8 @@ type item = {
 };
 
 type DropdownProps = ControlProps & {
-  value: string;
-  items: item[];
+  value?: string;
+  items?: item[];
   onChange?: (params?: any) => void;
   listItemsShown?: (params?: any) => void;
 };
@@ -27,7 +27,7 @@ class Dropdown extends Control {
     }
   };
 
-  private itemComps: Item[] = [];
+  private itemComps?: Item[] = [];
   private dropdownEl: HTMLElement;
   private nameLabelEl: HTMLElement;
   private listOuterEl: HTMLElement;
@@ -36,7 +36,7 @@ class Dropdown extends Control {
   private className: string[];
   private isListVisible: boolean = false;
 
-  constructor(params: DropdownProps) {
+  constructor(params?:DropdownProps) {
     super();
     if (
       typeof params === 'object' &&
@@ -48,19 +48,10 @@ class Dropdown extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
-    if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
-      throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
+    const validationErr = this._validator(this._props.items, this._props.value)
+    if (validationErr) {
+      throw new Error(validationErr)
     }
-
-    if (
-      !AbstractSingleSelection._hasValidValue(
-        this._props.items,
-        this._props.value
-      )
-    ) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-
     this._props.items &&
       this._props.items.some((item: item) => {
         if (item.value === this._props.value) {
@@ -168,22 +159,36 @@ class Dropdown extends Control {
     this.itemComps =
       this._props.items &&
       this._props.items.map(item => {
-        const newItem = new Item({
-          selected: this._props.value === item.value,
-          item: item,
-          isDisabled: this._props.isDisabled || item.isDisabled,
-          onClick: this._handleItemClick
-        });
-        return newItem;
+          const newItem = new Item({
+            selected: this._props.value === item.value,
+            item: item,
+            isDisabled: this._props.isDisabled || item.isDisabled,
+            onClick: this._handleItemClick
+          });
+          return newItem;
       });
-    this.itemComps.forEach(item => {
-      this.listOuterEl.appendChild(item.render());
-    });
-
+    if(this.itemComps){
+      this.itemComps.forEach(item => {
+        this.listOuterEl.appendChild(item.render());
+      });
+    }
     subcontainerEl.appendChild(outerEl);
     subcontainerEl.appendChild(this.listOuterEl);
     return subcontainerEl;
   };
+
+  private _validator(items?: item[], value?: string): string | undefined {
+    let err
+    if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
+      err = Message.common.SELECTTION_DUPLICATE_VALUE
+    }
+    if (items && value && 
+      !AbstractSingleSelection._hasValidValue(items, value)
+    ) {
+      err = Message.common.INVALID_ARGUMENT
+    }
+    return err
+  }
 
   render() {
     this.rerender();
@@ -201,7 +206,14 @@ class Dropdown extends Control {
   }
 
   setValue(value: string) {
-    this._props.items.forEach(item => {
+    if (!value) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    const validationErr = this._validator(this._props.items, value)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         this._props.value = item.value;
         this.label = item.label;
@@ -218,25 +230,45 @@ class Dropdown extends Control {
   }
 
   addItem(item: item) {
-    this._props.items.push(item);
+    if (!item) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    if(!this._props.items) {
+      this._props.items = []
+    }
+    const itemsToCheck: item[] = Object.assign([], this._props.items);
+    itemsToCheck.push(item)
+    const validationErr = this._validator(itemsToCheck)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.items = itemsToCheck;
     this.rerender(['item']);
   }
 
   setItems(items: Array<item>) {
+    if (!items || !Array.isArray(items)) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    // It isn't need to check hasValidValue
+    const validationErr = this._validator(items)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
     this._props.items = items;
     this.rerender(['item']);
   }
 
   removeItem(index: number) {
-    if (this._props.items.length <= index) {
+    if (this._props.items && this._props.items.length <= index) {
       return false;
     }
-    this._props.items.splice(index, 1);
+    this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);
   }
 
   disableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
       }
@@ -245,7 +277,7 @@ class Dropdown extends Control {
   }
 
   enableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;
       }

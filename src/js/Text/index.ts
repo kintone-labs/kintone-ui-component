@@ -16,7 +16,7 @@ class Text extends Control {
 
   private _onChange: (params?: any) => void = () => {}
 
-  constructor(params: TextProps) {
+  constructor(params?: TextProps) {
     super();
     if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled

@@ -5,9 +5,9 @@ import Message from '../../constant/Message'
 import '../../css/CheckBox.css'
 
 type CheckboxProps = ControlProps & {
-    items?: Array<ItemData>
+    items?: Array<ItemData> 
     value?: Array<string>
-    onChange: (value?: Array<string>) => void
+    onChange?: (value?: Array<string>) => void
 }
 
 class CheckBox extends Control {
@@ -23,17 +23,17 @@ class CheckBox extends Control {
 
     private itemList: Array<Item> = []
 
-    constructor(params: CheckboxProps) {
+    constructor(params?: CheckboxProps) {
         super()
-        if(typeof params.isDisabled !== 'boolean') {
+        if(params && typeof params.isDisabled !== 'boolean') {
           delete params.isDisabled
         }
         if (params) {
           this._props = {...this._props, ...params}
         }
-        
-        if (this._validator()) {
-          throw new Error(this._validator())
+        const validationErr = this._validator(this._props.items, this._props.value)
+        if (validationErr) {
+          throw new Error(validationErr)
         }
 
         this._renderItemList()
@@ -58,14 +58,14 @@ class CheckBox extends Control {
         }
     }
     
-    private _validator(): string | undefined {
+    private _validator(items?: ItemData[], value?: string[]): string | undefined {
         let err
-        if (this._props.items && AbstractMultiSelection._hasDuplicatedItems(this._props.items)) {
+        if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE
         }
         
-        if (this._props.items && this._props.value && 
-            !AbstractMultiSelection._hasValidValue(this._props.items, this._props.value)
+        if (items && value && 
+            !AbstractMultiSelection._hasValidValue(items, value)
         ) {
             err = Message.common.INVALID_ARGUMENT
         }
@@ -76,9 +76,9 @@ class CheckBox extends Control {
         if (!value && Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT)
         }
-        
-        if (this._validator()) {
-            throw new Error(this._validator())
+        const validationErr = this._validator(this._props.items, value)
+        if (validationErr) {
+            throw new Error(validationErr)
         }
         this._props.value = value;
         
@@ -96,10 +96,13 @@ class CheckBox extends Control {
         if(!this._props.items) {
             this._props.items = []
         }
-        this._props.items.push(item)
-        if (this._validator()) {
-            throw new Error(this._validator())
+        const itemsToCheck: ItemData[] = Object.assign([], this._props.items);
+        itemsToCheck.push(item)
+        const validationErr = this._validator(itemsToCheck);
+        if (validationErr) {
+            throw new Error(validationErr)
         }
+        this._props.items = itemsToCheck;
         this.rerender(['addItems'])
     }
 
@@ -112,7 +115,7 @@ class CheckBox extends Control {
                 const removeItem = this._props.items.splice(index, 1)
                 this.itemList.splice(index, 1)
                 this.element.childNodes[index].remove()
-                const removeItemValue = removeItem[0].value
+                let removeItemValue =removeItem[0].value ? removeItem[0].value: "";
                 const selectedRemoveIndex = this._props.value.indexOf(removeItemValue)
                 if(selectedRemoveIndex > -1) {
                     this._props.value.splice(selectedRemoveIndex, 1)
@@ -137,6 +140,22 @@ class CheckBox extends Control {
             }
         }
         return undefined
+    }
+
+    setItems(items: Array<ItemData>) {
+        if (!items || !Array.isArray(items)) {
+            throw new Error(Message.common.INVALID_ARGUMENT)
+        }
+        // It isn't need to check hasValidValue
+        const validationErr = this._validator(items)
+        if (validationErr) {
+            throw new Error(validationErr)
+        }
+        this._props.items = items
+        this.itemList = []
+        this._props.value = []
+        this._renderItemList()
+        this.rerender(['isDisabled'])
     }
 
     getItems(): Array<ItemData> | undefined {

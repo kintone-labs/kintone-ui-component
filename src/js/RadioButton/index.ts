@@ -7,8 +7,8 @@ import '../../css/RadioButton.css'
 
 type RadioButtonProps = ControlProps & {
   name: string;
-  value: string;
-  items: item[];
+  value?: string;
+  items?: item[];
   onChange?: (params?: any) => void;
 };
 
@@ -20,11 +20,11 @@ class RadioButton extends Control {
     }
   };
 
-  private itemComps: Item[] = [];
+  private itemComps?: Item[] = [];
 
-  constructor(params: RadioButtonProps) {
+  constructor(params?: RadioButtonProps) {
     super();
-    if (!params.name) {
+    if (params && !params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }
     if (
@@ -37,17 +37,9 @@ class RadioButton extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
-    if (AbstractSingleSelection._hasDuplicatedItems(this._props.items)) {
-      throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
-    }
-
-    if (
-      !AbstractSingleSelection._hasValidValue(
-        this._props.items,
-        this._props.value
-      )
-    ) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
+    const validationErr = this._validator(this._props.items, this._props.value)
+    if (validationErr) {
+      throw new Error(validationErr)
     }
     this.element = document.createElement('div');
     this.element.className = 'kuc-input-radio';
@@ -65,14 +57,14 @@ class RadioButton extends Control {
         newItem.on('change', this._handleItemClick);
         return newItem;
       });
-    this.itemComps.forEach(item => {
+    this.itemComps && this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
   }
 
   private _handleItemClick = (itemEl: any) => {
     const inputEl = itemEl.target;
-    this.itemComps.some(item => {
+    this.itemComps && this.itemComps.some(item => {
       if (item.id === inputEl.id) {
         this._props.value = item.value;
         return true
@@ -81,6 +73,19 @@ class RadioButton extends Control {
     });
     this._props.onChange && this._props.onChange(this._props.value);
   };
+
+  private _validator(items?: item[], value?: string): string | undefined {
+    let err
+    if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
+      err = Message.common.SELECTTION_DUPLICATE_VALUE
+    }
+    if (items && value && 
+      !AbstractSingleSelection._hasValidValue(items, value)
+    ) {
+      err = Message.common.INVALID_ARGUMENT
+    }
+    return err
+  }
 
   render() {
     this.rerender();
@@ -106,42 +111,71 @@ class RadioButton extends Control {
         newItem.on('change', this._handleItemClick);
         return newItem;
       });
-    this.itemComps.forEach(item => {
+    this.itemComps && this.itemComps.forEach(item => {
       this.element.appendChild(item.render());
     });
   }
 
   setValue(value: string) {
-    this._props.items.forEach(item => {
-      if (item.value === value) {
-        this._props.value = item.value;
-      }
-    });
+    if (!value) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    const validationErr = this._validator(this._props.items, value)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.value = value;
     this.rerender(['value']);
   }
 
   getValue() {
     return this._props.value;
   }
+
+  setItems(items: Array<item>) {
+    if (!items || !Array.isArray(items)) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    // It isn't need to check hasValidValue
+    const validaErr = this._validator(items)
+    if (validaErr) {
+      throw new Error(validaErr)
+    }
+    this._props.items = items;
+    this.rerender(['item']);
+  }
+
   getItems() {
     return this._props.items;
   }
 
   addItem(item: item) {
-    this._props.items.push(item);
+    if (!item) {
+      throw new Error(Message.common.INVALID_ARGUMENT)
+    }
+    if(!this._props.items) {
+      this._props.items = []
+    }
+    const itemsToCheck: item[] = Object.assign([], this._props.items);
+    itemsToCheck.push(item)
+    const validationErr = this._validator(itemsToCheck)
+    if (validationErr) {
+      throw new Error(validationErr)
+    }
+    this._props.items = itemsToCheck;
     this.rerender(['item']);
   }
 
   removeItem(index: number) {
-    if (this._props.items.length <= index) {
+    if (this._props.items && this._props.items.length <= index) {
       return false;
     }
-    this._props.items.splice(index, 1);
+    this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);
   }
 
   disableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
       }
@@ -150,7 +184,7 @@ class RadioButton extends Control {
   }
 
   enableItem(value: string) {
-    this._props.items.forEach(item => {
+    this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;
       }

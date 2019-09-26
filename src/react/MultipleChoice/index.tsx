@@ -6,16 +6,16 @@ import '../../css/MultipleChoice.css';
 
 type item = {
   value: string;
-  label: string;
+  label?: string;
   isDisabled?: boolean;
 }
 
 type MultipleChoiceProps = {
-  items: item[];
-  value: string[];
+  items?: item[];
+  value?: string[];
   isVisible?: boolean;
   isDisabled?: boolean;
-  onChange: (value: string[]) => void;
+  onChange?: (value: string[]) => void;
 };
 
 const MultipleChoice = (props: MultipleChoiceProps) => {
@@ -33,7 +33,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     if (!include) {
       value.push(itemValue);
     }
-    props.onChange(value);
+   props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false) {
@@ -52,11 +52,11 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     );
   });
 
-  if (AbstractMultiSelection._hasDuplicatedItems(props.items)) {
+  if (props.items && AbstractMultiSelection._hasDuplicatedItems(props.items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
-  if (!AbstractMultiSelection._hasValidValue(props.items, props.value)) {
+  if (props.items && !AbstractMultiSelection._hasValidValue(props.items, props.value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 

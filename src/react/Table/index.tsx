@@ -4,9 +4,9 @@ import '../../css/font.css'
 import '../../css/Table.css';
 
 type DispatchParams = {
-  type: string,
+  type?: string,
   data?: object[],
-  rowIndex: number,
+  rowIndex?: number,
   fieldName?: string
 }
 
@@ -18,13 +18,13 @@ type OnChangeCallbackParams = {
 
 type HandlerFunction = (
   newValue: any, 
-  tableData: object[], 
-  rowIndex: number, 
+  tableData?: object[], 
+  rowIndex?: number, 
   fieldName?: string
 ) => void
 
 type TableColumn = {
-  header?: string,
+  header: string,
   tdProps?: (cellProps: CellRendererProps) => object,
   cell: (cellProps: CellRendererProps) => string | JSX.Element
 }
@@ -32,9 +32,9 @@ type ActionFlag = {
   actions: boolean
 }
 type TableProps = {
-  data: object[], 
-  columns: (TableColumn | ActionFlag)[],
-  defaultRowData: object[], 
+  data?: object[], 
+  columns?: (TableColumn | ActionFlag)[],
+  defaultRowData?: object, 
   onRowAdd?: (newState: DispatchParams) => void, 
   onRowRemove?: (newState: DispatchParams) => void,
   onCellChange?: (eventOptions: OnChangeCallbackParams) => void,
@@ -42,41 +42,41 @@ type TableProps = {
   isVisible?: boolean
 }
 type TableBodyProps = {
-  columns: (TableColumn | ActionFlag)[],
-  data: object[], 
-  defaultRowData: object[], 
+  columns?: (TableColumn | ActionFlag)[],
+  data?: object[], 
+  defaultRowData?: object, 
   onRowAdd?: (newState: DispatchParams) => void, 
   onRowRemove?: (newState: DispatchParams) => void,
   _onCellChange?: HandlerFunction,
   actionButtonsShown?: boolean
 }
 type TableHeaderProps = {
-  columns: (TableColumn | ActionFlag)[],
+  columns?: (TableColumn | ActionFlag)[],
 }
 type TableCellProps = {
-  rowData: object,
-  rowIndex: number,
-  columnIndex: number,
-  cell: (cellProps: CellRendererProps) => string | JSX.Element,
+  rowData?: object,
+  rowIndex?: number,
+  columnIndex?: number,
+  cell?: (cellProps: CellRendererProps) => string | JSX.Element,
   _onCellChange?: HandlerFunction,
   tdProps?: (cellProps: CellRendererProps) => object
 }
 type CellRendererProps = {
-  rowData: object;
-  rowIndex: number;
-  columnIndex: number;
+  rowData?: object;
+  rowIndex?: number;
+  columnIndex?: number;
   onCellChange?: HandlerFunction
 }
 type TableCellActionsProps = {
   data: object[],
   rowIndex: number,
-  defaultRowData: object,
-  addRow: (options: RowEventProps) => object[],
+  defaultRowData?: object,
+  addRow: (options?: RowEventProps) => object[],
   removeRow: (options: RowEventProps) => object[],
   dispatch: (newState: DispatchParams) => void
 }
 type RowEventProps = {
-  data: object[], 
+  data?: object[], 
   rowIndex: number, 
   defaultRowData?: object
 }
@@ -101,7 +101,7 @@ const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChan
 };
 
 const TableHeaderRow = ({columns}:TableHeaderProps) => {
-  const header = columns.map((data, index) => {
+  const header = columns && columns.map((data, index) => {
     return (data as TableColumn).header ? (
       <div key={'Table_Header_Column_' + index} className="kuc-table-th">
         <span className="kuc-header-label">{(data as TableColumn).header}</span>
@@ -113,27 +113,27 @@ const TableHeaderRow = ({columns}:TableHeaderProps) => {
 
 const TableBody = ({columns, data, defaultRowData, onRowAdd, onRowRemove, actionButtonsShown, _onCellChange}: TableBodyProps) => {
   if (actionButtonsShown) {
-    columns.push({actions: true});
+    columns && columns.push({actions: true});
   }
   return (
     <div className="kuc-table-tbody">
-      {data.map((rowData, rowIndex) => (
+      {data && data.map((rowData, rowIndex) => (
         <div className="kuc-table-tr" key={rowIndex}>
-          {columns.map((column, columnIndex) => {
+          {columns && columns.map((column, columnIndex) => {
             const {actions} = (column as ActionFlag)
             const {cell, tdProps} = (column as TableColumn);
             if (actions === true) {
               return (
                 <TableCellActions
-                  {...{key: columnIndex, data, defaultRowData, rowIndex, addRow, removeRow}}
-                  dispatch={newState => {
-                    if (onRowAdd && newState['type'] === 'ADD_ROW') {
-                      onRowAdd(newState);
-                    }
-                    if (onRowRemove && newState['type'] === 'REMOVE_ROW') {
-                      onRowRemove(newState);
-                    }
-                  }}
+                {...{key: columnIndex, data, defaultRowData, rowIndex, addRow, removeRow}}
+                dispatch={newState => {
+                  if (onRowAdd && newState['type'] === 'ADD_ROW') {
+                    onRowAdd(newState);
+                  }
+                  if (onRowRemove && newState['type'] === 'REMOVE_ROW') {
+                    onRowRemove(newState);
+                  }
+                }}
                 />
               );
             }
@@ -162,7 +162,7 @@ const TableCell = ({
   if (typeof _onCellChange === 'function') {
     cellProps.onCellChange = _onCellChange;
   }
-  const content = cell(cellProps);
+  const content =cell ? cell(cellProps):"" ;
   const tdPropsObj = tdProps ? tdProps(cellProps) : {};
   return <div {...tdPropsObj} className="kuc-table-td">{content}</div>;
 };
@@ -175,16 +175,17 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
           type="insert"
           color="blue"
           size="small"
-          onClick={() =>
+          onClick={() =>{
             dispatch({
               type: 'ADD_ROW',
-              data: addRow({data, rowIndex, defaultRowData}),
+              data:addRow ? addRow({data, rowIndex, defaultRowData}):[],
               rowIndex: rowIndex + 1
             })
           }
+          }
         />
       </span>
-      {data.length > 1 &&
+      {data && data.length > 1 &&
         <span style={{display:'inline-block'}}>
           <IconButton
             type="remove"
@@ -205,13 +206,16 @@ const TableCellActions = ({data, rowIndex, defaultRowData, addRow, removeRow, di
 };
 
 const addRow = ({data, rowIndex, defaultRowData}:RowEventProps) => {
+  if(!data || !defaultRowData){
+    return [];
+  }
   const insertAt = rowIndex + 1;
   const newData = [...data.slice(0, insertAt), {...defaultRowData}, ...data.slice(insertAt)];
   return newData;
 };
 
 const removeRow = ({data, rowIndex}:RowEventProps) => {
-  return data.filter((item, index) => index !== rowIndex);
+  return data ? data.filter((item, index) => index !== rowIndex):[];
 };
 
 export default Table;

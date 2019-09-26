@@ -27,8 +27,10 @@ $ npm run build
 ./dist/kintone-ui-component.min.css
 ./dist/react/kintone-ui-component.min.js
 ./dist/react/kintone-ui-component.min.css
-./dist/esm/react
-./dist/esm/js
+./esm/constant
+./esm/css
+./esm/react
+./esm/js
 ```
 
 ## License
