@@ -72,10 +72,10 @@ class Label extends Control {
   }
 
   setText(text: string): void {
-    if(typeof text === "boolean"){
-      this._props.text= "";
-    } else {
+    if(typeof text === "number"){
       this._props.text = text;
+    } else {
+      this._props.text= "";
     }
     this.rerender(['text']);
   }
