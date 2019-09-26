@@ -16,7 +16,7 @@ const Label = ({text, textColor, backgroundColor, isRequired, isDisabled, isVisi
     if (isDisabled) {
       return null;
     }
-    onClick && onClick(e); 
+    onClick && onClick(e);
     return true;
   };
 

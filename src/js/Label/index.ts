@@ -77,7 +77,7 @@ class Label extends Control {
   }
 
   setRequired(isRequired: boolean): void {
-    typeof this._props.isRequired === "boolean" ? this._props.isRequired= isRequired : this._props.isRequired= false; 
+    typeof isRequired === "boolean" ? this._props.isRequired= isRequired : this._props.isRequired= false; 
     this.rerender(['isRequired']);
   }
 
