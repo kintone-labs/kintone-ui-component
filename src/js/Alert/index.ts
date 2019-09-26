@@ -49,7 +49,7 @@ class Alert extends Control {
   }
 
   setText(text: string): void {
-    if(typeof text === "number"){
+    if(typeof text === "string"){
       this._props.text = text;
     } else {
       this._props.text= "";
