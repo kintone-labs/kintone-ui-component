@@ -24,7 +24,10 @@ class AttachmentFileItem extends Control{
     this.element = this.createItemContainerEl();
   }
   _formatFileSize(size: number) {
-    if (size >= this.ONE_GB) {
+    let {fileSize}= this._props;
+    if(typeof fileSize === "boolean" || typeof fileSize === "string" || fileSize === null || fileSize === undefined){
+      return "NAN bytes";
+    } else if (size >= this.ONE_GB) {
       return Math.round(size / this.ONE_GB) + ' GB';
     } else if (size >= this.ONE_MB) {
       return Math.round(size / this.ONE_MB) + ' MB';

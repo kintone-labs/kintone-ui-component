@@ -16,13 +16,15 @@ const AttachmentFileItem = ({index, fileName, fileSize, onFileRemove}: Attachmen
   const ONE_KB = 1024;
 
   const _formatFileSize = (size: number) => {
-    if (size >= ONE_GB) {
+    if(typeof fileSize === "boolean" || typeof fileSize === "string" || fileSize === null || fileSize === undefined){
+      return "NAN bytes";
+    } else if (size >= ONE_GB) {
       return Math.round(size / ONE_GB) + ' GB';
     } else if (size >= ONE_MB) {
       return Math.round(size / ONE_MB) + ' MB';
     } else if (size >= ONE_KB) {
       return Math.round(size / ONE_KB) + ' KB';
-    }
+    } 
     return Math.round(size) + ' bytes';
   };
 
