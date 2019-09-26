@@ -336,8 +336,6 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
-
-
 ### getItems()
 Get all items of the dropdown.
 
@@ -439,7 +437,120 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
+### setItems(items)
+Set all items of the dropdown list.
+When using this function in pure js, selected value is released.
 
+**Parameter**
+
+| Name| Type| Required | Description |
+| --- | --- | --- | --- |
+|options| Object| No |A object contains params of constructor.|
+|options.items| Array&lt;Object&gt;| Yes |List of items will be displayed on dropdown.|
+|options.items[x].value| Boolean| Yes |If the value is duplicate, the SELECTION_DUPLICATE_VALUE message will be displayed|
+|options.items[x].label| String| No |Display string.|
+|options.items[x].isDisabled| No |String|Indicate item will be disabled when display.<br>Default value: 'false'.|
+
+**Returns**
+
+None
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var dropdown = new kintoneUIComponent.Dropdown({
+  items: [
+    {
+      label: 'Orange',
+      value: 'Orange',
+      isDisabled: true
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      isDisabled: false
+    }
+  ],
+  value: 'Banana'
+});
+ 
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(dropdown.render());
+ 
+var newItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+    isDisabled: true
+  },
+  {
+    label: 'Grapes',
+    value: 'Grapes',
+    isDisabled: false
+  }
+];
+dropdown.setItems(newItems);
+```
+**React**
+```javascript
+import { DropDown } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+  constructor(opts) {
+    super(opts);
+    this.state = {
+      items: [
+        {
+          label: 'Orange',
+          value: 'Orange',
+          isDisabled: true
+        },
+        {
+          label: 'Banana',
+          value: 'Banana',
+          isDisabled: false
+        }
+      ],
+      value: 'Banana'
+    };
+  }
+ 
+  render() {
+    return (
+      <div>
+        <Dropdown
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={this.handleClick}>Set Items</button>
+      </div>
+    );
+  }
+ 
+  handleClick = () => {
+    const newItems = [
+      {
+        label: 'Apple',
+        value: 'Apple',
+        isDisabled: true
+      },
+      {
+        label: 'Grapes',
+        value: 'Grapes',
+        isDisabled: false
+      }
+    ];
+    this.setState({ items: newItems, value: 'Apple' });
+  };
+}
+```
+</details>
 
 ### getValue()
 Get value of the selected item

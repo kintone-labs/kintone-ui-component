@@ -569,6 +569,133 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
+### setItems(items)
+Set all items of the checkbox.
+When using this function in pure js, selected value is released.
+
+**Parameter**
+
+| Name| Type| Required | Description |
+| --- | --- | --- | --- |
+|options| Object | No |A object contains params of constructor. |
+|options.items | Array&lt;Object&gt; | Yes |List of items which will be displayed on checkbox. |
+|options.items[x].value| String | Yes |If the value is duplicate, the SELECTION_DUPLICATE_VALUE message will be displayed. |
+|options.items[x].label| String | No |Display string. |
+|options.items[x].isDisabled| Boolean| No | Indicate item will be disabled when display.<br>Default value: 'false'. |
+
+**Return**
+
+None
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var mulChoice = new kintoneUIComponent.MultipleChoice({
+  items: [
+    {
+      label: 'Orange',
+      value: 'Orange',
+      isDisabled: false
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      isDisabled: true
+    },
+    {
+      label: 'Lemon',
+      value: 'Lemon',
+      isDisabled: true
+    }
+  ],
+  value: ['Orange', 'Banana']
+});
+ 
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(mulChoice.render());
+ 
+var newItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+    isDisabled: true
+  },
+  {
+    label: 'Grapes',
+    value: 'Grapes',
+    isDisabled: false
+  }
+];
+mulChoice.setItems(newItems);
+```
+
+**React**
+```javascript
+import { MultipleChoice } from '@kintone/kintone-ui-component';
+import React from 'react';
+   
+export default class Plugin extends React.Component {
+  constructor(opts) {
+    super(opts);
+    this.state = {
+      items: [
+        {
+          label: 'Orange',
+          value: 'Orange',
+          isDisabled: false
+        },
+        {
+          label: 'Banana',
+          value: 'Banana',
+          isDisabled: true
+        },
+        {
+          label: 'Lemon',
+          value: 'Lemon',
+          isDisabled: true
+        }
+      ],
+      value: ['Orange', 'Banana']
+    };
+  }
+ 
+  render() {
+    return (
+      <div>
+        <MultipleChoice
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={this.handleClick}>Set Items</button>
+      </div>
+    );
+  }
+ 
+  handleClick = () => {
+    const newItems = [
+      {
+        label: 'Apple',
+        value: 'Apple',
+        isDisabled: true
+      },
+      {
+        label: 'Grapes',
+        value: 'Grapes',
+        isDisabled: false
+      }
+    ];
+    this.setState({ items: newItems, value: ['Apple'] });
+  };
+}
+```
+
+</details>
+
 ### getValue()
 Get the checked values of multiple choice.
 
