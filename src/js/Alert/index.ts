@@ -49,7 +49,7 @@ class Alert extends Control {
   }
 
   setText(text: string): void {
-    typeof text === "string" ? this._props.text = text : this._props.text = "";
+    this._props.text = (typeof text === "string") ? text : ""
     this.rerender(['text']);
   }
 
