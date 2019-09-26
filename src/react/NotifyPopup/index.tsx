@@ -59,14 +59,14 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
   };
 
   if (isVisible === false) {
-    return null;
+    return null; 
   }
 
   return (
     <div className={_getClassName()}>
       <div className="kuc-notify-title" onClick={_onClick} >{text}</div>
       <div className="kuc-close-button">
-        <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
+        <IconButton onClick={_handleClosePopup} isDisabled={isDisabled} type="close" color={_getStyleByType().color} />
       </div>
     </div>
   );
