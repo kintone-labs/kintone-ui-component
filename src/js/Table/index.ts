@@ -322,6 +322,9 @@ export default class Table extends Control {
 
   showActionButtons() {
     this._props.actionButtonsShown = true
+    if(this._props.columns) {
+      this._props.columns.push({actions: this._props.actionButtonsShown});
+    }
     this._renderTableRows()
   }
 
