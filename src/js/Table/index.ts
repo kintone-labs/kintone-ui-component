@@ -58,7 +58,7 @@ export default class Table extends Control {
       this._props = {...this._props, ...params}
     }
     this._validateRequired()
-    if(this._props.actionButtonsShown !== undefined) {
+    if(this._props.actionButtonsShown === true) {
       this._props.columns && this._props.columns.push({actions: this._props.actionButtonsShown})
     }
   }
@@ -322,6 +322,15 @@ export default class Table extends Control {
 
   showActionButtons() {
     this._props.actionButtonsShown = true
+    if(this._props.columns) { 
+      const existAction = this._props.columns.filter(column => {
+        const {actions} = (column as ActionFlag)
+          return actions;
+      })[0];
+      if(!existAction){
+          this._props.columns.push({actions:this._props.actionButtonsShown});
+      }
+    }
     this._renderTableRows()
   }
 
