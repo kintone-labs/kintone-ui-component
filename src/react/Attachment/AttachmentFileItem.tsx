@@ -22,17 +22,16 @@ const AttachmentFileItem = ({index, fileName, fileSize, onFileRemove}: Attachmen
       return Math.round(size / ONE_MB) + ' MB';
     } else if (size >= ONE_KB) {
       return Math.round(size / ONE_KB) + ' KB';
-    }
+    } 
     return Math.round(size) + ' bytes';
   };
-
   return (
     <div className="kuc-attachment_delete kuc-attachment-file-item">
       <div className="kuc-attachment_file_name" title={fileName}>{fileName}</div>
       <div className="kuc-attachment_file_action">
         <button type="button" onClick={_removeFile} />
       </div>
-      <div className="kuc-attachment_file_size">{_formatFileSize(fileSize || 0)}</div>
+      <div className="kuc-attachment_file_size">{typeof fileSize === "number" ? _formatFileSize(fileSize) : "NAN bytes" }</div>
       <div className="kuc-attachment_clearer" />
     </div>
   );

@@ -58,7 +58,11 @@ class AttachmentFileItem extends Control{
 
     let fileSizeEl = document.createElement('div');
     fileSizeEl.classList.add('kuc-attachment_file_size');
-    fileSizeEl.innerText = this._formatFileSize(this._props.fileSize || 0);
+    if(typeof this._props.fileSize === "number"){
+      fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
+    }else{
+      fileSizeEl.innerText= "NAN bytes"
+    }
     container.appendChild(fileSizeEl);
 
     let clearEl = document.createElement('div');
