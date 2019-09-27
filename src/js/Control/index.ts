@@ -12,7 +12,7 @@ class Control {
 
   rerender(changedAttr?: string[]) {
     if (this.element) {
-      if (!this._props.isVisible) {
+      if (!this._props.isVisible && typeof this._props.isVisible === "boolean") {
         this.element.style.display = 'none';
       } else {
         this.element.style.display = '';
