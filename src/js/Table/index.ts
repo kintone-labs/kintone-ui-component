@@ -323,7 +323,7 @@ export default class Table extends Control {
   showActionButtons() {
     this._props.actionButtonsShown = true
     if(this._props.columns) { 
-      let existAction = this._props.columns.filter(column => {
+      const existAction = this._props.columns.filter(column => {
         const {actions} = (column as ActionFlag)
           return actions;
       })[0];
