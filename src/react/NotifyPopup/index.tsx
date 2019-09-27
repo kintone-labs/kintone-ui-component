@@ -59,7 +59,7 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
   };
 
   if (isVisible === false) {
-    return null; 
+    return null;
   }
 
   return (
