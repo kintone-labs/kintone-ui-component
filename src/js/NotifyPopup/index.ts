@@ -109,7 +109,7 @@ class NotifyPopup extends Control {
   }
 
   setText(text: string): void {
-    this._props.text = text;
+    this._props.text = (typeof text === "string") ? text : ""
     this.rerender(['text']);
   }
 
