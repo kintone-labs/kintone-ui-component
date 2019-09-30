@@ -31,7 +31,7 @@ const AttachmentFileItem = ({index, fileName, fileSize, onFileRemove}: Attachmen
       <div className="kuc-attachment_file_action">
         <button type="button" onClick={_removeFile} />
       </div>
-      <div className="kuc-attachment_file_size">{typeof fileSize === "number" ? _formatFileSize(fileSize) : "NAN bytes" }</div>
+      <div className="kuc-attachment_file_size">{typeof fileSize === "number" ? _formatFileSize(fileSize) : "NaN bytes" }</div>
       <div className="kuc-attachment_clearer" />
     </div>
   );

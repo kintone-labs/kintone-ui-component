@@ -61,7 +61,7 @@ class AttachmentFileItem extends Control{
     if(typeof this._props.fileSize === "number"){
       fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
     }else{
-      fileSizeEl.innerText= "NAN bytes"
+      fileSizeEl.innerText= "NaN bytes"
     }
     container.appendChild(fileSizeEl);
 
