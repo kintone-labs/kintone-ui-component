@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import IconButton from '../IconButton';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/Dialog.css';
 import Message from '../constant/Message';
 
@@ -19,24 +19,24 @@ const Dialog = ({header = '', content = '', footer = '', isVisible = true, showC
   if (isVisible === false) {
     hidden = 'hidden';
   }
-  if (typeof header !== 'string' && !React.isValidElement(header)){
-    throw new Error(Message.common.INVALID_ARGUMENT)
+  if (typeof header !== 'string' && !React.isValidElement(header)) {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  if (typeof footer !== 'string' && !React.isValidElement(footer)){
-    throw new Error(Message.common.INVALID_ARGUMENT)
+  if (typeof footer !== 'string' && !React.isValidElement(footer)) {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  if (typeof content !== 'string' && !React.isValidElement(content)){
-    throw new Error(Message.common.INVALID_ARGUMENT)
+  if (typeof content !== 'string' && !React.isValidElement(content)) {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  if (typeof showCloseButton !== 'boolean'){
-    throw new Error(Message.common.INVALID_ARGUMENT)
+  if (typeof showCloseButton !== 'boolean') {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
-  if (typeof isVisible !== 'boolean'){
-    throw new Error(Message.common.INVALID_ARGUMENT)
+  if (typeof isVisible !== 'boolean') {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/Label.css';
 type LabelProps = {
   text?: string;
@@ -29,7 +29,7 @@ const Label = ({text, textColor, backgroundColor, isRequired, isDisabled, isVisi
   return (
     <div className="kuc-label" onClick={_onClick} >
       <span style={_style}>{text}</span>
-      {isRequired && typeof isRequired === "boolean" && <span className="kuc-require">*</span>}
+      {isRequired && typeof isRequired === 'boolean' && <span className="kuc-require">*</span>}
     </div>
   );
 };

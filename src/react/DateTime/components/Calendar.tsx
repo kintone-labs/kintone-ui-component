@@ -55,8 +55,8 @@ const Calendar = ({
   const _handleDropdownSelection = (e: any) => {
     if (dropDownsRowRef.current) {
       const selectedDropdownOuter = e.target.closest('.kuc-dropdown-outer');
-      if(dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
-        setTimeout(scrollToSeletedOptions,100)
+      if (dropDownsRowRef.current.contains(e.target) && selectedDropdownOuter) {
+        setTimeout(scrollToSeletedOptions, 100);
       }
     }
   };
@@ -74,7 +74,7 @@ const Calendar = ({
       tabIndex={-1}
       onBlur={(e)=>{
         const relatedTarget = e.relatedTarget ||
-          e['explicitOriginalTarget'] ||
+          e.explicitOriginalTarget ||
           document.activeElement; // IE11
         if (
           calRef.current !== relatedTarget &&

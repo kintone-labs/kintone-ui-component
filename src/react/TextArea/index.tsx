@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/TextArea.css';
 
 type TextAreaProps = {
@@ -13,7 +13,7 @@ type TextAreaProps = {
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
-  const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight})
+  const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight});
   const [isResizing, setIsResizing] = useState(false);
 
   useEffect(
@@ -32,12 +32,12 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
             dy = 0;
           }
 
-          let config = {
+          const config = {
             translateX: sizeConfig.translateX + dx,
             translateY: sizeConfig.translateY + dy,
             textAreaWidth: sizeConfig.textAreaWidth + dx,
             textAreaHeight: sizeConfig.textAreaHeight + dy
-          }
+          };
           setSizeConfig(config);
         }
         currentX = event.clientX;

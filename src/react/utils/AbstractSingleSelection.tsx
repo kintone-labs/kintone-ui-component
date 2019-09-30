@@ -8,7 +8,7 @@ type items = item[]
 
 const _handleItemClick = (item: item, onChange?: (value: string) => void) => {
 
-  const value = item.value || "";
+  const value = item.value || '';
   onChange && onChange(value);
 };
 
@@ -20,7 +20,7 @@ const _hasDuplicatedItems = (items?: items) => {
       if (val.value && typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
-      val.value ? unique[val.value] = 0 : {}
+      val.value && (unique[val.value] = 0);
     });
   }
   return !isUnique;

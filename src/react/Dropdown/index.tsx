@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
-import { mdilChevronDown } from '@mdi/light-js'
-import '../../css/font.css'
+import {mdilChevronDown} from '@mdi/light-js';
+import '../../css/font.css';
 import '../../css/Dropdown.css';
 
 type item = {
@@ -52,11 +52,10 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   if (_hasDuplicatedItems(items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
-  
+
   if (!_hasValidValue(items, value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
-  
 
 
   const listItemEl = items && items.map((item: item, i) => {
@@ -66,7 +65,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
         selected={value === item.value}
         onClick={(item_prop) => {
           _handleItemClick(item_prop, onChange); _hideItems();
-        }} 
+        }}
         item={item}
         isDisabled={item.isDisabled}
       />
