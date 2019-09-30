@@ -99,7 +99,7 @@ export default class Table extends Control {
     const rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'))
     const columns = [].slice.call(this._props.columns as TableColumnJS[])
     rowsEl.forEach((rowEl: HTMLElement, rowIndex: number) => {
-      const rowData = this._props.data && this._props.data[rowIndex]
+      const rowData = this._props.data && JSON.parse(JSON.stringify(this._props.data[rowIndex])); 
       const updateRowData = this.updateRowData.bind(this, rowIndex)
       columns.forEach(({cell}: TableColumnJS, columnIndex: number) => {
         const cellTemplate = cell
