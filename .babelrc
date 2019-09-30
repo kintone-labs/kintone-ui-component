@@ -1,13 +1,17 @@
 {
-    "presets": [
-        [
-          "@babel/env",
-          {
-            "modules": false
-          }
-        ]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "useBuiltIns": "usage",
+        "corejs": "3",
+        "targets": {
+          "browsers": ["last 1 version,> 1%,maintained node versions,not dead"]
+        }
+      }
     ],
-    "plugins": [
-        "@babel/plugin-proposal-class-properties"
-    ]
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-runtime"]
 }
