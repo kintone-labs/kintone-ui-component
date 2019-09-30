@@ -1,21 +1,21 @@
 import Control, {ControlProps} from '../Control';
 import '../../css/Attachment.css';
 type AttachmentFileItemProps = ControlProps & {
-    index?: number;
-    fileName?: string;
-    fileSize?: number;
-    onFileRemove?: (index: number) => void;
-  }
+  index?: number;
+  fileName?: string;
+  fileSize?: number;
+  onFileRemove?: (index: number) => void;
+}
 
-class AttachmentFileItem extends Control{
-    protected _props: AttachmentFileItemProps = this._props;
-    protected element: HTMLDivElement
-    private ONE_GB = 1073741824;
-    private ONE_MB = 1048576;
-    private ONE_KB = 1024;
+class AttachmentFileItem extends Control {
+  protected _props: AttachmentFileItemProps = this._props;
+  protected element: HTMLDivElement
+  private ONE_GB = 1073741824;
+  private ONE_MB = 1048576;
+  private ONE_KB = 1024;
   constructor(params?: AttachmentFileItemProps) {
-    super()
-    if(params){
+    super();
+    if (params) {
       this._props = {...params};
     }
     if (!this._props.onFileRemove || typeof this._props.onFileRemove !== 'function') {
@@ -32,40 +32,40 @@ class AttachmentFileItem extends Control{
       return Math.round(size / this.ONE_KB) + ' KB';
     }
     return Math.round(size) + ' bytes';
-  };
+  }
 
   createItemContainerEl() {
-    let container = document.createElement('div');
+    const container = document.createElement('div');
     container.classList.add('kuc-attachment_delete');
     container.classList.add('kuc-attachment-file-item');
 
-    let fileNameEl = document.createElement('div');
+    const fileNameEl = document.createElement('div');
     fileNameEl.classList.add('kuc-attachment_file_name');
-    fileNameEl.setAttribute('title',this._props.fileName || "")
-    fileNameEl.innerText = this._props.fileName || ""
+    fileNameEl.setAttribute('title', this._props.fileName || '');
+    fileNameEl.innerText = this._props.fileName || '';
     container.appendChild(fileNameEl);
 
-    let actionContainerEl = document.createElement('div');
+    const actionContainerEl = document.createElement('div');
     actionContainerEl.classList.add('kuc-attachment_file_action');
 
-    let actionInputEl = document.createElement('button');
-    actionInputEl.setAttribute('type','button')
+    const actionInputEl = document.createElement('button');
+    actionInputEl.setAttribute('type', 'button');
     actionInputEl.onclick = () =>{
       this.onRemove();
-    }
+    };
     actionContainerEl.appendChild(actionInputEl);
     container.appendChild(actionContainerEl);
 
-    let fileSizeEl = document.createElement('div');
+    const fileSizeEl = document.createElement('div');
     fileSizeEl.classList.add('kuc-attachment_file_size');
-    if(typeof this._props.fileSize === "number"){
+    if (typeof this._props.fileSize === 'number') {
       fileSizeEl.innerText = this._formatFileSize(this._props.fileSize);
-    }else{
-      fileSizeEl.innerText= "NaN bytes"
+    } else {
+      fileSizeEl.innerText = 'NaN bytes';
     }
     container.appendChild(fileSizeEl);
 
-    let clearEl = document.createElement('div');
+    const clearEl = document.createElement('div');
     clearEl.classList.add('kuc-attachment_clearer');
     container.appendChild(actionContainerEl);
 
@@ -73,7 +73,7 @@ class AttachmentFileItem extends Control{
   }
 
   onRemove = () => {
-    if(this._props.onFileRemove){
+    if (this._props.onFileRemove) {
       this._props.onFileRemove(this._props.index || 0);
       this.element.remove();
     }

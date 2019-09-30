@@ -2,7 +2,7 @@ import Control, {ControlProps} from '../../Control';
 import TextInputStyle from './TextInputStyle';
 import {rgbToHex, hsvToRgb} from './utils';
 import {RGB} from './HueSpectrum';
-import Message from '../../../constant/Message'
+import Message from '../../../constant/Message';
 
 type TextInputProps = ControlProps & {
   label: string;
@@ -85,9 +85,9 @@ class RGBInput extends Control {
       label: 'R',
       value: this._props.rgb.r.toString(),
       onChange: (value: string) => {
-        let intValue = parseInt(value || "0",10)
+        const intValue = parseInt(value || '0', 10);
         if (isNaN(value as any) || intValue < 0 || intValue > 255) {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.rgb.r = intValue;
         this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
@@ -100,9 +100,9 @@ class RGBInput extends Control {
       label: 'G',
       value: this._props.rgb.g.toString(),
       onChange: (value: string) => {
-        let intValue = parseInt(value || "0",10)
+        const intValue = parseInt(value || '0', 10);
         if (isNaN(value as any) || intValue < 0 || intValue > 255) {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.rgb.g = intValue;
         this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
@@ -115,9 +115,9 @@ class RGBInput extends Control {
       label: 'B',
       value: this._props.rgb.b.toString(),
       onChange: (value: string) => {
-        let intValue = parseInt(value || "0",10)
+        const intValue = parseInt(value || '0', 10);
         if (isNaN(value as any) || intValue < 0 || intValue > 255) {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.rgb.b = intValue;
         this._props.onChange(rgbToHex(this._props.rgb.r, this._props.rgb.g, this._props.rgb.b));
@@ -172,9 +172,9 @@ class HSVInput extends Control {
       label: 'H',
       value: this._props.hsv.h.toFixed(1),
       onChange: (value: string) => {
-        let floatValue = parseFloat(value || "0")
+        const floatValue = parseFloat(value || '0');
         if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.hsv.h = floatValue;
         const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
@@ -188,9 +188,9 @@ class HSVInput extends Control {
       label: 'S',
       value: this._props.hsv.s.toFixed(1),
       onChange: (value: string) => {
-        let floatValue = parseFloat(value || "0")
+        const floatValue = parseFloat(value || '0');
         if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
-            throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.hsv.s = floatValue;
         const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);
@@ -204,9 +204,9 @@ class HSVInput extends Control {
       label: 'V',
       value: this._props.hsv.v.toFixed(1),
       onChange: (value: string) => {
-        let floatValue = parseFloat(value || "0")
+        const floatValue = parseFloat(value || '0');
         if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
-          throw new Error(Message.colorPicker.INVALID_COLOR)
+          throw new Error(Message.colorPicker.INVALID_COLOR);
         }
         this._props.hsv.v = floatValue;
         const rgb = hsvToRgb(this._props.hsv.h, this._props.hsv.s, this._props.hsv.v);

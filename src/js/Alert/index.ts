@@ -31,7 +31,7 @@ class Alert extends Control {
 
     if (!changedAttr) return;
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text || "";
+      this.element.innerHTML = this._props.text || '';
     }
 
     if (changedAttr.indexOf('type') !== -1) {
@@ -49,7 +49,7 @@ class Alert extends Control {
   }
 
   setText(text: string): void {
-    this._props.text = (typeof text === "string") ? text : ""
+    this._props.text = (typeof text === 'string') ? text : '';
     this.rerender(['text']);
   }
 

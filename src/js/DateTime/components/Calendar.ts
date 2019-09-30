@@ -12,7 +12,7 @@ import {ja, en, format} from '../../../react/DateTime/components/Locale';
 import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
 import Control, {ControlProps} from '../../Control';
 import Dropdown from '../../Dropdown';
-import '../../../css/DropdownCalendar.css'
+import '../../../css/DropdownCalendar.css';
 type CalendarProps = ControlProps & {
   date?: Date | null;
   locale: Locale;
@@ -105,7 +105,7 @@ class Calendar extends Control {
       this._scrollToSeletedOptions();
     });
     monthDropdown.on('change', (value) => {
-      let newDate = new Date(this._displayDate);
+      const newDate = new Date(this._displayDate);
       newDate.setMonth(this._props.locale.monthNames.indexOf(value), 1);
       this._displayMonth = value;
       this._displayDate = newDate;
@@ -115,18 +115,18 @@ class Calendar extends Control {
     this._displayMonthDropdown = monthDropdown;
   }
 
-  _onChangeCreateYearDropdown = (value:any) => {
-      let newDate = new Date(this._displayDate);
-      let currentYear = Number(value.replace('年', ''));
-      newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
-      this._displayYear = value;
-      this._displayDate = newDate;
-      this._displayYearDropdown.setItems(getYearLabels(this._displayYear,this._props.locale));     
-      this.rerender(['selectedDate']);
+  _onChangeCreateYearDropdown = (value: any) => {
+    const newDate = new Date(this._displayDate);
+    const currentYear = Number(value.replace('年', ''));
+    newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
+    this._displayYear = value;
+    this._displayDate = newDate;
+    this._displayYearDropdown.setItems(getYearLabels(this._displayYear, this._props.locale));
+    this.rerender(['selectedDate']);
   }
 
-  _renderDisplayYearDropdown(){
-    const yearDropdown = new Dropdown({value: this._displayYear, items: getYearLabels(this._displayYear,this._props.locale)});
+  _renderDisplayYearDropdown() {
+    const yearDropdown = new Dropdown({value: this._displayYear, items: getYearLabels(this._displayYear, this._props.locale)});
     yearDropdown.on('listItemsShown', () => {
       this._scrollToSeletedOptions();
     });
@@ -160,7 +160,7 @@ class Calendar extends Control {
   _renderTodayButton() {
     const span = document.createElement('span');
     span.className = 'today calendar-button-control';
-    if(this._props.locale) {
+    if (this._props.locale) {
       span.textContent = this._props.locale.today;
     }
     this._todayButton = span;
@@ -169,7 +169,7 @@ class Calendar extends Control {
   _renderNoneButton() {
     const span = document.createElement('span');
     span.className = 'none calendar-button-control';
-    if(this._props.locale) {
+    if (this._props.locale) {
       span.textContent = this._props.locale.none;
     }
     this._noneButton = span;
@@ -226,7 +226,7 @@ class Calendar extends Control {
     this._calendarHeader.appendChild(this._monthYearContainer);
     this._monthYearContainer.appendChild(this._previousButton);
     this._monthYearContainer.appendChild(this._monthYearDropdownsRow);
-    if(this._props.locale === en) {
+    if (this._props.locale === en) {
       this._monthYearDropdownsRow.appendChild(this._displayMonthDropdown.render());
       this._monthYearDropdownsRow.appendChild(this._displayYearDropdown.render());
     } else {
@@ -250,7 +250,7 @@ class Calendar extends Control {
     this._quickSelectionsContainer.appendChild(this._noneButton);
     this._todayButton.onclick = () => {
       if (this._props.onDateClick) {
-        let currentDate = new Date();
+        const currentDate = new Date();
         this._displayMonth = getMonthLabels(this._props.locale)[currentDate.getMonth()].label;
         this._displayYear = format(currentDate, 'calendaryear', {locale: this._props.locale});
         this._displayMonthDropdown.setValue(this._displayMonth);
@@ -287,7 +287,7 @@ class Calendar extends Control {
       this._displayDate = new Date(date);
     }
     this._props.date = date;
-    this.rerender(["selectedDate"]);
+    this.rerender(['selectedDate']);
   }
 
   getValue(): Date | null | undefined {
@@ -318,7 +318,7 @@ class Calendar extends Control {
       this._displayYearDropdown.setValue(this._displayYear);
     }
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = options['left'] + 'px';
+      this.element.style.left = options.left + 'px';
     }
     if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
       this._todayButton.textContent = this._props.locale.today;
@@ -327,7 +327,7 @@ class Calendar extends Control {
   }
 
   getElement() {
-    return this.element
+    return this.element;
   }
 }
 

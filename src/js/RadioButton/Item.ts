@@ -1,4 +1,4 @@
-import Control, { ControlProps } from '../Control';
+import Control, {ControlProps} from '../Control';
 
 import '../../css/Item.css';
 
@@ -37,7 +37,7 @@ class Item extends Control {
       delete params.isDisabled;
     }
     if (params) {
-      this._props = { ...this._props, ...params };
+      this._props = {...this._props, ...params};
     }
 
     const generateGUID = () => {
@@ -55,19 +55,19 @@ class Item extends Control {
       generateGUID();
     this.value = params.item.value;
     this.element = document.createElement('span');
-    if(this._props.className) {
+    if (this._props.className) {
       this.element.className = this._props.className;
     }
     this.inputEl = document.createElement('input');
     this.inputEl.id = this.id;
-    if(this._props.name) {
+    if (this._props.name) {
       this.inputEl.name = this._props.name;
     }
-    if(this._props.type) {
+    if (this._props.type) {
       this.inputEl.type = this._props.type;
     }
     this.inputEl.checked = this._props.selected;
-    if(this._props.isDisabled) {
+    if (this._props.isDisabled) {
       this.inputEl.disabled = this._props.isDisabled;
     }
     const labelEl = document.createElement('label');
@@ -84,7 +84,6 @@ class Item extends Control {
     } else {
       this.inputEl.removeAttribute('disabled');
     }
-    if (!changedAttr) return;
   }
 
   on(eventName: string, callback: (params?: any) => void) {

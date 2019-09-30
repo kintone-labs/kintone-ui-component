@@ -1,10 +1,10 @@
-import Control, { ControlProps } from '../Control';
+import Control, {ControlProps} from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-import { mdilChevronDown } from '@mdi/light-js'
+import {mdilChevronDown} from '@mdi/light-js';
 
-import '../../css/Dropdown.css'
+import '../../css/Dropdown.css';
 
 type item = {
   value: string;
@@ -36,7 +36,7 @@ class Dropdown extends Control {
   private className: string[];
   private isListVisible: boolean = false;
 
-  constructor(params?:DropdownProps) {
+  constructor(params?: DropdownProps) {
     super();
     if (
       typeof params === 'object' &&
@@ -46,19 +46,19 @@ class Dropdown extends Control {
       delete params.isDisabled;
     }
     if (params) {
-      this._props = { ...this._props, ...params };
+      this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value)
+    const validationErr = this._validator(this._props.items, this._props.value);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.items &&
       this._props.items.some((item: item) => {
         if (item.value === this._props.value) {
-          this.label = item.label
-          return true
+          this.label = item.label;
+          return true;
         }
-        return false
+        return false;
       });
 
     this.element = this._createDom('div', 'kuc-dropdown-container');
@@ -109,13 +109,13 @@ class Dropdown extends Control {
   };
 
   private _createDownIconEl() {
-    const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
-    pathEl.setAttribute('d', mdilChevronDown)
+    const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pathEl.setAttribute('d', mdilChevronDown);
 
-    const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svgEl.appendChild(pathEl)
+    const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgEl.appendChild(pathEl);
 
-    return svgEl
+    return svgEl;
   }
 
   private _renderSubContainer = () => {
@@ -159,15 +159,15 @@ class Dropdown extends Control {
     this.itemComps =
       this._props.items &&
       this._props.items.map(item => {
-          const newItem = new Item({
-            selected: this._props.value === item.value,
-            item: item,
-            isDisabled: this._props.isDisabled || item.isDisabled,
-            onClick: this._handleItemClick
-          });
-          return newItem;
+        const newItem = new Item({
+          selected: this._props.value === item.value,
+          item: item,
+          isDisabled: this._props.isDisabled || item.isDisabled,
+          onClick: this._handleItemClick
+        });
+        return newItem;
       });
-    if(this.itemComps){
+    if (this.itemComps) {
       this.itemComps.forEach(item => {
         this.listOuterEl.appendChild(item.render());
       });
@@ -178,16 +178,16 @@ class Dropdown extends Control {
   };
 
   private _validator(items?: item[], value?: string): string | undefined {
-    let err
+    let err;
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
-      err = Message.common.SELECTTION_DUPLICATE_VALUE
+      err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value && 
+    if (items && value &&
       !AbstractSingleSelection._hasValidValue(items, value)
     ) {
-      err = Message.common.INVALID_ARGUMENT
+      err = Message.common.INVALID_ARGUMENT;
     }
-    return err
+    return err;
   }
 
   render() {
@@ -198,8 +198,7 @@ class Dropdown extends Control {
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (!changedAttr) return;
-    while (this.element.firstChild)
-      this.element.removeChild(this.element.firstChild);
+    while (this.element.firstChild) this.element.removeChild(this.element.firstChild);
 
     const subcontainerEl = this._renderSubContainer();
     this.element.appendChild(subcontainerEl);
@@ -207,11 +206,11 @@ class Dropdown extends Control {
 
   setValue(value: string) {
     if (!value) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    const validationErr = this._validator(this._props.items, value)
+    const validationErr = this._validator(this._props.items, value);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
@@ -231,29 +230,29 @@ class Dropdown extends Control {
 
   addItem(item: item) {
     if (!item) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    if(!this._props.items) {
-      this._props.items = []
+    if (!this._props.items) {
+      this._props.items = [];
     }
     const itemsToCheck: item[] = Object.assign([], this._props.items);
-    itemsToCheck.push(item)
-    const validationErr = this._validator(itemsToCheck)
+    itemsToCheck.push(item);
+    const validationErr = this._validator(itemsToCheck);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.items = itemsToCheck;
     this.rerender(['item']);
   }
 
-  setItems(items: Array<item>) {
+  setItems(items: item[]) {
     if (!items || !Array.isArray(items)) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     // It isn't need to check hasValidValue
-    const validationErr = this._validator(items)
+    const validationErr = this._validator(items);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.items = items;
     this.rerender(['item']);

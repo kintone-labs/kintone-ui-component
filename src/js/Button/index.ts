@@ -1,11 +1,11 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/Button.css'
+import '../../css/Button.css';
 
 type ButtonProps = ControlProps & {
   text?: string;
   type?: 'normal' | 'submit';
-  onClick?: (e: Event) => void
+  onClick?: (e: Event) => void;
 }
 
 class Button extends Control {
@@ -19,14 +19,14 @@ class Button extends Control {
   }
   constructor(params?: ButtonProps) {
     super();
-    if(params && typeof params.isDisabled !== 'boolean') {
-      delete params.isDisabled
+    if (params && typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled;
     }
     if (params) {
       this._props = {...this._props, ...params};
     }
-    this._createLayout()
-    this.rerender(['isDisabled', 'isVisible'])
+    this._createLayout();
+    this.rerender(['isDisabled', 'isVisible']);
   }
 
   rerender(changedAttr?: string[]) {
@@ -36,7 +36,7 @@ class Button extends Control {
       this.element.className = this._getClassName();
     }
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text || "";
+      this.element.innerHTML = this._props.text || '';
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
@@ -76,16 +76,16 @@ class Button extends Control {
   on(eventName: string, callback: (params?: any) => void) {
     this.element.addEventListener(eventName, (e) => {
       if (this._props.isDisabled) return;
-      callback(e)
-    })
+      callback(e);
+    });
   }
 
   private _createLayout() {
     this.element = document.createElement('button');
     this.element.className = this._getClassName();
-    this.element.innerHTML = this._props.text || "";
-    if(this._props.onClick) {
-      this.on('click', this._props.onClick)
+    this.element.innerHTML = this._props.text || '';
+    if (this._props.onClick) {
+      this.on('click', this._props.onClick);
     }
   }
 }
