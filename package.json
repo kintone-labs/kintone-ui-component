@@ -28,10 +28,9 @@
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc"
 	},
-	"dependencies": {
+	"dependencies": { 
 		"@mdi/js": "3.6.95",
-		"@mdi/light-js": "0.2.63",
-		"@babel/polyfill": "7.2.5"
+		"@mdi/light-js": "0.2.63"
 	},
 	"peerDependencies": {
 		"react": "16.8.6",
@@ -40,10 +39,12 @@
 	"devDependencies": {
 		"@babel/core": "7.4.5",
 		"@babel/plugin-proposal-class-properties": "7.4.0",
+		"@babel/plugin-transform-runtime": "7.6.2",
 		"@babel/preset-env": "7.4.5",
 		"@babel/preset-react": "7.0.0",
 		"@babel/preset-typescript": "7.3.3",
 		"@cybozu/eslint-config": "7.1.0",
+		"@babel/runtime": "7.6.2",
 		"@types/node": "11.13.0",
 		"@types/react": "16.8.12",
 		"@types/react-dom": "16.8.3",
@@ -52,6 +53,7 @@
 		"babel-plugin-dynamic-import-node": "2.2.0",
 		"babel-plugin-transform-class-properties": "6.24.1",
 		"babel-plugin-transform-runtime": "6.23.0",
+		"core-js": "3.2.1",
 		"css-loader": "2.1.1",
 		"react": "16.8.6",
 		"react-dom": "16.8.6",
