@@ -28,7 +28,8 @@ class NotifyPopup extends Control<PopupProps> {
       }
     };
     if (params) {
-      this._props = {...this._props, ...params};
+      this._props = { ...this._props, ...params };
+      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
     this.element = this._createPopupLayout();
 

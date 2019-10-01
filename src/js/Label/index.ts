@@ -28,8 +28,8 @@ class Label extends Control<LabelProps> {
     };
     if (params) {
       this._props = {...this._props, ...params};
+      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
-
     this.element = this._createLabelLayout();
     this.rerender(['text', 'isRequired', 'textStyle']);
   }
