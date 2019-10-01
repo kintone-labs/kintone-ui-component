@@ -28,7 +28,7 @@
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc"
 	},
-	"dependencies": {
+	"dependencies": { 
 		"@mdi/js": "3.6.95",
 		"@mdi/light-js": "0.2.63"
 	},
