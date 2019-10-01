@@ -1,24 +1,15 @@
-import Control, {ControlProps} from "../Control";
-import ColorPickerStyle from "./ColorPickerStyle";
-import {invertColor, isHexString} from './components/utils'
-import Picker, {PickerProps} from './components/Picker'
-import Message from '../../constant/Message'
+import Control, {ControlProps} from '../Control';
+import ColorPickerStyle from './ColorPickerStyle';
+import {invertColor, isHexString} from './components/utils';
+import Picker, {PickerProps} from './components/Picker';
+import Message from '../../constant/Message';
 
 type ColorPickerProps = ControlProps & {
   color?: string;
   onChange?: (color: string) => void;
 }
 
-class ColorPicker extends Control {
-  protected _props: ColorPickerProps = {
-    ...this._props,
-    ...{
-      color: '#ff0000',
-      onAccept: (color: string) => {},
-      onCancel: (color: string) => {}
-    }
-  }
-
+class ColorPicker extends Control<ColorPickerProps> {
   private oldColor: string
   private inputElement: HTMLInputElement
   private Picker: Picker
@@ -26,39 +17,47 @@ class ColorPicker extends Control {
 
   constructor(params?: ColorPickerProps) {
     super();
-    if(!params){
+    this._props = {
+      ...this._props,
+      ...{
+        color: '#ff0000',
+        onAccept: (color: string) => {},
+        onCancel: (color: string) => {}
+      }
+    };
+    if (!params) {
       return;
     }
-    if(typeof params.isDisabled !== 'boolean') {
-      delete params.isDisabled
+    if (typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled;
     }
     if (params) {
       this._props = {...this._props, ...params};
     }
     if (this._props.color && !isHexString(this._props.color)) {
-      throw new Error(Message.colorPicker.INVALID_COLOR)
+      throw new Error(Message.colorPicker.INVALID_COLOR);
     }
 
     if (typeof this._props.isDisabled !== 'boolean') {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    
-    this.oldColor = this._props.color || "#ff0000";
+
+    this.oldColor = this._props.color || '#ff0000';
     this.focus = false;
     this.element = document.createElement('div');
     this._renderInput();
     this._renderPicker();
 
-    this.rerender()
+    this.rerender();
   }
 
   private _renderInput() {
     const inputContainer = document.createElement('div');
     this.element.appendChild(inputContainer);
     this.inputElement = document.createElement('input');
-    this.inputElement.value = this._props.color || "#ff0000";
-    if(this._props.isDisabled) {
-      this.inputElement.disabled = this._props.isDisabled
+    this.inputElement.value = this._props.color || '#ff0000';
+    if (this._props.isDisabled) {
+      this.inputElement.disabled = this._props.isDisabled;
     }
     this.inputElement.onblur = (e: Event) => {
       this.focus = false;
@@ -72,11 +71,11 @@ class ColorPicker extends Control {
       this.Picker.setPickerDisplay(true);
     };
 
-    document.addEventListener('mousedown',(e: MouseEvent) => {
+    document.addEventListener('mousedown', (e: MouseEvent) => {
       if (!this.element.contains(e.target as HTMLElement)) {
         this.Picker.setPickerDisplay(false);
       }
-    })
+    });
     inputContainer.appendChild(this.inputElement);
 
     const inputStyle = this.getInputStyle();
@@ -86,7 +85,7 @@ class ColorPicker extends Control {
 
   private _renderPicker() {
     this.Picker = new Picker({
-      hexString: this._props.color || "#ff0000",
+      hexString: this._props.color || '#ff0000',
       onAccept: (hexString: string) => {
         this._props.color = hexString;
         this.oldColor = hexString;
@@ -113,44 +112,43 @@ class ColorPicker extends Control {
     super.rerender();
     if (!changedAttr) return;
     if (changedAttr.indexOf('color') !== -1) {
-      this.inputElement.value = this._props.color || "#ff0000";
+      this.inputElement.value = this._props.color || '#ff0000';
       const inputStyle = this.getInputStyle();
-      this.Picker.setRGB(this._props.color || "#ff0000");
+      this.Picker.setRGB(this._props.color || '#ff0000');
       Object.assign(this.inputElement.style, inputStyle);
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1 && this._props.isDisabled) {
-      this.inputElement.disabled = this._props.isDisabled
+      this.inputElement.disabled = this._props.isDisabled;
       if (this._props.isDisabled) {
         this.Picker.setPickerDisplay(false);
       }
     }
 
     if (changedAttr.indexOf('redraw') !== -1) {
-      this.Picker.setHexString(this._props.color || "#ff0000");
+      this.Picker.setHexString(this._props.color || '#ff0000');
     }
   }
 
   setColor(hexString: string) {
     if (isHexString(hexString)) {
-      this._props.color = hexString
-      this.rerender(['color', 'redraw'])
-    }
-    else {
-      throw new Error(Message.colorPicker.INVALID_COLOR)
+      this._props.color = hexString;
+      this.rerender(['color', 'redraw']);
+    } else {
+      throw new Error(Message.colorPicker.INVALID_COLOR);
     }
   }
-  enable(){
-    this.inputElement.disabled=false;
+  enable() {
+    this.inputElement.disabled = false;
   }
   getColor(): string {
-    return this._props.color || "#ff0000";
+    return this._props.color || '#ff0000';
   }
 
   getInputStyle() {
     let style = {
-      backgroundColor: this._props.color || "#ff0000",
-      color: invertColor(this._props.color || "#ff0000")
+      backgroundColor: this._props.color || '#ff0000',
+      color: invertColor(this._props.color || '#ff0000')
     };
 
     style = {...style, ...ColorPickerStyle.input};
@@ -163,7 +161,7 @@ class ColorPicker extends Control {
 
   on(eventName: string, callback: (hexString: string) => void) {
     if (eventName === 'change') {
-      this._props.onChange = callback
+      this._props.onChange = callback;
     }
   }
 }

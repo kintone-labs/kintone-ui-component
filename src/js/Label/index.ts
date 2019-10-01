@@ -10,25 +10,22 @@ type LabelProps = ControlProps & {
   backgroundColor?: string;
 }
 
-class Label extends Control {
-  protected _props: LabelProps = {
-    ...this._props,
-    ...{
-      text: '',
-      isRequired: false,
-      textColor: '',
-      backgroundColor: ''
-    }
-  }
-
+class Label extends Control<LabelProps> {
   private textEl: any
   private requiredEl: any
   private containerEl: any
 
   constructor(params?: LabelProps) {
-
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        isRequired: false,
+        textColor: '',
+        backgroundColor: ''
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
       this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
@@ -57,7 +54,7 @@ class Label extends Control {
     }
 
     if (changedAttr.indexOf('isRequired') !== -1) {
-      if (this._props.isRequired && typeof this._props.isRequired === "boolean") {
+      if (this._props.isRequired && typeof this._props.isRequired === 'boolean') {
         this.containerEl.append(this.requiredEl);
       } else {
         this.requiredEl.remove();
@@ -72,12 +69,12 @@ class Label extends Control {
   }
 
   setText(text: string): void {
-    this._props.text = (typeof text === "string") ? text : ""
+    this._props.text = (typeof text === 'string') ? text : '';
     this.rerender(['text']);
   }
 
   setRequired(isRequired: boolean): void {
-    typeof isRequired === "boolean" ? this._props.isRequired= isRequired : this._props.isRequired= false; 
+    typeof isRequired === 'boolean' ? this._props.isRequired = isRequired : this._props.isRequired = false;
     this.rerender(['isRequired']);
   }
 

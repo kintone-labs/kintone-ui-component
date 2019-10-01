@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../css/font.css'
-import '../../css/Tabs.css'
-import Message from '../../constant/Message'
+import '../../css/font.css';
+import '../../css/Tabs.css';
+import Message from '../../constant/Message';
 
 type TabsItem = {
   tabName: string;
@@ -22,22 +22,22 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
 
   if (value) {
     if (typeof value !== 'number') {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     if (!items || value > items.length - 1 || value < 0) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
   }
   const tabNames = (
     <ul className="kuc-tabs-tab-list">
-    {items &&
+      {items &&
       items.map((item: TabsItem, tabIndex: number) => {
         if (!item.tabName) {
-          throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()))
+          throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()));
         }
-        let className = "kuc-tabs-container";
+        let className = 'kuc-tabs-container';
         if (value === tabIndex) {
-          className += " kuc-tabs-container-selection";
+          className += ' kuc-tabs-container-selection';
         }
 
         if (item.isDisabled) {
@@ -53,15 +53,17 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         }
         return (
           <li
+            role="none"
             className={className}
             key={tabIndex}
             onClick={() => _onClickTabItem(tabIndex)}
+            onKeyUp={() => _onClickTabItem(tabIndex)}
           >
             {item.tabName}
           </li>
         );
       })
-    }
+      }
     </ul>
   );
   const tabContents = items && items.map((item: TabsItem, tabIndex: number) => {

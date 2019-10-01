@@ -1,9 +1,9 @@
-import Control, { ControlProps } from '../Control';
+import Control, {ControlProps} from '../Control';
 import '../../css/DateTime.css';
 import '../../css/Text.css';
-import { en, ja, zh, format } from '../../react/DateTime/components/Locale';
+import {en, ja, zh, format} from '../../react/DateTime/components/Locale';
 import Locale from '../../react/DateTime/components/localizationData/locale-dto';
-import { parseStringToDate, parseStringToTime } from '../../react/DateTime/components/utils';
+import {parseStringToDate, parseStringToTime} from '../../react/DateTime/components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
@@ -14,21 +14,10 @@ type DateTimeProps = ControlProps & {
   locale?: string;
   dateFormat?: string;
   timeFormat?: string;
-  onChange?: (date: Date) => void
+  onChange?: (date: Date) => void;
 }
 
-class DateTime extends Control {
-  protected _props: DateTimeProps = {
-    ...this._props,
-    ...{
-      value: new Date(),
-      type: 'datetime',
-      locale: 'ja',
-      dateFormat: 'MM/dd/YYYY',
-      timeFormat: 'HH:mm',
-      onChange: (date) => { }
-    }
-  }
+class DateTime extends Control<DateTimeProps> {
   protected element: HTMLElement
   private _dateTextInput: HTMLInputElement
   private _timeTextInput: HTMLInputElement
@@ -41,14 +30,25 @@ class DateTime extends Control {
 
   constructor(params?: DateTimeProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        value: new Date(),
+        type: 'datetime',
+        locale: 'ja',
+        dateFormat: 'MM/dd/YYYY',
+        timeFormat: 'HH:mm',
+        onChange: () => {}
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
-      delete params.isDisabled
+      delete params.isDisabled;
     }
     if (params) {
-      this._props = { ...this._props, ...params };
+      this._props = {...this._props, ...params};
     }
     if (this._props.type === 'date' || this._props.type === 'datetime') {
-      this.setLocale(this._props.locale)
+      this.setLocale(this._props.locale);
     }
     if (this._props.value && (this._props.type === 'time' || this._props.type === 'datetime')) {
       this._time = this._props.value;
@@ -70,8 +70,8 @@ class DateTime extends Control {
         this._renderDateTime();
         break;
     }
-    super.rerender()
-    return this.element
+    super.rerender();
+    return this.element;
   }
 
   rerender(changedAttr: string[]) {
@@ -139,7 +139,7 @@ class DateTime extends Control {
       dateTextInput.value = format(this._props.value, this._props.dateFormat);
     }
     if (this._props.isDisabled) {
-      dateTextInput.disabled = this._props.isDisabled
+      dateTextInput.disabled = this._props.isDisabled;
     }
 
     // event handlers
@@ -148,7 +148,7 @@ class DateTime extends Control {
         this._props.value = null;
       }
       this._calendar.setValue(this._props.value);
-      this._calendar.rerender(['offsetLeft'], { left: dateTextInput.offsetLeft });
+      this._calendar.rerender(['offsetLeft'], {left: dateTextInput.offsetLeft});
       this._calendar.show();
     };
     dateTextInput.onfocus = () => {
@@ -193,7 +193,7 @@ class DateTime extends Control {
       } else {
         this._timeTextInput.setSelectionRange(0, 2);
       }
-      this._timePicker.rerender(['offsetLeft'], { left: this._timeTextInput.offsetLeft });
+      this._timePicker.rerender(['offsetLeft'], {left: this._timeTextInput.offsetLeft});
       this._timePicker.show();
     };
     this._timeTextInput.onfocus = (e) => {
@@ -206,6 +206,10 @@ class DateTime extends Control {
     };
     this._timeTextInput.onkeydown = (e) => {
       e.preventDefault();
+
+      let keyCode = e.keyCode || e.which;
+      const key = String.fromCharCode(keyCode);
+      const isNumber = /^[0-9]$/i.test(key);
       switch (e.key) {
         case 'Tab':
           if (this._timeTextInput.selectionStart !== 3 && this._timeTextInput.selectionEnd !== 5) {
@@ -247,14 +251,11 @@ class DateTime extends Control {
           this._timePicker.hide();
           break;
         default:
-          let keyCode = e.keyCode || e.which;
           if (keyCode >= 96 && keyCode <= 105) {
-              // Numpad keys
-              keyCode -= 48;
+            // Numpad keys
+            keyCode -= 48;
           }
-          const key = String.fromCharCode(keyCode);
-          const isNumber = /^[0-9]$/i.test(key);
-          if(!isNumber) {
+          if (!isNumber) {
             this._setTextInputValueToPreviousValidValue();
           } else {
             this._setTimeValueOnInput(key);
@@ -263,23 +264,23 @@ class DateTime extends Control {
       }
     };
     this._timeTextInput.onblur = (e) => {
-      let relatedTarget = e.relatedTarget ||
-        e['explicitOriginalTarget'] ||
+      const relatedTarget = e.relatedTarget ||
+        (e as any).explicitOriginalTarget ||
         document.activeElement; // IE11
 
       if (relatedTarget &&
         this._timePicker.getElement().contains(relatedTarget as Node)
       ) {
-        e.preventDefault()
+        e.preventDefault();
         return;
       }
       this._timePicker.hide();
     };
   }
 
-  private _setTextInputValueToPreviousValidValue = () => {
+  private _setTextInputValueToPreviousValidValue() {
     if (this._timeTextInput.dataset.previousValidTime &&
-      this._timeTextInput.dataset.previousValidTime != this._timeTextInput.value) {
+      this._timeTextInput.dataset.previousValidTime !== this._timeTextInput.value) {
       let previousSelectionStart = 0;
       let previousSelectionEnd = 2;
       if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
@@ -288,15 +289,15 @@ class DateTime extends Control {
         previousSelectionStart = 3;
         previousSelectionEnd = 5;
       }
-      this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime
+      this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime;
       this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
     }
   }
 
-  private _setTimeValueOnInput = (key: string) => {
+  private _setTimeValueOnInput(key: string) {
     let newTime = parseStringToTime(this._timeTextInput.value);
     if (!newTime) {
-      newTime = new Date(this._time)
+      newTime = new Date(this._time);
     }
     if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
       this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5
@@ -332,7 +333,7 @@ class DateTime extends Control {
       this._timeTextInput.setSelectionRange(0, 2);
     }
     this._time = new Date(newTime);
-  };
+  }
 
   private _changeMinutesBy(minutes: number) {
     this._time.setMinutes(this._time.getMinutes() + minutes);
@@ -359,8 +360,8 @@ class DateTime extends Control {
     // render calendar
     const calendar = new Calendar({
       date: this._props.value,
-      onClickOutside: this._onClickOutside,
-      onDateClick: this._onCalendarDateClick,
+      onClickOutside: this._onClickOutside.bind(this),
+      onDateClick: this._onCalendarDateClick.bind(this),
       locale: this._locale
     });
     dateContainer.appendChild(calendar.render());
@@ -378,7 +379,7 @@ class DateTime extends Control {
     timeContainer.appendChild(this._timeTextInput);
 
     // render time picker
-    const timePicker = new TimePicker({ onTimeClick: (date) => this._onTimeClick(date) });
+    const timePicker = new TimePicker({onTimeClick: (date) => this._onTimeClick(date)});
     this._timePicker = timePicker;
     timeContainer.appendChild(timePicker.render());
     this.element.appendChild(timeContainer);
@@ -406,15 +407,15 @@ class DateTime extends Control {
     }
   }
 
-  private _onClickOutside = (e: FocusEvent) => {
-    let relatedTarget = e.relatedTarget ||
-      e['explicitOriginalTarget'] ||
+  private _onClickOutside(e: FocusEvent) {
+    const relatedTarget = e.relatedTarget ||
+      (e as any).explicitOriginalTarget ||
       document.activeElement; // IE11
 
-    const calendar = this._calendar.getElement()
+    const calendar = this._calendar.getElement();
     if (calendar.contains(relatedTarget as HTMLElement)) {
-      if (calendar['setActive']) {
-        calendar['setActive']()
+      if ((calendar as any).setActive) {
+        (calendar as any).setActive();
       }
     }
     if (relatedTarget === null ||
@@ -432,7 +433,7 @@ class DateTime extends Control {
     }
   }
 
-  private _onCalendarDateClick = (date: Date | null) => {
+  private _onCalendarDateClick(date: Date | null) {
     this._dateErrorDiv.style.display = 'none';
     this._calendar.setValue(date);
     this._calendar.hide();
@@ -442,7 +443,7 @@ class DateTime extends Control {
     this.rerender(['dateTextInput']);
   }
 
-  private _onTimeClick = (date: Date) => {
+  private _onTimeClick(date: Date) {
     // set time value
     this._time = date;
     // close time picker
@@ -453,7 +454,7 @@ class DateTime extends Control {
   }
 
   getValue(): Date | undefined {
-    let value
+    let value;
     if (this._props.value) {
       value = new Date(this._props.value);
       switch (this._props.type) {
@@ -468,15 +469,15 @@ class DateTime extends Control {
           return value;
       }
     }
-    return value
+    return value;
   }
 
   setValue(date_opt: any) {
-    let date = date_opt
+    let date = date_opt;
     if (date === null) {
       date = new Date();
     } else if (date === undefined || !(date instanceof Date)) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
 
     switch (this._props.type) {
@@ -505,7 +506,7 @@ class DateTime extends Control {
 
   setLocale(locale: any) {
     if (typeof locale !== 'string') {
-      throw new Error(Message.datetime.INVALID_LOCALE)
+      throw new Error(Message.datetime.INVALID_LOCALE);
     }
     switch (locale) {
       case 'en':

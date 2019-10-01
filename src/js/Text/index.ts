@@ -1,34 +1,30 @@
 import Control, {ControlProps} from '../Control';
 
-import '../../css/Text.css'
+import '../../css/Text.css';
 
 type TextProps = ControlProps & {
   value?: string;
 }
 
-class Text extends Control {
-  protected _props: TextProps = {
-    ...this._props,
-    ...{
-      value: ''
-    }
-  }
-
+class Text extends Control<TextProps> {
   private _onChange: (params?: any) => void = () => {}
 
   constructor(params?: TextProps) {
     super();
-    if(typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
-      delete params.isDisabled
+    console.log(this._props);
+
+    this._props.value = '';
+    if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
+      delete params.isDisabled;
     }
     if (params) {
       this._props = {...this._props, ...params};
     }
-    
+
     this.element = document.createElement('input');
     this.element.className = 'kuc-input-text';
     this.element.setAttribute('type', 'text');
-    if(this._props.value) {
+    if (this._props.value) {
       (this.element as HTMLInputElement).value = this._props.value;
     }
     this.element.onchange = (e) => {
@@ -54,9 +50,9 @@ class Text extends Control {
       (this.element as HTMLInputElement).value = this._props.value;
     }
   }
-  
+
   on(eventName: string, callback: (params?: any) => void) {
-    if(eventName === 'change') {
+    if (eventName === 'change') {
       this._onChange = callback;
       return;
     }
