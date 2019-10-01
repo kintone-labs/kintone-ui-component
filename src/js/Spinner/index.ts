@@ -28,14 +28,6 @@ class Spinner extends Control {
 
     return outerDOM;
   }
-
-  disable(): void {
-    // nothing to do   
-  }
-
-  enable(): void {
-    // nothing to do
-  }
 }
 
 export default Spinner;

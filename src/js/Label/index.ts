@@ -90,14 +90,6 @@ class Label extends Control {
     this._props.backgroundColor = color;
     this.rerender(['textStyle']);
   }
-
-  disable(): void {
-    // nothing to do   
-  }
-
-  enable(): void {
-    // nothing to do
-  }
 }
 
 export default Label;

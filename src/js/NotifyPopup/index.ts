@@ -119,11 +119,13 @@ class NotifyPopup extends Control {
   }
 
   disable(): void {
-    // nothing to do   
+    super.disable();
+    this.closeButton.disable();
   }
 
   enable(): void {
-    // nothing to do
+    super.enable();
+    this.closeButton.enable();
   }
 }
 
