@@ -10,7 +10,7 @@ class Spinner extends Control<ControlProps> {
     this._props = {
       isDisabled: true,
       isVisible: false
-    }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

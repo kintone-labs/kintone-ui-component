@@ -71,7 +71,7 @@ class AttachmentFileItem extends Control<AttachmentFileItemProps> {
     return container;
   }
 
-  onRemove = () => {
+  onRemove() {
     if (this._props.onFileRemove) {
       this._props.onFileRemove(this._props.index || 0);
       this.element.remove();

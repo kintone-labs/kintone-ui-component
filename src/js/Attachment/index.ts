@@ -155,7 +155,7 @@ class Attachment extends Control<AttachmentProps> {
     }
   }
 
-  private _removeFile = (index: number) =>{
+  private _removeFile(index: number) {
     this._props.files && this._props.files.splice(index, 1);
     this._onFileRemove(this._props.files);
   }
@@ -218,22 +218,22 @@ class Attachment extends Control<AttachmentProps> {
     return true;
   };
 
-  private _onDrop = (event: DragEvent) => {
+  private _onDrop(event: DragEvent) {
     event.preventDefault();
     this._onDragLeave();
     if (this._isFileDrop(event)) {
       this._addFiles(event);
     }
-  };
+  }
 
-  private _onDragOver = (event: DragEvent) => {
+  private _onDragOver(event: DragEvent) {
     event.stopPropagation();
     if (this._isFileOrDirectoryDrag(event)) {
       event.preventDefault();
     }
-  };
+  }
 
-  private _onDragEnter = (event: DragEvent) => {
+  private _onDragEnter(event: DragEvent) {
     this.dragEnterCounter++;
     if (this.dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
       event.preventDefault();
@@ -250,9 +250,9 @@ class Attachment extends Control<AttachmentProps> {
       }
       if (fileDroppableElement) fileDroppableElement.style.display = '';
     }
-  };
+  }
 
-  private _onDragLeave = () => {
+  private _onDragLeave() {
     this.dragEnterCounter--;
     if (this.dragEnterCounter === 0) {
       const fileDroppableElement = this.dropZoneElement.parentElement;
@@ -263,14 +263,14 @@ class Attachment extends Control<AttachmentProps> {
       }
       if (fileDroppableElement) fileDroppableElement.style.display = 'none';
     }
-  };
+  }
 
   private createAttachDnDContainerEL() {
     const container = document.createElement('div');
     container.className = 'kuc-attachment-file';
-    container.ondragover = this._onDragOver;
-    container.ondragenter = this._onDragEnter;
-    container.ondragleave = this._onDragLeave;
+    container.ondragover = this._onDragOver.bind(this);
+    container.ondragenter = this._onDragEnter.bind(this);
+    container.ondragleave = this._onDragLeave.bind(this);
 
     container.appendChild(this.createAttachDnDEL());
     this.listFileEl = this.createlistFileEL();
@@ -285,7 +285,7 @@ class Attachment extends Control<AttachmentProps> {
     const droppableFileEl = document.createElement('div');
     droppableFileEl.className = 'kuc-attachment-file-droppable';
     droppableFileEl.style.display = 'none';
-    droppableFileEl.ondrop = this._onDrop;
+    droppableFileEl.ondrop = this._onDrop.bind(this);
 
     this.dropZoneElement = document.createElement('div');
     this.dropZoneElement.className = 'kuc-attachment-file-droppable-text';

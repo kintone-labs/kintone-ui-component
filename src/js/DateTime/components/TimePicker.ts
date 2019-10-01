@@ -201,14 +201,14 @@ type TimePickerProps = ControlProps & {
   onTimeClick?: (date: Date) => void;
 }
 
-class TimePicker extends Control {
-  protected _props: TimePickerProps = {
-    isDisabled: false,
-    isVisible: false
-  }
+class TimePicker extends Control<TimePickerProps> {
 
   constructor(params?: TimePickerProps) {
     super();
+    this._props = {
+      isDisabled: false,
+      isVisible: false
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

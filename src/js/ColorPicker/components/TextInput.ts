@@ -63,9 +63,7 @@ type RGBInputProps = ControlProps & {
   onChange: (hexString: string) => void;
 }
 
-class RGBInput extends Control {
-  protected _props: RGBInputProps
-
+class RGBInput extends Control<RGBInputProps> {
   private rInput: TextInput
   private gInput: TextInput
   private bInput: TextInput
@@ -150,7 +148,7 @@ type HSVInputProps = ControlProps & {
   onChange: (hexString: string) => void;
 }
 
-class HSVInput extends Control {
+class HSVInput extends Control<HSVInputProps> {
   private hInput: TextInput
   private sInput: TextInput
   private vInput: TextInput

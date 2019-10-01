@@ -63,7 +63,7 @@ export default class Table extends Control<TableProps> {
     }
   }
 
-  private _addRow = ({data, rowIndex}: RowEventProps) => {
+  private _addRow({data, rowIndex}: RowEventProps) {
     if (!data) {
       return [];
     }
@@ -75,7 +75,7 @@ export default class Table extends Control<TableProps> {
     return newData;
   }
 
-  private _removeRow = ({data, rowIndex}: RowEventProps) => {
+  private _removeRow({data, rowIndex}: RowEventProps) {
     const currentData = data && data.filter((_, index) => index !== rowIndex);
     this._props.data = currentData;
     this._renderTableRows(true);
@@ -119,9 +119,9 @@ export default class Table extends Control<TableProps> {
             if (element) {
               cellElement.appendChild(element);
             }
-            cellElement.__tableCellInstance = cellInstance;
+            (cellElement as any).__tableCellInstance = cellInstance;
           }
-          cellInstance = cellElement.__tableCellInstance;
+          cellInstance = (cellElement as any).__tableCellInstance;
           cellInstance.update({table, rowData, rowIndex, columnIndex, element});
         }
       });

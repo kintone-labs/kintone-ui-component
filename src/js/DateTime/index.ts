@@ -265,7 +265,7 @@ class DateTime extends Control<DateTimeProps> {
     };
     this._timeTextInput.onblur = (e) => {
       const relatedTarget = e.relatedTarget ||
-        e.explicitOriginalTarget ||
+        (e as any).explicitOriginalTarget ||
         document.activeElement; // IE11
 
       if (relatedTarget &&
@@ -278,7 +278,7 @@ class DateTime extends Control<DateTimeProps> {
     };
   }
 
-  private _setTextInputValueToPreviousValidValue = () => {
+  private _setTextInputValueToPreviousValidValue() {
     if (this._timeTextInput.dataset.previousValidTime &&
       this._timeTextInput.dataset.previousValidTime !== this._timeTextInput.value) {
       let previousSelectionStart = 0;
@@ -294,7 +294,7 @@ class DateTime extends Control<DateTimeProps> {
     }
   }
 
-  private _setTimeValueOnInput = (key: string) => {
+  private _setTimeValueOnInput(key: string) {
     let newTime = parseStringToTime(this._timeTextInput.value);
     if (!newTime) {
       newTime = new Date(this._time);
@@ -333,7 +333,7 @@ class DateTime extends Control<DateTimeProps> {
       this._timeTextInput.setSelectionRange(0, 2);
     }
     this._time = new Date(newTime);
-  };
+  }
 
   private _changeMinutesBy(minutes: number) {
     this._time.setMinutes(this._time.getMinutes() + minutes);
@@ -360,8 +360,8 @@ class DateTime extends Control<DateTimeProps> {
     // render calendar
     const calendar = new Calendar({
       date: this._props.value,
-      onClickOutside: this._onClickOutside,
-      onDateClick: this._onCalendarDateClick,
+      onClickOutside: this._onClickOutside.bind(this),
+      onDateClick: this._onCalendarDateClick.bind(this),
       locale: this._locale
     });
     dateContainer.appendChild(calendar.render());
@@ -407,15 +407,15 @@ class DateTime extends Control<DateTimeProps> {
     }
   }
 
-  private _onClickOutside = (e: FocusEvent) => {
+  private _onClickOutside(e: FocusEvent) {
     const relatedTarget = e.relatedTarget ||
-      e.explicitOriginalTarget ||
+      (e as any).explicitOriginalTarget ||
       document.activeElement; // IE11
 
     const calendar = this._calendar.getElement();
     if (calendar.contains(relatedTarget as HTMLElement)) {
-      if (calendar.setActive) {
-        calendar.setActive();
+      if ((calendar as any).setActive) {
+        (calendar as any).setActive();
       }
     }
     if (relatedTarget === null ||
@@ -433,7 +433,7 @@ class DateTime extends Control<DateTimeProps> {
     }
   }
 
-  private _onCalendarDateClick = (date: Date | null) => {
+  private _onCalendarDateClick(date: Date | null) {
     this._dateErrorDiv.style.display = 'none';
     this._calendar.setValue(date);
     this._calendar.hide();
@@ -443,7 +443,7 @@ class DateTime extends Control<DateTimeProps> {
     this.rerender(['dateTextInput']);
   }
 
-  private _onTimeClick = (date: Date) => {
+  private _onTimeClick(date: Date) {
     // set time value
     this._time = date;
     // close time picker

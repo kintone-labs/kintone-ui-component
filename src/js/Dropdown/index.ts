@@ -76,36 +76,36 @@ class Dropdown extends Control<DropdownProps> {
     return element;
   }
 
-  private _showItems = (e: any) => {
+  private _showItems(e: any) {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
     this._props.listItemsShown && this._props.listItemsShown(e);
-  };
+  }
 
-  private _hideItems = () => {
+  private _hideItems() {
     this.isListVisible = false;
     this.listOuterEl.setAttribute('style', 'display: none');
-  };
+  }
 
-  private _handleDropdownClick = (e: any) => {
+  private _handleDropdownClick(e: any) {
     if (this.isListVisible) {
       this._hideItems();
       return;
     }
     this._showItems(e);
-  };
+  }
 
-  private _handleClickOutside = () => {
+  private _handleClickOutside() {
     this._hideItems();
-  };
+  }
 
-  private _handleItemClick = (item: item) => {
+  private _handleItemClick(item: item) {
     this._props.value = item.value;
     this.label = item.label || '';
     this._hideItems();
     this.rerender(['item']);
     this._props.onChange && this._props.onChange(this._props.value);
-  };
+  }
 
   private _createDownIconEl() {
     const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -117,19 +117,19 @@ class Dropdown extends Control<DropdownProps> {
     return svgEl;
   }
 
-  private _renderSubContainer = () => {
+  private _renderSubContainer() {
     this.className = [
       'kuc-dropdown',
       this._props.isDisabled ? 'kuc-dropdown-disable' : ''
     ];
     const subcontainerEl = this._createDom('div', 'kuc-dropdown-sub-container');
     subcontainerEl.setAttribute('tabIndex', '-1');
-    subcontainerEl.onblur = this._handleClickOutside;
+    subcontainerEl.onblur = this._handleClickOutside.bind(this);
 
     const outerEl = this._createDom('div', 'kuc-dropdown-outer');
     this.dropdownEl = this._createDom('div', this.className.join(' ').trim());
     if (!this._props.isDisabled) {
-      this.dropdownEl.onclick = this._handleDropdownClick;
+      this.dropdownEl.onclick = this._handleDropdownClick.bind(this);
     }
 
     const selectedEl = this._createDom('div', 'kuc-dropdown-selected');
@@ -162,7 +162,7 @@ class Dropdown extends Control<DropdownProps> {
           selected: this._props.value === item.value,
           item: item,
           isDisabled: this._props.isDisabled || item.isDisabled,
-          onClick: this._handleItemClick
+          onClick: this._handleItemClick.bind(this)
         });
         return newItem;
       });
@@ -174,7 +174,7 @@ class Dropdown extends Control<DropdownProps> {
     subcontainerEl.appendChild(outerEl);
     subcontainerEl.appendChild(this.listOuterEl);
     return subcontainerEl;
-  };
+  }
 
   private _validator(items?: item[], value?: string): string | undefined {
     let err;

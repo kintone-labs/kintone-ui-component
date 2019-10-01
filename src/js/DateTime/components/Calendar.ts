@@ -114,7 +114,7 @@ class Calendar extends Control<CalendarProps> {
     this._displayMonthDropdown = monthDropdown;
   }
 
-  _onChangeCreateYearDropdown = (value: any) => {
+  _onChangeCreateYearDropdown(value: any) {
     const newDate = new Date(this._displayDate);
     const currentYear = Number(value.replace('年', ''));
     newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
@@ -130,7 +130,7 @@ class Calendar extends Control<CalendarProps> {
       this._scrollToSeletedOptions();
     });
     this._displayYearDropdown = yearDropdown;
-    this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown);
+    this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown.bind(this));
   }
 
   _renderNextButton() {

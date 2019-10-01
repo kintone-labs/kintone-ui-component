@@ -56,7 +56,7 @@ class TextArea extends Control<TextAreaProps> {
     return this._props.value;
   }
 
-  _onMouseDown =() => {
+  _onMouseDown() {
     if (this._props.isDisabled) return;
     const eventMouseMove = document.onmousemove;
     const eventMouseUp = document.onmouseup;
