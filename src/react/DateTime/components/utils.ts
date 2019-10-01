@@ -64,10 +64,12 @@ const getDisplayingDays = (date: Date) => {
   endDayOfEndWeek.setDate(endDayOfEndWeek.getDate() + (6 - endDayOfEndWeek.getDay()));
 
   const days = [];
-  for (let d = new Date(startDayOfFirstWeek); d <= endDayOfEndWeek; d.setDate(d.getDate() + 1)) {
+  let d = new Date(startDayOfFirstWeek);
+  while (d <= endDayOfEndWeek) {
     days.push(new Date(d));
+    d.setDate(d.getDate() + 1);
+    d = new Date(d);
   }
-
   return days;
 };
 

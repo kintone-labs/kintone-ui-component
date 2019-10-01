@@ -86,7 +86,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   return (
     <div className="kuc-dropdown-container" ref={ref}>
       <div className="kuc-dropdown-sub-container">
-        <div className="kuc-dropdown-outer" onClick={_showItems}>
+        <div className="kuc-dropdown-outer" onClick={_showItems} role="presentation">
           <div className={className.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">

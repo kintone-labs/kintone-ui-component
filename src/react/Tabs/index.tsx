@@ -53,9 +53,11 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         }
         return (
           <li
+            role="none"
             className={className}
             key={tabIndex}
             onClick={() => _onClickTabItem(tabIndex)}
+            onKeyUp={() => _onClickTabItem(tabIndex)}
           >
             {item.tabName}
           </li>

@@ -68,6 +68,7 @@ const Calendar = ({
 
   return (
     <div
+      role="presentation"
       ref={calRef}
       className="date-picker-container"
       style={{display: pickerDisplay}}
@@ -88,8 +89,14 @@ const Calendar = ({
       <div className="header">
         <div className="month-year-container">
           <span
+            role="button"
             className="prev calendar-button-control"
             onClick={()=>{
+              const newDate = new Date(displayDate);
+              newDate.setMonth(newDate.getMonth() - 1, 1);
+              setDisplayDate(newDate);
+            }}
+            onKeyUp={() => {
               const newDate = new Date(displayDate);
               newDate.setMonth(newDate.getMonth() - 1, 1);
               setDisplayDate(newDate);
@@ -149,8 +156,14 @@ const Calendar = ({
             }
           </div>
           <span
+            role="button"
             className="next calendar-button-control"
             onClick={() => {
+              const newDate = new Date(displayDate);
+              newDate.setMonth(newDate.getMonth() + 1, 1);
+              setDisplayDate(newDate);
+            }}
+            onKeyUp={() => {
               const newDate = new Date(displayDate);
               newDate.setMonth(newDate.getMonth() + 1, 1);
               setDisplayDate(newDate);
@@ -180,9 +193,18 @@ const Calendar = ({
             className += date && isSameDate(day, date) && hasSelection ? ' selected' : '';
             return (
               <span
+                role="button"
                 className={`${className} calendar-button`}
                 key={`day-${index}`}
                 onClick={()=>{
+
+                  const returnDate = new Date(date);
+                  returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
+
+                  onDateClick(returnDate, null);
+                  setDisplayDate(new Date(day));
+                }}
+                onKeyUp={()=>{
 
                   const returnDate = new Date(date);
                   returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
@@ -199,15 +221,24 @@ const Calendar = ({
         </div>
         <div className="quick-selections-container">
           <span
+            role="button"
+            tabIndex={0}
             className="today calendar-button-control"
             onClick={()=>{
+              setDisplayDate(new Date()); onDateClick(today, null);
+            }}
+            onKeyUp={()=>{
               setDisplayDate(new Date()); onDateClick(today, null);
             }}
           >{locale.today}
           </span>
           <span
+            role="button"
             className="none calendar-button-control"
             onClick={()=>{
+              onDateClick(null, previousDate);
+            }}
+            onKeyUp={()=>{
               onDateClick(null, previousDate);
             }}
             tabIndex={-1}

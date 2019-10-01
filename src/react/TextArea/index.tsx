@@ -76,6 +76,8 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
       <div
         className="kuc-textarea-resize"
         style={{transform: `translate(${sizeConfig.translateX}px, ${sizeConfig.translateY}px)`}}
+        role="button"
+        tabIndex={0}
         onMouseDown={()=>{
           setIsResizing(true);
         }}

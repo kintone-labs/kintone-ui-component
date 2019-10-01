@@ -136,11 +136,12 @@ const Attachment = (props: AttachmentProps) => {
     <div className="kuc-attachment-outer">
       <div
         className="kuc-attachment-file"
+        role="presentation"
         onDragOver={_onDragOver}
         onDragEnter={_onDragEnter}
         onDragLeave={_onDragLeave}
       >
-        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
+        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop} role="presentation">
           <div
             className="kuc-attachment-file-droppable-text"
             ref={(dropElement) => {

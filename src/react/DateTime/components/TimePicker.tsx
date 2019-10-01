@@ -208,10 +208,18 @@ const TimePicker = ({pickerDisplay = 'none', timeRef, onTimeClick}: TimePickerPr
         timeList12H.map((timeObj, index) => {
           return (
             <span
+              role="menuitem"
               className="kuc-time-list-item"
               tabIndex={-1}
               key={`time-${index}`}
               onClick={()=>{
+                const tempDate = new Date();
+                const hour = parseInt(timeObj.value.split(':')[0], 10);
+                const minute = parseInt(timeObj.value.split(':')[1], 10);
+                tempDate.setHours(hour, minute);
+                onTimeClick(tempDate);
+              }}
+              onKeyUp={()=>{
                 const tempDate = new Date();
                 const hour = parseInt(timeObj.value.split(':')[0], 10);
                 const minute = parseInt(timeObj.value.split(':')[1], 10);

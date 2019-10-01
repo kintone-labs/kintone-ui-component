@@ -35,6 +35,7 @@ const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
 
   return (
     <div
+      role="none"
       className={_getClassName()}
       onClick={_onClick}
     >

@@ -38,6 +38,8 @@ const DateTime = ({
   const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
   const [timeDateValue, setTimeDateValue] = useState(new Date(value));
+  const [isDisableBtn, setDisableBtn] = useState(isDisabled);
+  const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -148,8 +150,8 @@ const DateTime = ({
     setInputValue(format(value, dateFormat));
   }, [dateFormat, defaultValue, pickerDisplay, timeDateValue, timeFormat, value]);
 
-  if (typeof isDisabled !== 'boolean') {
-    isDisabled = false;
+  if (typeof isDisableBtn !== 'boolean') {
+    setDisableBtn(false);
   }
 
   let localeObj = ja;
@@ -159,21 +161,21 @@ const DateTime = ({
     localeObj = zh;
   }
 
-  if (type !== 'datetime' && type !== 'date' && type !== 'time') {
-    type = 'datetime';
+  if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
+    setTypeDateTime('datetime');
   }
 
   if (isVisible) {
     return (
       <div className="date-time-container" ref={wrapperRef}>
         {
-          (type === 'datetime' || type === 'date') &&
+          (typeDateTime === 'datetime' || typeDateTime === 'date') &&
           <div className="date-container">
             <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
               <input
                 type="text"
                 className="kuc-input-text text-input"
-                disabled={isDisabled}
+                disabled={isDisableBtn}
                 onFocus={(e) => {
                   setPickerDisplay('block');
                   setTimePickerDisplay('none');
@@ -252,7 +254,7 @@ const DateTime = ({
               </div>
             }
             {
-              !isDisabled &&
+              !isDisableBtn &&
               <Calendar
                 calRef={calendarRef}
                 pickerDisplay={pickerDisplay}
@@ -297,11 +299,11 @@ const DateTime = ({
 
         }
         {
-          (type === 'datetime' || type === 'time') &&
+          (typeDateTime === 'datetime' || typeDateTime === 'time') &&
           <div className="time-container">
             <input
               type="text"
-              disabled={isDisabled}
+              disabled={isDisableBtn}
               maxLength={5}
               key={1}
               className="kuc-input-text text-input time"
@@ -395,7 +397,7 @@ const DateTime = ({
               }
             />
             {
-              !isDisabled &&
+              !isDisableBtn &&
               <TimePicker
                 timeRef={timeRef}
                 pickerDisplay={timePickerDisplay}

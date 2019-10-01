@@ -70,7 +70,7 @@ const Item = (props: ItemProps) => {
     props.isDisabled ? 'kuc-list-item-disable' : ''
   ];
   return (
-    <div onClick={_onClick} className={className.join(' ').trim()} >
+    <div onClick={_onClick} className={className.join(' ').trim()} role="presentation">
       <span className="kuc-icon-check">
         <svg>
           <path d={mdiCheckBold} />

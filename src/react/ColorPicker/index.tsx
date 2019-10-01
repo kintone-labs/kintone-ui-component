@@ -62,23 +62,22 @@ function ColorPicker(props: ColorPickerProps) {
     setPickerDisplay(true);
   }
 
-  function handleClickOutside(e: Event) {
-    if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target as Node) && pickerDisplay) {
-      setFocus(false);
-      setPickerDisplay(false);
-    }
-  }
-
   useEffect(() => {
     if (props.color && props.color !== previouseHex) {
       setHexString(props.color);
       previouseHex = props.color;
     }
+    const handleClickOutside = (e: Event) => {
+      if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target as Node) && pickerDisplay) {
+        setFocus(false);
+        setPickerDisplay(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside, true);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside, true);
     };
-  }, [props.color, handleClickOutside]);
+  }, [props.color, pickerDisplay]);
 
   function getInputStyle() {
     let style = {
