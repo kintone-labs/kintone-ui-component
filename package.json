@@ -29,9 +29,9 @@
 		"transpile": "tsc"
 	},
 	"dependencies": {
+		"@babel/runtime": "7.6.2",
 		"@mdi/js": "3.6.95",
-		"@mdi/light-js": "0.2.63",
-		"@babel/polyfill": "7.2.5"
+		"@mdi/light-js": "0.2.63"
 	},
 	"peerDependencies": {
 		"react": "16.8.6",
@@ -40,6 +40,7 @@
 	"devDependencies": {
 		"@babel/core": "7.4.5",
 		"@babel/plugin-proposal-class-properties": "7.4.0",
+		"@babel/plugin-transform-runtime": "7.6.2",
 		"@babel/preset-env": "7.4.5",
 		"@babel/preset-react": "7.0.0",
 		"@babel/preset-typescript": "7.3.3",

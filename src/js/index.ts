@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import './polyfill'
 import '../css/font.css'
 import DateTime from './DateTime'
