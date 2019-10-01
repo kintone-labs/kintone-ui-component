@@ -58,6 +58,14 @@ class Alert extends Control {
     this._props.type = type;
     this.rerender(['type']);
   }
+
+  disable(): void {
+    // nothing to do   
+  }
+
+  enable(): void {
+    // nothing to do
+  }
 }
 
 export default Alert;
