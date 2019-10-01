@@ -15,23 +15,22 @@ type SaturationSpectrumProps = ControlProps & {
   }, triggerOnChange: boolean) => void;
 }
 
-class SaturationSpectrum extends Control {
-  protected _props: SaturationSpectrumProps = {
-    ...this._props,
-    ...{
-      width: 200,
-      height: 200,
-      rgb: {r: 0, g: 0, b: 0},
-      onSelect: (rgb = {r: 0, g: 0, b: 0}, triggerOnChange = false) => {}
-    }
-  }
+class SaturationSpectrum extends Control<SaturationSpectrumProps> {
   private colorCanvas: HTMLCanvasElement
   private containerEl: ClientRect | DOMRect
   private isMouseDown: boolean
 
   constructor(params: SaturationSpectrumProps) {
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        width: 200,
+        height: 200,
+        rgb: {r: 0, g: 0, b: 0},
+        onSelect: (rgb = {r: 0, g: 0, b: 0}, triggerOnChange = false) => {}
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

@@ -17,16 +17,7 @@ type AttachmentProps = ControlProps & {
   onFileRemove?: (files: FileObject[]) => void;
 }
 
-class Attachment extends Control {
-  protected _props: AttachmentProps = {
-    ...this._props,
-    ...{
-      files: [],
-      browseButtonText: 'Browse',
-      dropZoneText: 'Drop files here.',
-      isErrorVisible: false,
-    }
-  }
+class Attachment extends Control<AttachmentProps> {
   private _onFileRemove: (params?: any) => void = () => {};
   private _onFileAdd: (params?: any) => void = () => {};
   private listFileEl: HTMLDivElement;
@@ -38,6 +29,15 @@ class Attachment extends Control {
 
   constructor(params?: AttachmentProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        files: [],
+        browseButtonText: 'Browse',
+        dropZoneText: 'Drop files here.',
+        isErrorVisible: false,
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

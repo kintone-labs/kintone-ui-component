@@ -9,15 +9,7 @@ type FieldGroupProps = ControlProps & {
   isVisible?: boolean;
 }
 
-class FieldGroup extends Control {
-  protected _props: FieldGroupProps = {
-    ...this._props,
-    ...{
-      name: '',
-      toggle: 'collapse'
-    }
-  }
-
+class FieldGroup extends Control<FieldGroupProps> {
   private fgTab: HTMLElement;
   private fgTabArrow: HTMLElement;
   private fgTabLabel: HTMLElement;
@@ -25,6 +17,13 @@ class FieldGroup extends Control {
 
   constructor(params?: FieldGroupProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        name: '',
+        toggle: 'collapse'
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

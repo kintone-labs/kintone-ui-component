@@ -9,16 +9,7 @@ type ColorPickerProps = ControlProps & {
   onChange?: (color: string) => void;
 }
 
-class ColorPicker extends Control {
-  protected _props: ColorPickerProps = {
-    ...this._props,
-    ...{
-      color: '#ff0000',
-      onAccept: (color: string) => {},
-      onCancel: (color: string) => {}
-    }
-  }
-
+class ColorPicker extends Control<ColorPickerProps> {
   private oldColor: string
   private inputElement: HTMLInputElement
   private Picker: Picker
@@ -26,6 +17,14 @@ class ColorPicker extends Control {
 
   constructor(params?: ColorPickerProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        color: '#ff0000',
+        onAccept: (color: string) => {},
+        onCancel: (color: string) => {}
+      }
+    };
     if (!params) {
       return;
     }

@@ -17,19 +17,19 @@ type ItemProps = ControlProps & {
   onClick?: (item: item) => void;
 };
 
-class Item extends Control {
-  protected _props: ItemProps = {
-    ...this._props,
-    ...{
-      type: 'default'
-    }
-  };
+class Item extends Control<ItemProps> {
   private inputEl: HTMLInputElement;
   public isSelected: boolean = false;
   public item: item;
 
   constructor(params: ItemProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        type: 'default'
+      }
+    };
     if (
       typeof params === 'object' &&
       params !== null &&

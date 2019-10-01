@@ -19,14 +19,7 @@ type DropdownProps = ControlProps & {
   listItemsShown?: (params?: any) => void;
 };
 
-class Dropdown extends Control {
-  protected _props: DropdownProps = {
-    ...this._props,
-    ...{
-      items: []
-    }
-  };
-
+class Dropdown extends Control<DropdownProps> {
   private itemComps?: Item[] = [];
   private dropdownEl: HTMLElement;
   private nameLabelEl: HTMLElement;
@@ -38,6 +31,12 @@ class Dropdown extends Control {
 
   constructor(params?: DropdownProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: []
+      }
+    };
     if (
       typeof params === 'object' &&
       params !== null &&

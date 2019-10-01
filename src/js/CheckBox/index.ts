@@ -10,22 +10,21 @@ type CheckboxProps = ControlProps & {
   onChange?: (value?: string[]) => void;
 }
 
-class CheckBox extends Control {
-  protected _props: CheckboxProps = {
-    ...this._props,
-    ...{
-      items: [],
-      value: [],
-      isDisabled: false,
-      isVisible: true,
-
-    }
-  }
-
+class CheckBox extends Control<CheckboxProps> {
   private itemList: Item[] = []
 
   constructor(params?: CheckboxProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: [],
+        value: [],
+        isDisabled: false,
+        isVisible: true,
+
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

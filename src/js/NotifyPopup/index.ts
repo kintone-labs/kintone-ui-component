@@ -10,14 +10,7 @@ type PopupProps = ControlProps & {
   type?: string;
 }
 
-class NotifyPopup extends Control {
-  protected _props: PopupProps = {
-    ...this._props,
-    ...{
-      text: '',
-      type: 'error'
-    }
-  }
+class NotifyPopup extends Control<PopupProps> {
 
   private textEl: any
   private closeButton: IconButton
@@ -27,6 +20,13 @@ class NotifyPopup extends Control {
   constructor(params?: PopupProps) {
     super();
 
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        type: 'error'
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

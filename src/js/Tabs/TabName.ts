@@ -7,21 +7,19 @@ type TabNameProps = ControlProps & {
 }
 
 
-class TabName extends Control {
-  protected _props: TabNameProps = {
-    ...this._props,
-    ...{
-      isActive: false,
-      tabName: '',
-      tabIndex: 0,
-      onClickTabItem: (tabIndex: number) => {
-
-      }
-    }
-  }
-
+class TabName extends Control<TabNameProps> {
   constructor(params: TabNameProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        isActive: false,
+        tabName: '',
+        tabIndex: 0,
+        onClickTabItem: (tabIndex: number) => {}
+      }
+    };
+
     if (params) {
       this._props = {...this._props, ...params};
     }

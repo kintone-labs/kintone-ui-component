@@ -33,21 +33,21 @@ type TableProps = ControlProps & {
   onCellChange?: HandlerFunction;
 }
 
-export default class Table extends Control {
-  protected _props: TableProps = {
-    ...this._props,
-    ...{
-      data: [],
-      defaultRowData: {},
-      columns: [],
-      actionButtonsShown: true
-    }
-  }
+export default class Table extends Control<TableProps> {
   private _tableHeaderContainer: HTMLElement
   private _tableBodyContainer: HTMLElement
 
   constructor(params?: TableProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        data: [],
+        defaultRowData: {},
+        columns: [],
+        actionButtonsShown: true
+      }
+    };
     if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

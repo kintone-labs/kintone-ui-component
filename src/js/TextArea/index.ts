@@ -6,8 +6,7 @@ type TextAreaProps = ControlProps & {
   onChange?: (e: any) => void;
 }
 
-class TextArea extends Control {
-  protected _props: TextAreaProps = this._props
+class TextArea extends Control<TextAreaProps> {
   private _onClick: (params?: any) => void = () => {}
   private _onChange: (params?: any) => void = () => {}
   private textAreaEl: HTMLTextAreaElement

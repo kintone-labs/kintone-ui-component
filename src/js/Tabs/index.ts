@@ -16,16 +16,7 @@ type TabsProps = ControlProps & {
   onClickTabItem?: (tabIndex: number) => void;
 }
 
-class Tabs extends Control {
-  protected _props: TabsProps = {
-    ...this._props,
-    ...{
-      items: [],
-      value: 0,
-      isDisabled: false,
-      isVisible: true
-    }
-  }
+class Tabs extends Control<TabsProps> {
   private _onClickTabItem: (tabIndex: number) => void = () => { }
 
   private tabNamesElement: HTMLUListElement
@@ -34,6 +25,15 @@ class Tabs extends Control {
 
   constructor(params?: TabsProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: [],
+        value: 0,
+        isDisabled: false,
+        isVisible: true
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

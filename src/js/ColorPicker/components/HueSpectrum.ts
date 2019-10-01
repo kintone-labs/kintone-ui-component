@@ -12,17 +12,7 @@ type HueSpectrumProps = ControlProps & {
   onSelect: (rgbObj: RGB) => void;
 }
 
-class HueSpectrum extends Control {
-  protected _props: HueSpectrumProps ={
-    ...this._props,
-    ...{
-      width: 0,
-      height: 0,
-      onSelect: (rgbObj: RGB) => {
-
-      }
-    }
-  }
+class HueSpectrum extends Control<HueSpectrumProps> {
   private colorCanvas: HTMLCanvasElement
   private containerEl: ClientRect | DOMRect
   private isMouseDown: boolean
@@ -30,7 +20,16 @@ class HueSpectrum extends Control {
 
   constructor(params: HueSpectrumProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        width: 0,
+        height: 0,
+        onSelect: (rgbObj: RGB) => {
 
+        }
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

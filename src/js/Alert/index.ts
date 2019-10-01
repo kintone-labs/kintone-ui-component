@@ -6,17 +6,16 @@ type AlertProps = ControlProps & {
   type?: string;
 }
 
-class Alert extends Control {
-  protected _props: AlertProps = {
-    ...this._props,
-    ...{
-      text: '',
-      type: 'error'
-    }
-  }
-
+class Alert extends Control<AlertProps> {
   constructor(params?: AlertProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        type: 'error'
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

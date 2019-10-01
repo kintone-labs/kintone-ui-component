@@ -17,18 +17,7 @@ type DateTimeProps = ControlProps & {
   onChange?: (date: Date) => void;
 }
 
-class DateTime extends Control {
-  protected _props: DateTimeProps = {
-    ...this._props,
-    ...{
-      value: new Date(),
-      type: 'datetime',
-      locale: 'ja',
-      dateFormat: 'MM/dd/YYYY',
-      timeFormat: 'HH:mm',
-      onChange: (date) => { }
-    }
-  }
+class DateTime extends Control<DateTimeProps> {
   protected element: HTMLElement
   private _dateTextInput: HTMLInputElement
   private _timeTextInput: HTMLInputElement
@@ -41,6 +30,17 @@ class DateTime extends Control {
 
   constructor(params?: DateTimeProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        value: new Date(),
+        type: 'datetime',
+        locale: 'ja',
+        dateFormat: 'MM/dd/YYYY',
+        timeFormat: 'HH:mm',
+        onChange: () => {}
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

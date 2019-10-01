@@ -10,9 +10,7 @@ type TextInputProps = ControlProps & {
   onChange: (value: string) => void;
 }
 
-class TextInput extends Control {
-  protected _props: TextInputProps
-
+class TextInput extends Control<TextInputProps> {
   private inputElement: HTMLInputElement
 
   constructor(params: TextInputProps) {

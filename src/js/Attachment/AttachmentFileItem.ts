@@ -7,8 +7,7 @@ type AttachmentFileItemProps = ControlProps & {
   onFileRemove?: (index: number) => void;
 }
 
-class AttachmentFileItem extends Control {
-  protected _props: AttachmentFileItemProps = this._props;
+class AttachmentFileItem extends Control<AttachmentFileItemProps> {
   protected element: HTMLDivElement
   private ONE_GB = 1073741824;
   private ONE_MB = 1048576;

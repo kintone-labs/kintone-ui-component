@@ -10,17 +10,7 @@ type DialogProps = ControlProps & {
   showCloseButton?: boolean;
 }
 
-class Dialog extends Control {
-  protected _props: DialogProps = {
-    ...this._props,
-    ...{
-      header: '',
-      content: '',
-      footer: '',
-      showCloseButton: false,
-      isVisible: true
-    }
-  }
+class Dialog extends Control<DialogProps> {
   private _headerDivEl: HTMLDivElement
   private _footerDivEl: HTMLDivElement
   private _bodyContentDivEl: HTMLDivElement
@@ -30,6 +20,16 @@ class Dialog extends Control {
 
   constructor(params?: DialogProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        header: '',
+        content: '',
+        footer: '',
+        showCloseButton: false,
+        isVisible: true
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

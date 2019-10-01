@@ -12,21 +12,21 @@ type MultipleChoiceProps = ControlProps & {
   onChange?: (value: string[] | undefined) => void;
 }
 
-class MultipleChoice extends Control {
-  protected _props: MultipleChoiceProps = {
-    ...this._props,
-    ...{
-      items: [],
-      value: [],
-      isDisabled: false,
-      isVisible: true
-    }
-  }
+class MultipleChoice extends Control<MultipleChoiceProps> {
 
   private itemList: Item[] = []
 
   constructor(params?: MultipleChoiceProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: [],
+        value: [],
+        isDisabled: false,
+        isVisible: true
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

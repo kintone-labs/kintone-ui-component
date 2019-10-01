@@ -17,18 +17,18 @@ type ItemProps = ControlProps & {
   onClick?: (item: Item) => void;
 }
 
-class Item extends Control {
-  protected _props: ItemProps = {
-    ...this._props,
-    ...{
-      isSelected: false,
-      isDisabled: false,
-      className: '',
-    }
-  }
+class Item extends Control<ItemProps> {
 
   constructor(params: ItemProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        isSelected: false,
+        isDisabled: false,
+        className: '',
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

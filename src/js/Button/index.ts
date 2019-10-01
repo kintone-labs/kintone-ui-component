@@ -8,17 +8,17 @@ type ButtonProps = ControlProps & {
   onClick?: (e: Event) => void;
 }
 
-class Button extends Control {
-  protected _props: ButtonProps = {
-    ...this._props,
-    ...{
-      text: 'Button',
-      type: 'normal',
-      onClick: () => {}
-    }
-  }
+class Button extends Control<ButtonProps> {
   constructor(params?: ButtonProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        text: 'Button',
+        type: 'normal',
+        onClick: () => {}
+      }
+    };
     if (params && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

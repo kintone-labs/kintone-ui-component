@@ -17,23 +17,21 @@ type ItemProps = ControlProps & {
   onChange?: (item: Item) => void;
 }
 
-class Item extends Control {
-  protected _props: ItemProps = {
-    ...this._props,
-    ...{
-      isSelected: false,
-      isDisabled: false,
-      className: '',
-    }
-  }
-
+class Item extends Control<ItemProps> {
   private inputCheckboxElement: HTMLInputElement
   constructor(params?: ItemProps) {
     super();
     if (params) {
       this._props = {...this._props, ...params};
     }
-
+    this._props = {
+      ...this._props,
+      ...{
+        isSelected: false,
+        isDisabled: false,
+        className: '',
+      }
+    };
     this.element = document.createElement('span');
     this.element.className = 'kuc-input-checkbox-item';
 

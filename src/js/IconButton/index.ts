@@ -9,24 +9,22 @@ type IconBtnProps = ControlProps & {
   shape?: string;
 }
 
-class IconButton extends Control {
-  protected _props: IconBtnProps = {
-    ...this._props,
-    ...{
-      type: 'insert',
-      size: 'large',
-      color: 'gray',
-      shape: 'circle'
-    }
-  }
-
+class IconButton extends Control<IconBtnProps> {
   private iconEl: SVGSVGElement
   private pathEl: SVGPathElement
   private _onClick = (e: Event) => {}
 
   constructor(params?: IconBtnProps) {
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        type: 'insert',
+        size: 'large',
+        color: 'gray',
+        shape: 'circle'
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

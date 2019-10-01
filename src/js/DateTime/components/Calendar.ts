@@ -20,13 +20,7 @@ type CalendarProps = ControlProps & {
   onClickOutside?: (e: FocusEvent) => void;
 }
 
-class Calendar extends Control {
-  protected _props: CalendarProps = {
-    locale: ja,
-    isDisabled: false,
-    isVisible: false
-  }
-
+class Calendar extends Control<CalendarProps> {
   protected element: HTMLElement
   private _calendarHeader: HTMLElement
   private _monthYearContainer: HTMLElement
@@ -47,6 +41,11 @@ class Calendar extends Control {
 
   constructor(params: CalendarProps) {
     super();
+    this._props = {
+      locale: ja,
+      isDisabled: false,
+      isVisible: false
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

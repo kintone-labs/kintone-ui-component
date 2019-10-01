@@ -12,18 +12,17 @@ type RadioButtonProps = ControlProps & {
   onChange?: (params?: any) => void;
 };
 
-class RadioButton extends Control {
-  protected _props: RadioButtonProps = {
-    ...this._props,
-    ...{
-      items: []
-    }
-  };
-
+class RadioButton extends Control<RadioButtonProps> {
   private itemComps?: Item[] = [];
 
   constructor(params?: RadioButtonProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: []
+      }
+    };
     if (params && !params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }
@@ -54,7 +53,7 @@ class RadioButton extends Control {
           name: this._props.name,
           className: 'kuc-input-radio-item'
         });
-        newItem.on('change', this._handleItemClick);
+        newItem.on('change', this._handleItemClick.bind(this));
         return newItem;
       });
     this.itemComps && this.itemComps.forEach(obj => {
@@ -62,7 +61,7 @@ class RadioButton extends Control {
     });
   }
 
-  private _handleItemClick = (itemEl: any) => {
+  _handleItemClick(itemEl: any) {
     const inputEl = itemEl.target;
     this.itemComps && this.itemComps.some(obj => {
       if (obj.id === inputEl.id) {
@@ -72,7 +71,7 @@ class RadioButton extends Control {
       return false;
     });
     this._props.onChange && this._props.onChange(this._props.value);
-  };
+  }
 
   private _validator(items?: item[], value?: string): string | undefined {
     let err;

@@ -6,18 +6,14 @@ type TextProps = ControlProps & {
   value?: string;
 }
 
-class Text extends Control {
-  protected _props: TextProps = {
-    ...this._props,
-    ...{
-      value: ''
-    }
-  }
-
+class Text extends Control<TextProps> {
   private _onChange: (params?: any) => void = () => {}
 
   constructor(params?: TextProps) {
     super();
+    console.log(this._props);
+
+    this._props.value = '';
     if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
     }

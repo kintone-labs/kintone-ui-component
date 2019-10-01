@@ -10,25 +10,22 @@ type LabelProps = ControlProps & {
   backgroundColor?: string;
 }
 
-class Label extends Control {
-  protected _props: LabelProps = {
-    ...this._props,
-    ...{
-      text: '',
-      isRequired: false,
-      textColor: '',
-      backgroundColor: ''
-    }
-  }
-
+class Label extends Control<LabelProps> {
   private textEl: any
   private requiredEl: any
   private containerEl: any
 
   constructor(params?: LabelProps) {
-
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        isRequired: false,
+        textColor: '',
+        backgroundColor: ''
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }
