@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../css/font.css';
 import '../../css/FieldGroup.css';
 
@@ -12,14 +12,10 @@ type FieldGroupProps = {
 }
 
 const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: FieldGroupProps) => {
-  const [contentFieldGroup, setContentFieldGroup] = useState(content);
-
   if (isVisible === false) {
     return null;
   }
-  if (children) {
-    setContentFieldGroup(children);
-  }
+
   const _handleToggleClick = () => {
     const toggleState = toggle === 'expand' ? 'collapse' : 'expand';
     onToggle && onToggle(toggleState);
@@ -49,7 +45,7 @@ const FieldGroup = ({content, name, toggle, onToggle, isVisible, children}: Fiel
         </span>
         <div className="kuc-fieldgroup-contents">
           {
-            contentFieldGroup
+            children ? children : content
           }
         </div>
       </div>
