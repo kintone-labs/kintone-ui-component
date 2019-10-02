@@ -64,11 +64,11 @@ class Elements {
     }
     if (typeof value !== 'undefined') {
       this.elArr.forEach((el) => {
-        el.value = value;
+        (el as any).value = value;
       }, this);
       return this;
     }
-    return this.elArr[0].value;
+    return (this.elArr[0] as any).value;
   }
 
   html(value: any) {

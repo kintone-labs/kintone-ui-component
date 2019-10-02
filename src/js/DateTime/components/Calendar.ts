@@ -317,7 +317,7 @@ class Calendar extends Control<CalendarProps> {
       this._displayYearDropdown.setValue(this._displayYear);
     }
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = options.left + 'px';
+      this.element.style.left = (options as any).left + 'px';
     }
     if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
       this._todayButton.textContent = this._props.locale.today;

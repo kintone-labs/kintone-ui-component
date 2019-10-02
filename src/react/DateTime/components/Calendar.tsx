@@ -75,7 +75,7 @@ const Calendar = ({
       tabIndex={-1}
       onBlur={(e)=>{
         const relatedTarget = e.relatedTarget ||
-          e.explicitOriginalTarget ||
+        (e as any).explicitOriginalTarget ||
           document.activeElement; // IE11
         if (
           calRef.current !== relatedTarget &&

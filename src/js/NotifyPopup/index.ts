@@ -19,7 +19,6 @@ class NotifyPopup extends Control<PopupProps> {
 
   constructor(params?: PopupProps) {
     super();
-
     this._props = {
       ...this._props,
       ...{

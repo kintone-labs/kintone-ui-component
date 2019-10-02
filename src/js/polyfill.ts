@@ -50,7 +50,7 @@
   });
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector ||
+  Element.prototype.matches = (Element.prototype as any).msMatchesSelector ||
         Element.prototype.webkitMatchesSelector;
 }
 

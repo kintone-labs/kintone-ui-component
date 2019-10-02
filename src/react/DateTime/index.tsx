@@ -222,7 +222,7 @@ const DateTime = ({
                   }
 
                   const relatedTarget = e.relatedTarget ||
-                    e.explicitOriginalTarget ||
+                    (e as any).explicitOriginalTarget ||
                     document.activeElement; // IE11
                   const calendar = calendarRef.current as HTMLDivElement;
                   if (
@@ -331,7 +331,7 @@ const DateTime = ({
               onBlur={
                 (e)=>{
                   const relatedTarget = e.relatedTarget ||
-                    e.explicitOriginalTarget ||
+                  (e as any).explicitOriginalTarget ||
                     document.activeElement; // IE11
                   const timePicker = timeRef.current as HTMLDivElement;
                   if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget as HTMLElement)) {
