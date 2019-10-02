@@ -106,7 +106,7 @@ class RadioButton extends Control<RadioButtonProps> {
           name: this._props.name,
           className: 'kuc-input-radio-item'
         });
-        newItem.on('change', this._handleItemClick);
+        newItem.on('change', this._handleItemClick.bind(this));
         return newItem;
       });
     this.itemComps && this.itemComps.forEach(itemComp => {
