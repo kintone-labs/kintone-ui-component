@@ -128,27 +128,31 @@ const DateTime = ({
       setInputValue(format(value, dateFormat));
       setTimeValue(format(value, timeFormat));
       setTimeDateValue(new Date(value));
+    } else {
+      const newTimeDateValue = new Date(timeDateValue);
+      let setNewTimeDateValue = false;
+      if (value.getDate() !== timeDateValue.getDate()) {
+        newTimeDateValue.setDate(value.getDate());
+        setNewTimeDateValue = true;
+      }
+      if (value.getMonth() !== timeDateValue.getMonth()) {
+        newTimeDateValue.setDate(value.getDate());
+        setNewTimeDateValue = true;
+      }
+      if (value.getFullYear() !== timeDateValue.getFullYear()) {
+        newTimeDateValue.setFullYear(value.getFullYear());
+        setNewTimeDateValue = true;
+      }
+      if (setNewTimeDateValue && pickerDisplay === 'none') {
+        setTimeDateValue(newTimeDateValue);
+      }
+      if (!hasSelection) {
+        setInputValue('');
+      } else {
+        setInputValue(format(value, dateFormat));
+      }
     }
-
-    const newTimeDateValue = new Date(timeDateValue);
-    let setNewTimeDateValue = false;
-    if (value.getDate() !== timeDateValue.getDate()) {
-      newTimeDateValue.setDate(value.getDate());
-      setNewTimeDateValue = true;
-    }
-    if (value.getMonth() !== timeDateValue.getMonth()) {
-      newTimeDateValue.setDate(value.getDate());
-      setNewTimeDateValue = true;
-    }
-    if (value.getFullYear() !== timeDateValue.getFullYear()) {
-      newTimeDateValue.setFullYear(value.getFullYear());
-      setNewTimeDateValue = true;
-    }
-    if (setNewTimeDateValue && pickerDisplay === 'none') {
-      setTimeDateValue(newTimeDateValue);
-    }
-    setInputValue(format(value, dateFormat));
-  }, [dateFormat, defaultValue, pickerDisplay, timeDateValue, timeFormat, value]);
+  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value]);
 
   if (typeof isDisableBtn !== 'boolean') {
     setDisableBtn(false);
