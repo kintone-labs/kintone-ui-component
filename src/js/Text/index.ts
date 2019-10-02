@@ -11,8 +11,6 @@ class Text extends Control<TextProps> {
 
   constructor(params?: TextProps) {
     super();
-    console.log(this._props);
-
     this._props.value = '';
     if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
       delete params.isDisabled;
