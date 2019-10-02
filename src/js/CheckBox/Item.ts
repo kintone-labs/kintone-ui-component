@@ -21,9 +21,6 @@ class Item extends Control<ItemProps> {
   private inputCheckboxElement: HTMLInputElement
   constructor(params?: ItemProps) {
     super();
-    if (params) {
-      this._props = {...this._props, ...params};
-    }
     this._props = {
       ...this._props,
       ...{
@@ -32,6 +29,9 @@ class Item extends Control<ItemProps> {
         className: '',
       }
     };
+    if (params) {
+      this._props = {...this._props, ...params};
+    }
     this.element = document.createElement('span');
     this.element.className = 'kuc-input-checkbox-item';
 
