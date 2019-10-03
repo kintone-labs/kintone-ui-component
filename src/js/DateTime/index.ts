@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/DateTime.css';
 import '../../css/Text.css';
@@ -7,7 +8,6 @@ import {parseStringToDate, parseStringToTime} from '../../react/DateTime/compone
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
-import '../polyfill';
 type DateTimeProps = ControlProps & {
   value?: Date | null;
   type?: string;

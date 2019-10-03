@@ -1,8 +1,8 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import Message from '../../constant/Message';
 import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-import '../polyfill';
 import '../../css/RadioButton.css';
 
 type RadioButtonProps = ControlProps & {

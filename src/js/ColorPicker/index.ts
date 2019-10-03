@@ -1,9 +1,9 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import ColorPickerStyle from './ColorPickerStyle';
 import {invertColor, isHexString} from './components/utils';
 import Picker, {PickerProps} from './components/Picker';
 import Message from '../../constant/Message';
-import '../polyfill';
 type ColorPickerProps = ControlProps & {
   color?: string;
   onChange?: (color: string) => void;

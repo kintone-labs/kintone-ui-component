@@ -1,7 +1,7 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import TabName from './TabName';
 import Message from '../../constant/Message';
-import '../polyfill';
 import '../../css/Tabs.css';
 
 type Tab = {

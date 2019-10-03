@@ -1,5 +1,5 @@
-import Control, {ControlProps} from '../Control';
 import '../polyfill'
+import Control, {ControlProps} from '../Control';
 import '../../css/Button.css';
 
 type ButtonProps = ControlProps & {
