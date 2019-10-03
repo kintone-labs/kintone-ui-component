@@ -1,0 +1,50 @@
+site_name: kintone UI Component
+repo_url: https://github.com/kintone/kintone-ui-component
+site_url: https://kintone.github.io/kintone-ui-component/
+edit_uri: ''
+
+theme:
+  name: 'material'
+  custom_dir: 'custom_theme'
+  favicon: favicon.ico
+  palette:
+    primary: 'Light Blue'
+    accent: 'Light Blue'
+  logo:
+    icon: 'cloud'
+
+nav:
+- Home: index.md
+- Getting Started:
+  - QuickStart Javascript: Getting-Started/QuickStart-Javascript.md
+  - QuickStart React: Getting-Started/QuickStart-React.md
+- Reference:
+  - Alert: Reference/Alert.md
+  - Attachment: Reference/Attachment.md
+  - Button: Reference/Button.md
+  - CheckBox: Reference/CheckBox.md
+  - ColorPicker: Reference/ColorPicker.md
+  - DateTime: Reference/DateTime.md
+  - Dialog: Reference/Dialog.md
+  - Dropdown: Reference/Dropdown.md
+  - FieldGroup: Reference/FieldGroup.md
+  - IconButton: Reference/IconButton.md
+  - Label: Reference/Label.md
+  - MultipleChoice: Reference/MultipleChoice.md
+  - NotifyPopup: Reference/NotifyPopup.md
+  - RadioButton: Reference/RadioButton.md
+  - Spinner: Reference/Spinner.md
+  - Table: Reference/Table.md
+  - Tabs: Reference/Tabs.md
+  - Text: Reference/Text.md
+  - TextArea: Reference/TextArea.md
+
+markdown_extensions:
+  - admonition
+  - extra
+extra_javascript:
+  - 'js/extra.js'
+extra_css:
+  - 'style/extra.css'
+extra:
+    version: '0.4.0'
