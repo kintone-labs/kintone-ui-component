@@ -29,6 +29,16 @@ class Spinner extends Control {
     return outerDOM;
   }
 
+  rerender(changedAttr?: string[]) {
+    if (this.element) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
+    }
+  }
+
   disable(): void {
     // nothing to do   
   }

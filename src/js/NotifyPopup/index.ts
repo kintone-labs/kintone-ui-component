@@ -95,7 +95,13 @@ class NotifyPopup extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender();
+    if (this.element) {
+      if (!this._props.isVisible) {
+        this.element.style.display = 'none';
+      } else {
+        this.element.style.display = '';
+      }
+    }
     if (!changedAttr) return;
 
     if (changedAttr.indexOf('text') !== -1) {
