@@ -1,4 +1,4 @@
-import './polyfill';
+import * as polyfill from './polyfill';
 import '../css/font.css';
 import DateTime from './DateTime';
 import Tabs from './Tabs';
@@ -64,5 +64,6 @@ export {
   Attachment,
   createTableCell,
   Tabs,
-  ColorPicker
+  ColorPicker,
+  polyfill
 };

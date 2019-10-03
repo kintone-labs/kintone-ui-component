@@ -1,4 +1,4 @@
-(function(arr) {
+export default (function(arr) {
   arr.forEach((item) => {
     if (Object.prototype.hasOwnProperty.call(item, 'append')) {
       return;
