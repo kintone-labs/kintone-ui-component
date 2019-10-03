@@ -1,6 +1,6 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
-
 import '../../css/Label.css';
 
 type LabelProps = ControlProps & {

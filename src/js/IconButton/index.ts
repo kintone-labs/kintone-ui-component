@@ -1,7 +1,7 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} from '@mdi/js';
 import '../../css/IconButton.css';
-
 type IconBtnProps = ControlProps & {
   type?: string;
   size?: string;

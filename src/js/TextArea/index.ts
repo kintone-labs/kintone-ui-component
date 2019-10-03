@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/TextArea.css';
 type TextAreaProps = ControlProps & {

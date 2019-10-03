@@ -1,3 +1,4 @@
+import '../polyfill'
 import Control, {ControlProps} from '../Control';
 import Item, {ItemData} from '../CheckBox/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';

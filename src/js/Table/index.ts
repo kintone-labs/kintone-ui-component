@@ -1,10 +1,10 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import TableCell from './TableCell';
 import Message from '../../constant/Message';
 import IconButton from '../IconButton';
 import {ActionFlag, RowEventProps} from '../../react/Table';
 import '../../css/Table.css';
-
 const validEventNames = ['rowAdd', 'rowRemove', 'cellChange'];
 
 type TableColumnJS = {

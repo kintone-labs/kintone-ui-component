@@ -1,6 +1,8 @@
+import '../polyfill'
 import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/Attachment.css';
+
 type FileObject = {
   name?: string;
   size?: number;

@@ -1,6 +1,6 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/FieldGroup.css';
-
 type FieldGroupProps = ControlProps & {
   content?: any;
   name?: string;
