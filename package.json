@@ -11,8 +11,7 @@
 	"sideEffects": [
 		"esm/css/*.css",
 		"src/css/*.css",
-		"src/js/polyfill.ts",
-		"esm/js/polyfill.js"
+		"src/js/polyfill.ts"
 	],
 	"files": [
 		"dist",

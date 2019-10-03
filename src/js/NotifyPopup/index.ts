@@ -1,6 +1,6 @@
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
-
+import '../polyfill';
 import IconButton from '../IconButton';
 
 import '../../css/NotifyPopup.css';

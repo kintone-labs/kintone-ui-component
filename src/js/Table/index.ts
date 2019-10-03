@@ -4,7 +4,7 @@ import Message from '../../constant/Message';
 import IconButton from '../IconButton';
 import {ActionFlag, RowEventProps} from '../../react/Table';
 import '../../css/Table.css';
-
+import '../polyfill';
 const validEventNames = ['rowAdd', 'rowRemove', 'cellChange'];
 
 type TableColumnJS = {

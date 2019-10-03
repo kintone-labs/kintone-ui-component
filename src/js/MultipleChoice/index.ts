@@ -3,7 +3,7 @@ import Item, {ItemData} from '../MultipleChoice/Item';
 
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
-
+import '../polyfill';
 import '../../css/MultipleChoice.css';
 
 type MultipleChoiceProps = ControlProps & {

@@ -3,6 +3,7 @@ import Item, {ItemData} from '../CheckBox/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
 import '../../css/CheckBox.css';
+import '../polyfill'
 
 type CheckboxProps = ControlProps & {
   items?: ItemData[];

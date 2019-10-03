@@ -1,5 +1,5 @@
 import Control, {ControlProps} from '../Control';
-
+import '../polyfill';
 import '../../css/Text.css';
 
 type TextProps = ControlProps & {

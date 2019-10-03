@@ -3,7 +3,7 @@ import Message from '../../constant/Message';
 import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import {mdilChevronDown} from '@mdi/light-js';
-
+import '../polyfill';
 import '../../css/Dropdown.css';
 
 type item = {

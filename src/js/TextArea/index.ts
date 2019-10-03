@@ -1,5 +1,6 @@
 import Control, {ControlProps} from '../Control';
 import '../../css/TextArea.css';
+import '../polyfill';
 type TextAreaProps = ControlProps & {
   value?: string;
   onClick?: (e: any) => void;

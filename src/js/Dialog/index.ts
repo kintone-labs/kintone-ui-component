@@ -2,7 +2,7 @@ import Control, {ControlProps} from '../Control';
 import IconButton from '../IconButton';
 import Message from '../../constant/Message';
 import '../../css/Dialog.css';
-
+import '../polyfill';
 type DialogProps = ControlProps & {
   header?: string | HTMLElement;
   content?: string | HTMLElement;
