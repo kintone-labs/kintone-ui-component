@@ -151,12 +151,14 @@ const DateTime = ({
       } else {
         setInputValue(format(value, dateFormat));
       }
-    }
-  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value]);
 
-  if (typeof isDisableBtn !== 'boolean') {
-    setDisableBtn(false);
-  }
+      if (typeof isDisabled !== 'boolean') {
+        setDisableBtn(false);
+      } else {
+        setDisableBtn(isDisabled);
+      }
+    }
+  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
 
   let localeObj = ja;
   if (locale === 'en') {
