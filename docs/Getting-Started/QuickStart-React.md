@@ -46,7 +46,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) => {
     return {
         entry: {
-            "my-customization.min": './src/index.js'
+            "my-customization.min": './src/index.jsx'
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
@@ -55,7 +55,7 @@ module.exports = (env = {}) => {
         module: {
             rules: [
                 {
-                    test: /\.js$/,
+                    test: /\.jsx$/,
                     exclude: /(node_modules|bower_components)/,
                     use: {
                         loader: 'babel-loader',
