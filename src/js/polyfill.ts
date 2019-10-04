@@ -1,52 +1,48 @@
 (function(arr) {
   arr.forEach((item) => {
-    if (Object.prototype.hasOwnProperty.call(item, 'append')) {
-      return;
+    if (!Object.prototype.hasOwnProperty.call(item, 'append')) {
+        Object.defineProperty(item, 'append', {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: function append(...args: any[]) {
+          const docFrag = document.createDocumentFragment();
+  
+          args.forEach((argItem: any) => {
+            const isNode = argItem instanceof Node;
+            docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+          });
+  
+          this.appendChild(docFrag);
+        }
+      });
     }
-    Object.defineProperty(item, 'append', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function append(...args: any[]) {
-        const docFrag = document.createDocumentFragment();
-
-        args.forEach((argItem: any) => {
-          const isNode = argItem instanceof Node;
-          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-        });
-
-        this.appendChild(docFrag);
-      }
-    });
-    if (Object.prototype.hasOwnProperty.call(item, 'remove')) {
-      return;
+    if (!Object.prototype.hasOwnProperty.call(item, 'remove')) {
+        Object.defineProperty(item, 'remove', {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: function remove() {
+          if (this.parentNode !== null) this.parentNode.removeChild(this);
+        }
+      });
     }
-    Object.defineProperty(item, 'remove', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function remove() {
-        if (this.parentNode !== null) this.parentNode.removeChild(this);
-      }
-    });
-    if (Object.prototype.hasOwnProperty.call(item, 'prepend')) {
-      return;
+    if (!Object.prototype.hasOwnProperty.call(item, 'prepend')) {
+        Object.defineProperty(item, 'prepend', {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: function prepend(...args: any[]) {
+          const docFrag = document.createDocumentFragment();
+          args.forEach((argItem: any) => {
+            const isNode = argItem instanceof Node;
+            docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+          });
+  
+          this.insertBefore(docFrag, this.firstChild);
+        }
+      });
     }
-    Object.defineProperty(item, 'prepend', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function prepend(...args: any[]) {
-        const docFrag = document.createDocumentFragment();
-
-        args.forEach((argItem: any) => {
-          const isNode = argItem instanceof Node;
-          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-        });
-
-        this.insertBefore(docFrag, this.firstChild);
-      }
-    });
   });
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 if (!Element.prototype.matches) {
