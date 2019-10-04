@@ -1,7 +1,7 @@
+import '../../../js/polyfill';
 import React, {useState, useEffect, useRef} from 'react';
 import {getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels} from './utils';
 import {ja, en, format} from './Locale';
-
 import Locale from './localizationData/locale-dto';
 import {Dropdown} from '../../index';
 import '../../../css/DropdownCalendar.css';
