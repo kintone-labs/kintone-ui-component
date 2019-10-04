@@ -17,7 +17,7 @@ class Elements {
     return this;
   }
 
-  each(callbackFunction: (el: HTMLElement)=>void) {
+  each(callbackFunction: (el: HTMLElement) => void) {
     this.elArr.forEach((el) => {
       callbackFunction(el);
     }, this);
@@ -64,11 +64,11 @@ class Elements {
     }
     if (typeof value !== 'undefined') {
       this.elArr.forEach((el) => {
-        el['value'] = value;
+        (el as any).value = value;
       }, this);
       return this;
     }
-    return this.elArr[0]['value'];
+    return (this.elArr[0] as any).value;
   }
 
   html(value: any) {
@@ -97,7 +97,7 @@ class Elements {
     }
     this.elArr.forEach((el) => {
       try {
-        if(el.parentNode) {
+        if (el.parentNode) {
           el.parentNode.removeChild(el);
         }
       } catch (e) {
@@ -176,12 +176,12 @@ class Elements {
       this.elArr.forEach((currentEl) => {
         if (Array.isArray(elements)) {
           elements.forEach((el: Elements | HTMLElement) => {
-            let child = (el as Elements).elArr ? (el as Elements).elArr[0] || null : el as HTMLElement
+            const child = (el as Elements).elArr ? (el as Elements).elArr[0] || null : el as HTMLElement;
             currentEl.appendChild(child);
           });
           return this;
         }
-        let child = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement
+        const child = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement;
         currentEl.appendChild(child);
         return this;
       }, this);
@@ -222,7 +222,7 @@ class Elements {
           });
           return this;
         }
-        let domElement = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement
+        const domElement = (elements as Elements).elArr ? (elements as Elements).elArr[0] || null : elements as HTMLElement;
         currentEl.insertBefore(domElement, currentEl.firstChild);
         return this;
       });

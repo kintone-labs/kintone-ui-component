@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';
 
@@ -64,9 +64,9 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
 
   return (
     <div className={_getClassName()}>
-      <div className="kuc-notify-title" onClick={_onClick} >{text}</div>
+      <div className="kuc-notify-title" onClick={_onClick} role="none">{text}</div>
       <div className="kuc-close-button">
-        <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
+        <IconButton onClick={_handleClosePopup} isDisabled={isDisabled} type="close" color={_getStyleByType().color} />
       </div>
     </div>
   );

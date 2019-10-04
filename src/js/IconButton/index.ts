@@ -1,7 +1,7 @@
-import Control, {ControlProps} from '../Control'
-import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
-import '../../css/IconButton.css'
-
+import '../polyfill';
+import Control, {ControlProps} from '../Control';
+import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} from '@mdi/js';
+import '../../css/IconButton.css';
 type IconBtnProps = ControlProps & {
   type?: string;
   size?: string;
@@ -9,42 +9,40 @@ type IconBtnProps = ControlProps & {
   shape?: string;
 }
 
-class IconButton extends Control {
-  protected _props: IconBtnProps = {
-    ...this._props,
-    ...{
-      type: 'insert',
-      size: 'large',
-      color: 'gray',
-      shape: 'circle'
-    }
-  }
-
+class IconButton extends Control<IconBtnProps> {
   private iconEl: SVGSVGElement
   private pathEl: SVGPathElement
   private _onClick = (e: Event) => {}
 
   constructor(params?: IconBtnProps) {
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        type: 'insert',
+        size: 'large',
+        color: 'gray',
+        shape: 'circle'
+      }
+    };
     if (params) {
-      this._props = {...this._props, ...params}
+      this._props = {...this._props, ...params};
     }
 
-    this.element = this._createLayout()
-    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible'])
+    this.element = this._createLayout();
+    this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible']);
   }
 
   private _createLayout() {
-    let btnEl = document.createElement('button');
+    const btnEl = document.createElement('button');
     btnEl.addEventListener('click', (e) => {
       if (this._props.isDisabled) return;
-      this._onClick(e)
-    })
+      this._onClick(e);
+    });
 
-    this.pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
-    this.iconEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    this.iconEl.appendChild(this.pathEl)
+    this.pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    this.iconEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    this.iconEl.appendChild(this.pathEl);
 
     btnEl.appendChild(this.iconEl);
 
@@ -53,9 +51,9 @@ class IconButton extends Control {
 
   private _getClassName() {
     const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
-    let color = 'gray'
-    if(this._props.color && colors.indexOf(this._props.color) !== -1) {
-      color = this._props.color
+    let color = 'gray';
+    if (this._props.color && colors.indexOf(this._props.color) !== -1) {
+      color = this._props.color;
     }
     const shape = this._props.shape === 'normal' ? 'normal' : 'circle';
     const className = [
@@ -68,8 +66,8 @@ class IconButton extends Control {
     return className.join(' ').trim();
   }
 
-  private _getClassSize = () => {
-    const className = this._props.size === 'small' ? 'small' : 'large'
+  private _getClassSize() {
+    const className = this._props.size === 'small' ? 'small' : 'large';
     return className;
   }
 
@@ -77,35 +75,35 @@ class IconButton extends Control {
     let iconData = mdiPlus;
     switch (this._props.type) {
       case 'insert':
-        break
+        break;
       case 'remove':
-        iconData = mdiMinus
-        break
+        iconData = mdiMinus;
+        break;
       case 'close':
-        iconData = mdiClose
-        break
+        iconData = mdiClose;
+        break;
       case 'file':
-        iconData = mdiFile
-        break
+        iconData = mdiFile;
+        break;
       case 'right':
-        iconData = mdiChevronRight
+        iconData = mdiChevronRight;
         break;
       case 'left':
-        iconData = mdiChevronLeft
-        break
+        iconData = mdiChevronLeft;
+        break;
     }
-    return iconData
+    return iconData;
   }
 
   rerender(changedAttr?: string[]) {
-    if (!changedAttr) return
+    if (!changedAttr) return;
 
     if (changedAttr.indexOf('btnStyle') !== -1) {
       this.element.className = this._getClassName();
     }
 
     if (changedAttr.indexOf('iconStyle') !== -1) {
-      this.pathEl.setAttribute('d', this._getIconData())
+      this.pathEl.setAttribute('d', this._getIconData());
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
@@ -118,9 +116,9 @@ class IconButton extends Control {
 
     if (changedAttr.indexOf('isVisible') !== -1) {
       if (!this._props.isVisible) {
-        this.element.style.display = 'none'
+        this.element.style.display = 'none';
       } else {
-        this.element.style.display = ''
+        this.element.style.display = '';
       }
     }
   }
@@ -137,19 +135,19 @@ class IconButton extends Control {
 
   setShape(shape: string): void {
     this._props.shape = shape;
-    this.rerender(['btnStyle'])
+    this.rerender(['btnStyle']);
   }
 
   setColor(color: string): void {
     this._props.color = color;
-    this.rerender(['btnStyle'])
+    this.rerender(['btnStyle']);
   }
 
   on(eventName: string, callback: (params?: any) => void) {
     if (eventName === 'click') {
-      this._onClick = callback
+      this._onClick = callback;
     }
   }
 }
 
-export default IconButton
+export default IconButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractMultiSelection} from '../index';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/MultipleChoice.css';
 
 type item = {
@@ -33,7 +33,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     if (!include) {
       value.push(itemValue);
     }
-   props.onChange && props.onChange(value);
+    props.onChange && props.onChange(value);
   };
 
   if (props.isVisible === false) {

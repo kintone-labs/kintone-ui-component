@@ -11,7 +11,7 @@ const _hasDuplicatedItems = (items?: items) => {
   let isUnique = true;
   if (items) {
     items.forEach((val: item) => {
-      if ( typeof (unique[val.value]) !== 'undefined') {
+      if (typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
       unique[val.value] = 0;

@@ -201,14 +201,14 @@ type TimePickerProps = ControlProps & {
   onTimeClick?: (date: Date) => void;
 }
 
-class TimePicker extends Control {
-  protected _props: TimePickerProps = {
-    isDisabled: false,
-    isVisible: false
-  }
+class TimePicker extends Control<TimePickerProps> {
 
   constructor(params?: TimePickerProps) {
     super();
+    this._props = {
+      isDisabled: false,
+      isVisible: false
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }
@@ -232,7 +232,7 @@ class TimePicker extends Control {
         const minute = parseInt(timeObj.value.split(':')[1], 10);
         tempDate.setHours(hour);
         tempDate.setMinutes(minute);
-        tempDate.setSeconds(0)
+        tempDate.setSeconds(0);
         if (this._props.onTimeClick) {
           this._props.onTimeClick(tempDate);
         }
@@ -252,7 +252,7 @@ class TimePicker extends Control {
   rerender(changedAttr: string[], options?: object) {
     super.rerender();
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = options['left'] + 'px';
+      this.element.style.left = (options as any).left + 'px';
     }
   }
 

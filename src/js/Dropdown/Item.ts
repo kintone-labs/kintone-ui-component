@@ -1,5 +1,5 @@
-import Control, { ControlProps } from '../Control';
-import { mdiCheckBold } from '@mdi/js'
+import Control, {ControlProps} from '../Control';
+import {mdiCheckBold} from '@mdi/js';
 import '../../css/Item.css';
 
 type item = {
@@ -14,22 +14,22 @@ type ItemProps = ControlProps & {
   name?: string;
   type?: string;
   className?: string;
-  onClick?: (item: item) => void; 
+  onClick?: (item: item) => void;
 };
 
-class Item extends Control {
-  protected _props: ItemProps = {
-    ...this._props,
-    ...{
-      type: 'default'
-    }
-  };
+class Item extends Control<ItemProps> {
   private inputEl: HTMLInputElement;
   public isSelected: boolean = false;
   public item: item;
 
   constructor(params: ItemProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        type: 'default'
+      }
+    };
     if (
       typeof params === 'object' &&
       params !== null &&
@@ -38,7 +38,7 @@ class Item extends Control {
       delete params.isDisabled;
     }
     if (params) {
-      this._props = { ...this._props, ...params };
+      this._props = {...this._props, ...params};
     }
 
     const className = [
@@ -53,27 +53,27 @@ class Item extends Control {
     iconEl.appendChild(this._createCheckIconEl());
     const labelEl = document.createElement('span');
     labelEl.className = 'kuc-list-item-label';
-    if(this._props.item.label) {
+    if (this._props.item.label) {
       labelEl.innerText = this._props.item.label;
     }
     this.element.appendChild(iconEl);
     this.element.appendChild(labelEl);
-    this.on('click',(e) => {
-      if(this._props.onClick) {
+    this.on('click', (e) => {
+      if (this._props.onClick) {
         this._props.onClick(this._props.item);
       }
     });
   }
 
   private _createCheckIconEl() {
-    const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path")
-    pathEl.setAttribute('d', mdiCheckBold)
+    const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pathEl.setAttribute('d', mdiCheckBold);
 
-    const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svgEl.appendChild(pathEl)
+    const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgEl.appendChild(pathEl);
 
-    return svgEl
-}
+    return svgEl;
+  }
 
   rerender(changedAttr?: string[]) {
     super.rerender();
@@ -82,7 +82,6 @@ class Item extends Control {
     } else {
       this.inputEl.removeAttribute('disabled');
     }
-    if (!changedAttr) return;
   }
 }
 

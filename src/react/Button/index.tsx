@@ -1,9 +1,9 @@
-import React, { CSSProperties } from 'react';
-import '../../css/font.css'
+import React, {CSSProperties} from 'react';
+import '../../css/font.css';
 import '../../css/Button.css';
 
 type ButtonProps = {
-  style?: CSSProperties
+  style?: CSSProperties;
   text?: string;
   type?: string;
   isDisabled?: boolean;

@@ -4,34 +4,34 @@ import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';
 import Message from '../../constant/Message';
 
-import '../../css/font.css'
+import '../../css/font.css';
 
 type ColorPickerProps = {
   color?: string;
   onChange?: (hexString: string) => void;
   isDisabled?: boolean;
-  isVisible?: boolean
+  isVisible?: boolean;
 }
 
-let previouseHex: string
+let previouseHex: string;
 
 function ColorPicker(props: ColorPickerProps) {
   if (props.color && !isHexString(props.color)) {
-    throw new Error(Message.colorPicker.INVALID_COLOR)
+    throw new Error(Message.colorPicker.INVALID_COLOR);
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [hexString, setHexString] = useState(props.color || "#FF0000");
+  const [hexString, setHexString] = useState(props.color || '#FF0000');
   const [pickerDisplay, setPickerDisplay] = useState(false);
   const [focus, setFocus] = useState(false);
 
   if (!previouseHex) {
-		previouseHex = props.color || "#FF0000"
-	}
+    previouseHex = props.color || '#FF0000';
+  }
 
-  let isVisible = true
+  let isVisible = true;
 
   if (props.isVisible === false) {
-    isVisible = props.isVisible
+    isVisible = props.isVisible;
   }
 
   const inputProps = {
@@ -62,23 +62,22 @@ function ColorPicker(props: ColorPickerProps) {
     setPickerDisplay(true);
   }
 
-  function handleClickOutside(e: Event) {
-    if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target as Node) && pickerDisplay) {
-      setFocus(false);
-      setPickerDisplay(false);
-    }
-  }
-
   useEffect(() => {
     if (props.color && props.color !== previouseHex) {
-      setHexString(props.color)
-      previouseHex = props.color
+      setHexString(props.color);
+      previouseHex = props.color;
     }
+    const handleClickOutside = (e: Event) => {
+      if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target as Node) && pickerDisplay) {
+        setFocus(false);
+        setPickerDisplay(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside, true);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside, true);
     };
-  });
+  }, [props.color, pickerDisplay]);
 
   function getInputStyle() {
     let style = {
@@ -101,8 +100,8 @@ function ColorPicker(props: ColorPickerProps) {
     onCancel: () => {
       setPickerDisplay(false);
       setFocus(false);
-      setHexString(props.color || "#FF0000");
-      props.onChange && props.onChange(props.color || "#FF0000");
+      setHexString(props.color || '#FF0000');
+      props.onChange && props.onChange(props.color || '#FF0000');
     },
     onSubmit: (newHexString: string) => {
       setPickerDisplay(false);
@@ -123,9 +122,9 @@ function ColorPicker(props: ColorPickerProps) {
       </div>
     );
   }
-  else {
-    return <div></div>
-  }
+
+  return <div />;
+
 }
 
 export default ColorPicker;

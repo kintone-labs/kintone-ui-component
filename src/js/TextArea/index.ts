@@ -1,13 +1,13 @@
-import Control, {ControlProps} from '../Control'
-import '../../css/TextArea.css'
+import '../polyfill';
+import Control, {ControlProps} from '../Control';
+import '../../css/TextArea.css';
 type TextAreaProps = ControlProps & {
-    value?: string
-    onClick?: (e: any) => void
-    onChange?: (e: any) => void
+  value?: string;
+  onClick?: (e: any) => void;
+  onChange?: (e: any) => void;
 }
 
-class TextArea extends Control {
-  protected _props: TextAreaProps = this._props
+class TextArea extends Control<TextAreaProps> {
   private _onClick: (params?: any) => void = () => {}
   private _onChange: (params?: any) => void = () => {}
   private textAreaEl: HTMLTextAreaElement
@@ -22,43 +22,43 @@ class TextArea extends Control {
   private currentY: number | null = null
   private translateX = 0
   private translateY = 0
-  
+
   constructor(params?: TextAreaProps) {
-    super()
+    super();
     if (params) {
-      this._props = {...this._props, ...params}
+      this._props = {...this._props, ...params};
     }
 
-    this.element = this.createContainerEL()
-    this.rerender(Object.keys(this._props))
+    this.element = this.createContainerEL();
+    this.rerender(Object.keys(this._props));
   }
 
   rerender(changedAttr?: string[]) {
-    super.rerender(changedAttr)
-    if (!changedAttr) return
+    super.rerender(changedAttr);
+    if (!changedAttr) return;
     if (changedAttr.indexOf('value') !== -1) {
-        this.textAreaEl.value = this._props.value || ""
+      this.textAreaEl.value = this._props.value || '';
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
-        if (this._props.isDisabled) {
-            this.textAreaEl.setAttribute('disabled', `${this._props.isDisabled}`)
-        } else {
-            this.textAreaEl.removeAttribute('disabled')
-        }
+      if (this._props.isDisabled) {
+        this.textAreaEl.setAttribute('disabled', `${this._props.isDisabled}`);
+      } else {
+        this.textAreaEl.removeAttribute('disabled');
+      }
     }
   }
 
-  setValue(text: string){
-    this._props.value = text
-      this.rerender(['value'])
+  setValue(text: string) {
+    this._props.value = text;
+    this.rerender(['value']);
   }
 
-  getValue(){
-      return this._props.value;
+  getValue() {
+    return this._props.value;
   }
 
-  _onMouseDown =() => {
-      if (this._props.isDisabled) return;
+  _onMouseDown() {
+    if (this._props.isDisabled) return;
     const eventMouseMove = document.onmousemove;
     const eventMouseUp = document.onmouseup;
     document.onmousemove = (event) => {
@@ -73,14 +73,14 @@ class TextArea extends Control {
           dy = 0;
         }
 
-        this.translateX= this.translateX + dx,
-        this.translateY= this.translateY + dy,
-        this.textAreaWidth= this.textAreaWidth + dx,
-        this.textAreaHeight= this.textAreaHeight + dy
+        this.translateX = this.translateX + dx;
+        this.translateY = this.translateY + dy;
+        this.textAreaWidth = this.textAreaWidth + dx;
+        this.textAreaHeight = this.textAreaHeight + dy;
 
-        this.textAreaEl.style.width = this.textAreaWidth + 'px'
-        this.textAreaEl.style.height = this.textAreaHeight + 'px'
-        this.resizeEl.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`
+        this.textAreaEl.style.width = this.textAreaWidth + 'px';
+        this.textAreaEl.style.height = this.textAreaHeight + 'px';
+        this.resizeEl.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`;
       }
       this.currentX = event.clientX;
       this.currentY = event.clientY;
@@ -94,50 +94,54 @@ class TextArea extends Control {
   }
 
   private createContainerEL() {
-    const container = document.createElement('div')
-    container.className = 'kuc-textarea-outer'
+    const container = document.createElement('div');
+    container.className = 'kuc-textarea-outer';
 
-    this.textAreaEl = this.createTextareaEL()
-    container.appendChild(this.textAreaEl)
+    this.textAreaEl = this.createTextareaEL();
+    container.appendChild(this.textAreaEl);
 
-    this.resizeEl = this.createResizeEL()
-    container.appendChild(this.resizeEl)
+    this.resizeEl = this.createResizeEL();
+    container.appendChild(this.resizeEl);
 
-    return container
+    return container;
   }
 
   private createTextareaEL() {
-    const textarea = document.createElement('textarea')
-    textarea.className = 'kuc-textarea'
-    textarea.onclick = (e) => {this._onClick(e)}
+    const textarea = document.createElement('textarea');
+    textarea.className = 'kuc-textarea';
+    textarea.onclick = (e) => {
+      this._onClick(e);
+    };
     textarea.onchange = (e) => {
-        this._props.value = (<HTMLInputElement>e.target).value
-        this._onChange((<HTMLInputElement>e.target).value)
-    }
-    textarea.style.width = this.textAreaWidth + 'px'
-    textarea.style.height = this.textAreaHeight + 'px'
+      this._props.value = (e.target as HTMLInputElement).value;
+      this._onChange((e.target as HTMLInputElement).value);
+    };
+    textarea.style.width = this.textAreaWidth + 'px';
+    textarea.style.height = this.textAreaHeight + 'px';
 
-    return textarea
+    return textarea;
   }
 
   private createResizeEL() {
-    const textarea = document.createElement('div')
-    textarea.className = 'kuc-textarea-resize'
-    textarea.onmousedown = e => {this._onMouseDown()}
-    textarea.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`
+    const textarea = document.createElement('div');
+    textarea.className = 'kuc-textarea-resize';
+    textarea.onmousedown = e => {
+      this._onMouseDown();
+    };
+    textarea.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`;
 
-    return textarea
+    return textarea;
   }
 
   on(eventName: string, callback: (params?: any) => void) {
-      if(eventName === 'click') {
-          this._onClick = callback;
-      }
-      if(eventName === 'change') {
-        this._onChange = callback;
+    if (eventName === 'click') {
+      this._onClick = callback;
+    }
+    if (eventName === 'change') {
+      this._onChange = callback;
     }
   }
 
 }
 
-export default TextArea
+export default TextArea;

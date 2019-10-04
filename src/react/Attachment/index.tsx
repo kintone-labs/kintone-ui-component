@@ -1,6 +1,6 @@
 import React from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/Attachment.css';
 
 type FileObject = {
@@ -19,7 +19,6 @@ type AttachmentProps = {
   onFilesAdd?: (files?: FileObject[]) => void;
   onFileRemove?: (files?: FileObject[]) => void;
 };
-
 
 
 const Attachment = (props: AttachmentProps) => {
@@ -43,7 +42,7 @@ const Attachment = (props: AttachmentProps) => {
     if (props.onFilesAdd && props.files) {
       let addedFiles = event.dataTransfer ? event.dataTransfer.files : event.target.files;
       addedFiles = Object.keys(addedFiles).map((e) => {
-        return addedFiles[e]
+        return addedFiles[e];
       });
       props.onFilesAdd([...props.files, ...addedFiles]);
     }
@@ -137,11 +136,12 @@ const Attachment = (props: AttachmentProps) => {
     <div className="kuc-attachment-outer">
       <div
         className="kuc-attachment-file"
+        role="presentation"
         onDragOver={_onDragOver}
         onDragEnter={_onDragEnter}
         onDragLeave={_onDragLeave}
       >
-        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop}>
+        <div className="kuc-attachment-file-droppable" style={{display: 'none'}} onDrop={_onDrop} role="presentation">
           <div
             className="kuc-attachment-file-droppable-text"
             ref={(dropElement) => {

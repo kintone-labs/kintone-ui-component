@@ -1,6 +1,6 @@
 type TableCellProps = {
-  init?: Function, 
-  update?: Function
+  init?: Function;
+  update?: Function;
 }
 
 export default class TableCell {
