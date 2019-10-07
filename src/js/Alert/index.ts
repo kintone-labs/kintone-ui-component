@@ -27,13 +27,8 @@ class Alert extends Control {
   }
 
   rerender(changedAttr?: string[]) {
-    if (this.element) {
-      if (!this._props.isVisible) {
-        this.element.style.display = 'none';
-      } else {
-        this.element.style.display = '';
-      }
-    }
+    super.rerender();
+
     if (!changedAttr) return;
     if (changedAttr.indexOf('text') !== -1) {
       this.element.innerHTML = this._props.text || "";
@@ -51,12 +46,6 @@ class Alert extends Control {
     ];
 
     return className.join(' ');
-  }
-
-  on(eventName: string, callback: (params?: any) => void) {
-    this.element.addEventListener(eventName, (e: Event)=>{
-      callback(e);
-    });
   }
 
   setText(text: string): void {
