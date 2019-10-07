@@ -1,3 +1,4 @@
+import '../polyfill'
 import Control, {ControlProps} from '../Control';
 import '../../css/Alert.css';
 
@@ -6,19 +7,19 @@ type AlertProps = ControlProps & {
   type?: string;
 }
 
-class Alert extends Control {
-  protected _props: AlertProps = {
-    ...this._props,
-    ...{
-      text: '',
-      type: 'error'
-    }
-  }
-
+class Alert extends Control<AlertProps> {
   constructor(params?: AlertProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        type: 'error'
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
+      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
     // isDisabled always is setted false
     // When we update major version of ui-component, we should delete this prop
@@ -34,7 +35,7 @@ class Alert extends Control {
 
     if (!changedAttr) return;
     if (changedAttr.indexOf('text') !== -1) {
-      this.element.innerHTML = this._props.text || "";
+      this.element.innerHTML = this._props.text || '';
     }
 
     if (changedAttr.indexOf('type') !== -1) {
@@ -52,7 +53,7 @@ class Alert extends Control {
   }
 
   setText(text: string): void {
-    this._props.text = text;
+    this._props.text = (typeof text === 'string') ? text : '';
     this.rerender(['text']);
   }
 

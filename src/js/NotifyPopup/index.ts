@@ -1,8 +1,7 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
-
 import IconButton from '../IconButton';
-
 import '../../css/NotifyPopup.css';
 
 type PopupProps = ControlProps & {
@@ -10,14 +9,7 @@ type PopupProps = ControlProps & {
   type?: string;
 }
 
-class NotifyPopup extends Control {
-  protected _props: PopupProps = {
-    ...this._props,
-    ...{
-      text: '',
-      type: 'error'
-    }
-  }
+class NotifyPopup extends Control<PopupProps> {
 
   private textEl: any
   private closeButton: IconButton
@@ -26,15 +18,23 @@ class NotifyPopup extends Control {
 
   constructor(params?: PopupProps) {
     super();
-
+    this._props = {
+      ...this._props,
+      ...{
+        text: '',
+        type: 'error'
+      }
+    };
     if (params) {
       this._props = { ...this._props, ...params };
+      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
+
     // isDisabled always is setted false
     // When we update major version of ui-component, we should delete this prop
     this._props.isDisabled = false;
 
-    this.element = this._createPopupLayout()
+    this.element = this._createPopupLayout();
 
     this.closeButton.on('click', (e: Event) => {
       if (this._props.isDisabled) return;
@@ -69,8 +69,8 @@ class NotifyPopup extends Control {
     this.textEl = elements(document.createElement('div')).addClass('kuc-notify-title').appendTo(containerDOM);
     this.textEl.on('click', (e: Event) => {
       if (this._props.isDisabled) return;
-      this._onClick(e)
-    })
+      this._onClick(e);
+    });
 
     this.closeButton = new IconButton({type: 'close'});
 
@@ -86,7 +86,7 @@ class NotifyPopup extends Control {
     }
     if (eventName === 'close') {
       this._onClose = callback;
-      return;
+
     }
   }
 
@@ -113,7 +113,7 @@ class NotifyPopup extends Control {
   }
 
   setText(text: string): void {
-    this._props.text = text;
+    this._props.text = (typeof text === 'string') ? text : '';
     this.rerender(['text']);
   }
 

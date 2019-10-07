@@ -3,16 +3,22 @@ type ControlProps = {
   isVisible?: boolean;
 }
 
-class Control {
-  protected _props: ControlProps = {
-    isDisabled: false,
-    isVisible: true
-  }
+class Control<T extends ControlProps> {
+  protected _props: T
   protected element: HTMLElement
+
+  constructor() {
+    this._props = {...this._props,
+      ...{
+        isDisabled: false,
+        isVisible: true
+      }
+    };
+  }
 
   rerender(changedAttr?: string[]) {
     if (this.element) {
-      if (!this._props.isVisible) {
+      if (!this._props.isVisible && typeof this._props.isVisible === 'boolean') {
         this.element.style.display = 'none';
       } else {
         this.element.style.display = '';

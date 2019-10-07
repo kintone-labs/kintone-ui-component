@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/Alert.css';
 
 type AlertProps = {
@@ -39,6 +39,7 @@ const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
 
   return (
     <div
+      role="none"
       className={_getClassName()}
       onClick={_onClick}
     >

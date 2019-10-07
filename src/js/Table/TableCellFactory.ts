@@ -70,17 +70,17 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       case 'checkbox':
       case 'multichoice':
       case 'radio':
-          field.on('change', (value: string[] | string) => {
-            const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
-            rowData[fieldName].value = value;
-            updateRowData(rowData, false, true, fieldName);
-            // if has custom on change call it
-            if (props && props.onChange) {
-              const data = table.data;
-              props.onChange({data, rowIndex, fieldName});
-            }
-          });
-          break;
+        field.on('change', (value: string[] | string) => {
+          const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
+          rowData[fieldName].value = value;
+          updateRowData(rowData, false, true, fieldName);
+          // if has custom on change call it
+          if (props && props.onChange) {
+            const data = table.data;
+            props.onChange({data, rowIndex, fieldName});
+          }
+        });
+        break;
       default:
         break;
     }
@@ -90,6 +90,9 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
     const cellData = rowData[fieldName] || {};
     if (cellData && field.setValue) {
       field.setValue(cellData.value);
+    }
+    if (cellData && field.setItems) {
+      field.setItems(cellData.items);
     }
     if (cellData && field.setText) {
       field.setText(cellData.text);

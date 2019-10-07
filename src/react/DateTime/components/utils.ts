@@ -1,4 +1,4 @@
-import { format, en, getSeperator, } from './Locale';
+import {format, en, getSeperator} from './Locale';
 const getWeekDays = (date: Date) => {
   const startDate = new Date(date);
   startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -15,40 +15,42 @@ const getWeekDayLabels = (locale: any) => {
   const date = new Date();
   const eachDayOfWeek = getWeekDays(date);
   const labels = eachDayOfWeek.map(day => {
-    return format(day, 'E', { locale: locale });
+    return format(day, 'E', {locale: locale});
   });
 
   return labels;
 };
 
 const getMonthLabels = (locale: any) => {
-  let monthNames = locale.monthNames
-  let labels: any = []
+  const monthNames = locale.monthNames;
+  const labels: any = [];
   monthNames.forEach((month: any) => {
-    let label = {}
-    label['label'] = month
-    label['value'] = month
-    labels.push(label)
-  })
-  return labels
-}
+    const label = {
+      label: month,
+      value: month
+    };
+    labels.push(label);
+  });
+  return labels;
+};
 
 const getYearLabels = (value: any, locale: any) => {
-  let currentYear: any = value.replace('年', '')
-  currentYear = parseInt(value)
-  let years: any = []
-  let prefix: any = ''
+  let currentYear: any = value.replace('年', '');
+  currentYear = parseInt(value, 10);
+  const years: any = [];
+  let prefix: any = '';
   if (locale !== en) {
-    prefix = '年'
+    prefix = '年';
   }
   for (let i = (currentYear - 100); i <= (currentYear + 100); i++) {
-    let year = {}
-    year['label'] = i + prefix
-    year['value'] = i + prefix
-    years.push(year)
+    const year = {
+      label: i + prefix,
+      value: i + prefix
+    };
+    years.push(year);
   }
-  return years
-}
+  return years;
+};
 
 const getDisplayingDays = (date: Date) => {
   const startDayOfMonth = new Date(date);
@@ -62,10 +64,12 @@ const getDisplayingDays = (date: Date) => {
   endDayOfEndWeek.setDate(endDayOfEndWeek.getDate() + (6 - endDayOfEndWeek.getDay()));
 
   const days = [];
-  for (let d = new Date(startDayOfFirstWeek); d <= endDayOfEndWeek; d.setDate(d.getDate() + 1)) {
+  let d = new Date(startDayOfFirstWeek);
+  while (d <= endDayOfEndWeek) {
     days.push(new Date(d));
+    d.setDate(d.getDate() + 1);
+    d = new Date(d);
   }
-
   return days;
 };
 
@@ -79,16 +83,16 @@ const parseStringToDate = (dateString: string, dateFormat?: string) => {
   if (isNaN(dateString.split(delimiter)[1] as any) || isNaN(dateString.split(delimiter)[0] as any) || isNaN(dateString.split(delimiter)[2] as any)) {
     return null;
   }
-  let formatItems = formatLowerCase.split(delimiter);
-  let dateItems = dateString.split(delimiter);
-  let monthIndex = formatItems.indexOf("mm");
-  let dayIndex = formatItems.indexOf("dd");
-  let yearIndex = formatItems.indexOf("yyyy");
-  let day = parseInt(dateItems[dayIndex]);
-  let month = parseInt(dateItems[monthIndex]);
+  const formatItems = formatLowerCase.split(delimiter);
+  const dateItems = dateString.split(delimiter);
+  const monthIndex = formatItems.indexOf('mm');
+  const dayIndex = formatItems.indexOf('dd');
+  const yearIndex = formatItems.indexOf('yyyy');
+  const day = parseInt(dateItems[dayIndex], 10);
+  let month = parseInt(dateItems[monthIndex], 10);
   month -= 1;
-  let year = parseInt(dateItems[yearIndex]);
-  let formatedDate = new Date(year, month, day);
+  const year = parseInt(dateItems[yearIndex], 10);
+  const formatedDate = new Date(year, month, day);
   return formatedDate;
 };
 

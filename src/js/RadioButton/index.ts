@@ -1,9 +1,9 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import Message from '../../constant/Message';
 import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
-
-import '../../css/RadioButton.css'
+import '../../css/RadioButton.css';
 
 type RadioButtonProps = ControlProps & {
   name: string;
@@ -12,18 +12,17 @@ type RadioButtonProps = ControlProps & {
   onChange?: (params?: any) => void;
 };
 
-class RadioButton extends Control {
-  protected _props: RadioButtonProps = {
-    ...this._props,
-    ...{
-      items: []
-    }
-  };
-
+class RadioButton extends Control<RadioButtonProps> {
   private itemComps?: Item[] = [];
 
   constructor(params?: RadioButtonProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        items: []
+      }
+    };
     if (params && !params.name) {
       throw new Error(Message.radioBtn.MISSING_NAME);
     }
@@ -35,56 +34,56 @@ class RadioButton extends Control {
       delete params.isDisabled;
     }
     if (params) {
-      this._props = { ...this._props, ...params };
+      this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value)
+    const validationErr = this._validator(this._props.items, this._props.value);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this.element = document.createElement('div');
     this.element.className = 'kuc-input-radio';
     this.itemComps =
       this._props.items &&
-      this._props.items.map(item => {
+      this._props.items.map(obj => {
         const newItem = new Item({
-          selected: this._props.value === item.value,
-          item: item,
-          isDisabled: this._props.isDisabled || item.isDisabled,
+          selected: this._props.value === obj.value,
+          item: obj,
+          isDisabled: this._props.isDisabled || obj.isDisabled,
           type: 'radio',
           name: this._props.name,
           className: 'kuc-input-radio-item'
         });
-        newItem.on('change', this._handleItemClick);
+        newItem.on('change', this._handleItemClick.bind(this));
         return newItem;
       });
-    this.itemComps && this.itemComps.forEach(item => {
-      this.element.appendChild(item.render());
+    this.itemComps && this.itemComps.forEach(obj => {
+      this.element.appendChild(obj.render());
     });
   }
 
-  private _handleItemClick = (itemEl: any) => {
+  _handleItemClick(itemEl: any) {
     const inputEl = itemEl.target;
-    this.itemComps && this.itemComps.some(item => {
-      if (item.id === inputEl.id) {
-        this._props.value = item.value;
-        return true
+    this.itemComps && this.itemComps.some(obj => {
+      if (obj.id === inputEl.id) {
+        this._props.value = obj.value;
+        return true;
       }
-      return false
+      return false;
     });
     this._props.onChange && this._props.onChange(this._props.value);
-  };
+  }
 
   private _validator(items?: item[], value?: string): string | undefined {
-    let err
+    let err;
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
-      err = Message.common.SELECTTION_DUPLICATE_VALUE
+      err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value && 
+    if (items && value &&
       !AbstractSingleSelection._hasValidValue(items, value)
     ) {
-      err = Message.common.INVALID_ARGUMENT
+      err = Message.common.INVALID_ARGUMENT;
     }
-    return err
+    return err;
   }
 
   render() {
@@ -95,34 +94,33 @@ class RadioButton extends Control {
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (!changedAttr) return;
-    while (this.element.firstChild)
-      this.element.removeChild(this.element.firstChild);
+    while (this.element.firstChild) this.element.removeChild(this.element.firstChild);
     this.itemComps =
       this._props.items &&
-      this._props.items.map(item => {
+      this._props.items.map(obj => {
         const newItem = new Item({
-          selected: this._props.value === item.value,
-          item: item,
-          isDisabled: this._props.isDisabled || item.isDisabled,
+          selected: this._props.value === obj.value,
+          item: obj,
+          isDisabled: this._props.isDisabled || obj.isDisabled,
           type: 'radio',
           name: this._props.name,
           className: 'kuc-input-radio-item'
         });
-        newItem.on('change', this._handleItemClick);
+        newItem.on('change', this._handleItemClick.bind(this));
         return newItem;
       });
-    this.itemComps && this.itemComps.forEach(item => {
-      this.element.appendChild(item.render());
+    this.itemComps && this.itemComps.forEach(itemComp => {
+      this.element.appendChild(itemComp.render());
     });
   }
 
   setValue(value: string) {
     if (!value) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    const validationErr = this._validator(this._props.items, value)
+    const validationErr = this._validator(this._props.items, value);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.value = value;
     this.rerender(['value']);
@@ -132,14 +130,14 @@ class RadioButton extends Control {
     return this._props.value;
   }
 
-  setItems(items: Array<item>) {
+  setItems(items: item[]) {
     if (!items || !Array.isArray(items)) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     // It isn't need to check hasValidValue
-    const validaErr = this._validator(items)
+    const validaErr = this._validator(items);
     if (validaErr) {
-      throw new Error(validaErr)
+      throw new Error(validaErr);
     }
     this._props.items = items;
     this.rerender(['item']);
@@ -149,18 +147,18 @@ class RadioButton extends Control {
     return this._props.items;
   }
 
-  addItem(item: item) {
-    if (!item) {
-      throw new Error(Message.common.INVALID_ARGUMENT)
+  addItem(obj: item) {
+    if (!obj) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    if(!this._props.items) {
-      this._props.items = []
+    if (!this._props.items) {
+      this._props.items = [];
     }
     const itemsToCheck: item[] = Object.assign([], this._props.items);
-    itemsToCheck.push(item)
-    const validationErr = this._validator(itemsToCheck)
+    itemsToCheck.push(obj);
+    const validationErr = this._validator(itemsToCheck);
     if (validationErr) {
-      throw new Error(validationErr)
+      throw new Error(validationErr);
     }
     this._props.items = itemsToCheck;
     this.rerender(['item']);
@@ -175,18 +173,18 @@ class RadioButton extends Control {
   }
 
   disableItem(value: string) {
-    this._props.items && this._props.items.forEach(item => {
-      if (item.value === value) {
-        item.isDisabled = true;
+    this._props.items && this._props.items.forEach(obj => {
+      if (obj.value === value) {
+        obj.isDisabled = true;
       }
     });
     this.rerender(['item']);
   }
 
   enableItem(value: string) {
-    this._props.items && this._props.items.forEach(item => {
-      if (item.value === value) {
-        item.isDisabled = false;
+    this._props.items && this._props.items.forEach(obj => {
+      if (obj.value === value) {
+        obj.isDisabled = false;
       }
     });
     this.rerender(['item']);

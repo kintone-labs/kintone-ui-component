@@ -1,16 +1,16 @@
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import {elements} from '../utils/util';
-
 import '../../css/Spinner.css';
 
-class Spinner extends Control {
-  protected _props: ControlProps = {
-    isDisabled: true,
-    isVisible: false
-  }
+class Spinner extends Control<ControlProps> {
 
   constructor(params?: ControlProps) {
     super();
+    this._props = {
+      isDisabled: true,
+      isVisible: false
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }

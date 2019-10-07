@@ -56,7 +56,7 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
       if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年`;
       return `${dateObj.year}`;
     default:
-      break;
+      return `${dateObj.year}`;
   }
 };
 
