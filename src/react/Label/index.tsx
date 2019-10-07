@@ -12,6 +12,10 @@ type LabelProps = {
 }
 
 const Label = ({text, textColor, backgroundColor, isRequired, isDisabled, isVisible, onClick}: LabelProps) => {
+  // isDisabled always is setted false
+  // When we update major version of ui-component, we should delete this prop
+  isDisabled = false;
+
   const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
     if (isDisabled) {
       return null;

@@ -13,6 +13,10 @@ type NotifyPopupProps = {
 }
 
 const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
+  // isDisabled always is setted false
+  // When we update major version of ui-component, we should delete this prop
+  isDisabled = false;
+
   const _handleClosePopup = () => {
     if (isDisabled) {
       return false;

@@ -11,6 +11,10 @@ type AlertProps = {
 }
 
 const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
+  // isDisabled always is setted false
+  // When we update major version of ui-component, we should delete this prop
+  isDisabled = false;
+
   const _getClassName = () => {
     const className = [
       'kuc-alert',

@@ -20,6 +20,9 @@ class Alert extends Control {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
 
     this.element = document.createElement('div');
     this.element.className = this._getClassName();

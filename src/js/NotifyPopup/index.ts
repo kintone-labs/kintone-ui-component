@@ -30,6 +30,10 @@ class NotifyPopup extends Control {
     if (params) {
       this._props = { ...this._props, ...params };
     }
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
+
     this.element = this._createPopupLayout()
 
     this.closeButton.on('click', (e: Event) => {
