@@ -11,10 +11,8 @@ type AlertProps = {
 }
 
 const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
-  // isDisabled always is setted false
+  // isDisabled will never be used in this component.
   // When we update major version of ui-component, we should delete this prop
-  isDisabled = false;
-
   const _getClassName = () => {
     const className = [
       'kuc-alert',
@@ -23,12 +21,7 @@ const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
 
     return className.join(' ');
   };
-
   const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
-    if (isDisabled) {
-      return null;
-    }
-
     onClick && onClick(e);
     return true;
   };

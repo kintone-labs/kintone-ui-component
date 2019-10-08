@@ -13,14 +13,9 @@ type NotifyPopupProps = {
 }
 
 const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
-  // isDisabled always is setted false
+  // isDisabled will never be used in this component.
   // When we update major version of ui-component, we should delete this prop
-  isDisabled = false;
-
   const _handleClosePopup = () => {
-    if (isDisabled) {
-      return false;
-    }
     onClose && onClose();
     return true;
   };
@@ -55,9 +50,6 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
   };
 
   const _onClick = () => {
-    if (isDisabled) {
-      return false;
-    }
     onClick && onClick();
     return true;
   };
@@ -70,7 +62,7 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
     <div className={_getClassName()}>
       <div className="kuc-notify-title" onClick={_onClick} role="none">{text}</div>
       <div className="kuc-close-button">
-        <IconButton onClick={_handleClosePopup} isDisabled={isDisabled} type="close" color={_getStyleByType().color} />
+        <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
       </div>
     </div>
   );
