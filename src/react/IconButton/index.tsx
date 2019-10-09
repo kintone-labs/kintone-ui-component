@@ -1,6 +1,6 @@
 import React from 'react';
-import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
-import '../../css/IconButton.css'
+import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} from '@mdi/js';
+import '../../css/IconButton.css';
 
 type IconButtonProps = {
   type?: string;
@@ -9,7 +9,7 @@ type IconButtonProps = {
   isDisabled?: boolean;
   isVisible?: boolean;
   shape?: string;
-  onClick?: (e: React.SyntheticEvent<EventTarget>) => void
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
 const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onClick}: IconButtonProps) => {
@@ -24,36 +24,36 @@ const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onCli
       colorResult,
       shapeResult
     ];
-    return className.join(' ').trim()
-  }
+    return className.join(' ').trim();
+  };
 
   const _getIconData = () => {
     let iconData = mdiPlus;
     switch (type) {
       case 'insert':
-        break
+        break;
       case 'remove':
-        iconData = mdiMinus
-        break
+        iconData = mdiMinus;
+        break;
       case 'close':
-        iconData = mdiClose
-        break
+        iconData = mdiClose;
+        break;
       case 'file':
-        iconData = mdiFile
-        break
+        iconData = mdiFile;
+        break;
       case 'right':
-        iconData = mdiChevronRight
+        iconData = mdiChevronRight;
         break;
       case 'left':
-        iconData = mdiChevronLeft
-        break
+        iconData = mdiChevronLeft;
+        break;
     }
-    return iconData
-  }
+    return iconData;
+  };
 
   const _getClassSize = () => {
-    const className = size === 'small' ? 'small' : 'large'
-    return className
+    const className = size === 'small' ? 'small' : 'large';
+    return className;
   };
   if (isVisible === false) {
     return null;
@@ -61,10 +61,10 @@ const IconButton = ({type, size, color = '', isDisabled, isVisible, shape, onCli
   return (
     <button className={_getClassName()} onClick={onClick} disabled={isDisabled} >
       <svg>
-        <path d={_getIconData()}/>
+        <path d={_getIconData()} />
       </svg>
     </button>
   );
 };
 
-export default IconButton
+export default IconButton;

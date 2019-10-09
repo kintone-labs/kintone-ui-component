@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
-import '../../css/font.css'
+import '../../css/font.css';
 import '../../css/RadioButton.css';
 
 type item = {
@@ -25,7 +25,7 @@ const RadioButton = (props: RadioButtonProps) => {
   if (props.isVisible === false) {
     return null;
   }
-  if(props.items){
+  if (props.items) {
     if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
       throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }

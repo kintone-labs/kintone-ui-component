@@ -12,19 +12,7 @@ type PickerProps = ControlProps & {
   onCancel: () => void;
 }
 
-class Picker extends Control {
-
-  protected _props: PickerProps = {
-    ...this._props,
-    ...{
-      hexString: '',
-      onChange: (hexString: string, triggerOnChange: boolean) => {},
-      onAccept: (hexString: string) => {},
-      onCancel: () => {},
-      isDisabled: false,
-      isVisible: false
-    }
-  }
+class Picker extends Control<PickerProps> {
   private saturationSpectrum: SaturationSpectrum
   private hueSpectrum: HueSpectrum
   private saturationBackground: RGB
@@ -35,6 +23,17 @@ class Picker extends Control {
 
   constructor(params: PickerProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        hexString: '',
+        onChange: (hexString: string, triggerOnChange: boolean) => {},
+        onAccept: (hexString: string) => {},
+        onCancel: () => {},
+        isDisabled: false,
+        isVisible: false
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }
