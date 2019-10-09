@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import { item } from './Item';
 import '../../css/RadioButton.css';
@@ -7,19 +8,18 @@ declare type RadioButtonProps = ControlProps & {
     items?: item[];
     onChange?: (params?: any) => void;
 };
-declare class RadioButton extends Control {
-    protected _props: RadioButtonProps;
+declare class RadioButton extends Control<RadioButtonProps> {
     private itemComps?;
     constructor(params?: RadioButtonProps);
-    private _handleItemClick;
+    _handleItemClick(itemEl: any): void;
     private _validator;
     render(): HTMLElement;
     rerender(changedAttr?: string[]): void;
     setValue(value: string): void;
     getValue(): string | undefined;
-    setItems(items: Array<item>): void;
+    setItems(items: item[]): void;
     getItems(): item[] | undefined;
-    addItem(item: item): void;
+    addItem(obj: item): void;
     removeItem(index: number): false | void;
     disableItem(value: string): void;
     enableItem(value: string): void;

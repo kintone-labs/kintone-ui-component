@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import TableCell from './TableCell';
 import { ActionFlag } from '../../react/Table';
@@ -16,14 +17,13 @@ declare type HandlerFunction = (eventOptions: DispatchParams) => void | object;
 declare type TableProps = ControlProps & {
     data?: object[];
     defaultRowData?: object;
-    columns?: (TableColumnJS | ActionFlag)[];
+    columns?: Array<TableColumnJS | ActionFlag>;
     actionButtonsShown?: boolean;
     onRowAdd?: HandlerFunction;
     onRowRemove?: HandlerFunction;
     onCellChange?: HandlerFunction;
 };
-export default class Table extends Control {
-    protected _props: TableProps;
+export default class Table extends Control<TableProps> {
     private _tableHeaderContainer;
     private _tableBodyContainer;
     constructor(params?: TableProps);

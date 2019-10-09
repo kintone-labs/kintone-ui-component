@@ -8,8 +8,7 @@ declare type RGBInputProps = ControlProps & {
     };
     onChange: (hexString: string) => void;
 };
-declare class RGBInput extends Control {
-    protected _props: RGBInputProps;
+declare class RGBInput extends Control<RGBInputProps> {
     private rInput;
     private gInput;
     private bInput;
@@ -25,7 +24,7 @@ declare type HSVInputProps = ControlProps & {
     };
     onChange: (hexString: string) => void;
 };
-declare class HSVInput extends Control {
+declare class HSVInput extends Control<HSVInputProps> {
     private hInput;
     private sInput;
     private vInput;

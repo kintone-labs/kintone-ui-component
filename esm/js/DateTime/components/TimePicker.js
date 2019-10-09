@@ -243,7 +243,7 @@ var TimePicker = /** @class */ (function (_super) {
     TimePicker.prototype.rerender = function (changedAttr, options) {
         _super.prototype.rerender.call(this);
         if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-            this.element.style.left = options['left'] + 'px';
+            this.element.style.left = options.left + 'px';
         }
     };
     TimePicker.prototype.getElement = function () {

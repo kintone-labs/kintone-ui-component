@@ -2,9 +2,10 @@ declare type ControlProps = {
     isDisabled?: boolean;
     isVisible?: boolean;
 };
-declare class Control {
-    protected _props: ControlProps;
+declare class Control<T extends ControlProps> {
+    protected _props: T;
     protected element: HTMLElement;
+    constructor();
     rerender(changedAttr?: string[]): void;
     render(): HTMLElement;
     on(eventName: string, callback: (params?: any) => void): void;

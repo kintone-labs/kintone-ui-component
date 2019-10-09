@@ -20,15 +20,15 @@ var Tabs = function (_a) {
             if (!item.tabName) {
                 throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()));
             }
-            var className = "kuc-tabs-container";
+            var className = 'kuc-tabs-container';
             if (value === tabIndex) {
-                className += " kuc-tabs-container-selection";
+                className += ' kuc-tabs-container-selection';
             }
             if (item.isDisabled) {
                 className += ' kuc-tabs-disabled';
                 return (React.createElement("li", { className: className, key: tabIndex }, item.tabName));
             }
-            return (React.createElement("li", { className: className, key: tabIndex, onClick: function () { return _onClickTabItem(tabIndex); } }, item.tabName));
+            return (React.createElement("li", { role: "none", className: className, key: tabIndex, onClick: function () { return _onClickTabItem(tabIndex); }, onKeyUp: function () { return _onClickTabItem(tabIndex); } }, item.tabName));
         })));
     var tabContents = items && items.map(function (item, tabIndex) {
         if (tabIndex !== value)

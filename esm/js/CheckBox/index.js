@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import Item from '../CheckBox/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
@@ -8,13 +9,13 @@ var CheckBox = /** @class */ (function (_super) {
     tslib_1.__extends(CheckBox, _super);
     function CheckBox(params) {
         var _this = _super.call(this) || this;
+        _this.itemList = [];
         _this._props = tslib_1.__assign({}, _this._props, {
             items: [],
             value: [],
             isDisabled: false,
             isVisible: true,
         });
-        _this.itemList = [];
         if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
@@ -91,7 +92,7 @@ var CheckBox = /** @class */ (function (_super) {
                 var removeItem = this._props.items.splice(index, 1);
                 this.itemList.splice(index, 1);
                 this.element.childNodes[index].remove();
-                var removeItemValue = removeItem[0].value ? removeItem[0].value : "";
+                var removeItemValue = removeItem[0].value ? removeItem[0].value : '';
                 var selectedRemoveIndex = this._props.value.indexOf(removeItemValue);
                 if (selectedRemoveIndex > -1) {
                     this._props.value.splice(selectedRemoveIndex, 1);
@@ -110,9 +111,7 @@ var CheckBox = /** @class */ (function (_super) {
             if (index >= 0 && index < this._props.items.length) {
                 return this._props.items[index];
             }
-            else {
-                throw new Error(Message.common.INVALID_ARGUMENT);
-            }
+            throw new Error(Message.common.INVALID_ARGUMENT);
         }
         return undefined;
     };
@@ -224,13 +223,13 @@ var CheckBox = /** @class */ (function (_super) {
             else {
                 this._props.value.push(selectedValue);
             }
-            if (typeof this._props.onChange == 'function') {
+            if (typeof this._props.onChange === 'function') {
                 this._props.onChange(this.getValue());
             }
         }
     };
     CheckBox.prototype.on = function (eventName, callback) {
-        if (eventName == "change") {
+        if (eventName === 'change') {
             this._props.onChange = callback;
             return;
         }

@@ -1,14 +1,13 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import '../../css/Text.css';
 var Text = /** @class */ (function (_super) {
     tslib_1.__extends(Text, _super);
     function Text(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
-            value: ''
-        });
         _this._onChange = function () { };
+        _this._props.value = '';
         if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }

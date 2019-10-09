@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Label.css';
 declare type LabelProps = ControlProps & {
@@ -6,8 +7,7 @@ declare type LabelProps = ControlProps & {
     textColor?: string;
     backgroundColor?: string;
 };
-declare class Label extends Control {
-    protected _props: LabelProps;
+declare class Label extends Control<LabelProps> {
     private textEl;
     private requiredEl;
     private containerEl;

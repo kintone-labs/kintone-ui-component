@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import '../../css/Alert.css';
 var Alert = /** @class */ (function (_super) {
@@ -11,6 +12,7 @@ var Alert = /** @class */ (function (_super) {
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
         _this.element = document.createElement('div');
         _this.element.className = _this._getClassName();
@@ -22,7 +24,7 @@ var Alert = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('text') !== -1) {
-            this.element.innerHTML = this._props.text || "";
+            this.element.innerHTML = this._props.text || '';
         }
         if (changedAttr.indexOf('type') !== -1) {
             this.element.className = this._getClassName();
@@ -36,7 +38,7 @@ var Alert = /** @class */ (function (_super) {
         return className.join(' ');
     };
     Alert.prototype.setText = function (text) {
-        this._props.text = text;
+        this._props.text = (typeof text === 'string') ? text : '';
         this.rerender(['text']);
     };
     Alert.prototype.setType = function (type) {

@@ -23,7 +23,7 @@ var AttachmentFileItem = function (_a) {
         React.createElement("div", { className: "kuc-attachment_file_name", title: fileName }, fileName),
         React.createElement("div", { className: "kuc-attachment_file_action" },
             React.createElement("button", { type: "button", onClick: _removeFile })),
-        React.createElement("div", { className: "kuc-attachment_file_size" }, _formatFileSize(fileSize || 0)),
+        React.createElement("div", { className: "kuc-attachment_file_size" }, typeof fileSize === 'number' ? _formatFileSize(fileSize) : 'NaN bytes'),
         React.createElement("div", { className: "kuc-attachment_clearer" })));
 };
 export default AttachmentFileItem;

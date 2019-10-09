@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import '../../../js/polyfill';
 import Locale from './localizationData/locale-dto';
 import '../../../css/DropdownCalendar.css';
 declare type CalendarProps = {

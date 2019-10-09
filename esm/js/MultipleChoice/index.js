@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import Item from '../MultipleChoice/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
@@ -8,13 +9,13 @@ var MultipleChoice = /** @class */ (function (_super) {
     tslib_1.__extends(MultipleChoice, _super);
     function MultipleChoice(params) {
         var _this = _super.call(this) || this;
+        _this.itemList = [];
         _this._props = tslib_1.__assign({}, _this._props, {
             items: [],
             value: [],
             isDisabled: false,
             isVisible: true
         });
-        _this.itemList = [];
         if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
@@ -109,9 +110,7 @@ var MultipleChoice = /** @class */ (function (_super) {
         if (this._props.items && index >= 0 && index < this._props.items.length) {
             return this._props.items[index];
         }
-        else {
-            throw new Error(Message.common.INVALID_ARGUMENT);
-        }
+        throw new Error(Message.common.INVALID_ARGUMENT);
     };
     MultipleChoice.prototype.setItems = function (items) {
         if (!items || !Array.isArray(items)) {
@@ -221,13 +220,13 @@ var MultipleChoice = /** @class */ (function (_super) {
             else {
                 this._props.value.push(selectedValue);
             }
-            if (typeof this._props.onChange == 'function') {
+            if (typeof this._props.onChange === 'function') {
                 this._props.onChange(this.getValue());
             }
         }
     };
     MultipleChoice.prototype.on = function (eventName, callback) {
-        if (eventName == "change") {
+        if (eventName === 'change') {
             this._props.onChange = callback;
             return;
         }

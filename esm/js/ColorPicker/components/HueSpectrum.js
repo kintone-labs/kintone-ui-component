@@ -27,17 +27,17 @@ var HueSpectrum = /** @class */ (function (_super) {
     }
     HueSpectrum.prototype.initLayout = function () {
         if (!this.hasInitLayout && this.colorCanvas) {
-            var ctx = this.colorCanvas.getContext("2d");
+            var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {
                 ctx.rect(0, 0, this._props.width, this._props.height);
                 var grd1 = ctx.createLinearGradient(0, 0, 0, this._props.height);
-                grd1.addColorStop(0, "rgb(255, 0, 0)"); // red
-                grd1.addColorStop(0.17, "rgb(255, 0, 255)"); // magenta
-                grd1.addColorStop(0.34, "rgb(0, 0, 255)"); // blue
-                grd1.addColorStop(0.51, "rgb(0, 255, 255)"); // aqua
-                grd1.addColorStop(0.68, "rgb(0, 255, 0)"); // green
-                grd1.addColorStop(0.85, "rgb(255, 255, 0)"); // yellow
-                grd1.addColorStop(1, "rgb(255, 0, 0)"); // red
+                grd1.addColorStop(0, 'rgb(255, 0, 0)'); // red
+                grd1.addColorStop(0.17, 'rgb(255, 0, 255)'); // magenta
+                grd1.addColorStop(0.34, 'rgb(0, 0, 255)'); // blue
+                grd1.addColorStop(0.51, 'rgb(0, 255, 255)'); // aqua
+                grd1.addColorStop(0.68, 'rgb(0, 255, 0)'); // green
+                grd1.addColorStop(0.85, 'rgb(255, 255, 0)'); // yellow
+                grd1.addColorStop(1, 'rgb(255, 0, 0)'); // red
                 ctx.fillStyle = grd1;
                 ctx.fill();
                 this.hasInitLayout = true;
@@ -74,7 +74,7 @@ var HueSpectrum = /** @class */ (function (_super) {
         var x = this._props.width / 2;
         var y = clientY - this.containerEl.top;
         if (this.colorCanvas && this.colorCanvas) {
-            var ctx = this.colorCanvas.getContext("2d");
+            var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {
                 var imageData = ctx.getImageData(x, y, 1, 1).data;
                 this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] });

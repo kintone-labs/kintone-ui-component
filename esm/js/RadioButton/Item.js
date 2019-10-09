@@ -60,8 +60,6 @@ var Item = /** @class */ (function (_super) {
         else {
             this.inputEl.removeAttribute('disabled');
         }
-        if (!changedAttr)
-            return;
     };
     Item.prototype.on = function (eventName, callback) {
         var _this = this;

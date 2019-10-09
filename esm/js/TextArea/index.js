@@ -1,11 +1,11 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import '../../css/TextArea.css';
 var TextArea = /** @class */ (function (_super) {
     tslib_1.__extends(TextArea, _super);
     function TextArea(params) {
         var _this = _super.call(this) || this;
-        _this._props = _this._props;
         _this._onClick = function () { };
         _this._onChange = function () { };
         _this.textAreaWidth = 297;
@@ -16,39 +16,6 @@ var TextArea = /** @class */ (function (_super) {
         _this.currentY = null;
         _this.translateX = 0;
         _this.translateY = 0;
-        _this._onMouseDown = function () {
-            if (_this._props.isDisabled)
-                return;
-            var eventMouseMove = document.onmousemove;
-            var eventMouseUp = document.onmouseup;
-            document.onmousemove = function (event) {
-                if (_this.currentX && _this.currentY) {
-                    var dx = event.clientX - _this.currentX;
-                    if (_this.textAreaWidth + dx < _this.mixTextAreaWidth) {
-                        dx = 0;
-                    }
-                    var dy = event.clientY - _this.currentY;
-                    if (_this.textAreaHeight + dy < _this.mixtTextAreaHeight) {
-                        dy = 0;
-                    }
-                    _this.translateX = _this.translateX + dx,
-                        _this.translateY = _this.translateY + dy,
-                        _this.textAreaWidth = _this.textAreaWidth + dx,
-                        _this.textAreaHeight = _this.textAreaHeight + dy;
-                    _this.textAreaEl.style.width = _this.textAreaWidth + 'px';
-                    _this.textAreaEl.style.height = _this.textAreaHeight + 'px';
-                    _this.resizeEl.style.transform = "translate(" + _this.translateX + "px, " + _this.translateY + "px)";
-                }
-                _this.currentX = event.clientX;
-                _this.currentY = event.clientY;
-            };
-            document.onmouseup = function () {
-                document.onmousemove = eventMouseMove;
-                document.onmouseup = eventMouseUp;
-                _this.currentX = null;
-                _this.currentY = null;
-            };
-        };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
@@ -61,7 +28,7 @@ var TextArea = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('value') !== -1) {
-            this.textAreaEl.value = this._props.value || "";
+            this.textAreaEl.value = this._props.value || '';
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {
@@ -79,6 +46,40 @@ var TextArea = /** @class */ (function (_super) {
     TextArea.prototype.getValue = function () {
         return this._props.value;
     };
+    TextArea.prototype._onMouseDown = function () {
+        var _this = this;
+        if (this._props.isDisabled)
+            return;
+        var eventMouseMove = document.onmousemove;
+        var eventMouseUp = document.onmouseup;
+        document.onmousemove = function (event) {
+            if (_this.currentX && _this.currentY) {
+                var dx = event.clientX - _this.currentX;
+                if (_this.textAreaWidth + dx < _this.mixTextAreaWidth) {
+                    dx = 0;
+                }
+                var dy = event.clientY - _this.currentY;
+                if (_this.textAreaHeight + dy < _this.mixtTextAreaHeight) {
+                    dy = 0;
+                }
+                _this.translateX = _this.translateX + dx;
+                _this.translateY = _this.translateY + dy;
+                _this.textAreaWidth = _this.textAreaWidth + dx;
+                _this.textAreaHeight = _this.textAreaHeight + dy;
+                _this.textAreaEl.style.width = _this.textAreaWidth + 'px';
+                _this.textAreaEl.style.height = _this.textAreaHeight + 'px';
+                _this.resizeEl.style.transform = "translate(" + _this.translateX + "px, " + _this.translateY + "px)";
+            }
+            _this.currentX = event.clientX;
+            _this.currentY = event.clientY;
+        };
+        document.onmouseup = function () {
+            document.onmousemove = eventMouseMove;
+            document.onmouseup = eventMouseUp;
+            _this.currentX = null;
+            _this.currentY = null;
+        };
+    };
     TextArea.prototype.createContainerEL = function () {
         var container = document.createElement('div');
         container.className = 'kuc-textarea-outer';
@@ -92,7 +93,9 @@ var TextArea = /** @class */ (function (_super) {
         var _this = this;
         var textarea = document.createElement('textarea');
         textarea.className = 'kuc-textarea';
-        textarea.onclick = function (e) { _this._onClick(e); };
+        textarea.onclick = function (e) {
+            _this._onClick(e);
+        };
         textarea.onchange = function (e) {
             _this._props.value = e.target.value;
             _this._onChange(e.target.value);
@@ -105,7 +108,9 @@ var TextArea = /** @class */ (function (_super) {
         var _this = this;
         var textarea = document.createElement('div');
         textarea.className = 'kuc-textarea-resize';
-        textarea.onmousedown = function (e) { _this._onMouseDown(); };
+        textarea.onmousedown = function (e) {
+            _this._onMouseDown();
+        };
         textarea.style.transform = "translate(" + this.translateX + "px, " + this.translateY + "px)";
         return textarea;
     };

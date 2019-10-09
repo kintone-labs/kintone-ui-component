@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import '../../css/FieldGroup.css';
 var FieldGroup = /** @class */ (function (_super) {
@@ -46,7 +47,6 @@ var FieldGroup = /** @class */ (function (_super) {
             this._props.toggle === 'expand' ? 'expand' : 'collapse'
         ].join(' ').trim();
     };
-    ;
     FieldGroup.prototype._getArrowClassName = function () {
         return [
             'kuc-arrow',
@@ -58,7 +58,6 @@ var FieldGroup = /** @class */ (function (_super) {
         this.fgTab.className = this._getClassName();
         this.fgTabArrow.className = this._getArrowClassName();
     };
-    ;
     FieldGroup.prototype.render = function () {
         return _super.prototype.render.call(this);
     };

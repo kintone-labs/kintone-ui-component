@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Dropdown.css';
 declare type item = {
@@ -11,8 +12,7 @@ declare type DropdownProps = ControlProps & {
     onChange?: (params?: any) => void;
     listItemsShown?: (params?: any) => void;
 };
-declare class Dropdown extends Control {
-    protected _props: DropdownProps;
+declare class Dropdown extends Control<DropdownProps> {
     private itemComps?;
     private dropdownEl;
     private nameLabelEl;
@@ -36,7 +36,7 @@ declare class Dropdown extends Control {
     getValue(): string | undefined;
     getItems(): item[] | undefined;
     addItem(item: item): void;
-    setItems(items: Array<item>): void;
+    setItems(items: item[]): void;
     removeItem(index: number): false | void;
     disableItem(value: string): void;
     enableItem(value: string): void;

@@ -1,11 +1,11 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/NotifyPopup.css';
 declare type PopupProps = ControlProps & {
     text?: string;
     type?: string;
 };
-declare class NotifyPopup extends Control {
-    protected _props: PopupProps;
+declare class NotifyPopup extends Control<PopupProps> {
     private textEl;
     private closeButton;
     private _onClick;

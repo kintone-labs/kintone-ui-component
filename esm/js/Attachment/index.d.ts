@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Attachment.css';
 declare type FileObject = {
@@ -14,8 +15,7 @@ declare type AttachmentProps = ControlProps & {
     onFilesAdd?: (files: FileObject[]) => void;
     onFileRemove?: (files: FileObject[]) => void;
 };
-declare class Attachment extends Control {
-    protected _props: AttachmentProps;
+declare class Attachment extends Control<AttachmentProps> {
     private _onFileRemove;
     private _onFileAdd;
     private listFileEl;
@@ -27,7 +27,7 @@ declare class Attachment extends Control {
     constructor(params?: AttachmentProps);
     rerender(changedAttr?: string[]): void;
     private _addFiles;
-    setFiles(files: Array<FileObject>): void;
+    setFiles(files: FileObject[]): void;
     getFiles(): FileObject[] | undefined;
     setDropZoneText(text: string): void;
     setBrowseButtonText(text: string): void;

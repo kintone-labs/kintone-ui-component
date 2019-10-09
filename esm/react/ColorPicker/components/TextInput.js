@@ -1,5 +1,5 @@
-import React from "react";
-import TextInputStyle from "./TextInputStyle";
+import React from 'react';
+import TextInputStyle from './TextInputStyle';
 import { rgbToHex, hsvToRgb } from './utils';
 import Message from '../../../constant/Message';
 export default function TextInput(_a) {
@@ -15,7 +15,7 @@ function RGBInput(_a) {
     var rgb = _a.rgb, onChange = _a.onChange;
     var handleChangeRGBInput = function (value, objectKey) {
         try {
-            var intValue = parseInt(value || "0", 10);
+            var intValue = parseInt(value || '0', 10);
             if (isNaN(value) || intValue < 0 || intValue > 255) {
                 throw new Error(Message.colorPicker.INVALID_COLOR);
             }
@@ -35,7 +35,7 @@ function HSVInput(_a) {
     var hsv = _a.hsv, onChange = _a.onChange;
     var handleChangeHSVInput = function (value, objectKey) {
         try {
-            var floatValue = parseFloat(value || "0");
+            var floatValue = parseFloat(value || '0');
             if (isNaN(value) || floatValue < 0 || floatValue > 1) {
                 throw new Error(Message.colorPicker.INVALID_COLOR);
             }

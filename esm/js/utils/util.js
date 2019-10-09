@@ -60,11 +60,11 @@ var Elements = /** @class */ (function () {
         }
         if (typeof value !== 'undefined') {
             this.elArr.forEach(function (el) {
-                el['value'] = value;
+                el.value = value;
             }, this);
             return this;
         }
-        return this.elArr[0]['value'];
+        return this.elArr[0].value;
     };
     Elements.prototype.html = function (value) {
         if (this.elArr.length === 0) {

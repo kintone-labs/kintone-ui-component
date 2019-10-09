@@ -6,8 +6,7 @@ declare type AttachmentFileItemProps = ControlProps & {
     fileSize?: number;
     onFileRemove?: (index: number) => void;
 };
-declare class AttachmentFileItem extends Control {
-    protected _props: AttachmentFileItemProps;
+declare class AttachmentFileItem extends Control<AttachmentFileItemProps> {
     protected element: HTMLDivElement;
     private ONE_GB;
     private ONE_MB;
@@ -15,6 +14,6 @@ declare class AttachmentFileItem extends Control {
     constructor(params?: AttachmentFileItemProps);
     _formatFileSize(size: number): string;
     createItemContainerEl(): HTMLDivElement;
-    onRemove: () => void;
+    onRemove(): void;
 }
 export default AttachmentFileItem;

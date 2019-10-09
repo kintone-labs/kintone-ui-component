@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/TextArea.css';
 declare type TextAreaProps = ControlProps & {
@@ -5,8 +6,7 @@ declare type TextAreaProps = ControlProps & {
     onClick?: (e: any) => void;
     onChange?: (e: any) => void;
 };
-declare class TextArea extends Control {
-    protected _props: TextAreaProps;
+declare class TextArea extends Control<TextAreaProps> {
     private _onClick;
     private _onChange;
     private textAreaEl;
@@ -23,7 +23,7 @@ declare class TextArea extends Control {
     rerender(changedAttr?: string[]): void;
     setValue(text: string): void;
     getValue(): string | undefined;
-    _onMouseDown: () => void;
+    _onMouseDown(): void;
     private createContainerEL;
     private createTextareaEL;
     private createResizeEL;

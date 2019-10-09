@@ -6,7 +6,7 @@ var _hasDuplicatedItems = function (items) {
             if (val.value && typeof (unique[val.value]) !== 'undefined') {
                 isUnique = false;
             }
-            val.value ? unique[val.value] = 0 : "";
+            val.value && (unique[val.value] = 0);
         });
     }
     return !isUnique;
@@ -15,7 +15,7 @@ var _hasValidValue = function (items, value) {
     var validValues = [];
     if (items) {
         items.forEach(function (item) {
-            item.value ? validValues.push(item.value) : "";
+            item.value && validValues.push(item.value);
         });
     }
     if (value === undefined) {

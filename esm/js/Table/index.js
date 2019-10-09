@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
 import IconButton from '../IconButton';
@@ -14,25 +15,6 @@ var Table = /** @class */ (function (_super) {
             columns: [],
             actionButtonsShown: true
         });
-        _this._addRow = function (_a) {
-            var data = _a.data, rowIndex = _a.rowIndex;
-            if (!data) {
-                return [];
-            }
-            var insertAt = rowIndex + 1;
-            var newRowData = JSON.parse(JSON.stringify(_this._props.defaultRowData));
-            var newData = data.slice(0, insertAt).concat([newRowData], data.slice(insertAt));
-            _this._props.data = newData;
-            return newData;
-        };
-        _this._removeRow = function (_a) {
-            var data = _a.data, rowIndex = _a.rowIndex;
-            var currentData = data && data.filter(function (_, index) { return index !== rowIndex; });
-            _this._props.data = currentData;
-            _this._renderTableRows(true);
-            _this._renderCells();
-            return currentData;
-        };
         if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
@@ -43,11 +25,30 @@ var Table = /** @class */ (function (_super) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
         _this._validateRequired();
-        if (_this._props.actionButtonsShown !== undefined) {
+        if (_this._props.actionButtonsShown === true) {
             _this._props.columns && _this._props.columns.push({ actions: _this._props.actionButtonsShown });
         }
         return _this;
     }
+    Table.prototype._addRow = function (_a) {
+        var data = _a.data, rowIndex = _a.rowIndex;
+        if (!data) {
+            return [];
+        }
+        var insertAt = rowIndex + 1;
+        var newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData));
+        var newData = data.slice(0, insertAt).concat([newRowData], data.slice(insertAt));
+        this._props.data = newData;
+        return newData;
+    };
+    Table.prototype._removeRow = function (_a) {
+        var data = _a.data, rowIndex = _a.rowIndex;
+        var currentData = data && data.filter(function (_, index) { return index !== rowIndex; });
+        this._props.data = currentData;
+        this._renderTableRows(true);
+        this._renderCells();
+        return currentData;
+    };
     Table.prototype._triggerChange = function (args) {
         var type = args.type;
         delete args.type;
@@ -64,7 +65,7 @@ var Table = /** @class */ (function (_super) {
         var rowsEl = [].slice.call(this.element.querySelectorAll('.kuc-table-tbody > .kuc-table-tr'));
         var columns = [].slice.call(this._props.columns);
         rowsEl.forEach(function (rowEl, rowIndex) {
-            var rowData = _this._props.data && _this._props.data[rowIndex];
+            var rowData = _this._props.data && JSON.parse(JSON.stringify(_this._props.data[rowIndex]));
             var updateRowData = _this.updateRowData.bind(_this, rowIndex);
             columns.forEach(function (_a, columnIndex) {
                 var cell = _a.cell;
@@ -85,9 +86,9 @@ var Table = /** @class */ (function (_super) {
                         if (element) {
                             cellElement.appendChild(element);
                         }
-                        cellElement['__tableCellInstance'] = cellInstance;
+                        cellElement.__tableCellInstance = cellInstance;
                     }
-                    cellInstance = cellElement['__tableCellInstance'];
+                    cellInstance = cellElement.__tableCellInstance;
                     cellInstance.update({ table: table, rowData: rowData, rowIndex: rowIndex, columnIndex: columnIndex, element: element });
                 }
             });
@@ -194,7 +195,7 @@ var Table = /** @class */ (function (_super) {
         return tableCellDiv;
     };
     Table.prototype._dispatch = function (eventOption) {
-        if (eventOption['type'] === 'ADD_ROW') {
+        if (eventOption.type === 'ADD_ROW') {
             if (this._props.onRowAdd) {
                 var newRowData = this._props.onRowAdd(eventOption);
                 if (newRowData && this._props.data) {
@@ -204,7 +205,7 @@ var Table = /** @class */ (function (_super) {
             this._renderTableRows();
             this._renderCells();
         }
-        if (eventOption['type'] === 'REMOVE_ROW') {
+        if (eventOption.type === 'REMOVE_ROW') {
             if (this._props.onRowRemove) {
                 this._props.onRowRemove(eventOption);
             }
@@ -219,23 +220,23 @@ var Table = /** @class */ (function (_super) {
         this._props.data && this._props.data.forEach(function (_, rowIndex) {
             var tableRow = _this._tableBodyContainer.children.namedItem(rowIndex.toString());
             if (!tableRow || rerender) {
-                var tableRow_1 = document.createElement('div');
-                tableRow_1.className = 'kuc-table-tr';
-                tableRow_1.id = rowIndex.toString();
+                var newTableRow_1 = document.createElement('div');
+                newTableRow_1.className = 'kuc-table-tr';
+                newTableRow_1.id = rowIndex.toString();
                 _this._props.columns && _this._props.columns.forEach(function (column) {
                     var actions = column.actions;
                     if (actions === true) {
                         var actionCell = _this._renderTableCellActions(rowIndex);
                         actionCell.id = rowIndex + '_action';
-                        tableRow_1.appendChild(actionCell);
+                        newTableRow_1.appendChild(actionCell);
                     }
                     else {
                         var div = document.createElement('div');
                         div.className = 'kuc-table-td';
-                        tableRow_1.appendChild(div);
+                        newTableRow_1.appendChild(div);
                     }
                 });
-                _this._tableBodyContainer.appendChild(tableRow_1);
+                _this._tableBodyContainer.appendChild(newTableRow_1);
             }
             else {
                 var child = tableRow.children.namedItem(rowIndex + '_action');
@@ -291,6 +292,15 @@ var Table = /** @class */ (function (_super) {
     };
     Table.prototype.showActionButtons = function () {
         this._props.actionButtonsShown = true;
+        if (this._props.columns) {
+            var existAction = this._props.columns.filter(function (column) {
+                var actions = column.actions;
+                return actions;
+            })[0];
+            if (!existAction) {
+                this._props.columns.push({ actions: this._props.actionButtonsShown });
+            }
+        }
         this._renderTableRows();
     };
     Table.prototype.hideActionButtons = function () {

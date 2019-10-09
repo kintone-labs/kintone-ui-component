@@ -101,8 +101,8 @@ var Attachment = function (props) {
         }
     };
     return (React.createElement("div", { className: "kuc-attachment-outer" },
-        React.createElement("div", { className: "kuc-attachment-file", onDragOver: _onDragOver, onDragEnter: _onDragEnter, onDragLeave: _onDragLeave },
-            React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: 'none' }, onDrop: _onDrop },
+        React.createElement("div", { className: "kuc-attachment-file", role: "presentation", onDragOver: _onDragOver, onDragEnter: _onDragEnter, onDragLeave: _onDragLeave },
+            React.createElement("div", { className: "kuc-attachment-file-droppable", style: { display: 'none' }, onDrop: _onDrop, role: "presentation" },
                 React.createElement("div", { className: "kuc-attachment-file-droppable-text", ref: function (dropElement) {
                         if (dropElement)
                             dropZoneElement = dropElement;

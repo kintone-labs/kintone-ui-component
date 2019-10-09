@@ -7,8 +7,7 @@ declare type CalendarProps = ControlProps & {
     onDateClick?: (date: Date | null) => void;
     onClickOutside?: (e: FocusEvent) => void;
 };
-declare class Calendar extends Control {
-    protected _props: CalendarProps;
+declare class Calendar extends Control<CalendarProps> {
     protected element: HTMLElement;
     private _calendarHeader;
     private _monthYearContainer;
@@ -33,7 +32,7 @@ declare class Calendar extends Control {
     _renderPreviousButton(): void;
     _scrollToSeletedOptions: () => void;
     _renderDisplayMonthDropdown(): void;
-    _onChangeCreateYearDropdown: (value: any) => void;
+    _onChangeCreateYearDropdown(value: any): void;
     _renderDisplayYearDropdown(): void;
     _renderNextButton(): void;
     _renderDaysContainer(): void;

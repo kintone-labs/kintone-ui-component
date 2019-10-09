@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import IconButton from '../IconButton';
@@ -7,14 +8,15 @@ var NotifyPopup = /** @class */ (function (_super) {
     tslib_1.__extends(NotifyPopup, _super);
     function NotifyPopup(params) {
         var _this = _super.call(this) || this;
+        _this._onClick = function (e) { };
+        _this._onClose = function (e) { };
         _this._props = tslib_1.__assign({}, _this._props, {
             text: '',
             type: 'error'
         });
-        _this._onClick = function (e) { };
-        _this._onClose = function (e) { };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
         _this.element = _this._createPopupLayout();
         _this.closeButton.on('click', function (e) {
@@ -63,7 +65,6 @@ var NotifyPopup = /** @class */ (function (_super) {
         }
         if (eventName === 'close') {
             this._onClose = callback;
-            return;
         }
     };
     NotifyPopup.prototype._getClassName = function () {
@@ -86,7 +87,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         }
     };
     NotifyPopup.prototype.setText = function (text) {
-        this._props.text = text;
+        this._props.text = (typeof text === 'string') ? text : '';
         this.rerender(['text']);
     };
     NotifyPopup.prototype.setType = function (type) {

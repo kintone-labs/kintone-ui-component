@@ -1,20 +1,21 @@
 import * as tslib_1 from "tslib";
-import Control from "../Control";
-import TabName from "./TabName";
+import '../polyfill';
+import Control from '../Control';
+import TabName from './TabName';
 import Message from '../../constant/Message';
 import '../../css/Tabs.css';
 var Tabs = /** @class */ (function (_super) {
     tslib_1.__extends(Tabs, _super);
     function Tabs(params) {
         var _this = _super.call(this) || this;
+        _this._onClickTabItem = function () { };
+        _this.tabNames = [];
         _this._props = tslib_1.__assign({}, _this._props, {
             items: [],
             value: 0,
             isDisabled: false,
             isVisible: true
         });
-        _this._onClickTabItem = function () { };
-        _this.tabNames = [];
         if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }

@@ -1,10 +1,10 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Text.css';
 declare type TextProps = ControlProps & {
     value?: string;
 };
-declare class Text extends Control {
-    protected _props: TextProps;
+declare class Text extends Control<TextProps> {
     private _onChange;
     constructor(params?: TextProps);
     render(): HTMLElement;

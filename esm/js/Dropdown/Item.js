@@ -6,10 +6,10 @@ var Item = /** @class */ (function (_super) {
     tslib_1.__extends(Item, _super);
     function Item(params) {
         var _this = _super.call(this) || this;
+        _this.isSelected = false;
         _this._props = tslib_1.__assign({}, _this._props, {
             type: 'default'
         });
-        _this.isSelected = false;
         if (typeof params === 'object' &&
             params !== null &&
             typeof params.isDisabled !== 'boolean') {
@@ -43,9 +43,9 @@ var Item = /** @class */ (function (_super) {
         return _this;
     }
     Item.prototype._createCheckIconEl = function () {
-        var pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         pathEl.setAttribute('d', mdiCheckBold);
-        var svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svgEl.appendChild(pathEl);
         return svgEl;
     };
@@ -57,8 +57,6 @@ var Item = /** @class */ (function (_super) {
         else {
             this.inputEl.removeAttribute('disabled');
         }
-        if (!changedAttr)
-            return;
     };
     return Item;
 }(Control));

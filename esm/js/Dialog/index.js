@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import IconButton from '../IconButton';
 import Message from '../../constant/Message';
@@ -100,13 +101,13 @@ var Dialog = /** @class */ (function (_super) {
     };
     Dialog.prototype._validator = function () {
         var err = null;
-        if (typeof this._props.header != 'string' && !(this._props.header instanceof HTMLElement)) {
+        if (typeof this._props.header !== 'string' && !(this._props.header instanceof HTMLElement)) {
             err = Message.common.INVALID_ARGUMENT;
         }
-        if (typeof this._props.footer != 'string' && !(this._props.footer instanceof HTMLElement)) {
+        if (typeof this._props.footer !== 'string' && !(this._props.footer instanceof HTMLElement)) {
             err = Message.common.INVALID_ARGUMENT;
         }
-        if (typeof this._props.content != 'string' && !(this._props.content instanceof HTMLElement)) {
+        if (typeof this._props.content !== 'string' && !(this._props.content instanceof HTMLElement)) {
             err = Message.common.INVALID_ARGUMENT;
         }
         if (typeof this._props.showCloseButton !== 'boolean') {
@@ -118,7 +119,7 @@ var Dialog = /** @class */ (function (_super) {
         return err;
     };
     Dialog.prototype.setHeader = function (headerContent) {
-        if (typeof headerContent != 'string' && !(headerContent instanceof HTMLElement)) {
+        if (typeof headerContent !== 'string' && !(headerContent instanceof HTMLElement)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         this._props.header = headerContent;
@@ -128,7 +129,7 @@ var Dialog = /** @class */ (function (_super) {
         return this._props.header;
     };
     Dialog.prototype.setFooter = function (footerContent) {
-        if (typeof footerContent != 'string' && !(footerContent instanceof HTMLElement)) {
+        if (typeof footerContent !== 'string' && !(footerContent instanceof HTMLElement)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         this._props.footer = footerContent;
@@ -138,7 +139,7 @@ var Dialog = /** @class */ (function (_super) {
         return this._props.footer;
     };
     Dialog.prototype.setContent = function (bodyContent) {
-        if (typeof bodyContent != 'string' && !(bodyContent instanceof HTMLElement)) {
+        if (typeof bodyContent !== 'string' && !(bodyContent instanceof HTMLElement)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         this._props.content = bodyContent;

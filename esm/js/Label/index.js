@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import '../../css/Label.css';
@@ -14,6 +15,7 @@ var Label = /** @class */ (function (_super) {
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
         _this.element = _this._createLabelLayout();
         _this.rerender(['text', 'isRequired', 'textStyle']);
@@ -34,7 +36,7 @@ var Label = /** @class */ (function (_super) {
             this.textEl.html(this._props.text);
         }
         if (changedAttr.indexOf('isRequired') !== -1) {
-            if (this._props.isRequired) {
+            if (this._props.isRequired && typeof this._props.isRequired === 'boolean') {
                 this.containerEl.append(this.requiredEl);
             }
             else {
@@ -48,11 +50,11 @@ var Label = /** @class */ (function (_super) {
         }
     };
     Label.prototype.setText = function (text) {
-        this._props.text = text;
+        this._props.text = (typeof text === 'string') ? text : '';
         this.rerender(['text']);
     };
     Label.prototype.setRequired = function (isRequired) {
-        this._props.isRequired = isRequired;
+        typeof isRequired === 'boolean' ? this._props.isRequired = isRequired : this._props.isRequired = false;
         this.rerender(['isRequired']);
     };
     Label.prototype.setTextColor = function (color) {

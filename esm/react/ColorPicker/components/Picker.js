@@ -1,11 +1,11 @@
 import * as tslib_1 from "tslib";
-import React, { useState } from "react";
-import PickerStyle from "./PickerStyle";
-import HueSpectrum from "./HueSpectrum";
-import SaturationSpectrum from "./SaturationSpectrum";
-import { RGBInput, HSVInput } from "./TextInput";
-import { hexToRgb, rgbToHex, rgbToHsv } from "./utils";
-import Button from "../../Button";
+import React, { useState } from 'react';
+import PickerStyle from './PickerStyle';
+import HueSpectrum from './HueSpectrum';
+import SaturationSpectrum from './SaturationSpectrum';
+import { RGBInput, HSVInput } from './TextInput';
+import { hexToRgb, rgbToHex, rgbToHsv } from './utils';
+import Button from '../../Button';
 export default function Picker(props) {
     var _a = useState(props.hexString), hexString = _a[0], setHexString = _a[1];
     var _b = useState(hexToRgb(hexString)), rgb = _b[0], setRGB = _b[1];
@@ -36,7 +36,7 @@ export default function Picker(props) {
         rgb: saturationBackground
     };
     return (React.createElement("div", { style: tslib_1.__assign({}, PickerStyle.container, {
-            display: props.pickerDisplay ? "block" : "none"
+            display: props.pickerDisplay ? 'block' : 'none'
         }) },
         React.createElement("div", { style: PickerStyle.saturationContainer },
             React.createElement(SaturationSpectrum, tslib_1.__assign({}, saturationProps))),

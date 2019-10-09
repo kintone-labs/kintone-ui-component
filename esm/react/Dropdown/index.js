@@ -55,7 +55,7 @@ var Dropdown = function (_a) {
     ];
     return (React.createElement("div", { className: "kuc-dropdown-container", ref: ref },
         React.createElement("div", { className: "kuc-dropdown-sub-container" },
-            React.createElement("div", { className: "kuc-dropdown-outer", onClick: _showItems },
+            React.createElement("div", { className: "kuc-dropdown-outer", onClick: _showItems, role: "presentation" },
                 React.createElement("div", { className: className.join(' ').trim() },
                     React.createElement("div", { className: "kuc-dropdown-selected" },
                         React.createElement("span", { className: "kuc-dropdown-selected-name" },

@@ -11,11 +11,11 @@ function ColorPicker(props) {
         throw new Error(Message.colorPicker.INVALID_COLOR);
     }
     var wrapperRef = useRef(null);
-    var _a = useState(props.color || "#FF0000"), hexString = _a[0], setHexString = _a[1];
+    var _a = useState(props.color || '#FF0000'), hexString = _a[0], setHexString = _a[1];
     var _b = useState(false), pickerDisplay = _b[0], setPickerDisplay = _b[1];
     var _c = useState(false), focus = _c[0], setFocus = _c[1];
     if (!previouseHex) {
-        previouseHex = props.color || "#FF0000";
+        previouseHex = props.color || '#FF0000';
     }
     var isVisible = true;
     if (props.isVisible === false) {
@@ -44,22 +44,22 @@ function ColorPicker(props) {
         setFocus(true);
         setPickerDisplay(true);
     }
-    function handleClickOutside(e) {
-        if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target) && pickerDisplay) {
-            setFocus(false);
-            setPickerDisplay(false);
-        }
-    }
     useEffect(function () {
         if (props.color && props.color !== previouseHex) {
             setHexString(props.color);
             previouseHex = props.color;
         }
+        var handleClickOutside = function (e) {
+            if (wrapperRef && wrapperRef.current && !wrapperRef.current.contains(e.target) && pickerDisplay) {
+                setFocus(false);
+                setPickerDisplay(false);
+            }
+        };
         document.addEventListener('mousedown', handleClickOutside, true);
         return function () {
             document.removeEventListener('mousedown', handleClickOutside, true);
         };
-    });
+    }, [props.color, pickerDisplay]);
     function getInputStyle() {
         var style = {
             backgroundColor: hexString,
@@ -78,8 +78,8 @@ function ColorPicker(props) {
         onCancel: function () {
             setPickerDisplay(false);
             setFocus(false);
-            setHexString(props.color || "#FF0000");
-            props.onChange && props.onChange(props.color || "#FF0000");
+            setHexString(props.color || '#FF0000');
+            props.onChange && props.onChange(props.color || '#FF0000');
         },
         onSubmit: function (newHexString) {
             setPickerDisplay(false);
@@ -95,8 +95,6 @@ function ColorPicker(props) {
                 React.createElement("input", tslib_1.__assign({}, inputProps, { key: hexString }))),
             React.createElement(Picker, tslib_1.__assign({}, pickerProps))));
     }
-    else {
-        return React.createElement("div", null);
-    }
+    return React.createElement("div", null);
 }
 export default ColorPicker;

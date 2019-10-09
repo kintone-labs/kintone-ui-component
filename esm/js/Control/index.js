@@ -1,13 +1,14 @@
+import * as tslib_1 from "tslib";
 var Control = /** @class */ (function () {
     function Control() {
-        this._props = {
+        this._props = tslib_1.__assign({}, this._props, {
             isDisabled: false,
             isVisible: true
-        };
+        });
     }
     Control.prototype.rerender = function (changedAttr) {
         if (this.element) {
-            if (!this._props.isVisible) {
+            if (!this._props.isVisible && typeof this._props.isVisible === 'boolean') {
                 this.element.style.display = 'none';
             }
             else {

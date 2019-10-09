@@ -13,11 +13,10 @@ declare type ItemProps = ControlProps & {
     isSelected: boolean;
     onChange?: (item: Item) => void;
 };
-declare class Item extends Control {
-    protected _props: ItemProps;
+declare class Item extends Control<ItemProps> {
     private inputCheckboxElement;
     constructor(params?: ItemProps);
-    rerender(changedAttr?: Array<string>): void;
+    rerender(changedAttr?: string[]): void;
     getValue(): string;
     select(): void;
     deselect(): void;

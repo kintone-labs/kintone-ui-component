@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/FieldGroup.css';
 declare type FieldGroupProps = ControlProps & {
@@ -7,8 +8,7 @@ declare type FieldGroupProps = ControlProps & {
     onToggle?: (toggle: string) => void;
     isVisible?: boolean;
 };
-declare class FieldGroup extends Control {
-    protected _props: FieldGroupProps;
+declare class FieldGroup extends Control<FieldGroupProps> {
     private fgTab;
     private fgTabArrow;
     private fgTabLabel;

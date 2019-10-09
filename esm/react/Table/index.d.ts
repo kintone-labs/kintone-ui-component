@@ -23,7 +23,7 @@ declare type ActionFlag = {
 };
 declare type TableProps = {
     data?: object[];
-    columns?: (TableColumn | ActionFlag)[];
+    columns?: Array<TableColumn | ActionFlag>;
     defaultRowData?: object;
     onRowAdd?: (newState: DispatchParams) => void;
     onRowRemove?: (newState: DispatchParams) => void;

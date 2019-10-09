@@ -35,10 +35,10 @@ var TableBody = function (_a) {
         var _a = column, cell = _a.cell, tdProps = _a.tdProps;
         if (actions === true) {
             return (React.createElement(TableCellActions, tslib_1.__assign({}, { key: columnIndex, data: data, defaultRowData: defaultRowData, rowIndex: rowIndex, addRow: addRow, removeRow: removeRow }, { dispatch: function (newState) {
-                    if (onRowAdd && newState['type'] === 'ADD_ROW') {
+                    if (onRowAdd && newState.type === 'ADD_ROW') {
                         onRowAdd(newState);
                     }
-                    if (onRowRemove && newState['type'] === 'REMOVE_ROW') {
+                    if (onRowRemove && newState.type === 'REMOVE_ROW') {
                         onRowRemove(newState);
                     }
                 } })));
@@ -52,7 +52,7 @@ var TableCell = function (_a) {
     if (typeof _onCellChange === 'function') {
         cellProps.onCellChange = _onCellChange;
     }
-    var content = cell ? cell(cellProps) : "";
+    var content = cell ? cell(cellProps) : '';
     var tdPropsObj = tdProps ? tdProps(cellProps) : {};
     return React.createElement("div", tslib_1.__assign({}, tdPropsObj, { className: "kuc-table-td" }), content);
 };

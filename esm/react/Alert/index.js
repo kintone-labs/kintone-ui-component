@@ -20,6 +20,6 @@ var Alert = function (_a) {
     if (isVisible === false) {
         return null;
     }
-    return (React.createElement("div", { className: _getClassName(), onClick: _onClick }, text));
+    return (React.createElement("div", { role: "none", className: _getClassName(), onClick: _onClick }, text));
 };
 export default Alert;

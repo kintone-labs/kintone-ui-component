@@ -52,7 +52,7 @@ var RGBInput = /** @class */ (function (_super) {
             label: 'R',
             value: _this._props.rgb.r.toString(),
             onChange: function (value) {
-                var intValue = parseInt(value || "0", 10);
+                var intValue = parseInt(value || '0', 10);
                 if (isNaN(value) || intValue < 0 || intValue > 255) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }
@@ -66,7 +66,7 @@ var RGBInput = /** @class */ (function (_super) {
             label: 'G',
             value: _this._props.rgb.g.toString(),
             onChange: function (value) {
-                var intValue = parseInt(value || "0", 10);
+                var intValue = parseInt(value || '0', 10);
                 if (isNaN(value) || intValue < 0 || intValue > 255) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }
@@ -80,7 +80,7 @@ var RGBInput = /** @class */ (function (_super) {
             label: 'B',
             value: _this._props.rgb.b.toString(),
             onChange: function (value) {
-                var intValue = parseInt(value || "0", 10);
+                var intValue = parseInt(value || '0', 10);
                 if (isNaN(value) || intValue < 0 || intValue > 255) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }
@@ -120,7 +120,7 @@ var HSVInput = /** @class */ (function (_super) {
             label: 'H',
             value: _this._props.hsv.h.toFixed(1),
             onChange: function (value) {
-                var floatValue = parseFloat(value || "0");
+                var floatValue = parseFloat(value || '0');
                 if (isNaN(value) || floatValue < 0 || floatValue > 1) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }
@@ -135,7 +135,7 @@ var HSVInput = /** @class */ (function (_super) {
             label: 'S',
             value: _this._props.hsv.s.toFixed(1),
             onChange: function (value) {
-                var floatValue = parseFloat(value || "0");
+                var floatValue = parseFloat(value || '0');
                 if (isNaN(value) || floatValue < 0 || floatValue > 1) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }
@@ -150,7 +150,7 @@ var HSVInput = /** @class */ (function (_super) {
             label: 'V',
             value: _this._props.hsv.v.toFixed(1),
             onChange: function (value) {
-                var floatValue = parseFloat(value || "0");
+                var floatValue = parseFloat(value || '0');
                 if (isNaN(value) || floatValue < 0 || floatValue > 1) {
                     throw new Error(Message.colorPicker.INVALID_COLOR);
                 }

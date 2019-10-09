@@ -8,11 +8,6 @@ var Calendar = /** @class */ (function (_super) {
     tslib_1.__extends(Calendar, _super);
     function Calendar(params) {
         var _this = _super.call(this) || this;
-        _this._props = {
-            locale: ja,
-            isDisabled: false,
-            isVisible: false
-        };
         _this._displayDate = new Date();
         _this._scrollToSeletedOptions = function () {
             var styleScroll = { block: 'center' };
@@ -22,14 +17,10 @@ var Calendar = /** @class */ (function (_super) {
                 item.scrollIntoView(styleScroll);
             }
         };
-        _this._onChangeCreateYearDropdown = function (value) {
-            var newDate = new Date(_this._displayDate);
-            var currentYear = Number(value.replace('年', ''));
-            newDate.setFullYear(currentYear, _this._displayDate.getMonth(), 1);
-            _this._displayYear = value;
-            _this._displayDate = newDate;
-            _this._displayYearDropdown.setItems(getYearLabels(_this._displayYear, _this._props.locale));
-            _this.rerender(['selectedDate']);
+        _this._props = {
+            locale: ja,
+            isDisabled: false,
+            isVisible: false
         };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
@@ -87,6 +78,15 @@ var Calendar = /** @class */ (function (_super) {
         });
         this._displayMonthDropdown = monthDropdown;
     };
+    Calendar.prototype._onChangeCreateYearDropdown = function (value) {
+        var newDate = new Date(this._displayDate);
+        var currentYear = Number(value.replace('年', ''));
+        newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
+        this._displayYear = value;
+        this._displayDate = newDate;
+        this._displayYearDropdown.setItems(getYearLabels(this._displayYear, this._props.locale));
+        this.rerender(['selectedDate']);
+    };
     Calendar.prototype._renderDisplayYearDropdown = function () {
         var _this = this;
         var yearDropdown = new Dropdown({ value: this._displayYear, items: getYearLabels(this._displayYear, this._props.locale) });
@@ -94,7 +94,7 @@ var Calendar = /** @class */ (function (_super) {
             _this._scrollToSeletedOptions();
         });
         this._displayYearDropdown = yearDropdown;
-        this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown);
+        this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown.bind(this));
     };
     Calendar.prototype._renderNextButton = function () {
         var _this = this;
@@ -240,7 +240,7 @@ var Calendar = /** @class */ (function (_super) {
             this._displayDate = new Date(date);
         }
         this._props.date = date;
-        this.rerender(["selectedDate"]);
+        this.rerender(['selectedDate']);
     };
     Calendar.prototype.getValue = function () {
         return this._props.date;
@@ -269,7 +269,7 @@ var Calendar = /** @class */ (function (_super) {
             this._displayYearDropdown.setValue(this._displayYear);
         }
         if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-            this.element.style.left = options['left'] + 'px';
+            this.element.style.left = options.left + 'px';
         }
         if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
             this._todayButton.textContent = this._props.locale.today;

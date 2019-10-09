@@ -60,7 +60,7 @@ var getDateData = function (dateObj, dateCode, locale) {
                 return dateObj.year + "\u5E74";
             return "" + dateObj.year;
         default:
-            break;
+            return "" + dateObj.year;
     }
 };
 var format = function (dirtyDate, dateFormat, option) {

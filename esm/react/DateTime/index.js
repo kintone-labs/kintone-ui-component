@@ -17,6 +17,8 @@ var DateTime = function (_a) {
     var _r = useState(format(value, timeFormat)), timeValue = _r[0], setTimeValue = _r[1];
     var _s = useState(true), hasSelection = _s[0], setHasSelection = _s[1];
     var _t = useState(new Date(value)), timeDateValue = _t[0], setTimeDateValue = _t[1];
+    var _u = useState(isDisabled), isDisableBtn = _u[0], setDisableBtn = _u[1];
+    var _v = useState(type), typeDateTime = _v[0], setTypeDateTime = _v[1];
     var wrapperRef = createRef();
     var calendarRef = createRef();
     var timeRef = createRef();
@@ -106,28 +108,38 @@ var DateTime = function (_a) {
             setTimeValue(format(value, timeFormat));
             setTimeDateValue(new Date(value));
         }
-        var newTimeDateValue = new Date(timeDateValue);
-        var setNewTimeDateValue = false;
-        if (value.getDate() !== timeDateValue.getDate()) {
-            newTimeDateValue.setDate(value.getDate());
-            setNewTimeDateValue = true;
+        else {
+            var newTimeDateValue = new Date(timeDateValue);
+            var setNewTimeDateValue = false;
+            if (value.getDate() !== timeDateValue.getDate()) {
+                newTimeDateValue.setDate(value.getDate());
+                setNewTimeDateValue = true;
+            }
+            if (value.getMonth() !== timeDateValue.getMonth()) {
+                newTimeDateValue.setDate(value.getDate());
+                setNewTimeDateValue = true;
+            }
+            if (value.getFullYear() !== timeDateValue.getFullYear()) {
+                newTimeDateValue.setFullYear(value.getFullYear());
+                setNewTimeDateValue = true;
+            }
+            if (setNewTimeDateValue && pickerDisplay === 'none') {
+                setTimeDateValue(newTimeDateValue);
+            }
+            if (!hasSelection) {
+                setInputValue('');
+            }
+            else {
+                setInputValue(format(value, dateFormat));
+            }
+            if (typeof isDisabled !== 'boolean') {
+                setDisableBtn(false);
+            }
+            else {
+                setDisableBtn(isDisabled);
+            }
         }
-        if (value.getMonth() !== timeDateValue.getMonth()) {
-            newTimeDateValue.setDate(value.getDate());
-            setNewTimeDateValue = true;
-        }
-        if (value.getFullYear() !== timeDateValue.getFullYear()) {
-            newTimeDateValue.setFullYear(value.getFullYear());
-            setNewTimeDateValue = true;
-        }
-        if (setNewTimeDateValue && pickerDisplay === 'none') {
-            setTimeDateValue(newTimeDateValue);
-        }
-        setInputValue(format(value, dateFormat));
-    }, [value]);
-    if (typeof isDisabled !== 'boolean') {
-        isDisabled = false;
-    }
+    }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
     var localeObj = ja;
     if (locale === 'en') {
         localeObj = en;
@@ -135,15 +147,15 @@ var DateTime = function (_a) {
     else if (locale === 'zh') {
         localeObj = zh;
     }
-    if (type !== 'datetime' && type !== 'date' && type !== 'time') {
-        type = 'datetime';
+    if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
+        setTypeDateTime('datetime');
     }
     if (isVisible) {
         return (React.createElement("div", { className: "date-time-container", ref: wrapperRef },
-            (type === 'datetime' || type === 'date') &&
+            (typeDateTime === 'datetime' || typeDateTime === 'date') &&
                 React.createElement("div", { className: "date-container" },
                     React.createElement("div", { className: "text-input-container", key: format(value, dateFormat) + "-" + dateError },
-                        React.createElement("input", { type: "text", className: "kuc-input-text text-input", disabled: isDisabled, onFocus: function (e) {
+                        React.createElement("input", { type: "text", className: "kuc-input-text text-input", disabled: isDisableBtn, onFocus: function (e) {
                                 setPickerDisplay('block');
                                 setTimePickerDisplay('none');
                                 if (showPickerError) {
@@ -187,7 +199,7 @@ var DateTime = function (_a) {
                                     setShowPickerError(true);
                                 }
                                 var relatedTarget = e.relatedTarget ||
-                                    e['explicitOriginalTarget'] ||
+                                    e.explicitOriginalTarget ||
                                     document.activeElement; // IE11
                                 var calendar = calendarRef.current;
                                 if (relatedTarget !== calendar && !calendar.contains(relatedTarget)) {
@@ -207,7 +219,7 @@ var DateTime = function (_a) {
                     (dateError && showPickerError) &&
                         React.createElement("div", { className: "label-error" },
                             React.createElement("span", null, dateError)),
-                    !isDisabled &&
+                    !isDisableBtn &&
                         React.createElement(Calendar, { calRef: calendarRef, pickerDisplay: pickerDisplay, date: timeDateValue, locale: localeObj, hasSelection: hasSelection, onDateClick: function (calendarDate, previousDate) {
                                 var tempDate;
                                 if (previousDate) {
@@ -240,9 +252,9 @@ var DateTime = function (_a) {
                                 }
                                 setPickerDisplay('none');
                             } })),
-            (type === 'datetime' || type === 'time') &&
+            (typeDateTime === 'datetime' || typeDateTime === 'time') &&
                 React.createElement("div", { className: "time-container" },
-                    React.createElement("input", { type: "text", disabled: isDisabled, maxLength: 5, key: 1, className: "kuc-input-text text-input time", onClick: function (e) {
+                    React.createElement("input", { type: "text", disabled: isDisableBtn, maxLength: 5, key: 1, className: "kuc-input-text text-input time", onClick: function (e) {
                             var timeTextInput = e.target;
                             if (timeTextInput.selectionStart &&
                                 (timeTextInput.selectionStart >= 2 && timeTextInput.selectionStart <= 5)) {
@@ -264,7 +276,7 @@ var DateTime = function (_a) {
                             setPickerDisplay('none');
                         }, onBlur: function (e) {
                             var relatedTarget = e.relatedTarget ||
-                                e['explicitOriginalTarget'] ||
+                                e.explicitOriginalTarget ||
                                 document.activeElement; // IE11
                             var timePicker = timeRef.current;
                             if (relatedTarget !== timePicker && !timePicker.contains(relatedTarget)) {
@@ -327,7 +339,7 @@ var DateTime = function (_a) {
                         }, onKeyDown: function (e) {
                             timeInputKeydownHandler(e);
                         } }),
-                    !isDisabled &&
+                    !isDisableBtn &&
                         React.createElement(TimePicker, { timeRef: timeRef, pickerDisplay: timePickerDisplay, onTimeClick: function (timePickerDate) {
                                 var tempDate = new Date();
                                 if (timeDateValue)
@@ -342,9 +354,7 @@ var DateTime = function (_a) {
                                 setTimePickerDisplay('none');
                             } }))));
     }
-    else {
-        return React.createElement("div", null);
-    }
+    return React.createElement("div", null);
 };
 export default DateTime;
 export { Calendar };

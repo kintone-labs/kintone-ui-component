@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/DateTime.css';
 import '../../css/Text.css';
@@ -9,8 +10,7 @@ declare type DateTimeProps = ControlProps & {
     timeFormat?: string;
     onChange?: (date: Date) => void;
 };
-declare class DateTime extends Control {
-    protected _props: DateTimeProps;
+declare class DateTime extends Control<DateTimeProps> {
     protected element: HTMLElement;
     private _dateTextInput;
     private _timeTextInput;

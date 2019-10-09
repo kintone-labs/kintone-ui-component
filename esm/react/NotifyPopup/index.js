@@ -49,8 +49,8 @@ var NotifyPopup = function (_a) {
         return null;
     }
     return (React.createElement("div", { className: _getClassName() },
-        React.createElement("div", { className: "kuc-notify-title", onClick: _onClick }, text),
+        React.createElement("div", { className: "kuc-notify-title", onClick: _onClick, role: "none" }, text),
         React.createElement("div", { className: "kuc-close-button" },
-            React.createElement(IconButton, { onClick: _handleClosePopup, type: "close", color: _getStyleByType().color }))));
+            React.createElement(IconButton, { onClick: _handleClosePopup, isDisabled: isDisabled, type: "close", color: _getStyleByType().color }))));
 };
 export default NotifyPopup;

@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import '../../css/DateTime.css';
 import '../../css/Text.css';
@@ -11,110 +12,16 @@ var DateTime = /** @class */ (function (_super) {
     tslib_1.__extends(DateTime, _super);
     function DateTime(params) {
         var _this = _super.call(this) || this;
+        _this._locale = ja;
+        _this._time = new Date();
         _this._props = tslib_1.__assign({}, _this._props, {
             value: new Date(),
             type: 'datetime',
             locale: 'ja',
             dateFormat: 'MM/dd/YYYY',
             timeFormat: 'HH:mm',
-            onChange: function (date) { }
+            onChange: function () { }
         });
-        _this._locale = ja;
-        _this._time = new Date();
-        _this._setTextInputValueToPreviousValidValue = function () {
-            if (_this._timeTextInput.dataset.previousValidTime &&
-                _this._timeTextInput.dataset.previousValidTime != _this._timeTextInput.value) {
-                var previousSelectionStart = 0;
-                var previousSelectionEnd = 2;
-                if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
-                    _this._timeTextInput.selectionStart >= 3 && _this._timeTextInput.selectionStart <= 5) {
-                    previousSelectionStart = 3;
-                    previousSelectionEnd = 5;
-                }
-                _this._timeTextInput.value = _this._timeTextInput.dataset.previousValidTime;
-                _this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
-            }
-        };
-        _this._setTimeValueOnInput = function (key) {
-            var newTime = parseStringToTime(_this._timeTextInput.value);
-            if (!newTime) {
-                newTime = new Date(_this._time);
-            }
-            if (_this._timeTextInput.selectionStart && _this._timeTextInput.selectionStart &&
-                _this._timeTextInput.selectionStart >= 3 && _this._timeTextInput.selectionStart <= 5) {
-                // minutes are being edited
-                var previousMinutes = void 0;
-                if (_this._time.getMinutes() > 10) {
-                    previousMinutes = ('' + _this._time.getMinutes())[1];
-                }
-                else {
-                    previousMinutes = ('' + _this._time.getMinutes());
-                }
-                if (parseInt(previousMinutes, 10) > 5) {
-                    previousMinutes = '0';
-                }
-                newTime.setMinutes(parseInt(previousMinutes + key, 10));
-                _this._timeTextInput.value = format(newTime, 'HH:mm');
-                _this._timeTextInput.dataset.previousValidTime = _this._timeTextInput.value;
-                _this._timeTextInput.setSelectionRange(3, 5);
-            }
-            else {
-                // hours are being edited
-                var previousHours = void 0;
-                if (_this._time.getHours() > 10) {
-                    previousHours = ('' + _this._time.getHours())[1];
-                }
-                else {
-                    previousHours = ('' + _this._time.getHours());
-                }
-                if (parseInt(previousHours, 10) > 2) {
-                    previousHours = '0';
-                }
-                newTime.setHours(parseInt(previousHours + key, 10));
-                _this._timeTextInput.value = format(newTime, 'HH:mm');
-                _this._timeTextInput.dataset.previousValidTime = _this._timeTextInput.value;
-                _this._timeTextInput.setSelectionRange(0, 2);
-            }
-            _this._time = new Date(newTime);
-        };
-        _this._onClickOutside = function (e) {
-            var relatedTarget = e.relatedTarget ||
-                e['explicitOriginalTarget'] ||
-                document.activeElement; // IE11
-            var calendar = _this._calendar.getElement();
-            if (calendar.contains(relatedTarget)) {
-                if (calendar['setActive']) {
-                    calendar['setActive']();
-                }
-            }
-            if (relatedTarget === null ||
-                (relatedTarget !== calendar &&
-                    !calendar.contains(relatedTarget) &&
-                    relatedTarget !== _this._dateTextInput)) {
-                _this._calendar.hide();
-            }
-            if (e.target === _this._dateTextInput &&
-                (relatedTarget === null || !relatedTarget.classList.contains('day'))) {
-                _this._checkDateInputError();
-            }
-        };
-        _this._onCalendarDateClick = function (date) {
-            _this._dateErrorDiv.style.display = 'none';
-            _this._calendar.setValue(date);
-            _this._calendar.hide();
-            // rerender DateTextInput
-            _this._props.value = date;
-            _this.rerender(['dateTextInput']);
-        };
-        _this._onTimeClick = function (date) {
-            // set time value
-            _this._time = date;
-            // close time picker
-            _this._timePicker.hide();
-            // rerender value and focus text input
-            _this.rerender(['timeTextInput']);
-            _this._timeTextInput.focus();
-        };
         if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;
         }
@@ -276,6 +183,9 @@ var DateTime = /** @class */ (function (_super) {
         };
         this._timeTextInput.onkeydown = function (e) {
             e.preventDefault();
+            var keyCode = e.keyCode || e.which;
+            var key = String.fromCharCode(keyCode);
+            var isNumber = /^[0-9]$/i.test(key);
             switch (e.key) {
                 case 'Tab':
                     if (_this._timeTextInput.selectionStart !== 3 && _this._timeTextInput.selectionEnd !== 5) {
@@ -317,13 +227,10 @@ var DateTime = /** @class */ (function (_super) {
                     _this._timePicker.hide();
                     break;
                 default:
-                    var keyCode = e.keyCode || e.which;
                     if (keyCode >= 96 && keyCode <= 105) {
                         // Numpad keys
                         keyCode -= 48;
                     }
-                    var key = String.fromCharCode(keyCode);
-                    var isNumber = /^[0-9]$/i.test(key);
                     if (!isNumber) {
                         _this._setTextInputValueToPreviousValidValue();
                     }
@@ -335,7 +242,7 @@ var DateTime = /** @class */ (function (_super) {
         };
         this._timeTextInput.onblur = function (e) {
             var relatedTarget = e.relatedTarget ||
-                e['explicitOriginalTarget'] ||
+                e.explicitOriginalTarget ||
                 document.activeElement; // IE11
             if (relatedTarget &&
                 _this._timePicker.getElement().contains(relatedTarget)) {
@@ -344,6 +251,62 @@ var DateTime = /** @class */ (function (_super) {
             }
             _this._timePicker.hide();
         };
+    };
+    DateTime.prototype._setTextInputValueToPreviousValidValue = function () {
+        if (this._timeTextInput.dataset.previousValidTime &&
+            this._timeTextInput.dataset.previousValidTime !== this._timeTextInput.value) {
+            var previousSelectionStart = 0;
+            var previousSelectionEnd = 2;
+            if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+                this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5) {
+                previousSelectionStart = 3;
+                previousSelectionEnd = 5;
+            }
+            this._timeTextInput.value = this._timeTextInput.dataset.previousValidTime;
+            this._timeTextInput.setSelectionRange(previousSelectionStart, previousSelectionEnd);
+        }
+    };
+    DateTime.prototype._setTimeValueOnInput = function (key) {
+        var newTime = parseStringToTime(this._timeTextInput.value);
+        if (!newTime) {
+            newTime = new Date(this._time);
+        }
+        if (this._timeTextInput.selectionStart && this._timeTextInput.selectionStart &&
+            this._timeTextInput.selectionStart >= 3 && this._timeTextInput.selectionStart <= 5) {
+            // minutes are being edited
+            var previousMinutes = void 0;
+            if (this._time.getMinutes() > 10) {
+                previousMinutes = ('' + this._time.getMinutes())[1];
+            }
+            else {
+                previousMinutes = ('' + this._time.getMinutes());
+            }
+            if (parseInt(previousMinutes, 10) > 5) {
+                previousMinutes = '0';
+            }
+            newTime.setMinutes(parseInt(previousMinutes + key, 10));
+            this._timeTextInput.value = format(newTime, 'HH:mm');
+            this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
+            this._timeTextInput.setSelectionRange(3, 5);
+        }
+        else {
+            // hours are being edited
+            var previousHours = void 0;
+            if (this._time.getHours() > 10) {
+                previousHours = ('' + this._time.getHours())[1];
+            }
+            else {
+                previousHours = ('' + this._time.getHours());
+            }
+            if (parseInt(previousHours, 10) > 2) {
+                previousHours = '0';
+            }
+            newTime.setHours(parseInt(previousHours + key, 10));
+            this._timeTextInput.value = format(newTime, 'HH:mm');
+            this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
+            this._timeTextInput.setSelectionRange(0, 2);
+        }
+        this._time = new Date(newTime);
     };
     DateTime.prototype._changeMinutesBy = function (minutes) {
         this._time.setMinutes(this._time.getMinutes() + minutes);
@@ -367,8 +330,8 @@ var DateTime = /** @class */ (function (_super) {
         // render calendar
         var calendar = new Calendar({
             date: this._props.value,
-            onClickOutside: this._onClickOutside,
-            onDateClick: this._onCalendarDateClick,
+            onClickOutside: this._onClickOutside.bind(this),
+            onDateClick: this._onCalendarDateClick.bind(this),
             locale: this._locale
         });
         dateContainer.appendChild(calendar.render());
@@ -409,6 +372,44 @@ var DateTime = /** @class */ (function (_super) {
                 this._dateErrorDiv.style.display = 'block';
             }
         }
+    };
+    DateTime.prototype._onClickOutside = function (e) {
+        var relatedTarget = e.relatedTarget ||
+            e.explicitOriginalTarget ||
+            document.activeElement; // IE11
+        var calendar = this._calendar.getElement();
+        if (calendar.contains(relatedTarget)) {
+            if (calendar.setActive) {
+                calendar.setActive();
+            }
+        }
+        if (relatedTarget === null ||
+            (relatedTarget !== calendar &&
+                !calendar.contains(relatedTarget) &&
+                relatedTarget !== this._dateTextInput)) {
+            this._calendar.hide();
+        }
+        if (e.target === this._dateTextInput &&
+            (relatedTarget === null || !relatedTarget.classList.contains('day'))) {
+            this._checkDateInputError();
+        }
+    };
+    DateTime.prototype._onCalendarDateClick = function (date) {
+        this._dateErrorDiv.style.display = 'none';
+        this._calendar.setValue(date);
+        this._calendar.hide();
+        // rerender DateTextInput
+        this._props.value = date;
+        this.rerender(['dateTextInput']);
+    };
+    DateTime.prototype._onTimeClick = function (date) {
+        // set time value
+        this._time = date;
+        // close time picker
+        this._timePicker.hide();
+        // rerender value and focus text input
+        this.rerender(['timeTextInput']);
+        this._timeTextInput.focus();
     };
     DateTime.prototype.getValue = function () {
         var value;

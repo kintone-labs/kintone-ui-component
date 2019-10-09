@@ -12,8 +12,7 @@ declare type ItemProps = ControlProps & {
     type?: string;
     className?: string;
 };
-declare class Item extends Control {
-    protected _props: ItemProps;
+declare class Item extends Control<ItemProps> {
     private inputEl;
     id: string;
     value: string;

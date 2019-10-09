@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import Control from "../Control";
+import Control from '../Control';
 var TabName = /** @class */ (function (_super) {
     tslib_1.__extends(TabName, _super);
     function TabName(params) {
@@ -8,18 +8,17 @@ var TabName = /** @class */ (function (_super) {
             isActive: false,
             tabName: '',
             tabIndex: 0,
-            onClickTabItem: function (tabIndex) {
-            }
+            onClickTabItem: function (tabIndex) { }
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
-        var className = "kuc-tabs-container";
+        var className = 'kuc-tabs-container';
         if (_this._props.isActive) {
-            className += " kuc-tabs-container-selection";
+            className += ' kuc-tabs-container-selection';
         }
         if (_this._props.isDisabled) {
-            className += " kuc-tabs-disabled";
+            className += ' kuc-tabs-disabled';
             _this.element = document.createElement('li');
             _this.element.className = className;
             _this.element.append(_this._props.tabName);
@@ -37,15 +36,15 @@ var TabName = /** @class */ (function (_super) {
         _super.prototype.rerender.call(this);
         if (!changedAttr)
             return;
-        var className = "kuc-tabs-container";
+        var className = 'kuc-tabs-container';
         if (changedAttr.indexOf('isActive') !== -1) {
             if (this._props.isActive) {
-                className += " kuc-tabs-container-selection";
+                className += ' kuc-tabs-container-selection';
             }
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {
-                className += " kuc-tabs-disabled";
+                className += ' kuc-tabs-disabled';
             }
         }
         this.element.className = className;

@@ -1,6 +1,7 @@
 import * as tslib_1 from "tslib";
-import Control from "../Control";
-import ColorPickerStyle from "./ColorPickerStyle";
+import '../polyfill';
+import Control from '../Control';
+import ColorPickerStyle from './ColorPickerStyle';
 import { invertColor, isHexString } from './components/utils';
 import Picker from './components/Picker';
 import Message from '../../constant/Message';
@@ -28,7 +29,7 @@ var ColorPicker = /** @class */ (function (_super) {
         if (typeof _this._props.isDisabled !== 'boolean') {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
-        _this.oldColor = _this._props.color || "#ff0000";
+        _this.oldColor = _this._props.color || '#ff0000';
         _this.focus = false;
         _this.element = document.createElement('div');
         _this._renderInput();
@@ -41,7 +42,7 @@ var ColorPicker = /** @class */ (function (_super) {
         var inputContainer = document.createElement('div');
         this.element.appendChild(inputContainer);
         this.inputElement = document.createElement('input');
-        this.inputElement.value = this._props.color || "#ff0000";
+        this.inputElement.value = this._props.color || '#ff0000';
         if (this._props.isDisabled) {
             this.inputElement.disabled = this._props.isDisabled;
         }
@@ -68,7 +69,7 @@ var ColorPicker = /** @class */ (function (_super) {
     ColorPicker.prototype._renderPicker = function () {
         var _this = this;
         this.Picker = new Picker({
-            hexString: this._props.color || "#ff0000",
+            hexString: this._props.color || '#ff0000',
             onAccept: function (hexString) {
                 _this._props.color = hexString;
                 _this.oldColor = hexString;
@@ -96,9 +97,9 @@ var ColorPicker = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('color') !== -1) {
-            this.inputElement.value = this._props.color || "#ff0000";
+            this.inputElement.value = this._props.color || '#ff0000';
             var inputStyle = this.getInputStyle();
-            this.Picker.setRGB(this._props.color || "#ff0000");
+            this.Picker.setRGB(this._props.color || '#ff0000');
             Object.assign(this.inputElement.style, inputStyle);
         }
         if (changedAttr.indexOf('isDisabled') !== -1 && this._props.isDisabled) {
@@ -108,7 +109,7 @@ var ColorPicker = /** @class */ (function (_super) {
             }
         }
         if (changedAttr.indexOf('redraw') !== -1) {
-            this.Picker.setHexString(this._props.color || "#ff0000");
+            this.Picker.setHexString(this._props.color || '#ff0000');
         }
     };
     ColorPicker.prototype.setColor = function (hexString) {
@@ -120,13 +121,16 @@ var ColorPicker = /** @class */ (function (_super) {
             throw new Error(Message.colorPicker.INVALID_COLOR);
         }
     };
+    ColorPicker.prototype.enable = function () {
+        this.inputElement.disabled = false;
+    };
     ColorPicker.prototype.getColor = function () {
-        return this._props.color || "#ff0000";
+        return this._props.color || '#ff0000';
     };
     ColorPicker.prototype.getInputStyle = function () {
         var style = {
-            backgroundColor: this._props.color || "#ff0000",
-            color: invertColor(this._props.color || "#ff0000")
+            backgroundColor: this._props.color || '#ff0000',
+            color: invertColor(this._props.color || '#ff0000')
         };
         style = tslib_1.__assign({}, style, ColorPickerStyle.input);
         if (this.focus) {

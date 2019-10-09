@@ -13,11 +13,10 @@ declare type ItemProps = ControlProps & {
     isSelected: boolean;
     onClick?: (item: Item) => void;
 };
-declare class Item extends Control {
-    protected _props: ItemProps;
+declare class Item extends Control<ItemProps> {
     constructor(params: ItemProps);
     private _createCheckIconEl;
-    rerender(changedAttr?: Array<string>): void;
+    rerender(changedAttr?: string[]): void;
     getValue(): string;
     select(): void;
     deselect(): void;

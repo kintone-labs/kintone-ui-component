@@ -1,5 +1,5 @@
 var _handleItemClick = function (item, onChange) {
-    var value = item.value || "";
+    var value = item.value || '';
     onChange && onChange(value);
 };
 var _hasDuplicatedItems = function (items) {
@@ -10,7 +10,7 @@ var _hasDuplicatedItems = function (items) {
             if (val.value && typeof (unique[val.value]) !== 'undefined') {
                 isUnique = false;
             }
-            val.value ? unique[val.value] = 0 : {};
+            val.value && (unique[val.value] = 0);
         });
     }
     return !isUnique;

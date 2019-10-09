@@ -9,8 +9,7 @@ declare type HueSpectrumProps = ControlProps & {
     height: number;
     onSelect: (rgbObj: RGB) => void;
 };
-declare class HueSpectrum extends Control {
-    protected _props: HueSpectrumProps;
+declare class HueSpectrum extends Control<HueSpectrumProps> {
     private colorCanvas;
     private containerEl;
     private isMouseDown;

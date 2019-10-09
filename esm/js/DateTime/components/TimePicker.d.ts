@@ -4,8 +4,7 @@ declare type TimePickerProps = ControlProps & {
     timeFormat?: string;
     onTimeClick?: (date: Date) => void;
 };
-declare class TimePicker extends Control {
-    protected _props: TimePickerProps;
+declare class TimePicker extends Control<TimePickerProps> {
     constructor(params?: TimePickerProps);
     private _renderTimePickerContainer;
     private _renderTimePickerSelections;

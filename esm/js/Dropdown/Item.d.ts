@@ -13,8 +13,7 @@ declare type ItemProps = ControlProps & {
     className?: string;
     onClick?: (item: item) => void;
 };
-declare class Item extends Control {
-    protected _props: ItemProps;
+declare class Item extends Control<ItemProps> {
     private inputEl;
     isSelected: boolean;
     item: item;

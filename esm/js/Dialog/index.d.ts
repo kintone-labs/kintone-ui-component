@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Dialog.css';
 declare type DialogProps = ControlProps & {
@@ -6,8 +7,7 @@ declare type DialogProps = ControlProps & {
     footer?: string | HTMLElement;
     showCloseButton?: boolean;
 };
-declare class Dialog extends Control {
-    protected _props: DialogProps;
+declare class Dialog extends Control<DialogProps> {
     private _headerDivEl;
     private _footerDivEl;
     private _bodyContentDivEl;

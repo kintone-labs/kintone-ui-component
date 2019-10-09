@@ -14,8 +14,8 @@ var Label = function (_a) {
         return null;
     }
     var _style = { color: '' || textColor, backgroundColor: '' || backgroundColor };
-    return (React.createElement("div", { className: "kuc-label", onClick: _onClick },
+    return (React.createElement("div", { className: "kuc-label", onClick: _onClick, role: "presentation" },
         React.createElement("span", { style: _style }, text),
-        isRequired && React.createElement("span", { className: "kuc-require" }, "*")));
+        isRequired && typeof isRequired === 'boolean' && React.createElement("span", { className: "kuc-require" }, "*")));
 };
 export default Label;

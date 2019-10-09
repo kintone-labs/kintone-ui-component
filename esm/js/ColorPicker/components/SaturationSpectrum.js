@@ -48,18 +48,18 @@ var SaturationSpectrum = /** @class */ (function (_super) {
     };
     SaturationSpectrum.prototype.fillSatSpectrumCanvas = function () {
         if (this.colorCanvas) {
-            var ctx = this.colorCanvas.getContext("2d");
+            var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {
                 ctx.fillStyle = "rgb(" + this._props.rgb.r + "," + this._props.rgb.g + "," + this._props.rgb.b + ")";
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
                 var grdWhite = ctx.createLinearGradient(0, 0, this._props.width, 0);
-                grdWhite.addColorStop(0, "rgb(255,255,255)");
-                grdWhite.addColorStop(1, "transparent");
+                grdWhite.addColorStop(0, 'rgb(255,255,255)');
+                grdWhite.addColorStop(1, 'transparent');
                 ctx.fillStyle = grdWhite;
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
                 var grdBlack = ctx.createLinearGradient(0, 0, 0, this._props.height);
-                grdBlack.addColorStop(0, "transparent");
-                grdBlack.addColorStop(1, "rgb(0,0,0)");
+                grdBlack.addColorStop(0, 'transparent');
+                grdBlack.addColorStop(1, 'rgb(0,0,0)');
                 ctx.fillStyle = grdBlack;
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
             }
@@ -76,7 +76,7 @@ var SaturationSpectrum = /** @class */ (function (_super) {
         var x = clientX - this.containerEl.left;
         var y = clientY - this.containerEl.top;
         if (this.colorCanvas) {
-            var ctx = this.colorCanvas.getContext("2d");
+            var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {
                 var imageData = ctx.getImageData(x, y, 1, 1).data;
                 this._props.onSelect({ r: imageData[0], g: imageData[1], b: imageData[2] }, triggerOnChange);

@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/Button.css';
 declare type ButtonProps = ControlProps & {
@@ -5,8 +6,7 @@ declare type ButtonProps = ControlProps & {
     type?: 'normal' | 'submit';
     onClick?: (e: Event) => void;
 };
-declare class Button extends Control {
-    protected _props: ButtonProps;
+declare class Button extends Control<ButtonProps> {
     constructor(params?: ButtonProps);
     rerender(changedAttr?: string[]): void;
     setText(text: string): void;

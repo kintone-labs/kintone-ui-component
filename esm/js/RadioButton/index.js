@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
@@ -8,21 +9,10 @@ var RadioButton = /** @class */ (function (_super) {
     tslib_1.__extends(RadioButton, _super);
     function RadioButton(params) {
         var _this = _super.call(this) || this;
+        _this.itemComps = [];
         _this._props = tslib_1.__assign({}, _this._props, {
             items: []
         });
-        _this.itemComps = [];
-        _this._handleItemClick = function (itemEl) {
-            var inputEl = itemEl.target;
-            _this.itemComps && _this.itemComps.some(function (item) {
-                if (item.id === inputEl.id) {
-                    _this._props.value = item.value;
-                    return true;
-                }
-                return false;
-            });
-            _this._props.onChange && _this._props.onChange(_this._props.value);
-        };
         if (params && !params.name) {
             throw new Error(Message.radioBtn.MISSING_NAME);
         }
@@ -42,23 +32,35 @@ var RadioButton = /** @class */ (function (_super) {
         _this.element.className = 'kuc-input-radio';
         _this.itemComps =
             _this._props.items &&
-                _this._props.items.map(function (item) {
+                _this._props.items.map(function (obj) {
                     var newItem = new Item({
-                        selected: _this._props.value === item.value,
-                        item: item,
-                        isDisabled: _this._props.isDisabled || item.isDisabled,
+                        selected: _this._props.value === obj.value,
+                        item: obj,
+                        isDisabled: _this._props.isDisabled || obj.isDisabled,
                         type: 'radio',
                         name: _this._props.name,
                         className: 'kuc-input-radio-item'
                     });
-                    newItem.on('change', _this._handleItemClick);
+                    newItem.on('change', _this._handleItemClick.bind(_this));
                     return newItem;
                 });
-        _this.itemComps && _this.itemComps.forEach(function (item) {
-            _this.element.appendChild(item.render());
+        _this.itemComps && _this.itemComps.forEach(function (obj) {
+            _this.element.appendChild(obj.render());
         });
         return _this;
     }
+    RadioButton.prototype._handleItemClick = function (itemEl) {
+        var _this = this;
+        var inputEl = itemEl.target;
+        this.itemComps && this.itemComps.some(function (obj) {
+            if (obj.id === inputEl.id) {
+                _this._props.value = obj.value;
+                return true;
+            }
+            return false;
+        });
+        this._props.onChange && this._props.onChange(this._props.value);
+    };
     RadioButton.prototype._validator = function (items, value) {
         var err;
         if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
@@ -83,20 +85,20 @@ var RadioButton = /** @class */ (function (_super) {
             this.element.removeChild(this.element.firstChild);
         this.itemComps =
             this._props.items &&
-                this._props.items.map(function (item) {
+                this._props.items.map(function (obj) {
                     var newItem = new Item({
-                        selected: _this._props.value === item.value,
-                        item: item,
-                        isDisabled: _this._props.isDisabled || item.isDisabled,
+                        selected: _this._props.value === obj.value,
+                        item: obj,
+                        isDisabled: _this._props.isDisabled || obj.isDisabled,
                         type: 'radio',
                         name: _this._props.name,
                         className: 'kuc-input-radio-item'
                     });
-                    newItem.on('change', _this._handleItemClick);
+                    newItem.on('change', _this._handleItemClick.bind(_this));
                     return newItem;
                 });
-        this.itemComps && this.itemComps.forEach(function (item) {
-            _this.element.appendChild(item.render());
+        this.itemComps && this.itemComps.forEach(function (itemComp) {
+            _this.element.appendChild(itemComp.render());
         });
     };
     RadioButton.prototype.setValue = function (value) {
@@ -128,15 +130,15 @@ var RadioButton = /** @class */ (function (_super) {
     RadioButton.prototype.getItems = function () {
         return this._props.items;
     };
-    RadioButton.prototype.addItem = function (item) {
-        if (!item) {
+    RadioButton.prototype.addItem = function (obj) {
+        if (!obj) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         if (!this._props.items) {
             this._props.items = [];
         }
         var itemsToCheck = Object.assign([], this._props.items);
-        itemsToCheck.push(item);
+        itemsToCheck.push(obj);
         var validationErr = this._validator(itemsToCheck);
         if (validationErr) {
             throw new Error(validationErr);
@@ -152,17 +154,17 @@ var RadioButton = /** @class */ (function (_super) {
         return this.rerender(['item']);
     };
     RadioButton.prototype.disableItem = function (value) {
-        this._props.items && this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                item.isDisabled = true;
+        this._props.items && this._props.items.forEach(function (obj) {
+            if (obj.value === value) {
+                obj.isDisabled = true;
             }
         });
         this.rerender(['item']);
     };
     RadioButton.prototype.enableItem = function (value) {
-        this._props.items && this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                item.isDisabled = false;
+        this._props.items && this._props.items.forEach(function (obj) {
+            if (obj.value === value) {
+                obj.isDisabled = false;
             }
         });
         this.rerender(['item']);

@@ -1,24 +1,15 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
-import AttachmentFileItem from "./AttachmentFileItem";
+import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/Attachment.css';
 var Attachment = /** @class */ (function (_super) {
     tslib_1.__extends(Attachment, _super);
     function Attachment(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
-            files: [],
-            browseButtonText: 'Browse',
-            dropZoneText: 'Drop files here.',
-            isErrorVisible: false,
-        });
         _this._onFileRemove = function () { };
         _this._onFileAdd = function () { };
         _this.dragEnterCounter = 0;
-        _this._removeFile = function (index) {
-            _this._props.files && _this._props.files.splice(index, 1);
-            _this._onFileRemove(_this._props.files);
-        };
         _this._isFileOrDirectoryDrag = function (event) {
             if (event.dataTransfer && event.dataTransfer.items !== undefined) {
                 for (var i = 0; i < event.dataTransfer.items.length; i++) {
@@ -52,48 +43,12 @@ var Attachment = /** @class */ (function (_super) {
             }
             return true;
         };
-        _this._onDrop = function (event) {
-            event.preventDefault();
-            _this._onDragLeave();
-            if (_this._isFileDrop(event)) {
-                _this._addFiles(event);
-            }
-        };
-        _this._onDragOver = function (event) {
-            event.stopPropagation();
-            if (_this._isFileOrDirectoryDrag(event)) {
-                event.preventDefault();
-            }
-        };
-        _this._onDragEnter = function (event) {
-            _this.dragEnterCounter++;
-            if (_this.dragEnterCounter === 1 && _this._isFileOrDirectoryDrag(event)) {
-                event.preventDefault();
-                var fileDroppableElement = _this.dropZoneElement.parentElement;
-                var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
-                if (attachmentFileElement) {
-                    attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
-                    attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
-                    _this.dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
-                    _this.dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
-                }
-                if (fileDroppableElement)
-                    fileDroppableElement.style.display = '';
-            }
-        };
-        _this._onDragLeave = function () {
-            _this.dragEnterCounter--;
-            if (_this.dragEnterCounter === 0) {
-                var fileDroppableElement = _this.dropZoneElement.parentElement;
-                var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
-                if (attachmentFileElement) {
-                    attachmentFileElement.style.height = 'auto';
-                    attachmentFileElement.className = 'kuc-attachment-file';
-                }
-                if (fileDroppableElement)
-                    fileDroppableElement.style.display = 'none';
-            }
-        };
+        _this._props = tslib_1.__assign({}, _this._props, {
+            files: [],
+            browseButtonText: 'Browse',
+            dropZoneText: 'Drop files here.',
+            isErrorVisible: false,
+        });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
@@ -107,13 +62,13 @@ var Attachment = /** @class */ (function (_super) {
         if (!changedAttr)
             return;
         if (changedAttr.indexOf('browseButtonText') !== -1) {
-            this.attachInputTextEl.innerText = this._props.browseButtonText || "";
+            this.attachInputTextEl.innerText = this._props.browseButtonText || '';
         }
         if (changedAttr.indexOf('fileLimitText') !== -1) {
-            this.constraintsFileEl.innerText = this._props.fileLimitText || "";
+            this.constraintsFileEl.innerText = this._props.fileLimitText || '';
         }
         if (changedAttr.indexOf('dropZoneText') !== -1) {
-            this.dropZoneElement.innerText = this._props.dropZoneText || "";
+            this.dropZoneElement.innerText = this._props.dropZoneText || '';
         }
         if (changedAttr.indexOf('files') !== -1 && Array.isArray(this._props.files)) {
             this._props.files.forEach(function (file, index) {
@@ -121,8 +76,8 @@ var Attachment = /** @class */ (function (_super) {
                     index: index,
                     fileName: file.name,
                     fileSize: file.size,
-                    onFileRemove: function (index) {
-                        _this._removeFile(index);
+                    onFileRemove: function (i) {
+                        _this._removeFile(i);
                     }
                 });
                 _this.listFileEl.appendChild(itemFile.render());
@@ -135,7 +90,7 @@ var Attachment = /** @class */ (function (_super) {
             }
         }
         if (changedAttr.indexOf('errorMessage') !== -1) {
-            this.fileErrorEl.innerText = this._props.errorMessage || "";
+            this.fileErrorEl.innerText = this._props.errorMessage || '';
         }
     };
     Attachment.prototype._addFiles = function (event) {
@@ -147,10 +102,10 @@ var Attachment = /** @class */ (function (_super) {
         addedFiles.forEach(function (file, index) {
             var itemFile = new AttachmentFileItem({
                 index: _this._props.files && _this._props.files.length + index,
-                fileName: file['name'],
-                fileSize: file['size'],
-                onFileRemove: function (index) {
-                    _this._removeFile(index);
+                fileName: file.name,
+                fileSize: file.size,
+                onFileRemove: function (i) {
+                    _this._removeFile(i);
                 }
             });
             _this.listFileEl.appendChild(itemFile.render());
@@ -160,7 +115,6 @@ var Attachment = /** @class */ (function (_super) {
         }
         this._onFileAdd(this._props.files);
     };
-    ;
     Attachment.prototype.setFiles = function (files) {
         this._props.files = files;
         this.listFileEl.innerHTML = '';
@@ -201,9 +155,13 @@ var Attachment = /** @class */ (function (_super) {
             this._onFileRemove = callback;
         }
     };
+    Attachment.prototype._removeFile = function (index) {
+        this._props.files && this._props.files.splice(index, 1);
+        this._onFileRemove(this._props.files);
+    };
     Attachment.prototype.createFileErrorEl = function () {
         var errorEl = document.createElement('span');
-        errorEl.innerHTML = this._props.errorMessage || "";
+        errorEl.innerHTML = this._props.errorMessage || '';
         var fileErrorEl = document.createElement('div');
         fileErrorEl.className = 'kuc-attachment-file-error';
         fileErrorEl.style.display = 'none';
@@ -218,12 +176,54 @@ var Attachment = /** @class */ (function (_super) {
         container.appendChild(this.fileErrorEl);
         return container;
     };
+    Attachment.prototype._onDrop = function (event) {
+        event.preventDefault();
+        this._onDragLeave();
+        if (this._isFileDrop(event)) {
+            this._addFiles(event);
+        }
+    };
+    Attachment.prototype._onDragOver = function (event) {
+        event.stopPropagation();
+        if (this._isFileOrDirectoryDrag(event)) {
+            event.preventDefault();
+        }
+    };
+    Attachment.prototype._onDragEnter = function (event) {
+        this.dragEnterCounter++;
+        if (this.dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
+            event.preventDefault();
+            var fileDroppableElement = this.dropZoneElement.parentElement;
+            var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
+            if (attachmentFileElement) {
+                attachmentFileElement.style.height = (attachmentFileElement.offsetHeight - 16 * 2) + 'px';
+                attachmentFileElement.className = 'kuc-attachment-file kuc-attachment-drag-drop-active';
+                this.dropZoneElement.style.width = (attachmentFileElement.offsetWidth - 4) + 'px';
+                this.dropZoneElement.style.height = (attachmentFileElement.offsetHeight - 4) + 'px';
+            }
+            if (fileDroppableElement)
+                fileDroppableElement.style.display = '';
+        }
+    };
+    Attachment.prototype._onDragLeave = function () {
+        this.dragEnterCounter--;
+        if (this.dragEnterCounter === 0) {
+            var fileDroppableElement = this.dropZoneElement.parentElement;
+            var attachmentFileElement = fileDroppableElement && fileDroppableElement.parentElement;
+            if (attachmentFileElement) {
+                attachmentFileElement.style.height = 'auto';
+                attachmentFileElement.className = 'kuc-attachment-file';
+            }
+            if (fileDroppableElement)
+                fileDroppableElement.style.display = 'none';
+        }
+    };
     Attachment.prototype.createAttachDnDContainerEL = function () {
         var container = document.createElement('div');
         container.className = 'kuc-attachment-file';
-        container.ondragover = this._onDragOver;
-        container.ondragenter = this._onDragEnter;
-        container.ondragleave = this._onDragLeave;
+        container.ondragover = this._onDragOver.bind(this);
+        container.ondragenter = this._onDragEnter.bind(this);
+        container.ondragleave = this._onDragLeave.bind(this);
         container.appendChild(this.createAttachDnDEL());
         this.listFileEl = this.createlistFileEL();
         container.appendChild(this.listFileEl);
@@ -236,7 +236,7 @@ var Attachment = /** @class */ (function (_super) {
         var droppableFileEl = document.createElement('div');
         droppableFileEl.className = 'kuc-attachment-file-droppable';
         droppableFileEl.style.display = 'none';
-        droppableFileEl.ondrop = this._onDrop;
+        droppableFileEl.ondrop = this._onDrop.bind(this);
         this.dropZoneElement = document.createElement('div');
         this.dropZoneElement.className = 'kuc-attachment-file-droppable-text';
         droppableFileEl.appendChild(this.dropZoneElement);
@@ -256,8 +256,8 @@ var Attachment = /** @class */ (function (_super) {
         this.attachInputTextEl.className = 'kuc-attachment-file-upload-button-text';
         attachInputContainerEl.appendChild(this.attachInputTextEl);
         var attachInputEl = document.createElement('input');
-        attachInputEl.setAttribute("type", "file");
-        attachInputEl.setAttribute("multiple", "true");
+        attachInputEl.setAttribute('type', 'file');
+        attachInputEl.setAttribute('multiple', 'true');
         attachInputEl.onchange = function (e) {
             _this._addFiles(e);
         };

@@ -1,3 +1,4 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/IconButton.css';
 declare type IconBtnProps = ControlProps & {
@@ -6,8 +7,7 @@ declare type IconBtnProps = ControlProps & {
     color?: string;
     shape?: string;
 };
-declare class IconButton extends Control {
-    protected _props: IconBtnProps;
+declare class IconButton extends Control<IconBtnProps> {
     private iconEl;
     private pathEl;
     private _onClick;

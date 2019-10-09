@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import '../../css/Spinner.css';

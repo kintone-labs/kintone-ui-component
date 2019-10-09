@@ -9,17 +9,17 @@ var Item = /** @class */ (function (_super) {
         _this._props = tslib_1.__assign({}, _this._props, {
             isSelected: false,
             isDisabled: false,
-            className: "",
+            className: '',
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
-        var className = "kuc-list-item";
+        var className = 'kuc-list-item';
         if (_this._props.isSelected) {
-            className += " kuc-list-item-selected";
+            className += ' kuc-list-item-selected';
         }
         if (_this._props.isDisabled) {
-            className += " kuc-list-item-disable";
+            className += ' kuc-list-item-disable';
         }
         _this.element = document.createElement('div');
         _this.element.className = className;
@@ -28,7 +28,7 @@ var Item = /** @class */ (function (_super) {
         spanIconCheckElement.appendChild(_this._createCheckIconEl());
         var spanListItemLabelElement = document.createElement('span');
         spanListItemLabelElement.className = 'kuc-list-item-label';
-        spanListItemLabelElement.append(_this._props.label || "");
+        spanListItemLabelElement.append(_this._props.label || '');
         _this.element.appendChild(spanIconCheckElement);
         _this.element.appendChild(spanListItemLabelElement);
         _this.on('click', function (e) {
@@ -42,30 +42,30 @@ var Item = /** @class */ (function (_super) {
         return _this;
     }
     Item.prototype._createCheckIconEl = function () {
-        var pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         pathEl.setAttribute('d', mdiCheckBold);
-        var svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svgEl.appendChild(pathEl);
         return svgEl;
     };
     Item.prototype.rerender = function (changedAttr) {
         if (!changedAttr)
             return;
-        var className = "kuc-list-item";
+        var className = 'kuc-list-item';
         if (changedAttr.indexOf('isSelected') !== -1) {
             if (this._props.isSelected) {
-                className += " kuc-list-item-selected";
+                className += ' kuc-list-item-selected';
             }
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {
-                className += " kuc-list-item-disable";
+                className += ' kuc-list-item-disable';
             }
         }
         this.element.className = className;
     };
     Item.prototype.getValue = function () {
-        return this._props.value || "";
+        return this._props.value || '';
     };
     Item.prototype.select = function () {
         this._props.isSelected = true;

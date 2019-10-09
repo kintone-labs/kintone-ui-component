@@ -1,3 +1,4 @@
+import '../../../js/polyfill';
 import React, { useState, useEffect, useRef } from 'react';
 import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, getMonthLabels, getYearLabels } from './utils';
 import { ja, en, format } from './Locale';
@@ -43,9 +44,9 @@ var Calendar = function (_a) {
         document.addEventListener('mousedown', _handleDropdownSelection);
         return function () { return document.removeEventListener('mousedown', _handleDropdownSelection); };
     });
-    return (React.createElement("div", { ref: calRef, className: "date-picker-container", style: { display: pickerDisplay }, tabIndex: -1, onBlur: function (e) {
+    return (React.createElement("div", { role: "presentation", ref: calRef, className: "date-picker-container", style: { display: pickerDisplay }, tabIndex: -1, onBlur: function (e) {
             var relatedTarget = e.relatedTarget ||
-                e['explicitOriginalTarget'] ||
+                e.explicitOriginalTarget ||
                 document.activeElement; // IE11
             if (calRef.current !== relatedTarget &&
                 !calRef.current.contains(relatedTarget) &&
@@ -55,7 +56,11 @@ var Calendar = function (_a) {
         } },
         React.createElement("div", { className: "header" },
             React.createElement("div", { className: "month-year-container" },
-                React.createElement("span", { className: "prev calendar-button-control", onClick: function () {
+                React.createElement("span", { role: "button", className: "prev calendar-button-control", onClick: function () {
+                        var newDate = new Date(displayDate);
+                        newDate.setMonth(newDate.getMonth() - 1, 1);
+                        setDisplayDate(newDate);
+                    }, onKeyUp: function () {
                         var newDate = new Date(displayDate);
                         newDate.setMonth(newDate.getMonth() - 1, 1);
                         setDisplayDate(newDate);
@@ -91,7 +96,11 @@ var Calendar = function (_a) {
                                     setDisplayDate(newDate);
                                     scrollToSeletedOptions();
                                 } }))),
-                React.createElement("span", { className: "next calendar-button-control", onClick: function () {
+                React.createElement("span", { role: "button", className: "next calendar-button-control", onClick: function () {
+                        var newDate = new Date(displayDate);
+                        newDate.setMonth(newDate.getMonth() + 1, 1);
+                        setDisplayDate(newDate);
+                    }, onKeyUp: function () {
                         var newDate = new Date(displayDate);
                         newDate.setMonth(newDate.getMonth() + 1, 1);
                         setDisplayDate(newDate);
@@ -106,7 +115,12 @@ var Calendar = function (_a) {
                     className += displayDate && isSameMonth(day, displayDate) ? '' : ' grayed-out';
                     className += isToday(day) ? ' today' : '';
                     className += date && isSameDate(day, date) && hasSelection ? ' selected' : '';
-                    return (React.createElement("span", { className: className + " calendar-button", key: "day-" + index, onClick: function () {
+                    return (React.createElement("span", { role: "button", className: className + " calendar-button", key: "day-" + index, onClick: function () {
+                            var returnDate = new Date(date);
+                            returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
+                            onDateClick(returnDate, null);
+                            setDisplayDate(new Date(day));
+                        }, onKeyUp: function () {
                             var returnDate = new Date(date);
                             returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
                             onDateClick(returnDate, null);
@@ -114,11 +128,16 @@ var Calendar = function (_a) {
                         }, tabIndex: 0 }, format(day, 'd')));
                 })),
             React.createElement("div", { className: "quick-selections-container" },
-                React.createElement("span", { className: "today calendar-button-control", onClick: function () {
+                React.createElement("span", { role: "button", tabIndex: 0, className: "today calendar-button-control", onClick: function () {
+                        setDisplayDate(new Date());
+                        onDateClick(today, null);
+                    }, onKeyUp: function () {
                         setDisplayDate(new Date());
                         onDateClick(today, null);
                     } }, locale.today),
-                React.createElement("span", { className: "none calendar-button-control", onClick: function () {
+                React.createElement("span", { role: "button", className: "none calendar-button-control", onClick: function () {
+                        onDateClick(null, previousDate);
+                    }, onKeyUp: function () {
                         onDateClick(null, previousDate);
                     }, tabIndex: -1 }, locale.none)))));
 };

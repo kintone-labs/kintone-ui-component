@@ -1,27 +1,27 @@
+import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import { ItemData } from '../CheckBox/Item';
 import '../../css/CheckBox.css';
 declare type CheckboxProps = ControlProps & {
-    items?: Array<ItemData>;
-    value?: Array<string>;
-    onChange?: (value?: Array<string>) => void;
+    items?: ItemData[];
+    value?: string[];
+    onChange?: (value?: string[]) => void;
 };
-declare class CheckBox extends Control {
-    protected _props: CheckboxProps;
+declare class CheckBox extends Control<CheckboxProps> {
     private itemList;
     constructor(params?: CheckboxProps);
     private _renderItemList;
     private _validator;
-    setValue(value: Array<string>): void;
-    getValue(): Array<string> | undefined;
+    setValue(value: string[]): void;
+    getValue(): string[] | undefined;
     addItem(item: ItemData): void;
     removeItem(index: number): void;
     getItem(index: number): ItemData | undefined;
-    setItems(items: Array<ItemData>): void;
-    getItems(): Array<ItemData> | undefined;
+    setItems(items: ItemData[]): void;
+    getItems(): ItemData[] | undefined;
     disableItem(value: string): void;
     enableItem(value: string): void;
-    rerender(changedAttr?: Array<string>): void;
+    rerender(changedAttr?: string[]): void;
     private _handleItemChange;
     on(eventName: string, callback: (params?: any) => void): void;
 }

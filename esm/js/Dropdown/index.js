@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
 import Item from './Item';
@@ -9,83 +10,11 @@ var Dropdown = /** @class */ (function (_super) {
     tslib_1.__extends(Dropdown, _super);
     function Dropdown(params) {
         var _this = _super.call(this) || this;
+        _this.itemComps = [];
+        _this.isListVisible = false;
         _this._props = tslib_1.__assign({}, _this._props, {
             items: []
         });
-        _this.itemComps = [];
-        _this.isListVisible = false;
-        _this._showItems = function (e) {
-            _this.isListVisible = true;
-            _this.listOuterEl.setAttribute('style', 'display: block');
-            _this._props.listItemsShown && _this._props.listItemsShown(e);
-        };
-        _this._hideItems = function () {
-            _this.isListVisible = false;
-            _this.listOuterEl.setAttribute('style', 'display: none');
-        };
-        _this._handleDropdownClick = function (e) {
-            if (_this.isListVisible) {
-                _this._hideItems();
-                return;
-            }
-            _this._showItems(e);
-        };
-        _this._handleClickOutside = function () {
-            _this._hideItems();
-        };
-        _this._handleItemClick = function (item) {
-            _this._props.value = item.value;
-            _this.label = item.label || '';
-            _this._hideItems();
-            _this.rerender(['item']);
-            _this._props.onChange && _this._props.onChange(_this._props.value);
-        };
-        _this._renderSubContainer = function () {
-            _this.className = [
-                'kuc-dropdown',
-                _this._props.isDisabled ? 'kuc-dropdown-disable' : ''
-            ];
-            var subcontainerEl = _this._createDom('div', 'kuc-dropdown-sub-container');
-            subcontainerEl.setAttribute('tabIndex', '-1');
-            subcontainerEl.onblur = _this._handleClickOutside;
-            var outerEl = _this._createDom('div', 'kuc-dropdown-outer');
-            _this.dropdownEl = _this._createDom('div', _this.className.join(' ').trim());
-            if (!_this._props.isDisabled) {
-                _this.dropdownEl.onclick = _this._handleDropdownClick;
-            }
-            var selectedEl = _this._createDom('div', 'kuc-dropdown-selected');
-            var selectedNameEl = _this._createDom('span', 'kuc-dropdown-selected-name');
-            _this.nameLabelEl = _this._createDom('span', 'kuc-dropdown-selected-label');
-            _this.nameLabelEl.innerText = _this.label || '';
-            var iconEl = _this._createDom('span', 'icon-arrow-down');
-            iconEl.appendChild(_this._createDownIconEl());
-            selectedNameEl.appendChild(_this.nameLabelEl);
-            selectedNameEl.appendChild(iconEl);
-            selectedEl.appendChild(selectedNameEl);
-            _this.dropdownEl.appendChild(selectedEl);
-            outerEl.appendChild(_this.dropdownEl);
-            _this.listOuterEl = _this._createDom('div', 'kuc-list-outer');
-            _this.listOuterEl.setAttribute('style', 'display: none');
-            _this.itemComps =
-                _this._props.items &&
-                    _this._props.items.map(function (item) {
-                        var newItem = new Item({
-                            selected: _this._props.value === item.value,
-                            item: item,
-                            isDisabled: _this._props.isDisabled || item.isDisabled,
-                            onClick: _this._handleItemClick
-                        });
-                        return newItem;
-                    });
-            if (_this.itemComps) {
-                _this.itemComps.forEach(function (item) {
-                    _this.listOuterEl.appendChild(item.render());
-                });
-            }
-            subcontainerEl.appendChild(outerEl);
-            subcontainerEl.appendChild(_this.listOuterEl);
-            return subcontainerEl;
-        };
         if (typeof params === 'object' &&
             params !== null &&
             typeof params.isDisabled !== 'boolean') {
@@ -118,12 +47,85 @@ var Dropdown = /** @class */ (function (_super) {
         }
         return element;
     };
+    Dropdown.prototype._showItems = function (e) {
+        this.isListVisible = true;
+        this.listOuterEl.setAttribute('style', 'display: block');
+        this._props.listItemsShown && this._props.listItemsShown(e);
+    };
+    Dropdown.prototype._hideItems = function () {
+        this.isListVisible = false;
+        this.listOuterEl.setAttribute('style', 'display: none');
+    };
+    Dropdown.prototype._handleDropdownClick = function (e) {
+        if (this.isListVisible) {
+            this._hideItems();
+            return;
+        }
+        this._showItems(e);
+    };
+    Dropdown.prototype._handleClickOutside = function () {
+        this._hideItems();
+    };
+    Dropdown.prototype._handleItemClick = function (item) {
+        this._props.value = item.value;
+        this.label = item.label || '';
+        this._hideItems();
+        this.rerender(['item']);
+        this._props.onChange && this._props.onChange(this._props.value);
+    };
     Dropdown.prototype._createDownIconEl = function () {
-        var pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        var pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         pathEl.setAttribute('d', mdilChevronDown);
-        var svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svgEl.appendChild(pathEl);
         return svgEl;
+    };
+    Dropdown.prototype._renderSubContainer = function () {
+        var _this = this;
+        this.className = [
+            'kuc-dropdown',
+            this._props.isDisabled ? 'kuc-dropdown-disable' : ''
+        ];
+        var subcontainerEl = this._createDom('div', 'kuc-dropdown-sub-container');
+        subcontainerEl.setAttribute('tabIndex', '-1');
+        subcontainerEl.onblur = this._handleClickOutside.bind(this);
+        var outerEl = this._createDom('div', 'kuc-dropdown-outer');
+        this.dropdownEl = this._createDom('div', this.className.join(' ').trim());
+        if (!this._props.isDisabled) {
+            this.dropdownEl.onclick = this._handleDropdownClick.bind(this);
+        }
+        var selectedEl = this._createDom('div', 'kuc-dropdown-selected');
+        var selectedNameEl = this._createDom('span', 'kuc-dropdown-selected-name');
+        this.nameLabelEl = this._createDom('span', 'kuc-dropdown-selected-label');
+        this.nameLabelEl.innerText = this.label || '';
+        var iconEl = this._createDom('span', 'icon-arrow-down');
+        iconEl.appendChild(this._createDownIconEl());
+        selectedNameEl.appendChild(this.nameLabelEl);
+        selectedNameEl.appendChild(iconEl);
+        selectedEl.appendChild(selectedNameEl);
+        this.dropdownEl.appendChild(selectedEl);
+        outerEl.appendChild(this.dropdownEl);
+        this.listOuterEl = this._createDom('div', 'kuc-list-outer');
+        this.listOuterEl.setAttribute('style', 'display: none');
+        this.itemComps =
+            this._props.items &&
+                this._props.items.map(function (item) {
+                    var newItem = new Item({
+                        selected: _this._props.value === item.value,
+                        item: item,
+                        isDisabled: _this._props.isDisabled || item.isDisabled,
+                        onClick: _this._handleItemClick.bind(_this)
+                    });
+                    return newItem;
+                });
+        if (this.itemComps) {
+            this.itemComps.forEach(function (item) {
+                _this.listOuterEl.appendChild(item.render());
+            });
+        }
+        subcontainerEl.appendChild(outerEl);
+        subcontainerEl.appendChild(this.listOuterEl);
+        return subcontainerEl;
     };
     Dropdown.prototype._validator = function (items, value) {
         var err;

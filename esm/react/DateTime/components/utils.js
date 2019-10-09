@@ -1,4 +1,4 @@
-import { format, en, getSeperator, } from './Locale';
+import { format, en, getSeperator } from './Locale';
 var getWeekDays = function (date) {
     var startDate = new Date(date);
     startDate.setDate(startDate.getDate() - startDate.getDay());
@@ -22,25 +22,27 @@ var getMonthLabels = function (locale) {
     var monthNames = locale.monthNames;
     var labels = [];
     monthNames.forEach(function (month) {
-        var label = {};
-        label['label'] = month;
-        label['value'] = month;
+        var label = {
+            label: month,
+            value: month
+        };
         labels.push(label);
     });
     return labels;
 };
 var getYearLabels = function (value, locale) {
     var currentYear = value.replace('年', '');
-    currentYear = parseInt(value);
+    currentYear = parseInt(value, 10);
     var years = [];
     var prefix = '';
     if (locale !== en) {
         prefix = '年';
     }
     for (var i = (currentYear - 100); i <= (currentYear + 100); i++) {
-        var year = {};
-        year['label'] = i + prefix;
-        year['value'] = i + prefix;
+        var year = {
+            label: i + prefix,
+            value: i + prefix
+        };
         years.push(year);
     }
     return years;
@@ -55,8 +57,11 @@ var getDisplayingDays = function (date) {
     var endDayOfEndWeek = new Date(endDayOfMonth);
     endDayOfEndWeek.setDate(endDayOfEndWeek.getDate() + (6 - endDayOfEndWeek.getDay()));
     var days = [];
-    for (var d = new Date(startDayOfFirstWeek); d <= endDayOfEndWeek; d.setDate(d.getDate() + 1)) {
+    var d = new Date(startDayOfFirstWeek);
+    while (d <= endDayOfEndWeek) {
         days.push(new Date(d));
+        d.setDate(d.getDate() + 1);
+        d = new Date(d);
     }
     return days;
 };
@@ -71,13 +76,13 @@ var parseStringToDate = function (dateString, dateFormat) {
     }
     var formatItems = formatLowerCase.split(delimiter);
     var dateItems = dateString.split(delimiter);
-    var monthIndex = formatItems.indexOf("mm");
-    var dayIndex = formatItems.indexOf("dd");
-    var yearIndex = formatItems.indexOf("yyyy");
-    var day = parseInt(dateItems[dayIndex]);
-    var month = parseInt(dateItems[monthIndex]);
+    var monthIndex = formatItems.indexOf('mm');
+    var dayIndex = formatItems.indexOf('dd');
+    var yearIndex = formatItems.indexOf('yyyy');
+    var day = parseInt(dateItems[dayIndex], 10);
+    var month = parseInt(dateItems[monthIndex], 10);
     month -= 1;
-    var year = parseInt(dateItems[yearIndex]);
+    var year = parseInt(dateItems[yearIndex], 10);
     var formatedDate = new Date(year, month, day);
     return formatedDate;
 };

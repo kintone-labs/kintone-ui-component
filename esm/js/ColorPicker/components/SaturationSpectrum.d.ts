@@ -13,13 +13,12 @@ declare type SaturationSpectrumProps = ControlProps & {
         b: number;
     }, triggerOnChange: boolean) => void;
 };
-declare class SaturationSpectrum extends Control {
-    protected _props: SaturationSpectrumProps;
+declare class SaturationSpectrum extends Control<SaturationSpectrumProps> {
     private colorCanvas;
     private containerEl;
     private isMouseDown;
     constructor(params: SaturationSpectrumProps);
-    rerender(changedAttr?: Array<string>): void;
+    rerender(changedAttr?: string[]): void;
     setRGB(rgb: {
         r: number;
         g: number;

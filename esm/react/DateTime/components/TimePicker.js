@@ -196,7 +196,13 @@ var timeList12H = [
 var TimePicker = function (_a) {
     var _b = _a.pickerDisplay, pickerDisplay = _b === void 0 ? 'none' : _b, timeRef = _a.timeRef, onTimeClick = _a.onTimeClick;
     return (React.createElement("div", { className: "time-picker-container", style: { display: pickerDisplay }, ref: timeRef }, timeList12H.map(function (timeObj, index) {
-        return (React.createElement("span", { className: "kuc-time-list-item", tabIndex: -1, key: "time-" + index, onClick: function () {
+        return (React.createElement("span", { role: "menuitem", className: "kuc-time-list-item", tabIndex: -1, key: "time-" + index, onClick: function () {
+                var tempDate = new Date();
+                var hour = parseInt(timeObj.value.split(':')[0], 10);
+                var minute = parseInt(timeObj.value.split(':')[1], 10);
+                tempDate.setHours(hour, minute);
+                onTimeClick(tempDate);
+            }, onKeyUp: function () {
                 var tempDate = new Date();
                 var hour = parseInt(timeObj.value.split(':')[0], 10);
                 var minute = parseInt(timeObj.value.split(':')[1], 10);

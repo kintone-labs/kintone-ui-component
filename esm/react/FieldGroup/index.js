@@ -6,9 +6,6 @@ var FieldGroup = function (_a) {
     if (isVisible === false) {
         return null;
     }
-    if (children) {
-        content = children;
-    }
     var _handleToggleClick = function () {
         var toggleState = toggle === 'expand' ? 'collapse' : 'expand';
         onToggle && onToggle(toggleState);
@@ -28,9 +25,9 @@ var FieldGroup = function (_a) {
     };
     return (React.createElement("div", { className: "kuc-fieldgroup" },
         React.createElement("div", { className: "kuc-fieldgroup-container" },
-            React.createElement("span", { role: "button", tabIndex: 0, className: _getClassName(), onClick: _handleToggleClick },
+            React.createElement("span", { role: "button", tabIndex: 0, className: _getClassName(), onClick: _handleToggleClick, onKeyUp: _handleToggleClick },
                 React.createElement("span", { className: _getArrowClassName() }),
                 React.createElement("span", null, name)),
-            React.createElement("div", { className: "kuc-fieldgroup-contents" }, content))));
+            React.createElement("div", { className: "kuc-fieldgroup-contents" }, children ? children : content))));
 };
 export default FieldGroup;

@@ -5,8 +5,7 @@ declare type PickerProps = ControlProps & {
     onAccept: (hexString: string) => void;
     onCancel: () => void;
 };
-declare class Picker extends Control {
-    protected _props: PickerProps;
+declare class Picker extends Control<PickerProps> {
     private saturationSpectrum;
     private hueSpectrum;
     private saturationBackground;
