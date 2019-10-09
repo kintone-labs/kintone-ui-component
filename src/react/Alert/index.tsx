@@ -5,14 +5,11 @@ import '../../css/Alert.css';
 type AlertProps = {
   text?: string;
   type?: string;
-  isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
-  // isDisabled will never be used in this component.
-  // When we update major version of ui-component, we should delete this prop
+const Alert = ({text, type, isVisible, onClick}: AlertProps) => {
   const _getClassName = () => {
     const className = [
       'kuc-alert',

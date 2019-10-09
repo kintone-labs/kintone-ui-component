@@ -6,15 +6,12 @@ import IconButton from '../IconButton/index';
 type NotifyPopupProps = {
   text?: string;
   type?: string;
-  isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: () => void;
   onClose?: () => void;
 }
 
-const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
-  // isDisabled will never be used in this component.
-  // When we update major version of ui-component, we should delete this prop
+const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps) => {
   const _handleClosePopup = () => {
     onClose && onClose();
     return true;

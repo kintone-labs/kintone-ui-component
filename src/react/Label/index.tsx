@@ -6,14 +6,11 @@ type LabelProps = {
   textColor?: string;
   backgroundColor?: string;
   isRequired?: boolean;
-  isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Label = ({text, textColor, backgroundColor, isRequired, isDisabled, isVisible, onClick}: LabelProps) => {
-  // isDisabled will never be used in this component.
-  // When we update major version of ui-component, we should delete this prop
+const Label = ({text, textColor, backgroundColor, isRequired, isVisible, onClick}: LabelProps) => {
   const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
     onClick && onClick(e);
     return true;
