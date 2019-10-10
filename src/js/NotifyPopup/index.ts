@@ -47,7 +47,7 @@ class NotifyPopup extends Control<PopupProps> {
         style.bgClass = 'bg-success';
         style.color = 'green';
         break;
-      case 'infor':
+      case 'info':
         style.bgClass = 'bg-infor';
         style.color = 'blue';
         break;
