@@ -32,7 +32,7 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
         style.color = 'green';
         break;
       case 'info':
-        style.bgClass = 'bg-infor';
+        style.bgClass = 'bg-info';
         style.color = 'blue';
         break;
       default:
