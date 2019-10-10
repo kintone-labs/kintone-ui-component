@@ -19,7 +19,7 @@
 | --- | --- | --- | --- |
 |options|Object|No|The object contains parameters of constructor.|
 |options.text|String|No|Content of notify popup.|
-|options.type|String|No|Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'infor' </li></ul> Default value: **error**|
+|options.type|String|No|Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'info' </li></ul> Default value: **error**|
 |options.isDisabled|Boolean|No|The notify popup will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The notify popup will be visible. <br> Default value: 'true'|
 
@@ -177,7 +177,7 @@ Setting type of NotifyPopup component.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|type|String|Yes|Type of NotifyPopup:<ul><li> 'error' </li><li> 'success' </li><li> 'infor' </li></ul> Default value: 'error'|
+|type|String|Yes|Type of NotifyPopup:<ul><li> 'error' </li><li> 'success' </li><li> 'info' </li></ul> Default value: 'error'|
 
 **Returns**
 
@@ -195,7 +195,7 @@ var notifyPopup = new kintoneUIComponent.NotifyPopup({
 var btn = document.createElement('button'); 
 btn.textContent = 'Set type of NotifyPopup';
 btn.onclick = function() {
-    notifyPopup.setType('infor');
+    notifyPopup.setType('info');
 };
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(notifyPopup.render());
