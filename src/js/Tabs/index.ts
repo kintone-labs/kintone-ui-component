@@ -67,6 +67,8 @@ class Tabs extends Control<TabsProps> {
       if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
         err = Message.common.INVALID_ARGUMENT;
       }
+    }else if(!this._props.value && this._props.items && this._props.items.length > 0) {
+      this._props.value = 0; 
     }
     return err;
   }
