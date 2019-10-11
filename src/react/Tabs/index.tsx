@@ -19,15 +19,13 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   const _onClickTabItem = (tabIndex: number) => {
     onClickTabItem && onClickTabItem(tabIndex);
   };
-
-  if (value) {
-    if (typeof value !== 'number') {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-    if (!items || value > items.length - 1 || value < 0) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
+  if (typeof value !== 'number') {
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
+  if (!items || (value && (value > items.length - 1 || value < 0))) {
+    throw new Error(Message.common.INVALID_ARGUMENT);
+  }
+  
   const tabNames = (
     <ul className="kuc-tabs-tab-list">
       {items &&
