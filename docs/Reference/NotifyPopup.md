@@ -214,7 +214,7 @@ export default class Plugin extends React.Component {
     };
 
     setType = () => {
-        this.setState({ type: 'infor' });
+        this.setState({ type: 'info' });
     };
 
     render() {
