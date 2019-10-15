@@ -204,7 +204,7 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   setValue(value: string) {
-    if (!value) {
+    if (value === null || value === undefined) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     const validationErr = this._validator(this._props.items, value);
