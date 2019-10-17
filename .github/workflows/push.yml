@@ -20,6 +20,8 @@ jobs:
       - name: Build
         if: success()
         run: npm run build
+      - name: remote
+        run: git remote add origin git@github.com:Pham-Gia-Huong/kintone-ui-component.git
       - name: git add
         if: success()
         run: git add .
