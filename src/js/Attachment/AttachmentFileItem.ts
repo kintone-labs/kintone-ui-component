@@ -14,6 +14,8 @@ class AttachmentFileItem extends Control<AttachmentFileItemProps> {
   private ONE_KB = 1024;
   constructor(params?: AttachmentFileItemProps) {
     super();
+    console.log("hihi");
+    
     if (params) {
       this._props = {...params};
     }

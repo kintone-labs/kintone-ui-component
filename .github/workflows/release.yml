@@ -23,8 +23,8 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with: 
           repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: kintone-kintone-ui-component-0.0.10.tgz
-          asset_name: kintone-kintone-ui-component-0.10.tgz
+          file: kintone-kintone-ui-component
+          asset_name: kintone-kintone-ui-component.tgz
           tag: ${{ github.ref }}
           overwrite: true
   
