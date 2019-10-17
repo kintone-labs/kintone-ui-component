@@ -1,27 +1,47 @@
-name: Publish
-
-on:
+name: CI PUSH
+# This workflow is triggered on pushes to the repository.
+on: 
   push:
-    tags:
-      - '*'
-
+    branches:
+      - master
 jobs:
   build:
-    name: Publish binaries
-    runs-on: ubuntu-latest
-
+    # Job name is Greeting
+    name: Check Build
+    # This job runs on Linux
+    runs-on: ubuntu-18.04
     steps:
-    - uses: hecrj/setup-rust-action@v1-release
-      with:
-        rust-version: stable
-    - uses: actions/checkout@v1
-    - name: Build
-      run: npm run build
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v1-release
-      with: 
-        repo_token: ${{ secrets.ACCESS_TOKEN }}
-        file: kintone-kintone-ui-component-0.0.11.tgz
-        asset_name: kintone-kintone-ui-component-0.0.11.tgz
-        tag: ${{ github.ref }}
-        overwrite: true
+      - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: install dependence
+        if: success()
+        run: npm install
+      - name: Build
+        if: success()
+        run: npm run build
+      - name: git set email
+        run: git config --global user.email "phamgiahuong2912@gmail.com"
+      - name: git set user
+        run: git config --global user.name "huong"
+      - name: git add
+        if: success()
+        run: git add esm
+      - name: git commit
+        if: success()
+        run: git commit -m "build haha"
+      - name: remote
+        if: success()
+        run: git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/git@github.com:Pham-Gia-Huong/kintone-ui-component.git.git
+      - name: remote version
+        if: success()
+        run: git remote -v
+      - name: push
+        if: success()
+        run: git push origin HEAD:gh-pages --force
+
+
+
+
+      
+    
