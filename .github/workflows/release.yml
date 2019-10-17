@@ -13,25 +13,28 @@ jobs:
       - name: build 
         if: success()
         run: npm run build
-      - name: git set email
-        run: git config --global user.email "phamgiahuong2912@gmail.com"
-      - name: git set user
-        run: git config --global user.name "huong"
-      - name: git add
+       - name: Check version
         if: success()
-        run: git add .
-      - name: git commit
+        run: npm run check:release
+      - name: Process package
         if: success()
-        run: git commit -m "build haha"
-      - name: remote
-        if: success()
-        run: git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
-      - name: remote version
-        if: success()
-        run: git remote -v
-      - name: push
-        if: success() 
-        run: git push origin HEAD:master --force
+        run: npm pack 
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-0.0.11.tgz
+          asset_name: kintone-kintone-ui-component-0.0.11.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
+      - name: deploy master
+        run: |
+          git config --global user.email "phamgiahuong2912@gmail.com"
+          git config --global user.name "huong"
+          git add .
+          git commit -m "merge release"
+          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+          git push origin HEAD:master --force
   
       
 
