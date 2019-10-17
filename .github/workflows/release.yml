@@ -13,20 +13,6 @@ jobs:
       - name: build 
         if: success()
         run: npm run build
-      - name: Check version
-        if: success()
-        run: npm run check:release
-      - name: Process package
-        if: success()
-        run: npm pack 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v1-release
-        with: 
-          repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: kintone-kintone-ui-component-0.0.13.tgz
-          asset_name: kintone-kintone-ui-component-0.0.13.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
       - name: git set email
         run: git config --global user.email "phamgiahuong2912@gmail.com"
       - name: git set user
