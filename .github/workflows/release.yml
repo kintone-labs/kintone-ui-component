@@ -13,7 +13,7 @@ jobs:
       - name: build 
         if: success()
         run: npm run build
-       - name: Check version
+      - name: Check version
         if: success()
         run: npm run check:release
       - name: Process package
@@ -27,7 +27,14 @@ jobs:
           asset_name: kintone-kintone-ui-component-0.0.14.tgz
           tag: ${{ github.ref }}
           overwrite: true
-     
+      - name: deploy master
+        run: |
+          git config --global user.email "phamgiahuong2912@gmail.com"
+          git config --global user.name "huong"
+          git add .
+          git commit -m "merge release"
+          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+          git push origin HEAD:master --force
   
       
 
