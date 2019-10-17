@@ -23,6 +23,10 @@ jobs:
       - name: git add
         if: success()
         run: git add .
+      - name: git set email
+        run: git config --global user.email "phamgiahuong2912@gmail.com"
+      - name: git set user
+        run: git config --global user.name "huong"
       - name: git commit
         if: success()
         run: git commit -m "build"
