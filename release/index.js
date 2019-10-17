@@ -11,7 +11,7 @@ let options = {
 };
 
 let request = https.request(options, function(response) {
-  let body = "";
+  let body = ""; 
   response.on("data", function(chunk) {
     body += chunk.toString("utf8");
   });

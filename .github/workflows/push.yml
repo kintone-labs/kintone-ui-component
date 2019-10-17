@@ -29,10 +29,10 @@ jobs:
         run: git config --global user.name "huong"
       - name: git commit
         if: success()
-        run: git commit -m "build"
+        run: git commit -m "build haha"
       - name: push master
         if: success()
-        run: git push origin master
+        run: git push origin master --force
 
 
 
