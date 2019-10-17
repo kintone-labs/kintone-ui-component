@@ -27,6 +27,25 @@ jobs:
           asset_name: kintone-kintone-ui-component-0.0.11.tgz
           tag: ${{ github.ref }}
           overwrite: true
+      - name: git set email
+        run: git config --global user.email "phamgiahuong2912@gmail.com"
+      - name: git set user
+        run: git config --global user.name "huong"
+      - name: git add
+        if: success()
+        run: git add .
+      - name: git commit
+        if: success()
+        run: git commit -m "build haha"
+      - name: remote
+        if: success()
+        run: git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+      - name: remote version
+        if: success()
+        run: git remote -v
+      - name: push
+        if: success()
+        run: git push origin master:gh-pages --force
   
       
 
