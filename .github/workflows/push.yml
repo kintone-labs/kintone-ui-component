@@ -15,5 +15,5 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: kintone-ui-component
+        FOLDER: esm
         BUILD_SCRIPT: npm install && npm run-script build

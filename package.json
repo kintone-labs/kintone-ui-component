@@ -8,6 +8,7 @@
 		"type": "git",
 		"url": "https://github.com/kintone/kintone-ui-component"
 	},
+	"homepage":"https://pham-gia-huong.github.io/kintone-ui-component/",
 	"sideEffects": [
 		"esm/css/*.css",
 		"src/css/*.css",
