@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
       - name: Install dependence
         run: npm install
       - name: build 
@@ -23,11 +25,12 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with: 
           repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: kintone-kintone-ui-component-0.0.14.tgz
-          asset_name: kintone-kintone-ui-component-0.0.14.tgz
+          file: kintone-kintone-ui-component-0.0.15.tgz
+          asset_name: kintone-kintone-ui-component-0.0.15.tgz
           tag: ${{ github.ref }}
           overwrite: true
       - name: deploy master
+        if: success()
         run: |
           git config --global user.email "phamgiahuong2912@gmail.com"
           git config --global user.name "huong"

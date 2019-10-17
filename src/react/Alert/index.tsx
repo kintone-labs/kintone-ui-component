@@ -11,6 +11,8 @@ type AlertProps = {
 }
 
 const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
+  console.log("hoho");
+  
   const _getClassName = () => {
     const className = [
       'kuc-alert',
