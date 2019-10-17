@@ -10,6 +10,4 @@ jobs:
     - uses: actions/checkout@master
     
     - name: Process package
-      run: npm pack
-    - name: Generate
-      uses: skx/github-action-build@master
+      run: git status
