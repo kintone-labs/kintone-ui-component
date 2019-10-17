@@ -10,9 +10,7 @@ type AlertProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
-  console.log("hoho");
-  
+const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {  
   const _getClassName = () => {
     const className = [
       'kuc-alert',

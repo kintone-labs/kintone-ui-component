@@ -1,7 +1,7 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.0.15",
-	"description": "kintone ui component",
+	"version": "0.0.16",
+	"description": "kintone ui component",  
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
 	"repository": {
