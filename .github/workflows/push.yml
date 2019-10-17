@@ -38,7 +38,7 @@ jobs:
         run: git remote -v
       - name: push
         if: success()
-        run: git push origin HEAD:gh-pages --force
+        run: git push origin master:gh-pages --force
 
 
 
