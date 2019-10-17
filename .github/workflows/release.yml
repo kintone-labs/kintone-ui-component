@@ -1,6 +1,7 @@
-on: release
-  types: [created]
-name: Handle Release
+name: CI Release
+on:
+  release:
+    types: [created]
 jobs:
   generate:
     name: Create release-artifacts
