@@ -20,23 +20,16 @@ jobs:
       - name: Build
         if: success()
         run: npm run build
-      - name: git add
+
+
+
+
+
+
+
+
+    - name: Process package
         if: success()
-        run: git add .
-      - name: git set email
-        run: git config --global user.email "phamgiahuong2912@gmail.com"
-      - name: git set user
-        run: git config --global user.name "huong"
-      - name: git commit
-        if: success()
-        run: git commit -m "build"
-      - name: push master
-        if: success()
-        run: git branch
-
-
-
-
-
+        run: npm pack
       
     
