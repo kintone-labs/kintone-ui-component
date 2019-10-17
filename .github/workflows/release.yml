@@ -2,13 +2,29 @@ name: CI Release
 on:
   release:
     types: [created]
-jobs:
-  generate:
-    name: Create release-artifacts
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    
+jobs: 
+  test_release: 
+    name: Check release
+    runs-on: ubuntu-18.04
+    steps: 
+      - uses: actions/checkout@master
+      - name: Install dependence
+        run: npm install
+      - name: Check version
+        if: success()
+        run: npm run check:release
+      - name: Process package
+        if: success()
+        run: npm pack
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-0.4.4.tgz
+          asset_name: kintone-kintone-ui-component-0.4.4
+          tag: ${{ github.ref }}
+          overwrite: true
+  
+      
 
-    - name: Process package
-      run: git status
+
