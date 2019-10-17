@@ -10,6 +10,12 @@ jobs:
       - uses: actions/checkout@master
       - name: Install dependence
         run: npm install
+      - name: build 
+        if: success()
+        run: npm run build
+      - name: Check version
+        if: success()
+        run: npm run check:release
       - name: Process package
         if: success()
         run: npm pack
