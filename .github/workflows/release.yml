@@ -1,29 +1,10 @@
-name: CI Release
-on:
-  release:
-    types: [created]
-jobs: 
-  test_release: 
-    name: Check release
-    runs-on: ubuntu-18.04
-    steps: 
-      - uses: actions/checkout@master
-      - name: Install dependence
-        run: npm install
-      - name: Check version
-        if: success()
-        run: npm run check:release
-      - name: Generate artifacts
-        uses: skx/github-action-build@master
-      - name: Upload artifacts
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          args: 'example-*'
-      
-     
-  
-      
-
-
+on: release
+name: Handle Release
+jobs:
+  generate:
+    name: Create release-artifacts
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Generate
+      uses: skx/github-action-build@master
