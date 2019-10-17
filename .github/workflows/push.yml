@@ -1,42 +1,27 @@
-name: CI PUSH
-# This workflow is triggered on pushes to the repository.
-on: 
+name: Publish
+
+on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
+
 jobs:
   build:
-    # Job name is Greeting
-    name: Check Build
-    # This job runs on Linux
-    runs-on: ubuntu-18.04
+    name: Publish binaries
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - name: Remove package-lock
-        run: rm -rf package-lock.json
-      - name: install dependence
-        if: success()
-        run: npm install
-      - name: Build
-        if: success()
-        run: npm run build
-      - name: git set email
-        run: git config --global user.email "phamgiahuong2912@gmail.com"
-      - name: git set user
-        run: git config --global user.name "huong"
-      - name: git add
-        if: success()
-        run: git add esm
-      - name: git commit
-        if: success()
-        run: git commit -m "build haha"
-      - name: push master
-        if: success()
-        run: git log
-
-
-
-
-
-      
-    
+    - uses: hecrj/setup-rust-action@v1-release
+      with:
+        rust-version: stable
+    - uses: actions/checkout@v1
+    - name: Build
+      run: npm run build
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
+      with: 
+        repo_token: ${{ secrets.ACCESS_TOKEN }}
+        file: kintone-kintone-ui-component-0.4.4.tgz
+        asset_name: kintone-kintone-ui-component-0.4.4
+        tag: ${{ github.ref }}
+        overwrite: true
