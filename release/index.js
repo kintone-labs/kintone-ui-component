@@ -21,6 +21,10 @@ let request = https.request(options, function(response) {
     let tagVersion = release[0].tag_name;
     let packageVersion = "v" + package.version;
     let packageLockVersion = "v" + packageLog.version;
+    console.log("tagVersion",tagVersion);
+    console.log("packageVersion",packageVersion);
+    console.log("packageLockVersion",packageLockVersion);
+
     if ((tagVersion !== packageVersion) || (tagVersion !== packageLockVersion)) {
       throw "Version is invalid";
     }
