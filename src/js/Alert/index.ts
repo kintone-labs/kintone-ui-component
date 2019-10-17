@@ -18,10 +18,7 @@ class Alert extends Control<AlertProps> {
       }
     };
     if (params) {
-      this._props = {...this._props, ...params};
-      console.log("aaas");
-      
-
+      this._props = {...this._props, ...params};      
       this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
 
