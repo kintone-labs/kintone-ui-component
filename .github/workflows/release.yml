@@ -30,7 +30,7 @@ jobs:
         if: success()
         run: git remote -v
       - name: push
-        if: success()
+        if: success() 
         run: git push origin HEAD:master --force
   
       
