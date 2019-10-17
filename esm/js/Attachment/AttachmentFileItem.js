@@ -8,6 +8,7 @@ var AttachmentFileItem = /** @class */ (function (_super) {
         _this.ONE_GB = 1073741824;
         _this.ONE_MB = 1048576;
         _this.ONE_KB = 1024;
+        console.log("hihi");
         if (params) {
             _this._props = tslib_1.__assign({}, params);
         }

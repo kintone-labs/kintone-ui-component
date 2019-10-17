@@ -14,6 +14,7 @@ var Alert = /** @class */ (function (_super) {
             _this._props = tslib_1.__assign({}, _this._props, params);
             _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
+        console.log("tete");
         _this.element = document.createElement('div');
         _this.element.className = _this._getClassName();
         _this.rerender(['text', 'type']);
