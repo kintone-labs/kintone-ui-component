@@ -17,14 +17,10 @@ let request = https.request(options, function(response) {
   });
 
   response.on("end", function() {
-    let release = JSON.parse(body);    
-    let tagVersion = release[0].tag_name;
     let packageVersion = "v" + package.version;
     let packageLockVersion = "v" + packageLog.version;
-    console.log("tagVersion",tagVersion);
-    console.log("packageVersion",packageVersion);
-    console.log("packageLockVersion",packageLockVersion);
-
+    let listRelease = JSON.parse(body).filter(release => release.tag_name.includes(packageVersion)); 
+    let tagVersion = listRelease[0].tag_name;    
     if ((tagVersion !== packageVersion) || (tagVersion !== packageLockVersion)) {
       throw "Version is invalid";
     }
