@@ -11,7 +11,7 @@ type AlertProps = {
 }
 
 const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
-  console.log("haha1");
+  console.log("haha2");
   
   const _getClassName = () => {
     const className = [
