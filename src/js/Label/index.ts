@@ -30,6 +30,11 @@ class Label extends Control<LabelProps> {
       this._props = {...this._props, ...params};
       this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
+
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
+
     this.element = this._createLabelLayout();
     this.rerender(['text', 'isRequired', 'textStyle']);
   }
@@ -86,6 +91,14 @@ class Label extends Control<LabelProps> {
   setBackgroundColor(color: string): void {
     this._props.backgroundColor = color;
     this.rerender(['textStyle']);
+  }
+
+  disable(): void {
+    // nothing to do   
+  }
+
+  enable(): void {
+    // nothing to do
   }
 }
 

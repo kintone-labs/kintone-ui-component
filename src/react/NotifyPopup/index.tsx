@@ -6,17 +6,13 @@ import IconButton from '../IconButton/index';
 type NotifyPopupProps = {
   text?: string;
   type?: string;
-  isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: () => void;
   onClose?: () => void;
 }
 
-const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: NotifyPopupProps) => {
+const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps) => {
   const _handleClosePopup = () => {
-    if (isDisabled) {
-      return false;
-    }
     onClose && onClose();
     return true;
   };
@@ -51,9 +47,6 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
   };
 
   const _onClick = () => {
-    if (isDisabled) {
-      return false;
-    }
     onClick && onClick();
     return true;
   };
@@ -66,7 +59,7 @@ const NotifyPopup = ({text, type, isDisabled, isVisible, onClick, onClose}: Noti
     <div className={_getClassName()}>
       <div className="kuc-notify-title" onClick={_onClick} role="none">{text}</div>
       <div className="kuc-close-button">
-        <IconButton onClick={_handleClosePopup} isDisabled={isDisabled} type="close" color={_getStyleByType().color} />
+        <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
       </div>
     </div>
   );
