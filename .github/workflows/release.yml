@@ -37,7 +37,7 @@ jobs:
           git add esm dist
           git commit -m "merge release"
           git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
-          git push origin HEAD:master --force
+          git push origin master
   
       
 
