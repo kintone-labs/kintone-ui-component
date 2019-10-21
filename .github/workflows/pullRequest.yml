@@ -9,12 +9,7 @@ jobs:
     steps: 
       - uses: actions/checkout@master
       - name: Get version
-        run: echo "test"
-        id: build_package
-          outputs:version:"$(npm run package-version)"
+        run: echo "##[set-output name=version;]$(echo 0.1.2)"
+        id: get_version
       - name: print
-        run: echo "steps.build_package.outputs.version"
-  
-      
-
-
+        run: echo "steps.get_version.outputs.version"
