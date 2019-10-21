@@ -6,8 +6,9 @@ jobs:
   test_release: 
     name: Check release
     runs-on: ubuntu-18.04 
-    steps: 
-      - uses: actions/checkout@master
+    steps:
+      - name: checkout 
+        uses: actions/checkout@master
       - name: Get version
         run: echo "##[set-output name=version;]$(npm run package-version)"
         id: get_version
