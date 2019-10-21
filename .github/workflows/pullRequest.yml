@@ -9,6 +9,7 @@ jobs:
     steps: 
       - uses: actions/checkout@master
       - name: Get version
+        run: echo "test"
         id: build_package
         outputs:
           version: "$(npm run package-version)"
