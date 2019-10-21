@@ -23,6 +23,7 @@
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
 	"types": "./esm/react/index.d.ts",
 	"scripts": {
+		"package-version":"node release/getVersion.js",
 		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
 		"build:umd": "webpack --mode=production",
