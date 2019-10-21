@@ -5,13 +5,13 @@ on:
 jobs: 
   test_release: 
     name: Check release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-18.04 
     steps: 
       - uses: actions/checkout@master
       - name: Get version
         id: build_package
-          outputs:
-            version: $(npm run package-version)
+        outputs:
+          version: "$(npm run package-version)"
       - name: print
         run: echo "steps.build_package.outputs.version"
   
