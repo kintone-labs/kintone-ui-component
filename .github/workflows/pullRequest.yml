@@ -5,16 +5,33 @@ on:
 jobs: 
   test_release: 
     name: Check release
-    runs-on: ubuntu-18.04 
+    runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: build 
+        if: success()
+        run: npm run build
+      - name: Check version
+        if: success()
+        run: npm run check:release 
+      - name: Prepare package
+        if: success()
+        run: npm pack
       - name: Get version
-        run: echo "test"
+        run: "[set-output name=version;]$(npm run package-version)"
         id: build_package
-        outputs:
-          version: "$(npm run package-version)"
-      - name: print
-        run: echo "steps.build_package.outputs.version"
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-$(npm run pack-version).tgz
+          asset_name: kintone-kintone-ui-component-$(npm run pack-version).tgz
+          tag: ${{ github.ref }}
+          overwrite: true
   
       
 
