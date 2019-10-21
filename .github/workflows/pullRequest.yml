@@ -21,16 +21,16 @@ jobs:
       - name: Prepare package
         if: success()
         run: npm pack
-      - name: context
-        env: 
-          myString: ${{ 'format('${{ github.ref }} {0}' ,'haha')' }} 
+      - name: Get version
+        run: echo "##[set-output name=version;]$(npm run package-version --silent)"
+        id: build_package
         run: echo "$myString"
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
           repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: format('kintone-kintone-ui-component-${{ format(github.ref }} {0}','hehe')
-          asset_name: kintone-kintone-ui-component-0.0.34.tgz
+          file: ${{ format('kintone-kintone-ui-component-{0}.tgz', steps.build_package.outputs.version) }}
+          asset_name: ${{ format('kintone-kintone-ui-component-{0}.tgz', steps.build_package.outputs.version) }}
           tag: ${{ github.ref }}
           overwrite: true
   
