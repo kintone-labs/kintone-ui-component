@@ -21,9 +21,6 @@ jobs:
       - name: Prepare package
         if: success()
         run: npm pack
-      - name: Get version
-        run: "[set-output name=version;]$(npm run package-version)"
-        id: build_package
       - name: Upload package to release[binaries]
         uses: actions/upload-artifact@master
         with: 
