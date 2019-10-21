@@ -26,7 +26,7 @@ jobs:
         with: 
           repo_token: ${{ secrets.ACCESS_TOKEN }}
           file: '**.tgz'
-          asset_name: kintone-kintone-ui-component-0.0.33.tgz
+          asset_name: kintone-kintone-ui-component-0.0.34.tgz
           tag: ${{ github.ref }}
           overwrite: true
   
