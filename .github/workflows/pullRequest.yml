@@ -12,7 +12,7 @@ jobs:
         run: echo "test"
         id: build_package
           outputs:
-            version: $(npm run package-version)
+            version: "$(npm run package-version)"
       - name: print
         run: echo "steps.build_package.outputs.version"
   
