@@ -16,4 +16,4 @@ jobs:
          github-token: ${{ secrets.ACCESS_TOKEN }}
          script: return "0.3.4";
       - name: Get version
-        run: echo "${{steps.get_version.result}}
+        run: echo "${{steps.get_version.result}}"
