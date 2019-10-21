@@ -17,7 +17,7 @@ jobs:
         run: npm run build
       - name: Check version
         if: success()
-        run: npm run check:release
+        run: npm run check:release 
       - name: Prepare package
         if: success()
         run: npm pack
