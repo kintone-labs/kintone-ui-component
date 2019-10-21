@@ -23,7 +23,7 @@ jobs:
         run: npm pack
       - name: context
         env: 
-          myString: ${{ 'test' }} 
+          myString: ${{ '${{ github.ref }' }} 
         run: echo "$myString"
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
