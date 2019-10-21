@@ -24,7 +24,6 @@ jobs:
       - name: Get version
         run: echo "##[set-output name=version;]$(npm run package-version --silent)"
         id: build_package
-        run: echo "$myString"
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
