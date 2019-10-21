@@ -9,7 +9,7 @@ jobs:
     steps: 
       - uses: actions/checkout@master
       - name: Get version
-        run: echo "##[set-output name=version;]$(echo 0.1.2)"
+        run: echo "##[set-output name=version;]$(echo npm run package-version)"
         id: get_version
       - name: print
         run: echo "${{steps.get_version.outputs.version}}"
