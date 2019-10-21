@@ -10,5 +10,5 @@ jobs:
       - name: checkout 
         uses: actions/checkout@master
       - name: Get version
-        run: echo "${{ format('kintone-kintone-ui-component-{0}.tgz', $(npm run package-version) }}"
+        run: echo "${{ format('kintone-kintone-ui-component-{0}.tgz', $(npm run package-version)) }}"
         id: get_version
