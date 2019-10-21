@@ -20,12 +20,13 @@ jobs:
         run: npm run check:release
       - name: Prepare package
         if: success()
-        run: npm pack 
-      - name: Upload package to release[binaries]
-        uses: svenstaro/upload-release-action@v1-release
+        run: npm pack
+      - name: context
         env: 
           myString: ${{ 'Mona the Octocat' }}
         run: echo "$myString"
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
         with: 
           repo_token: ${{ secrets.ACCESS_TOKEN }}
           file: format('kintone-kintone-ui-component-${{ github.ref }} {0}','hehe')
