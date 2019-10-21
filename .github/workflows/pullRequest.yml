@@ -10,7 +10,7 @@ jobs:
       - name: checkout 
         uses: actions/checkout@master
       - name: Get version
-        run: echo "##[set-output name=version;]$(npm run package-version)"
+        run: "::set-output name=version::$(npm run package-version)"
         id: get_version
-      - name: print
-        run: echo "${{steps.get_version.outputs.version}}"
+      - name: Show version
+        run: echo "${{steps.get_version.version}}"
