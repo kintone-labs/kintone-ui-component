@@ -1,8 +1,5 @@
 const core = require("@actions/core");
-const package = require("../package.json");
-const packageLog = require("../package-lock.json");
-const path = require("path");
-console.log("path",path.resolve());
+const package = require("../../package.json");
 try {
   let https = require("https");
   let username = "/Pham-Gia-Huong";
@@ -22,10 +19,9 @@ try {
 
     response.on("end", function() {
       let packageVersion = "v" + package.version;
-      let packageLockVersion = "v" + packageLog.version;
       let listRelease = JSON.parse(body).filter(release => release.tag_name.includes(packageVersion));
       let tagVersion = listRelease[0].tag_name;
-      if (tagVersion !== packageVersion || tagVersion !== packageLockVersion) {
+      if (tagVersion !== packageVersion) {
         core.setFailed("Version is invalid");
       }
       core.setOutput(package.version);
