@@ -5,7 +5,7 @@ on:
 jobs: 
   test_release: 
     name: Check release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@master
       - name: deploy master
