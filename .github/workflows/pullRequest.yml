@@ -7,8 +7,8 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - name: Checkout master
-        uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Remove package-lock
         run: rm -rf package-lock.json
       - name: Install dependencies
@@ -16,8 +16,6 @@ jobs:
       - name: build 
         if: success()
         run: npm run build
-      - name: Checkout action
-        uses: actions/checkout@v1
       - name: check path
         run: npm run test
       - name: Check version
