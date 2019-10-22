@@ -19,9 +19,8 @@ jobs:
       - name: Checkout action
         uses: actions/checkout@v1
       - name: Check version
-        if: success()
         id: check_version
-        uses: ./
+        uses: ./action.yml
       - name: get version
         run: echo "${{ steps.check_version.outputs.version }}"
   
