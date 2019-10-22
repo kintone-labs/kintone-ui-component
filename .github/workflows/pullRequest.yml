@@ -16,7 +16,11 @@ jobs:
         id: check_version
         uses: ./actions/check_version
       - name: Build
+        if: success()
         run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
