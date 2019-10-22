@@ -13,14 +13,11 @@ jobs:
         run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
-      - name: build 
-        if: success()
-        run: npm run build
       - name: check path
         run: npm run test
       - name: Check version
         id: check_version
-        uses: ./action.yml
+        uses: ./actions/action.yml
       - name: get version
         run: echo "${{ steps.check_version.outputs.version }}"
   
