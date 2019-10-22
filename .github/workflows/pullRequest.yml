@@ -12,7 +12,7 @@ jobs:
         run: npm install
       - name: Check version
         id: check_version
-        uses: Pham-Gia-Huong/kintone-ui-component/.github/actions@master
+        uses: ./actions/check_version
       - name: get version
         run: echo "${{ steps.check_version.outputs.version }}"
       - name: Remove package-lock
