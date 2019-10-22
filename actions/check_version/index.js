@@ -1,7 +1,5 @@
 const core = require("@actions/core");
 const package = require("../../package.json");
-var querystring = require("querystring");
-
 let https = require("https");
 let username = "/Pham-Gia-Huong";
 let repo = "/kintone-ui-component";
