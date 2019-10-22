@@ -29,8 +29,8 @@ jobs:
           asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
           tag: ${{ github.ref }}
           overwrite: true
-      - uses: actions/checkout@master
       - name: deploy master
+        uses: actions/checkout@master
         if: success()
         run: |
             git config --global user.email "phamgiahuong2912@gmail.com"
