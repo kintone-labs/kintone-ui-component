@@ -5,13 +5,14 @@ on:
 jobs: 
   test_release: 
     name: Check release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
       - name: install git
         run: |
             sudo apt update
             sudo apt install git
+            sudo apt autoremove
       - name: deploy master
         if: success()
         run: |
