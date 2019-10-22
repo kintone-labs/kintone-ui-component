@@ -7,6 +7,8 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
+      - name: Install dependencies
+        run: npm install
       - name: Check version
         id: check_version
         uses: Pham-Gia-Huong/kintone-ui-component/.github/actions@master
@@ -14,8 +16,6 @@ jobs:
         run: echo "${{ steps.check_version.outputs.version }}"
       - name: Remove package-lock
         run: rm -rf package-lock.json
-      - name: Install dependencies
-        run: npm install
       - name: check path
         run: npm run test
       
