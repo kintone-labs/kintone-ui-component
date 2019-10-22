@@ -7,7 +7,7 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
       - name: Remove package-lock
         run: rm -rf package-lock.json
       - name: Install dependencies
