@@ -1,0 +1,8 @@
+name: 'Check version'
+description: 'Check version package and package-lock'
+outputs:
+  version:
+    description: "Version package"
+runs:
+  using: 'node12'
+  main: 'index.js'
