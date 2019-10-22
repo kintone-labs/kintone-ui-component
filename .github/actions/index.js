@@ -1,6 +1,8 @@
 const core = require("@actions/core");
 const package = require("../package.json");
 const packageLog = require("../package-lock.json");
+const path = require("path");
+console.log("path",path.resolve());
 try {
   let https = require("https");
   let username = "/Pham-Gia-Huong";
