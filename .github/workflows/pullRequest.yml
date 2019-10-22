@@ -21,7 +21,7 @@ jobs:
       - name: Check version
         if: success()
         id: check_version
-        uses: ./actions/action.yml
+        uses: ./
       - name: get version
         run: echo "${{ steps.check_version.outputs.version }}"
   
