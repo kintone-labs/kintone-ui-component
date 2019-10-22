@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
-      - name: Remove package-lock
-        run: rm -rf package-lock.json
-      - name: Install dependencies
-        run: npm install
       - name: deploy master
         if: success()
         run: |
@@ -21,23 +17,6 @@ jobs:
             git commit -m "merge release"
             git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
             git push origin HEAD:master --force
-      - name: Check version
-        id: check_version
-        uses: ./actions/check_version
-      - name: Build
-        if: success()
-        run: npm run build
-      - name: Prepare package
-        if: success()
-        run: npm pack
-      - name: Upload package to release[binaries]
-        uses: svenstaro/upload-release-action@v1-release
-        with: 
-          repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
-          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
       
       
       
