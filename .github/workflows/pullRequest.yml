@@ -17,15 +17,10 @@ jobs:
         run: npm run build
       - name: Check version
         if: success()
-        run: npm run check:release 
-      - name: Prepare package
-        if: success()
-        run: npm pack
-      - name: Upload package to release[binaries]
-        uses: actions/upload-artifact@master
-        with: 
-          name: kintone-kintone-ui-component-0.0.34.tgz
-          path: kintone-kintone-ui-component-0.0.34.tgz
+        id: check_version
+        uses: ./actions/action.yml
+      - name: get version
+        run: echo "${{ steps.check_version.outputs.version }}"
   
       
 
