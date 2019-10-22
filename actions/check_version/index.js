@@ -20,7 +20,7 @@ try {
     response.on("end", function() {
       let packageVersion = "v" + package.version;
       let listRelease = JSON.parse(body).filter(release => release.tag_name.includes(packageVersion));
-      let tagVersion = listRelease[0].tag_name;
+      let tagVersion = listRelease && listRelease.length > 0 ? listRelease[0].tag_name : "";
       console.log(tagVersion);
       console.log("packageVersion",packageVersion);
 
