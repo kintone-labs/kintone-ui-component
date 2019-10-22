@@ -7,11 +7,9 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - name: Checkout
-        uses: actions/checkout@v1
       - name: Check version
         id: check_version
-        uses: ./
+        uses: Pham-Gia-Huong/kintone-ui-component/.github/actions@master
       - name: get version
         run: echo "${{ steps.check_version.outputs.version }}"
       - name: Remove package-lock
