@@ -18,6 +18,8 @@ jobs:
         run: npm run build
       - name: Checkout action
         uses: actions/checkout@v1
+      - name: check path
+        run: npm run test
       - name: Check version
         id: check_version
         uses: ./action.yml
