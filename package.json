@@ -1,6 +1,6 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.0.222",
+	"version": "0.4.1",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
@@ -23,17 +23,14 @@
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
 	"types": "./esm/react/index.d.ts",
 	"scripts": {
-		"pack-version": "echo $npm_package_version",
 		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"check:release": "node release/index.js",
-		"test":"node release/index.js"
+		"prepublish":"npm run build"
 	},
 	"dependencies": {
-		"@actions/github": "^1.1.0",
 		"@mdi/js": "3.6.95",
 		"@mdi/light-js": "0.2.63"
 	},
