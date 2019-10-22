@@ -8,17 +8,23 @@ jobs:
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@v1
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
       - name: Check version
         id: check_version
         uses: ./actions/check_version
-      - name: get version
-        run: echo "${{ steps.check_version.outputs.version }}"
-      - name: Remove package-lock
-        run: rm -rf package-lock.json
-      - name: check path
-        run: npm run test
+      - name: Build
+        run: npm run build
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
       
   
       
