@@ -7,7 +7,7 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - uses: actions/checkout@master
+      - uses: Pham-Gia-Huong/kintone-ui-component/.github/actions@master
       - name: Install dependencies
         run: npm install
       - name: Check version
