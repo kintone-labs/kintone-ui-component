@@ -12,7 +12,10 @@ jobs:
         run: |
             sudo apt autoremove
             sudo apt update
-            sudo apt install git
+      - name: install git 2
+        run: sudo apt install make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
+      - name: install git 3
+        run: sudo apt install git
       - name: deploy master
         if: success()
         run: |
