@@ -21,6 +21,9 @@ try {
       let packageVersion = "v" + package.version;
       let listRelease = JSON.parse(body).filter(release => release.tag_name.includes(packageVersion));
       let tagVersion = listRelease[0].tag_name;
+      console.log(tagVersion);
+      console.log("packageVersion",packageVersion);
+
       if (tagVersion !== packageVersion) {
         core.setFailed("Version is invalid");
       }
