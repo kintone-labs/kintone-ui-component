@@ -9,17 +9,18 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Check version
+        id: check_version
+        uses: ./
+      - name: get version
+        run: echo "${{ steps.check_version.outputs.version }}"
       - name: Remove package-lock
         run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
       - name: check path
         run: npm run test
-      - name: Check version
-        id: check_version
-        uses: ./actions/action.yml
-      - name: get version
-        run: echo "${{ steps.check_version.outputs.version }}"
+      
   
       
 
