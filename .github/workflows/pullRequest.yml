@@ -7,9 +7,11 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - uses: actions/checkout@vmaster
+      - uses: actions/checkout@master
       - name: Remove package-lock
         run: rm -rf package-lock.json
+      - name: Install dependencies
+        run: npm install
       - name: deploy master
         if: success()
         run: |
@@ -19,8 +21,6 @@ jobs:
             git commit -m "merge release"
             git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
             git push origin HEAD:master --force
-      - name: Install dependencies
-        run: npm install
       - name: Check version
         id: check_version
         uses: ./actions/check_version
