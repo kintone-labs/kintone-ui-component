@@ -8,20 +8,27 @@ jobs:
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
-      - name: install git
-        run: |
-            sudo apt autoremove
-            sudo apt update
-            sudo apt install git
-      - name: deploy master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: Check version
+        id: check_version
+        uses: ./actions/check_version
+      - name: Build
         if: success()
-        run: |
-            git config --global user.email "phamgiahuong2912@gmail.com"
-            git config --global user.name "huong"
-            git add package-lock.json
-            git commit -m "merge release"
-            git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
-            git push origin HEAD:master --force
+        run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
       
       
       
