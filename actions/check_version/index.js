@@ -24,7 +24,7 @@ try {
       if (tagVersion !== packageVersion) {
         core.setFailed("Version is invalid");
       }
-      core.setOutput(package.version);
+      core.setOutput("version", package.version);
     });
   });
   request.end();
