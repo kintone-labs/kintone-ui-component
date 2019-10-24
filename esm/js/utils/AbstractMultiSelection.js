@@ -15,7 +15,7 @@ var _hasValidValue = function (items, value) {
     var validValues = [];
     if (items) {
         items.forEach(function (item) {
-            item.value && validValues.push(item.value);
+            (item.value || (item.value === "")) && validValues.push(item.value);
         });
     }
     if (value === undefined) {

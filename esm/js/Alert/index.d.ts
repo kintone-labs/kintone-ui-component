@@ -11,5 +11,7 @@ declare class Alert extends Control<AlertProps> {
     private _getClassName;
     setText(text: string): void;
     setType(type: string): void;
+    disable(): void;
+    enable(): void;
 }
 export default Alert;

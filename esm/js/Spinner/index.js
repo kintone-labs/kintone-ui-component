@@ -14,6 +14,9 @@ var Spinner = /** @class */ (function (_super) {
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
+        // isDisabled always is setted false
+        // When we update major version of ui-component, we should delete this prop
+        _this._props.isDisabled = false;
         _this.element = _this._createSpinnerElement();
         _this.rerender();
         return _this;
@@ -24,6 +27,12 @@ var Spinner = /** @class */ (function (_super) {
         var outerDOM = document.createElement('div');
         elements(outerDOM).addClass('kuc-spinner-outer').append(spinner);
         return outerDOM;
+    };
+    Spinner.prototype.disable = function () {
+        // nothing to do   
+    };
+    Spinner.prototype.enable = function () {
+        // nothing to do
     };
     return Spinner;
 }(Control));

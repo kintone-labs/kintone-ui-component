@@ -18,6 +18,9 @@ var NotifyPopup = /** @class */ (function (_super) {
             _this._props = tslib_1.__assign({}, _this._props, params);
             _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
+        // isDisabled always is setted false
+        // When we update major version of ui-component, we should delete this prop
+        _this._props.isDisabled = false;
         _this.element = _this._createPopupLayout();
         _this.closeButton.on('click', function (e) {
             if (_this._props.isDisabled)
@@ -35,8 +38,8 @@ var NotifyPopup = /** @class */ (function (_super) {
                 style.bgClass = 'bg-success';
                 style.color = 'green';
                 break;
-            case 'infor':
-                style.bgClass = 'bg-infor';
+            case 'info':
+                style.bgClass = 'bg-info';
                 style.color = 'blue';
                 break;
             default:
@@ -95,12 +98,10 @@ var NotifyPopup = /** @class */ (function (_super) {
         this.rerender(['type']);
     };
     NotifyPopup.prototype.disable = function () {
-        _super.prototype.disable.call(this);
-        this.closeButton.disable();
+        // nothing to do   
     };
     NotifyPopup.prototype.enable = function () {
-        _super.prototype.enable.call(this);
-        this.closeButton.enable();
+        // nothing to do
     };
     return NotifyPopup;
 }(Control));

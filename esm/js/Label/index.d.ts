@@ -18,5 +18,7 @@ declare class Label extends Control<LabelProps> {
     setRequired(isRequired: boolean): void;
     setTextColor(color: string): void;
     setBackgroundColor(color: string): void;
+    disable(): void;
+    enable(): void;
 }
 export default Label;

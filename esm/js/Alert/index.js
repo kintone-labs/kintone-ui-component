@@ -14,6 +14,9 @@ var Alert = /** @class */ (function (_super) {
             _this._props = tslib_1.__assign({}, _this._props, params);
             _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
+        // isDisabled always is setted false
+        // When we update major version of ui-component, we should delete this prop
+        _this._props.isDisabled = false;
         _this.element = document.createElement('div');
         _this.element.className = _this._getClassName();
         _this.rerender(['text', 'type']);
@@ -44,6 +47,12 @@ var Alert = /** @class */ (function (_super) {
     Alert.prototype.setType = function (type) {
         this._props.type = type;
         this.rerender(['type']);
+    };
+    Alert.prototype.disable = function () {
+        // nothing to do   
+    };
+    Alert.prototype.enable = function () {
+        // nothing to do
     };
     return Alert;
 }(Control));

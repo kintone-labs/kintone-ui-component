@@ -46,6 +46,9 @@ var Tabs = /** @class */ (function (_super) {
                 err = Message.common.INVALID_ARGUMENT;
             }
         }
+        else if (!this._props.value && this._props.items && this._props.items.length > 0) {
+            this._props.value = 0;
+        }
         return err;
     };
     Tabs.prototype._renderTabNames = function () {

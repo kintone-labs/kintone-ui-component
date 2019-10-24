@@ -10,6 +10,14 @@
     position: fixed;
     overflow: auto;
     z-index: 2000;
+    animation-name:kuc-notify-fade-in;
+    animation-duration:0.1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+@keyframes kuc-notify-fade-in {
+    0% {opacity: 0; transform: translate3d(0,-16px,0);}
+    100% {opacity: 1; transform: translate3d(0,0,0);}
 }
 .kuc-notify.bg-danger {
     background: #e74c3c;
@@ -17,7 +25,7 @@
 .kuc-notify.bg-success {
     background: #91C36C;
 }
-.kuc-notify.bg-infor {
+.kuc-notify.bg-info {
     background: #3897d9;
 }
 .kuc-notify .kuc-notify-title {

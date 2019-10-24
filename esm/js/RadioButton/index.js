@@ -102,7 +102,7 @@ var RadioButton = /** @class */ (function (_super) {
         });
     };
     RadioButton.prototype.setValue = function (value) {
-        if (!value) {
+        if (value === null || value === undefined) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         var validationErr = this._validator(this._props.items, value);

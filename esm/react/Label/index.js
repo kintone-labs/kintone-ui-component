@@ -2,11 +2,8 @@ import React from 'react';
 import '../../css/font.css';
 import '../../css/Label.css';
 var Label = function (_a) {
-    var text = _a.text, textColor = _a.textColor, backgroundColor = _a.backgroundColor, isRequired = _a.isRequired, isDisabled = _a.isDisabled, isVisible = _a.isVisible, onClick = _a.onClick;
+    var text = _a.text, textColor = _a.textColor, backgroundColor = _a.backgroundColor, isRequired = _a.isRequired, isVisible = _a.isVisible, onClick = _a.onClick;
     var _onClick = function (e) {
-        if (isDisabled) {
-            return null;
-        }
         onClick && onClick(e);
         return true;
     };

@@ -3,11 +3,8 @@ import '../../css/font.css';
 import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';
 var NotifyPopup = function (_a) {
-    var text = _a.text, type = _a.type, isDisabled = _a.isDisabled, isVisible = _a.isVisible, onClick = _a.onClick, onClose = _a.onClose;
+    var text = _a.text, type = _a.type, isVisible = _a.isVisible, onClick = _a.onClick, onClose = _a.onClose;
     var _handleClosePopup = function () {
-        if (isDisabled) {
-            return false;
-        }
         onClose && onClose();
         return true;
     };
@@ -21,8 +18,8 @@ var NotifyPopup = function (_a) {
                 style.bgClass = 'bg-success';
                 style.color = 'green';
                 break;
-            case 'infor':
-                style.bgClass = 'bg-infor';
+            case 'info':
+                style.bgClass = 'bg-info';
                 style.color = 'blue';
                 break;
             default:
@@ -39,9 +36,6 @@ var NotifyPopup = function (_a) {
         return className.join(' ').trim();
     };
     var _onClick = function () {
-        if (isDisabled) {
-            return false;
-        }
         onClick && onClick();
         return true;
     };
@@ -51,6 +45,6 @@ var NotifyPopup = function (_a) {
     return (React.createElement("div", { className: _getClassName() },
         React.createElement("div", { className: "kuc-notify-title", onClick: _onClick, role: "none" }, text),
         React.createElement("div", { className: "kuc-close-button" },
-            React.createElement(IconButton, { onClick: _handleClosePopup, isDisabled: isDisabled, type: "close", color: _getStyleByType().color }))));
+            React.createElement(IconButton, { onClick: _handleClosePopup, type: "close", color: _getStyleByType().color }))));
 };
 export default NotifyPopup;

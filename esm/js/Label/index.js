@@ -17,6 +17,9 @@ var Label = /** @class */ (function (_super) {
             _this._props = tslib_1.__assign({}, _this._props, params);
             _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
         }
+        // isDisabled always is setted false
+        // When we update major version of ui-component, we should delete this prop
+        _this._props.isDisabled = false;
         _this.element = _this._createLabelLayout();
         _this.rerender(['text', 'isRequired', 'textStyle']);
         return _this;
@@ -64,6 +67,12 @@ var Label = /** @class */ (function (_super) {
     Label.prototype.setBackgroundColor = function (color) {
         this._props.backgroundColor = color;
         this.rerender(['textStyle']);
+    };
+    Label.prototype.disable = function () {
+        // nothing to do   
+    };
+    Label.prototype.enable = function () {
+        // nothing to do
     };
     return Label;
 }(Control));

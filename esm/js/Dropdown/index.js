@@ -153,7 +153,7 @@ var Dropdown = /** @class */ (function (_super) {
     };
     Dropdown.prototype.setValue = function (value) {
         var _this = this;
-        if (!value) {
+        if (value === null || value === undefined) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         var validationErr = this._validator(this._props.items, value);

@@ -15,6 +15,9 @@ var Tabs = function (_a) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
     }
+    else if (!value && items && items.length > 0) {
+        value = 0;
+    }
     var tabNames = (React.createElement("ul", { className: "kuc-tabs-tab-list" }, items &&
         items.map(function (item, tabIndex) {
             if (!item.tabName) {
