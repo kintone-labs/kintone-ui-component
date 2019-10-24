@@ -5,7 +5,7 @@ type SpinnerProps = {
   isVisible?: boolean;
 }
 
-const Spinner = ({isVisible}: SpinnerProps) => {
+const Spinner = ({isVisible = false}: SpinnerProps) => {
   if (isVisible === false) {
     return null;
   }

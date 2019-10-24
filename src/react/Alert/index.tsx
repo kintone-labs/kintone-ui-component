@@ -5,12 +5,11 @@ import '../../css/Alert.css';
 type AlertProps = {
   text?: string;
   type?: string;
-  isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
+const Alert = ({text, type, isVisible, onClick}: AlertProps) => {
   const _getClassName = () => {
     const className = [
       'kuc-alert',
@@ -19,12 +18,7 @@ const Alert = ({text, type, isDisabled, isVisible, onClick}: AlertProps) => {
 
     return className.join(' ');
   };
-
   const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
-    if (isDisabled) {
-      return null;
-    }
-
     onClick && onClick(e);
     return true;
   };

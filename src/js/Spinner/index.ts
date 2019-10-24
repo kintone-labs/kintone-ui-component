@@ -14,6 +14,10 @@ class Spinner extends Control<ControlProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
+
     this.element = this._createSpinnerElement();
     this.rerender();
   }
@@ -27,6 +31,14 @@ class Spinner extends Control<ControlProps> {
     elements(outerDOM).addClass('kuc-spinner-outer').append(spinner);
 
     return outerDOM;
+  }
+
+  disable(): void {
+    // nothing to do   
+  }
+
+  enable(): void {
+    // nothing to do
   }
 }
 

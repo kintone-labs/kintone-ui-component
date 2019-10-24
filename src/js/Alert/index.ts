@@ -21,6 +21,9 @@ class Alert extends Control<AlertProps> {
       this._props = {...this._props, ...params};
       this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
 
     this.element = document.createElement('div');
     this.element.className = this._getClassName();
@@ -58,6 +61,14 @@ class Alert extends Control<AlertProps> {
   setType(type: string): void {
     this._props.type = type;
     this.rerender(['type']);
+  }
+
+  disable(): void {
+    // nothing to do   
+  }
+
+  enable(): void {
+    // nothing to do
   }
 }
 

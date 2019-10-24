@@ -29,6 +29,11 @@ class NotifyPopup extends Control<PopupProps> {
       this._props = { ...this._props, ...params };
       this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
     }
+
+    // isDisabled always is setted false
+    // When we update major version of ui-component, we should delete this prop
+    this._props.isDisabled = false;
+
     this.element = this._createPopupLayout();
 
     this.closeButton.on('click', (e: Event) => {
@@ -47,8 +52,8 @@ class NotifyPopup extends Control<PopupProps> {
         style.bgClass = 'bg-success';
         style.color = 'green';
         break;
-      case 'infor':
-        style.bgClass = 'bg-infor';
+      case 'info':
+        style.bgClass = 'bg-info';
         style.color = 'blue';
         break;
       default:
@@ -118,13 +123,11 @@ class NotifyPopup extends Control<PopupProps> {
   }
 
   disable(): void {
-    super.disable();
-    this.closeButton.disable();
+    // nothing to do   
   }
 
   enable(): void {
-    super.enable();
-    this.closeButton.enable();
+    // nothing to do
   }
 }
 
