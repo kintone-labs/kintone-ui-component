@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, useCallback} from 'react';
 
 type SaturationSpectrumProps = {
   width: number;
@@ -18,10 +18,10 @@ type SaturationSpectrumProps = {
 export default function SaturationSpectrum(props: SaturationSpectrumProps) {
   const w = props.width;
   const h = props.height;
-  const container = useRef<HTMLDivElement>(null);
-  const satCanvas = useRef<HTMLCanvasElement>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
+  const container = useCallback((element: HTMLDivElement) => {setContainerEl(element.getBoundingClientRect())}, []);
+  const satCanvas = useRef<HTMLCanvasElement>(null);
 
   function fillSatSpectrumCanvas() {
     if (satCanvas && satCanvas.current) {
@@ -57,26 +57,18 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
     }
   }
 
-  function initContainerEl() {
-    if (container && container.current) {
-      setContainerEl(container.current.getBoundingClientRect());
-    }
-  }
-
   function handleMouseDown() {
     setIsMouseDown(true);
   }
 
   function handleMouseUp(e: React.MouseEvent<EventTarget>) {
     triggerSelect(e.clientX, e.clientY);
-    initContainerEl();
     setIsMouseDown(false);
   }
 
   function handleMouseMove(e: React.MouseEvent<EventTarget>) {
     if (isMouseDown) {
       triggerSelect(e.clientX, e.clientY);
-      initContainerEl();
     }
   }
 
