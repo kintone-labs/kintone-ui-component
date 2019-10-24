@@ -1,0 +1,38 @@
+name: CI Release
+on:
+  release:
+    types: [created]
+jobs: 
+  test_release: 
+    name: Check release
+    runs-on: ubuntu-18.04
+    steps: 
+      - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: Check version
+        id: check_version
+        uses: ./actions/check_version
+      - name: Build
+        if: success()
+        run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
+      
+      
+      
+  
+      
+
+
