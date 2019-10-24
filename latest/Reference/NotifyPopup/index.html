@@ -138,7 +138,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.4.1</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.4.2</a>
         </div>
       </div>
  
@@ -856,7 +856,7 @@
 <td>options.type</td>
 <td>String</td>
 <td>No</td>
-<td>Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'infor' </li></ul> Default value: <strong>error</strong></td>
+<td>Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'info' </li></ul> Default value: <strong>error</strong></td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -1035,7 +1035,7 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 <td>type</td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of NotifyPopup:<ul><li> 'error' </li><li> 'success' </li><li> 'infor' </li></ul> Default value: 'error'</td>
+<td>Type of NotifyPopup:<ul><li> 'error' </li><li> 'success' </li><li> 'info' </li></ul> Default value: 'error'</td>
 </tr>
 </tbody>
 </table>
@@ -1051,7 +1051,7 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 var btn = document.createElement('button'); 
 btn.textContent = 'Set type of NotifyPopup';
 btn.onclick = function() {
-    notifyPopup.setType('infor');
+    notifyPopup.setType('info');
 };
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
@@ -1070,7 +1070,7 @@ export default class Plugin extends React.Component {
     };
 
     setType = () =&gt; {
-        this.setState({ type: 'infor' });
+        this.setState({ type: 'info' });
     };
 
     render() {
