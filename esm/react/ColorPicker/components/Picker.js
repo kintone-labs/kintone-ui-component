@@ -36,7 +36,7 @@ export default function Picker(props) {
         rgb: saturationBackground
     };
     return (React.createElement("div", { style: tslib_1.__assign({}, PickerStyle.container, {
-            visibility: props.pickerDisplay ? 'visible' : 'hidden'
+            display: props.pickerDisplay ? 'block' : 'none'
         }) },
         React.createElement("div", { style: PickerStyle.saturationContainer },
             React.createElement(SaturationSpectrum, tslib_1.__assign({}, saturationProps))),

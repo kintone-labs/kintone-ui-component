@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 export default function SaturationSpectrum(props) {
     var w = props.width;
     var h = props.height;
+    var container = useRef(null);
+    var satCanvas = useRef(null);
     var _a = useState(false), isMouseDown = _a[0], setIsMouseDown = _a[1];
     var _b = useState(), containerEl = _b[0], setContainerEl = _b[1];
-    var container = useCallback(function (element) { setContainerEl(element.getBoundingClientRect()); }, []);
-    var satCanvas = useRef(null);
     function fillSatSpectrumCanvas() {
         if (satCanvas && satCanvas.current) {
             var ctx = satCanvas.current.getContext('2d');
@@ -38,16 +38,23 @@ export default function SaturationSpectrum(props) {
             }
         }
     }
+    function initContainerEl() {
+        if (container && container.current) {
+            setContainerEl(container.current.getBoundingClientRect());
+        }
+    }
     function handleMouseDown() {
         setIsMouseDown(true);
     }
     function handleMouseUp(e) {
         triggerSelect(e.clientX, e.clientY);
+        initContainerEl();
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
             triggerSelect(e.clientX, e.clientY);
+            initContainerEl();
         }
     }
     function handleMouseLeave() {

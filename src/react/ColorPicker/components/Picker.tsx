@@ -60,7 +60,7 @@ export default function Picker(props: PickerProps) {
       style={{
         ...PickerStyle.container,
         ...{
-          visibility: props.pickerDisplay ? 'visible' : 'hidden'
+          display: props.pickerDisplay ? 'block' : 'none'
         }
       } as CSSProperties}
     >
