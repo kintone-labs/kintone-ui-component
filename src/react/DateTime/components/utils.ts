@@ -80,20 +80,24 @@ const isSameDate = (day1: Date, day2: Date) => day1.toDateString() === day2.toDa
 const parseStringToDate = (dateString: string, dateFormat?: string) => {
   const formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
   const delimiter = getSeperator(formatLowerCase);
-  if (isNaN(dateString.split(delimiter)[1] as any) || isNaN(dateString.split(delimiter)[0] as any) || isNaN(dateString.split(delimiter)[2] as any)) {
-    return null;
-  }
-  const formatItems = formatLowerCase.split(delimiter);
   const dateItems = dateString.split(delimiter);
+  const formatItems = formatLowerCase.split(delimiter);
   const monthIndex = formatItems.indexOf('mm');
-  const dayIndex = formatItems.indexOf('dd');
+  const dayIndex = formatItems.indexOf('d') !== -1 ? formatItems.indexOf('d') : 
+                  formatItems.indexOf('dd');
   const yearIndex = formatItems.indexOf('yyyy');
+  const year = parseInt(dateItems[yearIndex], 10);
   const day = parseInt(dateItems[dayIndex], 10);
   let month = parseInt(dateItems[monthIndex], 10);
   month -= 1;
-  const year = parseInt(dateItems[yearIndex], 10);
-  const formatedDate = new Date(year, month, day);
-  return formatedDate;
+  let date = new Date(year, month);
+  if(day > 0) {
+    date.setDate(day)
+  }
+  if(date.toDateString() === "Invalid Date" || month < 0 || year < 1) {
+    return null
+  }
+  return date;
 };
 
 const parseStringToTime = (timeString: string) => {
