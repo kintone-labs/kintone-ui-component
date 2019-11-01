@@ -75,9 +75,11 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
 
-    if (items && value &&
-            !AbstractMultiSelection._hasValidValue(items, value)
-    ) {
+    if(AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
+      err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
+    }
+
+    if (items && value && !AbstractMultiSelection._hasValidValue(items, value)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;
