@@ -43,8 +43,17 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
   }
 
   private _renderItemList() {
-    this.element = document.createElement('div');
-    this.element.className = 'kuc-multiple-list kuc-list-outer';
+    if(!this.element) {
+      this.element = document.createElement('div');
+      this.element.className = 'kuc-multiple-list kuc-list-outer';
+    } else {
+      const copyMultiPleChoiceComponent: MultipleChoice = Object.assign({}, this);
+      const itemNumber: number = copyMultiPleChoiceComponent.element.children.length;
+      for (let index = 0; index < itemNumber; index++) {
+        const currentElement: Node = this.element.children[0];
+        this.element.removeChild(currentElement);
+      }
+    }
 
     if (this._props.items) {
       this._props.items.forEach((item: ItemData, index: number) => {
