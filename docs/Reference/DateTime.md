@@ -26,7 +26,7 @@
 |options.value|Date|No|	The Default DateTime Value.|
 |options.type|String|No|The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>Default value: 'datetime'|
 |options.locale|String|No|The setting of date picker display language<br> <ul><li>ja</li><li>en</li><li>zh</li></ul>Default value: 'ja'|
-|options.dateFormat|String|No|The date format for the date text input part of the component.<br>Supported format:<br>Valid separators: "/", "-", " ", ":" <br>Date:<br><ul><li>d (Date Short): 1,2 ...</li><li>dd (Date Full): 01, 02...</li></ul><br>Month:<br><ul><li>MM (Month Number): 01, 02 ...</li><li>MMM (Month Text Short): Jan, Feb...</li><li>MMMM (Month Text Long): January, February...</li></ul><br>Year:<br><ul><li>YYYY (Year): 2019, 2020...</li></ul><br>All formats should contain MM and YYYY identifiers. For example:<ul><li>YYYY/MM - correct format</li>YYYY/dd - incorrect format</li></ul>
+|options.dateFormat|String|No|The date format for the date text input part of the component.<br>Supported format:<br>Valid separators: "/", "-", " ", ":" <br>Date:<br><ul><li>d (Date Short): 1,2 ...</li><li>dd (Date Full): 01, 02...</li></ul><br>Month:<br><ul><li>MM (Month Number): 01, 02 ...</li></ul><br>Year:<br><ul><li>YYYY (Year): 2019, 2020...</li></ul><br>All formats should contain MM and YYYY identifiers. For example:<ul><li>YYYY/MM - correct format</li>YYYY/dd - incorrect format</li></ul>
 <br>Default format: MM/dd/YYYY|
 |options.isVisible|Boolean|No|The DatePicker will be visible.<br>Default value: 'true'|
 |options.isDisabled|Boolean|No|The DateTime field will be disabled. <br>Default value: 'false'|
