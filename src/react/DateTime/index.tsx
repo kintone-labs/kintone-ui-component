@@ -6,6 +6,7 @@ import {en, ja, zh, format} from './components/Locale';
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import Message from '../../constant/Message'
 
 import '../../css/font.css';
 
@@ -161,7 +162,7 @@ const DateTime = ({
         //validate dateformat
         if(inputValue === dateFormat) {
           setInputValue(dateFormat);
-          setDateError('Invalid date format');
+          setDateError(Message.datetime.INVALID_DATE);
           setShowPickerError(true);
         } else if(!showPickerError) {
           setInputValue(inputValue);
@@ -232,7 +233,7 @@ const DateTime = ({
                     returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
                     setShowPickerError(false);
                   } else if (e.target.value) {
-                    setDateError('Invalid date');
+                    setDateError(Message.datetime.INVALID_DATE);
                     setShowPickerError(true);
                   }
 
