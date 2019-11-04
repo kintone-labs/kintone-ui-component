@@ -362,7 +362,7 @@ class DateTime extends Control<DateTimeProps> {
       date: this._props.value,
       onClickOutside: this._onClickOutside.bind(this),
       onDateClick: this._onCalendarDateClick.bind(this),
-      locale: this._locale
+      locale: this._locale,
     });
     dateContainer.appendChild(calendar.render());
     this._calendar = calendar;
@@ -400,6 +400,9 @@ class DateTime extends Control<DateTimeProps> {
     } else {
       const tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
       if (tempDate instanceof Date && !isNaN(tempDate as any)) {
+        if(this._props.dateFormat && !this._props.dateFormat.includes("d")) {
+          tempDate.setDate(this._props.value ? this._props.value.getDate() : 1)
+        }
         this._props.value = tempDate;
       } else {
         this._dateErrorDiv.style.display = 'block';

@@ -286,7 +286,7 @@ class Calendar extends Control<CalendarProps> {
       this._displayDate = new Date(date);
     }
     this._props.date = date;
-    this.rerender(['selectedDate']);
+    this.rerender(['selectedDate', 'monthYearDropdown']);
   }
 
   getValue(): Date | null | undefined {

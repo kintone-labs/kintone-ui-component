@@ -1,6 +1,7 @@
 import en from './localizationData/en';
 import zh from './localizationData/zh';
 import ja from './localizationData/ja';
+import Message from '../../../constant/Message';
 
 const seperators = ['/', '-', ' ', ':'];
 
@@ -11,6 +12,9 @@ const getSeperator = (dateFormatString: string) => {
       seperator = char;
     }
   });
+  if(seperator === '') {
+    throw new Error(Message.datetime.INVALID_DATEFORMAT_SEPARATOR);
+  }
   return seperator;
 };
 
@@ -81,6 +85,12 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
     if (dateFormat === 'calendaryear') {
       return getDateData(dateObj, 'calendaryear', option.locale);
     }
+    if (dateFormat === 'd') {
+      return getDateData(dateObj, 'd', option.locale);
+    }
+    if (dateFormat === 'E') {
+      return getDateData(dateObj, 'E', option.locale);
+    }
     const seperator = getSeperator(dateFormat);
     let formattedDate = dateFormat.split(seperator);
     formattedDate = formattedDate.map((item)=>{
@@ -88,6 +98,7 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
     });
     return formattedDate.join(seperator);
   } catch (error) {
+    console.error(error)
     return dateFormat;
   }
 };
