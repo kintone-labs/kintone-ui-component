@@ -86,8 +86,8 @@ class DateTime extends Control<DateTimeProps> {
       }
     }
     if (changedAttr.indexOf('timeTextInput') !== -1) {
-      this._timeTextInput.value = format(this._time, 'HH:mm');
-      this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
+      this._timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
+      this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._calendar) {
@@ -136,7 +136,7 @@ class DateTime extends Control<DateTimeProps> {
     dateTextInput.type = 'text';
     dateTextInput.className = 'kuc-input-text text-input';
     if (this._props.value && this._props.dateFormat) {
-      dateTextInput.value = format(this._props.value, this._props.dateFormat);
+      dateTextInput.value = format(this._props.value, this._props.dateFormat, {locale: this._locale});
     }
     if (this._props.isDisabled) {
       dateTextInput.disabled = this._props.isDisabled;
@@ -177,9 +177,9 @@ class DateTime extends Control<DateTimeProps> {
     }
     timeTextInput.type = 'text';
     timeTextInput.className = 'kuc-input-text text-input time';
-    timeTextInput.value = format(this._time, 'HH:mm');
+    timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
     timeTextInput.maxLength = 5;
-    timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
+    timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
     this._timeTextInput = timeTextInput;
     this._registerTimeTextInputEvents();
   }
@@ -313,7 +313,7 @@ class DateTime extends Control<DateTimeProps> {
         previousMinutes = '0';
       }
       newTime.setMinutes(parseInt(previousMinutes + key, 10));
-      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.value = format(newTime, 'HH:mm', {locale: this._locale});
       this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
       this._timeTextInput.setSelectionRange(3, 5);
     } else {
@@ -328,7 +328,7 @@ class DateTime extends Control<DateTimeProps> {
         previousHours = '0';
       }
       newTime.setHours(parseInt(previousHours + key, 10));
-      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.value = format(newTime, 'HH:mm', {locale: this._locale});
       this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
       this._timeTextInput.setSelectionRange(0, 2);
     }
