@@ -158,14 +158,16 @@ const DateTime = ({
       if (!hasSelection) {
         setInputValue('');
       } else {
-        const inputValue = format(value, dateFormat)
         //validate dateformat
-        if(inputValue === dateFormat) {
-          setInputValue(dateFormat);
-          setDateError(Message.datetime.INVALID_DATE);
-          setShowPickerError(true);
-        } else if(!showPickerError) {
-          setInputValue(inputValue);
+        if(inputValue !== dateFormat) {
+          const newInputValue = format(value, dateFormat)
+          if(newInputValue === dateFormat) {
+            setInputValue(dateFormat);
+            setDateError(Message.datetime.INVALID_DATE);
+            setShowPickerError(true);
+          } else if(!showPickerError) {
+            setInputValue(newInputValue);
+          }
         }
       }
 
@@ -294,7 +296,9 @@ const DateTime = ({
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
                       onChange(tempDate);
-                      setInputValue(format(tempDate, dateFormat));
+                      if(!showPickerError) {
+                        setInputValue(format(tempDate, dateFormat));
+                      }
                       setHasSelection(true);
                       setShowPickerError(false);
                     } else if (previousDate) {
