@@ -78,9 +78,11 @@ class DateTime extends Control<DateTimeProps> {
     super.rerender();
     if (changedAttr.indexOf('dateTextInput') !== -1) {
       if (this._props.value && this._props.dateFormat) {
-        this._dateTextInput.value = format(this._props.value, this._props.dateFormat, {
-          locale: this._props.locale
-        });
+        const newTextInputValue = format(this._props.value, this._props.dateFormat);
+        if(newTextInputValue === this._props.dateFormat) {
+          this._dateErrorDiv.style.display = 'block';
+        }
+        this._dateTextInput.value = newTextInputValue;
       } else {
         this._dateTextInput.value = '';
       }
@@ -125,7 +127,7 @@ class DateTime extends Control<DateTimeProps> {
     dateError.className = 'label-error';
     dateError.style.display = 'none';
     const span = document.createElement('span');
-    span.textContent = 'Invalid date';
+    span.textContent = Message.datetime.INVALID_DATE;
     dateError.appendChild(span);
     this._dateErrorDiv = dateError;
     return dateError;
@@ -136,7 +138,11 @@ class DateTime extends Control<DateTimeProps> {
     dateTextInput.type = 'text';
     dateTextInput.className = 'kuc-input-text text-input';
     if (this._props.value && this._props.dateFormat) {
-      dateTextInput.value = format(this._props.value, this._props.dateFormat, {locale: this._locale});
+      const newTextInputValue = format(this._props.value, this._props.dateFormat);
+      if(newTextInputValue === this._props.dateFormat) {
+        this._dateErrorDiv.style.display = 'block';
+      }
+      dateTextInput.value = newTextInputValue;
     }
     if (this._props.isDisabled) {
       dateTextInput.disabled = this._props.isDisabled;
@@ -350,11 +356,11 @@ class DateTime extends Control<DateTimeProps> {
   private _renderDate() {
     const dateContainer = document.createElement('div');
     dateContainer.className = 'date-container';
+    // render date input error
+    this._renderDateInputErrorLabel();
     // render date text input
     this._renderDateTextInput();
-    // render date input error
     dateContainer.appendChild(this._dateTextInput);
-    this._renderDateInputErrorLabel();
     dateContainer.appendChild(this._dateErrorDiv);
 
     // render calendar

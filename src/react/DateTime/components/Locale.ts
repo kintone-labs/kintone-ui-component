@@ -34,10 +34,6 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
     case 'MM':
       if (dateObj.month + 1 < 10) return `0${dateObj.month + 1}`;
       return `${dateObj.month + 1}`;
-    case 'MMM':
-      return locale.monthNamesShort[dateObj.month];
-    case 'MMMM':
-      return locale.monthNames[dateObj.month];
     case 'YYYY':
       return `${dateObj.year}`;
     case 'HH':
@@ -60,7 +56,7 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
       if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年`;
       return `${dateObj.year}`;
     default:
-      return `${dateObj.year}`;
+      throw new Error('Invalid date format')
   }
 };
 

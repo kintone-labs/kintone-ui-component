@@ -6,6 +6,7 @@ import {en, ja, zh, format} from './components/Locale';
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import Message from '../../constant/Message'
 
 import '../../css/font.css';
 
@@ -42,8 +43,8 @@ const DateTime = ({
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
-  const [inputValue, setInputValue] = useState(format(value, dateFormat, {locale: localeObj}));
-  const [timeValue, setTimeValue] = useState(format(value, timeFormat, {locale: localeObj}));
+  const [inputValue, setInputValue] = useState('');
+  const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
   const [timeDateValue, setTimeDateValue] = useState(new Date(value));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
@@ -60,7 +61,7 @@ const DateTime = ({
     setTimeDateValue(newTime);
     onChange(newTime);
     setTimeout(()=>{
-      setTimeValue(format(newTime, timeFormat, {locale: localeObj}));
+      setTimeValue(format(newTime, timeFormat));
       timeInput.setSelectionRange(3, 5);
     }, 1);
   };
@@ -73,7 +74,7 @@ const DateTime = ({
     setTimeDateValue(new Date(newTime));
     onChange(new Date(newTime));
     setTimeout(()=>{
-      setTimeValue(format(newTime, timeFormat, {locale: localeObj}));
+      setTimeValue(format(newTime, timeFormat));
       timeInput.setSelectionRange(0, 2);
     }, 1);
 
@@ -133,8 +134,8 @@ const DateTime = ({
   useEffect(()=>{
     if (defaultValue !== value) {
       setDefaultValue(value);
-      setInputValue(format(value, dateFormat, {locale: localeObj}));
-      setTimeValue(format(value, timeFormat, {locale: localeObj}));
+      setInputValue(format(value, dateFormat));
+      setTimeValue(format(value, timeFormat));
       setTimeDateValue(new Date(value));
     } else {
       const newTimeDateValue = new Date(timeDateValue);
@@ -157,7 +158,15 @@ const DateTime = ({
       if (!hasSelection) {
         setInputValue('');
       } else {
-        setInputValue(format(value, dateFormat, {locale: localeObj}));
+        const inputValue = format(value, dateFormat)
+        //validate dateformat
+        if(inputValue === dateFormat) {
+          setInputValue(dateFormat);
+          setDateError(Message.datetime.INVALID_DATE);
+          setShowPickerError(true);
+        } else if(!showPickerError) {
+          setInputValue(inputValue);
+        }
       }
 
       if (typeof isDisabled !== 'boolean') {
@@ -178,7 +187,7 @@ const DateTime = ({
         {
           (typeDateTime === 'datetime' || typeDateTime === 'date') &&
           <div className="date-container">
-            <div className="text-input-container" key={`${format(value, dateFormat, {locale: localeObj})}-${dateError}`}>
+            <div className="text-input-container" key={`${dateError}`}>
               <input
                 type="text"
                 className="kuc-input-text text-input"
@@ -186,9 +195,9 @@ const DateTime = ({
                 onFocus={(e) => {
                   setPickerDisplay('block');
                   setTimePickerDisplay('none');
-                  if (showPickerError) {
-                    setHasSelection(false);
-                  }
+                  // if (showPickerError) {
+                  //   setHasSelection(false);
+                  // }
                   if (!showPickerError && hasSelection) {
                     const temporary = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
                     const dateValue = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
@@ -224,7 +233,7 @@ const DateTime = ({
                     returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
                     setShowPickerError(false);
                   } else if (e.target.value) {
-                    setDateError('Invalid date');
+                    setDateError(Message.datetime.INVALID_DATE);
                     setShowPickerError(true);
                   }
 
@@ -285,7 +294,7 @@ const DateTime = ({
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
                       onChange(tempDate);
-                      setInputValue(format(tempDate, dateFormat, {locale: localeObj}));
+                      setInputValue(format(tempDate, dateFormat));
                       setHasSelection(true);
                       setShowPickerError(false);
                     } else if (previousDate) {
@@ -370,7 +379,7 @@ const DateTime = ({
                     previousMinutes = '0';
                   }
                   newTime.setMinutes(parseInt(previousMinutes + '' + newTime.getMinutes(), 10));
-                  timeTextInput.value = format(newTime, 'HH:mm', {locale: localeObj});
+                  timeTextInput.value = format(newTime, 'HH:mm');
                   timeTextInput.setSelectionRange(3, 5);
                 } else {
                   // hours are being edited
@@ -386,7 +395,7 @@ const DateTime = ({
                     previousHours = '0';
                   }
                   newTime.setHours(parseInt(previousHours + '' + newTime.getHours(), 10));
-                  timeTextInput.value = format(newTime, 'HH:mm', {locale: localeObj});
+                  timeTextInput.value = format(newTime, 'HH:mm');
                   timeTextInput.setSelectionRange(0, 2);
                 }
                 newTime.setSeconds(0);
@@ -417,7 +426,7 @@ const DateTime = ({
                     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
                     tempDate.setSeconds(0);
 
-                    setTimeValue(format(tempDate, timeFormat, {locale: localeObj}));
+                    setTimeValue(format(tempDate, timeFormat));
                     setTimeDateValue(new Date(tempDate));
                     onChange(tempDate);
                     setTimePickerDisplay('none');
@@ -432,7 +441,6 @@ const DateTime = ({
   }
 
   return <div />;
-
 };
 
 export default DateTime;
