@@ -5,15 +5,23 @@ import { en, ja, zh, format } from './components/Locale';
 import { parseStringToDate, parseStringToTime } from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import Message from '../../constant/Message';
 import '../../css/font.css';
 var DateTime = function (_a) {
     var _b = _a.value, value = _b === void 0 ? new Date() : _b, _c = _a.isDisabled, isDisabled = _c === void 0 ? false : _c, _d = _a.isVisible, isVisible = _d === void 0 ? true : _d, _e = _a.onChange, onChange = _e === void 0 ? function (newDate) { } : _e, _f = _a.locale, locale = _f === void 0 ? 'ja' : _f, _g = _a.dateFormat, dateFormat = _g === void 0 ? 'MM/dd/YYYY' : _g, _h = _a.type, type = _h === void 0 ? 'datetime' : _h, _j = _a.timeFormat, timeFormat = _j === void 0 ? 'HH:mm' : _j;
+    var localeObj = ja;
+    if (locale === 'en') {
+        localeObj = en;
+    }
+    else if (locale === 'zh') {
+        localeObj = zh;
+    }
     var _k = useState(value), defaultValue = _k[0], setDefaultValue = _k[1];
     var _l = useState('none'), pickerDisplay = _l[0], setPickerDisplay = _l[1];
     var _m = useState(false), showPickerError = _m[0], setShowPickerError = _m[1];
     var _o = useState(''), dateError = _o[0], setDateError = _o[1];
     var _p = useState('none'), timePickerDisplay = _p[0], setTimePickerDisplay = _p[1];
-    var _q = useState(format(value, dateFormat)), inputValue = _q[0], setInputValue = _q[1];
+    var _q = useState(''), inputValue = _q[0], setInputValue = _q[1];
     var _r = useState(format(value, timeFormat)), timeValue = _r[0], setTimeValue = _r[1];
     var _s = useState(true), hasSelection = _s[0], setHasSelection = _s[1];
     var _t = useState(new Date(value)), timeDateValue = _t[0], setTimeDateValue = _t[1];
@@ -130,7 +138,18 @@ var DateTime = function (_a) {
                 setInputValue('');
             }
             else {
-                setInputValue(format(value, dateFormat));
+                //validate dateformat
+                if (inputValue !== dateFormat) {
+                    var newInputValue = format(value, dateFormat);
+                    if (newInputValue === dateFormat) {
+                        setInputValue(dateFormat);
+                        setDateError(Message.datetime.INVALID_DATE);
+                        setShowPickerError(true);
+                    }
+                    else if (!showPickerError) {
+                        setInputValue(newInputValue);
+                    }
+                }
             }
             if (typeof isDisabled !== 'boolean') {
                 setDisableBtn(false);
@@ -140,13 +159,6 @@ var DateTime = function (_a) {
             }
         }
     }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
-    var localeObj = ja;
-    if (locale === 'en') {
-        localeObj = en;
-    }
-    else if (locale === 'zh') {
-        localeObj = zh;
-    }
     if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
         setTypeDateTime('datetime');
     }
@@ -154,13 +166,13 @@ var DateTime = function (_a) {
         return (React.createElement("div", { className: "date-time-container", ref: wrapperRef },
             (typeDateTime === 'datetime' || typeDateTime === 'date') &&
                 React.createElement("div", { className: "date-container" },
-                    React.createElement("div", { className: "text-input-container", key: format(value, dateFormat) + "-" + dateError },
+                    React.createElement("div", { className: "text-input-container", key: "" + dateError },
                         React.createElement("input", { type: "text", className: "kuc-input-text text-input", disabled: isDisableBtn, onFocus: function (e) {
                                 setPickerDisplay('block');
                                 setTimePickerDisplay('none');
-                                if (showPickerError) {
-                                    setHasSelection(false);
-                                }
+                                // if (showPickerError) {
+                                //   setHasSelection(false);
+                                // }
                                 if (!showPickerError && hasSelection) {
                                     var temporary = new Date(parseStringToDate(e.target.value, dateFormat));
                                     var dateValue_1 = new Date(parseStringToDate(e.target.value, dateFormat));
@@ -195,7 +207,7 @@ var DateTime = function (_a) {
                                     setShowPickerError(false);
                                 }
                                 else if (e.target.value) {
-                                    setDateError('Invalid date');
+                                    setDateError(Message.datetime.INVALID_DATE);
                                     setShowPickerError(true);
                                 }
                                 var relatedTarget = e.relatedTarget ||
@@ -237,7 +249,9 @@ var DateTime = function (_a) {
                                     tempDate.setMinutes(timeDateValue.getMinutes());
                                     tempDate.setSeconds(0);
                                     onChange(tempDate);
-                                    setInputValue(format(tempDate, dateFormat));
+                                    if (!showPickerError) {
+                                        setInputValue(format(tempDate, dateFormat));
+                                    }
                                     setHasSelection(true);
                                     setShowPickerError(false);
                                 }

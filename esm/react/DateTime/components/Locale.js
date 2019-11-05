@@ -1,6 +1,7 @@
 import en from './localizationData/en';
 import zh from './localizationData/zh';
 import ja from './localizationData/ja';
+import Message from '../../../constant/Message';
 var seperators = ['/', '-', ' ', ':'];
 var getSeperator = function (dateFormatString) {
     var seperator = '';
@@ -9,6 +10,9 @@ var getSeperator = function (dateFormatString) {
             seperator = char;
         }
     });
+    if (seperator === '') {
+        throw new Error(Message.datetime.INVALID_DATEFORMAT_SEPARATOR);
+    }
     return seperator;
 };
 var getDateData = function (dateObj, dateCode, locale) {
@@ -29,10 +33,6 @@ var getDateData = function (dateObj, dateCode, locale) {
             if (dateObj.month + 1 < 10)
                 return "0" + (dateObj.month + 1);
             return "" + (dateObj.month + 1);
-        case 'MMM':
-            return locale.monthNamesShort[dateObj.month];
-        case 'MMMM':
-            return locale.monthNames[dateObj.month];
         case 'YYYY':
             return "" + dateObj.year;
         case 'HH':
@@ -60,7 +60,7 @@ var getDateData = function (dateObj, dateCode, locale) {
                 return dateObj.year + "\u5E74";
             return "" + dateObj.year;
         default:
-            return "" + dateObj.year;
+            throw new Error('Invalid date format');
     }
 };
 var format = function (dirtyDate, dateFormat, option) {
@@ -85,6 +85,12 @@ var format = function (dirtyDate, dateFormat, option) {
         if (dateFormat === 'calendaryear') {
             return getDateData(dateObj_1, 'calendaryear', option.locale);
         }
+        if (dateFormat === 'd') {
+            return getDateData(dateObj_1, 'd', option.locale);
+        }
+        if (dateFormat === 'E') {
+            return getDateData(dateObj_1, 'E', option.locale);
+        }
         var seperator = getSeperator(dateFormat);
         var formattedDate = dateFormat.split(seperator);
         formattedDate = formattedDate.map(function (item) {
@@ -93,6 +99,7 @@ var format = function (dirtyDate, dateFormat, option) {
         return formattedDate.join(seperator);
     }
     catch (error) {
+        console.error(error);
         return dateFormat;
     }
 };

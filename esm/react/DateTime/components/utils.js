@@ -69,22 +69,32 @@ var isSameMonth = function (day1, day2) { return day1.getMonth() === day2.getMon
 var isToday = function (day) { return day.toDateString() === (new Date()).toDateString(); };
 var isSameDate = function (day1, day2) { return day1.toDateString() === day2.toDateString(); };
 var parseStringToDate = function (dateString, dateFormat) {
-    var formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
-    var delimiter = getSeperator(formatLowerCase);
-    if (isNaN(dateString.split(delimiter)[1]) || isNaN(dateString.split(delimiter)[0]) || isNaN(dateString.split(delimiter)[2])) {
+    try {
+        var formatLowerCase = dateFormat ? dateFormat.toLowerCase() : 'mm/dd/yyyy';
+        var delimiter = getSeperator(formatLowerCase);
+        var dateItems = dateString.split(delimiter);
+        var formatItems = formatLowerCase.split(delimiter);
+        var monthIndex = formatItems.indexOf('mm');
+        var dayIndex = formatItems.indexOf('d') !== -1 ? formatItems.indexOf('d') :
+            formatItems.indexOf('dd');
+        var yearIndex = formatItems.indexOf('yyyy');
+        var year = parseInt(dateItems[yearIndex], 10);
+        var day = parseInt(dateItems[dayIndex], 10);
+        var month = parseInt(dateItems[monthIndex], 10);
+        month -= 1;
+        var date = new Date(year, month);
+        if (day > 0) {
+            date.setDate(day);
+        }
+        if (date.toDateString() === "Invalid Date" || month < 0 || year < 1) {
+            return null;
+        }
+        return date;
+    }
+    catch (error) {
+        console.error(error);
         return null;
     }
-    var formatItems = formatLowerCase.split(delimiter);
-    var dateItems = dateString.split(delimiter);
-    var monthIndex = formatItems.indexOf('mm');
-    var dayIndex = formatItems.indexOf('dd');
-    var yearIndex = formatItems.indexOf('yyyy');
-    var day = parseInt(dateItems[dayIndex], 10);
-    var month = parseInt(dateItems[monthIndex], 10);
-    month -= 1;
-    var year = parseInt(dateItems[yearIndex], 10);
-    var formatedDate = new Date(year, month, day);
-    return formatedDate;
 };
 var parseStringToTime = function (timeString) {
     var timeData = {

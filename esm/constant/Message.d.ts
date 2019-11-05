@@ -15,7 +15,9 @@ declare const Message: {
         MISSING_NEW_ITEM_TABNAME: string;
     };
     datetime: {
+        INVALID_DATE: string;
         INVALID_LOCALE: string;
+        INVALID_DATEFORMAT_SEPARATOR: string;
     };
     colorPicker: {
         INVALID_COLOR: string;

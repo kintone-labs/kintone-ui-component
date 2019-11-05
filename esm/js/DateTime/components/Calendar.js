@@ -240,7 +240,7 @@ var Calendar = /** @class */ (function (_super) {
             this._displayDate = new Date(date);
         }
         this._props.date = date;
-        this.rerender(['selectedDate']);
+        this.rerender(['selectedDate', 'monthYearDropdown']);
     };
     Calendar.prototype.getValue = function () {
         return this._props.date;
