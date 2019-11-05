@@ -16,7 +16,9 @@ const Message = {
         MISSING_NEW_ITEM_TABNAME: 'Missing tab name.'
     },
     datetime: {
-        INVALID_LOCALE: `Invalid locale. This function accepts only the following locales: ${availableLocales}`
+        INVALID_DATE: 'Invalid date',
+        INVALID_LOCALE: `Invalid locale. This function accepts only the following locales: ${availableLocales}`,
+        INVALID_DATEFORMAT_SEPARATOR: 'Invalid date format separator. Valid separators are:  "/", "-", " ", ":"',
     },
     colorPicker: {
         INVALID_COLOR: 'Invalid color string'

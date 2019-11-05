@@ -6,6 +6,7 @@ import {en, ja, zh, format} from './components/Locale';
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
+import Message from '../../constant/Message'
 
 import '../../css/font.css';
 
@@ -29,12 +30,20 @@ const DateTime = ({
   dateFormat = 'MM/dd/YYYY',
   type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
+
+  let localeObj = ja;
+  if (locale === 'en') {
+    localeObj = en;
+  } else if (locale === 'zh') {
+    localeObj = zh;
+  }
+
   const [defaultValue, setDefaultValue] = useState(value);
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
-  const [inputValue, setInputValue] = useState(format(value, dateFormat));
+  const [inputValue, setInputValue] = useState('');
   const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
   const [timeDateValue, setTimeDateValue] = useState(new Date(value));
@@ -149,7 +158,17 @@ const DateTime = ({
       if (!hasSelection) {
         setInputValue('');
       } else {
-        setInputValue(format(value, dateFormat));
+        //validate dateformat
+        if(inputValue !== dateFormat) {
+          const newInputValue = format(value, dateFormat)
+          if(newInputValue === dateFormat) {
+            setInputValue(dateFormat);
+            setDateError(Message.datetime.INVALID_DATE);
+            setShowPickerError(true);
+          } else if(!showPickerError) {
+            setInputValue(newInputValue);
+          }
+        }
       }
 
       if (typeof isDisabled !== 'boolean') {
@@ -159,13 +178,6 @@ const DateTime = ({
       }
     }
   }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
-
-  let localeObj = ja;
-  if (locale === 'en') {
-    localeObj = en;
-  } else if (locale === 'zh') {
-    localeObj = zh;
-  }
 
   if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
     setTypeDateTime('datetime');
@@ -177,7 +189,7 @@ const DateTime = ({
         {
           (typeDateTime === 'datetime' || typeDateTime === 'date') &&
           <div className="date-container">
-            <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
+            <div className="text-input-container" key={`${dateError}`}>
               <input
                 type="text"
                 className="kuc-input-text text-input"
@@ -185,9 +197,9 @@ const DateTime = ({
                 onFocus={(e) => {
                   setPickerDisplay('block');
                   setTimePickerDisplay('none');
-                  if (showPickerError) {
-                    setHasSelection(false);
-                  }
+                  // if (showPickerError) {
+                  //   setHasSelection(false);
+                  // }
                   if (!showPickerError && hasSelection) {
                     const temporary = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
                     const dateValue = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
@@ -223,7 +235,7 @@ const DateTime = ({
                     returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
                     setShowPickerError(false);
                   } else if (e.target.value) {
-                    setDateError('Invalid date');
+                    setDateError(Message.datetime.INVALID_DATE);
                     setShowPickerError(true);
                   }
 
@@ -284,7 +296,9 @@ const DateTime = ({
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
                       onChange(tempDate);
-                      setInputValue(format(tempDate, dateFormat));
+                      if(!showPickerError) {
+                        setInputValue(format(tempDate, dateFormat));
+                      }
                       setHasSelection(true);
                       setShowPickerError(false);
                     } else if (previousDate) {
@@ -431,7 +445,6 @@ const DateTime = ({
   }
 
   return <div />;
-
 };
 
 export default DateTime;

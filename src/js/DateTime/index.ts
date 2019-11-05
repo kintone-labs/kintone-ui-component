@@ -78,16 +78,18 @@ class DateTime extends Control<DateTimeProps> {
     super.rerender();
     if (changedAttr.indexOf('dateTextInput') !== -1) {
       if (this._props.value && this._props.dateFormat) {
-        this._dateTextInput.value = format(this._props.value, this._props.dateFormat, {
-          locale: this._props.locale
-        });
+        const newTextInputValue = format(this._props.value, this._props.dateFormat);
+        if(newTextInputValue === this._props.dateFormat) {
+          this._dateErrorDiv.style.display = 'block';
+        }
+        this._dateTextInput.value = newTextInputValue;
       } else {
         this._dateTextInput.value = '';
       }
     }
     if (changedAttr.indexOf('timeTextInput') !== -1) {
-      this._timeTextInput.value = format(this._time, 'HH:mm');
-      this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
+      this._timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
+      this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._calendar) {
@@ -125,7 +127,7 @@ class DateTime extends Control<DateTimeProps> {
     dateError.className = 'label-error';
     dateError.style.display = 'none';
     const span = document.createElement('span');
-    span.textContent = 'Invalid date';
+    span.textContent = Message.datetime.INVALID_DATE;
     dateError.appendChild(span);
     this._dateErrorDiv = dateError;
     return dateError;
@@ -136,7 +138,11 @@ class DateTime extends Control<DateTimeProps> {
     dateTextInput.type = 'text';
     dateTextInput.className = 'kuc-input-text text-input';
     if (this._props.value && this._props.dateFormat) {
-      dateTextInput.value = format(this._props.value, this._props.dateFormat);
+      const newTextInputValue = format(this._props.value, this._props.dateFormat);
+      if(newTextInputValue === this._props.dateFormat) {
+        this._dateErrorDiv.style.display = 'block';
+      }
+      dateTextInput.value = newTextInputValue;
     }
     if (this._props.isDisabled) {
       dateTextInput.disabled = this._props.isDisabled;
@@ -177,9 +183,9 @@ class DateTime extends Control<DateTimeProps> {
     }
     timeTextInput.type = 'text';
     timeTextInput.className = 'kuc-input-text text-input time';
-    timeTextInput.value = format(this._time, 'HH:mm');
+    timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
     timeTextInput.maxLength = 5;
-    timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm');
+    timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
     this._timeTextInput = timeTextInput;
     this._registerTimeTextInputEvents();
   }
@@ -313,7 +319,7 @@ class DateTime extends Control<DateTimeProps> {
         previousMinutes = '0';
       }
       newTime.setMinutes(parseInt(previousMinutes + key, 10));
-      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.value = format(newTime, 'HH:mm', {locale: this._locale});
       this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
       this._timeTextInput.setSelectionRange(3, 5);
     } else {
@@ -328,7 +334,7 @@ class DateTime extends Control<DateTimeProps> {
         previousHours = '0';
       }
       newTime.setHours(parseInt(previousHours + key, 10));
-      this._timeTextInput.value = format(newTime, 'HH:mm');
+      this._timeTextInput.value = format(newTime, 'HH:mm', {locale: this._locale});
       this._timeTextInput.dataset.previousValidTime = this._timeTextInput.value;
       this._timeTextInput.setSelectionRange(0, 2);
     }
@@ -350,11 +356,11 @@ class DateTime extends Control<DateTimeProps> {
   private _renderDate() {
     const dateContainer = document.createElement('div');
     dateContainer.className = 'date-container';
+    // render date input error
+    this._renderDateInputErrorLabel();
     // render date text input
     this._renderDateTextInput();
-    // render date input error
     dateContainer.appendChild(this._dateTextInput);
-    this._renderDateInputErrorLabel();
     dateContainer.appendChild(this._dateErrorDiv);
 
     // render calendar
@@ -362,7 +368,7 @@ class DateTime extends Control<DateTimeProps> {
       date: this._props.value,
       onClickOutside: this._onClickOutside.bind(this),
       onDateClick: this._onCalendarDateClick.bind(this),
-      locale: this._locale
+      locale: this._locale,
     });
     dateContainer.appendChild(calendar.render());
     this._calendar = calendar;
@@ -400,6 +406,9 @@ class DateTime extends Control<DateTimeProps> {
     } else {
       const tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
       if (tempDate instanceof Date && !isNaN(tempDate as any)) {
+        if(this._props.dateFormat && !this._props.dateFormat.includes("d")) {
+          tempDate.setDate(this._props.value ? this._props.value.getDate() : 1)
+        }
         this._props.value = tempDate;
       } else {
         this._dateErrorDiv.style.display = 'block';
