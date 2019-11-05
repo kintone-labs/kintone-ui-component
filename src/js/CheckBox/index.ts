@@ -219,16 +219,11 @@ class CheckBox extends Control<CheckboxProps> {
     }
 
     if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-      let selected = false;
-      if (this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
-        selected = true;
-      }
       const itemComponent = new Item({
         ...this._props.items[this._props.items.length - 1],
-        isSelected: selected,
+        isSelected: false,
         onChange: this._handleItemChange.bind(this)
       });
-
       this.itemList.push(itemComponent);
       this.element.appendChild(itemComponent.render());
     }
