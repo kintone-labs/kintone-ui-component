@@ -90,11 +90,10 @@ class Calendar extends Control<CalendarProps> {
   }
 
   _scrollToSeletedOptions = () => {
-    const styleScroll: any = {block: 'center'};
     const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected');
     for (let i = 0; i < selectedItems.length; i++) {
       const item = selectedItems[i];
-      item.scrollIntoView(styleScroll);
+      (<HTMLElement>item.parentNode).scrollTop = (<HTMLElement>item).offsetTop - (<HTMLElement>item.parentNode).offsetTop
     }
   };
 
