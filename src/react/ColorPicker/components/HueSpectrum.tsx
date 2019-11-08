@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, useCallback} from 'react';
 
 type RGB = {
   r: number;
@@ -15,11 +15,11 @@ type HueSpectrumProps = {
 export default function HueSpectrum(props: HueSpectrumProps) {
   const w = props.width;
   const h = props.height;
-  const container = useRef<HTMLDivElement>(null);
-  const hueCanvas = useRef<HTMLCanvasElement>(null);
   const [hasInitLayout, setHasInitLayout] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
+  const container = useCallback((element: HTMLDivElement) => {setContainerEl(element.getBoundingClientRect())}, []);
+  const hueCanvas = useRef<HTMLCanvasElement>(null);
 
   function initLayout() {
     if (!hasInitLayout && hueCanvas && hueCanvas.current) {
@@ -56,26 +56,18 @@ export default function HueSpectrum(props: HueSpectrumProps) {
     }
   }
 
-  function initContainerEl() {
-    if (container && container.current) {
-      setContainerEl(container.current.getBoundingClientRect());
-    }
-  }
-
   function handleMouseDown() {
     setIsMouseDown(true);
   }
 
   function handleMouseUp(e: React.MouseEvent<EventTarget>) {
     triggerSelect(e.clientY);
-    initContainerEl();
     setIsMouseDown(false);
   }
 
   function handleMouseMove(e: React.MouseEvent<EventTarget>) {
     if (isMouseDown) {
       triggerSelect(e.clientY);
-      initContainerEl();
     }
   }
 
