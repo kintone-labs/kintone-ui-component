@@ -32,11 +32,12 @@ const Calendar = ({
   const dropDownsRowRef = useRef<HTMLDivElement>(null);
 
   const scrollToSeletedOptions = () => {
-    const styleScroll: any = {block: 'center'};
     const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected');
     for (let i = 0; i < selectedItems.length; i++) {
       const item = selectedItems[i];
-      item.scrollIntoView(styleScroll);
+      if (item.parentNode) {
+        (item.parentNode as HTMLElement).scrollTop = (item as HTMLElement).offsetTop - (item.parentNode as HTMLElement).offsetTop
+      }
     }
   };
   if (!previousDate) {
