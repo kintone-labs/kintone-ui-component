@@ -47,14 +47,13 @@ class CheckBox extends Control<CheckboxProps> {
       this.element = document.createElement('div');
       this.element.className = 'kuc-input-checkbox';
     } else {
-      const copyCheckBoxComponent: CheckBox = Object.assign({}, this);
-      const itemNumber: number = copyCheckBoxComponent.element.children.length;
+      const itemNumber: number = this.element.children.length;
       for (let index = 0; index < itemNumber; index++) {
         const currentElement: Node = this.element.children[0];
         this.element.removeChild(currentElement);
       }
     }
-    
+
     if (this._props.items) {
       this._props.items.forEach((item: ItemData, index: number) => {
         const itemComponent = new Item({

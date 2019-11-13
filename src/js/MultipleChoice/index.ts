@@ -47,8 +47,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
       this.element = document.createElement('div');
       this.element.className = 'kuc-multiple-list kuc-list-outer';
     } else {
-      const copyMultiPleChoiceComponent: MultipleChoice = Object.assign({}, this);
-      const itemNumber: number = copyMultiPleChoiceComponent.element.children.length;
+      const itemNumber: number = this.element.children.length;
       for (let index = 0; index < itemNumber; index++) {
         const currentElement: Node = this.element.children[0];
         this.element.removeChild(currentElement);
