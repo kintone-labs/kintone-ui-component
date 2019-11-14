@@ -19,7 +19,7 @@
 |options|Object|No|The object contains parameter of the constructor.|
 |options.text|String|No|The content of the alert.|
 |options.type|String|No|The type of alert: <ul><li> 'error' </li><li> 'success' </li></ul> Default value is 'error'. |
-|options.isDisabled|Boolean|No|The alert will be disabled. <br> Default value: 'false'|
+|options.isDisabled|Boolean|No|This parameter still exists but isn't used in this component.|
 |options.isVisible|Boolean|No|The alert will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>
@@ -121,8 +121,7 @@ export default class Plugin extends React.Component {
         super(props);
         this.state = {
             text: "abc",
-            type: "error",
-            isDisabled:false
+            type: "error"
         };
     }
 
@@ -351,120 +350,6 @@ export default class Plugin extends React.Component {
         <div>
             <button onClick={()=>this.hide()}>Hide</button>
             <Alert text={this.state.text} isVisible={this.state.isVisible} />
-        </div>
-        );
-    }
-}
-Reactdom.render(<Plugin />, document.getElementById("root"));
-
-```
-</details>
-
-### disable()
-Disable the Alert.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" markdown="1" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-```javascript
-(function(){
-    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-    var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(alert.render());
-    alert.disable();
-})()
-```
-
-**React**
-```javascript
-import { Alert } from '@kintone/kintone-ui-component';
-import React from 'react';
-import Reactdom from "react-dom";
-
-export default class Plugin extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            text: "abc",
-            isDisabled:false
-        };
-    }
-    disable = () => {
-        this.setState({ isDisabled:true });
-    };
-    render() {
-        console.log(this.state.isDisabled);
-        
-        return (
-        <div>
-            <button onClick={()=>this.disable()}>disable</button>
-            <Alert text={this.state.text} isDisabled={this.state.isDisabled} />
-        </div>
-        );
-    }
-}
-
-Reactdom.render(<Plugin />, document.getElementById("root"));
-```
-</details>
-
-### enable()
-Enable the Alert.
-
-**Parameter**
-
-None
-
-**Returns**
-
-None
-
-<details class="tab-container" markdown="1" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-```javascript
-(function(){
-    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
-    var body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(alert.render());
-    alert.enable();
-})()
-```
-
-**React**
-```javascript
-import { Alert } from '@kintone/kintone-ui-component';
-import React from 'react';
-import Reactdom from "react-dom";
-
-export default class Plugin extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            text: "abc",
-            isDisabled:true
-        };
-    }
-    enable = () => {
-        this.setState({ isDisabled:false });
-    };
-
-    render() {
-        console.log(this.state.isDisabled);
-        return (
-        <div>
-            <button onClick={()=>this.enable()}>enable</button>
-            <Alert text={this.state.text} isDisabled={this.state.isDisabled} />
         </div>
         );
     }
