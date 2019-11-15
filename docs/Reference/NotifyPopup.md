@@ -20,7 +20,6 @@
 |options|Object|No|The object contains parameters of constructor.|
 |options.text|String|No|Content of notify popup.|
 |options.type|String|No|Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'info' </li></ul> Default value: **error**|
-|options.isDisabled|Boolean|No|This parameter still exists but isn't used in this component.|
 |options.isVisible|Boolean|No|The notify popup will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>

@@ -14,7 +14,6 @@
 |options.isRequired|Boolean|No|Display **'*'** character at the end of caption. <br> Default value is **false**.|
 |options.textColor|String|No|Color of caption. <br> Can set using the following formats: <ul><li>**Color Names**: red, yellow, black, etc.</li><li>**HEX:** #e74c3c, #0000ff, etc.</li><li>**RGBA:** rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul>|
 |options.backgroundColor|String|No|Color of background. <br> Can set using the following formats: <ul><li>**Color Names**: red, yellow, black, etc.</li><li>**HEX:** #e74c3c, #0000ff, etc.</li><li>**RGBA:** rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul>|
-|options.isDisabled|Boolean|No|This parameter still exists but isn't used in this component.|
 |options.isVisible|Boolean|No|The label will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>

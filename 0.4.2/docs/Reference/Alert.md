@@ -19,7 +19,6 @@
 |options|Object|No|The object contains parameter of the constructor.|
 |options.text|String|No|The content of the alert.|
 |options.type|String|No|The type of alert: <ul><li> 'error' </li><li> 'success' </li></ul> Default value is 'error'. |
-|options.isDisabled|Boolean|No|This parameter still exists but isn't used in this component.|
 |options.isVisible|Boolean|No|The alert will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>
