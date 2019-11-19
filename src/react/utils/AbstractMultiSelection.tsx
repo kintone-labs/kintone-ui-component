@@ -21,6 +21,18 @@ const _hasDuplicatedItems = (items: items) => {
   return !isUnique;
 };
 
+const _hasCheckedItemListDuplicated = (value?: string[]) => {
+  let isDuplicated = false;
+  if(value) {
+    value.forEach((val, index) => {
+      if(value.indexOf(val) !== index) {
+        isDuplicated = true;
+      }
+    });
+  }
+  return isDuplicated;
+};
+
 const _hasValidValue = (items: items, value: any) => {
   const validValues: string[] = [];
   items.forEach((item) => {
@@ -36,4 +48,4 @@ const _hasValidValue = (items: items, value: any) => {
   }
   return false;
 };
-export default {_hasDuplicatedItems, _hasValidValue};
+export default {_hasDuplicatedItems, _hasCheckedItemListDuplicated, _hasValidValue};
