@@ -1,0 +1,13 @@
+name: CI on commit
+on: push
+jobs: 
+  test_release: 
+    name: Check release
+    runs-on: ubuntu-18.04
+    steps: 
+      - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: Install dependencies
+        run: npm install
+      
