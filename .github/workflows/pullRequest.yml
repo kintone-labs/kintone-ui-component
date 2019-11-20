@@ -37,18 +37,16 @@ jobs:
           asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
           tag: ${{ github.ref }}
           overwrite: true
-      - name: deploy master
-        if: success()
-        run: |
-          git config --global user.email "phamgiahuong2912@gmail.com"
-          git config --global user.name "huong"
-          git add package-lock.json
-          git commit -m "merge release"
-          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
-          git push origin HEAD:master --force
-      
-      
-      
+      - name: deploy master
+        if: success()
+        run: |
+          git config --global user.email "phamgiahuong2012@gmail.com"
+          git config --global user.name "huong"
+          git add package-lock.json
+          git commit -m "merge release"
+          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+          git push origin HEAD:master --force
+          
       
       
   
