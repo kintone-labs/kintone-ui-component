@@ -47,6 +47,7 @@ class TabName extends Control<TabNameProps> {
     super.rerender();
     if (!changedAttr) return;
     let className = 'kuc-tabs-container';
+    
     if (changedAttr.indexOf('isActive') !== -1) {
       if (this._props.isActive) {
         className += ' kuc-tabs-container-selection';
