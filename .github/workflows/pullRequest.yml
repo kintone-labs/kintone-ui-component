@@ -7,10 +7,10 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
+      - uses: actions/checkout@master
       - name: Check version
         id: check_version
         uses: ./actions/check_version
-      - uses: actions/checkout@master
       - name: Remove package-lock
         if: success()      
         run: rm -rf package-lock.json
