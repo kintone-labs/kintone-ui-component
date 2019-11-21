@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
+        with:
+          ref: ${{ github.head_ref }}
       - name: Remove package-lock
         if: success()      
         run: rm -rf package-lock.json
@@ -19,10 +21,9 @@ jobs:
           ls -l
           git config --global user.email "phamgiahuong2012@gmail.com"
           git config --global user.name "huong"
-          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
-          git checkout "${GITHUB_REF:11}"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git commit package.json -m "merge release"
-          git push origin HEAD:master --force
+          git push 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Upload package to release[binaries]
