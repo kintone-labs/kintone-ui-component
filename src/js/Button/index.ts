@@ -7,7 +7,7 @@ type ButtonProps = ControlProps & {
   type?: 'normal' | 'submit';
   onClick?: (e: Event) => void;
 }
-
+                  
 class Button extends Control<ButtonProps> {
   constructor(params?: ButtonProps) {
     super();
