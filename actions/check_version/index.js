@@ -6,6 +6,7 @@ try {
   let packageVersion = "v" + package.version;
   if (tagVersion !== packageVersion) {
     core.setFailed("Version is invalid");  
+    
   } else {
     core.setOutput("version", package.version);
   }

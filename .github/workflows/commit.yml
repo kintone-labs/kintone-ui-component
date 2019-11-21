@@ -1,5 +1,8 @@
 name: CI on commit
-on: push
+on:
+  push:
+    branches:
+      - master 
 jobs: 
   test_release: 
     name: Check release
