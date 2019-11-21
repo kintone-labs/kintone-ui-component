@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
+      - name: Install dependencies
+        run: npm install
       - name: Check version
+        if: success()
         id: check_version
         uses: ./actions/check_version
       - name: Remove package-lock
         if: success()      
         run: rm -rf package-lock.json
-      - name: Install dependencies
-        if: success()
-        run: npm install
       - name: Build
         if: success()
         run: npm run build
