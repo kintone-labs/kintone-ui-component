@@ -2,8 +2,8 @@ name: CI on commit
 on:
   push:
 jobs: 
-  test_release: 
-    name: Check release
+  check_commit: 
+    name: Check Commit
     runs-on: ubuntu-18.04
     steps: 
       - uses: actions/checkout@master
