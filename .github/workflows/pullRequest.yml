@@ -6,17 +6,17 @@ jobs:
   test_release: 
     name: Check release
     runs-on: ubuntu-18.04
-    steps: 
+    steps:
       - uses: actions/checkout@master
+      - name: Remove package-lock
+        if: success()      
+        run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
       - name: Check version
         if: success()
         id: check_version
         uses: ./actions/check_version
-      - name: Remove package-lock
-        if: success()      
-        run: rm -rf package-lock.json
       - name: Build
         if: success()
         run: npm run build
