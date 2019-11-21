@@ -3,7 +3,7 @@
 	"version": "0.4.2",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
-	"license": "MIT",
+	"license": "MIT",            
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/kintone/kintone-ui-component"
