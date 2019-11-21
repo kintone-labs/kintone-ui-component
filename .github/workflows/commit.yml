@@ -1,7 +1,7 @@
 name: CI on commit
 on:
   push:
-jobs: 
+jobs:
   check_commit: 
     name: Check Commit
     runs-on: ubuntu-18.04
