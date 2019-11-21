@@ -18,7 +18,7 @@ jobs:
         run: |
           ls -l
           git status
-          git add package-lock.json
+          git commit package.json -m "test" 
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
