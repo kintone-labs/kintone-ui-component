@@ -19,9 +19,9 @@ jobs:
           ls -l
           git config --global user.email "phamgiahuong2012@gmail.com"
           git config --global user.name "huong"
-          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
           git commit package.json -m "merge release" 
-          git push origin HEAD:master --force
+          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+          git push
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
