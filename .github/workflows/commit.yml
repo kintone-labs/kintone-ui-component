@@ -1,6 +1,8 @@
 name: CI on commit
 on:
   push:
+    tags-ignore: 
+      - v1.*
 jobs:
   check_commit: 
     name: Check Commit
