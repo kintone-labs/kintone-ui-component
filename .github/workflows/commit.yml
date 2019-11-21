@@ -1,6 +1,8 @@
 name: CI on commit
 on:
   push:
+    branches: 
+      - "*"
     tags-ignore: 
       - v1.*
 jobs:
