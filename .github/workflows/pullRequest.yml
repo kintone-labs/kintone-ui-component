@@ -36,7 +36,7 @@ jobs:
         run: |
           git config --global user.email "phamgiahuong2012@gmail.com"
           git config --global user.name "huong"
-          git add package-lock.json
+          git add .
           git commit -m "merge release"
           git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
           git push origin HEAD:master --force
