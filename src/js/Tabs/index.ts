@@ -7,7 +7,7 @@ import '../../css/Tabs.css';
 type Tab = {
   tabName: string;
   tabContent?: string | HTMLElement;
-  isDisabled?: boolean;
+  isDisabled?: boolean;                  
 }
 
 type TabsProps = ControlProps & {
