@@ -1,7 +1,7 @@
 name: CI Release
 on:
   release:
-    types: [created]
+    types: [published]
 jobs: 
   test_release: 
     name: Check release
@@ -13,10 +13,27 @@ jobs:
         run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
+      - name: Check version
+        if: success()
+        id: check_version
+        uses: ./actions/check_version
+      - name: Build
+        if: success()
+        run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
+      - name: Get integrity
+        uses: ./actions/get_integrity
+      - name: upload integrity
+        if: success()
+        uses: actions/upload-artifact@master
+        with:
+          name: my-integrity
+          path: ./integrity.txt
       - name: deploy master
         if: success()
         run: |
-          ls -l
           git config --global user.email "phamgiahuong2012@gmail.com"
           git config --global user.name "huong"
           git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
