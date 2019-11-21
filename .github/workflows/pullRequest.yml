@@ -23,9 +23,11 @@ jobs:
           git config --global user.name "huong"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git commit package.json -m "merge release"
-          git push 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: push
+        if: success()
+        run: git push 
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 
