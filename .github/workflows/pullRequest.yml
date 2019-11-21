@@ -2,6 +2,8 @@ name: CI Release
 on:
   release:
     types: [created]
+    tags-ignore: 
+      - v1.*
 jobs: 
   test_release: 
     name: Check release
