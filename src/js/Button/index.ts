@@ -6,7 +6,7 @@ type ButtonProps = ControlProps & {
   text?: string;
   type?: 'normal' | 'submit';
   onClick?: (e: Event) => void;              
-}
+}                 
                   
 class Button extends Control<ButtonProps> {
   constructor(params?: ButtonProps) {
