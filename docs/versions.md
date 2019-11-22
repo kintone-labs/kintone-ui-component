@@ -5,13 +5,14 @@ Latest version of kintone-ui-component.
  
 | Versions| Documentation| Release|
 | --- | --- | --- |
-| 0.4.3| [Documentation](../)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.3)|
+| 0.4.4| [Documentation](../)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.4)|
  
 ## Past Versions
 Here you can find documentation for previous versions of kintone-ui-component.
 
 | Versions| Documentation| Release|
 | --- | --- | --- |
+| 0.4.3| [Documentation](../../0.4.3/)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.3)|
 | 0.4.2| [Documentation](../../0.4.2/)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.2)|
 | 0.4.1| [Documentation](../../0.4.1/)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.1)|
 | 0.4.0| [Documentation](../../0.4.0/)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.4.0)|
