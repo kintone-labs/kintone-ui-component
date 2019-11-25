@@ -1,6 +1,7 @@
 declare const Message: {
     common: {
         SELECTTION_DUPLICATE_VALUE: string;
+        CHECKED_ITEM_LIST_DUPLICATE_VALUE: string;
         INVALID_ARGUMENT: string;
     };
     control: {

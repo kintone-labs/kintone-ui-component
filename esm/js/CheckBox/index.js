@@ -32,8 +32,17 @@ var CheckBox = /** @class */ (function (_super) {
     }
     CheckBox.prototype._renderItemList = function () {
         var _this = this;
-        this.element = document.createElement('div');
-        this.element.className = 'kuc-input-checkbox';
+        if (!this.element) {
+            this.element = document.createElement('div');
+            this.element.className = 'kuc-input-checkbox';
+        }
+        else {
+            var itemNumber = this.element.children.length;
+            for (var index = 0; index < itemNumber; index++) {
+                var currentElement = this.element.children[0];
+                this.element.removeChild(currentElement);
+            }
+        }
         if (this._props.items) {
             this._props.items.forEach(function (item, index) {
                 var itemComponent = new Item(tslib_1.__assign({}, item, { isSelected: _this._props.value ? _this._props.value.some(function (value) { return value === item.value; }) : false, onChange: _this._handleItemChange.bind(_this) }));
@@ -46,6 +55,9 @@ var CheckBox = /** @class */ (function (_super) {
         var err;
         if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE;
+        }
+        if (AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
+            err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
         }
         if (items && value &&
             !AbstractMultiSelection._hasValidValue(items, value)) {
@@ -179,11 +191,7 @@ var CheckBox = /** @class */ (function (_super) {
             });
         }
         if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-            var selected = false;
-            if (this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
-                selected = true;
-            }
-            var itemComponent = new Item(tslib_1.__assign({}, this._props.items[this._props.items.length - 1], { isSelected: selected, onChange: this._handleItemChange.bind(this) }));
+            var itemComponent = new Item(tslib_1.__assign({}, this._props.items[this._props.items.length - 1], { isSelected: false, onChange: this._handleItemChange.bind(this) }));
             this.itemList.push(itemComponent);
             this.element.appendChild(itemComponent.render());
         }

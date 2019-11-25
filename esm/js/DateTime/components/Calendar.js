@@ -10,11 +10,10 @@ var Calendar = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this._displayDate = new Date();
         _this._scrollToSeletedOptions = function () {
-            var styleScroll = { block: 'center' };
             var selectedItems = document.getElementsByClassName('kuc-list-item-selected');
             for (var i = 0; i < selectedItems.length; i++) {
                 var item = selectedItems[i];
-                item.scrollIntoView(styleScroll);
+                item.parentNode.scrollTop = item.offsetTop - item.parentNode.offsetTop;
             }
         };
         _this._props = {

@@ -5,6 +5,7 @@ declare type ItemData = {
 };
 declare const _default: {
     _hasDuplicatedItems: (items?: ItemData[] | undefined) => boolean;
+    _hasCheckedItemListDuplicated: (value?: string[] | undefined) => boolean;
     _hasValidValue: (items?: ItemData[] | undefined, value?: string | string[] | undefined) => boolean;
 };
 export default _default;

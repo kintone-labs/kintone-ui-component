@@ -2,6 +2,7 @@ import { availableLocales } from '../react/DateTime/components/Locale';
 var Message = {
     common: {
         SELECTTION_DUPLICATE_VALUE: 'The selection has duplicate value',
+        CHECKED_ITEM_LIST_DUPLICATE_VALUE: 'The checked item list has duplicate value',
         INVALID_ARGUMENT: 'Error: invalid function arguments'
     },
     control: {

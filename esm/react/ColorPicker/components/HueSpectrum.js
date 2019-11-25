@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 export default function HueSpectrum(props) {
     var w = props.width;
     var h = props.height;
-    var container = useRef(null);
-    var hueCanvas = useRef(null);
     var _a = useState(false), hasInitLayout = _a[0], setHasInitLayout = _a[1];
     var _b = useState(false), isMouseDown = _b[0], setIsMouseDown = _b[1];
     var _c = useState(), containerEl = _c[0], setContainerEl = _c[1];
+    var container = useCallback(function (element) { setContainerEl(element.getBoundingClientRect()); }, []);
+    var hueCanvas = useRef(null);
     function initLayout() {
         if (!hasInitLayout && hueCanvas && hueCanvas.current) {
             var ctx = hueCanvas.current.getContext('2d');
@@ -39,23 +39,16 @@ export default function HueSpectrum(props) {
             }
         }
     }
-    function initContainerEl() {
-        if (container && container.current) {
-            setContainerEl(container.current.getBoundingClientRect());
-        }
-    }
     function handleMouseDown() {
         setIsMouseDown(true);
     }
     function handleMouseUp(e) {
         triggerSelect(e.clientY);
-        initContainerEl();
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
             triggerSelect(e.clientY);
-            initContainerEl();
         }
     }
     function handleMouseLeave() {

@@ -11,6 +11,17 @@ var _hasDuplicatedItems = function (items) {
     }
     return !isUnique;
 };
+var _hasCheckedItemListDuplicated = function (value) {
+    var isDuplicated = false;
+    if (value) {
+        value.forEach(function (val, index) {
+            if (value.indexOf(val) !== index) {
+                isDuplicated = true;
+            }
+        });
+    }
+    return isDuplicated;
+};
 var _hasValidValue = function (items, value) {
     var validValues = [];
     if (items) {
@@ -26,4 +37,4 @@ var _hasValidValue = function (items, value) {
     }
     return false;
 };
-export default { _hasDuplicatedItems: _hasDuplicatedItems, _hasValidValue: _hasValidValue };
+export default { _hasDuplicatedItems: _hasDuplicatedItems, _hasCheckedItemListDuplicated: _hasCheckedItemListDuplicated, _hasValidValue: _hasValidValue };

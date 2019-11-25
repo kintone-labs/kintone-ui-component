@@ -30,6 +30,9 @@ var MultipleChoice = function (props) {
     if (props.items && AbstractMultiSelection._hasDuplicatedItems(props.items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
+    if (AbstractMultiSelection._hasCheckedItemListDuplicated(props.value)) {
+        throw new Error(Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE);
+    }
     if (props.items && !AbstractMultiSelection._hasValidValue(props.items, props.value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }

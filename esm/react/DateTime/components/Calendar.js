@@ -13,11 +13,12 @@ var Calendar = function (_a) {
     var displayingDays = getDisplayingDays(displayDate);
     var dropDownsRowRef = useRef(null);
     var scrollToSeletedOptions = function () {
-        var styleScroll = { block: 'center' };
         var selectedItems = document.getElementsByClassName('kuc-list-item-selected');
         for (var i = 0; i < selectedItems.length; i++) {
             var item = selectedItems[i];
-            item.scrollIntoView(styleScroll);
+            if (item.parentNode) {
+                item.parentNode.scrollTop = item.offsetTop - item.parentNode.offsetTop;
+            }
         }
     };
     if (!previousDate) {
