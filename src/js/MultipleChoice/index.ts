@@ -43,8 +43,16 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
   }
 
   private _renderItemList() {
-    this.element = document.createElement('div');
-    this.element.className = 'kuc-multiple-list kuc-list-outer';
+    if(!this.element) {
+      this.element = document.createElement('div');
+      this.element.className = 'kuc-multiple-list kuc-list-outer';
+    } else {
+      const itemNumber: number = this.element.children.length;
+      for (let index = 0; index < itemNumber; index++) {
+        const currentElement: Node = this.element.children[0];
+        this.element.removeChild(currentElement);
+      }
+    }
 
     if (this._props.items) {
       this._props.items.forEach((item: ItemData, index: number) => {
@@ -66,9 +74,11 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
 
-    if (items && value &&
-            !AbstractMultiSelection._hasValidValue(items, value)
-    ) {
+    if(AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
+      err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
+    }
+
+    if (items && value && !AbstractMultiSelection._hasValidValue(items, value)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;
@@ -204,13 +214,9 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
     }
 
     if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-      let selected = false;
-      if (this._props.value && this._props.value.indexOf(this._props.items[this._props.items.length - 1].value)) {
-        selected = true;
-      }
       const itemComponent = new Item({
         ...this._props.items[this._props.items.length - 1],
-        isSelected: selected,
+        isSelected: false,
         onClick: this._handleItemChange.bind(this)
       });
       this.itemList.push(itemComponent);
