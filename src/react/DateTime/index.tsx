@@ -38,7 +38,7 @@ const DateTime = ({
     localeObj = zh;
   }
 
-  const [defaultValue, setDefaultValue] = useState(value);
+  const [defaultValue] = useState(value);
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
@@ -132,28 +132,8 @@ const DateTime = ({
   };
 
   useEffect(()=>{
-    if (defaultValue !== value) {
-      setDefaultValue(value);
-      setInputValue(format(value, dateFormat));
-      setTimeValue(format(value, timeFormat));
-      setTimeDateValue(new Date(value));
-    } else {
-      const newTimeDateValue = new Date(timeDateValue);
-      let setNewTimeDateValue = false;
-      if (value.getDate() !== timeDateValue.getDate()) {
-        newTimeDateValue.setDate(value.getDate());
-        setNewTimeDateValue = true;
-      }
-      if (value.getMonth() !== timeDateValue.getMonth()) {
-        newTimeDateValue.setDate(value.getDate());
-        setNewTimeDateValue = true;
-      }
-      if (value.getFullYear() !== timeDateValue.getFullYear()) {
-        newTimeDateValue.setFullYear(value.getFullYear());
-        setNewTimeDateValue = true;
-      }
-      if (setNewTimeDateValue && pickerDisplay === 'none') {
-        setTimeDateValue(newTimeDateValue);
+      if (pickerDisplay === 'none') {
+        setTimeDateValue(defaultValue);
       }
       if (!hasSelection) {
         setInputValue('');
@@ -176,8 +156,8 @@ const DateTime = ({
       } else {
         setDisableBtn(isDisabled);
       }
-    }
-  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
+    
+  }, [dateFormat, defaultValue, hasSelection, value, isDisabled]);
 
   if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
     setTypeDateTime('datetime');
