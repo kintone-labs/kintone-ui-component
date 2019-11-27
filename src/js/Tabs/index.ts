@@ -221,7 +221,7 @@ class Tabs extends Control<TabsProps> {
       throw Message.common.INVALID_ARGUMENT;
     }
     this._props.items && this._props.items.forEach((item: Tab, index: number) => {
-      let isSelected = index === this._props.value;
+      const isSelected = index === this._props.value;
       if (item.tabName === tabName) {
         if(isSelected){
           throw Message.tabs.INVALID_ACTION;
