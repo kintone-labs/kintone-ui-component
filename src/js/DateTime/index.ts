@@ -10,8 +10,8 @@ import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
 type DateTimeProps = ControlProps & {
   value?: Date | null;
-  type?: "date" | "time" | "datetime";
-  locale?: "ja" | "en" | "zh";
+  type?: 'date' | 'time' | 'datetime';
+  locale?: 'ja' | 'en' | 'zh';
   dateFormat?: string;
   timeFormat?: string;
   onChange?: (date: Date) => void;
@@ -79,7 +79,7 @@ class DateTime extends Control<DateTimeProps> {
     if (changedAttr.indexOf('dateTextInput') !== -1) {
       if (this._props.value && this._props.dateFormat) {
         const newTextInputValue = format(this._props.value, this._props.dateFormat);
-        if(newTextInputValue === this._props.dateFormat) {
+        if (newTextInputValue === this._props.dateFormat) {
           this._dateErrorDiv.style.display = 'block';
         }
         this._dateTextInput.value = newTextInputValue;
@@ -139,7 +139,7 @@ class DateTime extends Control<DateTimeProps> {
     dateTextInput.className = 'kuc-input-text text-input';
     if (this._props.value && this._props.dateFormat) {
       const newTextInputValue = format(this._props.value, this._props.dateFormat);
-      if(newTextInputValue === this._props.dateFormat) {
+      if (newTextInputValue === this._props.dateFormat) {
         this._dateErrorDiv.style.display = 'block';
       }
       dateTextInput.value = newTextInputValue;
@@ -406,8 +406,8 @@ class DateTime extends Control<DateTimeProps> {
     } else {
       const tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
       if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-        if(this._props.dateFormat && !this._props.dateFormat.includes("d")) {
-          tempDate.setDate(this._props.value ? this._props.value.getDate() : 1)
+        if (this._props.dateFormat && !this._props.dateFormat.includes('d')) {
+          tempDate.setDate(this._props.value ? this._props.value.getDate() : 1);
         }
         this._props.value = tempDate;
       } else {

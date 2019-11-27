@@ -6,7 +6,7 @@ import '../../css/NotifyPopup.css';
 
 type PopupProps = ControlProps & {
   text?: string;
-  type?: "error" | "success" | "info";
+  type?: 'error' | 'success' | 'info';
 }
 
 class NotifyPopup extends Control<PopupProps> {
@@ -26,8 +26,8 @@ class NotifyPopup extends Control<PopupProps> {
       }
     };
     if (params) {
-      this._props = { ...this._props, ...params };
-      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
+      this._props = {...this._props, ...params};
+      this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
     }
 
     // isDisabled always is setted false
@@ -45,7 +45,7 @@ class NotifyPopup extends Control<PopupProps> {
   }
 
   private _getStyleByType() {
-    const style:{bgClass:string,color:"gray" | "blue" | "red" | "green" | "transparent"} = {bgClass: "", color:"red" };
+    const style: {bgClass: string;color: 'gray' | 'blue' | 'red' | 'green' | 'transparent'} = {bgClass: '', color: 'red'};
 
     switch (this._props.type) {
       case 'success':
@@ -108,7 +108,7 @@ class NotifyPopup extends Control<PopupProps> {
 
     if (changedAttr.indexOf('type') !== -1) {
       this.element.className = this._getClassName();
-      this.closeButton.setColor(this._getStyleByType().color );
+      this.closeButton.setColor(this._getStyleByType().color);
     }
   }
 
@@ -117,13 +117,13 @@ class NotifyPopup extends Control<PopupProps> {
     this.rerender(['text']);
   }
 
-  setType(type: "error" | "success" | "info"): void {
+  setType(type: 'error' | 'success' | 'info'): void {
     this._props.type = type;
     this.rerender(['type']);
   }
 
   disable(): void {
-    // nothing to do   
+    // nothing to do
   }
 
   enable(): void {

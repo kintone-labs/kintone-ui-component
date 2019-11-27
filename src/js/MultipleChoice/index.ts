@@ -43,7 +43,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
   }
 
   private _renderItemList() {
-    if(!this.element) {
+    if (!this.element) {
       this.element = document.createElement('div');
       this.element.className = 'kuc-multiple-list kuc-list-outer';
     } else {
@@ -74,7 +74,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
 
-    if(AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
+    if (AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
       err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
     }
 

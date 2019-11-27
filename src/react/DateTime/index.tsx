@@ -6,16 +6,16 @@ import {en, ja, zh, format} from './components/Locale';
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
-import Message from '../../constant/Message'
+import Message from '../../constant/Message';
 
 import '../../css/font.css';
 
 type DateTimeConstructorParameters = {
   value?: Date;
   onChange?: Function;
-  locale?: "ja" | "en" | "zh";
+  locale?: 'ja' | 'en' | 'zh';
   dateFormat?: string;
-  type?: "date" | "time" | "datetime";
+  type?: 'date' | 'time' | 'datetime';
   timeFormat?: string;
   isDisabled?: boolean;
   isVisible?: boolean;
@@ -158,14 +158,14 @@ const DateTime = ({
       if (!hasSelection) {
         setInputValue('');
       } else {
-        //validate dateformat
-        if(inputValue !== dateFormat) {
-          const newInputValue = format(value, dateFormat)
-          if(newInputValue === dateFormat) {
+        // validate dateformat
+        if (inputValue !== dateFormat) {
+          const newInputValue = format(value, dateFormat);
+          if (newInputValue === dateFormat) {
             setInputValue(dateFormat);
             setDateError(Message.datetime.INVALID_DATE);
             setShowPickerError(true);
-          } else if(!showPickerError) {
+          } else if (!showPickerError) {
             setInputValue(newInputValue);
           }
         }
@@ -177,7 +177,7 @@ const DateTime = ({
         setDisableBtn(isDisabled);
       }
     }
-  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
+  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled, inputValue, showPickerError]);
 
   if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
     setTypeDateTime('datetime');
@@ -296,7 +296,7 @@ const DateTime = ({
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
                       onChange(tempDate);
-                      if(!showPickerError) {
+                      if (!showPickerError) {
                         setInputValue(format(tempDate, dateFormat));
                       }
                       setHasSelection(true);

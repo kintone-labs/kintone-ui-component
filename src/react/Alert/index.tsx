@@ -4,7 +4,7 @@ import '../../css/Alert.css';
 
 type AlertProps = {
   text?: string;
-  type?: "error" | "success";
+  type?: 'error' | 'success';
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }

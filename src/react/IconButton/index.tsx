@@ -3,12 +3,12 @@ import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} f
 import '../../css/IconButton.css';
 
 type IconButtonProps = {
-  type?: "insert" | "remove" | "close" | "file" | "right" | "left";
-  size?: "normal" | "small";
-  color?:  "gray" | "blue" | "red" | "green" | "transparent";
+  type?: 'insert' | 'remove' | 'close' | 'file' | 'right' | 'left';
+  size?: 'normal' | 'small';
+  color?: 'gray' | 'blue' | 'red' | 'green' | 'transparent';
   isDisabled?: boolean;
   isVisible?: boolean;
-  shape?: "circle" | "normal";
+  shape?: 'circle' | 'normal';
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 

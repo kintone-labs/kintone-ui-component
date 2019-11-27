@@ -5,7 +5,7 @@ import '../../css/FieldGroup.css';
 type FieldGroupProps = {
   content?: any;
   name?: string;
-  toggle?: "collapse" | "expand";
+  toggle?: 'collapse' | 'expand';
   onToggle?: (toggle: string) => void;
   isVisible?: boolean;
   children?: any;

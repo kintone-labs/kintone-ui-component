@@ -1,10 +1,10 @@
-import '../polyfill'
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/Alert.css';
 
 type AlertProps = ControlProps & {
   text?: string;
-  type?:  "error" | "success";
+  type?: 'error' | 'success';
 }
 
 class Alert extends Control<AlertProps> {
@@ -19,7 +19,7 @@ class Alert extends Control<AlertProps> {
     };
     if (params) {
       this._props = {...this._props, ...params};
-      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
+      this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
     }
     // isDisabled always is setted false
     // When we update major version of ui-component, we should delete this prop
@@ -58,13 +58,13 @@ class Alert extends Control<AlertProps> {
   }
 
 
-  setType(type:  "error" | "success"): void {
+  setType(type: 'error' | 'success'): void {
     this._props.type = type;
     this.rerender(['type']);
   }
 
   disable(): void {
-    // nothing to do   
+    // nothing to do
   }
 
   enable(): void {
