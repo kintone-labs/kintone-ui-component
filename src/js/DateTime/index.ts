@@ -10,8 +10,8 @@ import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
 type DateTimeProps = ControlProps & {
   value?: Date | null;
-  type?: string;
-  locale?: string;
+  type?: "date" | "time" | "datetime";
+  locale?: "ja" | "en" | "zh";
   dateFormat?: string;
   timeFormat?: string;
   onChange?: (date: Date) => void;

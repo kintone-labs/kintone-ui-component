@@ -4,7 +4,7 @@ import '../../css/Alert.css';
 
 type AlertProps = ControlProps & {
   text?: string;
-  type?: string;
+  type?:  "error" | "success";
 }
 
 class Alert extends Control<AlertProps> {
@@ -58,7 +58,7 @@ class Alert extends Control<AlertProps> {
   }
 
 
-  setType(type: string): void {
+  setType(type:  "error" | "success"): void {
     this._props.type = type;
     this.rerender(['type']);
   }

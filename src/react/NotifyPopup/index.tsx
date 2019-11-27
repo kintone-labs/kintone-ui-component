@@ -5,7 +5,7 @@ import IconButton from '../IconButton/index';
 
 type NotifyPopupProps = {
   text?: string;
-  type?: string;
+  type?: "error" | "success" | "info";
   isVisible?: boolean;
   onClick?: () => void;
   onClose?: () => void;
@@ -18,10 +18,7 @@ const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps
   };
 
   const _getStyleByType = () => {
-    const style = {
-      bgClass: '',
-      color: ''
-    };
+    const style:{bgClass:string,color:"gray" | "blue" | "red" | "green" | "transparent"} = {bgClass: "", color:"red" };
     switch (type) {
       case 'success':
         style.bgClass = 'bg-success';

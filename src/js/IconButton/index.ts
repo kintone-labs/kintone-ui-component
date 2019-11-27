@@ -3,10 +3,10 @@ import Control, {ControlProps} from '../Control';
 import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} from '@mdi/js';
 import '../../css/IconButton.css';
 type IconBtnProps = ControlProps & {
-  type?: string;
-  size?: string;
-  color?: string;
-  shape?: string;
+  type?: "insert" | "remove" | "close" | "file" | "right" | "left";
+  size?: "normal" | "small";
+  color?: "gray" | "blue" | "red" | "green" | "transparent";
+  shape?: "circle" | "normal";
 }
 
 class IconButton extends Control<IconBtnProps> {
@@ -20,7 +20,7 @@ class IconButton extends Control<IconBtnProps> {
       ...this._props,
       ...{
         type: 'insert',
-        size: 'large',
+        size: 'normal',
         color: 'gray',
         shape: 'circle'
       }
@@ -123,22 +123,22 @@ class IconButton extends Control<IconBtnProps> {
     }
   }
 
-  setType(type: string): void {
+  setType(type: "insert" | "remove" | "close" | "file" | "right" | "left"): void {
     this._props.type = type;
     this.rerender(['iconStyle']);
   }
 
-  setSize(size: string): void {
+  setSize(size: "normal" | "small"): void {
     this._props.size = size;
     this.rerender(['btnStyle']);
   }
 
-  setShape(shape: string): void {
+  setShape(shape: "circle" | "normal"): void {
     this._props.shape = shape;
     this.rerender(['btnStyle']);
   }
 
-  setColor(color: string): void {
+  setColor(color: "gray" | "blue" | "red" | "green" | "transparent"): void {
     this._props.color = color;
     this.rerender(['btnStyle']);
   }
