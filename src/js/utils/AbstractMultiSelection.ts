@@ -21,9 +21,9 @@ const _hasDuplicatedItems = (items?: ItemData[]) => {
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {
   let isDuplicated = false;
-  if(value) {
+  if (value) {
     value.forEach((val, index) => {
-      if(value.indexOf(val) !== index) {
+      if (value.indexOf(val) !== index) {
         isDuplicated = true;
       }
     });
@@ -35,7 +35,7 @@ const _hasValidValue = (items?: ItemData[], value?: string | string[]) => {
   const validValues: string[] = [];
   if (items) {
     items.forEach((item) => {
-      (item.value || (item.value === "")) && validValues.push(item.value);
+      (item.value || (item.value === '')) && validValues.push(item.value);
     });
   }
 

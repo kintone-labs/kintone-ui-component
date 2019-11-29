@@ -23,9 +23,9 @@ const _hasDuplicatedItems = (items: items) => {
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {
   let isDuplicated = false;
-  if(value) {
+  if (value) {
     value.forEach((val, index) => {
-      if(value.indexOf(val) !== index) {
+      if (value.indexOf(val) !== index) {
         isDuplicated = true;
       }
     });

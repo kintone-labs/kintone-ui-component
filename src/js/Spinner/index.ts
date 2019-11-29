@@ -34,7 +34,7 @@ class Spinner extends Control<ControlProps> {
   }
 
   disable(): void {
-    // nothing to do   
+    // nothing to do
   }
 
   enable(): void {

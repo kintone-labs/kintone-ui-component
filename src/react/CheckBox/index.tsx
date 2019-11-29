@@ -60,7 +60,7 @@ const CheckBox = (props: CheckBoxProps) => {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
 
-  if(AbstractMultiSelection._hasCheckedItemListDuplicated(props.value)) {
+  if (AbstractMultiSelection._hasCheckedItemListDuplicated(props.value)) {
     throw new Error(Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE);
   }
 

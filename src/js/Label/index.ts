@@ -28,7 +28,7 @@ class Label extends Control<LabelProps> {
     };
     if (params) {
       this._props = {...this._props, ...params};
-      this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
+      this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
     }
 
     // isDisabled always is setted false
@@ -94,7 +94,7 @@ class Label extends Control<LabelProps> {
   }
 
   disable(): void {
-    // nothing to do   
+    // nothing to do
   }
 
   enable(): void {

@@ -1,4 +1,4 @@
-import '../polyfill'
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/Button.css';
 

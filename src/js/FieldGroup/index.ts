@@ -4,7 +4,7 @@ import '../../css/FieldGroup.css';
 type FieldGroupProps = ControlProps & {
   content?: any;
   name?: string;
-  toggle?: string;
+  toggle?: 'collapse' | 'expand';
   onToggle?: (toggle: string) => void;
   isVisible?: boolean;
 }
@@ -102,7 +102,7 @@ class FieldGroup extends Control<FieldGroupProps> {
     return this._props.name;
   }
 
-  setToggle(toggle: string) {
+  setToggle(toggle: 'collapse' | 'expand') {
     this._props.toggle = toggle;
     this.fgTab.className = this._getClassName();
     this.fgTabArrow.className = this._getArrowClassName();

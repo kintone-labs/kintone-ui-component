@@ -5,7 +5,7 @@ import '../../css/Button.css';
 type ButtonProps = {
   style?: CSSProperties;
   text?: string;
-  type?: string;
+  type?: 'normal' | 'submit';
   isDisabled?: boolean;
   isVisible?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;

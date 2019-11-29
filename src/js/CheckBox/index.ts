@@ -1,4 +1,4 @@
-import '../polyfill'
+import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import Item, {ItemData} from '../CheckBox/Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
@@ -43,7 +43,7 @@ class CheckBox extends Control<CheckboxProps> {
   }
 
   private _renderItemList() {
-    if(!this.element) {
+    if (!this.element) {
       this.element = document.createElement('div');
       this.element.className = 'kuc-input-checkbox';
     } else {
@@ -73,7 +73,7 @@ class CheckBox extends Control<CheckboxProps> {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
 
-    if(AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
+    if (AbstractMultiSelection._hasCheckedItemListDuplicated(value)) {
       err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
     }
 
