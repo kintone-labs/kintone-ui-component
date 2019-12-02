@@ -67,8 +67,8 @@ class Tabs extends Control<TabsProps> {
       if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
         err = Message.common.INVALID_ARGUMENT;
       }
-    } else if(!this._props.value && this._props.items && this._props.items.length > 0) {
-      this._props.value = 0; 
+    } else if (!this._props.value && this._props.items && this._props.items.length > 0) {
+      this._props.value = 0;
     }
     return err;
   }
@@ -223,9 +223,9 @@ class Tabs extends Control<TabsProps> {
     this._props.items && this._props.items.forEach((item: Tab, index: number) => {
       const isSelected = index === this._props.value;
       if (item.tabName === tabName) {
-        if(isSelected){
+        if (isSelected) {
           throw Message.tabs.INVALID_ACTION;
-        }else{
+        } else {
           this.tabNames[index].disable();
         }
       }

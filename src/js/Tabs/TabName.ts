@@ -47,7 +47,7 @@ class TabName extends Control<TabNameProps> {
     super.rerender();
     if (!changedAttr) return;
     let className = 'kuc-tabs-container';
-    
+
     if (changedAttr.indexOf('isActive') !== -1) {
       if (this._props.isActive) {
         className += ' kuc-tabs-container-selection';
@@ -56,8 +56,8 @@ class TabName extends Control<TabNameProps> {
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._props.isDisabled) {
         className += ' kuc-tabs-disabled';
-      }else if(!this._props.isDisabled && this._props.isActive){
-        className += " kuc-tabs-container-selection";
+      } else if (!this._props.isDisabled && this._props.isActive) {
+        className += ' kuc-tabs-container-selection';
       }
     }
     this.element.className = className;
