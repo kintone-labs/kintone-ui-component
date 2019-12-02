@@ -1,5 +1,5 @@
-
-import {getWeekDayLabels,
+import {
+  getWeekDayLabels,
   getDisplayingDays,
   isSameMonth,
   isToday,
@@ -7,37 +7,37 @@ import {getWeekDayLabels,
   parseStringToDate,
   getMonthLabels,
   getYearLabels
-} from '../../../react/DateTime/components/utils';
-import {ja, en, format} from '../../../react/DateTime/components/Locale';
-import Locale from '../../../react/DateTime/components/localizationData/locale-dto';
-import Control, {ControlProps} from '../../Control';
-import Dropdown from '../../Dropdown';
-import '../../../css/DropdownCalendar.css';
+} from "../../../react/DateTime/components/utils";
+import { ja, en, format } from "../../../react/DateTime/components/Locale";
+import Locale from "../../../react/DateTime/components/localizationData/locale-dto";
+import Control, { ControlProps } from "../../Control";
+import Dropdown from "../../Dropdown";
+import "../../../css/DropdownCalendar.css";
 type CalendarProps = ControlProps & {
   date?: Date | null;
   locale: Locale;
   onDateClick?: (date: Date | null) => void;
   onClickOutside?: (e: FocusEvent) => void;
-}
+};
 
 class Calendar extends Control<CalendarProps> {
-  protected element: HTMLElement
-  private _calendarHeader: HTMLElement
-  private _monthYearContainer: HTMLElement
-  private _previousButton: HTMLElement
-  private _nextButton: HTMLElement
-  private _displayDate: Date = new Date()
-  private _displayMonth: string
-  private _displayYear: string
-  private _monthYearDropdownsRow: HTMLElement
-  private _displayMonthDropdown: Dropdown
-  private _displayYearDropdown: Dropdown
-  private _daysContainer: HTMLElement
-  private _quickSelectionsContainer: HTMLElement
-  private _todayButton: HTMLElement
-  private _noneButton: HTMLElement
-  private _weekDayLabelsSpans: HTMLElement[]
-  private _displayDaysSpans: HTMLElement[]
+  protected element: HTMLElement;
+  private _calendarHeader: HTMLElement;
+  private _monthYearContainer: HTMLElement;
+  private _previousButton: HTMLElement;
+  private _nextButton: HTMLElement;
+  private _displayDate: Date = new Date();
+  private _displayMonth: string;
+  private _displayYear: string;
+  private _monthYearDropdownsRow: HTMLElement;
+  private _displayMonthDropdown: Dropdown;
+  private _displayYearDropdown: Dropdown;
+  private _daysContainer: HTMLElement;
+  private _quickSelectionsContainer: HTMLElement;
+  private _todayButton: HTMLElement;
+  private _noneButton: HTMLElement;
+  private _weekDayLabelsSpans: HTMLElement[];
+  private _displayDaysSpans: HTMLElement[];
 
   constructor(params: CalendarProps) {
     super();
@@ -47,117 +47,117 @@ class Calendar extends Control<CalendarProps> {
       isVisible: false
     };
     if (params) {
-      this._props = {...this._props, ...params};
+      this._props = { ...this._props, ...params };
     }
-    this._displayMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
-    this._displayYear = format(this._displayDate, 'calendaryear', {locale: this._props.locale});
+    this._displayMonth = format(this._displayDate, "calendarmonth", { locale: this._props.locale }) || "";
+    this._displayYear = format(this._displayDate, "calendaryear", { locale: this._props.locale }) || "";
   }
 
   _renderCalendarContainer() {
-    const calendarContainer = document.createElement('div');
-    calendarContainer.className = 'date-picker-container';
-    calendarContainer.style.display = this._props.isVisible ? 'block' : 'none';
+    const calendarContainer = document.createElement("div");
+    calendarContainer.className = "date-picker-container";
+    calendarContainer.style.display = this._props.isVisible ? "block" : "none";
     calendarContainer.tabIndex = 0;
     this.element = calendarContainer;
   }
 
   _renderCalendarHeader() {
-    const calendarHeader = document.createElement('div');
-    calendarHeader.className = 'header';
+    const calendarHeader = document.createElement("div");
+    calendarHeader.className = "header";
     this._calendarHeader = calendarHeader;
   }
 
   _renderMonthYearContainer() {
-    const monthYearContainer = document.createElement('div');
-    monthYearContainer.className = 'month-year-container';
-    const monthYearDropdownsRow = document.createElement('div');
+    const monthYearContainer = document.createElement("div");
+    monthYearContainer.className = "month-year-container";
+    const monthYearDropdownsRow = document.createElement("div");
     monthYearDropdownsRow.tabIndex = -1;
-    monthYearDropdownsRow.classList.add('kuc-calendar-dropdown-row');
+    monthYearDropdownsRow.classList.add("kuc-calendar-dropdown-row");
     this._monthYearDropdownsRow = monthYearDropdownsRow;
     this._monthYearContainer = monthYearContainer;
   }
 
   _renderPreviousButton() {
-    const span = document.createElement('span');
-    span.className = 'prev calendar-button-control';
+    const span = document.createElement("span");
+    span.className = "prev calendar-button-control";
     span.onclick = () => {
       this._displayDate.setMonth(this._displayDate.getMonth() - 1);
-      this._displayMonth = this._displayDate.getMonth() + '';
-      this.rerender(['monthYearDropdown']);
-      this.rerender(['selectedDate']);
+      this._displayMonth = this._displayDate.getMonth() + "";
+      this.rerender(["monthYearDropdown"]);
+      this.rerender(["selectedDate"]);
     };
     this._previousButton = span;
   }
 
   _scrollToSeletedOptions = () => {
-    const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected');
+    const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName("kuc-list-item-selected");
     for (let i = 0; i < selectedItems.length; i++) {
       const item = selectedItems[i];
-      (<HTMLElement>item.parentNode).scrollTop = (<HTMLElement>item).offsetTop - (<HTMLElement>item.parentNode).offsetTop
+      (<HTMLElement>item.parentNode).scrollTop = (<HTMLElement>item).offsetTop - (<HTMLElement>item.parentNode).offsetTop;
     }
   };
 
   _renderDisplayMonthDropdown() {
-    const monthDropdown = new Dropdown({value: this._displayMonth, items: getMonthLabels(this._props.locale)});
-    monthDropdown.on('listItemsShown', () => {
+    const monthDropdown = new Dropdown({ value: this._displayMonth, items: getMonthLabels(this._props.locale) });
+    monthDropdown.on("listItemsShown", () => {
       this._scrollToSeletedOptions();
     });
-    monthDropdown.on('change', (value) => {
+    monthDropdown.on("change", value => {
       const newDate = new Date(this._displayDate);
       newDate.setMonth(this._props.locale.monthNames.indexOf(value), 1);
       this._displayMonth = value;
       this._displayDate = newDate;
       this._scrollToSeletedOptions();
-      this.rerender(['selectedDate']);
+      this.rerender(["selectedDate"]);
     });
     this._displayMonthDropdown = monthDropdown;
   }
 
   _onChangeCreateYearDropdown(value: any) {
     const newDate = new Date(this._displayDate);
-    const currentYear = Number(value.replace('年', ''));
+    const currentYear = Number(value.replace("年", ""));
     newDate.setFullYear(currentYear, this._displayDate.getMonth(), 1);
     this._displayYear = value;
     this._displayDate = newDate;
     this._displayYearDropdown.setItems(getYearLabels(this._displayYear, this._props.locale));
-    this.rerender(['selectedDate']);
+    this.rerender(["selectedDate"]);
   }
 
   _renderDisplayYearDropdown() {
-    const yearDropdown = new Dropdown({value: this._displayYear, items: getYearLabels(this._displayYear, this._props.locale)});
-    yearDropdown.on('listItemsShown', () => {
+    const yearDropdown = new Dropdown({ value: this._displayYear, items: getYearLabels(this._displayYear, this._props.locale) });
+    yearDropdown.on("listItemsShown", () => {
       this._scrollToSeletedOptions();
     });
     this._displayYearDropdown = yearDropdown;
-    this._displayYearDropdown.on('change', this._onChangeCreateYearDropdown.bind(this));
+    this._displayYearDropdown.on("change", this._onChangeCreateYearDropdown.bind(this));
   }
 
   _renderNextButton() {
-    const span = document.createElement('span');
-    span.className = 'next calendar-button-control';
+    const span = document.createElement("span");
+    span.className = "next calendar-button-control";
     span.onclick = () => {
       this._displayDate.setMonth(this._displayDate.getMonth() + 1);
-      this.rerender(['monthYearDropdown']);
-      this.rerender(['selectedDate']);
+      this.rerender(["monthYearDropdown"]);
+      this.rerender(["selectedDate"]);
     };
     this._nextButton = span;
   }
 
   _renderDaysContainer() {
-    const div = document.createElement('div');
-    div.className = 'days-container';
+    const div = document.createElement("div");
+    div.className = "days-container";
     this._daysContainer = div;
   }
 
   _renderQuickSelectionsContainer() {
-    const div = document.createElement('div');
-    div.className = 'quick-selections-container';
+    const div = document.createElement("div");
+    div.className = "quick-selections-container";
     this._quickSelectionsContainer = div;
   }
 
   _renderTodayButton() {
-    const span = document.createElement('span');
-    span.className = 'today calendar-button-control';
+    const span = document.createElement("span");
+    span.className = "today calendar-button-control";
     if (this._props.locale) {
       span.textContent = this._props.locale.today;
     }
@@ -165,8 +165,8 @@ class Calendar extends Control<CalendarProps> {
   }
 
   _renderNoneButton() {
-    const span = document.createElement('span');
-    span.className = 'none calendar-button-control';
+    const span = document.createElement("span");
+    span.className = "none calendar-button-control";
     if (this._props.locale) {
       span.textContent = this._props.locale.none;
     }
@@ -178,8 +178,8 @@ class Calendar extends Control<CalendarProps> {
     const weekDayLabelsSpans: HTMLElement[] = [];
     weekDayLabels.forEach((label, index) => {
       const notWeekend = index !== 0 && index !== 6;
-      const labelSpan = document.createElement('span');
-      labelSpan.className = notWeekend ? 'wday-header' : 'wday-header grayed-out';
+      const labelSpan = document.createElement("span");
+      labelSpan.className = notWeekend ? "wday-header" : "wday-header grayed-out";
       labelSpan.textContent = label;
       weekDayLabelsSpans.push(labelSpan);
     });
@@ -189,16 +189,16 @@ class Calendar extends Control<CalendarProps> {
   _renderDaysLabels() {
     const displayingDays = getDisplayingDays(this._displayDate);
     const displayDaysSpans: HTMLElement[] = [];
-    displayingDays.forEach((day) => {
-      const daySpan = document.createElement('span');
-      let className = 'day';
-      className += this._displayDate && isSameMonth(day, this._displayDate) ? '' : ' grayed-out';
-      className += isToday(day) ? ' today' : '';
-      className += this._props.date && isSameDate(day, this._props.date) ? ' selected' : '';
+    displayingDays.forEach(day => {
+      const daySpan = document.createElement("span");
+      let className = "day";
+      className += this._displayDate && isSameMonth(day, this._displayDate) ? "" : " grayed-out";
+      className += isToday(day) ? " today" : "";
+      className += this._props.date && isSameDate(day, this._props.date) ? " selected" : "";
       daySpan.className = className;
       daySpan.tabIndex = 0;
-      daySpan.textContent = format(day, 'd');
-      daySpan.dataset.date = format(day, 'MM/dd/YYYY');
+      daySpan.textContent = format(day, "d");
+      daySpan.dataset.date = format(day, "MM/dd/YYYY") || "";
       this._setOnclickForDaysLabels(daySpan);
       displayDaysSpans.push(daySpan);
     });
@@ -235,10 +235,10 @@ class Calendar extends Control<CalendarProps> {
     this.element.appendChild(this._calendarHeader);
 
     // render days elements
-    this._weekDayLabelsSpans.forEach((weekLabel)=>{
+    this._weekDayLabelsSpans.forEach(weekLabel => {
       this._daysContainer.appendChild(weekLabel);
     });
-    this._displayDaysSpans.forEach((dayLabel)=>{
+    this._displayDaysSpans.forEach(dayLabel => {
       this._daysContainer.appendChild(dayLabel);
     });
     this.element.appendChild(this._daysContainer);
@@ -250,20 +250,20 @@ class Calendar extends Control<CalendarProps> {
       if (this._props.onDateClick) {
         const currentDate = new Date();
         this._displayMonth = getMonthLabels(this._props.locale)[currentDate.getMonth()].label;
-        this._displayYear = format(currentDate, 'calendaryear', {locale: this._props.locale});
+        this._displayYear = format(currentDate, "calendaryear", { locale: this._props.locale }) || "";
         this._displayMonthDropdown.setValue(this._displayMonth);
         this._displayYearDropdown.setValue(this._displayYear);
         this._props.onDateClick(new Date());
       }
     };
-    this._noneButton.onclick = (e) => {
+    this._noneButton.onclick = e => {
       if (this._props.onDateClick) {
         this._props.onDateClick(null);
       }
     };
     this.element.appendChild(this._quickSelectionsContainer);
 
-    this.element.onblur = (e) => {
+    this.element.onblur = e => {
       if (this._props.onClickOutside) {
         this._props.onClickOutside(e);
       }
@@ -285,7 +285,7 @@ class Calendar extends Control<CalendarProps> {
       this._displayDate = new Date(date);
     }
     this._props.date = date;
-    this.rerender(['selectedDate', 'monthYearDropdown']);
+    this.rerender(["selectedDate", "monthYearDropdown"]);
   }
 
   getValue(): Date | null | undefined {
@@ -298,27 +298,27 @@ class Calendar extends Control<CalendarProps> {
 
   rerender(changedAttr: string[], options?: object) {
     super.rerender();
-    if (changedAttr.indexOf('selectedDate') !== -1) {
-      this._daysContainer.innerHTML = '';
+    if (changedAttr.indexOf("selectedDate") !== -1) {
+      this._daysContainer.innerHTML = "";
       this._renderWeekDaysLabels();
-      this._weekDayLabelsSpans.forEach((weekLabel)=>{
+      this._weekDayLabelsSpans.forEach(weekLabel => {
         this._daysContainer.appendChild(weekLabel);
       });
       this._renderDaysLabels();
-      this._displayDaysSpans.forEach((dayLabel)=>{
+      this._displayDaysSpans.forEach(dayLabel => {
         this._daysContainer.appendChild(dayLabel);
       });
     }
-    if (changedAttr.indexOf('monthYearDropdown') !== -1) {
-      this._displayMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
-      this._displayYear = format(this._displayDate, 'calendaryear', {locale: this._props.locale});
+    if (changedAttr.indexOf("monthYearDropdown") !== -1) {
+      this._displayMonth = format(this._displayDate, "calendarmonth", { locale: this._props.locale }) || "";
+      this._displayYear = format(this._displayDate, "calendaryear", { locale: this._props.locale }) || "";
       this._displayMonthDropdown.setValue(this._displayMonth);
       this._displayYearDropdown.setValue(this._displayYear);
     }
-    if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = (options as any).left + 'px';
+    if (changedAttr.indexOf("offsetLeft") !== -1 && options) {
+      this.element.style.left = (options as any).left + "px";
     }
-    if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
+    if (changedAttr.indexOf("footerButtons") !== -1 && this._props.locale) {
       this._todayButton.textContent = this._props.locale.today;
       this._noneButton.textContent = this._props.locale.none;
     }

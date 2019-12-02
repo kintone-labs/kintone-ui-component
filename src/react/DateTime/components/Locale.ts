@@ -1,18 +1,18 @@
-import en from './localizationData/en';
-import zh from './localizationData/zh';
-import ja from './localizationData/ja';
-import Message from '../../../constant/Message';
+import en from "./localizationData/en";
+import zh from "./localizationData/zh";
+import ja from "./localizationData/ja";
+import Message from "../../../constant/Message";
 
-const seperators = ['/', '-', ' ', ':'];
+const seperators = ["/", "-", " ", ":"];
 
 const getSeperator = (dateFormatString: string) => {
-  let seperator = '';
-  seperators.forEach((char)=>{
+  let seperator = "";
+  seperators.forEach(char => {
     if (dateFormatString.indexOf(char) !== -1) {
       seperator = char;
     }
   });
-  if(seperator === '') {
+  if (seperator === "") {
     throw new Error(Message.datetime.INVALID_DATEFORMAT_SEPARATOR);
   }
   return seperator;
@@ -20,86 +20,89 @@ const getSeperator = (dateFormatString: string) => {
 
 const getDateData = (dateObj: any, dateCode: string, locale: any) => {
   switch (dateCode) {
-    case 'E':
+    case "E":
       return locale.weekDayShort[dateObj.day];
-    case 'EE':
+    case "EE":
       return locale.weekDayMedium[dateObj.day];
-    case 'EEEE':
+    case "EEEE":
       return locale.weekDay[dateObj.day];
-    case 'd':
+    case "d":
       return `${dateObj.date}`;
-    case 'dd':
+    case "dd":
       if (dateObj.date < 10) return `0${dateObj.date}`;
       return `${dateObj.date}`;
-    case 'MM':
+    case "MM":
       if (dateObj.month + 1 < 10) return `0${dateObj.month + 1}`;
       return `${dateObj.month + 1}`;
-    case 'YYYY':
+    case "YYYY":
       return `${dateObj.year}`;
-    case 'HH':
+    case "HH":
       if (dateObj.hour < 10) return `0${dateObj.hour}`;
       return `${dateObj.hour}`;
-    case 'H':
+    case "H":
       return `${dateObj.hour}`;
-    case 'mm':
+    case "mm":
       if (dateObj.minute < 10) return `0${dateObj.minute}`;
       return `${dateObj.minute}`;
-    case 'm':
+    case "m":
       return `${dateObj.minute}`;
-    case 'calendartitle':
-      if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年${dateObj.month + 1}月`;
+    case "calendartitle":
+      if (locale.name === "ja" || locale.name === "zh") return `${dateObj.year}年${dateObj.month + 1}月`;
       return `${locale.monthNames[dateObj.month]} ${dateObj.year}`;
-    case 'calendarmonth':
-      if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.month + 1}月`;
+    case "calendarmonth":
+      if (locale.name === "ja" || locale.name === "zh") return `${dateObj.month + 1}月`;
       return `${locale.monthNames[dateObj.month]}`;
-    case 'calendaryear':
-      if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年`;
+    case "calendaryear":
+      if (locale.name === "ja" || locale.name === "zh") return `${dateObj.year}年`;
       return `${dateObj.year}`;
     default:
-      throw new Error('Invalid date format')
+      throw new Error("Invalid date format");
   }
 };
 
-const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string => {
+const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string | null => {
   try {
-    const dateObj = {
-      millisecond: dirtyDate.getMilliseconds(),
-      second: dirtyDate.getSeconds(),
-      minute: dirtyDate.getMinutes(),
-      hour: dirtyDate.getHours(),
-      date: dirtyDate.getDate(),
-      day: dirtyDate.getDay(),
-      month: dirtyDate.getMonth(),
-      year: dirtyDate.getFullYear()
-    };
-    if (dateFormat === 'calendartitle') {
-      return getDateData(dateObj, 'calendartitle', option.locale);
+    if (dirtyDate) {
+      const dateObj = {
+        millisecond: dirtyDate.getMilliseconds(),
+        second: dirtyDate.getSeconds(),
+        minute: dirtyDate.getMinutes(),
+        hour: dirtyDate.getHours(),
+        date: dirtyDate.getDate(),
+        day: dirtyDate.getDay(),
+        month: dirtyDate.getMonth(),
+        year: dirtyDate.getFullYear()
+      };
+      if (dateFormat === "calendartitle") {
+        return getDateData(dateObj, "calendartitle", option.locale);
+      }
+      if (dateFormat === "calendarmonth") {
+        return getDateData(dateObj, "calendarmonth", option.locale);
+      }
+      if (dateFormat === "calendaryear") {
+        return getDateData(dateObj, "calendaryear", option.locale);
+      }
+      if (dateFormat === "d") {
+        return getDateData(dateObj, "d", option.locale);
+      }
+      if (dateFormat === "E") {
+        return getDateData(dateObj, "E", option.locale);
+      }
+      const seperator = getSeperator(dateFormat);
+      let formattedDate = dateFormat.split(seperator);
+      formattedDate = formattedDate.map(item => {
+        return getDateData(dateObj, item, option.locale);
+      });
+      return formattedDate.join(seperator);
     }
-    if (dateFormat === 'calendarmonth') {
-      return getDateData(dateObj, 'calendarmonth', option.locale);
-    }
-    if (dateFormat === 'calendaryear') {
-      return getDateData(dateObj, 'calendaryear', option.locale);
-    }
-    if (dateFormat === 'd') {
-      return getDateData(dateObj, 'd', option.locale);
-    }
-    if (dateFormat === 'E') {
-      return getDateData(dateObj, 'E', option.locale);
-    }
-    const seperator = getSeperator(dateFormat);
-    let formattedDate = dateFormat.split(seperator);
-    formattedDate = formattedDate.map((item)=>{
-      return getDateData(dateObj, item, option.locale);
-    });
-    return formattedDate.join(seperator);
+    return null;
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return dateFormat;
   }
 };
 
-const availableLocales = 'ja, en, zh';
+const availableLocales = "ja, en, zh";
 
 const Locale: any = {
   en: en,
@@ -110,11 +113,4 @@ const Locale: any = {
 };
 
 export default Locale;
-export {
-  en,
-  zh,
-  ja,
-  format,
-  getSeperator,
-  availableLocales
-};
+export { en, zh, ja, format, getSeperator, availableLocales };

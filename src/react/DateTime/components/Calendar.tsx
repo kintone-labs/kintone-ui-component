@@ -119,7 +119,7 @@ const Calendar = ({
                 />
                 <Dropdown
                   items={getYearLabels(displayDate.getFullYear().toString(), locale)}
-                  value={format(displayDate, 'calendaryear', {locale})}
+                  value={format(displayDate, 'calendaryear', {locale})||""}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     newDate.setFullYear(parseInt(value, 10), displayDate.getMonth(), 1);
@@ -132,7 +132,7 @@ const Calendar = ({
               <React.Fragment>
                 <Dropdown
                   items={getYearLabels(displayDate.getFullYear().toString(), locale)}
-                  value={format(displayDate, 'calendaryear', {locale})}
+                  value={format(displayDate, 'calendaryear', {locale})||""}
                   onChange={(value) => {
                     const newDate = new Date(displayDate);
                     let currentYear: any = value;
