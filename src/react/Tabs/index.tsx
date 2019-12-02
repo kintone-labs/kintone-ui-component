@@ -27,8 +27,8 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
     if (!items || value > items.length - 1 || value < 0) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
-  } else if(!value && items && items.length > 0) {
-    value = 0; 
+  } else if (!value && items && items.length > 0) {
+    value = 0;
   }
   const tabNames = (
     <ul className="kuc-tabs-tab-list">
@@ -40,10 +40,10 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         let className = 'kuc-tabs-container';
         if (value === tabIndex) {
           className += ' kuc-tabs-container-selection';
-          if(item.isDisabled){
+          if (item.isDisabled) {
             throw new Error(Message.tabs.INVALID_ACTION);
           }
-        }else if (item.isDisabled) {
+        } else if (item.isDisabled) {
           className += ' kuc-tabs-disabled';
           return (
             <li
