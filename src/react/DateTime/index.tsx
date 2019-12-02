@@ -29,9 +29,7 @@ const DateTime = ({
   dateFormat = "MM/dd/YYYY",
   type = "datetime",
   timeFormat = "HH:mm"
-}: DateTimeConstructorParameters) => {
-  console.log("valu component",value);
-  
+}: DateTimeConstructorParameters) => {  
   // const [defaultValue,setDefaultValue] = useState(value);
   const [pickerDisplay, setPickerDisplay] = useState("none");
   const [showPickerError, setShowPickerError] = useState(false);
@@ -380,17 +378,14 @@ const DateTime = ({
               }}
             />
             {!isDisableBtn && (
-              <TimePicker
+              <TimePicker 
                 timeRef={timeRef}
                 pickerDisplay={timePickerDisplay}
                 onTimeClick={(timePickerDate: Date) => {                  
-                  let tempDate = new Date();
-                  if (timeDateValue) tempDate = new Date(timeDateValue);
-                  tempDate.setDate(value.getDate());
-                  tempDate.setMonth(value.getMonth());
+                  let tempDate = new Date(inputValue);
+                  // if (timeDateValue) tempDate = new Date(timeDateValue);
                   tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
                   tempDate.setSeconds(0);
-                  
                   setTimeValue(format(tempDate, timeFormat));
                   setTimeDateValue(new Date(tempDate));
                   onChange(tempDate);
