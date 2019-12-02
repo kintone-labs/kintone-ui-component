@@ -197,6 +197,7 @@ const DateTime = ({
                 onBlur={e => {
                   const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date | null = null;
+                  
                   if (!e.target.value) {
                     const todayDate = new Date();
                     todayDate.setSeconds(0);
