@@ -20,7 +20,7 @@ class Tabs extends Control<TabsProps> {
   private _onClickTabItem: (tabIndex: number) => void = () => {};
 
   private tabNamesElement: HTMLUListElement;
-  protected tabNames: TabName[] = [];
+  private tabNames: TabName[] = [];
   private tabContentElement: HTMLDivElement;
 
   constructor(params?: TabsProps) {

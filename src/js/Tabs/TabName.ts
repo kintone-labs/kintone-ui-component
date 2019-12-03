@@ -42,9 +42,6 @@ class TabName extends Control<TabNameProps> {
     this.on('click', () => this._props.onClickTabItem(this._props.tabIndex));
     this.rerender();
   }
-  getIsDisabled() {
-    return this._props.isDisabled;
-  }
   rerender(changedAttr?: string[]) {
     super.rerender();
     if (!changedAttr) return;

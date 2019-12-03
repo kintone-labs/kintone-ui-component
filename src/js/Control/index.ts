@@ -32,6 +32,10 @@ class Control<T extends ControlProps> {
     }
   }
 
+  getIsDisabled() {
+    return this._props.isDisabled;
+  }
+  
   render() {
     return this.element;
   }
