@@ -7,13 +7,13 @@ type NotifyPopupProps = {
   text?: string;
   type?: string;
   isVisible?: boolean;
-  onClick?: () => void;
-  onClose?: () => void;
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
+  onClose?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
 const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps) => {
-  const _handleClosePopup = () => {
-    onClose && onClose();
+  const _handleClosePopup = (e: React.SyntheticEvent<EventTarget>) => {
+    onClose && onClose(e);
     return true;
   };
 
@@ -46,8 +46,8 @@ const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps
     return className.join(' ').trim();
   };
 
-  const _onClick = () => {
-    onClick && onClick();
+  const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
+    onClick && onClick(e);
     return true;
   };
 
