@@ -44,8 +44,8 @@ class Text extends Control<TextProps> {
       this.element.removeAttribute('disabled');
     }
     if (!changedAttr) return;
-    if (changedAttr.indexOf('value') !== -1 && this._props.value) {
-      (this.element as HTMLInputElement).value = this._props.value;
+    if (changedAttr.indexOf('value') !== -1) {
+      (this.element as HTMLInputElement).value = this._props.value || '';
     }
   }
 
