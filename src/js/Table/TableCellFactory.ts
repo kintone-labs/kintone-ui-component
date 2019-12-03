@@ -94,9 +94,6 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
       case 'alert':
       case 'label':
         field.on('click', (e: Event) => {
-          const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
-          rowData[fieldName].value = (e.target as HTMLInputElement).value;
-          updateRowData(rowData, false, true, fieldName);
           if (props && props.onClick) {
             const data = table.data;
             props.onClick({data, rowIndex, fieldName});
