@@ -30,13 +30,12 @@ const DateTime = ({
   type = "datetime",
   timeFormat = "HH:mm"
 }: DateTimeConstructorParameters) => {
-  // const [defaultValue,setDefaultValue] = useState(new Date(value));
   const [pickerDisplay, setPickerDisplay] = useState("none");
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState("");
   const [timePickerDisplay, setTimePickerDisplay] = useState("none");
-  const [inputValue, setInputValue] = useState(format(value, dateFormat));
-  const [timeValue, setTimeValue] = useState(format(value, timeFormat));
+  const [inputValue, setInputValue] = useState(value ? format(value, dateFormat) : format(new Date(), dateFormat));
+  const [timeValue, setTimeValue] = useState(value ? format(value, timeFormat) : format(new Date(), timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
   const [timeDateValue, setTimeDateValue] = useState(value ? new Date(value) : new Date());
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
@@ -62,9 +61,11 @@ const DateTime = ({
       }
       setHasSelection(false);
     } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-      returnDate = new Date(value);
-      returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
-      setShowPickerError(false);
+      if (value) {
+        returnDate = new Date(value);
+        returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
+        setShowPickerError(false);
+      }
     } else if (e.target.value) {
       setDateError("Invalid date");
       setShowPickerError(true);
@@ -176,6 +177,7 @@ const DateTime = ({
     if (calendarDate) {
       onChange(calendarDate);
       setInputValue(format(calendarDate, dateFormat));
+      setTimeValue(format(calendarDate, timeFormat));
       setHasSelection(true);
       setShowPickerError(false);
     } else {
@@ -294,11 +296,11 @@ const DateTime = ({
       if (pickerDisplay === "none") {
         setTimeDateValue(currentDate);
       }
-      if (typeof isDisabled !== "boolean") {
-        setDisableBtn(false);
-      } else {
-        setDisableBtn(isDisabled);
-      }
+    }
+    if (typeof isDisabled !== "boolean") {
+      setDisableBtn(false);
+    } else {
+      setDisableBtn(isDisabled);
     }
   }, [dateFormat, pickerDisplay, isDisabled]);
 
@@ -334,7 +336,7 @@ const DateTime = ({
       <div className="date-time-container" ref={wrapperRef}>
         {(typeDateTime === "datetime" || typeDateTime === "date") && (
           <div className="date-container">
-            <div className="text-input-container" key={`${format(value, dateFormat)}-${dateError}`}>
+            <div className="text-input-container" key={`${format(value ? value : new Date(), dateFormat)}-${dateError}`}>
               <input
                 type="text"
                 className="kuc-input-text text-input"
