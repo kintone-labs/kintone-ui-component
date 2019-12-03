@@ -23,9 +23,25 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
 
-  const _showItems = () => {
+  const _caclListOuterPosition = (listItemEl: HTMLDivElement) => {
+    let position = -6;
+    const currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
+
+    const parentEl = ref.current || document.createElement("div");
+    if (currentPosition >= window.innerHeight) {
+      position = position - (listItemEl.offsetHeight + parentEl.offsetHeight);
+    }
+    return position;
+  }
+
+  const _showItems = (e: React.MouseEvent) => {
     setVisibleItems(!isVisibleItems);
+    const element = ref.current || document.createElement("div");
+    const listItemEl = element.getElementsByClassName('kuc-list-outer')[0] as HTMLDivElement;
+    listItemEl.setAttribute('style', `display: block;`);
+    listItemEl.setAttribute('style', `margin-top: ${_caclListOuterPosition(listItemEl)}px;`);
   };
+
   const _hideItems = () => {
     setVisibleItems(false);
   };
