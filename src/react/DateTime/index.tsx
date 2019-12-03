@@ -21,7 +21,7 @@ type DateTimeConstructorParameters = {
 };
 
 const DateTime = ({
-  value = new Date(),
+  value,
   isDisabled = false,
   isVisible = true,
   onChange = (newDate: Date) => {},
@@ -30,7 +30,7 @@ const DateTime = ({
   type = "datetime",
   timeFormat = "HH:mm"
 }: DateTimeConstructorParameters) => {
-  // const [defaultValue,setDefaultValue] = useState(value);
+  // const [defaultValue,setDefaultValue] = useState(new Date(value));
   const [pickerDisplay, setPickerDisplay] = useState("none");
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState("");
@@ -38,7 +38,7 @@ const DateTime = ({
   const [inputValue, setInputValue] = useState(format(value, dateFormat));
   const [timeValue, setTimeValue] = useState(format(value, timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
-  const [timeDateValue, setTimeDateValue] = useState(new Date(value));
+  const [timeDateValue, setTimeDateValue] = useState(value ? new Date(value) : new Date());
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -165,7 +165,6 @@ const DateTime = ({
   };
   const handleOnTimeClick = (timePickerDate: Date) => {
     let tempDate = new Date(inputValue || 0);
-    // if (timeDateValue) tempDate = new Date(timeDateValue);
     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
     tempDate.setSeconds(0);
     setTimeValue(format(tempDate, timeFormat));
@@ -290,21 +289,34 @@ const DateTime = ({
   };
 
   useEffect(() => {
-    let currentDate = new Date(inputValue || 0);
-    if (pickerDisplay === "none") {
-      setTimeDateValue(currentDate);
+    if ((inputValue as any) instanceof Date) {
+      let currentDate = new Date(inputValue || 0);
+      if (pickerDisplay === "none") {
+        setTimeDateValue(currentDate);
+      }
+      if (typeof isDisabled !== "boolean") {
+        setDisableBtn(false);
+      } else {
+        setDisableBtn(isDisabled);
+      }
     }
-    if (value != currentDate && value != null) {
+  }, [dateFormat, pickerDisplay, isDisabled]);
+
+  useEffect(() => {
+    let currentDate = new Date(inputValue || 0);
+    if (value === undefined) {
+      setInputValue(format(new Date(), dateFormat));
+      setTimeValue(format(new Date(), timeFormat));
+      setShowPickerError(false);
+    } else if (value != currentDate && value != null) {
       setInputValue(format(value, dateFormat));
+      setTimeValue(format(value, timeFormat));
+      setShowPickerError(false);
     } else {
       setInputValue(null);
+      setShowPickerError(false);
     }
-    if (typeof isDisabled !== "boolean") {
-      setDisableBtn(false);
-    } else {
-      setDisableBtn(isDisabled);
-    }
-  }, [dateFormat, hasSelection, pickerDisplay, value, isDisabled]);
+  }, [value]);
 
   let localeObj = ja;
   if (locale === "en") {
