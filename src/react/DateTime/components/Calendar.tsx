@@ -77,13 +77,14 @@ const Calendar = ({
       onBlur={(e)=>{
         const relatedTarget = e.relatedTarget ||
         (e as any).explicitOriginalTarget ||
-          document.activeElement; // IE11
+          document.activeElement; // IE11]
+          
         if (
           calRef.current !== relatedTarget &&
           !calRef.current.contains(relatedTarget as HTMLElement) &&
           pickerDisplay !== 'none'
-        ) {
-          onDateClick(null, null);
+        ) {          
+          onDateClick(null, previousDate);
         }
       }}
     >

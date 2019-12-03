@@ -49,18 +49,9 @@ const DateTime = ({
     }
   };
   const handleOnBlurDate = (e: React.FocusEvent<HTMLInputElement>) => {
-    const tempDate = parseStringToDate(e.target.value, dateFormat);
+    const tempDate = parseStringToDate(e.target.value, dateFormat);        
     let returnDate: Date | null = null;
-    if (!e.target.value && value) {
-      const todayDate = new Date();
-      todayDate.setSeconds(0);
-      todayDate.setHours(timeDateValue.getHours());
-      todayDate.setMinutes(timeDateValue.getMinutes());
-      if (todayDate.getTime() !== value.getTime()) {
-        returnDate = new Date(todayDate);
-      }
-      setHasSelection(false);
-    } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
+    if (tempDate instanceof Date && !isNaN(tempDate as any)) {
       if (value) {
         returnDate = new Date(value);
         returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
@@ -173,14 +164,17 @@ const DateTime = ({
     value ? onChange(tempDate) : onChange(null);
     setTimePickerDisplay("none");
   };
-  const handleOnDateClickCalendar = (calendarDate: Date | null) => {
+  const handleOnDateClickCalendar = (calendarDate: Date | null,previousDate:Date) => {        
     if (calendarDate) {
       onChange(calendarDate);
       setInputValue(format(calendarDate, dateFormat));
       setTimeValue(format(calendarDate, timeFormat));
       setHasSelection(true);
       setShowPickerError(false);
-    } else {
+    } else if (previousDate){
+      setHasSelection(false);
+      setInputValue(format(previousDate,dateFormat));
+    } else {      
       setHasSelection(false);
       setInputValue(null);
       onChange(null);
@@ -301,7 +295,7 @@ const DateTime = ({
       setDisableBtn(false);
     } else {
       setDisableBtn(isDisabled);
-    }
+    }    
   }, [dateFormat, pickerDisplay, isDisabled]);
 
   useEffect(() => {
@@ -318,7 +312,7 @@ const DateTime = ({
       setInputValue(null);
       setShowPickerError(false);
     }
-  }, [value]);
+  }, [value,dateFormat]);
 
   let localeObj = ja;
   if (locale === "en") {
@@ -345,7 +339,9 @@ const DateTime = ({
                 value={inputValue || ""}
                 onBlur={handleOnBlurDate}
                 onKeyDown={handleOnKeyDownDate}
-                onChange={e => setInputValue(e.target.value)}
+                onChange={e => {
+                  setInputValue(e.target.value)
+                }}
               />
             </div>
             {dateError && showPickerError && (
