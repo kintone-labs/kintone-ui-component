@@ -172,16 +172,16 @@ class Tabs extends Control<TabsProps> {
   }
 
   setValue(value: number): void {
-    if(value){
-      this.tabNames.forEach((tab: TabName, index: number) => {
-        if (index === value && tab.getIsDisabled()) {
-          throw new Error(Message.common.INVALID_ARGUMENT);
-        }
-      });
-    }
     if (!value && value !== 0) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
+
+    this.tabNames.forEach((tab: TabName, index: number) => {
+      if (index === value && tab.getIsDisabled()) {
+        throw new Error(Message.common.INVALID_ARGUMENT);
+      }
+    });
+
     this._props.value = value;
     if (this._validator()) {
       throw new Error(this._validator());
