@@ -12,10 +12,6 @@ type NotifyPopupProps = {
 }
 
 const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps) => {
-  const _handleClosePopup = (e: React.SyntheticEvent<EventTarget>) => {
-    onClose && onClose(e);
-    return true;
-  };
 
   const _getStyleByType = () => {
     const style = {
@@ -46,20 +42,15 @@ const NotifyPopup = ({text, type, isVisible, onClick, onClose}: NotifyPopupProps
     return className.join(' ').trim();
   };
 
-  const _onClick = (e: React.SyntheticEvent<EventTarget>) => {
-    onClick && onClick(e);
-    return true;
-  };
-
   if (isVisible === false) {
     return null;
   }
 
   return (
     <div className={_getClassName()}>
-      <div className="kuc-notify-title" onClick={_onClick} role="none">{text}</div>
+      <div className="kuc-notify-title" onClick={onClick} role="none">{text}</div>
       <div className="kuc-close-button">
-        <IconButton onClick={_handleClosePopup} type="close" color={_getStyleByType().color} />
+        <IconButton onClick={onClose} type="close" color={_getStyleByType().color} />
       </div>
     </div>
   );
