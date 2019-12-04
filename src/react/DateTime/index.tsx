@@ -88,7 +88,7 @@ const DateTime = ({
 
       dateValue.setSeconds(timeDateValue.getSeconds());
       dateValue.setMinutes(timeDateValue.getMinutes());
-      dateValue.setHours(timeDateValue.getHours());
+      dateValue.setHours(timeDateValue.getHours());      
       setTimeDateValue(temporary);
       setTimeout(() => {
         setTimeDateValue(dateValue);
@@ -171,8 +171,8 @@ const DateTime = ({
       setTimeValue(format(calendarDate, timeFormat));
       setHasSelection(true);
       setShowPickerError(false);
-    } else if (previousDate){
-      setHasSelection(false);
+    } else if (previousDate && inputValue !== null){   
+      setHasSelection(true);
       setInputValue(format(previousDate,dateFormat));
     } else {      
       setHasSelection(false);

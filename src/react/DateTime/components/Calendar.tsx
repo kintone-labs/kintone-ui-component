@@ -27,7 +27,7 @@ const Calendar = ({
 }: CalendarProps) => {
   const today = new Date();
   const weekDayLabels = getWeekDayLabels(locale);
-  const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());
+  const [displayDate, setDisplayDate] = useState(date ? new Date(date) : new Date());  
   const displayingDays = getDisplayingDays(displayDate);
   const dropDownsRowRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +43,7 @@ const Calendar = ({
   if (!previousDate) {
     previousDate = new Date(date);
   }
-  useEffect(()=>{
+  useEffect(()=>{    
     if (date) {
       if (!isSameDate(date, previousDate)) {
         const newDate = new Date(date);
@@ -162,8 +162,8 @@ const Calendar = ({
             className="next calendar-button-control"
             onClick={() => {
               const newDate = new Date(displayDate);
-              newDate.setMonth(newDate.getMonth() + 1, 1);
-              setDisplayDate(newDate);
+                newDate.setMonth(newDate.getMonth() + 1, 1);
+                setDisplayDate(newDate);
             }}
             onKeyUp={() => {
               const newDate = new Date(displayDate);
@@ -238,7 +238,7 @@ const Calendar = ({
             role="button"
             className="none calendar-button-control"
             onClick={()=>{
-              onDateClick(null, previousDate);
+              onDateClick(null, null);
             }}
             onKeyUp={()=>{
               onDateClick(null, previousDate);
