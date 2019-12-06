@@ -45,7 +45,8 @@ class Text extends Control<TextProps> {
     }
     if (!changedAttr) return;
     if (changedAttr.indexOf('value') !== -1) {
-      (this.element as HTMLInputElement).value = this._props.value || '';
+      // If this._props.value is 0, we handle it as string.
+      (this.element as HTMLInputElement).value = (this._props.value == null || this._props.value == undefined) ? '' : this._props.value ;
     }
   }
 
