@@ -40,9 +40,10 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
         let className = 'kuc-tabs-container';
         if (value === tabIndex) {
           className += ' kuc-tabs-container-selection';
-        }
-
-        if (item.isDisabled) {
+          if (item.isDisabled) {
+            throw new Error(Message.tabs.INVALID_ACTION);
+          }
+        } else if (item.isDisabled) {
           className += ' kuc-tabs-disabled';
           return (
             <li

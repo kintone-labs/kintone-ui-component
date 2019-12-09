@@ -8,20 +8,20 @@ type Tab = {
   tabName: string;
   tabContent?: string | HTMLElement;
   isDisabled?: boolean;
-}
+};
 
 type TabsProps = ControlProps & {
   items?: Tab[];
   value?: number;
   onClickTabItem?: (tabIndex: number) => void;
-}
+};
 
 class Tabs extends Control<TabsProps> {
-  private _onClickTabItem: (tabIndex: number) => void = () => { }
+  private _onClickTabItem: (tabIndex: number) => void = () => {};
 
-  private tabNamesElement: HTMLUListElement
-  private tabNames: TabName[] = []
-  private tabContentElement: HTMLDivElement
+  private tabNamesElement: HTMLUListElement;
+  private tabNames: TabName[] = [];
+  private tabContentElement: HTMLDivElement;
 
   constructor(params?: TabsProps) {
     super();
@@ -76,20 +76,21 @@ class Tabs extends Control<TabsProps> {
   private _renderTabNames() {
     this.tabNamesElement = document.createElement('ul');
     this.tabNamesElement.className = 'kuc-tabs-tab-list';
-    this._props.items && this._props.items.forEach((item: Tab, index: number) => {
-      const tabComponent = new TabName({
-        tabName: item.tabName,
-        tabIndex: index,
-        onClickTabItem: (tabIndex: number) => {
-          this._onClickTabItem(tabIndex);
-          this.setValue(tabIndex);
-        },
-        isActive: index === this._props.value,
-        isDisabled: item.isDisabled
+    this._props.items &&
+      this._props.items.forEach((item: Tab, index: number) => {
+        const tabComponent = new TabName({
+          tabName: item.tabName,
+          tabIndex: index,
+          onClickTabItem: (tabIndex: number) => {
+            this._onClickTabItem(tabIndex);
+            this.setValue(tabIndex);
+          },
+          isActive: index === this._props.value,
+          isDisabled: item.isDisabled
+        });
+        this.tabNames.push(tabComponent);
+        this.tabNamesElement.appendChild(tabComponent.render());
       });
-      this.tabNames.push(tabComponent);
-      this.tabNamesElement.appendChild(tabComponent.render());
-    });
     this.element.appendChild(this.tabNamesElement);
   }
 
@@ -174,6 +175,13 @@ class Tabs extends Control<TabsProps> {
     if (!value && value !== 0) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
+
+    this.tabNames.forEach((tab: TabName, index: number) => {
+      if (index === value && tab.getIsDisabled()) {
+        throw new Error(Message.common.INVALID_ARGUMENT);
+      }
+    });
+
     this._props.value = value;
     if (this._validator()) {
       throw new Error(this._validator());
@@ -220,22 +228,29 @@ class Tabs extends Control<TabsProps> {
     if (!tabName) {
       throw Message.common.INVALID_ARGUMENT;
     }
-    this._props.items && this._props.items.forEach((item: Tab, index: number) => {
-      if (item.tabName === tabName) {
-        this.tabNames[index].disable();
-      }
-    });
+    this._props.items &&
+      this._props.items.forEach((item: Tab, index: number) => {
+        const isSelected = index === this._props.value;
+        if (item.tabName === tabName) {
+          if (isSelected) {
+            throw Message.tabs.INVALID_ACTION;
+          } else {
+            this.tabNames[index].disable();
+          }
+        }
+      });
   }
 
   enableItem(tabName: string) {
     if (!tabName) {
       throw Message.common.INVALID_ARGUMENT;
     }
-    this._props.items && this._props.items.forEach((item: Tab, index: number) => {
-      if (item.tabName === tabName) {
-        this.tabNames[index].enable();
-      }
-    });
+    this._props.items &&
+      this._props.items.forEach((item: Tab, index: number) => {
+        if (item.tabName === tabName) {
+          this.tabNames[index].enable();
+        }
+      });
   }
 
   on(eventName: string, callback: (params?: any) => void) {
