@@ -145,7 +145,7 @@ const DateTime = ({
         setNewTimeDateValue = true;
       }
       if (value.getMonth() !== timeDateValue.getMonth()) {
-        newTimeDateValue.setDate(value.getDate());
+        newTimeDateValue.setMonth(value.getMonth());
         setNewTimeDateValue = true;
       }
       if (value.getFullYear() !== timeDateValue.getFullYear()) {
