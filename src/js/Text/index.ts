@@ -22,9 +22,8 @@ class Text extends Control<TextProps> {
     this.element = document.createElement('input');
     this.element.className = 'kuc-input-text';
     this.element.setAttribute('type', 'text');
-    if (this._props.value) {
-      (this.element as HTMLInputElement).value = this._props.value;
-    }
+    // If this._props.value is 0, we handle it as string.
+    (this.element as HTMLInputElement).value = (this._props.value == null || this._props.value == undefined) ? '' : this._props.value;
     this.element.onchange = (e) => {
       this._props.value = (e.target as HTMLInputElement).value;
       this._onChange(e);
@@ -44,8 +43,9 @@ class Text extends Control<TextProps> {
       this.element.removeAttribute('disabled');
     }
     if (!changedAttr) return;
-    if (changedAttr.indexOf('value') !== -1 && this._props.value) {
-      (this.element as HTMLInputElement).value = this._props.value;
+    if (changedAttr.indexOf('value') !== -1) {
+      // If this._props.value is 0, we handle it as string.
+      (this.element as HTMLInputElement).value = (this._props.value === null || this._props.value === undefined) ? '' : this._props.value;
     }
   }
 
