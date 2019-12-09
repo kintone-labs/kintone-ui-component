@@ -6,8 +6,8 @@ type TextAreaProps = {
   value?: string;
   isVisible?: boolean;
   isDisabled?: boolean;
-  onClick?: (e: any) => void;
-  onChange?: (e: any) => void;
+  onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
+  onChange?: (value: string | null) => void;
 }
 
 const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
