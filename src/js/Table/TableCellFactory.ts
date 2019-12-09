@@ -65,6 +65,15 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
             props.onChange({data, rowIndex, fieldName});
           }
         });
+        field.on('click', (e: Event) => {
+          const rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
+          rowData[fieldName].value = (e.target as HTMLInputElement).value;
+          updateRowData(rowData, false, true, fieldName);
+          if (props && props.onClick) {
+            const data = table.data;
+            props.onClick({data, rowIndex, fieldName});
+          }
+        });
         break;
       case 'dropdown':
       case 'checkbox':
@@ -78,6 +87,16 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
           if (props && props.onChange) {
             const data = table.data;
             props.onChange({data, rowIndex, fieldName});
+          }
+        });
+        break;
+      case 'icon':
+      case 'alert':
+      case 'label':
+        field.on('click', (e: Event) => {
+          if (props && props.onClick) {
+            const data = table.data;
+            props.onClick({data, rowIndex, fieldName});
           }
         });
         break;
