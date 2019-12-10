@@ -276,13 +276,13 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: true };
     };
 
-    onClose = () => {
-        console.log('NotifyPopup onClose');
+    onClose = (event) => {
+        console.log('NotifyPopup onClose: ' + event.timeStamp);
         this.setState({isVisible: false});
     };
 
-    onClick = () => {
-        console.log('NotifyPopup onClick');
+    onClick = (event) => {
+        console.log('NotifyPopup onClick: ' + event.timeStamp);
     }
     render() {
         return (
