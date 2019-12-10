@@ -1378,7 +1378,7 @@ Create a table cell with 1 of the built-in supported components
 | --- | --- | --- | --- |
 |type|	String|	Yes|  Type of built-in cell. <br>Can be one of the following types: <br><ul><li>'text'</li><li>'dropdown'</li><li>'checkbox'</li><li>'multichoice'</li><li>'radio'</li><li>'label'</li><li>'icon'</li><li>'alert'</li></ul>|
 |dataFieldName|	String|	Yes|  Name of the data field associated with the table cell.|
-|props|	Object|	No|  Additional props to pass to component. <br>Can be used to define custom event handler for component.|
+|props|	Object|	No|  Additional props to pass to component. <br>It can be used to define custom event handler for component.<br>You should specify this arg like following object.<br>{"on+Eventname": callback }|
 
 **Returns**
 <br>[TableCell](#tablecell)
@@ -1398,7 +1398,13 @@ var table = new kintoneUIComponent.Table({
   columns: [
     {
       header: 'Text',
-      cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+      cell: function() { return kintoneUIComponent.createTableCell(
+        'text',
+        'text',
+        {onChange: function(value) {
+          alert('text value has changed')
+        }}
+      )}
     },
   ]
 });
