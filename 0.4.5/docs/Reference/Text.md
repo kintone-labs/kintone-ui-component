@@ -1,11 +1,7 @@
-# TextArea
+# Text
 
 ## Overview
-![TextArea](../img/textarea.PNG)
-
-|Number|	Description|
-| --- | --- |
-|1|Drag and drop this icon to resize textarea|	
+![Text](../img/text.PNG)
 
 ## Constructor
 
@@ -14,40 +10,39 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains parameters of constructor.|
-|options.value|String|No|The value of textarea field.|
-|options.isDisabled|Boolean|No|The textarea field will be disabled. <br> Default value: **false**|
-|options.isVisible|Boolean|No|The textarea field will be visible. <br> Default value: **true**|
+|options.value|String|No|The value of text field. <br> Default value: ''|
+|options.isDisabled|Boolean|No|The text field will be disabled. <br> Default value: 'false'|
+|options.isVisible|Boolean|No|The text field will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+var text= new kintoneUIComponent.Text({value: 'input text'});
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = { value: 'textarea'};
+        super(props);
+        this.state = { value: 'input text'};
     };
     render() {
         return (
-            <TextArea value={this.state.value} />
+            <Text value={this.state.value} />
         );
     };
 };
-
 ```
 </details>
 
 ## Methods
 ### render()
-Get DOM element of TextArea component.
+Get DOM element of Text component.
 
 **Parameter**
 
@@ -62,41 +57,40 @@ DOM element
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+var text = new kintoneUIComponent.Text({value: 'input text'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(textArea.render());
+body.appendChild(text.render());
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea' };
+        this.state = { value: 'input text'};
     };
-
     render() {
         return (
-            <TextArea value={this.state.value} />
+            <Text value={this.state.value} />
         );
     };
 };
 
-ReactDOM.render(<Plugin />, document.getElementById('root'));
+ReactDOM.render(<Plugin />,document.getElementById('root'));
 ```
 </details>
 
 ### setValue(value)
-Set the input content value of textarea field.   
+Set the input content value of text field
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|value|	String|	Yes|The input content value|
+|value|String|Yes|The input content value|
 
 **Returns**
 
@@ -107,40 +101,38 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({ value: 'textarea' });
+var text = new kintoneUIComponent.Text({ value: 'input text' });
 var btn = document.createElement('button');
-btn.textContent = 'Set Value';
+btn.textContent = 'Click';
 btn.onclick = function() {
-     textArea.setValue('set value into textarea');
+    text.setValue('set value input text');
 };
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(textArea.render());
+body.appendChild(text.render());
 body.appendChild(btn);
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea' };
+        this.state = { value: 'input text' };
     };
-
     render() {
         return (
-        <div>
-          <TextArea value={this.state.value} />
-          <button onClick={this.setValue}>Set Value</button>
-        </div>
-      );
+            <div>
+                <Text value={this.state.value} />
+                <button onClick={this.setValue}>Click</button>
+            </div>
+        );
     };
-
-    setValue= () => {
+    setValue = () => {
         this.setState({
-            value: 'set value into textarea'
+            value: 'set value'
         });
     };
 };
@@ -149,7 +141,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### getValue()
-Get the input content of textarea field.
+Get the input content value of text field
 
 **Parameter**
 
@@ -159,7 +151,7 @@ None
 
 |Name|Type|Description|
 |---|---|---|
-|value|	String|	The input content value of textarea field.|
+|value|	String|	The input content value|
 
 
 <details class="tab-container" markdown="1" open>
@@ -167,32 +159,33 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+var text = new kintoneUIComponent.Text({value: 'input text'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(textArea.render());
+body.appendChild(text.render());
 
-console.log(textArea.getValue());
+console.log(text.getValue());
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea' };
+        this.state = { value: 'input text' };
     };
 
     render() {
         return (
             <div>
-                <TextArea value={this.state.value} />
+                <Text value={this.state.value} />
                 <button onClick={this.getValue}>Get Value</button>
             </div>
         );
-    }
+    };
+
     getValue = () => {
         console.log(this.state.value);
     };
@@ -202,7 +195,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### on(eventName, callback)
-Register callback for an event of TextArea component
+Register callback for an event of Text component
 
 **Parameter**
 
@@ -211,8 +204,7 @@ Register callback for an event of TextArea component
 |eventName |String |Yes|Name of event: <ul><li>'click'</li><li>'change'</li></ul>|
 |callback|function |Yes|The callback function call when the event occurs|
 
-**Returns**
-
+**Returns**  
 None
 
 <details class="tab-container" markdown="1" open>
@@ -220,44 +212,49 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+var text = new kintoneUIComponent.Text({value: 'input text'});
 var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(textArea.render());
+body.appendChild(text.render());
 
-textArea.on('click', function(event) {
-    console.log('onclick', event.target.value);
+text.on('click', function(event) {
+    console.log('onclick event');
+    console.log('value: ' + event.target.value);
 });
 
-textArea.on('change', function(value) {
-    console.log('onchange', value);
+text.on('change', function(event) {
+    console.log('onchange event');
+    console.log('value: ' + event.target.value);
 });
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea' };
+        this.state = { value: 'input text' };
     };
+    
     render() {
         return (
-            <TextArea
+            <Text 
                 value={this.state.value}
                 onChange={this.onChange.bind(this)}
                 onClick={this.onClick} 
             />
         );
     };
-    onClick = (event) => {
-        console.log('onclick', event.target.value);
+
+    onClick = () => {
+        console.log('click');
     };
+
     onChange = (value) => {
         this.setState({ value });
-        console.log('onchange: ' + value);
+        console.log('onchange value: ' + value);
     };
 };
 ReactDOM.render(<Plugin />,document.getElementById('root'));
@@ -265,7 +262,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### show()
-Display the TextArea component.
+Display the Text component.
 
 **Parameter**
 
@@ -280,35 +277,37 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isVisible: false});
-var btn = document.createElement('button'); 
+
+var text = new kintoneUIComponent.Text({value: 'input text', isVisible: false});
+var btn = document.createElement('button');
 btn.textContent = 'Show';
 btn.onclick = function() {
-    textArea.show();
+    text.show();
 };
-
 var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
 body.appendChild(btn);
-body.appendChild(textArea.render());
+
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea', isVisible: false };
+        this.state = { value: 'Text is visible', isVisible: false };
     };
+
     show = () => {
         this.setState({ isVisible: true });
     };
     render() {
         return (
             <div>
-                <TextArea value={this.state.value} isVisible={this.state.isVisible} />
+                <Text value={this.state.value} isVisible={this.state.isVisible} />
                 <button onClick={this.show}>Show</button>
             </div>
         );
@@ -319,7 +318,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### hide()
-Hide the TextArea component.
+Hide the Text component.
 
 **Parameter**
 
@@ -334,36 +333,35 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isVisible: true});
-var btn = document.createElement('button'); 
+var text = new kintoneUIComponent.Text({value: 'input text', isVisible: true});
+var btn = document.createElement('button');
 btn.textContent = 'Hide';
 btn.onclick = function() {
-    textArea.hide();
+     text.hide();
 };
 var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
 body.appendChild(btn);
-body.appendChild(textArea.render());
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea', isVisible: true };
+        this.state = { value: 'Text is invisible', isVisible: true };
     };
 
     hide = () => {
         this.setState({ isVisible: false });
     };
-
     render() {
         return (
             <div>
-                <TextArea value={this.state.value} isVisible={this.state.isVisible} />
+                <Text value={this.state.value} isVisible={this.state.isVisible} />
                 <button onClick={this.hide}>Hide</button>
             </div>
         );
@@ -374,7 +372,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### disable()
-Disabled the TextArea component.
+Disabled the Text component.
 
 **Parameter**
 
@@ -389,37 +387,35 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
-var btn = document.createElement('button'); 
+var text = new kintoneUIComponent.Text({ value: 'Text is disabled' });
+var btn = document.createElement('button');
 btn.textContent = 'Disable';
 btn.onclick = function() {
-    textArea.disable();
+     text.disable();
 };
 var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
 body.appendChild(btn);
-body.appendChild(textArea.render());
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea', isDisabled: false };
+        this.state = { value: 'Text is disabled', isDisabled: false };
     };
-
     disable = () => {
-        this.setState({ isDisabled: true });
+        this.setState({isDisabled: true });
     };
-
     render() {
         return (
             <div>
-                <TextArea value={this.state.value} isDisabled={this.state.isDisabled} />
-                <button onClick={this.disable}>Disable</button>                
+                <Text value={this.state.value} isDisabled={this.state.isDisabled} />
+                <button onClick={this.disable}>Disable</button>
             </div>
         );
     };
@@ -429,7 +425,7 @@ ReactDOM.render(<Plugin />,document.getElementById('root'));
 </details>
 
 ### enable()
-Enabled the TextArea component.
+Enabled the Text component.
 
 **Parameter**
 
@@ -444,36 +440,36 @@ None
 
 **Javascript**
 ```javascript
-var textArea = new kintoneUIComponent.TextArea({value: 'textarea', isDisabled: true});
-var btn = document.createElement('button'); 
-btn.textContent = 'Enable';
+var text = new kintoneUIComponent.Text({ value: 'Text is enabled', isDisabled: true });
+var btn = document.createElement('button');
+btn.textContent = 'Enabled';
 btn.onclick = function() {
-    textArea.enable();
+     text.enable();
 };
-
 var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(text.render());
 body.appendChild(btn);
-body.appendChild(textArea.render());
 ```
 **React**
 ```javascript
-import {TextArea} from '@kintone/kintone-ui-component';
+import {Text} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Textarea', isDisabled: true };
+        this.state = { value: 'Text is enabled', isDisabled: true };
     };
     enable = () => {
-        this.setState({ isDisabled: false });
+        this.setState({isDisabled: false });
     };
+
     render() {
         return (
             <div>
-                <TextArea value={this.state.value} isDisabled={this.state.isDisabled} />
-                <button onClick={this.enable}>Enable</button>                
+                <Text value={this.state.value} isDisabled={this.state.isDisabled} />
+                <button onClick={this.enable}>Enabled</button>
             </div>
         );
     };

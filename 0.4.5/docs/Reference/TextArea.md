@@ -252,8 +252,8 @@ export default class Plugin extends React.Component {
             />
         );
     };
-    onClick = (event) => {
-        console.log('onclick', event.target.value);
+    onClick = () => {
+        console.log('onclick');
     };
     onChange = (value) => {
         this.setState({ value });
