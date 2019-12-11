@@ -124,7 +124,7 @@ var DateTime = function (_a) {
                 setNewTimeDateValue = true;
             }
             if (value.getMonth() !== timeDateValue.getMonth()) {
-                newTimeDateValue.setDate(value.getDate());
+                newTimeDateValue.setMonth(value.getMonth());
                 setNewTimeDateValue = true;
             }
             if (value.getFullYear() !== timeDateValue.getFullYear()) {
@@ -138,7 +138,7 @@ var DateTime = function (_a) {
                 setInputValue('');
             }
             else {
-                //validate dateformat
+                // validate dateformat
                 if (inputValue !== dateFormat) {
                     var newInputValue = format(value, dateFormat);
                     if (newInputValue === dateFormat) {
@@ -158,7 +158,7 @@ var DateTime = function (_a) {
                 setDisableBtn(isDisabled);
             }
         }
-    }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled]);
+    }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled, inputValue, showPickerError]);
     if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
         setTypeDateTime('datetime');
     }

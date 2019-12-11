@@ -6,9 +6,9 @@ import '../../css/font.css';
 declare type DateTimeConstructorParameters = {
     value?: Date;
     onChange?: Function;
-    locale?: string;
+    locale?: 'ja' | 'en' | 'zh';
     dateFormat?: string;
-    type?: string;
+    type?: 'date' | 'time' | 'datetime';
     timeFormat?: string;
     isDisabled?: boolean;
     isVisible?: boolean;

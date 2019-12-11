@@ -3,8 +3,8 @@ import Control, { ControlProps } from '../Control';
 import '../../css/TextArea.css';
 declare type TextAreaProps = ControlProps & {
     value?: string;
-    onClick?: (e: any) => void;
-    onChange?: (e: any) => void;
+    onClick?: (e: Event) => void;
+    onChange?: (value: string | null) => void;
 };
 declare class TextArea extends Control<TextAreaProps> {
     private _onClick;

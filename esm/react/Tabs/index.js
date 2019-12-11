@@ -26,8 +26,11 @@ var Tabs = function (_a) {
             var className = 'kuc-tabs-container';
             if (value === tabIndex) {
                 className += ' kuc-tabs-container-selection';
+                if (item.isDisabled) {
+                    throw new Error(Message.tabs.INVALID_ACTION);
+                }
             }
-            if (item.isDisabled) {
+            else if (item.isDisabled) {
                 className += ' kuc-tabs-disabled';
                 return (React.createElement("li", { className: className, key: tabIndex }, item.tabName));
             }

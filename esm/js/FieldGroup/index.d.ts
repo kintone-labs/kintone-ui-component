@@ -4,7 +4,7 @@ import '../../css/FieldGroup.css';
 declare type FieldGroupProps = ControlProps & {
     content?: any;
     name?: string;
-    toggle?: string;
+    toggle?: 'collapse' | 'expand';
     onToggle?: (toggle: string) => void;
     isVisible?: boolean;
 };
@@ -22,7 +22,7 @@ declare class FieldGroup extends Control<FieldGroupProps> {
     getContent(): any;
     setName(name: string): void;
     getName(): string | undefined;
-    setToggle(toggle: string): void;
-    getToggle(): string | undefined;
+    setToggle(toggle: 'collapse' | 'expand'): void;
+    getToggle(): "collapse" | "expand" | undefined;
 }
 export default FieldGroup;

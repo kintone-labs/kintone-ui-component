@@ -9,8 +9,21 @@ var Dropdown = function (_a) {
     var _c = useState(false), isVisibleItems = _c[0], setVisibleItems = _c[1];
     var ref = useRef(null);
     var _hasDuplicatedItems = AbstractSingleSelection._hasDuplicatedItems, _hasValidValue = AbstractSingleSelection._hasValidValue, _handleItemClick = AbstractSingleSelection._handleItemClick;
-    var _showItems = function () {
+    var _caclListOuterPosition = function (listItemEl) {
+        var position = -6;
+        var currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
+        var parentEl = ref.current || document.createElement("div");
+        if (currentPosition >= window.innerHeight) {
+            position = position - (listItemEl.offsetHeight + parentEl.offsetHeight);
+        }
+        return position;
+    };
+    var _showItems = function (e) {
         setVisibleItems(!isVisibleItems);
+        var element = ref.current || document.createElement("div");
+        var listItemEl = element.getElementsByClassName('kuc-list-outer')[0];
+        listItemEl.setAttribute('style', "display: block;");
+        listItemEl.setAttribute('style', "margin-top: " + _caclListOuterPosition(listItemEl) + "px;");
     };
     var _hideItems = function () {
         setVisibleItems(false);

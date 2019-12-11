@@ -10,7 +10,7 @@ var IconButton = /** @class */ (function (_super) {
         _this._onClick = function (e) { };
         _this._props = tslib_1.__assign({}, _this._props, {
             type: 'insert',
-            size: 'large',
+            size: 'normal',
             color: 'gray',
             shape: 'circle'
         });

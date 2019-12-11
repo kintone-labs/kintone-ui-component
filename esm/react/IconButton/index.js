@@ -2,7 +2,7 @@ import React from 'react';
 import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import '../../css/IconButton.css';
 var IconButton = function (_a) {
-    var type = _a.type, size = _a.size, _b = _a.color, color = _b === void 0 ? '' : _b, isDisabled = _a.isDisabled, isVisible = _a.isVisible, shape = _a.shape, onClick = _a.onClick;
+    var type = _a.type, size = _a.size, _b = _a.color, color = _b === void 0 ? 'gray' : _b, isDisabled = _a.isDisabled, isVisible = _a.isVisible, shape = _a.shape, onClick = _a.onClick;
     var _getClassName = function () {
         var colors = ['gray', 'blue', 'red', 'green', 'transparent'];
         var colorResult = colors.indexOf(color) === -1 ? 'gray' : color;

@@ -29,7 +29,7 @@ var Spinner = /** @class */ (function (_super) {
         return outerDOM;
     };
     Spinner.prototype.disable = function () {
-        // nothing to do   
+        // nothing to do
     };
     Spinner.prototype.enable = function () {
         // nothing to do

@@ -55,20 +55,21 @@ var Tabs = /** @class */ (function (_super) {
         var _this = this;
         this.tabNamesElement = document.createElement('ul');
         this.tabNamesElement.className = 'kuc-tabs-tab-list';
-        this._props.items && this._props.items.forEach(function (item, index) {
-            var tabComponent = new TabName({
-                tabName: item.tabName,
-                tabIndex: index,
-                onClickTabItem: function (tabIndex) {
-                    _this._onClickTabItem(tabIndex);
-                    _this.setValue(tabIndex);
-                },
-                isActive: index === _this._props.value,
-                isDisabled: item.isDisabled
+        this._props.items &&
+            this._props.items.forEach(function (item, index) {
+                var tabComponent = new TabName({
+                    tabName: item.tabName,
+                    tabIndex: index,
+                    onClickTabItem: function (tabIndex) {
+                        _this._onClickTabItem(tabIndex);
+                        _this.setValue(tabIndex);
+                    },
+                    isActive: index === _this._props.value,
+                    isDisabled: item.isDisabled
+                });
+                _this.tabNames.push(tabComponent);
+                _this.tabNamesElement.appendChild(tabComponent.render());
             });
-            _this.tabNames.push(tabComponent);
-            _this.tabNamesElement.appendChild(tabComponent.render());
-        });
         this.element.appendChild(this.tabNamesElement);
     };
     Tabs.prototype._renderTabContent = function () {
@@ -148,6 +149,11 @@ var Tabs = /** @class */ (function (_super) {
         if (!value && value !== 0) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
+        this.tabNames.forEach(function (tab, index) {
+            if (index === value && tab.getIsDisabled()) {
+                throw new Error(Message.common.INVALID_ARGUMENT);
+            }
+        });
         this._props.value = value;
         if (this._validator()) {
             throw new Error(this._validator());
@@ -190,22 +196,30 @@ var Tabs = /** @class */ (function (_super) {
         if (!tabName) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items && this._props.items.forEach(function (item, index) {
-            if (item.tabName === tabName) {
-                _this.tabNames[index].disable();
-            }
-        });
+        this._props.items &&
+            this._props.items.forEach(function (item, index) {
+                var isSelected = index === _this._props.value;
+                if (item.tabName === tabName) {
+                    if (isSelected) {
+                        throw Message.tabs.INVALID_ACTION;
+                    }
+                    else {
+                        _this.tabNames[index].disable();
+                    }
+                }
+            });
     };
     Tabs.prototype.enableItem = function (tabName) {
         var _this = this;
         if (!tabName) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items && this._props.items.forEach(function (item, index) {
-            if (item.tabName === tabName) {
-                _this.tabNames[index].enable();
-            }
-        });
+        this._props.items &&
+            this._props.items.forEach(function (item, index) {
+                if (item.tabName === tabName) {
+                    _this.tabNames[index].enable();
+                }
+            });
     };
     Tabs.prototype.on = function (eventName, callback) {
         var _this = this;

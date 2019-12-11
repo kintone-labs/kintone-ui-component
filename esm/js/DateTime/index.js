@@ -372,7 +372,7 @@ var DateTime = /** @class */ (function (_super) {
         else {
             var tempDate = parseStringToDate(this._dateTextInput.value, this._props.dateFormat);
             if (tempDate instanceof Date && !isNaN(tempDate)) {
-                if (this._props.dateFormat && !this._props.dateFormat.includes("d")) {
+                if (this._props.dateFormat && !this._props.dateFormat.includes('d')) {
                     tempDate.setDate(this._props.value ? this._props.value.getDate() : 1);
                 }
                 this._props.value = tempDate;

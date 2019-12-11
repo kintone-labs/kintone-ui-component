@@ -22,6 +22,9 @@ var Control = /** @class */ (function () {
             }
         }
     };
+    Control.prototype.getIsDisabled = function () {
+        return this._props.isDisabled;
+    };
     Control.prototype.render = function () {
         return this.element;
     };

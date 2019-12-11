@@ -14,6 +14,7 @@ declare const Message: {
     tabs: {
         MISSING_TAB_NAME: string;
         MISSING_NEW_ITEM_TABNAME: string;
+        INVALID_ACTION: string;
     };
     datetime: {
         INVALID_DATE: string;

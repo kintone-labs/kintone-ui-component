@@ -4,8 +4,8 @@ import '../../css/DateTime.css';
 import '../../css/Text.css';
 declare type DateTimeProps = ControlProps & {
     value?: Date | null;
-    type?: string;
-    locale?: string;
+    type?: 'date' | 'time' | 'datetime';
+    locale?: 'ja' | 'en' | 'zh';
     dateFormat?: string;
     timeFormat?: string;
     onChange?: (date: Date) => void;

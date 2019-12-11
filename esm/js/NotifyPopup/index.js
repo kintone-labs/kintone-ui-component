@@ -16,7 +16,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
-            _this._props.text = (params.text && typeof params.text === "string") ? params.text : "";
+            _this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
         }
         // isDisabled always is setted false
         // When we update major version of ui-component, we should delete this prop
@@ -32,7 +32,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         return _this;
     }
     NotifyPopup.prototype._getStyleByType = function () {
-        var style = { bgClass: '', color: '' };
+        var style = { bgClass: '', color: 'red' };
         switch (this._props.type) {
             case 'success':
                 style.bgClass = 'bg-success';
@@ -98,7 +98,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         this.rerender(['type']);
     };
     NotifyPopup.prototype.disable = function () {
-        // nothing to do   
+        // nothing to do
     };
     NotifyPopup.prototype.enable = function () {
         // nothing to do

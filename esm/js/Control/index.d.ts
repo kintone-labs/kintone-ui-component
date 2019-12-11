@@ -7,6 +7,7 @@ declare class Control<T extends ControlProps> {
     protected element: HTMLElement;
     constructor();
     rerender(changedAttr?: string[]): void;
+    getIsDisabled(): boolean | undefined;
     render(): HTMLElement;
     on(eventName: string, callback: (params?: any) => void): void;
     show(): void;

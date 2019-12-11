@@ -50,7 +50,16 @@ var Dropdown = /** @class */ (function (_super) {
     Dropdown.prototype._showItems = function (e) {
         this.isListVisible = true;
         this.listOuterEl.setAttribute('style', 'display: block');
+        this.listOuterEl.setAttribute('style', "margin-top: " + this._caclListOuterPosition() + "px");
         this._props.listItemsShown && this._props.listItemsShown(e);
+    };
+    Dropdown.prototype._caclListOuterPosition = function () {
+        var position = -6;
+        var currentPosition = this.listOuterEl.offsetTop + this.listOuterEl.offsetHeight;
+        if (currentPosition >= window.innerHeight) {
+            position = position - (this.listOuterEl.offsetHeight + this.element.offsetHeight);
+        }
+        return position;
     };
     Dropdown.prototype._hideItems = function () {
         this.isListVisible = false;

@@ -17,9 +17,8 @@ var Text = /** @class */ (function (_super) {
         _this.element = document.createElement('input');
         _this.element.className = 'kuc-input-text';
         _this.element.setAttribute('type', 'text');
-        if (_this._props.value) {
-            _this.element.value = _this._props.value;
-        }
+        // If this._props.value is 0, we handle it as string.
+        _this.element.value = (_this._props.value == null || _this._props.value == undefined) ? '' : _this._props.value;
         _this.element.onchange = function (e) {
             _this._props.value = e.target.value;
             _this._onChange(e);
@@ -40,8 +39,9 @@ var Text = /** @class */ (function (_super) {
         }
         if (!changedAttr)
             return;
-        if (changedAttr.indexOf('value') !== -1 && this._props.value) {
-            this.element.value = this._props.value;
+        if (changedAttr.indexOf('value') !== -1) {
+            // If this._props.value is 0, we handle it as string.
+            this.element.value = (this._props.value === null || this._props.value === undefined) ? '' : this._props.value;
         }
     };
     Text.prototype.on = function (eventName, callback) {

@@ -3,14 +3,14 @@ import Control, { ControlProps } from '../Control';
 import '../../css/Alert.css';
 declare type AlertProps = ControlProps & {
     text?: string;
-    type?: string;
+    type?: 'error' | 'success';
 };
 declare class Alert extends Control<AlertProps> {
     constructor(params?: AlertProps);
     rerender(changedAttr?: string[]): void;
     private _getClassName;
     setText(text: string): void;
-    setType(type: string): void;
+    setType(type: 'error' | 'success'): void;
     disable(): void;
     enable(): void;
 }

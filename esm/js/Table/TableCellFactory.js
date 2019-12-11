@@ -67,6 +67,15 @@ var createTableCell = function (type, fieldName, props) {
                         props.onChange({ data: data, rowIndex: rowIndex, fieldName: fieldName });
                     }
                 });
+                field.on('click', function (e) {
+                    var rowData = JSON.parse(JSON.stringify(table.data[rowIndex]));
+                    rowData[fieldName].value = e.target.value;
+                    updateRowData(rowData, false, true, fieldName);
+                    if (props && props.onClick) {
+                        var data = table.data;
+                        props.onClick({ data: data, rowIndex: rowIndex, fieldName: fieldName });
+                    }
+                });
                 break;
             case 'dropdown':
             case 'checkbox':
@@ -80,6 +89,16 @@ var createTableCell = function (type, fieldName, props) {
                     if (props && props.onChange) {
                         var data = table.data;
                         props.onChange({ data: data, rowIndex: rowIndex, fieldName: fieldName });
+                    }
+                });
+                break;
+            case 'icon':
+            case 'alert':
+            case 'label':
+                field.on('click', function (e) {
+                    if (props && props.onClick) {
+                        var data = table.data;
+                        props.onClick({ data: data, rowIndex: rowIndex, fieldName: fieldName });
                     }
                 });
                 break;

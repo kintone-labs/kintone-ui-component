@@ -2,10 +2,10 @@ import '../polyfill';
 import Control, { ControlProps } from '../Control';
 import '../../css/IconButton.css';
 declare type IconBtnProps = ControlProps & {
-    type?: string;
-    size?: string;
-    color?: string;
-    shape?: string;
+    type?: 'insert' | 'remove' | 'close' | 'file' | 'right' | 'left';
+    size?: 'normal' | 'small';
+    color?: 'gray' | 'blue' | 'red' | 'green' | 'transparent';
+    shape?: 'circle' | 'normal';
 };
 declare class IconButton extends Control<IconBtnProps> {
     private iconEl;
@@ -17,10 +17,10 @@ declare class IconButton extends Control<IconBtnProps> {
     private _getClassSize;
     private _getIconData;
     rerender(changedAttr?: string[]): void;
-    setType(type: string): void;
-    setSize(size: string): void;
-    setShape(shape: string): void;
-    setColor(color: string): void;
+    setType(type: 'insert' | 'remove' | 'close' | 'file' | 'right' | 'left'): void;
+    setSize(size: 'normal' | 'small'): void;
+    setShape(shape: 'circle' | 'normal'): void;
+    setColor(color: 'gray' | 'blue' | 'red' | 'green' | 'transparent'): void;
     on(eventName: string, callback: (params?: any) => void): void;
 }
 export default IconButton;

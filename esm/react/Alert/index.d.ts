@@ -3,7 +3,7 @@ import '../../css/font.css';
 import '../../css/Alert.css';
 declare type AlertProps = {
     text?: string;
-    type?: string;
+    type?: 'error' | 'success';
     isVisible?: boolean;
     onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 };

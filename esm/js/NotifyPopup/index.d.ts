@@ -3,7 +3,7 @@ import Control, { ControlProps } from '../Control';
 import '../../css/NotifyPopup.css';
 declare type PopupProps = ControlProps & {
     text?: string;
-    type?: string;
+    type?: 'error' | 'success' | 'info';
 };
 declare class NotifyPopup extends Control<PopupProps> {
     private textEl;
@@ -17,7 +17,7 @@ declare class NotifyPopup extends Control<PopupProps> {
     private _getClassName;
     rerender(changedAttr?: string[]): void;
     setText(text: string): void;
-    setType(type: string): void;
+    setType(type: 'error' | 'success' | 'info'): void;
     disable(): void;
     enable(): void;
 }

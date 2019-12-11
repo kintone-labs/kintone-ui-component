@@ -23,6 +23,7 @@ declare class Dropdown extends Control<DropdownProps> {
     constructor(params?: DropdownProps);
     private _createDom;
     private _showItems;
+    private _caclListOuterPosition;
     private _hideItems;
     private _handleDropdownClick;
     private _handleClickOutside;

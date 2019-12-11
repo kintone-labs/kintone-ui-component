@@ -46,6 +46,9 @@ var TabName = /** @class */ (function (_super) {
             if (this._props.isDisabled) {
                 className += ' kuc-tabs-disabled';
             }
+            else if (!this._props.isDisabled && this._props.isActive) {
+                className += ' kuc-tabs-container-selection';
+            }
         }
         this.element.className = className;
     };
