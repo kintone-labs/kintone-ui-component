@@ -138,7 +138,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.4.5</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.5.0</a>
         </div>
       </div>
  
@@ -1112,13 +1112,13 @@ export default class Plugin extends React.Component {
         this.state = { isVisible: true };
     };
 
-    onClose = () =&gt; {
-        console.log('NotifyPopup onClose');
+    onClose = (event) =&gt; {
+        console.log('NotifyPopup onClose', event.timeStamp);
         this.setState({isVisible: false});
     };
 
-    onClick = () =&gt; {
-        console.log('NotifyPopup onClick');
+    onClick = (event) =&gt; {
+        console.log('NotifyPopup onClick', event.timeStamp);
     }
     render() {
         return (
