@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "../../css/font.css";
-import "../../css/Tabs.css";
-import Message from "../../constant/Message";
+import React, {useState, useEffect} from 'react';
+import '../../css/font.css';
+import '../../css/Tabs.css';
+import Message from '../../constant/Message';
 
 type TabsItem = {
   tabName: string;
@@ -15,14 +15,14 @@ type TabsProps = {
   onClickTabItem?: (tabIndex: number) => void;
 };
 
-const Tabs = ({ items, value, onClickTabItem }: TabsProps) => {
+const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   const [defaultValue, setDefaultValue] = useState(value);
   const _onClickTabItem = (tabIndex: number) => {
     onClickTabItem && onClickTabItem(tabIndex);
   };
 
   if (defaultValue) {
-    if (typeof defaultValue !== "number") {
+    if (typeof defaultValue !== 'number') {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     if (!items || defaultValue > items.length - 1 || defaultValue < 0) {
@@ -37,23 +37,23 @@ const Tabs = ({ items, value, onClickTabItem }: TabsProps) => {
     if (!defaultValue && items && items.length > 0) {
       setDefaultValue(0);
     }
-  }, [defaultValue]);
+  }, [defaultValue, items]);
 
   const tabNames = (
     <ul className="kuc-tabs-tab-list">
       {items &&
         items.map((item: TabsItem, tabIndex: number) => {
           if (!item.tabName) {
-            throw new Error(Message.tabs.MISSING_TAB_NAME.replace("{{index}}", tabIndex.toString()));
+            throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()));
           }
-          let className = "kuc-tabs-container";
+          let className = 'kuc-tabs-container';
           if (defaultValue === tabIndex) {
-            className += " kuc-tabs-container-selection";
+            className += ' kuc-tabs-container-selection';
             if (item.isDisabled) {
               throw new Error(Message.tabs.INVALID_ACTION);
             }
           } else if (item.isDisabled) {
-            className += " kuc-tabs-disabled";
+            className += ' kuc-tabs-disabled';
             return (
               <li className={className} key={tabIndex}>
                 {item.tabName}
