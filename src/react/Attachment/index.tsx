@@ -162,7 +162,7 @@ const Attachment = (props: AttachmentProps) => {
             />
           ))}
         </div>
-        <button className="kuc-attachment-file-upload-button" tabIndex={-1}>
+        <span className="kuc-attachment-file-upload-button" tabIndex={-1}>
           <span className="kuc-attachment-file-upload-button-text"> {props.browseButtonText || 'Browse'}</span>
           <div className="kuc-attachment-file-upload-html5">
             <input
@@ -177,7 +177,7 @@ const Attachment = (props: AttachmentProps) => {
               onChange={_addFiles}
             />
           </div>
-        </button>
+        </span>
         <p className="kuc-attachment-file-constraints">{props.fileLimitText}</p>
       </div>
       {props.isErrorVisible === true && (
