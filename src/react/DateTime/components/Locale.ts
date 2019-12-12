@@ -12,7 +12,7 @@ const getSeperator = (dateFormatString: string) => {
       seperator = char;
     }
   });
-  if(seperator === '') {
+  if (seperator === '') {
     throw new Error(Message.datetime.INVALID_DATEFORMAT_SEPARATOR);
   }
   return seperator;
@@ -56,7 +56,7 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
       if (locale.name === 'ja' || locale.name === 'zh') return `${dateObj.year}年`;
       return `${dateObj.year}`;
     default:
-      throw new Error('Invalid date format')
+      throw new Error('Invalid date format');
   }
 };
 
@@ -94,7 +94,7 @@ const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string =
     });
     return formattedDate.join(seperator);
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return dateFormat;
   }
 };

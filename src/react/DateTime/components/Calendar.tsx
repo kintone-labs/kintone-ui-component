@@ -36,7 +36,7 @@ const Calendar = ({
     for (let i = 0; i < selectedItems.length; i++) {
       const item = selectedItems[i];
       if (item.parentNode) {
-        (item.parentNode as HTMLElement).scrollTop = (item as HTMLElement).offsetTop - (item.parentNode as HTMLElement).offsetTop
+        (item.parentNode as HTMLElement).scrollTop = (item as HTMLElement).offsetTop - (item.parentNode as HTMLElement).offsetTop;
       }
     }
   };
