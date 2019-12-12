@@ -56,7 +56,7 @@ const jsUMDConfig = (_, argv) => {
                 new TerserPlugin({
                     cache: true,
                     parallel: true,
-                    uglifyOptions: {
+                    terserOptions: {
                         compress: argv.mode === 'production',
                         ecma: 6,
                         mangle: true
@@ -145,7 +145,7 @@ const reactUMDConfig = (_, argv) => {
                 new TerserPlugin({
                     cache: true,
                     parallel: true,
-                    uglifyOptions: {
+                    terserOptions: {
                         compress: argv.mode === 'production',
                         ecma: 6,
                         mangle: true
