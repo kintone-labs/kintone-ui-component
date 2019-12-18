@@ -28,7 +28,7 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"lint": "./node_modules/.bin/eslint 'src/**'"
+		"lint": "eslint 'src/**'"
 		
 	},
 	"dependencies": {
