@@ -1,24 +1,24 @@
 (function(arr) {
   arr.forEach((item) => {
     if (!Object.prototype.hasOwnProperty.call(item, 'append')) {
-        Object.defineProperty(item, 'append', {
+      Object.defineProperty(item, 'append', {
         configurable: true,
         enumerable: true,
         writable: true,
         value: function append(...args: any[]) {
           const docFrag = document.createDocumentFragment();
-  
+
           args.forEach((argItem: any) => {
             const isNode = argItem instanceof Node;
             docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
           });
-  
+
           this.appendChild(docFrag);
         }
       });
     }
     if (!Object.prototype.hasOwnProperty.call(item, 'remove')) {
-        Object.defineProperty(item, 'remove', {
+      Object.defineProperty(item, 'remove', {
         configurable: true,
         enumerable: true,
         writable: true,
@@ -28,7 +28,7 @@
       });
     }
     if (!Object.prototype.hasOwnProperty.call(item, 'prepend')) {
-        Object.defineProperty(item, 'prepend', {
+      Object.defineProperty(item, 'prepend', {
         configurable: true,
         enumerable: true,
         writable: true,
@@ -38,7 +38,7 @@
             const isNode = argItem instanceof Node;
             docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
           });
-  
+
           this.insertBefore(docFrag, this.firstChild);
         }
       });
