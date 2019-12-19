@@ -6,11 +6,12 @@ type TextProps = {
   value?: string;
   isDisabled?: boolean;
   isVisible?: boolean;
+  placeholder?: string;
   onChange?: (value: string | null) => void;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}: TextProps) => {
+const Text = ({value, isDisabled = false, isVisible = true, placeholder = "", onChange, onClick}: TextProps) => {
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event.target.value);
   };
@@ -23,6 +24,7 @@ const Text = ({value, isDisabled = false, isVisible = true, onChange, onClick}: 
     <input
       type="text"
       value={value}
+      placeholder={placeholder}
       className="kuc-input-text"
       onClick={onClick}
       onChange={_onChange}
