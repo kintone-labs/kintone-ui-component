@@ -3,6 +3,7 @@ import Control, {ControlProps} from '../Control';
 import '../../css/TextArea.css';
 type TextAreaProps = ControlProps & {
   value?: string;
+  placeholder?: string;
   onClick?: (e: Event) => void;
   onChange?: (value: string | null) => void;
 }
@@ -39,6 +40,9 @@ class TextArea extends Control<TextAreaProps> {
     if (changedAttr.indexOf('value') !== -1) {
       this.textAreaEl.value = this._props.value || '';
     }
+    if (changedAttr.indexOf('placeholder') !== -1) {
+      this.textAreaEl.placeholder = this._props.placeholder || '';
+    }
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._props.isDisabled) {
         this.textAreaEl.setAttribute('disabled', `${this._props.isDisabled}`);
@@ -55,6 +59,15 @@ class TextArea extends Control<TextAreaProps> {
 
   getValue() {
     return this._props.value;
+  }
+
+  setPlaceholder(placeholder: string) {
+    this._props.placeholder = placeholder;
+    this.rerender(['placeholder']);
+  }
+
+  getPlaceholder() {
+    return this._props.placeholder;
   }
 
   _onMouseDown() {
