@@ -11,7 +11,7 @@ type TextProps = {
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
-const Text = ({value, isDisabled = false, isVisible = true, placeholder = "", onChange, onClick}: TextProps) => {
+const Text = ({value, isDisabled = false, isVisible = true, placeholder = '', onChange, onClick}: TextProps) => {
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event.target.value);
   };
