@@ -220,7 +220,7 @@ None
 
 **Javascript**
 ```javascript
-var textarea = new kintoneUIComponent.TextArea({ value: 'input text' });
+var textarea = new kintoneUIComponent.TextArea({ placeholder: '' });
 var btn = document.createElement('button');
 btn.textContent = 'Click';
 btn.onclick = function() {

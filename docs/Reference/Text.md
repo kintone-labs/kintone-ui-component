@@ -213,7 +213,7 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({ value: 'input text' });
+var text = new kintoneUIComponent.Text({ value: '' });
 var btn = document.createElement('button');
 btn.textContent = 'Click';
 btn.onclick = function() {
@@ -271,7 +271,7 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({value: 'input text'});
+var text = new kintoneUIComponent.Text({placeholder: 'Placeholder'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(text.render());
 
