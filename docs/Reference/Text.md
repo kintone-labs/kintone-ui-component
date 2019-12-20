@@ -213,7 +213,7 @@ None
 
 **Javascript**
 ```javascript
-var text = new kintoneUIComponent.Text({ value: '' });
+var text = new kintoneUIComponent.Text({ placeholder: '' });
 var btn = document.createElement('button');
 btn.textContent = 'Click';
 btn.onclick = function() {
