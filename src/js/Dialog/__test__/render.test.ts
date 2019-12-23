@@ -5,7 +5,7 @@ const messages = {
 
 import Dialog from '../index';
 
-describe('Unit test Dialog js', () => {
+describe('Unit test Dialog render', () => {
 
   beforeEach(() => {
     jest.spyOn(console, 'error');
@@ -71,57 +71,6 @@ describe('Unit test Dialog js', () => {
       expect(container.firstElementChild.className).toContain('kuc-dialog-container');
     } else {
       expect(false);
-    }
-  });
-
-  test('Function setHeader and getHeader run correctly', () => {
-    const myDialog = new Dialog({header: 'header 1'});
-    myDialog.setHeader('header 2');
-    expect(myDialog.getHeader()).toEqual('header 2');
-  });
-
-  test('setHeader throw error with invalid header', () => {
-    try {
-      const myDialog = new Dialog({header: 'header'});
-      // @ts-ignore
-      myDialog.setHeader(1);
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe(messages.INVALID_ARGUMENT);
-    }
-  });
-
-  test('Function setContent and getContent run correctly', () => {
-    const myDialog = new Dialog({content: 'content 1'});
-    myDialog.setContent('content 2');
-    expect(myDialog.getContent()).toEqual('content 2');
-  });
-
-  test('setContent throw error with invalid header', () => {
-    try {
-      const myDialog = new Dialog({content: 'content'});
-      // @ts-ignore
-      myDialog.setContent(1);
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe(messages.INVALID_ARGUMENT);
-    }
-  });
-
-  test('Function setFooter and getFooter run correctly', () => {
-    const myDialog = new Dialog({footer: 'footer 1'});
-    myDialog.setFooter('footer 2');
-    expect(myDialog.getFooter()).toEqual('footer 2');
-  });
-
-  test('setFooter throw error with invalid header', () => {
-    try {
-      const myDialog = new Dialog({footer: 'footer'});
-      // @ts-ignore
-      myDialog.setFooter(1);
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe(messages.INVALID_ARGUMENT);
     }
   });
 
@@ -212,29 +161,5 @@ describe('Unit test Dialog js', () => {
     } else {
       expect(false);
     }
-  });
-
-  test('Function rerender work normally with no params', () => {
-    const myDialog = new Dialog({});
-    try {
-      myDialog.rerender();
-      expect(true);
-    } catch (error) {
-      if (error) {
-        expect(false);
-      }
-    }
-  });
-
-  test('Update header works normally without removing close button', () => {
-    const headerDOM = document.createElement('h1');
-    headerDOM.innerHTML = 'header 1';
-
-    const myDialog = new Dialog({header: headerDOM, showCloseButton: true});
-
-    const newHeaderDOM = document.createElement('h1');
-    newHeaderDOM.innerHTML = 'header 2';
-    myDialog.setHeader(newHeaderDOM);
-    expect(myDialog.getHeader()).toBe(newHeaderDOM);
   });
 });
