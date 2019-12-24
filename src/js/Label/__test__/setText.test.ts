@@ -1,0 +1,35 @@
+
+import Label from '../index';
+
+const messages = {
+  INVALID_ARGUMENT: 'Error: invalid function arguments'
+};
+
+describe('Unit test Label setText', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
+  test('setText successfully with props value number Label component', () => {
+    try {
+      const label = new Label({text: 'label'});
+      // @ts-ignore
+      label.setText(3);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(messages.INVALID_ARGUMENT);
+    }
+  });
+
+  test('setText successfully with full props Label component', () => {
+    const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: true, isRequired: true, isVisible: true, textColor: 'blue'});
+    label.setText('');
+    expect(label.render().textContent).toBe('*');
+  });
+});
