@@ -33,6 +33,10 @@ describe('Unit test TextArea react', () => {
       expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
     }
   });
-
+  
+  test('Render with props invisible TextArea', () => {
+    const {container} = render(<TextArea value="textarea" isVisible={false} />);
+    expect(container).toBeEmpty();
+  });
 });
 

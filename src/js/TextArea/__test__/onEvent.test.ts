@@ -14,9 +14,14 @@ describe('Unit test TextArea onEvent', () => {
   });
 
   test('onClick and onChange empty function TextArea component', () => {
-    const txtArea = new TextArea({value: 'empty'});
-    fireEvent.click(txtArea.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
-    fireEvent.change(txtArea.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
+    try {
+      const txtArea1 = new TextArea({value: 'empty'});
+      fireEvent.click(txtArea1.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
+      fireEvent.change(txtArea1.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
+      expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
+    } catch (error) {
+      expect(false);
+    }
   });
 
   test('onChange and onClick TextArea component', () => {
@@ -32,22 +37,34 @@ describe('Unit test TextArea onEvent', () => {
   });
 
   test('onMouseDown TextArea component', () => {
-    const txtArea = new TextArea({value: 'empty'});
-    txtArea._onMouseDown();
+    try {
+      const txtArea = new TextArea({value: 'empty'});
+      txtArea._onMouseDown();
+    } catch (error) {
+      expect(false);
+    }
   });
 
   test('onMouseDown disable TextArea component', () => {
-    const txtArea1 = new TextArea({isDisabled: true});
-    txtArea1._onMouseDown();
+    try {
+      const txtArea1 = new TextArea({isDisabled: true});
+      txtArea1._onMouseDown();
+    } catch (error) {
+      expect(false);
+    }
   });
 
   test('onMouseDown disable TextArea component', () => {
-    const txtArea1 = new TextArea({value: 'empty'});
-    const textAreaResize = txtArea1.render().getElementsByClassName('kuc-textarea-resize')[0];
-    fireEvent.mouseDown(textAreaResize, {});
-    fireEvent.mouseDown(document, {clientX: 1900, clientY: 2020});
-    fireEvent.mouseMove(document, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
-    fireEvent.mouseMove(document, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
-    fireEvent.mouseUp(document, {clientX: 1909, clientY: 2009});
+    try {
+      const txtArea1 = new TextArea({value: 'empty'});
+      const textAreaResize = txtArea1.render().getElementsByClassName('kuc-textarea-resize')[0];
+      fireEvent.mouseDown(textAreaResize, {});
+      fireEvent.mouseDown(document, {clientX: 1900, clientY: 2020});
+      fireEvent.mouseMove(document, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
+      fireEvent.mouseMove(document, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
+      fireEvent.mouseUp(document, {clientX: 1909, clientY: 2009});
+    } catch (error) {
+      expect(false);
+    }
   });
 });

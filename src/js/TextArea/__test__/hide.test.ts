@@ -16,10 +16,4 @@ describe('Unit test TextArea hide', () => {
     txtArea1.hide();
     expect(txtArea1.render()).not.toBeVisible();
   });
-
-  test('hide TextArea without props component', () => {
-    const txtArea2 = new TextArea({value: 'textarea'});
-    txtArea2.hide();
-    expect(txtArea2.render()).not.toBeVisible();
-  });
 });

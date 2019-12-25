@@ -14,11 +14,6 @@ describe('Unit test TextArea react', () => {
     console.error.mockRestore();
   });
 
-  test('onChange with props invisible TextArea', () => {
-    const {container} = render(<TextArea value="textarea" isVisible={false} />);
-    expect(container).toBeEmpty();
-  });
-
   test('onChange with props visible TextArea', () => {
     const onChange = (value: string) => {
       expect(value).toBe('on change event textarea');
@@ -33,11 +28,18 @@ describe('Unit test TextArea react', () => {
   });
 
   test('onMouseDown with props TextArea', () => {
-    const {getByRole} = render(<TextArea value="textarea" />);
-    const textAreaResize = getByRole('button');
-    fireEvent.mouseDown(textAreaResize, {clientX: 1900, clientY: 2020});
-    fireEvent.mouseMove(textAreaResize, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
-    fireEvent.mouseMove(textAreaResize, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
-    fireEvent.mouseUp(textAreaResize, {clientX: 1909, clientY: 2009});
+    try {
+      const {container, getByRole} = render(<TextArea value="textarea" />);
+      const textAreaResize = getByRole('button');
+      fireEvent.mouseDown(textAreaResize, {clientX: 1900, clientY: 2020});
+      fireEvent.mouseMove(textAreaResize, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
+      fireEvent.mouseMove(textAreaResize, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
+      fireEvent.mouseUp(textAreaResize, {clientX: 1909, clientY: 2009});
+      if (container.firstElementChild) {
+        expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
+      }
+    } catch (error) {
+      expect(false);
+    }
   });
 });

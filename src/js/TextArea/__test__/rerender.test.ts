@@ -13,7 +13,11 @@ describe('Unit test TextArea rerender', () => {
   });
 
   test('rerender without props TextArea component', () => {
-    const txtArea1 = new TextArea();
-    expect(txtArea1.rerender()).toBeUndefined();
+    try {
+      const txtArea1 = new TextArea();
+      expect(txtArea1.rerender()).toHaveClass('kuc-textarea-outer');
+    } catch (error) {
+      expect(false);
+    }
   });
 });
