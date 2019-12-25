@@ -16,7 +16,7 @@ describe('Unit test Label render', () => {
     const label = new Label();
     expect(label.render().className).toBe('kuc-label');
   });
-  test('render successfully with props value Label component', () => {
+  test('render default text for invalid value props Label component', () => {
     // @ts-ignore
     const label = new Label({text: 1});
     expect(label.render().textContent).toBe('');
