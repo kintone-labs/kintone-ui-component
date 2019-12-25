@@ -1,5 +1,5 @@
 import Button from '../index';
-import { fireEvent } from '@testing-library/react';
+import {fireEvent} from '@testing-library/react';
 
 describe('Unit test Button setText', () => {
   test('Function onClick event run successfully', () => {
@@ -7,9 +7,9 @@ describe('Unit test Button setText', () => {
     const container = button.render();
     button.on('click', (e: any) => {
       if (e.target) {
-        button.setText(e.target.value);  
+        button.setText(e.target.value);
       }
-    })
+    });
     fireEvent.click(container, {target: {value: 'on click'}});
     expect(container.textContent).toBe('on click');
   });
@@ -20,9 +20,9 @@ describe('Unit test Button setText', () => {
     // @ts-ignore
     button.on('change', (e: any) => {
       if (e.target) {
-        button.setText(e.target.value);  
+        button.setText(e.target.value);
       }
-    })
+    });
     fireEvent.click(container, {target: {value: 'on change'}});
     expect(container.textContent).toBe('Button');
   });

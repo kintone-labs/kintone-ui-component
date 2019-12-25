@@ -18,7 +18,7 @@ describe('Unit test Button setType', () => {
   test('Function setType empty run successfully', () => {
     const button = new Button({type: 'submit'});
     const container = button.render();
-    //@ts-ignore
+    // @ts-ignore
     button.setType('');
     expect(container.className).toBe('kuc-btn normal');
   });
@@ -26,7 +26,7 @@ describe('Unit test Button setType', () => {
   test('Function setType null run successfully', () => {
     const button = new Button({type: 'submit'});
     const container = button.render();
-    //@ts-ignore
+    // @ts-ignore
     button.setType(null);
     expect(container.className).toBe('kuc-btn normal');
   });
