@@ -21,7 +21,7 @@ describe('Unit test Label setTextColor', () => {
     expect((label.render().firstElementChild as HTMLElement).style.color).toBe('red');
   });
 
-  test('setTextColor successfully with props value number Label component', () => {
+  test('setTextColor expect to throw error with props value number Label component', () => {
     try {
       const label = new Label({text: 'label', textColor: 'blue'});
       // @ts-ignore

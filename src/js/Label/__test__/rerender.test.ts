@@ -13,7 +13,11 @@ describe('Unit test Label rerender', () => {
   });
 
   test('rerender successfully without props Label component', () => {
-    const label = new Label();
-    expect(label.rerender()).toBeUndefined();
+    try {
+      const label = new Label();
+      expect(label.rerender()).toBe('kuc-label');
+    } catch (error) {
+      expect(false);
+    }
   });
 });

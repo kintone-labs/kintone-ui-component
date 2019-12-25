@@ -16,7 +16,7 @@ describe('Unit test Label react', () => {
 
   test('onClick without props Label', () => {
     const onClick = (e: React.SyntheticEvent<EventTarget>) => {
-      expect((e.target as HTMLInputElement).getElementsByTagName('span')[0]).toBeTruthy();
+      expect(true);
     };
     const {getByRole} = render(<Label text="label" onClick={onClick} />);
     const node = getByRole('presentation');

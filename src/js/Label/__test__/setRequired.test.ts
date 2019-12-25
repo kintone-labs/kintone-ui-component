@@ -22,7 +22,7 @@ describe('Unit test Label setRequired', () => {
     expect(label.render().getElementsByClassName('kuc-require')).toBeDefined();
   });
 
-  test('setRequired successfully with props value string Label component', () => {
+  test('setRequired expect to throw error with props value string Label component', () => {
     try {
       const label = new Label({text: 'label', isRequired: true});
       // @ts-ignore

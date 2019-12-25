@@ -16,7 +16,7 @@ describe('Unit test Label setText', () => {
     console.error.mockRestore();
   });
 
-  test('setText successfully with props value number Label component', () => {
+  test('setText expect to throw error with props value number Label component', () => {
     try {
       const label = new Label({text: 'label'});
       // @ts-ignore

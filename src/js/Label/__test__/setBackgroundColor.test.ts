@@ -22,7 +22,7 @@ describe('Unit test Label setBackgroundColor', () => {
     expect((label.render().firstElementChild as HTMLElement).style.backgroundColor).toBe('blue');
   });
 
-  test('setBackgroundColor successfully with props value number Label component', () => {
+  test('setBackgroundColor expect to throw error with props value number Label component', () => {
     try {
       const label = new Label({text: 'label', backgroundColor: 'blue'});
       // @ts-ignore
