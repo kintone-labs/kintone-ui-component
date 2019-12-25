@@ -26,4 +26,10 @@ describe('Unit test Label react', () => {
       expect(container.firstElementChild.className).toBe('kuc-label');
     }
   });
+  test('render with props invisible props Label', () => {
+    const {container} = render(<Label isVisible={false} />);
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-label');
+    }
+  });
 });

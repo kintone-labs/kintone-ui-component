@@ -17,10 +17,11 @@ describe('Unit test Label render', () => {
     expect(label.render().className).toBe('kuc-label');
   });
   test('render successfully with props value Label component', () => {
-    const label = new Label({text: ''});
-    expect(label.render().className).toBe('kuc-label');
+    // @ts-ignore
+    const label = new Label({text: 1});
+    expect(label.render().textContent).toBe('');
   });
-  test('render successfully with full props Label component and disable', () => {
+  test('render successfully with full props Label component', () => {
     const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: false, isRequired: true, isVisible: true, textColor: 'blue'});
     expect(label.render().className).toBe('kuc-label');
   });
