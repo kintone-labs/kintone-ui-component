@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Label from '../index';
 
 describe('Unit test Label rerender', () => {
