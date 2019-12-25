@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {render} from '@testing-library/react';
 import Alert from '../index';
 import React from 'react';

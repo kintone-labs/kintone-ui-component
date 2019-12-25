@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Alert from '../index';
 
 describe('Unit test Alert rerender', () => {
