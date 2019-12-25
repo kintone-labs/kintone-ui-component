@@ -13,7 +13,11 @@ describe('Unit test Alert rerender', () => {
   });
 
   test('rerender successfully without props Alert component', () => {
-    const alert = new Alert();
-    expect(alert.rerender()).toBeUndefined();
+    try {
+      const alert = new Alert();
+      expect(alert.rerender()).toBe('kuc-alert bg-danger');
+    } catch (error) {
+      expect(false);
+    }
   });
 });
