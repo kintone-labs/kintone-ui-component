@@ -1,5 +1,6 @@
 import '../polyfill';
 import Control, {ControlProps} from '../Control';
+import Message from '../../constant/Message';
 import '../../css/TextArea.css';
 type TextAreaProps = ControlProps & {
   value?: string;
@@ -68,6 +69,7 @@ class TextArea extends Control<TextAreaProps> {
   }
 
   setPlaceholder(placeholder: string) {
+    if (!placeholder) throw new Error(Message.common.INVALID_ARGUMENT);
     this._props.placeholder = placeholder;
     this.rerender(['placeholder']);
   }
