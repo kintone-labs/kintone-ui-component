@@ -1,6 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
 import Button from '../index';
-
 const fs = require('fs');
 
 describe('Snapshot test Button render', () => {
