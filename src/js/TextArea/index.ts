@@ -26,6 +26,12 @@ class TextArea extends Control<TextAreaProps> {
 
   constructor(params?: TextAreaProps) {
     super();
+    this._props = {
+      ...this._props,
+      ...{
+        placeholder: ''
+      }
+    };
     if (params) {
       this._props = {...this._props, ...params};
     }
