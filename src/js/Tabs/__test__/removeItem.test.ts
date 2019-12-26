@@ -28,11 +28,9 @@ describe('Unit test Tabs addItem', () => {
     const myTabs = new Tabs({items});
     myTabs.removeItem(1);
     const tabItems = myTabs.getItems();
-    if (tabItems) {
-      expect(tabItems.length).toEqual(1);
-    } else {
-      expect(false);
-    }
+    expect(tabItems).toBeTruthy();
+    // @ts-ignore
+    expect(tabItems.length).toEqual(1);
   });
 
   test('removeItem throw error when index is not a number', () => {

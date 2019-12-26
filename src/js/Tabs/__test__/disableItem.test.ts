@@ -28,13 +28,11 @@ describe('Unit test Tabs disableItem', () => {
     const myTabs = new Tabs({items});
     myTabs.disableItem('Tab2');
     const tabItems = myTabs.getItems();
-    if (tabItems) {
-      const disabledTab = tabItems[1];
-      expect(disabledTab.isDisabled).toBeTruthy();
-      // UPDATE IN SOURCE CODE: change isDisabled of tab in items to true
-    } else {
-      expect(false);
-    }
+    expect(tabItems).toBeTruthy();
+    // @ts-ignore
+    const disabledTab = tabItems[1];
+    expect(disabledTab.isDisabled).toBeTruthy();
+    // UPDATE IN SOURCE CODE: change isDisabled of tab in items to true
   });
 
   test('disableItem throw error when called without tabName', () => {

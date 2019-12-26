@@ -2,12 +2,12 @@
 import Tabs from '../index';
 import {getByText, fireEvent} from '@testing-library/dom';
 
-const messages = {
-  INVALID_ARGUMENT: 'Error: invalid function arguments',
-  MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]',
-  INVALID_ACTION: 'Behavior invalid',
-  MISSING_NEW_ITEM_TABNAME: 'Missing tab name.'
-};
+// const messages = {
+//   INVALID_ARGUMENT: 'Error: invalid function arguments',
+//   MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]',
+//   INVALID_ACTION: 'Behavior invalid',
+//   MISSING_NEW_ITEM_TABNAME: 'Missing tab name.'
+// };
 
 describe('Unit test Tabs disableItem', () => {
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('Unit test Tabs disableItem', () => {
       const tab2 = getByText(container, 'Tab2');
       fireEvent.click(tab2);
     } else {
-      expect(false);
+      expect(container).toBeTruthy();
     }
   });
 
@@ -47,13 +47,11 @@ describe('Unit test Tabs disableItem', () => {
     const myTabs = new Tabs({items});
     const container = myTabs.render();
     myTabs.on('click', () => {
-      expect(true);
+      expect(true).toBeTruthy();
     });
-    if (container && container.onclick) {
-      // @ts-ignore
-      container.onclick();
-    } else {
-      expect(false);
-    }
+    expect(container).toBeTruthy();
+    expect(container.onclick).toBeTruthy();
+    // @ts-ignore
+    container.onclick();
   });
 });

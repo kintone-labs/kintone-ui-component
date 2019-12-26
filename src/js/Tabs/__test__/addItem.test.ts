@@ -31,11 +31,9 @@ describe('Unit test Tabs addItem', () => {
     };
     myTabs.addItem(newTab);
     const tabItems = myTabs.getItems();
-    if (tabItems) {
-      expect(tabItems.length).toEqual(3);
-    } else {
-      expect(false);
-    }
+    expect(tabItems).toBeTruthy();
+    // @ts-ignore
+    expect(tabItems.length).toEqual(3);
   });
 
   test('addItem throw error when called with no param', () => {

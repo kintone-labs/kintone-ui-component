@@ -21,11 +21,7 @@ describe('Unit test Tabs render', () => {
   test('Render successfully without props', () => {
     const myTabs = new Tabs({});
     const container = myTabs.render();
-    if (container) {
-      expect(container.className).toContain('kuc-tabs-tabs');
-    } else {
-      expect(false);
-    }
+    expect(container.className).toContain('kuc-tabs-tabs');
   });
 
   test('Render successfully with full props', () => {
@@ -38,11 +34,7 @@ describe('Unit test Tabs render', () => {
     }];
     const myTabs = new Tabs({items});
     const container = myTabs.render();
-    if (container) {
-      expect(container.className).toContain('kuc-tabs-tabs');
-    } else {
-      expect(false);
-    }
+    expect(container.className).toContain('kuc-tabs-tabs');
   });
 
   test('Value is set to default when value props is undefined', () => {
@@ -55,11 +47,7 @@ describe('Unit test Tabs render', () => {
     // @ts-ignore
     const myTabs = new Tabs({items, value: undefined});
     const container = myTabs.render();
-    if (container) {
-      expect(container.className).toContain('kuc-tabs-tabs');
-    } else {
-      expect(false);
-    }
+    expect(container.className).toContain('kuc-tabs-tabs');
   });
 
   test('Throw error when missing tab name', () => {
