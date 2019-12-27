@@ -15,8 +15,8 @@ describe('Unit test TextArea rerender', () => {
   test('rerender without props TextArea component', () => {
     try {
       const txtArea1 = new TextArea();
-      txtArea1.rerender()
-      expect(true).toBeTruthy();;
+      txtArea1.rerender();
+      expect(true).toBeTruthy();
     } catch (error) {
       expect(false).toBeTruthy();
     }
