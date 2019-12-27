@@ -17,11 +17,11 @@ describe('Unit test Alert render', () => {
     expect(alert.render().className).toBe('kuc-alert bg-danger');
   });
 
-  test('render successfully with full props Alert component', () => {
+  test('render successfully with full props Alert type success', () => {
     const alert = new Alert({type: 'success', isDisabled: true, isVisible: false, text: 'alert'});
     expect(alert.render().className).toBe('kuc-alert bg-success');
   });
-  test('render successfully with full props Alert component', () => {
+  test('render successfully with full props Alert type error', () => {
     const alert = new Alert({type: 'error', text: ''});
     expect(alert.render().className).toBe('kuc-alert bg-danger');
   });

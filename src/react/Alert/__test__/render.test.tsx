@@ -14,13 +14,13 @@ describe('Unit test Alert react', () => {
     console.error.mockRestore();
   });
 
-  test('render without props Alert error', () => {
+  test('render without props Alert default type error', () => {
     const {container} = render(<Alert />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-alert bg-danger');
     }
   });
-  test('render with props Alert success', () => {
+  test('render with props Alert type success', () => {
     const {container} = render(<Alert type="success" />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-alert bg-success');

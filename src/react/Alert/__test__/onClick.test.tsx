@@ -14,7 +14,7 @@ describe('Unit test Alert react', () => {
     console.error.mockRestore();
   });
 
-  test('render without props Alert error', () => {
+  test('onClick called successfully Alert', () => {
     const onClick = (e: React.SyntheticEvent<EventTarget>) => {
       expect((e.target as HTMLInputElement).className).toBe('kuc-alert bg-danger');
     };
