@@ -1,11 +1,12 @@
 import IconButton from '../index';
-import '@testing-library/jest-dom/extend-expect';
 
-describe('Unit test IconButton disable', () => {
-  test('Function disable run successfully', () => {
-    const iconButton = new IconButton({isDisabled: false});
+describe('Unit test IconButton enable', () => {
+
+  test('Function enable run successfully', () => {
+    const iconButton = new IconButton({isDisabled: true});
     const container = iconButton.render();
     iconButton.enable();
     expect(container).not.toBeDisabled();
   });
+
 });

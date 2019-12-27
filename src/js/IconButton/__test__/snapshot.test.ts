@@ -22,7 +22,6 @@ describe('Snapshot test Button render', () => {
   });
 
   test('Render successfully with wrong props', () => {
-    // 不正な値を設定した場合はデフォルト値がセットされることを確認する
     // @ts-ignore
     const button = new IconButton({
       color: 'gold',
@@ -35,4 +34,5 @@ describe('Snapshot test Button render', () => {
     const container = button.render();
     fs.writeFileSync('./src/js/IconButton/__test__/snapshot/with_wrong_props.html', container.outerHTML);
   });
+
 });

@@ -1,15 +1,13 @@
 import IconButton from '../index';
 import {fireEvent} from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Unit test IconButton on event', () => {
+
   test('Function onClick event run successfully', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
     let buttonTag = null;
     iconButton.on('click', (e: any) => {
-      // tagのclickで取れるtagが曖昧。clickする場所で変わる。
-      // 外側をclickするとbutton, 内側をクリックするとsvg, さらに内側をクリックするとpathになる。
       buttonTag = e.target ? e.target.tagName : null;
     });
     fireEvent.click(container);
@@ -27,4 +25,5 @@ describe('Unit test IconButton on event', () => {
     fireEvent.click(container);
     expect(buttonTag).toBeNull();
   });
+
 });

@@ -1,7 +1,7 @@
 import IconButton from '../index';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Unit test IconButton setType', () => {
+
   test('Function setType insert run successfully', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
@@ -50,7 +50,6 @@ describe('Unit test IconButton setType', () => {
       .toBe('M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z');
   });
 
-
   test('Function setSize run successfully with empty', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
@@ -68,4 +67,5 @@ describe('Unit test IconButton setType', () => {
     expect(container.children[0].children[0].getAttribute('d'))
       .toBe('M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z');
   });
+
 });

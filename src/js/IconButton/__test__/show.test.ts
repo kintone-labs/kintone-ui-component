@@ -1,5 +1,4 @@
 import IconButton from '../index';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Unit test IconButton show', () => {
   test('Function show run successfully', () => {

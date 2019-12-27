@@ -1,7 +1,7 @@
 import IconButton from '../index';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Unit test IconButton setShape', () => {
+
   test('Function setShape normal run successfully', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
@@ -31,4 +31,5 @@ describe('Unit test IconButton setShape', () => {
     iconButton.setShape(null);
     expect(container.className).toContain('circle');
   });
+
 });

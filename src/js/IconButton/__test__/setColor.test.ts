@@ -1,7 +1,7 @@
 import IconButton from '../index';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('Unit test IconButton setColor', () => {
+
   test('Function setColor run successfully', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
@@ -32,4 +32,5 @@ describe('Unit test IconButton setColor', () => {
     iconButton.setColor(null);
     expect(container.className).toContain('gray');
   });
+
 });
