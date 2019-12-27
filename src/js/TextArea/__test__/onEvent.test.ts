@@ -40,6 +40,7 @@ describe('Unit test TextArea onEvent', () => {
     try {
       const txtArea = new TextArea({value: 'empty'});
       txtArea._onMouseDown();
+      expect(true);
     } catch (error) {
       expect(false);
     }
@@ -49,12 +50,13 @@ describe('Unit test TextArea onEvent', () => {
     try {
       const txtArea1 = new TextArea({isDisabled: true});
       txtArea1._onMouseDown();
+      expect(true);
     } catch (error) {
       expect(false);
     }
   });
 
-  test('onMouseDown disable TextArea component', () => {
+  test('onMouseDown TextArea component', () => {
     try {
       const txtArea1 = new TextArea({value: 'empty'});
       const textAreaResize = txtArea1.render().getElementsByClassName('kuc-textarea-resize')[0];
