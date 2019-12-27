@@ -59,13 +59,69 @@ describe('Unit test Table react', () => {
       },
     ];
     // @ts-ignore
+    const {container} = render(<Table columns={columns} data={tableData} />);
+    expect(container.firstElementChild).toBeTruthy();
+    const headers = container.getElementsByClassName('kuc-table-th');
+    expect(headers.length).toEqual(1);
+  });
+
+  test('Event handler of Table', () => {
+    const tableData = [
+      {
+        text: 'this is a text',
+        number: 456
+      },
+      {
+        number: 123
+      }
+    ];
+    const defaultRowData = {
+      text: 'this is a text',
+      number: 123
+    };
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({rowIndex}: any) => {
+          return (
+            <div>{tableData[rowIndex].text}</div>
+          );
+        }
+      },
+      {
+        cell: ({rowIndex}: any) => {
+          return (
+            <div>{tableData[rowIndex].number}</div>
+          );
+        }
+      },
+    ];
+    // @ts-ignore
     const handleCellChange = ({data}) => {
       expect(data).toBeTruthy();
     };
     // @ts-ignore
-    const {container} = render(<Table columns={columns} data={tableData} onCellChange={handleCellChange} />);
+    const handleRowAdd = ({data}) => {
+      expect(data).toBeTruthy();
+    };
+    // @ts-ignore
+    const handleRowRemove = ({data}) => {
+      expect(data).toBeTruthy();
+    };
+    const {container} = render(
+      <Table
+        // @ts-ignore
+        columns={columns}
+        data={tableData}
+        onRowAdd={handleRowAdd}
+        onCellChange={handleCellChange}
+        onRowRemove={handleRowRemove}
+        defaultRowData={defaultRowData}
+      />
+    );
     expect(container.firstElementChild).toBeTruthy();
-    const headers = container.getElementsByClassName('kuc-table-th');
-    expect(headers.length).toEqual(1);
+    const actionButtons = container.getElementsByTagName('button');
+    actionButtons[0].click();
+    actionButtons[1].click();
   });
 });
