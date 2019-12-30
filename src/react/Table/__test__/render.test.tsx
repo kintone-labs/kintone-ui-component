@@ -163,6 +163,9 @@ describe('Unit test Table react', () => {
               }}
             />
           );
+        },
+        tdProps: (cellProps: any) => {
+          return {};
         }
       },
       {
@@ -189,57 +192,9 @@ describe('Unit test Table react', () => {
     expect(container.firstElementChild).toBeTruthy();
     const actionButtons = container.getElementsByTagName('button');
     actionButtons[0].click();
-  });
 
-  test('removeRow without data', () => {
-    const tableData = [
-      {
-        text: 'this is a text',
-        number: 456
-      },
-      {
-        number: 123
-      }
-    ];
-    const columns = [
-      {
-        header: 'Text',
-        cell: ({rowIndex, onCellChange}: any) => {
-          return (
-            <input
-              value="1"
-              // @ts-ignore
-              data-testid="unit-test-input"
-              onChange={e => {
-                onCellChange(e.target.value, tableData, rowIndex, 'text');
-              }}
-            />
-          );
-        }
-      },
-      {
-        cell: ({rowIndex}: any) => {
-          return (
-            <div>{tableData[rowIndex].number}</div>
-          );
-        }
-      },
-    ];
-    // @ts-ignore
-    const handleRowRemove = ({data}) => {
-      expect(data).toBeTruthy();
-    };
-
-    const {container} = render(
-      <Table
-        // @ts-ignore
-        columns={columns}
-        onRowRemove={handleRowRemove}
-      />
-    );
-
-    expect(container.firstElementChild).toBeTruthy();
-    const actionButtons = container.getElementsByTagName('button');
-    actionButtons[1].click();
+    // TODO: Remove unreachable code line 218 index.tsx
+    // TODO: Remove unreachable code line 181 index.tsx
+    // TODO: Remove unreachable code line 165 index.tsx
   });
 });
