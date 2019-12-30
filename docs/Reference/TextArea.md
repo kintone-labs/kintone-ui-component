@@ -17,7 +17,7 @@
 |options.value|String|No|The value of textarea field.|
 |options.isDisabled|Boolean|No|The textarea field will be disabled. <br> Default value: **false**|
 |options.isVisible|Boolean|No|The textarea field will be visible. <br> Default value: **true**|
-|options.placehholder|String|No|The placeholder of textarea field.|
+|options.placeholder|String|No|The placeholder of textarea field. <br> Default value: ''|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
