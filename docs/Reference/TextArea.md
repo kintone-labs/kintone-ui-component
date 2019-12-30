@@ -17,6 +17,7 @@
 |options.value|String|No|The value of textarea field.|
 |options.isDisabled|Boolean|No|The textarea field will be disabled. <br> Default value: **false**|
 |options.isVisible|Boolean|No|The textarea field will be visible. <br> Default value: **true**|
+|options.placeholder|String|No|The placeholder of textarea field. <br> Default value: ''|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
@@ -195,6 +196,116 @@ export default class Plugin extends React.Component {
     }
     getValue = () => {
         console.log(this.state.value);
+    };
+};
+ReactDOM.render(<Plugin />,document.getElementById('root'));
+```
+</details>
+
+### setPlaceholder(placeholder)
+Set the placeholder of textarea field
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|placeholder|String|Yes|The placeholder value|
+
+**Returns**
+
+None
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var textarea = new kintoneUIComponent.TextArea({ placeholder: '' });
+var btn = document.createElement('button');
+btn.textContent = 'Click';
+btn.onclick = function() {
+    textarea.setPlaceholder('Placeholder');
+};
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(textarea.render());
+body.appendChild(btn);
+```
+**React**
+```javascript
+import {TextArea} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: '', placeholder: '' };
+    };
+    render() {
+        return (
+            <div>
+                <TextArea value={this.state.value} placeholder={this.state.placeholder}/>
+                <button onClick={this.setPlaceholder}>Click</button>
+            </div>
+        );
+    };
+    setPlaceholder = () => {
+        this.setState({
+            placeholder: 'placeholder'
+        });
+    };
+};
+ReactDOM.render(<Plugin />,document.getElementById('root'));
+```
+</details>
+
+### getPlaceholder()
+Get the placeholder value of text field
+
+**Parameter**
+
+None
+
+**Returns**
+
+|Name|Type|Description|
+|---|---|---|
+|placeholder|	String|	The placeholder value|
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var textarea = new kintoneUIComponent.TextArea({placeholder: 'Placeholder'});
+var body = document.getElementsByTagName("BODY")[0];
+body.appendChild(textarea.render());
+
+console.log(textarea.getPlaceholder());
+```
+**React**
+```javascript
+import {TextArea} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: '', placeholder: 'Placeholder' };
+    };
+
+    render() {
+        return (
+            <div>
+                <TextArea value={this.state.value} placeholder={this.state.placeholder} />
+                <button onClick={this.getPlaceholder}>Get placeholder</button>
+            </div>
+        );
+    };
+
+    getPlaceholder = () => {
+        console.log(this.state.placeholder);
     };
 };
 ReactDOM.render(<Plugin />,document.getElementById('root'));
