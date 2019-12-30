@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import Table from '../index';
 import React from 'react';
 
@@ -82,9 +82,16 @@ describe('Unit test Table react', () => {
     const columns = [
       {
         header: 'Text',
-        cell: ({rowIndex}: any) => {
+        cell: ({rowIndex, onCellChange}: any) => {
           return (
-            <div>{tableData[rowIndex].text}</div>
+            <input
+              value={tableData[rowIndex].text}
+              // @ts-ignore
+              data-testid="unit-test-input"
+              onChange={e => {
+                onCellChange(e.target.value, tableData, rowIndex, 'text');
+              }}
+            />
           );
         }
       },
@@ -98,6 +105,7 @@ describe('Unit test Table react', () => {
     ];
     // @ts-ignore
     const handleCellChange = ({data}) => {
+      // expect(false).toBeTruthy();
       expect(data).toBeTruthy();
     };
     // @ts-ignore
@@ -108,7 +116,7 @@ describe('Unit test Table react', () => {
     const handleRowRemove = ({data}) => {
       expect(data).toBeTruthy();
     };
-    const {container} = render(
+    const {container, getAllByTestId} = render(
       <Table
         // @ts-ignore
         columns={columns}
@@ -122,6 +130,116 @@ describe('Unit test Table react', () => {
     expect(container.firstElementChild).toBeTruthy();
     const actionButtons = container.getElementsByTagName('button');
     actionButtons[0].click();
+    actionButtons[1].click();
+    const unitTestInput = getAllByTestId('unit-test-input');
+    fireEvent.change(unitTestInput[0], {
+      target: {
+        value: 'new value'
+      }
+    });
+  });
+
+  test('addRow without defaultRowData', () => {
+    const tableData = [
+      {
+        text: 'this is a text',
+        number: 456
+      },
+      {
+        number: 123
+      }
+    ];
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({rowIndex, onCellChange}: any) => {
+          return (
+            <input
+              value={tableData[rowIndex].text}
+              // @ts-ignore
+              data-testid="unit-test-input"
+              onChange={e => {
+                onCellChange(e.target.value, tableData, rowIndex, 'text');
+              }}
+            />
+          );
+        }
+      },
+      {
+        cell: ({rowIndex}: any) => {
+          return (
+            <div>{tableData[rowIndex].number}</div>
+          );
+        }
+      },
+    ];
+    // @ts-ignore
+    const handleRowAdd = ({data}) => {
+      expect(data).toBeTruthy();
+    };
+
+    const {container} = render(
+      <Table
+        // @ts-ignore
+        columns={columns}
+        data={tableData}
+        onRowAdd={handleRowAdd}
+      />
+    );
+    expect(container.firstElementChild).toBeTruthy();
+    const actionButtons = container.getElementsByTagName('button');
+    actionButtons[0].click();
+  });
+
+  test('removeRow without data', () => {
+    const tableData = [
+      {
+        text: 'this is a text',
+        number: 456
+      },
+      {
+        number: 123
+      }
+    ];
+    const columns = [
+      {
+        header: 'Text',
+        cell: ({rowIndex, onCellChange}: any) => {
+          return (
+            <input
+              value="1"
+              // @ts-ignore
+              data-testid="unit-test-input"
+              onChange={e => {
+                onCellChange(e.target.value, tableData, rowIndex, 'text');
+              }}
+            />
+          );
+        }
+      },
+      {
+        cell: ({rowIndex}: any) => {
+          return (
+            <div>{tableData[rowIndex].number}</div>
+          );
+        }
+      },
+    ];
+    // @ts-ignore
+    const handleRowRemove = ({data}) => {
+      expect(data).toBeTruthy();
+    };
+
+    const {container} = render(
+      <Table
+        // @ts-ignore
+        columns={columns}
+        onRowRemove={handleRowRemove}
+      />
+    );
+
+    expect(container.firstElementChild).toBeTruthy();
+    const actionButtons = container.getElementsByTagName('button');
     actionButtons[1].click();
   });
 });
