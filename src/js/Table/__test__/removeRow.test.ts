@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Table from '../index';
 
-describe('Unit test for Table addRow', () => {
+describe('Unit test for Table removeRow', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
@@ -34,5 +34,7 @@ describe('Unit test for Table addRow', () => {
     const container = myTable.render();
     const actionButtons = container.getElementsByTagName('button');
     actionButtons[1].click();
+
+    // TODO: Remove unreachable code line 89, 90, 91 index.ts
   });
 });

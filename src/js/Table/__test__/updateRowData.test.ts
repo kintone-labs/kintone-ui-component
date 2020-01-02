@@ -82,7 +82,9 @@ describe('Unit test for Table updateRowData', () => {
           },
         }
       ];
-      const myTable = new Table();
+      const myTable = new Table({
+        data: []
+      });
       myTable.render();
       // @ts-ignore
       myTable.updateRowData(0, tableData, true, true, 'text');
@@ -104,4 +106,6 @@ describe('Unit test for Table updateRowData', () => {
       expect(error.message).toEqual(message.INVALID_ARGUMENT);
     }
   });
+
+  // TODO: Unreachable code line 139 index.ts
 });
