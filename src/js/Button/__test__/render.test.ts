@@ -5,11 +5,12 @@ describe('Unit test Button render', () => {
   test('Render successfully without props', () => {
     const button = new Button({});
     const container = button.render();
-    expect(container.className).toBe('kuc-btn normal');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
     expect(container).toBeVisible();
     // 空文字列が入るようにソースを修正する
-    expect(container.textContent).toBe('Button');
+    expect(container.textContent).toBe('');
   });
 
   test('Render successfully with full props', () => {
@@ -21,7 +22,8 @@ describe('Unit test Button render', () => {
       isVisible: false
     });
     const container = button.render();
-    expect(container.className).toBe('kuc-btn submit');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'submit'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeDisabled();
     expect(container).not.toBeVisible();
     expect(container.textContent).toBe('Submit');
@@ -36,7 +38,8 @@ describe('Unit test Button render', () => {
       isVisible: 'abc'
     });
     const container = button.render();
-    expect(container.className).toBe('kuc-btn normal');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
     expect(container).toBeVisible();
   });

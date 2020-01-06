@@ -5,14 +5,16 @@ describe('Unit test Button setType', () => {
     const button = new Button({type: 'normal'});
     const container = button.render();
     button.setType('submit');
-    expect(container.className).toBe('kuc-btn submit');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'submit'].every(c => container.classList.contains(c))).toBe(true);
   });
 
   test('Function setType normal run successfully', () => {
     const button = new Button({type: 'submit'});
     const container = button.render();
     button.setType('normal');
-    expect(container.className).toBe('kuc-btn normal');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
   });
 
   test('Function setType empty run successfully', () => {
@@ -20,7 +22,8 @@ describe('Unit test Button setType', () => {
     const container = button.render();
     // @ts-ignore
     button.setType('');
-    expect(container.className).toBe('kuc-btn normal');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
   });
 
   test('Function setType null run successfully', () => {
@@ -28,6 +31,7 @@ describe('Unit test Button setType', () => {
     const container = button.render();
     // @ts-ignore
     button.setType(null);
-    expect(container.className).toBe('kuc-btn normal');
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
   });
 });
