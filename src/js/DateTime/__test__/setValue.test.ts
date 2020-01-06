@@ -1,0 +1,60 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import DateTime from '../index';
+
+// TODO: Remove unreachable else path line 481 (unnecessary return) index.ts
+// TODO: Remove unreachable onChange path line 17,41 (unnecessary props) index.ts
+describe('Unit test DateTime setValue', () => {
+    beforeEach(() => {
+        jest.spyOn(console, 'error');
+        // @ts-ignore
+        console.error.mockImplementation(() => { });
+    });
+    afterEach(() => {
+        // @ts-ignore
+        console.error.mockRestore();
+    });
+
+    test('setValue type datetime DateTime', () => {
+        const correctDateTime = "2020-05-10T04:13:00.000Z"
+        const datetime = new DateTime({value: new Date("October 13, 2019 11:13:00"), type: 'datetime'});
+        datetime.render()
+        datetime.setValue(new Date("May 10, 2020 11:13:00") );
+        expect(datetime.getValue()).toStrictEqual(new Date(correctDateTime));
+    });
+
+    test('setValue type date DateTime', () => {
+        const date  = new Date()
+        const datetime = new DateTime({type: 'date'});
+        datetime.render()
+        datetime.setValue(date);
+        expect(datetime.getValue()).toStrictEqual(date);
+    });
+
+    test('setValue type time DateTime', () => {
+        const datetime = new DateTime({type: 'time'});
+        datetime.render()
+        const date  = new Date()
+        datetime.setValue(date);
+        expect(datetime.getValue()).toStrictEqual(date);
+    });
+
+    test('setValue value underfined DateTime', () => {
+        const datetime = new DateTime({value: undefined});
+        datetime.render()
+        const date  = new Date()
+        datetime.setValue(null);
+        expect(datetime.getValue()).toStrictEqual(date);
+    });
+
+    test('setValue underfined DateTime', () => {
+        try {
+            const datetime = new DateTime();
+            datetime.render()
+            const date  = new Date()
+            datetime.setValue(undefined);
+            expect(datetime.getValue()).toStrictEqual(date);
+        } catch (error) {
+            expect(false)
+        }
+    });
+})
