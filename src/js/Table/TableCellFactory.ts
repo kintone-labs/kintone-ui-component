@@ -107,11 +107,11 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
   };
   const update = ({rowData}: any) => {
     const cellData = rowData[fieldName] || {};
-    if (cellData && field.setValue) {
-      field.setValue(cellData.value);
-    }
     if (cellData && field.setItems) {
       field.setItems(cellData.items);
+    }
+    if (cellData && field.setValue) {
+      field.setValue(cellData.value);
     }
     if (cellData && field.setText) {
       field.setText(cellData.text);
