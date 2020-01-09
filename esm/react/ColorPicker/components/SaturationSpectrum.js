@@ -4,7 +4,9 @@ export default function SaturationSpectrum(props) {
     var h = props.height;
     var _a = useState(false), isMouseDown = _a[0], setIsMouseDown = _a[1];
     var _b = useState(), containerEl = _b[0], setContainerEl = _b[1];
-    var container = useCallback(function (element) { setContainerEl(element.getBoundingClientRect()); }, []);
+    var container = useCallback(function (element) {
+        setContainerEl(element.getBoundingClientRect());
+    }, []);
     var satCanvas = useRef(null);
     function fillSatSpectrumCanvas() {
         if (satCanvas && satCanvas.current) {

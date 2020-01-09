@@ -137,18 +137,15 @@ var DateTime = function (_a) {
             if (!hasSelection) {
                 setInputValue('');
             }
-            else {
-                // validate dateformat
-                if (inputValue !== dateFormat) {
-                    var newInputValue = format(value, dateFormat);
-                    if (newInputValue === dateFormat) {
-                        setInputValue(dateFormat);
-                        setDateError(Message.datetime.INVALID_DATE);
-                        setShowPickerError(true);
-                    }
-                    else if (!showPickerError) {
-                        setInputValue(newInputValue);
-                    }
+            else if (inputValue !== dateFormat) {
+                var newInputValue = format(value, dateFormat);
+                if (newInputValue === dateFormat) {
+                    setInputValue(dateFormat);
+                    setDateError(Message.datetime.INVALID_DATE);
+                    setShowPickerError(true);
+                }
+                else if (!showPickerError) {
+                    setInputValue(newInputValue);
                 }
             }
             if (typeof isDisabled !== 'boolean') {

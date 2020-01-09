@@ -108,7 +108,7 @@ var Attachment = function (props) {
                             dropZoneElement = dropElement;
                     } }, props.dropZoneText || 'Drop files here.')),
             React.createElement("div", { className: "kuc-attachment-file-filelist kuc-attachment-file-filelist-list" }, Array.isArray(props.files) && props.files.map(function (file, index) { return (React.createElement(AttachmentFileItem, { key: index, index: index, fileName: file.name, fileSize: file.size, onFileRemove: _removeFile })); })),
-            React.createElement("a", { className: "kuc-attachment-file-upload-button", tabIndex: -1 },
+            React.createElement("span", { className: "kuc-attachment-file-upload-button", tabIndex: -1 },
                 React.createElement("span", { className: "kuc-attachment-file-upload-button-text" },
                     " ",
                     props.browseButtonText || 'Browse'),

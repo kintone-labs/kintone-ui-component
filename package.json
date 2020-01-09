@@ -1,6 +1,6 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
@@ -29,7 +29,6 @@
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
 		"lint": "eslint \"src/**\""
-		
 	},
 	"dependencies": {
 		"@mdi/js": "3.6.95",

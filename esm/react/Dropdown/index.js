@@ -12,15 +12,15 @@ var Dropdown = function (_a) {
     var _caclListOuterPosition = function (listItemEl) {
         var position = -6;
         var currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
-        var parentEl = ref.current || document.createElement("div");
+        var parentEl = ref.current || document.createElement('div');
         if (currentPosition >= window.innerHeight) {
-            position = position - (listItemEl.offsetHeight + parentEl.offsetHeight);
+            position -= (listItemEl.offsetHeight + parentEl.offsetHeight);
         }
         return position;
     };
     var _showItems = function (e) {
         setVisibleItems(!isVisibleItems);
-        var element = ref.current || document.createElement("div");
+        var element = ref.current || document.createElement('div');
         var listItemEl = element.getElementsByClassName('kuc-list-outer')[0];
         listItemEl.setAttribute('style', "display: block;");
         listItemEl.setAttribute('style', "margin-top: " + _caclListOuterPosition(listItemEl) + "px;");
