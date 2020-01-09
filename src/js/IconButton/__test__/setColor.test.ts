@@ -3,7 +3,7 @@ import IconButton from '../index';
 describe('Unit test IconButton setColor', () => {
 
   test('Function setColor red run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({color: 'blue'});
     const container = iconButton.render();
     iconButton.setColor('red');
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(228, 66, 52)');
@@ -11,7 +11,7 @@ describe('Unit test IconButton setColor', () => {
   });
 
   test('Function setColor green run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({color: 'red'});
     const container = iconButton.render();
     iconButton.setColor('green');
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(134, 187, 97)');
@@ -19,7 +19,7 @@ describe('Unit test IconButton setColor', () => {
   });
 
   test('Function setColor blue run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({color: 'green'});
     const container = iconButton.render();
     iconButton.setColor('blue');
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(45, 141, 214)');
@@ -27,7 +27,7 @@ describe('Unit test IconButton setColor', () => {
   });
 
   test('Function setColor gray run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({color: 'red'});
     const container = iconButton.render();
     iconButton.setColor('gray');
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(238, 238, 238)');
@@ -35,14 +35,14 @@ describe('Unit test IconButton setColor', () => {
   });
 
   test('Function setColor transparent run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({color: 'blue'});
     const container = iconButton.render();
     iconButton.setColor('transparent');
     expect(window.getComputedStyle(container).backgroundColor).toBe('transparent');
     expect(container.className).toContain('transparent');
   });
 
-  test('Function setText run successfully with empty', () => {
+  test('Function setColor run successfully with empty', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
     // @ts-ignore
@@ -50,7 +50,7 @@ describe('Unit test IconButton setColor', () => {
     expect(container.className).toContain('gray');
   });
 
-  test('Function setText run successfully with colorCode', () => {
+  test('Function setColor run successfully with wrong value', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
     // @ts-ignore
@@ -58,7 +58,7 @@ describe('Unit test IconButton setColor', () => {
     expect(container.className).toContain('gray');
   });
 
-  test('Function setText run successfully with null', () => {
+  test('Function setColor run successfully with null', () => {
     const iconButton = new IconButton({});
     const container = iconButton.render();
     // @ts-ignore

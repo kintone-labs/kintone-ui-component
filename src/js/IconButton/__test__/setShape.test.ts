@@ -3,14 +3,14 @@ import IconButton from '../index';
 describe('Unit test IconButton setShape', () => {
 
   test('Function setShape normal run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({shape: 'circle'});
     const container = iconButton.render();
     iconButton.setShape('normal');
     expect(container.className).toContain('normal');
   });
 
   test('Function setType circle run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({shape: 'normal'});
     const container = iconButton.render();
     iconButton.setShape('circle');
     expect(container.className).toContain('circle');

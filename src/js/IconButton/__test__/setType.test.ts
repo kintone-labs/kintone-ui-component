@@ -3,7 +3,7 @@ import IconButton from '../index';
 describe('Unit test IconButton setType', () => {
 
   test('Function setType insert run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'remove'});
     const container = iconButton.render();
     iconButton.setType('insert');
     expect(container.children[0].children[0].getAttribute('d'))
@@ -11,7 +11,7 @@ describe('Unit test IconButton setType', () => {
   });
 
   test('Function setType remove run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'close'});
     const container = iconButton.render();
     iconButton.setType('remove');
     expect(container.children[0].children[0].getAttribute('d'))
@@ -19,7 +19,7 @@ describe('Unit test IconButton setType', () => {
   });
 
   test('Function setType close run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'file'});
     const container = iconButton.render();
     iconButton.setType('close');
     expect(container.children[0].children[0].getAttribute('d'))
@@ -27,7 +27,7 @@ describe('Unit test IconButton setType', () => {
   });
 
   test('Function setType file run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'right'});
     const container = iconButton.render();
     iconButton.setType('file');
     expect(container.children[0].children[0].getAttribute('d'))
@@ -35,7 +35,7 @@ describe('Unit test IconButton setType', () => {
   });
 
   test('Function setType right run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'left'});
     const container = iconButton.render();
     iconButton.setType('right');
     expect(container.children[0].children[0].getAttribute('d'))
@@ -43,7 +43,7 @@ describe('Unit test IconButton setType', () => {
   });
 
   test('Function setType left run successfully', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({type: 'right'});
     const container = iconButton.render();
     iconButton.setType('left');
     expect(container.children[0].children[0].getAttribute('d'))
