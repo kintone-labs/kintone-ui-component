@@ -93,7 +93,7 @@ class Calendar extends Control<CalendarProps> {
     const selectedItems: HTMLCollectionOf<Element> = document.getElementsByClassName('kuc-list-item-selected');
     for (let i = 0; i < selectedItems.length; i++) {
       const item = selectedItems[i];
-      (<HTMLElement>item.parentNode).scrollTop = (<HTMLElement>item).offsetTop - (<HTMLElement>item.parentNode).offsetTop
+      (item.parentNode as HTMLElement).scrollTop = (item as HTMLElement).offsetTop - (item.parentNode as HTMLElement).offsetTop;
     }
   };
 

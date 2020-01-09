@@ -80,7 +80,7 @@ class Dropdown extends Control<DropdownProps> {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
     this.listOuterEl.setAttribute('style', `margin-top: ${this._caclListOuterPosition()}px`);
-    
+
     this._props.listItemsShown && this._props.listItemsShown(e);
   }
 
@@ -88,7 +88,7 @@ class Dropdown extends Control<DropdownProps> {
     let position = -6;
     const currentPosition = this.listOuterEl.offsetTop + this.listOuterEl.offsetHeight;
     if (currentPosition >= window.innerHeight) {
-      position = position - (this.listOuterEl.offsetHeight + this.element.offsetHeight);
+      position -= (this.listOuterEl.offsetHeight + this.element.offsetHeight);
     }
     return position;
   }
