@@ -1,0 +1,2519 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://kintone.github.io/kintone-ui-component/Reference/RadioButton/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>RadioButton - kintone UI Component</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../style/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#radiobutton" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!-- Application header -->
+<header class="md-header" data-md-component="header">
+  <!-- Top-level navigation -->
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+
+      <!-- Link to home -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.."
+            title="kintone UI Component"
+            class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">cloud</i>
+          
+        </a>
+      </div>
+
+      <!-- Button to toggle drawer -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button"
+            for="__drawer"></label>
+      </div>
+
+      <!-- Header title -->
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title"
+            data-md-component="title">
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../../latest/versions">v0.5.0</a>
+        </div>
+      </div>
+
+      <!-- Button to open search dialogue -->
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button"
+              for="__search"></label>
+
+          <!-- Search interface -->
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+
+      <!-- Repository containing source -->
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://kintone.github.io/kintone-ui-component/" title="kintone UI Component" class="md-nav__button md-logo">
+      
+        <i class="md-icon">cloud</i>
+      
+    </a>
+    kintone UI Component
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Getting-Started/QuickStart-Javascript/" title="QuickStart Javascript" class="md-nav__link">
+      QuickStart Javascript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Getting-Started/QuickStart-React/" title="QuickStart React" class="md-nav__link">
+      QuickStart React
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Alert/" title="Alert" class="md-nav__link">
+      Alert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Attachment/" title="Attachment" class="md-nav__link">
+      Attachment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Button/" title="Button" class="md-nav__link">
+      Button
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CheckBox/" title="CheckBox" class="md-nav__link">
+      CheckBox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ColorPicker/" title="ColorPicker" class="md-nav__link">
+      ColorPicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DateTime/" title="DateTime" class="md-nav__link">
+      DateTime
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Dialog/" title="Dialog" class="md-nav__link">
+      Dialog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Dropdown/" title="Dropdown" class="md-nav__link">
+      Dropdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FieldGroup/" title="FieldGroup" class="md-nav__link">
+      FieldGroup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../IconButton/" title="IconButton" class="md-nav__link">
+      IconButton
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Label/" title="Label" class="md-nav__link">
+      Label
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleChoice/" title="MultipleChoice" class="md-nav__link">
+      MultipleChoice
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NotifyPopup/" title="NotifyPopup" class="md-nav__link">
+      NotifyPopup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RadioButton
+      </label>
+    
+    <a href="./" title="RadioButton" class="md-nav__link md-nav__link--active">
+      RadioButton
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#render" title="render()" class="md-nav__link">
+    render()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additemitem" title="addItem(item)" class="md-nav__link">
+    addItem(item)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeitemindex" title="removeItem(index)" class="md-nav__link">
+    removeItem(index)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getitems" title="getItems()" class="md-nav__link">
+    getItems()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setitemsitems" title="setItems(items)" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getvalue" title="getValue()" class="md-nav__link">
+    getValue()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setvaluevalue" title="setValue(value)" class="md-nav__link">
+    setValue(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disableitemvalue" title="disableItem(value)" class="md-nav__link">
+    disableItem(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enableitemvalue" title="enableItem(value)" class="md-nav__link">
+    enableItem(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oneventname-callback" title="on(eventName, callBack)" class="md-nav__link">
+    on(eventName, callBack)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show" title="show()" class="md-nav__link">
+    show()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hide" title="hide()" class="md-nav__link">
+    hide()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable" title="disable()" class="md-nav__link">
+    disable()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable" title="enable()" class="md-nav__link">
+    enable()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Spinner/" title="Spinner" class="md-nav__link">
+      Spinner
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Table/" title="Table" class="md-nav__link">
+      Table
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Tabs/" title="Tabs" class="md-nav__link">
+      Tabs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Text/" title="Text" class="md-nav__link">
+      Text
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TextArea/" title="TextArea" class="md-nav__link">
+      TextArea
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructor" title="Constructor" class="md-nav__link">
+    Constructor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" title="Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#render" title="render()" class="md-nav__link">
+    render()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additemitem" title="addItem(item)" class="md-nav__link">
+    addItem(item)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeitemindex" title="removeItem(index)" class="md-nav__link">
+    removeItem(index)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getitems" title="getItems()" class="md-nav__link">
+    getItems()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setitemsitems" title="setItems(items)" class="md-nav__link">
+    setItems(items)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getvalue" title="getValue()" class="md-nav__link">
+    getValue()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setvaluevalue" title="setValue(value)" class="md-nav__link">
+    setValue(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disableitemvalue" title="disableItem(value)" class="md-nav__link">
+    disableItem(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enableitemvalue" title="enableItem(value)" class="md-nav__link">
+    enableItem(value)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oneventname-callback" title="on(eventName, callBack)" class="md-nav__link">
+    on(eventName, callBack)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show" title="show()" class="md-nav__link">
+    show()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hide" title="hide()" class="md-nav__link">
+    hide()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable" title="disable()" class="md-nav__link">
+    disable()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable" title="enable()" class="md-nav__link">
+    enable()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="radiobutton">RadioButton</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="RadioButton" src="../../img/radioButton.PNG" /></p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Icon when item is selected</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Value of item</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Icon when item isn't selected</td>
+</tr>
+</tbody>
+</table>
+<h2 id="constructor">Constructor</h2>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>The object contains params of constructor.</td>
+</tr>
+<tr>
+<td>options.name</td>
+<td>String</td>
+<td>Conditional</td>
+<td>Name of radio button for submit.<br> Name is required if options exists.<br> If value isn't set, the error message will be displayed.</td>
+</tr>
+<tr>
+<td>options.items</td>
+<td>Array&lt;Object&gt;</td>
+<td>No</td>
+<td>List of item which displayed in radio button.</td>
+</tr>
+<tr>
+<td>options.items[x].value</td>
+<td>String</td>
+<td>Conditional</td>
+<td>The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed</td>
+</tr>
+<tr>
+<td>options.items[x].label</td>
+<td>String</td>
+<td>No</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>options.items[x].isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate item will be disabled when display. Default value is false.</td>
+</tr>
+<tr>
+<td>options.value</td>
+<td>String</td>
+<td>No</td>
+<td>Default selected item.</td>
+</tr>
+<tr>
+<td>options.isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The radio button will be disabled. <br> Default value: 'false'</td>
+</tr>
+<tr>
+<td>options.isVisible</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The radio button will be visible. <br> Default value: 'true'</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';   
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {items: items, value: 'Lemon'};
+    }
+    render() {
+        return (
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+        );
+    }
+}
+</code></pre>
+
+</details>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get dom element of component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>Dom element</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {items: items, value: 'Lemon'};
+    }
+    render() {
+        return (
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="additemitem">addItem(item)</h3>
+<p>Add an item to end of the radio button list.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item</td>
+<td>Object</td>
+<td>Yes</td>
+<td>The item object will be added.</td>
+</tr>
+<tr>
+<td>item.value</td>
+<td>String</td>
+<td>No</td>
+<td>The value of an item.</td>
+</tr>
+<tr>
+<td>item.label</td>
+<td>String</td>
+<td>No</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>item.isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate item will be disabled when display.<br>Default value: 'false'</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            }
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">
+import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+  constructor(props) {
+        super(props);
+        this.state = {
+            items: [{label:&quot;Banana&quot;,value:&quot;Banana&quot;}],
+            value: &quot;Banana&quot;
+        };
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Add Item&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+      const item = {
+        label: 'Lemon',
+        value: 'Lemon',
+        isDisabled: false
+      };
+      this.setState(prevState =&gt; ({
+        items: prevState.items ? prevState.items.concat([item]) : [item]
+      }))
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="removeitemindex">removeItem(index)</h3>
+<p>Remove item at specific index of radio button list.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>The index of remove item.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.removeItem(0);
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [{
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            }],
+            value:&quot;Lemon&quot;
+        };
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Remove Item&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+     this.setState(prevState =&gt; {
+         if (prevState.items[0]) {
+           if (this.state.value === prevState.items[0].value) {
+             prevState.value = undefined;
+           }
+           prevState.items.splice(0, 1)
+           return prevState;
+         }
+         return prevState;
+     });
+   };
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="getitems">getItems()</h3>
+<p>Get all items in radio button list.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>The list contains all items of dropdown.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>List&lt;Object&gt;</td>
+<td>List of items objects in dropdown.</td>
+</tr>
+<tr>
+<td>items[].label</td>
+<td>String</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>items[].value</td>
+<td>String</td>
+<td>The value of an item.</td>
+</tr>
+<tr>
+<td>items[].isDisabled</td>
+<td>Boolean</td>
+<td>Indicate item was disabled.</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+var items = radioBtn.getItems();
+items.forEach(function(item) {
+    console.log(item);
+});
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {items: items};
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Get Items&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+        this.state.items.forEach(item =&gt; {
+            console.log(item);
+        });
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="setitemsitems">setItems(items)</h3>
+<p>Set all items of the radio button list.
+When using this function in pure js, selected value is released.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>A object contains params of constructor.</td>
+</tr>
+<tr>
+<td>options.items</td>
+<td>Array&lt;Object&gt;</td>
+<td>Yes</td>
+<td>List of items will be displayed in radio button.</td>
+</tr>
+<tr>
+<td>options.items[x].value</td>
+<td>String</td>
+<td>Yes</td>
+<td>If the value is duplicate, the error message will be displayed.</td>
+</tr>
+<tr>
+<td>options.items[x].label</td>
+<td>String</td>
+<td>No</td>
+<td>Display string.</td>
+</tr>
+<tr>
+<td>options.items[x].isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate item will be disabled when display.<br>Default value: 'false'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+  name: 'fruit',
+  items: [
+    {
+      label: 'Orange',
+      value: 'Orange',
+      isDisabled: false
+    },
+    {
+      label: 'Banana',
+      value: 'Banana',
+      isDisabled: true
+    },
+    {
+      label: 'Lemon',
+      value: 'Lemon',
+      isDisabled: true
+    }
+  ],
+  value: 'Banana'
+});
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(radioBtn.render());
+
+var newItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+    isDisabled: true
+  },
+  {
+    label: 'Grapes',
+    value: 'Grapes',
+    isDisabled: false
+  }
+];
+radioBtn.setItems(newItems);
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+
+export default class Plugin extends React.Component {
+  constructor(opts) {
+    super(opts);
+    this.state = {
+      items: [
+        {
+          label: 'Orange',
+          value: 'Orange',
+          isDisabled: true
+        },
+        {
+          label: 'Banana',
+          value: 'Banana',
+          isDisabled: false
+        }
+      ],
+      value: 'Banana'
+    };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;RadioButton
+          name=&quot;fruit&quot;
+          items={this.state.items}
+          value={this.state.value}
+          onChange={value =&gt; {
+            this.setState({ value });
+          }}
+        /&gt;
+        &lt;button onClick={this.handleClick}&gt;Set Items&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  handleClick = () =&gt; {
+    const newItems = [
+      {
+        label: 'Apple',
+        value: 'Apple',
+        isDisabled: true
+      },
+      {
+        label: 'Grapes',
+        value: 'Grapes',
+        isDisabled: false
+      }
+    ];
+    this.setState({ items: newItems, value: 'Apple' });
+  };
+}
+</code></pre>
+
+</details>
+<h3 id="getvalue">getValue()</h3>
+<p>Get the selected item in radio button.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>The value of the selected item</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+    name: &quot;fruit&quot;,
+    items: [
+           {
+               label: 'Orange',
+               value: 'Orange',
+               isDisabled: false
+           },
+           {
+               label: 'Banana',
+               value: 'Banana',
+               isDisabled: true
+           },
+           {
+               label: 'Lemon',
+               value: 'Lemon',
+               isDisabled: true
+           },
+       ],
+   value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+console.log(radioBtn.getValue());
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">
+import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Get Value&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+        console.log(this.state.value);
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="setvaluevalue">setValue(value)</h3>
+<p>Set the selected item for radio button.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>Yes</td>
+<td>Selected value in radio button.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.setValue('Lemon');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Set Value&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+        this.setState({value: 'Orange'});
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="disableitemvalue">disableItem(value)</h3>
+<p>Set the disabled item for the radio button.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>Yes</td>
+<td>The value of an item in radio button.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.disableItem('Orange');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+   render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Disabled Item&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+        const items = [...this.state.items];
+        items[0].isDisabled = true;
+
+        this.setState({ items: items });
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="enableitemvalue">enableItem(value)</h3>
+<p>Set the enabled item for radio button.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>Yes</td>
+<td>Selected value in radio button.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.enableItem('Banana');
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+         &lt;div&gt;
+          &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+          &lt;button onClick={this.handleClick}&gt;Enabled Item&lt;/button&gt;
+         &lt;/div&gt;
+       );
+    }
+
+    handleClick = () =&gt; {
+        const items = [...this.state.items];
+        items[1].isDisabled = false;
+
+        this.setState({ items: items });
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="oneventname-callback">on(eventName, callBack)</h3>
+<p>Register callback for change event</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of event: <ul><li>'change'</li></ul></td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Yes</td>
+<td>callback</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.on('change', function(value) {
+    console.log('on change');
+});
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana'
+        };
+    }
+
+    render() {
+        return (
+            &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange } /&gt;
+        );
+    }
+        handleChange = (value) =&gt; {
+            this.setState({value});
+            console.log('value: ' + value);
+        }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="show">show()</h3>
+<p>Display the radio button.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.show();
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+     constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana',
+            isVisible:false,
+        };
+    }
+    handleShow=()=&gt;{
+        this.setState({isVisible:true})
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;button onClick={this.handleShow}&gt;Show&lt;/button&gt;
+                &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isVisible={this.state.isVisible} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="hide">hide()</h3>
+<p>Hide the radio button.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.hide();
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+     constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana',
+            isVisible:true,
+        };
+    }
+    handleHide=()=&gt;{
+        this.setState({isVisible:false})
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;button onClick={this.handleHide}&gt;Hide&lt;/button&gt;
+                &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isVisible={this.state.isVisible} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="disable">disable()</h3>
+<p>Disabled the radio button.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.disable();
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">
+import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+     constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana',
+            isDisabled:false,
+        };
+    }
+    handleDisable=()=&gt;{
+        this.setState({isDisabled:true})
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;button onClick={this.handleDisable}&gt;Dsiable&lt;/button&gt;
+                &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isDisabled={this.state.isDisabled} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+<h3 id="enable">enable()</h3>
+<p>Enabled the radio button.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var radioBtn = new kintoneUIComponent.RadioButton({
+     name: &quot;fruit&quot;,
+     items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ],
+    value: 'Banana'
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(radioBtn.render());
+
+radioBtn.enable();
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">
+import { RadioButton } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {
+            items: items,
+            value: 'Banana',
+            isDisabled:true,
+        };
+    }
+    handleEnable=()=&gt;{
+        this.setState({isDisabled:false})
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;button onClick={this.handleEnable}&gt;Enable&lt;/button&gt;
+                &lt;RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value});}} isDisabled={this.state.isDisabled} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+
+</details>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../NotifyPopup/" title="NotifyPopup" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                NotifyPopup
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Spinner/" title="Spinner" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Spinner
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
