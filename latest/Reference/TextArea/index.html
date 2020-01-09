@@ -138,7 +138,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.5.0</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.6.0</a>
         </div>
       </div>
  
@@ -620,6 +620,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setplaceholderplaceholder" title="setPlaceholder(placeholder)" class="md-nav__link">
+    setPlaceholder(placeholder)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getplaceholder" title="getPlaceholder()" class="md-nav__link">
+    getPlaceholder()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oneventname-callback" title="on(eventName, callback)" class="md-nav__link">
     on(eventName, callback)
   </a>
@@ -739,6 +753,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setplaceholderplaceholder" title="setPlaceholder(placeholder)" class="md-nav__link">
+    setPlaceholder(placeholder)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getplaceholder" title="getPlaceholder()" class="md-nav__link">
+    getPlaceholder()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oneventname-callback" title="on(eventName, callback)" class="md-nav__link">
     on(eventName, callback)
   </a>
@@ -847,6 +875,12 @@
 <td>Boolean</td>
 <td>No</td>
 <td>The textarea field will be visible. <br> Default value: <strong>true</strong></td>
+</tr>
+<tr>
+<td>options.placeholder</td>
+<td>String</td>
+<td>No</td>
+<td>The placeholder of textarea field. <br> Default value: ''</td>
 </tr>
 </tbody>
 </table>
@@ -1031,6 +1065,130 @@ export default class Plugin extends React.Component {
     }
     getValue = () =&gt; {
         console.log(this.state.value);
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
+</code></pre>
+
+</details>
+<h3 id="setplaceholderplaceholder">setPlaceholder(placeholder)</h3>
+<p>Set the placeholder of textarea field</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>placeholder</td>
+<td>String</td>
+<td>Yes</td>
+<td>The placeholder value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var textarea = new kintoneUIComponent.TextArea({ placeholder: '' });
+var btn = document.createElement('button');
+btn.textContent = 'Click';
+btn.onclick = function() {
+    textarea.setPlaceholder('Placeholder');
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(textarea.render());
+body.appendChild(btn);
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: '', placeholder: '' };
+    };
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;TextArea value={this.state.value} placeholder={this.state.placeholder}/&gt;
+                &lt;button onClick={this.setPlaceholder}&gt;Click&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+    setPlaceholder = () =&gt; {
+        this.setState({
+            placeholder: 'placeholder'
+        });
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
+</code></pre>
+
+</details>
+<h3 id="getplaceholder">getPlaceholder()</h3>
+<p>Get the placeholder value of text field</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>placeholder</td>
+<td>String</td>
+<td>The placeholder value</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="javascript">var textarea = new kintoneUIComponent.TextArea({placeholder: 'Placeholder'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(textarea.render());
+
+console.log(textarea.getPlaceholder());
+</code></pre>
+
+<p><strong>React</strong></p>
+<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: '', placeholder: 'Placeholder' };
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;TextArea value={this.state.value} placeholder={this.state.placeholder} /&gt;
+                &lt;button onClick={this.getPlaceholder}&gt;Get placeholder&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+
+    getPlaceholder = () =&gt; {
+        console.log(this.state.placeholder);
     };
 };
 ReactDOM.render(&lt;Plugin /&gt;,document.getElementById('root'));
