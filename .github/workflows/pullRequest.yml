@@ -7,12 +7,11 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - uses: actions/checkout@master
-      - name: Remove package-lock
-        run: rm -rf package-lock.json
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: docker name
         id: docker
-        uses: actions/test_docker
+        uses: ./actions/test_docker
         with:
           who-to-greet: Mona the Octocat
       - name: Get the output time
