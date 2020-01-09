@@ -12,7 +12,7 @@ jobs:
         run: rm -rf package-lock.json
       - name: docker name
         id: docker
-        uses: ./actions/test_docker
+        uses: actions/test_docker
         with:
           who-to-greet: Mona the Octocat
       - name: Get the output time
