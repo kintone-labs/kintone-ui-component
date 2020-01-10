@@ -29,14 +29,14 @@ describe('Unit test Attachment react', () => {
   test('render with files', () => {
     const {container} = render(<Attachment files={[{name: 'test_1', size: 12345}]} />);
     expect(container.firstElementChild).toBeTruthy();
-    expect(container.firstElementChild.className).toBe('kuc-attachment-outer');
+    expect(container.firstElementChild!.className).toBe('kuc-attachment-outer');
   });
 
   test('render error', () => {
     const ERROR = 'Attachment error';
     const {container, getByText} = render(<Attachment isErrorVisible errorMessage={ERROR} />);
     expect(container.firstElementChild).toBeTruthy();
-    expect(container.firstElementChild.className).toBe('kuc-attachment-outer');
+    expect(container.firstElementChild!.className).toBe('kuc-attachment-outer');
     const errorElm = getByText(ERROR);
     expect(errorElm).toBeTruthy();
   });
