@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent, createEvent} from '@testing-library/react';
 import Attachment from '../index';
-import React from 'react';
+import {createEvent, fireEvent} from '@testing-library/dom';
 
-describe('Unit test for Attachment onDragEnter event handler', () => {
+describe('Unit test Attachment onDragEnter', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
@@ -15,7 +14,8 @@ describe('Unit test for Attachment onDragEnter event handler', () => {
   });
 
   test('onDragEnter is fired successfully with dataTransfer.items[].kind', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const newFile = new File([''], 'file.png', {
@@ -39,7 +39,8 @@ describe('Unit test for Attachment onDragEnter event handler', () => {
   });
 
   test('onDragEnter is fired successfully with dataTransfer.types', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const newFile = new File([''], 'file.png', {
@@ -64,7 +65,8 @@ describe('Unit test for Attachment onDragEnter event handler', () => {
   });
 
   test('onDragEnter will not fire without dataTransfer.items and dataTransfer.types', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const dragEvent = createEvent.dragEnter(drag[0]);
@@ -79,7 +81,8 @@ describe('Unit test for Attachment onDragEnter event handler', () => {
   });
 
   test('onDragEnter will not fire without valid types', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const newFile = new File([''], 'file.png', {
@@ -103,5 +106,5 @@ describe('Unit test for Attachment onDragEnter event handler', () => {
     }
   });
 
-  // TODO: Remove unreachable branch line 112, 118 index.tsx
+  // TODO: Remove unreachable branch line 248, 254 index.ts
 });

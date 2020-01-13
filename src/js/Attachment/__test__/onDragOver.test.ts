@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent, createEvent} from '@testing-library/react';
 import Attachment from '../index';
-import React from 'react';
+import {createEvent, fireEvent} from '@testing-library/dom';
 
 describe('Unit test for Attachment onDragOver event handler', () => {
   beforeEach(() => {
@@ -15,7 +14,8 @@ describe('Unit test for Attachment onDragOver event handler', () => {
   });
 
   test('onDragOver fire successfully', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const newFile = new File([''], 'file.png', {
@@ -39,7 +39,8 @@ describe('Unit test for Attachment onDragOver event handler', () => {
   });
 
   test('onDragOver fire successfully with no file', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const drag = container.getElementsByClassName('kuc-attachment-file');
 
     const dragOverEvent = createEvent.dragOver(drag[0]);

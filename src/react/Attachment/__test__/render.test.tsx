@@ -14,7 +14,7 @@ describe('Unit test Attachment react', () => {
     console.error.mockRestore();
   });
 
-  test('render without props Label', () => {
+  test('render without props Attachment', () => {
     const {container} = render(<Attachment />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-attachment-outer');

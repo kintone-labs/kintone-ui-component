@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent, createEvent} from '@testing-library/react';
 import Attachment from '../index';
-import React from 'react';
+import {createEvent, fireEvent} from '@testing-library/dom';
 
 describe('Unit test for Attachment onDrop event handler', () => {
   beforeEach(() => {
@@ -27,7 +26,11 @@ describe('Unit test for Attachment onDrop event handler', () => {
       expect(files.length).toEqual(2);
       expect(files[1]).toBe(newFile);
     };
-    const {container} = render(<Attachment files={[file]} onFilesAdd={dropHandler} />);
+    const myAttachment = new Attachment({
+      files: [file],
+      onFilesAdd: dropHandler
+    });
+    const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
     const dropEvent = createEvent.drop(droppable[0]);
@@ -53,7 +56,10 @@ describe('Unit test for Attachment onDrop event handler', () => {
       expect(files.length).toEqual(1);
       expect(files[0]).toBe(newFile);
     };
-    const {container} = render(<Attachment onFilesAdd={dropHandler} />);
+    const myAttachment = new Attachment({
+      onFilesAdd: dropHandler
+    });
+    const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
     const dropEvent = createEvent.drop(droppable[0]);
@@ -70,7 +76,8 @@ describe('Unit test for Attachment onDrop event handler', () => {
   });
 
   test('onDrop is fired successfully for IE without files', () => {
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
     const dropEvent = createEvent.drop(droppable[0]);
@@ -85,7 +92,7 @@ describe('Unit test for Attachment onDrop event handler', () => {
       expect(error).toBeFalsy();
     }
 
-    // TODO: Remove unreachable branch line 43 index.tsx
+    // TODO: Remove unreachable branch line 89 index.ts
   });
 
   test('onDrop is fired successfully for Chrome', () => {
@@ -101,7 +108,11 @@ describe('Unit test for Attachment onDrop event handler', () => {
       expect(files.length).toEqual(2);
       expect(files[1]).toBe(newFile);
     };
-    const {container} = render(<Attachment files={[file]} onFilesAdd={dropHandler} />);
+    const myAttachment = new Attachment({
+      files: [file],
+      onFilesAdd: dropHandler
+    });
+    const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
     const dropEvent = createEvent.drop(droppable[0]);
@@ -130,7 +141,8 @@ describe('Unit test for Attachment onDrop event handler', () => {
       }
     });
 
-    const {container} = render(<Attachment />);
+    const myAttachment = new Attachment();
+    const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
     const dropEvent = createEvent.drop(droppable[0]);
