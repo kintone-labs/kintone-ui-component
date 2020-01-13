@@ -10,6 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: install dependence
+        run: npm install
       - name: Get integrity
         uses: ./actions/get_integrity
       - name: access permission
