@@ -9,6 +9,8 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Get integrity
+        uses: ./actions/get_integrity
       - name: access permission
         run: chmod +x ./actions/test_docker/entrypoint.sh
       - name: docker name

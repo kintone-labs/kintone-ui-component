@@ -1,8 +1,4 @@
 name: 'Get integrity'
-description: 'Get interity using attach artifact'
-outputs:
-  integrity:
-    description: "Get integriry"
 runs:
   using: 'node12'
   main: 'index.js'
