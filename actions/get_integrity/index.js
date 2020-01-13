@@ -8,7 +8,8 @@ exec("npm pack --json | grep integrity", (error, stdout, stderr) => {
       .replace(/['"]+/g, "")
       .replace("integrity", "")
       .replace(":", "")
-      .replace(",", "");
+      .replace(",", "")
+      .replace(/\s/g,'');
     fs.writeFile("integrity.txt", integrity, err => {
       if (err) {
         core.setFailed("write integrity fail: " + err);

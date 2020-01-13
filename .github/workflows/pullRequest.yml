@@ -15,7 +15,7 @@ jobs:
         id: get_integrity
         uses: ./actions/get_integrity
       - name: show integrity output
-        run: eco  "This is my integrity:${{steps.get_integrity.outputs.integrity}}"
+        run: echo  "This is my integrity:${{steps.get_integrity.outputs.integrity}}"
       - name: upload integrity
         if: success()
         uses: actions/upload-artifact@master
