@@ -22,9 +22,7 @@ jobs:
         with:
           name: my-integrity
           path: ./integrity.txt        
-      - name: access permission
-        run: chmod +x ./actions/test_docker/entrypoint.sh
-      - name: docker name
+      - name: create input using docker
         id: docker
         uses: ./actions/test_docker
         with:
