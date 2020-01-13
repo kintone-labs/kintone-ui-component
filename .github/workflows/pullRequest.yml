@@ -12,7 +12,16 @@ jobs:
       - name: install dependence
         run: npm install
       - name: Get integrity
+        id: get_integrity
         uses: ./actions/get_integrity
+      - name: show integrity output
+        run: eco  "This is my integrity:${{steps.get_integrity.outputs.integrity}}"
+      - name: upload integrity
+        if: success()
+        uses: actions/upload-artifact@master
+        with:
+          name: my-integrity
+          path: ./integrity.txt        
       - name: access permission
         run: chmod +x ./actions/test_docker/entrypoint.sh
       - name: docker name
