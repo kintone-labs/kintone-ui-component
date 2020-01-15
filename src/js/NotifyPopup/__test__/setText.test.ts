@@ -15,12 +15,12 @@ describe('Unit test Button setText', () => {
     expect(container.textContent).toBe('');
   });
 
-  test('Function setText run successfully with number', () => {
+  test('Function setText run null with number', () => {
     const notifypopup = new NotifyPopup({});
     const container = notifypopup.render();
     // @ts-ignore
     notifypopup.setText(10);
-    expect(container.textContent).toBe('10');
+    expect(container.textContent).toBe('');
   });
 
   test('Function setText run successfully with null', () => {

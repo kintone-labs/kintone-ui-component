@@ -40,6 +40,6 @@ describe('Unit test Button setType', () => {
     // @ts-ignore
     notifypopup.setType(null);
     expect(container.classList.length).toBe(2);
-    expect(['notify-notify', 'bg-danger'].every(c => container.classList.contains(c))).toBe(true);
+    expect(['kuc-notify', 'bg-danger'].every(c => container.classList.contains(c))).toBe(true);
   });
 });
