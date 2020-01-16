@@ -18,9 +18,6 @@ describe('Unit test TextArea react', () => {
     const {container} = render(<TextArea value="success" />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-      const txtAreaSizeDOM = container.getElementsByClassName('kuc-textarea-resize')[0];
-      expect(txtAreaSizeDOM.getAttribute('role')).toBe('button');
-      expect(txtAreaSizeDOM.getAttribute('tabindex')).toBe('0');
     }
   });
 
@@ -28,18 +25,12 @@ describe('Unit test TextArea react', () => {
     const {container} = render(<TextArea />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-      const txtAreaSizeDOM = container.getElementsByClassName('kuc-textarea-resize')[0];
-      expect(txtAreaSizeDOM.getAttribute('role')).toBe('button');
-      expect(txtAreaSizeDOM.getAttribute('tabindex')).toBe('0');
     }
   });
   test('Render successfully without props', () => {
     const {container} = render(<TextArea value="success" isDisabled={false} />);
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-      const txtAreaSizeDOM = container.getElementsByClassName('kuc-textarea-resize')[0];
-      expect(txtAreaSizeDOM.getAttribute('role')).toBe('button');
-      expect(txtAreaSizeDOM.getAttribute('tabindex')).toBe('0');
     }
   });
 
