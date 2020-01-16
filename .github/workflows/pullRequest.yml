@@ -11,8 +11,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: get4
-        if: "github.event.client_payload.unit == false"
+        if: contains(github.event.client_payload.unit,false)
         run: "echo pass"
+      - name: get5
+        if: contains(github.event.client_payload.unit,true)
+        run: "echo fail"
       - name: get 6
         run: "echo next step"
   
