@@ -20,11 +20,8 @@ describe('Unit test Dialog render', () => {
   test('Render successfully without props', () => {
     const myDialog = new Dialog({});
     const container = myDialog.render();
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
   });
 
   test('Render successfully with full props', () => {
