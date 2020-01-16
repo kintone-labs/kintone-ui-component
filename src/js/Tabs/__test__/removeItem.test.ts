@@ -31,6 +31,10 @@ describe('Unit test Tabs addItem', () => {
     expect(tabItems).toBeTruthy();
     // @ts-ignore
     expect(tabItems.length).toEqual(1);
+    // Verify tab name DOM
+    const container = myTabs.render();
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList.length).toEqual(1);
   });
 
   test('removeItem throw error when index is not a number', () => {
