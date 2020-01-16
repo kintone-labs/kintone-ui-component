@@ -11,8 +11,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: get4
-        if: contains(github.event.client_payload.unit,true)
-        run: "echo pass"
+        run: "curl -H 'Accept: application/vnd.github.everest-preview+json' \
+          -H 'Authorization: token 715b6a6c1791c70ee044d3051194464791cd0089' \
+          --request POST \
+          --data '{'event_type': 'test_dispatch'}' \
+          https://api.github.com/repos/Pham-Gia-Huong/kintone-ui-component/dispatches"
       - name: get5
         if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
