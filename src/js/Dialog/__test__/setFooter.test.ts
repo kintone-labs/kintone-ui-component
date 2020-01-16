@@ -23,7 +23,7 @@ describe('Unit test Dialog setFooter', () => {
     myDialog.setFooter(NEW_FOOTER);
     expect(myDialog.getFooter()).toEqual(NEW_FOOTER);
 
-    // Verify content DOM
+    // Verify footer DOM
     const container = myDialog.render();
     const footerDOM = container.getElementsByClassName('kuc-dialog-footer');
     expect(footerDOM.length).toEqual(1);
