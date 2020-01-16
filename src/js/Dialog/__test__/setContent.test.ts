@@ -19,8 +19,16 @@ describe('Unit test Dialog setContent', () => {
 
   test('Function setContent and getContent run correctly', () => {
     const myDialog = new Dialog({content: 'content 1'});
-    myDialog.setContent('content 2');
-    expect(myDialog.getContent()).toEqual('content 2');
+    const NEW_CONTENT = 'content 2'
+    myDialog.setContent(NEW_CONTENT);
+    expect(myDialog.getContent()).toEqual(NEW_CONTENT);
+
+    // Verify content DOM
+    const container = myDialog.render();
+    const contentDOM = container.getElementsByClassName('kuc-dialog-body');
+    expect(contentDOM.length).toEqual(1);
+    expect(contentDOM[0]).toBeInstanceOf(HTMLDivElement);
+    expect(contentDOM[0].innerHTML).toEqual(NEW_CONTENT);
   });
 
   test('setContent throw error with invalid content', () => {
