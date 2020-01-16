@@ -15,7 +15,7 @@ jobs:
       - name: get2
         run: "echo ${{ github.context }}"
       - name: get3
-        run: "echo ${{ github.context.payload.client_payload}}"  
+        run: "echo ${{ github.event.client_payload}}"  
       
       
   
