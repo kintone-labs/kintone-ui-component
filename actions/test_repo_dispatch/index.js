@@ -3,7 +3,7 @@ const github = require('@actions/github');
 try {
 
   if (github.context && github.context.payload){
-    console.log(github.context.payload.client_payload);
+    let statusAutoTest=github.context.payload.client_payload.status
 
   }
   console.log("null");
