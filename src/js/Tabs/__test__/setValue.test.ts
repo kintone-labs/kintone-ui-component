@@ -29,6 +29,13 @@ describe('Unit test Tabs render', () => {
     const myTabs = new Tabs({items});
     myTabs.setValue(1);
     expect(myTabs.getValue()).toEqual(1);
+
+    // Verify tab DOM
+    const container = myTabs.render();
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList.length).toEqual(3);
+    const selectedTabNameDOM = tabNameDOMList[1];
+    expect(selectedTabNameDOM.classList).toContain('kuc-tabs-container-selection');
   });
 
   test('Throw error when setValue is called with negative value', () => {
