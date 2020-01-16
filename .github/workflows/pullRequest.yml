@@ -1,7 +1,7 @@
 name: CI Release
-on:
-  release:
-    types: [created]
+on: 
+  repository_dispatch:
+    types: test_dispatch
 jobs: 
   test_release: 
     name: Check release
