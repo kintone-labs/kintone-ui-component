@@ -23,5 +23,11 @@ describe('Unit test FieldGroup setContent', () => {
 
     myFieldGroup.setContent(newContentDiv);
     expect(myFieldGroup.getContent()).toBe(newContentDiv);
+
+    // Verify content DOM
+    const container = myFieldGroup.render();
+    const fgContent = container.getElementsByClassName('kuc-fieldgroup-contents');
+    expect(fgContent.length).toEqual(1);
+    expect(fgContent[0].firstElementChild).toBe(newContentDiv);
   });
 });
