@@ -33,6 +33,13 @@ describe('Unit test Tabs disableItem', () => {
     // @ts-ignore
     const enabledTab = tabItems[1];
     expect(enabledTab.isDisabled).toBeFalsy();
+
+    // Verify tab name DOM
+    const container = myTabs.render();
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList.length).toEqual(2);
+    const disabledTabNameDOM = tabNameDOMList[1];
+    expect(disabledTabNameDOM.classList).not.toContain('kuc-tabs-disabled');
   });
 
   test('enableItem throws error when called withou tabName', () => {
