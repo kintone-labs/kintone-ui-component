@@ -10,14 +10,14 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
-      - name: get
-        run: "echo ${{ github.context.payload }}"
-      - name: get2
-        run: "echo ${{ github.context }}"
-      - name: get3
-        run: "echo ${{ github.event.client_payload}}"  
-      
-      
+      - name: get4
+        if: ${{ github.event.client_payload.unit}} == false
+        run: "echo pass"
+      - name: get5
+        if: ${{ github.event.client_payload.unit}} == true
+        run: "echo fail"
+      - name: get 6
+        run: "echo next step"
   
       
 
