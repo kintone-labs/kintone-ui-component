@@ -18,8 +18,11 @@ describe('Unit test Label react', () => {
     const onClick = (e: React.SyntheticEvent<EventTarget>) => {
       expect(true);
     };
-    const {getByRole} = render(<Label text="label" onClick={onClick} />);
+    const {container, getByRole} = render(<Label text="label" onClick={onClick} />);
     const node = getByRole('presentation');
     fireEvent.click(node, {});
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-label');
+    }
   });
 });

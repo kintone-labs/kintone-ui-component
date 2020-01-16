@@ -20,6 +20,7 @@ describe('Unit test Label setBackgroundColor', () => {
     const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: true, isRequired: true, isVisible: true, textColor: 'blue'});
     label.setBackgroundColor('blue');
     expect((label.render().firstElementChild as HTMLElement).style.backgroundColor).toBe('blue');
+    expect(label.render().getElementsByClassName('kuc-require')).toBeDefined();
   });
 
   test('setBackgroundColor expect to throw error with props value number Label component', () => {
