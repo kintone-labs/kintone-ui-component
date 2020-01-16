@@ -1,31 +1,45 @@
 name: CI Release
-on: 
-  repository_dispatch:
-    types: test_dispatch
+on:
+  release:
+    types: [published]
 jobs: 
   test_release: 
     name: Check release
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
-        with:
-          ref: ${{ github.head_ref }}
       - name: Remove package-lock
         if: success()      
         run: rm -rf package-lock.json
       - name: Install dependencies
         run: npm install
+      - name: Check version
+        if: success()
+        id: check_version
+        uses: ./actions/check_version
+      - name: Build
+        if: success()
+        run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
+      - name: Get integrity
+        uses: ./actions/get_integrity
+      - name: upload integrity
+        if: success()
+        uses: actions/upload-artifact@master
+        with:
+          name: my-integrity
+          path: ./integrity.txt
       - name: deploy master
         if: success()
         run: |
           git config --global user.email "phamgiahuong2012@gmail.com"
           git config --global user.name "huong"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - name: push
-        if: success()
-        uses: ./actions/deploy
+          git remote set-url origin https://Pham-Gia-Huong:${{secrets.ACCESS_TOKEN}}@github.com/Pham-Gia-Huong/kintone-ui-component.git
+          git add .
+          git commit -m "merge release"
+          git push origin HEAD:master --force
       - name: Upload package to release[binaries]
         uses: svenstaro/upload-release-action@v1-release
         with: 

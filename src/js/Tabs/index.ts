@@ -7,7 +7,7 @@ import '../../css/Tabs.css';
 type Tab = {
   tabName: string;
   tabContent?: string | HTMLElement;
-  isDisabled?: boolean;
+  isDisabled?: boolean;                  
 }
 
 type TabsProps = ControlProps & {
@@ -29,7 +29,7 @@ class Tabs extends Control<TabsProps> {
       ...this._props,
       ...{
         items: [],
-        value: 0,
+        value: 0,              
         isDisabled: false,
         isVisible: true
       }

@@ -1,0 +1,8 @@
+name: 'deploy'
+description: 'deploy package-lock json'
+outputs:
+  deploy:
+    description: "deploy package-lock json"
+runs:
+  using: 'node12'
+  main: 'index.js'

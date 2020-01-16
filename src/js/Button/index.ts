@@ -5,9 +5,9 @@ import '../../css/Button.css';
 type ButtonProps = ControlProps & {
   text?: string;
   type?: 'normal' | 'submit';
-  onClick?: (e: Event) => void;
-}
-
+  onClick?: (e: Event) => void;              
+}                 
+                  
 class Button extends Control<ButtonProps> {
   constructor(params?: ButtonProps) {
     super();
