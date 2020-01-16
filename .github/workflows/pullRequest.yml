@@ -10,16 +10,17 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
-      if: contains(github.event.client_payload.unit,true)
       - name: get4
-        if: contains(github.event.client_payload.unit,false)
+        if: contains(github.event.client_payload.unit,true)
         run: "echo pass"
       - name: get5
+        if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
       - name: get 7
-        if: cancelled()
+        if: contains(github.event.client_payload.unit,true)
         run: "echo next step"
       - name: get 6
+        if: contains(github.event.client_payload.unit,true)
         run: "echo next step"
   
       
