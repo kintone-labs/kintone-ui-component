@@ -19,7 +19,7 @@ describe('Unit test Dialog setContent', () => {
 
   test('Function setContent and getContent run correctly', () => {
     const myDialog = new Dialog({content: 'content 1'});
-    const NEW_CONTENT = 'content 2'
+    const NEW_CONTENT = 'content 2';
     myDialog.setContent(NEW_CONTENT);
     expect(myDialog.getContent()).toEqual(NEW_CONTENT);
 
