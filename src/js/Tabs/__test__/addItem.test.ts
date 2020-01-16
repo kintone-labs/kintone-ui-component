@@ -20,6 +20,7 @@ describe('Unit test Tabs addItem', () => {
   });
 
   test('addItem is called correctly', () => {
+    const newTabName = 'Tab3';
     const items = [{
       tabName: 'Tab1',
     }, {
@@ -27,13 +28,19 @@ describe('Unit test Tabs addItem', () => {
     }];
     const myTabs = new Tabs({items});
     const newTab = {
-      tabName: 'Tab3',
+      tabName: newTabName,
     };
     myTabs.addItem(newTab);
     const tabItems = myTabs.getItems();
     expect(tabItems).toBeTruthy();
-    // @ts-ignore
-    expect(tabItems.length).toEqual(3);
+    expect(tabItems!.length).toEqual(3);
+
+    // Verify tab name DOM
+    const container = myTabs.render();
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList.length).toEqual(3);
+    const newTabDOM = tabNameDOMList[2] as HTMLLIElement;
+    expect(newTabDOM.innerHTML).toEqual(newTabName);
   });
 
   test('addItem throw error when called with no param', () => {
