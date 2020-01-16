@@ -1,0 +1,10 @@
+name: 'Hello docker'
+description: 'action docker'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.docker-input }}
