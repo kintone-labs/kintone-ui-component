@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
+      - name: install
+        run: npm install
       - name: test repo dispatch
         uses: ./actions/test_repo_dispatch
       
