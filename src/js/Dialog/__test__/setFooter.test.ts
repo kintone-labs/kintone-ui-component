@@ -19,7 +19,7 @@ describe('Unit test Dialog setFooter', () => {
 
   test('Function setFooter and getFooter run correctly', () => {
     const myDialog = new Dialog({footer: 'footer 1'});
-    const NEW_FOOTER = 'footer 2'
+    const NEW_FOOTER = 'footer 2';
     myDialog.setFooter(NEW_FOOTER);
     expect(myDialog.getFooter()).toEqual(NEW_FOOTER);
 
