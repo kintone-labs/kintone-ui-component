@@ -19,6 +19,7 @@ describe('Unit test TextArea onEvent', () => {
       fireEvent.click(txtArea1.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
       fireEvent.change(txtArea1.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'empty'}});
       expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
+      expect(true);
     } catch (error) {
       expect(false);
     }
@@ -34,12 +35,14 @@ describe('Unit test TextArea onEvent', () => {
     });
     fireEvent.click(txtArea.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'on click event textarea'}});
     fireEvent.change(txtArea.render().querySelector('textarea') as HTMLTextAreaElement, {target: {value: 'on change event textarea'}});
+    expect(txtArea.render()).toHaveClass('kuc-textarea-outer');
   });
 
   test('onMouseDown TextArea component', () => {
     try {
       const txtArea = new TextArea({value: 'empty'});
       txtArea._onMouseDown();
+      expect(txtArea.render()).toHaveClass('kuc-textarea-outer');
       expect(true);
     } catch (error) {
       expect(false);
@@ -50,13 +53,14 @@ describe('Unit test TextArea onEvent', () => {
     try {
       const txtArea1 = new TextArea({isDisabled: true});
       txtArea1._onMouseDown();
+      expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
       expect(true);
     } catch (error) {
       expect(false);
     }
   });
 
-  test('onMouseDown TextArea component', () => {
+  test('onMouseEvent TextArea component', () => {
     try {
       const txtArea1 = new TextArea({value: 'empty'});
       const textAreaResize = txtArea1.render().getElementsByClassName('kuc-textarea-resize')[0];
@@ -65,6 +69,8 @@ describe('Unit test TextArea onEvent', () => {
       fireEvent.mouseMove(document, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
       fireEvent.mouseMove(document, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
       fireEvent.mouseUp(document, {clientX: 1909, clientY: 2009});
+      expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
+      expect(true);
     } catch (error) {
       expect(false);
     }

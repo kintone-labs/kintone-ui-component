@@ -14,6 +14,7 @@ describe('Unit test TextArea show', () => {
   test('show TextArea with full props component', () => {
     const txtArea1 = new TextArea({value: 'textarea', isVisible: false});
     txtArea1.show();
+    expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
     expect(txtArea1.render().querySelector('textarea') as HTMLTextAreaElement).toBeVisible();
   });
 });

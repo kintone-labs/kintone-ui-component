@@ -25,9 +25,12 @@ describe('Unit test TextArea react', () => {
     const node = container.getElementsByClassName('kuc-textarea')[0];
     fireEvent.change(node, {target: {value: 'on change event textarea'}});
     fireEvent.click(node, {target: {value: 'on click event textarea'}});
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
+    }
   });
 
-  test('onMouseDown with props TextArea', () => {
+  test('onMouseEvent with props TextArea', () => {
     try {
       const {container, getByRole} = render(<TextArea value="textarea" />);
       const textAreaResize = getByRole('button');
