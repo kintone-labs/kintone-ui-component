@@ -1,6 +1,8 @@
 const core = require("@actions/core");
 const github = require('@actions/github');
 try {
+  console.log(github.event);
+
   if (github.event && github.event.client_payload){
     console.log(github.event.client_payload);
 
