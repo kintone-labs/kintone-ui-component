@@ -11,7 +11,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: get
-        run: "echo ${{ github.head_ref }}"
+        run: "echo ${{ github }}"
       
           
       
