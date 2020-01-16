@@ -16,6 +16,9 @@ jobs:
       - name: get5
         if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
+      - name: get 7
+        if: success()
+        run: "echo next step"
       - name: get 6
         run: "echo next step"
   
