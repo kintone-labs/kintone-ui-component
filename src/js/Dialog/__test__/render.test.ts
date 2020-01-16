@@ -33,11 +33,8 @@ describe('Unit test Dialog render', () => {
       showCloseButton: true
     });
     const container = myDialog.render();
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
   });
 
   test('Render hidden Dialog successfully', () => {
