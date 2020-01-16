@@ -29,10 +29,16 @@ describe('Unit test Tabs disableItem', () => {
     myTabs.disableItem('Tab2');
     const tabItems = myTabs.getItems();
     expect(tabItems).toBeTruthy();
-    // @ts-ignore
-    const disabledTab = tabItems[1];
+    const disabledTab = tabItems![1];
     expect(disabledTab.isDisabled).toBeTruthy();
-    // UPDATE IN SOURCE CODE: change isDisabled of tab in items to true
+
+    // Verify tab name DOM
+    const container = myTabs.render();
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList.length).toEqual(2);
+    const disabledTabNameDOM = tabNameDOMList[1];
+    expect(disabledTabNameDOM.classList).toContain('kuc-tabs-disabled');
+    // TODO: change isDisabled of tab in items to true
   });
 
   test('disableItem throw error when called without tabName', () => {
