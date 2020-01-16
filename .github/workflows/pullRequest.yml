@@ -7,28 +7,36 @@ jobs:
     name: Check release
     runs-on: ubuntu-18.04
     steps: 
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: install dependence
+      - uses: actions/checkout@master
+      - name: Remove package-lock
+        run: rm -rf package-lock.json
+      - name: Install dependencies
         run: npm install
+      - name: Check version
+        id: check_version
+        uses: ./actions/check_version
+      - name: Build
+        if: success()
+        run: npm run build
+      - name: Prepare package
+        if: success()
+        run: npm pack
       - name: Get integrity
-        id: get_integrity
         uses: ./actions/get_integrity
-      - name: show integrity output
-        run: echo  "This is my integrity:${{steps.get_integrity.outputs.integrity}}"
       - name: upload integrity
         if: success()
         uses: actions/upload-artifact@master
         with:
           name: my-integrity
-          path: ./integrity.txt        
-      - name: create input using docker
-        id: docker
-        uses: ./actions/test_docker
-        with:
-          docker-input: "test input docker" 
-      - name: Get the output time
-        run: echo "The time was ${{ steps.docker.outputs.time }}"
+          path: ./integrity.txt
+      - name: Upload package to release[binaries]
+        uses: svenstaro/upload-release-action@v1-release
+        with: 
+          repo_token: ${{ secrets.ACCESS_TOKEN }}
+          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
       
       
       
