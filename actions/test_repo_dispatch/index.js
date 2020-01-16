@@ -1,11 +1,9 @@
 const core = require("@actions/core");
 const github = require('@actions/github');
 try {
-  console.log(github);
-  console.log(github.context);
 
-  if (github.event && github.event.client_payload){
-    console.log(github.event.client_payload);
+  if (github.context && github.context.payload){
+    console.log(github.context.payload.client_payload);
 
   }
   console.log("null");
