@@ -1,0 +1,8 @@
+name: 'repo dispatch'
+description: 'Get repo dispatch'
+outputs:
+  repo:
+    description: "Get repo dispatch"
+runs:
+  using: 'node12'
+  main: 'index.js'

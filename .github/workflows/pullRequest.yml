@@ -10,30 +10,8 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
-      - name: Remove package-lock
-        if: success()      
-        run: rm -rf package-lock.json
-      - name: Install dependencies
-        run: npm install
-      - name: deploy master
-        if: success()
-        run: |
-          git config --global user.email "phamgiahuong2012@gmail.com"
-          git config --global user.name "huong"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - name: push
-        if: success()
-        uses: ./actions/deploy
-      - name: Upload package to release[binaries]
-        uses: svenstaro/upload-release-action@v1-release
-        with: 
-          repo_token: ${{ secrets.ACCESS_TOKEN }}
-          file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
-          asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
+      - name: test repo dispatch
+        uses: ./actions/test_repo_dispatch
       
           
       
