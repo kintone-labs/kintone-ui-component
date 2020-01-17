@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
 
+const messages = {
+  INVALID_DATE: 'day2.toDateString is not a function'
+};
+
 describe('Unit test DateTime render', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
@@ -39,9 +43,9 @@ describe('Unit test DateTime render', () => {
       // @ts-ignore
       const datetime = new DateTime({value: 'kintone', dateFormat: 'kintone', type: 'date'});
       datetime.render();
-      expect(true).toBeTruthy();
     } catch (error) {
-      expect(false);
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(messages.INVALID_DATE);
     }
   });
 });

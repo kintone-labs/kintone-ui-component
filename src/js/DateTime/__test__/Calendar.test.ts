@@ -17,7 +17,8 @@ describe('Unit test Calendar render', () => {
   test('render Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
     calendar.render();
-    expect(true).toBeTruthy();
+    expect(calendar.render().className).toBe('date-picker-container');
+    expect(calendar.render().style.display).toBe('block');
   });
   test('onClick Pre Button Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
@@ -44,7 +45,7 @@ describe('Unit test Calendar render', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
     calendar.render();
     const span = calendar.render().getElementsByClassName('none calendar-button-control')[0];
-    fireEvent.click(span, {target: {onDateClick: null}});
+    fireEvent.click(span);
     calendar.getValue();
     expect(true).toBeTruthy();
   });

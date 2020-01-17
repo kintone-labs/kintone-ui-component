@@ -21,6 +21,6 @@ describe('Unit test DateTime disable', () => {
     datetime.disable();
     expect(datetime.render().getAttribute('disabled')).toBe('true');
     datetime.enable();
-    expect(true).toBeTruthy();
+    expect(datetime.render().getAttribute('disabled')).toBeNull();
   });
 });

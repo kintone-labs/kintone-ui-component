@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
 
+const messages = {
+  INVALID_ARGUMENTS: 'Error: invalid function arguments'
+};
+
 // TODO: Remove unreachable else path line 481 (unnecessary return) index.ts
 // TODO: Remove unreachable onChange path line 17,41 (unnecessary props) index.ts
 describe('Unit test DateTime setValue', () => {
@@ -50,11 +54,10 @@ describe('Unit test DateTime setValue', () => {
     try {
       const datetime = new DateTime();
       datetime.render();
-      const date = new Date();
       datetime.setValue(undefined);
-      expect(datetime.getValue()).toStrictEqual(date);
     } catch (error) {
-      expect(false);
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(messages.INVALID_ARGUMENTS);
     }
   });
 });

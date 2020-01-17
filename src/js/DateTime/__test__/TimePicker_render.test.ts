@@ -14,15 +14,16 @@ describe('Unit test Calendar render', () => {
   });
 
   test('onClick time item of TimePicker', () => {
-    const calendar = new TimePicker({isVisible: true, isDisabled: false});
-    calendar.render();
-    const span = calendar.render().getElementsByClassName('kuc-time-list-item')[0];
+    const timePicker = new TimePicker({isVisible: true, isDisabled: false});
+    timePicker.render();
+    const span = timePicker.render().getElementsByClassName('kuc-time-list-item')[0];
     fireEvent.click(span, {target: {onTimeClick: new Date()}});
     expect(true).toBeTruthy();
   });
 
   test('render TimePicker', () => {
-    const calendar = new TimePicker({isVisible: true, isDisabled: true});
-    expect(calendar.render().style.display).toBe('block');
+    const timePicker = new TimePicker({isVisible: true, isDisabled: true});
+    expect(timePicker.render().style.display).toBe('block');
+    expect(timePicker.render().className).toBe('time-picker-container');
   });
 });
