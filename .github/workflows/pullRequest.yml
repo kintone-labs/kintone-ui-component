@@ -1,7 +1,7 @@
 name: CI Release
 on: 
   repository_dispatch:
-    types: recieve_dispatch
+    types: test_dispatch
   release:
     types: [published]
 jobs: 
