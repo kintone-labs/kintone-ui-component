@@ -13,13 +13,12 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Repository Dispatch
-        if: contains(github.event.client_payload.status,false)
+        if: contains(github.event.client_payload.status,fail)
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{secrets.ACCESS_TOKEN}}
           repository: SDQA-VN/ui-component-auto
           event-type: kuc-trigger-auto-test
-        run: "echo fail"
       - name: echo ${{ github.event.client_payload.status }}
   
       
