@@ -28,6 +28,6 @@ describe('Unit test Alert react', () => {
   });
   test('render with props Alert isVisible', () => {
     const {container} = render(<Alert isVisible={false} />);
-    expect(container.textContent).toBe('');
+    expect(container.firstElementChild).toBeNull();
   });
 });
