@@ -12,9 +12,12 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
-      - name: get4
-        run: |
-          curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization:token ${{secrets.github_action}}"  --request POST https://api.github.com/repos/SDQA-VN/ui-component-auto/dispatches --data '{"event_type": "kuc-trigger-auto-test"}'
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: 8a70d998c074b5da50ac9d7ea9c22c4842682cb4
+          repository: SDQA-VN/ui-component-auto
+          event-type: kuc-trigger-auto-test
       - name: get5
         if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
