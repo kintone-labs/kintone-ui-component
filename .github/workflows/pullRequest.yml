@@ -19,7 +19,8 @@ jobs:
           token: ${{secrets.ACCESS_TOKEN}}
           repository: SDQA-VN/ui-component-auto
           event-type: kuc-trigger-auto-test
-      - name: echo ${{ github.event.client_payload.status }}
+      - name: echo
+          run: echo ${{ github.event.client_payload.status }}
   
       
 
