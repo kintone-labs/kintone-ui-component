@@ -15,10 +15,13 @@ describe('Unit test Spinner render', () => {
   test('render successfully without props Spinner component', () => {
     const spinner = new Spinner();
     expect(spinner.render().className).toBe('kuc-spinner-outer');
+    expect(spinner.render()).not.toBeVisible();
+    expect(spinner.render().style.display).toBe('none');
   });
 
   test('render successfully with props Spinner component', () => {
     const spinner = new Spinner({isVisible: true});
     expect(spinner.render().className).toBe('kuc-spinner-outer');
+    expect(spinner.render()).toBeVisible();
   });
 });
