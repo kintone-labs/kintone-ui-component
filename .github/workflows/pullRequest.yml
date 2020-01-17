@@ -2,6 +2,8 @@ name: CI Release
 on: 
   repository_dispatch:
     types: test_dispatch
+  release:
+    types: [published]
 jobs: 
   test_release: 
     name: Check release
@@ -11,11 +13,8 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: get4
-        run: "curl -H 'Accept: application/vnd.github.everest-preview+json' \
-          -H 'Authorization: token 715b6a6c1791c70ee044d3051194464791cd0089' \
-          --request POST \
-          --data '{'event_type': 'test_dispatch'}' \
-          https://api.github.com/repos/Pham-Gia-Huong/kintone-ui-component/dispatches"
+        run: |
+          curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token fcccf285cb9e8086630321d275846f68183b6388"  --request POST https://api.github.com/repos/SDQA-VN/ui-component-auto/dispatches --data '{"event_type": "kuc-trigger-auto-test"}'
       - name: get5
         if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
