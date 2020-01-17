@@ -14,7 +14,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: get4
         run: |
-          curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization:token ${{secrets.ACCESS_TOKEN}}"  --request POST https://api.github.com/repos/SDQA-VN/ui-component-auto/dispatches --data '{"event_type": "kuc-trigger-auto-test"}'
+          curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization:token ${{secrets.github_action}}"  --request POST https://api.github.com/repos/SDQA-VN/ui-component-auto/dispatches --data '{"event_type": "kuc-trigger-auto-test"}'
       - name: get5
         if: contains(github.event.client_payload.unit,true)
         run: "echo fail"
