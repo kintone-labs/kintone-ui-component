@@ -15,7 +15,7 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: 8a70d998c074b5da50ac9d7ea9c22c4842682cb4
+          token: ${{secrets.ACCESS_TOKEN}}
           repository: SDQA-VN/ui-component-auto
           event-type: kuc-trigger-auto-test
       - name: get5
