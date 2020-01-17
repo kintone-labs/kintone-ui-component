@@ -18,9 +18,12 @@ describe('Unit test Alert react', () => {
     const onClick = (e: React.SyntheticEvent<EventTarget>) => {
       expect((e.target as HTMLInputElement).className).toBe('kuc-alert bg-danger');
     };
-    const {getByRole} = render(<Alert onClick={onClick} />);
+    const {container, getByRole} = render(<Alert onClick={onClick} />);
     const node = getByRole('none');
     fireEvent.click(node, {});
-
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-alert bg-danger');
+      expect(container.firstElementChild.textContent).toBe('');
+    }
   });
 });

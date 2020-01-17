@@ -28,8 +28,6 @@ describe('Unit test Alert react', () => {
   });
   test('render with props Alert isVisible', () => {
     const {container} = render(<Alert isVisible={false} />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-alert bg-danger');
-    }
+    expect(container.textContent).toBe('');
   });
 });
