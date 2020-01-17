@@ -26,6 +26,13 @@ describe('Unit test for Table setValue', () => {
     myTable.render();
     myTable.setValue(tableValue);
     expect(myTable.getValue()).toBe(tableValue);
+
+    // Verify table row DOM
+    const container = myTable.render();
+    const tableBodyDOM = container.getElementsByClassName('kuc-table-tbody');
+    expect(tableBodyDOM.length).toEqual(1);
+    const rowDOMList = tableBodyDOM[0].getElementsByClassName('kuc-table-tr');
+    expect(rowDOMList.length).toEqual(3);
   });
 
   test('setValue throw error when called with invalid argument', () => {
