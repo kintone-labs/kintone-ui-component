@@ -25,9 +25,8 @@ describe('Unit test TextArea react', () => {
     const node = container.getElementsByClassName('kuc-textarea')[0];
     fireEvent.change(node, {target: {value: 'on change event textarea'}});
     fireEvent.click(node, {target: {value: 'on click event textarea'}});
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-textarea-outer');
   });
 
   test('onMouseEvent with props TextArea', () => {
@@ -38,11 +37,10 @@ describe('Unit test TextArea react', () => {
       fireEvent.mouseMove(textAreaResize, {currentX: 1009, currentY: 1009, clientX: 2009, clientY: 2009});
       fireEvent.mouseMove(textAreaResize, {currentX: 909, currentY: 1004, clientX: 1900, clientY: 2000});
       fireEvent.mouseUp(textAreaResize, {clientX: 1909, clientY: 2009});
-      if (container.firstElementChild) {
-        expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-      }
+      expect(container.firstElementChild).toBeTruthy();
+      expect(container.firstElementChild!.className).toBe('kuc-textarea-outer');
     } catch (error) {
-      expect(false);
+      expect(error).toBeFalsy();
     }
   });
 });

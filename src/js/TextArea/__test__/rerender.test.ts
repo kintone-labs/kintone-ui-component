@@ -16,9 +16,8 @@ describe('Unit test TextArea rerender', () => {
     try {
       const txtArea1 = new TextArea();
       txtArea1.rerender();
-      expect(txtArea1.render()).toHaveClass('kuc-textarea-outer');
     } catch (error) {
-      expect(false).toBeTruthy();
+      expect(error).toBeFalsy();
     }
   });
 });
