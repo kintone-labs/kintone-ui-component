@@ -21,8 +21,7 @@ describe('Unit test Label react', () => {
     const {container, getByRole} = render(<Label text="label" onClick={onClick} />);
     const node = getByRole('presentation');
     fireEvent.click(node, {});
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-label');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-label');
   });
 });
