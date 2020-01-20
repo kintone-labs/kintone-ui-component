@@ -16,15 +16,13 @@ describe('Unit test Alert react', () => {
 
   test('render without props Alert default type error', () => {
     const {container} = render(<Alert />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-alert bg-danger');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-alert bg-danger');
   });
   test('render with props Alert type success', () => {
     const {container} = render(<Alert type="success" />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-alert bg-success');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-alert bg-success');
   });
   test('render with props Alert isVisible', () => {
     const {container} = render(<Alert isVisible={false} />);

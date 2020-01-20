@@ -16,9 +16,8 @@ describe('Unit test Alert rerender', () => {
     try {
       const alert = new Alert();
       alert.rerender();
-      expect(true).toBeTruthy();
     } catch (error) {
-      expect(false);
+      expect(error).toBeFalsy();
     }
   });
 });
