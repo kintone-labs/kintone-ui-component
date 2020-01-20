@@ -11,7 +11,6 @@ describe('Unit test NotifyPopup onEvent', () => {
       }
     });
     fireEvent.click(getByText(container, 'NotifyPopup'));
-    // userEvent.click(getByText(container, 'NotifyPopup'));
     expect(container.textContent).toBe('on Click');
   });
 

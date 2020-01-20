@@ -1,6 +1,6 @@
 import NotifyPopup from '../index';
 
-describe('Unit test Button setText', () => {
+describe('Unit test NortifyPopup setText', () => {
   test('Function setText run successfully', () => {
     const notifypopup = new NotifyPopup({});
     const container = notifypopup.render();

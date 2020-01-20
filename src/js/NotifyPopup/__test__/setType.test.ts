@@ -1,6 +1,6 @@
 import NotifyPopup from '../index';
 
-describe('Unit test Button setType', () => {
+describe('Unit test NortifyPopup setType', () => {
   test('Function setType error run successfully', () => {
     const notifypopup = new NotifyPopup({type: 'success'});
     const container = notifypopup.render();

@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom/extend-expect';
 import NotifyPopup from '../index';
 
+/* eslint no-unused-expressions: "off" */
 describe('unit test NotifyPopup render', () => {
   test('Render successfully without option', () => {
+    const notifyPopup = new NotifyPopup();
     const container = notifyPopup.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-notify', 'bg-danger'].every(c => container.classList.contains(c))).toBe(true);
@@ -11,7 +13,7 @@ describe('unit test NotifyPopup render', () => {
     expect(container).toBeVisible();
   });
 
-  test('Render successfully with option', () => {
+  test('Render successfully with full option_success', () => {
     const notifyPopup = new NotifyPopup({
       text: 'testString',
       type: 'success',
@@ -25,7 +27,7 @@ describe('unit test NotifyPopup render', () => {
     expect(container).not.toBeVisible();
   });
   
-  test('Render successfully with option', () => {
+  test('Render successfully with full option_info', () => {
     const notifyPopup = new NotifyPopup({
       text: 'testString',
       type: 'info',
@@ -40,6 +42,7 @@ describe('unit test NotifyPopup render', () => {
   });
 
   test('Render successfully with wrong option', () => {
+    // @ts-ignore
     const notifyPopup = new NotifyPopup({
       text: 123 ,
       type: 'abc',
