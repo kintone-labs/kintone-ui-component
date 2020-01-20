@@ -58,12 +58,12 @@ describe('Unit test CheckBox addItem', () => {
   test('throw error without item.value', () => {
     expect(() => {
       const checkBox = new CheckBox({});
-      // 必須項目を省略してもエラーが発生しない
       // @ts-ignore
       checkBox.addItem({
         label: expectedLabels[0],
         isDisabled: true
       });
+      // 必須項目のvalueを省略してもエラーが発生しない
     }).toThrowError();
   });
 });

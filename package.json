@@ -28,7 +28,7 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"test": "jest &&  prettier --write  ./src/**/**/__test__/snapshot/*.html"
+		"test": "jest & prettier --write  ./src/**/**/__test__/snapshot/*.html"
 	},
 	"dependencies": {
 		"@mdi/js": "3.6.95",

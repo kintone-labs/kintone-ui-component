@@ -84,12 +84,12 @@ describe('Unit test CheckBox setItems and getItems', () => {
   test('throw error without item.value', () => {
     expect(() => {
       const checkBox = new CheckBox({});
-      // 必須項目のvalueが未指定でもエラーが発生しない
       // @ts-ignore
       checkBox.setItems([{
         label: expectedLabels[0],
         isDisabled: true
       }]);
+      // 必須項目のvalueが未指定でもエラーが発生しない
     }).toThrowError();
   });
 });
