@@ -5,52 +5,14 @@ import '@testing-library/jest-dom/extend-expect';
 import Text from '../index';
 
 describe('[JS] Text', () => {
-  test('should be render successfully', () => {
-    const text = new Text({value: 'success', isDisabled: false});
-    expect(text.render()).toHaveClass('kuc-input-text');
-    expect(text.render()).toHaveValue('success');
-    expect(text.render()).not.toBeDisabled();
-  });
-
-  test('should getValue() successfully', ()=>{
-    const value = 'hello';
-
-    const text = new Text({value: undefined});
-    expect(text.render()).toHaveValue('');
-    text.setValue(value);
-    expect(text.getValue()).toBe(value);
-  });
-
-  test('should setValue() successfully', ()=>{
-    const value = 'hello';
-
-    const text = new Text();
-    expect(text.render()).toHaveValue('');
-    text.setValue(value);
-    expect(text.render()).toHaveValue(value);
-  });
-
-  test('should setValue() null successfully', ()=>{
-    const text = new Text({value: 'kintone'});
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
     // @ts-ignore
-    text.setValue(null);
-    text.rerender();
-    expect(true).toBeTruthy();
+    console.error.mockImplementation(() => { });
   });
-
-  test('should disable() successfully', ()=>{
-    const mockCallback = jest.fn(() => {});
-    const defaultValue = 'success';
-
-    const text = new Text({value: defaultValue});
-    text.disable();
-
-    expect(text.render()).toBeDisabled();
-
-    text.on('click', mockCallback);
-    fireEvent.change(text.render(), {target: {value: defaultValue}});
-
-    expect(mockCallback).toBeCalledTimes(0);
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
   });
 
   test('should not be fire onClick event', ()=>{
@@ -64,7 +26,6 @@ describe('[JS] Text', () => {
     fireEvent.click(text.render(), {target: {value: defaultValue}});
 
     expect(mockCallback).toBeCalledTimes(0);
-    expect(text.render()).toMatchSnapshot();
   });
 
   test('should be fire onChange event', ()=>{
