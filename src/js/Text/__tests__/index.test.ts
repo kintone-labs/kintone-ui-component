@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {fireEvent} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -10,7 +11,6 @@ describe('[JS] Text', () => {
     expect(text.render()).toHaveValue('success');
     expect(text.render()).not.toBeDisabled();
   });
-
 
   test('should getValue() successfully', ()=>{
     const value = 'hello';
@@ -30,6 +30,14 @@ describe('[JS] Text', () => {
     expect(text.render()).toHaveValue(value);
   });
 
+  test('should setValue() null successfully', ()=>{
+    const text = new Text({value: 'kintone'});
+    // @ts-ignore
+    text.setValue(null);
+    text.rerender();
+    expect(true).toBeTruthy();
+  });
+
   test('should disable() successfully', ()=>{
     const mockCallback = jest.fn(() => {});
     const defaultValue = 'success';
@@ -45,12 +53,26 @@ describe('[JS] Text', () => {
     expect(mockCallback).toBeCalledTimes(0);
   });
 
+  test('should not be fire onClick event', ()=>{
+    const mockCallback = jest.fn(() => {});
+    const defaultValue = 'success';
+
+    const text = new Text({value: defaultValue, isDisabled: true});
+    text.render();
+
+    text.on('click', mockCallback);
+    fireEvent.click(text.render(), {target: {value: defaultValue}});
+
+    expect(mockCallback).toBeCalledTimes(0);
+    expect(text.render()).toMatchSnapshot();
+  });
+
   test('should be fire onChange event', ()=>{
     const defaultValue = 'success';
     const changeValue = 'hello';
 
     const text = new Text({value: defaultValue});
-    expect(text.render()).toHaveValue(defaultValue);
+    text.render();
 
     const mockCallback = jest.fn((event) => {
       expect(event.target.value).toBe(changeValue);
@@ -65,8 +87,7 @@ describe('[JS] Text', () => {
     const defaultValue = 'success';
 
     const text = new Text({value: defaultValue});
-    expect(text.render()).toHaveValue(defaultValue);
-
+    text.render();
     const mockCallback = jest.fn((event) => {
       expect(event.target.value).toBe(defaultValue);
     });
