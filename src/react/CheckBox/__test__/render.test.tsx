@@ -5,16 +5,6 @@ import {render, fireEvent} from '@testing-library/react';
 import CheckBox from '../index';
 describe('Unit test Checkbox react', () => {
 
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => {});
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
-
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];
 
@@ -125,7 +115,7 @@ describe('Unit test Checkbox react', () => {
     ];
     const value = [expectedValues[1]];
     const handleChange = (val: any) => {
-      // check that select expectedValues[0] by click container.firstElementChild
+      // check that expectedValues[0] is selected by click container.firstElementChild
       expect(val).toEqual([expectedValues[0], expectedValues[1]]);
     };
     const {container} = render(<CheckBox items={expectedItems} value={value} onChange={handleChange} />);
