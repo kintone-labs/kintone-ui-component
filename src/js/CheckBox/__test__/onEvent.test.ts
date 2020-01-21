@@ -41,14 +41,10 @@ describe('Unit test CheckBox onEvent', () => {
     });
     const container = checkBox.render();
     checkBox.on('change', (e: any) => {
-      checkBox.addItem({
-        value: expectedValues[2]
-      });
+      expect(e).toEqual([expectedValues[1]]);
     });
     fireEvent.click(container);
     expect(checkBox.getItems()).toEqual(items);
-    console.log(container.children[0].children[0]);
     fireEvent.click(container.children[0].children[0]);
-    expect(checkBox.getItem(2)).toEqual({value: expectedValues[2]});
   });
 });
