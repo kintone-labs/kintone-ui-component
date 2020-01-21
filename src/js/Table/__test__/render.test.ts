@@ -31,21 +31,23 @@ describe('Unit test for Table render', () => {
     expect(container).toBeTruthy();
     // @ts-ignore
     expect(container.className).toBe('kuc-table');
+    expect(container.style.display).toEqual('none');
   });
 
   test('Render successfully with props actionButtonsShown = false', () => {
     const myTable = new Table({actionButtonsShown: false});
     const container = myTable.render();
     expect(container).toBeTruthy();
-    // @ts-ignore
     expect(container.className).toBe('kuc-table');
   });
 
   test('Render successfully with full props', () => {
+    const tableValue = [
+      {text: {value: 'this is a text field 1'}},
+      {text: {value: 'this is a text field 2'}}
+    ];
     const myTable = new Table({
-      data: [
-        {text: {value: 'this is a text field'}}
-      ],
+      data: tableValue,
       defaultRowData: {text: {value: 'default text field value'}},
       columns: [
         {
@@ -58,8 +60,28 @@ describe('Unit test for Table render', () => {
     });
     const container = myTable.render();
     expect(container).toBeTruthy();
-    // @ts-ignore
     expect(container.className).toBe('kuc-table');
+
+    // Verify table row DOM
+    const tableBodyDOM = container.getElementsByClassName('kuc-table-tbody');
+    expect(tableBodyDOM.length).toEqual(1);
+    const rowDOMList = tableBodyDOM[0].getElementsByClassName('kuc-table-tr');
+    expect(rowDOMList.length).toEqual(2);
+
+    for (let index = 0; index < rowDOMList.length; index++) {
+      // Verify row DOM
+      const rowDOM = rowDOMList[index];
+      const textCellDOM = rowDOM.getElementsByTagName('input');
+      expect(textCellDOM.length).toEqual(1);
+      expect(textCellDOM[0]).toBeInstanceOf(HTMLInputElement);
+      expect(textCellDOM[0].value).toEqual(tableValue[index].text.value);
+
+      // Verify action button
+      const actionButtons = rowDOM.getElementsByTagName('button');
+      expect(actionButtons.length).toEqual(2);
+      expect(actionButtons[0].className).toEqual('kuc-icon-btn small  blue circle');
+      expect(actionButtons[1].className).toEqual('kuc-icon-btn small hover-danger gray circle');
+    }
   });
 
   test('Throw error when validate props fail', () => {

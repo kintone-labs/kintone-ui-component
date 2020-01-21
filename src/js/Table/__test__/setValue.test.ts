@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Table from '../index';
+import createTableCell from '../TableCellFactory';
 
 const message = {
   INVALID_ARGUMENT: 'Error: invalid function arguments'
@@ -22,7 +23,16 @@ describe('Unit test for Table setValue', () => {
       {text: {value: 'second row'}},
       {text: {value: 'third row'}}
     ];
-    const myTable = new Table();
+    const myTable = new Table({
+      columns: [
+        {
+          header: 'Text',
+          cell: function() {
+            return createTableCell('text', 'text');
+          }
+        },
+      ]
+    });
     myTable.render();
     myTable.setValue(tableValue);
     expect(myTable.getValue()).toBe(tableValue);
@@ -33,6 +43,14 @@ describe('Unit test for Table setValue', () => {
     expect(tableBodyDOM.length).toEqual(1);
     const rowDOMList = tableBodyDOM[0].getElementsByClassName('kuc-table-tr');
     expect(rowDOMList.length).toEqual(3);
+
+    for (let index = 0; index < rowDOMList.length; index++) {
+      const rowDOM = rowDOMList[index];
+      const textCellDOM = rowDOM.getElementsByTagName('input');
+      expect(textCellDOM.length).toEqual(1);
+      expect(textCellDOM[0]).toBeInstanceOf(HTMLInputElement);
+      expect(textCellDOM[0].value).toEqual(tableValue[index].text.value);
+    }
   });
 
   test('setValue throw error when called with invalid argument', () => {
