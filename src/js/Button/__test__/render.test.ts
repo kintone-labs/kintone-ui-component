@@ -3,7 +3,7 @@ import Button from '../index';
 
 describe('Unit test Button render', () => {
   test('Render successfully without props', () => {
-    const button = new Button({});
+    const button = new Button();
     const container = button.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);

@@ -14,6 +14,16 @@ describe('Unit test Button setText', () => {
     expect(container.textContent).toBe('on click');
   });
 
+  test('Function onClick event will not run when disabled', () => {
+    const button = new Button({});
+    const container = button.render();
+    button.disable();
+    button.on('click', (e: any) => {
+      expect(false);
+    });
+    fireEvent.click(container, {target: {value: 'on click'}});
+  });
+
   test('Function onChange event will not run', () => {
     const button = new Button({text: 'Button'});
     const container = button.render();
