@@ -18,7 +18,6 @@ describe('Unit test Alert setType', () => {
 
   test('setType successfully without props Alert component', () => {
     const alert = new Alert();
-    alert.setType('error');
     expect(alert.render().className).toBe('kuc-alert bg-danger');
     expect(alert.render().textContent).toBe('');
   });
