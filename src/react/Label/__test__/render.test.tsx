@@ -16,20 +16,16 @@ describe('Unit test Label react', () => {
 
   test('render without props Label', () => {
     const {container} = render(<Label />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-label');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-label');
   });
   test('render with full props Label', () => {
     const {container} = render(<Label backgroundColor="red" isRequired isVisible text="label" textColor="blue" />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-label');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-label');
   });
   test('render with props isVisible=false props Label', () => {
     const {container} = render(<Label isVisible={false} />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-label');
-    }
+    expect(container.firstElementChild).toBeNull();
   });
 });

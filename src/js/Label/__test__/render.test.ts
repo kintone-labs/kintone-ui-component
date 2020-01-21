@@ -24,5 +24,6 @@ describe('Unit test Label render', () => {
   test('render successfully with full props Label component', () => {
     const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: false, isRequired: true, isVisible: true, textColor: 'blue'});
     expect(label.render().className).toBe('kuc-label');
+    expect(label.render().getElementsByClassName('kuc-require').length).toEqual(1);
   });
 });
