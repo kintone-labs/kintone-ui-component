@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {getByRole} from '@testing-library/dom';
 
 import ColorPicker from '../index';
@@ -5,6 +6,15 @@ import Message from '../../../constant/Message';
 import 'jest-canvas-mock';
 
 describe('[JS] Text', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
   test('should setColor successfully', () => {
     const colorPicker = new ColorPicker({color: '#FF0000'});
     colorPicker.setColor('#666666');

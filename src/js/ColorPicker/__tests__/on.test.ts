@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {fireEvent, getByText, getByRole} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -5,7 +6,15 @@ import ColorPicker from '../index';
 import 'jest-canvas-mock';
 
 describe('[JS] Text', () => {
-
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
   test('should be fire onChange event', ()=>{
     const value = '#666666';
 
