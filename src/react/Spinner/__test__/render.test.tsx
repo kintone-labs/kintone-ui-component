@@ -21,8 +21,7 @@ describe('Unit test Spinner render', () => {
 
   test('render successfully with props Spinner component', () => {
     const {container} = render(<Spinner isVisible />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-spinner-outer');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-spinner-outer');
   });
 });
