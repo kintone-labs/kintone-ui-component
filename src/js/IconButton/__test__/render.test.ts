@@ -3,7 +3,7 @@ import IconButton from '../index';
 describe('Unit test IconButton render', () => {
 
   test('Render successfully without props', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton();
     const container = iconButton.render();
     expect(['kuc-icon-btn', 'normal', 'gray', 'circle'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.length).toBe(4);

@@ -17,7 +17,7 @@ describe('Unit test IconButton setShape', () => {
   });
 
   test('Function setShape run successfully with empty', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({shape: 'normal'});
     const container = iconButton.render();
     // @ts-ignore
     iconButton.setShape('');
@@ -25,7 +25,7 @@ describe('Unit test IconButton setShape', () => {
   });
 
   test('Function setText run successfully with null', () => {
-    const iconButton = new IconButton({});
+    const iconButton = new IconButton({shape: 'normal'});
     const container = iconButton.render();
     // @ts-ignore
     iconButton.setShape(null);

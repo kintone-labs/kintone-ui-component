@@ -19,7 +19,7 @@ describe('Unit test IconButton react render', () => {
 
   test('Render successfully with full props', () => {
     const {container} = render(
-      <IconButton color="green" type="remove" size="small" shape="normal" isDisabled isVisible />
+      <IconButton color="green" type="remove" size="small" shape="normal" isDisabled isVisible={false} />
     );
     if (container.firstElementChild) {
       expect(['kuc-icon-btn', 'small', 'green', 'normal'].every(c => container.firstElementChild!.classList.contains(c))).toBe(true);
