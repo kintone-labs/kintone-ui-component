@@ -14,26 +14,29 @@ describe('Unit test for Table showActionButtons', () => {
   });
 
   test('hideActionButtons is called successfully', () => {
-    try {
-      const myTable = new Table({
-        actionButtonsShown: true,
-        data: [
-          {text: {value: 'this is a text field'}}
-        ],
-        defaultRowData: {text: {value: 'default text field value'}},
-        columns: [
-          {
-            header: 'Text',
-            cell: function() {
-              return createTableCell('text', 'text');
-            }
-          },
-        ]
-      });
-      myTable.render();
-      myTable.hideActionButtons();
-    } catch (error) {
-      expect(error).toBeFalsy();
-    }
+    const myTable = new Table({
+      actionButtonsShown: true,
+      data: [
+        {text: {value: 'this is a text field'}}
+      ],
+      defaultRowData: {text: {value: 'default text field value'}},
+      columns: [
+        {
+          header: 'Text',
+          cell: function() {
+            return createTableCell('text', 'text');
+          }
+        },
+      ]
+    });
+    const container = myTable.render();
+    myTable.hideActionButtons();
+
+    const tableBodyDOM = container.getElementsByClassName('kuc-table-tbody');
+    const rowDOMList = tableBodyDOM[0].getElementsByClassName('kuc-table-tr');
+
+    // Verify action button
+    const actionButtons = rowDOMList[0].getElementsByTagName('button');
+    expect(actionButtons.length).toEqual(0);
   });
 });
