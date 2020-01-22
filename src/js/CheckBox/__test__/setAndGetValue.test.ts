@@ -54,9 +54,9 @@ describe('Unit test CheckBox setItems and getItems', () => {
   test('throw error without value', () => {
     expect(() => {
       const checkBox = new CheckBox({});
-      // 必須項目をnullで渡してもエラーが発生しない
       // @ts-ignore
       checkBox.setValue(null);
+      // 必須項目をnullで渡してもエラーが発生しない
     }).toThrowError();
   });
 

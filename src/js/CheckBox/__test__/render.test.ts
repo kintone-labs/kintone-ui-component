@@ -91,13 +91,12 @@ describe('Unit test CheckBox render', () => {
   });
 
   test('throw error with invalid option.items', () => {
-    // 必須項目のoptions.items[x].valueが未指定でもcheckboxが生成されている
-    // @ts-ignore
     expect(() => {
       // @ts-ignore
       new CheckBox({
         items: ['orange', 'banana', 'lemon']
       });
+      // 必須項目のoptions.items[x].valueが未指定でもcheckboxが生成されている
     }).toThrowError();
   });
 
