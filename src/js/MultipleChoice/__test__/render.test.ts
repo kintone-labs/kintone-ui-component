@@ -11,7 +11,7 @@ describe('Unit test MultipleChoice render', () => {
     const container = multipleChoice.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
-    expect(container).not.toBeDisabled();
+    expect(container.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(container).toBeVisible();
   });
 
@@ -79,7 +79,7 @@ describe('Unit test MultipleChoice render', () => {
     const container = multipleChoice.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
-    expect(container).not.toBeDisabled();
+    expect(container.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(container).toBeVisible();
   });
 
