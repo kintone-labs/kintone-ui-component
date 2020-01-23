@@ -11,7 +11,6 @@ type ItemData = {
 type ItemProps = ControlProps & {
   value?: string;
   label?: string;
-  className?: string;
   isDisabled?: boolean;
   isSelected: boolean;
   onChange?: (item: Item) => void;
@@ -26,7 +25,6 @@ class Item extends Control<ItemProps> {
       ...{
         isSelected: false,
         isDisabled: false,
-        className: '',
       }
     };
     if (params) {
@@ -101,7 +99,6 @@ class Item extends Control<ItemProps> {
       .toString(16)
       .substring(1);
   }
-
 }
 
 export default Item;

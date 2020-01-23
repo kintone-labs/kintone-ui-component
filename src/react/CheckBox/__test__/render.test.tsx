@@ -72,8 +72,8 @@ describe('Unit test Checkbox react', () => {
         expect(labelEl.textContent).toBe(expectedLabels[index]);
 
         // check for item ids
-        expect(inputEl.id === labelEl.getAttribute('for')).toBeTruthy();
-        expect(ids.indexOf(inputEl.id) === -1).toBeTruthy();
+        expect(inputEl.id === labelEl.getAttribute('for')).toBe(true);
+        expect(ids.indexOf(inputEl.id) === -1).toBe(true);
         ids.push(inputEl.id);
 
         // check selected items
@@ -102,7 +102,7 @@ describe('Unit test Checkbox react', () => {
     }
   });
 
-  test('Render successfully with onChange attr', () => {
+  test('Render successfully with onChange for selected', () => {
     const expectedItems = [
       {
         label: expectedLabels[0],
@@ -113,21 +113,50 @@ describe('Unit test Checkbox react', () => {
         value: expectedValues[1],
       }
     ];
-    const value = [expectedValues[1]];
-    const handleChange = (val: any) => {
+    let value = [expectedValues[0], expectedValues[1]];
+    const handleChange = (val: string[]) => {
       // check that expectedValues[0] is selected by click container.firstElementChild
-      expect(val).toEqual([expectedValues[0], expectedValues[1]]);
+      expect(val).toEqual([expectedValues[1]]);
+      value = val;
     };
     const {container} = render(<CheckBox items={expectedItems} value={value} onChange={handleChange} />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
-      fireEvent.click(childEl.children[0]);
+      fireEvent.click(childEl.children[0].children[0]);
+      expect(value).toEqual([expectedValues[1]]);
     } else {
       expect(false);
     }
   });
 
-  test('Render successfully with onChange attr', () => {
+  test('Render successfully with onChange for not selected', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      }
+    ];
+    let value = [expectedValues[1]];
+    const handleChange = (val: string[]) => {
+      // check that expectedValues[0] is selected by click container.firstElementChild
+      expect(val.every(c => [expectedValues[0], expectedValues[1]].includes(c))).toBe(true);
+      value = val;
+    };
+    const {container} = render(<CheckBox items={expectedItems} value={value} onChange={handleChange} />);
+    if (container.firstElementChild) {
+      const childEl = container.firstElementChild;
+      fireEvent.click(childEl.children[0].children[0]);
+      expect(value.every(c => [expectedValues[0], expectedValues[1]].includes(c))).toBe(true);
+    } else {
+      expect(false);
+    }
+  });
+
+  test('onClick event will not work', () => {
     const expectedItems = [
       {
         label: expectedLabels[0],
@@ -152,7 +181,6 @@ describe('Unit test Checkbox react', () => {
       expect(false);
     }
   });
-
 
   test('throw error with invalid option.items', () => {
     expect(() => {
@@ -193,6 +221,24 @@ describe('Unit test Checkbox react', () => {
       render(<CheckBox items={expectedItems} value={expectedValues[0]} />);
     }).toThrowError();
   });
+
+  test('throw error with invalid prop value of option.value', () => {
+    expect(() => {
+      const expectedItems = [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1],
+        }
+      ];
+      // @ts-ignore
+      render(<CheckBox items={expectedItems} value={[expectedValues[2]]} />);
+    }).toThrowError();
+  });
+
 
   test('throw error with duplicate option.value', () => {
     expect(() => {

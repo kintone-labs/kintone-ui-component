@@ -8,7 +8,7 @@ describe('Unit test CheckBox setItems and getItems', () => {
   const expectedIsDisabled = [false, true, true];
 
   test('Function setItems & getItems run successfully with full props', () => {
-    const checkBox = new CheckBox({});
+    const checkBox = new CheckBox();
     const container = checkBox.render();
     const newItems = [
       {
@@ -50,8 +50,55 @@ describe('Unit test CheckBox setItems and getItems', () => {
     expect(checkBox.getItems()).toEqual(newItems);
   });
 
-  test('Function AddItem run successfully without optional props', () => {
-    const checkBox = new CheckBox({});
+  test('Function setItems replace items successfully', () => {
+    const checkBox = new CheckBox({
+      items: [
+        {
+          label: expectedLabels[2],
+          value: expectedValues[2]
+        }
+      ]
+    });
+    const container = checkBox.render();
+    const newItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+        isDisabled: expectedIsDisabled[0]
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+        isDisabled: expectedIsDisabled[1]
+      }
+    ];
+    checkBox.setItems(newItems);
+
+    if (!container.children || container.children.length !== 2) {
+      expect(false);
+    }
+    const items = container.children;
+    // check each items
+    for (let index = 0; index < 2; index++) {
+      const item: Element = items[index];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = (item.children[0] as HTMLInputElement);
+      const labelEl: Element = item.children[1];
+
+      // check input & label elements
+      if (expectedIsDisabled[index]) {
+        expect(inputEl).toBeDisabled();
+      } else {
+        expect(inputEl).not.toBeDisabled();
+      }
+      expect(labelEl.textContent).toBe(expectedLabels[index]);
+    }
+  });
+
+  test('Function setItem run successfully without optional props', () => {
+    const checkBox = new CheckBox();
     const container = checkBox.render();
     const newItems = [
       {
@@ -75,7 +122,7 @@ describe('Unit test CheckBox setItems and getItems', () => {
 
   test('throw error without items', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.setItems(null);
     }).toThrowError();
@@ -83,7 +130,7 @@ describe('Unit test CheckBox setItems and getItems', () => {
 
   test('throw error without item.value', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.setItems([{
         label: expectedLabels[0],

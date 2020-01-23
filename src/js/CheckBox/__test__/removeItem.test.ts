@@ -24,7 +24,8 @@ describe('Unit test CheckBox removeItem', () => {
           value: expectedValues[2],
           isDisabled: true
         }
-      ]
+      ],
+      value: [expectedValues[1]]
     });
     checkBox.removeItem(1);
     expect(checkBox.getItem(0)).toEqual({
@@ -37,6 +38,7 @@ describe('Unit test CheckBox removeItem', () => {
       value: expectedValues[2],
       isDisabled: true
     });
+    expect(checkBox.getValue()).toEqual([]);
   });
 
   test('throw error with invalid index', () => {

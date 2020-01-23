@@ -7,7 +7,7 @@ describe('Unit test CheckBox addItem', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
 
   test('Function AddItem run successfully without optional props', () => {
-    const checkBox = new CheckBox({});
+    const checkBox = new CheckBox();
     const container = checkBox.render();
     checkBox.addItem({
       value: expectedValues[0]
@@ -23,7 +23,7 @@ describe('Unit test CheckBox addItem', () => {
   });
 
   test('Function AddItem run successfully with full props', () => {
-    const checkBox = new CheckBox({});
+    const checkBox = new CheckBox();
     const container = checkBox.render();
     checkBox.addItem({
       label: expectedLabels[0],
@@ -49,7 +49,7 @@ describe('Unit test CheckBox addItem', () => {
 
   test('throw error without item', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.addItem(null);
     }).toThrowError();
@@ -57,7 +57,7 @@ describe('Unit test CheckBox addItem', () => {
 
   test('throw error without item.value', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.addItem({
         label: expectedLabels[0],

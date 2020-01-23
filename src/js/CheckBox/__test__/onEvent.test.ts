@@ -7,23 +7,6 @@ describe('Unit test CheckBox onEvent', () => {
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];
 
-  test('Function onClick event run successfully', () => {
-    // ユーザーガイド上はchangeイベントのみサポートとなっている
-    const checkBox = new CheckBox({});
-    const container = checkBox.render();
-    let counter = 0;
-    checkBox.on('click', (e: any) => {
-      checkBox.addItem({
-        value: expectedValues[counter]
-      });
-      counter += 1;
-    });
-    fireEvent.click(container);
-    expect(checkBox.getItem(0)).toEqual({value: expectedValues[0]});
-    fireEvent.click(container.children[0]);
-    expect(checkBox.getItem(1)).toEqual({value: expectedValues[1]});
-  });
-
   test('Function onChange event run successfully', () => {
     const items = [
       {
@@ -44,7 +27,25 @@ describe('Unit test CheckBox onEvent', () => {
       expect(e).toEqual([expectedValues[1]]);
     });
     fireEvent.click(container);
-    expect(checkBox.getItems()).toEqual(items);
+    expect(checkBox.getValue()).toEqual([expectedValues[0], expectedValues[1]]);
     fireEvent.click(container.children[0].children[0]);
+    expect(checkBox.getValue()).toEqual([expectedValues[1]]);
+  });
+
+  test('Function onClick event will not work', () => {
+    // ユーザーガイド上はchangeイベントのみサポートとなっている
+    const checkBox = new CheckBox();
+    const container = checkBox.render();
+    let counter = 0;
+    checkBox.on('click', (e: any) => {
+      checkBox.addItem({
+        value: expectedValues[counter]
+      });
+      counter += 1;
+    });
+    fireEvent.click(container);
+    expect(checkBox.getItems()).toEqual([]);
+    fireEvent.click(container.children[0]);
+    expect(checkBox.getItems()).toEqual([]);
   });
 });

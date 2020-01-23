@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import CheckBox from '../index';
 
-describe('Unit test CheckBox setItems and getItems', () => {
+describe('Unit test CheckBox setValue and getValue', () => {
 
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];
@@ -53,7 +53,7 @@ describe('Unit test CheckBox setItems and getItems', () => {
 
   test('throw error without value', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.setValue(null);
       // 必須項目をnullで渡してもエラーが発生しない
@@ -62,7 +62,7 @@ describe('Unit test CheckBox setItems and getItems', () => {
 
   test('throw error with invalid value', () => {
     expect(() => {
-      const checkBox = new CheckBox({});
+      const checkBox = new CheckBox();
       checkBox.setValue([expectedValues[0]]);
     }).toThrowError();
   });

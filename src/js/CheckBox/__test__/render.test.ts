@@ -7,7 +7,7 @@ describe('Unit test CheckBox render', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
 
   test('Render successfully without props', () => {
-    const checkBox = new CheckBox({});
+    const checkBox = new CheckBox();
     const container = checkBox.render();
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-checkbox'].every(c => container.classList.contains(c))).toBe(true);
