@@ -16,7 +16,7 @@ describe('Unit test Button setText', () => {
   });
 
   test('Function setText run successfully with number', () => {
-    const button = new Button({});
+    const button = new Button();
     const container = button.render();
     // @ts-ignore
     button.setText(10);
@@ -24,7 +24,7 @@ describe('Unit test Button setText', () => {
   });
 
   test('Function setText run successfully with null', () => {
-    const button = new Button({});
+    const button = new Button();
     const container = button.render();
     // @ts-ignore
     button.setText(null);

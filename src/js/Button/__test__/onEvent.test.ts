@@ -1,9 +1,9 @@
 import Button from '../index';
 import {fireEvent} from '@testing-library/react';
 
-describe('Unit test Button setText', () => {
+describe('Unit test Button onEvent', () => {
   test('Function onClick event run successfully', () => {
-    const button = new Button({});
+    const button = new Button();
     const container = button.render();
     button.on('click', (e: any) => {
       if (e.target) {
@@ -15,7 +15,7 @@ describe('Unit test Button setText', () => {
   });
 
   test('Function onClick event will not run when disabled', () => {
-    const button = new Button({});
+    const button = new Button();
     const container = button.render();
     button.disable();
     button.on('click', (e: any) => {
@@ -25,7 +25,7 @@ describe('Unit test Button setText', () => {
   });
 
   test('Function onChange event will not run', () => {
-    const button = new Button({text: 'Button'});
+    const button = new Button({text: 'onChange not worked'});
     const container = button.render();
     // @ts-ignore
     button.on('change', (e: any) => {
@@ -34,6 +34,6 @@ describe('Unit test Button setText', () => {
       }
     });
     fireEvent.click(container, {target: {value: 'on change'}});
-    expect(container.textContent).toBe('Button');
+    expect(container.textContent).toBe('onChange not worked');
   });
 });

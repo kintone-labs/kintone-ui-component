@@ -3,17 +3,6 @@ import {render, fireEvent} from '@testing-library/react';
 import Button from '../index';
 
 describe('Unit test Button react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'log');
-    // @ts-ignore
-    console.log.mockImplementation(value => {
-      return value;
-    });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.log.mockRestore();
-  });
 
   test('Render successfully without props', () => {
     const {container} = render(<Button />);
@@ -26,6 +15,7 @@ describe('Unit test Button react', () => {
       expect(false);
     }
   });
+
   test('Render successfully with full props', () => {
     const {container} = render(
       <Button text="Submit" type="submit" isDisabled isVisible={false} />
@@ -39,11 +29,13 @@ describe('Unit test Button react', () => {
       expect(false);
     }
   });
-  test('Render successfully with wrong props', () => {
+
+  test('Render successfully with onClick prop', () => {
+    let onClickFlg = false;
     const handleClick = (e: any) => {
       if (e.target) {
-        console.log(e.target.value);
         expect(e.target.value).toBe('on click');
+        onClickFlg = true;
       } else {
         expect(false);
       }
@@ -53,6 +45,7 @@ describe('Unit test Button react', () => {
       fireEvent.click(container.firstElementChild, {
         target: {value: 'on click'}
       });
+      expect(onClickFlg).toBe(true);
     } else {
       expect(false);
     }
