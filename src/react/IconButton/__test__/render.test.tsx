@@ -72,6 +72,15 @@ describe('Unit test IconButton react render', () => {
     expect(window.getComputedStyle(container.firstElementChild!).backgroundColor).toBe('transparent');
   });
 
+  test('Render successfully with invaid color', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton color="abc" />
+    );
+    expect(container.firstElementChild!.classList.contains('gray')).toBeTruthy();
+    expect(window.getComputedStyle(container.firstElementChild!).backgroundColor).toBe('rgb(238, 238, 238)');
+  });
+
   test('Render successfully with circle shape', () => {
     const {container} = render(
       <IconButton shape="circle" />
