@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice react', () => {
@@ -104,7 +105,7 @@ describe('Unit test MultipleChoice react', () => {
     }
   });
 
-  test('Render successfully with onChange attr', () => {
+  test('Render successfully with onChange for selected', () => {
     const expectedItems = [
       {
         label: expectedLabels[0],
@@ -115,21 +116,50 @@ describe('Unit test MultipleChoice react', () => {
         value: expectedValues[1],
       }
     ];
-    const value = [expectedValues[1]];
-    const handleChange = (val: any) => {
+    let value = [expectedValues[0], expectedValues[1]];
+    const handleChange = (val: string[]) => {
       // Check that expectedValues[0] is selected by click container.firstElementChild
-      expect(val).toEqual([expectedValues[0], expectedValues[1]]);
+      expect(val).toEqual([expectedValues[1]]);
+      value = val;
     };
     const {container} = render(<MultipleChoice items={expectedItems} value={value} onChange={handleChange} />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
-      fireEvent.click(childEl.children[0]);
+      fireEvent.click(childEl.children[0].children[0]);
+      expect(value).toEqual([expectedValues[1]]);
     } else {
       expect(false);
     }
   });
 
-  test('Render successfully with onChange attr', () => {
+  test('Render successfully with onChange for not selected', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      }
+    ];
+    let value = [expectedValues[1]];
+    const handleChange = (val: string[]) => {
+      // Check that expectedValues[0] is selected by click container.firstElementChild
+      expect(val.every(c => [expectedValues[0], expectedValues[1]].includes(c))).toBe(true);
+      value = val;
+    };
+    const {container} = render(<MultipleChoice items={expectedItems} value={value} onChange={handleChange} />);
+    if (container.firstElementChild) {
+      const childEl = container.firstElementChild;
+      fireEvent.click(childEl.children[0].children[0]);
+      expect(value.every(c => [expectedValues[0], expectedValues[1]].includes(c))).toBe(true);
+    } else {
+      expect(false);
+    }
+  });
+
+  test('onClick event will not work', () => {
     const expectedItems = [
       {
         label: expectedLabels[0],
@@ -142,7 +172,7 @@ describe('Unit test MultipleChoice react', () => {
     ];
     const value = [expectedValues[1]];
     const handleClick = (e: any) => {
-      // check handleClick will not work
+      // Check handleClick will not work
       expect(false);
     };
     // @ts-ignore
@@ -154,7 +184,6 @@ describe('Unit test MultipleChoice react', () => {
       expect(false);
     }
   });
-
 
   test('Throw error with invalid option.items', () => {
     expect(() => {
@@ -193,6 +222,23 @@ describe('Unit test MultipleChoice react', () => {
       ];
       // @ts-ignore
       render(<MultipleChoice items={expectedItems} value={expectedValues[0]} />);
+    }).toThrowError();
+  });
+
+  test('Throw error with invalid prop value of option.value', () => {
+    expect(() => {
+      const expectedItems = [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1],
+        }
+      ];
+      // @ts-ignore
+      render(<MultipleChoice items={expectedItems} value={[expectedValues[2]]} />);
     }).toThrowError();
   });
 
