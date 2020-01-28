@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import CheckBox from '../index';
 
 describe('Unit test CheckBox setValue and getValue', () => {
@@ -41,7 +40,7 @@ describe('Unit test CheckBox setValue and getValue', () => {
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const inputEl = (item.children[0] as HTMLInputElement);
+      const inputEl = item.children[0] as HTMLInputElement;
       // check selected items
       if (selectedItem.indexOf(expectedValues[index]) > -1) {
         expect(inputEl.checked).toBeTruthy();

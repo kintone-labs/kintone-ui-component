@@ -14,7 +14,6 @@ describe('Unit test Checkbox react', () => {
       const childEl = container.firstElementChild;
       expect(childEl.classList.length).toBe(1);
       expect(['kuc-input-checkbox'].every(c => childEl.classList.contains(c))).toBe(true);
-      expect(childEl).not.toBeDisabled();
       expect(childEl).toBeVisible();
     } else {
       expect(false);
@@ -41,12 +40,13 @@ describe('Unit test Checkbox react', () => {
     ];
     const value = [expectedValues[0], expectedValues[1]];
     const {container} =
-      render(<CheckBox
-        items={expectedItems}
-        value={value}
-        isDisabled
-        isVisible={false}
-      />);
+      render(
+        <CheckBox
+          items={expectedItems}
+          value={value}
+          isDisabled
+          isVisible={false}
+        />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       expect(childEl.classList.length).toBe(1);
@@ -64,7 +64,7 @@ describe('Unit test Checkbox react', () => {
         if (!item.children || item.children.length !== 2) {
           expect(false);
         }
-        const inputEl = (item.children[0] as HTMLInputElement);
+        const inputEl = item.children[0] as HTMLInputElement;
         const labelEl: Element = item.children[1];
 
         // check input & label elements
@@ -89,14 +89,29 @@ describe('Unit test Checkbox react', () => {
   });
 
   test('Render successfully with wrong props', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+        isDisabled: false
+      }
+    ];
     // @ts-ignore
-    const {container} = render(<CheckBox isVisible="abc" isDisabled="abc" />);
+    const {container} = render(<CheckBox items={expectedItems} isVisible="abc" isDisabled="abc" />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       expect(childEl.classList.length).toBe(1);
       expect(['kuc-input-checkbox'].every(c => childEl.classList.contains(c))).toBe(true);
-      expect(childEl).not.toBeDisabled();
       expect(childEl).toBeVisible();
+
+      const items = childEl.children;
+      const item: Element = items[0];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = item.children[0] as HTMLInputElement;
+      // isDisabledの型チェックが行われていないためisDisabled='abc'とするとtrueになってしまう。
+      expect(inputEl).not.toBeDisabled();
     } else {
       expect(false);
     }
@@ -119,7 +134,12 @@ describe('Unit test Checkbox react', () => {
       expect(val).toEqual([expectedValues[1]]);
       value = val;
     };
-    const {container} = render(<CheckBox items={expectedItems} value={value} onChange={handleChange} />);
+    const {container} = render(
+      <CheckBox
+        items={expectedItems}
+        value={value}
+        onChange={handleChange}
+      />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       fireEvent.click(childEl.children[0].children[0]);
@@ -234,7 +254,6 @@ describe('Unit test Checkbox react', () => {
           value: expectedValues[1],
         }
       ];
-      // @ts-ignore
       render(<CheckBox items={expectedItems} value={[expectedValues[2]]} />);
     }).toThrowError();
   });
@@ -252,7 +271,6 @@ describe('Unit test Checkbox react', () => {
           value: expectedValues[1],
         }
       ];
-      // @ts-ignore
       render(<CheckBox items={expectedItems} value={[expectedValues[0], expectedValues[0]]} />);
     }).toThrowError();
   });

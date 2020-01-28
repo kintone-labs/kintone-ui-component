@@ -17,7 +17,7 @@ describe('Unit test CheckBox enableItem', () => {
     checkBox.enableItem(expectedValues[0]);
     const items = container.children;
     const item: Element = items[0];
-    const inputEl = (item.children[0] as HTMLInputElement);
+    const inputEl = item.children[0] as HTMLInputElement;
     expect(inputEl).not.toBeDisabled();
   });
 

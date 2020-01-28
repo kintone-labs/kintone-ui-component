@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import CheckBox from '../index';
 
 describe('Unit test CheckBox removeItem', () => {
@@ -43,7 +42,6 @@ describe('Unit test CheckBox removeItem', () => {
 
   test('throw error with invalid index', () => {
     expect(() => {
-      // @ts-ignore
       const checkBox = new CheckBox({
         items: [
           {
@@ -60,7 +58,6 @@ describe('Unit test CheckBox removeItem', () => {
 
   test('throw error with out of index', () => {
     expect(() => {
-      // @ts-ignore
       const checkBox = new CheckBox({
         items: [
           {

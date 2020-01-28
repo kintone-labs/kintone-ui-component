@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import CheckBox from '../index';
 
 describe('Unit test CheckBox addItem', () => {
@@ -16,7 +15,7 @@ describe('Unit test CheckBox addItem', () => {
       expect(false);
     }
     const item: Element = container.children[0];
-    const inputEl = (item.children[0] as HTMLInputElement);
+    const inputEl = item.children[0] as HTMLInputElement;
     // check input & label elements
     expect(inputEl).not.toBeDisabled();
     expect(checkBox.getItems()).toEqual([{value: expectedValues[0]}]);
@@ -34,7 +33,7 @@ describe('Unit test CheckBox addItem', () => {
       expect(false);
     }
     const item: Element = container.children[0];
-    const inputEl = (item.children[0] as HTMLInputElement);
+    const inputEl = item.children[0] as HTMLInputElement;
     const labelEl: Element = item.children[1];
 
     // check input, label, isDisabled properties

@@ -1,5 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
-import {fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/dom';
 import CheckBox from '../index';
 
 describe('Unit test CheckBox onEvent', () => {
@@ -23,7 +22,7 @@ describe('Unit test CheckBox onEvent', () => {
       value: [expectedValues[0], expectedValues[1]],
     });
     const container = checkBox.render();
-    checkBox.on('change', (e: any) => {
+    checkBox.on('change', (e: string[]) => {
       expect(e).toEqual([expectedValues[1]]);
     });
     fireEvent.click(container);

@@ -9,14 +9,17 @@ describe('Unit test CheckBox disable', () => {
         {
           label: expectedLabels[0],
           value: expectedValues[0],
+          isDisabled: false
         },
         {
           label: expectedLabels[1],
           value: expectedValues[1],
+          isDisabled: false
         },
         {
           label: expectedLabels[2],
           value: expectedValues[2],
+          isDisabled: true
         }
       ],
       isDisabled: false
@@ -32,7 +35,7 @@ describe('Unit test CheckBox disable', () => {
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const inputEl = (item.children[0] as HTMLInputElement);
+      const inputEl = item.children[0] as HTMLInputElement;
       // check input & label elements
       expect(inputEl).toBeDisabled();
     }
