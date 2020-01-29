@@ -267,15 +267,12 @@ class CheckBox extends Control<CheckboxProps> {
         this._props.onChange(this.getValue());
       }
     }
-
   }
 
   on(eventName: string, callback: (params?: any) => void) {
     if (eventName === 'change') {
       this._props.onChange = callback;
-      return;
     }
-    super.on(eventName, callback);
   }
 }
 

@@ -32,19 +32,28 @@ describe('Unit test CheckBox onEvent', () => {
   });
 
   test('Function onClick event will not work', () => {
-    // ユーザーガイド上はchangeイベントのみサポートとなっている
-    const checkBox = new CheckBox();
+    const items = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      }
+    ];
+    const checkBox = new CheckBox({
+      items: items,
+      value: [],
+    });
     const container = checkBox.render();
     let counter = 0;
     checkBox.on('click', (e: any) => {
-      checkBox.addItem({
-        value: expectedValues[counter]
-      });
       counter += 1;
     });
     fireEvent.click(container);
-    expect(checkBox.getItems()).toEqual([]);
-    fireEvent.click(container.children[0]);
-    expect(checkBox.getItems()).toEqual([]);
+    expect(counter).toBe(0);
+    fireEvent.click(container.children[0].children[0]);
+    expect(counter).toBe(0);
   });
 });
