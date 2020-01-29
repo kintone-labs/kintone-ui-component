@@ -8,7 +8,6 @@ describe('Unit test Button render', () => {
     expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
     expect(container).toBeVisible();
-    // 空文字列が入るようにソースを修正する
     expect(container.textContent).toBe('');
   });
 
