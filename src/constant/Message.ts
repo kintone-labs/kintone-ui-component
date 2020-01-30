@@ -25,6 +25,10 @@ const Message = {
     },
     colorPicker: {
         INVALID_COLOR: 'Invalid color string'
+    },
+    selection: {
+        MISSING_VALUE_PROPERTY_IN_ITEMS: 'Missing options.items[x].value property',
+        INVALID_VALUE: 'Specified invalid options.value not included in options.items[x].value'
     }
 };
   
