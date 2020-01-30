@@ -13,9 +13,11 @@
     left: 4px;
     width: 24px;
     height: 24px;
+    pointer-events: none;
   }
   .kuc-icon-btn svg path{
     fill: #9E9E9E;
+    pointer-events: none;
   }
   .kuc-icon-btn:hover {
     background-color: #2d8dd6;
