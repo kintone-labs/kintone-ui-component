@@ -6,7 +6,7 @@ describe('Unit test CheckBox setValue and getValue', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
   const expectedIsDisabled = [false, true, true];
 
-  test('Function setItems & getItems run successfully with full props', () => {
+  test('Function setValue & getValue run successfully with full props', () => {
     const checkBox = new CheckBox({
       items: [
         {
