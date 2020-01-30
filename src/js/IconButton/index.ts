@@ -67,7 +67,7 @@ class IconButton extends Control<IconBtnProps> {
   }
 
   private _getClassSize() {
-    const className = this._props.size === 'small' ? 'small' : 'large';
+    const className = this._props.size === 'small' ? 'small' : 'normal';
     return className;
   }
 
