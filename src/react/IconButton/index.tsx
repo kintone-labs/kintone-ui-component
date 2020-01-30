@@ -52,7 +52,7 @@ const IconButton = ({type, size, color = 'gray', isDisabled, isVisible, shape, o
   };
 
   const _getClassSize = () => {
-    const className = size === 'small' ? 'small' : 'large';
+    const className = size === 'small' ? 'small' : 'normal';
     return className;
   };
   if (isVisible === false) {
