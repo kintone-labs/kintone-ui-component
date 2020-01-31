@@ -6,7 +6,7 @@ type IconBtnProps = ControlProps & {
   type?: 'insert' | 'remove' | 'close' | 'file' | 'right' | 'left';
   size?: 'normal' | 'small';
   color?: 'gray' | 'blue' | 'red' | 'green' | 'transparent';
-  shape?: 'circle' | 'normal';
+  shape?: 'circle' | 'square';
 }
 
 class IconButton extends Control<IconBtnProps> {
@@ -55,7 +55,7 @@ class IconButton extends Control<IconBtnProps> {
     if (this._props.color && colors.indexOf(this._props.color) !== -1) {
       color = this._props.color;
     }
-    const shape = this._props.shape === 'normal' ? 'normal' : 'circle';
+    const shape = this._props.shape === 'square' ? 'square' : 'circle';
     const className = [
       'kuc-icon-btn',
       this._getClassSize(),
@@ -133,7 +133,7 @@ class IconButton extends Control<IconBtnProps> {
     this.rerender(['btnStyle']);
   }
 
-  setShape(shape: 'circle' | 'normal'): void {
+  setShape(shape: 'circle' | 'square'): void {
     this._props.shape = shape;
     this.rerender(['btnStyle']);
   }

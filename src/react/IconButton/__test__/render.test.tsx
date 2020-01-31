@@ -19,10 +19,10 @@ describe('Unit test IconButton react render', () => {
 
   test('Render successfully with full props', () => {
     const {container} = render(
-      <IconButton color="green" type="remove" size="small" shape="normal" isDisabled isVisible={false} />
+      <IconButton color="green" type="remove" size="small" shape="square" isDisabled isVisible={false} />
     );
     if (container.firstElementChild) {
-      expect(['kuc-icon-btn', 'small', 'green', 'normal'].every(c => container.firstElementChild!.classList.contains(c))).toBeTruthy();
+      expect(['kuc-icon-btn', 'small', 'green', 'square'].every(c => container.firstElementChild!.classList.contains(c))).toBeTruthy();
       expect(container.firstElementChild.classList.length).toBe(4);
       expect(container.firstElementChild).toBeDisabled();
       expect(container.firstElementChild).toBeVisible();
@@ -90,9 +90,9 @@ describe('Unit test IconButton react render', () => {
 
   test('Render successfully with normal shape', () => {
     const {container} = render(
-      <IconButton shape="normal" />
+      <IconButton shape="square" />
     );
-    expect(container.firstElementChild!.classList.contains('normal')).toBeTruthy();
+    expect(container.firstElementChild!.classList.contains('square')).toBeTruthy();
   });
 
   test('Render successfully with invaid shape', () => {
