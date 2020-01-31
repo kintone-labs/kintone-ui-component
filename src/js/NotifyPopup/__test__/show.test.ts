@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import NotifyPopup from '../index';
 
 describe('Unit test NotifyPopup show', () => {

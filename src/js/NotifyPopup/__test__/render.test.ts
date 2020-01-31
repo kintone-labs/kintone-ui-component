@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import NotifyPopup from '../index';
 
 /* eslint no-unused-expressions: "off" */
@@ -26,25 +25,25 @@ describe('unit test NotifyPopup render', () => {
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(145, 195, 108)');
     expect(container).not.toBeVisible();
   });
-  
+
   test('Render successfully with full option_info', () => {
     const notifyPopup = new NotifyPopup({
       text: 'testString',
       type: 'info',
-      isVisible: false
+      isVisible: true
     });
     const container = notifyPopup.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-notify', 'bg-info'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.textContent).toBe('testString');
     expect(window.getComputedStyle(container).backgroundColor).toBe('rgb(56, 151, 217)');
-    expect(container).not.toBeVisible();
+    expect(container).toBeVisible();
   });
 
   test('Render successfully with wrong option', () => {
     // @ts-ignore
     const notifyPopup = new NotifyPopup({
-      text: 123 ,
+      text: 123,
       type: 'abc',
       isVisible: 'abc'
     });

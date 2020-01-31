@@ -52,7 +52,7 @@ describe('Unit test NotifyPopup react', () => {
       expect(false);
     }
   });
-  test('Render successfully with wrong props', () => {
+  test('Render successfully with onClick event', () => {
     const handleClick = (e: any) => {
       if (e.target) {
         console.log(e.target.value);
@@ -63,9 +63,39 @@ describe('Unit test NotifyPopup react', () => {
     };
     const {container} = render(<NotifyPopup onClick={handleClick} />);
     if (container.firstElementChild) {
-        fireEvent.click(container.firstElementChild, {
-            target: {text: 'on click'}
-        });
+      fireEvent.click(container.firstElementChild, {
+        target: {text: 'on click'}
+      });
+    } else {
+      expect(false);
+    }
+  });
+  test('Render successfully with onClose event', () => {
+    const handleClick = (e: any) => {
+      if (e.target) {
+        console.log(e.target.value);
+        expect(e.target.value).toBe('on close');
+      } else {
+        expect(false);
+      }
+    };
+    const {container} = render(<NotifyPopup onClose={handleClick} />);
+    if (container.firstElementChild) {
+      fireEvent.click(container.firstElementChild, {
+        target: {text: 'on close'}
+      });
+    } else {
+      expect(false);
+    }
+  });
+  test('Render successfully with wrong props', () => {
+    // @ts-ignore
+    const {container} = render(<NotifyPopup text="testString" type="abc" isVisible="abc" />);
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-notify bg-danger');
+      expect(container.firstElementChild).not.toBeDisabled();
+      expect(container.firstElementChild).toBeVisible();
+      expect(container.firstElementChild.textContent).toBe('testString');
     } else {
       expect(false);
     }

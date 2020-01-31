@@ -1,5 +1,5 @@
 import NotifyPopup from '../index';
-import {fireEvent, getByText, getByRole} from '@testing-library/react';
+import {fireEvent, getByText, getByRole} from '@testing-library/dom';
 
 describe('Unit test NotifyPopup onEvent', () => {
   test('Function onClick event run successfully', () => {
