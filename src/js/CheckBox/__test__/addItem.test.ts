@@ -62,7 +62,6 @@ describe('Unit test CheckBox addItem', () => {
         label: expectedLabels[0],
         isDisabled: true
       });
-      // 必須項目のvalueを省略してもエラーが発生しない
     }).toThrowError();
   });
 });
