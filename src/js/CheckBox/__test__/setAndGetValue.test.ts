@@ -55,7 +55,6 @@ describe('Unit test CheckBox setValue and getValue', () => {
       const checkBox = new CheckBox();
       // @ts-ignore
       checkBox.setValue(null);
-      // 必須項目をnullで渡してもエラーが発生しない
     }).toThrowError();
   });
 
