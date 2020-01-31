@@ -22,7 +22,7 @@ const Button = ({text, type, isDisabled, isVisible, onClick, style}: ButtonProps
     return null;
   }
   return (
-    <button style={style} onClick={onClick && onClick} className={_getClassName()} disabled={isDisabled}>
+    <button style={style} onClick={onClick && onClick} className={_getClassName()} disabled={isDisabled === true}>
       {text}
     </button>
   );
