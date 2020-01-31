@@ -70,6 +70,10 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
 
   private _validator(items?: ItemData[], value?: string[]): string | undefined {
     let err;
+    if (items && !AbstractMultiSelection._hasItemValue(items)) {
+      err = Message.selection.MISSING_VALUE_PROPERTY_IN_ITEMS;
+    }
+
     if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
@@ -79,7 +83,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
     }
 
     if (items && value && !AbstractMultiSelection._hasValidValue(items, value)) {
-      err = Message.common.INVALID_ARGUMENT;
+      err = Message.selection.INVALID_VALUE;
     }
     return err;
   }
