@@ -55,11 +55,19 @@ const IconButton = ({type, size, color = 'gray', isDisabled, isVisible, shape, o
     const className = size === 'small' ? 'small' : 'normal';
     return className;
   };
+
+  const _checkIsDisabled = () => {
+    if (typeof isDisabled !== 'boolean') {
+      return false;
+    }
+    return isDisabled;
+  };
+
   if (isVisible === false) {
     return null;
   }
   return (
-    <button className={_getClassName()} onClick={onClick} disabled={isDisabled} >
+    <button className={_getClassName()} onClick={onClick} disabled={_checkIsDisabled()} >
       <svg>
         <path d={_getIconData()} />
       </svg>
