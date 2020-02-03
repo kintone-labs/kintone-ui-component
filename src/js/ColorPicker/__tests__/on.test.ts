@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 import ColorPicker from '../index';
 import 'jest-canvas-mock';
 
-describe('[JS] Text', () => {
+describe('[JS] Unit test ColorPicker handle event', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
@@ -91,8 +91,8 @@ describe('[JS] Text', () => {
     expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
-    const inputROuter = getByText(picker, 'G').nextElementSibling as HTMLElement;
-    const inputG = inputROuter.firstChild as HTMLElement;
+    const inputGOuter = getByText(picker, 'G').nextElementSibling as HTMLElement;
+    const inputG = inputGOuter.firstChild as HTMLElement;
     fireEvent.change(inputG, {target: {value: '244'}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(colorPicker.getColor()).toBe('#fff40b');
@@ -107,8 +107,8 @@ describe('[JS] Text', () => {
     expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
-    const inputROuter = getByText(picker, 'B').nextElementSibling as HTMLElement;
-    const inputB = inputROuter.firstChild as HTMLElement;
+    const inputBOuter = getByText(picker, 'B').nextElementSibling as HTMLElement;
+    const inputB = inputBOuter.firstChild as HTMLElement;
     fireEvent.change(inputB, {target: {value: '244'}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(colorPicker.getColor()).toBe('#ff00f4');
@@ -122,8 +122,8 @@ describe('[JS] Text', () => {
     expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
-    const inputROuter = getByText(picker, 'H').nextElementSibling as HTMLElement;
-    const inputH = inputROuter.firstChild as HTMLElement;
+    const inputHOuter = getByText(picker, 'H').nextElementSibling as HTMLElement;
+    const inputH = inputHOuter.firstChild as HTMLElement;
     fireEvent.change(inputH, {target: {value: '0.5'}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(colorPicker.getColor()).toBe('#00ffff');
@@ -137,8 +137,8 @@ describe('[JS] Text', () => {
     expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
-    const inputROuter = getByText(picker, 'S').nextElementSibling as HTMLElement;
-    const inputS = inputROuter.firstChild as HTMLElement;
+    const inputSOuter = getByText(picker, 'S').nextElementSibling as HTMLElement;
+    const inputS = inputSOuter.firstChild as HTMLElement;
     fireEvent.change(inputS, {target: {value: '0.5'}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(colorPicker.getColor()).toBe('#ff8085');
@@ -152,8 +152,8 @@ describe('[JS] Text', () => {
     expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
-    const inputROuter = getByText(picker, 'V').nextElementSibling as HTMLElement;
-    const inputV = inputROuter.firstChild as HTMLElement;
+    const inputVOuter = getByText(picker, 'V').nextElementSibling as HTMLElement;
+    const inputV = inputVOuter.firstChild as HTMLElement;
     fireEvent.change(inputV, {target: {value: '0.5'}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(colorPicker.getColor()).toBe('#800005');
@@ -188,6 +188,7 @@ describe('[JS] Text', () => {
 
   test('should change value successfully when clicking in Hue canvas', ()=>{
     const color = '#ff000b';
+    const mockImageData = [71, 43, 45];
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
@@ -200,7 +201,7 @@ describe('[JS] Text', () => {
     jest.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementationOnce(() => {
       return {
         getImageData: () => {
-          return {data: [71, 43, 45]};
+          return {data: mockImageData};
         }
       };
     });

@@ -2,7 +2,7 @@
 import ColorPicker from '../index';
 import 'jest-canvas-mock';
 
-describe('[JS] Text', () => {
+describe('[JS] Unit test ColorPicker disable', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
@@ -15,6 +15,8 @@ describe('[JS] Text', () => {
   test('should disable successfully', () => {
     const colorPicker = new ColorPicker({color: '#FF0000'});
     colorPicker.disable();
-    expect(colorPicker.render().getAttribute('disabled')).toBe('true');
+
+    const textBox = (colorPicker.render().firstElementChild as HTMLElement).firstElementChild!;
+    expect(textBox).toBeDisabled();
   });
 });

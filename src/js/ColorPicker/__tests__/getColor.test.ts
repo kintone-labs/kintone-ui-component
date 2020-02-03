@@ -2,7 +2,7 @@
 import ColorPicker from '../index';
 import 'jest-canvas-mock';
 
-describe('[JS] Text', () => {
+describe('[JS] Unit test ColorPicker getColor', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore

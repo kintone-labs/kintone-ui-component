@@ -7,7 +7,7 @@ import 'jest-canvas-mock';
 
 // TODO: Remove unreachable if path line 41 (unnecessary if) index.ts
 
-describe('[JS] Text', () => {
+describe('[JS] Unit test ColorPicker render', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
@@ -35,14 +35,12 @@ describe('[JS] Text', () => {
 
   test('should disable when isDisabled param is true', ()=>{
     const colorPicker = new ColorPicker({isDisabled: true});
-    expect(colorPicker.render().getAttribute('disabled')).toBe('true');
+    const textBox = (colorPicker.render().firstElementChild as HTMLElement).firstElementChild!;
+    expect(textBox).toBeDisabled();
   });
 
   test('should show color picker when focus on text input', ()=>{
     const colorPicker = new ColorPicker({});
-    colorPicker.on('change', (color) => {
-      colorPicker.setColor('#FFFFFF');
-    });
     expect(colorPicker.render().firstElementChild).toBeTruthy();
     const textBoxOuter = (colorPicker.render().firstElementChild as HTMLElement).firstElementChild!;
     fireEvent.focus(textBoxOuter, {target: {value: '#ffffff'}});

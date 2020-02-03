@@ -31,11 +31,10 @@ describe('<ColorPicker/>', () => {
 
     const mockCallback = jest.fn(() => {});
 
-    const {getAllByRole, getByText, rerender} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
+    const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
     fireEvent.blur(getAllByRole('textbox')[0], {target: {value: changedColor}});
     fireEvent.click(getByText('OK'), {});
     expect(mockCallback).toBeCalledTimes(1);
-    rerender(<ColorPicker color={changedColor} onChange={mockCallback} />);
     expect(getAllByRole('textbox')[0]).toHaveStyle('background-color: rgb(255, 255, 255)');
   });
 
@@ -45,7 +44,6 @@ describe('<ColorPicker/>', () => {
     expect(container.lastElementChild).toHaveStyle('display: block');
     fireEvent.mouseDown(document);
     expect((getAllByRole('textbox')[0].parentElement as HTMLDivElement).nextSibling).not.toBeVisible();
-    expect(container).toMatchSnapshot();
   });
 
   test('should throw error when invalid color param', ()=>{
@@ -131,6 +129,7 @@ describe('<ColorPicker/>', () => {
   });
 
   test('should change value successfully when clicking in Hue canvas', ()=>{
+    const mockImageData = [71, 43, 45];
     const mockCallback = jest.fn((color: string) => {
       expect(color).toBe('#472b2d');
     });
@@ -141,7 +140,7 @@ describe('<ColorPicker/>', () => {
     jest.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementationOnce(() => {
       return {
         getImageData: () => {
-          return {data: [71, 43, 45]};
+          return {data: mockImageData};
         }
       };
     });
