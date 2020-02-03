@@ -24,7 +24,6 @@ describe('[JS] Text', () => {
 
     expect(text.render()).toBeDisabled();
 
-    text.on('click', mockCallback);
     fireEvent.change(text.render(), {target: {value: defaultValue}});
 
     expect(mockCallback).toBeCalledTimes(0);

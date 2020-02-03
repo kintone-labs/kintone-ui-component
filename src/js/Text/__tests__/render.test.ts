@@ -13,10 +13,11 @@ describe('[JS] Text', () => {
     console.error.mockRestore();
   });
 
-  test('should be render successfully', () => {
-    const text = new Text({value: 'success', isDisabled: false});
+  test('should be render successfully without props', () => {
+    const text = new Text();
     expect(text.render()).toHaveClass('kuc-input-text');
-    expect(text.render()).toHaveValue('success');
+    expect(text.render()).toHaveValue('');
     expect(text.render()).not.toBeDisabled();
+    expect(text.render().getAttribute('type')).toBe('text');
   });
 });

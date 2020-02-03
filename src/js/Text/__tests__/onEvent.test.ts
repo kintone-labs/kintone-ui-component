@@ -15,7 +15,7 @@ describe('[JS] Text', () => {
     console.error.mockRestore();
   });
 
-  test('should not be fire onClick event', ()=>{
+  test('onClick should not be fired when Text component is disabled', ()=>{
     const mockCallback = jest.fn(() => {});
     const defaultValue = 'success';
 
@@ -28,7 +28,7 @@ describe('[JS] Text', () => {
     expect(mockCallback).toBeCalledTimes(0);
   });
 
-  test('should be fire onChange event', ()=>{
+  test('onChange event handler should fire successfully', ()=>{
     const defaultValue = 'success';
     const changeValue = 'hello';
 
@@ -42,9 +42,10 @@ describe('[JS] Text', () => {
     text.on('change', mockCallback);
     fireEvent.change(text.render(), {target: {value: changeValue}});
     expect(mockCallback).toBeCalled();
+    expect(text.getValue()).toBe(changeValue);
   });
 
-  test('should be fire onClick event', ()=>{
+  test('onClick event handler should fire successfully', ()=>{
     const defaultValue = 'success';
 
     const text = new Text({value: defaultValue});

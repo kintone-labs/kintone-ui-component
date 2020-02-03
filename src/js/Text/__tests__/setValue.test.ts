@@ -2,6 +2,10 @@
 import '@testing-library/jest-dom/extend-expect';
 import Text from '../index';
 
+const messages = {
+  INVALID_ARGUMENT: 'Error: invalid function arguments'
+};
+
 describe('[JS] Text', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
@@ -13,12 +17,23 @@ describe('[JS] Text', () => {
     console.error.mockRestore();
   });
 
-  test('should setValue() successfully', ()=>{
+  test('should setValue() and getValue() successfully', ()=>{
     const value = 'hello';
 
-    const text = new Text();
+    const text = new Text({value: undefined});
     expect(text.render()).toHaveValue('');
     text.setValue(value);
-    expect(text.render()).toHaveValue(value);
+    expect(text.getValue()).toBe(value);
+  });
+
+  test('should setValue() throw error when setValue is called without parameters ', ()=>{
+    try {
+      const text = new Text();
+      // @ts-ignore
+      text.setValue();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(messages.INVALID_ARGUMENT);
+    }
   });
 });
