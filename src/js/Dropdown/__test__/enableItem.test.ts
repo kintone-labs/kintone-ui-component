@@ -55,7 +55,7 @@ describe('Unit test Dropdown enableItem', () => {
     });
     const container = dropdown.render();
     // @ts-ignore
-    dropdown.disableItem(null);
+    dropdown.enableItem(null);
     const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
     const itemEl = itemsEl[2] as HTMLDivElement;
     expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(true);
