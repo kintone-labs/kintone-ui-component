@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice react', () => {
@@ -16,7 +15,6 @@ describe('Unit test MultipleChoice react', () => {
       expect(childEl.classList.length).toBe(2);
       expect(['kuc-multiple-list'].every(c => childEl.classList.contains(c))).toBe(true);
       expect(childEl.classList.contains('kuc-list-item-disable')).toBe(false);
-      console.log(childEl);
       expect(childEl).toBeVisible();
     } else {
       expect(false);
@@ -43,12 +41,13 @@ describe('Unit test MultipleChoice react', () => {
     ];
     const value = [expectedValues[0], expectedValues[1]];
     const {container} =
-      render(<MultipleChoice
-        items={expectedItems}
-        value={value}
-        isDisabled
-        isVisible={false}
-      />);
+      render(
+        <MultipleChoice
+          items={expectedItems}
+          value={value}
+          isDisabled
+          isVisible={false}
+        />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       expect(childEl.classList.length).toBe(1);
@@ -66,7 +65,7 @@ describe('Unit test MultipleChoice react', () => {
         if (!item.children || item.children.length !== 2) {
           expect(false);
         }
-        const inputEl = (item.children[0] as HTMLInputElement);
+        const inputEl = item.children[0] as HTMLInputElement;
         const labelEl: Element = item.children[1];
 
         // Check input & label elements
@@ -92,14 +91,29 @@ describe('Unit test MultipleChoice react', () => {
   });
 
   test('Render successfully with wrong props', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+        isDisabled: false
+      }
+    ];
     // @ts-ignore
-    const {container} = render(<MultipleChoice isVisible="abc" isDisabled="abc" />);
+    const {container} = render(<MultipleChoice items={expectedItems} isVisible="abc" isDisabled="abc" />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       expect(childEl.classList.length).toBe(3);
       expect(['kuc-multiple-list'].every(c => childEl.classList.contains(c))).toBe(true);
       expect(childEl.classList.contains('kuc-list-item-disable')).toBe(false);
       expect(childEl).toBeVisible();
+
+      const items = childEl.children;
+      const item: Element = items[0];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = item.children[0] as HTMLInputElement;
+      expect(inputEl).not.toBeDisabled();
     } else {
       expect(false);
     }
@@ -122,7 +136,12 @@ describe('Unit test MultipleChoice react', () => {
       expect(val).toEqual([expectedValues[1]]);
       value = val;
     };
-    const {container} = render(<MultipleChoice items={expectedItems} value={value} onChange={handleChange} />);
+    const {container} = render(
+      <MultipleChoice
+        items={expectedItems}
+        value={value}
+        onChange={handleChange}
+      />);
     if (container.firstElementChild) {
       const childEl = container.firstElementChild;
       fireEvent.click(childEl.children[0].children[0]);
@@ -237,7 +256,6 @@ describe('Unit test MultipleChoice react', () => {
           value: expectedValues[1],
         }
       ];
-      // @ts-ignore
       render(<MultipleChoice items={expectedItems} value={[expectedValues[2]]} />);
     }).toThrowError();
   });
@@ -254,7 +272,6 @@ describe('Unit test MultipleChoice react', () => {
           value: expectedValues[1],
         }
       ];
-      // @ts-ignore
       render(<MultipleChoice items={expectedItems} value={[expectedValues[0], expectedValues[0]]} />);
     }).toThrowError();
   });

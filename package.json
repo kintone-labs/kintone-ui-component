@@ -28,7 +28,7 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"test": "jest --silent=false --verbose false --onlyChanged --coverage"
+		"test": "jest --coverage"
 	},
 	"dependencies": {
 		"@mdi/js": "3.6.95",
@@ -65,6 +65,7 @@
 		"jest-transform-css": "^2.0.0",
 		"mini-css-extract-plugin": "0.6.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
+		"prettier": "^1.19.1",
 		"react": "16.8.6",
 		"react-dom": "16.8.6",
 		"style-loader": "0.19.1",

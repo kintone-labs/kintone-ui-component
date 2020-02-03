@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice disable', () => {
@@ -12,14 +11,17 @@ describe('Unit test MultipleChoice disable', () => {
         {
           label: expectedLabels[0],
           value: expectedValues[0],
+          isDisabled: false
         },
         {
           label: expectedLabels[1],
           value: expectedValues[1],
+          isDisabled: false
         },
         {
           label: expectedLabels[2],
           value: expectedValues[2],
+          isDisabled: true
         }
       ],
       isDisabled: false

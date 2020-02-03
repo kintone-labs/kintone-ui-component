@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice setItems and getItems', () => {
@@ -41,12 +40,11 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const inputEl = (item.children[0] as HTMLInputElement);
       // Check selected items
       if (selectedItem.indexOf(expectedValues[index]) > -1) {
-        expect(inputEl.checked).toBe(true);
+        expect(item.classList.contains('kuc-list-item-selected')).toBe(true);
       } else {
-        expect(inputEl.checked).toBe(false);
+        expect(item.classList.contains('kuc-list-item-selected')).toBe(false);
       }
     }
   });
@@ -55,7 +53,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
   // * Error response omission
   test('Throw error without value', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.setValue(null);
       // No error occurs event if the value of required item is specified as null
@@ -64,7 +62,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
 
   test('Throw error with invalid value', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       multipleChoice.setValue([expectedValues[0]]);
     }).toThrowError();
   });

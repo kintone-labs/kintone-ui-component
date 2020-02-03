@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice show', () => {

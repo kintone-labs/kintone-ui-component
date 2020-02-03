@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice setItems and getItems', () => {
@@ -8,7 +7,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
   const expectedIsDisabled = [false, true, true];
 
   test('Function setItems & getItems run successfully with full props', () => {
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     const newItems = [
       {
@@ -50,7 +49,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
   });
 
   test('Function AddItem run successfully without optional props', () => {
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     const newItems = [
       {
@@ -73,17 +72,15 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
 
   test('Throw error without items', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.setItems(null);
     }).toThrowError();
   });
 
-  // * Found an implementation bug here
-  // * Error response omission
   test('Throw error without item.value', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.setItems([{
         label: expectedLabels[0],

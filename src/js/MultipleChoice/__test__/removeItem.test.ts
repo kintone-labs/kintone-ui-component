@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice removeItem', () => {
@@ -41,7 +40,6 @@ describe('Unit test MultipleChoice removeItem', () => {
 
   test('Throw error with invalid index', () => {
     expect(() => {
-      // @ts-ignore
       const multipleChoice = new MultipleChoice({
         items: [
           {
@@ -58,7 +56,6 @@ describe('Unit test MultipleChoice removeItem', () => {
 
   test('Throw error with out of index', () => {
     expect(() => {
-      // @ts-ignore
       const multipleChoice = new MultipleChoice({
         items: [
           {

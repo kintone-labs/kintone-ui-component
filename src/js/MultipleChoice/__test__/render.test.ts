@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice render', () => {
@@ -7,11 +6,10 @@ describe('Unit test MultipleChoice render', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
 
   test('Render successfully without props', () => {
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
-    expect(container.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(container).toBeVisible();
   });
 
@@ -69,10 +67,59 @@ describe('Unit test MultipleChoice render', () => {
     }
   });
 
+  test('Render successfully without select value', () => {
+    const disabledFlg = [false, true];
+    const multipleChoice = new MultipleChoice({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+          isDisabled: disabledFlg[0]
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1],
+          isDisabled: disabledFlg[1]
+        }
+      ],
+      isDisabled: false,
+      isVisible: true
+    });
+    const container = multipleChoice.render();
+    expect(container.classList.length).toBe(2);
+    expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
+    expect(container).toBeVisible();
+    if (!container.children || container.children.length !== 2) {
+      expect(false);
+    }
+    const items = container.children;
+    // Check each items
+    for (let index = 0; index < 2; index++) {
+      const item: Element = items[index];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const labelEl: Element = item.children[1];
+
+      // Check input & label elements
+      expect(item.classList.contains('kuc-list-item-disable')).toBe(disabledFlg[index]);
+      expect(labelEl.textContent).toBe(expectedLabels[index]);
+
+      // Check selected items
+      expect(item.classList.contains('kuc-list-item-selected')).toBe(false);
+    }
+  });
+
   test('Render successfully with wrong props', () => {
     // Confirm to be set the default values if an invalid value was set.
     // @ts-ignore
     const multipleChoice = new MultipleChoice({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+          isDisabled: false
+        }],
       isDisabled: 'abc',
       isVisible: 'abc'
     });
@@ -81,10 +128,20 @@ describe('Unit test MultipleChoice render', () => {
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(container).toBeVisible();
+
+    if (!container.children || container.children.length !== 2) {
+      expect(false);
+    }
+    const items = container.children;
+    const item: Element = items[0];
+    const labelEl: Element = item.children[1];
+    if (!item.children || item.children.length !== 2) {
+      expect(false);
+    }
+    expect(item.classList.contains('kuc-list-item-disable')).toBe(false);
+    expect(labelEl.textContent).toBe(expectedLabels[0]);
   });
 
-  // * Found an implementation bug here
-  // * Error response omission
   test('Throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
@@ -97,7 +154,6 @@ describe('Unit test MultipleChoice render', () => {
 
   test('Throw error with duplicate option.items[x].value', () => {
     expect(() => {
-      // @ts-ignore
       new MultipleChoice({
         items: [
           {
@@ -135,7 +191,6 @@ describe('Unit test MultipleChoice render', () => {
 
   test('Throw error with invalid option.value not in item list', () => {
     expect(() => {
-      // @ts-ignore
       new MultipleChoice({
         items: [
           {

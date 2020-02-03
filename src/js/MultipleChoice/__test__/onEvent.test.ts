@@ -1,5 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
-import {fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/dom';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice onEvent', () => {
@@ -34,10 +33,10 @@ describe('Unit test MultipleChoice onEvent', () => {
 
   test('Function onClick event run successfully', () => {
     // According to user guide, it supports only change event
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     let counter = 0;
-    multipleChoice.on('click', (e: any) => {
+    multipleChoice.on('click', (e: string[]) => {
       multipleChoice.addItem({
         value: expectedValues[counter]
       });

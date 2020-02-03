@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import MultipleChoice from '../index';
 
 describe('Unit test MultipleChoice addItem', () => {
@@ -7,7 +6,7 @@ describe('Unit test MultipleChoice addItem', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
 
   test('Function AddItem run successfully without optional props', () => {
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     multipleChoice.addItem({
       value: expectedValues[0]
@@ -23,7 +22,7 @@ describe('Unit test MultipleChoice addItem', () => {
   });
 
   test('Function AddItem run successfully with full props', () => {
-    const multipleChoice = new MultipleChoice({});
+    const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     multipleChoice.addItem({
       label: expectedLabels[0],
@@ -48,7 +47,7 @@ describe('Unit test MultipleChoice addItem', () => {
 
   test('Throw error without item', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.addItem(null);
     }).toThrowError();
@@ -58,7 +57,7 @@ describe('Unit test MultipleChoice addItem', () => {
   // * Error response omission
   test('Throw error without item.value', () => {
     expect(() => {
-      const multipleChoice = new MultipleChoice({});
+      const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.addItem({
         label: expectedLabels[0],
