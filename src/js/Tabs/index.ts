@@ -203,10 +203,10 @@ class Tabs extends Control<TabsProps> {
 
   addItem(item: Tab) {
     if (!item) {
-      throw Message.common.INVALID_ARGUMENT;
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     if (!item.tabName) {
-      throw Message.tabs.MISSING_NEW_ITEM_TABNAME;
+      throw new Error(Message.tabs.MISSING_NEW_ITEM_TABNAME);
     }
 
     this._props.items && this._props.items.push(item);
@@ -234,14 +234,14 @@ class Tabs extends Control<TabsProps> {
 
   disableItem(tabName: string) {
     if (!tabName) {
-      throw Message.common.INVALID_ARGUMENT;
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     this._props.items &&
       this._props.items.forEach((item: Tab, index: number) => {
         const isSelected = index === this._props.value;
         if (item.tabName === tabName) {
           if (isSelected) {
-            throw Message.tabs.INVALID_ACTION;
+            throw new Error(Message.tabs.INVALID_ACTION);
           } else {
             this.tabNames[index].disable();
           }
@@ -251,7 +251,7 @@ class Tabs extends Control<TabsProps> {
 
   enableItem(tabName: string) {
     if (!tabName) {
-      throw Message.common.INVALID_ARGUMENT;
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     this._props.items &&
       this._props.items.forEach((item: Tab, index: number) => {
