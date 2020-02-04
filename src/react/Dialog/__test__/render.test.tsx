@@ -21,29 +21,25 @@ describe('Unit test Dialog react', () => {
 
   test('Render successfully without props', () => {
     const {container} = render(<Dialog />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
+
+    // Verify close button DOM
+    const closeButtonDOM = container.getElementsByClassName('kuc-dialog-close-button');
+    expect(closeButtonDOM.length).toEqual(1);
+    expect(closeButtonDOM[0]).toBeInstanceOf(HTMLSpanElement);
   });
 
   test('Render hidden Dialog successfully', () => {
     const {container} = render(<Dialog isVisible={false} />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container hidden');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container hidden');
   });
 
   test('Render successfully when showCloseButton is false', () => {
     const {container} = render(<Dialog showCloseButton={false} />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
   });
 
   test('Throw error with invalid header', () => {
