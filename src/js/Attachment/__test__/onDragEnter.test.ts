@@ -33,6 +33,8 @@ describe('Unit test Attachment onDragEnter', () => {
     });
     try {
       fireEvent(drag[0], dragEvent);
+      const dragActiveDOM = container.getElementsByClassName('kuc-attachment-drag-drop-active');
+      expect(dragActiveDOM.length).toEqual(1);
     } catch (error) {
       expect(error).toBeFalsy();
     }
