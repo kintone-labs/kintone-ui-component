@@ -94,23 +94,11 @@ describe('Unit test Dropdown render', () => {
     expect(container).toBeVisible();
   });
 
-  test('throw error with duplicate option.items[x].value', () => {
+  test('throw error with invalid option.items', () => {
     expect(() => {
+      // @ts-ignore
       new Dropdown({
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0]
-          },
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0]
-          },
-          {
-            label: expectedLabels[2],
-            value: expectedValues[2]
-          },
-        ],
+        items: null
       });
     }).toThrowError();
   });
@@ -129,12 +117,21 @@ describe('Unit test Dropdown render', () => {
     }).toThrowError();
   });
 
-  // test('throw error with invalid option.items', () => {
-  // });
+  test('throw error with duplicate option.items[x].value', () => {
+    expect(() => {
+      new Dropdown({
+        items: [
+          {
+            label: expectedLabels[0],
+            value: expectedValues[0],
+          },
+          {
+            label: expectedLabels[1],
+            value: expectedValues[0],
+          }
+        ],
+      });
+    }).toThrowError();
+  });
 
-  // test('throw error with invalid prop type of option.value', () => {
-  // });
-
-  // test('throw error with duplicate option.value', () => {
-  // });
 });

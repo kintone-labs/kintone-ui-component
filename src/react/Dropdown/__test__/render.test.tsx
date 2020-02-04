@@ -128,6 +128,19 @@ describe('Unit test Dropdown react', () => {
     }).toThrowError();
   });
 
+  test('throw error with invalid option.value', () => {
+    expect(() => {
+      const expectedItems = [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+        }
+      ];
+      // @ts-ignore
+      render(<Dropdown items={expectedItems} value={expectedValues[1]} />);
+    }).toThrowError();
+  });
+
   test('throw error with duplicate option.items[x].value', () => {
     expect(() => {
       const expectedItems = [
