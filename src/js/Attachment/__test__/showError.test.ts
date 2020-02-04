@@ -21,6 +21,6 @@ describe('Unit test Attachment showError', () => {
     const errorDOM = container.getElementsByClassName('kuc-attachment-file-error');
     expect(errorDOM.length).toEqual(1);
     expect(errorDOM[0]).toBeInstanceOf(HTMLDivElement);
-    expect((errorDOM[0] as HTMLDivElement).style.display).toEqual('block');
+    expect(errorDOM[0]).toHaveStyle('display: block');
   });
 });
