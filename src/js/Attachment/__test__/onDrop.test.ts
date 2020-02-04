@@ -56,9 +56,8 @@ describe('Unit test for Attachment onDrop event handler', () => {
       expect(files.length).toEqual(1);
       expect(files[0]).toBe(newFile);
     };
-    const myAttachment = new Attachment({
-      onFilesAdd: dropHandler
-    });
+    const myAttachment = new Attachment({});
+    myAttachment.on('filesAdd', dropHandler);
     const container = myAttachment.render();
     const droppable = container.getElementsByClassName('kuc-attachment-file-droppable');
 
