@@ -22,6 +22,11 @@ describe('Unit test Dialog render', () => {
     const container = myDialog.render();
     expect(container.firstElementChild).toBeTruthy();
     expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
+
+    // Verify close button DOM
+    const closeButtonDOM = container.getElementsByClassName('kuc-dialog-close-button');
+    expect(closeButtonDOM.length).toEqual(1);
+    expect(closeButtonDOM[0]).toBeInstanceOf(HTMLSpanElement);
   });
 
   test('Render successfully with full props', () => {
@@ -44,6 +49,11 @@ describe('Unit test Dialog render', () => {
     expect(headerDOM.length).toEqual(1);
     expect(headerDOM[0]).toBeInstanceOf(HTMLDivElement);
     expect(headerDOM[0].innerHTML).toContain(DIALOG_HEADER);
+
+    // Verify close button DOM
+    const closeButtonDOM = container.getElementsByClassName('kuc-dialog-close-button');
+    expect(closeButtonDOM.length).toEqual(1);
+    expect(closeButtonDOM[0]).toBeInstanceOf(HTMLSpanElement);
 
     // Verify content DOM
     const contentDOM = container.getElementsByClassName('kuc-dialog-body');
@@ -71,22 +81,16 @@ describe('Unit test Dialog render', () => {
   test('Render successfully when showCloseButton is false', () => {
     const myDialog = new Dialog({showCloseButton: false});
     const container = myDialog.render();
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
   });
 
   // WILL BE REMOVED
   test('Render successfully when showCloseButton is true', () => {
     const myDialog = new Dialog({showCloseButton: true});
     const container = myDialog.render();
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container');
   });
 
   test('Init failed with invalid header props', () => {
@@ -170,11 +174,7 @@ describe('Unit test Dialog render', () => {
 
     // @ts-ignore
     myDialog._closeButton._onClick();
-
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toContain('kuc-dialog-container hidden');
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toContain('kuc-dialog-container hidden');
   });
 });
