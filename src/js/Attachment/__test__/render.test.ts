@@ -45,7 +45,7 @@ describe('Unit test Attachment render', () => {
     const browseDOM = container.getElementsByClassName('kuc-attachment-file-upload-button-text');
     expect(browseDOM.length).toEqual(1);
     expect(browseDOM[0]).toBeInstanceOf(HTMLSpanElement);
-    expect((browseDOM[0] as HTMLDivElement).innerText).toEqual(BROWSE_BUTTON_TEXT);
+    expect((browseDOM[0] as HTMLSpanElement).innerText).toEqual(BROWSE_BUTTON_TEXT);
 
     // Verify file limit text DOM
     const fileLimitDOM = container.getElementsByClassName('kuc-attachment-file-constraints');
