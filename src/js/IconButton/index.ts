@@ -107,7 +107,7 @@ class IconButton extends Control<IconBtnProps> {
     }
 
     if (changedAttr.indexOf('isDisabled') !== -1) {
-      if (this._props.isDisabled && this._props.isDisabled === true) {
+      if (this._props.isDisabled === true) {
         this.element.setAttribute('disabled', `${this._props.isDisabled}`);
       } else {
         this.element.removeAttribute('disabled');

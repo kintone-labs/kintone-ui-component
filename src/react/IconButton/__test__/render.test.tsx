@@ -88,7 +88,7 @@ describe('Unit test IconButton react render', () => {
     expect(container.firstElementChild!.classList.contains('circle')).toBeTruthy();
   });
 
-  test('Render successfully with normal shape', () => {
+  test('Render successfully with square shape', () => {
     const {container} = render(
       <IconButton shape="square" />
     );

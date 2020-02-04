@@ -2,7 +2,7 @@ import IconButton from '../index';
 
 describe('Unit test IconButton setShape', () => {
 
-  test('Function setShape normal run successfully', () => {
+  test('Function setShape square run successfully', () => {
     const iconButton = new IconButton({shape: 'circle'});
     const container = iconButton.render();
     iconButton.setShape('square');

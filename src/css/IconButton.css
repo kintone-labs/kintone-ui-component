@@ -28,13 +28,13 @@
   .kuc-icon-btn.hover-danger:hover {
     background-color: #E44235;
   }
-  .kuc-icon-btn.normal {
+  .kuc-icon-btn.square {
     border-radius: 2px;
   }
   .kuc-icon-btn.circle {
     border-radius: 50%;
   }
-  .kuc-icon-btn.large {
+  .kuc-icon-btn.normal {
     width: 32px;
     height: 32px;
   }
