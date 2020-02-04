@@ -26,7 +26,7 @@ class Dialog extends Control<DialogProps> {
         header: '',
         content: '',
         footer: '',
-        showCloseButton: false,
+        showCloseButton: true,
         isVisible: true
       }
     };
