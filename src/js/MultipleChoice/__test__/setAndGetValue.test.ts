@@ -6,7 +6,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
   const expectedValues = ['orange', 'banana', 'lemon'];
   const expectedIsDisabled = [false, true, true];
 
-  test('Function setItems & getItems run successfully with full props', () => {
+  test('Function setValue & getValue run successfully with full props', () => {
     const multipleChoice = new MultipleChoice({
       items: [
         {
@@ -36,7 +36,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
     // Check dom
     const items = container.children;
     for (let index = 0; index < 3; index++) {
-      const item: Element = items[index];
+      const item = items[index];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }

@@ -48,11 +48,11 @@ describe('Unit test MultipleChoice render', () => {
     const selectedItem = multipleChoice.getValue() || [];
     // Check each items
     for (let index = 0; index < 3; index++) {
-      const item: Element = items[index];
+      const item = items[index];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const labelEl: Element = item.children[1];
+      const labelEl = item.children[1];
 
       // Check input & label elements
       expect(item.classList.contains('kuc-list-item-disable')).toBe(true);
@@ -67,7 +67,7 @@ describe('Unit test MultipleChoice render', () => {
     }
   });
 
-  test('Render successfully without select value', () => {
+  test('Render successfully with right disabled property value', () => {
     const disabledFlg = [false, true];
     const multipleChoice = new MultipleChoice({
       items: [
@@ -95,11 +95,11 @@ describe('Unit test MultipleChoice render', () => {
     const items = container.children;
     // Check each items
     for (let index = 0; index < 2; index++) {
-      const item: Element = items[index];
+      const item = items[index];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const labelEl: Element = item.children[1];
+      const labelEl = item.children[1];
 
       // Check input & label elements
       expect(item.classList.contains('kuc-list-item-disable')).toBe(disabledFlg[index]);
@@ -133,8 +133,8 @@ describe('Unit test MultipleChoice render', () => {
       expect(false);
     }
     const items = container.children;
-    const item: Element = items[0];
-    const labelEl: Element = item.children[1];
+    const item = items[0];
+    const labelEl = item.children[1];
     if (!item.children || item.children.length !== 2) {
       expect(false);
     }

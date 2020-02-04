@@ -29,11 +29,11 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
     const items = container.children;
     // Check each items
     for (let index = 0; index < 2; index++) {
-      const item: Element = items[index];
+      const item = items[index];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }
-      const labelEl: Element = item.children[1];
+      const labelEl = item.children[1];
 
       // Check input & label elements
       if (expectedIsDisabled[index]) {
@@ -58,7 +58,7 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
     ];
     multipleChoice.setItems(newItems);
     const items = container.children;
-    const item: Element = items[0];
+    const item = items[0];
     if (!item.children || item.children.length !== 1) {
       expect(false);
     }

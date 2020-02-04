@@ -11,14 +11,14 @@ describe('Unit test MultipleChoice disableItem', () => {
         {
           label: expectedLabels[0],
           value: expectedValues[0],
-          isDisabled: true
+          isDisabled: false
         }
       ]
     });
     const container = multipleChoice.render();
     multipleChoice.disableItem(expectedValues[0]);
     const items = container.children;
-    const item: Element = items[0];
+    const item = items[0];
     expect(item.classList.contains('kuc-list-item-disable')).toBe(true);
   });
 

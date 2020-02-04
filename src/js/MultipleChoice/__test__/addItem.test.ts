@@ -14,10 +14,9 @@ describe('Unit test MultipleChoice addItem', () => {
     if (!container.children || container.children.length !== 1) {
       expect(false);
     }
-    const item: Element = container.children[0];
-    const inputEl = (item.children[0] as HTMLInputElement);
+    const item = container.children[0];
     // Check input & label elements
-    expect(inputEl).not.toBeDisabled();
+    expect(item.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(multipleChoice.getItems()).toEqual([{value: expectedValues[0]}]);
   });
 
@@ -32,8 +31,8 @@ describe('Unit test MultipleChoice addItem', () => {
     if (!container.children || container.children.length !== 1) {
       expect(false);
     }
-    const item: Element = container.children[0];
-    const labelEl: Element = item.children[1];
+    const item = container.children[0];
+    const labelEl = item.children[1];
 
     // Check input, label, isDisabled properties
     expect(multipleChoice.getItems()).toEqual([{

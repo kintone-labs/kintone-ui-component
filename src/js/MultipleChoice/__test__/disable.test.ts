@@ -33,7 +33,7 @@ describe('Unit test MultipleChoice disable', () => {
     }
     const items = container.children;
     for (let index = 0; index < 3; index++) {
-      const item: Element = items[index];
+      const item = items[index];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }

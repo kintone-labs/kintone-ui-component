@@ -61,12 +61,12 @@ describe('Unit test MultipleChoice react', () => {
       const selectedItem = value;
       // Check each items
       for (let index = 0; index < 3; index++) {
-        const item: Element = items[index];
+        const item = items[index];
         if (!item.children || item.children.length !== 2) {
           expect(false);
         }
         const inputEl = item.children[0] as HTMLInputElement;
-        const labelEl: Element = item.children[1];
+        const labelEl = item.children[1];
 
         // Check input & label elements
         // expect(inputEl).toBeDisabled();
@@ -108,7 +108,7 @@ describe('Unit test MultipleChoice react', () => {
       expect(childEl).toBeVisible();
 
       const items = childEl.children;
-      const item: Element = items[0];
+      const item = items[0];
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }

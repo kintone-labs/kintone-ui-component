@@ -18,7 +18,7 @@ describe('Unit test MultipleChoice enableItem', () => {
     const container = multipleChoice.render();
     multipleChoice.enableItem(expectedValues[0]);
     const items = container.children;
-    const item: Element = items[0];
+    const item = items[0];
     expect(item.classList.contains('kuc-list-item-disable')).toBe(false);
   });
 

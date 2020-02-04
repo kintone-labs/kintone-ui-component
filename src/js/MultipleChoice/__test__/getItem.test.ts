@@ -34,7 +34,6 @@ describe('Unit test MultipleChoice getItem', () => {
 
   test('Throw error with invalid index', () => {
     expect(() => {
-      // @ts-ignore
       const multipleChoice = new MultipleChoice({
         items: [
           {
@@ -51,7 +50,6 @@ describe('Unit test MultipleChoice getItem', () => {
 
   test('Throw error with out of index', () => {
     expect(() => {
-      // @ts-ignore
       const multipleChoice = new MultipleChoice({
         items: [
           {

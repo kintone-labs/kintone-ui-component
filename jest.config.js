@@ -17,7 +17,5 @@ module.exports = {
 
   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
 
-  moduleFileExtensions: ["tsx", "js", "ts"],
-
-  testMatch: [ "**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)" ]
+  moduleFileExtensions: ["tsx", "js", "ts"]
 };
