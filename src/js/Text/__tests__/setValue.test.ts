@@ -26,6 +26,13 @@ describe('[JS] Text', () => {
     expect(text.getValue()).toBe(value);
   });
 
+  test('should setValue() null for rerender successfully', ()=>{
+    const text = new Text({value: 'kintone'});
+    // @ts-ignore
+    text.setValue(null);
+    expect(text.render()).toHaveValue('');
+  });
+
   test('should setValue() throw error when setValue is called without parameters ', ()=>{
     try {
       const text = new Text();
