@@ -18,11 +18,8 @@ describe('Unit test Dialog render', () => {
     const myDialog = new Dialog({});
     try {
       myDialog.rerender();
-      expect(true);
     } catch (error) {
-      if (error) {
-        expect(false);
-      }
+      expect(false).toEqual(true);
     }
   });
 });
