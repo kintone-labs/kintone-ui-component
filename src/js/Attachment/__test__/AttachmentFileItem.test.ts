@@ -13,7 +13,6 @@ describe('Unit test for AttachmentFileItem', () => {
   });
 
   test('Render file with size larger than 1 GB', () => {
-    const handleRemove = () => {};
     const item = new AttachmentFileItem({
       index: 0,
       fileName: 'file1.png',
@@ -27,12 +26,10 @@ describe('Unit test for AttachmentFileItem', () => {
   });
 
   test('Render file with size larger than 1 MB', () => {
-    const handleRemove = () => {};
     const item = new AttachmentFileItem({
       index: 0,
       fileName: 'file1.png',
-      fileSize: 1048576,
-      onFileRemove: handleRemove
+      fileSize: 1048576
     });
     const container = item.render();
     const fileSizeDOM = container.getElementsByClassName('kuc-attachment_file_size');
@@ -43,10 +40,10 @@ describe('Unit test for AttachmentFileItem', () => {
 
   test('Render NaN bytes when fileSize type is not number', () => {
     const handleRemove = () => {};
+    // @ts-ignore
     const item = new AttachmentFileItem({
       index: 0,
       fileName: 'file1.png',
-      // @ts-ignore
       fileSize: '123',
       onFileRemove: handleRemove
     });
