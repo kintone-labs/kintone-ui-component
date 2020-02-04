@@ -64,7 +64,9 @@ class Tabs extends Control<TabsProps> {
       });
     }
     if (this._props.value !== undefined) {
-      if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
+      const existItems = this._props.items && (this._props.items.length > 0);
+      const invalidValue = !this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0;
+      if (existItems && invalidValue) {
         err = Message.common.INVALID_ARGUMENT;
       }
     } else if (!this._props.value && this._props.items && this._props.items.length > 0) {
@@ -101,7 +103,13 @@ class Tabs extends Control<TabsProps> {
 
     this.tabContentElement = document.createElement('div');
     if (this._props.items && this._props.value !== undefined) {
-      this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+      let tabContent;
+      if (this._props.items[this._props.value] && this._props.items[this._props.value].tabContent) {
+        tabContent = this._props.items[this._props.value].tabContent || '';
+      } else {
+        tabContent = '';
+      }
+      this.tabContentElement.append(tabContent);
     }
     tabContentWrapper.appendChild(this.tabContentElement);
   }
