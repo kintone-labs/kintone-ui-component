@@ -31,8 +31,9 @@ describe('Unit test MultipleChoice onEvent', () => {
     expect(multipleChoice.getValue()).toEqual([expectedValues[1]]);
   });
 
+  // According to user guide, it supports only change event, but it works.
+  // This will be fixed.
   test('Function onClick event will not work', () => {
-    // According to user guide, it supports only change event
     const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
     let counter = 0;
