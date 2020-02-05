@@ -22,10 +22,10 @@ describe('Unit test for Attachment onDrop event handler', () => {
       type: 'image/png',
     });
 
-    const dropHandler = (files: any[]) => {
+    const dropHandler = jest.fn((files: any[]) => {
       expect(files.length).toEqual(2);
       expect(files[1]).toBe(newFile);
-    };
+    });
     const myAttachment = new Attachment({
       files: [file]
     });
@@ -41,6 +41,7 @@ describe('Unit test for Attachment onDrop event handler', () => {
     });
     try {
       fireEvent(droppable[0], dropEvent);
+      expect(dropHandler.mock.calls.length).toBe(1);
     } catch (error) {
       expect(error).toBeFalsy();
     }
@@ -52,10 +53,10 @@ describe('Unit test for Attachment onDrop event handler', () => {
       type: 'image/png',
     });
 
-    const dropHandler = (files: any[]) => {
+    const dropHandler = jest.fn((files: any[]) => {
       expect(files.length).toEqual(1);
       expect(files[0]).toBe(newFile);
-    };
+    });
     const myAttachment = new Attachment({});
     myAttachment.on('filesAdd', dropHandler);
     const container = myAttachment.render();
@@ -69,6 +70,7 @@ describe('Unit test for Attachment onDrop event handler', () => {
     });
     try {
       fireEvent(droppable[0], dropEvent);
+      expect(dropHandler.mock.calls.length).toBe(1);
     } catch (error) {
       expect(error).toBeFalsy();
     }
@@ -103,10 +105,10 @@ describe('Unit test for Attachment onDrop event handler', () => {
       type: 'image/png',
     });
 
-    const dropHandler = (files: any[]) => {
+    const dropHandler = jest.fn((files: any[]) => {
       expect(files.length).toEqual(2);
       expect(files[1]).toBe(newFile);
-    };
+    });
     const myAttachment = new Attachment({
       files: [file]
     });
@@ -123,6 +125,7 @@ describe('Unit test for Attachment onDrop event handler', () => {
     });
     try {
       fireEvent(droppable[0], dropEvent);
+      expect(dropHandler.mock.calls.length).toBe(1);
     } catch (error) {
       expect(error).toBeFalsy();
     }
