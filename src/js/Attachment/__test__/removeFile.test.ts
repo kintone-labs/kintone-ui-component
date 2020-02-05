@@ -17,10 +17,10 @@ describe('Unit test Attachment react removeFile', () => {
     const file = new File([''], 'file1.png', {
       type: 'image/png',
     });
-    const handleFileRemove = (files: any) => {
+    const handleFileRemove = jest.fn((files: any) => {
       expect(files).toBeInstanceOf(Array);
       expect(files.length).toEqual(0);
-    };
+    });
     const myAttachment = new Attachment({
       files: [file],
       onFileRemove: handleFileRemove
@@ -29,6 +29,7 @@ describe('Unit test Attachment react removeFile', () => {
     const removeButton = container.getElementsByClassName('kuc-attachment_file_action')[0].getElementsByTagName('button');
     try {
       fireEvent.click(removeButton[0]);
+      expect(handleFileRemove.mock.calls.length).toBe(1);
     } catch (error) {
       expect(error).toBeFalsy();
     }
