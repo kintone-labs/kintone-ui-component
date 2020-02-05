@@ -14,20 +14,14 @@ describe('<Text/>', () => {
     console.error.mockRestore();
   });
 
-  test('should be disabled', ()=>{
-    const onChange = (value: string) => {};
-    const onClick = (e: any) => {};
-
-    const {container} = render(<Text value="error" onChange={onChange} onClick={onClick} />);
+  test('should be enabled and attribute disabled has not existed', ()=>{
+    const {container} = render(<Text value="error" />);
     expect(container.firstElementChild).toBeTruthy();
     expect(container.firstElementChild!.getAttribute('disabled')).toBeNull();
   });
 
-  test('should be enabled', ()=>{
-    const onChange = (value: string) => {};
-    const onClick = (e: any) => {};
-
-    const {container} = render(<Text value="error" isDisabled onChange={onChange} onClick={onClick} />);
+  test('should be disabled', ()=>{
+    const {container} = render(<Text value="error" isDisabled />);
     expect(container.firstElementChild).toBeTruthy();
     expect(container.firstElementChild!.getAttribute('disabled')).toBe('');
   });

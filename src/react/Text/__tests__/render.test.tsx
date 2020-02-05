@@ -15,8 +15,12 @@ describe('<Text/>', () => {
   });
 
   test('should be render successfully', () => {
-    const {container} = render(<Text value="success" />);
+    const {container} = render(<Text value="success" isVisible />);
     expect(container.firstElementChild).toBeTruthy();
     expect(container.firstElementChild!.className).toBe('kuc-input-text');
+  });
+  test('should be render empty <div/> successfully', () => {
+    const {container} = render(<Text value="success" isVisible={false} />);
+    expect(container).toBeEmpty();
   });
 });

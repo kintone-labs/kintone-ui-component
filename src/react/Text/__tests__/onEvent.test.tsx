@@ -15,18 +15,28 @@ describe('<Text/>', () => {
   });
 
   test('onChange event handler should fire successfully', ()=>{
-    const onChange = (value: string) => {};
-    const {container} = render(<Text value="error" onChange={onChange} />);
-    const node = container.getElementsByClassName('kuc-input-text')[0];
-    fireEvent.change(node, {target: {value: 'hello'}});
+    let textValue = 'error';
+    const onChangeText = (value: string) => {
+      expect(value).toBe(textValue);
+    };
+    const {container, rerender} = render(<Text value={textValue} onChange={onChangeText} />);
+    expect(container.firstElementChild).toBeTruthy();
+    textValue = 'hello';
+    fireEvent.change(container.firstElementChild!, {target: {value: textValue}});
+    rerender(<Text value={textValue} />);
+    expect(container.firstElementChild).toHaveValue(textValue);
   });
 
   test('onClick event handler should fire successfully', ()=>{
-    const onChange = (value: string) => {};
-    const onClick = (e: any) => {};
-    const {container} = render(<Text value="error" onChange={onChange} onClick={onClick} />);
-    const node = container.getElementsByClassName('kuc-input-text')[0];
-    fireEvent.change(node, {target: {value: 'hello'}});
-    fireEvent.click(node, {target: {value: 'hello'}});
+    let textValue = 'error';
+    const onClick = (e: any) => {
+      expect((e.target as HTMLInputElement).value).toBe(textValue);
+    };
+    const {container, rerender} = render(<Text value={textValue} onClick={onClick} />);
+    expect(container.firstElementChild).toBeTruthy();
+    textValue = 'hello';
+    fireEvent.click(container.firstElementChild!, {target: {value: textValue}});
+    rerender(<Text value={textValue} />);
+    expect(container.firstElementChild).toHaveValue(textValue);
   });
 });
