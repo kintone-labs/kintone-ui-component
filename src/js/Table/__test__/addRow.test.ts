@@ -19,7 +19,7 @@ describe('Unit test for Table addRow', () => {
         value: 'default text field value'
       }
     };
-    const handleRowAdd = ({data, rowIndex}: any) => {
+    const handleRowAdd = jest.fn(({data, rowIndex}: any) => {
       expect(data.length).toEqual(2);
       expect(data[rowIndex]).toStrictEqual(defaultRowData);
 
@@ -37,7 +37,7 @@ describe('Unit test for Table addRow', () => {
       expect(textCellDOM[0].value).toEqual(defaultRowData.text.value);
 
       // TODO: should render DOM before fire onRowAdd event (index.ts line 241)
-    };
+    });
     const myTable = new Table({
       columns: [
         {
@@ -57,5 +57,6 @@ describe('Unit test for Table addRow', () => {
     const container = myTable.render();
     const actionButtons = container.getElementsByTagName('button');
     actionButtons[0].click();
+    expect(handleRowAdd.mock.calls.length).toBe(1);
   });
 });
