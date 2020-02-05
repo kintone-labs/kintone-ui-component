@@ -44,13 +44,11 @@ describe('Unit test for Table showActionButtons', () => {
   });
 
   test('showActionButtons is called successfully with empty Table', () => {
-    try {
+    expect(() => {
       const myTable = new Table();
       myTable.render();
       myTable.showActionButtons();
-    } catch (error) {
-      expect(error).toBeFalsy();
-    }
+    }).not.toThrow();
   });
 
   // TODO: Remove unreachable else path line 325 (unnecessary if) index.ts
