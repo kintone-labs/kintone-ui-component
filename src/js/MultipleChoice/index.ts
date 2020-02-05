@@ -70,6 +70,9 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
 
   private _validator(items?: ItemData[], value?: string[]): string | undefined {
     let err;
+    if (items && !AbstractMultiSelection._hasItemValue(items)) {
+      err = Message.selection.MISSING_VALUE_PROPERTY_IN_ITEMS;
+    }
     if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
@@ -79,13 +82,13 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
     }
 
     if (items && value && !AbstractMultiSelection._hasValidValue(items, value)) {
-      err = Message.common.INVALID_ARGUMENT;
+      err = Message.selection.INVALID_VALUE;
     }
     return err;
   }
 
   setValue(value: string[]): void {
-    if (!value && Array.isArray(value)) {
+    if (!value || !Array.isArray(value)) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     const validationErr = this._validator(this._props.items, value);
@@ -268,9 +271,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
   on(eventName: string, callback: (params?: any) => void) {
     if (eventName === 'change') {
       this._props.onChange = callback;
-      return;
     }
-    super.on(eventName, callback);
   }
 }
 

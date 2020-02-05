@@ -31,21 +31,29 @@ describe('Unit test MultipleChoice onEvent', () => {
     expect(multipleChoice.getValue()).toEqual([expectedValues[1]]);
   });
 
-  // According to user guide, it supports only change event, but it works.
-  // This will be fixed.
   test('Function onClick event will not work', () => {
-    const multipleChoice = new MultipleChoice();
+    const items = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      }
+    ];
+    const multipleChoice = new MultipleChoice({
+      items: items,
+      value: [],
+    });
     const container = multipleChoice.render();
     let counter = 0;
     multipleChoice.on('click', (e: string[]) => {
-      multipleChoice.addItem({
-        value: expectedValues[counter]
-      });
       counter += 1;
     });
     fireEvent.click(container);
-    expect(multipleChoice.getItems()).toEqual([]);
-    fireEvent.click(container.children[0]);
-    expect(multipleChoice.getItems()).toEqual([]);
+    expect(counter).toBe(0);
+    fireEvent.click(container.children[0].children[0]);
+    expect(counter).toBe(0);
   });
 });
