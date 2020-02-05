@@ -13,17 +13,15 @@ describe('Unit test for TableCell', () => {
   });
 
   test('TableCell can be initialzed without props', () => {
-    const myCell = new TableCell();
-    expect(myCell).toBeInstanceOf(TableCell);
+    expect(() => {
+      new TableCell();
+    }).not.toThrow();
   });
 
   test('TableCell init function can be called without provided init function', () => {
-    const myCell = new TableCell();
-    try {
+    expect(() => {
+      const myCell = new TableCell();
       myCell.init();
-      expect(myCell).toBeInstanceOf(TableCell);
-    } catch (error) {
-      expect(error).toBeFalsy();
-    }
+    }).not.toThrow();
   });
 });
