@@ -29,8 +29,7 @@ describe('Unit test Tabs addItem', () => {
     myTabs.removeItem(1);
     const tabItems = myTabs.getItems();
     expect(tabItems).toBeTruthy();
-    // @ts-ignore
-    expect(tabItems.length).toEqual(1);
+    expect(tabItems!.length).toEqual(1);
     // Verify tab name DOM
     const container = myTabs.render();
     const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');

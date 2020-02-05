@@ -28,15 +28,14 @@ describe('Unit test Tabs disableItem', () => {
     }];
     const myTabs = new Tabs({items});
     const container = myTabs.render();
-    myTabs.on('clickTabItem', (tabIndex) => {
+    const onClickTabItem = jest.fn((tabIndex) => {
       expect(tabIndex).toEqual(1);
     });
-    if (container) {
-      const tab2 = getByText(container, 'Tab2');
-      fireEvent.click(tab2);
-    } else {
-      expect(container).toBeTruthy();
-    }
+    myTabs.on('clickTabItem', onClickTabItem);
+    expect(container).toBeTruthy();
+    const tab2 = getByText(container, 'Tab2');
+    fireEvent.click(tab2);
+    expect(onClickTabItem).toHaveBeenCalled();
   });
 
   test('on is called correctly with event other than clickTabItem', () => {
@@ -46,12 +45,12 @@ describe('Unit test Tabs disableItem', () => {
 
     const myTabs = new Tabs({items});
     const container = myTabs.render();
-    myTabs.on('click', () => {
+
+    const onClickHandler = jest.fn(() => {
       expect(true).toBeTruthy();
     });
-    expect(container).toBeTruthy();
-    expect(container.onclick).toBeTruthy();
-    // @ts-ignore
-    container.onclick();
+    myTabs.on('click', onClickHandler);
+    fireEvent.click(container);
+    expect(onClickHandler).toHaveBeenCalled();
   });
 });

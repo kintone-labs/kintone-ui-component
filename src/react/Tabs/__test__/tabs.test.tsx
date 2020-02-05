@@ -196,9 +196,9 @@ describe('Unit test for Tabs react', () => {
   });
 
   test('onKeyUp called successfully', () => {
-    const handler = (tabIndex: number) => {
+    const handler = jest.fn((tabIndex: number) => {
       expect(tabIndex).toEqual(0);
-    };
+    });
 
     const items = [{
       tabName: 'Tab 1',
@@ -212,10 +212,8 @@ describe('Unit test for Tabs react', () => {
         value={1}
       />
     );
-    if (container.firstElementChild) {
-      fireEvent.click(getByText('Tab 1'));
-    } else {
-      expect(false);
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    fireEvent.click(getByText('Tab 1'));
+    expect(handler).toBeCalled();
   });
 });

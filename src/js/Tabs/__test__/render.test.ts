@@ -27,12 +27,18 @@ describe('Unit test Tabs render', () => {
   test('Render successfully with full props', () => {
     const items = [{
       tabName: 'Tab1',
+      tabContent: 'Tab1 content',
+      isDisabled: false
     }, {
       tabName: 'Tab2',
+      tabContent: 'Tab2 content',
+      isDisabled: false
     }, {
       tabName: 'Tab3',
+      tabContent: 'Tab3 content',
+      isDisabled: true
     }];
-    const myTabs = new Tabs({items});
+    const myTabs = new Tabs({items, value: 1});
     const container = myTabs.render();
     expect(container.className).toContain('kuc-tabs-tabs');
   });
@@ -48,6 +54,11 @@ describe('Unit test Tabs render', () => {
     const myTabs = new Tabs({items, value: undefined});
     const container = myTabs.render();
     expect(container.className).toContain('kuc-tabs-tabs');
+    expect(myTabs.getValue()).toEqual(0);
+
+    const tabNameDOMList = container.getElementsByClassName('kuc-tabs-container');
+    expect(tabNameDOMList[0].classList).toContain('kuc-tabs-container-selection');
+    expect(tabNameDOMList[1].classList).not.toContain('kuc-tabs-container-selection');
   });
 
   test('Throw error when missing tab name', () => {
