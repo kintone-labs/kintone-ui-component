@@ -31,11 +31,11 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
         ctx.fillRect(0, 0, w, h);
         const grdWhite = ctx.createLinearGradient(0, 0, w, 0);
         grdWhite.addColorStop(0, 'rgb(255,255,255)');
-        grdWhite.addColorStop(1, 'transparent');
+        grdWhite.addColorStop(1, 'rgb(0,0,0,0)');
         ctx.fillStyle = grdWhite;
         ctx.fillRect(0, 0, w, h);
         const grdBlack = ctx.createLinearGradient(0, 0, 0, h);
-        grdBlack.addColorStop(0, 'transparent');
+        grdBlack.addColorStop(0, 'rgb(0,0,0,0)');
         grdBlack.addColorStop(1, 'rgb(0,0,0)');
         ctx.fillStyle = grdBlack;
         ctx.fillRect(0, 0, w, h);
