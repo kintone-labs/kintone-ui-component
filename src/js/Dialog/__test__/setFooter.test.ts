@@ -19,8 +19,16 @@ describe('Unit test Dialog setFooter', () => {
 
   test('Function setFooter and getFooter run correctly', () => {
     const myDialog = new Dialog({footer: 'footer 1'});
-    myDialog.setFooter('footer 2');
-    expect(myDialog.getFooter()).toEqual('footer 2');
+    const NEW_FOOTER = 'footer 2';
+    myDialog.setFooter(NEW_FOOTER);
+    expect(myDialog.getFooter()).toEqual(NEW_FOOTER);
+
+    // Verify footer DOM
+    const container = myDialog.render();
+    const footerDOM = container.getElementsByClassName('kuc-dialog-footer');
+    expect(footerDOM.length).toEqual(1);
+    expect(footerDOM[0]).toBeInstanceOf(HTMLDivElement);
+    expect(footerDOM[0].innerHTML).toEqual(NEW_FOOTER);
   });
 
   test('setFooter throw error with invalid footer', () => {

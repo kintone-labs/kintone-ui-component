@@ -16,24 +16,21 @@ describe('Unit test TextArea react', () => {
 
   test('Render successfully with props value', () => {
     const {container} = render(<TextArea value="success" />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-textarea-outer');
   });
 
   test('Render successfully without props', () => {
     const {container} = render(<TextArea />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-textarea-outer');
   });
   test('Render successfully without props', () => {
     const {container} = render(<TextArea value="success" isDisabled={false} />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-textarea-outer');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('kuc-textarea-outer');
   });
-  
+
   test('Render with props invisible TextArea', () => {
     const {container} = render(<TextArea value="textarea" isVisible={false} />);
     expect(container).toBeEmpty();

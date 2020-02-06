@@ -28,8 +28,8 @@ describe('Unit test Label setText', () => {
   });
 
   test('setText successfully with full props Label component', () => {
-    const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: true, isRequired: true, isVisible: true, textColor: 'blue'});
+    const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: true, isVisible: true, textColor: 'blue'});
     label.setText('');
-    expect(label.render().textContent).toBe('*');
+    expect((label.render().firstElementChild as HTMLElement).textContent).toBe('');
   });
 });
