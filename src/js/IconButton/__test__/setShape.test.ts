@@ -2,22 +2,22 @@ import IconButton from '../index';
 
 describe('Unit test IconButton setShape', () => {
 
-  test('Function setShape normal run successfully', () => {
+  test('Function setShape square run successfully', () => {
     const iconButton = new IconButton({shape: 'circle'});
     const container = iconButton.render();
-    iconButton.setShape('normal');
-    expect(container.className).toContain('normal');
+    iconButton.setShape('square');
+    expect(container.className).toContain('square');
   });
 
   test('Function setType circle run successfully', () => {
-    const iconButton = new IconButton({shape: 'normal'});
+    const iconButton = new IconButton({shape: 'square'});
     const container = iconButton.render();
     iconButton.setShape('circle');
     expect(container.className).toContain('circle');
   });
 
   test('Function setShape run successfully with empty', () => {
-    const iconButton = new IconButton({shape: 'normal'});
+    const iconButton = new IconButton({shape: 'square'});
     const container = iconButton.render();
     // @ts-ignore
     iconButton.setShape('');
@@ -25,7 +25,7 @@ describe('Unit test IconButton setShape', () => {
   });
 
   test('Function setText run successfully with null', () => {
-    const iconButton = new IconButton({shape: 'normal'});
+    const iconButton = new IconButton({shape: 'square'});
     const container = iconButton.render();
     // @ts-ignore
     iconButton.setShape(null);
