@@ -27,7 +27,10 @@ describe('Unit test DateTime render', () => {
   });
   test('render successfully DateTime type date', () => {
     const datetime = new DateTime({type: 'date', locale: 'zh'});
-    expect(datetime.render().className).toBe('date-time-container');
+    const container = datetime.render();
+    expect(container.className).toBe('date-time-container');
+    expect(container.getElementsByClassName('date-container')[0]).toBeTruthy();
+    expect(container.getElementsByClassName('time-container')[0]).toBeFalsy();
   });
   test('render successfully DateTime type time', () => {
     const datetime = new DateTime({type: 'time'});
@@ -35,7 +38,11 @@ describe('Unit test DateTime render', () => {
   });
   test('render successfully DateTime type time with isDisable', () => {
     const datetime = new DateTime({type: 'time', isDisabled: true});
-    expect(datetime.render().className).toBe('date-time-container');
+    const container = datetime.render();
+    expect(container.className).toBe('date-time-container');
+    expect(container.getElementsByClassName('date-container')[0]).toBeFalsy();
+    expect(container.getElementsByClassName('time-container')[0]).toBeTruthy();
+    expect(container.getElementsByClassName('kuc-input-text text-input time')[0]).toBeDisabled();
   });
 
   test('render throws error DateTime', () => {
