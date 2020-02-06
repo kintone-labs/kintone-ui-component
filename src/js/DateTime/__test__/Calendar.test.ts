@@ -45,14 +45,23 @@ describe('Unit test Calendar render', () => {
     expect(newFirstDay.textContent).toBe('1');
   });
   test('onClick Today Button Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
-    calendar.render();
-    const span = calendar.render().getElementsByClassName('today calendar-button-control')[0];
+    const mockFn = jest.fn((date: Date | null) => {
+      const expectToday = new Date();
+      expect(date!.getDate()).toBe(expectToday.getDate());
+      expect(date!.getMonth()).toBe(expectToday.getMonth());
+      expect(date!.getFullYear()).toBe(expectToday.getFullYear());
+    });
+    const calendar = new Calendar({
+      isVisible: true,
+      isDisabled: false,
+      date: new Date('02/05/2020'),
+      locale: Locale.zh,
+      onDateClick: mockFn
+    });
+    const container = calendar.render();
+    const span = container.getElementsByClassName('today calendar-button-control')[0];
     fireEvent.click(span, {target: {onDateClick: new Date()}});
-
-    const expectToday = (new Date()).getDate();
-    const today = calendar.render().getElementsByClassName('day today selected')[0];
-    expect(today.textContent).toBe(`${expectToday}`);
+    expect(mockFn).toBeCalledTimes(1);
   });
   test('onClick None Button Calendar', () => {
     const mockFn = jest.fn((value: Date | null) => {
@@ -81,23 +90,9 @@ describe('Unit test Calendar render', () => {
   });
   test('onChangeCreateYearDropdown & renderDaysLabels Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    const container = calendar.render();
-    calendar._onChangeCreateYearDropdown('02/02/2019');
-    calendar._renderDaysLabels();
-    // console.log(container.getElementsByClassName('day')[0]);
-    
-    // const newFirstDay = container.getElementsByClassName('day')[0];
-    // expect(calendar._displayDate).toBe('29');
-  });
-
-  test('should run succuessfully when change year dropdown', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
     calendar.render();
-    const span = calendar.render().getElementsByClassName('today calendar-button-control')[0];
-    fireEvent.click(span, {target: {onDateClick: new Date()}});
-
-    const expectToday = (new Date()).getDate();
-    const today = calendar.render().getElementsByClassName('day today selected')[0];
-    expect(today.textContent).toBe(`${expectToday}`);
+    calendar._onChangeCreateYearDropdown('30/12/2019');
+    calendar._renderDaysLabels();
+    expect(true).toBeTruthy();
   });
 });
