@@ -21,45 +21,83 @@ describe('Unit test Calendar render', () => {
     expect(calendar.render().style.display).toBe('block');
   });
   test('onClick Pre Button Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    calendar.render();
-    const span = calendar.render().getElementsByClassName('prev calendar-button-control')[0];
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
+    const pickerContainer = calendar.render();
+
+    const oldFirstDay = pickerContainer.getElementsByClassName('day')[0];
+    expect(oldFirstDay.textContent).toBe('26');
+
+    const span = pickerContainer.getElementsByClassName('prev calendar-button-control')[0];
     fireEvent.click(span);
-    expect(true).toBeTruthy();
+    const newFirstDay = pickerContainer.getElementsByClassName('day')[0];
+    expect(newFirstDay.textContent).toBe('29');
   });
   test('onClick Next Button Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    calendar.render();
-    const span = calendar.render().getElementsByClassName('next calendar-button-control')[0];
+    const pickerContainer = calendar.render();
+
+    const oldFirstDay = pickerContainer.getElementsByClassName('day')[0];
+    expect(oldFirstDay.textContent).toBe('26');
+
+    const span = pickerContainer.getElementsByClassName('next calendar-button-control')[0];
     fireEvent.click(span);
-    expect(true).toBeTruthy();
+    const newFirstDay = pickerContainer.getElementsByClassName('day')[0];
+    expect(newFirstDay.textContent).toBe('1');
   });
   test('onClick Today Button Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
     calendar.render();
     const span = calendar.render().getElementsByClassName('today calendar-button-control')[0];
     fireEvent.click(span, {target: {onDateClick: new Date()}});
-    expect(true).toBeTruthy();
+
+    const expectToday = (new Date()).getDate();
+    const today = calendar.render().getElementsByClassName('day today selected')[0];
+    expect(today.textContent).toBe(`${expectToday}`);
   });
   test('onClick None Button Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
+    const mockFn = jest.fn((value: Date | null) => {
+      expect(value).toBeFalsy();
+    });
+    const calendar = new Calendar({isVisible: true,
+      isDisabled: false,
+      date: new Date(),
+      locale: Locale.zh,
+      onDateClick: mockFn
+    });
     calendar.render();
     const span = calendar.render().getElementsByClassName('none calendar-button-control')[0];
     fireEvent.click(span);
-    calendar.getValue();
-    expect(true).toBeTruthy();
+    expect(mockFn).toBeCalledTimes(1);
   });
   test('onBlur Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
+    const mockFn = jest.fn((e: FocusEvent) => {
+      expect(e).toBeTruthy();
+    });
+
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh, onClickOutside: mockFn});
     calendar.render();
-    fireEvent.blur(calendar.render(), {target: {onClickOutside: null}});
-    expect(true).toBeTruthy();
+    fireEvent.blur(calendar.render(), {target: calendar.render()});
+    expect(mockFn).toBeCalledTimes(1);
   });
   test('onChangeCreateYearDropdown & renderDaysLabels Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    calendar.render();
-    calendar._onChangeCreateYearDropdown('30/12/2019');
+    const container = calendar.render();
+    calendar._onChangeCreateYearDropdown('02/02/2019');
     calendar._renderDaysLabels();
-    expect(true).toBeTruthy();
+    // console.log(container.getElementsByClassName('day')[0]);
+    
+    // const newFirstDay = container.getElementsByClassName('day')[0];
+    // expect(calendar._displayDate).toBe('29');
+  });
+
+  test('should run succuessfully when change year dropdown', () => {
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
+    calendar.render();
+    const span = calendar.render().getElementsByClassName('today calendar-button-control')[0];
+    fireEvent.click(span, {target: {onDateClick: new Date()}});
+
+    const expectToday = (new Date()).getDate();
+    const today = calendar.render().getElementsByClassName('day today selected')[0];
+    expect(today.textContent).toBe(`${expectToday}`);
   });
 });

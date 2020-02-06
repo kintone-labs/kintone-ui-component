@@ -18,9 +18,8 @@ describe('Unit test DateTime react', () => {
 
   test('render without props DateTime', () => {
     const {container} = render(<DateTime />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
   test('render with full props DateTime', () => {
     const {container} = render(
@@ -34,9 +33,8 @@ describe('Unit test DateTime react', () => {
         isVisible
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
   test('render with format EE/d/M/Y H:m full props DateTime', () => {
     const {container} = render(
@@ -50,9 +48,8 @@ describe('Unit test DateTime react', () => {
         isVisible
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
   test('render with format EEEE/d/M/Y full props DateTime', () => {
     const {container} = render(
@@ -63,9 +60,8 @@ describe('Unit test DateTime react', () => {
         dateFormat="EEEE/d/M/Y"
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
 
   test('render with format calendartitle full props DateTime', () => {
@@ -77,9 +73,8 @@ describe('Unit test DateTime react', () => {
         dateFormat="calendartitle"
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
 
   test('render with props isVisible=false DateTime', () => {
@@ -91,8 +86,7 @@ describe('Unit test DateTime react', () => {
   test('render with wrong props DateTime', () => {
     // @ts-ignore
     const {container} = render(<DateTime value={new Date()} isDisabled="false" type="kintone" />);
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-time-container');
-    }
+    expect(container.firstElementChild).toBeTruthy();
+    expect(container.firstElementChild!.className).toBe('date-time-container');
   });
 });

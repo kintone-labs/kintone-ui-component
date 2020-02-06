@@ -3,6 +3,8 @@ import {render, fireEvent} from '@testing-library/react';
 import DateTime from '../index';
 import React from 'react';
 
+import Message from '../../../constant/Message';
+
 describe('Unit test DateTime react', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
@@ -165,26 +167,24 @@ describe('Unit test DateTime react', () => {
     fireEvent.keyDown(node, {key: 'ArrowDown', target: {selectionStart: 2, selectionEnd: 4}});
     fireEvent.keyDown(node, {key: 'ArrowDown', target: {selectionStart: 1, selectionEnd: 4}});
   });
-  test('throws error dateFormat timeFormat DateTime', () => {
-    const onChange = (value: Date) => {
-      expect(true);
-    };
-    const {container} = render(
+  test('should be show error when the dateFormat and timeFormat props is invalid', () => {
+    const {getByText} = render(
       <DateTime
         value={new Date()}
         type="datetime"
         dateFormat="aa/zz"
         timeFormat="dd:aa"
-        onChange={onChange}
       />
     );
-    const node = container.getElementsByClassName('kuc-input-text text-input')[0];
-    fireEvent.click(node, {target: {value: '04/10/2020'}});
+    expect(getByText(Message.datetime.INVALID_DATE)).toBeTruthy();
   });
   test('change value DateTime', () => {
-    const onChange = (value: Date) => {
-      expect(true);
-    };
+    const onChange = jest.fn((value: Date) => {
+      expect(value).toBeInstanceOf(Date);
+      expect(value.getUTCMonth()).toEqual(0);
+      expect(value.getUTCDate()).toEqual(18);
+      expect(value.getUTCFullYear()).toEqual(2020);
+    });
     const {container} = render(
       <DateTime
         value={new Date('Mon, 6 Jan 2020 08:02:00 GMT')}
@@ -194,5 +194,6 @@ describe('Unit test DateTime react', () => {
     );
     const day = container.getElementsByClassName('day')[20];
     fireEvent.click(day);
+    expect(onChange).toBeCalledTimes(1);
   });
 });

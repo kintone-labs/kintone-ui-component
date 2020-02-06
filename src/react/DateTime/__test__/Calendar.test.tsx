@@ -19,16 +19,33 @@ describe('Unit test Calendar react', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
     const {container} = render(
       <Calendar
-        date={new Date()}
+        date={new Date('05/02/2020')}
         locale={zh}
         pickerDisplay="none"
         hasSelection
         calRef={calendarRef}
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-picker-container');
-    }
+
+    const pickerContainer = container.firstElementChild;
+    expect(pickerContainer).toBeTruthy();
+    expect(pickerContainer!.className).toBe('date-picker-container');
+
+    // Check Prev, Next button
+    const headerControl = pickerContainer!.getElementsByClassName('month-year-container')[0];
+    expect(headerControl).toBeTruthy();
+    expect(headerControl.children).toHaveLength(3);
+    expect(headerControl.firstChild).toHaveClass('prev calendar-button-control');
+    expect(headerControl.children[1]).toHaveClass('kuc-calendar-dropdown-row');
+    expect(headerControl.lastChild).toHaveClass('next calendar-button-control');
+
+    // Check day
+    const dayContainer = pickerContainer!.getElementsByClassName('days-container')[0];
+    expect(dayContainer).toBeTruthy();
+    // days of week
+    expect(pickerContainer!.getElementsByClassName('wday-header')).toHaveLength(7);
+    // days of month
+    expect(pickerContainer!.getElementsByClassName('day calendar-button')).toHaveLength(35);
   });
   test('onEvent with full props Calendar', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
