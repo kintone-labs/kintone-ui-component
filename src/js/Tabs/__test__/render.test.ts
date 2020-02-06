@@ -71,7 +71,6 @@ describe('Unit test Tabs render', () => {
 
       // @ts-ignore
       const myTabs = new Tabs({items});
-      expect(myTabs).toBeUndefined();
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toBe(messages.MISSING_TAB_NAME.replace('{{index}}', '2'));
