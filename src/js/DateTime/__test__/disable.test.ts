@@ -16,7 +16,6 @@ describe('Unit test DateTime disable', () => {
   test('disable & enable successfully DateTime', () => {
     const datetime = new DateTime();
     const dateTextInput = datetime.render().getElementsByTagName('input')[0];
-    datetime.render();
     fireEvent.click(dateTextInput, {target: {value: null}});
     datetime.disable();
     expect(datetime.render().getAttribute('disabled')).toBe('true');

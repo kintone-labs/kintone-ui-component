@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Calendar from '../components/Calendar';
 import Locale from '../../../react/DateTime/components/Locale';
-import {fireEvent} from '@testing-library/dom';
+import {fireEvent, getAllByText} from '@testing-library/dom';
 
 describe('Unit test Calendar render', () => {
   beforeEach(() => {
@@ -16,9 +16,21 @@ describe('Unit test Calendar render', () => {
 
   test('render Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    calendar.render();
-    expect(calendar.render().className).toBe('date-picker-container');
-    expect(calendar.render().style.display).toBe('block');
+    const containerEl = calendar.render();
+    expect(containerEl.className).toBe('date-picker-container');
+    expect(containerEl.style.display).toBe('block');
+
+    const prevEl = containerEl.getElementsByClassName('prev calendar-button-control')[0];
+    expect(prevEl).toBeTruthy();
+
+    const nextEl = containerEl.getElementsByClassName('next calendar-button-control')[0];
+    expect(nextEl).toBeTruthy();
+
+    const todayEl = containerEl.getElementsByClassName('today calendar-button-control')[0];
+    expect(todayEl).toBeTruthy();
+
+    const noneEl = containerEl.getElementsByClassName('none calendar-button-control')[0];
+    expect(noneEl).toBeTruthy();
   });
   test('onClick Pre Button Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});

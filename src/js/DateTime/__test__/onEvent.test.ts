@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
 import {fireEvent} from '@testing-library/dom';
+import Message from '../../../constant/Message';
 
 describe('Unit test DateTime onEvent', () => {
   beforeEach(() => {
@@ -13,54 +14,68 @@ describe('Unit test DateTime onEvent', () => {
     console.error.mockRestore();
   });
 
-  test('onEvent successfully dateTextInput of DateTime', () => {
+  test('onEvent successfully dateTextInput of DateTime with date type', () => {
     const datetime = new DateTime({value: null, type: 'date'});
-    const dateTextInput = datetime.render().getElementsByTagName('input')[0];
-    datetime.render();
+    const container = datetime.render();
+    const dateTextInput = container.getElementsByTagName('input')[0];
     fireEvent.click(dateTextInput, {target: {value: null}});
     fireEvent.focus(dateTextInput, {target: {value: null}});
-    fireEvent.keyDown(dateTextInput, {key: 'Tab'});
+    expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: block;');
+
     fireEvent.blur(dateTextInput, {target: {value: null}});
-    expect(true).toBeTruthy();
+    expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: none;');
+  });
+
+  test('onEvent successfully dateTextInput of DateTime with datetime type', () => {
+    const datetime = new DateTime({value: new Date(), type: 'datetime'});
+    const container = datetime.render();
+    const dateTextInput = container.getElementsByTagName('input')[0];
+    fireEvent.click(dateTextInput, {target: {value: null}});
+    fireEvent.focus(dateTextInput, {target: {value: null}});
+    expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: block;');
+    fireEvent.keyDown(dateTextInput, {key: 'Tab'});
+    expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: none;');
+    // expect(container.getElementsByClassName('kuc-input-text text-input time')[0]).toHaveFocus();
   });
 
   test('_onCalendarDateClick successfully DateTime', () => {
-    const datetime = new DateTime({value: new Date()});
-    datetime.render();
+    const datetime = new DateTime({value: new Date('02/02/2020')});
+    const container = datetime.render();
     // @ts-ignore
-    datetime._onCalendarDateClick(new Date());
-    expect(true).toBeTruthy();
+    datetime._onCalendarDateClick(new Date('02/03/2020'));
+    expect(container.getElementsByTagName('input')[0]).toHaveValue('02/03/2020');
   });
 
   test('_onTimeClick successfully DateTime', () => {
     const datetime = new DateTime({value: new Date()});
-    datetime.render();
+    const container = datetime.render();
+    const date = new Date();
+    date.setHours(1);
+    date.setMinutes(30);
     // @ts-ignore
-    datetime._onTimeClick(new Date());
-    expect(true).toBeTruthy();
+    datetime._onTimeClick(date);
+    expect(container.getElementsByTagName('input')[1]).toHaveValue('01:30');
   });
-  test('_checkDateInputError throws error with dateFormat underfined DateTime', () => {
-    const datetime = new DateTime({dateFormat: undefined});
-    datetime.render();
-    // @ts-ignore
-    datetime._checkDateInputError();
-    expect(true).toBeTruthy();
-  });
-  test('_checkDateInputError throws error with dateFormat xx/yy DateTime ', () => {
+  test('error DOM should be displayed with dateFormat undefined', () => {
     const datetime = new DateTime({dateFormat: 'xx/yy'});
-    datetime.render();
+    const container = datetime.render();
     // @ts-ignore
     datetime._checkDateInputError();
-    expect(true).toBeTruthy();
+    expect(container.getElementsByClassName('label-error')[0]).toHaveStyle('display: block;');
+    expect(container.getElementsByClassName('label-error')[0].textContent).toBe(Message.datetime.INVALID_DATE);
   });
-  test('_changeHoursBy & _changeMinutesBy DateTime', () => {
-    const datetime = new DateTime();
-    datetime.render();
+  test('_changeHoursBy & _changeMinutesBy to work normally.', () => {
+    const date = new Date();
+    date.setHours(1);
+    date.setMinutes(30);
+
+    const datetime = new DateTime({value: date});
+    const container = datetime.render();
     // @ts-ignore
-    datetime._changeHoursBy(3);
+    datetime._changeHoursBy(1);
     // @ts-ignore
-    datetime._changeMinutesBy(45);
-    expect(true).toBeTruthy();
+    datetime._changeMinutesBy(30);
+    expect(container.getElementsByTagName('input')[1]).toHaveValue('03:00');
   });
   test('onEvent timeTextInput DateTime', () => {
     const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 18:40:00 GMT+7')});

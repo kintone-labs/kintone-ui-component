@@ -14,16 +14,30 @@ describe('Unit test Calendar render', () => {
   });
 
   test('onClick time item of TimePicker', () => {
-    const timePicker = new TimePicker({isVisible: true, isDisabled: false});
+    const mockFn = jest.fn((date: Date) => {
+      expect(date.getHours()).toBe(0);
+      expect(date.getMinutes()).toBe(30);
+    });
+    const timePicker = new TimePicker({
+      isVisible: true,
+      isDisabled: false,
+      onTimeClick: mockFn
+    });
     timePicker.render();
-    const span = timePicker.render().getElementsByClassName('kuc-time-list-item')[0];
+    const span = timePicker.render().getElementsByClassName('kuc-time-list-item')[1];
     fireEvent.click(span, {target: {onTimeClick: new Date()}});
     expect(true).toBeTruthy();
+    expect(mockFn).toBeCalledTimes(1);
   });
 
   test('render TimePicker', () => {
     const timePicker = new TimePicker({isVisible: true, isDisabled: true});
-    expect(timePicker.render().style.display).toBe('block');
-    expect(timePicker.render().className).toBe('time-picker-container');
+    const container = timePicker.render();
+    expect(container.style.display).toBe('block');
+    expect(container.className).toBe('time-picker-container');
+    const listTimeEl = container.getElementsByClassName('kuc-time-list-item');
+    expect(listTimeEl.length).toBe(48);
+    expect(listTimeEl[0].textContent).toBe('00:00');
+    expect(listTimeEl[47].textContent).toBe('23:30');
   });
 });
