@@ -22,7 +22,7 @@ describe('Unit test DateTime setValue', () => {
     const correctDateTime = '2020-05-10T04:13:00.000Z';
     const datetime = new DateTime({value: new Date('October 13, 2019 11:13:00'), type: 'datetime'});
     datetime.render();
-    datetime.setValue(new Date('May 10, 2020 11:13:00'));
+    datetime.setValue(new Date(correctDateTime));
     expect(datetime.getValue()).toStrictEqual(new Date(correctDateTime));
   });
 
@@ -42,7 +42,7 @@ describe('Unit test DateTime setValue', () => {
     expect(datetime.getValue()).toStrictEqual(date);
   });
 
-  test('setValue value underfined DateTime', () => {
+  test('tToday is set when setValue is called with null', () => {
     const datetime = new DateTime({value: undefined});
     datetime.render();
     const date = new Date();
@@ -50,7 +50,7 @@ describe('Unit test DateTime setValue', () => {
     expect(datetime.getValue()).toStrictEqual(date);
   });
 
-  test('setValue underfined DateTime', () => {
+  test('throw error when setValue is called with undefined', () => {
     try {
       const datetime = new DateTime();
       datetime.render();

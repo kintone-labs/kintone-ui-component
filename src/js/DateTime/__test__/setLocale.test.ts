@@ -17,11 +17,10 @@ describe('Unit test DateTime setLocale', () => {
   });
 
   test('setLocale type datetime DateTime', () => {
-    const correctDateTime = '2020-05-10T04:13:00.000Z';
     const datetime = new DateTime({value: new Date('October 13, 2019 11:13:00'), type: 'datetime'});
     datetime.render();
-    datetime.setValue(new Date('May 10, 2020 11:13:00'));
-    expect(datetime.getValue()).toStrictEqual(new Date(correctDateTime));
+    datetime.setLocale('ja');
+    expect(datetime.getLocale()).toBe('ja');
   });
 
   test('setLocale successfully DateTime', () => {
