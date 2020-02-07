@@ -53,37 +53,39 @@ describe('Unit test NotifyPopup react', () => {
     }
   });
   test('Render successfully with onClick event', () => {
+    let clickBL = false;
     const handleClick = (e: any) => {
       if (e.target) {
-        console.log(e.target.value);
-        expect(e.target.value).toBe('on click');
+        expect(clickBL).toBe(false);
+        clickBL = true;
       } else {
         expect(false);
       }
     };
-    const {container} = render(<NotifyPopup onClick={handleClick} />);
+    const {container} = render(<NotifyPopup text="testString" onClick={handleClick} />);
     if (container.firstElementChild) {
-      fireEvent.click(container.firstElementChild, {
-        target: {text: 'on click'}
-      });
+      expect(container.firstElementChild.children[0].className).toBe('kuc-notify-title');
+      fireEvent.click(container.firstElementChild.children[0]);
+      expect(clickBL).toBe(true);
     } else {
       expect(false);
     }
   });
   test('Render successfully with onClose event', () => {
+    let clickBL = false;
     const handleClick = (e: any) => {
       if (e.target) {
-        console.log(e.target.value);
-        expect(e.target.value).toBe('on close');
+        expect(clickBL).toBe(false);
+        clickBL = true;
       } else {
         expect(false);
       }
     };
-    const {container} = render(<NotifyPopup onClose={handleClick} />);
+    const {container} = render(<NotifyPopup text="testString" onClose={handleClick} />);
     if (container.firstElementChild) {
-      fireEvent.click(container.firstElementChild, {
-        target: {text: 'on close'}
-      });
+      expect(container.firstElementChild.children[1].className).toBe('kuc-close-button');
+      fireEvent.click(container.firstElementChild.children[1].children[0]);
+      expect(clickBL).toBe(true);
     } else {
       expect(false);
     }
