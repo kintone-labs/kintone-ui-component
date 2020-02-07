@@ -109,6 +109,7 @@ describe('Unit test MultipleChoice react', () => {
 
       const items = childEl.children;
       const item = items[0];
+      expect(item.classList.contains('kuc-list-item-disable')).toBe(false);
       if (!item.children || item.children.length !== 2) {
         expect(false);
       }

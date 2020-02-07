@@ -47,7 +47,7 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
         selected={isSelected}
         onClick={() => _handleItemClick(item.value)}
         item={item}
-        isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
+        isDisabled={props.isDisabled === true ? props.isDisabled : item.isDisabled}
       />
     );
   });

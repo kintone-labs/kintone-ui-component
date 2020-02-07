@@ -88,7 +88,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
   }
 
   setValue(value: string[]): void {
-    if (!value || !Array.isArray(value)) {
+    if (!Array.isArray(value)) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     const validationErr = this._validator(this._props.items, value);
