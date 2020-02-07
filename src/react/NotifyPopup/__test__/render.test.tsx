@@ -64,7 +64,6 @@ describe('Unit test NotifyPopup react', () => {
     };
     const {container} = render(<NotifyPopup text="testString" onClick={handleClick} />);
     if (container.firstElementChild) {
-      expect(container.firstElementChild.children[0].className).toBe('kuc-notify-title');
       fireEvent.click(container.firstElementChild.children[0]);
       expect(clickBL).toBe(true);
     } else {
@@ -83,7 +82,6 @@ describe('Unit test NotifyPopup react', () => {
     };
     const {container} = render(<NotifyPopup text="testString" onClose={handleClick} />);
     if (container.firstElementChild) {
-      expect(container.firstElementChild.children[1].className).toBe('kuc-close-button');
       fireEvent.click(container.firstElementChild.children[1].children[0]);
       expect(clickBL).toBe(true);
     } else {
