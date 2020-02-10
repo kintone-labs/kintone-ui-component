@@ -13,7 +13,7 @@ type item = {
 };
 
 type DropdownProps = ControlProps & {
-  value?: string;
+  value?: string | null;
   items?: item[];
   onChange?: (params?: any) => void;
   listItemsShown?: (params?: any) => void;
@@ -47,7 +47,7 @@ class Dropdown extends Control<DropdownProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value);
+    const validationErr = this._validator(this._props.items, this._props.value!);
     if (validationErr) {
       throw new Error(validationErr);
     }
@@ -269,6 +269,12 @@ class Dropdown extends Control<DropdownProps> {
   removeItem(index: number) {
     if (this._props.items && this._props.items.length <= index) {
       return false;
+    }
+    if (this._props.items
+      && typeof index === 'number'
+      && this._props.items[index].value === this._props.value) {
+      this._props.value = null;
+      this.label = '';
     }
     this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);

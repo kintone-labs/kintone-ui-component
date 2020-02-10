@@ -45,9 +45,7 @@ describe('Unit test Dropdown removeItem', () => {
         isDisabled: true
       }
     ]);
-    // そもそもundifinedなのが適切なのかは要検討。
-    // removeItemがvalueに含まれている場合の処理が記載されていない
-    // expect(dropdown.getValue()).toBe(undefined);
+    expect(dropdown.getValue()).toBe(null);
   });
 
   test('Function removeItem run with invalid index', () => {
@@ -71,7 +69,6 @@ describe('Unit test Dropdown removeItem', () => {
       ],
       value: expectedValues[1]
     });
-    // number以外を入れた時、おそらく0で処理されている。ここはエラーを吐かなくていいのか要検討？
     // @ts-ignore
     dropdown.removeItem('abc');
   });
@@ -97,7 +94,6 @@ describe('Unit test Dropdown removeItem', () => {
       ],
       value: expectedValues[1]
     });
-    // 返り値として、falseを返している。理由は不明
     dropdown.removeItem(5);
     expect(dropdown.getItems()).toEqual([
       {
