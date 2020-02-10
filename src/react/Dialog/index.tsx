@@ -44,7 +44,7 @@ const Dialog = ({header = '', content = '', footer = '', isVisible = true, showC
       <div className="kuc-dialog-wrapper">
         <div className="kuc-dialog-header">
           {
-            header
+            (header) ? header : <span />
           }
           {
             (showCloseButton) ?
