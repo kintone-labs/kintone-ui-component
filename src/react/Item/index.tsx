@@ -23,7 +23,7 @@ type ItemProps = {
 
 const Item = (props: ItemProps) => {
   const _onClick = () => {
-    if (props.isDisabled) {
+    if (props.isDisabled === true) {
       return false;
     }
     props.onClick && props.onClick(props.item);
@@ -31,7 +31,7 @@ const Item = (props: ItemProps) => {
   };
 
   const _onChange = () => {
-    if (props.isDisabled) {
+    if (props.isDisabled === true) {
       return false;
     }
     props.onChange && props.onChange(props.item);
@@ -55,7 +55,7 @@ const Item = (props: ItemProps) => {
         <input
           name={props.name}
           id={id}
-          disabled={props.isDisabled}
+          disabled={props.isDisabled === true}
           type={props.type}
           checked={props.selected}
           onChange={_onChange}
@@ -67,7 +67,7 @@ const Item = (props: ItemProps) => {
   }
   const className = ['kuc-list-item',
     props.selected ? 'kuc-list-item-selected' : '',
-    props.isDisabled ? 'kuc-list-item-disable' : ''
+    props.isDisabled === true ? 'kuc-list-item-disable' : ''
   ];
   return (
     <div onClick={_onClick} className={className.join(' ').trim()} role="presentation">

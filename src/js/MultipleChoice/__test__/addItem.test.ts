@@ -52,8 +52,6 @@ describe('Unit test MultipleChoice addItem', () => {
     }).toThrowError();
   });
 
-  // * Found an implementation bug here
-  // * Error response omission
   test('Throw error without item.value', () => {
     expect(() => {
       const multipleChoice = new MultipleChoice();

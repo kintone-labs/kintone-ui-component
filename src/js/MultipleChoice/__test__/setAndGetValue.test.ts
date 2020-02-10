@@ -49,14 +49,11 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
     }
   });
 
-  // * Found an implementation bug here
-  // * Error response omission
   test('Throw error without value', () => {
     expect(() => {
       const multipleChoice = new MultipleChoice();
       // @ts-ignore
       multipleChoice.setValue(null);
-      // No error occurs event if the value of required item is specified as null
     }).toThrowError();
   });
 
