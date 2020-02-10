@@ -20,7 +20,9 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
   const h = props.height;
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
-  const container = useCallback((element: HTMLDivElement) => {setContainerEl(element.getBoundingClientRect())}, []);
+  const container = useCallback((element: HTMLDivElement) => {
+    setContainerEl(element.getBoundingClientRect());
+  }, []);
   const satCanvas = useRef<HTMLCanvasElement>(null);
 
   function fillSatSpectrumCanvas() {
@@ -62,13 +64,13 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
   }
 
   function handleMouseUp(e: React.MouseEvent<EventTarget>) {
-    triggerSelect(e.clientX, e.clientY);
+    triggerSelect(e.pageX, e.pageY);
     setIsMouseDown(false);
   }
 
   function handleMouseMove(e: React.MouseEvent<EventTarget>) {
     if (isMouseDown) {
-      triggerSelect(e.clientX, e.clientY);
+      triggerSelect(e.pageX, e.pageY);
     }
   }
 
