@@ -1,4 +1,5 @@
 import Dropdown from '../index';
+import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Dropdown render', () => {
 
@@ -86,6 +87,19 @@ describe('Unit test Dropdown render', () => {
     expect(container.classList.length).toBe(1);
     expect(container.getAttribute('disabled')).toBe(null);
     expect(container).toBeVisible();
+  });
+
+  test('Render successfully with showing and hiding outer', () => {
+    const dropdown = new Dropdown({});
+    const container = dropdown.render();
+
+    const subcontainer = container.querySelector('.kuc-dropdown-sub-container') as HTMLDivElement;
+    const outer = container.querySelector('.kuc-dropdown') as HTMLDivElement;
+    const itemsEl = container.querySelector('.kuc-list-outer') as HTMLDivElement;
+    fireEvent.click(outer);
+    expect(itemsEl).toBeVisible();
+    fireEvent.blur(subcontainer);
+    expect(itemsEl).not.toBeVisible();
   });
 
   test('throw error with invalid option.value', () => {

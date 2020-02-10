@@ -77,6 +77,27 @@ describe('Unit test Dropdown react', () => {
     expect(childEl).toBeVisible();
   });
 
+  test('Render successfully with showing outer', () => {
+    const {container} = render(<Dropdown />);
+    const childEl = container.firstElementChild!;
+    const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
+    const itemsEl = childEl.querySelector('.kuc-list-outer') as HTMLDivElement;
+    fireEvent.click(dropdownOuterEl);
+    expect(itemsEl.getAttribute('style')).toContain('display: block');
+  });
+
+  test('Render successfully with hiding outer', () => {
+    const {container} = render(<Dropdown />);
+    const childEl = container.firstElementChild!;
+    const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
+    const itemsEl = childEl.querySelector('.kuc-list-outer') as HTMLDivElement;
+    const body = document.body;
+
+    fireEvent.click(dropdownOuterEl);
+    fireEvent.mouseDown(body);
+    expect(itemsEl).not.toBeVisible();
+  });
+
   test('Render successfully with onChange for selected', () => {
     const expectedItems = [
       {
