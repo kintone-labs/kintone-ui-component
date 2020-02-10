@@ -20,12 +20,21 @@ const _hasDuplicatedItems = (items?: items) => {
   return !isUnique;
 };
 
+const _hasValidItems = (items?: items) => {
+  if (!items) {
+    return true;
+  }
+  return Array.isArray(items) && items.every((item: item) => {
+    return item.value !== undefined;
+  });
+};
+
 const _hasValidValue = (items?: items, value?: string) => {
-  if (value === undefined) {
+  if (!value) {
     return true;
   }
   return items && items.some(item => {
     return item.value === value;
   });
 };
-export default {_hasDuplicatedItems, _hasValidValue};
+export default {_hasDuplicatedItems, _hasValidItems, _hasValidValue};

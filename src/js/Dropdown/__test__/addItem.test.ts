@@ -58,8 +58,6 @@ describe('Unit test Dropdown addItem', () => {
         label: expectedLabels[0],
         isDisabled: true
       });
-      // 必須項目のvalueを省略してもエラーが発生しない
-      // ここエラーが発生する。
     }).toThrowError();
   });
 

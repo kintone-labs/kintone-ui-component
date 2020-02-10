@@ -80,7 +80,7 @@ class Dropdown extends Control<DropdownProps> {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
     this.listOuterEl.setAttribute('style', `margin-top: ${this._caclListOuterPosition()}px`);
-    
+
     this._props.listItemsShown && this._props.listItemsShown(e);
   }
 
@@ -88,7 +88,7 @@ class Dropdown extends Control<DropdownProps> {
     let position = -6;
     const currentPosition = this.listOuterEl.offsetTop + this.listOuterEl.offsetHeight;
     if (currentPosition >= window.innerHeight) {
-      position = position - (this.listOuterEl.offsetHeight + this.element.offsetHeight);
+      position -= (this.listOuterEl.offsetHeight + this.element.offsetHeight);
     }
     return position;
   }
@@ -192,9 +192,7 @@ class Dropdown extends Control<DropdownProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value &&
-      !AbstractSingleSelection._hasValidValue(items, value)
-    ) {
+    if (!AbstractSingleSelection._hasValidValue(items, value) || !AbstractSingleSelection._hasValidItems(items)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;

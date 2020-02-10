@@ -41,9 +41,6 @@ describe('Unit test Dropdown render', () => {
     const container = dropdown.render();
     expect(container.className).toBe('kuc-dropdown-container');
     expect(container.classList.length).toBe(1);
-    // 具体的にどこでこの処理が挟まれているのか謎。いずれ追求する。
-    // 子要素のDisabledの検証を行うためにfalseで設定。別途trueの処理は挟んだほうがいいかもしれん
-    // expect(container.getAttribute('disabled')).toBe('true');
     expect(container.getAttribute('disabled')).toBe(null);
     expect(container).not.toBeVisible();
 
@@ -61,16 +58,12 @@ describe('Unit test Dropdown render', () => {
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
 
-      // 選択されているのかどうか
       if (i === 1) {
         expect(itemEl.classList.contains('kuc-list-item-selected')).toBe(true);
       } else {
         expect(itemEl.classList.contains('kuc-list-item-selected')).toBe(false);
       }
 
-      // diableになっているのかどうか
-      // 全体のプロパティがdisabledの場合、子要素もdisabledになる。
-      // むしろ全体のプロパティの方が優先される
       if (i === 0) {
         expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(false);
       } else {
@@ -84,6 +77,7 @@ describe('Unit test Dropdown render', () => {
     // 不正な値を設定した場合はデフォルト値がセットされることを確認する
     // @ts-ignore
     const dropdown = new Dropdown({
+      items: 0,
       isDisabled: 'abc',
       isVisible: 'abc'
     });
@@ -92,15 +86,6 @@ describe('Unit test Dropdown render', () => {
     expect(container.classList.length).toBe(1);
     expect(container.getAttribute('disabled')).toBe(null);
     expect(container).toBeVisible();
-  });
-
-  test('throw error with invalid option.items', () => {
-    expect(() => {
-      // @ts-ignore
-      new Dropdown({
-        items: null
-      });
-    }).toThrowError();
   });
 
   test('throw error with invalid option.value', () => {

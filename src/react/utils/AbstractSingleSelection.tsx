@@ -26,6 +26,15 @@ const _hasDuplicatedItems = (items?: items) => {
   return !isUnique;
 };
 
+const _hasValidItems = (items?: items) => {
+  if (items === undefined) {
+    return true;
+  }
+  return Array.isArray(items) && items.every((item: item) => {
+    return item.value !== undefined;
+  });
+};
+
 const _hasValidValue = (items?: items, value?: string) => {
   if (value === undefined) {
     return true;
@@ -34,4 +43,4 @@ const _hasValidValue = (items?: items, value?: string) => {
     return item.value === value;
   });
 };
-export default {_handleItemClick, _hasDuplicatedItems, _hasValidValue};
+export default {_handleItemClick, _hasDuplicatedItems, _hasValidItems, _hasValidValue};

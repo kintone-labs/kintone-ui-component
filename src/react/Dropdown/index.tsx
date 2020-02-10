@@ -21,22 +21,22 @@ type DropdownProps = {
 const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
+  const {_hasDuplicatedItems, _hasValidItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
 
   const _caclListOuterPosition = (listItemEl: HTMLDivElement) => {
     let position = -6;
     const currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
 
-    const parentEl = ref.current || document.createElement("div");
+    const parentEl = ref.current || document.createElement('div');
     if (currentPosition >= window.innerHeight) {
-      position = position - (listItemEl.offsetHeight + parentEl.offsetHeight);
+      position -= (listItemEl.offsetHeight + parentEl.offsetHeight);
     }
     return position;
-  }
+  };
 
   const _showItems = (e: React.MouseEvent) => {
     setVisibleItems(!isVisibleItems);
-    const element = ref.current || document.createElement("div");
+    const element = ref.current || document.createElement('div');
     const listItemEl = element.getElementsByClassName('kuc-list-outer')[0] as HTMLDivElement;
     listItemEl.setAttribute('style', `display: block;`);
     listItemEl.setAttribute('style', `margin-top: ${_caclListOuterPosition(listItemEl)}px;`);
@@ -68,8 +68,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   if (_hasDuplicatedItems(items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
-
-  if (!_hasValidValue(items, value)) {
+  if (!_hasValidItems(items) || !_hasValidValue(items, value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
