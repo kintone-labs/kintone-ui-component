@@ -71,9 +71,21 @@ export default function Picker(props: PickerProps) {
         <HueSpectrum width={30} height={200} onSelect={handleHue} />
       </div>
       <div style={PickerStyle.inputContainer}>
-        <RGBInput rgb={rgb} onChange={props.onChange} />
+        <RGBInput
+          rgb={rgb}
+          onChange={(newHexString: string) => {
+            setSaturationBackground(hexToRgb(newHexString));
+            props.onChange(newHexString);
+          }}
+        />
         <br />
-        <HSVInput hsv={hsv} onChange={props.onChange} />
+        <HSVInput
+          hsv={hsv}
+          onChange={(newHexString: string) => {
+            setSaturationBackground(hexToRgb(newHexString));
+            props.onChange(newHexString);
+          }}
+        />
       </div>
       <div>
         <Button
