@@ -35,7 +35,6 @@ describe('Unit test DateTime onEvent', () => {
     expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: block;');
     fireEvent.keyDown(dateTextInput, {key: 'Tab'});
     expect(container.getElementsByClassName('date-picker-container')[0]).toHaveStyle('display: none;');
-    // expect(container.getElementsByClassName('kuc-input-text text-input time')[0]).toHaveFocus();
   });
 
   test('_onCalendarDateClick successfully DateTime', () => {
@@ -77,42 +76,108 @@ describe('Unit test DateTime onEvent', () => {
     datetime._changeMinutesBy(30);
     expect(container.getElementsByTagName('input')[1]).toHaveValue('03:00');
   });
-  test('onEvent timeTextInput DateTime', () => {
+
+  test('should selected range successfully inside the Time input when pressing Tab button', (done) => {
+    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
     const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 18:40:00 GMT+7')});
-    const time = datetime.render().getElementsByClassName('kuc-input-text text-input time')[0];
-    datetime.render();
-    fireEvent.click(time, {target: {selectionStart: 2}});
-    fireEvent.focus(time, {target: {selectionStart: 4, selectionEnd: 2}});
-    fireEvent.keyDown(time);
-    fireEvent.keyDown(time, {key: 'Tab'});
-    fireEvent.keyDown(time, {key: 'kintone'});
-    fireEvent.keyDown(time, {key: 'ArrowLeft'});
-    fireEvent.keyDown(time, {key: 'ArrowRight'});
-    fireEvent.keyDown(time, {key: 'ArrowUp'});
-    fireEvent.keyDown(time, {key: 'ArrowDown'});
-    // @ts-ignore
-    datetime._setTimeValueOnInput(9);
-    fireEvent.keyDown(time, {keyCode: 100, target: {selectionStart: 4}});
-    // @ts-ignore
-    datetime._setTimeValueOnInput(17);
-    fireEvent.keyDown(time, {keyCode: 100, target: {selectionStart: 1}});
-    fireEvent.keyDown(time, {keyCode: 48, target: {selectionStart: 1}});
-    fireEvent.blur(time);
-    fireEvent.blur(time, {relatedTarget: null});
-    // @ts-ignore
-    datetime._setTimeValueOnInput('kintone');
-    expect(true).toBeTruthy();
+    const container = datetime.render();
+    const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
+    fireEvent.focus(node);
+    setTimeout(()=>{
+      expect(mockFn).toBeCalledWith(0, 2);
+      done();
+    }, 1);
+    fireEvent.keyDown(node, {key: 'Tab', code: 9});
+    expect(mockFn).toBeCalledWith(3, 5);
   });
 
-  test('onEvent dateTextInput throws error DateTime', () => {
-    const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 08:2:00 GMT')});
+  test('should display invalid hour:minutes when typing invalid value into Time input', () => {
+    const invlaidvalue = 'kintone';
+    const onChange = jest.fn(()=> {});
+
+    const today = new Date();
+    today.setHours(4);
+    today.setSeconds(0);
+    today.setMinutes(0);
+    today.setMilliseconds(0);
+    const datetime = new DateTime({
+      type: 'time',
+      value: today,
+      onChange: onChange
+    });
+    const container = datetime.render();
+    const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
+    fireEvent.focus(node);
+    fireEvent.change(node, {target: {value: invlaidvalue}});
+    expect(node).toHaveValue(invlaidvalue);
+
+    fireEvent.keyDown(node, {key: 'Tab', code: 9});
+    fireEvent.change(node, {target: {value: invlaidvalue}});
+    expect(node).toHaveValue(invlaidvalue);
+  });
+
+  test('should selected range successfully inside the Time input when pressing Arrow Right/Left button', () => {
+    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
+
+    const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 18:40:00 GMT+7')});
+    const container = datetime.render();
+    const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
+    fireEvent.focus(node);
+    fireEvent.keyDown(node, {key: 'ArrowRight'});
+    expect(mockFn).toHaveBeenNthCalledWith(1, 3, 5);
+
+    fireEvent.keyDown(node, {key: 'ArrowLeft'});
+    expect(mockFn).toHaveBeenNthCalledWith(2, 0, 2);
+  });
+
+  test('should change time successfully when pressing Arrow Up/Down button', () => {
+    const date = new Date();
+    date.setHours(4);
+    date.setSeconds(0);
+    date.setMinutes(0);
+    date.setMilliseconds(0);
+
+    const updateHourUp = new Date();
+    updateHourUp.setHours(5);
+    updateHourUp.setSeconds(0);
+    updateHourUp.setMinutes(0);
+    updateHourUp.setMilliseconds(0);
+
+    const updateTimeUp = new Date();
+    updateTimeUp.setHours(4);
+    updateTimeUp.setSeconds(0);
+    updateTimeUp.setMinutes(1);
+    updateTimeUp.setMilliseconds(0);
+
+    const onchange = jest.fn((value: Date) => {console.log(value, value.getHours(), value.getMinutes());
+    });
+    const datetime = new DateTime({
+      type: 'time',
+      value: date,
+      onChange: onchange
+    });
+    const container = datetime.render();
+    const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
+    fireEvent.focus(node);
+    fireEvent.keyDown(node, {key: 'ArrowUp'});
+    expect(node).toHaveValue('05:00');
+    fireEvent.keyDown(node, {key: 'ArrowDown'});
+    expect(node).toHaveValue('04:00');
+
+    fireEvent.keyDown(node, {key: 'Tab'});
+    fireEvent.keyDown(node, {key: 'ArrowUp'});
+    expect(node).toHaveValue('04:01');
+    fireEvent.keyDown(node, {key: 'ArrowDown'});
+    expect(node).toHaveValue('04:00');
+  });
+
+  test('should change time successfully when pressing a day button', () => {
+    const datetime = new DateTime({type: 'time', value: new Date('02/05/2020')});
     const datetimeRender = datetime.render();
     const timePicker = datetimeRender.getElementsByClassName('kuc-time-list-item');
-    const time = datetimeRender.getElementsByClassName('kuc-input-text text-input time')[0];
-    fireEvent.click(time, {target: {selectionStart: 4}});
-    fireEvent.click(timePicker[30]);
-    fireEvent.click(time, {target: {selectionStart: 3}});
-    fireEvent.click(timePicker[5]);
-    expect(true).toBeTruthy();
+    const timeBtn = datetimeRender.getElementsByClassName('kuc-input-text text-input time')[0];
+    fireEvent.click(timeBtn);
+    fireEvent.click(timePicker[0]);
+    expect(timeBtn).toHaveValue('00:00');
   });
 });
