@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, getByLabelText} from '@testing-library/react';
 import Calendar from '../components/Calendar';
 import React, {createRef} from 'react';
 import {zh, en} from '../components/Locale';
@@ -47,11 +47,11 @@ describe('Unit test Calendar react', () => {
     // days of month
     expect(pickerContainer!.getElementsByClassName('day calendar-button')).toHaveLength(35);
   });
-  test('onEvent with full props Calendar', () => {
+  test('should render calendar successfully when clicking into Prev/Next button', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
     const {container} = render(
       <Calendar
-        date={new Date()}
+        date={new Date('05/02/2020')}
         locale={en}
         pickerDisplay="none"
         hasSelection
@@ -61,53 +61,83 @@ describe('Unit test Calendar react', () => {
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('date-picker-container');
     }
+    const listDaybtn = container.getElementsByClassName('day calendar-button');
+    expect(listDaybtn[0]).toHaveTextContent('26');
+
     fireEvent.mouseDown(container);
     const node = container.getElementsByClassName('date-picker-container')[0];
     fireEvent.blur(node);
     const prevBtn = container.getElementsByClassName('prev calendar-button-control')[0];
     fireEvent.click(prevBtn);
-    fireEvent.keyUp(prevBtn);
+    expect(listDaybtn[0]).toHaveTextContent('29');
 
     const nextBtn = container.getElementsByClassName('next calendar-button-control')[0];
     fireEvent.click(nextBtn);
-    fireEvent.keyUp(nextBtn);
-
-    const dayItem = container.getElementsByClassName('day')[10];
-    fireEvent.keyUp(dayItem);
-
-    const todayBtn = container.getElementsByClassName('today calendar-button-control')[0];
-    fireEvent.keyUp(todayBtn);
-    const noneBtn = container.getElementsByClassName('none calendar-button-control')[0];
-    fireEvent.keyUp(noneBtn);
-
-    const monthDropdown = container.getElementsByClassName('kuc-dropdown-sub-container')[0];
-    const selectedMonth = monthDropdown.getElementsByClassName('kuc-list-item')[2];
-    const yearDropdown = container.getElementsByClassName('kuc-dropdown-sub-container')[1];
-    const selectedYear = yearDropdown.getElementsByClassName('kuc-list-item')[2];
-    fireEvent.click(selectedMonth);
-    fireEvent.click(selectedYear);
+    expect(listDaybtn[0]).toHaveTextContent('26');
   });
 
-  test('onClick dropdown with locale zh with full props Calendar', () => {
+  test('should update Date calendar successfully when clicking days button', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+    const mockFn = jest.fn((date: Date)=> {
+      expect(date.getDate()).toBe(6);
+    });
     const {container} = render(
       <Calendar
-        date={new Date()}
-        locale={zh}
+        date={new Date('05/02/2020')}
+        locale={en}
         pickerDisplay="none"
         hasSelection
         calRef={calendarRef}
+        onDateClick={mockFn}
       />
     );
-    if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('date-picker-container');
-    }
-    const monthDropdown = container.getElementsByClassName('kuc-dropdown-sub-container')[0];
-    const selectedMonth = monthDropdown.getElementsByClassName('kuc-list-item')[2];
-    const yearDropdown = container.getElementsByClassName('kuc-dropdown-sub-container')[1];
-    const selectedYear = yearDropdown.getElementsByClassName('kuc-list-item')[2];
-    fireEvent.click(selectedMonth);
-    fireEvent.click(selectedYear);
+    const dayItem = container.getElementsByClassName('day')[10];
+    fireEvent.keyUp(dayItem);
+    expect(mockFn).toBeCalledTimes(1);
+  });
+
+  test('should update Date calendar successfully when clicking days button', () => {
+    const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+    const mockFn = jest.fn((date: Date)=> {
+      const today = new Date();
+      expect(date.getDate()).toBe(today.getDate());
+    });
+    const {container} = render(
+      <Calendar
+        date={new Date('05/02/2020')}
+        locale={en}
+        pickerDisplay="none"
+        hasSelection
+        calRef={calendarRef}
+        onDateClick={mockFn}
+      />
+    );
+    const todayBtn = container.getElementsByClassName('today calendar-button-control')[0];
+    fireEvent.keyUp(todayBtn);
+    expect(mockFn).toBeCalledTimes(1);
+  });
+
+  test('should update Date calendar successfully when clicking Month/Year Dropdown', () => {
+    const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+    const {container} = render(
+      <Calendar
+        date={new Date('05/02/2020')}
+        locale={en}
+        pickerDisplay="none"
+        hasSelection
+        calRef={calendarRef}
+        onDateClick={()=>{}}
+      />
+    );
+    const listDaybtn = container.getElementsByClassName('day calendar-button');
+    expect(listDaybtn[0]).toHaveTextContent('26');
+
+    const yearEl = container.getElementsByClassName('kuc-list-item kuc-list-item-selected')[1].nextElementSibling!;
+    fireEvent.click(yearEl);
+    expect(listDaybtn[0]).toHaveTextContent('25');
+    const monthEl = container.getElementsByClassName('kuc-list-item kuc-list-item-selected')[0].nextElementSibling!;
+    fireEvent.click(monthEl);
+    expect(listDaybtn[0]).toHaveTextContent('30');
   });
 
 });
