@@ -34,7 +34,10 @@ describe('Unit test DateTime render', () => {
   });
   test('render successfully DateTime type time', () => {
     const datetime = new DateTime({type: 'time'});
-    expect(datetime.render().className).toBe('date-time-container');
+    const container = datetime.render();
+    expect(container.className).toBe('date-time-container');
+    expect(container.getElementsByClassName('date-container')[0]).toBeFalsy();
+    expect(container.getElementsByClassName('time-container')[0]).toBeTruthy();
   });
   test('render successfully DateTime type time with isDisable', () => {
     const datetime = new DateTime({type: 'time', isDisabled: true});

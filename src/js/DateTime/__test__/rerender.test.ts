@@ -15,30 +15,11 @@ describe('Unit test DateTime rerender', () => {
   test('rerender dateTextInput dateFormat d/MM/YYY DateTime', () => {
     try {
       const datetime = new DateTime({dateFormat: 'd/MM/YYY'});
+      const container = datetime.render();
       datetime.rerender(['dateTextInput']);
-      expect(true).toBeTruthy();
+      expect(container.getElementsByClassName('label-error')[0]).toHaveStyle('display: block;');
     } catch (error) {
-      expect(false);
-    }
-  });
-
-  test('rerender timeTextInput DateTime', () => {
-    try {
-      const datetime = new DateTime({value: new Date(), type: 'time'});
-      datetime.rerender(['timeTextInput']);
-      expect(true).toBeTruthy();
-    } catch (error) {
-      expect(false);
-    }
-  });
-
-  test('rerender timeTextInput with dateFormat d/Mm/yYY HH:mm DateTime', () => {
-    try {
-      const datetime = new DateTime({dateFormat: 'd/Mm/yYY HH:mm'});
-      datetime.rerender(['timeTextInput']);
-      expect(true).toBeTruthy();
-    } catch (error) {
-      expect(false);
+      expect(error).toBeFalsy();
     }
   });
 });

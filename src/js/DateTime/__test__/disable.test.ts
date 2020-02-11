@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
-import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test DateTime disable', () => {
   beforeEach(() => {
@@ -15,11 +14,10 @@ describe('Unit test DateTime disable', () => {
 
   test('disable & enable successfully DateTime', () => {
     const datetime = new DateTime();
-    const dateTextInput = datetime.render().getElementsByTagName('input')[0];
-    fireEvent.click(dateTextInput, {target: {value: null}});
+    const container = datetime.render();
     datetime.disable();
-    expect(datetime.render().getAttribute('disabled')).toBe('true');
+    expect(container.getElementsByClassName('kuc-input-text text-input')[0]).toBeDisabled();
     datetime.enable();
-    expect(datetime.render().getAttribute('disabled')).toBeNull();
+    expect(container.getElementsByClassName('kuc-input-text text-input')[0]).not.toBeDisabled();
   });
 });

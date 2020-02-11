@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Calendar from '../components/Calendar';
 import Locale from '../../../react/DateTime/components/Locale';
-import {fireEvent, getAllByText} from '@testing-library/dom';
+import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Calendar render', () => {
   beforeEach(() => {
@@ -15,10 +15,9 @@ describe('Unit test Calendar render', () => {
   });
 
   test('render Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/11/2020'), locale: Locale.zh});
     const containerEl = calendar.render();
     expect(containerEl.className).toBe('date-picker-container');
-    expect(containerEl.style.display).toBe('block');
 
     const prevEl = containerEl.getElementsByClassName('prev calendar-button-control')[0];
     expect(prevEl).toBeTruthy();
@@ -72,7 +71,7 @@ describe('Unit test Calendar render', () => {
     });
     const container = calendar.render();
     const span = container.getElementsByClassName('today calendar-button-control')[0];
-    fireEvent.click(span, {target: {onDateClick: new Date()}});
+    fireEvent.click(span);
     expect(mockFn).toBeCalledTimes(1);
   });
   test('onClick None Button Calendar', () => {
@@ -97,7 +96,7 @@ describe('Unit test Calendar render', () => {
 
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh, onClickOutside: mockFn});
     calendar.render();
-    fireEvent.blur(calendar.render(), {target: calendar.render()});
+    fireEvent.blur(calendar.render());
     expect(mockFn).toBeCalledTimes(1);
   });
   test('onChangeCreateYearDropdown & renderDaysLabels Calendar', () => {

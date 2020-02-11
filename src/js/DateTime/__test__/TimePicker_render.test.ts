@@ -25,8 +25,7 @@ describe('Unit test Calendar render', () => {
     });
     timePicker.render();
     const span = timePicker.render().getElementsByClassName('kuc-time-list-item')[1];
-    fireEvent.click(span, {target: {onTimeClick: new Date()}});
-    expect(true).toBeTruthy();
+    fireEvent.click(span);
     expect(mockFn).toBeCalledTimes(1);
   });
 
