@@ -54,9 +54,7 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: none;');
   });
   test('should show Time picker when the Time input is focus', () => {
-    const onChange = (value: Date) => {
-      expect(true);
-    };
+    const onChange = (value: Date) => {};
     const {container} = render(
       <DateTime
         value={new Date()}
