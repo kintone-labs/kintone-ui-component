@@ -8,7 +8,9 @@ jobs:
     name: Run unit test and automation test
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@SSR-656_setup-github-action
+    - uses: actions/checkout@v2
+      with:
+        ref: 'SSR-656_setup-github-action'
     - name: Remove package-lock
       run: rm -rf package-lock.json
     - name: Install dependencies
