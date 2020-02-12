@@ -21,7 +21,7 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
   const container = useCallback((element: HTMLDivElement) => {
-    setContainerEl(element.getBoundingClientRect());
+    element && setContainerEl(element.getBoundingClientRect());
   }, []);
   const satCanvas = useRef<HTMLCanvasElement>(null);
 

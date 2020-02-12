@@ -19,7 +19,7 @@ export default function HueSpectrum(props: HueSpectrumProps) {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [containerEl, setContainerEl] = useState<ClientRect | DOMRect>();
   const container = useCallback((element: HTMLDivElement) => {
-    setContainerEl(element.getBoundingClientRect());
+    element && setContainerEl(element.getBoundingClientRect());
   }, []);
   const hueCanvas = useRef<HTMLCanvasElement>(null);
 
