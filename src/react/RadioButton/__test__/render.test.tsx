@@ -112,7 +112,7 @@ describe('Unit test RadioButton react', () => {
       }
       const inputEl = item.children[0] as HTMLInputElement;
       // isDisabledの型チェックが行われていないためisDisabled='abc'とするとtrueになってしまう。
-      // expect(inputEl).not.toBeDisabled();
+      expect(inputEl).not.toBeDisabled();
     } else {
       expect(false);
     }
