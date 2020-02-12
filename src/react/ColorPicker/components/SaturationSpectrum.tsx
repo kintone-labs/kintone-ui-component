@@ -64,13 +64,13 @@ export default function SaturationSpectrum(props: SaturationSpectrumProps) {
   }
 
   function handleMouseUp(e: React.MouseEvent<EventTarget>) {
-    triggerSelect(e.clientX, e.clientY);
+    triggerSelect(e.pageX, e.pageY);
     setIsMouseDown(false);
   }
 
   function handleMouseMove(e: React.MouseEvent<EventTarget>) {
     if (isMouseDown) {
-      triggerSelect(e.clientX, e.clientY);
+      triggerSelect(e.pageX, e.pageY);
     }
   }
 

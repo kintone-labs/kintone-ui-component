@@ -63,13 +63,13 @@ export default function HueSpectrum(props: HueSpectrumProps) {
   }
 
   function handleMouseUp(e: React.MouseEvent<EventTarget>) {
-    triggerSelect(e.clientY);
+    triggerSelect(e.pageY);
     setIsMouseDown(false);
   }
 
   function handleMouseMove(e: React.MouseEvent<EventTarget>) {
     if (isMouseDown) {
-      triggerSelect(e.clientY);
+      triggerSelect(e.pageY);
     }
   }
 
