@@ -58,6 +58,7 @@ describe('Unit test Calendar render', () => {
   test('onClick Today Button Calendar', () => {
     const mockFn = jest.fn((date: Date | null) => {
       const expectToday = new Date();
+      expect(date).toBeTruthy();
       expect(date!.getDate()).toBe(expectToday.getDate());
       expect(date!.getMonth()).toBe(expectToday.getMonth());
       expect(date!.getFullYear()).toBe(expectToday.getFullYear());

@@ -49,13 +49,10 @@ describe('Unit test DateTime render', () => {
   });
 
   test('render throws error DateTime', () => {
-    try {
+    expect(() => {
       // @ts-ignore
       const datetime = new DateTime({value: 'kintone', dateFormat: 'kintone', type: 'date'});
       datetime.render();
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe(messages.INVALID_DATE);
-    }
+    }).toThrow(new Error(messages.INVALID_DATE));
   });
 });

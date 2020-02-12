@@ -92,7 +92,7 @@ describe('Unit test DateTime onEvent', () => {
   });
 
   test('should display invalid hour:minutes when typing invalid value into Time input', () => {
-    const invlaidvalue = 'kintone';
+    const invalidValue = 'kintone';
     const onChange = jest.fn(()=> {});
 
     const today = new Date();
@@ -108,12 +108,12 @@ describe('Unit test DateTime onEvent', () => {
     const container = datetime.render();
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
     fireEvent.focus(node);
-    fireEvent.change(node, {target: {value: invlaidvalue}});
-    expect(node).toHaveValue(invlaidvalue);
+    fireEvent.change(node, {target: {value: invalidValue}});
+    expect(node).toHaveValue(invalidValue);
 
     fireEvent.keyDown(node, {key: 'Tab', code: 9});
-    fireEvent.change(node, {target: {value: invlaidvalue}});
-    expect(node).toHaveValue(invlaidvalue);
+    fireEvent.change(node, {target: {value: invalidValue}});
+    expect(node).toHaveValue(invalidValue);
   });
 
   test('should selected range successfully inside the Time input when pressing Arrow Right/Left button', () => {
@@ -149,12 +149,9 @@ describe('Unit test DateTime onEvent', () => {
     updateTimeUp.setMinutes(1);
     updateTimeUp.setMilliseconds(0);
 
-    const onchange = jest.fn((value: Date) => {console.log(value, value.getHours(), value.getMinutes());
-    });
     const datetime = new DateTime({
       type: 'time',
-      value: date,
-      onChange: onchange
+      value: date
     });
     const container = datetime.render();
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;

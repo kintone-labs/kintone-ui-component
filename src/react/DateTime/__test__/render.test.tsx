@@ -88,5 +88,9 @@ describe('Unit test DateTime react', () => {
     const {container} = render(<DateTime value={new Date()} isDisabled="false" type="kintone" />);
     expect(container.firstElementChild).toBeTruthy();
     expect(container.firstElementChild!.className).toBe('date-time-container');
+    expect(container.getElementsByClassName('date-container')).toBeTruthy();
+    expect(container.getElementsByClassName('date-container').length).toEqual(1);
+    expect(container.getElementsByClassName('time-container')).toBeTruthy();
+    expect(container.getElementsByClassName('time-container').length).toEqual(1);
   });
 });
