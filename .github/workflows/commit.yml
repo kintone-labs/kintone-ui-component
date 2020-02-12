@@ -8,7 +8,7 @@ jobs:
     name: Run unit test and automation test
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@SSR-656_setup-github-action
     - name: Remove package-lock
       run: rm -rf package-lock.json
     - name: Install dependencies
@@ -23,4 +23,4 @@ jobs:
       id: get_version
       uses: ./actions/get_version
     - name: Run unit test
-      run: npm test
+      run: npm run test
