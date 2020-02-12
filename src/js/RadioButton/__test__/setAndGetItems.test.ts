@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton setItems and getItems', () => {
@@ -35,7 +34,7 @@ describe('Unit test RadioButton setItems and getItems', () => {
         expect(false);
       }
       const inputEl = (item.children[0] as HTMLInputElement);
-      const labelEl = item.children[1] as HTMLSpanElement;
+      const labelEl = item.children[1] as HTMLLabelElement;
 
       // check input & label elements
       if (expectedIsDisabled[index]) {
@@ -86,7 +85,7 @@ describe('Unit test RadioButton setItems and getItems', () => {
         expect(false);
       }
       const inputEl = item.children[0] as HTMLInputElement;
-      const labelEl = item.children[1] as HTMLSpanElement;
+      const labelEl = item.children[1] as HTMLLabelElement;
 
       // check input & label elements
       if (expectedIsDisabled[index]) {

@@ -118,39 +118,6 @@ describe('Unit test RadioButton react', () => {
     }
   });
 
-  test('Render successfully with onChange for selected', () => {
-    const expectedItems = [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0],
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1],
-      }
-    ];
-    let value = expectedValues[1];
-    const handleChange = (val: string) => {
-      // check that expectedValues[0] is selected by click container.firstElementChild
-      expect(val).toEqual(expectedValues[0]);
-      value = val;
-    };
-    const {container} = render(
-      <RadioButton
-        name="Fruit"
-        items={expectedItems}
-        value={value}
-        onChange={handleChange}
-      />);
-    if (container.firstElementChild) {
-      const childEl = container.firstElementChild;
-      fireEvent.click(childEl.children[0].children[0]);
-      expect(value).toEqual(expectedValues[0]);
-    } else {
-      expect(false);
-    }
-  });
-
   test('Render successfully with onChange for not selected', () => {
     const expectedItems = [
       {
@@ -240,7 +207,7 @@ describe('Unit test RadioButton react', () => {
         }
       ];
       // @ts-ignore
-      render(<RadioButton name="Fruit" items={expectedItems} value={expectedValues[0]} />);
+      render(<RadioButton name="Fruit" items={expectedItems} value={[expectedValues[0]]} />);
     }).toThrowError();
   });
 
@@ -260,20 +227,4 @@ describe('Unit test RadioButton react', () => {
     }).toThrowError();
   });
 
-
-  test('throw error with duplicate option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1],
-        }
-      ];
-      render(<RadioButton name="Fruit" items={expectedItems} value={expectedValues[0]} />);
-    }).toThrowError();
-  });
 });

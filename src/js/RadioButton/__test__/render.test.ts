@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton render', () => {
@@ -58,7 +57,7 @@ describe('Unit test RadioButton render', () => {
         expect(false);
       }
       const inputEl = item.children[0] as HTMLInputElement;
-      const labelEl = item.children[1] as HTMLSpanElement;
+      const labelEl = item.children[1] as HTMLLabelElement;
 
       // check input & label elements
       expect(inputEl).toBeDisabled();
@@ -96,9 +95,10 @@ describe('Unit test RadioButton render', () => {
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
-      new RadioButton({
+      const  radioButton = new RadioButton({
         items: ['orange', 'banana', 'lemon']
       });
+      radioButton.render();
       // 必須項目のoptions.items[x].valueが未指定でもcheckboxが生成されている
     }).toThrowError();
   });
@@ -127,7 +127,7 @@ describe('Unit test RadioButton render', () => {
   test('throw error with invalid option.value', () => {
     expect(() => {
       // @ts-ignore
-      new RadioButton({
+      const radioButton = new RadioButton({
         items: [
           {
             label: expectedLabels[0],
@@ -135,16 +135,16 @@ describe('Unit test RadioButton render', () => {
             isDisabled: false
           }
         ],
-        value: [expectedValues[1]]
+        value: expectedValues[1]
       });
+      radioButton.render();
     }).toThrowError();
   });
 
-  test('throw error with duplicate option.value', () => {
+  test('throw error without name', () => {
     expect(() => {
       // @ts-ignore
-      new RadioButton({
-        name: 'fruit',
+      const radioButton = new RadioButton({
         items: [
           {
             label: expectedLabels[0],
@@ -157,8 +157,9 @@ describe('Unit test RadioButton render', () => {
             isDisabled: true
           }
         ],
-        value: [expectedValues[0], expectedValues[0]],
+        value: expectedValues[0]
       });
+      radioButton.render();
     }).toThrowError();
   });
 });

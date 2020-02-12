@@ -1,5 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
-import {fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/dom';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton onEvent', () => {
@@ -58,6 +57,7 @@ describe('Unit test RadioButton onEvent', () => {
         expectedValues[counter]
       );
     });
+    fireEvent.click(container);
     expect(radioButton.getValue()).toEqual(expectedValues[0]);
     fireEvent.click(container.children[1]);
     expect(radioButton.getValue()).toEqual(expectedValues[0]);

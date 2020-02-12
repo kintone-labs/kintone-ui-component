@@ -34,7 +34,6 @@ describe('Unit test CheckBox enableItem', () => {
     expect(inputEl).not.toBeDisabled();
   });
 
-  //必須項目なのでエラーが出るのが仕様　もしくは全部Enabaleにするか
   test('throw error without prop', () => {
     expect(() => {
       const radioButton = new RadioButton({
@@ -49,6 +48,22 @@ describe('Unit test CheckBox enableItem', () => {
       });
       // @ts-ignore
       radioButton.enableItem();
+    }).toThrowError();
+  });
+  
+  test('throw error with wrong prop', () => {
+    expect(() => {
+      const radioButton = new RadioButton({
+        name: 'fruit',
+        items: [
+          {
+            label: expectedLabels[0],
+            value: expectedValues[0],
+            isDisabled: true
+          }
+        ]
+      });
+      radioButton.enableItem("EnableItem");
     }).toThrowError();
   });
 });

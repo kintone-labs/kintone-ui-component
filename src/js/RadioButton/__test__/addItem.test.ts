@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton addItem', () => {

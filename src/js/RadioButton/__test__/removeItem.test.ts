@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton removeItem', () => {
@@ -8,7 +7,7 @@ describe('Unit test RadioButton removeItem', () => {
 
   test('Function removeItem run successfully', () => {
     const radioButton = new RadioButton({
-      name: "fruit",
+      name: 'fruit',
       items: [
         {
           label: expectedLabels[0],
@@ -28,7 +27,13 @@ describe('Unit test RadioButton removeItem', () => {
       ],
       value: expectedValues[1]
     });
+    const container = radioButton.render();
     radioButton.removeItem(1);
+
+    const itemsEl = container.getElementsByClassName('kuc-input-radio');
+    if (!container.children || itemsEl.length !== 2) {
+      expect(false);
+    }
     expect(radioButton.getItems()).toMatchObject([{
       label: expectedLabels[0],
       value: expectedValues[0],
@@ -41,7 +46,7 @@ describe('Unit test RadioButton removeItem', () => {
     }
     ]);
     //objectをremoveしてもValueは残る？
-    // expect(radioButton.getValue()).toEqual([]);
+    expect(radioButton.getValue()).toEqual([]);
   });
 
   test('throw error with invalid index', () => {

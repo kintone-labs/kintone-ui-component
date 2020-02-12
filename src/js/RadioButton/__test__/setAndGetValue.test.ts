@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton setValue and getValue', () => {
@@ -68,24 +67,4 @@ describe('Unit test RadioButton setValue and getValue', () => {
     }).toThrowError();
   });
 
-  test('throw error with duplicate value', () => {
-    expect(() => {
-      const radioButton = new RadioButton({
-        name: 'fruit',
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0],
-            isDisabled: expectedIsDisabled[0]
-          },
-          {
-            label: expectedLabels[1],
-            value: expectedValues[1],
-            isDisabled: expectedIsDisabled[1]
-          }
-        ]
-      });
-      radioButton.setValue(expectedValues[0]);
-    }).toThrowError();
-  });
 });

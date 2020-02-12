@@ -50,4 +50,21 @@ describe('Unit test RadioButton disableItem', () => {
       radioButton.disableItem();
     }).toThrowError();
   });
+
+  test('throw error with wrong prop', () => {
+    expect(() => {
+      const radioButton = new RadioButton({
+        name: 'fruit',
+        items: [
+          {
+            label: expectedLabels[0],
+            value: expectedValues[0],
+            isDisabled: false
+          }
+        ]
+      });
+      // @ts-ignore
+      radioButton.disableItem("DisableItem");
+    }).toThrowError();
+  });
 });

@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import RadioButton from '../index';
 
 describe('Unit test CheckBox enable', () => {
@@ -25,6 +24,19 @@ describe('Unit test CheckBox enable', () => {
     });
     const container = radioButton.render();
     radioButton.enable();
-    expect(container.getAttribute('disaabled')).toBe(null);
+
+    if (!container.children || container.children.length !== 3) {
+      expect(false);
+    }
+    const items = container.children;
+    for (let index = 0; index < 3; index++) {
+      const item: Element = items[index];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = item.children[0] as HTMLInputElement;
+      // check input & label elements
+      expect(inputEl).not.toBeDisabled();
+    }
   });
 });
