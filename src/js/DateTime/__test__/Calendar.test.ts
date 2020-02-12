@@ -99,11 +99,20 @@ describe('Unit test Calendar render', () => {
     fireEvent.blur(calendar.render());
     expect(mockFn).toBeCalledTimes(1);
   });
-  test('onChangeCreateYearDropdown & renderDaysLabels Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
-    calendar.render();
-    calendar._onChangeCreateYearDropdown('30/12/2019');
-    calendar._renderDaysLabels();
-    expect(true).toBeTruthy();
+  test('should render successfully when clicking Month/Year Dropdown ', () => {
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/12/2020'), locale: Locale.zh});
+    const container = calendar.render();
+    let firstDayLabel = container.getElementsByClassName('day')[0];
+    expect(firstDayLabel.textContent).toEqual('26');
+
+    const yearEl = container.getElementsByClassName('kuc-list-item kuc-list-item-selected')[0].nextElementSibling!;
+    fireEvent.click(yearEl);
+    firstDayLabel = container.getElementsByClassName('day')[0];
+    expect(firstDayLabel.textContent).toEqual('31');
+
+    const monthEl = container.getElementsByClassName('kuc-list-item kuc-list-item-selected')[1].nextElementSibling!;
+    fireEvent.click(monthEl);
+    firstDayLabel = container.getElementsByClassName('day')[0];
+    expect(firstDayLabel.textContent).toEqual('28');
   });
 });

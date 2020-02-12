@@ -236,8 +236,7 @@ describe('Unit test DateTime react', () => {
     updateTimeUp.setMinutes(1);
     updateTimeUp.setMilliseconds(0);
 
-    const onchange = jest.fn((value: Date) => {console.log(value, value.getHours(), value.getMinutes());
-    });
+    const onchange = jest.fn((value: Date) => {});
 
     const {container} = render(
       <DateTime
