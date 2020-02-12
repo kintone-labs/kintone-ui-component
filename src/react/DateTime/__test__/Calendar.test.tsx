@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent, getByLabelText} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import Calendar from '../components/Calendar';
 import React, {createRef} from 'react';
 import {zh, en} from '../components/Locale';
