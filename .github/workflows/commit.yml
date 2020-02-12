@@ -5,22 +5,22 @@ on:
       - SSR-656_setup-github-action
     jobs:
       Run_tests:
-      name: Run unit test and automation test
-      runs-on: ubuntu-18.04
-      steps:
-      - uses: actions/checkout@master
-      - name: Remove package-lock
-        run: rm -rf package-lock.json
-      - name: Install dependencies
-        run: npm install
-      - name: Run ESLint
-        run: |
-          node_modules/.bin/eslint src/js/**.ts --fix
-          node_modules/.bin/eslint src/js/**/**.ts --fix
-          node_modules/.bin/eslint src/react/**.ts --fix
-          node_modules/.bin/eslint src/react/**/**.ts --fix
-      - name: get current version from package.json
-        id: get_version
-        uses: ./actions/get_version
-      - name: Run unit test
-        run: npm test
+        name: Run unit test and automation test
+        runs-on: ubuntu-18.04
+        steps:
+        - uses: actions/checkout@master
+        - name: Remove package-lock
+          run: rm -rf package-lock.json
+        - name: Install dependencies
+          run: npm install
+        - name: Run ESLint
+          run: |
+            node_modules/.bin/eslint src/js/**.ts --fix
+            node_modules/.bin/eslint src/js/**/**.ts --fix
+            node_modules/.bin/eslint src/react/**.ts --fix
+            node_modules/.bin/eslint src/react/**/**.ts --fix
+        - name: get current version from package.json
+          id: get_version
+          uses: ./actions/get_version
+        - name: Run unit test
+          run: npm test
