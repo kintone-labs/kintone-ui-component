@@ -38,7 +38,6 @@ describe('Unit test Tabs disableItem', () => {
     expect(tabNameDOMList.length).toEqual(2);
     const disabledTabNameDOM = tabNameDOMList[1];
     expect(disabledTabNameDOM.classList).toContain('kuc-tabs-disabled');
-    // TODO: change isDisabled of tab in items to true
   });
 
   test('disableItem throw error when called without tabName', () => {
