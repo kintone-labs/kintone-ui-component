@@ -28,7 +28,7 @@ describe('Unit test Dialog setHeader', () => {
     const headerDOM = container.getElementsByClassName('kuc-dialog-header');
     expect(headerDOM.length).toEqual(1);
     expect(headerDOM[0]).toBeInstanceOf(HTMLDivElement);
-    expect(headerDOM[0].innerHTML).toEqual(NEW_HEADER);
+    expect(headerDOM[0].innerHTML).toContain(NEW_HEADER);
   });
 
   test('setHeader throw error with invalid header', () => {
