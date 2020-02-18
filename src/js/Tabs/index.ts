@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import TabName from './TabName';
@@ -244,6 +245,7 @@ class Tabs extends Control<TabsProps> {
             throw new Error(Message.tabs.INVALID_ACTION);
           } else {
             this.tabNames[index].disable();
+            this._props.items![index].isDisabled = true;
           }
         }
       });
@@ -257,6 +259,7 @@ class Tabs extends Control<TabsProps> {
       this._props.items.forEach((item: Tab, index: number) => {
         if (item.tabName === tabName) {
           this.tabNames[index].enable();
+          this._props.items![index].isDisabled = false;
         }
       });
   }
