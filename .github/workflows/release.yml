@@ -1,0 +1,63 @@
+name: Release CI
+
+on:
+  release:
+    types: [created]
+jobs:
+  Run_tests:
+    name: Run unit test and automation test
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Remove package-lock
+      run: rm -rf package-lock.json
+    - name: Install dependencies
+      run: |
+        npm install
+        npm i @actions/core
+    - name: Run ESLint
+      run: |
+        node_modules/.bin/eslint src/js/**.ts --fix
+        node_modules/.bin/eslint src/js/**/**.ts --fix
+        node_modules/.bin/eslint src/react/**.ts --fix
+        node_modules/.bin/eslint src/react/**/**.ts --fix
+    - name: Run unit test
+      run: npm test
+    - name: Check version
+      id: check_version
+      uses: ./.github/actions/check_version
+    - name: Build dist/esm
+      run: npm build
+    - name: Trigger run automation test
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{secrets.ACCESS_TOKEN}}
+        repository: SDQA-VN/ui-component-auto
+        event-type: kuc-trigger-auto-test
+    - name: Generate package binary file
+      id: generate_binary
+      uses: ./.github/actions/generate_binary_file
+    - name: Generate integrity artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: my-integrity
+        path: ./${{ steps.generate_binary.outputs.shasum }}
+    - uses: fregante/setup-git-token@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit package-lock.json and push to remote
+      run: |
+          git add ./package-lock.json
+          git commit -m "update package-lock.json after release"
+          git push origin HEAD:master
+    - name: Upload package to release[binaries]
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.ACCESS_TOKEN }}
+        file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+        asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+        tag: ${{ github.ref }}
+        overwrite: true
