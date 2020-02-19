@@ -1,5 +1,4 @@
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const {exec} = require('child_process')
 const fs = require('fs');
 const core = require('@actions/core');
 

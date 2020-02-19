@@ -3,7 +3,7 @@ on:
   push:
     jobs:
       Run_tests:
-      name: Run unit test and automation test
+      name: Run unit test
       runs-on: ubuntu-18.04
       steps:
       - uses: actions/checkout@master

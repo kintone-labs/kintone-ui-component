@@ -30,7 +30,7 @@ jobs:
       id: check_version
       uses: ./.github/actions/check_version
     - name: Build dist/esm
-      run: npm build
+      run: npm run build
     - name: Trigger run automation test
       uses: peter-evans/repository-dispatch@v1
       with:
