@@ -52,6 +52,12 @@ describe('Unit test NotifyPopup react', () => {
       expect(false);
     }
   });
+  test('Render successfully with be not Visible', () => {
+    const {container} = render(
+      <NotifyPopup text="testString" type="info" isVisible={false} />
+    );
+    expect(container.firstElementChild).toBeFalsy();
+  });
   test('Render successfully with onClick event', () => {
     let clickBL = false;
     const handleClick = (e: any) => {
