@@ -28,12 +28,12 @@ describe('Unit test NotifyPopup react', () => {
   });
   test('Render successfully with full props_success', () => {
     const {container} = render(
-      <NotifyPopup text="testString" type="success" isVisible={false} />
+      <NotifyPopup text="testString" type="success" isVisible={true} />
     );
     if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-notify bg-danger');
-      expect(container.firstElementChild).toBeDisabled();
-      expect(container.firstElementChild).not.toBeVisible();
+      expect(container.firstElementChild.className).toBe('kuc-notify bg-success');
+      expect(container.firstElementChild).not.toBeDisabled();
+      expect(container.firstElementChild).toBeVisible();
       expect(container.firstElementChild.textContent).toBe('testString');
     } else {
       expect(false);
@@ -41,12 +41,12 @@ describe('Unit test NotifyPopup react', () => {
   });
   test('Render successfully with full props_info', () => {
     const {container} = render(
-      <NotifyPopup text="testString" type="info" isVisible={false} />
+      <NotifyPopup text="testString" type="info" isVisible={true} />
     );
     if (container.firstElementChild) {
-      expect(container.firstElementChild.className).toBe('kuc-notify bg-danger');
-      expect(container.firstElementChild).toBeDisabled();
-      expect(container.firstElementChild).not.toBeVisible();
+      expect(container.firstElementChild.className).toBe('kuc-notify bg-info');
+      expect(container.firstElementChild).not.toBeDisabled();
+      expect(container.firstElementChild).toBeVisible();
       expect(container.firstElementChild.textContent).toBe('testString');
     } else {
       expect(false);
