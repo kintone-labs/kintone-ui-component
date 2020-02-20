@@ -36,7 +36,7 @@ jobs:
       with:
         token: ${{secrets.ACCESS_TOKEN}}
         repository: SDQA-VN/ui-component-auto
-        event-type: kuc-trigger-auto-test
+        event-type: kuc-trigger-auto-test-release
     - name: Generate package binary file
       id: generate_binary
       uses: ./.github/actions/generate_binary_file
@@ -44,7 +44,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: my-integrity
-        path: ./${{ steps.generate_binary.outputs.shasum }}
+        path: ./${{ steps.generate_binary.outputs.integrity }}
     - uses: fregante/setup-git-token@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
