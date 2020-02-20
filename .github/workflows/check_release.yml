@@ -37,3 +37,4 @@ jobs:
         token: ${{secrets.ACCESS_TOKEN}}
         repository: SDQA-VN/ui-component-auto
         event-type: kuc-trigger-auto-test-release
+        client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'
