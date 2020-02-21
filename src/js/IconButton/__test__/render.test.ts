@@ -17,12 +17,12 @@ describe('Unit test IconButton render', () => {
       color: 'green',
       type: 'remove',
       size: 'small',
-      shape: 'normal',
+      shape: 'square',
       isDisabled: true,
       isVisible: false
     });
     const container = iconButton.render();
-    expect(['kuc-icon-btn', 'small', 'green', 'normal'].every(c => container.classList.contains(c))).toBe(true);
+    expect(['kuc-icon-btn', 'small', 'green', 'square'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.length).toBe(4);
     expect(container).toBeDisabled();
     expect(container).not.toBeVisible();
@@ -100,12 +100,12 @@ describe('Unit test IconButton render', () => {
     expect(container.className).toContain('circle');
   });
 
-  test('Render successfully with normal shape', () => {
+  test('Render successfully with square shape', () => {
     const iconButton = new IconButton({
-      shape: 'normal'
+      shape: 'square'
     });
     const container = iconButton.render();
-    expect(container.className).toContain('normal');
+    expect(container.className).toContain('square');
   });
 
   test('Render successfully with normal size', () => {

@@ -1,6 +1,6 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
@@ -28,7 +28,8 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"test": "jest --coverage"
+		"test": "jest --coverage",
+		"lint": "eslint \"src/**\""
 	},
 	"dependencies": {
 		"@mdi/js": "3.6.95",
@@ -47,6 +48,7 @@
 		"@babel/preset-typescript": "7.3.3",
 		"@babel/runtime": "7.6.2",
 		"@cybozu/eslint-config": "7.1.0",
+		"@testing-library/dom": "^6.11.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.4.0",
 		"@types/jest": "^24.0.24",
@@ -62,6 +64,7 @@
 		"css-loader": "2.1.1",
 		"eslint": "6.1.0",
 		"jest": "^24.9.0",
+		"jest-canvas-mock": "^2.2.0",
 		"jest-transform-css": "^2.0.0",
 		"mini-css-extract-plugin": "0.6.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
@@ -70,9 +73,9 @@
 		"react-dom": "16.8.6",
 		"style-loader": "0.19.1",
 		"ts-jest": "^24.2.0",
+		"terser-webpack-plugin": "2.2.3",
 		"typescript": "3.4.2",
-		"uglifyjs-webpack-plugin": "2.1.3",
-		"webpack": "4.19.0",
+		"webpack": "4.41.3",
 		"webpack-cli": "3.3.2"
 	}
 }

@@ -148,7 +148,6 @@ describe('Unit test MultipleChoice render', () => {
       new MultipleChoice({
         items: ['orange', 'banana', 'lemon']
       });
-      // Even if options.items[x].value (required item) is not specified, MultipleChoice will generate.
     }).toThrowError();
   });
 

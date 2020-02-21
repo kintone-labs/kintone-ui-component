@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Control, {ControlProps} from '../../Control';
 
 type RGB = {
@@ -14,7 +15,6 @@ type HueSpectrumProps = ControlProps & {
 
 class HueSpectrum extends Control<HueSpectrumProps> {
   private colorCanvas: HTMLCanvasElement
-  private containerEl: ClientRect | DOMRect
   private isMouseDown: boolean
   private hasInitLayout: boolean
 
@@ -71,13 +71,6 @@ class HueSpectrum extends Control<HueSpectrumProps> {
     }
   }
 
-
-  initContainerEl() {
-    if (this.element) {
-      this.containerEl = this.element.getBoundingClientRect();
-    }
-  }
-
   handleMouseLeave() {
     this.isMouseDown = false;
     this.rerender(['isMouseDown']);
@@ -101,11 +94,8 @@ class HueSpectrum extends Control<HueSpectrumProps> {
   }
 
   triggerSelect(clientY: number) {
-    if (!this.containerEl) {
-      this.initContainerEl();
-    }
     const x = this._props.width / 2;
-    const y = clientY - this.containerEl.top;
+    const y = clientY - this.element.getBoundingClientRect().top;
     if (this.colorCanvas && this.colorCanvas) {
       const ctx = this.colorCanvas.getContext('2d');
       if (ctx) {

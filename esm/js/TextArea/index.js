@@ -1,6 +1,7 @@
 import * as tslib_1 from "tslib";
 import '../polyfill';
 import Control from '../Control';
+import Message from '../../constant/Message';
 import '../../css/TextArea.css';
 var TextArea = /** @class */ (function (_super) {
     tslib_1.__extends(TextArea, _super);
@@ -16,6 +17,9 @@ var TextArea = /** @class */ (function (_super) {
         _this.currentY = null;
         _this.translateX = 0;
         _this.translateY = 0;
+        _this._props = tslib_1.__assign({}, _this._props, {
+            placeholder: ''
+        });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
         }
@@ -29,6 +33,9 @@ var TextArea = /** @class */ (function (_super) {
             return;
         if (changedAttr.indexOf('value') !== -1) {
             this.textAreaEl.value = this._props.value || '';
+        }
+        if (changedAttr.indexOf('placeholder') !== -1) {
+            this.textAreaEl.placeholder = this._props.placeholder || '';
         }
         if (changedAttr.indexOf('isDisabled') !== -1) {
             if (this._props.isDisabled) {
@@ -45,6 +52,15 @@ var TextArea = /** @class */ (function (_super) {
     };
     TextArea.prototype.getValue = function () {
         return this._props.value;
+    };
+    TextArea.prototype.setPlaceholder = function (placeholder) {
+        if (!placeholder)
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        this._props.placeholder = placeholder;
+        this.rerender(['placeholder']);
+    };
+    TextArea.prototype.getPlaceholder = function () {
+        return this._props.placeholder;
     };
     TextArea.prototype._onMouseDown = function () {
         var _this = this;

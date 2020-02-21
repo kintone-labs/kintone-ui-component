@@ -14,6 +14,7 @@ type RGB = {
 
 type PickerProps = {
   hexString: string;
+  initColor: string;
   pickerDisplay?: boolean;
   onChange: (hexString: string) => void;
   onCancel: () => void;
@@ -71,9 +72,21 @@ export default function Picker(props: PickerProps) {
         <HueSpectrum width={30} height={200} onSelect={handleHue} />
       </div>
       <div style={PickerStyle.inputContainer}>
-        <RGBInput rgb={rgb} onChange={props.onChange} />
+        <RGBInput
+          rgb={rgb}
+          onChange={(newHexString: string) => {
+            setSaturationBackground(hexToRgb(newHexString));
+            props.onChange(newHexString);
+          }}
+        />
         <br />
-        <HSVInput hsv={hsv} onChange={props.onChange} />
+        <HSVInput
+          hsv={hsv}
+          onChange={(newHexString: string) => {
+            setSaturationBackground(hexToRgb(newHexString));
+            props.onChange(newHexString);
+          }}
+        />
       </div>
       <div>
         <Button
@@ -88,7 +101,7 @@ export default function Picker(props: PickerProps) {
           style={{display: 'inline-block'}}
           text="Cancel"
           onClick={() => {
-            const oldRGB = hexToRgb(props.hexString);
+            const oldRGB = hexToRgb(props.initColor);
             setSaturationBackground(oldRGB);
             setRGB(oldRGB);
             setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));

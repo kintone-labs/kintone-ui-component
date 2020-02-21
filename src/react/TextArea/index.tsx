@@ -4,13 +4,14 @@ import '../../css/TextArea.css';
 
 type TextAreaProps = {
   value?: string;
+  placeholder?: string;
   isVisible?: boolean;
   isDisabled?: boolean;
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
   onChange?: (value: string | null) => void;
 }
 
-const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
+const TextArea = ({value, placeholder, isVisible, isDisabled, onChange, onClick}: TextAreaProps) => {
   const mixTextAreaWidth = 297;
   const mixtTextAreaHeight = 123;
   const [sizeConfig, setSizeConfig] = useState({translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight});
@@ -67,6 +68,7 @@ const TextArea = ({value, isVisible, isDisabled, onChange, onClick}: TextAreaPro
     >
       <textarea
         value={value}
+        placeholder={placeholder}
         className="kuc-textarea"
         onClick={onClick}
         onChange={_onChange}

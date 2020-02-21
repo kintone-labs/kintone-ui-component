@@ -110,11 +110,11 @@ var createTableCell = function (type, fieldName, props) {
     var update = function (_a) {
         var rowData = _a.rowData;
         var cellData = rowData[fieldName] || {};
-        if (cellData && field.setValue) {
-            field.setValue(cellData.value);
-        }
         if (cellData && field.setItems) {
             field.setItems(cellData.items);
+        }
+        if (cellData && field.setValue) {
+            field.setValue(cellData.value);
         }
         if (cellData && field.setText) {
             field.setText(cellData.text);

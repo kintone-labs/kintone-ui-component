@@ -57,7 +57,7 @@ var Dropdown = /** @class */ (function (_super) {
         var position = -6;
         var currentPosition = this.listOuterEl.offsetTop + this.listOuterEl.offsetHeight;
         if (currentPosition >= window.innerHeight) {
-            position = position - (this.listOuterEl.offsetHeight + this.element.offsetHeight);
+            position -= (this.listOuterEl.offsetHeight + this.element.offsetHeight);
         }
         return position;
     };

@@ -49,6 +49,8 @@ class Dialog extends Control<DialogProps> {
     this._headerDivEl.className = 'kuc-dialog-header';
     if (this._props.header) {
       this._headerDivEl.append(this._props.header);
+    } else {
+      this._headerDivEl.append(document.createElement('span'));
     }
 
     if (this._props.showCloseButton) {
@@ -60,6 +62,8 @@ class Dialog extends Control<DialogProps> {
         this.hide();
       });
       this._headerDivEl.append(spanEl);
+    } else {
+      this._headerDivEl.append(document.createElement('span'));
     }
 
     this._footerDivEl = document.createElement('div');

@@ -30,6 +30,21 @@ describe('Unit test Button react', () => {
     }
   });
 
+  test('Render successfully with wrong props', () => {
+    const {container} = render(
+      // @ts-ignore
+      <Button text="Submit" type="abc" isDisabled="abc" isVisible="abc" />
+    );
+    if (container.firstElementChild) {
+      expect(container.firstElementChild.className).toBe('kuc-btn normal');
+      expect(container.firstElementChild).not.toBeDisabled();
+      expect(container.firstElementChild).toBeVisible();
+      expect(container.firstElementChild.textContent).toBe('Submit');
+    } else {
+      expect(false);
+    }
+  });
+
   test('Render successfully with onClick prop', () => {
     let onClickFlg = false;
     const handleClick = (e: any) => {

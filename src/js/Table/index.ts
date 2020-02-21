@@ -232,14 +232,14 @@ export default class Table extends Control<TableProps> {
 
   private _dispatch(eventOption: DispatchParams) {
     if (eventOption.type === 'ADD_ROW') {
+      this._renderTableRows();
+      this._renderCells();
       if (this._props.onRowAdd) {
         const newRowData = this._props.onRowAdd(eventOption);
         if (newRowData && this._props.data) {
           this._props.data[eventOption.rowIndex] = newRowData;
         }
       }
-      this._renderTableRows();
-      this._renderCells();
     }
     if (eventOption.type === 'REMOVE_ROW') {
       if (this._props.onRowRemove) {

@@ -19,10 +19,10 @@ describe('Unit test IconButton react render', () => {
 
   test('Render successfully with full props', () => {
     const {container} = render(
-      <IconButton color="green" type="remove" size="small" shape="normal" isDisabled isVisible={false} />
+      <IconButton color="green" type="remove" size="small" shape="square" isDisabled isVisible={false} />
     );
     if (container.firstElementChild) {
-      expect(['kuc-icon-btn', 'small', 'green', 'normal'].every(c => container.firstElementChild!.classList.contains(c))).toBeTruthy();
+      expect(['kuc-icon-btn', 'small', 'green', 'square'].every(c => container.firstElementChild!.classList.contains(c))).toBeTruthy();
       expect(container.firstElementChild.classList.length).toBe(4);
       expect(container.firstElementChild).toBeDisabled();
       expect(container.firstElementChild).toBeVisible();
@@ -88,11 +88,19 @@ describe('Unit test IconButton react render', () => {
     expect(container.firstElementChild!.classList.contains('circle')).toBeTruthy();
   });
 
-  test('Render successfully with normal shape', () => {
+  test('Render successfully with square shape', () => {
     const {container} = render(
-      <IconButton shape="normal" />
+      <IconButton shape="square" />
     );
-    expect(container.firstElementChild!.classList.contains('normal')).toBeTruthy();
+    expect(container.firstElementChild!.classList.contains('square')).toBeTruthy();
+  });
+
+  test('Render successfully with invaid shape', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton shape="abc" />
+    );
+    expect(container.firstElementChild!.classList.contains('circle')).toBeTruthy();
   });
 
   test('Render successfully with normal size', () => {
@@ -107,6 +115,14 @@ describe('Unit test IconButton react render', () => {
       <IconButton size="small" />
     );
     expect(container.firstElementChild!.classList.contains('small')).toBeTruthy();
+  });
+
+  test('Render successfully with invaid size', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton size="abc" />
+    );
+    expect(container.firstElementChild!.classList.contains('normal')).toBeTruthy();
   });
 
   test('Render successfully with insert type', () => {
@@ -155,6 +171,57 @@ describe('Unit test IconButton react render', () => {
       .getAttribute('d')).toBe('M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z');
   });
 
+  test('Render successfully with invaid type', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton type="abc" />
+    );
+    expect(container.children[0].children[0].children[0].getAttribute('d')).toBe('M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z');
+  });
+
+  test('Render successfully with disabled', () => {
+    const {container} = render(
+      <IconButton isDisabled />
+    );
+    expect(container.firstElementChild).toBeDisabled();
+  });
+
+  test('Render successfully with enabled', () => {
+    const {container} = render(
+      <IconButton isDisabled={false} />
+    );
+    expect(container.firstElementChild).not.toBeDisabled();
+  });
+
+  test('Render successfully with invaid disabled', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton isDisabled="abc" />
+    );
+    expect(container.firstElementChild).not.toBeDisabled();
+  });
+
+  test('Render successfully with show', () => {
+    const {container} = render(
+      <IconButton isVisible />
+    );
+    expect(container.firstElementChild).toBeVisible();
+  });
+
+  test('Render successfully with hide', () => {
+    const {container} = render(
+      <IconButton isVisible={false} />
+    );
+    expect(container.firstElementChild).toBe(null);
+  });
+
+  test('Render successfully with invaid visible', () => {
+    const {container} = render(
+      // @ts-ignore
+      <IconButton isVisible="abc" />
+    );
+    expect(container.firstElementChild).toBeVisible();
+  });
 
   test('Render successfully with click event', () => {
     const handleClick = (e: React.SyntheticEvent<EventTarget>) => {

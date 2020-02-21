@@ -1,5 +1,5 @@
 import Button from '../index';
-import {fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Button onEvent', () => {
   test('Function onClick event run successfully', () => {
