@@ -15,7 +15,7 @@ var Message = {
     tabs: {
         MISSING_TAB_NAME: 'Missing tab name on tab item[{{index}}]',
         MISSING_NEW_ITEM_TABNAME: 'Missing tab name.',
-        INVALID_ACTION: "Behavior invalid",
+        INVALID_ACTION: 'Behavior invalid',
     },
     datetime: {
         INVALID_DATE: 'Invalid date',

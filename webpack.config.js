@@ -1,5 +1,5 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const libraryName = 'kintone-ui-component';
@@ -53,10 +53,10 @@ const jsUMDConfig = (_, argv) => {
         },
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({
+                new TerserPlugin({
                     cache: true,
                     parallel: true,
-                    uglifyOptions: {
+                    terserOptions: {
                         compress: argv.mode === 'production',
                         ecma: 6,
                         mangle: true
@@ -142,10 +142,10 @@ const reactUMDConfig = (_, argv) => {
         },
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({
+                new TerserPlugin({
                     cache: true,
                     parallel: true,
-                    uglifyOptions: {
+                    terserOptions: {
                         compress: argv.mode === 'production',
                         ecma: 6,
                         mangle: true

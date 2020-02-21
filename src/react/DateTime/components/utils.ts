@@ -85,24 +85,24 @@ const parseStringToDate = (dateString: string, dateFormat?: string) => {
     const dateItems = dateString.split(delimiter);
     const formatItems = formatLowerCase.split(delimiter);
     const monthIndex = formatItems.indexOf('mm');
-    const dayIndex = formatItems.indexOf('d') !== -1 ? formatItems.indexOf('d') : 
-                    formatItems.indexOf('dd');
+    const dayIndex = formatItems.indexOf('d') !== -1 ? formatItems.indexOf('d') :
+      formatItems.indexOf('dd');
     const yearIndex = formatItems.indexOf('yyyy');
     const year = parseInt(dateItems[yearIndex], 10);
     const day = parseInt(dateItems[dayIndex], 10);
     let month = parseInt(dateItems[monthIndex], 10);
     month -= 1;
-    let date = new Date(year, month);
-    if(day > 0) {
-      date.setDate(day)
+    const date = new Date(year, month);
+    if (day > 0) {
+      date.setDate(day);
     }
-    if(date.toDateString() === "Invalid Date" || month < 0 || year < 1) {
-      return null
+    if (date.toDateString() === 'Invalid Date' || month < 0 || year < 1) {
+      return null;
     }
     return date;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
-    return null
+    return null;
   }
 };
 
