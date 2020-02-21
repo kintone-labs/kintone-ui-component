@@ -73,6 +73,7 @@ class MultipleChoice extends Control<MultipleChoiceProps> {
     if (items && !AbstractMultiSelection._hasItemValue(items)) {
       err = Message.selection.MISSING_VALUE_PROPERTY_IN_ITEMS;
     }
+
     if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }

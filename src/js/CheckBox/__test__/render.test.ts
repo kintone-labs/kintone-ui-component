@@ -154,7 +154,6 @@ describe('Unit test CheckBox render', () => {
       new CheckBox({
         items: ['orange', 'banana', 'lemon']
       });
-      // 必須項目のoptions.items[x].valueが未指定でもcheckboxが生成されている
     }).toThrowError();
   });
 

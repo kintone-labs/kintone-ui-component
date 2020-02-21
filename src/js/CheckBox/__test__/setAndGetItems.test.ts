@@ -135,7 +135,6 @@ describe('Unit test CheckBox setItems and getItems', () => {
         label: expectedLabels[0],
         isDisabled: true
       }]);
-      // 必須項目のvalueが未指定でもエラーが発生しない
     }).toThrowError();
   });
 });
