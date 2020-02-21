@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../css/font.css';
 import '../../css/TextArea.css';
 var TextArea = function (_a) {
-    var value = _a.value, isVisible = _a.isVisible, isDisabled = _a.isDisabled, onChange = _a.onChange, onClick = _a.onClick;
+    var value = _a.value, placeholder = _a.placeholder, isVisible = _a.isVisible, isDisabled = _a.isDisabled, onChange = _a.onChange, onClick = _a.onClick;
     var mixTextAreaWidth = 297;
     var mixtTextAreaHeight = 123;
     var _b = useState({ translateX: 0, translateY: 0, textAreaWidth: mixTextAreaWidth, textAreaHeight: mixtTextAreaHeight }), sizeConfig = _b[0], setSizeConfig = _b[1];
@@ -46,7 +46,7 @@ var TextArea = function (_a) {
         return null;
     }
     return (React.createElement("div", { className: "kuc-textarea-outer" },
-        React.createElement("textarea", { value: value, className: "kuc-textarea", onClick: onClick, onChange: _onChange, disabled: isDisabled, style: { width: sizeConfig.textAreaWidth + 'px', height: sizeConfig.textAreaHeight + 'px' } }),
+        React.createElement("textarea", { value: value, placeholder: placeholder, className: "kuc-textarea", onClick: onClick, onChange: _onChange, disabled: isDisabled, style: { width: sizeConfig.textAreaWidth + 'px', height: sizeConfig.textAreaHeight + 'px' } }),
         React.createElement("div", { className: "kuc-textarea-resize", style: { transform: "translate(" + sizeConfig.translateX + "px, " + sizeConfig.translateY + "px)" }, role: "button", tabIndex: 0, onMouseDown: function () {
                 setIsResizing(true);
             } })));

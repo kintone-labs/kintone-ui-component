@@ -5,7 +5,9 @@ export default function HueSpectrum(props) {
     var _a = useState(false), hasInitLayout = _a[0], setHasInitLayout = _a[1];
     var _b = useState(false), isMouseDown = _b[0], setIsMouseDown = _b[1];
     var _c = useState(), containerEl = _c[0], setContainerEl = _c[1];
-    var container = useCallback(function (element) { setContainerEl(element.getBoundingClientRect()); }, []);
+    var container = useCallback(function (element) {
+        setContainerEl(element.getBoundingClientRect());
+    }, []);
     var hueCanvas = useRef(null);
     function initLayout() {
         if (!hasInitLayout && hueCanvas && hueCanvas.current) {

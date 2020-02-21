@@ -86,7 +86,7 @@ var parseStringToDate = function (dateString, dateFormat) {
         if (day > 0) {
             date.setDate(day);
         }
-        if (date.toDateString() === "Invalid Date" || month < 0 || year < 1) {
+        if (date.toDateString() === 'Invalid Date' || month < 0 || year < 1) {
             return null;
         }
         return date;
