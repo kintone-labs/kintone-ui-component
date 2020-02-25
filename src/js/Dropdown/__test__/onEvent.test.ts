@@ -28,8 +28,8 @@ describe('Unit test Dropdown onEvent', () => {
       isVisible: true
     });
     const container = dropdown.render();
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
-    const itemEl = itemsEl[2] as HTMLDivElement;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
+    const itemEl = itemsEl[2];
     dropdown.on('change', (e: any) => {
       expect(e).toBe(expectedValues[2]);
     });
@@ -59,8 +59,8 @@ describe('Unit test Dropdown onEvent', () => {
       isVisible: true
     });
     const container = dropdown.render();
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
-    const itemEl = itemsEl[2] as HTMLDivElement;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
+    const itemEl = itemsEl[2];
     let counter = 0;
     dropdown.on('click', (e: any) => {
       counter += 1;

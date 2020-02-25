@@ -44,7 +44,7 @@ describe('Unit test Dropdown react', () => {
     const selectedTextEl = childEl.querySelector('.kuc-dropdown-selected-label') as HTMLSpanElement;
     expect(selectedTextEl.textContent).toBe(expectedLabels[1]);
 
-    const itemsEl: HTMLCollection = childEl.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = childEl.querySelector('.kuc-list-outer')!.children;
     if (!childEl.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -77,7 +77,7 @@ describe('Unit test Dropdown react', () => {
     expect(childEl).toBeVisible();
   });
 
-  test('Render successfully with showing outer', () => {
+  test('Render successfully with showing selection list', () => {
     const {container} = render(<Dropdown />);
     const childEl = container.firstElementChild!;
     const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
@@ -86,7 +86,7 @@ describe('Unit test Dropdown react', () => {
     expect(itemsEl.getAttribute('style')).toContain('display: block');
   });
 
-  test('Render successfully with hiding outer', () => {
+  test('Render successfully with hiding selection list', () => {
     const {container} = render(<Dropdown />);
     const childEl = container.firstElementChild!;
     const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
@@ -193,6 +193,5 @@ describe('Unit test Dropdown react', () => {
       render(<Dropdown items={expectedItems} />);
     }).toThrowError();
   });
-
 
 });

@@ -16,7 +16,6 @@ describe('Unit test Dropdown render', () => {
   });
 
   test('Render successfully with full props', () => {
-    // デフォルト値と異なる値をセットする。
     const dropdown = new Dropdown({
       items: [
         {
@@ -50,12 +49,12 @@ describe('Unit test Dropdown render', () => {
     expect(selectedTextEl.innerText).toBe(expectedLabels[1]);
 
     // check each dropdown items
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
     }
     for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLDivElement;
+      const itemEl = itemsEl[i];
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
 
@@ -75,7 +74,6 @@ describe('Unit test Dropdown render', () => {
   });
 
   test('Render successfully with wrong props', () => {
-    // 不正な値を設定した場合はデフォルト値がセットされることを確認する
     // @ts-ignore
     const dropdown = new Dropdown({
       items: 0,
@@ -89,7 +87,7 @@ describe('Unit test Dropdown render', () => {
     expect(container).toBeVisible();
   });
 
-  test('Render successfully with showing and hiding outer', () => {
+  test('Render successfully with showing and hiding selection list', () => {
     const dropdown = new Dropdown({});
     const container = dropdown.render();
 
@@ -102,7 +100,7 @@ describe('Unit test Dropdown render', () => {
     expect(itemsEl).not.toBeVisible();
   });
 
-  test('throw error with invalid option.value', () => {
+  test('throw error with invalid option.value not in item list', () => {
     expect(() => {
       new Dropdown({
         items: [
@@ -112,6 +110,15 @@ describe('Unit test Dropdown render', () => {
           }
         ],
         value: expectedValues[1]
+      });
+    }).toThrowError();
+  });
+
+  test('Throw error with invalid option.items', () => {
+    expect(() => {
+      // @ts-ignore
+      new Dropdown({
+        items: ['orange', 'banana', 'lemon']
       });
     }).toThrowError();
   });

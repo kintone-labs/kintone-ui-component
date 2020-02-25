@@ -29,7 +29,7 @@ describe('Unit test Dropdown removeItem', () => {
     const container = dropdown.render();
     dropdown.removeItem(1);
 
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 2) {
       expect(false);
     }
@@ -71,6 +71,24 @@ describe('Unit test Dropdown removeItem', () => {
     });
     // @ts-ignore
     dropdown.removeItem('abc');
+    expect(dropdown.getItems()).toEqual([
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+        isDisabled: false
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+        isDisabled: false
+      },
+      {
+        label: expectedLabels[2],
+        value: expectedValues[2],
+        isDisabled: true
+      }
+    ]);
+    expect(dropdown.getValue()).toBe(expectedValues[1]);
   });
 
   test('Function removeItem run with out of index', () => {

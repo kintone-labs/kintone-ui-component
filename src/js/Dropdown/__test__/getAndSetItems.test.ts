@@ -21,7 +21,7 @@ describe('Unit test Dropdown setItems and getItems', () => {
     ];
     dropdown.setItems(newItem);
 
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 2) {
       expect(false);
     }
@@ -50,12 +50,12 @@ describe('Unit test Dropdown setItems and getItems', () => {
       },
     ];
     dropdown.setItems(newItem);
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
     }
     for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLDivElement;
+      const itemEl = itemsEl[i];
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
 
@@ -93,12 +93,12 @@ describe('Unit test Dropdown setItems and getItems', () => {
       }
     ];
     dropdown.setItems(newItem);
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 2) {
       expect(false);
     }
     for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLDivElement;
+      const itemEl = itemsEl[i];
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
       expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(false);

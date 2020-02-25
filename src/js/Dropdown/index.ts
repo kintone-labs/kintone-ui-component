@@ -47,6 +47,7 @@ class Dropdown extends Control<DropdownProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
+    // for Non-null assertion operator
     const validationErr = this._validator(this._props.items, this._props.value!);
     if (validationErr) {
       throw new Error(validationErr);
@@ -270,6 +271,9 @@ class Dropdown extends Control<DropdownProps> {
     if (this._props.items && this._props.items.length <= index) {
       return false;
     }
+    if (typeof index !== 'number') {
+      return false;
+    }
     if (this._props.items
       && typeof index === 'number'
       && this._props.items[index].value === this._props.value) {
@@ -281,6 +285,9 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   disableItem(value: string) {
+    if (!value) {
+      throw Message.common.INVALID_ARGUMENT;
+    }
     this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
@@ -290,6 +297,9 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   enableItem(value: string) {
+    if (!value) {
+      throw Message.common.INVALID_ARGUMENT;
+    }
     this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;

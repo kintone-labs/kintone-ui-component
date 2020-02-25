@@ -54,10 +54,9 @@ describe('Unit test Dropdown setValue and getValue', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid string value', () => {
+  test('throw error with nonexistent value', () => {
     expect(() => {
       const dropdown = new Dropdown();
-      // @ts-ignore
       dropdown.setValue(expectedValues[1]);
     }).toThrowError();
   });
@@ -69,6 +68,4 @@ describe('Unit test Dropdown setValue and getValue', () => {
       dropdown.setValue(1);
     }).toThrowError();
   });
-
-
 });
