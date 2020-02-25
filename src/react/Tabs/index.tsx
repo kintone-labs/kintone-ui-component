@@ -16,6 +16,7 @@ type TabsProps = {
 };
 
 const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
+  const selectedTabs = value || 0;
   const _onClickTabItem = (tabIndex: number) => {
     onClickTabItem && onClickTabItem(tabIndex);
   };
@@ -37,7 +38,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
             throw new Error(Message.tabs.MISSING_TAB_NAME.replace('{{index}}', tabIndex.toString()));
           }
           let className = 'kuc-tabs-container';
-          if (value === tabIndex) {
+          if (selectedTabs === tabIndex) {
             className += ' kuc-tabs-container-selection';
             if (item.isDisabled) {
               throw new Error(Message.tabs.INVALID_ACTION);
@@ -67,7 +68,7 @@ const Tabs = ({items, value, onClickTabItem}: TabsProps) => {
   const tabContents =
     items &&
     items.map((item: TabsItem, tabIndex: number) => {
-      if (tabIndex !== value) return undefined;
+      if (tabIndex !== selectedTabs) return undefined;
       return (
         <div className="kuc-tabs-tab-contents" key={tabIndex}>
           <div>{item.tabContent}</div>
