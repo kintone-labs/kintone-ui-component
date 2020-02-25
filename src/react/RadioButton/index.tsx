@@ -40,7 +40,7 @@ const RadioButton = (props: RadioButtonProps) => {
         selected={props.value === item.value}
         onChange={(item_prop) => AbstractSingleSelection._handleItemClick(item_prop, props.onChange)}
         item={item}
-        isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
+        isDisabled={props.isDisabled===true ? props.isDisabled : item.isDisabled}
         type="radio"
         name={props.name}
         className="kuc-input-radio-item"
