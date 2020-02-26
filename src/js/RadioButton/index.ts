@@ -7,7 +7,7 @@ import '../../css/RadioButton.css';
 
 type RadioButtonProps = ControlProps & {
   name: string;
-  value?: string;
+  value?: string | null;
   items?: item[];
   onChange?: (params?: any) => void;
 };
@@ -36,7 +36,7 @@ class RadioButton extends Control<RadioButtonProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value);
+    const validationErr = this._validator(this._props.items, this._props.value!);
     if (validationErr) {
       throw new Error(validationErr);
     }
@@ -167,6 +167,11 @@ class RadioButton extends Control<RadioButtonProps> {
   removeItem(index: number) {
     if (this._props.items && this._props.items.length <= index) {
       return false;
+    }
+    if (this._props.items
+      && typeof index === 'number'
+      && this._props.items[index].value === this._props.value) {
+      this._props.value = null;
     }
     this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);

@@ -45,8 +45,7 @@ describe('Unit test RadioButton removeItem', () => {
       isDisabled: true
     }
     ]);
-    //objectをremoveしてもValueは残る？
-    expect(radioButton.getValue()).toEqual([]);
+    expect(radioButton.getValue()).toEqual(null);
   });
 
   test('throw error with invalid index', () => {
@@ -85,7 +84,7 @@ describe('Unit test RadioButton removeItem', () => {
   test('throw error without index', () => {
     expect(() => {
       const radioButton = new RadioButton({
-        name: "fruit",
+        name: 'fruit',
         items: [
           {
             label: expectedLabels[0],
