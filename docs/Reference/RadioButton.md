@@ -177,7 +177,7 @@ Add an item to end of the radio button list.
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |item|	Object|	Yes|The item object will be added.|
-|item.value|String|No|The value of an item.|
+|item.value|String|Yes|The value of an item.|
 |item.label|String|No|Display string.|
 |item.isDisabled|Boolean|No|Indicate item will be disabled when display.<br>Default value: 'false'|
 
