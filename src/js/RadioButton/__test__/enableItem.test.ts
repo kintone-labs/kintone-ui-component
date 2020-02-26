@@ -50,20 +50,4 @@ describe('Unit test CheckBox enableItem', () => {
       radioButton.enableItem();
     }).toThrowError();
   });
-  
-  test('throw error with wrong prop', () => {
-    expect(() => {
-      const radioButton = new RadioButton({
-        name: 'fruit',
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0],
-            isDisabled: true
-          }
-        ]
-      });
-      radioButton.enableItem("EnableItem");
-    }).toThrowError();
-  });
 });

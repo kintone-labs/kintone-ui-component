@@ -4,6 +4,7 @@ import Message from '../../constant/Message';
 import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import '../../css/RadioButton.css';
+import {isNull} from 'util';
 
 type RadioButtonProps = ControlProps & {
   name: string;
@@ -78,8 +79,8 @@ class RadioButton extends Control<RadioButtonProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value &&
-      !AbstractSingleSelection._hasValidValue(items, value)
+    if (items && value && !AbstractSingleSelection._hasValidValue(items, value)
+       || !AbstractSingleSelection._hasValidItems(items)
     ) {
       err = Message.common.INVALID_ARGUMENT;
     }
@@ -165,8 +166,9 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   removeItem(index: number) {
-    if (this._props.items && this._props.items.length <= index) {
-      return false;
+    if ((this._props.items && this._props.items.length <= index)
+        || typeof index !== 'number' || index === null) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
     }
     if (this._props.items
       && typeof index === 'number'
@@ -178,6 +180,9 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   disableItem(value: string) {
+    if(!value){
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     this._props.items && this._props.items.forEach(obj => {
       if (obj.value === value) {
         obj.isDisabled = true;
@@ -187,6 +192,9 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   enableItem(value: string) {
+    if(!value){
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     this._props.items && this._props.items.forEach(obj => {
       if (obj.value === value) {
         obj.isDisabled = false;
