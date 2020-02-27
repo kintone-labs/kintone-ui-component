@@ -4,7 +4,6 @@ import Message from '../../constant/Message';
 import Item, {item} from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import '../../css/RadioButton.css';
-import {isNull} from 'util';
 
 type RadioButtonProps = ControlProps & {
   name: string;
@@ -180,7 +179,7 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   disableItem(value: string) {
-    if(!value){
+    if (!value) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     this._props.items && this._props.items.forEach(obj => {
@@ -192,7 +191,7 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   enableItem(value: string) {
-    if(!value){
+    if (!value) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     this._props.items && this._props.items.forEach(obj => {

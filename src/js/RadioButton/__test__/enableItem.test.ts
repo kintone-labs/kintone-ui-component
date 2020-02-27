@@ -1,10 +1,10 @@
 import RadioButton from '../index';
 
-describe('Unit test CheckBox enableItem', () => {
+describe('Unit test RadioButton enableItem', () => {
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];
 
-    test('Function enableItem run successfully', () => {
+  test('Function enableItem run successfully', () => {
     const radioButton = new RadioButton({
       name: 'fruit',
       items: [
