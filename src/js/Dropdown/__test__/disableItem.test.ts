@@ -32,7 +32,7 @@ describe('Unit test Dropdown disableItem', () => {
     expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(true);
   });
 
-  test('throw error invalid value', () => {
+  test('throw error without value', () => {
     expect(() => {
       const dropdown = new Dropdown({
         items: [

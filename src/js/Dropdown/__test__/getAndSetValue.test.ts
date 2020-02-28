@@ -32,7 +32,7 @@ describe('Unit test Dropdown setValue and getValue', () => {
       expect(false);
     }
     for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLDivElement;
+      const itemEl = itemsEl[i];
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
 
