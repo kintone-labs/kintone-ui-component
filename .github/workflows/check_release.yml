@@ -23,10 +23,10 @@ jobs:
       uses: ./.github/actions/check_version
     - name: Run ESLint
       run: |
-        node_modules/.bin/eslint src/js/**.ts --fix
-        node_modules/.bin/eslint src/js/**/**.ts --fix
-        node_modules/.bin/eslint src/react/**.ts --fix
-        node_modules/.bin/eslint src/react/**/**.ts --fix
+        node_modules/.bin/eslint src/js/**.ts
+        node_modules/.bin/eslint src/js/**/**.ts
+        node_modules/.bin/eslint src/react/**.ts
+        node_modules/.bin/eslint src/react/**/**.ts
     - name: Run unit test
       run: npm test
     - name: Build dist/esm
