@@ -2,7 +2,6 @@
     user-select: none;
     top: 30px;
     left: 50%;
-    transform: translate(-50%);
     min-height: 70px;
     max-height: 150px;
     min-width: 170px;
@@ -16,8 +15,8 @@
     animation-fill-mode: forwards;
 }
 @keyframes kuc-notify-fade-in {
-    0% {opacity: 0; transform: translate3d(0,-16px,0);}
-    100% {opacity: 1; transform: translate3d(0,0,0);}
+    0% {opacity: 0; transform: translate(-50%,-16px);}
+    100% {opacity: 1; transform: translate(-50%,0);}
 }
 .kuc-notify.bg-danger {
     background: #e74c3c;
