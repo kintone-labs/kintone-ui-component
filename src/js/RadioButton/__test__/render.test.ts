@@ -95,7 +95,7 @@ describe('Unit test RadioButton render', () => {
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
-      const  radioButton = new RadioButton({
+      const radioButton = new RadioButton({
         items: ['orange', 'banana', 'lemon']
       });
       radioButton.render();

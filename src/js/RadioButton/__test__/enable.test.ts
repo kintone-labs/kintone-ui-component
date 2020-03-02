@@ -1,6 +1,6 @@
 import RadioButton from '../index';
 
-describe('Unit test CheckBox enable', () => {
+describe('Unit test RadioButton enable', () => {
   test('Function enable run successfully', () => {
     const expectedLabels = ['Orange', 'Banana', 'Lemon'];
     const expectedValues = ['orange', 'banana', 'lemon'];
