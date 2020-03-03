@@ -27,7 +27,7 @@ const _hasDuplicatedItems = (items?: items) => {
 };
 
 const _hasValidItems = (items?: items) => {
-  if (items === undefined) {
+  if (!items) {
     return true;
   }
   return Array.isArray(items) && items.every((item: item) => {

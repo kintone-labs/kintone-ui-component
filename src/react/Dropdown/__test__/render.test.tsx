@@ -145,7 +145,7 @@ describe('Unit test Dropdown react', () => {
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
-      render(<Dropdown items={null} />);
+      render(<Dropdown items={['orange', 'banana', 'lemon']} />);
     }).toThrowError();
   });
 
