@@ -21,7 +21,7 @@ type DropdownProps = {
 const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const {_hasDuplicatedItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
+  const {_hasDuplicatedItems, _hasValidItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;
 
   const _caclListOuterPosition = (listItemEl: HTMLDivElement) => {
     let position = -6;
@@ -68,8 +68,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: Dr
   if (_hasDuplicatedItems(items)) {
     throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
   }
-
-  if (!_hasValidValue(items, value)) {
+  if (!_hasValidItems(items) || !_hasValidValue(items, value)) {
     throw new Error(Message.common.INVALID_ARGUMENT);
   }
 

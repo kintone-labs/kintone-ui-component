@@ -44,7 +44,7 @@ describe('Unit test Dropdown react', () => {
     const selectedTextEl = childEl.querySelector('.kuc-dropdown-selected-label') as HTMLSpanElement;
     expect(selectedTextEl.textContent).toBe(expectedLabels[1]);
 
-    const itemsEl: HTMLCollection = childEl.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = childEl.querySelector('.kuc-list-outer')!.children;
     if (!childEl.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -75,6 +75,27 @@ describe('Unit test Dropdown react', () => {
     expect(childEl.classList.length).toBe(1);
     expect(childEl.getAttribute('disabled')).toBe(null);
     expect(childEl).toBeVisible();
+  });
+
+  test('Render successfully with showing selection list', () => {
+    const {container} = render(<Dropdown />);
+    const childEl = container.firstElementChild!;
+    const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
+    const itemsEl = childEl.querySelector('.kuc-list-outer') as HTMLDivElement;
+    fireEvent.click(dropdownOuterEl);
+    expect(itemsEl.getAttribute('style')).toContain('display: block');
+  });
+
+  test('Render successfully with hiding selection list', () => {
+    const {container} = render(<Dropdown />);
+    const childEl = container.firstElementChild!;
+    const dropdownOuterEl = childEl.querySelector('.kuc-dropdown-outer') as HTMLDivElement;
+    const itemsEl = childEl.querySelector('.kuc-list-outer') as HTMLDivElement;
+    const body = document.body;
+
+    fireEvent.click(dropdownOuterEl);
+    fireEvent.mouseDown(body);
+    expect(itemsEl).not.toBeVisible();
   });
 
   test('Render successfully with onChange for selected', () => {
@@ -124,7 +145,7 @@ describe('Unit test Dropdown react', () => {
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
-      render(<Dropdown items={null} />);
+      render(<Dropdown items={['orange', 'banana', 'lemon']} />);
     }).toThrowError();
   });
 
@@ -172,6 +193,5 @@ describe('Unit test Dropdown react', () => {
       render(<Dropdown items={expectedItems} />);
     }).toThrowError();
   });
-
 
 });

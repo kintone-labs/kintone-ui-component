@@ -30,7 +30,7 @@ const _hasValidItems = (items?: items) => {
 };
 
 const _hasValidValue = (items?: items, value?: string) => {
-  if (value === undefined) {
+  if (!value) {
     return true;
   }
   return items && items.some(item => {

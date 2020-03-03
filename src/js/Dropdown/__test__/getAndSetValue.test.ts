@@ -32,7 +32,7 @@ describe('Unit test Dropdown setValue and getValue', () => {
       expect(false);
     }
     for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLDivElement;
+      const itemEl = itemsEl[i];
       const itemLabelEl = itemEl.children[1] as HTMLSpanElement;
       expect(itemLabelEl.innerText).toBe(expectedLabels[i]);
 
@@ -54,10 +54,9 @@ describe('Unit test Dropdown setValue and getValue', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid string value', () => {
+  test('throw error with nonexistent value', () => {
     expect(() => {
       const dropdown = new Dropdown();
-      // @ts-ignore
       dropdown.setValue(expectedValues[1]);
     }).toThrowError();
   });
@@ -69,6 +68,4 @@ describe('Unit test Dropdown setValue and getValue', () => {
       dropdown.setValue(1);
     }).toThrowError();
   });
-
-
 });

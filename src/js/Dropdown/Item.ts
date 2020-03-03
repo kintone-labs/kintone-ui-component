@@ -44,7 +44,7 @@ class Item extends Control<ItemProps> {
     const className = [
       'kuc-list-item',
       this._props.selected ? 'kuc-list-item-selected' : '',
-      this._props.isDisabled ? 'kuc-list-item-disable' : ''
+      this._props.isDisabled === true ? 'kuc-list-item-disable' : ''
     ];
     this.element = document.createElement('div');
     this.element.className = className.join(' ').trim();
@@ -77,7 +77,7 @@ class Item extends Control<ItemProps> {
 
   rerender(changedAttr?: string[]) {
     super.rerender();
-    if (this._props.isDisabled) {
+    if (this._props.isDisabled === true) {
       this.inputEl.setAttribute('disabled', `${this._props.isDisabled}`);
     } else {
       this.inputEl.removeAttribute('disabled');

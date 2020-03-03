@@ -12,11 +12,11 @@ describe('Unit test Dropdown addItem', () => {
       value: expectedValues[0]
     });
 
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 1) {
       expect(false);
     }
-    const itemEl = itemsEl[0] as HTMLDivElement;
+    const itemEl = itemsEl[0];
     expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(false);
     expect(dropdown.getItems()).toEqual([{value: expectedValues[0]}]);
   });
@@ -29,11 +29,11 @@ describe('Unit test Dropdown addItem', () => {
       label: expectedLabels[0],
       isDisabled: true
     });
-    const itemsEl: HTMLCollection = container.querySelector('.kuc-list-outer')!.children;
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
     if (!container.children || itemsEl.length !== 1) {
       expect(false);
     }
-    const itemEl = itemsEl[0] as HTMLDivElement;
+    const itemEl = itemsEl[0];
     expect(itemEl.classList.contains('kuc-list-item-disable')).toBe(true);
     expect(dropdown.getItems()).toEqual([{
       value: expectedValues[0],
@@ -58,8 +58,6 @@ describe('Unit test Dropdown addItem', () => {
         label: expectedLabels[0],
         isDisabled: true
       });
-      // 必須項目のvalueを省略してもエラーが発生しない
-      // ここエラーが発生する。
     }).toThrowError();
   });
 

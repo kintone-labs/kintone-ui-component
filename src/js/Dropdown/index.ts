@@ -13,7 +13,7 @@ type item = {
 };
 
 type DropdownProps = ControlProps & {
-  value?: string;
+  value?: string | null;
   items?: item[];
   onChange?: (params?: any) => void;
   listItemsShown?: (params?: any) => void;
@@ -47,7 +47,8 @@ class Dropdown extends Control<DropdownProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value);
+    // for Non-null assertion operator
+    const validationErr = this._validator(this._props.items, this._props.value!);
     if (validationErr) {
       throw new Error(validationErr);
     }
@@ -192,9 +193,7 @@ class Dropdown extends Control<DropdownProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value &&
-      !AbstractSingleSelection._hasValidValue(items, value)
-    ) {
+    if (!AbstractSingleSelection._hasValidValue(items, value) || !AbstractSingleSelection._hasValidItems(items)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;
@@ -272,11 +271,23 @@ class Dropdown extends Control<DropdownProps> {
     if (this._props.items && this._props.items.length <= index) {
       return false;
     }
+    if (typeof index !== 'number') {
+      return false;
+    }
+    if (this._props.items
+      && typeof index === 'number'
+      && this._props.items[index].value === this._props.value) {
+      this._props.value = null;
+      this.label = '';
+    }
     this._props.items && this._props.items.splice(index, 1);
     return this.rerender(['item']);
   }
 
   disableItem(value: string) {
+    if (!value) {
+      throw Message.common.INVALID_ARGUMENT;
+    }
     this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = true;
@@ -286,6 +297,9 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   enableItem(value: string) {
+    if (!value) {
+      throw Message.common.INVALID_ARGUMENT;
+    }
     this._props.items && this._props.items.forEach(item => {
       if (item.value === value) {
         item.isDisabled = false;
