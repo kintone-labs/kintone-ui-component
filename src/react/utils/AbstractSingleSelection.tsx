@@ -26,6 +26,7 @@ const _hasDuplicatedItems = (items?: items) => {
   return !isUnique;
 };
 
+
 const _hasValidItems = (items?: items) => {
   if (!items) {
     return true;
