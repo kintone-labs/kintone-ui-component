@@ -1,0 +1,21 @@
+name: On commit workflow
+on:
+  push:
+jobs:
+  Run_tests:
+    name: Run unit test
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - name: Remove package-lock
+      run: rm -rf package-lock.json
+    - name: Install dependencies
+      run: npm install
+    - name: Run ESLint
+      run: |
+        node_modules/.bin/eslint src/js/**.ts
+        node_modules/.bin/eslint src/js/**/**.ts
+        node_modules/.bin/eslint src/react/**.ts
+        node_modules/.bin/eslint src/react/**/**.ts
+    - name: Run unit test
+      run: npm test

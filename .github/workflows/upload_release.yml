@@ -1,0 +1,46 @@
+name: Upload For Release CI
+on:
+  repository_dispatch:
+     types: release_dispatch
+jobs:
+  On_upload:
+    name: Upload integrity and package to release
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Check if automation test is fail
+      if: github.event.client_payload.status != 'success'
+      run: exit 1
+    - uses: actions/checkout@master
+    - name: Remove package-lock
+      run: rm -rf package-lock.json
+    - name: Install dependencies
+      run: |
+        npm install
+        npm i @actions/core
+    - name: Check version
+      id: check_version
+      uses: ./.github/actions/check_version
+    - name: Generate package binary file
+      id: generate_binary
+      uses: ./.github/actions/generate_binary_file
+    - name: Upload integrity artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: my-integrity
+        path: ./${{ steps.generate_binary.outputs.integrity }}
+    - uses: fregante/setup-git-token@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit package-lock.json and push to remote
+      run: |
+          git add ./package-lock.json
+          git commit -m "update package-lock.json after release"
+          git push origin HEAD:master
+    - name: Upload package to release[binaries]
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.ACCESS_TOKEN }}
+        file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+        asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
+        tag: ${{ github.ref }}
+        overwrite: true
