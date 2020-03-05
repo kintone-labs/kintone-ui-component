@@ -42,6 +42,9 @@ class Attachment extends Control<AttachmentProps> {
     };
     if (params) {
       this._props = {...this._props, ...params};
+
+      if (params.onFileRemove) this._onFileRemove = params.onFileRemove;
+      if (params.onFilesAdd) this._onFileAdd = params.onFilesAdd;
     }
 
     this.element = this.createContainerEL();
