@@ -2,7 +2,7 @@
 import DateTime from '../index';
 
 const messages = {
-  INVALID_DATE: 'day2.toDateString is not a function'
+  INVALID_DATE: 'Error: invalid function arguments'
 };
 
 describe('Unit test DateTime render', () => {
