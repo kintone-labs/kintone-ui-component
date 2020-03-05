@@ -19,7 +19,7 @@ describe('Unit test Calendar react', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
     const {container} = render(
       <Calendar
-        date={new Date('05/02/2020')}
+        date={new Date('12/15/2020')}
         locale={zh}
         pickerDisplay="none"
         hasSelection
