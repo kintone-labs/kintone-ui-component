@@ -48,6 +48,7 @@ class Calendar extends Control<CalendarProps> {
     };
     if (params) {
       this._props = {...this._props, ...params};
+      if (this._props.date) this._displayDate = this._props.date;
     }
     this._displayMonth = format(this._displayDate, 'calendarmonth', {locale: this._props.locale});
     this._displayYear = format(this._displayDate, 'calendaryear', {locale: this._props.locale});
