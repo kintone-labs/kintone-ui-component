@@ -44,7 +44,7 @@ describe('Unit test Calendar render', () => {
     expect(newFirstDay.textContent).toBe('29');
   });
   test('onClick Next Button Calendar', () => {
-    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date(), locale: Locale.zh});
+    const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/05/2020'), locale: Locale.zh});
     const pickerContainer = calendar.render();
 
     const oldFirstDay = pickerContainer.getElementsByClassName('day')[0];
