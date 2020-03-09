@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {fireEvent, getByText, getByRole} from '@testing-library/dom';
+import {fireEvent, getByText} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 
 import ColorPicker from '../index';
@@ -36,14 +36,15 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const mockCallback = jest.fn((inputColor) => {
       expect(inputColor).toBe(changedColor);
     });
     colorPicker.on('change', mockCallback);
 
-    fireEvent.blur(getByRole(textBoxOuter, 'textbox'), {target: {value: changedColor}});
+    fireEvent.blur(textbox, {target: {value: changedColor}});
     fireEvent.click(getByText(colorPicker.render(), 'OK'), {});
     expect(mockCallback).toBeCalled();
   });
@@ -55,12 +56,14 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const mockCallback = jest.fn(() => {});
     colorPicker.on('change', mockCallback);
 
-    fireEvent.blur(getByRole(textBoxOuter, 'textbox'), {target: {value: changedColor}});
+    fireEvent.blur(textbox, {target: {value: changedColor}});
     fireEvent.click(getByText(colorPicker.render(), 'Cancel'), {});
     expect(mockCallback).not.toBeCalled();
     expect(colorPicker.getColor()).toBe(color);
@@ -72,7 +75,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputROuter = getByText(picker, 'R').nextElementSibling as HTMLElement;
@@ -88,7 +92,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputGOuter = getByText(picker, 'G').nextElementSibling as HTMLElement;
@@ -104,7 +109,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputBOuter = getByText(picker, 'B').nextElementSibling as HTMLElement;
@@ -119,7 +125,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputHOuter = getByText(picker, 'H').nextElementSibling as HTMLElement;
@@ -134,7 +141,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputSOuter = getByText(picker, 'S').nextElementSibling as HTMLElement;
@@ -149,7 +157,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     const inputVOuter = getByText(picker, 'V').nextElementSibling as HTMLElement;
@@ -164,8 +173,9 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    expect(getByRole(textBoxOuter, 'textbox')).toHaveStyle('background-color: rgb(255, 0, 11)');
-    fireEvent.focus(getByRole(textBoxOuter, 'textbox'), {target: {value: '#ff000b'}});
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    expect(textbox).toHaveStyle('background-color: rgb(255, 0, 11)');
+    fireEvent.focus(textbox, {target: {value: '#ff000b'}});
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     expect(picker).toHaveStyle('display: block');
@@ -192,7 +202,8 @@ describe('[JS] Unit test ColorPicker handle event', () => {
     const colorPicker = new ColorPicker({color: color});
 
     const textBoxOuter = colorPicker.render().firstElementChild as HTMLElement;
-    fireEvent.focus(getByRole(textBoxOuter, 'textbox'), {target: {value: '#ff000b'}});
+    const textbox = textBoxOuter.getElementsByTagName('input')[0];
+    fireEvent.focus(textbox, {target: {value: '#ff000b'}});
 
     const picker = colorPicker.render().lastElementChild as HTMLElement;
     expect(picker).toHaveStyle('display: block');
