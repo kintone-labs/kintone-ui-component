@@ -28,6 +28,8 @@
     "lib",
     "scripts",
     "webpack.config.js",
+    "./src/**/*.test.tsx",
+    "./src/**/*.test.ts"
   ]
 }
   
