@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Control, {ControlProps} from '../Control';
 import '../../css/Attachment.css';
 type AttachmentFileItemProps = ControlProps & {
