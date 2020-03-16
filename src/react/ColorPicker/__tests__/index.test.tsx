@@ -8,6 +8,17 @@ import Message from '../../../constant/Message';
 import ColorPicker from '../index';
 
 describe('<ColorPicker/>', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
   test('should be render successfully', () => {
     const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" />);
     expect(getAllByRole('textbox')[0]).toHaveStyle('background-color: rgb(255, 0, 11)');

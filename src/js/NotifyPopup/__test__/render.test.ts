@@ -2,6 +2,17 @@ import NotifyPopup from '../index';
 
 /* eslint no-unused-expressions: "off" */
 describe('unit test NotifyPopup render', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
   test('Render successfully without option', () => {
     const notifyPopup = new NotifyPopup();
     const container = notifyPopup.render();

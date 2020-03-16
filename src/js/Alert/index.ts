@@ -2,7 +2,7 @@ import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import '../../css/Alert.css';
 
-type AlertProps = ControlProps & {
+export type AlertProps = ControlProps & {
   text?: string;
   type?: 'error' | 'success';
 }

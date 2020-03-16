@@ -3,6 +3,17 @@ import {render, fireEvent} from '@testing-library/react';
 import Dropdown from '../index';
 
 describe('Unit test Dropdown react', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];
 

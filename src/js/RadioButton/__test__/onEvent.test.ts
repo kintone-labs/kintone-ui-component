@@ -2,6 +2,16 @@ import {fireEvent} from '@testing-library/dom';
 import RadioButton from '../index';
 
 describe('Unit test RadioButton onEvent', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
 
   const expectedLabels = ['Orange', 'Banana', 'Lemon'];
   const expectedValues = ['orange', 'banana', 'lemon'];

@@ -2,6 +2,16 @@ import Button from '../index';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Button onEvent', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
   test('Function onClick event run successfully', () => {
     const button = new Button();
     const container = button.render();

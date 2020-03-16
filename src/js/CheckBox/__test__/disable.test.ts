@@ -1,6 +1,17 @@
 import CheckBox from '../index';
 
 describe('Unit test CheckBox disable', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
   test('Function disable run successfully', () => {
     const expectedLabels = ['Orange', 'Banana', 'Lemon'];
     const expectedValues = ['orange', 'banana', 'lemon'];

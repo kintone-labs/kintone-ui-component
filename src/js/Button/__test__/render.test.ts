@@ -1,6 +1,16 @@
 import Button from '../index';
 
 describe('Unit test Button render', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
   test('Render successfully without props', () => {
     const button = new Button();
     const container = button.render();

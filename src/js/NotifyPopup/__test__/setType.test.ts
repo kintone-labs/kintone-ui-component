@@ -1,6 +1,17 @@
 import NotifyPopup from '../index';
 
 describe('Unit test NortifyPopup setType', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+  });
+
   test('Function setType error run successfully', () => {
     const notifypopup = new NotifyPopup({type: 'success'});
     const container = notifypopup.render();

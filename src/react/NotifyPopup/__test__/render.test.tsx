@@ -9,10 +9,16 @@ describe('Unit test NotifyPopup react', () => {
     console.log.mockImplementation(value => {
       return value;
     });
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    console.error.mockImplementation(() => { });
   });
   afterEach(() => {
     // @ts-ignore
     console.log.mockRestore();
+    // @ts-ignore
+    console.error.mockRestore();
   });
 
   test('Render successfully without props', () => {
