@@ -34,7 +34,7 @@ describe('Unit test NotifyPopup react', () => {
   });
   test('Render successfully with full props_success', () => {
     const {container} = render(
-      <NotifyPopup text="testString" type="success" isVisible={true} />
+      <NotifyPopup text="testString" type="success" isVisible />
     );
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-notify bg-success');
@@ -47,7 +47,7 @@ describe('Unit test NotifyPopup react', () => {
   });
   test('Render successfully with full props_info', () => {
     const {container} = render(
-      <NotifyPopup text="testString" type="info" isVisible={true} />
+      <NotifyPopup text="testString" type="info" isVisible />
     );
     if (container.firstElementChild) {
       expect(container.firstElementChild.className).toBe('kuc-notify bg-info');
