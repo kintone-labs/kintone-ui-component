@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Button from '../index';
 
 describe('Unit test Button disable', () => {
