@@ -10,8 +10,8 @@ type TextAreaProps = ControlProps & {
 }
 
 class TextArea extends Control<TextAreaProps> {
-  private _onClick: (params?: any) => void = () => {}
-  private _onChange: (params?: any) => void = () => {}
+  private _onClick: (params?: any) => void
+  private _onChange: (params?: any) => void
   private textAreaEl: HTMLTextAreaElement
   private resizeEl: HTMLDivElement
   private textAreaWidth= 297
@@ -131,11 +131,11 @@ class TextArea extends Control<TextAreaProps> {
     const textarea = document.createElement('textarea');
     textarea.className = 'kuc-textarea';
     textarea.onclick = (e) => {
-      this._onClick(e);
+      this._onClick && this._onClick(e);
     };
     textarea.onchange = (e) => {
       this._props.value = (e.target as HTMLInputElement).value;
-      this._onChange((e.target as HTMLInputElement).value);
+      this._onChange && this._onChange((e.target as HTMLInputElement).value);
     };
     textarea.style.width = this.textAreaWidth + 'px';
     textarea.style.height = this.textAreaHeight + 'px';

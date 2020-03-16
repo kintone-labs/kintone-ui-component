@@ -20,9 +20,7 @@ class ColorPicker extends Control<ColorPickerProps> {
     this._props = {
       ...this._props,
       ...{
-        color: '#ff0000',
-        onAccept: (color: string) => {},
-        onCancel: (color: string) => {}
+        color: '#ff0000'
       }
     };
     if (!params) {

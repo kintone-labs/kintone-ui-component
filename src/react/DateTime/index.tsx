@@ -12,7 +12,7 @@ import '../../css/font.css';
 
 type DateTimeConstructorParameters = {
   value?: Date;
-  onChange?: Function;
+  onChange?: (newDate: Date) => void;
   locale?: 'ja' | 'en' | 'zh';
   dateFormat?: string;
   type?: 'date' | 'time' | 'datetime';
@@ -25,7 +25,7 @@ const DateTime = ({
   value = new Date(),
   isDisabled = false,
   isVisible = true,
-  onChange = (newDate: Date) => {},
+  onChange,
   locale = 'ja',
   dateFormat = 'MM/dd/YYYY',
   type = 'datetime',
@@ -59,7 +59,7 @@ const DateTime = ({
     newTime.setMonth(timeDateValue.getMonth());
     newTime.setDate(timeDateValue.getDate());
     setTimeDateValue(newTime);
-    onChange(newTime);
+    onChange && onChange(newTime);
     setTimeout(()=>{
       setTimeValue(format(newTime, timeFormat));
       timeInput.setSelectionRange(3, 5);
@@ -72,7 +72,7 @@ const DateTime = ({
     newTime.setMonth(timeDateValue.getMonth());
     newTime.setDate(timeDateValue.getDate());
     setTimeDateValue(new Date(newTime));
-    onChange(new Date(newTime));
+    onChange && onChange(new Date(newTime));
     setTimeout(()=>{
       setTimeValue(format(newTime, timeFormat));
       timeInput.setSelectionRange(0, 2);
@@ -243,7 +243,7 @@ const DateTime = ({
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
                   ) {
                     if (returnDate) {
-                      onChange(returnDate);
+                      onChange && onChange(returnDate);
                       setShowPickerError(false);
                     }
                     setPickerDisplay('none');
@@ -291,7 +291,7 @@ const DateTime = ({
                       tempDate.setHours(timeDateValue.getHours());
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
-                      onChange(tempDate);
+                      onChange && onChange(tempDate);
                       if (!showPickerError) {
                         setInputValue(format(tempDate, dateFormat));
                       }
@@ -301,7 +301,7 @@ const DateTime = ({
                       tempDate.setHours(timeDateValue.getHours());
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
-                      onChange(tempDate);
+                      onChange && onChange(tempDate);
                       setInputValue('');
                       setHasSelection(false);
                       setShowPickerError(false);
@@ -403,7 +403,7 @@ const DateTime = ({
                 newTime.setDate(timeDateValue.getDate());
                 setTimeValue(format(newTime, timeFormat));
                 setTimeDateValue(new Date(newTime));
-                onChange(new Date(newTime));
+                onChange && onChange(new Date(newTime));
                 setTimePickerDisplay('none');
               }}
               onKeyDown={
@@ -428,7 +428,7 @@ const DateTime = ({
 
                     setTimeValue(format(tempDate, timeFormat));
                     setTimeDateValue(new Date(tempDate));
-                    onChange(tempDate);
+                    onChange && onChange(tempDate);
                     setTimePickerDisplay('none');
                   }
                 }
