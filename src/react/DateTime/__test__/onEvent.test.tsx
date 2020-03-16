@@ -223,7 +223,7 @@ describe('Unit test DateTime react', () => {
     date.setSeconds(0);
     date.setMinutes(0);
     date.setMilliseconds(0);
-    
+
     const updateHourUp = new Date();
     updateHourUp.setHours(5);
     updateHourUp.setSeconds(0);
