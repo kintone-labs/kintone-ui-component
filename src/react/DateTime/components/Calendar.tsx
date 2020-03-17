@@ -22,7 +22,7 @@ const Calendar = ({
   locale = ja,
   pickerDisplay = 'block',
   hasSelection = false,
-  onDateClick = () => {},
+  onDateClick,
   calRef
 }: CalendarProps) => {
   const today = new Date();
@@ -83,7 +83,7 @@ const Calendar = ({
           !calRef.current.contains(relatedTarget as HTMLElement) &&
           pickerDisplay !== 'none'
         ) {
-          onDateClick(null, null);
+          onDateClick && onDateClick(null, null);
         }
       }}
     >
@@ -202,7 +202,7 @@ const Calendar = ({
                   const returnDate = new Date(date);
                   returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
 
-                  onDateClick(returnDate, null);
+                  onDateClick && onDateClick(returnDate, null);
                   setDisplayDate(new Date(day));
                 }}
                 onKeyUp={()=>{
@@ -210,7 +210,7 @@ const Calendar = ({
                   const returnDate = new Date(date);
                   returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
 
-                  onDateClick(returnDate, null);
+                  onDateClick && onDateClick(returnDate, null);
                   setDisplayDate(new Date(day));
                 }}
                 tabIndex={0}
@@ -226,10 +226,10 @@ const Calendar = ({
             tabIndex={0}
             className="today calendar-button-control"
             onClick={()=>{
-              setDisplayDate(new Date()); onDateClick(today, null);
+              setDisplayDate(new Date()); onDateClick && onDateClick(today, null);
             }}
             onKeyUp={()=>{
-              setDisplayDate(new Date()); onDateClick(today, null);
+              setDisplayDate(new Date()); onDateClick && onDateClick(today, null);
             }}
           >{locale.today}
           </span>
@@ -237,10 +237,10 @@ const Calendar = ({
             role="button"
             className="none calendar-button-control"
             onClick={()=>{
-              onDateClick(null, previousDate);
+              onDateClick && onDateClick(null, previousDate);
             }}
             onKeyUp={()=>{
-              onDateClick(null, previousDate);
+              onDateClick && onDateClick(null, previousDate);
             }}
             tabIndex={-1}
           >{locale.none}

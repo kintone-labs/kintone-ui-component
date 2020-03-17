@@ -27,9 +27,6 @@ class Picker extends Control<PickerProps> {
       ...this._props,
       ...{
         hexString: '',
-        onChange: (hexString: string, triggerOnChange: boolean) => {},
-        onAccept: (hexString: string) => {},
-        onCancel: () => {},
         isDisabled: false,
         isVisible: false
       }
@@ -63,7 +60,7 @@ class Picker extends Control<PickerProps> {
       height: 200,
       onSelect: (newRgb: RGB) => {
         this._props.hexString = rgbToHex(newRgb.r, newRgb.g, newRgb.b);
-        this._props.onChange(this._props.hexString, true);
+        this._props.onChange && this._props.onChange(this._props.hexString, true);
       }
     } as HueSpectrumProps);
   }
@@ -76,7 +73,7 @@ class Picker extends Control<PickerProps> {
       rgb: this.saturationBackground,
       onSelect: (rgb, triggerOnChange) => {
         this._props.hexString = rgbToHex(rgb.r, rgb.g, rgb.b);
-        this._props.onChange(this._props.hexString, triggerOnChange);
+        this._props.onChange && this._props.onChange(this._props.hexString, triggerOnChange);
       }
     } as SaturationSpectrumProps);
   }
@@ -135,7 +132,7 @@ class Picker extends Control<PickerProps> {
     this.okButton.on('click', () => {
       this._props.isVisible = false;
       this.rerender(['pickerDisplay']);
-      this._props.onAccept(this._props.hexString);
+      this._props.onAccept && this._props.onAccept(this._props.hexString);
     });
 
     const cancelButtonSpan = document.createElement('span');
@@ -149,7 +146,7 @@ class Picker extends Control<PickerProps> {
     this.cancelButton.on('click', () => {
       this._props.isVisible = false;
       this.rerender(['pickerDisplay']);
-      this._props.onCancel();
+      this._props.onCancel && this._props.onCancel();
     });
   }
 

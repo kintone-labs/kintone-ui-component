@@ -18,7 +18,7 @@ type DropdownProps = {
   onChange?: (value: string) => void;
 }
 
-const Dropdown = ({value, items, isVisible, isDisabled, onChange = () => {}}: DropdownProps) => {
+const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps) => {
   const [isVisibleItems, setVisibleItems] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidItems, _hasValidValue, _handleItemClick} = AbstractSingleSelection;

@@ -12,7 +12,7 @@ type IconBtnProps = ControlProps & {
 class IconButton extends Control<IconBtnProps> {
   private iconEl: SVGSVGElement
   private pathEl: SVGPathElement
-  private _onClick = (e: Event) => {}
+  private _onClick: (e: Event) => void
 
   constructor(params?: IconBtnProps) {
     super();
@@ -37,7 +37,7 @@ class IconButton extends Control<IconBtnProps> {
     const btnEl = document.createElement('button');
     btnEl.addEventListener('click', (e) => {
       if (this._props.isDisabled) return;
-      this._onClick(e);
+      this._onClick && this._onClick(e);
     });
 
     this.pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
