@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test Alert setType', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setType successfully without props Alert component', () => {
     const alert = new Alert();

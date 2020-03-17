@@ -2,15 +2,6 @@
 import Attachment from '../index';
 
 describe('Unit test Attachment setFileLimitText', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setFileLimitText is called successfully', () => {
     const FILE_LIMIT_TEXT = 'File limit.';

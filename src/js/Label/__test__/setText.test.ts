@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test Label setText', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setText expect to throw error with props value number Label component', () => {
     try {

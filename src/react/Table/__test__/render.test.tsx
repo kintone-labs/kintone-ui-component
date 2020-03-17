@@ -5,15 +5,6 @@ import Table from '../index';
 import React from 'react';
 
 describe('Unit test Table react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('Render successfully without props', () => {
     const {container} = render(<Table />);

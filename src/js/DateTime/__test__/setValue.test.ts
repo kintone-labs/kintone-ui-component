@@ -8,15 +8,6 @@ const messages = {
 // TODO: Remove unreachable else path line 481 (unnecessary return) index.ts
 // TODO: Remove unreachable onChange path line 17,41 (unnecessary props) index.ts
 describe('Unit test DateTime setValue', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setValue type datetime DateTime', () => {
     const correctDateTime = '2020-05-10T04:13:00.000Z';

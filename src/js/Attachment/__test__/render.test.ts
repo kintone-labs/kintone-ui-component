@@ -2,15 +2,6 @@
 import Attachment from '../index';
 
 describe('Unit test Attachment render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('Render successfully without props', () => {
     const myAttachment = new Attachment();

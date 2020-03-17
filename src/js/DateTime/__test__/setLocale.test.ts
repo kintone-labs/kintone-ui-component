@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test DateTime setLocale', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setLocale type datetime DateTime', () => {
     const datetime = new DateTime({value: new Date('October 13, 2019 11:13:00'), type: 'datetime'});

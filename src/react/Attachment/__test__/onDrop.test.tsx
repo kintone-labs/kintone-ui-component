@@ -4,15 +4,6 @@ import Attachment from '../index';
 import React from 'react';
 
 describe('Unit test for Attachment onDrop event handler', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onDrop is fired successfully for IE', () => {
     const file = new File([''], 'file1.png', {

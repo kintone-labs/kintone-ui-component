@@ -2,15 +2,6 @@
 import Attachment from '../index';
 
 describe('Unit test Attachment hideError', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('hideError is called successfully', () => {
     const ERROR_MESSAGE_TEXT = 'Error.';

@@ -3,15 +3,6 @@ import Attachment from '../index';
 import {createEvent, fireEvent} from '@testing-library/dom';
 
 describe('Unit test Attachment onDragEnter', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onDragEnter is fired successfully with dataTransfer.items[].kind', () => {
     const myAttachment = new Attachment();

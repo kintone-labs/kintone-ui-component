@@ -4,15 +4,6 @@ import Alert from '../index';
 import React from 'react';
 
 describe('Unit test Alert react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onClick called successfully Alert', () => {
     const onClick = (e: React.SyntheticEvent<EventTarget>) => {

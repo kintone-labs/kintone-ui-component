@@ -3,15 +3,6 @@ import TextArea from '../index';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test TextArea onEvent', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onClick and onChange empty function TextArea component', () => {
     try {

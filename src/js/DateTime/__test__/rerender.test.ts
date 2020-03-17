@@ -2,15 +2,6 @@
 import DateTime from '../index';
 
 describe('Unit test DateTime rerender', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('rerender dateTextInput dateFormat d/MM/YYY DateTime', () => {
     try {

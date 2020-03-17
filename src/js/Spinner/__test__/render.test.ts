@@ -2,15 +2,6 @@
 import Spinner from '../index';
 
 describe('Unit test Spinner render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render successfully without props Spinner component', () => {
     const spinner = new Spinner();

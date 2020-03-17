@@ -2,15 +2,6 @@
 import Label from '../index';
 
 describe('Unit test Label render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render successfully without props Label component and enable', () => {
     const label = new Label();

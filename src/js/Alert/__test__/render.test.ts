@@ -2,15 +2,6 @@
 import Alert from '../index';
 
 describe('Unit test Alert render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render successfully without props Alert component', () => {
     const alert = new Alert();

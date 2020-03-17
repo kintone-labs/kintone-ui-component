@@ -6,15 +6,6 @@ import React from 'react';
 // TODO: Remove unreachable else path line 77,78 (unnecessary if) Locale.ts
 // TODO: Remove unreachable else path line 51-53 (unnecessary case) Locale.ts
 describe('Unit test DateTime react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render without props DateTime', () => {
     const {container} = render(<DateTime />);

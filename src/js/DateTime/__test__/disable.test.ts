@@ -2,15 +2,6 @@
 import DateTime from '../index';
 
 describe('Unit test DateTime disable', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('disable & enable successfully DateTime', () => {
     const datetime = new DateTime();

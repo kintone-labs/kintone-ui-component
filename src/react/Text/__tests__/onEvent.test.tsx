@@ -4,15 +4,6 @@ import {render, fireEvent} from '@testing-library/react';
 
 import Text from '../index';
 describe('<Text/>', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onChange event handler should fire successfully', ()=>{
     let textValue = 'error';

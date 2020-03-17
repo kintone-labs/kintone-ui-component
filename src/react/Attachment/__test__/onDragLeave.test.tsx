@@ -4,15 +4,6 @@ import Attachment from '../index';
 import React from 'react';
 
 describe('Unit test for Attachment onDragLeave event handler', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onDragLeave fire successfully', () => {
     const {container} = render(<Attachment />);

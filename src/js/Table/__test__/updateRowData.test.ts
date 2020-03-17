@@ -7,15 +7,6 @@ const message = {
 };
 
 describe('Unit test for Table updateRowData', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('updateRowData is called successfully', () => {
     try {

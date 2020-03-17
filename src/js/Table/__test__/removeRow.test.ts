@@ -2,15 +2,6 @@
 import Table from '../index';
 
 describe('Unit test for Table removeRow', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('removeRow button work normally', () => {
     const defaultRowData = {

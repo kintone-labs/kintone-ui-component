@@ -3,15 +3,6 @@ import Attachment from '../index';
 import {createEvent, fireEvent} from '@testing-library/dom';
 
 describe('Unit test for Attachment onDragLeave event handler', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onDragLeave fire successfully', () => {
     const myAttachment = new Attachment();

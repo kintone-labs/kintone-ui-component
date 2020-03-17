@@ -4,15 +4,6 @@ import TextArea from '../index';
 import React from 'react';
 
 describe('Unit test TextArea react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onChange with props visible TextArea', () => {
     const onChange = (value: string) => {

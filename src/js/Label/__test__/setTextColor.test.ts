@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test Label setTextColor', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
   test('setTextColor successfully with full props Label component', () => {
     const label = new Label({text: 'This is Label', backgroundColor: 'red', isDisabled: true, isRequired: true, isVisible: true, textColor: 'blue'});
     label.setTextColor('red');

@@ -2,15 +2,6 @@
 import AttachmentFileItem from '../AttachmentFileItem';
 
 describe('Unit test for AttachmentFileItem', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('Render file with size larger than 1 GB', () => {
     const item = new AttachmentFileItem({

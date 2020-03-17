@@ -4,15 +4,6 @@ import Label from '../index';
 import React from 'react';
 
 describe('Unit test Label react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render without props Label', () => {
     const {container} = render(<Label />);

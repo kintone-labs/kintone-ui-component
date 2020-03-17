@@ -4,15 +4,6 @@ import Attachment from '../index';
 import React from 'react';
 
 describe('Unit test for Attachment onDragEnter event handler', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onDragEnter is fired successfully with dataTransfer.items[].kind', () => {
     const {container} = render(<Attachment />);

@@ -4,15 +4,6 @@ import createTableCell from '../TableCellFactory';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test for Table cellChange', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onCellChange is called successfully', () => {
     const myTable = new Table({

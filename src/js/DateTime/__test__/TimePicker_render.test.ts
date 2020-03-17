@@ -3,15 +3,6 @@ import TimePicker from '../components/TimePicker';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Calendar render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onClick time item of TimePicker', () => {
     const mockFn = jest.fn((date: Date) => {

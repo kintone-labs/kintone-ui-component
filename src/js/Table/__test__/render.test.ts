@@ -7,15 +7,6 @@ const message = {
 };
 
 describe('Unit test for Table render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('Render successfully without props', () => {
     const myTable = new Table();

@@ -4,15 +4,6 @@ import Message from '../../../constant/Message';
 import 'jest-canvas-mock';
 
 describe('[JS] Unit test ColorPicker setColor', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
   test('should setColor successfully', () => {
     const colorPicker = new ColorPicker({color: '#FF0000'});
     colorPicker.setColor('#666666');

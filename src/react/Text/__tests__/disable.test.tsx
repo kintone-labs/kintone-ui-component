@@ -4,15 +4,6 @@ import {render} from '@testing-library/react';
 import Text from '../index';
 
 describe('<Text/>', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('should be enabled and attribute disabled has not existed', ()=>{
     const {container} = render(<Text value="error" />);

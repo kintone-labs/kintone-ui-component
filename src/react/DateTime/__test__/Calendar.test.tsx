@@ -5,15 +5,6 @@ import React, {createRef} from 'react';
 import {zh, en} from '../components/Locale';
 
 describe('Unit test Calendar react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render with full props Calendar', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();

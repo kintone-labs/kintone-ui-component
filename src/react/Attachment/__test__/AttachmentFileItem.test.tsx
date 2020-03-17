@@ -4,15 +4,6 @@ import AttachmentFileItem from '../AttachmentFileItem';
 import React from 'react';
 
 describe('Unit test for AttachmentFileItem react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('Render file with size larger than 1 GB', () => {
     const handleRemove = () => {};

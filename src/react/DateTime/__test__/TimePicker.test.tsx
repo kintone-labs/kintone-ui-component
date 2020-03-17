@@ -4,15 +4,6 @@ import React, {createRef} from 'react';
 import TimePicker from '../components/TimePicker';
 
 describe('Unit test TimePicker react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onKeyUp of TimePicker', () => {
     const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();

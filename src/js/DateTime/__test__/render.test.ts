@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test DateTime render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render successfully without props DateTime component', () => {
     const datetime = new DateTime();

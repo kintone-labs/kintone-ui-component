@@ -6,15 +6,6 @@ import React from 'react';
 import Message from '../../../constant/Message';
 
 describe('Unit test DateTime react', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('should render successfully with full props DateTime', () => {
     const onChange = jest.fn((value: Date) => {

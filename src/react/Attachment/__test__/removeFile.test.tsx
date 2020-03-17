@@ -4,15 +4,6 @@ import Attachment from '../index';
 import React from 'react';
 
 describe('Unit test Attachment react removeFile', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('removeFile is called successfully', () => {
     const file = new File([''], 'file1.png', {

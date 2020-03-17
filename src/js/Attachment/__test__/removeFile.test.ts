@@ -3,15 +3,6 @@ import Attachment from '../index';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Attachment react removeFile', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('removeFile is called when there\'s no onFileRemove', () => {
     const file = new File([''], 'file1.png', {

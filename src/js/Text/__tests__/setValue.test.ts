@@ -7,15 +7,6 @@ const messages = {
 };
 
 describe('[JS] Text', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('should setValue() and getValue() successfully', ()=>{
     const value = 'hello';

@@ -3,15 +3,6 @@ import Table from '../index';
 import createTableCell from '../TableCellFactory';
 
 describe('Unit test for Table showActionButtons', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('showActionButtons is called successfully', () => {
     const myTable = new Table({

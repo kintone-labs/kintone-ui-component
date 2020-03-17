@@ -8,15 +8,6 @@ import 'jest-canvas-mock';
 // TODO: Remove unreachable if path line 41 (unnecessary if) index.ts
 
 describe('[JS] Unit test ColorPicker render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
   test('should be render successfully', () => {
     const colorPicker = new ColorPicker({color: '#ff000b'});
     expect(colorPicker.render().firstElementChild).toBeTruthy();

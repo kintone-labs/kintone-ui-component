@@ -4,15 +4,6 @@ import Locale from '../../../react/DateTime/components/Locale';
 import {fireEvent} from '@testing-library/dom';
 
 describe('Unit test Calendar render', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('render Calendar', () => {
     const calendar = new Calendar({isVisible: true, isDisabled: false, date: new Date('02/11/2020'), locale: Locale.zh});

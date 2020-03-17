@@ -4,15 +4,6 @@ import {fireEvent} from '@testing-library/dom';
 import Message from '../../../constant/Message';
 
 describe('Unit test DateTime onEvent', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('onEvent successfully dateTextInput of DateTime with date type', () => {
     const datetime = new DateTime({value: null, type: 'date'});

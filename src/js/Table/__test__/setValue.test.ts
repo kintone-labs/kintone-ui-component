@@ -7,15 +7,6 @@ const message = {
 };
 
 describe('Unit test for Table setValue', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setValue is called successfully', () => {
     const tableValue = [

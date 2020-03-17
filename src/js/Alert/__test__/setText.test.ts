@@ -6,15 +6,6 @@ const messages = {
 };
 
 describe('Unit test Alert setText', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('setText successfully without props Alert component', () => {
     const alert = new Alert();

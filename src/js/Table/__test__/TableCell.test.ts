@@ -2,15 +2,6 @@
 import TableCell from '../TableCell';
 
 describe('Unit test for TableCell', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('TableCell can be initialzed without props', () => {
     expect(() => {

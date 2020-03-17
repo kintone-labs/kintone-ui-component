@@ -3,15 +3,6 @@ import Table from '../index';
 import createTableCell from '../TableCellFactory';
 
 describe('Unit test for Table addRow', () => {
-  beforeEach(() => {
-    jest.spyOn(console, 'error');
-    // @ts-ignore
-    console.error.mockImplementation(() => { });
-  });
-  afterEach(() => {
-    // @ts-ignore
-    console.error.mockRestore();
-  });
 
   test('addRow button work normally', () => {
     const defaultRowData = {
