@@ -2,7 +2,6 @@ import '../../css/DateTime.css';
 import '../../css/Text.css';
 import React, {useState, createRef, useEffect} from 'react';
 import {en, ja, zh, format} from './components/Locale';
-
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
@@ -448,4 +447,11 @@ export {
   DateTimeConstructorParameters,
   Calendar
 };
-export * from './components/Locale';
+export {
+  en,
+  zh,
+  ja,
+  format,
+  getSeperator,
+  availableLocales
+} from './components/Locale';
