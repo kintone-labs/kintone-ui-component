@@ -31,10 +31,10 @@ describe('Unit test for AttachmentFileItem', () => {
 
   test('Render NaN bytes when fileSize type is not number', () => {
     const handleRemove = () => {};
-    // @ts-ignore
     const item = new AttachmentFileItem({
       index: 0,
       fileName: 'file1.png',
+      // @ts-ignore
       fileSize: '123',
       onFileRemove: handleRemove
     });
