@@ -94,10 +94,10 @@ class TextArea extends Control<TextAreaProps> {
           dy = 0;
         }
 
-        this.translateX = this.translateX + dx;
-        this.translateY = this.translateY + dy;
-        this.textAreaWidth = this.textAreaWidth + dx;
-        this.textAreaHeight = this.textAreaHeight + dy;
+        this.translateX += dx;
+        this.translateY += dy;
+        this.textAreaWidth += dx;
+        this.textAreaHeight += dy;
 
         this.textAreaEl.style.width = this.textAreaWidth + 'px';
         this.textAreaEl.style.height = this.textAreaHeight + 'px';
