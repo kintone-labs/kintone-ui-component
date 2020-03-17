@@ -45,4 +45,4 @@ export {
   Dialog
 };
 
-export * from './Table';
+export {Table, TableColumn, CellRendererProps, ActionFlag, RowEventProps} from './Table';
