@@ -1,10 +1,21 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import Calendar from '../components/Calendar';
 import React, {createRef} from 'react';
 import {zh, en} from '../components/Locale';
 
 describe('Unit test Calendar react', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    // @ts-ignore
+    console.error.mockImplementation(() => { });
+  });
+  afterEach(() => {
+    // @ts-ignore
+    console.error.mockRestore();
+    cleanup()
+  });
+
   test('render with full props Calendar', () => {
     const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
     const {container} = render(
