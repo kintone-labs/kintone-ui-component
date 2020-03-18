@@ -7,11 +7,15 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Remove package-lock
       run: rm -rf package-lock.json
     - name: Install dependencies
       run: npm install
-    - name: Run ESLint
-      run: npm run lint
+#     - name: Run ESLint
+#       run: npm run lint
     - name: Run unit test
       run: npm test
