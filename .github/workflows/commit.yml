@@ -6,11 +6,11 @@ jobs:
     name: Run unit test
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Setup node
       uses: actions/setup-node@v1
       with:
-        node-version: '10.x'
+        node-version: '12.x'
     - name: Remove package-lock
       run: rm -rf package-lock.json
     - name: Install dependencies
@@ -19,3 +19,5 @@ jobs:
 #       run: npm run lint
     - name: Run unit test
       run: npm run test
+      env:
+        CI: true
