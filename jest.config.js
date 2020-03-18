@@ -2,8 +2,8 @@ module.exports = {
   verbose: true,
 
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
-    ".+\\.(css|style)$": "jest-transform-css"
+    '^.+\\.tsx?$': 'ts-jest',
+    '.+\\.(css|style)$': 'jest-transform-css'
   },
 
   globals: {
@@ -15,7 +15,7 @@ module.exports = {
     }
   },
 
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 
-  moduleFileExtensions: ["tsx", "js", "ts"]
+  moduleFileExtensions: ['tsx', 'js', 'ts']
 };
