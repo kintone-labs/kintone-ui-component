@@ -28,7 +28,7 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"test": "jest",
+		"test": "jest src/js/Dropdown/__test__/",
 		"lint": "eslint \"src/**\""
 	},
 	"dependencies": {
