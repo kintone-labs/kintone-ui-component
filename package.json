@@ -28,7 +28,7 @@
 		"build:umd": "webpack --mode=production",
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
-		"test": "./node_modules/.bin/jest ./src/react/",
+		"test": "./node_modules/.bin/jest ./src/react/  --updateSnapshot",
 		"lint": "eslint \"src/**\""
 	},
 	"dependencies": {
