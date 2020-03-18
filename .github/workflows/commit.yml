@@ -18,4 +18,4 @@ jobs:
 #     - name: Run ESLint
 #       run: npm run lint
     - name: Run unit test
-      run: npm test
+      run: npm run test

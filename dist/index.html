@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <link rel="stylesheet" href="./kintone-ui-component.min.css">
+       <script type="text/javascript" src="./kintone-ui-component.min.js"></script>
+   </head>
+   <body>
+        <script>
+                function showAttachment() {
+                    
+
+
+                    var text = new kintoneUIComponent.Text({});
+                    document.getElementById("demo").appendChild(text.render())
+
+                    text.on('click', function(val){
+                        console.log(val);
+                        
+                    })
+                    // text.on('change', function(val){
+                    //     console.log(val);
+                        
+                    // })
+                }
+         </script>
+       <button onclick="showAttachment()">Test</button>
+       <div id="demo"></div>
+
+      
+   </body>
+</html>
