@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import Calendar from '../components/Calendar';
 import React, {createRef} from 'react';
 import {zh, en} from '../components/Locale';
@@ -13,6 +13,7 @@ describe('Unit test Calendar react', () => {
   afterEach(() => {
     // @ts-ignore
     console.error.mockRestore();
+    cleanup();
   });
 
   test('render with full props Calendar', () => {

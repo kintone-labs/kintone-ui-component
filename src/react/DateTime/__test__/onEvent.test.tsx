@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import DateTime from '../index';
 import React from 'react';
 
@@ -14,6 +14,7 @@ describe('Unit test DateTime react', () => {
   afterEach(() => {
     // @ts-ignore
     console.error.mockRestore();
+    cleanup();
   });
 
   test('should render successfully with full props DateTime', () => {
