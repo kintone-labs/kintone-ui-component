@@ -1,15 +1,14 @@
-# RadioButton
+# CheckBox
 
 ## Overview
-![RadioButton](../img/radioButton.PNG)
-
+![CheckBox](../img/checkbox.PNG)
 
 |Number|	Description|
 | --- | --- |
-|1|Title|	
-|2|	Icon when item is selected|
-|3|Value of item|	
-|4|Icon when item isn't selected|
+|1|	Icon when the item is selected|	
+|2|	Label of an item|
+|3|Not selected item|	
+|4|Disabled item|
 
 ## Constructor
 
@@ -18,23 +17,21 @@
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
 |options|Object|No|The object contains params of constructor.|
-|options.name|String|Conditional|Name of radio button for submit.<br> Name is required if options exists.<br> If value isn't set, the error message will be displayed.|
-|options.items|Array&lt;Object&gt;|No|List of item which displayed in radio button.|
-|options.items[x].value|String|Conditional|The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed|
-|options.items[x].label|String|No|Display string.|
-|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
-|options.value|String|No|Default selected item.|
-|options.isDisabled|Boolean|No|The radio button will be disabled. <br> Default value: 'false'|
-|options.isVisible|Boolean|No|The radio button will be visible. <br> Default value: 'true'|
+|options.items|Array&lt;Object&gt;|No|List of items which will be displayed on checkbox.|
+|options.items[x].value|String|Conditional|String value of item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
+|options.items[x].label|String|No|	String label of item|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'|
+|options.value|Array<String>|No|List of checked item.|
+|options.isDisabled|Boolean|No|The checkBox will be disabled. <br> Default value: 'false'|
+|options.isVisible|Boolean|No|The checkBox will be visible. <br> Default value: 'true'|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -50,14 +47,15 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
-import React from 'react';   
+import { CheckBox } from '@kintone/kintone-ui-component';
+import React from 'react';
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -78,11 +76,12 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Lemon'};
+        this.state = {items: items, value: ['Orange']};
     }
+
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }
@@ -106,9 +105,8 @@ Dom element
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -124,19 +122,20 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
-   
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -157,11 +156,12 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {items: items, value: 'Lemon'};
+        this.state = {items: items, value: ['Orange']};
     }
+
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+            <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
         );
     }
 }
@@ -170,16 +170,16 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### addItem(item)
-Add an item to end of the radio button list.
+Add an item to the end of checkbox list.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|item|	Object|	Yes|The item object will be added.|
+|item|Object|Yes|The item will be added to checkbox list.|
 |item.value|String|Yes|The value of an item.|
 |item.label|String|No|Display string.|
-|item.isDisabled|Boolean|No|Indicate item will be disabled when display.<br>Default value: 'false'|
+|item.isDisabled|Boolean|No|Indicate item will be disabled when display. <br> Default value: 'false'|
 
 **Returns**
 
@@ -190,9 +190,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -202,41 +201,49 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 label: 'Banana',
                 value: 'Banana',
                 isDisabled: true
-            }
-        ],
-    value: 'Banana'
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
+checkbox.addItem({
+    label: 'Grape',
+    value: 'grape',
+    isDisabled: false
+});
 ```
+
 **React**
 ```javascript
-
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
-  constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
-            items: [{label:"Banana",value:"Banana"}],
-            value: "Banana"
-        };
+            items: []
+        }
     }
 
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
           <button onClick={this.handleClick}>Add Item</button>
-         </div>
-       );
+        </div>
+      );
     }
-
+ 
     handleClick = () => {
       const item = {
         label: 'Lemon',
@@ -252,27 +259,33 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
-### removeItem(index)
-Remove item at specific index of radio button list.
+### getItem(index)
+Get the value of specific position in checkbox list.
 
 **Parameter**
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|index|Integer|	Yes|The index of remove item.|
+|index|	Integer|Yes|The position of retrieved item.|
 
 **Returns**
 
-None
+The item at given position.
+
+| Name| Type| Description |
+| --- | --- | --- |
+|item|	Object|the item of the checkbox|
+|item.value|String|The value of an item.|
+|item.label|String|Display string.|
+|item.isDisabled|Boolean|Indicate item will be disabled when display.|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -288,62 +301,167 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.removeItem(0);
+var firstItem = checkbox.getItem(0);
+console.log(firstItem);
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [{
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            }],
-            value:"Lemon"
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
         };
     }
 
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Remove Item</button>
-         </div>
-       );
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <button onClick={this.handleClick}>Get Item</button>
+        </div>
+      );
+    }
+ 
+    handleClick = () => {
+        console.log(this.state.items[0])
+    }
+}
+Reactdom.render(<Plugin />, document.getElementById("root"));
+```
+</details>
+
+### removeItem(index)
+Remove the specific item from checkbox list.
+
+**Parameter**
+
+| Name| Type| Required| Description |
+| --- | --- | --- | --- |
+|index|	Integer|Yes|The position of retrieved item.|
+
+**Returns**
+
+None
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+
+**Javascript**
+```javascript
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
+});
+
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
+
+checkbox.removeItem(0);
+```
+
+**React**
+```javascript
+import { CheckBox } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from "react-dom";
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [
+                {
+                    label: 'Orange',
+                    value: 'Orange',
+                    isDisabled: false
+                },
+                {
+                    label: 'Banana',
+                    value: 'Banana',
+                    isDisabled: true
+                },
+                {
+                    label: 'Lemon',
+                    value: 'Lemon',
+                    isDisabled: true
+                }
+            ]
+        };
     }
 
+    render() {
+        return (
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <button onClick={this.handleClick}>Remove Item</button>
+        </div>
+      );
+    }
+ 
     handleClick = () => {
-     this.setState(prevState => {
-         if (prevState.items[0]) {
-           if (this.state.value === prevState.items[0].value) {
-             prevState.value = undefined;
-           }
-           prevState.items.splice(0, 1)
-           return prevState;
-         }
-         return prevState;
-     });
-   };
+      this.setState(prevState => {
+        if (prevState.items[0]) {
+              if (this.state.value ) {
+                  prevState.value = prevState.value.filter(value => value !== prevState.items[0].value)
+              }
+              prevState.items.splice(0, 1)
+             return prevState;
+            }
+            return prevState;
+      });
+    };
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### getItems()
-Get all items in radio button list.
+Get all items from the checkbox.
 
 **Parameter**
 
@@ -351,23 +469,22 @@ None
 
 **Returns**
 
-The list contains all items of dropdown.
+The list contains all items of the dropdown.
 
 | Name| Type| Description |
 | --- | --- | --- |
-|items|List&lt;Object&gt;|List of items objects in dropdown.|
-|items[].label|String|Display string.|
+|items|	Array&lt;Object&gt;|List items of the checkbox|
 |items[].value|String|The value of an item.|
-|items[].isDisabled|Boolean|Indicate item was disabled.|
+|items[].label|String|Display string.|
+|items[].isDisabled|Boolean|Indicate item will be disabled when display.|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -383,24 +500,25 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
 
-var items = radioBtn.getItems();
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
+
+var items = checkbox.getItems();
 items.forEach(function(item) {
-    console.log(item);
+    console.log(item.value + ':' + item.isDisabled);
 });
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
-   
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -423,16 +541,16 @@ export default class Plugin extends React.Component {
         ];
         this.state = {items: items};
     }
-   
+
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
           <button onClick={this.handleClick}>Get Items</button>
-         </div>
-       );
+        </div>
+      );
     }
-  
+ 
     handleClick = () => {
         this.state.items.forEach(item => {
             console.log(item);
@@ -444,18 +562,18 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### setItems(items)
-Set all items of the radio button list.
+Set all items of the checkbox.
 When using this function in pure js, selected value is released.
 
 **Parameter**
 
-| Name| Type| Required | Description |
+| Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|options| Object| No |A object contains params of constructor.|
-|options.items| Array&lt;Object&gt;| Yes |List of items will be displayed in radio button.|
-|options.items[x].value| String| Yes |If the value is duplicate, the error message will be displayed.|
-|options.items[x].label| String| No |Display string.|
-|options.items[x].isDisabled| Boolean| No |Indicate item will be disabled when display.<br>Default value: 'false'.|
+|options|	Object|No|A object contains params of constructor.|
+|options.items|	Array&lt;Object&gt;|Yes|List of items which will be displayed on checkbox.|
+|options.items[x].value|String|Yes|If the value is duplicate, the error message will be displayed.|
+|options.items[x].label|String|No|Display string.|
+|options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display.<br>Default value: 'false'.|
 
 **Returns**
 
@@ -466,8 +584,7 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-  name: 'fruit',
+vvar checkbox = new kintoneUIComponent.CheckBox({
   items: [
     {
       label: 'Orange',
@@ -485,11 +602,11 @@ var radioBtn = new kintoneUIComponent.RadioButton({
       isDisabled: true
     }
   ],
-  value: 'Banana'
+  value: ['Orange', 'Banana']
 });
  
 var body = document.getElementsByTagName('BODY')[0];
-body.appendChild(radioBtn.render());
+body.appendChild(checkbox.render());
  
 var newItems = [
   {
@@ -503,11 +620,12 @@ var newItems = [
     isDisabled: false
   }
 ];
-radioBtn.setItems(newItems);
+checkbox.setItems(newItems);
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
    
 export default class Plugin extends React.Component {
@@ -518,23 +636,27 @@ export default class Plugin extends React.Component {
         {
           label: 'Orange',
           value: 'Orange',
-          isDisabled: true
+          isDisabled: false
         },
         {
           label: 'Banana',
           value: 'Banana',
-          isDisabled: false
+          isDisabled: true
+        },
+        {
+          label: 'Lemon',
+          value: 'Lemon',
+          isDisabled: true
         }
       ],
-      value: 'Banana'
+      value: ['Orange', 'Banana']
     };
   }
  
   render() {
     return (
       <div>
-        <RadioButton
-          name="fruit"
+        <CheckBox
           items={this.state.items}
           value={this.state.value}
           onChange={value => {
@@ -559,14 +681,14 @@ export default class Plugin extends React.Component {
         isDisabled: false
       }
     ];
-    this.setState({ items: newItems, value: 'Apple' });
+    this.setState({ items: newItems, value: ['Apple'] });
   };
 }
 ```
 </details>
 
 ### getValue()
-Get the selected item in radio button.
+Get the checked values of the checkbox.
 
 **Parameter**
 
@@ -574,51 +696,53 @@ None
 
 **Returns**
 
-|Name|Type|Description|
-|---|---|---|
-|value|	String	|The value of the selected item|
+List of checked items.
 
-
+| Name| Type| Description |
+| --- | --- | --- |
+|value |List&lt;String&gt; |The value of selected items.|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-    name: "fruit",
-    items: [
-           {
-               label: 'Orange',
-               value: 'Orange',
-               isDisabled: false
-           },
-           {
-               label: 'Banana',
-               value: 'Banana',
-               isDisabled: true
-           },
-           {
-               label: 'Lemon',
-               value: 'Lemon',
-               isDisabled: true
-           },
-       ],
-   value: 'Banana'
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-console.log(radioBtn.getValue());
+var value = checkbox.getValue();
+value.forEach(function(item) {
+    console.log(item);
+});
 ```
+
 **React**
 ```javascript
-
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -639,23 +763,20 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
+        this.state = {items: items};
     }
- 
+
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Get Value</button>
-         </div>
-       );
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <button onClick={this.handleClick}>Get Values</button>
+        </div>
+      );
     }
-  
+ 
     handleClick = () => {
-        console.log(this.state.value);
+       console.log(this.state.value);
     }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
@@ -663,13 +784,13 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### setValue(value)
-Set the selected item for radio button.
+Set the checked value of checkbox.
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|Selected value in radio button.|
+|Name|	Type|	Required|	Description|
+| --- | --- | --- |---|
+|value|	Array&lt;String&gt; |	Yes|The array contains checked value in list.<br> If the 'value[]' is nonexistent value, the error will be displayed|
 
 **Returns**
 
@@ -680,9 +801,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -698,21 +818,22 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.setValue('Lemon');
+checkbox.setValue(['Lemon']);
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -733,23 +854,22 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
+        this.state = {items: items, value: []};
     }
- 
+
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
           <button onClick={this.handleClick}>Set Value</button>
-         </div>
-       );
+        </div>
+      );
     }
-  
+ 
     handleClick = () => {
-        this.setState({value: 'Orange'});
+        this.setState({
+            value: this.state.value.concat(['Lemon'])
+        });
     }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
@@ -757,13 +877,14 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### disableItem(value)
-Set the disabled item for the radio button.
+Set the disabled item of checkbox.
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|The value of an item in radio button.|
+|Name|	Type|	Required|	Description|
+| --- | --- | --- |---|
+|value|	String |	Yes|The value of the checkbox item you want to disable.|
+
 
 **Returns**
 
@@ -773,11 +894,9 @@ None
 <Summary>Sample</Summary>
 
 **Javascript**
-
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -793,22 +912,22 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.disableItem('Orange');
+checkbox.disableItem('Orange');
 ```
-**React**
 
+**React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -829,25 +948,22 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
+        this.state = {items: items};
+    }
+
+    render() {
+        return (
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <button onClick={this.handleClick}>Disable item</button>
+        </div>
+      );
     }
  
-   render() {
-        return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Disabled Item</button>
-         </div>
-       );
-    }
-  
     handleClick = () => {
         const items = [...this.state.items];
-        items[0].isDisabled = true;
  
+        items[0].isDisabled = true;
         this.setState({ items: items });
     }
 }
@@ -856,13 +972,13 @@ Reactdom.render(<Plugin />, document.getElementById("root"));
 </details>
 
 ### enableItem(value)
-Set the enabled item for radio button.
+Set the enable item of checkbox.
 
 **Parameter**
 
-| Name| Type| Required| Description |
-| --- | --- | --- | --- |
-|value|String|	Yes|Selected value in radio button.|
+|Name|	Type|	Required|	Description|
+| --- | --- | --- |---|
+|value|	String |	Yes|The value of the checkbox item you want to enable.|
 
 **Returns**
 
@@ -873,9 +989,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -891,21 +1006,22 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
 
-radioBtn.enableItem('Banana');
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
+
+checkbox.enableItem('Banana');
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -926,32 +1042,28 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
+        this.state = {items: items};
     }
- 
+
     render() {
         return (
-         <div>
-          <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
-          <button onClick={this.handleClick}>Enabled Item</button>
-         </div>
-       );
-    }
-  
+        <div>
+          <CheckBox items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value})}} />
+          <button onClick={this.handleClick}>Click</button>
+        </div>
+        );
+      }
+ 
     handleClick = () => {
         const items = [...this.state.items];
-        items[1].isDisabled = false;
  
+        items[1].isDisabled = false;
         this.setState({ items: items });
     }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
-
 
 ### on(eventName, callBack)
 Register callback for change event
@@ -972,9 +1084,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -990,23 +1101,24 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.on('change', function(value) {
+checkbox.on('change', function(value) {
     console.log('on change');
 });
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
     constructor(props) {
         super(props);
@@ -1027,28 +1139,28 @@ export default class Plugin extends React.Component {
                 isDisabled: true
             },
         ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
+        const value= ['Orange', 'Banana']
+        this.state = {items: items,value};
     }
- 
+
     render() {
         return (
-            <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={this.handleChange } />
+            <CheckBox value={this.state.value} items={this.state.items} onChange={this.handleChange} />
         );
     }
-        handleChange = (value) => {
-            this.setState({value});
-            console.log('value: ' + value);
-        }
+
+    handleChange= (value) => {
+        this.setState({value})
+        console.log("onChange",value);
+        
+    }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### show()
-Display the radio button.
+Display the checkbox.
 
 **Parameter**
 
@@ -1063,9 +1175,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1081,65 +1192,67 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
 
-radioBtn.show();
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
+
+checkbox.show();
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
-     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {
-            items: items,
-            value: 'Banana',
-            isVisible:false,
-        };
-    }
-    handleShow=()=>{
-        this.setState({isVisible:true})
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleShow}>Show</button>
-                <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isVisible={this.state.isVisible} />
-            </div>
-        );
-    }
+   constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isVisible: false };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isVisible={this.state.isVisible}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isVisible: true })}>Show</button>
+      </div>
+    );
+  }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### hide()
-Hide the radio button.
+Hide the checkbox.
 
 **Parameter**
 
@@ -1154,9 +1267,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1172,65 +1284,67 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.hide();
+checkbox.hide();
 ```
+
 **React**
 ```javascript
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
-     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {
-            items: items,
-            value: 'Banana',
-            isVisible:true,
-        };
-    }
-    handleHide=()=>{
-        this.setState({isVisible:false})
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleHide}>Hide</button>
-                <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isVisible={this.state.isVisible} />
-            </div>
-        );
-    }
+    constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isVisible: true };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isVisible={this.state.isVisible}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isVisible: false })}>Hide</button>
+      </div>
+    );
+  }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### disable()
-Disabled the radio button.
+Disabled the checkbox.
 
 **Parameter**
 
@@ -1245,9 +1359,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1263,66 +1376,67 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
- 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
 
-radioBtn.disable();
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
+
+checkbox.disable();
 ```
+
 **React**
 ```javascript
-
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
-     constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {
-            items: items,
-            value: 'Banana',
-            isDisabled:false,
-        };
-    }
-    handleDisable=()=>{
-        this.setState({isDisabled:true})
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleDisable}>Dsiable</button>
-                <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isDisabled={this.state.isDisabled} />
-            </div>
-        );
-    }
+    constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isDisabled: false };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isDisabled={this.state.isDisabled}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isDisabled: true })}>Disable</button>
+      </div>
+    );
+  }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```
 </details>
 
 ### enable()
-Enabled the radio button.
+Enabled the checkbox.
 
 **Parameter**
 
@@ -1337,9 +1451,8 @@ None
 
 **Javascript**
 ```javascript
-var radioBtn = new kintoneUIComponent.RadioButton({
-     name: "fruit",
-     items: [
+var checkbox = new kintoneUIComponent.CheckBox ({
+       items: [
             {
                 label: 'Orange',
                 value: 'Orange',
@@ -1355,59 +1468,60 @@ var radioBtn = new kintoneUIComponent.RadioButton({
                 value: 'Lemon',
                 isDisabled: true
             },
-        ],
-    value: 'Banana'
+     ],
+     value: ['Orange', 'Banana']
 });
 
-var body = document.getElementsByTagName("BODY")[0];
-body.appendChild(radioBtn.render());
+var body = document.getElementsByTagName('BODY')[0];
+body.appendChild(checkbox.render());
 
-radioBtn.enable();
+checkbox.enable();
 ```
+
 **React**
 ```javascript
-
-import { RadioButton } from '@kintone/kintone-ui-component';
+import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from "react-dom";
- 
+
 export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        const items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {
-            items: items,
-            value: 'Banana',
-            isDisabled:true,
-        };
-    }
-    handleEnable=()=>{
-        this.setState({isDisabled:false})
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleEnable}>Enable</button>
-                <RadioButton name='radio' items={this.state.items} value={this.state.value} onChange={(value) => {this.setState({value});}} isDisabled={this.state.isDisabled} />
-            </div>
-        );
-    }
+     constructor(props) {
+    super(props);
+    const items = [
+      {
+        label: "Orange",
+        value: "Orange",
+        isDisabled: false
+      },
+      {
+        label: "Banana",
+        value: "Banana",
+        isDisabled: true
+      },
+      {
+        label: "Lemon",
+        value: "Lemon",
+        isDisabled: true
+      }
+    ];
+    this.state = { items: items, isDisabled: true };
+  }
+
+  render() {
+    return (
+      <div>
+        <CheckBox
+          value={this.state.value}
+          isDisabled={this.state.isDisabled}
+          items={this.state.items}
+          onChange={value => {
+            this.setState({ value });
+          }}
+        />
+        <button onClick={() => this.setState({ isDisabled: false })}>Enable</button>
+      </div>
+    );
+  }
 }
 Reactdom.render(<Plugin />, document.getElementById("root"));
 ```

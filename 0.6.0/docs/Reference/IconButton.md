@@ -12,7 +12,7 @@
 |options|Object|No|The object contains params of constructor.|
 |options.color|String|No |Color of icon button:<ul><li>  'gray'</li><li>'blue'</li><li>'red'</li><li>'green'</li><li>'transparent'</li></ul>Default value is 'gray'.|
 |options.size|String|No|Size of icon button:<ul><li> 'normal'</li><li> 'small'</li></ul> Default value is 'normal'.|
-|options.shape|String|No|The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'square'</li></ul> Default value is 'circle'.|
+|options.shape|String|No|The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.|
 |options.type|String|No|The type of of button. The value is one of: <ul><li> 'insert'</li><li> 'remove'</li><li> 'close'</li><li> 'file'</li><li> 'right'</li><li> 'left'</li></ul> Default value is 'insert'.|
 |options.isDisabled|Boolean|No|The icon button will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The icon button will be visible. <br> Default value: 'true'|
@@ -138,7 +138,7 @@ Change shape of icon button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|shape|String|Yes|The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'square'</li></ul> Default value is 'circle'.|
+|shape|String|Yes|The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.|
 
 **Returns**
 
@@ -152,7 +152,7 @@ None
 var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName("BODY")[0];
 body.appendChild(iconBtn.render());
-iconBtn.setShape('square');
+iconBtn.setShape('normal');
 ```
 
 **React**
@@ -170,7 +170,7 @@ export default class Plugin extends React.Component {
       }
     }
     handleSetShape=()=>{
-        this.setState({shape:"square"})
+        this.setState({shape:"normal"})
     }
     render() {
         return (
