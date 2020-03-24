@@ -29,7 +29,7 @@ const RadioButton = (props: RadioButtonProps) => {
     if (AbstractSingleSelection._hasDuplicatedItems(props.items)) {
       throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
-    if (props.value && !AbstractSingleSelection._hasValidValue(props.items, props.value)) {
+    if (props.value && !AbstractSingleSelection._hasValidValue(props.items, props.value) || !AbstractSingleSelection._hasValidItems(props.items)) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
   }
@@ -40,7 +40,7 @@ const RadioButton = (props: RadioButtonProps) => {
         selected={props.value === item.value}
         onChange={(item_prop) => AbstractSingleSelection._handleItemClick(item_prop, props.onChange)}
         item={item}
-        isDisabled={props.isDisabled ? props.isDisabled : item.isDisabled}
+        isDisabled={props.isDisabled === true ? props.isDisabled : item.isDisabled}
         type="radio"
         name={props.name}
         className="kuc-input-radio-item"

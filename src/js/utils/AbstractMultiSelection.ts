@@ -48,4 +48,8 @@ const _hasValidValue = (items?: ItemData[], value?: string | string[]) => {
   }
   return false;
 };
-export default {_hasDuplicatedItems, _hasCheckedItemListDuplicated, _hasValidValue};
+
+const _hasItemValue = (items: ItemData[]) => {
+  return items.every(item => !!item.value && (typeof item.value === 'string'));
+};
+export default {_hasDuplicatedItems, _hasCheckedItemListDuplicated, _hasValidValue, _hasItemValue};

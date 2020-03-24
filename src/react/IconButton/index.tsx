@@ -8,7 +8,7 @@ type IconButtonProps = {
   color?: 'gray' | 'blue' | 'red' | 'green' | 'transparent';
   isDisabled?: boolean;
   isVisible?: boolean;
-  shape?: 'circle' | 'normal';
+  shape?: 'circle' | 'square';
   onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 }
 
@@ -16,7 +16,7 @@ const IconButton = ({type, size, color = 'gray', isDisabled, isVisible, shape, o
   const _getClassName = () => {
     const colors = ['gray', 'blue', 'red', 'green', 'transparent'];
     const colorResult = colors.indexOf(color) === -1 ? 'gray' : color;
-    const shapeResult = shape === 'normal' ? 'normal' : 'circle';
+    const shapeResult = shape === 'square' ? 'square' : 'circle';
     const className = [
       'kuc-icon-btn',
       _getClassSize(),
@@ -52,14 +52,22 @@ const IconButton = ({type, size, color = 'gray', isDisabled, isVisible, shape, o
   };
 
   const _getClassSize = () => {
-    const className = size === 'small' ? 'small' : 'large';
+    const className = size === 'small' ? 'small' : 'normal';
     return className;
   };
+
+  const _checkIsDisabled = () => {
+    if (typeof isDisabled !== 'boolean') {
+      return false;
+    }
+    return isDisabled;
+  };
+
   if (isVisible === false) {
     return null;
   }
   return (
-    <button className={_getClassName()} onClick={onClick} disabled={isDisabled} >
+    <button className={_getClassName()} onClick={onClick} disabled={_checkIsDisabled()} >
       <svg>
         <path d={_getIconData()} />
       </svg>

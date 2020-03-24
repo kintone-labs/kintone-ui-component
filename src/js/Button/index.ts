@@ -14,9 +14,8 @@ class Button extends Control<ButtonProps> {
     this._props = {
       ...this._props,
       ...{
-        text: 'Button',
+        text: '',
         type: 'normal',
-        onClick: () => {}
       }
     };
     if (params && typeof params.isDisabled !== 'boolean') {

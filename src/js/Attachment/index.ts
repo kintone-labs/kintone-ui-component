@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
@@ -15,8 +16,6 @@ type AttachmentProps = ControlProps & {
   errorMessage?: string;
   isErrorVisible?: boolean;
   files?: FileObject[];
-  onFilesAdd?: (files: FileObject[]) => void;
-  onFileRemove?: (files: FileObject[]) => void;
 }
 
 class Attachment extends Control<AttachmentProps> {

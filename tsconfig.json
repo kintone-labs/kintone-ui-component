@@ -16,6 +16,7 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "declaration": true,
@@ -28,6 +29,7 @@
     "lib",
     "scripts",
     "webpack.config.js",
+    "./src/**/*.test.tsx",
+    "./src/**/*.test.ts"
   ]
 }
-  

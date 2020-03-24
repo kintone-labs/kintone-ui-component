@@ -96,6 +96,7 @@ function ColorPicker(props: ColorPickerProps) {
   const pickerProps = {
     pickerDisplay: pickerDisplay,
     hexString: hexString,
+    initColor: previouseHex,
     onChange: handlePickerChange,
     onCancel: () => {
       setPickerDisplay(false);

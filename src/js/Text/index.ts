@@ -9,7 +9,7 @@ type TextProps = ControlProps & {
 }
 
 class Text extends Control<TextProps> {
-  private _onChange: (params?: any) => void = () => {}
+  private _onChange: (params?: any) => void
 
   constructor(params?: TextProps) {
     super();
@@ -27,10 +27,13 @@ class Text extends Control<TextProps> {
     this.element.setAttribute('type', 'text');
     // If this._props.value is 0, we handle it as string.
     (this.element as HTMLInputElement).value = (this._props.value === null || this._props.value === undefined) ? '' : this._props.value;
-    (this.element as HTMLInputElement).placeholder = (this._props.placeholder === null || this._props.placeholder === undefined) ? '' : this._props.placeholder;
+    (this.element as HTMLInputElement).placeholder =
+      (this._props.placeholder === null || this._props.placeholder === undefined)
+        ? ''
+        : this._props.placeholder;
     this.element.onchange = (e) => {
       this._props.value = (e.target as HTMLInputElement).value;
-      this._onChange(e);
+      this._onChange && this._onChange(e);
     };
   }
 
@@ -53,7 +56,10 @@ class Text extends Control<TextProps> {
     }
     if (changedAttr.indexOf('placeholder') !== -1) {
       // If this._props.placeholder is 0, we handle it as string.
-      (this.element as HTMLInputElement).placeholder = (this._props.placeholder === null || this._props.placeholder === undefined) ? '' : this._props.placeholder;
+      (this.element as HTMLInputElement).placeholder =
+        (this._props.placeholder === null || this._props.placeholder === undefined)
+          ? ''
+          : this._props.placeholder;
     }
   }
 

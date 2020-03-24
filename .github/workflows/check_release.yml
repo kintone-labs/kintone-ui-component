@@ -1,0 +1,40 @@
+name: Check For Release CI
+
+on:
+  release:
+    types: [created]
+jobs:
+  Run_tests:
+    name: Run unit test and automation test
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Remove package-lock
+      run: rm -rf package-lock.json
+    - name: Install dependencies
+      run: |
+        npm install
+        npm i @actions/core
+    - name: Check version
+      id: check_version
+      uses: ./.github/actions/check_version
+    - name: Run ESLint
+      run: |
+        node_modules/.bin/eslint src/js/**.ts
+        node_modules/.bin/eslint src/js/**/**.ts
+        node_modules/.bin/eslint src/react/**.ts
+        node_modules/.bin/eslint src/react/**/**.ts
+    - name: Run unit test
+      run: npm test
+    - name: Build dist/esm
+      run: npm run build
+    - name: Trigger run automation test
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{secrets.ACCESS_TOKEN}}
+        repository: SDQA-VN/ui-component-auto
+        event-type: kuc-trigger-auto-test-release
+        client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'
