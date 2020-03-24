@@ -30,7 +30,7 @@ jobs:
         path: ./${{ steps.generate_binary.outputs.integrity }}
     - uses: fregante/setup-git-token@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.WORKFLOW_TOKEN }}
     - name: Commit package-lock.json and push to remote
       run: |
           git add ./package-lock.json
@@ -39,7 +39,7 @@ jobs:
     - name: Upload package to release[binaries]
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.ACCESS_TOKEN }}
+        repo_token: ${{ secrets.WORKFLOW_TOKEN }}
         file: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
         asset_name: kintone-kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
         tag: ${{ github.ref }}
