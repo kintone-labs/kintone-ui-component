@@ -138,7 +138,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.6.0</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.7.0</a>
         </div>
       </div>
  
@@ -860,7 +860,7 @@
 <td>options.shape</td>
 <td>String</td>
 <td>No</td>
-<td>The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+<td>The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'square'</li></ul> Default value is 'circle'.</td>
 </tr>
 <tr>
 <td>options.type</td>
@@ -1009,7 +1009,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <td>shape</td>
 <td>String</td>
 <td>Yes</td>
-<td>The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+<td>The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'square'</li></ul> Default value is 'circle'.</td>
 </tr>
 </tbody>
 </table>
@@ -1021,7 +1021,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <pre><code class="javascript">var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(iconBtn.render());
-iconBtn.setShape('normal');
+iconBtn.setShape('square');
 </code></pre>
 
 <p><strong>React</strong></p>
@@ -1038,7 +1038,7 @@ export default class Plugin extends React.Component {
       }
     }
     handleSetShape=()=&gt;{
-        this.setState({shape:&quot;normal&quot;})
+        this.setState({shape:&quot;square&quot;})
     }
     render() {
         return (
