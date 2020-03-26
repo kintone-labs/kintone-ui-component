@@ -1,5 +1,9 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "packageRules": [{
+    "packagePatterns": ["*"],
+    "enabled": false
+  }],
+  "vulnerabilityAlerts": {
+    "enabled": true
+  }
 }
