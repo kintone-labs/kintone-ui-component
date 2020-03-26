@@ -7,9 +7,9 @@ jobs:
     name: Upload integrity and package to release
     runs-on: ubuntu-18.04
     steps:
-    - name: Check if automation test is fail
-      if: github.event.client_payload.status != 'success'
-      run: exit 1
+    # - name: Check if automation test is fail
+    #   if: github.event.client_payload.status != 'success'
+    #   run: exit 1
     - uses: actions/checkout@master
     - name: Remove package-lock
       run: rm -rf package-lock.json
