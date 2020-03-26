@@ -31,11 +31,11 @@ jobs:
     - uses: fregante/setup-git-token@v1
       with:
         token: ${{ secrets.WORKFLOW_TOKEN }}
-    - name: Commit package-lock.json and push to remote
-      run: |
-          git add ./package-lock.json
-          git commit -m "update package-lock.json after release"
-          git push origin HEAD:master
+    # - name: Commit package-lock.json and push to remote
+    #   run: |
+    #       git add ./package-lock.json
+    #       git commit -m "update package-lock.json after release"
+    #       git push origin HEAD:master
     - name: Upload package to release[binaries]
       uses: svenstaro/upload-release-action@v1-release
       with:
