@@ -35,6 +35,12 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
-        repository: SDQA-VN/ui-component-auto
-        event-type: kuc-trigger-auto-test-release
-        client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'
+        event-type: release_dispatch
+    # Use this to run flow auto test
+    # - name: Trigger run automation test
+    #   uses: peter-evans/repository-dispatch@v1
+    #   with:
+    #     token: ${{secrets.WORKFLOW_TOKEN}}
+    #     repository: SDQA-VN/ui-component-auto
+    #     event-type: kuc-trigger-auto-test-release
+    #     client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'
