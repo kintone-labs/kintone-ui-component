@@ -42,6 +42,7 @@
 
 .kuc-table .kuc-table-td.action-group {
     border: none;
+    display: inline-flex;
 }
 
 .kuc-table .kuc-table-tbody {

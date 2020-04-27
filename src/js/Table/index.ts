@@ -199,7 +199,6 @@ export default class Table extends Control<TableProps> {
     const tableCellDiv = document.createElement('div');
     tableCellDiv.className = 'kuc-table-td action-group';
     const span1 = document.createElement('span');
-    span1.style.marginRight = '5px';
     tableCellDiv.appendChild(span1);
     const iconButton = new IconButton({type: 'insert', color: 'blue', size: 'small'});
     const iconButtonDom = iconButton.render();
@@ -210,10 +209,10 @@ export default class Table extends Control<TableProps> {
         rowIndex: rowIndex + 1
       });
     });
-    iconButtonDom.style.display = 'inline-block';
     span1.appendChild(iconButtonDom);
     if (this._props.data && this._props.data.length > 1) {
       const span2 = document.createElement('span');
+      span2.style.marginLeft = '5px';
       const iconButton2 = new IconButton({type: 'remove', color: 'gray', size: 'small'});
       const iconButtonDom2 = iconButton2.render();
       iconButton2.on('click', () => {
@@ -223,7 +222,6 @@ export default class Table extends Control<TableProps> {
           rowIndex: rowIndex
         });
       });
-      iconButtonDom2.style.display = 'inline-block';
       span2.appendChild(iconButtonDom2);
       tableCellDiv.appendChild(span2);
     }
