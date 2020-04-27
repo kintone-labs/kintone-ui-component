@@ -36,7 +36,7 @@ jobs:
       run: |
           git add ./package-lock.json
           git commit -m "update package-lock.json after release"
-          git push origin HEAD:master
+          git push origin :refs/tags/refs/heads/master
     - name: Upload package to release[binaries]
       uses: svenstaro/upload-release-action@v1-release
       with:
