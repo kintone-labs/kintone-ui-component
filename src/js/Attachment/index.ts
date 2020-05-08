@@ -313,8 +313,9 @@ class Attachment extends Control<AttachmentProps> {
     const attachInputEl = document.createElement('input');
     attachInputEl.setAttribute('type', 'file');
     attachInputEl.setAttribute('multiple', 'true');
-    attachInputEl.onchange = (e) => {
-      this._addFiles(e);
+    attachInputEl.onchange = (event) => {
+      this._addFiles(event);
+      attachInputEl.value = '';
     };
 
     const wrapInputEl = document.createElement('div');
