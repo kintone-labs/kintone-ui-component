@@ -3,6 +3,7 @@ import '../polyfill';
 import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/Attachment.css';
+import { DOMElement } from 'react';
 
 type FileObject = {
   name?: string;
@@ -301,6 +302,16 @@ class Attachment extends Control<AttachmentProps> {
     return listFileEl;
   }
 
+  private bindAttachInputElEvent(attachInputEl: HTMLInputElement) {
+    attachInputEl.onchange = (event) => {
+      this._addFiles(event);
+    };
+
+    attachInputEl.onclick = () => {
+      attachInputEl.value = '';
+    };
+  }
+
   private renderAttachInputEl() {
     const attachInputContainerEl = document.createElement('a');
     attachInputContainerEl.className = 'kuc-attachment-file-upload-button';
@@ -313,10 +324,7 @@ class Attachment extends Control<AttachmentProps> {
     const attachInputEl = document.createElement('input');
     attachInputEl.setAttribute('type', 'file');
     attachInputEl.setAttribute('multiple', 'true');
-    attachInputEl.onchange = (event) => {
-      this._addFiles(event);
-      attachInputEl.value = '';
-    };
+    this.bindAttachInputElEvent(attachInputEl);
 
     const wrapInputEl = document.createElement('div');
     wrapInputEl.className = 'kuc-attachment-file-upload-html5';
