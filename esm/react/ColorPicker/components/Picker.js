@@ -43,15 +43,21 @@ export default function Picker(props) {
         React.createElement("div", { style: PickerStyle.hueContainer },
             React.createElement(HueSpectrum, { width: 30, height: 200, onSelect: handleHue })),
         React.createElement("div", { style: PickerStyle.inputContainer },
-            React.createElement(RGBInput, { rgb: rgb, onChange: props.onChange }),
+            React.createElement(RGBInput, { rgb: rgb, onChange: function (newHexString) {
+                    setSaturationBackground(hexToRgb(newHexString));
+                    props.onChange(newHexString);
+                } }),
             React.createElement("br", null),
-            React.createElement(HSVInput, { hsv: hsv, onChange: props.onChange })),
+            React.createElement(HSVInput, { hsv: hsv, onChange: function (newHexString) {
+                    setSaturationBackground(hexToRgb(newHexString));
+                    props.onChange(newHexString);
+                } })),
         React.createElement("div", null,
             React.createElement(Button, { style: { display: 'inline-block' }, text: "OK", type: "submit", onClick: function () {
                     props.onSubmit(hexString);
                 } }),
             React.createElement(Button, { style: { display: 'inline-block' }, text: "Cancel", onClick: function () {
-                    var oldRGB = hexToRgb(props.hexString);
+                    var oldRGB = hexToRgb(props.initColor);
                     setSaturationBackground(oldRGB);
                     setRGB(oldRGB);
                     setHSV(rgbToHsv(oldRGB.r, oldRGB.g, oldRGB.b));

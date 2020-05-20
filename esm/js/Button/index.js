@@ -7,9 +7,8 @@ var Button = /** @class */ (function (_super) {
     function Button(params) {
         var _this = _super.call(this) || this;
         _this._props = tslib_1.__assign({}, _this._props, {
-            text: 'Button',
+            text: '',
             type: 'normal',
-            onClick: function () { }
         });
         if (params && typeof params.isDisabled !== 'boolean') {
             delete params.isDisabled;

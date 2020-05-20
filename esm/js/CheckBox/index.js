@@ -53,6 +53,9 @@ var CheckBox = /** @class */ (function (_super) {
     };
     CheckBox.prototype._validator = function (items, value) {
         var err;
+        if (items && !AbstractMultiSelection._hasItemValue(items)) {
+            err = Message.selection.MISSING_VALUE_PROPERTY_IN_ITEMS;
+        }
         if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE;
         }
@@ -61,12 +64,12 @@ var CheckBox = /** @class */ (function (_super) {
         }
         if (items && value &&
             !AbstractMultiSelection._hasValidValue(items, value)) {
-            err = Message.common.INVALID_ARGUMENT;
+            err = Message.selection.INVALID_VALUE;
         }
         return err;
     };
     CheckBox.prototype.setValue = function (value) {
-        if (!value && Array.isArray(value)) {
+        if (!value || !Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         var validationErr = this._validator(this._props.items, value);
@@ -239,9 +242,7 @@ var CheckBox = /** @class */ (function (_super) {
     CheckBox.prototype.on = function (eventName, callback) {
         if (eventName === 'change') {
             this._props.onChange = callback;
-            return;
         }
-        _super.prototype.on.call(this, eventName, callback);
     };
     return CheckBox;
 }(Control));

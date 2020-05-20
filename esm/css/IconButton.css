@@ -13,9 +13,11 @@
     left: 4px;
     width: 24px;
     height: 24px;
+    pointer-events: none;
   }
   .kuc-icon-btn svg path{
     fill: #9E9E9E;
+    pointer-events: none;
   }
   .kuc-icon-btn:hover {
     background-color: #2d8dd6;
@@ -26,13 +28,13 @@
   .kuc-icon-btn.hover-danger:hover {
     background-color: #E44235;
   }
-  .kuc-icon-btn.normal {
+  .kuc-icon-btn.square {
     border-radius: 2px;
   }
   .kuc-icon-btn.circle {
     border-radius: 50%;
   }
-  .kuc-icon-btn.large {
+  .kuc-icon-btn.normal {
     width: 32px;
     height: 32px;
   }

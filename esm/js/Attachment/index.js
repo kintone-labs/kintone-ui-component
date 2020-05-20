@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
@@ -247,8 +248,16 @@ var Attachment = /** @class */ (function (_super) {
         listFileEl.classList.add('kuc-attachment-file-filelist', 'kuc-attachment-file-filelist-list');
         return listFileEl;
     };
-    Attachment.prototype.renderAttachInputEl = function () {
+    Attachment.prototype.bindAttachInputElEvent = function (attachInputEl) {
         var _this = this;
+        attachInputEl.onchange = function (event) {
+            _this._addFiles(event);
+        };
+        attachInputEl.onclick = function () {
+            attachInputEl.value = '';
+        };
+    };
+    Attachment.prototype.renderAttachInputEl = function () {
         var attachInputContainerEl = document.createElement('a');
         attachInputContainerEl.className = 'kuc-attachment-file-upload-button';
         attachInputContainerEl.tabIndex = -1;
@@ -258,9 +267,7 @@ var Attachment = /** @class */ (function (_super) {
         var attachInputEl = document.createElement('input');
         attachInputEl.setAttribute('type', 'file');
         attachInputEl.setAttribute('multiple', 'true');
-        attachInputEl.onchange = function (e) {
-            _this._addFiles(e);
-        };
+        this.bindAttachInputElEvent(attachInputEl);
         var wrapInputEl = document.createElement('div');
         wrapInputEl.className = 'kuc-attachment-file-upload-html5';
         wrapInputEl.appendChild(attachInputEl);

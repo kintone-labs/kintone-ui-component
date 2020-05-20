@@ -6,10 +6,10 @@ import { Dropdown } from '../../index';
 import '../../../css/DropdownCalendar.css';
 var previousDate;
 var Calendar = function (_a) {
-    var date = _a.date, _b = _a.locale, locale = _b === void 0 ? ja : _b, _c = _a.pickerDisplay, pickerDisplay = _c === void 0 ? 'block' : _c, _d = _a.hasSelection, hasSelection = _d === void 0 ? false : _d, _e = _a.onDateClick, onDateClick = _e === void 0 ? function () { } : _e, calRef = _a.calRef;
+    var date = _a.date, _b = _a.locale, locale = _b === void 0 ? ja : _b, _c = _a.pickerDisplay, pickerDisplay = _c === void 0 ? 'block' : _c, _d = _a.hasSelection, hasSelection = _d === void 0 ? false : _d, onDateClick = _a.onDateClick, calRef = _a.calRef;
     var today = new Date();
     var weekDayLabels = getWeekDayLabels(locale);
-    var _f = useState(date ? new Date(date) : new Date()), displayDate = _f[0], setDisplayDate = _f[1];
+    var _e = useState(date ? new Date(date) : new Date()), displayDate = _e[0], setDisplayDate = _e[1];
     var displayingDays = getDisplayingDays(displayDate);
     var dropDownsRowRef = useRef(null);
     var scrollToSeletedOptions = function () {
@@ -52,7 +52,7 @@ var Calendar = function (_a) {
             if (calRef.current !== relatedTarget &&
                 !calRef.current.contains(relatedTarget) &&
                 pickerDisplay !== 'none') {
-                onDateClick(null, null);
+                onDateClick && onDateClick(null, null);
             }
         } },
         React.createElement("div", { className: "header" },
@@ -119,27 +119,27 @@ var Calendar = function (_a) {
                     return (React.createElement("span", { role: "button", className: className + " calendar-button", key: "day-" + index, onClick: function () {
                             var returnDate = new Date(date);
                             returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
-                            onDateClick(returnDate, null);
+                            onDateClick && onDateClick(returnDate, null);
                             setDisplayDate(new Date(day));
                         }, onKeyUp: function () {
                             var returnDate = new Date(date);
                             returnDate.setFullYear(day.getFullYear(), day.getMonth(), day.getDate());
-                            onDateClick(returnDate, null);
+                            onDateClick && onDateClick(returnDate, null);
                             setDisplayDate(new Date(day));
                         }, tabIndex: 0 }, format(day, 'd')));
                 })),
             React.createElement("div", { className: "quick-selections-container" },
                 React.createElement("span", { role: "button", tabIndex: 0, className: "today calendar-button-control", onClick: function () {
                         setDisplayDate(new Date());
-                        onDateClick(today, null);
+                        onDateClick && onDateClick(today, null);
                     }, onKeyUp: function () {
                         setDisplayDate(new Date());
-                        onDateClick(today, null);
+                        onDateClick && onDateClick(today, null);
                     } }, locale.today),
                 React.createElement("span", { role: "button", className: "none calendar-button-control", onClick: function () {
-                        onDateClick(null, previousDate);
+                        onDateClick && onDateClick(null, previousDate);
                     }, onKeyUp: function () {
-                        onDateClick(null, previousDate);
+                        onDateClick && onDateClick(null, previousDate);
                     }, tabIndex: -1 }, locale.none)))));
 };
 export default Calendar;

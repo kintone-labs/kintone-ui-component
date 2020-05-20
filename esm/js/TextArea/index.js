@@ -7,8 +7,6 @@ var TextArea = /** @class */ (function (_super) {
     tslib_1.__extends(TextArea, _super);
     function TextArea(params) {
         var _this = _super.call(this) || this;
-        _this._onClick = function () { };
-        _this._onChange = function () { };
         _this.textAreaWidth = 297;
         _this.textAreaHeight = 123;
         _this.mixTextAreaWidth = 297;
@@ -78,10 +76,10 @@ var TextArea = /** @class */ (function (_super) {
                 if (_this.textAreaHeight + dy < _this.mixtTextAreaHeight) {
                     dy = 0;
                 }
-                _this.translateX = _this.translateX + dx;
-                _this.translateY = _this.translateY + dy;
-                _this.textAreaWidth = _this.textAreaWidth + dx;
-                _this.textAreaHeight = _this.textAreaHeight + dy;
+                _this.translateX += dx;
+                _this.translateY += dy;
+                _this.textAreaWidth += dx;
+                _this.textAreaHeight += dy;
                 _this.textAreaEl.style.width = _this.textAreaWidth + 'px';
                 _this.textAreaEl.style.height = _this.textAreaHeight + 'px';
                 _this.resizeEl.style.transform = "translate(" + _this.translateX + "px, " + _this.translateY + "px)";
@@ -110,11 +108,11 @@ var TextArea = /** @class */ (function (_super) {
         var textarea = document.createElement('textarea');
         textarea.className = 'kuc-textarea';
         textarea.onclick = function (e) {
-            _this._onClick(e);
+            _this._onClick && _this._onClick(e);
         };
         textarea.onchange = function (e) {
             _this._props.value = e.target.value;
-            _this._onChange(e.target.value);
+            _this._onChange && _this._onChange(e.target.value);
         };
         textarea.style.width = this.textAreaWidth + 'px';
         textarea.style.height = this.textAreaHeight + 'px';

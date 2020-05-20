@@ -7,7 +7,7 @@ declare type item = {
     isDisabled?: boolean;
 };
 declare type DropdownProps = ControlProps & {
-    value?: string;
+    value?: string | null;
     items?: item[];
     onChange?: (params?: any) => void;
     listItemsShown?: (params?: any) => void;
@@ -34,7 +34,7 @@ declare class Dropdown extends Control<DropdownProps> {
     render(): HTMLElement;
     rerender(changedAttr?: string[]): void;
     setValue(value: string): void;
-    getValue(): string | undefined;
+    getValue(): string | null | undefined;
     getItems(): item[] | undefined;
     addItem(item: item): void;
     setItems(items: item[]): void;

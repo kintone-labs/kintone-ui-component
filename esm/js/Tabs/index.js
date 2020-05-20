@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
 import TabName from './TabName';
@@ -42,7 +43,9 @@ var Tabs = /** @class */ (function (_super) {
             });
         }
         if (this._props.value !== undefined) {
-            if (!this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0) {
+            var existItems = this._props.items && (this._props.items.length > 0);
+            var invalidValue = !this._props.items || this._props.value > this._props.items.length - 1 || this._props.value < 0;
+            if (existItems && invalidValue) {
                 err = Message.common.INVALID_ARGUMENT;
             }
         }
@@ -78,7 +81,14 @@ var Tabs = /** @class */ (function (_super) {
         this.element.appendChild(tabContentWrapper);
         this.tabContentElement = document.createElement('div');
         if (this._props.items && this._props.value !== undefined) {
-            this.tabContentElement.append(this._props.items[this._props.value].tabContent || '');
+            var tabContent = void 0;
+            if (this._props.items[this._props.value] && this._props.items[this._props.value].tabContent) {
+                tabContent = this._props.items[this._props.value].tabContent || '';
+            }
+            else {
+                tabContent = '';
+            }
+            this.tabContentElement.append(tabContent);
         }
         tabContentWrapper.appendChild(this.tabContentElement);
     };
@@ -165,10 +175,10 @@ var Tabs = /** @class */ (function (_super) {
     };
     Tabs.prototype.addItem = function (item) {
         if (!item) {
-            throw Message.common.INVALID_ARGUMENT;
+            throw new Error(Message.common.INVALID_ARGUMENT);
         }
         if (!item.tabName) {
-            throw Message.tabs.MISSING_NEW_ITEM_TABNAME;
+            throw new Error(Message.tabs.MISSING_NEW_ITEM_TABNAME);
         }
         this._props.items && this._props.items.push(item);
         if (this._validator()) {
@@ -194,17 +204,18 @@ var Tabs = /** @class */ (function (_super) {
     Tabs.prototype.disableItem = function (tabName) {
         var _this = this;
         if (!tabName) {
-            throw Message.common.INVALID_ARGUMENT;
+            throw new Error(Message.common.INVALID_ARGUMENT);
         }
         this._props.items &&
             this._props.items.forEach(function (item, index) {
                 var isSelected = index === _this._props.value;
                 if (item.tabName === tabName) {
                     if (isSelected) {
-                        throw Message.tabs.INVALID_ACTION;
+                        throw new Error(Message.tabs.INVALID_ACTION);
                     }
                     else {
                         _this.tabNames[index].disable();
+                        _this._props.items[index].isDisabled = true;
                     }
                 }
             });
@@ -212,12 +223,13 @@ var Tabs = /** @class */ (function (_super) {
     Tabs.prototype.enableItem = function (tabName) {
         var _this = this;
         if (!tabName) {
-            throw Message.common.INVALID_ARGUMENT;
+            throw new Error(Message.common.INVALID_ARGUMENT);
         }
         this._props.items &&
             this._props.items.forEach(function (item, index) {
                 if (item.tabName === tabName) {
                     _this.tabNames[index].enable();
+                    _this._props.items[index].isDisabled = false;
                 }
             });
     };

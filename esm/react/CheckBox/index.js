@@ -28,7 +28,7 @@ var CheckBox = function (props) {
         var isSelected = props.value ? props.value.some(function (value) { return value === item.value; }) : false;
         return (React.createElement(Item, { key: i, selected: isSelected, onChange: function () { return _handleItemClick(item.value); }, 
             // label={item.label}
-            item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled, type: "checkbox", className: "kuc-input-checkbox-item" }));
+            item: item, isDisabled: props.isDisabled === true ? props.isDisabled : item.isDisabled, type: "checkbox", className: "kuc-input-checkbox-item" }));
     });
     if (_hasDuplicatedItems(props.items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);

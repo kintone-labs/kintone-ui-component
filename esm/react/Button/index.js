@@ -12,6 +12,6 @@ var Button = function (_a) {
     if (isVisible === false) {
         return null;
     }
-    return (React.createElement("button", { style: style, onClick: onClick && onClick, className: _getClassName(), disabled: isDisabled }, text));
+    return (React.createElement("button", { style: style, onClick: onClick && onClick, className: _getClassName(), disabled: isDisabled === true }, text));
 };
 export default Button;

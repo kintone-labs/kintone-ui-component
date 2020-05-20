@@ -20,4 +20,4 @@ import TextArea from './TextArea';
 import Attachment from './Attachment';
 import FieldGroup from './FieldGroup';
 export { DateTime, Calendar, Button, Label, Text, Alert, NotifyPopup, IconButton, Spinner, ColorPicker, FieldGroup, Tabs, TextArea, Attachment, Item, Dropdown, RadioButton, CheckBox, MultipleChoice, AbstractSingleSelection, AbstractMultiSelection, Dialog };
-export * from './Table';
+export { Table } from './Table';

@@ -8,7 +8,7 @@ import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
 import '../../css/font.css';
 var DateTime = function (_a) {
-    var _b = _a.value, value = _b === void 0 ? new Date() : _b, _c = _a.isDisabled, isDisabled = _c === void 0 ? false : _c, _d = _a.isVisible, isVisible = _d === void 0 ? true : _d, _e = _a.onChange, onChange = _e === void 0 ? function (newDate) { } : _e, _f = _a.locale, locale = _f === void 0 ? 'ja' : _f, _g = _a.dateFormat, dateFormat = _g === void 0 ? 'MM/dd/YYYY' : _g, _h = _a.type, type = _h === void 0 ? 'datetime' : _h, _j = _a.timeFormat, timeFormat = _j === void 0 ? 'HH:mm' : _j;
+    var _b = _a.value, value = _b === void 0 ? new Date() : _b, _c = _a.isDisabled, isDisabled = _c === void 0 ? false : _c, _d = _a.isVisible, isVisible = _d === void 0 ? true : _d, onChange = _a.onChange, _e = _a.locale, locale = _e === void 0 ? 'ja' : _e, _f = _a.dateFormat, dateFormat = _f === void 0 ? 'MM/dd/YYYY' : _f, _g = _a.type, type = _g === void 0 ? 'datetime' : _g, _h = _a.timeFormat, timeFormat = _h === void 0 ? 'HH:mm' : _h;
     var localeObj = ja;
     if (locale === 'en') {
         localeObj = en;
@@ -16,17 +16,17 @@ var DateTime = function (_a) {
     else if (locale === 'zh') {
         localeObj = zh;
     }
-    var _k = useState(value), defaultValue = _k[0], setDefaultValue = _k[1];
-    var _l = useState('none'), pickerDisplay = _l[0], setPickerDisplay = _l[1];
-    var _m = useState(false), showPickerError = _m[0], setShowPickerError = _m[1];
-    var _o = useState(''), dateError = _o[0], setDateError = _o[1];
-    var _p = useState('none'), timePickerDisplay = _p[0], setTimePickerDisplay = _p[1];
-    var _q = useState(''), inputValue = _q[0], setInputValue = _q[1];
-    var _r = useState(format(value, timeFormat)), timeValue = _r[0], setTimeValue = _r[1];
-    var _s = useState(true), hasSelection = _s[0], setHasSelection = _s[1];
-    var _t = useState(new Date(value)), timeDateValue = _t[0], setTimeDateValue = _t[1];
-    var _u = useState(isDisabled), isDisableBtn = _u[0], setDisableBtn = _u[1];
-    var _v = useState(type), typeDateTime = _v[0], setTypeDateTime = _v[1];
+    var _j = useState(value), defaultValue = _j[0], setDefaultValue = _j[1];
+    var _k = useState('none'), pickerDisplay = _k[0], setPickerDisplay = _k[1];
+    var _l = useState(false), showPickerError = _l[0], setShowPickerError = _l[1];
+    var _m = useState(''), dateError = _m[0], setDateError = _m[1];
+    var _o = useState('none'), timePickerDisplay = _o[0], setTimePickerDisplay = _o[1];
+    var _p = useState(''), inputValue = _p[0], setInputValue = _p[1];
+    var _q = useState(format(value, timeFormat)), timeValue = _q[0], setTimeValue = _q[1];
+    var _r = useState(true), hasSelection = _r[0], setHasSelection = _r[1];
+    var _s = useState(new Date(value)), timeDateValue = _s[0], setTimeDateValue = _s[1];
+    var _t = useState(isDisabled), isDisableBtn = _t[0], setDisableBtn = _t[1];
+    var _u = useState(type), typeDateTime = _u[0], setTypeDateTime = _u[1];
     var wrapperRef = createRef();
     var calendarRef = createRef();
     var timeRef = createRef();
@@ -37,7 +37,7 @@ var DateTime = function (_a) {
         newTime.setMonth(timeDateValue.getMonth());
         newTime.setDate(timeDateValue.getDate());
         setTimeDateValue(newTime);
-        onChange(newTime);
+        onChange && onChange(newTime);
         setTimeout(function () {
             setTimeValue(format(newTime, timeFormat));
             timeInput.setSelectionRange(3, 5);
@@ -50,7 +50,7 @@ var DateTime = function (_a) {
         newTime.setMonth(timeDateValue.getMonth());
         newTime.setDate(timeDateValue.getDate());
         setTimeDateValue(new Date(newTime));
-        onChange(new Date(newTime));
+        onChange && onChange(new Date(newTime));
         setTimeout(function () {
             setTimeValue(format(newTime, timeFormat));
             timeInput.setSelectionRange(0, 2);
@@ -213,7 +213,7 @@ var DateTime = function (_a) {
                                 var calendar = calendarRef.current;
                                 if (relatedTarget !== calendar && !calendar.contains(relatedTarget)) {
                                     if (returnDate) {
-                                        onChange(returnDate);
+                                        onChange && onChange(returnDate);
                                         setShowPickerError(false);
                                     }
                                     setPickerDisplay('none');
@@ -245,7 +245,7 @@ var DateTime = function (_a) {
                                     tempDate.setHours(timeDateValue.getHours());
                                     tempDate.setMinutes(timeDateValue.getMinutes());
                                     tempDate.setSeconds(0);
-                                    onChange(tempDate);
+                                    onChange && onChange(tempDate);
                                     if (!showPickerError) {
                                         setInputValue(format(tempDate, dateFormat));
                                     }
@@ -256,7 +256,7 @@ var DateTime = function (_a) {
                                     tempDate.setHours(timeDateValue.getHours());
                                     tempDate.setMinutes(timeDateValue.getMinutes());
                                     tempDate.setSeconds(0);
-                                    onChange(tempDate);
+                                    onChange && onChange(tempDate);
                                     setInputValue('');
                                     setHasSelection(false);
                                     setShowPickerError(false);
@@ -345,7 +345,7 @@ var DateTime = function (_a) {
                             newTime.setDate(timeDateValue.getDate());
                             setTimeValue(format(newTime, timeFormat));
                             setTimeDateValue(new Date(newTime));
-                            onChange(new Date(newTime));
+                            onChange && onChange(new Date(newTime));
                             setTimePickerDisplay('none');
                         }, onKeyDown: function (e) {
                             timeInputKeydownHandler(e);
@@ -361,7 +361,7 @@ var DateTime = function (_a) {
                                 tempDate.setSeconds(0);
                                 setTimeValue(format(tempDate, timeFormat));
                                 setTimeDateValue(new Date(tempDate));
-                                onChange(tempDate);
+                                onChange && onChange(tempDate);
                                 setTimePickerDisplay('none');
                             } }))));
     }
@@ -369,4 +369,4 @@ var DateTime = function (_a) {
 };
 export default DateTime;
 export { Calendar };
-export * from './components/Locale';
+export { en, zh, ja, format, getSeperator, availableLocales } from './components/Locale';

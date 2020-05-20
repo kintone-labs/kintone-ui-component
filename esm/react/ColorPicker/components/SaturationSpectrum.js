@@ -5,7 +5,7 @@ export default function SaturationSpectrum(props) {
     var _a = useState(false), isMouseDown = _a[0], setIsMouseDown = _a[1];
     var _b = useState(), containerEl = _b[0], setContainerEl = _b[1];
     var container = useCallback(function (element) {
-        setContainerEl(element.getBoundingClientRect());
+        element && setContainerEl(element.getBoundingClientRect());
     }, []);
     var satCanvas = useRef(null);
     function fillSatSpectrumCanvas() {
@@ -16,11 +16,11 @@ export default function SaturationSpectrum(props) {
                 ctx.fillRect(0, 0, w, h);
                 var grdWhite = ctx.createLinearGradient(0, 0, w, 0);
                 grdWhite.addColorStop(0, 'rgb(255,255,255)');
-                grdWhite.addColorStop(1, 'transparent');
+                grdWhite.addColorStop(1, 'rgb(0,0,0,0)');
                 ctx.fillStyle = grdWhite;
                 ctx.fillRect(0, 0, w, h);
                 var grdBlack = ctx.createLinearGradient(0, 0, 0, h);
-                grdBlack.addColorStop(0, 'transparent');
+                grdBlack.addColorStop(0, 'rgb(0,0,0,0)');
                 grdBlack.addColorStop(1, 'rgb(0,0,0)');
                 ctx.fillStyle = grdBlack;
                 ctx.fillRect(0, 0, w, h);
@@ -44,12 +44,12 @@ export default function SaturationSpectrum(props) {
         setIsMouseDown(true);
     }
     function handleMouseUp(e) {
-        triggerSelect(e.clientX, e.clientY);
+        triggerSelect(e.pageX, e.pageY);
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
-            triggerSelect(e.clientX, e.clientY);
+            triggerSelect(e.pageX, e.pageY);
         }
     }
     function handleMouseLeave() {

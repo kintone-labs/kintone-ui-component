@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../Control';
 var TabName = /** @class */ (function (_super) {
     tslib_1.__extends(TabName, _super);

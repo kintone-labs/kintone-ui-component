@@ -11,12 +11,10 @@ declare type HueSpectrumProps = ControlProps & {
 };
 declare class HueSpectrum extends Control<HueSpectrumProps> {
     private colorCanvas;
-    private containerEl;
     private isMouseDown;
     private hasInitLayout;
     constructor(params: HueSpectrumProps);
     initLayout(): void;
-    initContainerEl(): void;
     handleMouseLeave(): void;
     handleMouseMove(e: MouseEvent): void;
     handleMouseDown(): void;

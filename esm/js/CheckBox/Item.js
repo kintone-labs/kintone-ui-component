@@ -8,7 +8,6 @@ var Item = /** @class */ (function (_super) {
         _this._props = tslib_1.__assign({}, _this._props, {
             isSelected: false,
             isDisabled: false,
-            className: '',
         });
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);

@@ -164,7 +164,6 @@ var Table = /** @class */ (function (_super) {
         var tableCellDiv = document.createElement('div');
         tableCellDiv.className = 'kuc-table-td action-group';
         var span1 = document.createElement('span');
-        span1.style.marginRight = '5px';
         tableCellDiv.appendChild(span1);
         var iconButton = new IconButton({ type: 'insert', color: 'blue', size: 'small' });
         var iconButtonDom = iconButton.render();
@@ -175,10 +174,10 @@ var Table = /** @class */ (function (_super) {
                 rowIndex: rowIndex + 1
             });
         });
-        iconButtonDom.style.display = 'inline-block';
         span1.appendChild(iconButtonDom);
         if (this._props.data && this._props.data.length > 1) {
             var span2 = document.createElement('span');
+            span2.style.marginLeft = '5px';
             var iconButton2 = new IconButton({ type: 'remove', color: 'gray', size: 'small' });
             var iconButtonDom2 = iconButton2.render();
             iconButton2.on('click', function () {
@@ -188,7 +187,6 @@ var Table = /** @class */ (function (_super) {
                     rowIndex: rowIndex
                 });
             });
-            iconButtonDom2.style.display = 'inline-block';
             span2.appendChild(iconButtonDom2);
             tableCellDiv.appendChild(span2);
         }
@@ -196,14 +194,14 @@ var Table = /** @class */ (function (_super) {
     };
     Table.prototype._dispatch = function (eventOption) {
         if (eventOption.type === 'ADD_ROW') {
+            this._renderTableRows();
+            this._renderCells();
             if (this._props.onRowAdd) {
                 var newRowData = this._props.onRowAdd(eventOption);
                 if (newRowData && this._props.data) {
                     this._props.data[eventOption.rowIndex] = newRowData;
                 }
             }
-            this._renderTableRows();
-            this._renderCells();
         }
         if (eventOption.type === 'REMOVE_ROW') {
             if (this._props.onRowRemove) {

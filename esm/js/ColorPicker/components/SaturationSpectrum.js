@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../../Control';
 var SaturationSpectrum = /** @class */ (function (_super) {
     tslib_1.__extends(SaturationSpectrum, _super);
@@ -41,11 +42,6 @@ var SaturationSpectrum = /** @class */ (function (_super) {
         this._props.rgb = rgb;
         this.rerender(['rgb']);
     };
-    SaturationSpectrum.prototype.initContainerEl = function () {
-        if (this.element) {
-            this.containerEl = this.element.getBoundingClientRect();
-        }
-    };
     SaturationSpectrum.prototype.fillSatSpectrumCanvas = function () {
         if (this.colorCanvas) {
             var ctx = this.colorCanvas.getContext('2d');
@@ -54,11 +50,11 @@ var SaturationSpectrum = /** @class */ (function (_super) {
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
                 var grdWhite = ctx.createLinearGradient(0, 0, this._props.width, 0);
                 grdWhite.addColorStop(0, 'rgb(255,255,255)');
-                grdWhite.addColorStop(1, 'transparent');
+                grdWhite.addColorStop(1, 'rgb(0,0,0,0)');
                 ctx.fillStyle = grdWhite;
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
                 var grdBlack = ctx.createLinearGradient(0, 0, 0, this._props.height);
-                grdBlack.addColorStop(0, 'transparent');
+                grdBlack.addColorStop(0, 'rgb(0,0,0,0)');
                 grdBlack.addColorStop(1, 'rgb(0,0,0)');
                 ctx.fillStyle = grdBlack;
                 ctx.fillRect(0, 0, this._props.width, this._props.height);
@@ -70,11 +66,8 @@ var SaturationSpectrum = /** @class */ (function (_super) {
         this.rerender(['isMouseDown']);
     };
     SaturationSpectrum.prototype.triggerSelect = function (clientX, clientY, triggerOnChange) {
-        if (!this.containerEl) {
-            this.initContainerEl();
-        }
-        var x = clientX - this.containerEl.left;
-        var y = clientY - this.containerEl.top;
+        var x = clientX - this.element.getBoundingClientRect().left;
+        var y = clientY - this.element.getBoundingClientRect().top;
         if (this.colorCanvas) {
             var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {

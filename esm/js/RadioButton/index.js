@@ -66,8 +66,8 @@ var RadioButton = /** @class */ (function (_super) {
         if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE;
         }
-        if (items && value &&
-            !AbstractSingleSelection._hasValidValue(items, value)) {
+        if (items && value && !AbstractSingleSelection._hasValidValue(items, value)
+            || !AbstractSingleSelection._hasValidItems(items)) {
             err = Message.common.INVALID_ARGUMENT;
         }
         return err;
@@ -147,13 +147,22 @@ var RadioButton = /** @class */ (function (_super) {
         this.rerender(['item']);
     };
     RadioButton.prototype.removeItem = function (index) {
-        if (this._props.items && this._props.items.length <= index) {
-            return false;
+        if ((this._props.items && this._props.items.length <= index)
+            || typeof index !== 'number' || index === null) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
+        if (this._props.items
+            && typeof index === 'number'
+            && this._props.items[index].value === this._props.value) {
+            this._props.value = null;
         }
         this._props.items && this._props.items.splice(index, 1);
         return this.rerender(['item']);
     };
     RadioButton.prototype.disableItem = function (value) {
+        if (!value) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
         this._props.items && this._props.items.forEach(function (obj) {
             if (obj.value === value) {
                 obj.isDisabled = true;
@@ -162,6 +171,9 @@ var RadioButton = /** @class */ (function (_super) {
         this.rerender(['item']);
     };
     RadioButton.prototype.enableItem = function (value) {
+        if (!value) {
+            throw new Error(Message.common.INVALID_ARGUMENT);
+        }
         this._props.items && this._props.items.forEach(function (obj) {
             if (obj.value === value) {
                 obj.isDisabled = false;

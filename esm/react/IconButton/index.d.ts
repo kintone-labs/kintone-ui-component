@@ -6,7 +6,7 @@ declare type IconButtonProps = {
     color?: 'gray' | 'blue' | 'red' | 'green' | 'transparent';
     isDisabled?: boolean;
     isVisible?: boolean;
-    shape?: 'circle' | 'normal';
+    shape?: 'circle' | 'square';
     onClick?: (e: React.SyntheticEvent<EventTarget>) => void;
 };
 declare const IconButton: ({ type, size, color, isDisabled, isVisible, shape, onClick }: IconButtonProps) => JSX.Element | null;

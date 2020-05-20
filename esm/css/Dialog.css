@@ -29,7 +29,9 @@
     border-top: #e3e7e8 solid 1px;
     background-color: #F7F9FA;
     padding: 15px 20px;
+    display: block;
     overflow-y: auto;
+    min-height: 40px;
     max-height: 70vh;
     max-width: 600px;
 }

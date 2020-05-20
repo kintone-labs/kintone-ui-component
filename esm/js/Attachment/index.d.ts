@@ -12,8 +12,6 @@ declare type AttachmentProps = ControlProps & {
     errorMessage?: string;
     isErrorVisible?: boolean;
     files?: FileObject[];
-    onFilesAdd?: (files: FileObject[]) => void;
-    onFileRemove?: (files: FileObject[]) => void;
 };
 declare class Attachment extends Control<AttachmentProps> {
     private _onFileRemove;
@@ -48,6 +46,7 @@ declare class Attachment extends Control<AttachmentProps> {
     private createAttachDnDContainerEL;
     private createAttachDnDEL;
     private createlistFileEL;
+    private bindAttachInputElEvent;
     private renderAttachInputEl;
     private createFileConstraintsEL;
 }

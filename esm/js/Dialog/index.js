@@ -12,7 +12,7 @@ var Dialog = /** @class */ (function (_super) {
             header: '',
             content: '',
             footer: '',
-            showCloseButton: false,
+            showCloseButton: true,
             isVisible: true
         });
         if (params) {
@@ -34,6 +34,9 @@ var Dialog = /** @class */ (function (_super) {
         if (this._props.header) {
             this._headerDivEl.append(this._props.header);
         }
+        else {
+            this._headerDivEl.append(document.createElement('span'));
+        }
         if (this._props.showCloseButton) {
             var spanEl = document.createElement('span');
             spanEl.className = 'kuc-dialog-close-button';
@@ -43,6 +46,9 @@ var Dialog = /** @class */ (function (_super) {
                 _this.hide();
             });
             this._headerDivEl.append(spanEl);
+        }
+        else {
+            this._headerDivEl.append(document.createElement('span'));
         }
         this._footerDivEl = document.createElement('div');
         this._footerDivEl.className = 'kuc-dialog-footer';

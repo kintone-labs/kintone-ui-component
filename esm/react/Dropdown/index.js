@@ -5,10 +5,10 @@ import { mdilChevronDown } from '@mdi/light-js';
 import '../../css/font.css';
 import '../../css/Dropdown.css';
 var Dropdown = function (_a) {
-    var value = _a.value, items = _a.items, isVisible = _a.isVisible, isDisabled = _a.isDisabled, _b = _a.onChange, onChange = _b === void 0 ? function () { } : _b;
-    var _c = useState(false), isVisibleItems = _c[0], setVisibleItems = _c[1];
+    var value = _a.value, items = _a.items, isVisible = _a.isVisible, isDisabled = _a.isDisabled, onChange = _a.onChange;
+    var _b = useState(false), isVisibleItems = _b[0], setVisibleItems = _b[1];
     var ref = useRef(null);
-    var _hasDuplicatedItems = AbstractSingleSelection._hasDuplicatedItems, _hasValidValue = AbstractSingleSelection._hasValidValue, _handleItemClick = AbstractSingleSelection._handleItemClick;
+    var _hasDuplicatedItems = AbstractSingleSelection._hasDuplicatedItems, _hasValidItems = AbstractSingleSelection._hasValidItems, _hasValidValue = AbstractSingleSelection._hasValidValue, _handleItemClick = AbstractSingleSelection._handleItemClick;
     var _caclListOuterPosition = function (listItemEl) {
         var position = -6;
         var currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
@@ -47,7 +47,7 @@ var Dropdown = function (_a) {
     if (_hasDuplicatedItems(items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);
     }
-    if (!_hasValidValue(items, value)) {
+    if (!_hasValidItems(items) || !_hasValidValue(items, value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }
     var listItemEl = items && items.map(function (item, i) {

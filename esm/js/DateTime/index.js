@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
 import '../../css/DateTime.css';

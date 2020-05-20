@@ -8,7 +8,6 @@ declare type ItemData = {
 declare type ItemProps = ControlProps & {
     value?: string;
     label?: string;
-    className?: string;
     isDisabled?: boolean;
     isSelected: boolean;
     onChange?: (item: Item) => void;

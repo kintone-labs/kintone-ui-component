@@ -74,6 +74,7 @@ function ColorPicker(props) {
     var pickerProps = {
         pickerDisplay: pickerDisplay,
         hexString: hexString,
+        initColor: previouseHex,
         onChange: handlePickerChange,
         onCancel: function () {
             setPickerDisplay(false);

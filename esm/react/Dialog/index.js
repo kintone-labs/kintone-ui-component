@@ -27,7 +27,7 @@ var Dialog = function (_a) {
     return (React.createElement("div", { className: "kuc-dialog-container " + hidden },
         React.createElement("div", { className: "kuc-dialog-wrapper" },
             React.createElement("div", { className: "kuc-dialog-header" },
-                header,
+                (header) ? header : React.createElement("span", null),
                 (showCloseButton) ?
                     (React.createElement("span", { className: "kuc-dialog-close-button" },
                         React.createElement(IconButton, { type: "close", onClick: onClose }))) :

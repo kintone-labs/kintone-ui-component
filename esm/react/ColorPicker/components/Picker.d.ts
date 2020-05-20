@@ -1,6 +1,7 @@
 /// <reference types="react" />
 declare type PickerProps = {
     hexString: string;
+    initColor: string;
     pickerDisplay?: boolean;
     onChange: (hexString: string) => void;
     onCancel: () => void;

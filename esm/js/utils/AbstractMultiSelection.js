@@ -37,4 +37,7 @@ var _hasValidValue = function (items, value) {
     }
     return false;
 };
-export default { _hasDuplicatedItems: _hasDuplicatedItems, _hasCheckedItemListDuplicated: _hasCheckedItemListDuplicated, _hasValidValue: _hasValidValue };
+var _hasItemValue = function (items) {
+    return items.every(function (item) { return !!item.value && (typeof item.value === 'string'); });
+};
+export default { _hasDuplicatedItems: _hasDuplicatedItems, _hasCheckedItemListDuplicated: _hasCheckedItemListDuplicated, _hasValidValue: _hasValidValue, _hasItemValue: _hasItemValue };

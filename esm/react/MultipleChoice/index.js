@@ -25,7 +25,7 @@ var MultipleChoice = function (props) {
     }
     var items = props.items && props.items.map(function (item, i) {
         var isSelected = props.value ? props.value.some(function (value) { return value === item.value; }) : false;
-        return (React.createElement(Item, { key: i, selected: isSelected, onClick: function () { return _handleItemClick(item.value); }, item: item, isDisabled: props.isDisabled ? props.isDisabled : item.isDisabled }));
+        return (React.createElement(Item, { key: i, selected: isSelected, onClick: function () { return _handleItemClick(item.value); }, item: item, isDisabled: props.isDisabled === true ? props.isDisabled : item.isDisabled }));
     });
     if (props.items && AbstractMultiSelection._hasDuplicatedItems(props.items)) {
         throw new Error(Message.common.SELECTTION_DUPLICATE_VALUE);

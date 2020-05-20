@@ -15,7 +15,6 @@ declare type SaturationSpectrumProps = ControlProps & {
 };
 declare class SaturationSpectrum extends Control<SaturationSpectrumProps> {
     private colorCanvas;
-    private containerEl;
     private isMouseDown;
     constructor(params: SaturationSpectrumProps);
     rerender(changedAttr?: string[]): void;
@@ -24,7 +23,6 @@ declare class SaturationSpectrum extends Control<SaturationSpectrumProps> {
         g: number;
         b: number;
     }): void;
-    initContainerEl(): void;
     fillSatSpectrumCanvas(): void;
     handleMouseLeave(): void;
     triggerSelect(clientX: number, clientY: number, triggerOnChange: boolean): void;

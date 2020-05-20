@@ -6,7 +6,7 @@ export default function HueSpectrum(props) {
     var _b = useState(false), isMouseDown = _b[0], setIsMouseDown = _b[1];
     var _c = useState(), containerEl = _c[0], setContainerEl = _c[1];
     var container = useCallback(function (element) {
-        setContainerEl(element.getBoundingClientRect());
+        element && setContainerEl(element.getBoundingClientRect());
     }, []);
     var hueCanvas = useRef(null);
     function initLayout() {
@@ -45,12 +45,12 @@ export default function HueSpectrum(props) {
         setIsMouseDown(true);
     }
     function handleMouseUp(e) {
-        triggerSelect(e.clientY);
+        triggerSelect(e.pageY);
         setIsMouseDown(false);
     }
     function handleMouseMove(e) {
         if (isMouseDown) {
-            triggerSelect(e.clientY);
+            triggerSelect(e.pageY);
         }
     }
     function handleMouseLeave() {

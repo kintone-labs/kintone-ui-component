@@ -24,5 +24,9 @@ declare const Message: {
     colorPicker: {
         INVALID_COLOR: string;
     };
+    selection: {
+        MISSING_VALUE_PROPERTY_IN_ITEMS: string;
+        INVALID_VALUE: string;
+    };
 };
 export default Message;

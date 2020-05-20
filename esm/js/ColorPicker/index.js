@@ -10,9 +10,7 @@ var ColorPicker = /** @class */ (function (_super) {
     function ColorPicker(params) {
         var _this = _super.call(this) || this;
         _this._props = tslib_1.__assign({}, _this._props, {
-            color: '#ff0000',
-            onAccept: function (color) { },
-            onCancel: function (color) { }
+            color: '#ff0000'
         });
         if (!params) {
             return _this;

@@ -21,7 +21,7 @@ var Item = /** @class */ (function (_super) {
         var className = [
             'kuc-list-item',
             _this._props.selected ? 'kuc-list-item-selected' : '',
-            _this._props.isDisabled ? 'kuc-list-item-disable' : ''
+            _this._props.isDisabled === true ? 'kuc-list-item-disable' : ''
         ];
         _this.element = document.createElement('div');
         _this.element.className = className.join(' ').trim();
@@ -51,7 +51,7 @@ var Item = /** @class */ (function (_super) {
     };
     Item.prototype.rerender = function (changedAttr) {
         _super.prototype.rerender.call(this);
-        if (this._props.isDisabled) {
+        if (this._props.isDisabled === true) {
             this.inputEl.setAttribute('disabled', "" + this._props.isDisabled);
         }
         else {

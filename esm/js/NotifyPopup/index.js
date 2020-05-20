@@ -8,8 +8,6 @@ var NotifyPopup = /** @class */ (function (_super) {
     tslib_1.__extends(NotifyPopup, _super);
     function NotifyPopup(params) {
         var _this = _super.call(this) || this;
-        _this._onClick = function (e) { };
-        _this._onClose = function (e) { };
         _this._props = tslib_1.__assign({}, _this._props, {
             text: '',
             type: 'error'
@@ -25,7 +23,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         _this.closeButton.on('click', function (e) {
             if (_this._props.isDisabled)
                 return;
-            _this._onClose(e);
+            _this._onClose && _this._onClose(e);
             _this.hide();
         });
         _this.rerender(['text', 'type']);
@@ -55,7 +53,7 @@ var NotifyPopup = /** @class */ (function (_super) {
         this.textEl.on('click', function (e) {
             if (_this._props.isDisabled)
                 return;
-            _this._onClick(e);
+            _this._onClick && _this._onClick(e);
         });
         this.closeButton = new IconButton({ type: 'close' });
         elements(document.createElement('div')).addClass('kuc-close-button').appendTo(containerDOM).append(this.closeButton.render());

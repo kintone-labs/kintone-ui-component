@@ -7,7 +7,6 @@ var Text = /** @class */ (function (_super) {
     tslib_1.__extends(Text, _super);
     function Text(params) {
         var _this = _super.call(this) || this;
-        _this._onChange = function () { };
         _this._props.value = '';
         _this._props.placeholder = '';
         if (typeof params === 'object' && params !== null && typeof params.isDisabled !== 'boolean') {
@@ -21,10 +20,13 @@ var Text = /** @class */ (function (_super) {
         _this.element.setAttribute('type', 'text');
         // If this._props.value is 0, we handle it as string.
         _this.element.value = (_this._props.value === null || _this._props.value === undefined) ? '' : _this._props.value;
-        _this.element.placeholder = (_this._props.placeholder === null || _this._props.placeholder === undefined) ? '' : _this._props.placeholder;
+        _this.element.placeholder =
+            (_this._props.placeholder === null || _this._props.placeholder === undefined)
+                ? ''
+                : _this._props.placeholder;
         _this.element.onchange = function (e) {
             _this._props.value = e.target.value;
-            _this._onChange(e);
+            _this._onChange && _this._onChange(e);
         };
         return _this;
     }
@@ -48,7 +50,10 @@ var Text = /** @class */ (function (_super) {
         }
         if (changedAttr.indexOf('placeholder') !== -1) {
             // If this._props.placeholder is 0, we handle it as string.
-            this.element.placeholder = (this._props.placeholder === null || this._props.placeholder === undefined) ? '' : this._props.placeholder;
+            this.element.placeholder =
+                (this._props.placeholder === null || this._props.placeholder === undefined)
+                    ? ''
+                    : this._props.placeholder;
         }
     };
     Text.prototype.on = function (eventName, callback) {

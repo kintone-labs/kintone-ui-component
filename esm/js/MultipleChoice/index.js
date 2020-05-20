@@ -53,6 +53,9 @@ var MultipleChoice = /** @class */ (function (_super) {
     };
     MultipleChoice.prototype._validator = function (items, value) {
         var err;
+        if (items && !AbstractMultiSelection._hasItemValue(items)) {
+            err = Message.selection.MISSING_VALUE_PROPERTY_IN_ITEMS;
+        }
         if (items && AbstractMultiSelection._hasDuplicatedItems(items)) {
             err = Message.common.SELECTTION_DUPLICATE_VALUE;
         }
@@ -60,12 +63,12 @@ var MultipleChoice = /** @class */ (function (_super) {
             err = Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE;
         }
         if (items && value && !AbstractMultiSelection._hasValidValue(items, value)) {
-            err = Message.common.INVALID_ARGUMENT;
+            err = Message.selection.INVALID_VALUE;
         }
         return err;
     };
     MultipleChoice.prototype.setValue = function (value) {
-        if (!value && Array.isArray(value)) {
+        if (!Array.isArray(value)) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         var validationErr = this._validator(this._props.items, value);
@@ -235,9 +238,7 @@ var MultipleChoice = /** @class */ (function (_super) {
     MultipleChoice.prototype.on = function (eventName, callback) {
         if (eventName === 'change') {
             this._props.onChange = callback;
-            return;
         }
-        _super.prototype.on.call(this, eventName, callback);
     };
     return MultipleChoice;
 }(Control));

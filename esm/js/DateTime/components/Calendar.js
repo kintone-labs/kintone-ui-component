@@ -23,6 +23,8 @@ var Calendar = /** @class */ (function (_super) {
         };
         if (params) {
             _this._props = tslib_1.__assign({}, _this._props, params);
+            if (_this._props.date)
+                _this._displayDate = _this._props.date;
         }
         _this._displayMonth = format(_this._displayDate, 'calendarmonth', { locale: _this._props.locale });
         _this._displayYear = format(_this._displayDate, 'calendaryear', { locale: _this._props.locale });

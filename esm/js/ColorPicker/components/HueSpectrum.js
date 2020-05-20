@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../../Control';
 var HueSpectrum = /** @class */ (function (_super) {
     tslib_1.__extends(HueSpectrum, _super);
@@ -44,11 +45,6 @@ var HueSpectrum = /** @class */ (function (_super) {
             }
         }
     };
-    HueSpectrum.prototype.initContainerEl = function () {
-        if (this.element) {
-            this.containerEl = this.element.getBoundingClientRect();
-        }
-    };
     HueSpectrum.prototype.handleMouseLeave = function () {
         this.isMouseDown = false;
         this.rerender(['isMouseDown']);
@@ -68,11 +64,8 @@ var HueSpectrum = /** @class */ (function (_super) {
         this.rerender(['isMouseDown']);
     };
     HueSpectrum.prototype.triggerSelect = function (clientY) {
-        if (!this.containerEl) {
-            this.initContainerEl();
-        }
         var x = this._props.width / 2;
-        var y = clientY - this.containerEl.top;
+        var y = clientY - this.element.getBoundingClientRect().top;
         if (this.colorCanvas && this.colorCanvas) {
             var ctx = this.colorCanvas.getContext('2d');
             if (ctx) {

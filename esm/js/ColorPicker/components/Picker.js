@@ -12,9 +12,6 @@ var Picker = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this._props = tslib_1.__assign({}, _this._props, {
             hexString: '',
-            onChange: function (hexString, triggerOnChange) { },
-            onAccept: function (hexString) { },
-            onCancel: function () { },
             isDisabled: false,
             isVisible: false
         });
@@ -39,7 +36,7 @@ var Picker = /** @class */ (function (_super) {
             height: 200,
             onSelect: function (newRgb) {
                 _this._props.hexString = rgbToHex(newRgb.r, newRgb.g, newRgb.b);
-                _this._props.onChange(_this._props.hexString, true);
+                _this._props.onChange && _this._props.onChange(_this._props.hexString, true);
             }
         });
     };
@@ -52,7 +49,7 @@ var Picker = /** @class */ (function (_super) {
             rgb: this.saturationBackground,
             onSelect: function (rgb, triggerOnChange) {
                 _this._props.hexString = rgbToHex(rgb.r, rgb.g, rgb.b);
-                _this._props.onChange(_this._props.hexString, triggerOnChange);
+                _this._props.onChange && _this._props.onChange(_this._props.hexString, triggerOnChange);
             }
         });
     };
@@ -106,7 +103,7 @@ var Picker = /** @class */ (function (_super) {
         this.okButton.on('click', function () {
             _this._props.isVisible = false;
             _this.rerender(['pickerDisplay']);
-            _this._props.onAccept(_this._props.hexString);
+            _this._props.onAccept && _this._props.onAccept(_this._props.hexString);
         });
         var cancelButtonSpan = document.createElement('span');
         buttonContainer.appendChild(cancelButtonSpan);
@@ -119,7 +116,7 @@ var Picker = /** @class */ (function (_super) {
         this.cancelButton.on('click', function () {
             _this._props.isVisible = false;
             _this.rerender(['pickerDisplay']);
-            _this._props.onCancel();
+            _this._props.onCancel && _this._props.onCancel();
         });
     };
     Picker.prototype.rerender = function (changedAttr) {

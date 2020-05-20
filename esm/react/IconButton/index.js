@@ -6,7 +6,7 @@ var IconButton = function (_a) {
     var _getClassName = function () {
         var colors = ['gray', 'blue', 'red', 'green', 'transparent'];
         var colorResult = colors.indexOf(color) === -1 ? 'gray' : color;
-        var shapeResult = shape === 'normal' ? 'normal' : 'circle';
+        var shapeResult = shape === 'square' ? 'square' : 'circle';
         var className = [
             'kuc-icon-btn',
             _getClassSize(),
@@ -40,13 +40,19 @@ var IconButton = function (_a) {
         return iconData;
     };
     var _getClassSize = function () {
-        var className = size === 'small' ? 'small' : 'large';
+        var className = size === 'small' ? 'small' : 'normal';
         return className;
+    };
+    var _checkIsDisabled = function () {
+        if (typeof isDisabled !== 'boolean') {
+            return false;
+        }
+        return isDisabled;
     };
     if (isVisible === false) {
         return null;
     }
-    return (React.createElement("button", { className: _getClassName(), onClick: onClick, disabled: isDisabled },
+    return (React.createElement("button", { className: _getClassName(), onClick: onClick, disabled: _checkIsDisabled() },
         React.createElement("svg", null,
             React.createElement("path", { d: _getIconData() }))));
 };
