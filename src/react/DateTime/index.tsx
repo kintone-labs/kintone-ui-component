@@ -190,8 +190,6 @@ const DateTime = ({
                 className="kuc-input-text text-input"
                 disabled={isDisableBtn}
                 onFocus={(e) => {
-                  setPickerDisplay('block');
-                  setTimePickerDisplay('none');
                   // if (showPickerError) {
                   //   setHasSelection(false);
                   // }
@@ -208,6 +206,8 @@ const DateTime = ({
                     dateValue.setHours(timeDateValue.getHours());
                     setTimeDateValue(temporary);
                     setTimeout(()=>{
+                      setPickerDisplay('block');
+                      setTimePickerDisplay('none');
                       setTimeDateValue(dateValue);
                     }, 1);
                   }
