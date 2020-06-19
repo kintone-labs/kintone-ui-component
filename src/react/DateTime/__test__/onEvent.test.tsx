@@ -36,7 +36,7 @@ describe('Unit test DateTime react', () => {
     fireEvent.click(getByText('26'));
     expect(onChange).toBeCalledTimes(1);
   });
-  test('should show Date picker when the DateTime input is focus', () => {
+  test('should show Date picker when the DateTime input is focus', (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -49,7 +49,11 @@ describe('Unit test DateTime react', () => {
     const piker = container.getElementsByClassName('date-picker-container')[0];
     expect(piker).toHaveStyle('display: none;');
     fireEvent.focus(datetimeInput, {target: {value: null}});
-    expect(piker).toHaveStyle('display: block;');
+
+    setTimeout(() => {
+      expect(piker).toHaveStyle('display: block;');
+      done();
+    }, 1);
 
     fireEvent.keyDown(datetimeInput, {key: 'Tab', code: 9});
     expect(piker).toHaveStyle('display: none;');
@@ -74,7 +78,7 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: flex;');
   });
 
-  test('onKeyDown dateTextInput DateTime', () => {
+  test('onKeyDown dateTextInput DateTime', (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -87,9 +91,13 @@ describe('Unit test DateTime react', () => {
     const piker = container.getElementsByClassName('date-picker-container')[0];
     const node = container.getElementsByClassName('kuc-input-text text-input')[0];
     fireEvent.focus(node);
-    expect(piker).toHaveStyle('display: block;');
-    fireEvent.keyDown(node, {key: 'Tab', code: 9});
+    
+    setTimeout(() => {
+      expect(piker).toHaveStyle('display: block;');
+      done();
+    }, 1);
 
+    fireEvent.keyDown(node, {key: 'Tab', code: 9});
     expect(piker).toHaveStyle('display: none;');
   });
 
