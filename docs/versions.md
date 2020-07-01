@@ -5,7 +5,7 @@ Latest version of kintone-ui-component.
  
 | Versions| Documentation| Release|
 | --- | --- | --- |
-| 0.7.3| [Documentation](../)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.7.3)|
+| 0.7.2| [Documentation](../)| [Release Notes](https://github.com/kintone/kintone-ui-component/releases/tag/v0.7.2)|
  
 ## Past Versions
 Here you can find documentation for previous versions of kintone-ui-component.
