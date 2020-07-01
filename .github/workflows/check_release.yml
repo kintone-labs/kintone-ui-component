@@ -31,7 +31,7 @@ jobs:
       run: npm test
     - name: Build dist/esm
       run: npm run build
-    - name: Trigger run automation test
+    - name: Trigger run upload release workflows
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
