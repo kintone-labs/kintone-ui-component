@@ -165,8 +165,6 @@ var DateTime = function (_a) {
                 React.createElement("div", { className: "date-container" },
                     React.createElement("div", { className: "text-input-container", key: "" + dateError },
                         React.createElement("input", { type: "text", className: "kuc-input-text text-input", disabled: isDisableBtn, onFocus: function (e) {
-                                setPickerDisplay('block');
-                                setTimePickerDisplay('none');
                                 // if (showPickerError) {
                                 //   setHasSelection(false);
                                 // }
@@ -182,6 +180,8 @@ var DateTime = function (_a) {
                                     dateValue_1.setHours(timeDateValue.getHours());
                                     setTimeDateValue(temporary);
                                     setTimeout(function () {
+                                        setPickerDisplay('block');
+                                        setTimePickerDisplay('none');
                                         setTimeDateValue(dateValue_1);
                                     }, 1);
                                 }
