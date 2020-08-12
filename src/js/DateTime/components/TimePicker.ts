@@ -249,10 +249,10 @@ class TimePicker extends Control<TimePickerProps> {
     return this.element;
   }
 
-  rerender(changedAttr: string[], options?: object) {
+  rerender(changedAttr: string[], options?: Record<string, any>) {
     super.rerender();
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = (options as any).left + 'px';
+      this.element.style.left = options.left + 'px';
     }
   }
 
