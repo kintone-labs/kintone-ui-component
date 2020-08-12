@@ -1,4 +1,4 @@
-import {TableProps} from '../Table/index';
+import {TableProps} from './';
 
 type TableCellInitParams = {
   table: TableProps
