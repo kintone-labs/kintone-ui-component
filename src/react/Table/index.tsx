@@ -5,36 +5,36 @@ import '../../css/Table.css';
 
 type DispatchParams = {
   type?: string;
-  data?: Array<Record<string, unknown>>;
+  data?: Array<Record<string, any>>;
   rowIndex?: number;
   fieldName?: string;
 }
 
 type OnChangeCallbackParams = {
   rowIndex: number;
-  data: Array<Record<string, unknown>>;
+  data: Array<Record<string, any>>;
   fieldName: string;
 }
 
 type HandlerFunction = (
   newValue: any,
-  tableData?: Array<Record<string, unknown>>,
+  tableData?: Array<Record<string, any>>,
   rowIndex?: number,
   fieldName?: string
 ) => void
 
 type TableColumn = {
   header: string;
-  tdProps?: (cellProps: CellRendererProps) => Record<string, unknown>;
+  tdProps?: (cellProps: CellRendererProps) => Record<string, any>;
   cell: (cellProps: CellRendererProps) => string | JSX.Element;
 }
 type ActionFlag = {
   actions: boolean;
 }
 type TableProps = {
-  data?: Array<Record<string, unknown>>;
+  data?: Array<Record<string, any>>;
   columns?: Array<TableColumn | ActionFlag>;
-  defaultRowData?: Record<string, unknown>;
+  defaultRowData?: Record<string, any>;
   onRowAdd?: (newState: DispatchParams) => void;
   onRowRemove?: (newState: DispatchParams) => void;
   onCellChange?: (eventOptions: OnChangeCallbackParams) => void;
@@ -43,8 +43,8 @@ type TableProps = {
 }
 type TableBodyProps = {
   columns?: Array<TableColumn | ActionFlag>;
-  data?: Array<Record<string, unknown>>;
-  defaultRowData?: Record<string, unknown>;
+  data?: Array<Record<string, any>>;
+  defaultRowData?: Record<string, any>;
   onRowAdd?: (newState: DispatchParams) => void;
   onRowRemove?: (newState: DispatchParams) => void;
   _onCellChange?: HandlerFunction;
@@ -54,7 +54,7 @@ type TableHeaderProps = {
   columns?: Array<TableColumn | ActionFlag>;
 }
 type TableCellProps = {
-  rowData?: Record<string, unknown>;
+  rowData?: Record<string, any>;
   rowIndex?: number;
   columnIndex?: number;
   cell?: (cellProps: CellRendererProps) => string | JSX.Element;

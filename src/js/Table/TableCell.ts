@@ -1,14 +1,16 @@
+import {TableProps} from '../Table/index';
+
 type TableCellInitParams = {
-  table: any
-  rowData: any
+  table: TableProps
+  rowData: Record<string, any>
   rowIndex: number
   columnIndex: number
-  updateRowData: any
+  updateRowData: (rowIndex: number, data: Array<Record<string, any>>, rerender: boolean, trigger: boolean, fieldName: string) => void
 }
 
 type TableCellUpdateParams = {
-  table: any
-  rowData: any
+  table: TableProps
+  rowData: Record<string, any>
   rowIndex: number
   columnIndex: number
   element: HTMLElement | null
