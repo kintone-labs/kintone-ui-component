@@ -1,11 +1,27 @@
+type TableCellInitParams = {
+  table: any
+  rowData: any
+  rowIndex: number
+  columnIndex: number
+  updateRowData: any
+}
+
+type TableCellUpdateParams = {
+  table: any
+  rowData: any
+  rowIndex: number
+  columnIndex: number
+  element: HTMLElement | null
+}
+
 type TableCellProps = {
-  init?: Function;
-  update?: Function;
+  init?: (arg?: TableCellInitParams) => HTMLElement | null;
+  update?: (arg?: TableCellUpdateParams) => void;
 }
 
 export default class TableCell {
-  private _init?: Function
-  private _update?: Function
+  private _init?: (arg?: TableCellInitParams) => HTMLElement | null
+  private _update?: (arg?: TableCellUpdateParams) => void;
   constructor({init, update}: TableCellProps = {}) {
     this._init = init;
     this._update = update;
@@ -15,7 +31,7 @@ export default class TableCell {
     if (this._init) {
       return this._init(...args);
     }
-    return false;
+    return null;
   }
 
   update(...args: any[]) {

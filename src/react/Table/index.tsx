@@ -5,36 +5,36 @@ import '../../css/Table.css';
 
 type DispatchParams = {
   type?: string;
-  data?: object[];
+  data?: Array<Record<string, unknown>>;
   rowIndex?: number;
   fieldName?: string;
 }
 
 type OnChangeCallbackParams = {
   rowIndex: number;
-  data: object[];
+  data: Array<Record<string, unknown>>;
   fieldName: string;
 }
 
 type HandlerFunction = (
   newValue: any,
-  tableData?: object[],
+  tableData?: Array<Record<string, unknown>>,
   rowIndex?: number,
   fieldName?: string
 ) => void
 
 type TableColumn = {
   header: string;
-  tdProps?: (cellProps: CellRendererProps) => object;
+  tdProps?: (cellProps: CellRendererProps) => Record<string, unknown>;
   cell: (cellProps: CellRendererProps) => string | JSX.Element;
 }
 type ActionFlag = {
   actions: boolean;
 }
 type TableProps = {
-  data?: object[];
+  data?: Array<Record<string, unknown>>;
   columns?: Array<TableColumn | ActionFlag>;
-  defaultRowData?: object;
+  defaultRowData?: Record<string, unknown>;
   onRowAdd?: (newState: DispatchParams) => void;
   onRowRemove?: (newState: DispatchParams) => void;
   onCellChange?: (eventOptions: OnChangeCallbackParams) => void;
@@ -43,8 +43,8 @@ type TableProps = {
 }
 type TableBodyProps = {
   columns?: Array<TableColumn | ActionFlag>;
-  data?: object[];
-  defaultRowData?: object;
+  data?: Array<Record<string, unknown>>;
+  defaultRowData?: Record<string, unknown>;
   onRowAdd?: (newState: DispatchParams) => void;
   onRowRemove?: (newState: DispatchParams) => void;
   _onCellChange?: HandlerFunction;
@@ -54,35 +54,35 @@ type TableHeaderProps = {
   columns?: Array<TableColumn | ActionFlag>;
 }
 type TableCellProps = {
-  rowData?: object;
+  rowData?: Record<string, unknown>;
   rowIndex?: number;
   columnIndex?: number;
   cell?: (cellProps: CellRendererProps) => string | JSX.Element;
   _onCellChange?: HandlerFunction;
-  tdProps?: (cellProps: CellRendererProps) => object;
+  tdProps?: (cellProps: CellRendererProps) => Record<string, unknown>;
 }
 type CellRendererProps = {
-  rowData?: object;
+  rowData?: Record<string, unknown>;
   rowIndex?: number;
   columnIndex?: number;
   onCellChange?: HandlerFunction;
 }
 type TableCellActionsProps = {
-  data: object[];
+  data: Array<Record<string, unknown>>;
   rowIndex: number;
-  defaultRowData?: object;
-  addRow: (options?: RowEventProps) => object[];
-  removeRow: (options: RowEventProps) => object[];
+  defaultRowData?: Record<string, unknown>;
+  addRow: (options?: RowEventProps) => Array<Record<string, unknown>>;
+  removeRow: (options: RowEventProps) => Array<Record<string, unknown>>;
   dispatch: (newState: DispatchParams) => void;
 }
 type RowEventProps = {
-  data?: object[];
+  data?: Array<Record<string, unknown>>;
   rowIndex: number;
-  defaultRowData?: object;
+  defaultRowData?: Record<string, unknown>;
 }
 
 const Table = ({data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown = true, isVisible = true}: TableProps) => {
-  const _onCellChange = (newValue: any, tableData: object[], rowIndex: number, fieldName: string) => {
+  const _onCellChange = (newValue: any, tableData: Array<Record<string, unknown>>, rowIndex: number, fieldName: string) => {
     if (onCellChange) {
       tableData[rowIndex][fieldName] = newValue;
       onCellChange({rowIndex, data: tableData, fieldName});

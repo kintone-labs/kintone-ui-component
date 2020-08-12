@@ -297,7 +297,7 @@ class Calendar extends Control<CalendarProps> {
     this._props.locale = locale;
   }
 
-  rerender(changedAttr: string[], options?: object) {
+  rerender(changedAttr: string[], options?: Record<string, unknown>) {
     super.rerender();
     if (changedAttr.indexOf('selectedDate') !== -1) {
       this._daysContainer.innerHTML = '';
