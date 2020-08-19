@@ -46,7 +46,7 @@ declare class Calendar extends Control<CalendarProps> {
     setValue(date: Date | undefined | null): void;
     getValue(): Date | null | undefined;
     setLocale(locale: Locale): void;
-    rerender(changedAttr: string[], options?: object): void;
+    rerender(changedAttr: string[], options?: Record<string, any>): void;
     getElement(): HTMLElement;
 }
 export default Calendar;

@@ -12,7 +12,7 @@ var TableCell = /** @class */ (function () {
         if (this._init) {
             return this._init.apply(this, args);
         }
-        return false;
+        return null;
     };
     TableCell.prototype.update = function () {
         var args = [];

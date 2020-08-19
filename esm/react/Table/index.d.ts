@@ -3,28 +3,28 @@ import '../../css/font.css';
 import '../../css/Table.css';
 declare type DispatchParams = {
     type?: string;
-    data?: object[];
+    data?: Array<Record<string, any>>;
     rowIndex?: number;
     fieldName?: string;
 };
 declare type OnChangeCallbackParams = {
     rowIndex: number;
-    data: object[];
+    data: Array<Record<string, any>>;
     fieldName: string;
 };
-declare type HandlerFunction = (newValue: any, tableData?: object[], rowIndex?: number, fieldName?: string) => void;
+declare type HandlerFunction = (newValue: any, tableData?: Array<Record<string, any>>, rowIndex?: number, fieldName?: string) => void;
 declare type TableColumn = {
     header: string;
-    tdProps?: (cellProps: CellRendererProps) => object;
+    tdProps?: (cellProps: CellRendererProps) => Record<string, any>;
     cell: (cellProps: CellRendererProps) => string | JSX.Element;
 };
 declare type ActionFlag = {
     actions: boolean;
 };
 declare type TableProps = {
-    data?: object[];
+    data?: Array<Record<string, any>>;
     columns?: Array<TableColumn | ActionFlag>;
-    defaultRowData?: object;
+    defaultRowData?: Record<string, any>;
     onRowAdd?: (newState: DispatchParams) => void;
     onRowRemove?: (newState: DispatchParams) => void;
     onCellChange?: (eventOptions: OnChangeCallbackParams) => void;
@@ -32,15 +32,15 @@ declare type TableProps = {
     isVisible?: boolean;
 };
 declare type CellRendererProps = {
-    rowData?: object;
+    rowData?: Record<string, unknown>;
     rowIndex?: number;
     columnIndex?: number;
     onCellChange?: HandlerFunction;
 };
 declare type RowEventProps = {
-    data?: object[];
+    data?: Array<Record<string, unknown>>;
     rowIndex: number;
-    defaultRowData?: object;
+    defaultRowData?: Record<string, unknown>;
 };
 declare const Table: ({ data, columns, defaultRowData, onRowAdd, onRowRemove, onCellChange, actionButtonsShown, isVisible }: TableProps) => JSX.Element;
 export default Table;
