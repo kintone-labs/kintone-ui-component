@@ -91,7 +91,7 @@ describe('Unit test DateTime react', () => {
     const piker = container.getElementsByClassName('date-picker-container')[0];
     const node = container.getElementsByClassName('kuc-input-text text-input')[0];
     fireEvent.focus(node);
-    
+
     setTimeout(() => {
       expect(piker).toHaveStyle('display: block;');
       done();
