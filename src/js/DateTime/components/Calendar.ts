@@ -297,7 +297,7 @@ class Calendar extends Control<CalendarProps> {
     this._props.locale = locale;
   }
 
-  rerender(changedAttr: string[], options?: object) {
+  rerender(changedAttr: string[], options?: Record<string, any>) {
     super.rerender();
     if (changedAttr.indexOf('selectedDate') !== -1) {
       this._daysContainer.innerHTML = '';
@@ -317,7 +317,7 @@ class Calendar extends Control<CalendarProps> {
       this._displayYearDropdown.setValue(this._displayYear);
     }
     if (changedAttr.indexOf('offsetLeft') !== -1 && options) {
-      this.element.style.left = (options as any).left + 'px';
+      this.element.style.left = options.left + 'px';
     }
     if (changedAttr.indexOf('footerButtons') !== -1 && this._props.locale) {
       this._todayButton.textContent = this._props.locale.today;

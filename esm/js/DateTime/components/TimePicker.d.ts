@@ -9,7 +9,7 @@ declare class TimePicker extends Control<TimePickerProps> {
     private _renderTimePickerContainer;
     private _renderTimePickerSelections;
     render(): HTMLElement;
-    rerender(changedAttr: string[], options?: object): void;
+    rerender(changedAttr: string[], options?: Record<string, any>): void;
     getElement(): HTMLElement;
 }
 export default TimePicker;

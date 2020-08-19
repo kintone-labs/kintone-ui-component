@@ -9,14 +9,14 @@ declare type TableColumnJS = {
 };
 declare type DispatchParams = {
     type: string;
-    data?: object[];
+    data?: Array<Record<string, any>>;
     rowIndex: number;
     fieldName?: string;
 };
-declare type HandlerFunction = (eventOptions: DispatchParams) => void | object;
+declare type HandlerFunction = (eventOptions: DispatchParams) => void | Record<string, any>;
 declare type TableProps = ControlProps & {
-    data?: object[];
-    defaultRowData?: object;
+    data?: Array<Record<string, any>>;
+    defaultRowData?: Record<string, any>;
     columns?: Array<TableColumnJS | ActionFlag>;
     actionButtonsShown?: boolean;
     onRowAdd?: HandlerFunction;
@@ -41,12 +41,12 @@ export default class Table extends Control<TableProps> {
     private _renderTableCellActions;
     private _dispatch;
     private _renderTableRows;
-    updateRowData(rowIndex: number, data: object[], rerender?: boolean, trigger?: boolean, fieldName?: string): void;
+    updateRowData(rowIndex: number, data: Record<string, any>, rerender?: boolean, trigger?: boolean, fieldName?: string): void;
     render(): HTMLElement;
     showActionButtons(): void;
     hideActionButtons(): void;
-    getValue(): object[] | undefined;
-    setValue(data: object[]): void;
+    getValue(): Record<string, any>[] | undefined;
+    setValue(data: Array<Record<string, any>>): void;
     on(eventName: string, callback: HandlerFunction): void;
 }
-export {};
+export { TableProps };
