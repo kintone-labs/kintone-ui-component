@@ -76,7 +76,7 @@
 		"terser-webpack-plugin": "2.2.3",
 		"ts-jest": "^24.2.0",
 		"typescript": "3.4.2",
-		"webpack": "4.43.0",
+		"webpack": "4.44.1",
 		"webpack-cli": "3.3.2"
 	}
 }
