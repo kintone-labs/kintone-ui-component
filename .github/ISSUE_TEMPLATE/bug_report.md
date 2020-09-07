@@ -12,11 +12,12 @@ But it's not an absolute rule. Japanese is ok.
 
 <!-- Thank you for reporting a bug! -->
 
-## Target Package
+## Version
 
-<!-- Which package do you want to report a bug for? -->
+<!-- Which version do you want to report a bug for? -->
 
-- @kintone/xxx 0.0.0
+- @kintone/kintone-ui-component v0.x.x
+- @kintone/ui-component v1.x.x
 
 ## Environment
 
