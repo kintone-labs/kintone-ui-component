@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -53,12 +53,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#notifypopup" tabindex="1" class="md-skip">
+      <a href="#notifypopup" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -137,7 +137,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -551,20 +551,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#disable" class="md-nav__link">
-    disable()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enable" class="md-nav__link">
-    enable()
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -742,20 +728,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#disable" class="md-nav__link">
-    disable()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enable" class="md-nav__link">
-    enable()
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -842,12 +814,6 @@
 <td>Type of notify popup:<ul><li> 'error' </li><li> 'success'</li><li> 'info' </li></ul> Default value: <strong>error</strong></td>
 </tr>
 <tr>
-<td>options.isDisabled</td>
-<td>Boolean</td>
-<td>No</td>
-<td>The notify popup will be disabled. <br> Default value: 'false'</td>
-</tr>
-<tr>
 <td>options.isVisible</td>
 <td>Boolean</td>
 <td>No</td>
@@ -855,17 +821,16 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success'
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -881,7 +846,6 @@ export default class Plugin extends React.Component {
 };
 
 </code></pre>
-
 </details>
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
@@ -890,10 +854,10 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>DOM element</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success'
 });
@@ -901,9 +865,8 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -931,7 +894,6 @@ export default class Plugin extends React.Component {
 
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
 </details>
 <h3 id="settexttext">setText(text)</h3>
 <p>Setting the text content of NotifyPopup component.</p>
@@ -956,10 +918,10 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success'
 });
@@ -972,9 +934,8 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 body.appendChild(btn);
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -999,7 +960,6 @@ export default class Plugin extends React.Component {
 };
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
 </details>
 <h3 id="settypetype">setType(type)</h3>
 <p>Setting type of NotifyPopup component.</p>
@@ -1024,10 +984,10 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
 });
@@ -1040,9 +1000,8 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 body.appendChild(btn);
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1067,7 +1026,6 @@ export default class Plugin extends React.Component {
 };
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
 </details>
 <h3 id="oneventname-callback">on(eventName, callback)</h3>
 <p>Register callback for an event of NotifyPopup component.</p>
@@ -1098,10 +1056,10 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
 });
@@ -1117,9 +1075,8 @@ notifyPopup.on('close', () =&gt; {
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1151,7 +1108,6 @@ export default class Plugin extends React.Component {
 };
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
 </details>
 <h3 id="show">show()</h3>
 <p>Display NotifyPopup component.</p>
@@ -1159,10 +1115,10 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
     isVisible: false
@@ -1176,9 +1132,8 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 body.appendChild(btn);
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1207,7 +1162,6 @@ export default class Plugin extends React.Component {
 };
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
 </details>
 <h3 id="hide">hide()</h3>
 <p>Hide NotifyPopup component.</p>
@@ -1215,10 +1169,10 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
+<pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Here is NotifyPopup',
     type: 'success',
 });
@@ -1231,9 +1185,8 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 body.appendChild(btn);
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1262,129 +1215,10 @@ export default class Plugin extends React.Component {
 };
 ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
 </code></pre>
-
-</details>
-<h3 id="disable">disable()</h3>
-<p>Disabled NotifyPopup component.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<details class="tab-container" open="">
-<p><Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Here is NotifyPopup',
-    type: 'success',
-});
-var btn = document.createElement('button'); 
-btn.textContent = 'Disable NotifyPopup';
-btn.onclick = function() {
-    notifyPopup.disable();
-};
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(notifyPopup.render());
-body.appendChild(btn);
-</code></pre>
-
-<p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isDisabled: false, isVisible: true };
-    };
-
-    disable = () =&gt; {
-        this.setState({isDisabled: true});
-    };
-
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;NotifyPopup
-                    text='Here is NotifyPopup'
-                    type='success'
-                    isDisabled={this.state.isDisabled}
-                    isVisible={this.state.isVisible}
-                    onClose={()=&gt; {
-                        this.setState({isVisible: false})
-                    }}
-                /&gt;
-                &lt;button onClick={this.disable} &gt;Disable NotifyPopup&lt;/button&gt;
-            &lt;/div&gt;
-        );
-    };
-};
-ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
-</code></pre>
-
-</details>
-<h3 id="enable">enable()</h3>
-<p>Enabled NotifyPopup component.</p>
-<p><strong>Parameter</strong></p>
-<p>None</p>
-<p><strong>Returns</strong></p>
-<p>None</p>
-<details class="tab-container" open="">
-<p><Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
-<pre><code class="javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
-    text: 'Here is NotifyPopup',
-    type: 'success',
-    isDisabled: true
-});
-var btn = document.createElement('button'); 
-btn.textContent = 'Enable NotifyPopup';
-btn.onclick = function() {
-    notifyPopup.enable();
-};
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-body.appendChild(notifyPopup.render());
-body.appendChild(btn);
-</code></pre>
-
-<p><strong>React</strong></p>
-<pre><code class="javascript">import {NotifyPopup} from '@kintone/kintone-ui-component';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-export default class Plugin extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isDisabled: true, isVisible: true };
-    };
-
-    enable = () =&gt; {
-        this.setState({isDisabled: false});
-    };
-
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;NotifyPopup
-                    text='Here is NotifyPopup'
-                    type='success'
-                    isDisabled={this.state.isDisabled}
-                    isVisible={this.state.isVisible}
-                    onClose={()=&gt; {
-                        this.setState({isVisible: false})
-                    }}
-                /&gt;
-                &lt;button onClick={this.enable}&gt;Enable NotifyPopup&lt;/button&gt;
-            &lt;/div&gt;
-        );
-    };
-};
-ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
-</code></pre>
-
 </details>
                 
                   
+                
                 
               
               
@@ -1440,9 +1274,9 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1452,7 +1286,7 @@ ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       

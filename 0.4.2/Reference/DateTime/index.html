@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -53,12 +53,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#datetime" tabindex="1" class="md-skip">
+      <a href="#datetime" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -137,7 +137,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -901,14 +901,13 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 class DateTimeComponent extends React.Component {
     constructor(props){
@@ -926,7 +925,6 @@ class DateTimeComponent extends React.Component {
     }
 }
 </code></pre>
-
 </details>
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
@@ -935,16 +933,15 @@ class DateTimeComponent extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -964,7 +961,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="getvalue">getValue()</h3>
 <p>Get the value of datetime field.</p>
@@ -987,17 +983,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
 console.log(dateTime.getValue());
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -1019,7 +1014,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the value of datetime field.</p>
@@ -1044,17 +1038,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 dateTime.setValue(new Date());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -1076,7 +1069,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="getlocale">getLocale()</h3>
 <p>Get the setting of language.</p>
@@ -1099,17 +1091,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 console.log(dateTime.getLocale());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -1131,7 +1122,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="setlocalelocale">setLocale(locale)</h3>
 <p>Set the language setting.</p>
@@ -1156,17 +1146,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 dateTime.setLocale('en');
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 class DateTimeComponent extends React.Component {
@@ -1188,7 +1177,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="show">show()</h3>
 <p>Display DateTime.</p>
@@ -1196,17 +1184,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 dateTime.show();
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 
@@ -1235,7 +1222,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="hide">hide()</h3>
 <p>Hide DateTime.</p>
@@ -1243,10 +1229,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
+<pre><code class="language-javascript">var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
 
 kintone.events.on('app.record.index.show', function(event) {
 var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
@@ -1255,9 +1241,8 @@ body.appendChild(dateTime.render());
 dateTime.hide();
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 
@@ -1286,7 +1271,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="disable">disable()</h3>
 <p>Disable DateTime.</p>
@@ -1294,17 +1278,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 dateTime.disable();
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 
@@ -1333,7 +1316,6 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="enable">enable()</h3>
 <p>Enable DateTime.</p>
@@ -1341,17 +1323,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(dateTime.render());
 dateTime.enable();
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import { DateTime } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from 'react-dom';
 
@@ -1380,10 +1361,10 @@ class DateTimeComponent extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
                 
                   
+                
                 
               
               
@@ -1439,9 +1420,9 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1451,7 +1432,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       

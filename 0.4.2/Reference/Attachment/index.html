@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -53,12 +53,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#attachment" tabindex="1" class="md-skip">
+      <a href="#attachment" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -137,7 +137,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -949,14 +949,13 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
+<pre><code class="language-javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -978,7 +977,6 @@ export default class Plugin extends React.Component {
   }
 }
 </code></pre>
-
 </details>
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
@@ -987,16 +985,15 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
+<pre><code class="language-javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 const body = document.getElementsByTagName('BODY')[0];
 body.appendChild(attachment.render());
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1021,7 +1018,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="setfilesfiles">setFiles(files)</h3>
 <p>Set the files of attachment field.</p>
@@ -1058,10 +1054,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
@@ -1072,9 +1068,8 @@ button.on('click', () =&gt; {
     attachment.setFiles([{name: 'test_1', size: 12345}]);
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1107,7 +1102,6 @@ export default class Plugin extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="getfiles">getFiles()</h3>
 <p>Get all files information on attachment field.</p>
@@ -1130,10 +1124,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 body.appendChild(attachment.render());
 
@@ -1143,9 +1137,8 @@ button.on('click', () =&gt; {
     console.log('files:', attachment.getFiles());
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1179,7 +1172,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="setdropzonetextdropzonetext">setDropZoneText(dropZoneText)</h3>
 <p>Set the text of the drop zone</p>
@@ -1204,17 +1196,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
 attachment.setDropZoneText('Drop files here.');
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1251,7 +1242,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="setbrowsebuttontextbrowsebuttontext">setBrowseButtonText(browseButtonText)</h3>
 <p>Set the text of the browse button</p>
@@ -1276,17 +1266,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
 attachment.setBrowseButtonText('Browse');
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1323,7 +1312,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="setfilelimittextfilelimittext">setFileLimitText(fileLimitText)</h3>
 <p>Set the text of the file limit warn part.</p>
@@ -1348,17 +1336,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
 attachment.setFileLimitText('Maximum: 1 GB');
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1395,7 +1382,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="seterrormessageerrormessage">setErrorMessage(errorMessage)</h3>
 <p>Set the error message.</p>
@@ -1420,17 +1406,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
 attachment.setErrorMessage('Error message');
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1466,7 +1451,6 @@ export default class Plugin extends React.Component {
 }
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
-
 </details>
 <h3 id="showerror">showError()</h3>
 <p>Show the error message</p>
@@ -1474,10 +1458,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 const attachment = new kintoneUIComponent.Attachment({errorMessage: 'Error message'});
 body.appendChild(attachment.render());
@@ -1488,9 +1472,8 @@ showButton.on('click', () =&gt; {
     attachment.showError();
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1528,7 +1511,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="hideerror">hideError()</h3>
 <p>Hide the error message</p>
@@ -1536,10 +1518,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 const attachment = new kintoneUIComponent.Attachment({errorMessage: 'Error message'});
 body.appendChild(attachment.render());
@@ -1556,9 +1538,8 @@ hideButton.on('click', () =&gt; {
     attachment.hideError();
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1596,7 +1577,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for an event</p>
@@ -1651,10 +1631,10 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+<pre><code class="language-javascript">const body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 const attachment = new kintoneUIComponent.Attachment();
 body.appendChild(attachment.render());
@@ -1667,9 +1647,8 @@ attachment.on('fileRemove', (files) =&gt; {
     console.log('files:', files);
 });
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1702,7 +1681,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="show">show()</h3>
 <p>Display the attachment component.</p>
@@ -1710,17 +1688,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
+<pre><code class="language-javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 const body = document.getElementsByTagName('BODY')[0];
 body.appendChild(attachment.render());
 attachment.show();
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1757,7 +1734,6 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
 <h3 id="hide">hide()</h3>
 <p>Hide the the attachment component..</p>
@@ -1765,17 +1741,16 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open="">
+<details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
 <p><strong>Javascript</strong></p>
-<pre><code class="javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
+<pre><code class="language-javascript">const attachment = new kintoneUIComponent.Attachment({files: [{name: 'test_1', size: 12345}]});
 const body = document.getElementsByTagName('BODY')[0];
 body.appendChild(attachment.render());
 attachment.hide();
 </code></pre>
-
 <p><strong>React</strong></p>
-<pre><code class="javascript">import {Attachment} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {Attachment} from '@kintone/kintone-ui-component';
 import React from 'react';
 import Reactdom from &quot;react-dom&quot;;
 
@@ -1812,10 +1787,10 @@ export default class Plugin extends React.Component {
 Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 
 </code></pre>
-
 </details>
                 
                   
+                
                 
               
               
@@ -1871,9 +1846,9 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1883,7 +1858,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
