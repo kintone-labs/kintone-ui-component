@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -53,12 +53,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#colorpicker" tabindex="1" class="md-skip">
+      <a href="#colorpicker" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -137,7 +137,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -872,13 +872,13 @@
 
 **Javascript**
 
-<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 </code></pre>
 
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -909,7 +909,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 kintone.events.on('app.record.index.show', function(event) {
     var el = kintone.app.getHeaderSpaceElement();
     el.appendChild(colorPicker.render());
@@ -919,7 +919,7 @@ kintone.events.on('app.record.index.show', function(event) {
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -973,7 +973,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(colorPicker.render());
 colorPicker.setColor('#666666');
@@ -982,7 +982,7 @@ colorPicker.setColor('#666666');
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1042,7 +1042,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(colorPicker.render());
 colorPicker.getColor();
@@ -1051,7 +1051,7 @@ colorPicker.getColor();
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1117,7 +1117,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var colorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 colorPicker.on('change', function(color) {
     console.log(color);
 });
@@ -1131,7 +1131,7 @@ kintone.events.on('app.record.index.show', function(event) {
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1171,7 +1171,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.show();
@@ -1180,7 +1180,7 @@ myColorPicker.show();
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1213,7 +1213,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.hide();
@@ -1222,7 +1222,7 @@ myColorPicker.hide();
 
 **React**
 
-<pre><code class="javascript">import { Button } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { Button } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1254,7 +1254,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.disable();
@@ -1263,7 +1263,7 @@ myColorPicker.disable();
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1295,7 +1295,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 
 **Javascript**
 
-<pre><code class="javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
+<pre><code class="language-javascript">var myColorPicker = new kintoneUIComponent.ColorPicker({color: '#FF0000'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(myColorPicker.render());
 myColorPicker.enable();
@@ -1304,7 +1304,7 @@ myColorPicker.enable();
 
 **React**
 
-<pre><code class="javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import { ColorPicker } from '@kintone/kintone-ui-component';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1326,6 +1326,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
 </details>
                 
                   
+                
                 
               
               
@@ -1381,9 +1382,9 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1393,7 +1394,7 @@ kintone.events.on('app.record.index.show', (event) =&gt; {
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       

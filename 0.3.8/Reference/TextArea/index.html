@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -53,12 +53,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#textarea" tabindex="1" class="md-skip">
+      <a href="#textarea" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -137,7 +137,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -838,12 +838,12 @@
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 </code></pre>
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -874,14 +874,14 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 </code></pre>
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -928,7 +928,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -937,7 +937,7 @@ textArea.setValue('set value into textarea');
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -990,7 +990,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -999,7 +999,7 @@ textArea.getValue();
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1058,7 +1058,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1069,7 +1069,7 @@ textArea.on('click', function(event) {
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1103,7 +1103,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1112,7 +1112,7 @@ textArea.show();
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1146,7 +1146,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1155,7 +1155,7 @@ textArea.hide();
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1189,7 +1189,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1198,7 +1198,7 @@ textArea.disable();
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1232,7 +1232,7 @@ export default class Plugin extends React.Component {
 
 **Javascript**
 
-<pre><code class="javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
+<pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
@@ -1241,7 +1241,7 @@ textArea.enable();
 
 **React**
 
-<pre><code class="javascript">import {TextArea} from '@kintone/kintone-ui-component';
+<pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
 export default class Plugin extends React.Component {
@@ -1265,6 +1265,7 @@ export default class Plugin extends React.Component {
 </details>
                 
                   
+                
                 
               
               
@@ -1306,9 +1307,9 @@ export default class Plugin extends React.Component {
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -1318,7 +1319,7 @@ export default class Plugin extends React.Component {
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
