@@ -110,7 +110,7 @@ result:
 https://unpkg.com/react@16/umd/react.production.min.js
 https://unpkg.com/react-dom@16/umd/react-dom.production.min.js
 ``` 
-*  Attach 2 below files from './dist' folder in [kintone-ui-component](https://github.com/kintone/kintone-ui-component/tree/master) into kintone app
+*  Attach 2 below files from './dist' folder in [kintone-ui-component](https://github.com/kintone-labs/kintone-ui-component/tree/master) into kintone app
 ```
  ./dist/react/kintone-ui-component.min.js
  ./dist/react/kintone-ui-component.min.css
