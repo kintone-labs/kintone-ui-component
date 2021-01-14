@@ -1,6 +1,10 @@
 # kintone UI Component
 [![npm version][npm-image]][npm-url]
 
+```
+ⓘ This library have been migrated from git://github.com/kintone/kintone-ui-component
+```
+
 ## Usage
 [kintone UI Component Quickstart](https://kintone-labs.github.io/kintone-ui-component/latest/#quick-start)
 
