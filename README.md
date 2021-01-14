@@ -2,7 +2,7 @@
 [![npm version][npm-image]][npm-url]
 
 ```
-ⓘ This library have been migrated from git://github.com/kintone/kintone-ui-component
+ⓘ This library has been migrated from git://github.com/kintone/kintone-ui-component
 ```
 
 ## Usage
