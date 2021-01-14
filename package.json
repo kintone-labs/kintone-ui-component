@@ -1,12 +1,12 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.7.4",
+	"version": "0.7.5",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kintone/kintone-ui-component"
+		"url": "https://github.com/kintone-labs/kintone-ui-component"
 	},
 	"sideEffects": [
 		"esm/css/*.css",
