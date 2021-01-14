@@ -2,10 +2,10 @@
 [![npm version][npm-image]][npm-url]
 
 ## Usage
-[kintone UI Component Quickstart](https://kintone.github.io/kintone-ui-component/latest/#quick-start)
+[kintone UI Component Quickstart](https://kintone-labs.github.io/kintone-ui-component/latest/#quick-start)
 
 ## Document
-[kintone UI Component](https://kintone.github.io/kintone-ui-component)
+[kintone UI Component](https://kintone-labs.github.io/kintone-ui-component)
 
 ## How to build
 
@@ -16,7 +16,7 @@
 ```
 
 ```
-$ git clone https://github.com/kintone/kintone-ui-component.git
+$ git clone https://github.com/kintone-labs/kintone-ui-component.git
 $ cd kintone-ui-component
 $ npm install
 $ npm run build
