@@ -2,6 +2,7 @@
 import DateTime from '../index';
 import {fireEvent} from '@testing-library/dom';
 import Message from '../../../constant/Message';
+import { waitFor } from '@testing-library/react';
 
 describe('Unit test DateTime onEvent', () => {
   beforeEach(() => {
@@ -77,18 +78,17 @@ describe('Unit test DateTime onEvent', () => {
     expect(container.getElementsByTagName('input')[1]).toHaveValue('03:00');
   });
 
-  test('should selected range successfully inside the Time input when pressing Tab button', (done) => {
-    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
+  test('should selected range successfully inside the Time input when pressing Tab button', async () => {
     const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 18:40:00 GMT+7')});
     const container = datetime.render();
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
     fireEvent.focus(node);
-    setTimeout(()=>{
-      expect(mockFn).toBeCalledWith(0, 2);
-      done();
-    }, 1);
+    await waitFor(() => expect(node.selectionStart).toEqual(0));
+    await waitFor(() => expect(node.selectionEnd).toEqual(2));
+
     fireEvent.keyDown(node, {key: 'Tab', code: 9});
-    expect(mockFn).toBeCalledWith(3, 5);
+    await waitFor(() => expect(node.selectionStart).toEqual(3));
+    await waitFor(() => expect(node.selectionEnd).toEqual(5));
   });
 
   test('should display invalid hour:minutes when typing invalid value into Time input', () => {
@@ -130,7 +130,7 @@ describe('Unit test DateTime onEvent', () => {
     expect(mockFn).toHaveBeenNthCalledWith(2, 0, 2);
   });
 
-  test('should change time successfully when pressing Arrow Up/Down button', () => {
+  test('should change time successfully when pressing Arrow Up/Down button', async () => {
     const date = new Date();
     date.setHours(4);
     date.setSeconds(0);
@@ -156,8 +156,11 @@ describe('Unit test DateTime onEvent', () => {
     const container = datetime.render();
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
     fireEvent.focus(node);
+    await waitFor(() => expect(node.selectionStart).toEqual(0));
+
     fireEvent.keyDown(node, {key: 'ArrowUp'});
     expect(node).toHaveValue('05:00');
+
     fireEvent.keyDown(node, {key: 'ArrowDown'});
     expect(node).toHaveValue('04:00');
 

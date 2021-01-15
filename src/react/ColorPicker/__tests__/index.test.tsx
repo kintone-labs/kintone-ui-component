@@ -77,7 +77,7 @@ describe('<ColorPicker/>', () => {
 
     const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
     expect(getAllByRole('textbox')[0]).toHaveStyle('background-color: rgb(255, 0, 11)');
-
+    fireEvent.focus(getAllByRole('textbox')[0]);
     fireEvent.blur(getAllByRole('textbox')[1], {target: {value: '244'}});
     fireEvent.click(getByText('OK'), {});
     expect(mockCallback).toBeCalledTimes(1);
@@ -89,7 +89,7 @@ describe('<ColorPicker/>', () => {
     });
 
     const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
-
+    fireEvent.focus(getAllByRole('textbox')[0]);
     fireEvent.blur(getAllByRole('textbox')[2], {target: {value: '244'}});
     fireEvent.click(getByText('OK'), {});
     expect(mockCallback).toBeCalledTimes(1);
@@ -101,7 +101,7 @@ describe('<ColorPicker/>', () => {
     });
 
     const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
-
+    fireEvent.focus(getAllByRole('textbox')[0]);
     fireEvent.blur(getAllByRole('textbox')[3], {target: {value: '244'}});
     fireEvent.click(getByText('OK'), {});
     expect(mockCallback).toBeCalledTimes(1);
@@ -112,7 +112,7 @@ describe('<ColorPicker/>', () => {
       expect(color).toBe('#00ffff');
     });
     const {getAllByRole, getByText} = render(<ColorPicker color="#ff000b" onChange={mockCallback} />);
-
+    fireEvent.focus(getAllByRole('textbox')[0]);
     fireEvent.blur(getAllByRole('textbox')[4], {target: {value: '0.5'}});
     fireEvent.click(getByText('OK'), {});
     expect(mockCallback).toBeCalledTimes(1);

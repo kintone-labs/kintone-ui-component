@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {render, fireEvent, cleanup} from '@testing-library/react';
+import {render, fireEvent, cleanup, act, waitFor} from '@testing-library/react';
 import DateTime from '../index';
 import React from 'react';
 
@@ -155,8 +155,7 @@ describe('Unit test DateTime react', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  test('should selected range successfully inside the Time input when pressing Tab button', (done) => {
-    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
+  test('should selected range successfully inside the Time input when pressing Tab button', async () => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -167,13 +166,14 @@ describe('Unit test DateTime react', () => {
       />
     );
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
-    fireEvent.focus(node);
-    setTimeout(()=>{
-      expect(mockFn).toBeCalledWith(0, 2);
-      done();
-    }, 1);
-    fireEvent.keyDown(node, {key: 'Tab', code: 9});
-    expect(mockFn).toBeCalledWith(3, 5);
+    act(() => node.focus());
+    expect(node).toHaveFocus();
+    await waitFor(() => expect(node.selectionStart).toEqual(0));
+    await waitFor(() => expect(node.selectionEnd).toEqual(2));
+
+    fireEvent.keyDown(node, { key: 'Tab', code: 9 });
+    await waitFor(() => expect(node.selectionStart).toEqual(3));
+    await waitFor(() => expect(node.selectionEnd).toEqual(5));
   });
 
   test('should reset hour:minutes to 00:00 when typing invalid value into Time input', () => {
@@ -226,7 +226,7 @@ describe('Unit test DateTime react', () => {
     fireEvent.keyDown(node, {key: 'ArrowLeft'});
     expect(mockFn).toHaveBeenNthCalledWith(2, 0, 2);
   });
-  test('should change time successfully when pressing Arrow Up/Down button', () => {
+  test('should change time successfully when pressing Arrow Up/Down button', async () => {
     const date = new Date();
     date.setHours(4);
     date.setSeconds(0);
@@ -257,18 +257,24 @@ describe('Unit test DateTime react', () => {
       />
     );
     const node = container.getElementsByClassName('kuc-input-text text-input time')[0] as HTMLInputElement;
-    fireEvent.focus(node);
+    act(() => node.focus());
+    expect(node).toHaveFocus();
+    await waitFor(() => expect(node.selectionStart).toEqual(0));
+
     fireEvent.keyDown(node, {key: 'ArrowUp'});
     expect(onchange).toHaveBeenNthCalledWith(1, updateHourUp);
+
     fireEvent.keyDown(node, {key: 'ArrowDown'});
     expect(onchange).toHaveBeenNthCalledWith(2, date);
 
     fireEvent.keyDown(node, {key: 'Tab'});
     fireEvent.keyDown(node, {key: 'ArrowUp'});
     expect(onchange).toHaveBeenNthCalledWith(3, updateTimeUp);
+
     fireEvent.keyDown(node, {key: 'ArrowDown'});
     expect(onchange).toHaveBeenNthCalledWith(4, date);
   });
+
   test('should be show error when the dateFormat and timeFormat props is invalid', () => {
     const {getByText} = render(
       <DateTime
