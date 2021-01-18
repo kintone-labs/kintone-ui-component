@@ -50,37 +50,84 @@
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
-**Javascript**
+**JS Simple**
 ```javascript
-(function(){
-  // custom cell containing 2 text fields
-  var customCell = function() {
+(function() {
+  // create built-in cell component
+  var textBuiltInCell = function () {
+    return kintoneUIComponent.createTableCell('text', 'textBuiltIn');
+  };
+
+  // create custom cell component
+  var textCustomCell = function() {
     return {
       init: function({rowData, updateRowData}) {
-        var span = document.createElement('span');
-        var textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
-        var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
-        span.appendChild(textfield1.render());
-        span.appendChild(textfield2.render());
-        textfield1.on('change', function(event){
-          updateRowData({text1: {value: event.target.value}}, false);
-        });
-        textfield2.on('change', function(event){
-          updateRowData({text2: {value: event.target.value}}, false);
-        });
-        this.textfield1 = textfield1;
-        this.textfield2 = textfield2;
-        return span;
+        var text = document.createElement('input');
+        text.onchange = function(event) {
+          updateRowData({textCustom: {value: event.target.value}}, false);
+        };
+      
+        this.textCustom = text;
+        return text;
       },
       update: function({ rowData }) {
-        var text1val = rowData.text1;
-        var text2val = rowData.text2;
-        if (text1val && this.textfield1._reactObject) {
-          this.textfield1.setValue(text1val.value);
-        }
-        if (text2val && this.textfield2._reactObject) {
-          this.textfield2.setValue(text2val.value);
-        }
+        this.textCustom.value = rowData.textCustom.value;
+      }
+    }
+  };
+
+  var columns = [
+    { header: 'Built-in cell', cell: function() { return textBuiltInCell() }},
+    { header: 'Custom cell', cell: function() { return textCustomCell() }}
+  ];
+
+  var initialData = [
+    {
+      textBuiltIn: { value: 'built-in' },
+      textCustom: { value: 'custom' }
+    }
+  ];
+
+  var defaultRowData = {
+    textBuiltIn: { value: '' },
+    textCustom: { value: '' }
+  };
+
+  var table = new kintoneUIComponent.Table({
+    columns: columns,
+    data: initialData,
+    defaultRowData: defaultRowData
+  });
+  document.body.appendChild(table.render());
+})();
+```
+
+**JS Advanced**
+```javascript
+(function () {
+  // custom cell containing 2 text fields
+  var customCell = function () {
+    return {
+      init: function ({ rowData, updateRowData }) {
+        var wrapper = document.createElement('span');
+
+        this.textfield1 = new kintoneUIComponent.Text({ value: rowData.text1.value });
+        this.textfield1.on('change', function (event) {
+          updateRowData({ text1: { value: event.target.value } }, false);
+        });
+        wrapper.appendChild(this.textfield1.render());
+
+        this.textfield2 = new kintoneUIComponent.Text({ value: rowData.text2.value });
+        this.textfield2.on('change', function (event) {
+          updateRowData({ text2: { value: event.target.value } }, false);
+        });
+        wrapper.appendChild(this.textfield2.render());
+
+        return wrapper;
+      },
+      update: function ({ rowData }) {
+        if (rowData.text1) this.textfield1.setValue(rowData.text1.value);
+        if (rowData.text2) this.textfield2.setValue(rowData.text2.value);
       }
     }
   };
@@ -88,379 +135,221 @@
   // initial data of a table
   var initialData = [
     {
+      // initial data of text
       text: { value: 'text field' },
-      text1: { value: 'text field 1' },
-      text2: { value: 'text field 2' },
+
       // initial data of radio buttons
       fruit: {
         name: 'fruit',
+        value: 'Banana',
         items: [
-             {
-                 label: 'Orange',
-                 value: 'Orange',
-                 isDisabled: false
-             },
-             {
-                 label: 'Banana',
-                 value: 'Banana',
-                 isDisabled: true
-             },
-             {
-                 label: 'Lemon',
-                 value: 'Lemon',
-                 isDisabled: true
-             },
-         ],
-        value: 'Banana'
+          { label: 'Orange', value: 'Orange', isDisabled: false },
+          { label: 'Banana', value: 'Banana', isDisabled: true },
+          { label: 'Lemon', value: 'Lemon', isDisabled: true },
+        ]
       },
+
       // initial data of multiple choices
       colors: {
+        value: ['red'],
         items: [
-             {
-                 label: 'Red',
-                 value: 'red',
-                 isDisabled: false
-             },
-             {
-                 label: 'Green',
-                 value: 'green',
-                 isDisabled: true
-             },
-             {
-                 label: 'Blue',
-                 value: 'blue',
-                 isDisabled: true
-             },
-         ],
-        value: ['red']
+          { label: 'Red', value: 'red', isDisabled: false },
+          { label: 'Green', value: 'green', isDisabled: true },
+          { label: 'Blue', value: 'blue', isDisabled: true },
+        ]
       },
+
       // initial data of checkbox
       vegetables: {
+        value: ['potato', 'celery'],
         items: [
-             {
-                 label: 'Potato',
-                 value: 'potato',
-                 isDisabled: false
-             },
-             {
-                 label: 'Celery',
-                 value: 'celery',
-                 isDisabled: false
-             },
-             {
-                 label: 'Carrot',
-                 value: 'carrot',
-                 isDisabled: true
-             },
-         ],
-        value: ['potato', 'celery']
+          { label: 'Potato', value: 'potato', isDisabled: false },
+          { label: 'Celery', value: 'celery', isDisabled: false },
+          { label: 'Carrot', value: 'carrot', isDisabled: true },
+        ]
       },
+
       // initial data of dropdown
       toys: {
+        value: 'cars',
         items: [
-             {
-                 label: 'Cars',
-                 value: 'cars',
-                 isDisabled: false
-             },
-             {
-                 label: 'Robots',
-                 value: 'robots',
-                 isDisabled: false
-             },
-             {
-                 label: 'Animals',
-                 value: 'animals',
-                 isDisabled: true
-             },
-         ],
-        value: 'cars'
+          { label: 'Cars', value: 'cars', isDisabled: false },
+          { label: 'Robots', value: 'robots', isDisabled: false },
+          { label: 'Animals', value: 'animals', isDisabled: true },
+        ]
       },
-      label: {
-        text: 'Name',
-        textColor: '#e74c3c',
-        backgroundColor: 'yellow',
-        isRequired: true
-      },
-      iconBtn: {
-        type: 'insert',
-        color:'blue',
-        size: 'small'
-      },
-      alert: {
-        text: 'Network error',
-        type: 'error'
-      }
+
+      // initial data of label
+      label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+      // initial data of icon button
+      iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+      // initial data of alert
+      alert: { text: 'Network error', type: 'error' },
+
+      // initial data of custom cell containing 2 text fields
+      text1: { value: 'text field 1' },
+      text2: { value: 'text field 2' },
     },
   ];
 
   // default row data of a table, this data will be used to create new row
   var defaultRowData = {
+    // default data of text
     text: { value: 'text field' },
-    text1: { value: 'text field 1' },
-    text2: { value: 'text field 2' },
+
     // default data of radio buttons
     fruit: {
       name: 'fruit',
+      value: 'Banana',
       items: [
-           {
-               label: 'Orange',
-               value: 'Orange',
-               isDisabled: false
-           },
-           {
-               label: 'Banana',
-               value: 'Banana',
-               isDisabled: true
-           },
-           {
-               label: 'Lemon',
-               value: 'Lemon',
-               isDisabled: true
-           },
-       ],
-      value: 'Banana'
+        { label: 'Orange', value: 'Orange', isDisabled: false },
+        { label: 'Banana', value: 'Banana', isDisabled: true },
+        { label: 'Lemon', value: 'Lemon', isDisabled: true },
+      ]
     },
+
     // default data of multiple choices
     colors: {
+      value: ['red'],
       items: [
-           {
-               label: 'Red',
-               value: 'red',
-               isDisabled: false
-           },
-           {
-               label: 'Green',
-               value: 'green',
-               isDisabled: true
-           },
-           {
-               label: 'Blue',
-               value: 'blue',
-               isDisabled: true
-           },
-       ],
-      value: ['red']
+        { label: 'Red', value: 'red', isDisabled: false },
+        { label: 'Green', value: 'green', isDisabled: true },
+        { label: 'Blue', value: 'blue', isDisabled: true },
+      ]
     },
+
     // default data of checkbox
     vegetables: {
+      value: ['potato', 'celery'],
       items: [
-           {
-               label: 'Potato',
-               value: 'potato',
-               isDisabled: false
-           },
-           {
-               label: 'Celery',
-               value: 'celery',
-               isDisabled: true
-           },
-           {
-               label: 'Carrot',
-               value: 'carrot',
-               isDisabled: true
-           },
-       ],
-      value: ['potato', 'celery']
+        { label: 'Potato', value: 'potato', isDisabled: false },
+        { label: 'Celery', value: 'celery', isDisabled: true },
+        { label: 'Carrot', value: 'carrot', isDisabled: true },
+      ]
     },
+
     // default data of dropdown
     toys: {
+      value: 'cars',
       items: [
-           {
-               label: 'Cars',
-               value: 'cars',
-               isDisabled: false
-           },
-           {
-               label: 'Robots',
-               value: 'robots',
-               isDisabled: false
-           },
-           {
-               label: 'Animals',
-               value: 'animals',
-               isDisabled: true
-           },
-       ],
-      value: 'cars'
+        { label: 'Cars', value: 'cars', isDisabled: false },
+        { label: 'Robots', value: 'robots', isDisabled: false },
+        { label: 'Animals', value: 'animals', isDisabled: true },
+      ]
     },
-    label: {
-      text: 'Name',
-      textColor: '#e74c3c',
-      backgroundColor: 'yellow',
-      isRequired: true
-    },
-    iconBtn: {
-      type: 'insert',
-      color:'blue',
-      size: 'small'
-    },
-    alert: {
-      text: 'Network error',
-      type: 'error'
-    }
+
+    // default data of label
+    label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+    // default data of icon button
+    iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+    // default data of alert
+    alert: { text: 'Network error', type: 'error' },
+
+    // default data of custom cell containing 2 text fields
+    text1: { value: 'text field 1' },
+    text2: { value: 'text field 2' },
   };
 
   // return this data to override default row data onRowAdd
   var overriddenRowData = {
-    text: {value: 'overwritten field value'},
-    text1: { value: 'overwritten field1 value' },
-    text2: { value: 'overwritten field2 value' },
+    // overriden data of text
+    text: { value: 'overwritten field value' },
+
     // overriden data of radio buttons
     fruit: {
       name: 'fruit',
+      value: 'Banana',
       items: [
-           {
-               label: 'Orange',
-               value: 'Orange',
-               isDisabled: true
-           },
-           {
-               label: 'Banana',
-               value: 'Banana',
-               isDisabled: false
-           },
-           {
-               label: 'Lemon',
-               value: 'Lemon',
-               isDisabled: false
-           },
-       ],
-      value: 'Banana'
+        { label: 'Orange', value: 'Orange', isDisabled: true },
+        { label: 'Banana', value: 'Banana', isDisabled: false },
+        { label: 'Lemon', value: 'Lemon', isDisabled: false },
+      ]
     },
+
     // overriden data of multiple choices
     colors: {
+      value: ['red'],
       items: [
-           {
-               label: 'Red',
-               value: 'red',
-               isDisabled: false
-           },
-           {
-               label: 'Green',
-               value: 'green',
-               isDisabled: true
-           },
-           {
-               label: 'Blue',
-               value: 'blue',
-               isDisabled: true
-           },
-       ],
-      value: ['red']
+        { label: 'Red', value: 'red', isDisabled: false },
+        { label: 'Green', value: 'green', isDisabled: true },
+        { label: 'Blue', value: 'blue', isDisabled: true },
+      ]
     },
+
     // overriden data of checkbox
     vegetables: {
+      value: ['potato', 'celery'],
       items: [
-           {
-               label: 'Potato',
-               value: 'potato',
-               isDisabled: false
-           },
-           {
-               label: 'Celery',
-               value: 'celery',
-               isDisabled: true
-           },
-           {
-               label: 'Carrot',
-               value: 'carrot',
-               isDisabled: false
-           },
-       ],
-      value: ['potato', 'celery']
+        { label: 'Potato', value: 'potato', isDisabled: false },
+        { label: 'Celery', value: 'celery', isDisabled: true },
+        { label: 'Carrot', value: 'carrot', isDisabled: false },
+      ]
     },
+
     // overriden data of dropdown
     toys: {
+      value: 'cars',
       items: [
-           {
-               label: 'Cars',
-               value: 'cars',
-               isDisabled: false
-           },
-           {
-               label: 'Robots',
-               value: 'robots',
-               isDisabled: false
-           },
-           {
-               label: 'Animals',
-               value: 'animals',
-               isDisabled: true
-           },
-       ],
-      value: 'cars'
+        { label: 'Cars', value: 'cars', isDisabled: false },
+        { label: 'Robots', value: 'robots', isDisabled: false },
+        { label: 'Animals', value: 'animals', isDisabled: true },
+      ]
     },
-    label: {
-      text: 'Name',
-      textColor: '#e74c3c',
-      backgroundColor: 'yellow',
-      isRequired: true
-    },
-    iconBtn: {
-      type: 'insert',
-      color:'blue',
-      size: 'small'
-    },
-    alert: {
-      text: 'Network error',
-      type: 'error'
-    }
+
+    // overriden data of label
+    label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+    // overriden data of icon button
+    iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+    // overriden data of alert
+    alert: { text: 'Network error', type: 'error' },
+
+    // overriden data of custom cell containing 2 text fields
+    text1: { value: 'overwritten field1 value' },
+    text2: { value: 'overwritten field2 value' },
   };
 
   var table = new kintoneUIComponent.Table({
     // initial table data
     data: initialData,
+
     // default row data on row add
     defaultRowData: defaultRowData,
-    onRowAdd: function(e) {
+
+    onRowAdd: function (e) {
       console.log('table.onAdd', e);
-      // if onRowAdd does not return anything, defaultRowData will be used to create new table row
-      // if below row data is returned, it will override defaultRowData to be used to create new table row
+      /**
+       * if onRowAdd does not return anything, defaultRowData will be used to create new table row
+       * if below row data is returned, it will override defaultRowData to be used to create new table row
+       */
       return JSON.parse(JSON.stringify(overriddenRowData));
     },
+
     columns: [
+      { header: 'Text', cell: function () { return kintoneUIComponent.createTableCell('text', 'text') } },
+      { header: 'Radio', cell: function () { return kintoneUIComponent.createTableCell('radio', 'fruit') } },
+      { header: 'Multichoice', cell: function () { return kintoneUIComponent.createTableCell('multichoice', 'colors') } },
+      { header: 'Checkbox', cell: function () { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') } },
+      { header: 'Dropdown', cell: function () { return kintoneUIComponent.createTableCell('dropdown', 'toys') } },
+      { header: 'Label', cell: function () { return kintoneUIComponent.createTableCell('label', 'label') } },
       {
-        header: 'Text',
-        cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+        header: 'Icon Button', cell: function () {
+          return kintoneUIComponent.createTableCell('icon', 'iconBtn', {
+            onClick: function (event) { alert('icon button clicked') }
+          });
+        }
       },
-      {
-        header: 'Radio',
-        cell: function() { return kintoneUIComponent.createTableCell('radio', 'fruit') }
-      },
-      {
-        header: 'Multichoice',
-        cell: function() { return kintoneUIComponent.createTableCell('multichoice', 'colors') }
-      },
-      {
-        header: 'Checkbox',
-        cell: function() { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') }
-      },
-      {
-        header: 'Dropdown',
-        cell: function() { return kintoneUIComponent.createTableCell('dropdown', 'toys') }
-      },
-      {
-        header: 'Label',
-        cell: function() { return kintoneUIComponent.createTableCell('label', 'label') }
-      },
-      {
-        header: 'Icon Button',
-        cell: function() { return kintoneUIComponent.createTableCell('icon', 'iconBtn', {onClick:function(event){
-          alert('icon button clicked')
-        }}) }
-      },
-      {
-        header: 'Alert',
-        cell: function() { return kintoneUIComponent.createTableCell('alert', 'alert') }
-      },
-      {
-        header: 'Custom cell contains 2 textfields',
-        cell: function() { return customCell() }
-      },
+      { header: 'Alert', cell: function () { return kintoneUIComponent.createTableCell('alert', 'alert') } },
+      { header: 'Custom cell contains 2 textfields', cell: function () { return customCell() } },
     ]
   });
-  kintone.app.getHeaderSpaceElement().appendChild(table.render());
+
+  document.body.appendChild(table.render());
 })();
 ```
 **React**
