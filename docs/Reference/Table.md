@@ -12,16 +12,23 @@
 |5|Sample row|
 
 !!! note
-    Below is the list components that table supports:
-    <ul><li>custom DOM element</li>
-    <li>Text</li>
-    <li>Dropdown</li>
-    <li>CheckBox</li>
-    <li>MultipleChoice</li>
-    <li>RadioButton</li>
-    <li>Label</li>
-    <li>IconButton</li>
-    <li>Alert</li></ul>
+    The Table are supporting child control components (Item-4) as below:
+    <ul>
+      <li>
+        Built-in supported components:
+          <a href="../Text">Text</a>
+          <a href="../Dropdown">Dropdown</a>
+          <a href="../CheckBox">CheckBox</a>
+          <a href="../MultipleChoice">MultipleChoice</a>
+          <a href="../RadioButton">RadioButton</a>
+          <a href="../Label">Label</a>
+          <a href="../IconButton">Alert</a>      
+      </li>
+      <li>
+        Custom components (DOM Elements)
+      </li>
+    </ul>
+    <div style="color: red;">※ Child control components must be an instance of <a href="#tablecell">TableCell</a>.</div>
 
 ## Constructor
 
@@ -32,7 +39,7 @@
 |options|Object|No|The object contains the parameters of constructor.|
 |options.columns|Array&lt;Object&gt;|No|The row template.|
 |options.columns[x].header|String|No|Header of column.|
-|options.columns[x].cell|Function|No|Returns cell template object. Cell template object must implement **init** and **update** functions. <br> - **init**: to return DOM element for initializing cell's DOM. <br> - **update**: to update DOM of the cell based on the data returned.|
+|options.columns[x].cell|Function|No|Returns cell template object. <br> Refer <a href="#tablecell">TableCell</a> for more information.|
 |options.data|Array&lt;Object&gt;|No|The value of table. <br> Refer to the [getValue()](#getvalue) and [setValue(value)](#setvaluevalue) for more information. |
 |options.defaultRowData|Object|No|The default value of new row.|
 |options.actionButtonsShown|Boolean|No|Show the action buttons when this parameter is **True**. <br>Default: **True**|
@@ -1359,18 +1366,21 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 </details>
 
 ### createTableCell(type, dataFieldName, props)
-Create a table cell with 1 of the built-in supported components
 
 !!! note
-    Below is the list components that can be created with createTableCell:
-    <ul><li>Text</li>
-    <li>Dropdown</li>
-    <li>CheckBox</li>
-    <li>MultipleChoice</li>
-    <li>RadioButton</li>
-    <li>Label</li>
-    <li>IconButton</li>
-    <li>Alert</li></ul>
+    <ul>
+      <li>This function support to create built-in components for **options.columns[x].cell** on <a href="#constructor">Constructor</a>.</li>
+      <li>
+        Components:
+        <a href="../Text">Text</a>
+        <a href="../Dropdown">Dropdown</a>
+        <a href="../CheckBox">CheckBox</a>
+        <a href="../MultipleChoice">MultipleChoice</a>
+        <a href="../RadioButton">RadioButton</a>
+        <a href="../Label">Label</a>
+        <a href="../IconButton">Alert</a>
+      </li>
+    </ul>
 
 **Parameter**
 
@@ -1708,12 +1718,72 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 ```
 </details>
 
+## Model
+
 ### TableCell
 
-**Constructor**
+!!! note
+    <ul>
+      <li>TableCell is the template object for **options.columns[x].cell** on <a href="#constructor">Constructor</a>.</li>
+      <li>
+        Cell template can be creating by <a href="#createtablecelltype-datafieldname-props">createTableCell(type, dataFieldName, props)</a> or custom funcions. <br>
+        If using custom function, Cell template object must implement **init** and **update** functions.
+      </li>
+    </ul>
 
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
-|options|Object|Yes|The object contains the parameters of constructor.|
-|options.init|Function|Yes|Cell initialization callback.<br>Used to initialize DOM of a cell|
-|options.update|Function|Yes|Cell update callback.<br>Used to update DOM of a cell.|
+|init|Function|Yes|Cell initialization callback.<br>Used to initialize DOM of a cell|
+|update|Function|Yes|Cell update callback.<br>Used to update DOM of a cell.|
+
+<details class="tab-container" markdown="1" open>
+<Summary>Sample</Summary>
+**Javascript**
+```javascript
+// create built-in cell component
+var textBuiltInCell = function () {
+  return kintoneUIComponent.createTableCell('text', 'textBuiltIn');
+};
+
+// create custom cell component
+var textCustomCell = function() {
+  return {
+    init: function({rowData, updateRowData}) {
+    	var text = document.createElement('input');
+      text.onchange = function(event) {
+        updateRowData({textCustom: {value: event.target.value}}, false);
+      };
+    
+      this.textCustom = text;
+      return text;
+    },
+    update: function({ rowData }) {
+      this.textCustom.value = rowData.textCustom.value;
+    }
+  }
+};
+
+var columns = [
+  { header: 'Built-in cell', cell: function() { return textBuiltInCell() }},
+  { header: 'Custom cell', cell: function() { return textCustomCell() }}
+];
+
+var initialData = [
+	{
+    textBuiltIn: { value: 'built-in' },
+    textCustom: { value: 'custom' }
+	}
+];
+
+var defaultRowData = {
+  textBuiltIn: { value: '' },
+  textCustom: { value: '' }
+};
+
+var table = new kintoneUIComponent.Table({
+  columns: columns,
+  data: initialData,
+  defaultRowData: defaultRowData
+});
+document.body.appendChild(table.render());
+```
