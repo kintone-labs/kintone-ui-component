@@ -76,11 +76,11 @@ class SaturationSpectrum extends Control<SaturationSpectrumProps> {
         ctx.fillRect(0, 0, this._props.width, this._props.height);
         const grdWhite = ctx.createLinearGradient(0, 0, this._props.width, 0);
         grdWhite.addColorStop(0, 'rgb(255,255,255)');
-        grdWhite.addColorStop(1, 'rgb(0,0,0,0)');
+        grdWhite.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = grdWhite;
         ctx.fillRect(0, 0, this._props.width, this._props.height);
         const grdBlack = ctx.createLinearGradient(0, 0, 0, this._props.height);
-        grdBlack.addColorStop(0, 'rgb(0,0,0,0)');
+        grdBlack.addColorStop(0, 'rgba(0,0,0,0)');
         grdBlack.addColorStop(1, 'rgb(0,0,0)');
         ctx.fillStyle = grdBlack;
         ctx.fillRect(0, 0, this._props.width, this._props.height);
