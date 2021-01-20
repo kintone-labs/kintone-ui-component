@@ -12,8 +12,33 @@
 ```
 $ mike deploy latest
 ```
-* build older version of documentation
+* Build older version of documentation
 ```
 $ cd 0.1.0
 $ mike deploy 0.1.0
+```
+* Serve locally to see changes
+```
+mike serve
+```
+
+## Deploy documentation to gh-pages
+* Deploy latest documentation
+```
+$ mike deploy latest -p
+```
+* Deploy old version documentation 
+```
+$ cd 0.1.0
+$ mike deploy 0.1.0 -p
+```
+* Set default version of documentation is the latest and push again
+```
+$ mike set-default latest -p
+```
+
+### Others
+* Checking list version of documentation
+```
+$ mike list
 ```
