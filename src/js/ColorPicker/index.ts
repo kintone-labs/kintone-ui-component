@@ -136,9 +136,12 @@ class ColorPicker extends Control<ColorPickerProps> {
       throw new Error(Message.colorPicker.INVALID_COLOR);
     }
   }
+
   enable() {
+    super.enable();
     this.inputElement.disabled = false;
   }
+
   getColor(): string {
     return this._props.color || '#ff0000';
   }
