@@ -1,20 +1,20 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import { mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import '../../css/IconButton.css';
 var IconButton = /** @class */ (function (_super) {
-    tslib_1.__extends(IconButton, _super);
+    __extends(IconButton, _super);
     function IconButton(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             type: 'insert',
             size: 'normal',
             color: 'gray',
             shape: 'circle'
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = _this._createLayout();
         _this.rerender(['btnStyle', 'iconStyle', 'isDisabled', 'isVisible']);

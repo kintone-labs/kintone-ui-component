@@ -1,10 +1,10 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import '../../css/Spinner.css';
 var Spinner = /** @class */ (function (_super) {
-    tslib_1.__extends(Spinner, _super);
+    __extends(Spinner, _super);
     function Spinner(params) {
         var _this = _super.call(this) || this;
         _this._props = {
@@ -12,7 +12,7 @@ var Spinner = /** @class */ (function (_super) {
             isVisible: false
         };
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         // isDisabled always is setted false
         // When we update major version of ui-component, we should delete this prop

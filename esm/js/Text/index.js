@@ -1,10 +1,10 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
 import '../../css/Text.css';
 var Text = /** @class */ (function (_super) {
-    tslib_1.__extends(Text, _super);
+    __extends(Text, _super);
     function Text(params) {
         var _this = _super.call(this) || this;
         _this._props.value = '';
@@ -13,7 +13,7 @@ var Text = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('input');
         _this.element.className = 'kuc-input-text';

@@ -1,12 +1,12 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import '../../css/Button.css';
 var Button = /** @class */ (function (_super) {
-    tslib_1.__extends(Button, _super);
+    __extends(Button, _super);
     function Button(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             text: '',
             type: 'normal',
         });
@@ -14,7 +14,7 @@ var Button = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this._createLayout();
         _this.rerender(['isDisabled', 'isVisible']);

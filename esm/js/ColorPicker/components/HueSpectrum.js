@@ -1,18 +1,18 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../../Control';
 var HueSpectrum = /** @class */ (function (_super) {
-    tslib_1.__extends(HueSpectrum, _super);
+    __extends(HueSpectrum, _super);
     function HueSpectrum(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             width: 0,
             height: 0,
             onSelect: function (rgbObj) {
             }
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         _this.colorCanvas = document.createElement('canvas');

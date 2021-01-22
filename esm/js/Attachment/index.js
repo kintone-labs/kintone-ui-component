@@ -1,11 +1,11 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends, __spreadArrays } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/Attachment.css';
 var Attachment = /** @class */ (function (_super) {
-    tslib_1.__extends(Attachment, _super);
+    __extends(Attachment, _super);
     function Attachment(params) {
         var _this = _super.call(this) || this;
         _this._onFileRemove = function () { };
@@ -44,14 +44,14 @@ var Attachment = /** @class */ (function (_super) {
             }
             return true;
         };
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             files: [],
             browseButtonText: 'Browse',
             dropZoneText: 'Drop files here.',
             isErrorVisible: false,
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = _this.createContainerEL();
         _this.rerender(Object.keys(_this._props));
@@ -112,7 +112,7 @@ var Attachment = /** @class */ (function (_super) {
             _this.listFileEl.appendChild(itemFile.render());
         });
         if (this._props.files) {
-            this._props.files = this._props.files.concat(addedFiles);
+            this._props.files = __spreadArrays(this._props.files, addedFiles);
         }
         this._onFileAdd(this._props.files);
     };

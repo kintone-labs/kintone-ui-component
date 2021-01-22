@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign } from "tslib";
 import React, { useState, useEffect, useRef } from 'react';
 import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
@@ -65,9 +65,9 @@ function ColorPicker(props) {
             backgroundColor: hexString,
             color: invertColor(hexString)
         };
-        style = tslib_1.__assign({}, style, ColorPickerStyle.input);
+        style = __assign(__assign({}, style), ColorPickerStyle.input);
         if (focus) {
-            style = tslib_1.__assign({}, style, ColorPickerStyle.inputFocus);
+            style = __assign(__assign({}, style), ColorPickerStyle.inputFocus);
         }
         return style;
     }
@@ -93,8 +93,8 @@ function ColorPicker(props) {
     if (isVisible) {
         return (React.createElement("div", { ref: wrapperRef },
             React.createElement("div", null,
-                React.createElement("input", tslib_1.__assign({}, inputProps, { key: hexString }))),
-            React.createElement(Picker, tslib_1.__assign({}, pickerProps))));
+                React.createElement("input", __assign({}, inputProps, { key: hexString }))),
+            React.createElement(Picker, __assign({}, pickerProps))));
     }
     return React.createElement("div", null);
 }

@@ -1,14 +1,14 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import IconButton from '../IconButton';
 import Message from '../../constant/Message';
 import '../../css/Dialog.css';
 var Dialog = /** @class */ (function (_super) {
-    tslib_1.__extends(Dialog, _super);
+    __extends(Dialog, _super);
     function Dialog(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             header: '',
             content: '',
             footer: '',
@@ -16,7 +16,7 @@ var Dialog = /** @class */ (function (_super) {
             isVisible: true
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var error = _this._validator();
         if (error) {

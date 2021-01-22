@@ -1,3 +1,4 @@
+import { __spreadArrays } from "tslib";
 import React from 'react';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/font.css';
@@ -11,7 +12,7 @@ var Attachment = function (props) {
     var dragEnterCounter = 0;
     var _removeFile = function (index) {
         if (props.onFileRemove && props.files) {
-            var files = props.files.slice();
+            var files = __spreadArrays(props.files);
             files.splice(index, 1);
             props.onFileRemove(files);
         }
@@ -22,7 +23,7 @@ var Attachment = function (props) {
             addedFiles_1 = Object.keys(addedFiles_1).map(function (e) {
                 return addedFiles_1[e];
             });
-            props.onFilesAdd(props.files.concat(addedFiles_1));
+            props.onFilesAdd(__spreadArrays(props.files, addedFiles_1));
         }
     };
     var _isFileDrop = function (event) {

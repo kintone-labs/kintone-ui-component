@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
@@ -6,12 +6,12 @@ import TabName from './TabName';
 import Message from '../../constant/Message';
 import '../../css/Tabs.css';
 var Tabs = /** @class */ (function (_super) {
-    tslib_1.__extends(Tabs, _super);
+    __extends(Tabs, _super);
     function Tabs(params) {
         var _this = _super.call(this) || this;
         _this._onClickTabItem = function () { };
         _this.tabNames = [];
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             items: [],
             value: 0,
             isDisabled: false,
@@ -21,7 +21,7 @@ var Tabs = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         if (_this._validator()) {
             throw new Error(_this._validator());

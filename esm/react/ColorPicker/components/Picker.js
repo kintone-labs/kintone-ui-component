@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign } from "tslib";
 import React, { useState } from 'react';
 import PickerStyle from './PickerStyle';
 import HueSpectrum from './HueSpectrum';
@@ -35,11 +35,11 @@ export default function Picker(props) {
         onSelect: handleSaturation,
         rgb: saturationBackground
     };
-    return (React.createElement("div", { style: tslib_1.__assign({}, PickerStyle.container, {
+    return (React.createElement("div", { style: __assign(__assign({}, PickerStyle.container), {
             visibility: props.pickerDisplay ? 'visible' : 'hidden'
         }) },
         React.createElement("div", { style: PickerStyle.saturationContainer },
-            React.createElement(SaturationSpectrum, tslib_1.__assign({}, saturationProps))),
+            React.createElement(SaturationSpectrum, __assign({}, saturationProps))),
         React.createElement("div", { style: PickerStyle.hueContainer },
             React.createElement(HueSpectrum, { width: 30, height: 200, onSelect: handleHue })),
         React.createElement("div", { style: PickerStyle.inputContainer },

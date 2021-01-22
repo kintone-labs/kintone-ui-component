@@ -1,20 +1,20 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import '../../css/Label.css';
 var Label = /** @class */ (function (_super) {
-    tslib_1.__extends(Label, _super);
+    __extends(Label, _super);
     function Label(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             text: '',
             isRequired: false,
             textColor: '',
             backgroundColor: ''
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
             _this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
         }
         // isDisabled always is setted false

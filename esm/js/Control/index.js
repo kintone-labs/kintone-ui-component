@@ -1,7 +1,7 @@
-import * as tslib_1 from "tslib";
+import { __assign } from "tslib";
 var Control = /** @class */ (function () {
     function Control() {
-        this._props = tslib_1.__assign({}, this._props, {
+        this._props = __assign(__assign({}, this._props), {
             isDisabled: false,
             isVisible: true
         });

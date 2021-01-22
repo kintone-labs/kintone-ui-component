@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import Control from '../../Control';
 import PickerStyle from './PickerStyle';
 import SaturationSpectrum from './SaturationSpectrum';
@@ -7,16 +7,16 @@ import { hexToRgb, rgbToHex, rgbToHsv } from './utils';
 import { RGBInput, HSVInput } from './TextInput';
 import Button from '../../../js/Button';
 var Picker = /** @class */ (function (_super) {
-    tslib_1.__extends(Picker, _super);
+    __extends(Picker, _super);
     function Picker(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             hexString: '',
             isDisabled: false,
             isVisible: false
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         Object.assign(_this.element.style, PickerStyle.container);

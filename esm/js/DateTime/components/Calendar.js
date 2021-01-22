@@ -1,11 +1,11 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { getWeekDayLabels, getDisplayingDays, isSameMonth, isToday, isSameDate, parseStringToDate, getMonthLabels, getYearLabels } from '../../../react/DateTime/components/utils';
 import { ja, en, format } from '../../../react/DateTime/components/Locale';
 import Control from '../../Control';
 import Dropdown from '../../Dropdown';
 import '../../../css/DropdownCalendar.css';
 var Calendar = /** @class */ (function (_super) {
-    tslib_1.__extends(Calendar, _super);
+    __extends(Calendar, _super);
     function Calendar(params) {
         var _this = _super.call(this) || this;
         _this._displayDate = new Date();
@@ -22,7 +22,7 @@ var Calendar = /** @class */ (function (_super) {
             isVisible: false
         };
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
             if (_this._props.date)
                 _this._displayDate = _this._props.date;
         }

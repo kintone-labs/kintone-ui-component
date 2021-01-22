@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Item from '../MultipleChoice/Item';
@@ -6,11 +6,11 @@ import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
 import '../../css/MultipleChoice.css';
 var MultipleChoice = /** @class */ (function (_super) {
-    tslib_1.__extends(MultipleChoice, _super);
+    __extends(MultipleChoice, _super);
     function MultipleChoice(params) {
         var _this = _super.call(this) || this;
         _this.itemList = [];
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             items: [],
             value: [],
             isDisabled: false,
@@ -20,7 +20,7 @@ var MultipleChoice = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var validationErr = _this._validator(_this._props.items, _this._props.value);
         if (validationErr) {
@@ -45,7 +45,7 @@ var MultipleChoice = /** @class */ (function (_super) {
         }
         if (this._props.items) {
             this._props.items.forEach(function (item, index) {
-                var itemComponent = new Item(tslib_1.__assign({}, item, { isSelected: _this._props.value ? _this._props.value.some(function (value) { return value === item.value; }) : false, onClick: _this._handleItemChange.bind(_this) }));
+                var itemComponent = new Item(__assign(__assign({}, item), { isSelected: _this._props.value ? _this._props.value.some(function (value) { return value === item.value; }) : false, onClick: _this._handleItemChange.bind(_this) }));
                 _this.itemList.push(itemComponent);
                 _this.element.appendChild(itemComponent.render());
             });
@@ -190,7 +190,7 @@ var MultipleChoice = /** @class */ (function (_super) {
             });
         }
         if (changedAttr.indexOf('addItems') !== -1 && this._props.items) {
-            var itemComponent = new Item(tslib_1.__assign({}, this._props.items[this._props.items.length - 1], { isSelected: false, onClick: this._handleItemChange.bind(this) }));
+            var itemComponent = new Item(__assign(__assign({}, this._props.items[this._props.items.length - 1]), { isSelected: false, onClick: this._handleItemChange.bind(this) }));
             this.itemList.push(itemComponent);
             this.element.appendChild(itemComponent.render());
         }

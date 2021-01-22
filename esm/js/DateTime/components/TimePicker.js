@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import Control from '../../Control';
 var timeList12H = [
     {
@@ -195,7 +195,7 @@ var timeList12H = [
     }
 ];
 var TimePicker = /** @class */ (function (_super) {
-    tslib_1.__extends(TimePicker, _super);
+    __extends(TimePicker, _super);
     function TimePicker(params) {
         var _this = _super.call(this) || this;
         _this._props = {
@@ -203,7 +203,7 @@ var TimePicker = /** @class */ (function (_super) {
             isVisible: false
         };
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         return _this;
     }

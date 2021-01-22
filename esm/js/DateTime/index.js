@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
 import Control from '../Control';
@@ -10,12 +10,12 @@ import Calendar from './components/Calendar';
 import TimePicker from './components/TimePicker';
 import Message from '../../constant/Message';
 var DateTime = /** @class */ (function (_super) {
-    tslib_1.__extends(DateTime, _super);
+    __extends(DateTime, _super);
     function DateTime(params) {
         var _this = _super.call(this) || this;
         _this._locale = ja;
         _this._time = new Date();
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             value: new Date(),
             type: 'datetime',
             locale: 'ja',
@@ -27,7 +27,7 @@ var DateTime = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         if (_this._props.type === 'date' || _this._props.type === 'datetime') {
             _this.setLocale(_this._props.locale);

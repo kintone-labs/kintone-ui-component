@@ -1,17 +1,17 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import '../../css/FieldGroup.css';
 var FieldGroup = /** @class */ (function (_super) {
-    tslib_1.__extends(FieldGroup, _super);
+    __extends(FieldGroup, _super);
     function FieldGroup(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             name: '',
             toggle: 'collapse'
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         _this.element.className = 'kuc-fieldgroup';

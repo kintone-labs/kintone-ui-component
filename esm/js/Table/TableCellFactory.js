@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign } from "tslib";
 import TableCell from './TableCell';
 import Text from '../Text';
 import Dropdown from '../Dropdown';
@@ -51,7 +51,7 @@ var createTableCell = function (type, fieldName, props) {
             default:
                 break;
         }
-        field = new FieldComponent(tslib_1.__assign({}, table.data[rowIndex][fieldName], props));
+        field = new FieldComponent(__assign(__assign({}, table.data[rowIndex][fieldName]), props));
         // return DOM
         var dom = field.render();
         // assign listeners

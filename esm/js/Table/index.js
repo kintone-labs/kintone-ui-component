@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends, __spreadArrays } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
@@ -6,10 +6,10 @@ import IconButton from '../IconButton';
 import '../../css/Table.css';
 var validEventNames = ['rowAdd', 'rowRemove', 'cellChange'];
 var Table = /** @class */ (function (_super) {
-    tslib_1.__extends(Table, _super);
+    __extends(Table, _super);
     function Table(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             data: [],
             defaultRowData: {},
             columns: [],
@@ -22,7 +22,7 @@ var Table = /** @class */ (function (_super) {
             delete params.isVisible;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this._validateRequired();
         if (_this._props.actionButtonsShown === true) {
@@ -37,7 +37,7 @@ var Table = /** @class */ (function (_super) {
         }
         var insertAt = rowIndex + 1;
         var newRowData = JSON.parse(JSON.stringify(this._props.defaultRowData));
-        var newData = data.slice(0, insertAt).concat([newRowData], data.slice(insertAt));
+        var newData = __spreadArrays(data.slice(0, insertAt), [newRowData], data.slice(insertAt));
         this._props.data = newData;
         return newData;
     };

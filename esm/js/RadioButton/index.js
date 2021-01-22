@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
@@ -6,11 +6,11 @@ import Item from './Item';
 import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import '../../css/RadioButton.css';
 var RadioButton = /** @class */ (function (_super) {
-    tslib_1.__extends(RadioButton, _super);
+    __extends(RadioButton, _super);
     function RadioButton(params) {
         var _this = _super.call(this) || this;
         _this.itemComps = [];
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             items: []
         });
         if (params && !params.name) {
@@ -22,7 +22,7 @@ var RadioButton = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var validationErr = _this._validator(_this._props.items, _this._props.value);
         if (validationErr) {

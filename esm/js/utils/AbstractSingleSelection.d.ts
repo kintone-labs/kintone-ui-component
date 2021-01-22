@@ -3,9 +3,10 @@ declare type item = {
     label?: string;
     isDisabled?: boolean;
 };
+declare type items = item[];
 declare const _default: {
-    _hasDuplicatedItems: (items?: item[] | undefined) => boolean;
-    _hasValidItems: (items?: item[] | undefined) => boolean;
-    _hasValidValue: (items?: item[] | undefined, value?: string | undefined) => boolean | undefined;
+    _hasDuplicatedItems: (items?: items | undefined) => boolean;
+    _hasValidItems: (items?: items | undefined) => boolean;
+    _hasValidValue: (items?: items | undefined, value?: string | undefined) => boolean | undefined;
 };
 export default _default;

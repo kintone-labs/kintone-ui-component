@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import ColorPickerStyle from './ColorPickerStyle';
@@ -6,10 +6,10 @@ import { invertColor, isHexString } from './components/utils';
 import Picker from './components/Picker';
 import Message from '../../constant/Message';
 var ColorPicker = /** @class */ (function (_super) {
-    tslib_1.__extends(ColorPicker, _super);
+    __extends(ColorPicker, _super);
     function ColorPicker(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             color: '#ff0000'
         });
         if (!params) {
@@ -19,7 +19,7 @@ var ColorPicker = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         if (_this._props.color && !isHexString(_this._props.color)) {
             throw new Error(Message.colorPicker.INVALID_COLOR);
@@ -120,6 +120,7 @@ var ColorPicker = /** @class */ (function (_super) {
         }
     };
     ColorPicker.prototype.enable = function () {
+        _super.prototype.enable.call(this);
         this.inputElement.disabled = false;
     };
     ColorPicker.prototype.getColor = function () {
@@ -130,9 +131,9 @@ var ColorPicker = /** @class */ (function (_super) {
             backgroundColor: this._props.color || '#ff0000',
             color: invertColor(this._props.color || '#ff0000')
         };
-        style = tslib_1.__assign({}, style, ColorPickerStyle.input);
+        style = __assign(__assign({}, style), ColorPickerStyle.input);
         if (this.focus) {
-            style = tslib_1.__assign({}, style, ColorPickerStyle.inputFocus);
+            style = __assign(__assign({}, style), ColorPickerStyle.inputFocus);
         }
         return style;
     };

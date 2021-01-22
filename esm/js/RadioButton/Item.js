@@ -1,11 +1,11 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import Control from '../Control';
 import '../../css/Item.css';
 var Item = /** @class */ (function (_super) {
-    tslib_1.__extends(Item, _super);
+    __extends(Item, _super);
     function Item(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             type: 'default'
         });
         if (typeof params === 'object' &&
@@ -14,7 +14,7 @@ var Item = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var generateGUID = function () {
             return Math.floor((1 + Math.random()) * 0x10000)

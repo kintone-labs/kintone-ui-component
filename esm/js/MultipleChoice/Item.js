@@ -1,18 +1,18 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import Control from '../Control';
 import { mdiCheckBold } from '@mdi/js';
 import '../../css/Item.css';
 var Item = /** @class */ (function (_super) {
-    tslib_1.__extends(Item, _super);
+    __extends(Item, _super);
     function Item(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             isSelected: false,
             isDisabled: false,
             className: '',
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var className = 'kuc-list-item';
         if (_this._props.isSelected) {

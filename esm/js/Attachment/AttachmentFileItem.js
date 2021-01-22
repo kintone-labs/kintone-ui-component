@@ -1,16 +1,16 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../Control';
 import '../../css/Attachment.css';
 var AttachmentFileItem = /** @class */ (function (_super) {
-    tslib_1.__extends(AttachmentFileItem, _super);
+    __extends(AttachmentFileItem, _super);
     function AttachmentFileItem(params) {
         var _this = _super.call(this) || this;
         _this.ONE_GB = 1073741824;
         _this.ONE_MB = 1048576;
         _this.ONE_KB = 1024;
         if (params) {
-            _this._props = tslib_1.__assign({}, params);
+            _this._props = __assign({}, params);
         }
         if (!_this._props.onFileRemove || typeof _this._props.onFileRemove !== 'function') {
             _this._props.onFileRemove = function () { };

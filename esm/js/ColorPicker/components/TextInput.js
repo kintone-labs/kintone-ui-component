@@ -1,14 +1,14 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import Control from '../../Control';
 import TextInputStyle from './TextInputStyle';
 import { rgbToHex, hsvToRgb } from './utils';
 import Message from '../../../constant/Message';
 var TextInput = /** @class */ (function (_super) {
-    tslib_1.__extends(TextInput, _super);
+    __extends(TextInput, _super);
     function TextInput(params) {
         var _this = _super.call(this) || this;
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         var labelContainer = document.createElement('span');
@@ -41,11 +41,11 @@ var TextInput = /** @class */ (function (_super) {
     return TextInput;
 }(Control));
 var RGBInput = /** @class */ (function (_super) {
-    tslib_1.__extends(RGBInput, _super);
+    __extends(RGBInput, _super);
     function RGBInput(params) {
         var _this = _super.call(this) || this;
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         _this.rInput = new TextInput({
@@ -109,11 +109,11 @@ var RGBInput = /** @class */ (function (_super) {
     return RGBInput;
 }(Control));
 var HSVInput = /** @class */ (function (_super) {
-    tslib_1.__extends(HSVInput, _super);
+    __extends(HSVInput, _super);
     function HSVInput(params) {
         var _this = _super.call(this) || this;
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = document.createElement('div');
         _this.hInput = new TextInput({

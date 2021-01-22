@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
@@ -7,12 +7,12 @@ import AbstractSingleSelection from '../utils/AbstractSingleSelection';
 import { mdilChevronDown } from '@mdi/light-js';
 import '../../css/Dropdown.css';
 var Dropdown = /** @class */ (function (_super) {
-    tslib_1.__extends(Dropdown, _super);
+    __extends(Dropdown, _super);
     function Dropdown(params) {
         var _this = _super.call(this) || this;
         _this.itemComps = [];
         _this.isListVisible = false;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             items: []
         });
         if (typeof params === 'object' &&
@@ -21,7 +21,7 @@ var Dropdown = /** @class */ (function (_super) {
             delete params.isDisabled;
         }
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         // for Non-null assertion operator
         var validationErr = _this._validator(_this._props.items, _this._props.value);

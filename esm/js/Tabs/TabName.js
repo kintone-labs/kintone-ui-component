@@ -1,18 +1,18 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Control from '../Control';
 var TabName = /** @class */ (function (_super) {
-    tslib_1.__extends(TabName, _super);
+    __extends(TabName, _super);
     function TabName(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             isActive: false,
             tabName: '',
             tabIndex: 0,
             onClickTabItem: function (tabIndex) { }
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         var className = 'kuc-tabs-container';
         if (_this._props.isActive) {

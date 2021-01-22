@@ -1,4 +1,4 @@
-import * as tslib_1 from "tslib";
+import { __assign, __spreadArrays } from "tslib";
 import React from 'react';
 import IconButton from '../IconButton';
 import '../../css/font.css';
@@ -15,7 +15,7 @@ var Table = function (_a) {
         React.createElement("div", { className: "kuc-table-thead" },
             React.createElement("div", { className: "kuc-table-tr" },
                 React.createElement(TableHeaderRow, { columns: columns }))),
-        React.createElement(TableBody, tslib_1.__assign({}, { columns: columns, data: data, defaultRowData: defaultRowData, onRowAdd: onRowAdd, onRowRemove: onRowRemove, _onCellChange: _onCellChange, actionButtonsShown: actionButtonsShown }))));
+        React.createElement(TableBody, __assign({}, { columns: columns, data: data, defaultRowData: defaultRowData, onRowAdd: onRowAdd, onRowRemove: onRowRemove, _onCellChange: _onCellChange, actionButtonsShown: actionButtonsShown }))));
 };
 var TableHeaderRow = function (_a) {
     var columns = _a.columns;
@@ -34,7 +34,7 @@ var TableBody = function (_a) {
         var actions = column.actions;
         var _a = column, cell = _a.cell, tdProps = _a.tdProps;
         if (actions === true) {
-            return (React.createElement(TableCellActions, tslib_1.__assign({}, { key: columnIndex, data: data, defaultRowData: defaultRowData, rowIndex: rowIndex, addRow: addRow, removeRow: removeRow }, { dispatch: function (newState) {
+            return (React.createElement(TableCellActions, __assign({}, { key: columnIndex, data: data, defaultRowData: defaultRowData, rowIndex: rowIndex, addRow: addRow, removeRow: removeRow }, { dispatch: function (newState) {
                     if (onRowAdd && newState.type === 'ADD_ROW') {
                         onRowAdd(newState);
                     }
@@ -43,7 +43,7 @@ var TableBody = function (_a) {
                     }
                 } })));
         }
-        return (React.createElement(TableCell, tslib_1.__assign({ key: columnIndex }, { rowData: rowData, rowIndex: rowIndex, columnIndex: columnIndex, cell: cell, _onCellChange: _onCellChange, tdProps: tdProps })));
+        return (React.createElement(TableCell, __assign({ key: columnIndex }, { rowData: rowData, rowIndex: rowIndex, columnIndex: columnIndex, cell: cell, _onCellChange: _onCellChange, tdProps: tdProps })));
     }))); })));
 };
 var TableCell = function (_a) {
@@ -54,7 +54,7 @@ var TableCell = function (_a) {
     }
     var content = cell ? cell(cellProps) : '';
     var tdPropsObj = tdProps ? tdProps(cellProps) : {};
-    return React.createElement("div", tslib_1.__assign({}, tdPropsObj, { className: "kuc-table-td" }), content);
+    return React.createElement("div", __assign({}, tdPropsObj, { className: "kuc-table-td" }), content);
 };
 var TableCellActions = function (_a) {
     var data = _a.data, rowIndex = _a.rowIndex, defaultRowData = _a.defaultRowData, addRow = _a.addRow, removeRow = _a.removeRow, dispatch = _a.dispatch;
@@ -83,7 +83,7 @@ var addRow = function (_a) {
         return [];
     }
     var insertAt = rowIndex + 1;
-    var newData = data.slice(0, insertAt).concat([tslib_1.__assign({}, defaultRowData)], data.slice(insertAt));
+    var newData = __spreadArrays(data.slice(0, insertAt), [__assign({}, defaultRowData)], data.slice(insertAt));
     return newData;
 };
 var removeRow = function (_a) {

@@ -1,19 +1,19 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import { elements } from '../utils/util';
 import IconButton from '../IconButton';
 import '../../css/NotifyPopup.css';
 var NotifyPopup = /** @class */ (function (_super) {
-    tslib_1.__extends(NotifyPopup, _super);
+    __extends(NotifyPopup, _super);
     function NotifyPopup(params) {
         var _this = _super.call(this) || this;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             text: '',
             type: 'error'
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
             _this._props.text = (params.text && typeof params.text === 'string') ? params.text : '';
         }
         // isDisabled always is setted false

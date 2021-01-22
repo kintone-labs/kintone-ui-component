@@ -1,10 +1,10 @@
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import '../polyfill';
 import Control from '../Control';
 import Message from '../../constant/Message';
 import '../../css/TextArea.css';
 var TextArea = /** @class */ (function (_super) {
-    tslib_1.__extends(TextArea, _super);
+    __extends(TextArea, _super);
     function TextArea(params) {
         var _this = _super.call(this) || this;
         _this.textAreaWidth = 297;
@@ -15,11 +15,11 @@ var TextArea = /** @class */ (function (_super) {
         _this.currentY = null;
         _this.translateX = 0;
         _this.translateY = 0;
-        _this._props = tslib_1.__assign({}, _this._props, {
+        _this._props = __assign(__assign({}, _this._props), {
             placeholder: ''
         });
         if (params) {
-            _this._props = tslib_1.__assign({}, _this._props, params);
+            _this._props = __assign(__assign({}, _this._props), params);
         }
         _this.element = _this.createContainerEL();
         _this.rerender(Object.keys(_this._props));
