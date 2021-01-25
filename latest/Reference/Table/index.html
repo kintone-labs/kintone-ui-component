@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-4.6.3">
     
     
       
@@ -76,7 +76,7 @@
   }
   ga.l = +new Date
   /* Setup integration and send page view */
-  ga("create", "UA-180303573-1", "kintone.github.io/kintone-ui-component")
+  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
   ga("set", "anonymizeIp", true)
   ga("send", "pageview")
   /* Register handler to log search on blur */
@@ -146,7 +146,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.7.5</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../versions">v0.7.6</a>
         </div>
       </div>
  
@@ -640,6 +640,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#tablecell" class="md-nav__link">
     TableCell
@@ -816,6 +829,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#tablecell" class="md-nav__link">
     TableCell
@@ -880,16 +906,23 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Below is the list components that table supports:
-<ul><li>custom DOM element</li>
-<li>Text</li>
-<li>Dropdown</li>
-<li>CheckBox</li>
-<li>MultipleChoice</li>
-<li>RadioButton</li>
-<li>Label</li>
-<li>IconButton</li>
-<li>Alert</li></ul></p>
+<p>The Table are supporting child control components (Item-4) as below:
+<ul>
+  <li>
+    Built-in supported components:
+      <a href="../Text">Text</a>
+      <a href="../Dropdown">Dropdown</a>
+      <a href="../CheckBox">CheckBox</a>
+      <a href="../MultipleChoice">MultipleChoice</a>
+      <a href="../RadioButton">RadioButton</a>
+      <a href="../Label">Label</a>
+      <a href="../IconButton">Alert</a>    <br />
+  </li>
+  <li>
+    Custom components (DOM Elements)
+  </li>
+</ul>
+<div style="color: red;">※ Child control components must be an instance of <a href="#tablecell">TableCell</a>.</div></p>
 </div>
 <h2 id="constructor">Constructor</h2>
 <p><strong>Parameter</strong></p>
@@ -925,7 +958,7 @@
 <td>options.columns[x].cell</td>
 <td>Function</td>
 <td>No</td>
-<td>Returns cell template object. Cell template object must implement <strong>init</strong> and <strong>update</strong> functions. <br> - <strong>init</strong>: to return DOM element for initializing cell's DOM. <br> - <strong>update</strong>: to update DOM of the cell based on the data returned.</td>
+<td>Returns cell template object. <br> Refer <a href="#tablecell">TableCell</a> for more information.</td>
 </tr>
 <tr>
 <td>options.data</td>
@@ -967,36 +1000,81 @@
 </table>
 <details class="tab-container" open="open">
 <p><Summary>Sample</Summary></p>
-<p><strong>Javascript</strong></p>
-<pre><code class="language-javascript">(function(){
-  // custom cell containing 2 text fields
-  var customCell = function() {
+<p><strong>JS Simple</strong></p>
+<pre><code class="language-javascript">(function() {
+  // create built-in cell component
+  var textBuiltInCell = function () {
+    return kintoneUIComponent.createTableCell('text', 'textBuiltIn');
+  };
+
+  // create custom cell component
+  var textCustomCell = function() {
     return {
       init: function({rowData, updateRowData}) {
-        var span = document.createElement('span');
-        var textfield1 = new kintoneUIComponent.Text({value: rowData.text1.value});
-        var textfield2 = new kintoneUIComponent.Text({value: rowData.text2.value});
-        span.appendChild(textfield1.render());
-        span.appendChild(textfield2.render());
-        textfield1.on('change', function(event){
-          updateRowData({text1: {value: event.target.value}}, false);
-        });
-        textfield2.on('change', function(event){
-          updateRowData({text2: {value: event.target.value}}, false);
-        });
-        this.textfield1 = textfield1;
-        this.textfield2 = textfield2;
-        return span;
+        var text = document.createElement('input');
+        text.onchange = function(event) {
+          updateRowData({textCustom: {value: event.target.value}}, false);
+        };
+
+        this.textCustom = text;
+        return text;
       },
       update: function({ rowData }) {
-        var text1val = rowData.text1;
-        var text2val = rowData.text2;
-        if (text1val &amp;&amp; this.textfield1._reactObject) {
-          this.textfield1.setValue(text1val.value);
-        }
-        if (text2val &amp;&amp; this.textfield2._reactObject) {
-          this.textfield2.setValue(text2val.value);
-        }
+        this.textCustom.value = rowData.textCustom.value;
+      }
+    }
+  };
+
+  var columns = [
+    { header: 'Built-in cell', cell: function() { return textBuiltInCell() }},
+    { header: 'Custom cell', cell: function() { return textCustomCell() }}
+  ];
+
+  var initialData = [
+    {
+      textBuiltIn: { value: 'built-in' },
+      textCustom: { value: 'custom' }
+    }
+  ];
+
+  var defaultRowData = {
+    textBuiltIn: { value: '' },
+    textCustom: { value: '' }
+  };
+
+  var table = new kintoneUIComponent.Table({
+    columns: columns,
+    data: initialData,
+    defaultRowData: defaultRowData
+  });
+  document.body.appendChild(table.render());
+})();
+</code></pre>
+<p><strong>JS Advanced</strong></p>
+<pre><code class="language-javascript">(function () {
+  // custom cell containing 2 text fields
+  var customCell = function () {
+    return {
+      init: function ({ rowData, updateRowData }) {
+        var wrapper = document.createElement('span');
+
+        this.textfield1 = new kintoneUIComponent.Text({ value: rowData.text1.value });
+        this.textfield1.on('change', function (event) {
+          updateRowData({ text1: { value: event.target.value } }, false);
+        });
+        wrapper.appendChild(this.textfield1.render());
+
+        this.textfield2 = new kintoneUIComponent.Text({ value: rowData.text2.value });
+        this.textfield2.on('change', function (event) {
+          updateRowData({ text2: { value: event.target.value } }, false);
+        });
+        wrapper.appendChild(this.textfield2.render());
+
+        return wrapper;
+      },
+      update: function ({ rowData }) {
+        if (rowData.text1) this.textfield1.setValue(rowData.text1.value);
+        if (rowData.text2) this.textfield2.setValue(rowData.text2.value);
       }
     }
   };
@@ -1004,379 +1082,221 @@
   // initial data of a table
   var initialData = [
     {
+      // initial data of text
       text: { value: 'text field' },
-      text1: { value: 'text field 1' },
-      text2: { value: 'text field 2' },
+
       // initial data of radio buttons
       fruit: {
         name: 'fruit',
+        value: 'Banana',
         items: [
-             {
-                 label: 'Orange',
-                 value: 'Orange',
-                 isDisabled: false
-             },
-             {
-                 label: 'Banana',
-                 value: 'Banana',
-                 isDisabled: true
-             },
-             {
-                 label: 'Lemon',
-                 value: 'Lemon',
-                 isDisabled: true
-             },
-         ],
-        value: 'Banana'
+          { label: 'Orange', value: 'Orange', isDisabled: false },
+          { label: 'Banana', value: 'Banana', isDisabled: true },
+          { label: 'Lemon', value: 'Lemon', isDisabled: true },
+        ]
       },
+
       // initial data of multiple choices
       colors: {
+        value: ['red'],
         items: [
-             {
-                 label: 'Red',
-                 value: 'red',
-                 isDisabled: false
-             },
-             {
-                 label: 'Green',
-                 value: 'green',
-                 isDisabled: true
-             },
-             {
-                 label: 'Blue',
-                 value: 'blue',
-                 isDisabled: true
-             },
-         ],
-        value: ['red']
+          { label: 'Red', value: 'red', isDisabled: false },
+          { label: 'Green', value: 'green', isDisabled: true },
+          { label: 'Blue', value: 'blue', isDisabled: true },
+        ]
       },
+
       // initial data of checkbox
       vegetables: {
+        value: ['potato', 'celery'],
         items: [
-             {
-                 label: 'Potato',
-                 value: 'potato',
-                 isDisabled: false
-             },
-             {
-                 label: 'Celery',
-                 value: 'celery',
-                 isDisabled: false
-             },
-             {
-                 label: 'Carrot',
-                 value: 'carrot',
-                 isDisabled: true
-             },
-         ],
-        value: ['potato', 'celery']
+          { label: 'Potato', value: 'potato', isDisabled: false },
+          { label: 'Celery', value: 'celery', isDisabled: false },
+          { label: 'Carrot', value: 'carrot', isDisabled: true },
+        ]
       },
+
       // initial data of dropdown
       toys: {
+        value: 'cars',
         items: [
-             {
-                 label: 'Cars',
-                 value: 'cars',
-                 isDisabled: false
-             },
-             {
-                 label: 'Robots',
-                 value: 'robots',
-                 isDisabled: false
-             },
-             {
-                 label: 'Animals',
-                 value: 'animals',
-                 isDisabled: true
-             },
-         ],
-        value: 'cars'
+          { label: 'Cars', value: 'cars', isDisabled: false },
+          { label: 'Robots', value: 'robots', isDisabled: false },
+          { label: 'Animals', value: 'animals', isDisabled: true },
+        ]
       },
-      label: {
-        text: 'Name',
-        textColor: '#e74c3c',
-        backgroundColor: 'yellow',
-        isRequired: true
-      },
-      iconBtn: {
-        type: 'insert',
-        color:'blue',
-        size: 'small'
-      },
-      alert: {
-        text: 'Network error',
-        type: 'error'
-      }
+
+      // initial data of label
+      label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+      // initial data of icon button
+      iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+      // initial data of alert
+      alert: { text: 'Network error', type: 'error' },
+
+      // initial data of custom cell containing 2 text fields
+      text1: { value: 'text field 1' },
+      text2: { value: 'text field 2' },
     },
   ];
 
   // default row data of a table, this data will be used to create new row
   var defaultRowData = {
+    // default data of text
     text: { value: 'text field' },
-    text1: { value: 'text field 1' },
-    text2: { value: 'text field 2' },
+
     // default data of radio buttons
     fruit: {
       name: 'fruit',
+      value: 'Banana',
       items: [
-           {
-               label: 'Orange',
-               value: 'Orange',
-               isDisabled: false
-           },
-           {
-               label: 'Banana',
-               value: 'Banana',
-               isDisabled: true
-           },
-           {
-               label: 'Lemon',
-               value: 'Lemon',
-               isDisabled: true
-           },
-       ],
-      value: 'Banana'
+        { label: 'Orange', value: 'Orange', isDisabled: false },
+        { label: 'Banana', value: 'Banana', isDisabled: true },
+        { label: 'Lemon', value: 'Lemon', isDisabled: true },
+      ]
     },
+
     // default data of multiple choices
     colors: {
+      value: ['red'],
       items: [
-           {
-               label: 'Red',
-               value: 'red',
-               isDisabled: false
-           },
-           {
-               label: 'Green',
-               value: 'green',
-               isDisabled: true
-           },
-           {
-               label: 'Blue',
-               value: 'blue',
-               isDisabled: true
-           },
-       ],
-      value: ['red']
+        { label: 'Red', value: 'red', isDisabled: false },
+        { label: 'Green', value: 'green', isDisabled: true },
+        { label: 'Blue', value: 'blue', isDisabled: true },
+      ]
     },
+
     // default data of checkbox
     vegetables: {
+      value: ['potato', 'celery'],
       items: [
-           {
-               label: 'Potato',
-               value: 'potato',
-               isDisabled: false
-           },
-           {
-               label: 'Celery',
-               value: 'celery',
-               isDisabled: true
-           },
-           {
-               label: 'Carrot',
-               value: 'carrot',
-               isDisabled: true
-           },
-       ],
-      value: ['potato', 'celery']
+        { label: 'Potato', value: 'potato', isDisabled: false },
+        { label: 'Celery', value: 'celery', isDisabled: true },
+        { label: 'Carrot', value: 'carrot', isDisabled: true },
+      ]
     },
+
     // default data of dropdown
     toys: {
+      value: 'cars',
       items: [
-           {
-               label: 'Cars',
-               value: 'cars',
-               isDisabled: false
-           },
-           {
-               label: 'Robots',
-               value: 'robots',
-               isDisabled: false
-           },
-           {
-               label: 'Animals',
-               value: 'animals',
-               isDisabled: true
-           },
-       ],
-      value: 'cars'
+        { label: 'Cars', value: 'cars', isDisabled: false },
+        { label: 'Robots', value: 'robots', isDisabled: false },
+        { label: 'Animals', value: 'animals', isDisabled: true },
+      ]
     },
-    label: {
-      text: 'Name',
-      textColor: '#e74c3c',
-      backgroundColor: 'yellow',
-      isRequired: true
-    },
-    iconBtn: {
-      type: 'insert',
-      color:'blue',
-      size: 'small'
-    },
-    alert: {
-      text: 'Network error',
-      type: 'error'
-    }
+
+    // default data of label
+    label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+    // default data of icon button
+    iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+    // default data of alert
+    alert: { text: 'Network error', type: 'error' },
+
+    // default data of custom cell containing 2 text fields
+    text1: { value: 'text field 1' },
+    text2: { value: 'text field 2' },
   };
 
   // return this data to override default row data onRowAdd
   var overriddenRowData = {
-    text: {value: 'overwritten field value'},
-    text1: { value: 'overwritten field1 value' },
-    text2: { value: 'overwritten field2 value' },
+    // overriden data of text
+    text: { value: 'overwritten field value' },
+
     // overriden data of radio buttons
     fruit: {
       name: 'fruit',
+      value: 'Banana',
       items: [
-           {
-               label: 'Orange',
-               value: 'Orange',
-               isDisabled: true
-           },
-           {
-               label: 'Banana',
-               value: 'Banana',
-               isDisabled: false
-           },
-           {
-               label: 'Lemon',
-               value: 'Lemon',
-               isDisabled: false
-           },
-       ],
-      value: 'Banana'
+        { label: 'Orange', value: 'Orange', isDisabled: true },
+        { label: 'Banana', value: 'Banana', isDisabled: false },
+        { label: 'Lemon', value: 'Lemon', isDisabled: false },
+      ]
     },
+
     // overriden data of multiple choices
     colors: {
+      value: ['red'],
       items: [
-           {
-               label: 'Red',
-               value: 'red',
-               isDisabled: false
-           },
-           {
-               label: 'Green',
-               value: 'green',
-               isDisabled: true
-           },
-           {
-               label: 'Blue',
-               value: 'blue',
-               isDisabled: true
-           },
-       ],
-      value: ['red']
+        { label: 'Red', value: 'red', isDisabled: false },
+        { label: 'Green', value: 'green', isDisabled: true },
+        { label: 'Blue', value: 'blue', isDisabled: true },
+      ]
     },
+
     // overriden data of checkbox
     vegetables: {
+      value: ['potato', 'celery'],
       items: [
-           {
-               label: 'Potato',
-               value: 'potato',
-               isDisabled: false
-           },
-           {
-               label: 'Celery',
-               value: 'celery',
-               isDisabled: true
-           },
-           {
-               label: 'Carrot',
-               value: 'carrot',
-               isDisabled: false
-           },
-       ],
-      value: ['potato', 'celery']
+        { label: 'Potato', value: 'potato', isDisabled: false },
+        { label: 'Celery', value: 'celery', isDisabled: true },
+        { label: 'Carrot', value: 'carrot', isDisabled: false },
+      ]
     },
+
     // overriden data of dropdown
     toys: {
+      value: 'cars',
       items: [
-           {
-               label: 'Cars',
-               value: 'cars',
-               isDisabled: false
-           },
-           {
-               label: 'Robots',
-               value: 'robots',
-               isDisabled: false
-           },
-           {
-               label: 'Animals',
-               value: 'animals',
-               isDisabled: true
-           },
-       ],
-      value: 'cars'
+        { label: 'Cars', value: 'cars', isDisabled: false },
+        { label: 'Robots', value: 'robots', isDisabled: false },
+        { label: 'Animals', value: 'animals', isDisabled: true },
+      ]
     },
-    label: {
-      text: 'Name',
-      textColor: '#e74c3c',
-      backgroundColor: 'yellow',
-      isRequired: true
-    },
-    iconBtn: {
-      type: 'insert',
-      color:'blue',
-      size: 'small'
-    },
-    alert: {
-      text: 'Network error',
-      type: 'error'
-    }
+
+    // overriden data of label
+    label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
+
+    // overriden data of icon button
+    iconBtn: { type: 'insert', color: 'blue', size: 'small' },
+
+    // overriden data of alert
+    alert: { text: 'Network error', type: 'error' },
+
+    // overriden data of custom cell containing 2 text fields
+    text1: { value: 'overwritten field1 value' },
+    text2: { value: 'overwritten field2 value' },
   };
 
   var table = new kintoneUIComponent.Table({
     // initial table data
     data: initialData,
+
     // default row data on row add
     defaultRowData: defaultRowData,
-    onRowAdd: function(e) {
+
+    onRowAdd: function (e) {
       console.log('table.onAdd', e);
-      // if onRowAdd does not return anything, defaultRowData will be used to create new table row
-      // if below row data is returned, it will override defaultRowData to be used to create new table row
+      /**
+       * if onRowAdd does not return anything, defaultRowData will be used to create new table row
+       * if below row data is returned, it will override defaultRowData to be used to create new table row
+       */
       return JSON.parse(JSON.stringify(overriddenRowData));
     },
+
     columns: [
+      { header: 'Text', cell: function () { return kintoneUIComponent.createTableCell('text', 'text') } },
+      { header: 'Radio', cell: function () { return kintoneUIComponent.createTableCell('radio', 'fruit') } },
+      { header: 'Multichoice', cell: function () { return kintoneUIComponent.createTableCell('multichoice', 'colors') } },
+      { header: 'Checkbox', cell: function () { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') } },
+      { header: 'Dropdown', cell: function () { return kintoneUIComponent.createTableCell('dropdown', 'toys') } },
+      { header: 'Label', cell: function () { return kintoneUIComponent.createTableCell('label', 'label') } },
       {
-        header: 'Text',
-        cell: function() { return kintoneUIComponent.createTableCell('text', 'text') }
+        header: 'Icon Button', cell: function () {
+          return kintoneUIComponent.createTableCell('icon', 'iconBtn', {
+            onClick: function (event) { alert('icon button clicked') }
+          });
+        }
       },
-      {
-        header: 'Radio',
-        cell: function() { return kintoneUIComponent.createTableCell('radio', 'fruit') }
-      },
-      {
-        header: 'Multichoice',
-        cell: function() { return kintoneUIComponent.createTableCell('multichoice', 'colors') }
-      },
-      {
-        header: 'Checkbox',
-        cell: function() { return kintoneUIComponent.createTableCell('checkbox', 'vegetables') }
-      },
-      {
-        header: 'Dropdown',
-        cell: function() { return kintoneUIComponent.createTableCell('dropdown', 'toys') }
-      },
-      {
-        header: 'Label',
-        cell: function() { return kintoneUIComponent.createTableCell('label', 'label') }
-      },
-      {
-        header: 'Icon Button',
-        cell: function() { return kintoneUIComponent.createTableCell('icon', 'iconBtn', {onClick:function(event){
-          alert('icon button clicked')
-        }}) }
-      },
-      {
-        header: 'Alert',
-        cell: function() { return kintoneUIComponent.createTableCell('alert', 'alert') }
-      },
-      {
-        header: 'Custom cell contains 2 textfields',
-        cell: function() { return customCell() }
-      },
+      { header: 'Alert', cell: function () { return kintoneUIComponent.createTableCell('alert', 'alert') } },
+      { header: 'Custom cell contains 2 textfields', cell: function () { return customCell() } },
     ]
   });
-  kintone.app.getHeaderSpaceElement().appendChild(table.render());
+
+  document.body.appendChild(table.render());
 })();
 </code></pre>
 <p><strong>React</strong></p>
@@ -2356,18 +2276,21 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 </details>
 <h3 id="createtablecelltype-datafieldname-props">createTableCell(type, dataFieldName, props)</h3>
-<p>Create a table cell with 1 of the built-in supported components</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Below is the list components that can be created with createTableCell:
-<ul><li>Text</li>
-<li>Dropdown</li>
-<li>CheckBox</li>
-<li>MultipleChoice</li>
-<li>RadioButton</li>
-<li>Label</li>
-<li>IconButton</li>
-<li>Alert</li></ul></p>
+<p><ul>
+  <li>This function support to create built-in components for <strong>options.columns[x].cell</strong> on <a href="#constructor">Constructor</a>.</li>
+  <li>
+    Components:
+    <a href="../Text">Text</a>
+    <a href="../Dropdown">Dropdown</a>
+    <a href="../CheckBox">CheckBox</a>
+    <a href="../MultipleChoice">MultipleChoice</a>
+    <a href="../RadioButton">RadioButton</a>
+    <a href="../Label">Label</a>
+    <a href="../IconButton">Alert</a>
+  </li>
+</ul></p>
 </div>
 <p><strong>Parameter</strong></p>
 <table>
@@ -2705,8 +2628,18 @@ export default class Plugin extends React.Component {
 render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </code></pre>
 </details>
+<h2 id="model">Model</h2>
 <h3 id="tablecell">TableCell</h3>
-<p><strong>Constructor</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+  <li>TableCell is the template object for <strong>options.columns[x].cell</strong> on <a href="#constructor">Constructor</a>.</li>
+  <li>
+    Cell template can be creating by <a href="#createtablecelltype-datafieldname-props">createTableCell(type, dataFieldName, props)</a> or custom funcions. <br>
+    If using custom function, Cell template object must implement <strong>init</strong> and <strong>update</strong> functions.
+  </li>
+</ul></p>
+</div>
 <table>
 <thead>
 <tr>
@@ -2718,25 +2651,70 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
 </thead>
 <tbody>
 <tr>
-<td>options</td>
-<td>Object</td>
-<td>Yes</td>
-<td>The object contains the parameters of constructor.</td>
-</tr>
-<tr>
-<td>options.init</td>
+<td>init</td>
 <td>Function</td>
 <td>Yes</td>
 <td>Cell initialization callback.<br>Used to initialize DOM of a cell</td>
 </tr>
 <tr>
-<td>options.update</td>
+<td>update</td>
 <td>Function</td>
 <td>Yes</td>
 <td>Cell update callback.<br>Used to update DOM of a cell.</td>
 </tr>
 </tbody>
 </table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary>
+<strong>Javascript</strong></p>
+<pre><code class="language-javascript">// create built-in cell component
+var textBuiltInCell = function () {
+  return kintoneUIComponent.createTableCell('text', 'textBuiltIn');
+};
+
+// create custom cell component
+var textCustomCell = function() {
+  return {
+    init: function({rowData, updateRowData}) {
+        var text = document.createElement('input');
+      text.onchange = function(event) {
+        updateRowData({textCustom: {value: event.target.value}}, false);
+      };
+
+      this.textCustom = text;
+      return text;
+    },
+    update: function({ rowData }) {
+      this.textCustom.value = rowData.textCustom.value;
+    }
+  }
+};
+
+var columns = [
+  { header: 'Built-in cell', cell: function() { return textBuiltInCell() }},
+  { header: 'Custom cell', cell: function() { return textCustomCell() }}
+];
+
+var initialData = [
+    {
+    textBuiltIn: { value: 'built-in' },
+    textCustom: { value: 'custom' }
+    }
+];
+
+var defaultRowData = {
+  textBuiltIn: { value: '' },
+  textCustom: { value: '' }
+};
+
+var table = new kintoneUIComponent.Table({
+  columns: columns,
+  data: initialData,
+  defaultRowData: defaultRowData
+});
+document.body.appendChild(table.render());
+</code></pre>
+</details>
                 
                   
                 
@@ -2809,7 +2787,7 @@ render(&lt;Plugin /&gt;, kintone.app.getHeaderSpaceElement());
     
       <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
       
         <script src="../../js/extra.js"></script>
       
