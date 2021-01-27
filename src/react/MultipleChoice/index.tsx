@@ -39,15 +39,15 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
   if (props.isVisible === false) {
     return null;
   }
-  const items = props.items && props.items.map((item, i) => {
-    const isSelected = props.value ? props.value.some(value => value === item.value) : false;
+  const items = props.items && props.items.map((data, i) => {
+    const isSelected = props.value ? props.value.some(value => value === data.value) : false;
     return (
       <Item
         key={i}
         selected={isSelected}
-        onClick={() => _handleItemClick(item.value)}
-        item={item}
-        isDisabled={props.isDisabled === true ? props.isDisabled : item.isDisabled}
+        onClick={() => _handleItemClick(data.value)}
+        item={data}
+        isDisabled={props.isDisabled === true ? props.isDisabled : data.isDisabled}
       />
     );
   });

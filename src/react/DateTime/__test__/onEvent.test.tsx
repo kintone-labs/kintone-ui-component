@@ -171,7 +171,7 @@ describe('Unit test DateTime react', () => {
     await waitFor(() => expect(node.selectionStart).toEqual(0));
     await waitFor(() => expect(node.selectionEnd).toEqual(2));
 
-    fireEvent.keyDown(node, { key: 'Tab', code: 9 });
+    fireEvent.keyDown(node, {key: 'Tab', code: 9});
     await waitFor(() => expect(node.selectionStart).toEqual(3));
     await waitFor(() => expect(node.selectionEnd).toEqual(5));
   });

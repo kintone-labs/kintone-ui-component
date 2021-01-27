@@ -53,9 +53,9 @@ class Dropdown extends Control<DropdownProps> {
       throw new Error(validationErr);
     }
     this._props.items &&
-      this._props.items.some((item: item) => {
-        if (item.value === this._props.value) {
-          this.label = item.label;
+      this._props.items.some((data: item) => {
+        if (data.value === this._props.value) {
+          this.label = data.label;
           return true;
         }
         return false;
@@ -111,9 +111,9 @@ class Dropdown extends Control<DropdownProps> {
     this._hideItems();
   }
 
-  private _handleItemClick(item: item) {
-    this._props.value = item.value;
-    this.label = item.label || '';
+  private _handleItemClick(data: item) {
+    this._props.value = data.value;
+    this.label = data.label || '';
     this._hideItems();
     this.rerender(['item']);
     this._props.onChange && this._props.onChange(this._props.value);
@@ -169,18 +169,18 @@ class Dropdown extends Control<DropdownProps> {
 
     this.itemComps =
       this._props.items &&
-      this._props.items.map(item => {
+      this._props.items.map(data => {
         const newItem = new Item({
-          selected: this._props.value === item.value,
-          item: item,
-          isDisabled: this._props.isDisabled || item.isDisabled,
+          selected: this._props.value === data.value,
+          item: data,
+          isDisabled: this._props.isDisabled || data.isDisabled,
           onClick: this._handleItemClick.bind(this)
         });
         return newItem;
       });
     if (this.itemComps) {
-      this.itemComps.forEach(item => {
-        this.listOuterEl.appendChild(item.render());
+      this.itemComps.forEach(data => {
+        this.listOuterEl.appendChild(data.render());
       });
     }
     subcontainerEl.appendChild(outerEl);
@@ -221,10 +221,10 @@ class Dropdown extends Control<DropdownProps> {
     if (validationErr) {
       throw new Error(validationErr);
     }
-    this._props.items && this._props.items.forEach(item => {
-      if (item.value === value) {
-        this._props.value = item.value;
-        this.label = item.label;
+    this._props.items && this._props.items.forEach(data => {
+      if (data.value === value) {
+        this._props.value = data.value;
+        this.label = data.label;
       }
     });
     this.rerender(['value']);
@@ -237,15 +237,15 @@ class Dropdown extends Control<DropdownProps> {
     return this._props.items;
   }
 
-  addItem(item: item) {
-    if (!item) {
+  addItem(data: item) {
+    if (!data) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
     if (!this._props.items) {
       this._props.items = [];
     }
     const itemsToCheck: item[] = Object.assign([], this._props.items);
-    itemsToCheck.push(item);
+    itemsToCheck.push(data);
     const validationErr = this._validator(itemsToCheck);
     if (validationErr) {
       throw new Error(validationErr);
@@ -288,9 +288,9 @@ class Dropdown extends Control<DropdownProps> {
     if (!value) {
       throw Message.common.INVALID_ARGUMENT;
     }
-    this._props.items && this._props.items.forEach(item => {
-      if (item.value === value) {
-        item.isDisabled = true;
+    this._props.items && this._props.items.forEach(data => {
+      if (data.value === value) {
+        data.isDisabled = true;
       }
     });
     this.rerender(['item']);
@@ -300,9 +300,9 @@ class Dropdown extends Control<DropdownProps> {
     if (!value) {
       throw Message.common.INVALID_ARGUMENT;
     }
-    this._props.items && this._props.items.forEach(item => {
-      if (item.value === value) {
-        item.isDisabled = false;
+    this._props.items && this._props.items.forEach(data => {
+      if (data.value === value) {
+        data.isDisabled = false;
       }
     });
     this.rerender(['item']);

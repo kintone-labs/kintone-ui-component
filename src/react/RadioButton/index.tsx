@@ -33,14 +33,14 @@ const RadioButton = (props: RadioButtonProps) => {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
   }
-  const items = props.items && props.items.map((item, i) => {
+  const items = props.items && props.items.map((data, i) => {
     return (
       <Item
         key={i}
-        selected={props.value === item.value}
+        selected={props.value === data.value}
         onChange={(item_prop) => AbstractSingleSelection._handleItemClick(item_prop, props.onChange)}
-        item={item}
-        isDisabled={props.isDisabled === true ? props.isDisabled : item.isDisabled}
+        item={data}
+        isDisabled={props.isDisabled === true ? props.isDisabled : data.isDisabled}
         type="radio"
         name={props.name}
         className="kuc-input-radio-item"
