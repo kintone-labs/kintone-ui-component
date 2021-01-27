@@ -5,8 +5,8 @@ declare type item = {
 };
 declare type items = item[];
 declare const _default: {
-    _hasDuplicatedItems: (items?: items | undefined) => boolean;
-    _hasValidItems: (items?: items | undefined) => boolean;
-    _hasValidValue: (items?: items | undefined, value?: string | undefined) => boolean | undefined;
+    _hasDuplicatedItems: (listItems?: items | undefined) => boolean;
+    _hasValidItems: (listItems?: items | undefined) => boolean;
+    _hasValidValue: (listItems?: items | undefined, value?: string | undefined) => boolean | undefined;
 };
 export default _default;

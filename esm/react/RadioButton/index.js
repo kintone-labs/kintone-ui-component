@@ -18,8 +18,8 @@ var RadioButton = function (props) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
     }
-    var items = props.items && props.items.map(function (item, i) {
-        return (React.createElement(Item, { key: i, selected: props.value === item.value, onChange: function (item_prop) { return AbstractSingleSelection._handleItemClick(item_prop, props.onChange); }, item: item, isDisabled: props.isDisabled === true ? props.isDisabled : item.isDisabled, type: "radio", name: props.name, className: "kuc-input-radio-item" }));
+    var items = props.items && props.items.map(function (data, i) {
+        return (React.createElement(Item, { key: i, selected: props.value === data.value, onChange: function (item_prop) { return AbstractSingleSelection._handleItemClick(item_prop, props.onChange); }, item: data, isDisabled: props.isDisabled === true ? props.isDisabled : data.isDisabled, type: "radio", name: props.name, className: "kuc-input-radio-item" }));
     });
     return (React.createElement("div", { className: "kuc-input-radio" }, items));
 };

@@ -11,8 +11,8 @@ declare type ItemProps = {
     isVisible?: boolean;
     isDisabled?: boolean;
     selected: boolean;
-    onClick?: (item: item) => void;
-    onChange?: (item: item) => void;
+    onClick?: (data: item) => void;
+    onChange?: (data: item) => void;
     name?: string;
     type?: string;
     className?: string;

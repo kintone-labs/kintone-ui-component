@@ -50,15 +50,15 @@ var Dropdown = function (_a) {
     if (!_hasValidItems(items) || !_hasValidValue(items, value)) {
         throw new Error(Message.common.INVALID_ARGUMENT);
     }
-    var listItemEl = items && items.map(function (item, i) {
-        return (React.createElement(Item, { key: i, selected: value === item.value, onClick: function (item_prop) {
+    var listItemEl = items && items.map(function (data, i) {
+        return (React.createElement(Item, { key: i, selected: value === data.value, onClick: function (item_prop) {
                 _handleItemClick(item_prop, onChange);
                 _hideItems();
-            }, item: item, isDisabled: item.isDisabled }));
+            }, item: data, isDisabled: data.isDisabled }));
     });
     var index = -1;
-    items && items.forEach(function (item, i) {
-        if (item.value === value) {
+    items && items.forEach(function (data, i) {
+        if (data.value === value) {
             index = i;
         }
     });

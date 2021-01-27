@@ -11,7 +11,7 @@ declare type ItemProps = ControlProps & {
     name?: string;
     type?: string;
     className?: string;
-    onClick?: (item: item) => void;
+    onClick?: (data: item) => void;
 };
 declare class Item extends Control<ItemProps> {
     private inputEl;
