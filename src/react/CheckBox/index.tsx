@@ -38,16 +38,16 @@ const CheckBox = (props: CheckBoxProps) => {
   if (props.isVisible === false || !props.items) {
     return null;
   }
-  const items = props.items.map((item, i) => {
-    const isSelected = props.value ? props.value.some(value => value === item.value) : false;
+  const items = props.items.map((data, i) => {
+    const isSelected = props.value ? props.value.some(value => value === data.value) : false;
     return (
       <Item
         key={i}
         selected={isSelected}
-        onChange={() => _handleItemClick(item.value)}
+        onChange={() => _handleItemClick(data.value)}
         // label={item.label}
-        item={item}
-        isDisabled={props.isDisabled === true ? props.isDisabled : item.isDisabled}
+        item={data}
+        isDisabled={props.isDisabled === true ? props.isDisabled : data.isDisabled}
         type="checkbox"
         className="kuc-input-checkbox-item"
       />

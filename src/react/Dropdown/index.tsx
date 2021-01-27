@@ -73,23 +73,23 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
   }
 
 
-  const listItemEl = items && items.map((item: item, i) => {
+  const listItemEl = items && items.map((data: item, i) => {
     return (
       <Item
         key={i}
-        selected={value === item.value}
+        selected={value === data.value}
         onClick={(item_prop) => {
           _handleItemClick(item_prop, onChange); _hideItems();
         }}
-        item={item}
-        isDisabled={item.isDisabled}
+        item={data}
+        isDisabled={data.isDisabled}
       />
     );
   });
 
   let index = -1;
-  items && items.forEach((item: item, i) => {
-    if (item.value === value) {
+  items && items.forEach((data: item, i) => {
+    if (data.value === value) {
       index = i;
     }
   });
