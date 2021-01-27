@@ -1,8 +1,8 @@
-var _hasDuplicatedItems = function (items) {
+var _hasDuplicatedItems = function (listItems) {
     var unique = {};
     var isUnique = true;
-    if (items) {
-        items.forEach(function (val) {
+    if (listItems) {
+        listItems.forEach(function (val) {
             if (typeof (unique[val.value]) !== 'undefined') {
                 isUnique = false;
             }
@@ -22,10 +22,10 @@ var _hasCheckedItemListDuplicated = function (value) {
     }
     return isDuplicated;
 };
-var _hasValidValue = function (items, value) {
+var _hasValidValue = function (listItems, value) {
     var validValues = [];
-    items.forEach(function (item) {
-        validValues.push(item.value);
+    listItems.forEach(function (data) {
+        validValues.push(data.value);
     });
     if (value === undefined) {
         return true;

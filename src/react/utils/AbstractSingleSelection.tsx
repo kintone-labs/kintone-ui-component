@@ -6,17 +6,17 @@ type item = {
 
 type items = item[]
 
-const _handleItemClick = (item: item, onChange?: (value: string) => void) => {
+const _handleItemClick = (data: item, onChange?: (value: string) => void) => {
 
-  const value = item.value || '';
+  const value = data.value || '';
   onChange && onChange(value);
 };
 
-const _hasDuplicatedItems = (items?: items) => {
+const _hasDuplicatedItems = (listItems?: items) => {
   const unique = {};
   let isUnique = true;
-  if (items) {
-    items.forEach((val: item) => {
+  if (listItems) {
+    listItems.forEach((val: item) => {
       if (val.value && typeof (unique[val.value]) !== 'undefined') {
         isUnique = false;
       }
@@ -27,21 +27,21 @@ const _hasDuplicatedItems = (items?: items) => {
 };
 
 
-const _hasValidItems = (items?: items) => {
-  if (!items) {
+const _hasValidItems = (listItems?: items) => {
+  if (!listItems) {
     return true;
   }
-  return Array.isArray(items) && items.every((item: item) => {
-    return item.value !== undefined;
+  return Array.isArray(listItems) && listItems.every((data: item) => {
+    return data.value !== undefined;
   });
 };
 
-const _hasValidValue = (items?: items, value?: string) => {
+const _hasValidValue = (listItems?: items, value?: string) => {
   if (value === undefined) {
     return true;
   }
-  return items && items.some(item => {
-    return item.value === value;
+  return listItems && listItems.some(data => {
+    return data.value === value;
   });
 };
 export default {_handleItemClick, _hasDuplicatedItems, _hasValidItems, _hasValidValue};

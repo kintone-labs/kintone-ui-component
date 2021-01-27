@@ -36,7 +36,7 @@ declare class Dropdown extends Control<DropdownProps> {
     setValue(value: string): void;
     getValue(): string | null | undefined;
     getItems(): item[] | undefined;
-    addItem(item: item): void;
+    addItem(data: item): void;
     setItems(items: item[]): void;
     removeItem(index: number): false | void;
     disableItem(value: string): void;

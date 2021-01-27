@@ -14,7 +14,7 @@ type ItemProps = ControlProps & {
   name?: string;
   type?: string;
   className?: string;
-  onClick?: (item: item) => void;
+  onClick?: (data: item) => void;
 };
 
 class Item extends Control<ItemProps> {

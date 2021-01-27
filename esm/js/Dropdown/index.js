@@ -29,9 +29,9 @@ var Dropdown = /** @class */ (function (_super) {
             throw new Error(validationErr);
         }
         _this._props.items &&
-            _this._props.items.some(function (item) {
-                if (item.value === _this._props.value) {
-                    _this.label = item.label;
+            _this._props.items.some(function (data) {
+                if (data.value === _this._props.value) {
+                    _this.label = data.label;
                     return true;
                 }
                 return false;
@@ -76,9 +76,9 @@ var Dropdown = /** @class */ (function (_super) {
     Dropdown.prototype._handleClickOutside = function () {
         this._hideItems();
     };
-    Dropdown.prototype._handleItemClick = function (item) {
-        this._props.value = item.value;
-        this.label = item.label || '';
+    Dropdown.prototype._handleItemClick = function (data) {
+        this._props.value = data.value;
+        this.label = data.label || '';
         this._hideItems();
         this.rerender(['item']);
         this._props.onChange && this._props.onChange(this._props.value);
@@ -119,18 +119,18 @@ var Dropdown = /** @class */ (function (_super) {
         this.listOuterEl.setAttribute('style', 'display: none');
         this.itemComps =
             this._props.items &&
-                this._props.items.map(function (item) {
+                this._props.items.map(function (data) {
                     var newItem = new Item({
-                        selected: _this._props.value === item.value,
-                        item: item,
-                        isDisabled: _this._props.isDisabled || item.isDisabled,
+                        selected: _this._props.value === data.value,
+                        item: data,
+                        isDisabled: _this._props.isDisabled || data.isDisabled,
                         onClick: _this._handleItemClick.bind(_this)
                     });
                     return newItem;
                 });
         if (this.itemComps) {
-            this.itemComps.forEach(function (item) {
-                _this.listOuterEl.appendChild(item.render());
+            this.itemComps.forEach(function (data) {
+                _this.listOuterEl.appendChild(data.render());
             });
         }
         subcontainerEl.appendChild(outerEl);
@@ -169,10 +169,10 @@ var Dropdown = /** @class */ (function (_super) {
         if (validationErr) {
             throw new Error(validationErr);
         }
-        this._props.items && this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                _this._props.value = item.value;
-                _this.label = item.label;
+        this._props.items && this._props.items.forEach(function (data) {
+            if (data.value === value) {
+                _this._props.value = data.value;
+                _this.label = data.label;
             }
         });
         this.rerender(['value']);
@@ -183,15 +183,15 @@ var Dropdown = /** @class */ (function (_super) {
     Dropdown.prototype.getItems = function () {
         return this._props.items;
     };
-    Dropdown.prototype.addItem = function (item) {
-        if (!item) {
+    Dropdown.prototype.addItem = function (data) {
+        if (!data) {
             throw new Error(Message.common.INVALID_ARGUMENT);
         }
         if (!this._props.items) {
             this._props.items = [];
         }
         var itemsToCheck = Object.assign([], this._props.items);
-        itemsToCheck.push(item);
+        itemsToCheck.push(data);
         var validationErr = this._validator(itemsToCheck);
         if (validationErr) {
             throw new Error(validationErr);
@@ -231,9 +231,9 @@ var Dropdown = /** @class */ (function (_super) {
         if (!value) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items && this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                item.isDisabled = true;
+        this._props.items && this._props.items.forEach(function (data) {
+            if (data.value === value) {
+                data.isDisabled = true;
             }
         });
         this.rerender(['item']);
@@ -242,9 +242,9 @@ var Dropdown = /** @class */ (function (_super) {
         if (!value) {
             throw Message.common.INVALID_ARGUMENT;
         }
-        this._props.items && this._props.items.forEach(function (item) {
-            if (item.value === value) {
-                item.isDisabled = false;
+        this._props.items && this._props.items.forEach(function (data) {
+            if (data.value === value) {
+                data.isDisabled = false;
             }
         });
         this.rerender(['item']);

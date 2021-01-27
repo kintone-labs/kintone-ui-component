@@ -2,7 +2,7 @@
 import DateTime from '../index';
 import {fireEvent} from '@testing-library/dom';
 import Message from '../../../constant/Message';
-import { waitFor } from '@testing-library/react';
+import {waitFor} from '@testing-library/react';
 
 describe('Unit test DateTime onEvent', () => {
   beforeEach(() => {
