@@ -49,4 +49,4 @@ extra_javascript:
 extra_css:
   - 'style/extra.css'
 extra:
-    version: '0.7.7'
+    version: '0.7.6'
