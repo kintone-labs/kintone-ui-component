@@ -1,4 +1,4 @@
-name: Check For Release CI
+name: Check For V0 Release CI
 
 on:
   release:
@@ -8,7 +8,7 @@ jobs:
     name: Run unit test and automation test
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -22,20 +22,14 @@ jobs:
       id: check_version
       uses: ./.github/actions/check_version
     - name: Run ESLint
-      run: |
-        node_modules/.bin/eslint src/js/**.ts
-        node_modules/.bin/eslint src/js/**/**.ts
-        node_modules/.bin/eslint src/react/**.ts
-        node_modules/.bin/eslint src/react/**/**.ts
-    - name: Run unit test
-      run: npm test
+      run: npm run eslint
     - name: Build dist/esm
       run: npm run build
     - name: Trigger run upload release workflows
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
-        event-type: release_dispatch
+        event-type: release_dispatch_v0
     # Use this to run flow auto test
     # - name: Trigger run automation test
     #   uses: peter-evans/repository-dispatch@v1

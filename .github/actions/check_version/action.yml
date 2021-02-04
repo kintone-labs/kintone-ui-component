@@ -1,4 +1,4 @@
-name: 'Check version'
+name: 'Check version for V0'
 description: 'Check the release tag'
 outputs:
   version:

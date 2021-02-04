@@ -3,7 +3,7 @@ const fs = require('fs');
 const core = require('@actions/core');
 
 execSync('git fetch --tags')
-exec('git tag | tail -1 ', (err, stdout) => {
+exec('git tag --contains | tail -1', (err, stdout) => {
   if (err) {
     throw err;
   }

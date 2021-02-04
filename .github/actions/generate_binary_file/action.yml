@@ -1,4 +1,4 @@
-name: 'Create binary package and integrity file'
+name: 'Create binary package and integrity file for V0'
 description: 'Create binary package and integrity file'
 outputs:
   integrity:
