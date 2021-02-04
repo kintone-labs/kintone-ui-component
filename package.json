@@ -29,7 +29,7 @@
 		"build:umd:dev": "webpack --mode=development",
 		"transpile": "tsc",
 		"test": "jest --coverage",
-		"lint": "eslint \"src/**\""
+		"eslint": "eslint \"src/**\""
 	},
 	"dependencies": {
 		"@mdi/js": "3.6.95",
