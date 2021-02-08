@@ -1,4 +1,4 @@
-name: On commit for V0 workflow
+name: On commit v0
 on:
   push:
 jobs:

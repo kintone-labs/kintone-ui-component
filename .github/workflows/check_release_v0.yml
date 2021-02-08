@@ -1,4 +1,4 @@
-name: Check For V0 Release CI
+name: Check v0 release
 
 on:
   release:
