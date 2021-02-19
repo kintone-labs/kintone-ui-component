@@ -23,8 +23,6 @@ jobs:
       uses: ./.github/actions/check_version
     - name: Run ESLint
       run: npm run eslint
-    - name: Build dist/esm
-      run: npm run build
     - name: Trigger run upload release workflows
       uses: peter-evans/repository-dispatch@v1
       with:
