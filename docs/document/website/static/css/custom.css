@@ -1,0 +1,216 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+a {
+    color: #3498DB;
+}
+a:hover {
+    color: #3498dbca;
+}
+.docImage {
+    margin: 3rem auto;
+    max-width: 400px;
+}
+
+/* css for the top page */
+.mainContainer {
+    border-top: solid 1px #ffffff;
+}
+.homeContainer {
+    background-color: #2b3137;
+    padding: 48px;
+}
+.projectTitle {
+    color: #ffffff;
+}
+.titleText {
+    color: #03A9F4;
+}
+.container.paddingTop {
+    padding-top: 0px;
+}
+.container.paddingBottom {
+    padding-bottom: 0px;
+}
+.buttonTop {
+    color: #ffffff;
+    border-color: #ffffff;
+    border-width: 2px;
+    border-radius: 8px;
+}
+.buttonTop:hover {
+    color: #ffffff;
+    background-color: #3498DB;
+}
+.componentSection {
+    padding: 0px 20px 0px 20px;
+}
+.usecase_sentense {
+    padding: 10px;
+}
+.usecase_group {
+    text-align: center;
+}
+.usecase_image {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+.usecase_image img {
+    width: 100%;
+    max-width: 480px;
+    background: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+}
+.usecase_code {
+    display: inline-block;
+    text-align: left;
+    color: #fff;
+    line-height: 1.5;
+    background-color: #2b3137;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    border-radius: 3px;
+    height: auto;
+    max-width: 100%;
+    max-height: 239px;
+    overflow: auto;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+}
+.usecase_code button {
+    display: none;
+}
+.quoteTop {
+    background-color: #2b3137;
+    border-left: 8px solid #3498DB;
+    border-radius: 3px;
+    padding: 15px 30px 15px 15px;
+    color: #ffffff;
+    font-size: 12px;
+    margin-top: 20px;
+}
+.quoteTop_title {
+    font-size: 20px;
+}
+.nav-footer {
+    background-color: #2b3137;
+    border-top: solid 1px #ffffff;
+}
+
+/* css for doc page */
+.kuc-preview {
+    background-color: #F5F5F5;
+    padding: 20px 40px;
+    margin-top: 10px;
+}
+.sandbox-button {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+.tab-container {
+    border: none!important;
+    padding: 0!important;
+    border: 1px solid #B3E5FC!important;
+    box-shadow: none!important;
+}
+.tab-container p {
+    margin: 0;
+    width: 0;
+    height: 0;
+}
+.tab-container summary {
+    margin: 0!important;
+    color: #ffffff;
+    background-color: #0277BD!important;
+    padding: 8px 12px!important;
+}
+.tab-container summary::before {
+    display: none;
+    color: #ffffff!important;
+}
+.tab-container summary::after {
+    color: #ffffff!important;
+}
+.tab-container .tab-nav {
+    background:#ffffff;
+}
+.tab-container .tab-nav strong {
+    display: inline-block;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #039BE5;
+    cursor: pointer;
+    user-select: none;
+}
+.tab-container .tab-nav strong.active {
+    color: #0277BD;
+    border-bottom: 2px solid #0277BD;
+}
+.tab-container .tab-session {
+    margin: 0!important;
+}
+.tab-container .tab-session pre {
+    margin: 0;
+    border-top: 1px solid #E1F5FE;
+    background-color: #ffffff;
+    display: none;
+}
+.tab-container .tab-session pre.active {
+    display: block;
+}
+.tab-container .tab-session code {
+    margin: 0;
+}
+.tab-container .tab-nav h1::before {
+    margin: 0;
+    padding: 0;
+}
+.md-typeset h2 {
+    border-bottom: 1px solid #ebebeb;
+}
+.md-typeset table:not([class]) {
+    border: 1px solid #B3E5FC;
+    box-shadow: none;
+}
+.md-typeset table:not([class]) th {
+    background-color: #0091EA;
+    border-color: #E1F5FE;
+}
+.md-typeset table:not([class]) tr,
+.md-typeset table:not([class]) td {
+    border-color: #E1F5FE;
+}
+.md-typeset .admonition {
+    border: 1px solid #FFE0B2;
+    box-shadow: none;
+}
+.md-typeset .admonition.warning {
+    border-left: 1px solid #FFE0B2;
+}
+.md-typeset .admonition.warning>.admonition-title {
+    background-color: #FFF4E5;
+    color: #FFF4E5;
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}

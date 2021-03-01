@@ -1,0 +1,8 @@
+name: 'Create binary package and integrity file'
+description: 'Create binary package and integrity file'
+outputs:
+  integrity:
+    description: 'The integrity of file binary'
+runs: 
+  using: 'node12'
+  main: 'index.js'
