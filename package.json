@@ -1,0 +1,65 @@
+{
+  "name": "kintone-ui-component",
+  "version": "1.0.0",
+  "description": "kintone UI Component",
+  "author": {
+    "name": "Cybozu, Inc.",
+    "url": "https://cybozu.co.jp"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kintone-labs/kintone-ui-component"
+  },
+  "files": [
+    "lib",
+    "umd"
+  ],
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./lib/index.js",
+  "unpkg": "./umd/kuc.min.js",
+  "keywords": [
+    "kintone"
+  ],
+  "scripts": {
+    "build:umd_dev": "webpack --mode development",
+    "build:umd_prod": "webpack --mode production",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:storybook": "build-storybook -o ./docs/storybook/",
+    "storybook": "start-storybook",
+    "test": "rm -rf ./test && tsc -p tsconfig.test.json && karma start --coverage",
+    "es-lint": "node_modules/.bin/eslint src/**/**.ts src/**.ts src/**/**.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.8.7",
+    "@cybozu/eslint-config": "^11.0.3",
+    "@open-wc/testing": "^2.5.17",
+    "@open-wc/testing-karma": "^3.4.2",
+    "@storybook/addon-a11y": "^6.0.20",
+    "@storybook/addon-viewport": "^6.0.20",
+    "@storybook/web-components": "^6.0.20",
+    "babel-loader": "^8.1.0",
+    "deepmerge": "^4.2.2",
+    "eslint": "^7.18.0",
+    "karma": "^5.0.9",
+    "karma-coverage": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.9.5",
+    "uuid": "^8.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@types/dompurify": "^2.0.3",
+    "@types/uuid": "^8.3.0",
+    "@webcomponents/webcomponentsjs": "^2.4.3",
+    "core-js": "^3.6.5",
+    "dompurify": "^2.0.12",
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1",
+    "regenerator-runtime": "^0.13.5"
+  }
+}

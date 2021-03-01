@@ -1,0 +1,8 @@
+name: 'Check version'
+description: 'Check the release tag'
+outputs:
+  version:
+    description: 'The lastest version'
+runs: 
+  using: 'node12'
+  main: 'index.js'

@@ -1,0 +1,38 @@
+{
+  "docs": {
+    "Getting Started": ["getting-started/quick-start"],
+    "Components": [
+      {
+        "type": "subcategory",
+        "label": "Desktop",
+        "ids": [
+          "components/desktop/button",
+          "components/desktop/checkbox",
+          "components/desktop/dropdown",
+          "components/desktop/multichoice",
+          "components/desktop/notification",
+          "components/desktop/radio-button",
+          "components/desktop/spinner",
+          "components/desktop/text",
+          "components/desktop/textarea"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Mobile",
+        "ids": [
+          "components/mobile/mobile-button",
+          "components/mobile/mobile-checkbox",
+          "components/mobile/mobile-notification",
+          "components/mobile/mobile-radio-button",
+          "components/mobile/mobile-text",
+          "components/mobile/mobile-textarea"
+        ]
+      }
+    ],
+    "Guides": [
+      "guides/comparison-v0-v1",
+      "guides/search-box-customization"
+    ]
+  }
+}

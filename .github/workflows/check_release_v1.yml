@@ -1,0 +1,40 @@
+name: Check v1 release
+
+on:
+  release:
+    types: [created]
+jobs:
+  Run_tests:
+    name: Run unit test and automation test
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Remove package-lock
+      run: rm -rf package-lock.json
+    - name: Install dependencies
+      run: |
+        npm install
+        npm i @actions/core
+    - name: Check version
+      id: check_version
+      uses: ./.github/actions/check_version
+    - name: Run ESLint
+      run: npm run es-lint
+    - name: Run unit test
+      run: npm test
+    - name: Trigger run upload release workflows
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{secrets.WORKFLOW_TOKEN}}
+        event-type: release_dispatch_v1
+    # Use this to run flow auto test
+    # - name: Trigger run automation test
+    #   uses: peter-evans/repository-dispatch@v1
+    #   with:
+    #     token: ${{secrets.WORKFLOW_TOKEN}}
+    #     repository: SDQA-VN/ui-component-auto
+    #     event-type: kuc-trigger-auto-test-release
+    #     client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'

@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ESNEXT",
+    "outDir": "./lib",
+    "declaration": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "./src/readonly-table/",
+    "./src/dialog/",
+    "./src/index.bundle.ts",
+    "./src/**/test/",
+    "./src/**/**/test/"
+  ]
+}
