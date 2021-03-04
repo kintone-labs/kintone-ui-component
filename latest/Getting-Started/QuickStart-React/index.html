@@ -713,7 +713,7 @@ kintone.events.on(&quot;app.record.index.show&quot;, function(ev) {
     ReactDOM.render(&lt;MyCustomization /&gt;, kintoneSpaceElement);
 });
 </code></pre>
-<p><strong>Step</strong> 3: Add webpack.config.js file to my-customization/ folder </p>
+<p><strong>Step</strong> 3: Add webpack.config.js file to my-customization/ folder</p>
 <pre><code>const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) =&gt; {
@@ -750,7 +750,7 @@ module.exports = (env = {}) =&gt; {
         watch: env.watch,
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({ 
+                new UglifyJsPlugin({
                     include: /\.min\.js$/,
                 })
             ]
@@ -784,7 +784,7 @@ module.exports = (env = {}) =&gt; {
 https://unpkg.com/react-dom@16/umd/react-dom.production.min.js
 </code></pre>
 <ul>
-<li>Attach 2 below files from './dist' folder in <a href="https://github.com/kintone-labs/kintone-ui-component/tree/master">kintone-ui-component</a> into kintone app</li>
+<li>Attach 2 below files from './dist' the folder in <a href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v0.7.7">kintone-kintone-ui-component-{0.x.x}.tgz</a> into kintone app.</li>
 </ul>
 <pre><code> ./dist/react/kintone-ui-component.min.js
  ./dist/react/kintone-ui-component.min.css
