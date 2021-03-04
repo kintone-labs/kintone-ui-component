@@ -24,7 +24,7 @@ class MyCustomization extends Component {
   constructor(props) {
     super(props);
   }
- 
+
   render() {
     return (
         <Button text='Submit' type='submit' onClick={function() {alert('This is my customization');}}/>
@@ -39,7 +39,7 @@ kintone.events.on("app.record.index.show", function(ev) {
 });
 ```
 
-**Step** 3: Add webpack.config.js file to my-customization/ folder 
+**Step** 3: Add webpack.config.js file to my-customization/ folder
 ```
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -77,7 +77,7 @@ module.exports = (env = {}) => {
         watch: env.watch,
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({ 
+                new UglifyJsPlugin({
                     include: /\.min\.js$/,
                 })
             ]
@@ -109,8 +109,19 @@ result:
 ```
 https://unpkg.com/react@16/umd/react.production.min.js
 https://unpkg.com/react-dom@16/umd/react-dom.production.min.js
-``` 
-*  Attach 2 below files from './dist' folder in [kintone-ui-component](https://github.com/kintone-labs/kintone-ui-component/tree/master) into kintone app
+```
+
+<div id="attach_files"></div>
+<script>
+  (function(){
+    var current_vesion = document.getElementById('current_vesion').getAttribute('data-version');
+    var content = '*  Attach 2 below files from "./dist" the folder in ';
+    content += '<a target="_blank" href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v'+current_vesion+'">kintone-kintone-ui-component-'+current_vesion+'.tgz</a>';
+    content += ' into kintone app.';
+    document.getElementById("attach_files").innerHTML = content;
+  })();
+
+</script>
 ```
  ./dist/react/kintone-ui-component.min.js
  ./dist/react/kintone-ui-component.min.css
