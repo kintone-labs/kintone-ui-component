@@ -117,7 +117,7 @@ There are differences in specifications and interfaces between v0 and v1.
 Please be sure to verify enough when you updating.
 For more details, please refer to the articles below.
 - [The difference of the way to code between v0 and v1](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/blog/2021/03/01/v1.0.0-release-notes)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/blog/2021/03/04/v1.0.0-release-notes)
 
 ## Contributing
 We welcome contributions to kintone UI Component.
