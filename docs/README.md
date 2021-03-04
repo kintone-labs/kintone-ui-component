@@ -27,7 +27,7 @@ mike serve
 ```
 $ mike deploy latest -p
 ```
-* Deploy old version documentation 
+* Deploy old version documentation
 ```
 $ cd 0.1.0
 $ mike deploy 0.1.0 -p
