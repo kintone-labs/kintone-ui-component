@@ -746,7 +746,7 @@ module.exports = (env = {}) =&gt; {
   (function(){
     var current_vesion = document.getElementById('current_vesion').getAttribute('data-version');
     var content = '*  Attach 2 below files from "./dist" the folder in ';
-    content += '<a target="_blank" href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v'+current_vesion+'">[kintone-kintone-ui-component-'+current_vesion+'.tgz]</a>';
+    content += '<a target="_blank" href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v'+current_vesion+'">kintone-kintone-ui-component-'+current_vesion+'.tgz</a>';
     content += ' into kintone app.';
     document.getElementById("attach_files").innerHTML = content;
   })();
