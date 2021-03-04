@@ -1,7 +1,8 @@
 ---
-id: quick-start
+id: version-1.0.1-quick-start
 title: Quick Start
 sidebar_label: Quick Start
+original_id: quick-start
 ---
 
 ## kintone UI Component とは？

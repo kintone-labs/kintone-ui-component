@@ -42,12 +42,12 @@ kintone UI Component は UMD, CDN, npm パッケージから使用可能です�
 
 - 最新版の kintone UI Component を読み込みたい場合
   ```
-  https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
+  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
   ```
 
 - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
   ```
-  https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
+  https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
 > unpkg はサイボウズが提供している CDN サービスではありません。検証用として利用することをお勧めします。  

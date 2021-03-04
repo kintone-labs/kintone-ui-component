@@ -42,12 +42,12 @@ Please use these CDN link.
 
 - If you want to load the latest version of kintone UI Component:
   ```
-  https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
+  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
   ```
 
 - If you want to specify the version and load it (specify the version number after the project name):
   ```
-  https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
+  https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
 > unpkg is not supported by Cybozu. We recommend you to use it for verification.
