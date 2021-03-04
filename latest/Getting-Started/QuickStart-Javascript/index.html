@@ -142,8 +142,8 @@
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <a id="current_vesion"" href="../..">kintone UI Component</a> <a style="text-decoration: underline;"
-            href="../../versions">v0.7.7</a>
+          <a href="../..">kintone UI Component</a> <a id="current_vesion"" style="text-decoration: underline;"
+            href="../../versions" data-vesion="0.7.7">v0.7.7</a>
         </div>
       </div>
 
@@ -737,7 +737,7 @@ module.exports = (env = {}) =&gt; {
 <p><img alt="" src="../../img/result.PNG" /></p>
 <h2 id="umd-usage">UMD usage</h2>
 <script>
-console.log('config', document.getElementById('current_vesion'))
+console.log('config', document.getElementById('current_vesion').data('vesion'))
 </script>
 <ul>
 <li>Attach 2 below files from './dist' the folder in <a href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v0.7.7">kintone-kintone-ui-component-0.7.7.tgz</a> into kintone app.</li>
