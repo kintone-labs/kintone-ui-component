@@ -139,15 +139,7 @@ class Index extends React.PureComponent {
               >
                 GitHub Issue
               </a>{" "}
-              や{" "}
-              <a
-                href="https://developer.cybozu.io/hc/ja/community/topics"
-                target="_blank"
-                rel="noreferrer"
-              >
-                cybozu developer network community
-              </a>{" "}
-              でもご質問や機能リクエストを受け付けております。
+              にてご質問や機能リクエストを受け付けております。
               <br />
               <br />
               ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。
