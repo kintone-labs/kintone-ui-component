@@ -218,8 +218,7 @@ export class Text extends LitElement {
         }
         .kuc-text__text__label {
           display: inline-block;
-          margin-top: 4px;
-          margin-bottom: 8px;
+          padding: 4px 0px 8px 0px;
           white-space: nowrap;
         }
         .kuc-text__text__label[hidden] {

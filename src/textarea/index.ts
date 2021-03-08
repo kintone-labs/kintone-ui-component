@@ -227,8 +227,7 @@ export class TextArea extends LitElement {
         }
         .kuc-textarea__label {
           display: inline-block;
-          margin-top: 4px;
-          margin-bottom: 8px;
+          padding: 4px 0px 8px 0px;
         }
         .kuc-textarea__label[hidden] {
           display: none;

@@ -352,8 +352,7 @@ export class MultiChoice extends LitElement {
           display: none;
         }
         .kuc-multi-choice__label {
-          margin-top: 4px;
-          margin-bottom: 8px;
+          padding: 4px 0px 8px 0px;
           display: inline-block;
           white-space: nowrap;
         }
