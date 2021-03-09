@@ -1,5 +1,13 @@
 name: audit v0 release
 on:
+  push:
+    branches:
+    - v0_dev
+    paths:
+    - 'package.json'
+    - 'package-lock.json'
+  schedule:
+    - cron:  '*/1 * * * *'
   repository_dispatch:
      types: audit_dispatch_v0
 jobs:
