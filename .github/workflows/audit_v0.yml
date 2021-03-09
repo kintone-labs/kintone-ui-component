@@ -1,6 +1,8 @@
 name: Check audit v0
 
 on:
+  schedule:
+    - cron:  '*/5 * * * *'
   repository_dispatch:
     types: audit_dispatch_v0
 jobs:
