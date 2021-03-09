@@ -1,0 +1,41 @@
+name: Check v1 release
+
+on:
+  repository_dispatch:
+    types: audit_v1
+jobs:
+  Run_tests:
+    name: Run a security audit
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Security audit root
+      if: ${{ always() }}
+      run: |
+        rm -rf package-lock.json
+        npm install
+        npm audit
+    - name: Security audit docs/document
+      if: ${{ always() }}
+      working-directory: ./docs/document
+      run: |
+        rm -rf package-lock.json
+        npm install
+        npm audit
+    - name: Security audit docs/document/website
+      if: ${{ always() }}
+      working-directory: ./docs/document/website
+      run: |
+        rm -rf package-lock.json
+        npm install
+        npm audit
+    - name: Security audit demos/esm-dev-app
+      if: ${{ always() }}
+      working-directory: ./demos/esm-dev-app
+      run: |
+        rm -rf package-lock.json
+        npm install
+        npm audit
