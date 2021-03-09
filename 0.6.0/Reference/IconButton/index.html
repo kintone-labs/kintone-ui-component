@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://kintone.github.io/kintone-ui-component/Reference/IconButton/">
+        <link rel="canonical" href="https://kintone-labs.github.io/kintone-ui-component/Reference/IconButton/">
       
       
       
@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-4.6.3">
     
     
       
@@ -68,6 +68,31 @@
       <link rel="stylesheet" href="../../style/extra.css">
     
     
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
@@ -121,7 +146,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../../latest/versions">v0.6.0</a>
+            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../../latest/versions">v0.7.0</a>
         </div>
       </div>
 
@@ -167,7 +192,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -200,7 +225,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://kintone.github.io/kintone-ui-component/" title="kintone UI Component" class="md-nav__button md-logo">
+    <a href="https://kintone-labs.github.io/kintone-ui-component/" title="kintone UI Component" class="md-nav__button md-logo">
       
         <i class="md-icon">cloud</i>
       
@@ -214,7 +239,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -843,7 +868,7 @@
 <td>options.shape</td>
 <td>String</td>
 <td>No</td>
-<td>The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+<td>The shape of of button. The value is one of::<ul><li> 'circle'</li><li> 'square'</li></ul> Default value is 'circle'.</td>
 </tr>
 <tr>
 <td>options.type</td>
@@ -986,7 +1011,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <td>shape</td>
 <td>String</td>
 <td>Yes</td>
-<td>The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'normal'</li></ul> Default value is 'circle'.</td>
+<td>The shape of the button. The value is one of the following: <ul><li>  'circle'</li><li> 'square'</li></ul> Default value is 'circle'.</td>
 </tr>
 </tbody>
 </table>
@@ -998,7 +1023,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <pre><code class="language-javascript">var iconBtn = new kintoneUIComponent.IconButton({type: 'insert'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(iconBtn.render());
-iconBtn.setShape('normal');
+iconBtn.setShape('square');
 </code></pre>
 <p><strong>React</strong></p>
 <pre><code class="language-javascript">import { IconButton } from '@kintone/kintone-ui-component';
@@ -1014,7 +1039,7 @@ export default class Plugin extends React.Component {
       }
     }
     handleSetShape=()=&gt;{
-        this.setState({shape:&quot;normal&quot;})
+        this.setState({shape:&quot;square&quot;})
     }
     render() {
         return (
@@ -1450,7 +1475,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
     
       <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
       
         <script src="../../js/extra.js"></script>
       
