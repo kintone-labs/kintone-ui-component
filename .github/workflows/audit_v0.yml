@@ -1,0 +1,27 @@
+name: Check audit v0
+
+on:
+  push:
+    paths:
+    - 'package.json'
+    - 'package-lock.json'
+  schedule:
+    - cron:  '*/5 * * * *'
+  repository_dispatch:
+    types: audit_v0
+jobs:
+  Run_tests:
+    name: Run a security audit v0
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: v0_dev
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Security audit v0 root
+      run: |
+        rm -rf package-lock.json
+        npm install
+        npm audit
