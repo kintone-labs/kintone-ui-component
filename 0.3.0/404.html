@@ -31,8 +31,8 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+      <link rel="shortcut icon" href="/kintone-ui-component/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-4.6.3">
     
     
       
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="/kintone-ui-component/assets/stylesheets/application.adb8469c.css">
       
-        <link rel="stylesheet" href="/assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="/kintone-ui-component/assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="/assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="/kintone-ui-component/assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -60,12 +60,37 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="/kintone-ui-component/assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="/style/extra.css">
+      <link rel="stylesheet" href="/kintone-ui-component/style/extra.css">
     
     
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
@@ -96,7 +121,7 @@
 
       <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="/"
+        <a href="/kintone-ui-component/"
             title="kintone UI Component"
             class="md-header-nav__button md-logo">
           
@@ -115,7 +140,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title"
             data-md-component="title">
-            <a href="/">kintone UI Component</a> <a style="text-decoration: underline;" href="//../latest/versions">v0.3.0</a>
+            <a href="/kintone-ui-component/">kintone UI Component</a> <a style="text-decoration: underline;" href="/kintone-ui-component//../latest/versions">v0.3.0</a>
         </div>
       </div>
 
@@ -161,7 +186,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -194,7 +219,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="/." title="kintone UI Component" class="md-nav__button md-logo">
+    <a href="https://kintone-labs.github.io/kintone-ui-component/" title="kintone UI Component" class="md-nav__button md-logo">
       
         <i class="md-icon">cloud</i>
       
@@ -208,7 +233,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -230,7 +255,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." title="Home" class="md-nav__link">
+    <a href="/kintone-ui-component/." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -261,7 +286,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Getting-Started/QuickStart-Javascript/" title="QuickStart Javascript" class="md-nav__link">
+    <a href="/kintone-ui-component/Getting-Started/QuickStart-Javascript/" title="QuickStart Javascript" class="md-nav__link">
       QuickStart Javascript
     </a>
   </li>
@@ -273,7 +298,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Getting-Started/QuickStart-React/" title="QuickStart React" class="md-nav__link">
+    <a href="/kintone-ui-component/Getting-Started/QuickStart-React/" title="QuickStart React" class="md-nav__link">
       QuickStart React
     </a>
   </li>
@@ -309,7 +334,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Alert/" title="Alert" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Alert/" title="Alert" class="md-nav__link">
       Alert
     </a>
   </li>
@@ -321,7 +346,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Attachment/" title="Attachment" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Attachment/" title="Attachment" class="md-nav__link">
       Attachment
     </a>
   </li>
@@ -333,7 +358,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Button/" title="Button" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Button/" title="Button" class="md-nav__link">
       Button
     </a>
   </li>
@@ -345,7 +370,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/CheckBox/" title="CheckBox" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/CheckBox/" title="CheckBox" class="md-nav__link">
       CheckBox
     </a>
   </li>
@@ -357,7 +382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/ColorPicker/" title="ColorPicker" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/ColorPicker/" title="ColorPicker" class="md-nav__link">
       ColorPicker
     </a>
   </li>
@@ -369,7 +394,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/DateTime/" title="DateTime" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/DateTime/" title="DateTime" class="md-nav__link">
       DateTime
     </a>
   </li>
@@ -381,7 +406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Dialog/" title="Dialog" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Dialog/" title="Dialog" class="md-nav__link">
       Dialog
     </a>
   </li>
@@ -393,7 +418,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Dropdown/" title="Dropdown" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Dropdown/" title="Dropdown" class="md-nav__link">
       Dropdown
     </a>
   </li>
@@ -405,7 +430,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/FieldGroup/" title="FieldGroup" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/FieldGroup/" title="FieldGroup" class="md-nav__link">
       FieldGroup
     </a>
   </li>
@@ -417,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/IconButton/" title="IconButton" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/IconButton/" title="IconButton" class="md-nav__link">
       IconButton
     </a>
   </li>
@@ -429,7 +454,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Label/" title="Label" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Label/" title="Label" class="md-nav__link">
       Label
     </a>
   </li>
@@ -441,7 +466,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/MultipleChoice/" title="MultipleChoice" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/MultipleChoice/" title="MultipleChoice" class="md-nav__link">
       MultipleChoice
     </a>
   </li>
@@ -453,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/NotifyPopup/" title="NotifyPopup" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/NotifyPopup/" title="NotifyPopup" class="md-nav__link">
       NotifyPopup
     </a>
   </li>
@@ -465,7 +490,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/RadioButton/" title="RadioButton" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/RadioButton/" title="RadioButton" class="md-nav__link">
       RadioButton
     </a>
   </li>
@@ -477,7 +502,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Spinner/" title="Spinner" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Spinner/" title="Spinner" class="md-nav__link">
       Spinner
     </a>
   </li>
@@ -489,7 +514,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Table/" title="Table" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Table/" title="Table" class="md-nav__link">
       Table
     </a>
   </li>
@@ -501,7 +526,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Tabs/" title="Tabs" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Tabs/" title="Tabs" class="md-nav__link">
       Tabs
     </a>
   </li>
@@ -513,7 +538,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/Text/" title="Text" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/Text/" title="Text" class="md-nav__link">
       Text
     </a>
   </li>
@@ -525,7 +550,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/Reference/TextArea/" title="TextArea" class="md-nav__link">
+    <a href="/kintone-ui-component/Reference/TextArea/" title="TextArea" class="md-nav__link">
       TextArea
     </a>
   </li>
@@ -579,11 +604,11 @@
       
     </div>
     
-      <script src="/assets/javascripts/application.c33a9706.js"></script>
+      <script src="/kintone-ui-component/assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"/"}})</script>
+      <script>app.initialize({version:"1.1.2",url:{base:"/kintone-ui-component/"}})</script>
       
-        <script src="/js/extra.js"></script>
+        <script src="/kintone-ui-component/js/extra.js"></script>
       
     
   </body>

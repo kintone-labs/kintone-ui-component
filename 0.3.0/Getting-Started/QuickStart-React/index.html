@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://kintone-labs.github.io/kintone-ui-component/Getting-Started/QuickStart-React/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -32,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-4.6.3">
     
     
       
@@ -66,6 +68,31 @@
       <link rel="stylesheet" href="../../style/extra.css">
     
     
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
@@ -165,7 +192,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -198,7 +225,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../.." title="kintone UI Component" class="md-nav__button md-logo">
+    <a href="https://kintone-labs.github.io/kintone-ui-component/" title="kintone UI Component" class="md-nav__button md-logo">
       
         <i class="md-icon">cloud</i>
       
@@ -212,7 +239,7 @@
 
   
 
-<a href="https://github.com/kintone/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/kintone-labs/kintone-ui-component" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -811,7 +838,7 @@ module.exports = (env = {}) =&gt; {
     
       <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
       
         <script src="../../js/extra.js"></script>
       
