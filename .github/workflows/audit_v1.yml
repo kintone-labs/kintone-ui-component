@@ -6,7 +6,7 @@ on:
     - 'package.json'
     - 'package-lock.json'
   schedule:
-    - cron:  '*/2 * * * *'
+    - cron:  '*/5 * * * *'
   repository_dispatch:
     types: audit_v1
 jobs:
