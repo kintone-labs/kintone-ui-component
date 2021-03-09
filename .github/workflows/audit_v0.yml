@@ -1,4 +1,4 @@
-name: audit v0 release
+name: Check audit v0
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ on:
   schedule:
     - cron:  '*/1 * * * *'
   repository_dispatch:
-     types: audit_dispatch_v0
+    types: audit_dispatch_v0
 jobs:
   Run_tests:
     name: Run a security audit v0
