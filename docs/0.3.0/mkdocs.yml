@@ -1,6 +1,9 @@
 site_name: kintone UI Component
 repo_url: https://github.com/kintone-labs/kintone-ui-component
+site_url: https://kintone-labs.github.io/kintone-ui-component/
 edit_uri: ''
+
+google_analytics: ['UA-180303573-1', 'kintone-labs.github.io/kintone-ui-component']
 
 theme:
   name: 'material'
