@@ -1,14 +1,7 @@
-name: Check audit v0
-
+name: audit v0 release
 on:
-  push:
-    paths:
-    - 'package.json'
-    - 'package-lock.json'
-  schedule:
-    - cron:  '*/5 * * * *'
   repository_dispatch:
-    types: audit_v0
+     types: audit_dispatch_v0
 jobs:
   Run_tests:
     name: Run a security audit v0
