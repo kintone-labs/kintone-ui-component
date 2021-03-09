@@ -25,6 +25,11 @@ jobs:
       run: npm run es-lint
     - name: Run unit test
       run: npm test
+    - name: Trigger run audit workflows
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{secrets.WORKFLOW_TOKEN}}
+        event-type: audit_v1
     - name: Trigger run upload release workflows
       uses: peter-evans/repository-dispatch@v1
       with:
