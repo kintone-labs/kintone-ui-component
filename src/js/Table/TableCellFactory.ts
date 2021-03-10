@@ -116,6 +116,7 @@ const createTableCell = (type: string, fieldName: string, props: any = {}) => {
     if (cellData && field.setText) {
       field.setText(cellData.text);
     }
+    if (cellData) cellData.isDisabled ? field.disable() : field.enable();
   };
   return new TableCell({init, update});
 };
