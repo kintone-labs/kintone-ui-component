@@ -473,6 +473,7 @@ export class Dropdown extends LitElement {
           padding: 8px 16px 8px 24px;
           line-height: 1;
           position: relative;
+          cursor: pointer;
         }
         .kuc-dropdown__select-menu__item__icon {
           position: absolute;

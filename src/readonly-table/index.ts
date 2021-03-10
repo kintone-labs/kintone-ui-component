@@ -178,8 +178,9 @@ export class ReadOnlyTable extends LitElement {
           border-style: solid;
         }
         .kuc-readonly-table__label {
+          white-space: nowrap;
+          padding: 4px 0px 8px 0px;
           text-align: left;
-          margin-bottom: 4px;
         }
         .kuc-readonly-table__label[hideden] {
           display: none;
