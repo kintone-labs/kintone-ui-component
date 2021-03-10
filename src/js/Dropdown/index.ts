@@ -167,6 +167,10 @@ class Dropdown extends Control<DropdownProps> {
     this.listOuterEl = this._createDom('div', 'kuc-list-outer');
     this.listOuterEl.setAttribute('style', 'display: none');
 
+    document.addEventListener('mousedown', (e: MouseEvent) => {
+      if (!this.element.contains(e.target as HTMLElement)) this._hideItems();
+    });
+
     this.itemComps =
       this._props.items &&
       this._props.items.map(data => {
