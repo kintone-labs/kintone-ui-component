@@ -48,7 +48,7 @@
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.9.5",
-    "uuid": "^8.3.1",
+    "uuid": "^8.3.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
@@ -60,6 +60,6 @@
     "dompurify": "^2.2.6",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "regenerator-runtime": "0.13.5"
+    "regenerator-runtime": "^0.13.5"
   }
 }
