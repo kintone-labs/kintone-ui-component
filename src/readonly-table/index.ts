@@ -121,12 +121,12 @@ export class ReadOnlyTable extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
+      <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
+        <span class="kuc-readonly-table__table__label__text"
+          >${this.label}</span
+        >
+      </div>
       <table class="kuc-readonly-table__table" aria-label="${this.label}">
-        <caption class="kuc-readonly-table__label" ?hidden="${!this.label}">
-          <span class="kuc-readonly-table__table__label__text"
-            >${this.label}</span
-          >
-        </caption>
         <thead class="kuc-readonly-table__table__header">
           <tr>
             ${this.columns.map(column => this._getColumnsTemplate(column))}
@@ -178,11 +178,11 @@ export class ReadOnlyTable extends LitElement {
           border-style: solid;
         }
         .kuc-readonly-table__label {
+          display: inline-block;
           white-space: nowrap;
           padding: 4px 0px 8px 0px;
-          text-align: left;
         }
-        .kuc-readonly-table__label[hideden] {
+        .kuc-readonly-table__label[hidden] {
           display: none;
         }
         .kuc-readonly-table__table__header__cell {

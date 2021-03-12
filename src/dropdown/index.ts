@@ -421,6 +421,7 @@ export class Dropdown extends LitElement {
           align-items: center;
           justify-content: space-between;
           width: 100%;
+          cursor: pointer;
         }
         .kuc-dropdown__toggle:focus {
           outline: none;
