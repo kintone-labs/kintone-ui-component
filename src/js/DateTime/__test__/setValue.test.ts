@@ -42,14 +42,11 @@ describe('Unit test DateTime setValue', () => {
     expect(datetime.getValue()).toStrictEqual(date);
   });
 
-  test('tToday is set when setValue is called with null', () => {
+  test('Today is set when setValue is called with null', () => {
     const datetime = new DateTime({value: undefined});
     datetime.render();
-
-    const fomatDate = (date: Date) => `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-    const today = new Date();
     datetime.setValue(null);
-    expect(fomatDate(datetime.getValue() as Date)).toEqual(fomatDate(today));
+    expect(datetime.getValue()).toEqual(null);
   });
 
   test('throw error when setValue is called with undefined', () => {
