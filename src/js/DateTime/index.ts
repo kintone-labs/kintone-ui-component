@@ -27,7 +27,7 @@ class DateTime extends Control<DateTimeProps> {
   private _locale: Locale = ja
 
   private _timePicker: TimePicker
-  private _time: Date = new Date()
+  private _time: Date | null = new Date()
 
   constructor(params?: DateTimeProps) {
     super();
@@ -84,13 +84,16 @@ class DateTime extends Control<DateTimeProps> {
           this._dateErrorDiv.style.display = 'block';
         }
         this._dateTextInput.value = newTextInputValue;
-      } else {
+      } else if (this._dateTextInput) {
         this._dateTextInput.value = '';
       }
     }
     if (changedAttr.indexOf('timeTextInput') !== -1) {
-      this._timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
-      this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
+      if (this._time) {
+        this._timeTextInput.value = format(this._time, 'HH:mm', {locale: this._locale});
+        this._timeTextInput.dataset.previousValidTime = format(this._time, 'HH:mm', {locale: this._locale});
+      }
+      if (!this._time && this._timeTextInput) this._timeTextInput.value = '';
     }
     if (changedAttr.indexOf('isDisabled') !== -1) {
       if (this._calendar) {
@@ -302,6 +305,7 @@ class DateTime extends Control<DateTimeProps> {
   }
 
   private _setTimeValueOnInput(key: string) {
+    if (!this._time) return;
     let newTime = parseStringToTime(this._timeTextInput.value);
     if (!newTime) {
       newTime = new Date(this._time);
@@ -343,12 +347,14 @@ class DateTime extends Control<DateTimeProps> {
   }
 
   private _changeMinutesBy(minutes: number) {
+    if (!this._time) return;
     this._time.setMinutes(this._time.getMinutes() + minutes);
     this.rerender(['timeTextInput']);
     this._timeTextInput.setSelectionRange(3, 5);
   }
 
   private _changeHoursBy(hours: number) {
+    if (!this._time) return;
     this._time.setHours(this._time.getHours() + hours);
     this.rerender(['timeTextInput']);
     this._timeTextInput.setSelectionRange(0, 2);
@@ -463,19 +469,19 @@ class DateTime extends Control<DateTimeProps> {
     this._timeTextInput.focus();
   }
 
-  getValue(): Date | undefined {
-    let value;
+  getValue(): Date | null {
+    let value = null;
     if (this._props.value) {
       value = new Date(this._props.value);
       switch (this._props.type) {
         case 'date':
           return value;
         case 'time':
-          return this._time;
+          return this._time || null;
         case 'datetime':
         default:
-          value.setHours(this._time.getHours());
-          value.setMinutes(this._time.getMinutes());
+          if (this._time) value.setHours(this._time.getHours());
+          if (this._time) value.setMinutes(this._time.getMinutes());
           return value;
       }
     }
@@ -483,9 +489,13 @@ class DateTime extends Control<DateTimeProps> {
   }
 
   setValue(date_opt: any) {
-    let date = date_opt;
+    const date = date_opt;
     if (date === null) {
-      date = new Date();
+      if (this._calendar) this._calendar.setValue(null);
+      this._props.value = null;
+      this._time = null;
+      this.rerender(['dateTextInput', 'timeTextInput']);
+      return;
     } else if (date === undefined || !(date instanceof Date)) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
@@ -497,6 +507,7 @@ class DateTime extends Control<DateTimeProps> {
         this.rerender(['dateTextInput']);
         break;
       case 'time':
+        this._props.value = new Date(date);
         this._time = new Date(date);
         this.rerender(['timeTextInput']);
         break;
