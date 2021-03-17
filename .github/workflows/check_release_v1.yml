@@ -5,7 +5,7 @@ on:
     types: [created]
 jobs:
   Run_tests:
-    name: Run unit test and automation test
+    name: Prepare for the release and trigger upload workflow
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
