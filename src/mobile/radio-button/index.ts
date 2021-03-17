@@ -261,13 +261,13 @@ export class MobileRadioButton extends LitElement {
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
-          text-shadow: 0 1px 0 #fff;
-          font-weight: bold;
         }
 
         .kuc-mobile-radio-button__group__label__text {
+          text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           font-size: 86%;
+          font-weight: bold;
         }
 
         .kuc-mobile-radio-button__group__label[hidden] {
@@ -275,8 +275,9 @@ export class MobileRadioButton extends LitElement {
         }
 
         .kuc-mobile-radio-button__group__label__required-icon {
-          color: #e74c3c;
-          margin-left: 3px;
+          position: relative;
+          left: 3px;
+          color: #d01212;
         }
 
         .kuc-mobile-radio-button__group__label__required-icon[hidden] {
