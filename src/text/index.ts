@@ -285,7 +285,7 @@ export class Text extends LitElement {
           box-sizing: border-box;
           background-color: #e74c3c;
           color: #ffffff;
-          margin-top: 8px;
+          margin: 8px 0px;
           word-break: break-all;
         }
         .kuc-text__text__error[hidden] {
