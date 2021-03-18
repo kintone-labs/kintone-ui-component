@@ -360,6 +360,7 @@ export class MobileRadioButton extends LitElement {
 
         .kuc-mobile-radio-button__error {
           line-height: 1.5;
+          color: #000000;
           border: 1px solid #e5db68;
           background-color: #fdffc9;
           margin-top: 0.3em;

@@ -198,6 +198,8 @@ export class MobileTextArea extends LitElement {
           opacity: 1;
         }
         .kuc-mobile-textarea__error {
+          line-height: 1.5;
+          color: #000000;
           background-color: #fdffc9;
           border: 1px solid #e5db68;
           border-radius: 0.4em;
