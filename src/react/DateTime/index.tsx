@@ -1,6 +1,6 @@
 import '../../css/DateTime.css';
 import '../../css/Text.css';
-import React, {useState, createRef, useEffect} from 'react';
+import React, {useState, createRef, useEffect, useMemo} from 'react';
 import {en, ja, zh, format} from './components/Locale';
 import {parseStringToDate, parseStringToTime} from './components/utils';
 import Calendar from './components/Calendar';
@@ -21,7 +21,7 @@ type DateTimeConstructorParameters = {
 }
 
 const DateTime = ({
-  value = new Date(),
+  value,
   isDisabled = false,
   isVisible = true,
   onChange,
@@ -29,6 +29,9 @@ const DateTime = ({
   dateFormat = 'MM/dd/YYYY',
   type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
+  if (value !== null && !(value instanceof Date)) {
+    throw new Error('asdsa');
+  }
 
   let localeObj = ja;
   if (locale === 'en') {
@@ -36,16 +39,18 @@ const DateTime = ({
   } else if (locale === 'zh') {
     localeObj = zh;
   }
-  const [validatedValue, setValidatedValue] = useState(value !== null ? value : new Date());
+  const validatedValue = useMemo(() => {
+    return value !== null ? value : new Date();
+  }, [value]);
   const [defaultValue, setDefaultValue] = useState(value !== null ? value : new Date());
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
   const [inputValue, setInputValue] = useState('');
-  const [timeValue, setTimeValue] = useState(format(value !== null ? value : new Date(), timeFormat));
+  const [timeValue, setTimeValue] = useState(format(value ? value : new Date(), timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
-  const [timeDateValue, setTimeDateValue] = useState(new Date(value !== null ? value : new Date()));
+  const [timeDateValue, setTimeDateValue] = useState(new Date(value ? value : new Date()));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -129,10 +134,6 @@ const DateTime = ({
         break;
     }
   };
-
-  useEffect(()=>{
-    setValidatedValue(value !== null ? value : new Date());
-  }, [value]);
 
   useEffect(()=>{
     if (defaultValue !== validatedValue) {
@@ -427,8 +428,8 @@ const DateTime = ({
                   (timePickerDate: Date) => {
                     let tempDate = new Date();
                     if (timeDateValue) tempDate = new Date(timeDateValue);
-                    tempDate.setDate(value.getDate());
-                    tempDate.setMonth(value.getMonth());
+                    value && tempDate.setDate(value.getDate());
+                    value && tempDate.setMonth(value.getMonth());
                     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
                     tempDate.setSeconds(0);
 
