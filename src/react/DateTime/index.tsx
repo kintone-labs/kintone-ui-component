@@ -30,7 +30,7 @@ const DateTime = ({
   type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
   if (value !== null && !(value instanceof Date)) {
-    throw new Error('asdsa');
+    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
   let localeObj = ja;
