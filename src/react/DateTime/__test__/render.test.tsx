@@ -18,9 +18,9 @@ describe('Unit test DateTime react', () => {
   });
 
   test('render without props DateTime', () => {
-    const {container} = render(<DateTime />);
-    expect(container.firstElementChild).toBeTruthy();
-    expect(container.firstElementChild!.className).toBe('date-time-container');
+    expect(() => {
+      const {container} = render(<DateTime />);
+    }).toThrowError();
   });
   test('render with full props DateTime', () => {
     const {container} = render(
