@@ -32,7 +32,7 @@ jobs:
     - name: Upload integrity artifact
       uses: actions/upload-artifact@v2
       with:
-        name: v${{ steps.check_version.outputs.version }}-integrity
+        name: my-integrity
         path: ./${{ steps.generate_binary.outputs.integrity }}
     - uses: fregante/setup-git-user@v1
     - name: Commit package-lock.json and push to remote
