@@ -36,16 +36,16 @@ const DateTime = ({
   } else if (locale === 'zh') {
     localeObj = zh;
   }
-
-  const [defaultValue, setDefaultValue] = useState(value);
+  const [validatedValue, setValidatedValue] = useState(value !== null ? value : new Date());
+  const [defaultValue, setDefaultValue] = useState(value !== null ? value : new Date());
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
   const [inputValue, setInputValue] = useState('');
-  const [timeValue, setTimeValue] = useState(format(value, timeFormat));
+  const [timeValue, setTimeValue] = useState(format(value !== null ? value : new Date(), timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
-  const [timeDateValue, setTimeDateValue] = useState(new Date(value));
+  const [timeDateValue, setTimeDateValue] = useState(new Date(value !== null ? value : new Date()));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -131,24 +131,28 @@ const DateTime = ({
   };
 
   useEffect(()=>{
-    if (defaultValue !== value) {
-      setDefaultValue(value);
-      setInputValue(format(value, dateFormat));
-      setTimeValue(format(value, timeFormat));
-      setTimeDateValue(new Date(value));
+    setValidatedValue(value !== null ? value : new Date());
+  }, [value]);
+
+  useEffect(()=>{
+    if (defaultValue !== validatedValue) {
+      setDefaultValue(validatedValue);
+      setInputValue(format(validatedValue, dateFormat));
+      setTimeValue(format(validatedValue, timeFormat));
+      setTimeDateValue(new Date(validatedValue));
     } else {
       const newTimeDateValue = new Date(timeDateValue);
       let setNewTimeDateValue = false;
-      if (value.getDate() !== timeDateValue.getDate()) {
-        newTimeDateValue.setDate(value.getDate());
+      if (validatedValue.getDate() !== timeDateValue.getDate()) {
+        newTimeDateValue.setDate(validatedValue.getDate());
         setNewTimeDateValue = true;
       }
-      if (value.getMonth() !== timeDateValue.getMonth()) {
-        newTimeDateValue.setMonth(value.getMonth());
+      if (validatedValue.getMonth() !== timeDateValue.getMonth()) {
+        newTimeDateValue.setMonth(validatedValue.getMonth());
         setNewTimeDateValue = true;
       }
-      if (value.getFullYear() !== timeDateValue.getFullYear()) {
-        newTimeDateValue.setFullYear(value.getFullYear());
+      if (validatedValue.getFullYear() !== timeDateValue.getFullYear()) {
+        newTimeDateValue.setFullYear(validatedValue.getFullYear());
         setNewTimeDateValue = true;
       }
       if (setNewTimeDateValue && pickerDisplay === 'none') {
@@ -157,7 +161,7 @@ const DateTime = ({
       if (!hasSelection) {
         setInputValue('');
       } else if (inputValue !== dateFormat) {
-        const newInputValue = format(value, dateFormat);
+        const newInputValue = format(validatedValue, dateFormat);
         if (newInputValue === dateFormat) {
           setInputValue(dateFormat);
           setDateError(Message.datetime.INVALID_DATE);
@@ -172,7 +176,7 @@ const DateTime = ({
         setDisableBtn(isDisabled);
       }
     }
-  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, value, isDisabled, inputValue, showPickerError]);
+  }, [dateFormat, defaultValue, hasSelection, pickerDisplay, timeDateValue, timeFormat, validatedValue, isDisabled, inputValue, showPickerError]);
 
   if (typeDateTime !== 'datetime' && typeDateTime !== 'date' && typeDateTime !== 'time') {
     setTypeDateTime('datetime');
@@ -215,7 +219,7 @@ const DateTime = ({
                     setTimeDateValue(dateValue);
                   }, 1);
                 }}
-                value={inputValue}
+                value={value !== null ? inputValue : ''}
                 onBlur={(e) => {
                   const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date|null = null;
@@ -224,12 +228,12 @@ const DateTime = ({
                     todayDate.setSeconds(0);
                     todayDate.setHours(timeDateValue.getHours());
                     todayDate.setMinutes(timeDateValue.getMinutes());
-                    if (todayDate.getTime() !== value.getTime()) {
+                    if (todayDate.getTime() !== validatedValue.getTime()) {
                       returnDate = new Date(todayDate);
                     }
                     setHasSelection(false);
                   } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
-                    returnDate = new Date(value);
+                    returnDate = new Date(validatedValue);
                     returnDate.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
                     setShowPickerError(false);
                   } else if (e.target.value) {
@@ -286,8 +290,8 @@ const DateTime = ({
                       tempDate = new Date();
                     }
                     if (calendarDate) {
-                      if (value) {
-                        tempDate = new Date(value);
+                      if (validatedValue) {
+                        tempDate = new Date(validatedValue);
                       }
                       tempDate.setFullYear(calendarDate.getFullYear(), calendarDate.getMonth(), calendarDate.getDate());
                       tempDate.setHours(timeDateValue.getHours());
@@ -357,7 +361,7 @@ const DateTime = ({
                   }
                 }
               }
-              value={timeValue}
+              value={value !== null ? timeValue : ''}
               onChange={(e)=>{
                 const timeTextInput = e.target as HTMLInputElement;
                 let newTime = parseStringToTime(timeTextInput.value);
