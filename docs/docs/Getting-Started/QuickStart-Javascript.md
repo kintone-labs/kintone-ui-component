@@ -6,7 +6,7 @@
 $ mkdir my-customization
 $ cd my-customization
 $ npm init -y
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli babel-loader @babel/core
+$ npm install cross-env css-loader style-loader webpack@^4.46.0 webpack-cli@^3.3.12 babel-loader @babel/core @babel/preset-env@^7.2.3 --save
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 ```
@@ -42,7 +42,12 @@ module.exports = (env = {}) => {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              "presets": [
+                "@babel/env"
+              ]
+            }
           }
         },
         {
@@ -61,7 +66,7 @@ module.exports = (env = {}) => {
 **Step** 4: Add a script for buiding by webpack to package.json
 ```
 "scripts": {
-  "build-webpack": "cross-env NODE_ENV=production webpack",
+  "build-webpack": "rm -rf dist && webpack --mode production",
   ...
 }
 ```
