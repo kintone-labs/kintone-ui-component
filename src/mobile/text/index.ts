@@ -182,14 +182,14 @@ export class MobileText extends LitElement {
           display: none;
         }
         .kuc-mobile-text__label__text {
-          text-shadow: 0 1px 0 #fff;
+          text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           font-size: 86%;
-          font-weight: 700;
-          margin: 0 0 4px 0;
+          font-weight: bold;
         }
         .kuc-mobile-text__label__required-icon {
-          margin-left: 3px;
+          position: relative;
+          left: 3px;
           color: #d01212;
         }
         .kuc-mobile-text__label__required-icon[hidden] {
@@ -214,7 +214,7 @@ export class MobileText extends LitElement {
           padding: 0.4em;
           border: 1px solid #b3b3b3;
           outline: 0;
-          box-shadow: 0 1px 0 #fff, inset 0 2px 3px #dadada;
+          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
           border-radius: 0.4em;
           box-sizing: border-box;
           text-align: left;
@@ -234,13 +234,14 @@ export class MobileText extends LitElement {
         }
         .kuc-mobile-text__input-form__suffix {
           margin-left: 4px;
-          font-size: 13px;
           color: #888888;
         }
         .kuc-mobile-text__input-form__suffix[hidden] {
           display: none;
         }
         .kuc-mobile-text__error {
+          line-height: 1.5;
+          color: #000000;
           background-color: #fdffc9;
           border: 1px solid #e5db68;
           border-radius: 0.4em;

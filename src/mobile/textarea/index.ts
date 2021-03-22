@@ -162,13 +162,14 @@ export class MobileTextArea extends LitElement {
           display: none;
         }
         .kuc-mobile-textarea__label__text {
-          text-shadow: 0 1px 0 #fff;
-          color: #888;
+          text-shadow: 0 1px 0 #ffffff;
+          color: #888888;
           font-size: 86%;
-          font-weight: 700;
+          font-weight: bold;
         }
         .kuc-mobile-textarea__label__required-icon {
-          margin-left: 3px;
+          position: relative;
+          left: 3px;
           color: #d01212;
         }
         .kuc-mobile-textarea__label__required-icon[hidden] {
@@ -197,6 +198,8 @@ export class MobileTextArea extends LitElement {
           opacity: 1;
         }
         .kuc-mobile-textarea__error {
+          line-height: 1.5;
+          color: #000000;
           background-color: #fdffc9;
           border: 1px solid #e5db68;
           border-radius: 0.4em;

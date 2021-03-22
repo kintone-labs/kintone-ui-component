@@ -294,7 +294,7 @@ export class MobileCheckbox extends LitElement {
         }
 
         .kuc-mobile-checkbox__group__label__text {
-          text-shadow: 0 1px 0 #fff;
+          text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           font-size: 86%;
           font-weight: bold;
@@ -408,7 +408,6 @@ export class MobileCheckbox extends LitElement {
           margin-left: 0.5em;
           padding: 0.4em 1em;
           border-radius: 0.4em;
-          font-size: 13px;
           color: #000000;
         }
 

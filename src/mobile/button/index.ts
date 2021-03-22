@@ -113,7 +113,7 @@ export class MobileButton extends LitElement {
         .kuc-mobile-button__button--submit {
           border: 2px solid #206694;
           background-color: #206694;
-          color: #fff;
+          color: #ffffff;
           border-radius: 6px;
         }
         .kuc-mobile-button__button--submit:disabled {
