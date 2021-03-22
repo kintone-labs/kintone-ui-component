@@ -457,6 +457,10 @@ class DateTime extends Control<DateTimeProps> {
     // rerender DateTextInput
     this._props.value = date;
     this.rerender(['dateTextInput']);
+    if (date === null && this._time) {
+      this._time = null;
+      this.rerender(['timeTextInput']);
+    }
   }
 
   private _onTimeClick(date: Date) {
