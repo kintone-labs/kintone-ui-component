@@ -201,14 +201,22 @@ const DateTime = ({
                     return;
                   }
                   const temporary = e.target.value ? new Date(parseStringToDate(e.target.value, dateFormat) as Date) : new Date();
+                  const dateValue = e.target.value ? new Date(parseStringToDate(e.target.value, dateFormat) as Date) : new Date();
                   temporary.setSeconds(timeDateValue.getSeconds());
                   temporary.setMinutes(timeDateValue.getMinutes());
                   temporary.setHours(timeDateValue.getHours());
-                  temporary.setDate(temporary.getDate());
+                  temporary.setDate(temporary.getDate() - 1);
+
+                  dateValue.setSeconds(timeDateValue.getSeconds());
+                  dateValue.setMinutes(timeDateValue.getMinutes());
+                  dateValue.setHours(timeDateValue.getHours());
 
                   setTimeDateValue(temporary);
-                  setPickerDisplay('block');
-                  setTimePickerDisplay('none');
+                  setTimeout(() => {
+                    setPickerDisplay('block');
+                    setTimePickerDisplay('none');
+                    setTimeDateValue(dateValue);
+                  }, 1);
                 }}
                 value={value !== null ? inputValue : ''}
                 onBlur={(e) => {
