@@ -52,8 +52,8 @@ describe('Unit test DateTime react', () => {
 
     await waitFor(() => {
       expect(piker).toHaveStyle('display: block;');
-    })
-    
+    });
+
     fireEvent.keyDown(datetimeInput, {key: 'Tab', code: 9});
     expect(piker).toHaveStyle('display: none;');
     done();
