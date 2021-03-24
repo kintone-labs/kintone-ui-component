@@ -60,6 +60,7 @@ class Attachment extends Control<AttachmentProps> {
       this.dropZoneElement.innerText = this._props.dropZoneText || '';
     }
     if (changedAttr.indexOf('files') !== -1 && Array.isArray(this._props.files)) {
+      this.listFileEl.innerHTML = '';
       this._props.files.forEach((file, index) => {
         const itemFile = new AttachmentFileItem({
           index: index,
@@ -109,7 +110,6 @@ class Attachment extends Control<AttachmentProps> {
 
   setFiles(files: FileObject[]) {
     this._props.files = files;
-    this.listFileEl.innerHTML = '';
     this.rerender(['files']);
   }
 
@@ -158,7 +158,6 @@ class Attachment extends Control<AttachmentProps> {
 
   private _removeFile(index: number) {
     this._props.files && this._props.files.splice(index, 1);
-    this.listFileEl.innerHTML = '';
     this.rerender(['files']);
     this._onFileRemove(this._props.files);
   }
