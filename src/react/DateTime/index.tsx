@@ -223,7 +223,13 @@ const DateTime = ({
                   const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date|null = null;
                   if (!e.target.value) {
-                    returnDate = null;
+                    const todayDate = new Date();
+                    todayDate.setSeconds(0);
+                    todayDate.setHours(timeDateValue.getHours());
+                    todayDate.setMinutes(timeDateValue.getMinutes());
+                    if (todayDate.getTime() !== validatedValue.getTime()) {
+                      returnDate = new Date(todayDate);
+                    }
                     setHasSelection(false);
                   } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
                     returnDate = new Date(validatedValue);
@@ -242,8 +248,10 @@ const DateTime = ({
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
                   ) {
                     setPickerDisplay('none');
-                    onChange && onChange(returnDate);
-                    setShowPickerError(false);
+                    if (returnDate) {
+                      onChange && onChange(returnDate);
+                      setShowPickerError(false);
+                    }
                   }
                 }}
                 onKeyDown={
