@@ -36,7 +36,7 @@ describe('Unit test DateTime react', () => {
     fireEvent.click(getByText('26'));
     expect(onChange).toBeCalledTimes(1);
   });
-  test('should show Date picker when the DateTime input is focus',async (done) => {
+  test('should show Date picker when the DateTime input is focus', async (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -78,7 +78,7 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: flex;');
   });
 
-  test('onKeyDown dateTextInput DateTime',async (done) => {
+  test('onKeyDown dateTextInput DateTime', async (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
