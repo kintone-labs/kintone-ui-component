@@ -158,6 +158,8 @@ class Attachment extends Control<AttachmentProps> {
 
   private _removeFile(index: number) {
     this._props.files && this._props.files.splice(index, 1);
+    this.listFileEl.innerHTML = '';
+    this.rerender(['files']);
     this._onFileRemove(this._props.files);
   }
 
