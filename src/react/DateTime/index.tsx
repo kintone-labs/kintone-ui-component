@@ -11,7 +11,7 @@ import '../../css/font.css';
 
 type DateTimeConstructorParameters = {
   value?: Date;
-  onChange?: (newDate: Date) => void;
+  onChange?: (newDate: Date | null) => void;
   locale?: 'ja' | 'en' | 'zh';
   dateFormat?: string;
   type?: 'date' | 'time' | 'datetime';
@@ -29,9 +29,6 @@ const DateTime = ({
   dateFormat = 'MM/dd/YYYY',
   type = 'datetime',
   timeFormat = 'HH:mm'}: DateTimeConstructorParameters) => {
-  if (value !== null && !(value instanceof Date)) {
-    throw new Error(Message.common.INVALID_ARGUMENT);
-  }
 
   let localeObj = ja;
   if (locale === 'en') {
@@ -40,17 +37,18 @@ const DateTime = ({
     localeObj = zh;
   }
   const validatedValue = useMemo(() => {
-    return value !== null ? value : new Date();
+    if (!value) return new Date();
+    return value;
   }, [value]);
-  const [defaultValue, setDefaultValue] = useState(value !== null ? value : new Date());
+  const [defaultValue, setDefaultValue] = useState(validatedValue);
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
   const [inputValue, setInputValue] = useState('');
-  const [timeValue, setTimeValue] = useState(format(value ? value : new Date(), timeFormat));
+  const [timeValue, setTimeValue] = useState(format(validatedValue, timeFormat));
   const [hasSelection, setHasSelection] = useState(true);
-  const [timeDateValue, setTimeDateValue] = useState(new Date(value ? value : new Date()));
+  const [timeDateValue, setTimeDateValue] = useState(new Date(validatedValue));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
@@ -202,9 +200,8 @@ const DateTime = ({
                     setPickerDisplay('block');
                     return;
                   }
-
-                  const temporary = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
-                  const dateValue = new Date(parseStringToDate(e.target.value, dateFormat) as Date);
+                  const temporary = e.target.value ? new Date(parseStringToDate(e.target.value, dateFormat) as Date) : new Date();
+                  const dateValue = e.target.value ? new Date(parseStringToDate(e.target.value, dateFormat) as Date) : new Date();
                   temporary.setSeconds(timeDateValue.getSeconds());
                   temporary.setMinutes(timeDateValue.getMinutes());
                   temporary.setHours(timeDateValue.getHours());
@@ -213,6 +210,7 @@ const DateTime = ({
                   dateValue.setSeconds(timeDateValue.getSeconds());
                   dateValue.setMinutes(timeDateValue.getMinutes());
                   dateValue.setHours(timeDateValue.getHours());
+
                   setTimeDateValue(temporary);
                   setTimeout(() => {
                     setPickerDisplay('block');
@@ -225,13 +223,7 @@ const DateTime = ({
                   const tempDate = parseStringToDate(e.target.value, dateFormat);
                   let returnDate: Date|null = null;
                   if (!e.target.value) {
-                    const todayDate = new Date();
-                    todayDate.setSeconds(0);
-                    todayDate.setHours(timeDateValue.getHours());
-                    todayDate.setMinutes(timeDateValue.getMinutes());
-                    if (todayDate.getTime() !== validatedValue.getTime()) {
-                      returnDate = new Date(todayDate);
-                    }
+                    returnDate = null;
                     setHasSelection(false);
                   } else if (tempDate instanceof Date && !isNaN(tempDate as any)) {
                     returnDate = new Date(validatedValue);
@@ -249,11 +241,9 @@ const DateTime = ({
                   if (
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
                   ) {
-                    if (returnDate) {
-                      onChange && onChange(returnDate);
-                      setShowPickerError(false);
-                    }
                     setPickerDisplay('none');
+                    onChange && onChange(returnDate);
+                    setShowPickerError(false);
                   }
                 }}
                 onKeyDown={
