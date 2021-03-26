@@ -1,0 +1,4 @@
+branches:
+  exclude:
+    - /^v0..*/
+    - /v0_dev/
