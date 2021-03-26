@@ -1,0 +1,29 @@
+# This is a configuration file to customize code analysis by Sider.
+#
+# For more information, see the documentation:
+# https://help.sider.review/getting-started/custom-configuration
+
+# Customize each tool. If analyses fail, try adjusting each option referencing the following example.
+linter:
+
+#   # Goodcheck example. See https://help.sider.review/tools/others/goodcheck
+#   goodcheck:
+#     root_dir: project/
+#     config: config/goodcheck.yml
+#     target:
+#       - src/
+#       - test/
+
+# Ignore specific files. Example:
+# ignore:
+#   - "*.pdf"
+#   - "*.mp4"
+#   - "*.min.*"
+#   - "images/**"
+
+# Exclude specific branches. Example:
+# branches:
+#   exclude:
+#     - master
+#     - development
+#     - /^release-.*$/
