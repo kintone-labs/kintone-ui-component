@@ -4,7 +4,6 @@
 # https://help.sider.review/getting-started/custom-configuration
 
 # Customize each tool. If analyses fail, try adjusting each option referencing the following example.
-linter:
 
 #   # Goodcheck example. See https://help.sider.review/tools/others/goodcheck
 #   goodcheck:
@@ -27,6 +26,9 @@ linter:
 #     - master
 #     - development
 #     - /^release-.*$/
+linter:
+   goodcheck:
+     config: goodcheck.yml
 branches:
   exclude:
     - /^v0..*/
