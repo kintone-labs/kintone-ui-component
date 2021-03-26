@@ -1,0 +1,7 @@
+linter:
+  goodcheck:
+    config: goodcheck.yml
+branches:
+ exclude:
+   - /^v0..*/
+   - v0_dev
