@@ -30,4 +30,4 @@ linter:
 branches:
   exclude:
     - /^v0..*/
-    - /v0_dev/
+    - v0_dev
