@@ -48,13 +48,20 @@ const DateTime = ({
   const [inputValue, setInputValue] = useState('');
   const [timeValue, setTimeValue] = useState(value === null ? '' : format(validatedValue, timeFormat));
   const [hasSelection, setHasSelection] = useState(value !== null);
-  const [hasSelectionTime, setHasSelectionTime] = useState(true);
+  const [hasSelectionTime, setHasSelectionTime] = useState(value !== null);
   const [timeDateValue, setTimeDateValue] = useState(new Date(validatedValue));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (!value) {
+      setHasSelectionTime(false);
+      setHasSelection(false);
+    }
+  }, [value]);
   const _changeMinutesBy = (minutes: number, timeInput: HTMLInputElement) => {
     const newTime = new Date(timeDateValue);
     newTime.setSeconds(0);
