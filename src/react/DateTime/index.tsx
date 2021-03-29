@@ -36,25 +36,35 @@ const DateTime = ({
   } else if (locale === 'zh') {
     localeObj = zh;
   }
-  const validatedValue = useMemo(() => {
+
+  const _validateValue = () => {
+    if (value === null) {
+      setHasSelection(false);
+      setHasSelectionTime(false);
+    }
+
     if (!value) return new Date();
     return value;
-  }, [value]);
-  const [defaultValue, setDefaultValue] = useState(validatedValue);
+  };
+
   const [pickerDisplay, setPickerDisplay] = useState('none');
   const [showPickerError, setShowPickerError] = useState(false);
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
   const [inputValue, setInputValue] = useState('');
-  const [timeValue, setTimeValue] = useState(value === null ? '' : format(validatedValue, timeFormat));
-  const [hasSelection, setHasSelection] = useState(value !== null);
-  const [hasSelectionTime, setHasSelectionTime] = useState(true);
-  const [timeDateValue, setTimeDateValue] = useState(new Date(validatedValue));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
+  const [hasSelection, setHasSelection] = useState(value !== null);
+  const [hasSelectionTime, setHasSelectionTime] = useState(value !== null);
+  const validatedValue = useMemo(_validateValue, [value]);
+  const [defaultValue, setDefaultValue] = useState(validatedValue);
+  const [timeValue, setTimeValue] = useState(value === null ? '' : format(validatedValue, timeFormat));
+  const [timeDateValue, setTimeDateValue] = useState(new Date(validatedValue));
+
   const wrapperRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const calendarRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+
   const _changeMinutesBy = (minutes: number, timeInput: HTMLInputElement) => {
     const newTime = new Date(timeDateValue);
     newTime.setSeconds(0);
