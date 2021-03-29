@@ -46,8 +46,9 @@ const DateTime = ({
   const [dateError, setDateError] = useState('');
   const [timePickerDisplay, setTimePickerDisplay] = useState('none');
   const [inputValue, setInputValue] = useState('');
-  const [timeValue, setTimeValue] = useState(format(validatedValue, timeFormat));
-  const [hasSelection, setHasSelection] = useState(true);
+  const [timeValue, setTimeValue] = useState(value === null ? '' : format(validatedValue, timeFormat));
+  const [hasSelection, setHasSelection] = useState(value !== null);
+  const [hasSelectionTime, setHasSelectionTime] = useState(true);
   const [timeDateValue, setTimeDateValue] = useState(new Date(validatedValue));
   const [isDisableBtn, setDisableBtn] = useState(isDisabled);
   const [typeDateTime, setTypeDateTime] = useState(type);
@@ -248,6 +249,9 @@ const DateTime = ({
                     relatedTarget !== calendar && !calendar.contains(relatedTarget as HTMLElement)
                   ) {
                     setPickerDisplay('none');
+                    if (timeValue === '' || value === null) {
+                      setHasSelectionTime(false);
+                    }
                     if (returnDate) {
                       onChange && onChange(returnDate);
                       setShowPickerError(false);
@@ -296,6 +300,9 @@ const DateTime = ({
                       tempDate.setHours(timeDateValue.getHours());
                       tempDate.setMinutes(timeDateValue.getMinutes());
                       tempDate.setSeconds(0);
+                      if (timeValue === '' || value === null) {
+                        setHasSelectionTime(false);
+                      }
                       onChange && onChange(tempDate);
                       if (!showPickerError) {
                         setInputValue(format(tempDate, dateFormat));
@@ -360,7 +367,7 @@ const DateTime = ({
                   }
                 }
               }
-              value={value !== null ? timeValue : ''}
+              value={(value !== null) && hasSelectionTime ? timeValue : ''}
               onChange={(e)=>{
                 const timeTextInput = e.target as HTMLInputElement;
                 let newTime = parseStringToTime(timeTextInput.value);
@@ -424,6 +431,7 @@ const DateTime = ({
                 pickerDisplay={timePickerDisplay}
                 onTimeClick={
                   (timePickerDate: Date) => {
+                    setHasSelectionTime(true);
                     let tempDate = new Date();
                     if (timeDateValue) tempDate = new Date(timeDateValue);
                     value && tempDate.setDate(value.getDate());
