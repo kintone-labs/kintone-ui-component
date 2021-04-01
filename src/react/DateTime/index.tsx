@@ -57,10 +57,8 @@ const DateTime = ({
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (!value) {
-      setHasSelectionTime(false);
-      setHasSelection(false);
-    }
+    setHasSelectionTime(!!value);
+    setHasSelection(!!value);
   }, [value]);
   const _changeMinutesBy = (minutes: number, timeInput: HTMLInputElement) => {
     const newTime = new Date(timeDateValue);
@@ -317,12 +315,8 @@ const DateTime = ({
                       setHasSelection(true);
                       setShowPickerError(false);
                     } else if (previousDate) {
-                      tempDate.setHours(timeDateValue.getHours());
-                      tempDate.setMinutes(timeDateValue.getMinutes());
-                      tempDate.setSeconds(0);
-                      onChange && onChange(tempDate);
+                      onChange && onChange(null);
                       setInputValue('');
-                      setHasSelection(false);
                       setShowPickerError(false);
                     }
                     setPickerDisplay('none');
