@@ -133,8 +133,9 @@ describe('Unit test DateTime react', () => {
 
     const noneBtn = container.getElementsByClassName('none calendar-button-control')[0];
     fireEvent.keyUp(noneBtn);
-    expect(onChange).toHaveBeenNthCalledWith(2, noneDate);
+    expect(onChange).toHaveBeenCalledWith(null);
   });
+
   test('Should change date successfully when clicking into the time picker', () => {
     const onChange = jest.fn((date: Date) => {
       expect(date.getHours()).toEqual(0);

@@ -51,9 +51,9 @@ class DateTime extends Control<DateTimeProps> {
     if (this._props.type === 'date' || this._props.type === 'datetime') {
       this.setLocale(this._props.locale);
     }
-    if (this._props.value && (this._props.type === 'time' || this._props.type === 'datetime')) {
+    if ((this._props.value || this._props.value === null) && (this._props.type === 'time' || this._props.type === 'datetime')) {
       this._time = this._props.value;
-      this._time.setSeconds(0);
+      this._time && this._time.setSeconds(0);
     }
   }
 
