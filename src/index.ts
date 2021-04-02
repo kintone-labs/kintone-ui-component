@@ -1,3 +1,4 @@
+import "@webcomponents/webcomponentsjs/webcomponents-bundle";
 export * from "./button";
 export * from "./checkbox";
 export * from "./dropdown";
