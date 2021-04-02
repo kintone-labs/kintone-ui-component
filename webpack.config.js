@@ -8,6 +8,7 @@ module.exports = {
     libraryTarget: "umd",
     filename: "kuc.min.js"
   },
+  target: ["web", "es5"],
   module: {
     rules: [
       {
