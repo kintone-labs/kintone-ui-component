@@ -1,7 +1,6 @@
-import "@webcomponents/webcomponentsjs/webcomponents-bundle.js";
 import { Checkbox } from "kintone-ui-component";
 // eslint-disable-next-line no-undef
-const space = kintone.app.getHeaderSpaceElement();
+const space = document.getElementsByTagName("BODY")[0];
 const checkbox = new Checkbox({
   label: "Fruit",
   requiredIcon: true,
