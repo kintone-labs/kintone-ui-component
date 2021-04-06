@@ -57,8 +57,8 @@ const DateTime = ({
   const timeRef: React.RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
   useEffect(() => {
-    setHasSelectionTime(!!value);
-    setHasSelection(!!value);
+    setHasSelectionTime(value !== null);
+    setHasSelection(value !== null);
   }, [value]);
   const _changeMinutesBy = (minutes: number, timeInput: HTMLInputElement) => {
     const newTime = new Date(timeDateValue);
