@@ -3,7 +3,7 @@ repo_url: https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev
 site_url: https://kintone-labs.github.io/kintone-ui-component/
 edit_uri: ''
 
-google_analytics: ['UA-180303573-1', 'kintone.github.io/kintone-ui-component']
+google_analytics: ['UA-180303573-1', 'kintone-labs.github.io/kintone-ui-component']
 
 theme:
   name: 'material'
@@ -49,4 +49,4 @@ extra_javascript:
 extra_css:
   - 'style/extra.css'
 extra:
-    version: '0.7.7'
+    version: '0.7.8'
