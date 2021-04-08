@@ -5,6 +5,7 @@ describe('Unit test IconButton render', () => {
   test('Render successfully without props', () => {
     const iconButton = new IconButton();
     const container = iconButton.render();
+    document.body.appendChild(container);
     expect(['kuc-icon-btn', 'normal', 'gray', 'circle'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.length).toBe(4);
     expect(container).not.toBeDisabled();
@@ -40,6 +41,7 @@ describe('Unit test IconButton render', () => {
       isVisible: 'abc'
     });
     const container = iconButton.render();
+    document.body.appendChild(container);
     expect(['kuc-icon-btn', 'normal', 'gray', 'circle'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.length).toBe(4);
     expect(container).not.toBeDisabled();

@@ -33,6 +33,7 @@ describe('Unit test CheckBox show', () => {
       isVisible: false
     });
     const container = checkBox.render();
+    document.body.appendChild(container);
     checkBox.show();
     expect(container).toBeVisible();
   });

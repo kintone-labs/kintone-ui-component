@@ -19,6 +19,7 @@ describe('Unit test Dropdown render', () => {
   test('Render successfully without props', () => {
     const dropdown = new Dropdown();
     const container = dropdown.render();
+    document.body.appendChild(container);
     expect(container.className).toBe('kuc-dropdown-container');
     expect(container.classList.length).toBe(1);
     expect(container.getAttribute('disabled')).toBe(null);
@@ -91,6 +92,7 @@ describe('Unit test Dropdown render', () => {
       isVisible: 'abc'
     });
     const container = dropdown.render();
+    document.body.appendChild(container);
     expect(container.className).toBe('kuc-dropdown-container');
     expect(container.classList.length).toBe(1);
     expect(container.getAttribute('disabled')).toBe(null);
@@ -100,6 +102,7 @@ describe('Unit test Dropdown render', () => {
   test('Render successfully with showing and hiding selection list', () => {
     const dropdown = new Dropdown({});
     const container = dropdown.render();
+    document.body.appendChild(container);
 
     const subcontainer = container.querySelector('.kuc-dropdown-sub-container') as HTMLDivElement;
     const outer = container.querySelector('.kuc-dropdown') as HTMLDivElement;

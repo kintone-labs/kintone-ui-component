@@ -18,6 +18,7 @@ describe('Unit test MultipleChoice render', () => {
   test('Render successfully without props', () => {
     const multipleChoice = new MultipleChoice();
     const container = multipleChoice.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeVisible();
@@ -96,6 +97,7 @@ describe('Unit test MultipleChoice render', () => {
       isVisible: true
     });
     const container = multipleChoice.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeVisible();
@@ -134,6 +136,7 @@ describe('Unit test MultipleChoice render', () => {
       isVisible: 'abc'
     });
     const container = multipleChoice.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-multiple-list'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.classList.contains('kuc-list-item-disable')).toBe(false);

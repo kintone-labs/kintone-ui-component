@@ -14,6 +14,8 @@ describe('Unit test TextArea show', () => {
   test('show TextArea with full props component', () => {
     const txtArea1 = new TextArea({value: 'textarea', isVisible: false});
     txtArea1.show();
-    expect(txtArea1.render()).toBeVisible();
+    const container = txtArea1.render();
+    document.body.appendChild(container);
+    expect(container).toBeVisible();
   });
 });
