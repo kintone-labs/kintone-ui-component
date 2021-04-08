@@ -35,6 +35,7 @@ describe('Unit test MultipleChoice show', () => {
       isVisible: false
     });
     const container = multipleChoice.render();
+    document.body.appendChild(container);
     multipleChoice.show();
     expect(container).toBeVisible();
   });

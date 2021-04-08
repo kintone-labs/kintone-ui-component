@@ -32,6 +32,7 @@ describe('Unit test CheckBox onEvent', () => {
       value: [expectedValues[0], expectedValues[1]],
     });
     const container = checkBox.render();
+    document.body.appendChild(container);
     checkBox.on('change', (e: string[]) => {
       expect(e).toEqual([expectedValues[1]]);
     });

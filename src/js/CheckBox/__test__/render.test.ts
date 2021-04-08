@@ -18,6 +18,7 @@ describe('Unit test CheckBox render', () => {
   test('Render successfully without props', () => {
     const checkBox = new CheckBox();
     const container = checkBox.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-checkbox'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeVisible();
@@ -103,6 +104,7 @@ describe('Unit test CheckBox render', () => {
       isVisible: true
     });
     const container = checkBox.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-checkbox'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeVisible();
@@ -142,6 +144,7 @@ describe('Unit test CheckBox render', () => {
       isVisible: 'abc'
     });
     const container = checkBox.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-checkbox'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).toBeVisible();

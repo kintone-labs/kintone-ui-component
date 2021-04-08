@@ -16,6 +16,7 @@ describe('unit test NotifyPopup render', () => {
   test('Render successfully without option', () => {
     const notifyPopup = new NotifyPopup();
     const container = notifyPopup.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-notify', 'bg-danger'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.getElementsByClassName('kuc-close-button')).toBeTruthy;
@@ -44,6 +45,7 @@ describe('unit test NotifyPopup render', () => {
       isVisible: true
     });
     const container = notifyPopup.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-notify', 'bg-info'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.textContent).toBe('testString');
@@ -59,6 +61,7 @@ describe('unit test NotifyPopup render', () => {
       isVisible: 'abc'
     });
     const container = notifyPopup.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-notify', 'bg-danger'].every(c => container.classList.contains(c))).toBe(true);
     expect(container.textContent).toBe('');

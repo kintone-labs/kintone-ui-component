@@ -15,6 +15,7 @@ describe('Unit test NotifyPopup show', () => {
   test('Function show run successfully', () => {
     const notifypopup = new NotifyPopup({isVisible: false});
     const container = notifypopup.render();
+    document.body.appendChild(container);
     notifypopup.show();
     expect(container).toBeVisible();
   });
