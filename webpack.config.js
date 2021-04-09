@@ -1,12 +1,15 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.bundle.ts",
+  entry: {
+    "kuc.polyfill": "./src/polyfill/index.ts",
+    "kuc.min": "./src/index.bundle.ts"
+  },
   output: {
     path: path.resolve(__dirname, "umd"),
     library: "Kuc",
     libraryTarget: "umd",
-    filename: "kuc.min.js"
+    filename: "[name].js"
   },
   target: ["web", "es5"],
   module: {

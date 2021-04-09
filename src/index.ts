@@ -1,4 +1,4 @@
-export * from "./webcomponents";
+export * from "./polyfill";
 export * from "./button";
 export * from "./checkbox";
 export * from "./dropdown";
