@@ -147,8 +147,8 @@
             id="current_vesion"
             style="text-decoration: underline;"
             href="../../versions"
-            data-version="0.7.7"
-          >v0.7.7</a>
+            data-version="0.7.8"
+          >v0.7.8</a>
         </div>
       </div>
 
@@ -672,7 +672,7 @@
 <pre><code>$ mkdir my-customization
 $ cd my-customization
 $ npm init -y
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli babel-loader @babel/core
+$ npm install cross-env css-loader style-loader webpack@^4.46.0 webpack-cli@^3.3.12 babel-loader @babel/core @babel/preset-env@^7.2.3 --save
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 </code></pre>
@@ -706,7 +706,12 @@ module.exports = (env = {}) =&gt; {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              &quot;presets&quot;: [
+                &quot;@babel/env&quot;
+              ]
+            }
           }
         },
         {
@@ -724,7 +729,7 @@ module.exports = (env = {}) =&gt; {
 </code></pre>
 <p><strong>Step</strong> 4: Add a script for buiding by webpack to package.json</p>
 <pre><code>&quot;scripts&quot;: {
-  &quot;build-webpack&quot;: &quot;cross-env NODE_ENV=production webpack&quot;,
+  &quot;build-webpack&quot;: &quot;rm -rf dist &amp;&amp; webpack --mode production&quot;,
   ...
 }
 </code></pre>
