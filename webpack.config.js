@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    "kuc.polyfill.min": "./src/polyfill/index.ts",
+    "polyfill.min": "./src/polyfill/index.ts",
     "kuc.min": "./src/index.bundle.ts"
   },
   output: {

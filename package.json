@@ -55,7 +55,7 @@
   "dependencies": {
     "@types/dompurify": "^2.0.3",
     "@types/uuid": "^8.3.0",
-    "@webcomponents/webcomponentsjs": "^2.4.3",
+    "@webcomponents/webcomponentsjs": "^2.5.0",
     "core-js": "^3.6.5",
     "dompurify": "^2.2.6",
     "lit-element": "^2.3.1",
