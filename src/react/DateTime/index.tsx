@@ -302,9 +302,6 @@ const DateTime = ({
                         setHasSelectionTime(false);
                       }
                       onChange && onChange(tempDate);
-                      if (!showPickerError) {
-                        setInputValue(format(tempDate, dateFormat));
-                      }
                       setHasSelection(true);
                       setShowPickerError(false);
                     } else if (previousDate) {
@@ -432,9 +429,6 @@ const DateTime = ({
                     value && tempDate.setMonth(value.getMonth());
                     tempDate.setHours(timePickerDate.getHours(), timePickerDate.getMinutes());
                     tempDate.setSeconds(0);
-
-                    setTimeValue(format(tempDate, timeFormat));
-                    setTimeDateValue(new Date(tempDate));
                     onChange && onChange(tempDate);
                     setTimePickerDisplay('none');
                   }
