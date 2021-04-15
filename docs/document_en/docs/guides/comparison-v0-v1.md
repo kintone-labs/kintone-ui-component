@@ -1,27 +1,27 @@
 ---
 id: comparison-v0-v1
-title: v0 と v1 書き方の違い解説
-sidebar_label: v0 と v1 書き方の違い解説
+Title: A commentary on the difference between V0 and V1 writing
+sidebar_Label: A commentary on the difference between V0 and V1 writing
 ---
 
-## 概要
-**kintone UI Component** の v1 は、提供コンポーネントの精査やアクセシビリティ対応に加え、開発者がより使いやすいように内部設計の見直しを行っています。
+## Overview
+**kintone UI Component**  In addition to the scrutiny and accessibility of the components provided by V1, the internal design has been reviewed to make it easier for developers to use.
 
-ここでは、 kintone アプリのカスタマイズで使うにあたり、 v0 と v1 のコードの書き方の違いと、 v1 でより使いやすくなったポイントについて解説します。
+This section explains the differences between the code written in V0 and V1 and the points that are easier to use in V1 in customizing the kintone app.
 
-## 完成イメージ
-例として、 kintone UI Component を使ってレコードの一覧画面に検索ボタンを作るコードでご紹介します。
-こちらが画面の完成イメージです。
+## Completed image
+For example, you can use the kintone UI Component to create a search button on the "Record list" screen.
+Here is the image of the finished screen.
 
-![検索ボックス](assets/v1_search_box.png) 
+![Search box](assets/v1_search_box.png) 
 
-## JavaScript/CSS カスタマイズ
+## JavaScript and CSS Customization
 
-早速ですが、まずはコードを見てみましょう。
-ここでは kintone UI Component の UMD ファイルを使用しています。
-ファイルのアップロード方法などは、 [Quick Start](../getting-started/quick-start.md) をご覧ください。
+Let's start by looking at the code.
+The kintone UI Component UMD file is used here.
+How to upload a file [Quick Start](../getting-started/quick-start.md)  For details.
 
-### v0 を使った場合
+### When V0 is used
 
 ```javascript
 // 増殖バグを防ぐ処理
@@ -31,7 +31,7 @@ if (document.getElementById('my_index_text') !== null) {
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの表示
+// Search boxの表示
 const text = new kintoneUIComponent.Text({
   placeholder: 'キーワードを入力してください'
 });
@@ -52,7 +52,7 @@ header.appendChild(button.render());
 text.element.id = 'my_index_text';
 ```
 
-### v1 を使った場合
+### When using V1
 
 ```javascript
 // 増殖バグを防ぐ処理
@@ -78,65 +78,65 @@ header.appendChild(text);
 header.appendChild(button);    
 ```
 
-## v0 と v1 の違いを解説
+## The difference between V0 and V1 is explained
 
-それでは、 v0 と v1 ではどのようにコードの書き方が変わってくるのでしょうか。
+So how does the code change in V0 and v1?
 
-主な違いは以下です。
-- ネームスペースの名前が簡素化
-- render() メソッドが不要に
-- プロパティを利用して値の更新が可能に
-- パーツ並びの利便性向上
-- プロパティの見直し
-- Alert と Label コンポーネントのプロパティ化
+The main difference is as follows:
+- Name Space Simplified
+- Render () method is not required.
+- Property can be used to update values
+- Improve the convenience of parts
+- Property reviews
+- Property of Alert and Label components
 
-ひとつずつ解説していきます。
+This section explains each one at a time.
 
 ---
-#### ネームスペースの名前が簡素化
+#### Name Space Simplified
 ---
-v1 では、インスタンスの呼び出し方が new kintoneUIComponent から **new Kuc** となり、より簡潔なコードが書けるようになりました。
+In V1, you can call the instance from the new kintoneUIComponent **new Kuc**  So that you can write more concise code.
 
-- v0 のコード
+- Code in V0
 ```
 const text = new kintoneUIComponent.Text({
   placeholder: 'キーワードを入力してください'
 });
 ```
 
-- v1 のコード
+- V1 Code
 ```
 const text = new Kuc.Text({
   placeholder: 'キーワードを入力してください'
 });
 ```
 
-また、これにより同一アプリに v0 と v1 の UMD が読み込まれた際に、どちらかが上書きされてしまうというリスクがなくなりました。
+In addition, there is no risk that one of them will be overwritten when the V0 and V1 UMD are loaded in the same app.
 
 ---
-#### render() メソッドが不要に
+#### Render () method is not required.
 ---
-v0 では、内部実装の都合上、appendChild する際に render() メソッドを用いてコンポーネントの Element を返す必要がありました。
+In V0, the Element of the component must be returned using the render () method in appendChild for internal implementation reasons.
 
-v1 では、設計を見直したことで render() が不要となり、よりシンプルな書き方でコンポーネントを描画できるようになりました。
+In V1, render () is not required by reviewing the design, and the components can be drawn in simpler ways of writing.
 
-- v0 のコード
+- Code in V0
 ```
 header.appendChild(text.render());
 ```
 
-- v1 のコード
+- V1 Code
 ```
 header.appendChild(text);
 ```
 
 ---
-#### プロパティを利用して値の更新が可能に
+#### Property can be used to update values
 ---
-v0 では、値を更新する場合、メソッドを別途呼び出す必要がありました。
-v1 では、プロパティを利用して値を更新することができます。
+In V0, when a value is updated, a method must be called separately.
+In V1, you can use properties to update values.
 
-- v0 のコード
+- Code in V0
 ```
 const button = new kintoneUIComponent.Button({
   type: 'submit',
@@ -147,7 +147,7 @@ const button = new kintoneUIComponent.Button({
 button.setText('登録');
 ```
 
-- v1 のコード
+- V1 Code
 ```
 const button = new Kuc.Button({
   type: 'submit',
@@ -160,33 +160,33 @@ button.text = '登録';
 ```
 
 ---
-#### パーツ並びの利便性向上
+#### Improve the convenience of parts
 ---
-v0 では、デフォルトではパーツが縦に並ぶ仕様になっており、横並びにするためには CSS などで調整する必要がありました。
+In V0, the specifications of the parts are lined up vertically by default, and CSS is required to be adjusted in the same order.
 
 ![v0](assets/v0_search_box.png) 
 
-- style を調整する必要がある
+- Style must be adjusted
 ```
 // textとbuttonを横並びにする。
 text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-v1 では内部仕様を見直し、ほとんどのコンポーネントがデフォルトで横並びになったことで、調整が不要になりました。  
-（利便性を考え、一部のコンポーネントではデフォルトが縦並びに設定されています。）
+In V1, the internal specifications are reviewed, and most of the components are side by side by default, so no adjustment is required.  
+(For convenience, some components have default height and are set. ）
 
 ![検索ボックス](assets/v1_search_box.png)
 
 ---
-#### プロパティの見直し
+#### Property reviews
 ---
-v1 では各コンポーネントのプロパティについても精査し、必要に応じてプロパティの見直し・追加を行いました。
+In V1, the properties of each component are scrutinized, and the properties are reviewed and added as needed.
 
-例えば、v1 で新規に追加された `id` プロパティを使うことで、コンポーネントに id を付与できます。
-付与した id を使って、要素を取得するといったことが可能になります。
+For example, when a new entry is added in V1, `id`  You can add an ID to a component by using the property.
+You can use the ID to retrieve the element.
 
-- v0 のコード
+- Code in V0
 ```
 // 増殖バグを防ぐ処理
 if (document.getElementById('my_index_text') !== null) {
@@ -201,7 +201,7 @@ const text = new kintoneUIComponent.Text({
 text.element.id = 'my_index_text';
 ```
 
-- v1 のコード
+- V1 Code
 ```
 // 増殖バグを防ぐ処理（プロパティで付与したid名を利用可能）
 if (document.getElementById('kuc_text') !== null) {
@@ -215,18 +215,18 @@ const text = new Kuc.Text({
 });
 ```
 ---
-#### Alert と Label コンポーネントのプロパティ化
+#### Property of Alert and Label components
 ---
-v0 ではコンポーネントにエラーメッセージを表示させたい時や、ラベルを表示させたい時は、 Alert や Label などの別コンポーネントで実装する必要がありました。
+In V0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert and Label.
 
-v1 ではプロパティとして  `error` や `label` が用意され、各コンポーネントで扱えるようになりました。        
-例として、Text コンポーネントの `error` プロパティを見てみましょう。
+As a property in V1  `error`  And `label`  Are available, and can be used by each component.        
+For example, the Text component `error`  Let's take a look at the property.
 
-冒頭で、 KUC を使って検索ボックスを作成するコードをご紹介しましたが、ボタンをクリックしても今のままでは何も反応しません。
+In the beginning, I introduced a code to use KUC to create the search box, but when you click the button, nothing is left to respond.
 
-そこで、ボタンクリック時に、テキストの入力文字をチェックして全角以外ならエラーメッセージを表示させるという処理を入れてみます。
+Then, when the button is clicked, the text input character is checked and the error message is displayed only when the full width is added.
 
-以下がコードです。
+Here is a code.
 
 ```
 const button = new Kuc.Button({
@@ -252,22 +252,22 @@ button.addEventListener('click', event => {
 
 ```
 
-このコードでは、クリックイベント内で、 text.value で値を取得し、正規表現を利用して値のチェックをしています。
-チェックの結果、全角以外の値であればエラーメッセージを表示して、処理を中断するという流れです。
+In this code, in the Click event, the value is retrieved in Text.value, and the value is checked using regular expressions.
+If the result of the check is not full-width, the error message is displayed and the process is interrupted.
 
-エラーメッセージの表示に利用しているのが、 Text の `error` プロパティです。
+The error message is used to display the Text `error`  The property.
 
-メッセージの初期化（エラーメッセージの非表示）も、今回であれば text.error に空文字列を代入するだけなので、簡潔に書くことができます。
+When you initialize the message (hide the error message), you can write it in a concise manner, because only an empty string is assigned to Text.error.
 
 ![search_box_error](assets/v1_search_box_error.png)
 
 
-## おわりに
+## Conclusion
 
-いかがでしたでしょうか。
-進化した kintone UI Component を使って、これまで以上にスマートな kintone 開発を体験していただければ幸いです。
+How did it work?
+We hope you will experience smarter kintone development than ever before using the evolved kintone UI Component.
 
-> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。  
-> また、カスタマイズに使用した kintone UI Component のバージョンは、v0.7.4 および v1.0.0 です。
+> This article will be reviewed by kintone and Google Chrome as of February, 2021.  
+> In addition, the version of kintone UI Component that is used for customization is v0.7.4 and v1.0.0.
 
-> v0 のドキュメントは別サイトになりますので、[こちら](https://kintone-labs.github.io/kintone-ui-component/latest/)よりご確認ください。
+> The documentation for V0 is a separate site.[Here](https://kintone-labs.github.io/kintone-ui-component/latest/)Please check.
