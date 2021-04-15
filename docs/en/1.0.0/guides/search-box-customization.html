@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>検索ボックスカスタマイズ · kintone UI Component</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概要"/><meta name="docsearch:version" content="1.0.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="検索ボックスカスタマイズ · kintone UI Component"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kintone-ui-component.netlify.app/"/><meta property="og:description" content="## 概要"/><meta property="og:image" content="https://kintone-ui-component.netlify.app/img/kuc_box_yellow.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kintone-ui-component.netlify.app/img/kuc_box_yellow_twitter.png"/><link rel="shortcut icon" href="/img/kuc_box_yellow.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kintone-ui-component.netlify.app/blog/atom.xml" title="kintone UI Component Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kintone-ui-component.netlify.app/blog/feed.xml" title="kintone UI Component Blog RSS Feed"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6E92QWQ8G"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'G-L6E92QWQ8G');
+            </script><script type="text/javascript" src="/js/extra.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-button.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/kuc_logo_white.png" alt="kintone UI Component"/></a><a href="/en/versions"><h3>1.0.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/1.0.0/getting-started/quick-start" target="_self">Documentation</a></li><li class=""><a href="/blog/" target="_self">Releases</a></li><li class=""><a href="https://github.com/kintone-labs/kintone-ui-component" target="_blank">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ja/1.0.0/guides/search-box-customization">日本語</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Guides</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/getting-started/quick-start">Quick Start</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Desktop</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/button">Button</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/checkbox">Checkbox</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/dropdown">Dropdown</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/multichoice">MultiChoice</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/notification">Notification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/radio-button">RadioButton</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/spinner">Spinner</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/text">Text</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/desktop/textarea">TextArea</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Mobile</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-button">MobileButton</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-checkbox">MobileCheckbox</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-notification">MobileNotification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-radio-button">MobileRadioButton</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-text">MobileText</a></li><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/components/mobile/mobile-textarea">MobileTextArea</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/1.0.0/guides/comparison-v0-v1">v0 と v1 書き方の違い解説</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/1.0.0/guides/search-box-customization">検索ボックスカスタマイズ</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">検索ボックスカスタマイズ</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概要"></a><a href="#概要" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概要</h2>
+<p>検索ボックスの作り方を kintone UI Component の Text コンポーネントと Button コンポーネント、Notification コンポーネントを使って説明します。</p>
+<h2><a class="anchor" aria-hidden="true" id="完成イメージ"></a><a href="#完成イメージ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>完成イメージ</h2>
+<p>検索ボックスの完成イメージは、次の通りです。</p>
+<h4><a class="anchor" aria-hidden="true" id="デスクトップ版"></a><a href="#デスクトップ版" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>デスクトップ版</h4>
+<p><img src="/docs/assets/desktop_search_box.png" alt="検索ボックス(デスクトップ)"></p>
+<h4><a class="anchor" aria-hidden="true" id="モバイル版"></a><a href="#モバイル版" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>モバイル版</h4>
+<p><img src="/docs/assets/mobile_search_box.png" alt="検索ボックス(モバイル)"></p>
+<h2><a class="anchor" aria-hidden="true" id="javascriptcss-カスタマイズ"></a><a href="#javascriptcss-カスタマイズ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript/CSS カスタマイズ</h2>
+<p>kintone UI Component の UMD ファイルをアプリに読み込んだ上で、以下のような実装をした JavaScript ファイルをアップロードします。<br>
+ファイルのアップロード方法などは、 <a href="/docs/en/1.0.0/getting-started/quick-start">Quick Start</a> をご覧ください。</p>
+<h3><a class="anchor" aria-hidden="true" id="検索ボックスの表示"></a><a href="#検索ボックスの表示" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>検索ボックスの表示</h3>
+<p>検索ボックスを表示するために、Text コンポーネントと Button コンポーネントを使います。<br>
+Text コンポーネントの placeholder プロパティを使うと、入力内容を説明することができます。<br>
+モバイル対応をしたい場合は、モバイル用のコンポーネント MobileButton を呼び出すと同じように実装できます。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> header = kintone.app.getHeaderMenuSpaceElement();
+
+<span class="hljs-comment">// 検索ボックスの入力欄とボタンの表示</span>
+<span class="hljs-keyword">const</span> text = <span class="hljs-keyword">new</span> Kuc.Text({
+  <span class="hljs-attr">placeholder</span>: <span class="hljs-string">'キーワードを入力してください'</span>,
+  <span class="hljs-attr">id</span>: <span class="hljs-string">'kuc_text'</span>
+});
+  
+<span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Kuc.Button({
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'submit'</span>,
+  <span class="hljs-attr">text</span>: <span class="hljs-string">'検索'</span>,
+  <span class="hljs-attr">id</span>: <span class="hljs-string">'kuc_button'</span>
+});
+header.appendChild(text);
+header.appendChild(button);    
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="検索文字のチェック"></a><a href="#検索文字のチェック" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>検索文字のチェック</h3>
+<p>Button コンポーネントは、click イベントを指定することができます。<br>
+ここでは以下のような処理を入れています。</p>
+<ul>
+<li>ボタンをクリックした時に、入力された文字が全角文字か判定</li>
+<li>入力値が全角以外の場合、error プロパティにエラーメッセージを代入して表示</li>
+<li>error プロパティに空文字を代入して、表示メッセージを初期化</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Kuc.Button({
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'submit'</span>,
+  <span class="hljs-attr">text</span>: <span class="hljs-string">'検索'</span>,
+  <span class="hljs-attr">id</span>: <span class="hljs-string">'kuc_button'</span>
+});
+
+<span class="hljs-comment">// 表示したボタンに click イベントの処理を追加</span>
+button.addEventListener(<span class="hljs-string">'click'</span>, event =&gt; {      
+  <span class="hljs-keyword">const</span> keyword = text.value;
+  <span class="hljs-keyword">const</span> errorMessage = <span class="hljs-string">'全角のみ入力できます'</span>;
+  <span class="hljs-comment">// 表示したメッセージの初期化</span>
+  text.error = <span class="hljs-string">''</span>; 
+  
+  <span class="hljs-comment">// 全角文字の判定</span>
+  <span class="hljs-keyword">if</span> (!keyword.match(<span class="hljs-regexp">/^[^\x01-\x7E\xA1-\xDF]+$/</span>)) {
+    <span class="hljs-comment">// 全角以外ならエラーメッセージを表示して処理を中断する</span>
+    text.error = errorMessage;
+    <span class="hljs-keyword">return</span>;
+  }
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="コンポーネントの増殖バグ対策"></a><a href="#コンポーネントの増殖バグ対策" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コンポーネントの増殖バグ対策</h3>
+<p>id プロパティを付与して、既にコンポーネントが表示されているかどうかを判定し、増殖バグを防ぐ対応をしています。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// プロパティで付与した id を利用して増殖バグを防ぐ</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'kuc_text'</span>) !== <span class="hljs-literal">null</span>) {
+  <span class="hljs-keyword">return</span> event;
+}
+
+<span class="hljs-keyword">const</span> header = kintone.app.getHeaderMenuSpaceElement();
+<span class="hljs-keyword">const</span> text = <span class="hljs-keyword">new</span> Kuc.Text({
+  <span class="hljs-attr">placeholder</span>: <span class="hljs-string">'キーワードを入力してください'</span>,
+  <span class="hljs-attr">id</span>: <span class="hljs-string">'kuc_text'</span> <span class="hljs-comment">// id を付与</span>
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="実行結果を-notification-で表示"></a><a href="#実行結果を-notification-で表示" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実行結果を Notification で表示</h3>
+<p>REST API 実行時の成功や失敗のメッセージを Notification コンポーネントを使って表示します。<br>
+Notification の呼び出しには open メソッド、背景色の設定には type プロパティを使っています。<br>
+今回は、以下のケースで表示するように実装しています。</p>
+<ul>
+<li>レコードの結果がない場合</li>
+<li>REST API の実行が失敗した場合</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> app = kintone.app.getId();
+<span class="hljs-keyword">const</span> params = {
+  <span class="hljs-attr">app</span>: app,
+  <span class="hljs-attr">query</span>: <span class="hljs-string">'text like "'</span> + keyword + <span class="hljs-string">'"'</span>
+};
+
+kintone.api(kintone.api.url(<span class="hljs-string">'/k/v1/records'</span>, <span class="hljs-literal">true</span>), <span class="hljs-string">'GET'</span>, params).then(<span class="hljs-function"><span class="hljs-params">resp</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (resp.records.length !== <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// レコード取得結果を表示する処理</span>
+    <span class="hljs-keyword">const</span> url = <span class="hljs-string">'?view='</span> + id + <span class="hljs-string">'&amp;q=f6054049%20like%20'</span> + <span class="hljs-string">'"'</span> + keyword + <span class="hljs-string">'"'</span>;
+    <span class="hljs-built_in">window</span>.location.replace(url);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (resp.records.length === <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// レコード結果がない場合の処理</span>
+    <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">new</span> Kuc.Notification({
+      <span class="hljs-attr">text</span>: <span class="hljs-string">'レコードがありません'</span>,
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'info'</span> <span class="hljs-comment">// blue の背景色が設定される</span>
+    });
+    info.open();　<span class="hljs-comment">// info の表示</span>
+  }
+}).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+  <span class="hljs-comment">// REST API のエラー発生時の処理</span>
+  <span class="hljs-keyword">const</span> errmsg = <span class="hljs-string">'レコード取得時にエラーが発生しました。'</span>;
+  <span class="hljs-keyword">if</span> (error.message !== <span class="hljs-literal">undefined</span>) {
+    errmsg += <span class="hljs-string">'\n'</span> + error.message;
+  }
+  <span class="hljs-keyword">const</span> alert = <span class="hljs-keyword">new</span> Kuc.Notification({
+    <span class="hljs-attr">text</span>: errmsg
+    <span class="hljs-comment">// type プロパティを指定しない場合、red の背景色が設定される</span>
+  });
+  alert.open();　<span class="hljs-comment">// alert の表示</span>
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="おわりに"></a><a href="#おわりに" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>おわりに</h2>
+<p>いかがでしたでしょうか。kintone UI Component を使って、検索ボックスの作り方を紹介しました。<br>
+kintone UI Component を使って、便利に kintone カスタマイズを開発していただければ幸いです。</p>
+<blockquote>
+<p>本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。<br>
+また、カスタマイズに使用した kintone UI Component のバージョンは、v1.0.0 です。</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/15/2021</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/1.0.0/guides/comparison-v0-v1"><span class="arrow-prev">← </span><span>v0 と v1 書き方の違い解説</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概要">概要</a></li><li><a href="#完成イメージ">完成イメージ</a></li><li><a href="#javascriptcss-カスタマイズ">JavaScript/CSS カスタマイズ</a><ul class="toc-headings"><li><a href="#検索ボックスの表示">検索ボックスの表示</a></li><li><a href="#検索文字のチェック">検索文字のチェック</a></li><li><a href="#コンポーネントの増殖バグ対策">コンポーネントの増殖バグ対策</a></li><li><a href="#実行結果を-notification-で表示">実行結果を Notification で表示</a></li></ul></li><li><a href="#おわりに">おわりに</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/kuc_box_white.png" alt="kintone UI Component" width="66" height="58"/></a><div><h5>Documentation</h5><a href="/docs/en/getting-started/quick-start.html">Quick Start</a><a href="/docs/en/components/desktop/button.html">Components</a></div><div><h5>Community</h5><a href="https://developer.cybozu.io/hc/ja/community/topics" target="_blank" rel="noreferrer noopener">cybozu developer network community topic</a><a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer noopener">GitHub issue</a></div></section><section class="copyright">Copyright © 2021 Cybozu Inc.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'df2e0c3351b9e7e24fd66f2e79e615d0',
+                indexName: 'kintone',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en","version:1.0.0"]}
+              });
+            </script></body></html>
