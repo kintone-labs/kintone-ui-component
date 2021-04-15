@@ -6,7 +6,7 @@ sidebar_label: Dialog
 
 ## Overview
 
-Dialog は、ダイアログボックスを表示します。
+Dialog box is displayed.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=dialog--document" title="dialog image" width="700px" height="300px"></iframe>
 
@@ -16,30 +16,30 @@ Dialog は、ダイアログボックスを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+A list of available properties. You can update the value with the specified property.
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| title | string | "" | Header のタイトル ||
-| content | string \| HTMLElement | "" | Content 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>content プロパティの値は、XSS 攻撃を防ぐために内部で自動的に sanitize されます。 |
-| footer | string \| HTMLElement | "" | Footer 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>footer プロパティの値は、XSS 攻撃を防ぐために内部で自動的に sanitize されます |
+| title | string | ""  | Header Title | |
+| content | string \|   HTMLElement | ""  | Content Internal DOM | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Content property is automatically sanitize internally to prevent XSS attacks.
+| footer | string \| HTMLElement | ""  | DOM Inside Footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitize internally to prevent XSS attacks |
 
 ### Constructor
 
 Dialog(options)
-使用できるコンストラクタの一覧です。
+A list of available constructors.
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | JSON object with Component Properties | Values in options are optional |
 
 ### Method
 
-使用できるメソッドの一覧です。
+This is a list of available methods.
 
 #### open()
-Dialog を表示する
+Show Dialog
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-Dialog を非表示にする
+Hide Dialog
 
 ##### Parameter
 none
@@ -59,7 +59,7 @@ none
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Sample code when all parameters are specified.
 
 ```javascript
 const dialog = new Kuc.Dialog({
