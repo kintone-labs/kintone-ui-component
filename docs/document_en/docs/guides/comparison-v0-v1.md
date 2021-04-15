@@ -1,13 +1,13 @@
 ---
 id: comparison-v0-v1
-Title: A commentary on the difference between V0 and V1 writing
-sidebar_Label: A commentary on the difference between V0 and V1 writing
+Title: A commentary on the difference between v0 and v1 writing
+sidebar_Label: A commentary on the difference between v0 and v1 writing
 ---
 
 ## Overview
-**kintone UI Component**  In addition to the scrutiny and accessibility of the components provided by V1, the internal design has been reviewed to make it easier for developers to use.
+**kintone UI Component**  In addition to the scrutiny and accessibility of the components provided by v1, the internal design has been reviewed to make it easier for developers to use.
 
-This section explains the differences between the code written in V0 and V1 and the points that are easier to use in V1 in customizing the kintone app.
+This section explains the differences between the code written in v0 and v1 and the points that are easier to use in v1 in customizing the kintone app.
 
 ## Completed image
 For example, you can use the kintone UI Component to create a search button on the "Record list" screen.
@@ -21,56 +21,56 @@ Let's start by looking at the code.
 The kintone UI Component UMD file is used here.
 How to upload a file [Quick Start](../getting-started/quick-start.md)  For details.
 
-### When V0 is used
+### When v0 is used
 
 ```javascript
-// 増殖バグを防ぐ処理
+// Process to prevent proliferation bugs
 if (document.getElementById('my_index_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// Search boxの表示
+// Show search box
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 
 const button = new kintoneUIComponent.Button({
   type: 'submit',
-  text: '検索'
+  text: 'Search'
 });
 
-// textとbuttonを横並びにする。
+// Use text and a button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
 
 header.appendChild(text.render());
 header.appendChild(button.render());
 
-// 増殖バグ対応のために、id 付与
+// ID granted for proliferation bug correspondence
 text.element.id = 'my_index_text';
 ```
 
-### When using V1
+### When using v1
 
 ```javascript
-// 増殖バグを防ぐ処理
+// Process to prevent proliferation bugs
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの表示
+// Show search box
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
   
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
@@ -78,9 +78,9 @@ header.appendChild(text);
 header.appendChild(button);    
 ```
 
-## The difference between V0 and V1 is explained
+## The difference between v0 and v1 is explained
 
-So how does the code change in V0 and v1?
+So how does the code change in v0 and v1?
 
 The main difference is as follows:
 - Name Space Simplified
@@ -95,37 +95,37 @@ This section explains each one at a time.
 ---
 #### Name Space Simplified
 ---
-In V1, you can call the instance from the new kintoneUIComponent **new Kuc**  So that you can write more concise code.
+In v1, you can call the instance from the new kintoneUIComponent **new Kuc**  So that you can write more concise code.
 
-- Code in V0
+- Code in v0
 ```
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 ```
 
-- V1 Code
+- v1 Code
 ```
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 ```
 
-In addition, there is no risk that one of them will be overwritten when the V0 and V1 UMD are loaded in the same app.
+In addition, there is no risk that one of them will be overwritten when the v0 and v1 UMD are loaded in the same app.
 
 ---
 #### Render () method is not required.
 ---
-In V0, the Element of the component must be returned using the render () method in appendChild for internal implementation reasons.
+In v0, the Element of the component must be returned using the render () method in appendChild for internal implementation reasons.
 
-In V1, render () is not required by reviewing the design, and the components can be drawn in simpler ways of writing.
+In v1, render () is not required by reviewing the design, and the components can be drawn in simpler ways of writing.
 
-- Code in V0
+- Code in v0
 ```
 header.appendChild(text.render());
 ```
 
-- V1 Code
+- v1 Code
 ```
 header.appendChild(text);
 ```
@@ -133,93 +133,93 @@ header.appendChild(text);
 ---
 #### Property can be used to update values
 ---
-In V0, when a value is updated, a method must be called separately.
-In V1, you can use properties to update values.
+In v0, when a value is updated, a method must be called separately.
+In v1, you can use properties to update values.
 
-- Code in V0
+- Code in v0
 ```
 const button = new kintoneUIComponent.Button({
   type: 'submit',
-  text: '検索'
+  text: 'Search'
 });
 
-// メソッドを呼び出して値を更新
-button.setText('登録');
+// Update the value by calling the method
+button.setText('Register');
 ```
 
-- V1 Code
+- v1 Code
 ```
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
-// プロパティを利用して値の更新が可能
-button.text = '登録';
+// Property can be used to update values
+button.text = 'Register';
 ```
 
 ---
 #### Improve the convenience of parts
 ---
-In V0, the specifications of the parts are lined up vertically by default, and CSS is required to be adjusted in the same order.
+In v0, the specifications of the parts are lined up vertically by default, and CSS is required to be adjusted in the same order.
 
 ![v0](assets/v0_search_box.png) 
 
 - Style must be adjusted
 ```
-// textとbuttonを横並びにする。
+// Use text and a button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-In V1, the internal specifications are reviewed, and most of the components are side by side by default, so no adjustment is required.  
+In v1, the internal specifications are reviewed, and most of the components are side by side by default, so no adjustment is required.  
 (For convenience, some components have default height and are set. ）
 
-![検索ボックス](assets/v1_search_box.png)
+![Search box](assets/v1_search_box.png)
 
 ---
 #### Property reviews
 ---
-In V1, the properties of each component are scrutinized, and the properties are reviewed and added as needed.
+In v1, the properties of each component are scrutinized, and the properties are reviewed and added as needed.
 
-For example, when a new entry is added in V1, `id`  You can add an ID to a component by using the property.
+For example, when a new entry is added in v1, `id`  You can add an ID to a component by using the property.
 You can use the ID to retrieve the element.
 
-- Code in V0
+- Code in v0
 ```
-// 増殖バグを防ぐ処理
+// Process to prevent proliferation bugs
 if (document.getElementById('my_index_text') !== null) {
   return event;
 }
 
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 
-// idプロパティがないため、別途idを付与する必要あり
+// ID property is missing, ID must be granted separately
 text.element.id = 'my_index_text';
 ```
 
-- V1 Code
+- v1 Code
 ```
-// 増殖バグを防ぐ処理（プロパティで付与したid名を利用可能）
+// Process to prevent growth bug (ID name granted by the property is available)
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
 ```
 ---
 #### Property of Alert and Label components
 ---
-In V0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert and Label.
+In v0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert and Label.
 
-As a property in V1  `error`  And `label`  Are available, and can be used by each component.        
+As a property in v1  `error`  And `label`  Are available, and can be used by each component.        
 For example, the Text component `error`  Let's take a look at the property.
 
 In the beginning, I introduced a code to use KUC to create the search box, but when you click the button, nothing is left to respond.
@@ -231,20 +231,20 @@ Here is a code.
 ```
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
-/* 以下のコードを追加します */
+/* Add the following code */
 
 button.addEventListener('click', event => {      
   const keyword = text.value;
-  const errorMessage = '全角のみ入力できます';
+  const errorMessage = 'Only full-width can be entered';
   text.error = ''; 
   
-  // 全角文字の判定処理
+  // Full-width character judgment process
   if (!keyword.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-    // 入力値が全角以外ならエラーメッセージを表示して処理を中断する
+    // Interrupt the process by displaying an error message if the input value is not full width
     text.error = errorMessage;
     return;
   }
@@ -270,4 +270,4 @@ We hope you will experience smarter kintone development than ever before using t
 > This article will be reviewed by kintone and Google Chrome as of February, 2021.  
 > In addition, the version of kintone UI Component that is used for customization is v0.7.4 and v1.0.0.
 
-> The documentation for V0 is a separate site.[Here](https://kintone-labs.github.io/kintone-ui-component/latest/)Please check.
+> The documentation for v0 is a separate site.[Here](https://kintone-labs.github.io/kintone-ui-component/latest/)Please check.

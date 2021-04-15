@@ -30,15 +30,15 @@ If you want to support mobile, you can implement the same way as when you call t
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの入力欄とボタンの表示
+// Show entry fields and buttons in the search box
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
   
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 header.appendChild(text);
@@ -57,20 +57,20 @@ In this case, the following process is added.
 ```javascript
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
-// 表示したボタンに click イベントの処理を追加
+// Add the process of click events to the displayed buttons
 button.addEventListener('click', event => {      
   const keyword = text.value;
-  const errorMessage = '全角のみ入力できます';
-  // 表示したメッセージの初期化
+  const errorMessage = 'Only full-width can be entered';
+  // Initialize displayed messages
   text.error = ''; 
   
-  // 全角文字の判定
+  // Determining full-width characters
   if (!keyword.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-    // 全角以外ならエラーメッセージを表示して処理を中断する
+    // Interrupt the process by displaying an error message except for EM
     text.error = errorMessage;
     return;
   }
@@ -82,15 +82,15 @@ button.addEventListener('click', event => {
 The ID property is used to determine whether the component is already displayed and to prevent the proliferation bug.
 
 ```javascript
-// プロパティで付与した id を利用して増殖バグを防ぐ
+// Prevent growth bug with ID granted by property
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
-  id: 'kuc_text' // id を付与
+  placeholder: 'Enter keywords',
+  id: 'kuc_text' // Add ID
 });
 ```
 
@@ -112,28 +112,28 @@ const params = {
 
 kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => {
   if (resp.records.length !== 0) {
-    // レコード取得結果を表示する処理
+    // Process of displaying record retrieval results
     const url = '?view=' + id + '&q=f6054049%20like%20' + '"' + keyword + '"';
     window.location.replace(url);
   } else if (resp.records.length === 0) {
-    // レコード結果がない場合の処理
+    // Process when no record result is found
     const info = new Kuc.Notification({
-      text: 'レコードがありません',
-      type: 'info' // blue の背景色が設定される
+      text: 'No records',
+      type: 'info' // Blue background color is set
     });
-    info.open();　// info の表示
+    info.open();　// Show info
   }
 }).catch(error => {
-  // REST API のエラー発生時の処理
-  const errmsg = 'レコード取得時にエラーが発生しました。';
+  // Process when REST API error occurs
+  const errmsg = 'An error occurred while retrieving the record.';
   if (error.message !== undefined) {
     errmsg += '\n' + error.message;
   }
   const alert = new Kuc.Notification({
     text: errmsg
-    // type プロパティを指定しない場合、red の背景色が設定される
+    // If the type property is not specified, the red background color is set
   });
-  alert.open();　// alert の表示
+  alert.open();　// Show alert
 });
 ```
 

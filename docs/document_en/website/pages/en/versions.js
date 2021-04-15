@@ -86,7 +86,7 @@ const Versions = (props) => {
             </tbody>
           </table>
           <p>
-            ※ The version of the V0 system is
+            ※ The version of the v0 system is
             <a
               href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
               target="_blank"
