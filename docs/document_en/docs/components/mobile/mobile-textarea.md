@@ -6,7 +6,7 @@ sidebar_label: MobileTextArea
 
 ## Overview
 
-MobileTextArea は、複数行のテキストを表示します。
+MobileTextArea displays multiple lines of text.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px"></iframe>
 
@@ -16,43 +16,43 @@ MobileTextArea は、複数行のテキストを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+A list of available properties. You can update the value with the specified property.
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 ||
-| error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| id | string | "" | コンポーネントの id 名 ||
-| label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| placeholder | string | "" | 空欄時に入力例として表示されるテキスト ||
-| value | string | "" | 表示されるテキスト ||
-| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
-| requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
-| visible | boolean | true | コンポーネントの表示/非表示設定 ||
+| className | string | ""  | Component Class name | |
+| error | string | ""  | Text to be displayed in error | Unspecified or empty text: error is not displayed |
+| id | string | ""  | Component ID Name | |
+| label | string | ""  | Component Description Labels | Label is not displayed for unspecified or empty characters |
+| placeholder | string | ""  | Text that is displayed as an example entered in the Blank Space | |
+| value | string | ""  | Text to be displayed | |
+| disabled | boolean | false | Edit/Disable component settings | |
+| requiredIcon | boolean | false | Component required icon Display/Hide Settings | |
+| visible | boolean | true | Show/Hide Components | |
 
 ### Event
 
-指定できるイベントの一覧です。
+A list of events that can be specified.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.oldValue : 変更前の value の値<br>event.detail.value : 変更後の value の値 |
-| focus | function | フォーカスされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.value : フォーカス時の value の値 |
+| change | function | Event handler when the value has been changed | The argument must be an event object.<br><br>You can receive the following values in event.detail<br>event.detail.oldValue  : Value before the change<br>event.detail.value  : Value of values after changing |
+| focus | function | Event handler for the focused time | The argument must be an event object.<br><br>You can receive the following values in event.detail<br>event.detail.value  : Value in Focus Time |
 
 ### Constructor
 
 TextArea(options)
-使用できるコンストラクタの一覧です。
+A list of available constructors.
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | JSON object with Component Properties | Values in options are optional |
 
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Sample code when all parameters are specified.
 
 ```javascript
 const space = kintone.mobile.app.record.getSpaceElement('space');
