@@ -6,7 +6,7 @@ sidebar_label: Spinner
 
 ## Overview
 
-Spinner は、ローディングスピナーを表示します。
+Spinner, show Roading Spinner.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=spinner--document" title="spinner image" width="300px" height="200px"></iframe>
 
@@ -16,30 +16,30 @@ Spinner は、ローディングスピナーを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+A list of available properties. You can update the value with the specified property.
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| text | string | "" | ローダーアイコン下部に表示するテキスト | text が未指定、あるいは空文字の場合*は、初期値を表示する |
+| text | string | ""  | Text to be displayed at the bottom of the loader icon | If text is unspecified or empty*Display Default value |
 
-\* text が未指定、あるいは空文字の場合は、アクセシビリティを考慮して visually-hidden class を
-付与し、"now loading…" の文言を視覚的に見えない状態で表示する
+\*  If text is unspecified or empty, the Visually-hidden class must be considered for accessibility.
+Grant and"Now loading..."  Display the wording in a visually unseen state
 
 ### Constructor
 
 Spinner(options)
-使用できるコンストラクタの一覧です。
+A list of available constructors.
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | JSON object with Component Properties | Values in options are optional |
 
 ### Method
-使用できるメソッドの一覧です。
+This is a list of available methods.
 
 #### open()
-コンポーネントを表示する
+Show components
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-コンポーネントを非表示にする
+Hide Components
 
 ##### Parameter
 none
@@ -59,7 +59,7 @@ none
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Sample code when all parameters are specified.
 
 ```javascript
 const spinner = new Kuc.Spinner({
