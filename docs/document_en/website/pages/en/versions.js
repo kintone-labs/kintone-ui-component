@@ -22,9 +22,9 @@ const Versions = (props) => {
           <header className="postHeader">
             <h1>kintone UI Component Versions</h1>
           </header>
-          <p>本プロジェクトの新しいバージョンは定期的にリリースされます。</p>
+          <p>A new version of this project will be released on a regular basis.</p>
           <h3 id="latest">Current version (Stable)</h3>
-          <p>現在の最新の安定バージョンです。</p>
+          <p>Current stable version.</p>
           <table className="versions">
             <tbody>
               <tr>
@@ -86,19 +86,19 @@ const Versions = (props) => {
             </tbody>
           </table>
           <p>
-            ※ v0 系のバージョンは
+            ※ The version of the V0 system is
             <a
               href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
               target="_blank"
               rel="noreferrer"
             >
-              こちら
+              Here
             </a>
-            をご確認ください。
+            Confirm.
           </p>
           <h3 id="rc">Pre-release versions</h3>
           <p>
-            まだリリースされていない最新の変更も下記よりご確認いただけます。
+            You can check the latest changes which have not yet been released from the following section.
           </p>
           <table className="versions">
             <tbody>

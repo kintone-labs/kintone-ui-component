@@ -92,14 +92,14 @@ class Index extends React.PureComponent {
         <h2 align="center">Use Case</h2>
         <div className="usecase_sentense" align="center">
           <span>
-            kintone UI Component は、kintone
-            一覧画面のヘッダーメニュー要素など取得できる要素、kintone
-            プラグイン設定画面やカスタマイズビューに配置することで、kintone
-            ライクな見た目を実現することができます。
+            Kintone UI Component is a kintone
+            Elements that can be retrieved, such as header menu elements in the list screen, Kintone
+            On the plug-in Settings screen and the customized view, Kintone
+            You can achieve a similar look.
           </span>
         </div>
         <div className="usecase_group">
-          <h6>[ Button Component イメージ & サンプルコード ]</h6>
+          <h6>[ Sample code & the Button Component image  ]</h6>
           <div className="usecase_image">
             <img src="img/usecase_button.png" alt="button usecase" />
           </div>
@@ -119,19 +119,19 @@ class Index extends React.PureComponent {
               <br />
               <br />
               kintone UI Component
-              の仕様については、テクニカルサポートへお問い合わせいただけます。
+              You can contact technical support for the specifications.
               <br />
               <a
                 href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763"
                 target="_blank"
                 rel="noreferrer"
               >
-                サポートへのお問い合わせ方法
+                How to contact Support
               </a>
-              をご確認の上、お問合せください。
+              Confirm the request.
               <br />
               <br />
-              その他{" "}
+              Other{" "}
               <a
                 href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
                 target="_blank"
@@ -139,13 +139,13 @@ class Index extends React.PureComponent {
               >
                 GitHub Issue
               </a>{" "}
-              にてご質問や機能リクエストを受け付けております。
+              You can ask questions or request feature requests.
               <br />
               <br />
-              ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。
+              You can change the source code, redistribute it, and use it in accordance with the license.
               <br />
-              ライセンスの種別はクライアントライブラリのページまたは GitHub
-              のリポジトリでご確認ください。
+              The license type is the client library page or GitHub.
+              Confirm with the repository.
             </p>
           </blockquote>
         </div>
