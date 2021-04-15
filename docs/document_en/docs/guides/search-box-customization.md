@@ -1,31 +1,31 @@
 ---
 id: search-box-customization
-title: 検索ボックスカスタマイズ
-sidebar_label: 検索ボックスカスタマイズ
+Title: Search Box Customization
+sidebar_Label: Custom Search box
 ---
 
-## 概要
-検索ボックスの作り方を kintone UI Component の Text コンポーネントと Button コンポーネント、Notification コンポーネントを使って説明します。
+## Overview
+This section describes how to create the search box by using the kintone UI component Text and the Button component, the Notification component.
 
-## 完成イメージ
-検索ボックスの完成イメージは、次の通りです。
+## Completed image
+The complete image of the search box is as follows:
 
-#### デスクトップ版
-![検索ボックス(デスクトップ)](assets/desktop_search_box.png) 
+#### Desktop version
+![Search box (Desktop)](assets/desktop_search_box.png) 
 
-#### モバイル版
-![検索ボックス(モバイル)](assets/mobile_search_box.png) 
+#### Mobile version
+![Search box (MOBILE)](assets/mobile_search_box.png) 
 
-## JavaScript/CSS カスタマイズ
+## JavaScript and CSS Customization
 
-kintone UI Component の UMD ファイルをアプリに読み込んだ上で、以下のような実装をした JavaScript ファイルをアップロードします。  
-ファイルのアップロード方法などは、 [Quick Start](../getting-started/quick-start.md) をご覧ください。
+When you import the UMD file of kintone UI Component to the app, you can upload the JavaScript files that are implemented as follows:  
+How to upload a file [Quick Start](../getting-started/quick-start.md)  For details.
 
-### 検索ボックスの表示
+### Show Search Box
 
-検索ボックスを表示するために、Text コンポーネントと Button コンポーネントを使います。  
-Text コンポーネントの placeholder プロパティを使うと、入力内容を説明することができます。  
-モバイル対応をしたい場合は、モバイル用のコンポーネント MobileButton を呼び出すと同じように実装できます。  
+Use the Text component and the Button component to display the search box.  
+You can use the placeholder property of the Text component to describe the contents of the entry.  
+If you want to support mobile, you can implement the same way as when you call the MobileButton component for mobile.  
 
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
@@ -45,14 +45,14 @@ header.appendChild(text);
 header.appendChild(button);    
 ```
 
-### 検索文字のチェック
+### Search character Check
 
-Button コンポーネントは、click イベントを指定することができます。  
-ここでは以下のような処理を入れています。
+The Button component can specify a click event.  
+In this case, the following process is added.
 
-- ボタンをクリックした時に、入力された文字が全角文字か判定
-- 入力値が全角以外の場合、error プロパティにエラーメッセージを代入して表示
-- error プロパティに空文字を代入して、表示メッセージを初期化
+- When you click a button, the characters entered are full-width characters.
+- When the input value is not full-width, the error message is assigned to display
+- Initialize the display message by substituting an empty character in the error property
 
 ```javascript
 const button = new Kuc.Button({
@@ -77,9 +77,9 @@ button.addEventListener('click', event => {
 });
 ```
 
-### コンポーネントの増殖バグ対策
+### Component Proliferation bug countermeasures
 
-id プロパティを付与して、既にコンポーネントが表示されているかどうかを判定し、増殖バグを防ぐ対応をしています。
+The ID property is used to determine whether the component is already displayed and to prevent the proliferation bug.
 
 ```javascript
 // プロパティで付与した id を利用して増殖バグを防ぐ
@@ -94,14 +94,14 @@ const text = new Kuc.Text({
 });
 ```
 
-### 実行結果を Notification で表示
+### Show results in notifications
 
-REST API 実行時の成功や失敗のメッセージを Notification コンポーネントを使って表示します。  
-Notification の呼び出しには open メソッド、背景色の設定には type プロパティを使っています。  
-今回は、以下のケースで表示するように実装しています。  
+Displays the message of success or failure in the REST API runtime using the Notification component.  
+The Notification is invoked using the Open method and the Type property to set the background color.  
+This time, it is implemented to be displayed in the following cases.  
 
-- レコードの結果がない場合
-- REST API の実行が失敗した場合
+- If no record is found
+- When the REST API fails to execute
 
 ```javascript
 const app = kintone.app.getId();
@@ -137,10 +137,10 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
 });
 ```
 
-## おわりに
+## Conclusion
 
-いかがでしたでしょうか。kintone UI Component を使って、検索ボックスの作り方を紹介しました。  
-kintone UI Component を使って、便利に kintone カスタマイズを開発していただければ幸いです。
+How did it work? This section explains how to create a search box using the kintone UI Component.  
+We hope you can develop kintone customization with Kintone UI Component for convenience.
 
-> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。  
-> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.0.0 です。
+> This article will be reviewed by kintone and Google Chrome as of February, 2021.  
+> In addition, the version of kintone UI Component that is used for customization is v1.0.0.
