@@ -6,7 +6,7 @@ sidebar_label: Button
 
 ## Overview
 
-Button は、ボタンを表示します。
+Button displays buttons.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=button--document" title="button image" width="550px" height="80px"></iframe>
 
@@ -16,41 +16,41 @@ Button は、ボタンを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+A list of available properties. You can update the value with the specified property.
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 |  |
-| id | string | "" | コンポーネントの id 名 |  |
-| text | string | "" | ボタンに表示するテキスト ||
-| type | string | "normal" | ボタンのデザインタイプ | 以下を指定できる<br>"normal" : Gray(#f7f9fA)<br>"submit" : Blue(#3498db)<br>"alert" : Red(#e74c3c) |
-| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
-| visible | boolean | true | コンポーネントの表示/非表示設定 ||
+| className | string | ""  | Component Class name |  |
+| id | string | ""  | Component ID Name |  |
+| text | string | ""  | Text to be displayed in buttons | |
+| type | string | "normal"  | Button design Type | The following can be specified<br>"normal"  : Gray (#f7f9fA)<br>"submit"  : Blue (#3498db)<br>"alert"  : Red (#e74c3c) |
+| disabled | boolean | false | Edit/Disable component settings | |
+| visible | boolean | true | Show/Hide Components | |
 
 ### Event
 
-指定できるイベントの一覧です。
+A list of events that can be specified.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| click | function | クリックされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる |
+| click | function | Event handler when Clicked | Arguments are Event Objects |
 
 ### Constructor
 
 Button(options)
-使用できるコンストラクタの一覧です。
+A list of available constructors.
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | JSON object with Component Properties | Values in options are optional |
 
 ---
 
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Sample code when all parameters are specified.
 
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
