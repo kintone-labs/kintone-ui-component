@@ -392,8 +392,7 @@ export class Dropdown extends LitElement {
           display: none;
         }
         .kuc-dropdown__label {
-          margin-top: 4px;
-          margin-bottom: 8px;
+          padding: 4px 0px 8px 0px;
           display: inline-block;
           white-space: nowrap;
         }
@@ -422,6 +421,7 @@ export class Dropdown extends LitElement {
           align-items: center;
           justify-content: space-between;
           width: 100%;
+          cursor: pointer;
         }
         .kuc-dropdown__toggle:focus {
           outline: none;
@@ -451,7 +451,7 @@ export class Dropdown extends LitElement {
           box-sizing: border-box;
           background-color: #e74c3c;
           color: #ffffff;
-          margin-top: 8px;
+          margin: 8px 0px;
           word-break: break-all;
         }
         .kuc-dropdown__error[hidden] {
@@ -474,6 +474,7 @@ export class Dropdown extends LitElement {
           padding: 8px 16px 8px 24px;
           line-height: 1;
           position: relative;
+          cursor: pointer;
         }
         .kuc-dropdown__select-menu__item__icon {
           position: absolute;

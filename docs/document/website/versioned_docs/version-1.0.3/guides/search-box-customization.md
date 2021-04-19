@@ -1,7 +1,8 @@
 ---
-id: search-box-customization
+id: version-1.0.3-search-box-customization
 title: 検索ボックスカスタマイズ
 sidebar_label: 検索ボックスカスタマイズ
+original_id: search-box-customization
 ---
 
 ## 概要

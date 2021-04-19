@@ -226,9 +226,9 @@ export class TextArea extends LitElement {
           display: none;
         }
         .kuc-textarea__label {
+          white-space: nowrap;
           display: inline-block;
-          margin-top: 4px;
-          margin-bottom: 8px;
+          padding: 4px 0px 8px 0px;
         }
         .kuc-textarea__label[hidden] {
           display: none;
@@ -284,7 +284,7 @@ export class TextArea extends LitElement {
           box-sizing: border-box;
           background-color: #e74c3c;
           color: #ffffff;
-          margin-top: 8px;
+          margin: 8px 0px;
           word-break: break-all;
         }
         .kuc-textarea__error[hidden] {

@@ -4,9 +4,9 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve("dist"),
-    filename: "main.js"
+    filename: "main.js",
   },
   resolve: {
-    extensions: [".js"]
-  }
+    extensions: [".js"],
+  },
 };
