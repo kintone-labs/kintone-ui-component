@@ -90,7 +90,7 @@ export class RadioButton extends LitElement {
     if (labelWidth < selectMenuWidth) {
       labelWidth = selectMenuWidth;
     }
-    this._selectMenuEl.style.width = labelWidth + "px";
+    this._selectMenuEl.style.width = "100%";
     this.style.width = labelWidth + "px";
   }
 
@@ -392,6 +392,7 @@ export class RadioButton extends LitElement {
           color: #ffffff;
           margin: 8px 0;
           word-break: break-all;
+          white-space: normal;
         }
 
         .kuc-radio-button__error[hidden] {

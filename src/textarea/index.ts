@@ -129,47 +129,49 @@ export class TextArea extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <label
-        class="kuc-textarea__label"
-        for="${this._GUID}-label"
-        ?hidden="${!this.label}"
-      >
-        <span class="kuc-textarea__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-textarea__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
+      <fieldset class="kuc-textarea__group">
+        <label
+          class="kuc-textarea__label"
+          for="${this._GUID}-label"
+          ?hidden="${!this.label}"
         >
-      </label>
-      <textarea
-        id="${this._GUID}-label"
-        class="kuc-textarea__textarea"
-        placeholder="${this.placeholder}"
-        .value=${this.value}
-        aria-describedby="${this._GUID}-error"
-        aria-required=${this.requiredIcon}
-        aria-invalid="${!this.error}"
-        @change="${this._handleChangeTextarea}"
-        @focus="${this._handleFocusTextarea}"
-        ?disabled="${this.disabled}"
-      >
-      </textarea>
-      <div
-        class="kuc-textarea__resizer"
-        @mousedown="${this._handleResizeMouseDown}"
-        ?hidden="${this.disabled}"
-      >
-        ${this._getResizerButtonSvgTemplate()}
-      </div>
-      <div
-        class="kuc-textarea__error"
-        id="${this._GUID}-error"
-        role="alert"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
-      </div>
+          <span class="kuc-textarea__label__text">${this.label}</span
+          ><!--
+          --><span
+            class="kuc-textarea__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
+        </label>
+        <textarea
+          id="${this._GUID}-label"
+          class="kuc-textarea__textarea"
+          placeholder="${this.placeholder}"
+          .value=${this.value}
+          aria-describedby="${this._GUID}-error"
+          aria-required=${this.requiredIcon}
+          aria-invalid="${!this.error}"
+          @change="${this._handleChangeTextarea}"
+          @focus="${this._handleFocusTextarea}"
+          ?disabled="${this.disabled}"
+        >
+        </textarea>
+        <div
+          class="kuc-textarea__resizer"
+          @mousedown="${this._handleResizeMouseDown}"
+          ?hidden="${this.disabled}"
+        >
+          ${this._getResizerButtonSvgTemplate()}
+        </div>
+        <div
+          class="kuc-textarea__error"
+          id="${this._GUID}-error"
+          role="alert"
+          ?hidden="${!this.error}"
+        >
+          ${this.error}
+        </div>
+      </fieldset>
     `;
   }
 
@@ -224,6 +226,15 @@ export class TextArea extends LitElement {
         }
         kuc-textarea[hidden] {
           display: none;
+        }
+        .kuc-textarea__group {
+          border: none;
+          padding: 0px;
+          height: auto;
+          display: inline-block;
+          width: 100%;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
         }
         .kuc-textarea__label {
           white-space: nowrap;
@@ -286,6 +297,7 @@ export class TextArea extends LitElement {
           color: #ffffff;
           margin: 8px 0px;
           word-break: break-all;
+          white-space: normal;
         }
         .kuc-textarea__error[hidden] {
           display: none;

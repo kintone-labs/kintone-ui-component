@@ -71,41 +71,43 @@ export class MultiChoice extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-multi-choice__label"
-        id="${this._GUID}-label"
-        ?hidden="${!this.label}"
-      >
-        <span class="kuc-multi-choice__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-multi-choice__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
+      <fieldset class="kuc-multi-choice__group">
+        <div
+          class="kuc-multi-choice__label"
+          id="${this._GUID}-label"
+          ?hidden="${!this.label}"
         >
-      </div>
-      <div
-        class="kuc-multi-choice__menu"
-        role="menu"
-        aria-describedby="${this._GUID}-error"
-        aria-labelledby="${this._GUID}-label"
-        ?disabled="${this.disabled}"
-        tabindex="${this.disabled ? "-1" : "0"}"
-        @keydown=${this._handleKeyDownMultiChoice}
-      >
-        ${this.items.map((item, number) =>
-          this._getMenuItemTemplate(item, number)
-        )}
-      </div>
-      <div
-        class="kuc-multi-choice__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
-      </div>
+          <span class="kuc-multi-choice__label__text">${this.label}</span
+          ><!--
+          --><span
+            class="kuc-multi-choice__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
+        </div>
+        <div
+          class="kuc-multi-choice__menu"
+          role="menu"
+          aria-describedby="${this._GUID}-error"
+          aria-labelledby="${this._GUID}-label"
+          ?disabled="${this.disabled}"
+          tabindex="${this.disabled ? "-1" : "0"}"
+          @keydown=${this._handleKeyDownMultiChoice}
+        >
+          ${this.items.map((item, number) =>
+            this._getMenuItemTemplate(item, number)
+          )}
+        </div>
+        <div
+          class="kuc-multi-choice__error"
+          id="${this._GUID}-error"
+          role="alert"
+          aria-live="assertive"
+          ?hidden="${!this.error}"
+        >
+          ${this.error}
+        </div>
+      </fieldset>
     `;
   }
 
@@ -347,9 +349,19 @@ export class MultiChoice extends LitElement {
           font-size: 14px;
           color: #333;
           width: 180px;
+          min-width: 180px;
         }
         kuc-multi-choice[hidden] {
           display: none;
+        }
+        .kuc-multi-choice__group {
+          border: none;
+          padding: 0px;
+          height: auto;
+          display: inline-block;
+          width: 100%;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
         }
         .kuc-multi-choice__label {
           padding: 4px 0px 8px 0px;
@@ -377,6 +389,7 @@ export class MultiChoice extends LitElement {
           color: #ffffff;
           margin: 8px 0px;
           word-break: break-all;
+          white-space: normal;
         }
         .kuc-multi-choice__error[hidden] {
           display: none;

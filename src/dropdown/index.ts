@@ -295,56 +295,60 @@ export class Dropdown extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-dropdown__label"
-        id="${this._GUID}-label"
-        ?hidden="${!this.label}"
-      >
-        <span class="kuc-dropdown__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-dropdown__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
+      <fieldset class="kuc-dropdown__group">
+        <div
+          class="kuc-dropdown__label"
+          id="${this._GUID}-label"
+          ?hidden="${!this.label}"
         >
-      </div>
-      <button
-        class="kuc-dropdown__toggle"
-        id="${this._GUID}-toggle"
-        type="button"
-        aria-haspopup="true"
-        aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
-        aria-describedby="${this._GUID}-error"
-        aria-required=${this.requiredIcon}
-        ?disabled="${this.disabled}"
-        @click="${this._handleClickDropdownToggle}"
-        @blur="${this._handleBlurDropdownToggle}"
-        @keydown="${this._handleKeyDownDropdownToggle}"
-      >
-        <span class="kuc-dropdown__toggle__selected-item-label"
-          >${this._getSelectedLabel()}</span
+          <span class="kuc-dropdown__label__text">${this.label}</span
+          ><!--
+          --><span
+            class="kuc-dropdown__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
+        </div>
+        <button
+          class="kuc-dropdown__toggle"
+          id="${this._GUID}-toggle"
+          type="button"
+          aria-haspopup="true"
+          aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
+          aria-describedby="${this._GUID}-error"
+          aria-required=${this.requiredIcon}
+          ?disabled="${this.disabled}"
+          @click="${this._handleClickDropdownToggle}"
+          @blur="${this._handleBlurDropdownToggle}"
+          @keydown="${this._handleKeyDownDropdownToggle}"
         >
-        <span class="kuc-dropdown__toggle__icon">
-          ${this._getToggleIconSvgTemplate()}
-        </span>
-      </button>
-      <ul
-        class="kuc-dropdown__select-menu"
-        role="menu"
-        aria-hidden="${!this._selectorVisible}"
-        ?hidden="${!this._selectorVisible}"
-      >
-        ${this.items.map((item, number) => this._getItemTemplate(item, number))}
-      </ul>
-      <div
-        class="kuc-dropdown__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
-      </div>
+          <span class="kuc-dropdown__toggle__selected-item-label"
+            >${this._getSelectedLabel()}</span
+          >
+          <span class="kuc-dropdown__toggle__icon">
+            ${this._getToggleIconSvgTemplate()}
+          </span>
+        </button>
+        <ul
+          class="kuc-dropdown__select-menu"
+          role="menu"
+          aria-hidden="${!this._selectorVisible}"
+          ?hidden="${!this._selectorVisible}"
+        >
+          ${this.items.map((item, number) =>
+            this._getItemTemplate(item, number)
+          )}
+        </ul>
+        <div
+          class="kuc-dropdown__error"
+          id="${this._GUID}-error"
+          role="alert"
+          aria-live="assertive"
+          ?hidden="${!this.error}"
+        >
+          ${this.error}
+        </div>
+      </fieldset>
     `;
   }
 
@@ -387,6 +391,16 @@ export class Dropdown extends LitElement {
           color: #333333;
           vertical-align: top;
           width: 180px;
+          min-width: 180px;
+        }
+        .kuc-dropdown__group {
+          border: none;
+          padding: 0px;
+          height: auto;
+          display: inline-block;
+          width: 100%;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
         }
         kuc-dropdown[hidden] {
           display: none;
@@ -453,6 +467,7 @@ export class Dropdown extends LitElement {
           color: #ffffff;
           margin: 8px 0px;
           word-break: break-all;
+          white-space: normal;
         }
         .kuc-dropdown__error[hidden] {
           display: none;

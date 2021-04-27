@@ -324,7 +324,8 @@ export class Checkbox extends LitElement {
           height: auto;
           display: inline-block;
           width: 100%;
-          margin: 0px;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
         }
         .kuc-checkbox__group__select-menu {
           white-space: nowrap;
@@ -412,6 +413,7 @@ export class Checkbox extends LitElement {
           color: #ffffff;
           margin: 8px 0;
           word-break: break-all;
+          white-space: normal;
         }
         .kuc-checkbox__error[hidden] {
           display: none;
