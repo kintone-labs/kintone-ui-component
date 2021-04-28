@@ -6,7 +6,7 @@ sidebar_label: Dialog
 
 ## Overview
 
-Dialog box is displayed.
+The Dialog component displays a dialog box.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=dialog--document" title="dialog image" width="700px" height="300px"></iframe>
 
@@ -16,13 +16,13 @@ Dialog box is displayed.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | ""  | Header Title | |
-| content | string \|   HTMLElement | ""  | Content Internal DOM | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Content property is automatically sanitize internally to prevent XSS attacks.
-| footer | string \| HTMLElement | ""  | DOM Inside Footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitize internally to prevent XSS attacks |
+| content | string \|   HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the content property is automatically sanitize internally to prevent XSS attacks.
+| footer | string \| HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitize internally to prevent XSS attacks |
 
 ### Constructor
 
@@ -32,14 +32,14 @@ A list of available constructors.
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ### Method
 
 This is a list of available methods.
 
 #### open()
-Show Dialog
+Show dialog
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-Hide Dialog
+Hide dialog
 
 ##### Parameter
 none

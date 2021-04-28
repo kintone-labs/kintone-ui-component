@@ -6,7 +6,7 @@ sidebar_label: Spinner
 
 ## Overview
 
-Spinner, show Roading Spinner.
+The Spinner component allows the user to display a rolling spinner.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=spinner--document" title="spinner image" width="300px" height="200px"></iframe>
 
@@ -16,14 +16,14 @@ Spinner, show Roading Spinner.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| text | string | ""  | Text to be displayed at the bottom of the loader icon | If text is unspecified or empty*Display Default value |
+| text | string | ""  | Text to be displayed at the bottom of the loader icon | Displays the default value if the value for text is unspecified or empty |
 
-\*  If text is unspecified or empty, the Visually-hidden class must be considered for accessibility.
-Grant and"Now loading..."  Display the wording in a visually unseen state
+\*  If the text is unspecified or empty,
+consider assigning a visually-hidden class and given the word "Now loading..." in a hidden state for accessibility.
 
 ### Constructor
 
@@ -33,7 +33,7 @@ A list of available constructors.
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ### Method
 This is a list of available methods.

@@ -1,17 +1,17 @@
 ---
 id: comparison-v0-v1
-Title: A commentary on the difference between v0 and v1 writing
-sidebar_Label: A commentary on the difference between v0 and v1 writing
+Title: A commentary on the difference between v0 and v1
+sidebar_Label: A commentary on the difference between v0 and v1
 ---
 
 ## Overview
-**kintone UI Component**  In addition to the scrutiny and accessibility of the components provided by v1, the internal design has been reviewed to make it easier for developers to use.
+**kintone UI Component**  In addition to the scrutiny and accessibility of the components provided by v1, the interface design has been reviewed to make it easier for developers to use.
 
-This section explains the differences between the code written in v0 and v1 and the points that are easier to use in v1 in customizing the kintone app.
+This section explains the differences between the code written in v0 and v1, as well as the key advantages when using v1 for customizing the kintone app.
 
 ## Completed image
-For example, you can use the kintone UI Component to create a search button on the "Record list" screen.
-Here is the image of the finished screen.
+For example, you can use the kintone UI Component to create a search button on the "Record List" screen.
+Here is the image for example:
 
 ![Search box](assets/v1_search_box.png) 
 
@@ -78,24 +78,24 @@ header.appendChild(text);
 header.appendChild(button);    
 ```
 
-## The difference between v0 and v1 is explained
+## The difference between v0 and v1
 
-So how does the code change in v0 and v1?
+So what has changed between v0 and v1 in terms of coding?
 
 The main difference is as follows:
-- Name Space Simplified
-- Render () method is not required.
-- Property can be used to update values
-- Improve the convenience of parts
-- Property reviews
-- Property of Alert and Label components
+- Naming space is simplified
+- Render () method is no longer required
+- Property can now be used to update values
+- Improved the convenience by allowing more properties for modification
+- Restructured the component property
+- Included additional property for Alert and Label
 
-This section explains each one at a time.
+The following section will explain in further detail.
 
 ---
-#### Name Space Simplified
+#### Naming Space is simplified
 ---
-In v1, you can call the instance from the new kintoneUIComponent **new Kuc**  So that you can write more concise code.
+In v1, you can call the instance from the new kintoneUIComponent **new Kuc**  in order to write a concise code.
 
 - Code in v0
 ```
@@ -111,14 +111,14 @@ const text = new Kuc.Text({
 });
 ```
 
-In addition, there is no risk that one of them will be overwritten when the v0 and v1 UMD are loaded in the same app.
+In addition, there is no risk that one of them will be overwritten when both v0 and v1 UMD are loaded in the same app.
 
 ---
-#### Render () method is not required.
+#### Render () method is no longer required.
 ---
-In v0, the Element of the component must be returned using the render () method in appendChild for internal implementation reasons.
+In v0, the Element of the component must be returned by using the render() method along with appendChild() for internal implementation reasons.
 
-In v1, render () is not required by reviewing the design, and the components can be drawn in simpler ways of writing.
+In v1, render() is no longer required, and the components can be drawn in simpler ways of writing.
 
 - Code in v0
 ```
@@ -131,7 +131,7 @@ header.appendChild(text);
 ```
 
 ---
-#### Property can be used to update values
+#### Property can now be used to update values
 ---
 In v0, when a value is updated, a method must be called separately.
 In v1, you can use properties to update values.
@@ -160,9 +160,9 @@ button.text = 'Register';
 ```
 
 ---
-#### Improve the convenience of parts
+#### Improved the convenience by allowing more properties for modification
 ---
-In v0, the specifications of the parts are lined up vertically by default, and CSS is required to be adjusted in the same order.
+In v0, the specifications of each part are lined up vertically by default, and CSS is required to be adjusted in the same order.
 
 ![v0](assets/v0_search_box.png) 
 
@@ -173,18 +173,18 @@ text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-In v1, the internal specifications are reviewed, and most of the components are side by side by default, so no adjustment is required.  
-(For convenience, some components have default height and are set. ）
+In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.  
+(For convenience, some components will have a default height. ）
 
 ![Search box](assets/v1_search_box.png)
 
 ---
-#### Property reviews
+#### Restructured the component property
 ---
-In v1, the properties of each component are scrutinized, and the properties are reviewed and added as needed.
+In v1, the properties of each component are scrutinized, and the properties have been restructure after careful review.
 
-For example, when a new entry is added in v1, `id`  You can add an ID to a component by using the property.
-You can use the ID to retrieve the element.
+For example, when a new entry is added in v1, `id`  You can add an id to a component by using the property.
+You can then use the id to retrieve the element.
 
 - Code in v0
 ```
@@ -215,16 +215,16 @@ const text = new Kuc.Text({
 });
 ```
 ---
-#### Property of Alert and Label components
+#### Included additional property for Alert and Label
 ---
-In v0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert and Label.
+In v0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert or Label.
 
-As a property in v1  `error`  And `label`  Are available, and can be used by each component.        
-For example, the Text component `error`  Let's take a look at the property.
+In v1, user can assign values to the `error` and the `label` property in a component.
+Let's take a look at the Text component property `error` for example:
 
-In the beginning, I introduced a code to use KUC to create the search box, but when you click the button, nothing is left to respond.
+In the beginning, I have introduced a code to use KUC to create the search box, but there is no response when you click the button.
 
-Then, when the button is clicked, the text input character is checked and the error message is displayed only when the full width is added.
+After adding additional handler, when the button is clicked, the text input character is checked and the error message is displayed only when a character with full width is added.
 
 Here is a code.
 
@@ -252,20 +252,20 @@ button.addEventListener('click', event => {
 
 ```
 
-In this code, in the Click event, the value is retrieved in Text.value, and the value is checked using regular expressions.
-If the result of the check is not full-width, the error message is displayed and the process is interrupted.
+In the anove code, inside the `click` event, the value is retrieved from Text.value, and is checked using regular expressions.
+If the result of the check is not a full-width, the error message is displayed and the process is interrupted.
 
-The error message is used to display the Text `error`  The property.
+The `error` property is used to display the error message.
 
-When you initialize the message (hide the error message), you can write it in a concise manner, because only an empty string is assigned to Text.error.
+When you initialize the message (error message is hidden), you can write it in a concise manner as you will only need to assign an empty string to Text.error property.
 
 ![search_box_error](assets/v1_search_box_error.png)
 
 
 ## Conclusion
 
-How did it work?
-We hope you will experience smarter kintone development than ever before using the evolved kintone UI Component.
+How is it working out for you?
+We hope you will a better kintone development experience than ever before using the new kintone UI Component library.
 
 > This article will be reviewed by kintone and Google Chrome as of February, 2021.  
 > In addition, the version of kintone UI Component that is used for customization is v0.7.4 and v1.0.0.

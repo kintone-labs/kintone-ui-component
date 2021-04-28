@@ -6,7 +6,7 @@ sidebar_label: Notification
 
 ## Overview
 
-Notification displays pop-up notifications.
+The Notification component allows the user to display pop-up notifications.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=notification--documentinfo" title="notification info image" height="70px"></iframe>
 
@@ -20,13 +20,13 @@ Notification displays pop-up notifications.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name | |
+| className | string | ""  | Component class name | |
 | text | string | ""  | Text to be displayed | |
-| type | string | "danger"  | Background Color | The following can be specified<br>"danger"  : Red (#e74c3c)<br>"info"  : Blue (#3498db)<br>"success"  : Green (#91c36c) |
+| type | string | "danger"  | Background Color | The following type can be specified: <br>"danger"  : Red (#e74c3c)<br>"info"  : Blue (#3498db)<br>"success"  : Green (#91c36c) |
 
 ### Constructor
 
@@ -36,7 +36,7 @@ A list of available constructors.
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ### Method
 
