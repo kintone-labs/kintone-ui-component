@@ -22,7 +22,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
-| id | string | ""  | Component id Name | |
+| id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or emptied |
 | value | string | ""  | Selected value | Nothing is updated if the value is unspecified |
 | disabled | boolean | false | Disable the component | |

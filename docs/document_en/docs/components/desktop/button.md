@@ -20,8 +20,8 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name |  |
-| id | string | ""  | Component ID Name |  |
+| className | string | ""  | Component class name |  |
+| id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed inside the button | |
 | type | string | "normal"  | Button design Type | Available Options: <br>"normal"  : Gray (#f7f9fA)<br>"submit"  : Blue (#3498db)<br>"alert"  : Red (#e74c3c) |
 | disabled | boolean | false | Disable the component | |

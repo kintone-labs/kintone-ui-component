@@ -20,9 +20,9 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name | |
+| className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
-| id | string | ""  | Component id Name | |
+| id | string | ""  | Component id name | |
 | itemLayout | string | "horizontal"  | Orientation for displaying the options | The following can be specified<br>"horizontal"  : Horizontal<br>"vertical"  : Vertical |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | BorderVisible | Boolean | True | Display Border | |
