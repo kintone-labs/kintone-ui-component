@@ -43,6 +43,7 @@ nav:
 
 markdown_extensions:
   - admonition
+  - extra
 extra_javascript:
   - 'js/extra.js'
 extra_css:
