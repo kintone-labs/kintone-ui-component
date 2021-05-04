@@ -124,3 +124,7 @@ rules:
             id="${this._GUID}-label">
           </div>
     glob: "*.ts"
+exclude:
+  - "src/index.ts"
+  - "src/index.bundle.ts"
+  - "src/polyfill/index.ts"
