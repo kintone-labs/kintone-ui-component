@@ -95,9 +95,9 @@ const reactUMDConfig = (_, argv) => {
                 'react-dom': path.resolve(__dirname, './node_modules/react-dom')
             }
         },
-        devtool: argv.mode === 'development' ? 'source-map' : '',
+        devtool: argv.mode === 'development' ? 'eval-cheap-source-map' : 'source-map',
         externals: {
-            // Don't bundle react or react-dom      
+            // Don't bundle react or react-dom
             react: {
                 commonjs: "react",
                 commonjs2: "react",
