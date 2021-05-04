@@ -22,6 +22,12 @@
 	"module": "./esm/react/index.js",
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
 	"types": "./esm/react/index.d.ts",
+	"keywords": [
+		"kintone",
+		"kintone-ui-component",
+		"ui framework",
+		"ui component"
+	],
 	"scripts": {
 		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
