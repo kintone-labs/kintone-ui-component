@@ -33,7 +33,7 @@
 |options.header|Array<String>|Yes|Header content for the table.|
 |options.value|Array<Array>|No|Value for table. <br> Refer to the [getValue()](#getvalue) and [setValue(value)](#setvaluevalue) for more information |
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -150,7 +150,7 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -270,7 +270,7 @@ None
 | --- | --- | --- |
 |value|	Array|Value of all rows in the table |
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -406,7 +406,7 @@ Set value for every row in table. The number of rows in table's dependent on the
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -526,7 +526,7 @@ Callback data
 ||data.cell.row	|Interger|	Row specification of the object cell |
 ||data.cell.column|	Interger|	Column specification of the object cell |
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -657,7 +657,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -785,7 +785,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
