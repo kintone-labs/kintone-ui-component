@@ -978,11 +978,9 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1004,10 +1002,7 @@
      value: ['Orange', 'Banana']
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1041,9 +1036,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -1051,11 +1044,9 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1080,10 +1071,7 @@ export default class Plugin extends React.Component {
 var body = document.getElementsByTagName('BODY')[0];
 body.appendChild(checkbox.render());
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1117,9 +1105,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="additemitem">addItem(item)</h3>
 <p>Add an item to the end of checkbox list.</p>
 <p><strong>Parameter</strong></p>
@@ -1161,11 +1147,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1196,10 +1180,7 @@ checkbox.addItem({
     isDisabled: false
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1232,9 +1213,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="getitemindex">getItem(index)</h3>
 <p>Get the value of specific position in checkbox list.</p>
 <p><strong>Parameter</strong></p>
@@ -1289,11 +1268,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1321,10 +1298,7 @@ body.appendChild(checkbox.render());
 var firstItem = checkbox.getItem(0);
 console.log(firstItem);
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1366,9 +1340,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="removeitemindex">removeItem(index)</h3>
 <p>Remove the specific item from checkbox list.</p>
 <p><strong>Parameter</strong></p>
@@ -1392,11 +1364,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1423,10 +1393,7 @@ body.appendChild(checkbox.render());
 
 checkbox.removeItem(0);
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1477,9 +1444,7 @@ export default class Plugin extends React.Component {
     };
 }
 </code></pre>
-
 </details>
-
 <h3 id="getitems">getItems()</h3>
 <p>Get all items from the checkbox.</p>
 <p><strong>Parameter</strong></p>
@@ -1517,11 +1482,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1551,10 +1514,7 @@ items.forEach(function(item) {
     console.log(item.value + ':' + item.isDisabled);
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1597,9 +1557,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="getvalue">getValue()</h3>
 <p>Get the checked values of the checkbox.</p>
 <p><strong>Parameter</strong></p>
@@ -1622,11 +1580,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1656,10 +1612,7 @@ value.forEach(function(item) {
     console.log(item);
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1700,9 +1653,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the checked value of checkbox.</p>
 <p><strong>Parameter</strong></p>
@@ -1726,11 +1677,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1757,10 +1706,7 @@ body.appendChild(checkbox.render());
 
 checkbox.setValue(['Lemon']);
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1803,9 +1749,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="disableitemvalue">disableItem(value)</h3>
 <p>Set the disabled item of checkbox.</p>
 <p><strong>Parameter</strong></p>
@@ -1829,11 +1773,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1860,10 +1802,7 @@ body.appendChild(checkbox.render());
 
 checkbox.disableItem('Orange');
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1907,9 +1846,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="enableitemvalue">enableItem(value)</h3>
 <p>Set the enable item of checkbox.</p>
 <p><strong>Parameter</strong></p>
@@ -1933,11 +1870,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -1964,10 +1899,7 @@ body.appendChild(checkbox.render());
 
 checkbox.enableItem('Banana');
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2011,9 +1943,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for change event</p>
 <p><strong>Parameter</strong></p>
@@ -2043,11 +1973,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -2076,10 +2004,7 @@ checkbox.on('change', function(value) {
     console.log('on change');
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2120,20 +2045,16 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the checkbox.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -2160,10 +2081,7 @@ body.appendChild(checkbox.render());
 
 checkbox.show();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2197,20 +2115,16 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the checkbox.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -2237,10 +2151,7 @@ body.appendChild(checkbox.render());
 
 checkbox.hide();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2274,20 +2185,16 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disabled the checkbox.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -2314,10 +2221,7 @@ body.appendChild(checkbox.render());
 
 checkbox.disable();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2351,20 +2255,16 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enabled the checkbox.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var checkbox = new kintoneUIComponent.CheckBox ({
        items: [
             {
@@ -2391,10 +2291,7 @@ body.appendChild(checkbox.render());
 
 checkbox.enable();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { CheckBox } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2428,7 +2325,6 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
                 
                   
