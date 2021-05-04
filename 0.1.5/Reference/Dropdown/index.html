@@ -945,9 +945,11 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open="open">
-<p><Summary>Sample</Summary></p>
-<p><strong>React</strong></p>
+<details class="tab-container" open>
+<Summary>Sample</Summary>
+
+**React**
+
 <pre><code class="language-javascript">import { Dropdown } from 'kintone-ui-component';
 import React from 'react';
 
@@ -981,7 +983,9 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-<p><strong>Javascript</strong></p>
+
+**Javascript**
+
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1002,7 +1006,9 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(dropdown.render());
 
 </code></pre>
+
 </details>
+
 <h3 id="additemitem">addItem(item)</h3>
 <p>Add an item to dropdown list.</p>
 <p><strong>Parameter</strong></p>
@@ -1353,74 +1359,12 @@ list.forEach(function(item) {
 
 **React**
 
-<pre><code class="language-javascript">import { Dropdown } from 'kintone-ui-component';
-import React from 'react';
-
-export default class Plugin extends React.Component {
-    constructor(opts) {
-        super(opts);
-        var items = [
-            {
-                label: 'Orange',
-                value: 'Orange',
-                isDisabled: false
-            },
-            {
-                label: 'Banana',
-                value: 'Banana',
-                isDisabled: true
-            },
-            {
-                label: 'Lemon',
-                value: 'Lemon',
-                isDisabled: true
-            },
-        ];
-        this.state = {
-            items: items,
-            value: 'Banana'
-        };
-    }
-
-    render() {
-        return (
-         &lt;div&gt;
-          &lt;Dropdown items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
-          &lt;button onClick={this.handleClick}&gt;Get Value&lt;/button&gt;
-         &lt;/div&gt;
-        );
-    }
-
-    handleClick = () =&gt; {
-        console.log(this.state.value);
-    }
-}
-
+<pre><code class="language-javascript">aaaa
 </code></pre>
 
 **Javascript**
 
-<pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
-    items: [
-        {
-            label: 'Orange',
-            value: 'Orange',
-            isDisabled: true
-        },
-        {
-            label: 'Banana',
-            value: 'Banana',
-            isDisabled: false
-        }
-    ],
-    value: 'Banana'
-});
-
-var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
-    body.appendChild(dropdown.render());
-
-var selectedItem = dropdown.getValue();
-console.log(selectedItem);
+<pre><code class="language-javascript">bbbbb
 </code></pre>
 
 </details>
