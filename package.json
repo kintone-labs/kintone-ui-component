@@ -20,7 +20,10 @@
   "module": "./lib/index.js",
   "unpkg": "./umd/kuc.min.js",
   "keywords": [
-    "kintone"
+    "kintone",
+    "kintone-ui-component",
+    "ui framework",
+    "ui component"
   ],
   "scripts": {
     "build:umd_dev": "webpack --mode development",
