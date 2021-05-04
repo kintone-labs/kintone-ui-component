@@ -858,16 +858,12 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -884,9 +880,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -894,18 +888,14 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -922,9 +912,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the value of textarea field.</p>
 <p><strong>Parameter</strong></p>
@@ -948,20 +936,16 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.setValue('set value into textarea');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -986,9 +970,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="getvalue">getValue()</h3>
 <p>Get the value of textarea field.</p>
 <p><strong>Parameter</strong></p>
@@ -1010,20 +992,16 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.getValue();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1046,9 +1024,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for a event of component</p>
 <p><strong>Parameter</strong></p>
@@ -1078,11 +1054,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
@@ -1091,9 +1065,7 @@ textArea.on('click', function(event) {
     console.log('on click');
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1114,29 +1086,23 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.show();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1157,29 +1123,23 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.hide();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1200,29 +1160,23 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disabled the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.disable();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1243,29 +1197,23 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enabled the TextArea field.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var textArea = new kintoneUIComponent.TextArea({value: 'textarea'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(textArea.render());
 
 textArea.enable();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import {TextArea} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1286,7 +1234,6 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
                 
                   
