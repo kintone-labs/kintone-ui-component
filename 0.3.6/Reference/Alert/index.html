@@ -872,17 +872,12 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -894,9 +889,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -904,19 +897,14 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert} from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -928,9 +916,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="settexttext">setText(text)</h3>
 <p>Set the content of alert.</p>
 <p><strong>Parameter</strong></p>
@@ -954,20 +940,15 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.setText('Network error');
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -979,9 +960,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="settypetype">setType(type)</h3>
 <p>Set the type of alert.</p>
 <p><strong>Parameter</strong></p>
@@ -1005,20 +984,15 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.setType('success');
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1030,9 +1004,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>The callBack function will be execute after user click the alert.</p>
 <p><strong>Parameter</strong></p>
@@ -1062,11 +1034,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
@@ -1074,10 +1044,7 @@ alert.on('click', function(event) {
     console.log('on click');
 });
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1092,29 +1059,22 @@ export default class Plugin extends React.Component {
    }
 }
 </code></pre>
-
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the Alert.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.show();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1126,29 +1086,22 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the Alert.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.hide();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1160,29 +1113,22 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disable the Alert.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.disable();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1194,29 +1140,22 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enable the Alert.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
 var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(alert.render());
 alert.enable();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1228,7 +1167,6 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
                 
                   

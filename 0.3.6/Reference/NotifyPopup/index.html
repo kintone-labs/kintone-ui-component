@@ -880,19 +880,15 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -910,9 +906,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -920,11 +914,9 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -933,9 +925,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 body.appendChild(notifyPopup.render());
 
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -953,9 +943,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="settexttext">setText(text)</h3>
 <p>Setting the displayed text on popup.</p>
 <p><strong>Parameter</strong></p>
@@ -979,11 +967,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -993,9 +979,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.setText('Submit failed');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1013,9 +997,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="settypetype">setType(type)</h3>
 <p>Setting type for popup.</p>
 <p><strong>Parameter</strong></p>
@@ -1039,11 +1021,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1053,9 +1033,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.setType('success');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1073,9 +1051,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callback)</h3>
 <p>Register callback for click event</p>
 <p><strong>Parameter</strong></p>
@@ -1105,11 +1081,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1121,9 +1095,7 @@ notifyPopup.on('click', function(event) {
     console.log('on click');
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1144,20 +1116,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the notify popup.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1167,9 +1135,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.show();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1186,20 +1152,16 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the notify popup.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1209,9 +1171,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.hide();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1224,20 +1184,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disabled the notify popup.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1247,9 +1203,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.disable();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1267,20 +1221,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enabled the notify popup.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var notifyPopup = new kintoneUIComponent.NotifyPopup({
     text: 'Submit sucessffully',
     type: 'success'
@@ -1290,9 +1240,7 @@ body.appendChild(notifyPopup.render());
 
 notifyPopup.enable();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { NotifyPopup } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1310,7 +1258,6 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
                 
                   
