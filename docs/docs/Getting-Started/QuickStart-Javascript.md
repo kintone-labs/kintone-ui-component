@@ -6,7 +6,7 @@
 $ mkdir my-customization
 $ cd my-customization
 $ npm init -y
-$ npm install cross-env css-loader style-loader webpack@^4.46.0 webpack-cli@^3.3.12 babel-loader @babel/core @babel/preset-env@^7.2.3 --save
+$ npm install cross-env css-loader style-loader webpack@^4.46.0 webpack-cli@^3.3.12 babel-loader @babel/core @babel/preset-env@^7.2.3 tslib --save
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 ```

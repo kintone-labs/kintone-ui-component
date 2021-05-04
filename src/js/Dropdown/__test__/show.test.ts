@@ -35,6 +35,7 @@ describe('Unit test Dropdown show', () => {
       isVisible: false
     });
     const container = dropdown.render();
+    document.body.appendChild(container);
     dropdown.show();
     expect(container).toBeVisible();
   });

@@ -33,6 +33,7 @@ describe('Unit test RadioButton onEvent', () => {
       value: expectedValues[0],
     });
     const container = radioButton.render();
+    document.body.appendChild(container);
     radioButton.on('change', (e: any) => {
       expect(e).toEqual(expectedValues[1]);
     });

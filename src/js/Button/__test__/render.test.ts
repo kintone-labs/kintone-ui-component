@@ -14,6 +14,7 @@ describe('Unit test Button render', () => {
   test('Render successfully without props', () => {
     const button = new Button();
     const container = button.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
@@ -46,6 +47,7 @@ describe('Unit test Button render', () => {
       isVisible: 'abc'
     });
     const container = button.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(2);
     expect(['kuc-btn', 'normal'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();

@@ -34,6 +34,7 @@ describe('Unit test RadioButton show', () => {
       isVisible: false
     });
     const container = radioButton.render();
+    document.body.appendChild(container);
     radioButton.show();
     expect(container).toBeVisible();
   });

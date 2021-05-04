@@ -18,6 +18,7 @@ describe('Unit test RadioButton render', () => {
   test('Render successfully without props', () => {
     const radioButton = new RadioButton();
     const container = radioButton.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-radio'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
@@ -96,6 +97,7 @@ describe('Unit test RadioButton render', () => {
       isVisible: 'abc'
     });
     const container = radioButton.render();
+    document.body.appendChild(container);
     expect(container.classList.length).toBe(1);
     expect(['kuc-input-radio'].every(c => container.classList.contains(c))).toBe(true);
     expect(container).not.toBeDisabled();
