@@ -968,11 +968,9 @@
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -989,9 +987,7 @@
     value: 'Banana'
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1025,9 +1021,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h2 id="methods">Methods</h2>
 <h3 id="render">render()</h3>
 <p>Get dom element of component.</p>
@@ -1035,11 +1029,9 @@ export default class Plugin extends React.Component {
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>Dom element</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1060,9 +1052,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
     body.appendChild(dropdown.render());
 
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1096,9 +1086,7 @@ export default class Plugin extends React.Component {
     }
 }
 </code></pre>
-
 </details>
-
 <h3 id="additemitem">addItem(item)</h3>
 <p>Add an item to dropdown list.</p>
 <p><strong>Parameter</strong></p>
@@ -1140,11 +1128,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1166,9 +1152,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.addItem({label: 'Lemon', value: 'Lemon', isDisabled: true});
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1203,9 +1187,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="removeitemindex">removeItem(index)</h3>
 <p>Remove an item at specific position in dropdown's list.</p>
 <p><strong>Parameter</strong></p>
@@ -1229,11 +1211,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1256,9 +1236,7 @@ var firstItem = dropdown.getItems()[0];
 dropdown.removeItem(0);
 console.log(firstItem);
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1305,9 +1283,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="getitems">getItems()</h3>
 <p>Get all items of the dropdown.</p>
 <p><strong>Parameter</strong></p>
@@ -1345,11 +1321,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1374,9 +1348,7 @@ list.forEach(function(item) {
     console.log(item);
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1420,9 +1392,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="getvalue">getValue()</h3>
 <p>Get value of the selected item</p>
 <p><strong>Parameter</strong></p>
@@ -1444,11 +1414,9 @@ export default class Plugin extends React.Component {
 </tr>
 </tbody>
 </table>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1471,9 +1439,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 var selectedItem = dropdown.getValue();
 console.log(selectedItem);
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1518,9 +1484,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the selected value for dropdown.</p>
 <p><strong>Parameter</strong></p>
@@ -1544,11 +1508,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1570,9 +1532,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.setValue('Orange');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1617,9 +1577,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="disableitemvalue">disableItem(value)</h3>
 <p>Set the disabled item for dropdown.</p>
 <p><strong>Parameter</strong></p>
@@ -1643,11 +1601,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1669,9 +1625,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.disableItem('Orange');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1719,9 +1673,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="enableitemvalue">enableItem(value)</h3>
 <p>Set the enabled item for dropdown.</p>
 <p><strong>Parameter</strong></p>
@@ -1745,11 +1697,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1771,9 +1721,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.enableItem('Banana');
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1821,9 +1769,7 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="oneventname-callback">on(eventName, callBack)</h3>
 <p>Register callback for change event</p>
 <p><strong>Parameter</strong></p>
@@ -1853,11 +1799,9 @@ export default class Plugin extends React.Component {
 </table>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1881,9 +1825,7 @@ dropdown.on('change', function(value) {
     console.log('on change');
 });
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -1925,20 +1867,16 @@ export default class Plugin extends React.Component {
     }
 
 </code></pre>
-
 </details>
-
 <h3 id="show">show()</h3>
 <p>Display the dropdown.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -1960,9 +1898,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.show();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2004,20 +1940,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="hide">hide()</h3>
 <p>Hide the dropdown.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -2039,9 +1971,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.hide();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2084,20 +2014,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="disable">disable()</h3>
 <p>Disabled the dropdown.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -2119,9 +2045,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.disable();
 </code></pre>
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2162,20 +2086,16 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
-
 <h3 id="enable">enable()</h3>
 <p>Enabled the dropdown.</p>
 <p><strong>Parameter</strong></p>
 <p>None</p>
 <p><strong>Returns</strong></p>
 <p>None</p>
-<details class="tab-container" open>
-<Summary>Sample</Summary>
-
-**Javascript**
-
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
 <pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
     items: [
         {
@@ -2197,10 +2117,7 @@ var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
 
 dropdown.enable();
 </code></pre>
-
-
-**React**
-
+<p><strong>React</strong></p>
 <pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
 import React from 'react';
 
@@ -2243,7 +2160,6 @@ export default class Plugin extends React.Component {
 }
 
 </code></pre>
-
 </details>
                 
                   
