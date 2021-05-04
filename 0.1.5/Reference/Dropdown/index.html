@@ -1363,6 +1363,59 @@ list.forEach(function(item) {
 <pre><code class="language-javascript">bbbbbbb
 </code></pre>
 </details>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dropdown = new kintoneUIComponent.Dropdown({
+    items: [
+        {
+            label: 'Orange',
+            value: 'Orange',
+            isDisabled: true
+        },
+        {
+            label: 'Banana',
+            value: 'Banana',
+            isDisabled: false
+        }
+    ],
+    value: 'Banana'
+});
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Dropdown } from '@kintone/kintone-ui-component';
+import React from 'react';
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        const items = [
+            {
+                label: 'Orange',
+                value: 'Orange',
+                isDisabled: false
+            },
+            {
+                label: 'Banana',
+                value: 'Banana',
+                isDisabled: true
+            },
+            {
+                label: 'Lemon',
+                value: 'Lemon',
+                isDisabled: true
+            },
+        ];
+        this.state = {items: items, value: 'Orange'};
+    }
+
+    render() {
+        return (
+            &lt;Dropdown items={this.state.items} value={this.state.value} onChange={(value) =&gt; {this.setState({value})}} /&gt;
+        );
+    }
+}
+</code></pre>
+</details>
 <h3 id="setvaluevalue">setValue(value)</h3>
 <p>Set the selected value for dropdown.</p>
 <p><strong>Parameter</strong></p>
