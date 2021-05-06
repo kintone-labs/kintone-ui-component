@@ -60,8 +60,9 @@ const getDateData = (dateObj: any, dateCode: string, locale: any) => {
   }
 };
 
-const format = (dirtyDate: Date, dateFormat: string, option: any = {}): string => {
+const format = (dirtyDate: Date | null, dateFormat: string, option: any = {}): string => {
   try {
+    if (dirtyDate === null) return '';
     const dateObj = {
       millisecond: dirtyDate.getMilliseconds(),
       second: dirtyDate.getSeconds(),
