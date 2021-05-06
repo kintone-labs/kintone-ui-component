@@ -15,6 +15,7 @@ const jsUMDConfig = (_, argv) => {
             umdNamedDefine: true,
             globalObject: `(typeof self !== 'undefined' ? self : this)`
         },
+        target:["web", "es5"],
         plugins: [
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
@@ -81,6 +82,7 @@ const reactUMDConfig = (_, argv) => {
             publicPath: '/dist/react/',
             globalObject: `(typeof self !== 'undefined' ? self : this)`
         },
+        target:["web", "es5"],
         plugins: [
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
