@@ -1,8 +1,12 @@
 linter:
   goodcheck:
     config: goodcheck.yml
+ignore:
+  - "src/index.ts"
+  - "src/index.bundle.ts"
+  - "src/polyfill/index.ts"
 branches:
- exclude:
-   - /^v0..*/
-   - v0_dev
-   - gh-pages
+  exclude:
+    - /^v0..*/
+    - v0_dev
+    - gh-pages
