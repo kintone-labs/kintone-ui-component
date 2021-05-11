@@ -50,7 +50,7 @@ Please use these CDN link.
   https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
-> unpkg is not supported by Cybozu. We recommend you to use it for verification.
+> unpkg is not supported by Cybozu. We recommend you to use it for verification.  
 > In a production environment, please use UMD to avoid the possible effects of unpkg technical obstacle and glitches.
 
 ### npm
@@ -101,7 +101,7 @@ text.addEventListener("change", event => {
   </tr>
 </table>
 
-> We confirmed the operation with the latest version of each compatible browser.
+> We confirmed the operation with the latest version of each compatible browser.  
 > kintone UI Component is not worked well at IE11 browser.
 
 ## v0 Usage
@@ -109,7 +109,7 @@ If you want to use kintone UI Component v0.x.x, please refer to these pages.
 - [GitHub repository](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev)
 - [Document page](https://kintone-labs.github.io/kintone-ui-component/latest)
 
-> With the release of kintone UI Component v1, we will continue to mainly fix bugs and update libraries for v0.
+> With the release of kintone UI Component v1, we will continue to mainly fix bugs and update libraries for v0.  
 > We don't plan to develop new functions for now.
 
 ## Migration Guide
@@ -118,6 +118,8 @@ Please be sure to verify enough when you updating.
 For more details, please refer to the articles below.
 - [The difference of the way to code between v0 and v1](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1)
 - [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/blog/2021/03/04/v1.0.0-release-notes)
+
+> About the React version provided in v0, we haven't supported it in v1 now.
 
 ## Contributing
 We welcome contributions to kintone UI Component.
