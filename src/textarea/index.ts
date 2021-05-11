@@ -245,15 +245,16 @@ export class TextArea extends LitElement {
         }
         .kuc-textarea__textarea {
           display: block;
-          border: 1px solid #e3e7e8;
+          border: 1px solid #e3e7e8 !important;
           box-sizing: border-box;
           font-size: 14px;
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           min-width: 299px;
           min-height: 125px;
-          padding: 8px;
+          padding: 8px !important;
           resize: none;
           width: 100%;
+          background-color: #ffffff !important;
         }
         .kuc-textarea__textarea:focus {
           outline: none;
