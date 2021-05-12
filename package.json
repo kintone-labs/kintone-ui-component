@@ -28,7 +28,7 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
-    "test": "rm -rf ./test && tsc -p tsconfig.test.json && karma start --coverage",
+    "test": "rm -rf ./test && rm -rf __snapshots__ && tsc -p tsconfig.test.json && karma start --coverage",
     "es-lint": "node_modules/.bin/eslint src/**/**.ts src/**.ts src/**/**.js"
   },
   "devDependencies": {
