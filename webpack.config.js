@@ -15,6 +15,7 @@ const jsUMDConfig = (_, argv) => {
             umdNamedDefine: true,
             globalObject: `(typeof self !== 'undefined' ? self : this)`
         },
+        target:["web", "es5"],
         plugins: [
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
@@ -81,6 +82,7 @@ const reactUMDConfig = (_, argv) => {
             publicPath: '/dist/react/',
             globalObject: `(typeof self !== 'undefined' ? self : this)`
         },
+        target:["web", "es5"],
         plugins: [
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
@@ -95,9 +97,9 @@ const reactUMDConfig = (_, argv) => {
                 'react-dom': path.resolve(__dirname, './node_modules/react-dom')
             }
         },
-        devtool: argv.mode === 'development' ? 'source-map' : '',
+        devtool: argv.mode === 'development' ? 'eval-cheap-source-map' : 'source-map',
         externals: {
-            // Don't bundle react or react-dom      
+            // Don't bundle react or react-dom
             react: {
                 commonjs: "react",
                 commonjs2: "react",
