@@ -24,8 +24,9 @@ describe("value default prop is not set", () => {
 
   it("value default prop is not set", async () => {
     const el = await fixture(container);
-    const itemsEl = container.querySelector(".kuc-dropdown__select-menu")!
-      .children as HTMLSelectElement;
+    const itemsEl = container.querySelector(
+      ".kuc-dropdown__group__select-menu"
+    )!.children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -62,8 +63,9 @@ describe("value prop set successfully", () => {
 
   it("value prop set successfully", async () => {
     const el = await fixture(container);
-    const itemsEl = container.querySelector(".kuc-dropdown__select-menu")!
-      .children as HTMLSelectElement;
+    const itemsEl = container.querySelector(
+      ".kuc-dropdown__group__select-menu"
+    )!.children as HTMLSelectElement;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -103,8 +105,9 @@ describe("value prop replace successfully", () => {
 
   it("value prop replace successfully", async () => {
     const el = await fixture(container);
-    const itemsEl = container.querySelector(".kuc-dropdown__select-menu")!
-      .children as HTMLSelectElement;
+    const itemsEl = container.querySelector(
+      ".kuc-dropdown__group__select-menu"
+    )!.children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -145,11 +148,12 @@ describe("value default prop set to null", () => {
   it("value default prop set to null", async () => {
     const el = await fixture(container);
     const selectedTextEl = el.querySelector(
-      ".kuc-dropdown__toggle__selected-item-label"
+      ".kuc-dropdown__group__toggle__selected-item-label"
     ) as HTMLSpanElement;
     expect(selectedTextEl.textContent).to.be.equal("");
-    const itemsEl = container.querySelector(".kuc-dropdown__select-menu")!
-      .children as HTMLSelectElement;
+    const itemsEl = container.querySelector(
+      ".kuc-dropdown__group__select-menu"
+    )!.children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
     }
@@ -192,11 +196,12 @@ describe("set to null value", () => {
   it("set to null value", async () => {
     const el = await fixture(container);
     const selectedTextEl = el.querySelector(
-      ".kuc-dropdown__toggle__selected-item-label"
+      ".kuc-dropdown__group__toggle__selected-item-label"
     ) as HTMLSpanElement;
     expect(selectedTextEl.textContent).to.be.equal("");
-    const itemsEl = container.querySelector(".kuc-dropdown__select-menu")!
-      .children as HTMLSelectElement;
+    const itemsEl = container.querySelector(
+      ".kuc-dropdown__group__select-menu"
+    )!.children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
     }

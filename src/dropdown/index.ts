@@ -42,13 +42,13 @@ export class Dropdown extends LitElement {
   @internalProperty()
   private _selectorVisible = false;
 
-  @queryAll(".kuc-dropdown__select-menu__item")
+  @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
 
-  @query("button.kuc-dropdown__toggle")
+  @query("button.kuc-dropdown__group__toggle")
   private _buttonEl!: HTMLButtonElement;
 
-  @query(".kuc-dropdown__label")
+  @query(".kuc-dropdown__group__label")
   private _labelEl!: HTMLDivElement;
 
   private _GUID: string;
@@ -107,11 +107,17 @@ export class Dropdown extends LitElement {
   private _handleClickDropdownToggle(event: MouseEvent) {
     if (!this._selectorVisible) {
       this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (itemEl.classList.contains("kuc-dropdown__select-menu__highlight")) {
-          itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+        if (
+          itemEl.classList.contains(
+            "kuc-dropdown__group__select-menu__highlight"
+          )
+        ) {
+          itemEl.classList.remove(
+            "kuc-dropdown__group__select-menu__highlight"
+          );
         }
         if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__select-menu__highlight");
+          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
         }
       });
     }
@@ -140,29 +146,37 @@ export class Dropdown extends LitElement {
 
   private _handleMouseOverDropdownItem(event: Event) {
     this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-      if (itemEl.classList.contains("kuc-dropdown__select-menu__highlight")) {
-        itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+      if (
+        itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
+      ) {
+        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
       }
     });
     const itemEl = event.currentTarget as HTMLLIElement;
-    itemEl.classList.add("kuc-dropdown__select-menu__highlight");
+    itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
     this._setActiveDescendant(itemEl.id);
   }
 
   private _handleMouseLeaveDropdownItem(event: Event) {
     const itemEl = event.currentTarget as HTMLLIElement;
-    itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+    itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
     this._removeActiveDescendant();
   }
 
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
       this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (itemEl.classList.contains("kuc-dropdown__select-menu__highlight")) {
-          itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+        if (
+          itemEl.classList.contains(
+            "kuc-dropdown__group__select-menu__highlight"
+          )
+        ) {
+          itemEl.classList.remove(
+            "kuc-dropdown__group__select-menu__highlight"
+          );
         }
         if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__select-menu__highlight");
+          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
         }
       });
     } else {
@@ -172,16 +186,20 @@ export class Dropdown extends LitElement {
         case "ArrowUp": {
           this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
             if (
-              itemEl.classList.contains("kuc-dropdown__select-menu__highlight")
+              itemEl.classList.contains(
+                "kuc-dropdown__group__select-menu__highlight"
+              )
             ) {
-              itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+              itemEl.classList.remove(
+                "kuc-dropdown__group__select-menu__highlight"
+              );
               highLightNumber = number - 1;
             }
           });
           highLightNumber =
             highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
           this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__select-menu__highlight"
+            "kuc-dropdown__group__select-menu__highlight"
           );
           this._setActiveDescendant(this._itemsEl[highLightNumber].id);
           break;
@@ -190,16 +208,20 @@ export class Dropdown extends LitElement {
         case "ArrowDown": {
           this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
             if (
-              itemEl.classList.contains("kuc-dropdown__select-menu__highlight")
+              itemEl.classList.contains(
+                "kuc-dropdown__group__select-menu__highlight"
+              )
             ) {
-              itemEl.classList.remove("kuc-dropdown__select-menu__highlight");
+              itemEl.classList.remove(
+                "kuc-dropdown__group__select-menu__highlight"
+              );
               highLightNumber = number + 1;
             }
           });
           highLightNumber =
             highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
           this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__select-menu__highlight"
+            "kuc-dropdown__group__select-menu__highlight"
           );
           this._setActiveDescendant(this._itemsEl[highLightNumber].id);
           break;
@@ -207,7 +229,9 @@ export class Dropdown extends LitElement {
         case "Enter": {
           this._itemsEl.forEach((itemEl: HTMLLIElement) => {
             if (
-              itemEl.classList.contains("kuc-dropdown__select-menu__highlight")
+              itemEl.classList.contains(
+                "kuc-dropdown__group__select-menu__highlight"
+              )
             ) {
               const value = itemEl.getAttribute("value") as string;
               this._handleUpdateValue(value);
@@ -244,7 +268,7 @@ export class Dropdown extends LitElement {
       ${
         checked
           ? svg`<svg
-          class='kuc-dropdown__select-menu__item__icon'
+          class='kuc-dropdown__group__select-menu__item__icon'
           width='11'
           height='9'
           viewBox='0 0 11 9'
@@ -264,7 +288,7 @@ export class Dropdown extends LitElement {
   private _getItemTemplate(item: Item, index: number) {
     return html`
       <li
-        class="kuc-dropdown__select-menu__item"
+        class="kuc-dropdown__group__select-menu__item"
         role="menuitem"
         tabindex=${item.value === this.value ? "0" : "-1"}
         aria-checked=${item.value === this.value ? "true" : "false"}
@@ -296,21 +320,21 @@ export class Dropdown extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <fieldset class="kuc-dropdown__group">
-        <div
-          class="kuc-dropdown__label"
+        <legend
+          class="kuc-dropdown__group__label"
           id="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-dropdown__label__text">${this.label}</span
+          <span class="kuc-dropdown__group__label__text">${this.label}</span
           ><!--
           --><span
-            class="kuc-dropdown__label__required-icon"
+            class="kuc-dropdown__group__label__required-icon"
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </div>
+        </legend>
         <button
-          class="kuc-dropdown__toggle"
+          class="kuc-dropdown__group__toggle"
           id="${this._GUID}-toggle"
           type="button"
           aria-haspopup="true"
@@ -322,15 +346,15 @@ export class Dropdown extends LitElement {
           @blur="${this._handleBlurDropdownToggle}"
           @keydown="${this._handleKeyDownDropdownToggle}"
         >
-          <span class="kuc-dropdown__toggle__selected-item-label"
+          <span class="kuc-dropdown__group__toggle__selected-item-label"
             >${this._getSelectedLabel()}</span
           >
-          <span class="kuc-dropdown__toggle__icon">
+          <span class="kuc-dropdown__group__toggle__icon">
             ${this._getToggleIconSvgTemplate()}
           </span>
         </button>
         <ul
-          class="kuc-dropdown__select-menu"
+          class="kuc-dropdown__group__select-menu"
           role="menu"
           aria-hidden="${!this._selectorVisible}"
           ?hidden="${!this._selectorVisible}"
@@ -405,25 +429,25 @@ export class Dropdown extends LitElement {
         kuc-dropdown[hidden] {
           display: none;
         }
-        .kuc-dropdown__label {
+        .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
           display: inline-block;
           white-space: nowrap;
         }
-        .kuc-dropdown__label[hidden] {
+        .kuc-dropdown__group__label[hidden] {
           display: none;
         }
-        .kuc-dropdown__label__required-icon {
+        .kuc-dropdown__group__label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-dropdown__label__required-icon[hidden] {
+        .kuc-dropdown__group__label__required-icon[hidden] {
           display: none;
         }
-        .kuc-dropdown__toggle {
+        .kuc-dropdown__group__toggle {
           height: 40px;
           box-sizing: border-box;
           box-shadow: 1px 1px 1px #ffffff inset;
@@ -437,24 +461,24 @@ export class Dropdown extends LitElement {
           width: 100%;
           cursor: pointer;
         }
-        .kuc-dropdown__toggle:focus {
+        .kuc-dropdown__group__toggle:focus {
           outline: none;
           border: 1px solid #3498db;
         }
-        .kuc-dropdown__toggle:disabled {
+        .kuc-dropdown__group__toggle:disabled {
           background-color: #d4d7d7;
           box-shadow: none;
           cursor: not-allowed;
           color: #888888;
         }
-        .kuc-dropdown__toggle__selected-item-label {
+        .kuc-dropdown__group__toggle__selected-item-label {
           font-size: 14px;
           text-align: left;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        .kuc-dropdown__toggle__icon {
+        .kuc-dropdown__group__toggle__icon {
           flex: none;
           width: 38px;
           height: 38px;
@@ -472,7 +496,7 @@ export class Dropdown extends LitElement {
         .kuc-dropdown__error[hidden] {
           display: none;
         }
-        .kuc-dropdown__select-menu {
+        .kuc-dropdown__group__select-menu {
           position: absolute;
           min-width: 280px;
           margin: 0;
@@ -482,25 +506,25 @@ export class Dropdown extends LitElement {
           z-index: 2000;
           list-style: none;
         }
-        .kuc-dropdown__select-menu[hidden] {
+        .kuc-dropdown__group__select-menu[hidden] {
           display: none;
         }
-        .kuc-dropdown__select-menu__item {
+        .kuc-dropdown__group__select-menu__item {
           padding: 8px 16px 8px 24px;
           line-height: 1;
           position: relative;
           cursor: pointer;
         }
-        .kuc-dropdown__select-menu__item__icon {
+        .kuc-dropdown__group__select-menu__item__icon {
           position: absolute;
           top: 50%;
           left: 6px;
           margin-top: -5px;
         }
-        .kuc-dropdown__select-menu__item[aria-checked="true"] {
+        .kuc-dropdown__group__select-menu__item[aria-checked="true"] {
           color: #3498db;
         }
-        .kuc-dropdown__select-menu__highlight[role="menuitem"] {
+        .kuc-dropdown__group__select-menu__highlight[role="menuitem"] {
           background-color: #e2f2fe;
         }
       </style>
