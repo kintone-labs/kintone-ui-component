@@ -364,7 +364,7 @@ export class Dropdown extends LitElement {
           )}
         </ul>
         <div
-          class="kuc-dropdown__error"
+          class="kuc-dropdown__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -417,6 +417,9 @@ export class Dropdown extends LitElement {
           width: 180px;
           min-width: 180px;
         }
+        kuc-dropdown[hidden] {
+          display: none;
+        }
         .kuc-dropdown__group {
           border: none;
           padding: 0px;
@@ -425,9 +428,6 @@ export class Dropdown extends LitElement {
           width: 100%;
           margin-inline-start: 0px;
           margin-inline-end: 0px;
-        }
-        kuc-dropdown[hidden] {
-          display: none;
         }
         .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
@@ -483,7 +483,7 @@ export class Dropdown extends LitElement {
           width: 38px;
           height: 38px;
         }
-        .kuc-dropdown__error {
+        .kuc-dropdown__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -493,7 +493,7 @@ export class Dropdown extends LitElement {
           word-break: break-all;
           white-space: normal;
         }
-        .kuc-dropdown__error[hidden] {
+        .kuc-dropdown__group__error[hidden] {
           display: none;
         }
         .kuc-dropdown__group__select-menu {
