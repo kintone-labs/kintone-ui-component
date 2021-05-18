@@ -96,7 +96,7 @@ CDN を読み込むと、グローバルオブジェクトとして Kuc が追�
 
 ```sh
 npm install kintone-ui-component
-npm install webpack
+npm install webpack webpack-cli --save-dev
 ```
 
 > 必要に応じて、babel-loader や css-loader もインストールしてお使いください。
@@ -144,7 +144,7 @@ module.exports = {
 
 ```json
 "scripts": {
-  "build:webpack": "webpack",
+  "build:webpack": "webpack --mode production",
   ...
 }
 ```
