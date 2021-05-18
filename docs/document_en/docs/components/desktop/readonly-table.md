@@ -6,7 +6,7 @@ sidebar_label: ReadOnlyTable
 
 ## Overview
 
-ReadOnlyTable displays a read table on the Kintone details screen.
+The ReadOnlyTable component allows the user to display a read table on the Kintone details screen.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
 
@@ -16,19 +16,19 @@ ReadOnlyTable displays a read table on the Kintone details screen.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name | |
-| id | string | ""  | Component ID Name | |
-| label | string | ""  | Component Description Labels | Label is not displayed for unspecified or empty characters |
-| visible | boolean | true | Show/Hide Components | |
-| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Output an error if Columns is not an array |
-| Columns.header | Object | Null | Table Header Object | |
+| className | string | ""  | Component class name | |
+| id | string | ""  | Component id name | |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| visible | boolean | true | Show the component | |
+| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
+| Columns.header | Object | Null | Table header object | |
 | Columns.header.text | String | Null | Text to be displayed in the table header | |
-| Columns.visible | Boolean | Null | Show/Hide settings for each column | |
-| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Output an error when the value in data, data is not an array |
+| Columns.visible | Boolean | Null | Visibility of the column | |
+| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
 
 ### Constructor
 
@@ -38,7 +38,7 @@ A list of available constructors.
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ---
 ## Sample Code

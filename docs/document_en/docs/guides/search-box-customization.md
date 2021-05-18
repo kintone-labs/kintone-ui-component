@@ -5,7 +5,7 @@ sidebar_Label: Custom Search box
 ---
 
 ## Overview
-This section describes how to create the search box by using the kintone UI component Text and the Button component, the Notification component.
+This section describes how to create the search box by using the kintone UI's Text component, Button component, and the Notification component.
 
 ## Completed image
 The complete image of the search box is as follows:
@@ -18,14 +18,14 @@ The complete image of the search box is as follows:
 
 ## JavaScript and CSS Customization
 
-When you import the UMD file of kintone UI Component to the app, you can upload the JavaScript files that are implemented as follows:  
+When you import the UMD file of kintone UI Component to the app, you can upload the JavaScript files by following these steps:  
 How to upload a file [Quick Start](../getting-started/quick-start.md)  For details.
 
-### Show Search Box
+### Display A Search Box
 
 Use the Text component and the Button component to display the search box.  
 You can use the placeholder property of the Text component to describe the contents of the entry.  
-If you want to support mobile, you can implement the same way as when you call the MobileButton component for mobile.  
+If you want to enable the mobile version, you can do so by using the MobileButton component for mobile.
 
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
@@ -50,9 +50,9 @@ header.appendChild(button);
 The Button component can specify a click event.  
 In this case, the following process is added.
 
-- When you click a button, the characters entered are full-width characters.
-- When the input value is not full-width, the error message is assigned to display
-- Initialize the display message by substituting an empty character in the error property
+- When you click a button, check whether the characters entered are full-width characters or not.
+- If the input value is not a full-width character, assigned the error message.
+- Initialize the display message by substituting the empty character with the error message in the text.error property.
 
 ```javascript
 const button = new Kuc.Button({
@@ -79,7 +79,7 @@ button.addEventListener('click', event => {
 
 ### Component Proliferation bug countermeasures
 
-The ID property is used to determine whether the component is already displayed and to prevent the proliferation bug.
+The id property is used to determine whether the component is already displayed and to prevent the proliferation bug.
 
 ```javascript
 // Prevent growth bug with ID granted by property
@@ -96,11 +96,12 @@ const text = new Kuc.Text({
 
 ### Show results in notifications
 
-Displays the message of success or failure in the REST API runtime using the Notification component.  
-The Notification is invoked using the Open method and the Type property to set the background color.  
-This time, it is implemented to be displayed in the following cases.  
+Displays the message for success or failure in the REST API runtime using the Notification component.  
+The Notification is invoked using the `open()` method and the Type property will set the background color.  
 
-- If no record is found
+For this example, it is set to be displayed in the following situation:  
+
+- When no records are found
 - When the REST API fails to execute
 
 ```javascript
@@ -139,8 +140,8 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
 
 ## Conclusion
 
-How did it work? This section explains how to create a search box using the kintone UI Component.  
-We hope you can develop kintone customization with Kintone UI Component for convenience.
+How is it working out for you? This section explains how to create a search box using the kintone UI Component.  
+We hope you can easily develop kintone customization by using the Kintone UI Component library.
 
 > This article will be reviewed by kintone and Google Chrome as of February, 2021.  
 > In addition, the version of kintone UI Component that is used for customization is v1.0.0.

@@ -6,7 +6,7 @@ sidebar_label: MobileButton
 
 ## Overview
 
-MobileButton show the buttons.
+The MobileButton component allows the user to create and displays buttons.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-button--document" title="mobile button image" width="300px" height="80px"></iframe>
 
@@ -16,16 +16,16 @@ MobileButton show the buttons.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name |  |
-| id | string | ""  | Component ID Name |  |
+| className | string | ""  | Component class name |  |
+| id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed in buttons | |
 | type | string | "normal"  | Button design Type | The following can be specified<br>"normal"  : White (#ffffff)<br>"submit"  : Blue (#206694) |
-| disabled | boolean | false | Edit/Disable component settings | |
-| visible | boolean | true | Show/Hide Components | |
+| disabled | boolean | false | Disable the component | |
+| visible | boolean | true | Show the component | |
 
 ### Event
 
@@ -33,7 +33,7 @@ A list of events that can be specified.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| click | function | Event handler when Clicked | Arguments are Event Objects |
+| click | function | Event handler when Clicked | It will pass the event object as the argument |
 
 ### Constructor
 
@@ -44,7 +44,7 @@ A list of available constructors.
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ---
 

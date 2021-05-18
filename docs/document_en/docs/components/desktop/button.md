@@ -6,7 +6,7 @@ sidebar_label: Button
 
 ## Overview
 
-Button displays buttons.
+The Button component allows the user to create and displays buttons.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=button--document" title="button image" width="550px" height="80px"></iframe>
 
@@ -16,35 +16,35 @@ Button displays buttons.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name |  |
-| id | string | ""  | Component ID Name |  |
-| text | string | ""  | Text to be displayed in buttons | |
-| type | string | "normal"  | Button design Type | The following can be specified<br>"normal"  : Gray (#f7f9fA)<br>"submit"  : Blue (#3498db)<br>"alert"  : Red (#e74c3c) |
-| disabled | boolean | false | Edit/Disable component settings | |
-| visible | boolean | true | Show/Hide Components | |
+| className | string | ""  | Component class name |  |
+| id | string | ""  | Component id name |  |
+| text | string | ""  | Text to be displayed inside the button | |
+| type | string | "normal"  | Button design Type | Available Options: <br>"normal"  : Gray (#f7f9fA)<br>"submit"  : Blue (#3498db)<br>"alert"  : Red (#e74c3c) |
+| disabled | boolean | false | Disable the component | |
+| visible | boolean | true | Show the component | |
 
 ### Event
 
-A list of events that can be specified.
+Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| click | function | Event handler when Clicked | Arguments are Event Objects |
+| click | function | Event handler when clicked | It will pass the event object as the argument |
 
 ### Constructor
 
 Button(options)
-A list of available constructors.
+Here is a list of available constructors.
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ---
 

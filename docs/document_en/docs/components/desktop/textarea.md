@@ -6,7 +6,7 @@ sidebar_label: TextArea
 
 ## Overview
 
-TextArea displays multiple lines of text.
+The TextArea component allows the user to display multiple lines of text element.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=textarea--document" title="textarea image" width="350px" height="170px"></iframe>
 
@@ -16,19 +16,19 @@ TextArea displays multiple lines of text.
 
 ### Property
 
-A list of available properties. You can update the value with the specified property.
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component Class name | |
-| error | string | ""  | Text to be displayed in error | Unspecified or empty text: error is not displayed |
-| id | string | ""  | Component ID Name | |
-| label | string | ""  | Component Description Labels | Label is not displayed for unspecified or empty characters |
-| placeholder | string | ""  | Text that is displayed as an example entered in the Blank Space | |
+| className | string | ""  | Component class name | |
+| error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
+| id | string | ""  | Component id name | |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or is empty |
+| placeholder | string | ""  | Placholder text for entry example | |
 | value | string | ""  | Text to be displayed | |
-| disabled | boolean | false | Edit/Disable component settings | |
-| requiredIcon | boolean | false | Component required icon Display/Hide Settings | |
-| visible | boolean | true | Show/Hide Components | |
+| disabled | boolean | false | Disable the component | |
+| requiredIcon | boolean | false | Display the required icon | |
+| visible | boolean | true | Show the component | |
 
 ### Event
 
@@ -36,8 +36,8 @@ A list of events that can be specified.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | The argument must be an event object.<br><br>You can receive the following values in event.detail<br>event.detail.oldValue  : Value before the change<br>event.detail.value  : Value of values after changing |
-| focus | function | Event handler for the focused time | The argument must be an event object.<br><br>You can receive the following values in event.detail<br>event.detail.value  : Value in Focus Time |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue  : Value before the change<br>event.detail.value  : Value after the change |
+| focus | function | Event handler for the focused time | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value  : Value at the time of focus |
 
 ### Constructor
 
@@ -47,7 +47,7 @@ A list of available constructors.
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object with Component Properties | Values in options are optional |
+| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ---
 ## Sample Code

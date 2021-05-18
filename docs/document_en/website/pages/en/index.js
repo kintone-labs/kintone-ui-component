@@ -92,10 +92,9 @@ class Index extends React.PureComponent {
         <h2 align="center">Use Case</h2>
         <div className="usecase_sentense" align="center">
           <span>
-            Kintone UI Component is a kintone
-            Elements that can be retrieved, such as header menu elements in the list screen, Kintone
-            On the plug-in Settings screen and the customized view, Kintone
-            You can achieve a similar look.
+            Kintone UI Component allows you to create interface using Kintone's styling.
+            You can use it to create elements in the header menu of the list view, 
+            the setting page of the plugin, as well as a customized view.
           </span>
         </div>
         <div className="usecase_group">
@@ -118,7 +117,7 @@ class Index extends React.PureComponent {
               <strong className="quoteTop_title">Support Policy</strong>
               <br />
               <br />
-              kintone UI Component
+              Kintone UI Component
               You can contact technical support for the specifications.
               <br />
               <a
@@ -139,13 +138,13 @@ class Index extends React.PureComponent {
               >
                 GitHub Issue
               </a>{" "}
-              You can ask questions or request feature requests.
+              You can ask questions or submit feature requests.
               <br />
               <br />
               You can change the source code, redistribute it, and use it in accordance with the license.
               <br />
-              The license type is the client library page or GitHub.
-              Confirm with the repository.
+              For more details of the license type please refer to the client library page or 
+              the GitHub repository.
             </p>
           </blockquote>
         </div>
@@ -163,7 +162,7 @@ class Index extends React.PureComponent {
             />
             <PromoSection>
               <Button href={docUrl("getting-started/quick-start.html")}>
-                Get Started
+                Getting Started
               </Button>
             </PromoSection>
           </div>
