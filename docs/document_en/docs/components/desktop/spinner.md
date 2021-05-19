@@ -28,7 +28,7 @@ consider assigning a visually-hidden class and given the word "Now loading..." i
 ### Constructor
 
 Spinner(options)
-A list of available constructors.
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
@@ -36,10 +36,10 @@ A list of available constructors.
 | options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
 
 ### Method
-This is a list of available methods.
+Here is a list of available methods:
 
 #### open()
-Show components
+Show the component
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-Hide Components
+Hide the component
 
 ##### Parameter
 none
@@ -59,7 +59,7 @@ none
 ---
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const spinner = new Kuc.Spinner({

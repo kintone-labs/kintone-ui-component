@@ -26,12 +26,12 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | text | string | ""  | Text to be displayed | |
-| type | string | "danger"  | Background Color | The following type can be specified: <br>"danger"  : Red (#e74c3c)<br>"info"  : Blue (#3498db)<br>"success"  : Green (#91c36c) |
+| type | string | "danger"  | Background color | Available options:<br>"danger" : Red (#e74c3c)<br>"info" : Blue (#3498db)<br>"success" : Green (#91c36c) |
 
 ### Constructor
 
-Notification(options)
-A list of available constructors.
+Notification(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
@@ -40,10 +40,10 @@ A list of available constructors.
 
 ### Method
 
-This is a list of available methods.
+Here is a list of available methods:
 
 #### open()
-Show notifications
+Show the Notification
 
 ##### Parameter
 none
@@ -52,7 +52,7 @@ none
 none
 
 #### close()
-Hiding notifications
+Hide the Notification
 
 ##### Parameter
 none
@@ -63,7 +63,7 @@ none
 ---
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const notification = new Kuc.Notification({

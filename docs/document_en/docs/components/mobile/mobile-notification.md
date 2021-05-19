@@ -25,8 +25,8 @@ Here is a list of properties that can be used for modifying the component:
 
 ### Constructor
 
-MobileNotification(options)
-A list of available constructors.
+MobileNotification(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
@@ -35,10 +35,10 @@ A list of available constructors.
 
 ### Method
 
-This is a list of available methods.
+Here is a list of available methods:
 
 #### open()
-Show MobileNotification
+Show the MobileNotification
 
 ##### Parameter
 none
@@ -47,7 +47,7 @@ none
 none
 
 #### close()
-Hide MobileNotification
+Hide the MobileNotification
 
 ##### Parameter
 none
@@ -58,7 +58,7 @@ none
 ---
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const mobileNotification = new Kuc.MobileNotification({

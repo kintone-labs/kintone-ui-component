@@ -26,8 +26,8 @@ Here is a list of properties that can be used for modifying the component:
 
 ### Constructor
 
-Dialog(options)
-A list of available constructors.
+Dialog(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
@@ -36,10 +36,10 @@ A list of available constructors.
 
 ### Method
 
-This is a list of available methods.
+Here is a list of available methods:
 
 #### open()
-Show dialog
+Show the Dialog
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-Hide dialog
+Hide the Dialog
 
 ##### Parameter
 none
@@ -59,7 +59,7 @@ none
 ---
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const dialog = new Kuc.Dialog({

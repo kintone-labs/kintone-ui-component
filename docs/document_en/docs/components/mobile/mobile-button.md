@@ -23,13 +23,13 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed in buttons | |
-| type | string | "normal"  | Button design Type | The following can be specified<br>"normal"  : White (#ffffff)<br>"submit"  : Blue (#206694) |
-| disabled | boolean | false | Disable the component | |
-| visible | boolean | true | Show the component | |
+| type | string | "normal"  | Button design type | Available options:<br>"normal" : White (#ffffff)<br>"submit" : Blue (#206694) |
+| disabled | boolean | false | Enable/Disable the component | |
+| visible | boolean | true | Show/Hide the component | |
 
 ### Event
 
-A list of events that can be specified.
+Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
@@ -37,8 +37,8 @@ A list of events that can be specified.
 
 ### Constructor
 
-Button(options)
-A list of available constructors.
+Button(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 
@@ -50,7 +50,7 @@ A list of available constructors.
 
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const header = kintone.mobile.app.getHeaderMenuSpaceElement();

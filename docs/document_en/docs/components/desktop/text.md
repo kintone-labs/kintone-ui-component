@@ -27,25 +27,25 @@ Here is a list of properties that can be used for modifying the component:
 | placeholder | string | ""  | Placholder text for entry example | |
 | prefix | string | ""  | Text to be displayed before the input text | |
 | suffix | string | ""  | Text to be displayed after the input text | |
-| textAlign | string | "left"  | Text alignments | The following can be specified<br>"left"  : Justified to the left<br>"right"  : Justified to the right |
+| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Justified to the left<br>"right" : Justified to the right |
 | value | string | ""  | Text to be displayed | |
-| disabled | boolean | false | Disable the component | |
-| requiredIcon | boolean | false | Displays the required icon | |
-| visible | boolean | true | Show the component | |
+| disabled | boolean | false | Enable/Disable the component | |
+| requiredIcon | boolean | false | Show/Hide the required icon | |
+| visible | boolean | true | Show/Hide the component | |
 
 ### Event
 
-A list of events that can be specified.
+Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue  : Value before the change<br>event.detail.value  : Value after the change |
-| focus | function | Event handler when the component is focused | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value  : Value at the time of focus |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
+| focus | function | Event handler when the component is focused | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
 
 ### Constructor
 
-Text(options)
-A list of available constructors.
+Text(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
@@ -55,7 +55,7 @@ A list of available constructors.
 ---
 ## Sample Code
 
-Sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const space = kintone.app.record.getSpaceElement('space');

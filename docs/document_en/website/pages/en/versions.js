@@ -20,11 +20,11 @@ const Versions = (props) => {
       <Container className="mainContainer versionsContainer">
         <div className="post">
           <header className="postHeader">
-            <h1>Kintone UI Component versions</h1>
+            <h1>kintone UI Component versions</h1>
           </header>
           <p>A new version of this project will be released on a regular basis.</p>
           <h3 id="latest">Current version (Stable)</h3>
-          <p>Current stable version.</p>
+          <p>Here is the current stable version.</p>
           <table className="versions">
             <tbody>
               <tr>
@@ -86,14 +86,15 @@ const Versions = (props) => {
             </tbody>
           </table>
           <p>
-            ※ Please find the version of v0 system
+            ※ Please find the version of v0 series 
             <a
               href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
               target="_blank"
               rel="noreferrer"
             >
-              Here
+              here
             </a>
+            .
           </p>
           <h3 id="rc">Pre-release versions</h3>
           <p>
