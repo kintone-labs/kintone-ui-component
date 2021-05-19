@@ -7,7 +7,7 @@ describe("confirm placeholder default prop is null", () => {
   it("confirm placeholder default prop is null", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__text__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input"
     ) as HTMLInputElement;
     expect(inputEl.placeholder).to.be.equal("");
   });
@@ -19,7 +19,7 @@ describe("placeholder constructor set successfully", () => {
   it("placeholder constructor set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__text__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input"
     ) as HTMLInputElement;
     await expect(inputEl.placeholder).to.be.equal("Apple");
   });
@@ -32,7 +32,7 @@ describe("placeholder prop set successfully", () => {
   it("placeholder prop set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__text__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input"
     ) as HTMLInputElement;
     expect(inputEl.placeholder).to.be.equal("Apple");
   });
@@ -45,7 +45,7 @@ describe("placeholder prop replace successfully", () => {
   it("placeholder prop replace successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__text__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input"
     ) as HTMLInputElement;
     expect(inputEl.placeholder).to.be.equal("Apple");
   });

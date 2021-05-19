@@ -213,7 +213,7 @@ export class RadioButton extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-radio-button__error"
+          class="kuc-radio-button__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -384,7 +384,7 @@ export class RadioButton extends LitElement {
           white-space: nowrap;
         }
 
-        .kuc-radio-button__error {
+        .kuc-radio-button__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -395,7 +395,7 @@ export class RadioButton extends LitElement {
           white-space: normal;
         }
 
-        .kuc-radio-button__error[hidden] {
+        .kuc-radio-button__group__error[hidden] {
           display: none;
         }
       </style>

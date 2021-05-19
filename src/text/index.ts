@@ -33,9 +33,9 @@ export class Text extends LitElement {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: Boolean }) visible = true;
 
-  @query(".kuc-text__text") private _textContainerElm!: HTMLLIElement;
-  @query(".kuc-text__text__input-form") private _inputFormElm!: HTMLElement;
-  @query(".kuc-text__text__label") private _labelElm!: HTMLElement;
+  @query(".kuc-text__group") private _textContainerElm!: HTMLLIElement;
+  @query(".kuc-text__group__input-form") private _inputFormElm!: HTMLElement;
+  @query(".kuc-text__group__label") private _labelElm!: HTMLElement;
 
   private _GUID: string;
 
@@ -123,60 +123,54 @@ export class Text extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <fieldset class="kuc-text__group">
-        <div class="kuc-text__text">
-          <label
-            class="kuc-text__text__label"
-            for="${this._GUID}-label"
-            ?hidden=${!this.label}
-          >
-            <span class="kuc-text__text__label__text">${this.label}</span
-            ><!--
+        <legend class="kuc-text__group__label" ?hidden="${!this.label}">
+          <span class="kuc-text__group__label__text">${this.label}</span
+          ><!--
             --><span
-              class="kuc-text__text__label__required-icon"
-              ?hidden=${!this.requiredIcon}
-              >*</span
-            >
-          </label>
-          <div class="kuc-text__text__input-form">
-            <div class="kuc-text__text__input-form__prefix-outer">
-              <span
-                class="kuc-text__text__input-form__prefix-outer__prefix"
-                ?hidden="${!this.prefix}"
-                >${this.prefix}</span
-              >
-            </div>
-            <div class="kuc-text__text__input-form__input-outer">
-              <input
-                class="kuc-text__text__input-form__input-outer__input"
-                id="${this._GUID}-label"
-                placeholder=${this.placeholder}
-                textAlign=${this.textAlign}
-                type="text"
-                .value=${this.value}
-                aria-required=${this.requiredIcon}
-                aria-invalid="${this.error !== ""}"
-                aria-describedby="${this._GUID}-error"
-                @focus="${this._handleFocusInput}"
-                @change="${this._handleChangeInput}"
-                ?disabled="${this.disabled}"
-              />
-            </div>
-            <div class="kuc-text__text__input-form__suffix-outer">
-              <span
-                class="kuc-text__text__input-form__suffix-outer__suffix"
-                ?hidden="${!this.suffix}"
-                >${this.suffix}</span
-              >
-            </div>
-          </div>
-          <div
-            class="kuc-text__text__error"
-            id="${this._GUID}-error"
-            role="alert"
-            ?hidden=${!this.error}
+            class="kuc-text__group__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
           >
-            ${this.error}
+        </legend>
+        <div class="kuc-text__group__input-form">
+          <div class="kuc-text__group__input-form__prefix-outer">
+            <span
+              class="kuc-text__group__input-form__prefix-outer__prefix"
+              ?hidden="${!this.prefix}"
+              >${this.prefix}</span
+            >
           </div>
+          <div class="kuc-text__group__input-form__input-outer">
+            <input
+              class="kuc-text__group__input-form__input-outer__input"
+              id="${this._GUID}-label"
+              placeholder=${this.placeholder}
+              textAlign=${this.textAlign}
+              type="text"
+              .value=${this.value}
+              aria-required=${this.requiredIcon}
+              aria-invalid="${this.error !== ""}"
+              aria-describedby="${this._GUID}-error"
+              @focus="${this._handleFocusInput}"
+              @change="${this._handleChangeInput}"
+              ?disabled="${this.disabled}"
+            />
+          </div>
+          <div class="kuc-text__group__input-form__suffix-outer">
+            <span
+              class="kuc-text__group__input-form__suffix-outer__suffix"
+              ?hidden="${!this.suffix}"
+              >${this.suffix}</span
+            >
+          </div>
+        </div>
+        <div
+          class="kuc-text__group__error"
+          id="${this._GUID}-error"
+          role="alert"
+          ?hidden=${!this.error}
+        >
+          ${this.error}
         </div>
       </fieldset>
     `;
@@ -220,50 +214,46 @@ export class Text extends LitElement {
           padding: 0px;
           height: auto;
           display: inline-block;
-          width: 100%;
+          width: 193px;
+          min-width: 193px;
           margin-inline-start: 0px;
           margin-inline-end: 0px;
         }
-        .kuc-text__text {
-          display: inline-block;
-          width: 193px;
-          min-width: 193px;
-        }
-        .kuc-text__text__label {
+        .kuc-text__group__label {
           display: inline-block;
           padding: 4px 0px 8px 0px;
           white-space: nowrap;
         }
-        .kuc-text__text__label[hidden] {
+        .kuc-text__group__label[hidden] {
           display: none;
         }
-        .kuc-text__text__label__required-icon {
+        .kuc-text__group__label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-text__text__label__required-icon[hidden] {
+        .kuc-text__group__label__required-icon[hidden] {
           display: none;
         }
-        .kuc-text__text__input-form {
+        .kuc-text__group__input-form {
           display: table;
           width: 100%;
         }
-        .kuc-text__text__input-form__prefix-outer,
-        .kuc-text__text__input-form__input-outer,
-        .kuc-text__text__input-form__suffix-outer {
+        .kuc-text__group__input-form__prefix-outer,
+        .kuc-text__group__input-form__input-outer,
+        .kuc-text__group__input-form__suffix-outer {
           display: table-cell;
         }
-        .kuc-text__text__input-form__prefix-outer__prefix {
+        .kuc-text__group__input-form__prefix-outer__prefix {
           padding-right: 4px;
           white-space: nowrap;
         }
-        .kuc-text__text__input-form__input-outer {
+        .kuc-text__group__input-form__input-outer {
           min-width: 26px;
         }
-        .kuc-text__text__input-form__input-outer__input {
+        .kuc-text__group__input-form__input-outer__input {
           width: 100%;
           height: 40px;
           padding: 0 8px;
@@ -272,27 +262,27 @@ export class Text extends LitElement {
           font-size: 14px;
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
         }
-        .kuc-text__text__input-form__input-outer__input[textAlign="left"] {
+        .kuc-text__group__input-form__input-outer__input[textAlign="left"] {
           text-align: left;
         }
-        .kuc-text__text__input-form__input-outer__input[textAlign="right"] {
+        .kuc-text__group__input-form__input-outer__input[textAlign="right"] {
           text-align: right;
         }
-        .kuc-text__text__input-form__input-outer__input:focus {
+        .kuc-text__group__input-form__input-outer__input:focus {
           outline: none;
           border: 1px solid #3498db;
         }
-        .kuc-text__text__input-form__input-outer__input:disabled {
+        .kuc-text__group__input-form__input-outer__input:disabled {
           color: #888888;
           background-color: #d4d7d7;
           box-shadow: none;
           cursor: not-allowed;
         }
-        .kuc-text__text__input-form__suffix-outer__suffix {
+        .kuc-text__group__input-form__suffix-outer__suffix {
           padding-left: 4px;
           white-space: nowrap;
         }
-        .kuc-text__text__error {
+        .kuc-text__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -302,7 +292,7 @@ export class Text extends LitElement {
           word-break: break-all;
           white-space: normal;
         }
-        .kuc-text__text__error[hidden] {
+        .kuc-text__group__error[hidden] {
           display: none;
         }
       </style>

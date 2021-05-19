@@ -7,7 +7,7 @@ describe("confirm error default prop is null", () => {
   it("confirm error default prop is null", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-text__text__error"
+      ".kuc-text__group__error"
     )) as HTMLDivElement;
     const errorText = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
@@ -21,7 +21,7 @@ describe("error constructor set successfully", () => {
   it("error constructor set successfully'", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-text__text__error"
+      ".kuc-text__group__error"
     )) as HTMLDivElement;
     const errorText = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
@@ -36,7 +36,7 @@ describe("error prop set successfully", () => {
   it("error prop set successfully'", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-text__text__error"
+      ".kuc-text__group__error"
     )) as HTMLDivElement;
     const errorText = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
@@ -51,7 +51,7 @@ describe("error prop replace successfully", () => {
   it("error prop replace successfully", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-text__text__error"
+      ".kuc-text__group__error"
     )) as HTMLDivElement;
     const errorText = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
@@ -67,7 +67,7 @@ describe("error prop set to null successfully", () => {
   it("error prop set to null successfully", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-text__text__error"
+      ".kuc-text__group__error"
     )) as HTMLDivElement;
     const errorText = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);

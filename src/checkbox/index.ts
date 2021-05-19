@@ -238,7 +238,7 @@ export class Checkbox extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-checkbox__error"
+          class="kuc-checkbox__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -405,7 +405,7 @@ export class Checkbox extends LitElement {
           vertical-align: middle;
           white-space: nowrap;
         }
-        .kuc-checkbox__error {
+        .kuc-checkbox__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -415,7 +415,7 @@ export class Checkbox extends LitElement {
           word-break: break-all;
           white-space: normal;
         }
-        .kuc-checkbox__error[hidden] {
+        .kuc-checkbox__group__error[hidden] {
           display: none;
         }
       </style>
