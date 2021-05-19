@@ -205,6 +205,7 @@ export class Text extends LitElement {
           color: #333333;
           display: inline-block;
           vertical-align: top;
+          min-width: 193px;
         }
         kuc-text[hidden] {
           display: none;
@@ -214,8 +215,6 @@ export class Text extends LitElement {
           padding: 0px;
           height: auto;
           display: inline-block;
-          width: 193px;
-          min-width: 193px;
           margin-inline-start: 0px;
           margin-inline-end: 0px;
         }
