@@ -130,11 +130,7 @@ export class TextArea extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <fieldset class="kuc-textarea__group">
-        <legend
-          class="kuc-textarea__group__label"
-          for="${this._GUID}-label"
-          ?hidden="${!this.label}"
-        >
+        <legend class="kuc-textarea__group__label" ?hidden="${!this.label}">
           <span class="kuc-textarea__group__label__text">${this.label}</span
           ><!--
           --><span
