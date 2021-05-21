@@ -25,7 +25,7 @@
 |options.isDisabled|Boolean|No|The checkBox will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The checkBox will be visible. <br> Default value: 'true'|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -100,7 +100,7 @@ None
 
 Dom element
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -183,7 +183,7 @@ Add an item to the end of checkbox list.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -274,7 +274,7 @@ The item at given position.
 |item.label|String|Display string.|
 |item.isDisabled|Boolean|Indicate item will be disabled when display.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -364,7 +364,7 @@ Remove the specific item from checkbox list.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -467,7 +467,7 @@ The list contains all items of the dropdown.
 |items[].label|String|Display string.|
 |items[].isDisabled|Boolean|Indicate item will be disabled when display.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -562,7 +562,7 @@ List of checked items.
 | --- | --- | --- |
 |value |List&lt;String&gt; |The value of selected items.|
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -653,7 +653,7 @@ Set the checked value of checkbox.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -744,7 +744,7 @@ Set the disabled item of checkbox.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -835,7 +835,7 @@ Set the enable item of checkbox.
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -927,7 +927,7 @@ Register callback for change event
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -1015,7 +1015,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -1095,7 +1095,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -1174,7 +1174,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**
@@ -1254,7 +1254,7 @@ None
 
 None
 
-<details class="tab-container" open>
+<details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
 
 **React**

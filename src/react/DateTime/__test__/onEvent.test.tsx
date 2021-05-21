@@ -36,7 +36,7 @@ describe('Unit test DateTime react', () => {
     fireEvent.click(getByText('26'));
     expect(onChange).toBeCalledTimes(1);
   });
-  test('should show Date picker when the DateTime input is focus', (done) => {
+  test('should show Date picker when the DateTime input is focus', async (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -50,13 +50,13 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: none;');
     fireEvent.focus(datetimeInput, {target: {value: null}});
 
-    setTimeout(() => {
+    await waitFor(() => {
       expect(piker).toHaveStyle('display: block;');
-      done();
-    }, 1);
+    });
 
     fireEvent.keyDown(datetimeInput, {key: 'Tab', code: 9});
     expect(piker).toHaveStyle('display: none;');
+    done();
   });
   test('should show Time picker when the Time input is focus', () => {
     const onChange = (value: Date) => {};
@@ -78,7 +78,7 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: flex;');
   });
 
-  test('onKeyDown dateTextInput DateTime', (done) => {
+  test('onKeyDown dateTextInput DateTime', async (done) => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -91,14 +91,15 @@ describe('Unit test DateTime react', () => {
     const piker = container.getElementsByClassName('date-picker-container')[0];
     const node = container.getElementsByClassName('kuc-input-text text-input')[0];
     fireEvent.focus(node);
-
-    setTimeout(() => {
+    await waitFor(() => {
       expect(piker).toHaveStyle('display: block;');
-      done();
-    }, 1);
-
+    });
+    done();
     fireEvent.keyDown(node, {key: 'Tab', code: 9});
-    expect(piker).toHaveStyle('display: none;');
+    await waitFor(() => {
+      expect(piker).toHaveStyle('display: none;');
+    });
+    done();
   });
 
   test('onEvent date-picker-container DateTime', () => {
@@ -132,8 +133,9 @@ describe('Unit test DateTime react', () => {
 
     const noneBtn = container.getElementsByClassName('none calendar-button-control')[0];
     fireEvent.keyUp(noneBtn);
-    expect(onChange).toHaveBeenNthCalledWith(2, noneDate);
+    expect(onChange).toHaveBeenCalledWith(null);
   });
+
   test('Should change date successfully when clicking into the time picker', () => {
     const onChange = jest.fn((date: Date) => {
       expect(date.getHours()).toEqual(0);

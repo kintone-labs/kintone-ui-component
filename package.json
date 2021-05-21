@@ -1,6 +1,6 @@
 {
 	"name": "@kintone/kintone-ui-component",
-	"version": "0.7.8",
+	"version": "0.8.0",
 	"description": "kintone ui component",
 	"author": "Cybozu, Inc.",
 	"license": "MIT",
@@ -22,6 +22,12 @@
 	"module": "./esm/react/index.js",
 	"unpkg": "./dist/js/kintone-ui-component.min.js",
 	"types": "./esm/react/index.d.ts",
+	"keywords": [
+		"kintone",
+		"kintone-ui-component",
+		"ui framework",
+		"ui component"
+	],
 	"scripts": {
 		"build": "webpack --mode=production && node scripts/builder.js",
 		"build:esm": "node scripts/builder.js",
@@ -76,7 +82,7 @@
 		"terser-webpack-plugin": "^1.4.5",
 		"ts-jest": "^26.4.4 ",
 		"typescript": "^3.9.4",
-		"webpack": "^4.46.0",
-		"webpack-cli": "^4.3.1"
+		"webpack": "^5.36.2",
+		"webpack-cli": "^4.6.0"
 	}
 }
