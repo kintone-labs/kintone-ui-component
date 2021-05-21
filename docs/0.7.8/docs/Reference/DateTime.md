@@ -16,13 +16,6 @@
 |9|year selection dropdown|
 |10|month selection dropdown|
 
-!!! Note
-    Both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
-    <ul>
-      <li> The value options for type 'datetime' is set to null on <b>Constructor</b> or <b>setValue</b> function. </li>
-      <li> Clicking <b>clear (item-5)</b> when selecting date for 'datetime' type.</li>
-    </ul>
-
 ## Constructor
 
 **Parameter**
@@ -30,7 +23,7 @@
 | Name| Type| Required| Description |
 | --- | - | --- | ----- |
 |options|Object|No|An object contains params of constructor.|
-|options.value|Date\|null|No|	The Default DateTime Value.|
+|options.value|Date|No|	The Default DateTime Value.|
 |options.type|String|No|The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>Default value: 'datetime'|
 |options.locale|String|No|The setting of date picker display language<br> <ul><li>ja</li><li>en</li><li>zh</li></ul>Default value: 'ja'|
 |options.dateFormat|String|No|The date format for the date text input part of the component.<br>Supported format:<br>Valid separators: "/", "-", " ", ":" <br>Date:<br><ul><li>d (Date Short): 1,2 ...</li><li>dd (Date Full): 01, 02...</li></ul><br>Month:<br><ul><li>MM (Month Number): 01, 02 ...</li></ul><br>Year:<br><ul><li>YYYY (Year): 2019, 2020...</li></ul><br>All formats should contain MM and YYYY identifiers. For example:<ul><li>YYYY/MM - correct format</li><li>YYYY/dd - incorrect format</li></ul><br>Default format: MM/dd/YYYY|
@@ -126,7 +119,7 @@ None
 
 | Name| Type| Description |
 | --- | --- | --- |
-|value|	Date\|null|The value of datetime field.|
+|value|	Date|The value of datetime field.|
 
 <details class="tab-container" markdown="1" open>
 <Summary>Sample</Summary>
@@ -173,7 +166,7 @@ Set the value of datetime field.
 
 | Name| Type| Required | Description |
 | --- | --- | --- | --- |
-|value|	Date\|null| Yes | The value of datetime field.|
+|value|	Date| Yes | The value of datetime field.|
 
 **Returns**
 
