@@ -16,7 +16,7 @@ const siteConfig = {
   organizationName: "kintone-labs",
   headerLinks: [
     { doc: "getting-started/quick-start", label: "Documentation" },
-    { doc: "changelog/release-notes", label: "Releases" },
+    { doc: "release-notes", label: "Releases" },
     {
       href: "https://github.com/kintone-labs/kintone-ui-component",
       label: "GitHub",

@@ -1,7 +1,7 @@
 ---
 id: version-1.0.2-release-notes
-title: v1.0.2 Release Note
-sidebar_label: v1.0.2 Release Note
+title: v1.0.2 Release Notes
+sidebar_label: v1.0.2 Release Notes
 original_id: release-notes
 ---
 

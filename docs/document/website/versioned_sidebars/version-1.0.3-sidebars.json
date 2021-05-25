@@ -38,11 +38,11 @@
     ]
   },
   "version-1.0.3-release-notes": {
-    "Release Notes": [
-      "version-1.0.3-changelog/release-notes",
-      "version-1.0.3-changelog/v1.0.2-release-notes",
-      "version-1.0.3-changelog/v1.0.1-release-notes",
-      "version-1.0.3-changelog/v1.0.0-release-notes"
+    "Releases": [
+      "version-1.0.3-release-notes",
+      "version-1.0.3-v1.0.2-release-notes",
+      "version-1.0.3-v1.0.1-release-notes",
+      "version-1.0.3-v1.0.0-release-notes"
     ]
   }
 }
