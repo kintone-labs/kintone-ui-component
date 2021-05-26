@@ -39,11 +39,11 @@
   },
   "version-1.0.4-release-notes": {
     "Releases": [
-      "version-1.0.4-release-notes",
-      "version-1.0.4-v1.0.3-release-notes",
-      "version-1.0.4-v1.0.2-release-notes",
-      "version-1.0.4-v1.0.1-release-notes",
-      "version-1.0.4-v1.0.0-release-notes"
+      "version-1.0.4-releases/release-notes",
+      "version-1.0.4-releases/release-notes-v1.0.3",
+      "version-1.0.4-releases/release-notes-v1.0.2",
+      "version-1.0.4-releases/release-notes-v1.0.1",
+      "version-1.0.4-releases/release-notes-v1.0.0"
     ]
   }
 }

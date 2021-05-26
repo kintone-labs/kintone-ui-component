@@ -39,8 +39,8 @@
   },
   "version-1.0.1-release-notes": {
     "Releases": [
-      "version-1.0.1-release-notes",
-      "version-1.0.1-v1.0.0-release-notes"
+      "version-1.0.1-releases/release-notes",
+      "version-1.0.1-releases/release-notes-v1.0.0"
     ]
   }
 }

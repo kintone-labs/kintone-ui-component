@@ -1,8 +1,8 @@
 ---
-id: version-1.0.4-v1.0.3-release-notes
+id: version-1.0.0-release-notes-v1.0.3
 title: v1.0.3 Release Notes
 sidebar_label: v1.0.3 Release Notes
-original_id: v1.0.3-release-notes
+original_id: release-notes-v1.0.3
 ---
 
 ## 概要
