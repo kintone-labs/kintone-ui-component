@@ -17,10 +17,10 @@
 |10|month selection dropdown|
 
 !!! Note
-    Both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
+    For <b>datetime</b> type, both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
     <ul>
-      <li> The value options for type 'datetime' is set to null on <b>Constructor</b> or <b>setValue</b> function. </li>
-      <li> Clicking <b>clear (item-5)</b> when selecting date for 'datetime' type.</li>
+      <li> The value options is set to null on <b>Constructor</b> or <b>setValue</b> method. </li>
+      <li> Clicking <b>clear (item-5)</b> on <b>date picker (item-3)</b>.</li>
     </ul>
 
 ## Constructor
