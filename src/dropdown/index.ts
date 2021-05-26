@@ -41,6 +41,8 @@ export class Dropdown extends LitElement {
 
   @internalProperty()
   private _selectorVisible = false;
+  @internalProperty()
+  private _firstUpdatedUI = false;
 
   @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
@@ -386,7 +388,10 @@ export class Dropdown extends LitElement {
     if (toggleWidth < labelWidth) {
       toggleWidth = labelWidth;
     }
-    this.style.width = toggleWidth + "px";
+    if (this._firstUpdatedUI === false && toggleWidth > 0) {
+      this._firstUpdatedUI = true;
+      this._buttonEl.style.width = toggleWidth + "px";
+    }
   }
 
   private _getStyleTagTemplate() {

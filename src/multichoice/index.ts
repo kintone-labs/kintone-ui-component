@@ -148,7 +148,7 @@ export class MultiChoice extends LitElement {
     if (width < menuWidth) {
       width = menuWidth;
     }
-    this.style.width = width + "px";
+    this.style.width = width === 0 ? "auto" : width + "px";
   }
 
   updated() {

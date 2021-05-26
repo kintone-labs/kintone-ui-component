@@ -93,7 +93,7 @@ export class Checkbox extends LitElement {
     if (width < selectMenuWidth) {
       width = selectMenuWidth;
     }
-    this.style.width = width + "px";
+    this.style.width = width === 0 ? "auto" : width + "px";
   }
 
   private _getNewValue(value: string) {
@@ -314,6 +314,7 @@ export class Checkbox extends LitElement {
           display: inline-block;
           vertical-align: top;
           width: 239px;
+          min-width: 239px;
         }
         kuc-checkbox[hidden] {
           display: none;
