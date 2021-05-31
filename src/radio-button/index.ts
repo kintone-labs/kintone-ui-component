@@ -4,7 +4,6 @@ import {
   property,
   PropertyValues,
   svg,
-  query,
   queryAll
 } from "lit-element";
 import { v4 as uuid } from "uuid";
@@ -39,9 +38,6 @@ export class RadioButton extends LitElement {
   @property({ type: Boolean }) visible = true;
   @property({ type: Array }) items: Item[] = [];
 
-  @query(".kuc-radio-button__group__label") private _labelEl!: HTMLDivElement;
-  @query(".kuc-radio-button__group__select-menu")
-  private _selectMenuEl!: HTMLDivElement;
   @queryAll(".kuc-radio-button__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
@@ -82,16 +78,6 @@ export class RadioButton extends LitElement {
     } else {
       this.removeAttribute("hidden");
     }
-  }
-
-  private _updateContainerWidth() {
-    let labelWidth = this._labelEl.getBoundingClientRect().width;
-    const selectMenuWidth = this._selectMenuEl.getBoundingClientRect().width;
-    if (labelWidth < selectMenuWidth) {
-      labelWidth = selectMenuWidth;
-    }
-    this._selectMenuEl.style.width = "100%";
-    this.style.width = labelWidth + "px";
   }
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
@@ -195,8 +181,8 @@ export class RadioButton extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-radio-button__group">
-        <legend class="kuc-radio-button__group__label" ?hidden="${!this.label}">
+      <div class="kuc-radio-button__group">
+        <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
           <span class="kuc-radio-button__group__label__text">${this.label}</span
           ><!--
             --><span
@@ -204,7 +190,7 @@ export class RadioButton extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <div
           class="kuc-radio-button__group__select-menu"
           ?borderVisible=${this.borderVisible}
@@ -221,7 +207,7 @@ export class RadioButton extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
   }
 
@@ -229,7 +215,6 @@ export class RadioButton extends LitElement {
     this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
       inputEl.checked = this.value === inputEl.value;
     });
-    this._updateContainerWidth();
   }
 
   private _validateItems() {
@@ -269,7 +254,7 @@ export class RadioButton extends LitElement {
         kuc-radio-button {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: table;
           min-width: 239px;
           vertical-align: top;
         }
@@ -282,14 +267,14 @@ export class RadioButton extends LitElement {
           border: none;
           padding: 0px;
           height: auto;
-          display: inline-block;
+          display: table-caption;
           margin-inline-start: 0px;
           margin-inline-end: 0px;
           width: 100%;
         }
 
         .kuc-radio-button__group__label {
-          display: inline-block;
+          display: block;
           padding: 4px 0 8px 0;
           white-space: nowrap;
         }
@@ -311,8 +296,13 @@ export class RadioButton extends LitElement {
         }
 
         .kuc-radio-button__group__select-menu {
-          display: inline-block;
+          display: inline-flex;
           min-width: 239px;
+          width: 100%;
+        }
+
+        .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
+          display: block;
         }
 
         .kuc-radio-button__group__select-menu[bordervisible] {

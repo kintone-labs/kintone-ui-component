@@ -87,15 +87,6 @@ export class Checkbox extends LitElement {
     }
   }
 
-  private _updateContainerWidth() {
-    let width = this._labelEl.getBoundingClientRect().width;
-    const selectMenuWidth = this._selectMenuEl.getBoundingClientRect().width;
-    if (width < selectMenuWidth) {
-      width = selectMenuWidth;
-    }
-    this.style.width = width === 0 ? "auto" : width + "px";
-  }
-
   private _getNewValue(value: string) {
     if (this.value.every(val => val !== value)) {
       return [...this.value, value];
@@ -220,8 +211,8 @@ export class Checkbox extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-checkbox__group">
-        <legend class="kuc-checkbox__group__label" ?hidden="${!this.label}">
+      <div class="kuc-checkbox__group">
+        <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
           <span class="kuc-checkbox__group__label__text">${this.label}</span
           ><!--
           --><span
@@ -229,7 +220,7 @@ export class Checkbox extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <div
           class="kuc-checkbox__group__select-menu"
           ?borderVisible=${this.borderVisible}
@@ -246,7 +237,7 @@ export class Checkbox extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
   }
 
@@ -254,7 +245,6 @@ export class Checkbox extends LitElement {
     this._inputEls.forEach((inputEl: HTMLInputElement) => {
       inputEl.checked = this.value.indexOf(inputEl.value) > -1;
     });
-    this._updateContainerWidth();
   }
 
   private _getDuplicatedIndex(values: string[]) {
@@ -311,7 +301,7 @@ export class Checkbox extends LitElement {
         kuc-checkbox {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: table;
           vertical-align: top;
           width: 239px;
           min-width: 239px;

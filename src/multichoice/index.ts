@@ -43,9 +43,6 @@ export class MultiChoice extends LitElement {
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
 
-  @query(".kuc-multi-choice__group__label")
-  private _labelEl!: HTMLDivElement;
-
   @queryAll(".kuc-multi-choice__group__menu__item")
   private _itemsEl!: HTMLDivElement[];
 
@@ -71,7 +68,7 @@ export class MultiChoice extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-multi-choice__group">
+      <div class="kuc-multi-choice__group">
         <div
           class="kuc-multi-choice__group__label"
           id="${this._GUID}-label"
@@ -107,7 +104,7 @@ export class MultiChoice extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
   }
 
@@ -140,19 +137,6 @@ export class MultiChoice extends LitElement {
     } else {
       this.removeAttribute("hidden");
     }
-  }
-
-  private _updateContainerWidth() {
-    let width = this._labelEl.getBoundingClientRect().width;
-    const menuWidth = this._menuEl.getBoundingClientRect().width;
-    if (width < menuWidth) {
-      width = menuWidth;
-    }
-    this.style.width = width === 0 ? "auto" : width + "px";
-  }
-
-  updated() {
-    this._updateContainerWidth();
   }
 
   private _handleMousedownMultiChoiceItem(event: MouseEvent) {
@@ -359,7 +343,7 @@ export class MultiChoice extends LitElement {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-multi-choice {
-          display: inline-block;
+          display: table;
           font-size: 14px;
           color: #333;
           width: 180px;

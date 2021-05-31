@@ -1,4 +1,4 @@
-import { LitElement, html, property, query } from "lit-element";
+import { LitElement, html, property } from "lit-element";
 import { v4 as uuid } from "uuid";
 
 type TextProps = {
@@ -32,10 +32,6 @@ export class Text extends LitElement {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: Boolean }) visible = true;
-
-  @query(".kuc-text__group") private _textContainerElm!: HTMLLIElement;
-  @query(".kuc-text__group__input-form") private _inputFormElm!: HTMLElement;
-  @query(".kuc-text__group__label") private _labelElm!: HTMLElement;
 
   private _GUID: string;
 
@@ -103,27 +99,12 @@ export class Text extends LitElement {
     return this;
   }
 
-  private _updateContainerWidth() {
-    const inputFormElmOuter = this._inputFormElm.children[1] as HTMLElement;
-    const labelWidth = this._labelElm.getBoundingClientRect().width;
-    const inputFormWidth = this._inputFormElm.getBoundingClientRect().width;
-    let textContainerWidth = inputFormWidth;
-
-    if (labelWidth > inputFormWidth) {
-      textContainerWidth = labelWidth;
-    }
-
-    this._textContainerElm.style.width = "100%";
-    this.style.width = textContainerWidth + "px";
-    inputFormElmOuter.style.width = "100%";
-  }
-
   render() {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-text__group">
-        <legend class="kuc-text__group__label" ?hidden="${!this.label}">
+      <div class="kuc-text__group">
+        <div class="kuc-text__group__label" ?hidden="${!this.label}">
           <span class="kuc-text__group__label__text">${this.label}</span
           ><!--
             --><span
@@ -131,7 +112,7 @@ export class Text extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <div class="kuc-text__group__input-form">
           <div class="kuc-text__group__input-form__prefix-outer">
             <span
@@ -172,12 +153,8 @@ export class Text extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
-  }
-
-  updated() {
-    this._updateContainerWidth();
   }
 
   private _getStyleTagTemplate() {
@@ -203,7 +180,7 @@ export class Text extends LitElement {
         kuc-text {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: table;
           vertical-align: top;
           min-width: 193px;
           width: 193px;
@@ -252,8 +229,10 @@ export class Text extends LitElement {
         }
         .kuc-text__group__input-form__input-outer {
           min-width: 26px;
+          width: 100%;
         }
         .kuc-text__group__input-form__input-outer__input {
+          min-width: 100%;
           width: 100%;
           height: 40px;
           padding: 0 8px;
