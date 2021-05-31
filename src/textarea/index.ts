@@ -229,8 +229,8 @@ export class TextArea extends LitElement {
           height: auto;
           display: inline-block;
           width: 100%;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
+          margin-left: 0px;
+          margin-right: 0px;
         }
         .kuc-textarea__group__label {
           white-space: nowrap;
