@@ -41,8 +41,6 @@ export class Dropdown extends LitElement {
 
   @internalProperty()
   private _selectorVisible = false;
-  @internalProperty()
-  private _firstUpdatedUI = false;
 
   @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
@@ -321,8 +319,8 @@ export class Dropdown extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-dropdown__group">
-        <legend
+      <div class="kuc-dropdown__group">
+        <div
           class="kuc-dropdown__group__label"
           id="${this._GUID}-label"
           ?hidden="${!this.label}"
@@ -334,7 +332,7 @@ export class Dropdown extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <button
           class="kuc-dropdown__group__toggle"
           id="${this._GUID}-toggle"
@@ -374,24 +372,8 @@ export class Dropdown extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
-  }
-
-  updated() {
-    this._updateContainerWidth();
-  }
-
-  private _updateContainerWidth() {
-    let toggleWidth = this._buttonEl.getBoundingClientRect().width;
-    const labelWidth = this._labelEl.getBoundingClientRect().width;
-    if (toggleWidth < labelWidth) {
-      toggleWidth = labelWidth;
-    }
-    if (this._firstUpdatedUI === false && toggleWidth > 0) {
-      this._firstUpdatedUI = true;
-      this._buttonEl.style.width = toggleWidth + "px";
-    }
   }
 
   private _getStyleTagTemplate() {
@@ -415,7 +397,7 @@ export class Dropdown extends LitElement {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-dropdown {
-          display: inline-block;
+          display: table;
           font-size: 14px;
           color: #333333;
           vertical-align: top;
@@ -431,8 +413,8 @@ export class Dropdown extends LitElement {
           height: auto;
           display: inline-block;
           width: 100%;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
+          margin-left: 0px;
+          margin-right: 0px;
         }
         .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
