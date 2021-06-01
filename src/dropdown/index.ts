@@ -42,6 +42,9 @@ export class Dropdown extends LitElement {
   @internalProperty()
   private _selectorVisible = false;
 
+  @query(".kuc-dropdown__group")
+  private _groupEl!: HTMLDivElement;
+
   @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
 
@@ -374,6 +377,17 @@ export class Dropdown extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  updated() {
+    this._updateContainerWidth();
+  }
+
+  private _updateContainerWidth() {
+    const MIN_WIDTH = 180;
+    let labelWidth = this._labelEl.getBoundingClientRect().width;
+    labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
+    this._groupEl.style.width = labelWidth + "px";
   }
 
   private _getStyleTagTemplate() {
