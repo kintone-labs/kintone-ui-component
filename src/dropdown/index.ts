@@ -383,9 +383,27 @@ export class Dropdown extends LitElement {
     this._updateContainerWidth();
   }
 
+  private _getLabelWith() {
+    const context = document.createElement("div");
+    context.style.height = "0px";
+    context.style.overflow = "hidden";
+    context.style.display = "inline-block";
+    context.style.fontSize = "14px";
+
+    const clonedLabel = this._labelEl.cloneNode(true);
+    context.appendChild(clonedLabel);
+    document.body.appendChild(context);
+
+    const width = context.getBoundingClientRect().width;
+    document.body.removeChild(context);
+
+    return width;
+  }
+
   private _updateContainerWidth() {
     const MIN_WIDTH = 180;
     let labelWidth = this._labelEl.getBoundingClientRect().width;
+    if (labelWidth === 0) labelWidth = this._getLabelWith();
     labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     this._groupEl.style.width = labelWidth + "px";
   }
