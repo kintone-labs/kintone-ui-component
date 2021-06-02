@@ -21,8 +21,8 @@ Here is a list of properties that can be used for modifying the component:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | ""  | Header Title | |
-| content | string \|   HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the content property is automatically sanitize internally to prevent XSS attacks.
-| footer | string \| HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitize internally to prevent XSS attacks |
+| content | string \|   HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the content property is automatically sanitized internally to prevent XSS attacks.
+| footer | string \| HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitized internally to prevent XSS attacks |
 
 ### Constructor
 
@@ -32,7 +32,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
+| options | object | {} | Object that includes component properties | |
 
 ### Method
 

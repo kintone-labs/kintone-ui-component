@@ -24,10 +24,10 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| placeholder | string | ""  | Placholder text for entry example | |
+| placeholder | string | ""  | Placeholder text for entry example | |
 | prefix | string | ""  | Text to be displayed before the input text | |
 | suffix | string | ""  | Text to be displayed after the input text | |
-| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Justified to the left<br>"right" : Justified to the right |
+| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Aligned to the left<br>"right" : Aligned to the right |
 | value | string | ""  | Text to be displayed | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
@@ -50,7 +50,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
+| options  | object | {} | Object that includes component properties |  |
 
 ---
 ## Sample Code

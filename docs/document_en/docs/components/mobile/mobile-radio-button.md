@@ -49,7 +49,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JJSON object that includes component properties | Values in the options are arbitrary |
+| options | object | {} | JObject that includes component properties |  |
 
 ---
 ## Sample Code

@@ -6,7 +6,7 @@ sidebar_label: Button
 
 ## Overview
 
-The Button component allows the user to create and displays buttons.
+The Button component allows the user to create and display buttons.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=button--document" title="button image" width="550px" height="80px"></iframe>
 
@@ -44,7 +44,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JSON object that includes component properties | Values in the options are arbitrary |
+| options | object | {} | Object that includes component properties | |
 
 ---
 

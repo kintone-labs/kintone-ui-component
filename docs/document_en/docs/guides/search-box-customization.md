@@ -50,9 +50,9 @@ header.appendChild(button);
 The Button component can specify a click event.  
 In this case, the following process is added.
 
-- When you click a button, check whether the characters entered are full-width or not.
-- If the input value is not a full-width character, assign the error message to the error property and display it.
-- Initialize the display message by substituting the empty character in the error property.
+- When you click a button, check if there is a value in the text box.
+- If the input value is blank, assign the error message to the error property and display it.
+- Hide the error message by setting the error property to an empty string.
 
 ```javascript
 const button = new Kuc.Button({
@@ -64,25 +64,25 @@ const button = new Kuc.Button({
 // Add the process of click event to the displayed button
 button.addEventListener('click', event => {      
   const keyword = text.value;
-  const errorMessage = 'Only full-width can be entered';
-  // Initialize the displayed message
+  const errorMessage = 'Please enter a value.';
+  // Hide the error message
   text.error = ''; 
   
-  // Full-width character judgment process
-  if (!keyword.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-    // Interrupt the process by displaying an error message if the input value is not full width
+  // Check if there is a value
+  if (!keyword) {
+    // Show the error message
     text.error = errorMessage;
     return;
   }
 });
 ```
 
-### Component growth bug countermeasures
+### Component duplication bug prevention
 
-The id property is used to determine whether the component is already displayed and to prevent the growth bug.
+The id property is used to determine whether the component is already displayed and to prevent the duplication bug.
 
 ```javascript
-// Prevent growth bug with ID granted by property
+// Prevent duplication bug with ID granted by property
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
@@ -141,7 +141,7 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
 ## Conclusion
 
 How is it working out for you? This section explains how to create a search box using the kintone UI Component.  
-We hope you can easily develop kintone customization by using the kintone UI Component library.
+We hope you can easily develop kintone customizations by using the kintone UI Component library.
 
 > This article was reviewed by kintone and Google Chrome as of February, 2021.  
-> In addition, the version of kintone UI Component that is used for customization is v1.0.0.
+> In addition, the version of kintone UI Component that is used for customizations is v1.0.0.

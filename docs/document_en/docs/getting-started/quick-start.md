@@ -4,10 +4,9 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-## What is kintone UI Component?
+## What is Kintone UI Component?
 
-kintone UI Component is a library that supports kintone developers when developing UI for kintone customization and plug-ins.  
-It allows the developer to build forms with kintone's styling with ease.
+Kintone UI Component is a library that enables Kintone developers to build forms with Kintone's styling with ease.
 
 ### Example for Desktop components
 
@@ -19,16 +18,16 @@ It allows the developer to build forms with kintone's styling with ease.
 
 ## Preparation: Create App
 
-In this section, you will place a Button component inside the header menu space in the list view of a kintone app.  
+In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.  
 
-First, follow the below steps to create an app to install kintone UI Component.
+First, follow the below steps to create an app to install Kintone UI Component.
 
-1. Create a blank app. （[Create an app from scratch](https://jp.cybozu.help/k/ja/user/create_app/tutorial.html)）  
+1. Create a blank app. （[Create an app from scratch](https://jp.cybozu.help/k/en/user/create_app/tutorial.html)）  
 You do not need to set up any fields in this app.
 
 ## Installation
 
-kintone UI Component supports installation via a UMD, a CDN, or a npm package.  
+Kintone UI Component supports installation via a UMD, a CDN, or a npm package.  
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.  
 In this article, we will show you how to install and implement using each approach.
 
@@ -37,7 +36,7 @@ In this article, we will show you how to install and implement using each approa
 
 ### Use the UMD
 
-1. Download the file located inside kintone UI Component repository[Each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside kintone's app setting.
+1. Download the file located inside Kintone UI Component repository[Each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```text
 ./umd/kuc.min.js
@@ -66,16 +65,16 @@ In this article, we will show you how to install and implement using each approa
 })();
 ```
 
-1. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the kintone app settings. （[Customizing apps with JavaSript and CSS](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
+1. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. （[Customizing apps with JavaSript and CSS](https://jp.cybozu.help/k/en/user/app_settings/js_customize.html)）
 
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
 
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed kintone app. （[Customizing apps with JavaSript and CSS](https://get.kintone.help/k/ja/user/app_settings/js_customize.html)）  
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing apps with JavaSript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）  
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
-   - For the latest version of kintone UI Component:
+   - For the latest version of Kintone UI Component:
     ```text
     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
     ```
@@ -166,7 +165,7 @@ Output Result：
 ./dist/my-customization.min.js
 ```
 
-6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside kintone app settings. （[Customizing apps with JavaSript and CSS](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
+6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. （[Customizing apps with JavaSript and CSS](https://jp.cybozu.help/k/en/user/app_settings/js_customize.html)）
 
 ![button customize](assets/button_customize.png)
 
@@ -190,7 +189,7 @@ Output Result：
 </table>
 
 > The components have been tested in the latest version of each supported browser.  
-> kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by kintone.
+> Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
 
 > You can preview the components in the Overview section in each component's reference page.
 > Please be noted that it is not supported in IE11.
