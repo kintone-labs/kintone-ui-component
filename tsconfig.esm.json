@@ -14,7 +14,7 @@
     "./src/readonly-table/",
     "./src/dialog/",
     "./src/index.bundle.ts",
-    "./src/**/unit_test/",
-    "./src/**/**/unit_test/"
+    "./src/**/test/",
+    "./src/**/**/test/"
   ]
 }
