@@ -92,9 +92,8 @@ class Index extends React.PureComponent {
         <h2 align="center">Use Case</h2>
         <div className="usecase_sentense" align="center">
           <span>
-            kintone UI Component allows you to create kintone-like interface.
-            You can use it to create elements in the header menu of the list view, 
-            the setting page of the plugin, as well as a custom page.
+            Kintone UI Component allows you to create Kintone-like components easily.
+            This library is useful to build Kintone customization and plug-in.
           </span>
         </div>
         <div className="usecase_group">
@@ -117,21 +116,9 @@ class Index extends React.PureComponent {
               <strong className="quoteTop_title">Support Policy</strong>
               <br />
               <br />
-              kintone UI Component
-              You can contact technical support for the specifications.
+              Kintone UI Component
               <br />
-              Please confirm 
-              <a
-                href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763"
-                target="_blank"
-                rel="noreferrer"
-              >
-                How to contact support 
-              </a>
-              and contact us.
-              <br />
-              <br />
-              You can ask questions or submit feature requests on the
+              You can ask questions and/or submit requests on
               <a
                 href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
                 target="_blank"
@@ -142,7 +129,7 @@ class Index extends React.PureComponent {
               .
               <br />
               <br />
-              You can change the source code, redistribute it, and use it in accordance with the license.
+              You are allowed to change the source code, redistribute it, and use it in accordance with the license.
               <br />
               For more details of the license type please refer to the library page or 
               the GitHub repository.

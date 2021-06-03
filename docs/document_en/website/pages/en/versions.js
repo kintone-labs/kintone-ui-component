@@ -20,7 +20,7 @@ const Versions = (props) => {
       <Container className="mainContainer versionsContainer">
         <div className="post">
           <header className="postHeader">
-            <h1>kintone UI Component versions</h1>
+            <h1>Kintone UI Component versions</h1>
           </header>
           <p>A new version of this project will be released on a regular basis.</p>
           <h3 id="latest">Current version (Stable)</h3>
@@ -98,7 +98,7 @@ const Versions = (props) => {
           </p>
           <h3 id="rc">Pre-release versions</h3>
           <p>
-            You can check the latest changes which yet to be released from the following section.
+            You can find the latest updates for a future release.
           </p>
           <table className="versions">
             <tbody>
