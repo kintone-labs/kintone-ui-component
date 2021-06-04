@@ -5,7 +5,6 @@ module.exports = {
     builder: "webpack5",
   },
   addons: ['@storybook/addon-a11y', '@storybook/addon-viewport'],
-  stories: ["../src/**/index.stories.js"],
   webpackFinal: (config) => {
     return {
       ...config,
