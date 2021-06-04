@@ -129,8 +129,8 @@ export class TextArea extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-textarea__group">
-        <legend class="kuc-textarea__group__label" ?hidden="${!this.label}">
+      <div class="kuc-textarea__group">
+        <div class="kuc-textarea__group__label" ?hidden="${!this.label}">
           <span class="kuc-textarea__group__label__text">${this.label}</span
           ><!--
           --><span
@@ -138,7 +138,7 @@ export class TextArea extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <textarea
           id="${this._GUID}-label"
           class="kuc-textarea__group__textarea"
@@ -167,7 +167,7 @@ export class TextArea extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
   }
 
@@ -216,7 +216,7 @@ export class TextArea extends LitElement {
         kuc-textarea {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: table;
           vertical-align: top;
           width: 299px;
         }
