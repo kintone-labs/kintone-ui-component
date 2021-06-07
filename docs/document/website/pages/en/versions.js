@@ -96,33 +96,6 @@ const Versions = (props) => {
             </a>
             をご確認ください。
           </p>
-          <h3 id="rc">Pre-release versions</h3>
-          <p>
-            まだリリースされていない最新の変更も下記よりご確認いただけます。
-          </p>
-          <table className="versions">
-            <tbody>
-              <tr>
-                <th>master</th>
-                <td>
-                  {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/next/:id" */}
-                  <a
-                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                      props.language ? props.language + "/" : ""
-                    }next/getting-started/quick-start`}
-                  >
-                    Documentation
-                  </a>
-                </td>
-                <td>
-                  <a href={repoUrl} target="_blank" rel="noreferrer">
-                    Source Code
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </Container>
     </div>
