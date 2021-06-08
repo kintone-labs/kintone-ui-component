@@ -95,7 +95,7 @@ The following section will explain in further detail.
 ---
 #### Naming Space is simplified
 ---
-In v1, you can call the instance from new KintoneUIComponent to **new Kuc** in order to write a concise code.
+In v1, you can call the instance from new kintoneUIComponent to **new Kuc** in order to write a concise code.
 
 - v0 Code
 ```
@@ -222,7 +222,7 @@ In v0, when you want to display an error message in a component, or when you wan
 In v1, you can assign values to the `error` and the `label` property in a component.
 Let's take a look at the Text component `error` property for example:
 
-In the beginning, I have introduced a code to use Kuc to create the search box, but there is no response when you click the button.
+In the beginning, I have introduced a code to use KUC to create the search box, but there is no response when you click the button.
 
 After adding additional handler, when the button is clicked, the text input character is checked and the error message is displayed only when a character with non-full-width is added.
 

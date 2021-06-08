@@ -18,7 +18,7 @@ The complete image of the search box is as follows:
 
 ## JavaScript and CSS Customization
 
-When you import the UMD file of kintone UI Component to the app, you can upload the JavaScript files by following these steps:  
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:  
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### Display a search box
@@ -140,8 +140,8 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
 
 ## Conclusion
 
-How is it working out for you? This section explains how to create a search box using the kintone UI Component.  
+How is it working out for you? This section explains how to create a search box using the Kintone UI Component.  
 We hope you can easily develop kintone customizations by using the kintone UI Component library.
 
-> This article was reviewed by kintone and Google Chrome as of February, 2021.  
-> In addition, the version of kintone UI Component that is used for customizations is v1.0.0.
+> This article was reviewed by Kintone and Google Chrome as of February, 2021.  
+> In addition, the version of Kintone UI Component that is used for customizations is v1.0.0.
