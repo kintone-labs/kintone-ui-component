@@ -34,5 +34,14 @@
       "guides/comparison-v0-v1",
       "guides/search-box-customization"
     ]
+  },
+  "release-notes": {
+    "Releases": [
+      "releases/release-notes",
+      "releases/release-notes-v1.0.3",
+      "releases/release-notes-v1.0.2",
+      "releases/release-notes-v1.0.1",
+      "releases/release-notes-v1.0.0"
+    ]
   }
 }
