@@ -250,7 +250,7 @@ export class TextArea extends LitElement {
         .kuc-textarea__group__label__required-icon[hidden] {
           display: none;
         }
-        .kuc-textarea__group__textarea {
+        textarea.kuc-textarea__group__textarea {
           display: block;
           border: 1px solid #e3e7e8;
           box-sizing: border-box;
@@ -261,6 +261,7 @@ export class TextArea extends LitElement {
           padding: 8px;
           resize: none;
           width: 100%;
+          background-color: #ffffff;
         }
         .kuc-textarea__group__textarea:focus {
           outline: none;

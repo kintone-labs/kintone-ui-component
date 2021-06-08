@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "outDir": "./test",
+    "outDir": "./unit_test",
     "types": ["@types/mocha"]
   },
   "include": ["**/*.ts"]
