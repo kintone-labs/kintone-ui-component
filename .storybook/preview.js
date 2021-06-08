@@ -34,6 +34,8 @@ addParameters({
   viewport: { viewports: newViewports },
 });
 
+// Hot Module Reloading (HMR)
+// force full reload to not reregister web components
 const req = require.context('../src', true, /\.stories\.(js|mdx)$/);
 configure(req, module);
 if (module.hot) {
