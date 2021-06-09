@@ -71,7 +71,7 @@ In this article, we will show you how to install and implement using each approa
 
 ### Use the CDN
 
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.htmll)）  
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）  
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
    - For the latest version of Kintone UI Component:
