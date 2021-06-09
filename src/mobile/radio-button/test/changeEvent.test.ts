@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, oneEvent } from "@open-wc/testing";
 import { MobileRadioButton } from "../index";
 
 describe("Function change event run successfully", () => {
@@ -23,16 +23,17 @@ describe("Function change event run successfully", () => {
     value: expectedValues[1]
   });
 
-  container.addEventListener("change", (event: any) => {
-    expect(event.detail.oldValue).to.have.equal(expectedValues[1]);
-    expect(event.detail.value).to.have.equal(expectedValues[2]);
-  });
-
   it("Function change event run successfully", async () => {
     const el = await fixture(container);
     const menuEl = (await el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )) as HTMLDivElement;
+      ".kuc-mobile-radio-button__group__select-menu__item__input"
+    )) as HTMLInputElement;
+
+    menuEl.addEventListener("change", (event: any) => {
+      expect(event.detail.oldValue).to.have.equal(expectedValues[1]);
+      expect(event.detail.value).to.have.equal(expectedValues[2]);
+    });
+
     // eslint-disable-next-line require-atomic-updates
     container.value = expectedValues[2];
     const event = new CustomEvent("change", {

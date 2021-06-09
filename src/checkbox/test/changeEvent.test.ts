@@ -1,4 +1,9 @@
-import { expect, fixture } from "@open-wc/testing";
+import {
+  expect,
+  fixture,
+  triggerFocusFor,
+  triggerBlurFor
+} from "@open-wc/testing";
 import { Checkbox } from "../index";
 
 describe("Function change event run successfully by mouse/keyboard event", () => {
@@ -40,5 +45,19 @@ describe("Function change event run successfully by mouse/keyboard event", () =>
       const inputEl = secondItemEl.children[0] as HTMLInputElement;
       inputEl.dispatchEvent(new Event("change"));
     }
+  });
+
+  it("can be focused and blured", async () => {
+    const el: HTMLElement = await fixture(container);
+    const itemsEl = el.querySelector(
+      ".kuc-checkbox__group__select-menu .kuc-checkbox__group__select-menu__item .kuc-checkbox__group__select-menu__item__input"
+    ) as HTMLInputElement;
+    await triggerFocusFor(itemsEl);
+    // eslint-disable-next-line no-unused-expressions
+    expect(document.activeElement === itemsEl).to.be.true;
+
+    await triggerBlurFor(itemsEl);
+    // eslint-disable-next-line no-unused-expressions
+    expect(document.activeElement === itemsEl).to.be.false;
   });
 });
