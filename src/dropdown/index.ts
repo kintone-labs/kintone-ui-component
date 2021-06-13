@@ -429,7 +429,7 @@ export class Dropdown extends LitElement {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-dropdown {
-          display: table;
+          display: inline-block;
           font-size: 14px;
           color: #333333;
           vertical-align: top;

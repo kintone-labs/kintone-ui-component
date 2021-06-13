@@ -180,7 +180,7 @@ export class Text extends LitElement {
         kuc-text {
           font-size: 14px;
           color: #333333;
-          display: table;
+          display: inline-table;
           vertical-align: top;
           min-width: 193px;
           width: 193px;

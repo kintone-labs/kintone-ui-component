@@ -343,7 +343,7 @@ export class MultiChoice extends LitElement {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-multi-choice {
-          display: table;
+          display: inline-table;
           font-size: 14px;
           color: #333;
           width: 180px;

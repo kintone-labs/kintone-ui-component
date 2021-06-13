@@ -254,7 +254,7 @@ export class RadioButton extends LitElement {
         kuc-radio-button {
           font-size: 14px;
           color: #333333;
-          display: table;
+          display: inline-table;
           min-width: 239px;
           vertical-align: top;
         }

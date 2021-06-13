@@ -301,7 +301,7 @@ export class Checkbox extends LitElement {
         kuc-checkbox {
           font-size: 14px;
           color: #333333;
-          display: table;
+          display: inline-table;
           vertical-align: top;
           width: 239px;
           min-width: 239px;

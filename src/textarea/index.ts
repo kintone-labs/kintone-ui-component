@@ -216,7 +216,7 @@ export class TextArea extends LitElement {
         kuc-textarea {
           font-size: 14px;
           color: #333333;
-          display: table;
+          display: inline-table;
           vertical-align: top;
           width: 299px;
         }
