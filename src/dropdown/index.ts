@@ -383,7 +383,7 @@ export class Dropdown extends LitElement {
     this._updateContainerWidth();
   }
 
-  private _getLabelWith() {
+  private _getLabelWidth() {
     const context = document.createElement("div");
     context.style.height = "0px";
     context.style.overflow = "hidden";
@@ -403,7 +403,7 @@ export class Dropdown extends LitElement {
   private _updateContainerWidth() {
     const MIN_WIDTH = 180;
     let labelWidth = this._labelEl.getBoundingClientRect().width;
-    if (labelWidth === 0) labelWidth = this._getLabelWith();
+    if (labelWidth === 0) labelWidth = this._getLabelWidth();
     labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     this._groupEl.style.width = labelWidth + "px";
   }
