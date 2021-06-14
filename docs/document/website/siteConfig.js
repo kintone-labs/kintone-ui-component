@@ -52,6 +52,7 @@ const siteConfig = {
   blogSidebarCount: "ALL",
   blogSidebarTitle: { default: "Recent posts", all: "All posts" },
   scripts: [
+    "/js/google-tag-manager.js",
     "/js/extra.js",
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",

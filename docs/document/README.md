@@ -152,6 +152,13 @@ npm run build
 
 For more information about build, click [here](https://docusaurus.io/docs/en/publishing#building-static-html-pages).
 
+## Register google tag manager
+1. After build, run Register GTM script:
+```sh
+cd docs/document/website/
+npm run register:GTM
+```
+2. Confirm that in `build/` directory, all html files are added GTM script at the start of body element.
 ## Versioning
 
 1. Go into the `docs/document/website/` directory and create new version documents specifying version number.
