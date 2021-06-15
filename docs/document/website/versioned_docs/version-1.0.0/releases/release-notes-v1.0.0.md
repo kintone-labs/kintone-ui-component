@@ -5,114 +5,108 @@ sidebar_label: v1.0.0 Release Notes
 original_id: release-notes-v1.0.0
 ---
 
-## 概要
+## Overview
 
-[kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) のリリースノートです。  
-v0 から v1 にアップデートした背景や今後の計画についてご紹介します。
+Here are the [kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) Release Notes.  
+You can find the background of the update from v0 to v1 and the future plans of v1.
 
-## 背景
+## Background
 
-v0 では様々ご要望をいただき、対応コンポーネントや機能の追加を行いました。
-この度 kintone カスタマイズを行うエンジニアの皆さんが kintone ライクなパーツをより "簡単に" 作ることができるように、以下の検討を行い v1 としてリニューアルすることになりました。
+The following are the reasons why we decided to implement v1.
+- Variety of requests for v0
+- Complexity of the design and usage of v0
+- Maintenance difficulties of v0
 
-<!--truncate-->
+For those engineers who are developing Kintone customization, we have added features to make the experience to develop Kintone-like components easier. Please find the following to learn more about v1.
 
-- v0 ユーザーからいただいた機能要望への対応
-- 具体的なユースケースに紐づいた仕様/機能検討
-- 設計/機能的に複雑な部分の見直し
-- 内部実装のスリム化
+## Update details
 
-## アップデート内容
+The major updates are as follows:
 
-主なアップデートは次になります。
+- Improved the reproducibility of Kintone components
+  - The UI and behavior of the components are closer to the native Kintone components.
+- Enabled accessibility
+  - Support for keyboard operation and voice-to-speech software.
+- Enabled mobile
+  - Added mobile components.
+- Improved documentation
+  - Easy to understand the specification with the sample code.
+  - Multiple languages supported.
 
-- kintone パーツの再現度の向上
-  -  より kintone のパーツの UI や挙動に近づけました。
-- アクセシビリティ対応
-  - キーボード操作や音声読み上げソフトへの対応をしました。
-- モバイル対応
-  - 要望の多かったモバイルコンポーネントを提供しました。
-- リファレンスの改善
-  - 各パーツのリファレンスページを見やすくしました。（UI 表示, サンプルコード）
-  - 日本語対応しました。
+## What we considered for v1
 
-## 開発時に考慮したこと
-
-開発時に考慮したことやアップデートのポイントをご紹介します。
-
-- インターフェースは基本引き継ぎ、学習コストを低減。
-  - ​v0 から大幅な使用感の変更にならないように考慮しました。
+- Interface
+  - Inherit the interface from v0. This is for v0 users who don't want to experience a significant change for v1.
 
 1. v1.0.0
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
-      id: 'kuc_button' // id プロパティを追加
+      text: 'Search',
+      id: 'kuc_button' // Add id property
     });
-    header.appendChild(button);　// ボタンを表示
+    header.appendChild(button);　// Show button
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
-    header.appendChild(button.render());　// ボタンを表示
+    header.appendChild(button.render());　// Show button
 ```
 
-- メソッドの呼び出しではなく、プロパティの利用で設定するように使用性の向上。
-  - 独自のメソッドをやめて、プロパティで設定できるように、シンプルな使い方を実現しました。
+- Simplicity
+  - Property can be directly accessed without using a method.
 
 1. v1.0.0
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
       id: 'kuc_button'
     });
     header.appendChild(button);
-    button.text = '登録'; // text プロパティを更新
+    button.text = 'Register'; // Update text property
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
     header.appendChild(button.render());
-    button.setText('登録'); // text プロパティを更新
+    button.setText('Register'); // Update text property
 ```
-​
-- kintone カスタマイズで実際に使う機能に絞って実装。​
-  - 具体的なユースケースがあるコンポーネントや機能を実装しました。（kintone 標準機能にないものも含む）
-  - 一方ユースケースが乏しいと判断したコンポーネントの開発を見送りました。（もしユースケースがあれば対応検討します。[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) でのフィードバックもお待ちしております。）
-    - Attachment, ColorPicker, FieldGroup, IconButton, Tab, React ver.
 
-- Web Components フレームワークの LitElement で実装し、内部コードの可読性向上。​
-  - JavaScript のみで実装するのではなく、フレームワークを導入することで内部コードの品質向上を目指しました。
-  - WebComponents でのインターフェースの提供は、今後検討します。
 
-以上により、v0 に比べてより使いやすい、実際の kintone カスタマイズのユースケースに沿ったコンポーネント提供を目指しました。
-v0 と v1 の書き方の違いについては[こちら](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1) の記事で解説しておりますので、詳細ご確認ください。
+- Component prioritization
+  - We prioritized components which can be used very frequently.
+  - We have excluded the components such as Attachment, ColorPicker, FieldGroup, IconButton, and Tab at this moment since there are not so many use cases with the components. Of course, we will consider to implement new components if we get many requests. Please give us your feedbacks on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
 
-## 今後の計画
+- Framework
+  - Implemented with the LitElement of the Web Components framework to improve readability of internal code.
+  - The Web Components interface will be considered in the future.
 
-今後の v1 の計画は次の通りです。
+With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.
+Please refer to the [link](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1) for the details of differences between v0 and v1.
 
-- 提供パーツの追加
-  - Table, ReadOnlyTable, Dialog, Date, DateTime などのコンポーネントを追加で提供予定です。
-- モバイル対応コンポーネントの追加
-- より実践的な使い方のサンプルやチュートリアルの整備
-  - ユースケースに沿ったサンプルコードやチュートリアル記事を増やしていきます。
+## Future plans
 
-> v0 については、主に不具合改修とライブラリアップデートを継続します。新規の機能開発は現在予定しておりません。
+The following are the plans for the upcoming releases:
 
-## おわりに
+- Additional components
+  - Additional components such as Table, ReadOnlyTable, Dialog, Date, and DateTime are expected to be provided.
+- Mobile components
+- Improvement of documentaion
 
-最後まで読んでいただきありがとうございます。
-kintone UI Component v1 は、kintone カスタマイズやプラグイン開発に関わるエンジニアにとって使いやすい、便利なライブラリを目指して改良していきます。
-今後ともご期待ください。
+> As for v0, we will continue to fix bugs and update the dependent libraries. However, we are not planning to add new features to v0 as of now.
 
-フィードバックや改善リクエストにつきましては [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) へコメントいただけると幸いです。
-よろしくお願いいたします。
+## Conclusion
+
+Thank you for reading the release notes.
+Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.
+Please stay tuned for further releases.
+
+We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+Best regards,

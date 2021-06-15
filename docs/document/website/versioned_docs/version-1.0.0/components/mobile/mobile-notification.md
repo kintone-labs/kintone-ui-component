@@ -7,7 +7,7 @@ original_id: mobile-notification
 
 ## Overview
 
-MobileNotification は、ポップアップの通知を表示します。
+The MobileNotification component allows the user to display pop-up notifications.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-notification--document" title="mobile notification image" height="70px"></iframe>
 
@@ -17,29 +17,29 @@ MobileNotification は、ポップアップの通知を表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 ||
-| text | string | "" | 表示するテキスト ||
+| className | string | ""  | Component class name | |
+| text | string | ""  | Text to be displayed | |
 
 ### Constructor
 
-MobileNotification(options)
-使用できるコンストラクタの一覧です。
+MobileNotification(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | Object that includes component properties |  |
 
 ### Method
 
-使用できるメソッドの一覧です。
+Here is a list of available methods:
 
 #### open()
-MobileNotification を表示する
+Show the MobileNotification
 
 ##### Parameter
 none
@@ -48,7 +48,7 @@ none
 none
 
 #### close()
-MobileNotification を非表示にする
+Hide the MobileNotification
 
 ##### Parameter
 none
@@ -59,7 +59,7 @@ none
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const mobileNotification = new Kuc.MobileNotification({

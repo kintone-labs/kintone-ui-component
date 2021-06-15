@@ -92,14 +92,13 @@ class Index extends React.PureComponent {
         <h2 align="center">Use Case</h2>
         <div className="usecase_sentense" align="center">
           <span>
-            kintone UI Component は、kintone
-            一覧画面のヘッダーメニュー要素など取得できる要素、kintone
-            プラグイン設定画面やカスタマイズビューに配置することで、kintone
-            ライクな見た目を実現することができます。
+            Kintone UI Component allows you to create Kintone-like components
+            easily. This library is useful to build Kintone customization and
+            plug-in.
           </span>
         </div>
         <div className="usecase_group">
-          <h6>[ Button Component イメージ & サンプルコード ]</h6>
+          <h6>[ Sample code & the Button Component image ]</h6>
           <div className="usecase_image">
             <img src="img/usecase_button.png" alt="button usecase" />
           </div>
@@ -118,34 +117,25 @@ class Index extends React.PureComponent {
               <strong className="quoteTop_title">Support Policy</strong>
               <br />
               <br />
-              kintone UI Component
-              の仕様については、テクニカルサポートへお問い合わせいただけます。
+              Kintone UI Component
               <br />
-              <a
-                href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763"
-                target="_blank"
-                rel="noreferrer"
-              >
-                サポートへのお問い合わせ方法
-              </a>
-              をご確認の上、お問合せください。
-              <br />
-              <br />
-              その他{" "}
+              You can ask questions and/or submit requests on
               <a
                 href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
                 target="_blank"
                 rel="noreferrer"
               >
+                {" "}
                 GitHub Issue
-              </a>{" "}
-              にてご質問や機能リクエストを受け付けております。
+              </a>
+              .
               <br />
               <br />
-              ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。
+              You are allowed to change the source code, redistribute it, and
+              use it in accordance with the license.
               <br />
-              ライセンスの種別はクライアントライブラリのページまたは GitHub
-              のリポジトリでご確認ください。
+              For more details of the license type please refer to the library
+              page or the GitHub repository.
             </p>
           </blockquote>
         </div>
@@ -163,7 +153,7 @@ class Index extends React.PureComponent {
             />
             <PromoSection>
               <Button href={docUrl("getting-started/quick-start.html")}>
-                Get Started
+                Getting Started
               </Button>
             </PromoSection>
           </div>

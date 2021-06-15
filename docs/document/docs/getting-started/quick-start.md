@@ -4,45 +4,45 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-## kintone UI Component とは？
+## What is Kintone UI Component?
 
-kintone UI Component は、kintone カスタマイズやプラグインの UI 開発を支援するための UI Component ライブラリです。  
-以下のような kintone ライクな UI を簡単に作成できるので、フォーム部品を自作したい場合に便利にお使いいただけます。
+Kintone UI Component is a library that enables Kintone developers to build forms with Kintone's styling with ease.
 
-### Desktop 用コンポーネント例
+### Example for Desktop components
 
 ![desktop components](assets/desktop_components.png)
 
-### Mobile 用コンポーネント例
+### Example for Mobile components
 
 ![mobile components](assets/mobile_components.png)
 
-## 下準備：アプリ作成
+## Preparation: Create App
 
-ここでは既定の kintone 一覧画面のヘッダーメニュースペースに Button コンポーネントを配置します。  
-まず kintone UI Component を設置するアプリを用意します。
+In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.  
 
-1. 空のアプリを作成します。（[アプリをはじめから作成する](https://jp.cybozu.help/k/ja/user/create_app/tutorial.html)）  
-特にフィールドの設置は必要ありません。
+First, follow the below steps to create an app to install Kintone UI Component.
 
-## 導入と実装方法
+1. Create a blank app. （[Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html)）  
+You do not need to set up any fields in this app.
 
-kintone UI Component では UMD と CDN と npm パッケージを用意しています。  
-ブラウザ環境や Node.js 環境など開発環境に合わせていずれかを選択して読み込み、実装してください。  
-本記事では、それぞれの導入・実装方法を紹介します。
+## Installation
 
-> 各コンポーネントのリファレンスについてはサイドバーの Components カテゴリよりご確認ください。  
-> （順次対応コンポーネントも追加予定です。）
+Kintone UI Component supports installation via a UMD, a CDN, or a npm package.  
+You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.  
+In this article, we will show you how to install and implement using each approach.
 
-### UMD を利用する
+> See the Components section in the sidebar for more details on each component.
+> (Additional components will be added in order.）
 
-1. kintone UI Component リポジトリ内の[各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)に添付のアーカイブフォルダ（kintone-ui-component-{version}.tgz）を解凍し、以下のファイルを kintone アプリ設定の `JavaScript / CSS でカスタマイズ`にて指定します。
+### Use the UMD
+
+1. Download the file located inside Kintone UI Component repository[Each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```text
 ./umd/kuc.min.js
 ```
 
-2. index.js ファイルを作成します。
+2. Create a `index.js` file.
 
 ```js
 (() => {
@@ -65,42 +65,43 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 })();
 ```
 
-3. index.js を kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
+3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
 
 ![button customize](assets/button_customize.png)
 
-### CDN を利用する
+### Use the CDN
 
-1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://get.kintone.help/k/ja/user/app_settings/js_customize.html)）  
-CDN を読み込むと、グローバルオブジェクトとして Kuc が追加されます。
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）  
+Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
-   - 最新版の kintone UI Component を読み込みたい場合
+   - For the latest version of Kintone UI Component:
     ```text
     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
     ```
 
-   - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
+   - If you want to import a particular version, specify the version number after the project name.
     ```text
     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
     ```
 
-2. 以降は上記 UMD と同様。
+2. The following is the same as the UMD.
 
-> unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。  
-> 本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の kuc.min.js をご利用ください。
+> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.  
+> In the production environment, you can use the `kuc.min.js` of the UMD to avoid any failures and problems related to unpkg.
 
-### npm パッケージを利用する
+### Use the npm package
 
-1. プロジェクトのルート配下で以下のコマンドを実行します。
+1. Create a folder name `my-customization`, and move your root into the folder, then execute the following command:
 
 ```sh
+mkdir my-customization && cd my-customization
 npm install kintone-ui-component
-npm install webpack webpack-cli --save-dev
+npm install webpack
 ```
 
-> 必要に応じて、babel-loader や css-loader もインストールしてお使いください。
+> If necessary, install `babel-loader` and `css-loader`.
 
-2. 利用したいコンポーネントをインポートし、index.js ファイルを src/ 配下に作成します。
+2. Import the components you want to use, and create a `index.js` files under `src` folder.
 
 ```js
 import { Button } from 'kintone-ui-component/lib/button';
@@ -124,46 +125,51 @@ import { Button } from 'kintone-ui-component/lib/button';
   });
 })();
 ```
-3. customization/ フォルダを作成し、その配下に以下の webpack.config.js ファイルを作成します。
+3. Add the following `webpack.config.js` file into the root:
 
 ```js
+// webpack.config.js
 const path = require('path');
-module.exports = {
-  entry: {
-    "customization": './src/index.js'
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js',
+module.exports = (env = {}) => {
+  return {
+    entry: {
+      "my-customization": './src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].min.js',
+    },
+    watch: env.watch
   }
 }
 ```
 
-4. package.json に webpack でビルドするためのスクリプトを追加します。
+4. Add webpack build script into `package.json`.
 
 ```json
+// package.json
 "scripts": {
-  "build:webpack": "webpack --mode production",
+  "build:webpack": "cross-env NODE_ENV=production webpack",
   ...
 }
 ```
 
-5. 以下のコマンドを実行し、カスタマイズ用のファイルを生成します。
+5. Execute the following command to generate a file for customization:
 
 ```text
 npm run build:webpack
 ```
 
 ```text
-出力結果：
-./dist/customization.min.js
+Output Result：
+./dist/my-customization.min.js
 ```
 
-6. 上記でバンドルしたファイルを、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
+6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
 
 ![button customize](assets/button_customize.png)
 
-## ブラウザ対応状況
+## Browser support status
 
 <table>
   <tr>
@@ -182,8 +188,8 @@ npm run build:webpack
   </tr>
 </table>
 
-> 各対応ブラウザ最新版での動作を確認しております。  
-> kintone UI Component v1 系 は現在 kintone で使用しているライブラリとの兼ね合いで、IE11 では正常に動作しません。
+> The components have been tested in the latest version of each supported browser.  
+> Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
 
-> 各コンポーネントのリファレンスページでは、Overview にてコンポーネントのプレビュー表示をしています。  
-> IE11 では動作しない点、ご了承ください。
+> You can preview the components in the Overview section in each component's reference page.
+> Please be noted that it is not supported in IE11.

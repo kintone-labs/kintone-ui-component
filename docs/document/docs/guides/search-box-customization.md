@@ -1,7 +1,7 @@
 ---
 id: search-box-customization
-title: 検索ボックスカスタマイズ
-sidebar_label: 検索ボックスカスタマイズ
+title: Search box customization
+sidebar_label: Search box customization
 ---
 
 ## 概要

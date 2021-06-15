@@ -7,7 +7,7 @@ original_id: mobile-text
 
 ## Overview
 
-MobileText は、単一行のテキストを表示します。
+The MobileText component allows the user to display a single line text element.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-text--document" title="mobile text image" height="60px"></iframe>
 
@@ -17,46 +17,46 @@ MobileText は、単一行のテキストを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 ||
-| error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| id | string | "" | コンポーネントの id 名 ||
-| label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| placeholder | string | "" | 空欄時に入力例として表示されるテキスト ||
-| prefix | string | "" | Text の前に表示されるテキスト ||
-| suffix | string | "" | Text の後に表示されるテキスト ||
-| textAlign | string | "left" | 表示するテキストの位置 | 以下を指定できる<br>"left" : 左寄せ<br>"right" : 右寄せ |
-| value | string | "" | 表示するテキスト | |
-| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
-| requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
-| visible | boolean | true | コンポーネントの表示/非表示設定 ||
+| className | string | ""  | Component class name | |
+| error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
+| id | string | ""  | Component id name | |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| placeholder | string | ""  | Placeholder text for entry example | |
+| prefix | string | ""  | Text to be displayed before the input text | |
+| suffix | string | ""  | Text to be displayed after the input text | |
+| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Justified to the left<br>"right" : Justified to the right |
+| value | string | ""  | Text to be displayed | |
+| disabled | boolean | false | Enable/Disable the component | |
+| requiredIcon | boolean | false | Show/Hide the required icon | |
+| visible | boolean | true | Show/Hide the component | |
 
 ### Event
 
-指定できるイベントの一覧です。
+Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.oldValue : 変更前の value の値<br>event.detail.value : 変更後の value の値 |
-| focus | function | フォーカスされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.value : フォーカス時の value の値 |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
+| focus | function | Event handler for the focused time | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
 
 ### Constructor
 
-Text(options)
-使用できるコンストラクタの一覧です。
+Text(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options  | object | {} | Object that includes component properties |  |
 
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const space = kintone.mobile.app.record.getSpaceElement('space');
