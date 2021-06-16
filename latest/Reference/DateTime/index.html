@@ -795,8 +795,591 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                <h1 id="datetime">DateTime</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="DateTime" src="../../img/datetime.PNG" /></p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>date form</td>
+</tr>
+<tr>
+<td>2</td>
+<td>time form</td>
+</tr>
+<tr>
+<td>3</td>
+<td>date picker</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select today button</td>
+</tr>
+<tr>
+<td>5</td>
+<td>clear button</td>
+</tr>
+<tr>
+<td>6</td>
+<td>selected item pointer</td>
+</tr>
+<tr>
+<td>7</td>
+<td>today pointer</td>
+</tr>
+<tr>
+<td>8</td>
+<td>time picker</td>
+</tr>
+<tr>
+<td>9</td>
+<td>year selection dropdown</td>
+</tr>
+<tr>
+<td>10</td>
+<td>month selection dropdown</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <b>datetime</b> type, both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
+<ul>
+  <li> The value options is set to null on <b>Constructor</b> or <b>setValue</b> method. </li>
+  <li> Clicking <b>clear (item-5)</b> on <b>date picker (item-3)</b>.</li>
+</ul></p>
+</div>
+<h2 id="constructor">Constructor</h2>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>An object contains params of constructor.</td>
+</tr>
+<tr>
+<td>options.value</td>
+<td>Date|null</td>
+<td>No</td>
+<td>The Default DateTime Value.</td>
+</tr>
+<tr>
+<td>options.type</td>
+<td>String</td>
+<td>No</td>
+<td>The component type <br> <ul><li>date</li><li>time</li><li>datetime</li></ul>Default value: 'datetime'</td>
+</tr>
+<tr>
+<td>options.locale</td>
+<td>String</td>
+<td>No</td>
+<td>The setting of date picker display language<br> <ul><li>ja</li><li>en</li><li>zh</li></ul>Default value: 'ja'</td>
+</tr>
+<tr>
+<td>options.dateFormat</td>
+<td>String</td>
+<td>No</td>
+<td>The date format for the date text input part of the component.<br>Supported format:<br>Valid separators: "/", "-", " ", ":" <br>Date:<br><ul><li>d (Date Short): 1,2 ...</li><li>dd (Date Full): 01, 02...</li></ul><br>Month:<br><ul><li>MM (Month Number): 01, 02 ...</li></ul><br>Year:<br><ul><li>YYYY (Year): 2019, 2020...</li></ul><br>All formats should contain MM and YYYY identifiers. For example:<ul><li>YYYY/MM - correct format</li><li>YYYY/dd - incorrect format</li></ul><br>Default format: MM/dd/YYYY</td>
+</tr>
+<tr>
+<td>options.isVisible</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The DatePicker will be visible.<br>Default value: 'true'</td>
+</tr>
+<tr>
+<td>options.isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The DateTime field will be disabled. <br>Default value: 'false'</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+            /&gt;
+        );
+    }
+}
+</code></pre>
+</details>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get dom element of component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>Dom element</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render() {
+        return (
+            &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+            /&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="getvalue">getValue()</h3>
+<p>Get the value of datetime field.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Date|null</td>
+<td>The value of datetime field.</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+console.log(dateTime.getValue());
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;DateTime value={this.state.value} onChange={(value) =&gt; {this.setState({value})}}/&gt;
+                &lt;button onClick={this.handleClick}&gt;Get Value &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+    handleClick= () =&gt; {
+        console.log(this.state.value);
+    };
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="setvaluevalue">setValue(value)</h3>
+<p>Set the value of datetime field.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Date|null</td>
+<td>Yes</td>
+<td>The value of datetime field.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({value: new Date(), type: 'datetime', locale: 'en'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.setValue(new Date());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: new Date()};
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;DateTime value={this.state.value} onChange={(value) =&gt; {this.setState({value})}}/&gt;
+                &lt;button onClick={this.handleClick}&gt;Set Value &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+    handleClick= () =&gt; {
+        this.setState({value: new Date('1995-12-17T03:24:00')})
+    };
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="getlocale">getLocale()</h3>
+<p>Get the setting of language.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>locale</td>
+<td>String</td>
+<td>The setting of language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul></td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+console.log(dateTime.getLocale());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {locale: 'ja'};
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;DateTime locale={this.state.locale} onChange={(value) =&gt; {this.setState({value})}}/&gt;
+                &lt;button onClick={this.handleClick}&gt;Get Locale &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+    handleClick= () =&gt; {
+        console.log(this.state.locale);
+    };
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="setlocalelocale">setLocale(locale)</h3>
+<p>Set the language setting.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>locale</td>
+<td>String</td>
+<td>Yes</td>
+<td>The setting of language.<br><ul><li>ja</li><li>en</li><li>zh</li></ul></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.setLocale('en');
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {locale: 'en'};
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;DateTime locale={this.state.locale} onChange={(value) =&gt; {this.setState({value})}}/&gt;
+                &lt;button onClick={this.handleClick}&gt;Set Locale &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+    handleClick= () =&gt; {
+        this.setState({locale: 'ja'})
+    };
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="show">show()</h3>
+<p>Display DateTime.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.show();
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
 
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date(),isVisible:false};
 
+    }
+    handleShow=()=&gt;{
+        this.setState({isVisible:true})
+    }
+    render() {
+        return (
+           &lt;div&gt;
+               &lt;button onClick={this.handleShow}&gt;Show&lt;/button&gt;
+               &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isVisible={this.state.isVisible}
+            /&gt;
+           &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="hide">hide()</h3>
+<p>Hide DateTime.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var myDateTime = new kintoneUIComponent.DateTime({value: new Date()});
+
+kintone.events.on('app.record.index.show', function(event) {
+var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.hide();
+});
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+
+class DateTimeComponent extends React.Component {
+   constructor(props){
+        super(props);
+        this.state = {date: new Date(),isVisible:true};
+
+    }
+    handleShow=()=&gt;{
+        this.setState({isVisible:false})
+    }
+    render() {
+        return (
+           &lt;div&gt;
+               &lt;button onClick={this.handleShow}&gt;Hide&lt;/button&gt;
+               &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isVisible={this.state.isVisible}
+            /&gt;
+           &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="disable">disable()</h3>
+<p>Disable DateTime.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.disable();
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+
+class DateTimeComponent extends React.Component {
+     constructor(props){
+        super(props);
+        this.state = {date: new Date(),isDisabled:false};
+
+    }
+    handleDisable=()=&gt;{
+        this.setState({isDisabled:true})
+    }
+    render() {
+        return (
+           &lt;div&gt;
+               &lt;button onClick={this.handleDisable}&gt;Disable&lt;/button&gt;
+               &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isDisabled={this.state.isDisabled}
+            /&gt;
+           &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="enable">enable()</h3>
+<p>Enable DateTime.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var dateTime = new kintoneUIComponent.DateTime({ value: new Date(), type: &quot;datetime&quot;, locale: &quot;en&quot; });
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(dateTime.render());
+dateTime.enable();
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { DateTime } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from 'react-dom';
+
+class DateTimeComponent extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {date: new Date(),isDisabled:true};
+
+    }
+    handleEnable=()=&gt;{
+        this.setState({isDisabled:false})
+    }
+    render() {
+        return (
+           &lt;div&gt;
+               &lt;button onClick={this.handleEnable}&gt;Enable&lt;/button&gt;
+               &lt;DateTime
+                value={this.state.date}
+                type='datetime'
+                locale='en'
+                isDisabled={this.state.isDisabled}
+            /&gt;
+           &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+                
+                  
+                
+                
+              
               
                 
 

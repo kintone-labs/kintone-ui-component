@@ -781,8 +781,519 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                <h1 id="label">Label</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="Label" src="../../img/label.PNG" /></p>
+<h2 id="constructor">Constructor</h2>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>The object contains parameters of constructor.</td>
+</tr>
+<tr>
+<td>options.text</td>
+<td>String</td>
+<td>No</td>
+<td>Caption of label.</td>
+</tr>
+<tr>
+<td>options.isRequired</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Display <strong>'*'</strong> character at the end of caption. <br> Default value is <strong>false</strong>.</td>
+</tr>
+<tr>
+<td>options.textColor</td>
+<td>String</td>
+<td>No</td>
+<td>Color of caption. <br> Can set using the following formats: <ul><li><strong>Color Names</strong>: red, yellow, black, etc.</li><li><strong>HEX:</strong> #e74c3c, #0000ff, etc.</li><li><strong>RGBA:</strong> rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul></td>
+</tr>
+<tr>
+<td>options.backgroundColor</td>
+<td>String</td>
+<td>No</td>
+<td>Color of background. <br> Can set using the following formats: <ul><li><strong>Color Names</strong>: red, yellow, black, etc.</li><li><strong>HEX:</strong> #e74c3c, #0000ff, etc.</li><li><strong>RGBA:</strong> rgba(0, 0, 0, 1), rgba(255, 99, 71, 1), etc</li></ul></td>
+</tr>
+<tr>
+<td>options.isVisible</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The label will be visible. <br> Default value: 'true'</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({ text: 'This is Label' });
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Label text='This is Label' /&gt;
+        );
+    };
+};
+</code></pre>
+</details>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get DOM element of Label component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>DOM element</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Label text='This is Label' /&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="settexttext">setText(text)</h3>
+<p>Setting text of Label component.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Yes</td>
+<td>Caption of label. <br> If text is undefined, null or true, The label will be displayed blank</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong>  </p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set text of Label';
+btn.onclick = function() {
+    label.setText('Set text')
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { text: 'This is Label' };
+    };
+
+    setText = () =&gt; {
+        this.setState({ text: 'Set text' });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text={this.state.text} /&gt;
+                &lt;button onClick={this.setText}&gt;Set text&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="settextcolorcolor">setTextColor(color)</h3>
+<p>Setting color of caption.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>Yes</td>
+<td>Color of caption.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set color of Label';
+btn.onclick = function() {
+    label.setTextColor('#e74c3c');
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { textColor: 'black' };
+    };
+
+    setTextColor = () =&gt; {
+        this.setState({ textColor: 'red' });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text='This is Label' textColor={this.state.textColor} /&gt;
+                &lt;button onClick={this.setTextColor}&gt;Set color of Label&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="setbackgroundcolorcolor">setBackgroundColor(color)</h3>
+<p>Setting color of background of Label component.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>Yes</td>
+<td>Color of background.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set background color of Label';
+btn.onclick = function() {
+    label.setBackgroundColor('#e74c3c');
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { backgroundColor: 'white' };
+    };
+
+    setBackgroundColor = () =&gt; {
+        this.setState({ backgroundColor: 'red' });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text='This is Label' backgroundColor={this.state.backgroundColor} /&gt;
+                &lt;button onClick={this.setBackgroundColor}&gt;Set background color of Label&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="setrequiredrequired">setRequired(required)</h3>
+<p>Setting the required for Label component.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Boolean</td>
+<td>Yes</td>
+<td>Required options:<ul><li><strong>true</strong>: The * character will be displayed at the end of the caption. </li><li><strong>false</strong>: The * character will be hidden</ul></li></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Set required';
+btn.onclick = function() {
+    label.setRequired(true);
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isRequired: false };
+    };
+
+    setRequired = () =&gt; {
+        this.setState({ isRequired: true });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text='This is Label' isRequired={this.state.isRequired} /&gt;
+                &lt;button onClick={this.setRequired}&gt;Set required&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="oneventname-callback">on(eventName, callBack)</h3>
+<p>Register callback for an event of Label component.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of event: <ul><li>'click'</li></ul></td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Yes</td>
+<td>The callback function call when the event occurs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+label.on('click', function () {
+    console.log('Label onClick');
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Label } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isRequired: false };
+    };
+    onClick = () =&gt; {
+        console.log('Label onClick');
+    };
+    render() {
+        return (
+            &lt;Label text='This is Label' onClick={this.onClick} /&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="show">show()</h3>
+<p>Display Label component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label', isVisible: false});
+var btn = document.createElement('button'); 
+btn.textContent = 'Show label';
+btn.onclick = function() {
+    label.show()
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: false };
+    };
+
+    show = () =&gt; {
+        this.setState({ isVisible: true });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text='This is Label' isVisible={this.state.isVisible} /&gt;
+                &lt;button onClick={this.show}&gt;Show label&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="hide">hide()</h3>
+<p>Hide Label component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var label = new kintoneUIComponent.Label({text: 'This is Label'});
+var btn = document.createElement('button'); 
+btn.textContent = 'Hide label';
+btn.onclick = function() {
+    label.hide()
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(label.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Label} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: true };
+    };
+
+    hide = () =&gt; {
+        this.setState({ isVisible: false });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Label text='This is Label' isVisible={this.state.isVisible} /&gt;
+                &lt;button onClick={this.hide}&gt;Hide label&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+                
+                  
+                
+                
+              
               
                 
 

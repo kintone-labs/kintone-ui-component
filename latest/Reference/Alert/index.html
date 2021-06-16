@@ -753,8 +753,398 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                <h1 id="alert">Alert</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="Favicon" src="../../img/alert.PNG" /></p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Success alert</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Error alert</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Display text</td>
+</tr>
+</tbody>
+</table>
+<h2 id="constructor">Constructor</h2>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>The object contains parameter of the constructor.</td>
+</tr>
+<tr>
+<td>options.text</td>
+<td>String</td>
+<td>No</td>
+<td>The content of the alert.</td>
+</tr>
+<tr>
+<td>options.type</td>
+<td>String</td>
+<td>No</td>
+<td>The type of alert: <ul><li> 'error' </li><li> 'success' </li></ul> Default value is 'error'.</td>
+</tr>
+<tr>
+<td>options.isVisible</td>
+<td>Boolean</td>
+<td>No</td>
+<td>The alert will be visible. <br> Default value: 'true'</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Alert text='Network error' type='error'/&gt;
+        );
+    }
+}
+</code></pre>
+</details>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get dom element of the component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>Dom element</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert} from '@kintone/kintone-ui-component';
+import React from 'react';
 
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Alert text='Network error' type='error'/&gt;
+        );
+    }
+}
+</code></pre>
+</details>
+<h3 id="settexttext">setText(text)</h3>
+<p>Set the content of the alert.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Yes</td>
+<td>The content of the alert. <br> If text is undefined, null or true, The alert will be displayed blank.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+    alert.setText('Network error');
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            text: &quot;abc&quot;,
+            type: &quot;error&quot;
+        };
+    }
+
+    setText = (text) =&gt; {
+        this.setState({ text });
+    };
+    render() {      
+        return (
+        &lt;div&gt;
+            &lt;button onClick={()=&gt;this.setText(&quot;790&quot;)}&gt;Set Text&lt;/button&gt;
+            &lt;Alert text={this.state.text} type={this.state.type}  /&gt;
+        &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin/&gt;, kintoneSpaceElement);
+</code></pre>
+</details>
+<h3 id="settypetype">setType(type)</h3>
+<p>Set the type of the alert.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Yes</td>
+<td>The type of alert. <ul><li>"success": success alert.</li><li>"error": error alert </li></ul> Default value is "error".</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+    alert.setType('success');
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+     constructor(props){
+        super(props);
+        this.state = {
+            text: &quot;abc&quot;,
+            type: &quot;error&quot;
+        };
+    }
+
+    setType = (type) =&gt; {
+        this.setState({ type });
+    };
+    render() {
+        return (
+        &lt;div&gt;
+            &lt;button onClick={()=&gt;this.setType(&quot;success&quot;)}&gt;Set Type&lt;/button&gt;
+            &lt;Alert text={this.state.text} type={this.state.type} /&gt;
+        &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="oneventname-callback">on(eventName, callBack)</h3>
+<p>The callBack function will be executed after user click the alert.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of event: <ul><li>'click'</li></ul></td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Yes</td>
+<td>callback</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+    alert.on('click', function(event) {
+        console.log('on click');
+    }); 
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    render() {
+        return (
+            &lt;Alert text='Network error' type='error' onClick={this.handleClick}/&gt;
+        );
+    }
+   handleClick(){
+        console.log('click');
+   }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="show">show()</h3>
+<p>Display the Alert.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+    alert.show();
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            text: &quot;abc&quot;,
+            isVisible:false
+        };
+
+    }
+    show = () =&gt; {
+        this.setState({ isVisible:true });
+    };
+
+    render() {
+        return (
+        &lt;div&gt;
+            &lt;button onClick={()=&gt;this.show()}&gt;Show&lt;/button&gt;
+            &lt;Alert text={this.state.text} isVisible={this.state.isVisible} /&gt;
+        &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+</code></pre>
+</details>
+<h3 id="hide">hide()</h3>
+<p>Hide the Alert.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">(function(){
+    var alert = new kintoneUIComponent.Alert({text: 'Network error', type: 'error'});
+    var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+    body.appendChild(alert.render());
+    alert.hide();
+})()
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Alert } from '@kintone/kintone-ui-component';
+import React from 'react';
+import Reactdom from &quot;react-dom&quot;;
+
+export default class Plugin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            text: &quot;abc&quot;,
+            isVisible:true
+        };
+    }
+    hide = () =&gt; {
+        this.setState({ isVisible:false });
+    };
+
+    render() {
+        return (
+        &lt;div&gt;
+            &lt;button onClick={()=&gt;this.hide()}&gt;Hide&lt;/button&gt;
+            &lt;Alert text={this.state.text} isVisible={this.state.isVisible} /&gt;
+        &lt;/div&gt;
+        );
+    }
+}
+Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
+
+</code></pre>
+</details>
+                
+                  
+                
+                
+              
               
                 
 

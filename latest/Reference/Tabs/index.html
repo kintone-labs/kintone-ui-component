@@ -795,8 +795,893 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                <h1 id="tabs">Tabs</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="Tabs" src="../../img/tabs.PNG" /></p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Selected Tab</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Not selected Tab</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Disabled Tab</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Tab content</td>
+</tr>
+</tbody>
+</table>
+<h2 id="constructor">Constructor</h2>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>No</td>
+<td>An object contains parameters of constructor.</td>
+</tr>
+<tr>
+<td>options.items</td>
+<td>Array&lt;Object&gt;</td>
+<td>No</td>
+<td>List of tabs.</td>
+</tr>
+<tr>
+<td>options.items[x].tabName</td>
+<td>String</td>
+<td>Conditional</td>
+<td>Name of a tab-pane. <br> If options.items[x] exist, the name of a tab-pane is required</td>
+</tr>
+<tr>
+<td>options.items[x].tabContent</td>
+<td>String or DOM</td>
+<td>No</td>
+<td>The content of a tab-pane.</td>
+</tr>
+<tr>
+<td>options.items[x].isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Indicate if tab-pane will be disabled. <br> Default value:  'false'</td>
+</tr>
+<tr>
+<td>options.value</td>
+<td>Integer</td>
+<td>No</td>
+<td>Index of selected tab-pane. <br>If the value is non-existent, the <strong>INVALID_ARGUMENT</strong> message will be displayed</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab1&quot;,
+}, {
+    tabName: &quot;Tab2&quot;,
+}, {
+    tabName: &quot;Tab3&quot;,
+}];
 
+var tab = new kintoneUIComponent.Tabs({items});
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
 
+const items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items };
+    };
+
+    render() {
+        return (
+            &lt;Tabs items={this.state.items} /&gt;
+        );
+    };
+};
+</code></pre>
+</details>
+<h2 id="methods">Methods</h2>
+<h3 id="render">render()</h3>
+<p>Get DOM element of Tabs component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Returns</strong></p>
+<p>DOM element</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+
+var tab = new kintoneUIComponent.Tabs({items});
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tab.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items };
+    };
+
+    render() {
+        return (
+            &lt;Tabs items={this.state.items} /&gt;
+        );
+    };
+};
+
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="additemitem">addItem(item)</h3>
+<p>Add a tab-pane to end of the list of the tabs.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item</td>
+<td>Object</td>
+<td>Yes</td>
+<td>The new tab-pane to be added.</td>
+</tr>
+<tr>
+<td>item.tabName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of the new tab-pane.</td>
+</tr>
+<tr>
+<td>item.tabContent</td>
+<td>String or DOM</td>
+<td>No</td>
+<td>Content of the new tab-pane.</td>
+</tr>
+<tr>
+<td>item.isDisabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>New tab-pane will be disabled when display. <br>Default value: <strong>false</strong>.</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1'
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items });
+var newTab = { tabName: &quot;Tab 4&quot;, tabContent: &quot;This is Tab 4&quot; };
+var btn = document.createElement('button'); 
+btn.textContent = 'Add Tab';
+btn.onclick = function() {
+    tabs.addItem(newTab);
+};
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items };
+    };
+
+    addItem = () =&gt; {
+        const item = { tabName: &quot;Tab 4&quot;};
+        items.push(item);
+        this.setState({items});
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} /&gt;
+                &lt;button onClick={this.addItem}&gt;Add Tab&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="removeitemindex">removeItem(index)</h3>
+<p>Remove a tab-pane at a specific index in the list of the tabs.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>Interger</td>
+<td>Yes</td>
+<td>The position of a tab-pane to be removed.<br>If the index is undefined, there isn't tab-pane will be removed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items });
+var btn = document.createElement('button'); 
+btn.textContent = 'Remove Tab';
+btn.onclick = function() {
+    tabs.removeItem(0);
+};
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items };
+    };
+
+    removeItem = () =&gt; {
+        items.splice(0, 1);
+        this.setState({items});
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} /&gt;
+                &lt;button onClick={this.removeItem}&gt;Remove Tab&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="getitems">getItems()</h3>
+<p>Get all tab-panes of Tabs component.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Return</strong></p>
+<p>The array contains all tabs.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>Array&lt;Object&gt;</td>
+<td>The list information of tabs</td>
+</tr>
+<tr>
+<td>items[].tabName</td>
+<td>String</td>
+<td>Name of a tab-pane.</td>
+</tr>
+<tr>
+<td>items[].tabContent</td>
+<td>String</td>
+<td>Content of a tab-pane.</td>
+</tr>
+<tr>
+<td>items[].isDisabled</td>
+<td>Boolean</td>
+<td>A tab-pane is disabled when display.</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items });
+var items = tabs.getItems();
+
+items.forEach(function(item) {
+    console.log(item);
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab 1&quot;,
+}, {
+    tabName: &quot;Tab 2&quot;,
+}, {
+    tabName: &quot;Tab 3&quot;,
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items };
+    };
+
+    getItems = () =&gt; {
+        this.state.items.forEach(item =&gt; {
+            console.log(item);
+        });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} /&gt;
+                &lt;button onClick={this.getItems}&gt;Get Tabs&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="getvalue">getValue()</h3>
+<p>Get index of selected tab-pane.</p>
+<p><strong>Parameter</strong></p>
+<p>None</p>
+<p><strong>Return</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Interger</td>
+<td>The index position of selected tab-pane.</td>
+</tr>
+</tbody>
+</table>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
+console.log(tabs.getValue());
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1'
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items, value: 1 };
+    };
+
+    getValue = () =&gt; {
+        console.log(this.state.value);
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} value={this.state.value} /&gt;
+                &lt;button onClick={this.getValue}&gt;Get value&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="setvaluevalue">setValue(value)</h3>
+<p>Set selected tab-pane by index.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Interger</td>
+<td>Yes</td>
+<td>The selected tab-pane index.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
+var btn = document.createElement('button'); 
+btn.textContent = 'Set value';
+btn.onclick = function() {
+    tabs.setValue(2);
+};
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1'
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items, value: 1 };
+    };
+
+    setValue = () =&gt; {
+        this.setState({value: 2});
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} value={this.state.value} /&gt;
+                &lt;button onClick={this.setValue}&gt;Set value&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="disableitemtabname">disableItem(tabName)</h3>
+<p>Disable a tab-pane.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tabName</td>
+<td>String</td>
+<td>Yes</td>
+<td>The name of tab-pane will be disabled.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
+var btn = document.createElement('button'); 
+btn.textContent = 'Disable Tab 3';
+btn.onclick = function() {
+    tabs.disableItem('Tab 3');
+};
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1'
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items, value: 1 };
+    };
+
+    disableItem = () =&gt; {
+        let items = [...this.state.items];
+        items[2].isDisabled = true;
+        this.setState({items: items});
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} value={this.state.value} /&gt;
+                &lt;button onClick={this.disableItem}&gt;Disable tab3&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="enableitemtabname">enableItem(tabName)</h3>
+<p>Enable a tab.</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tabName</td>
+<td>String</td>
+<td>Yes</td>
+<td>The name of tab-pane will be enabled.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1'
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;,
+    isDisabled: true
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items, value: 1 });
+var btn = document.createElement('button'); 
+btn.textContent = 'Enable Tab 3';
+btn.onclick = function() {
+   tabs.enableItem('Tab 3');
+};
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+body.appendChild(btn);
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import {Tabs} from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+const items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1',
+    isDisabled: true
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items, value: 1 };
+    };
+
+    enableItem = () =&gt; {
+        const items = [...this.state.items];
+        items[0].isDisabled = false;
+        this.setState({ items: items });
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Tabs items={this.state.items} value={this.state.value} 
+                onClickTabItem={(value) =&gt; this.setState({ value })}/&gt;
+                &lt;button onClick={this.enableItem}&gt;Enable tab1&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+<h3 id="oneventname-callback">on(eventName, callback)</h3>
+<p>Register callback for an event of Tabs component</p>
+<p><strong>Parameter</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of event: <ul><li>'clickTabItem'</li></ul></td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Yes</td>
+<td>The callback function call when the event occurs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>None</p>
+<details class="tab-container" open="open">
+<p><Summary>Sample</Summary></p>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript">var items = [{
+    tabName: &quot;Tab 1&quot;,
+    tabContent: 'This is Tab 1',
+}, {
+    tabName: &quot;Tab 2&quot;,
+    tabContent: &quot;This is Tab 2&quot;
+}, {
+    tabName: &quot;Tab 3&quot;,
+    tabContent: &quot;This is Tab 3&quot;,
+}];
+
+var tabs = new kintoneUIComponent.Tabs({ items, value: 0 });
+tabs.on('clickTabItem', (value) =&gt; {
+    console.log(value);
+});
+
+var body = document.getElementsByTagName(&quot;BODY&quot;)[0];
+body.appendChild(tabs.render());
+</code></pre>
+<p><strong>React</strong></p>
+<pre><code class="language-javascript">import { Tabs } from '@kintone/kintone-ui-component';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const items = [{
+    tabName: &quot;Tab1&quot;,
+    tabContent: 'This is Tab1',
+}, {
+    tabName: &quot;Tab2&quot;,
+    tabContent: &quot;This is Tab2&quot;
+}, {
+    tabName: &quot;Tab3&quot;,
+    tabContent: &quot;This is Tab3&quot;
+}];
+
+export default class Plugin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: items, value: 0 };
+    };
+
+    render() {
+        return (
+            &lt;Tabs
+                items={this.state.items}
+                value={this.state.value}
+                onClickTabItem={(value) =&gt; this.setState({ value })}
+            /&gt;
+        );
+    };
+};
+ReactDOM.render(&lt;Plugin /&gt;, document.getElementById('root'));
+</code></pre>
+</details>
+                
+                  
+                
+                
+              
               
                 
 
