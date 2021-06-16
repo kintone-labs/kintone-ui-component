@@ -53,11 +53,9 @@ describe("Function change event run successfully by mouse/keyboard event", () =>
       ".kuc-checkbox__group__select-menu .kuc-checkbox__group__select-menu__item .kuc-checkbox__group__select-menu__item__input"
     ) as HTMLInputElement;
     await triggerFocusFor(itemsEl);
-    // eslint-disable-next-line no-unused-expressions
-    expect(document.activeElement === itemsEl).to.be.true;
+    await expect(document.activeElement?.isSameNode(itemsEl)).to.be.true;
 
     await triggerBlurFor(itemsEl);
-    // eslint-disable-next-line no-unused-expressions
-    expect(document.activeElement === itemsEl).to.be.false;
+    await expect(document.activeElement?.isSameNode(itemsEl)).to.be.false;
   });
 });

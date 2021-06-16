@@ -1,4 +1,4 @@
-import { fixture } from "@open-wc/testing";
+import { fixture, expect } from "@open-wc/testing";
 import { MobileNotification } from "../index";
 
 describe("Function change event run successfully by mouse/keyboard event", async () => {
@@ -9,6 +9,10 @@ describe("Function change event run successfully by mouse/keyboard event", async
     const itemsEl = el.querySelector(
       ".kuc-mobile-notification__notification__closeButton"
     ) as HTMLButtonElement;
-    itemsEl.click();
+    container.addEventListener("click", (event: Event) => {
+      container.classList.add("onclick");
+    });
+    await itemsEl.click();
+    await expect(container.classList.contains("onclick")).to.be.true;
   });
 });

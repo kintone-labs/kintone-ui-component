@@ -1,4 +1,4 @@
-import { expect, fixture, oneEvent } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import { MobileRadioButton } from "../index";
 
 describe("Function change event run successfully", () => {

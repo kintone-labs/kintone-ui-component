@@ -26,10 +26,6 @@ describe("Function change event run successfully", () => {
     disabled: false,
     visible: false
   });
-  container.addEventListener("change", (event: any) => {
-    expect(event.detail.value).to.be.equal(expectedValues[2]);
-    expect(event.detail.oldValue).to.be.equal(expectedValues[1]);
-  });
 
   it("Function change event run successfully", async () => {
     const el = await fixture(container);
@@ -39,6 +35,10 @@ describe("Function change event run successfully", () => {
     const itemsEl = el.querySelectorAll(".kuc-dropdown__select-menu__item");
     toggleEl.click();
     if (itemsEl.length > 0) {
+      container.addEventListener("change", (event: any) => {
+        expect(event.detail.value).to.be.equal(expectedValues[2]);
+        expect(event.detail.oldValue).to.be.equal(expectedValues[1]);
+      });
       (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     }
   });
@@ -51,8 +51,12 @@ describe("Function change event run successfully", () => {
     const itemsEl = el.querySelectorAll(".kuc-dropdown__select-menu__item");
     toggleEl.click();
     if (itemsEl.length > 0) {
+      itemsEl[2].addEventListener("mouseover", () => {
+        el.classList.add("mouseover");
+      });
       (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseover"));
     }
+    await expect(container.classList.contains("mouseover")).to.be.true;
   });
 
   it("Event mouseleave run successfully", async () => {
@@ -63,8 +67,12 @@ describe("Function change event run successfully", () => {
     const itemsEl = el.querySelectorAll(".kuc-dropdown__select-menu__item");
     toggleEl.click();
     if (itemsEl.length > 0) {
+      itemsEl[2].addEventListener("mouseleave", () => {
+        el.classList.add("mouseleave");
+      });
       (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseleave"));
     }
+    await expect(container.classList.contains("mouseleave")).to.be.true;
   });
 
   it("Event keyup run successfully", async () => {
@@ -74,7 +82,11 @@ describe("Function change event run successfully", () => {
     ) as HTMLDivElement;
 
     const event = new KeyboardEvent("keydown", { key: "ArrowUp" });
+    toggleEl.addEventListener("keydown", () => {
+      el.classList.add("keydown-arrowup");
+    });
     toggleEl.dispatchEvent(event);
+    await expect(el.classList.contains("keydown-arrowup")).to.be.true;
   });
 
   it("Event keyup on IE run successfully", async () => {
@@ -84,7 +96,11 @@ describe("Function change event run successfully", () => {
     ) as HTMLDivElement;
 
     const event = new KeyboardEvent("keydown", { key: "Up" });
+    toggleEl.addEventListener("keydown", () => {
+      el.classList.add("keydown-up");
+    });
     toggleEl.dispatchEvent(event);
+    await expect(el.classList.contains("keydown-up")).to.be.true;
   });
 
   it("Event keydown run successfully", async () => {
@@ -94,7 +110,11 @@ describe("Function change event run successfully", () => {
     ) as HTMLDivElement;
 
     const event = new KeyboardEvent("keydown", { key: "ArrowDown" });
+    toggleEl.addEventListener("keydown", () => {
+      el.classList.add("keydown-arrowdown");
+    });
     toggleEl.dispatchEvent(event);
+    await expect(el.classList.contains("keydown-arrowdown")).to.be.true;
   });
 
   it("Event keyup on IE run successfully", async () => {
@@ -104,6 +124,10 @@ describe("Function change event run successfully", () => {
     ) as HTMLDivElement;
 
     const event = new KeyboardEvent("keydown", { key: "Down" });
+    toggleEl.addEventListener("keydown", () => {
+      el.classList.add("keydown-down");
+    });
     toggleEl.dispatchEvent(event);
+    await expect(el.classList.contains("keydown-down")).to.be.true;
   });
 });
