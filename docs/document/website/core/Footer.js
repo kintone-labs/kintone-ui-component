@@ -22,8 +22,21 @@ class Footer extends React.Component {
   }
 
   render() {
+    const style = {
+      display: "none",
+      visibility: "hidden"
+    };
     return (
       <footer className="nav-footer" id="footer">
+        <noscript>
+          <iframe
+            title="googletagmanager"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3"
+            height="0"
+            width="0"
+            style={style}
+          />
+        </noscript>
         <section className="sitemap">
           <a href={this.props.config.baseUrl} className="nav-home">
             {this.props.config.footerIcon && (
