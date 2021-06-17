@@ -4,25 +4,21 @@ title: v1.0.3 Release Notes
 sidebar_label: v1.0.3 Release Notes
 ---
 
-## 概要
+## Overview
 
-[kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) のリリースノートです。
-セキュリティアップデート対応や内部実装の修正を行いました。
+Here are the [kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) Release Notes.
+Code review automation, maintenances, and security updates have been made.
 
-## アップデート内容
+## Update details
+### Features
+- Integrated with Sider Goodcheck on GitHub to automate the code review process.
 
-詳細は以下になります。
+### Maintenances
+- Matched the styling of label and error tags for Mobile and Desktop components.
+- Changed "my-integrity" tag in CI to "v1.x.x-integrity".
 
-### 機能
-- GitHub 上での Sider Goodcheck 設定、コードレビュープロセスの自動化
+### Security Updates
+- Updated dependent libraries: webpack, ssri, react-dev-utils, elliptic.
 
-### メンテナンス
-- Mobile/Desktop コンポーネントの label と error タグのスタイルシートを統一
-- CI の "my-integrity" タグを "v1.x.x-integrity" に変更
-
-### セキュリティアップデート
-- セキュリティアラートへの対応：webpack, ssri, react-dev-utils, elliptic
-
-### ドキュメント修正
-- v1.0.3 Release Notes の追加
-- 検索ボックスカスタマイズ記事のサンプルコード修正
+### Document Fixes
+- Fixed the sample code of the search box customization tutorial.

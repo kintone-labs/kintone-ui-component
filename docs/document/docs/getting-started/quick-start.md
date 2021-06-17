@@ -91,12 +91,12 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 ### Use the npm package
 
-1. Create a folder name `my-customization`, and move your root into the folder, then execute the following command:
+1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
 ```sh
-mkdir my-customization && cd my-customization
+mkdir ustomization && cd customization
 npm install kintone-ui-component
-npm install webpack
+npm install webpack webpack-cli --save-dev
 ```
 
 > If necessary, install `babel-loader` and `css-loader`.
@@ -133,13 +133,12 @@ const path = require('path');
 module.exports = (env = {}) => {
   return {
     entry: {
-      "my-customization": './src/index.js'
+      "customization": './src/index.js'
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].min.js',
-    },
-    watch: env.watch
+    }
   }
 }
 ```
@@ -149,7 +148,7 @@ module.exports = (env = {}) => {
 ```json
 // package.json
 "scripts": {
-  "build:webpack": "cross-env NODE_ENV=production webpack",
+  "build:webpack": "webpack --mode production",
   ...
 }
 ```
@@ -162,7 +161,7 @@ npm run build:webpack
 
 ```text
 Output Result：
-./dist/my-customization.min.js
+./dist/customization.min.js
 ```
 
 6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）

@@ -4,14 +4,12 @@ title: v1.0.1 Release Notes
 sidebar_label: v1.0.1 Release Notes
 ---
 
-## 概要
+## Overview
 
-[kintone UI Component v1.0.1](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.1) のリリースノートです。
-ドキュメント関連の修正を行いました。
+Here are the [kintone UI Component v1.0.1](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.1) Release Notes.
+Some of documents have been updated.
 
-## アップデート内容
-
-詳細は以下になります。
-
-- README 内の unpkg URL を修正
-- ドキュメントサイト Quick Start 記事内の unpkg URL を修正
+## Update details
+### Document Fixes
+- Fixed the unpkg URL in README.
+- Fixed the unpkg URL in Quick Start.
