@@ -94,7 +94,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
 ```sh
-mkdir ustomization && cd customization
+mkdir customization && cd customization
 npm install kintone-ui-component
 npm install webpack webpack-cli --save-dev
 ```
