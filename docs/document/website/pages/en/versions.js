@@ -99,31 +99,6 @@ const Versions = (props) => {
             </a>
             .
           </div>
-          <h3 id="rc">Pre-release versions</h3>
-          <p>You can find the latest updates for a future release.</p>
-          <table className="versions">
-            <tbody>
-              <tr>
-                <th>master</th>
-                <td>
-                  {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/next/:id" */}
-                  <a
-                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                      props.language ? props.language + "/" : ""
-                    }next/getting-started/quick-start`}
-                  >
-                    Documentation
-                  </a>
-                </td>
-                <td>
-                  <a href={repoUrl} target="_blank" rel="noreferrer">
-                    Source Code
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </Container>
     </div>

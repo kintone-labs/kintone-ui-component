@@ -117,8 +117,6 @@ class Index extends React.PureComponent {
               <strong className="quoteTop_title">Support Policy</strong>
               <br />
               <br />
-              Kintone UI Component
-              <br />
               You can ask questions and/or submit requests on
               <a
                 href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
