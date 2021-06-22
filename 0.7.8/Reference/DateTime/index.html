@@ -98,10 +98,7 @@
       </a>
     
     
-      <noscript>
-  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- Application header -->
+      <!-- Application header -->
 <header class="md-header" data-md-component="header">
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
@@ -124,13 +121,8 @@
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <a href="../..">kintone UI Component</a>
-          <a
-            id="current_vesion"
-            style="text-decoration: underline;"
-            href="../../versions"
-            data-version="0.8.0"
-          >v0.8.0</a>
+          <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;"
+            href="../../../latest/versions">v0.7.8</a>
         </div>
       </div>
 
@@ -853,14 +845,6 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For <b>datetime</b> type, both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
-<ul>
-  <li> The value options is set to null on <b>Constructor</b> or <b>setValue</b> method. </li>
-  <li> Clicking <b>clear (item-5)</b> on <b>date picker (item-3)</b>.</li>
-</ul></p>
-</div>
 <h2 id="constructor">Constructor</h2>
 <p><strong>Parameter</strong></p>
 <table>
@@ -881,7 +865,7 @@
 </tr>
 <tr>
 <td>options.value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>No</td>
 <td>The Default DateTime Value.</td>
 </tr>
@@ -994,7 +978,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <tbody>
 <tr>
 <td>value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>The value of datetime field.</td>
 </tr>
 </tbody>
@@ -1046,7 +1030,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <tbody>
 <tr>
 <td>value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>Yes</td>
 <td>The value of datetime field.</td>
 </tr>
