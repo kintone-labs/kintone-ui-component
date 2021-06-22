@@ -67,31 +67,6 @@
     
     
       
-        
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-      
     
     
   </head>
@@ -113,7 +88,10 @@
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
     
-      <!-- Application header -->
+      <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- Application header -->
 <header class="md-header" data-md-component="header">
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
@@ -136,8 +114,13 @@
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <a href="/kintone-ui-component/">kintone UI Component</a> <a style="text-decoration: underline;"
-            href="/kintone-ui-component//../latest/versions">v0.7.8</a>
+          <a href="/kintone-ui-component/">kintone UI Component</a>
+          <a
+            id="current_vesion"
+            style="text-decoration: underline;"
+            href="/kintone-ui-component//versions"
+            data-version="0.8.0"
+          >v0.8.0</a>
         </div>
       </div>
 
