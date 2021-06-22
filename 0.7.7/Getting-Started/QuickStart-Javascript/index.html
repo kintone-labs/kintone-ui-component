@@ -68,33 +68,12 @@
       <link rel="stylesheet" href="../../style/extra.css">
     
     
-      
-        
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-180303573-1", "kintone-labs.github.io/kintone-ui-component")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-      
-    
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5N49D3');</script>
+
     
   </head>
   
@@ -119,7 +98,10 @@
       </a>
     
     
-      <!-- Application header -->
+      <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- Application header -->
 <header class="md-header" data-md-component="header">
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid">
@@ -142,13 +124,8 @@
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <a href="../..">kintone UI Component</a>
-          <a
-            id="current_vesion"
-            style="text-decoration: underline;"
-            href="../../versions"
-            data-version="0.7.7"
-          >v0.7.7</a>
+          <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;"
+            href="../../../latest/versions">v0.7.8</a>
         </div>
       </div>
 
@@ -672,7 +649,7 @@
 <pre><code>$ mkdir my-customization
 $ cd my-customization
 $ npm init -y
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack webpack-cli babel-loader @babel/core
+$ npm install cross-env css-loader style-loader webpack@^4.46.0 webpack-cli@^3.3.12 babel-loader @babel/core @babel/preset-env@^7.2.3 tslib --save
 $ npm install @kintone/kintone-ui-component
 $ mkdir src
 </code></pre>
@@ -706,7 +683,12 @@ module.exports = (env = {}) =&gt; {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              &quot;presets&quot;: [
+                &quot;@babel/env&quot;
+              ]
+            }
           }
         },
         {
@@ -724,7 +706,7 @@ module.exports = (env = {}) =&gt; {
 </code></pre>
 <p><strong>Step</strong> 4: Add a script for buiding by webpack to package.json</p>
 <pre><code>&quot;scripts&quot;: {
-  &quot;build-webpack&quot;: &quot;cross-env NODE_ENV=production webpack&quot;,
+  &quot;build-webpack&quot;: &quot;rm -rf dist &amp;&amp; webpack --mode production&quot;,
   ...
 }
 </code></pre>
