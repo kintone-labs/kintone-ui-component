@@ -6,7 +6,7 @@ sidebar_label: Notification
 
 ## Overview
 
-Notification は、ポップアップの通知を表示します。
+The Notification component allows the user to display pop-up notifications.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=notification--documentinfo" title="notification info image" height="70px"></iframe>
 
@@ -20,30 +20,30 @@ Notification は、ポップアップの通知を表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 ||
-| text | string | "" | 表示するテキスト ||
-| type | string | "danger" | 背景色 | 以下を指定できる<br>"danger" : Red(#e74c3c)<br>"info" : Blue(#3498db)<br>"success" : Green(#91c36c) |
+| className | string | ""  | Component class name | |
+| text | string | ""  | Text to be displayed | |
+| type | string | "danger"  | Background color | Available options:<br>"danger" : Red (#e74c3c)<br>"info" : Blue (#3498db)<br>"success" : Green (#91c36c) |
 
 ### Constructor
 
-Notification(options)
-使用できるコンストラクタの一覧です。
+Notification(options)<br>
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | Object that includes component properties |  |
 
 ### Method
 
-使用できるメソッドの一覧です。
+Here is a list of available methods:
 
 #### open()
-Notification を表示する
+Show the Notification
 
 ##### Parameter
 none
@@ -52,7 +52,7 @@ none
 none
 
 #### close()
-Notification を非表示にする
+Hide the Notification
 
 ##### Parameter
 none
@@ -63,7 +63,7 @@ none
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const notification = new Kuc.Notification({
