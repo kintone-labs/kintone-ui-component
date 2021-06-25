@@ -8,7 +8,7 @@ sidebar_label: MobileTextArea
 
 The MobileTextArea component allows the user to display multiple lines of text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px" width="100%"></iframe>
 
 ---
 
