@@ -256,18 +256,18 @@ describe("Function Change event run successfully when mousedown", () => {
         items: [
           {
             label: initLabels[0],
-            value: expectedValues[0]
+            value: initValues[0]
           },
           {
             label: initLabels[1],
-            value: expectedValues[1]
+            value: initValues[1]
           },
           {
             label: initLabels[2],
-            value: expectedValues[2]
+            value: initValues[2]
           }
         ],
-        value: [expectedValues[0]]
+        value: [initValues[0]]
       })
     );
     const toggleEl = el.querySelector(
