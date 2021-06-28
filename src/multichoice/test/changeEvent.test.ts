@@ -2,7 +2,8 @@ import { expect, fixture } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
 describe("Function Change event run successfully when mousedown", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
+  const initLabels = ["Item 1", "Item 2", "Item 3"];
+  const initValues = ["item-1", "item-2", "item-3"];
   const expectedValues = ["item-1", "item-2", "item-3"];
 
   const container = new MultiChoice({
@@ -10,19 +11,19 @@ describe("Function Change event run successfully when mousedown", () => {
     requiredIcon: false,
     items: [
       {
-        label: expectedLabels[0],
-        value: expectedValues[0]
+        label: initLabels[0],
+        value: initValues[0]
       },
       {
-        label: expectedLabels[1],
-        value: expectedValues[1]
+        label: initLabels[1],
+        value: initValues[1]
       },
       {
-        label: expectedLabels[2],
-        value: expectedValues[2]
+        label: initLabels[2],
+        value: initValues[2]
       }
     ],
-    value: [expectedValues[1]],
+    value: [initValues[1]],
     disabled: false,
     visible: false
   });
@@ -102,19 +103,19 @@ describe("Function Change event run successfully when mousedown", () => {
       new MultiChoice({
         items: [
           {
-            label: expectedLabels[0],
-            value: expectedValues[0]
+            label: initLabels[0],
+            value: initValues[0]
           },
           {
-            label: expectedLabels[1],
-            value: expectedValues[1]
+            label: initLabels[1],
+            value: initValues[1]
           },
           {
-            label: expectedLabels[2],
-            value: expectedValues[2]
+            label: initLabels[2],
+            value: initValues[2]
           }
         ],
-        value: [expectedValues[0]]
+        value: [initValues[0]]
       })
     );
     const toggleEl = el.querySelector(
@@ -140,19 +141,19 @@ describe("Function Change event run successfully when mousedown", () => {
       new MultiChoice({
         items: [
           {
-            label: expectedLabels[0],
-            value: expectedValues[0]
+            label: initLabels[0],
+            value: initValues[0]
           },
           {
-            label: expectedLabels[1],
-            value: expectedValues[1]
+            label: initLabels[1],
+            value: initValues[1]
           },
           {
-            label: expectedLabels[2],
-            value: expectedValues[2]
+            label: initLabels[2],
+            value: initValues[2]
           }
         ],
-        value: [expectedValues[0]]
+        value: [initValues[0]]
       })
     );
     const toggleEl = el.querySelector(
@@ -178,19 +179,19 @@ describe("Function Change event run successfully when mousedown", () => {
       new MultiChoice({
         items: [
           {
-            label: expectedLabels[0],
-            value: expectedValues[0]
+            label: initLabels[0],
+            value: initValues[0]
           },
           {
-            label: expectedLabels[1],
-            value: expectedValues[1]
+            label: initLabels[1],
+            value: initValues[1]
           },
           {
-            label: expectedLabels[2],
-            value: expectedValues[2]
+            label: initLabels[2],
+            value: initValues[2]
           }
         ],
-        value: [expectedValues[0]]
+        value: [initValues[0]]
       })
     );
     const toggleEl = el.querySelector(
@@ -216,19 +217,19 @@ describe("Function Change event run successfully when mousedown", () => {
       new MultiChoice({
         items: [
           {
-            label: expectedLabels[0],
-            value: expectedValues[0]
+            label: initLabels[0],
+            value: initValues[0]
           },
           {
-            label: expectedLabels[1],
-            value: expectedValues[1]
+            label: initLabels[1],
+            value: initValues[1]
           },
           {
-            label: expectedLabels[2],
-            value: expectedValues[2]
+            label: initLabels[2],
+            value: initValues[2]
           }
         ],
-        value: [expectedValues[0]]
+        value: [initValues[0]]
       })
     );
     const toggleEl = el.querySelector(
@@ -254,15 +255,15 @@ describe("Function Change event run successfully when mousedown", () => {
       new MultiChoice({
         items: [
           {
-            label: expectedLabels[0],
+            label: initLabels[0],
             value: expectedValues[0]
           },
           {
-            label: expectedLabels[1],
+            label: initLabels[1],
             value: expectedValues[1]
           },
           {
-            label: expectedLabels[2],
+            label: initLabels[2],
             value: expectedValues[2]
           }
         ],

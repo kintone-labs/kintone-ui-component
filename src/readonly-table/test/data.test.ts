@@ -96,7 +96,7 @@ describe("throw error when set by constructor", () => {
   it("have data which is array null", async () => {
     await expect(() => {
       const container = new ReadOnlyTable({
-        // @ts-ignore
+        // @ts-expect-error
         data: [null]
       });
     }).to.throw(Error, "'data' property is invalid");
@@ -114,7 +114,7 @@ describe("throw error when set by prop", () => {
   it("have data which is array null", async () => {
     await expect(() => {
       const container = new ReadOnlyTable({});
-      // @ts-ignore
+      // @ts-expect-error
       container.data = [null];
     }).to.throw(Error, "'data' property is invalid");
   });

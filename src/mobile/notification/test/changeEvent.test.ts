@@ -9,10 +9,11 @@ describe("Function change event run successfully by mouse/keyboard event", async
     const itemsEl = el.querySelector(
       ".kuc-mobile-notification__notification__closeButton"
     ) as HTMLButtonElement;
+    let isClose = false;
     container.addEventListener("click", (event: Event) => {
-      container.classList.add("onclick");
+      isClose = container.classList.contains("kuc-mobile-notification-fadeout");
     });
     await itemsEl.click();
-    await expect(container.classList.contains("onclick")).to.be.true;
+    await expect(isClose).to.be.true;
   });
 });

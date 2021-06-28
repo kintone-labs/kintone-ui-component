@@ -23,15 +23,21 @@ describe("Function change event run successfully", () => {
     el.querySelector(".kuc-textarea__resizer")!.dispatchEvent(
       new CustomEvent("mousedown")
     );
+    // TODO: Update expect() logic
+    // I was not found something happened on HTML when mousedown
   });
 
   it("event mousemove", async () => {
     const event = new CustomEvent("mousemove");
     document.dispatchEvent(event);
+    // TODO: Update expect() logic
+    // I was not found something happened on HTML when mousedown
   });
 
   it("event mouseup", async () => {
     const event = new CustomEvent("mouseup");
     document.dispatchEvent(event);
+    // TODO: Update expect() logic
+    // I was not found something happened on HTML when mousedown
   });
 });
