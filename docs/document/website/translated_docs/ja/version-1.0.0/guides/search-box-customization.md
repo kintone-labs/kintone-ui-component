@@ -58,20 +58,20 @@ Button コンポーネントは、click イベントを指定することがで�
 ```javascript
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
-// 表示したボタンに click イベントの処理を追加
+// Add the process of click event to the displayed button
 button.addEventListener('click', event => {      
   const keyword = text.value;
-  const errorMessage = '全角のみ入力できます';
-  // 表示したメッセージの初期化
+  const errorMessage = 'Please enter a value.';
+  // Hide the error message
   text.error = ''; 
   
-  // 全角文字の判定
-  if (!keyword.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-    // 全角以外ならエラーメッセージを表示して処理を中断する
+  // Check if there is a value
+  if (!keyword) {
+    // Show the error message
     text.error = errorMessage;
     return;
   }

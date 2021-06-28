@@ -225,7 +225,7 @@ Let's take a look at the Text component `error` property for example:
 
 In the beginning, I have introduced a code to use KUC to create the search box, but there is no response when you click the button.
 
-After adding additional handler, when the button is clicked, the text input character is checked and the error message is displayed only when a character with non-full-width is added.
+After adding additional handler, when the button is clicked, the text input value is checked and the error message is displayed only when there is no value.
 
 Here is a sample code.
 
@@ -238,19 +238,20 @@ const button = new Kuc.Button({
 
 /* Add the following code */
 
+// Add the process of click event to the displayed button
 button.addEventListener('click', event => {      
   const keyword = text.value;
-  const errorMessage = 'Only full-width can be entered';
+  const errorMessage = 'Please enter a value.';
+  // Hide the error message
   text.error = ''; 
   
-  // Full-width character judgment process
-  if (!keyword.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-    // Interrupt the process by displaying an error message if the input value is not full width
+  // Check if there is a value
+  if (!keyword) {
+    // Show the error message
     text.error = errorMessage;
     return;
   }
 });
-
 ```
 
 In the above code, inside the `click` event, the value is retrieved from text.value, and is checked using regular expressions.
