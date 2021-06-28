@@ -88,7 +88,7 @@ The major updates are as follows:
   - The Web Components interface will be considered in the future.
 
 With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.
-Please refer to the [link](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1) for the details of differences between v0 and v1.
+Please refer to the [link](../guides/comparison-v0-v1.md) for the details of differences between v0 and v1.
 
 ## Future plans
 
