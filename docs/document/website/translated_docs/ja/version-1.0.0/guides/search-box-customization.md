@@ -31,15 +31,15 @@ Text コンポーネントの placeholder プロパティを使うと、入力�
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの入力欄とボタンの表示
+// Show entry field and button in the search box
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
   
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 header.appendChild(text);
@@ -51,8 +51,8 @@ header.appendChild(button);
 Button コンポーネントは、click イベントを指定することができます。  
 ここでは以下のような処理を入れています。
 
-- ボタンをクリックした時に、入力された文字が全角文字か判定
-- 入力値が全角以外の場合、error プロパティにエラーメッセージを代入して表示
+- ボタンをクリックした時に、入力値があるか判定
+- 入力値がない場合、error プロパティにエラーメッセージを代入して表示
 - error プロパティに空文字を代入して、表示メッセージを初期化
 
 ```javascript
@@ -83,15 +83,15 @@ button.addEventListener('click', event => {
 id プロパティを付与して、既にコンポーネントが表示されているかどうかを判定し、増殖バグを防ぐ対応をしています。
 
 ```javascript
-// プロパティで付与した id を利用して増殖バグを防ぐ
+// Prevent duplication bug with ID granted by property
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
-  id: 'kuc_text' // id を付与
+  placeholder: 'Enter keywords',
+  id: 'kuc_text' // Add ID
 });
 ```
 
@@ -113,28 +113,28 @@ const params = {
 
 kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => {
   if (resp.records.length !== 0) {
-    // レコード取得結果を表示する処理
+    // Process of displaying record retrieval result
     const url = '?view=' + id + '&q=f6054049%20like%20' + '"' + keyword + '"';
     window.location.replace(url);
   } else if (resp.records.length === 0) {
-    // レコード結果がない場合の処理
+    // Process when no record is found
     const info = new Kuc.Notification({
-      text: 'レコードがありません',
-      type: 'info' // blue の背景色が設定される
+      text: 'No records',
+      type: 'info' // Blue background color is set
     });
-    info.open();　// info の表示
+    info.open();　// Show info
   }
 }).catch(error => {
-  // REST API のエラー発生時の処理
-  const errmsg = 'レコード取得時にエラーが発生しました。';
+  // Process when REST API error occurs
+  const errmsg = 'An error occurred while retrieving the record.';
   if (error.message !== undefined) {
     errmsg += '\n' + error.message;
   }
   const alert = new Kuc.Notification({
     text: errmsg
-    // type プロパティを指定しない場合、red の背景色が設定される
+    // If the type property is not specified, red background color is set
   });
-  alert.open();　// alert の表示
+  alert.open();　// Show alert
 });
 ```
 

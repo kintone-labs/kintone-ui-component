@@ -47,18 +47,18 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
-      id: 'kuc_button' // id プロパティを追加
+      text: 'Search',
+      id: 'kuc_button' // Add id property
     });
-    header.appendChild(button);　// ボタンを表示
+    header.appendChild(button);　// Show button
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
-    header.appendChild(button.render());　// ボタンを表示
+    header.appendChild(button.render());　// Show button
 ```
 
 - メソッドの呼び出しではなく、プロパティの利用で設定するように使用性の向上。
@@ -68,20 +68,20 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
       id: 'kuc_button'
     });
     header.appendChild(button);
-    button.text = '登録'; // text プロパティを更新
+    button.text = 'Register'; // Update text property
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
     header.appendChild(button.render());
-    button.setText('登録'); // text プロパティを更新
+    button.setText('Register'); // Update text property
 ```
 ​
 - kintone カスタマイズで実際に使う機能に絞って実装。​

@@ -25,53 +25,53 @@ original_id: comparison-v0-v1
 ### v0 を使った場合
 
 ```javascript
-// 増殖バグを防ぐ処理
+// Process to prevent component duplication bug
 if (document.getElementById('my_index_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの表示
+// Show search box
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 
 const button = new kintoneUIComponent.Button({
   type: 'submit',
-  text: '検索'
+  text: 'Search'
 });
 
-// textとbuttonを横並びにする。
+// Use text and a button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
 
 header.appendChild(text.render());
 header.appendChild(button.render());
 
-// 増殖バグ対応のために、id 付与
+// Specified id for component duplication bug prevention
 text.element.id = 'my_index_text';
 ```
 
 ### v1 を使った場合
 
 ```javascript
-// 増殖バグを防ぐ処理
+// Process to prevent component duplication bug
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-// 検索ボックスの表示
+// Show search box
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
   
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
@@ -101,14 +101,14 @@ v1 では、インスタンスの呼び出し方が new kintoneUIComponent か�
 - v0 のコード
 ```
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 ```
 
 - v1 のコード
 ```
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 ```
 
@@ -141,23 +141,23 @@ v1 では、プロパティを利用して値を更新することができま�
 ```
 const button = new kintoneUIComponent.Button({
   type: 'submit',
-  text: '検索'
+  text: 'Search'
 });
 
-// メソッドを呼び出して値を更新
-button.setText('登録');
+// Update the value by calling the method
+button.setText('Register');
 ```
 
 - v1 のコード
 ```
 const button = new Kuc.Button({
   type: 'submit',
-  text: '検索',
+  text: 'Search',
   id: 'kuc_button'
 });
 
-// プロパティを利用して値の更新が可能
-button.text = '登録';
+// Property can be used to update values
+button.text = 'Register';
 ```
 
 ---
@@ -169,7 +169,7 @@ v0 では、デフォルトではパーツが縦に並ぶ仕様になってお�
 
 - style を調整する必要がある
 ```
-// textとbuttonを横並びにする。
+// Use text and button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
@@ -189,29 +189,29 @@ v1 では各コンポーネントのプロパティについても精査し、�
 
 - v0 のコード
 ```
-// 増殖バグを防ぐ処理
+// Process to prevent component duplication bug
 if (document.getElementById('my_index_text') !== null) {
   return event;
 }
 
 const text = new kintoneUIComponent.Text({
-  placeholder: 'キーワードを入力してください'
+  placeholder: 'Enter keywords'
 });
 
-// idプロパティがないため、別途idを付与する必要あり
+// ID property is missing, ID must be granted separately
 text.element.id = 'my_index_text';
 ```
 
 - v1 のコード
 ```
-// 増殖バグを防ぐ処理（プロパティで付与したid名を利用可能）
+// Process to prevent component duplication bug (ID name granted by the property is available)
 if (document.getElementById('kuc_text') !== null) {
   return event;
 }
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 const text = new Kuc.Text({
-  placeholder: 'キーワードを入力してください',
+  placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
 ```
