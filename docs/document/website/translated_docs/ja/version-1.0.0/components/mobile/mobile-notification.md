@@ -32,7 +32,7 @@ MobileNotification(options)
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ### Method
 
