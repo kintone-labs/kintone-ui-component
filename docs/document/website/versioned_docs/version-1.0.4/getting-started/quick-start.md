@@ -23,7 +23,7 @@ In this tutorial, you will place a Button component inside the header menu space
 
 First, follow the below steps to create an app to install Kintone UI Component.
 
-1. Create a blank app. （[Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html)）  
+1. Create a blank app. ([Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html))  
 You do not need to set up any fields in this app.
 
 ## Installation
@@ -33,11 +33,11 @@ You can choose to import or implement the library according to the environment s
 In this article, we will show you how to install and implement using each approach.
 
 > See the Components section in the sidebar for more details on each component.
-> (Additional components will be added in order.）
+> (Additional components will be added in order.)
 
 ### Use the UMD
 
-1. Download the file located inside Kintone UI Component repository[Each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
+1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```text
 ./umd/kuc.min.js
@@ -66,13 +66,13 @@ In this article, we will show you how to install and implement using each approa
 })();
 ```
 
-3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
+3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
 
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）  
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))  
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
    - For the latest version of Kintone UI Component:
@@ -165,7 +165,7 @@ Output Result：
 ./dist/customization.min.js
 ```
 
-6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
+6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](assets/button_customize.png)
 

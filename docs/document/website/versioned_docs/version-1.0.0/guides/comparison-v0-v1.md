@@ -175,7 +175,7 @@ button.element.style.float = 'right';
 ```
 
 In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.  
-(For some components, the default value is set to vertical for convenience.）
+(For some components, the default value is set to vertical for convenience.)
 
 ![Search box](assets/v1_search_box.png)
 
