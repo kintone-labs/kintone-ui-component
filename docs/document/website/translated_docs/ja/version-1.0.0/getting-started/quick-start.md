@@ -43,7 +43,7 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 ./umd/kuc.min.js
 ```
 
-2. index.js ファイルを作成します。
+2. `index.js` ファイルを作成します。
 
 ```js
 (() => {
@@ -66,14 +66,14 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 })();
 ```
 
-3. index.js を kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
+3. `index.js` を kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
 
 ![button customize](assets/button_customize.png)
 
 ### CDN を利用する
 
 1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://get.kintone.help/k/ja/user/app_settings/js_customize.html)）  
-CDN を読み込むと、グローバルオブジェクトとして Kuc が追加されます。
+CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
 
    - 最新版の kintone UI Component を読み込みたい場合
     ```text
@@ -88,20 +88,21 @@ CDN を読み込むと、グローバルオブジェクトとして Kuc が追�
 2. 以降は上記 UMD と同様。
 
 > unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。  
-> 本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の kuc.min.js をご利用ください。
+> 本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の `kuc.min.js` をご利用ください。
 
 ### npm パッケージを利用する
 
-1. プロジェクトのルート配下で以下のコマンドを実行します。
+1. `my-customization` というフォルダを作成し、その配下で以下のコマンドを実行します。
 
 ```sh
+mkdir my-customization && cd my-customization
 npm install kintone-ui-component
 npm install webpack
 ```
 
-> 必要に応じて、babel-loader や css-loader もインストールしてお使いください。
+> 必要に応じて、`babel-loader` や `css-loader` もインストールしてお使いください。
 
-2. 利用したいコンポーネントをインポートし、index.js ファイルを src/ 配下に作成します。
+2. 利用したいコンポーネントをインポートし、`index.js` ファイルを `src` フォルダ配下に作成します。
 
 ```js
 import { Button } from 'kintone-ui-component/lib/button';
@@ -125,7 +126,7 @@ import { Button } from 'kintone-ui-component/lib/button';
   });
 })();
 ```
-3. my-customization/ フォルダを作成し、その配下に以下の webpack.config.js ファイルを作成します。
+3. プロジェクトのルート配下に以下の `webpack.config.js` ファイルを作成します。
 
 ```js
 const path = require('path');
@@ -143,7 +144,7 @@ module.exports = (env = {}) => {
 }
 ```
 
-4. package.json に webpack でビルドするためのスクリプトを追加します。
+4. `package.json` に webpack でビルドするためのスクリプトを追加します。
 
 ```json
 "scripts": {
