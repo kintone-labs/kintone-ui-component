@@ -148,7 +148,6 @@ module.exports = (env = {}) => {
 4. Add webpack build script into `package.json`.
 
 ```json
-// package.json
 "scripts": {
   "build:webpack": "cross-env NODE_ENV=production webpack",
   ...
