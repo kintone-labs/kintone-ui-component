@@ -209,7 +209,7 @@ describe("Function Change event run successfully when mousedown", () => {
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mousedown"));
 
-    // "Space" is incorrect, test case default
+    // "Space" is not handled key code and it will do nothing as default operation.
     toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Space" }));
     await expect(isHighlighted).to.true;
   });
