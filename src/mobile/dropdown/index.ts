@@ -1,5 +1,6 @@
 import { LitElement, html, property, PropertyValues } from "lit-element";
-import { visiblePropConverter } from "../../common/converter";
+import { v4 as uuid } from "uuid";
+import { visiblePropConverter } from "../../base/converter";
 
 type Item = { value?: string; label?: string };
 type MobileDropdownProps = {
@@ -57,10 +58,7 @@ export class MobileDropdown extends LitElement {
   }
 
   private _generateGUID(): string {
-    return (
-      new Date().getTime().toString(16) +
-      Math.floor(Math.random() * 0x1000).toString(16)
-    );
+    return uuid();
   }
 
   private _handleChangeInput(event: Event) {
