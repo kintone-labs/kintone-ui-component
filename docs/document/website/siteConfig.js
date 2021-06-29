@@ -16,14 +16,14 @@ const siteConfig = {
   organizationName: "kintone-labs",
   headerLinks: [
     { doc: "getting-started/quick-start", label: "Documentation" },
-    { blog: true, label: "Releases" },
+    { doc: "releases/release-notes", label: "Releases" },
     {
       href: "https://github.com/kintone-labs/kintone-ui-component",
       label: "GitHub",
       external: true,
     },
     { search: true },
-    { languages: false },
+    { languages: true },
   ],
   headerIcon: "img/kuc_logo_white.png",
   footerIcon: "img/kuc_box_white.png",

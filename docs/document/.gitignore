@@ -4,4 +4,3 @@ package-lock.json
 yarn.lock
 website/build/
 website/i18n/*
-website/translated_docs

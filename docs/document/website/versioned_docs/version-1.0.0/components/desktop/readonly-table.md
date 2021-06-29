@@ -7,7 +7,7 @@ original_id: readonly-table
 
 ## Overview
 
-ReadOnlyTable は、kintone 詳細画面の読み取りテーブルを表示します。
+The ReadOnlyTable component allows the user to display a read table on the Kintone details screen.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
 
@@ -17,34 +17,34 @@ ReadOnlyTable は、kintone 詳細画面の読み取りテーブルを表示し�
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+Here is a list of properties that can be used for modifying the component:
 
-| Name | Type | Default | Description | Remark |
+| Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | "" | コンポーネントの class 名 ||
-| id | string | "" | コンポーネントの id 名 ||
-| label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| visible | boolean | true | コンポーネントの表示/非表示設定 ||
-| columns | Array\<Columns\> | [] | テーブルヘッダーに表示するデータの配列 | Columns が配列以外の場合、エラーを出力する |
-| columns.header | object | null | テーブルヘッダーのオブジェクト ||
-| columns.header.text | string | null | テーブルヘッダーに表示する文字列 ||
-| columns.visible | boolean | null | 列ごとの表示/非表示設定 ||
-| data | Array\<Array\<string\>\> | [] | テーブルボディに表示するデータの二次元配列 | data, data 内の値が配列以外の場合、エラーを出力する |
+| className | string | ""  | Component class name | |
+| id | string | ""  | Component id name | |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| visible | boolean | true | Show/Hide the component | |
+| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
+| Columns.header | Object | Null | Table header object | |
+| Columns.header.text | String | Null | Text to be displayed in the table header | |
+| Columns.visible | Boolean | Null | Show/Hide the column | |
+| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
 
 ### Constructor
 
 ReadOnlyTable(options)<br>
-使用できるコンストラクタの一覧です。
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | Object that includes component properties |  |
 
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const space = kintone.app.record.getSpaceElement('space');

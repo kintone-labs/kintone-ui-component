@@ -7,7 +7,7 @@ original_id: spinner
 
 ## Overview
 
-Spinner は、ローディングスピナーを表示します。
+The Spinner component allows the user to display a rolling spinner.
 
 <iframe src="https://kuc-storybook.netlify.app/iframe.html?id=spinner--document" title="spinner image" width="300px" height="200px"></iframe>
 
@@ -17,30 +17,30 @@ Spinner は、ローディングスピナーを表示します。
 
 ### Property
 
-使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
+Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| text | string | "" | ローダーアイコン下部に表示するテキスト | text が未指定、あるいは空文字の場合*は、初期値を表示する |
+| text | string | ""  | Text to be displayed at the bottom of the loader icon | Displays the default value if the value for text is unspecified or empty |
 
-\* text が未指定、あるいは空文字の場合は、アクセシビリティを考慮して visually-hidden class を
-付与し、"now loading…" の文言を視覚的に見えない状態で表示する
+\*  If the text is unspecified or empty,
+consider assigning a visually-hidden class and given the word "Now loading..." in a hidden state for accessibility.
 
 ### Constructor
 
 Spinner(options)
-使用できるコンストラクタの一覧です。
+Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | Object that includes component properties |  |
 
 ### Method
-使用できるメソッドの一覧です。
+Here is a list of available methods:
 
 #### open()
-コンポーネントを表示する
+Show the component
 
 ##### Parameter
 none
@@ -49,7 +49,7 @@ none
 none
 
 #### close()
-コンポーネントを非表示にする
+Hide the component
 
 ##### Parameter
 none
@@ -60,7 +60,7 @@ none
 ---
 ## Sample Code
 
-全てのパラメータを指定した場合のサンプルコードです。
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const spinner = new Kuc.Spinner({
@@ -69,3 +69,4 @@ const spinner = new Kuc.Spinner({
 spinner.open();
 spinner.close();
 ```
+

@@ -1,4 +1,9 @@
-import { expect, fixture } from "@open-wc/testing";
+import {
+  expect,
+  fixture,
+  triggerFocusFor,
+  triggerBlurFor
+} from "@open-wc/testing";
 import { RadioButton } from "../index";
 
 describe("Function change event run successfully by mouse/keyboard event", () => {
@@ -39,5 +44,17 @@ describe("Function change event run successfully by mouse/keyboard event", () =>
       detail: { oldValue: expectedValues[1], value: expectedValues[2] }
     });
     menuEl.dispatchEvent(event);
+  });
+
+  it("can be focused and blured", async () => {
+    const el: HTMLElement = await fixture(container);
+    const itemsEl = el.querySelector(
+      ".kuc-radio-button__group__select-menu__item__input"
+    ) as HTMLInputElement;
+    await triggerFocusFor(itemsEl);
+    await expect(document.activeElement?.isSameNode(itemsEl)).to.be.true;
+
+    await triggerBlurFor(itemsEl);
+    await expect(document.activeElement?.isSameNode(itemsEl)).to.be.false;
   });
 });
