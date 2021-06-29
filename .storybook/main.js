@@ -9,6 +9,7 @@ module.exports = {
     return {
       ...config,
       resolve: {
+        ...config.resolve,
         fallback: { crypto: false },
       },
       module: {

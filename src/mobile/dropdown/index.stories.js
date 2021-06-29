@@ -23,7 +23,8 @@ storiesOf("mobile/dropdown", module)
       value: "apple",
       label: "フルーツ一覧",
       requiredIcon: true,
-      error: "エラーです"
+      error: "エラーです",
+      visible: true
     });
     dropdown.addEventListener("change", event => {
       console.log(event);
@@ -51,8 +52,8 @@ storiesOf("mobile/dropdown", module)
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
-    dropdown.error = "エラーです";
     dropdown.value = "orange";
+    dropdown.visible = false;
     root.appendChild(dropdown);
     return root;
   })
@@ -72,6 +73,39 @@ storiesOf("mobile/dropdown", module)
       {
         label: "Apple",
         value: "opple"
+      }
+    ];
+    dropdown.label = "フルーツ一覧";
+    dropdown.requiredIcon = true;
+    dropdown.error = "エラーです";
+    dropdown.disabled = true;
+    root.appendChild(dropdown);
+    return root;
+  })
+  .add("Base4", () => {
+    const root = document.createElement("div");
+    const dropdown = new MobileDropdown();
+    dropdown.value = "orange";
+    dropdown.items = null;
+    dropdown.label = "フルーツ一覧";
+    dropdown.requiredIcon = true;
+    dropdown.error = "エラーです";
+    dropdown.disabled = true;
+    root.appendChild(dropdown);
+    return root;
+  })
+  .add("Base5", () => {
+    const root = document.createElement("div");
+    const dropdown = new MobileDropdown();
+    dropdown.value = "orange";
+    dropdown.items = [
+      {
+        label: "Orange",
+        value: "orange"
+      },
+      {
+        label: "Orange",
+        value: "orange"
       }
     ];
     dropdown.label = "フルーツ一覧";

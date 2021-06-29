@@ -1,4 +1,5 @@
 import { LitElement, html, property, PropertyValues } from "lit-element";
+import { visiblePropConverter } from "../../common/converter";
 
 type Item = { value?: string; label?: string };
 type MobileDropdownProps = {
@@ -24,7 +25,13 @@ export class MobileDropdown extends LitElement {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
 
   private _GUID: string;
@@ -54,14 +61,6 @@ export class MobileDropdown extends LitElement {
       new Date().getTime().toString(16) +
       Math.floor(Math.random() * 0x1000).toString(16)
     );
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
   }
 
   private _handleChangeInput(event: Event) {
@@ -105,7 +104,6 @@ export class MobileDropdown extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <label
@@ -127,8 +125,8 @@ export class MobileDropdown extends LitElement {
             class="kuc-mobile-dropdown__input-form__select__input"
             id="${this._GUID}-label"
             aria-describedBy="${this._GUID}-error"
-            aria-required="true"
-            aria-invalid="true"
+            aria-required=${this.requiredIcon}
+            aria-invalid="${this.error !== ""}"
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           >
@@ -170,10 +168,8 @@ export class MobileDropdown extends LitElement {
         }
 
         kuc-mobile-dropdown {
-          display: block;
-          box-shadow: 0 1px 0 #ffffff;
-          padding: 0.5em 0.5em 1em;
-          border-bottom: 1px solid #dadada;
+          display: inline-block;
+          width: 100%;
         }
 
         kuc-mobile-dropdown[hidden] {
@@ -181,7 +177,7 @@ export class MobileDropdown extends LitElement {
         }
 
         .kuc-mobile-dropdown__label {
-          display: inline-block;
+          display: flex;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
