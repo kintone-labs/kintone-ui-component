@@ -9,7 +9,7 @@ describe("MobileDropdown", () => {
       { label: "Apple", value: "apple" }
     ];
 
-    it("disabled default prop is false", async () => {
+    it("It does not exist on element when initializing without props option", async () => {
       const container = new MobileDropdown({
         items: initItems
       });
@@ -20,7 +20,7 @@ describe("MobileDropdown", () => {
       expect(inputEl).not.to.have.attr("disabled");
     });
 
-    it("disabled default prop set to true successfully", async () => {
+    it("It exist on element when initializing disabled value is true", async () => {
       const container = new MobileDropdown({
         items: initItems,
         disabled: true
@@ -32,19 +32,7 @@ describe("MobileDropdown", () => {
       expect(inputEl).to.have.attr("disabled");
     });
 
-    it("disabled default prop set to true successfully", async () => {
-      const container = new MobileDropdown({
-        items: initItems,
-        disabled: true
-      });
-      const el = await fixture(container);
-      const inputEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      );
-      expect(inputEl).to.have.attr("disabled");
-    });
-
-    it("disabled prop set to true successfully", async () => {
+    it("It exist on element when changing by setter", async () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
@@ -59,7 +47,7 @@ describe("MobileDropdown", () => {
       expect(inputEl).to.have.attr("disabled");
     });
 
-    it("disabled prop set to false successfully", async () => {
+    it("It does not exist on element when changing by setter", async () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
@@ -74,7 +62,7 @@ describe("MobileDropdown", () => {
       expect(inputEl).not.to.have.attr("disabled");
     });
 
-    it("disabled default prop set to null", async () => {
+    it("It does not exist on element when initializing disabled value is null", async () => {
       const container = new MobileDropdown({
         items: initItems,
         // @ts-ignore
@@ -87,7 +75,7 @@ describe("MobileDropdown", () => {
       expect(inputEl).not.to.have.attr("disabled");
     });
 
-    it("disabled prop set to null", async () => {
+    it("It does not exist on element when changing by setter is null", async () => {
       const container = new MobileDropdown({
         items: initItems
       });
