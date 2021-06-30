@@ -12,7 +12,7 @@ describe("MobileDropdown", () => {
       await expect(errorEl).not.to.be.displayed;
     });
 
-    it('It should be equal "error-messag" when initializing error with "error-message"', async () => {
+    it('It should be equal "error-message" when initializing error with "error-message"', async () => {
       const container = new MobileDropdown({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
