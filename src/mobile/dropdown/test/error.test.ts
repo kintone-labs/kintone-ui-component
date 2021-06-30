@@ -3,7 +3,7 @@ import { MobileDropdown } from "../index";
 
 describe("MobileDropdown", () => {
   describe("error", () => {
-    it("error default prop is null", async () => {
+    it("It does not display when initializing without props option", async () => {
       const container = new MobileDropdown({});
       const el = await fixture(container);
       const errorEl = el.querySelector(
@@ -12,7 +12,7 @@ describe("MobileDropdown", () => {
       await expect(errorEl).not.to.be.displayed;
     });
 
-    it("error default prop set successfully", async () => {
+    it('It should be equal "error-messag" when initializing error with "error-message"', async () => {
       const container = new MobileDropdown({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
@@ -22,7 +22,7 @@ describe("MobileDropdown", () => {
       await expect(errorEl).to.be.displayed;
     });
 
-    it("error prop replace successfully", async () => {
+    it('It should be replace by "replace-error" when changing by setter', async () => {
       const container = new MobileDropdown({
         error: "error-message"
       });
@@ -35,7 +35,7 @@ describe("MobileDropdown", () => {
       await expect(errorEl).to.be.displayed;
     });
 
-    it("error default prop set to null", async () => {
+    it("It does not display when initializing error value is null", async () => {
       const container = new MobileDropdown({
         // @ts-ignore
         error: null
@@ -47,7 +47,7 @@ describe("MobileDropdown", () => {
       await expect(errorEl).not.to.be.displayed;
     });
 
-    it("error prop set to null", async () => {
+    it("It does not display when changing by setter is null", async () => {
       const container = new MobileDropdown({
         error: "error-message"
       });
