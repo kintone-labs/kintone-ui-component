@@ -13,7 +13,7 @@ This section explains the differences between the code written in v0 and v1, as 
 For example, you can use the Kintone UI Component to create a search button on the "Record List" view.
 Here is the image for example:
 
-![Search box](assets/v1_search_box.png)
+![Search box](assets/v1_search_box.png) 
 
 ## JavaScript and CSS Customization
 
@@ -67,7 +67,7 @@ const text = new Kuc.Text({
   placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
-
+  
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -75,7 +75,7 @@ const button = new Kuc.Button({
 });
 
 header.appendChild(text);
-header.appendChild(button);
+header.appendChild(button);    
 ```
 
 ## The difference between v0 and v1
@@ -164,7 +164,7 @@ button.text = 'Register';
 ---
 In v0, the specifications of each part are lined up vertically by default, and CSS is required to be adjusted in the same order.
 
-![v0](assets/v0_search_box.png)
+![v0](assets/v0_search_box.png) 
 
 - style must be adjusted
 ```
@@ -173,7 +173,7 @@ text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.
+In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.  
 (For some components, the default value is set to vertical for convenience.)
 
 ![Search box](assets/v1_search_box.png)
@@ -238,12 +238,12 @@ const button = new Kuc.Button({
 /* Add the following code */
 
 // Add the process of click event to the displayed button
-button.addEventListener('click', event => {
+button.addEventListener('click', event => {      
   const keyword = text.value;
   const errorMessage = 'Please enter a value.';
   // Hide the error message
-  text.error = '';
-
+  text.error = ''; 
+  
   // Check if there is a value
   if (!keyword) {
     // Show the error message
@@ -268,7 +268,7 @@ When you initialize the message (hide the error message), you will only need to 
 How is it working out for you?
 We hope you will experience a better Kintone development than ever before using the new Kintone UI Component library.
 
-> This article was reviewed by Kintone and Google Chrome as of February, 2021.
+> This article was reviewed by Kintone and Google Chrome as of February, 2021.  
 > In addition, the version of Kintone UI Component that is used for customizations is v0.7.4 and v1.0.0.
 
 > The documentation for v0 is a separate site.Please check [here](https://kintone-labs.github.io/kintone-ui-component/latest/).

@@ -12,20 +12,20 @@ This section describes how to create the search box by using the kintone UI Comp
 The complete image of the search box is as follows:
 
 #### Desktop version
-![Search box (Desktop)](assets/desktop_search_box.png)
+![Search box (Desktop)](assets/desktop_search_box.png) 
 
 #### Mobile version
-![Search box (Mobile)](assets/mobile_search_box.png)
+![Search box (Mobile)](assets/mobile_search_box.png) 
 
 ## JavaScript and CSS Customization
 
-When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:  
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### Display a search box
 
-Use the Text component and the Button component to display the search box.
-You can use the placeholder property of the Text component to describe the contents of the entry.
+Use the Text component and the Button component to display the search box.  
+You can use the placeholder property of the Text component to describe the contents of the entry.  
 If you want to enable the mobile version, you can do so by using the MobileButton component for mobile.
 
 ```javascript
@@ -36,19 +36,19 @@ const text = new Kuc.Text({
   placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
-
+  
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
   id: 'kuc_button'
 });
 header.appendChild(text);
-header.appendChild(button);
+header.appendChild(button);    
 ```
 
 ### Search character check
 
-The Button component can specify a click event.
+The Button component can specify a click event.  
 In this case, the following process is added.
 
 - When you click a button, check if there is a value in the text box.
@@ -63,12 +63,12 @@ const button = new Kuc.Button({
 });
 
 // Add the process of click event to the displayed button
-button.addEventListener('click', event => {
+button.addEventListener('click', event => {      
   const keyword = text.value;
   const errorMessage = 'Please enter a value.';
   // Hide the error message
-  text.error = '';
-
+  text.error = ''; 
+  
   // Check if there is a value
   if (!keyword) {
     // Show the error message
@@ -97,10 +97,10 @@ const text = new Kuc.Text({
 
 ### Show results with Notification
 
-Displays the message for success or failure in the REST API runtime using the Notification component.
-The Notification is invoked using the `open()` method and the type property will set the background color.
+Displays the message for success or failure in the REST API runtime using the Notification component.  
+The Notification is invoked using the `open()` method and the type property will set the background color.  
 
-For this example, it is set to be displayed in the following situation:
+For this example, it is set to be displayed in the following situation:  
 
 - When no records are found
 - When the REST API fails to execute
@@ -141,8 +141,8 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
 
 ## Conclusion
 
-How is it working out for you? This section explains how to create a search box using the Kintone UI Component.
+How is it working out for you? This section explains how to create a search box using the Kintone UI Component.  
 We hope you can easily develop kintone customizations by using the kintone UI Component library.
 
-> This article was reviewed by Kintone and Google Chrome as of February, 2021.
+> This article was reviewed by Kintone and Google Chrome as of February, 2021.  
 > In addition, the version of Kintone UI Component that is used for customizations is v1.0.0.

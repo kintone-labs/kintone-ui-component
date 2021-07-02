@@ -14,7 +14,7 @@ original_id: comparison-v0-v1
 例として、 kintone UI Component を使ってレコードの一覧画面に検索ボタンを作るコードでご紹介します。
 こちらが画面の完成イメージです。
 
-![検索ボックス](assets/v1_search_box.png)
+![検索ボックス](assets/v1_search_box.png) 
 
 ## JavaScript/CSS カスタマイズ
 
@@ -68,7 +68,7 @@ const text = new Kuc.Text({
   placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
-
+  
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -76,7 +76,7 @@ const button = new Kuc.Button({
 });
 
 header.appendChild(text);
-header.appendChild(button);
+header.appendChild(button);    
 ```
 
 ## v0 と v1 の違いを解説
@@ -165,7 +165,7 @@ button.text = 'Register';
 ---
 v0 では、デフォルトではパーツが縦に並ぶ仕様になっており、横並びにするためには CSS などで調整する必要がありました。
 
-![v0](assets/v0_search_box.png)
+![v0](assets/v0_search_box.png) 
 
 - style を調整する必要がある
 ```
@@ -174,7 +174,7 @@ text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-v1 では内部仕様を見直し、ほとんどのコンポーネントがデフォルトで横並びになったことで、調整が不要になりました。
+v1 では内部仕様を見直し、ほとんどのコンポーネントがデフォルトで横並びになったことで、調整が不要になりました。  
 （利便性を考え、一部のコンポーネントではデフォルトが縦並びに設定されています。）
 
 ![検索ボックス](assets/v1_search_box.png)
@@ -220,7 +220,7 @@ const text = new Kuc.Text({
 ---
 v0 ではコンポーネントにエラーメッセージを表示させたい時や、ラベルを表示させたい時は、 Alert や Label などの別コンポーネントで実装する必要がありました。
 
-v1 ではプロパティとして  `error` や `label` が用意され、各コンポーネントで扱えるようになりました。
+v1 ではプロパティとして  `error` や `label` が用意され、各コンポーネントで扱えるようになりました。        
 例として、Text コンポーネントの `error` プロパティを見てみましょう。
 
 冒頭で、 KUC を使って検索ボックスを作成するコードをご紹介しましたが、ボタンをクリックしても今のままでは何も反応しません。
@@ -239,12 +239,12 @@ const button = new Kuc.Button({
 /* Add the following code */
 
 // Add the process of click event to the displayed button
-button.addEventListener('click', event => {
+button.addEventListener('click', event => {      
   const keyword = text.value;
   const errorMessage = 'Please enter a value.';
   // Hide the error message
-  text.error = '';
-
+  text.error = ''; 
+  
   // Check if there is a value
   if (!keyword) {
     // Show the error message
@@ -269,7 +269,7 @@ button.addEventListener('click', event => {
 いかがでしたでしょうか。
 進化した kintone UI Component を使って、これまで以上にスマートな kintone 開発を体験していただければ幸いです。
 
-> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。
+> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。  
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v0.7.4 および v1.0.0 です。
 
 > v0 のドキュメントは別サイトになりますので、[こちら](https://kintone-labs.github.io/kintone-ui-component/latest/)よりご確認ください。

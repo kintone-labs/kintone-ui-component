@@ -7,7 +7,7 @@ original_id: release-notes
 
 ## 概要
 
-[kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) のリリースノートです。
+[kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) のリリースノートです。  
 v0 から v1 にアップデートした背景や今後の計画についてご紹介します。
 
 ## 背景
