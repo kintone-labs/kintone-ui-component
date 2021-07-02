@@ -268,8 +268,7 @@ export class RadioButton extends LitElement {
           padding: 0px;
           height: auto;
           display: table-caption;
-          margin-left: 0px;
-          margin-right: 0px;
+          margin: 0px;
           width: 100%;
         }
 

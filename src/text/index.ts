@@ -193,8 +193,7 @@ export class Text extends LitElement {
           padding: 0px;
           height: auto;
           display: inline-block;
-          margin-left: 0px;
-          margin-right: 0px;
+          margin: 0px;
         }
         .kuc-text__group__label {
           display: inline-block;

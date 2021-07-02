@@ -445,8 +445,7 @@ export class Dropdown extends LitElement {
           height: auto;
           display: inline-block;
           width: 100%;
-          margin-left: 0px;
-          margin-right: 0px;
+          margin: 0px;
         }
         .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
