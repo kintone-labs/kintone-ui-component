@@ -1,7 +1,7 @@
 # [Website](https://kintone-ui-component.netlify.app/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/25994a27-19a5-485c-8628-3372bd214533/deploy-status)](https://app.netlify.com/sites/kintone-ui-component/deploys)
 
-This is the website project for kintone ui component powered by [Docusaurus](https://docusaurus.io/) and [Netlify](https://www.netlify.com/).  
+This is the website project for kintone ui component powered by [Docusaurus](https://docusaurus.io/) and [Netlify](https://www.netlify.com/).
 You can try and develop by following steps.
 
 ## Install and Run Locally
@@ -42,7 +42,7 @@ For more information about installation, click [here](https://docusaurus.io/docs
 
 Please follow the guide below if you want to add component reference page / Tips page.
 
-1. Create a new markdown file at `docs/document/docs/` directory.  
+1. Create a new markdown file at `docs/document/docs/` directory.
 ex. docs/components/desktop/button.md
 
 ```markdown
@@ -88,7 +88,7 @@ headerLinks: [
 ]
 ```
 
-2. Create a new markdown file at `docs/document/website/blog` with the following naming rule. (`YYYY-MM-DD-{Blog title}.md`)  
+2. Create a new markdown file at `docs/document/website/blog` with the following naming rule. (`YYYY-MM-DD-{Blog title}.md`)
 ex. website/blog/2017-12-14-introducing-docusaurus.md
 
 ```markdown
@@ -174,7 +174,7 @@ For more information about translation, click [here](https://docusaurus.io/docs/
 
 ## Hosting
 
-We host the website using [Netlify](https://www.netlify.com/).  
+We host the website using [Netlify](https://www.netlify.com/).
 It will detect the commit to the master branch and automatically build and deploy.
 
 For more information about hosting, click [here](https://docusaurus.io/docs/en/publishing#hosting-on-netlify).

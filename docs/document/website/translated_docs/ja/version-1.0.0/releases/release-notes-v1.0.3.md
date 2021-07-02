@@ -7,7 +7,7 @@ original_id: release-notes-v1.0.3
 
 ## 概要
 
-[kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) のリリースノートです。  
+[kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) のリリースノートです。
 セキュリティアップデート対応や内部実装の修正を行いました。
 
 ## アップデート内容

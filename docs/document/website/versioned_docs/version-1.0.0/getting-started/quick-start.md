@@ -19,17 +19,17 @@ Kintone UI Component is a library that enables Kintone developers to build forms
 
 ## Preparation: Create App
 
-In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.  
+In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.
 
 First, follow the below steps to create an app to install Kintone UI Component.
 
-1. Create a blank app. ([Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html))  
+1. Create a blank app. ([Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html))
 You do not need to set up any fields in this app.
 
 ## Installation
 
-Kintone UI Component supports installation via a UMD, a CDN, or a npm package.  
-You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.  
+Kintone UI Component supports installation via a UMD, a CDN, or a npm package.
+You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.
 In this article, we will show you how to install and implement using each approach.
 
 > See the Components section in the sidebar for more details on each component.
@@ -72,7 +72,7 @@ In this article, we will show you how to install and implement using each approa
 
 ### Use the CDN
 
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))  
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
    - For the latest version of Kintone UI Component:
@@ -87,7 +87,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 2. The following is the same as the UMD.
 
-> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.  
+> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.
 > In the production environment, you can use the `kuc.min.js` of the UMD to avoid any failures and problems related to unpkg.
 
 ### Use the npm package
@@ -188,7 +188,7 @@ Output Result：
   </tr>
 </table>
 
-> The components have been tested in the latest version of each supported browser.  
+> The components have been tested in the latest version of each supported browser.
 > Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
 
 > You can preview the components in the Overview section in each component's reference page.
