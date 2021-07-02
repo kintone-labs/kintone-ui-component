@@ -42,14 +42,14 @@ MultiChoice は、複数選択肢の中から複数の値を選択すること�
 
 ### Constructor
 
-MultiChoice(options)
+MultiChoice(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 ## Sample Code

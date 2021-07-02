@@ -23,12 +23,11 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | text | string | ""  | Text to be displayed at the bottom of the loader icon | Displays the default value if the value for text is unspecified or empty |
 
-\*  If the text is unspecified or empty,
-consider assigning a visually-hidden class and given the word "Now loading..." in a hidden state for accessibility.
+\*  If the text is unspecified or empty, consider assigning a visually-hidden class and given the word "Now loading..." in a hidden state for accessibility.
 
 ### Constructor
 
-Spinner(options)
+Spinner(options)<br>
 Here is a list of available constructors:
 
 #### Parameter

@@ -42,13 +42,13 @@ TextArea は、複数行のテキストを表示します。
 
 ### Constructor
 
-TextArea(options)
+TextArea(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 ## Sample Code

@@ -7,7 +7,7 @@ original_id: release-notes
 
 ## Overview
 
-Here are the [kintone UI Component v1.0.2](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.2) Release Notes.
+Here are the [kintone UI Component v1.0.2](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.2) Release Notes.<br>
 Some of documents have been updated.
 
 ## Update details

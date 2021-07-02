@@ -44,14 +44,14 @@ MobileCheckbox は、複数選択のチェックボックスを表示します�
 
 ### Constructor
 
-Checkbox(options)
+Checkbox(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 

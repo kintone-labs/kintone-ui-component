@@ -163,7 +163,7 @@ class Index extends React.PureComponent {
             />
             <PromoSection>
               <Button href={docUrl("getting-started/quick-start.html")}>
-                Get Started
+                Getting Started
               </Button>
             </PromoSection>
           </div>

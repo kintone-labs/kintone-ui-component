@@ -45,13 +45,13 @@ Text は、単一行のテキストを表示します。
 
 ### Constructor
 
-Text(options)
+Text(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options  | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 ## Sample Code
