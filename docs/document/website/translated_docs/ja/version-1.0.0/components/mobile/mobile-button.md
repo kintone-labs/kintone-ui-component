@@ -38,7 +38,7 @@ MobileButton は、ボタンを表示します。
 
 ### Constructor
 
-Button(options)
+Button(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

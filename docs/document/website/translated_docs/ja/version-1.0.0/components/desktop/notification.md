@@ -31,7 +31,7 @@ Notification は、ポップアップの通知を表示します。
 
 ### Constructor
 
-Notification(options)
+Notification(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

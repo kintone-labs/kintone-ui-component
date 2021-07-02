@@ -26,7 +26,7 @@ MobileNotification は、ポップアップの通知を表示します。
 
 ### Constructor
 
-MobileNotification(options)
+MobileNotification(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

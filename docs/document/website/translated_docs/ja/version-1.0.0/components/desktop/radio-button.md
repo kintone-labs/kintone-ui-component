@@ -44,7 +44,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 
 ### Constructor
 
-RadioButton(options)
+RadioButton(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

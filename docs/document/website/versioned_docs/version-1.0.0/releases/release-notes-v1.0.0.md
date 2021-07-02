@@ -7,7 +7,7 @@ original_id: release-notes-v1.0.0
 
 ## Overview
 
-Here are the [kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) Release Notes.  
+Here are the [kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) Release Notes.<br>
 You can find the background of the update from v0 to v1 and the future plans of v1.
 
 ## Background
@@ -88,7 +88,7 @@ The major updates are as follows:
   - Implemented with the LitElement of the Web Components framework to improve readability of internal code.
   - The Web Components interface will be considered in the future.
 
-With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.
+With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.<br>
 Please refer to the [link](../guides/comparison-v0-v1.md) for the details of differences between v0 and v1.
 
 ## Future plans
@@ -104,9 +104,9 @@ The following are the plans for the upcoming releases:
 
 ## Conclusion
 
-Thank you for reading the release notes.
-Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.
+Thank you for reading the release notes.<br>
+Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.<br>
 Please stay tuned for further releases.
 
-We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
 Best regards,

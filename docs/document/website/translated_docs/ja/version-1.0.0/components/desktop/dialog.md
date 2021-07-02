@@ -27,7 +27,7 @@ Dialog は、ダイアログボックスを表示します。
 
 ### Constructor
 
-Dialog(options)
+Dialog(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

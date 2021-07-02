@@ -42,7 +42,7 @@ MultiChoice は、複数選択肢の中から複数の値を選択すること�
 
 ### Constructor
 
-MultiChoice(options)
+MultiChoice(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

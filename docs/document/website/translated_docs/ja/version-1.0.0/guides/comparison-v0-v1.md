@@ -11,15 +11,15 @@ original_id: comparison-v0-v1
 ここでは、 kintone アプリのカスタマイズで使うにあたり、 v0 と v1 のコードの書き方の違いと、 v1 でより使いやすくなったポイントについて解説します。
 
 ## 完成イメージ
-例として、 kintone UI Component を使ってレコードの一覧画面に検索ボタンを作るコードでご紹介します。
+例として、 kintone UI Component を使ってレコードの一覧画面に検索ボタンを作るコードでご紹介します。<br>
 こちらが画面の完成イメージです。
 
-![検索ボックス](assets/v1_search_box.png) 
+![検索ボックス](assets/v1_search_box.png)
 
 ## JavaScript/CSS カスタマイズ
 
-早速ですが、まずはコードを見てみましょう。
-ここでは kintone UI Component の UMD ファイルを使用しています。
+早速ですが、まずはコードを見てみましょう。<br>
+ここでは kintone UI Component の UMD ファイルを使用しています。<br>
 ファイルのアップロード方法などは、 [Quick Start](../getting-started/quick-start.md) をご覧ください。
 
 ### v0 を使った場合
@@ -68,7 +68,7 @@ const text = new Kuc.Text({
   placeholder: 'Enter keywords',
   id: 'kuc_text'
 });
-  
+
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -76,7 +76,7 @@ const button = new Kuc.Button({
 });
 
 header.appendChild(text);
-header.appendChild(button);    
+header.appendChild(button);
 ```
 
 ## v0 と v1 の違いを解説
@@ -117,8 +117,7 @@ const text = new Kuc.Text({
 ---
 #### render() メソッドが不要に
 ---
-v0 では、内部実装の都合上、appendChild する際に render() メソッドを用いてコンポーネントの Element を返す必要がありました。
-
+v0 では、内部実装の都合上、appendChild する際に render() メソッドを用いてコンポーネントの Element を返す必要がありました。<br>
 v1 では、設計を見直したことで render() が不要となり、よりシンプルな書き方でコンポーネントを描画できるようになりました。
 
 - v0 のコード
@@ -134,7 +133,7 @@ header.appendChild(text);
 ---
 #### プロパティを利用して値の更新が可能に
 ---
-v0 では、値を更新する場合、メソッドを別途呼び出す必要がありました。
+v0 では、値を更新する場合、メソッドを別途呼び出す必要がありました。<br>
 v1 では、プロパティを利用して値を更新することができます。
 
 - v0 のコード
@@ -165,7 +164,7 @@ button.text = 'Register';
 ---
 v0 では、デフォルトではパーツが縦に並ぶ仕様になっており、横並びにするためには CSS などで調整する必要がありました。
 
-![v0](assets/v0_search_box.png) 
+![v0](assets/v0_search_box.png)
 
 - style を調整する必要がある
 ```
@@ -174,7 +173,7 @@ text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-v1 では内部仕様を見直し、ほとんどのコンポーネントがデフォルトで横並びになったことで、調整が不要になりました。  
+v1 では内部仕様を見直し、ほとんどのコンポーネントがデフォルトで横並びになったことで、調整が不要になりました。<br>
 （利便性を考え、一部のコンポーネントではデフォルトが縦並びに設定されています。）
 
 ![検索ボックス](assets/v1_search_box.png)
@@ -184,7 +183,7 @@ v1 では内部仕様を見直し、ほとんどのコンポーネントがデ�
 ---
 v1 では各コンポーネントのプロパティについても精査し、必要に応じてプロパティの見直し・追加を行いました。
 
-例えば、v1 で新規に追加された `id` プロパティを使うことで、コンポーネントに id を付与できます。
+例えば、v1 で新規に追加された `id` プロパティを使うことで、コンポーネントに id を付与できます。<br>
 付与した id を使って、要素を取得するといったことが可能になります。
 
 - v0 のコード
@@ -220,7 +219,7 @@ const text = new Kuc.Text({
 ---
 v0 ではコンポーネントにエラーメッセージを表示させたい時や、ラベルを表示させたい時は、 Alert や Label などの別コンポーネントで実装する必要がありました。
 
-v1 ではプロパティとして  `error` や `label` が用意され、各コンポーネントで扱えるようになりました。        
+v1 ではプロパティとして  `error` や `label` が用意され、各コンポーネントで扱えるようになりました。<br>
 例として、Text コンポーネントの `error` プロパティを見てみましょう。
 
 冒頭で、 KUC を使って検索ボックスを作成するコードをご紹介しましたが、ボタンをクリックしても今のままでは何も反応しません。
@@ -239,12 +238,12 @@ const button = new Kuc.Button({
 /* Add the following code */
 
 // Add the process of click event to the displayed button
-button.addEventListener('click', event => {      
+button.addEventListener('click', event => {
   const keyword = text.value;
   const errorMessage = 'Please enter a value.';
   // Hide the error message
-  text.error = ''; 
-  
+  text.error = '';
+
   // Check if there is a value
   if (!keyword) {
     // Show the error message
@@ -254,7 +253,7 @@ button.addEventListener('click', event => {
 });
 ```
 
-このコードでは、クリックイベント内で、 text.value で値を取得し、正規表現を利用して値のチェックをしています。
+このコードでは、クリックイベント内で、 text.value で値を取得し、正規表現を利用して値のチェックをしています。<br>
 チェックの結果、全角以外の値であればエラーメッセージを表示して、処理を中断するという流れです。
 
 エラーメッセージの表示に利用しているのが、 Text の `error` プロパティです。
@@ -266,10 +265,10 @@ button.addEventListener('click', event => {
 
 ## おわりに
 
-いかがでしたでしょうか。
+いかがでしたでしょうか。<br>
 進化した kintone UI Component を使って、これまで以上にスマートな kintone 開発を体験していただければ幸いです。
 
-> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。  
+> 本記事は、 2021 年 2 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v0.7.4 および v1.0.0 です。
 
 > v0 のドキュメントは別サイトになりますので、[こちら](https://kintone-labs.github.io/kintone-ui-component/latest/)よりご確認ください。

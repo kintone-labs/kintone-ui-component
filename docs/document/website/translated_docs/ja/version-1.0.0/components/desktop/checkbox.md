@@ -45,7 +45,7 @@ Checkbox は、複数選択のチェックボックスを表示します。
 
 ### Constructor
 
-Checkbox(options)
+Checkbox(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

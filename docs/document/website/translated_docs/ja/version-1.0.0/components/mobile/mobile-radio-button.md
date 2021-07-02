@@ -43,7 +43,7 @@ MobileRadioButton は、複数選択肢の中から一つの値を選択する�
 
 ### Constructor
 
-RadioButton(options)
+RadioButton(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
