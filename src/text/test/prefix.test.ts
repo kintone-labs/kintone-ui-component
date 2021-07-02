@@ -7,7 +7,7 @@ describe("confirm prefix default prop is null", () => {
   it("confirm prefix default prop is null", async () => {
     const el = await fixture(container);
     const prefixEl = el.querySelector(
-      ".kuc-text__text__input-form__prefix-outer__prefix"
+      ".kuc-text__group__input-form__prefix-outer__prefix"
     ) as HTMLSpanElement;
     await expect(prefixEl.hasAttribute("hidden")).to.be.equal(true);
   });
@@ -19,7 +19,7 @@ describe("prefix constructor set successfully", () => {
   it("prefix constructor set successfully'", async () => {
     const el = await fixture(container);
     const prefixEl = el.querySelector(
-      ".kuc-text__text__input-form__prefix-outer__prefix"
+      ".kuc-text__group__input-form__prefix-outer__prefix"
     ) as HTMLSpanElement;
     await expect(prefixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(prefixEl.innerText).to.be.equal("$");
@@ -33,7 +33,7 @@ describe("prefix prop set successfully", () => {
   it("prefix prop set successfully'", async () => {
     const el = await fixture(container);
     const prefixEl = el.querySelector(
-      ".kuc-text__text__input-form__prefix-outer__prefix"
+      ".kuc-text__group__input-form__prefix-outer__prefix"
     ) as HTMLSpanElement;
     await expect(prefixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(prefixEl.innerText).to.be.equal("$");
@@ -47,7 +47,7 @@ describe("prefix prop replace successfully", () => {
   it("prefix prop replace successfully'", async () => {
     const el = await fixture(container);
     const prefixEl = el.querySelector(
-      ".kuc-text__text__input-form__prefix-outer__prefix"
+      ".kuc-text__group__input-form__prefix-outer__prefix"
     ) as HTMLSpanElement;
     await expect(prefixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(prefixEl.innerText).to.be.equal("$");
@@ -62,7 +62,7 @@ describe("prefix prop set to null successfully", () => {
   it("prefix prop set to null successfully", async () => {
     const el = await fixture(container);
     const prefixEl = el.querySelector(
-      ".kuc-text__text__input-form__prefix-outer__prefix"
+      ".kuc-text__group__input-form__prefix-outer__prefix"
     ) as HTMLSpanElement;
     await expect(prefixEl.hasAttribute("hidden")).to.be.equal(true);
   });

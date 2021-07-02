@@ -6,7 +6,9 @@ describe("confirm error default value is null", () => {
 
   it("confirm error default value is null", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-checkbox__error") as HTMLDivElement;
+    const errorEl = el.querySelector(
+      ".kuc-checkbox__group__error"
+    ) as HTMLDivElement;
     const errorMessage = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(errorMessage!.trim()).to.be.equal("");
@@ -18,7 +20,9 @@ describe("error constructor set successfully", () => {
 
   it("error constructor set successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-checkbox__error") as HTMLDivElement;
+    const errorEl = el.querySelector(
+      ".kuc-checkbox__group__error"
+    ) as HTMLDivElement;
     const errorMessage = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(errorMessage!.trim()).to.be.equal("Error occurred!");
@@ -31,7 +35,9 @@ describe("error prop replace successfully", () => {
 
   it("error prop replace successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-checkbox__error") as HTMLDivElement;
+    const errorEl = el.querySelector(
+      ".kuc-checkbox__group__error"
+    ) as HTMLDivElement;
     const errorMessage = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(errorMessage!.trim()).to.be.equal("Error occurred!");
@@ -44,7 +50,9 @@ describe("error constructor set to null successfully", () => {
 
   it("error constructor set to null successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-checkbox__error") as HTMLDivElement;
+    const errorEl = el.querySelector(
+      ".kuc-checkbox__group__error"
+    ) as HTMLDivElement;
     const errorMessage = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(errorMessage!.trim()).to.be.equal("");
@@ -58,7 +66,9 @@ describe("error prop set to null successfully", () => {
 
   it("error prop set to null successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-checkbox__error") as HTMLDivElement;
+    const errorEl = el.querySelector(
+      ".kuc-checkbox__group__error"
+    ) as HTMLDivElement;
     const errorMessage = errorEl.textContent;
     await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(errorMessage!.trim()).to.be.equal("");

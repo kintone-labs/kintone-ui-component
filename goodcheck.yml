@@ -120,7 +120,7 @@ rules:
     message: |
       Please put uuid to id using _generateGUID function
       ex: <div
-            class="kuc-multi-choice__label"
+            class="kuc-multi-choice__group__label"
             id="${this._GUID}-label">
           </div>
     glob: "**/*.ts"

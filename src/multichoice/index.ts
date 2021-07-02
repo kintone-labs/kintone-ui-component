@@ -40,13 +40,10 @@ export class MultiChoice extends LitElement {
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
 
-  @query(".kuc-multi-choice__menu")
+  @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
 
-  @query(".kuc-multi-choice__label")
-  private _labelEl!: HTMLDivElement;
-
-  @queryAll(".kuc-multi-choice__menu__item")
+  @queryAll(".kuc-multi-choice__group__menu__item")
   private _itemsEl!: HTMLDivElement[];
 
   private _GUID: string;
@@ -71,40 +68,42 @@ export class MultiChoice extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-multi-choice__label"
-        id="${this._GUID}-label"
-        ?hidden="${!this.label}"
-      >
-        <span class="kuc-multi-choice__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-multi-choice__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
+      <div class="kuc-multi-choice__group">
+        <div
+          class="kuc-multi-choice__group__label"
+          id="${this._GUID}-label"
+          ?hidden="${!this.label}"
         >
-      </div>
-      <div
-        class="kuc-multi-choice__menu"
-        role="menu"
-        aria-describedby="${this._GUID}-error"
-        aria-labelledby="${this._GUID}-label"
-        ?disabled="${this.disabled}"
-        tabindex="${this.disabled ? "-1" : "0"}"
-        @keydown=${this._handleKeyDownMultiChoice}
-      >
-        ${this.items.map((item, number) =>
-          this._getMenuItemTemplate(item, number)
-        )}
-      </div>
-      <div
-        class="kuc-multi-choice__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
+          <span class="kuc-multi-choice__group__label__text">${this.label}</span
+          ><!--
+          --><span
+            class="kuc-multi-choice__group__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
+        </div>
+        <div
+          class="kuc-multi-choice__group__menu"
+          role="menu"
+          aria-describedby="${this._GUID}-error"
+          aria-labelledby="${this._GUID}-label"
+          ?disabled="${this.disabled}"
+          tabindex="${this.disabled ? "-1" : "0"}"
+          @keydown=${this._handleKeyDownMultiChoice}
+        >
+          ${this.items.map((item, number) =>
+            this._getMenuItemTemplate(item, number)
+          )}
+        </div>
+        <div
+          class="kuc-multi-choice__group__error"
+          id="${this._GUID}-error"
+          role="alert"
+          aria-live="assertive"
+          ?hidden="${!this.error}"
+        >
+          ${this.error}
+        </div>
       </div>
     `;
   }
@@ -140,19 +139,6 @@ export class MultiChoice extends LitElement {
     }
   }
 
-  private _updateContainerWidth() {
-    let width = this._labelEl.getBoundingClientRect().width;
-    const menuWidth = this._menuEl.getBoundingClientRect().width;
-    if (width < menuWidth) {
-      width = menuWidth;
-    }
-    this.style.width = width + "px";
-  }
-
-  updated() {
-    this._updateContainerWidth();
-  }
-
   private _handleMousedownMultiChoiceItem(event: MouseEvent) {
     if (this.disabled) {
       return;
@@ -169,12 +155,14 @@ export class MultiChoice extends LitElement {
     }
 
     this._itemsEl.forEach((itemEl: HTMLDivElement) => {
-      if (itemEl.classList.contains("kuc-multi-choice__menu__highlight")) {
-        itemEl.classList.remove("kuc-multi-choice__menu__highlight");
+      if (
+        itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
+      ) {
+        itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
       }
     });
     const itemEl = event.currentTarget as HTMLDivElement;
-    itemEl.classList.add("kuc-multi-choice__menu__highlight");
+    itemEl.classList.add("kuc-multi-choice__group__menu__highlight");
 
     this._setActiveDescendant(itemEl.id);
   }
@@ -185,7 +173,7 @@ export class MultiChoice extends LitElement {
     }
 
     const itemEl = event.currentTarget as HTMLDivElement;
-    itemEl.classList.remove("kuc-multi-choice__menu__highlight");
+    itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
 
     this._setActiveDescendant();
   }
@@ -200,8 +188,12 @@ export class MultiChoice extends LitElement {
       case "Up": // IE/Edge specific value
       case "ArrowUp": {
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-          if (itemEl.classList.contains("kuc-multi-choice__menu__highlight")) {
-            itemEl.classList.remove("kuc-multi-choice__menu__highlight");
+          if (
+            itemEl.classList.contains(
+              "kuc-multi-choice__group__menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
             highLightNumber = number - 1;
           }
         });
@@ -209,7 +201,7 @@ export class MultiChoice extends LitElement {
           highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
 
         const currentItemEl = this._itemsEl[highLightNumber];
-        currentItemEl.classList.add("kuc-multi-choice__menu__highlight");
+        currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
 
         this._setActiveDescendant(currentItemEl.id);
         break;
@@ -217,8 +209,12 @@ export class MultiChoice extends LitElement {
       case "Down": // IE/Edge specific value
       case "ArrowDown": {
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-          if (itemEl.classList.contains("kuc-multi-choice__menu__highlight")) {
-            itemEl.classList.remove("kuc-multi-choice__menu__highlight");
+          if (
+            itemEl.classList.contains(
+              "kuc-multi-choice__group__menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
             highLightNumber = number + 1;
           }
         });
@@ -226,7 +222,7 @@ export class MultiChoice extends LitElement {
           highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
 
         const currentItemEl = this._itemsEl[highLightNumber];
-        currentItemEl.classList.add("kuc-multi-choice__menu__highlight");
+        currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
 
         this._setActiveDescendant(currentItemEl.id);
         break;
@@ -234,7 +230,11 @@ export class MultiChoice extends LitElement {
       case "Spacebar": // IE/Edge specific value
       case " ": {
         this._itemsEl.forEach((itemEl: HTMLDivElement) => {
-          if (itemEl.classList.contains("kuc-multi-choice__menu__highlight")) {
+          if (
+            itemEl.classList.contains(
+              "kuc-multi-choice__group__menu__highlight"
+            )
+          ) {
             const value = itemEl.getAttribute("value") as string;
             this._handleChangeValue(value);
           }
@@ -254,7 +254,7 @@ export class MultiChoice extends LitElement {
       ${
         checked
           ? svg`<svg
-          class='kuc-multi-choice__menu__item__icon'
+          class='kuc-multi-choice__group__menu__item__icon'
           width='11'
           height='9'
           viewBox='0 0 11 9'
@@ -275,7 +275,7 @@ export class MultiChoice extends LitElement {
   private _getMenuItemTemplate(item: Item, index: number) {
     return html`
       <div
-        class="kuc-multi-choice__menu__item"
+        class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
         aria-checked=${this.value.some(val => val === item.value)}
         aria-required=${this.requiredIcon}
@@ -343,33 +343,42 @@ export class MultiChoice extends LitElement {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-multi-choice {
-          display: inline-block;
+          display: inline-table;
           font-size: 14px;
           color: #333;
           width: 180px;
+          min-width: 180px;
         }
         kuc-multi-choice[hidden] {
           display: none;
         }
-        .kuc-multi-choice__label {
+        .kuc-multi-choice__group {
+          border: none;
+          padding: 0px;
+          height: auto;
+          display: inline-block;
+          width: 100%;
+          margin: 0px;
+        }
+        .kuc-multi-choice__group__label {
           padding: 4px 0px 8px 0px;
           display: inline-block;
           white-space: nowrap;
         }
-        .kuc-multi-choice__label[hidden] {
+        .kuc-multi-choice__group__label[hidden] {
           display: none;
         }
-        .kuc-multi-choice__label__required-icon {
+        .kuc-multi-choice__group__label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-multi-choice__label__required-icon[hidden] {
+        .kuc-multi-choice__group__label__required-icon[hidden] {
           display: none;
         }
-        .kuc-multi-choice__error {
+        .kuc-multi-choice__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -377,11 +386,12 @@ export class MultiChoice extends LitElement {
           color: #ffffff;
           margin: 8px 0px;
           word-break: break-all;
+          white-space: normal;
         }
-        .kuc-multi-choice__error[hidden] {
+        .kuc-multi-choice__group__error[hidden] {
           display: none;
         }
-        .kuc-multi-choice__menu {
+        .kuc-multi-choice__group__menu {
           position: relative;
           background: #ffffff;
           border: 1px solid #e3e7e8;
@@ -394,40 +404,40 @@ export class MultiChoice extends LitElement {
           display: table;
           width: 100%;
         }
-        .kuc-multi-choice__menu:not([disabled]):focus {
+        .kuc-multi-choice__group__menu:not([disabled]):focus {
           outline: none;
           border: 1px solid #3498db;
         }
-        .kuc-multi-choice__menu[disabled] {
+        .kuc-multi-choice__group__menu[disabled] {
           background-color: #dbdcdd;
           box-shadow: none;
           cursor: not-allowed;
           color: #888;
           outline: none;
         }
-        .kuc-multi-choice__menu__item {
+        .kuc-multi-choice__group__menu__item {
           padding: 4px 16px;
           margin-bottom: 2px;
           line-height: 1;
           position: relative;
           white-space: nowrap;
         }
-        .kuc-multi-choice__menu__item__icon {
+        .kuc-multi-choice__group__menu__item__icon {
           position: absolute;
           top: 50%;
           left: 16px;
           margin-top: -6px;
           pointer-events: none;
         }
-        .kuc-multi-choice__menu__item[aria-checked="true"] {
+        .kuc-multi-choice__group__menu__item[aria-checked="true"] {
           color: #3498db;
           padding-left: 32px;
         }
-        .kuc-multi-choice__menu[disabled]
-          .kuc-multi-choice__menu__item[aria-checked="true"] {
+        .kuc-multi-choice__group__menu[disabled]
+          .kuc-multi-choice__group__menu__item[aria-checked="true"] {
           color: #888;
         }
-        .kuc-multi-choice__menu__highlight[role="menuitemcheckbox"] {
+        .kuc-multi-choice__group__menu__highlight[role="menuitemcheckbox"] {
           background-color: #e2f2fe;
           cursor: pointer;
         }

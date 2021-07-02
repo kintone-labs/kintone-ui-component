@@ -30,9 +30,11 @@ describe("Function change event run successfully", () => {
   it("Function change event run successfully", async () => {
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-dropdown__toggle"
+      ".kuc-dropdown__group__toggle"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-dropdown__select-menu__item");
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
     toggleEl.click();
     if (itemsEl.length > 0) {
       container.addEventListener("change", (event: any) => {

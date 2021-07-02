@@ -6,7 +6,9 @@ describe("error default prop is null", () => {
 
   it("error default prop is null", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-dropdown__error") as HTMLSpanElement;
+    const errorEl = el.querySelector(
+      ".kuc-dropdown__group__error"
+    ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(errorEl).not.to.be.displayed;
   });
@@ -17,7 +19,9 @@ describe("error default prop set successfully", () => {
 
   it("error default prop set successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-dropdown__error") as HTMLSpanElement;
+    const errorEl = el.querySelector(
+      ".kuc-dropdown__group__error"
+    ) as HTMLSpanElement;
     expect(errorEl.innerText).to.have.equal("error-message");
     // eslint-disable-next-line no-unused-expressions
     expect(errorEl).to.be.displayed;
@@ -32,7 +36,9 @@ describe("error prop replace successfully", () => {
 
   it("error prop replace successfully", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-dropdown__error") as HTMLSpanElement;
+    const errorEl = el.querySelector(
+      ".kuc-dropdown__group__error"
+    ) as HTMLSpanElement;
     expect(errorEl.innerText).to.have.equal("replace-error");
     // eslint-disable-next-line no-unused-expressions
     expect(errorEl).to.be.displayed;
@@ -47,7 +53,9 @@ describe("error defaoult prop set to null", () => {
 
   it("error default prop set to null", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-dropdown__error") as HTMLSpanElement;
+    const errorEl = el.querySelector(
+      ".kuc-dropdown__group__error"
+    ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(errorEl).not.to.be.displayed;
   });
@@ -62,7 +70,9 @@ describe("error prop set to null", () => {
 
   it("error prop set to null", async () => {
     const el = await fixture(container);
-    const errorEl = el.querySelector(".kuc-dropdown__error") as HTMLSpanElement;
+    const errorEl = el.querySelector(
+      ".kuc-dropdown__group__error"
+    ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(errorEl).not.to.be.displayed;
   });

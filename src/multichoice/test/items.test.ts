@@ -7,7 +7,7 @@ describe("items default prop is null", () => {
   it("items default prop is null", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(true);
@@ -34,7 +34,7 @@ describe("items prop set successfully without optional props", () => {
   it("items prop set successfully without optional props", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
@@ -67,7 +67,7 @@ describe("items prop set successfully without optional props", () => {
   it("items prop set successfully without optional props", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
@@ -104,7 +104,7 @@ describe("items prop set successfully with full optional props", () => {
   it("items prop set successfully with full optional props", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
@@ -147,7 +147,7 @@ describe("items prop replace successfully", () => {
   it("items prop replace successfully", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 2) {
       expect(false);

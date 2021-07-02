@@ -35,10 +35,10 @@ export class TextArea extends LitElement {
   private _GUID: string;
   private _onResize = false;
 
-  @query(".kuc-textarea__label")
+  @query(".kuc-textarea__group__label")
   private _label!: HTMLLabelElement;
 
-  @query(".kuc-textarea__textarea")
+  @query(".kuc-textarea__group__textarea")
   private _textarea!: HTMLTextAreaElement;
 
   constructor(props?: TextAreaProps) {
@@ -129,46 +129,44 @@ export class TextArea extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <label
-        class="kuc-textarea__label"
-        for="${this._GUID}-label"
-        ?hidden="${!this.label}"
-      >
-        <span class="kuc-textarea__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-textarea__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
+      <div class="kuc-textarea__group">
+        <div class="kuc-textarea__group__label" ?hidden="${!this.label}">
+          <span class="kuc-textarea__group__label__text">${this.label}</span
+          ><!--
+          --><span
+            class="kuc-textarea__group__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
+        </div>
+        <textarea
+          id="${this._GUID}-label"
+          class="kuc-textarea__group__textarea"
+          placeholder="${this.placeholder}"
+          .value=${this.value}
+          aria-describedby="${this._GUID}-error"
+          aria-required=${this.requiredIcon}
+          aria-invalid="${!this.error}"
+          @change="${this._handleChangeTextarea}"
+          @focus="${this._handleFocusTextarea}"
+          ?disabled="${this.disabled}"
         >
-      </label>
-      <textarea
-        id="${this._GUID}-label"
-        class="kuc-textarea__textarea"
-        placeholder="${this.placeholder}"
-        .value=${this.value}
-        aria-describedby="${this._GUID}-error"
-        aria-required=${this.requiredIcon}
-        aria-invalid="${!this.error}"
-        @change="${this._handleChangeTextarea}"
-        @focus="${this._handleFocusTextarea}"
-        ?disabled="${this.disabled}"
-      >
-      </textarea>
-      <div
-        class="kuc-textarea__resizer"
-        @mousedown="${this._handleResizeMouseDown}"
-        ?hidden="${this.disabled}"
-      >
-        ${this._getResizerButtonSvgTemplate()}
-      </div>
-      <div
-        class="kuc-textarea__error"
-        id="${this._GUID}-error"
-        role="alert"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
+        </textarea>
+        <div
+          class="kuc-textarea__group__resizer"
+          @mousedown="${this._handleResizeMouseDown}"
+          ?hidden="${this.disabled}"
+        >
+          ${this._getResizerButtonSvgTemplate()}
+        </div>
+        <div
+          class="kuc-textarea__group__error"
+          id="${this._GUID}-error"
+          role="alert"
+          ?hidden="${!this.error}"
+        >
+          ${this.error}
+        </div>
       </div>
     `;
   }
@@ -218,32 +216,40 @@ export class TextArea extends LitElement {
         kuc-textarea {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: inline-table;
           vertical-align: top;
           width: 299px;
         }
         kuc-textarea[hidden] {
           display: none;
         }
-        .kuc-textarea__label {
+        .kuc-textarea__group {
+          border: none;
+          padding: 0px;
+          height: auto;
+          display: inline-block;
+          width: 100%;
+          margin: 0px;
+        }
+        .kuc-textarea__group__label {
           white-space: nowrap;
           display: inline-block;
           padding: 4px 0px 8px 0px;
         }
-        .kuc-textarea__label[hidden] {
+        .kuc-textarea__group__label[hidden] {
           display: none;
         }
-        .kuc-textarea__label__required-icon {
+        .kuc-textarea__group__label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-textarea__label__required-icon[hidden] {
+        .kuc-textarea__group__label__required-icon[hidden] {
           display: none;
         }
-        textarea.kuc-textarea__textarea {
+        textarea.kuc-textarea__group__textarea {
           display: block;
           border: 1px solid #e3e7e8;
           box-sizing: border-box;
@@ -256,7 +262,7 @@ export class TextArea extends LitElement {
           width: 100%;
           background-color: #ffffff;
         }
-        .kuc-textarea__textarea:focus {
+        .kuc-textarea__group__textarea:focus {
           outline: none;
           border-color: #3498db;
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
@@ -264,14 +270,14 @@ export class TextArea extends LitElement {
           background-color: #ffffff;
           color: #333333;
         }
-        .kuc-textarea__textarea:disabled {
+        .kuc-textarea__group__textarea:disabled {
           color: #888888;
           background-color: #d4d7d7;
           box-shadow: none;
           cursor: not-allowed;
           resize: none;
         }
-        .kuc-textarea__resizer {
+        .kuc-textarea__group__resizer {
           position: relative;
           width: 16px;
           height: 16px;
@@ -279,7 +285,7 @@ export class TextArea extends LitElement {
           float: right;
           margin: -16px 0px;
         }
-        .kuc-textarea__error {
+        .kuc-textarea__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -287,8 +293,9 @@ export class TextArea extends LitElement {
           color: #ffffff;
           margin: 8px 0px;
           word-break: break-all;
+          white-space: normal;
         }
-        .kuc-textarea__error[hidden] {
+        .kuc-textarea__group__error[hidden] {
           display: none;
         }
       </style>

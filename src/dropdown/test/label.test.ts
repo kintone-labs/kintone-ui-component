@@ -7,7 +7,7 @@ describe("label default prop is null", () => {
   it("label default prop is null", async () => {
     const el = await fixture(container);
     const labelEl = el.querySelector(
-      ".kuc-dropdown__label__text"
+      ".kuc-dropdown__group__label__text"
     ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(labelEl).to.be.visible;
@@ -20,7 +20,7 @@ describe("label prop set successfully", () => {
   it("label prop set successfully", async () => {
     const el = await fixture(container);
     const labelEl = el.querySelector(
-      ".kuc-dropdown__label__text"
+      ".kuc-dropdown__group__label__text"
     ) as HTMLSpanElement;
     expect(labelEl.innerText).to.have.equal("options-label");
   });
@@ -35,7 +35,7 @@ describe("label prop replace successfully", () => {
   it("label prop replace successfully", async () => {
     const el = await fixture(container);
     const labelEl = el.querySelector(
-      ".kuc-dropdown__label__text"
+      ".kuc-dropdown__group__label__text"
     ) as HTMLSpanElement;
     expect(labelEl.textContent).to.have.equal("replace-label");
   });
@@ -49,7 +49,9 @@ describe("label default prop set to null", () => {
 
   it("label default prop set to null", async () => {
     const el = await fixture(container);
-    const labelEl = el.querySelector(".kuc-dropdown__label") as HTMLSpanElement;
+    const labelEl = el.querySelector(
+      ".kuc-dropdown__group__label"
+    ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(labelEl).to.be.visible;
   });
@@ -64,7 +66,9 @@ describe("label prop set to null", () => {
 
   it("label prop set to null", async () => {
     const el = await fixture(container);
-    const labelEl = el.querySelector(".kuc-dropdown__label") as HTMLSpanElement;
+    const labelEl = el.querySelector(
+      ".kuc-dropdown__group__label"
+    ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(labelEl).to.be.visible;
   });

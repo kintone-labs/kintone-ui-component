@@ -11,7 +11,7 @@ describe("Function change event run successfully", () => {
   it("Function change event run successfully", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     inputEl.value = "Apple";
     const event = new CustomEvent("change");

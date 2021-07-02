@@ -7,7 +7,7 @@ describe("error default prop is null", () => {
   it("error default prop is null", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-multi-choice__error"
+      ".kuc-multi-choice__group__error"
     )) as HTMLSpanElement;
     await expect(errorEl).to.be.visible;
   });
@@ -19,7 +19,7 @@ describe("error default prop set successfully", () => {
   it("error default prop set successfully", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-multi-choice__error"
+      ".kuc-multi-choice__group__error"
     )) as HTMLSpanElement;
     await expect(errorEl.innerText).to.have.equals("error-message");
   });
@@ -34,7 +34,7 @@ describe("error prop replace successfully", () => {
   it("error prop replace successfully", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-multi-choice__error"
+      ".kuc-multi-choice__group__error"
     )) as HTMLSpanElement;
     await expect(errorEl.innerText).to.have.equals("replace-error");
   });
@@ -49,7 +49,7 @@ describe("error default prop set to null", () => {
   it("error default prop set to null", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-multi-choice__error"
+      ".kuc-multi-choice__group__error"
     )) as HTMLSpanElement;
     await expect(errorEl).to.be.visible;
   });
@@ -65,7 +65,7 @@ describe("error prop set to null", () => {
   it("error prop set to null", async () => {
     const el = await fixture(container);
     const errorEl = (await el.querySelector(
-      ".kuc-multi-choice__error"
+      ".kuc-multi-choice__group__error"
     )) as HTMLSpanElement;
     await expect(errorEl).to.be.visible;
   });

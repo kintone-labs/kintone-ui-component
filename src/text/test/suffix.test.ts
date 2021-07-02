@@ -7,7 +7,7 @@ describe("confirm suffix default prop is null", () => {
   it("confirm suffix default prop is null", async () => {
     const el = await fixture(container);
     const suffixEl = el.querySelector(
-      ".kuc-text__text__input-form__suffix-outer__suffix"
+      ".kuc-text__group__input-form__suffix-outer__suffix"
     ) as HTMLSpanElement;
     await expect(suffixEl.hasAttribute("hidden")).to.be.equal(true);
   });
@@ -19,7 +19,7 @@ describe("suffix constructor set successfully", () => {
   it("suffix constructor set successfully'", async () => {
     const el = await fixture(container);
     const suffixEl = el.querySelector(
-      ".kuc-text__text__input-form__suffix-outer__suffix"
+      ".kuc-text__group__input-form__suffix-outer__suffix"
     ) as HTMLSpanElement;
     await expect(suffixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(suffixEl.innerText).to.be.equal("yen");
@@ -33,7 +33,7 @@ describe("suffix prop set successfully", () => {
   it("suffix prop set successfully'", async () => {
     const el = await fixture(container);
     const suffixEl = el.querySelector(
-      ".kuc-text__text__input-form__suffix-outer__suffix"
+      ".kuc-text__group__input-form__suffix-outer__suffix"
     ) as HTMLSpanElement;
     await expect(suffixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(suffixEl.innerText).to.be.equal("yen");
@@ -47,7 +47,7 @@ describe("suffix prop replace successfully", () => {
   it("suffix prop replace successfully'", async () => {
     const el = await fixture(container);
     const suffixEl = el.querySelector(
-      ".kuc-text__text__input-form__suffix-outer__suffix"
+      ".kuc-text__group__input-form__suffix-outer__suffix"
     ) as HTMLSpanElement;
     await expect(suffixEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(suffixEl.innerText).to.be.equal("yen");
@@ -62,7 +62,7 @@ describe("suffix prop set to null successfully", () => {
   it("suffix prop set to null successfully", async () => {
     const el = await fixture(container);
     const suffixEl = el.querySelector(
-      ".kuc-text__text__input-form__suffix-outer__suffix"
+      ".kuc-text__group__input-form__suffix-outer__suffix"
     ) as HTMLSpanElement;
     await expect(suffixEl.hasAttribute("hidden")).to.be.equal(true);
   });

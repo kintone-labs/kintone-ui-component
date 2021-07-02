@@ -8,7 +8,7 @@ describe("confirm visible default prop is true", () => {
     const el = await fixture(container);
     await expect(el.hasAttribute("hidden")).to.have.equal(false);
     await expect(window.getComputedStyle(el).display).to.be.equal(
-      "inline-block"
+      "inline-table"
     );
   });
 });
@@ -31,7 +31,7 @@ describe("visible prop set to true successfully", () => {
     const el = await fixture(container);
     await expect(el.hasAttribute("hidden")).to.have.equal(false);
     await expect(window.getComputedStyle(el).display).to.be.equal(
-      "inline-block"
+      "inline-table"
     );
   });
 });

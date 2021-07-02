@@ -20,7 +20,7 @@ describe("Function Change event run successfully when mousedown", () => {
 
   it("Function Change event run successfully when mousedown", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
     if (itemsEl.length > 0) {
       container.addEventListener("change", (event: any) => {
         expect(event.detail.value)

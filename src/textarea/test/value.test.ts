@@ -7,7 +7,7 @@ describe("confirm value default prop is null", () => {
   it("confirm value default prop is null", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("");
   });
@@ -19,7 +19,7 @@ describe("value constructor set successfully", () => {
   it("value constructor set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("Apple");
   });
@@ -32,7 +32,7 @@ describe("value prop set successfully", () => {
   it("value prop set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("Apple");
   });
@@ -45,7 +45,7 @@ describe("value prop replace successfully", () => {
   it("value prop replace successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("Apple");
   });
@@ -58,7 +58,7 @@ describe("value default prop set to null successfully", () => {
   it("value default prop set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("");
   });
@@ -72,7 +72,7 @@ describe("value prop set to null successfully", () => {
   it("value prop set to null successfully'", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     expect(inputEl.value).to.be.equal("");
   });
