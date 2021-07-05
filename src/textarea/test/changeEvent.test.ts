@@ -20,7 +20,7 @@ describe("Function change event run successfully", () => {
 
   it("event mousedown", async () => {
     const el = await fixture(container);
-    el.querySelector(".kuc-textarea__resizer")!.dispatchEvent(
+    el.querySelector(".kuc-textarea__group__resizer")!.dispatchEvent(
       new CustomEvent("mousedown")
     );
     // TODO: Update expect() logic
