@@ -90,19 +90,16 @@ text.addEventListener("change", event => {
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> We confirmed the operation with the latest version of each compatible browser.<br />
-> kintone UI Component is not worked well at IE11 browser.
+> We confirmed the operation with the latest version of each compatible browser.
 
 ## v0 Usage
 If you want to use kintone UI Component v0.x.x, please refer to these pages.

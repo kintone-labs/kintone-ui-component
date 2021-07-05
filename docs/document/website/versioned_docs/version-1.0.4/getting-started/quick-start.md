@@ -176,19 +176,15 @@ Output Result：
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> The components have been tested in the latest version of each supported browser.<br>
-> Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
+> The components have been tested in the latest version of each supported browser.
 
-> You can preview the components in the Overview section in each component's reference page.<br>
-> Please be noted that it is not supported in IE11.
+> You can preview the components in the Overview section in each component's reference page.

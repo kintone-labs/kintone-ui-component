@@ -173,19 +173,15 @@ npm run build:webpack
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> 各対応ブラウザ最新版での動作を確認しております。<br>
-> kintone UI Component v1 系 は現在 kintone で使用しているライブラリとの兼ね合いで、IE11 では正常に動作しません。
+> 各対応ブラウザ最新版での動作を確認しております。
 
 > 各コンポーネントのリファレンスページでは、Overview にてコンポーネントのプレビュー表示をしています。<br>
-> IE11 では動作しない点、ご了承ください。
