@@ -11,6 +11,6 @@ Here are the [kintone UI Component v1.0.2](https://github.com/kintone-labs/kinto
 Some of documents have been updated.
 
 ## Update details
-### Document Fixes
+### Document
 - Fixed the unavailable link in README.
 - Updated Support Policy.

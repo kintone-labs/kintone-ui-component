@@ -14,5 +14,6 @@ original_id: release-notes
 
 詳細は以下になります。
 
+### ドキュメント
 - README 内の unpkg URL を修正
 - ドキュメントサイト Quick Start 記事内の unpkg URL を修正

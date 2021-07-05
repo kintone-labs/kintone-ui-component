@@ -24,6 +24,6 @@ original_id: release-notes-v1.0.3
 ### セキュリティアップデート
 - セキュリティアラートへの対応：webpack, ssri, react-dev-utils, elliptic
 
-### ドキュメント修正
+### ドキュメント
 - v1.0.3 Release Notes の追加
 - 検索ボックスカスタマイズ記事のサンプルコード修正
