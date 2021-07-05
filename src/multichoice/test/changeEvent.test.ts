@@ -37,16 +37,16 @@ describe("Function Change event run successfully when mousedown", () => {
   it("Event mouseover run successfully", async () => {
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
     toggleEl.click();
     let isHighlighted = false;
     if (itemsEl.length > 0) {
       itemsEl[2].addEventListener("mouseover", (event: Event) => {
         const target = event.target as HTMLLIElement;
         isHighlighted = target.classList.contains(
-          "kuc-multi-choice__menu__highlight"
+          "kuc-multi-choice__group__menu__highlight"
         );
       });
       (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseover"));
@@ -57,16 +57,16 @@ describe("Function Change event run successfully when mousedown", () => {
   it("Event mouseleave run successfully", async () => {
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
     toggleEl.click();
     let isHighlighted = false;
     if (itemsEl.length > 0) {
       itemsEl[2].addEventListener("mouseleave", (event: Event) => {
         const target = event.target as HTMLLIElement;
         isHighlighted = target.classList.contains(
-          "kuc-multi-choice__menu__highlight"
+          "kuc-multi-choice__group__menu__highlight"
         );
       });
       (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseleave"));
@@ -77,7 +77,7 @@ describe("Function Change event run successfully when mousedown", () => {
   it("Event keyup run successfully", async () => {
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
 
     const event = new KeyboardEvent("keydown", { key: "ArrowUp" });
@@ -96,14 +96,14 @@ describe("Function Change event run successfully when mousedown", () => {
       })
     );
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
 
     let isHighlighted = false;
     toggleEl.addEventListener("keydown", () => {
       isHighlighted = itemsEl[2].classList.contains(
-        "kuc-multi-choice__menu__highlight"
+        "kuc-multi-choice__group__menu__highlight"
       );
     });
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
@@ -121,14 +121,14 @@ describe("Function Change event run successfully when mousedown", () => {
       })
     );
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
 
     let isHighlighted = false;
     toggleEl.addEventListener("keydown", () => {
       isHighlighted = itemsEl[2].classList.contains(
-        "kuc-multi-choice__menu__highlight"
+        "kuc-multi-choice__group__menu__highlight"
       );
     });
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
@@ -146,14 +146,14 @@ describe("Function Change event run successfully when mousedown", () => {
       })
     );
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
 
     let isHighlighted = false;
     toggleEl.addEventListener("keydown", () => {
       isHighlighted = itemsEl[1].classList.contains(
-        "kuc-multi-choice__menu__highlight"
+        "kuc-multi-choice__group__menu__highlight"
       );
     });
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
@@ -171,14 +171,14 @@ describe("Function Change event run successfully when mousedown", () => {
       })
     );
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
 
     let isHighlighted = false;
     toggleEl.addEventListener("keydown", () => {
       isHighlighted = itemsEl[1].classList.contains(
-        "kuc-multi-choice__menu__highlight"
+        "kuc-multi-choice__group__menu__highlight"
       );
     });
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
@@ -196,14 +196,14 @@ describe("Function Change event run successfully when mousedown", () => {
       })
     );
     const toggleEl = el.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     ) as HTMLDivElement;
-    const itemsEl = el.querySelectorAll(".kuc-multi-choice__menu__item");
+    const itemsEl = el.querySelectorAll(".kuc-multi-choice__group__menu__item");
 
     let isHighlighted = false;
     toggleEl.addEventListener("keydown", () => {
       isHighlighted = itemsEl[0].classList.contains(
-        "kuc-multi-choice__menu__highlight"
+        "kuc-multi-choice__group__menu__highlight"
       );
     });
     (itemsEl[0] as HTMLDivElement).dispatchEvent(new MouseEvent("mouseover"));
