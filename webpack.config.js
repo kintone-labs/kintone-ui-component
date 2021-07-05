@@ -1,7 +1,7 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 const libraryName = 'kintone-ui-component';
 
 const jsUMDConfig = (_, argv) => {
@@ -40,8 +40,7 @@ const jsUMDConfig = (_, argv) => {
                             options: {
                                 // you can specify a publicPath here
                                 // by default it uses publicPath in webpackOptions.output
-                                publicPath: '../',
-                                hmr: argv.mode === 'development',
+                                publicPath: '../'
                             },
                         },
                         'css-loader',
@@ -54,17 +53,19 @@ const jsUMDConfig = (_, argv) => {
         },
         optimization: {
             minimizer: [
-                new TerserPlugin({
-                    cache: true,
-                    parallel: true,
+                () => ({
                     terserOptions: {
-                        compress: argv.mode === 'production',
-                        ecma: 6,
-                        mangle: true
-                    },
-                    sourceMap: argv.mode === 'development'
+                        cache: true,
+                        parallel: true,
+                        terserOptions: {
+                            compress: argv.mode === 'production',
+                            ecma: 6,
+                            mangle: true
+                        },
+                        sourceMap: argv.mode === 'development'
+                    }
                 }),
-                new OptimizeCSSAssetsPlugin({})
+                new CssMinimizerPlugin({})
             ]
         }
     }
@@ -134,7 +135,6 @@ const reactUMDConfig = (_, argv) => {
                                 // you can specify a publicPath here
                                 // by default it uses publicPath in webpackOptions.output
                                 publicPath: '../',
-                                hmr: argv.mode === 'development',
                             },
                         },
                         'css-loader',
@@ -144,17 +144,19 @@ const reactUMDConfig = (_, argv) => {
         },
         optimization: {
             minimizer: [
-                new TerserPlugin({
-                    cache: true,
-                    parallel: true,
+                () => ({
                     terserOptions: {
-                        compress: argv.mode === 'production',
-                        ecma: 6,
-                        mangle: true
-                    },
-                    sourceMap: argv.mode === 'development'
+                        cache: true,
+                        parallel: true,
+                        terserOptions: {
+                            compress: argv.mode === 'production',
+                            ecma: 6,
+                            mangle: true
+                        },
+                        sourceMap: argv.mode === 'development'
+                    }
                 }),
-                new OptimizeCSSAssetsPlugin({})
+                new CssMinimizerPlugin({})
             ]
         }
     }
