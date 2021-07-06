@@ -11,7 +11,7 @@ const Container = CompLibrary.Container;
 const CWD = process.cwd();
 const versions = require(`${CWD}/versions.json`);
 
-const Versions = (props) => {
+const Versions = props => {
   const { config: siteConfig } = props;
   const latestVersion = versions[0];
   const repoUrl = `https://github.com/${siteConfig.organizationName}/${siteConfig.projectName}`;
@@ -56,7 +56,7 @@ const Versions = (props) => {
           <table className="versions">
             <tbody>
               {versions.map(
-                (version) =>
+                version =>
                   version !== latestVersion && (
                     <tr key={version}>
                       <th>{version}</th>
