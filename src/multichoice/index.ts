@@ -139,7 +139,7 @@ export class MultiChoice extends LitElement {
     }
   }
 
-  private _handleMousedownMultiChoiceItem(event: MouseEvent) {
+  private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
     if (this.disabled) {
       return;
     }
@@ -281,7 +281,7 @@ export class MultiChoice extends LitElement {
         aria-required=${this.requiredIcon}
         value=${item.value !== undefined ? item.value : ""}
         id="${this._GUID}-menuitem-${index}"
-        @mousedown=${this._handleMousedownMultiChoiceItem}
+        @mousedown=${this._handleMouseDownMultiChoiceItem}
         @mouseover=${this._handleMouseOverMultiChoiceItem}
         @mouseleave=${this._handleMouseLeaveMultiChoiceItem}
       >
