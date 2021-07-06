@@ -88,7 +88,7 @@ export class TextArea extends LitElement {
     this._dispatchCustomEvent("change", detail);
   }
 
-  private _handleResizeMouseDown() {
+  private _handleMousedownResize() {
     this._onResize = true;
   }
 
@@ -146,7 +146,7 @@ export class TextArea extends LitElement {
           .value=${this.value}
           aria-describedby="${this._GUID}-error"
           aria-required=${this.requiredIcon}
-          aria-invalid="${!this.error}"
+          aria-invalid="${this.error !== ""}"
           @change="${this._handleChangeTextarea}"
           @focus="${this._handleFocusTextarea}"
           ?disabled="${this.disabled}"
@@ -154,7 +154,7 @@ export class TextArea extends LitElement {
         </textarea>
         <div
           class="kuc-textarea__group__resizer"
-          @mousedown="${this._handleResizeMouseDown}"
+          @mousedown="${this._handleMousedownResize}"
           ?hidden="${this.disabled}"
         >
           ${this._getResizerButtonSvgTemplate()}

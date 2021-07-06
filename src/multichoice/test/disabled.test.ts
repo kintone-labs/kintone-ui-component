@@ -151,9 +151,9 @@ describe("disabled default prop set to null", () => {
 
   it("disabled default prop set to null", async () => {
     const el = await fixture(container);
-    await expect(el.querySelector(".kuc-multi-choice__group__menu")).not.to.have.attr(
-      "disabled"
-    );
+    await expect(
+      el.querySelector(".kuc-multi-choice__group__menu")
+    ).not.to.have.attr("disabled");
   });
 });
 
