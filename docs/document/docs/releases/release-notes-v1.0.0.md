@@ -97,7 +97,7 @@ The following are the plans for the upcoming releases:
 - Additional components
   - Additional components such as Table, ReadOnlyTable, Dialog, Date, and DateTime are expected to be provided.
 - Mobile components
-- Improvement of documentaion
+- Improvement of documentation
 
 > As for v0, we will continue to fix bugs and update the dependent libraries. However, we are not planning to add new features to v0 as of now.
 
