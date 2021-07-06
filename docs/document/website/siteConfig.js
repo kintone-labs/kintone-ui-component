@@ -23,7 +23,7 @@ const siteConfig = {
       external: true,
     },
     { search: true },
-    { languages: true },
+    { languages: true }
   ],
   headerIcon: "img/kuc_logo_white.png",
   footerIcon: "img/kuc_box_white.png",
