@@ -92,11 +92,11 @@ export class TextArea extends LitElement {
     this._onResize = true;
   }
 
-  private _handleResizeMouseUp() {
+  private _handleMouseUpDocument() {
     this._onResize = false;
   }
 
-  private _handleResizeMouseMove(event: MouseEvent) {
+  private _handleMouseMoveDocument(event: MouseEvent) {
     if (!this._onResize) return;
 
     const textAreaRect = this._textarea.getBoundingClientRect();
@@ -188,9 +188,9 @@ export class TextArea extends LitElement {
 
   firstUpdated() {
     document.addEventListener("mousemove", event =>
-      this._handleResizeMouseMove(event)
+      this._handleMouseMoveDocument(event)
     );
-    document.addEventListener("mouseup", () => this._handleResizeMouseUp());
+    document.addEventListener("mouseup", _ => this._handleMouseUpDocument());
   }
 
   private _getStyleTagTemplate() {
