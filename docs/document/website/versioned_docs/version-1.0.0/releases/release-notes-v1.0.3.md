@@ -21,5 +21,5 @@ Code review automation, maintenances, and security updates have been made.
 ### Security Updates
 - Updated dependent libraries: webpack, ssri, react-dev-utils, elliptic.
 
-### Document Fixes
+### Document
 - Fixed the sample code of the search box customization tutorial.

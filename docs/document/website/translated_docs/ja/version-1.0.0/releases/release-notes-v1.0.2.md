@@ -14,6 +14,7 @@ original_id: release-notes-v1.0.2
 
 詳細は以下になります。
 
+### ドキュメント
 - README 内の Release Notes 記事リンク切れ修正
 - ドキュメントサイト内の Support Policy の記載を修正
 - ドキュメントサイト内の Release Notes 記事の追加
