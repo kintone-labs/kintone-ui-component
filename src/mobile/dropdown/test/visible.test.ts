@@ -2,14 +2,14 @@ import { expect, fixture } from "@open-wc/testing";
 import { MobileDropdown } from "../index";
 
 describe("MobileDropdown", () => {
-  describe("disabled", () => {
+  describe("visible", () => {
     const initItems = [
       { label: "-----", value: "-----" },
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" }
     ];
 
-    it("visible default prop is true", async () => {
+    it("should see that on screen when initializing without props option", async () => {
       const container = new MobileDropdown({
         items: initItems
       });
@@ -17,7 +17,7 @@ describe("MobileDropdown", () => {
       await expect(el).to.be.displayed;
     });
 
-    it("visible prop set to false successfully", async () => {
+    it("should not see that on screen when initializing disabled value is false", async () => {
       const container = new MobileDropdown({
         items: initItems,
         visible: false
@@ -26,7 +26,7 @@ describe("MobileDropdown", () => {
       await expect(el).not.to.be.displayed;
     });
 
-    it("visible prop set to true successfully", async () => {
+    it("should see that on screen when changing by setter", async () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
@@ -38,7 +38,7 @@ describe("MobileDropdown", () => {
       await expect(el).to.be.displayed;
     });
 
-    it("visible prop set to false successfully'", async () => {
+    it("should not see that on screen when changing by setter", async () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
@@ -47,30 +47,6 @@ describe("MobileDropdown", () => {
         className: "visible_test"
       });
       container.visible = false;
-      const el = await fixture(container);
-      await expect(el).not.to.be.displayed;
-    });
-
-    it("visible default prop set to null", async () => {
-      const container = new MobileDropdown({
-        label: "Fruit",
-        requiredIcon: false,
-        items: initItems,
-        // @ts-ignore
-        visible: null
-      });
-      const el = await fixture(container);
-      await expect(el).not.to.be.displayed;
-    });
-
-    it("visible prop set to null", async () => {
-      const container = new MobileDropdown({
-        label: "Fruit",
-        requiredIcon: false,
-        items: initItems
-      });
-      // @ts-ignore
-      container.visible = null;
       const el = await fixture(container);
       await expect(el).not.to.be.displayed;
     });
