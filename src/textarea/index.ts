@@ -35,9 +35,6 @@ export class TextArea extends LitElement {
   private _GUID: string;
   private _onResize = false;
 
-  @query(".kuc-textarea__group__label")
-  private _label!: HTMLLabelElement;
-
   @query(".kuc-textarea__group__textarea")
   private _textarea!: HTMLTextAreaElement;
 
@@ -130,7 +127,11 @@ export class TextArea extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-textarea__group">
-        <div class="kuc-textarea__group__label" ?hidden="${!this.label}">
+        <label
+          class="kuc-textarea__group__label"
+          ?hidden="${!this.label}"
+          for="${this._GUID}-label"
+        >
           <span class="kuc-textarea__group__label__text">${this.label}</span
           ><!--
           --><span
@@ -138,7 +139,7 @@ export class TextArea extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </div>
+        </label>
         <textarea
           id="${this._GUID}-label"
           class="kuc-textarea__group__textarea"
