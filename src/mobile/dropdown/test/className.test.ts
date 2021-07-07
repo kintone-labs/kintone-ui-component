@@ -3,20 +3,20 @@ import { MobileDropdown } from "../index";
 
 describe("MobileDropdown", () => {
   describe("className", () => {
-    it("It should be set to empty string when initializing without props option", async () => {
+    it("should be set to empty string when initializing without props option", async () => {
       const container = new MobileDropdown();
       const el = await fixture(container);
       expect(el.classList.length).to.be.equal(0);
     });
 
-    it('It should be equal "options-class" string when initializing className with "options-class" value', async () => {
+    it('should be equal "options-class" string when initializing className with "options-class" value', async () => {
       const container = new MobileDropdown({ className: "options-class" });
       const el = await fixture(container);
       expect(el.classList.length).to.be.equal(1);
       expect(el.className).to.have.equal("options-class");
     });
 
-    it('It should be replace by "replace-class" when changing by setter', async () => {
+    it('should be replace by "replace-class" when changing by setter', async () => {
       const container = new MobileDropdown({
         className: "options-class"
       });
