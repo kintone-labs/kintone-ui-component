@@ -3,63 +3,56 @@ import { MobileDropdown } from "../index";
 
 describe("MobileDropdown", () => {
   describe("requiredIcon", () => {
-    it("requiredIcon default prop is false", async () => {
+    it("appear when initializing without props option", async () => {
       const container = new MobileDropdown({});
       const el = await fixture(container);
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      await expect(requiredEl).to.be.visible;
+      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
+      await expect(existRequiredIcon).to.be.false;
     });
 
-    it("requiredIcon prop set to true successfully", async () => {
+    it("appear when initializing requiredIcon value is true", async () => {
       const container = new MobileDropdown({ requiredIcon: true });
       const el = await fixture(container);
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      await expect(requiredEl.innerText).to.have.equal("*");
+      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
+      await expect(existRequiredIcon).to.be.true;
     });
 
-    it("requiredIcon prop set to true successfully", async () => {
+    it("disappear when initializing requiredIcon value is false", async () => {
+      const container = new MobileDropdown({ requiredIcon: false });
+      const el = await fixture(container);
+      const requiredEl = el.querySelector(
+        ".kuc-mobile-dropdown__label__required-icon"
+      ) as HTMLSpanElement;
+      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
+      await expect(existRequiredIcon).to.be.false;
+    });
+
+    it("appear when changing by setter", async () => {
       const container = new MobileDropdown({});
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      await expect(requiredEl.innerText).to.have.equal("*");
+      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
+      await expect(existRequiredIcon).to.be.true;
     });
 
-    it("requiredIcon prop set to false successfully", async () => {
+    it("disappear when changing by setter", async () => {
       const container = new MobileDropdown({});
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      await expect(requiredEl).to.be.visible;
-    });
-
-    it("requiredIcon default prop set to null", async () => {
-      // @ts-ignore
-      const container = new MobileDropdown({ requiredIcon: null });
-      const el = await fixture(container);
-      const requiredEl = el.querySelector(
-        ".kuc-mobile-dropdown__label__required-icon"
-      ) as HTMLSpanElement;
-      await expect(requiredEl).to.be.visible;
-    });
-
-    it("requiredIcon prop set to null", async () => {
-      const container = new MobileDropdown({});
-      // @ts-ignore
-      container.requiredIcon = null;
-      const el = await fixture(container);
-      const requiredEl = el.querySelector(
-        ".kuc-mobile-dropdown__label__required-icon"
-      ) as HTMLSpanElement;
-      await expect(requiredEl).to.be.visible;
+      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
+      await expect(existRequiredIcon).to.be.false;
     });
   });
 });
