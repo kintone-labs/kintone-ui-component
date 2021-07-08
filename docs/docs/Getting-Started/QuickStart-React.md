@@ -7,15 +7,15 @@
 ## ESM usage with JSX
 **Step** 1: init your project
 ```
-$ mkidr customization
+$ mkdir customization
 $ cd customization
 $ npm init
 ```
 
-**Step** 2: install devDependences
+**Step** 2: install devDependencies
 ```
 $ npm i -D webpack-cli webpack 
-$ npm i -D tslib babel-loader @babel/preset-env @babel/preset-react
+$ npm i -D tslib babel-loader @babel/core @babel/preset-env @babel/preset-react
 $ npm i -D style-loader css-loader
 $ npm i -D react@16.8.6 react-dom@16.8.6
 $ npm i -D @kintone/kintone-ui-component
