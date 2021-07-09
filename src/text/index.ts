@@ -104,7 +104,11 @@ export class Text extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-text__group">
-        <div class="kuc-text__group__label" ?hidden="${!this.label}">
+        <label
+          class="kuc-text__group__label"
+          for="${this._GUID}-label"
+          ?hidden="${!this.label}"
+        >
           <span class="kuc-text__group__label__text">${this.label}</span
           ><!--
             --><span
@@ -112,7 +116,7 @@ export class Text extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </div>
+        </label>
         <div class="kuc-text__group__input-form">
           <div class="kuc-text__group__input-form__prefix-outer">
             <span
