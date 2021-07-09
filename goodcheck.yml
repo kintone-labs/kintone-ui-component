@@ -116,7 +116,7 @@ rules:
 
   - id: dom.structure
     pattern:
-      regexp: ^id="(?!\${this._GUID}-)[^"]+"
+      regexp: \sid="(?!\${this._GUID}-)[^"]+"
     message: |
       Please put uuid to id using _generateGUID function
       ex: <div
