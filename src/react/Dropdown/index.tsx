@@ -34,7 +34,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
     return position;
   };
 
-  const _showItems = (e: React.MouseEvent) => {
+  const _showItems = () => {
     setVisibleItems(!isVisibleItems);
     const element = ref.current || document.createElement('div');
     const listItemEl = element.getElementsByClassName('kuc-list-outer')[0] as HTMLDivElement;
@@ -50,6 +50,10 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
     if (ref.current && !ref.current.contains(e.target)) {
       setVisibleItems(false);
     }
+  };
+
+  const _handleDropdownClick = () => {
+    if (!isDisabled) _showItems();
   };
 
   useEffect(() => {
@@ -101,7 +105,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
   return (
     <div className="kuc-dropdown-container" ref={ref}>
       <div className="kuc-dropdown-sub-container">
-        <div className="kuc-dropdown-outer" onClick={_showItems} role="presentation">
+        <div className="kuc-dropdown-outer" onClick={_handleDropdownClick} role="presentation">
           <div className={className.join(' ').trim()}>
             <div className="kuc-dropdown-selected">
               <span className="kuc-dropdown-selected-name">
