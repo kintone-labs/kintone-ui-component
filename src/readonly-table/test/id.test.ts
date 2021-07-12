@@ -1,62 +1,36 @@
 import { expect, fixture } from "@open-wc/testing";
 import { ReadOnlyTable } from "../index";
 
-describe("confirm id default prop is null", () => {
-  const container = new ReadOnlyTable();
+describe("ReadOnlyTable", () => {
+  describe("id", () => {
+    it('should be "" when not assigning on constructor', async () => {
+      const container = new ReadOnlyTable({});
 
-  it("confirm id default prop is null", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equals("");
-  });
-});
+      const el = await fixture(container);
+      expect(el.id).to.be.equals("");
+    });
 
-describe("id constructor set successfully", () => {
-  const container = new ReadOnlyTable({ id: "options-id" });
+    it('should be "options-id" when assigning on constructor', async () => {
+      const container = new ReadOnlyTable({ id: "options-id" });
 
-  it("id constructor set successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equal("options-id");
-  });
-});
+      const el = await fixture(container);
+      expect(el.id).to.have.equals("options-id");
+    });
 
-describe("id prop set successfully", () => {
-  const container = new ReadOnlyTable();
-  container.id = "options-id";
+    it('should be "options-id" when assigning by setter', async () => {
+      const container = new ReadOnlyTable();
 
-  it("id prop set successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equal("options-id");
-  });
-});
+      const el = await fixture(container);
+      container.id = "options-id";
+      expect(el.id).to.have.equals("options-id");
+    });
 
-describe("id prop replace successfully", () => {
-  const container = new ReadOnlyTable({ id: "options-id" });
-  container.id = "replace-id";
+    it('should be replaced to "replace-id" after changing by setter', async () => {
+      const container = new ReadOnlyTable({ id: "options-id" });
 
-  it("id prop replace successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equal("replace-id");
-  });
-});
-
-describe("id constructor set to null successfully", () => {
-  // @ts-ignore
-  const container = new ReadOnlyTable({ id: null });
-
-  it("id constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equal("null");
-  });
-});
-
-describe("id prop set to null successfully", () => {
-  const container = new ReadOnlyTable();
-
-  // @ts-ignore
-  container.id = null;
-
-  it("id prop set to null successfully", async () => {
-    const el = await fixture(container);
-    await expect(el.id).to.be.equal("null");
+      const el = await fixture(container);
+      container.id = "replace-id";
+      expect(el.id).to.have.equals("replace-id");
+    });
   });
 });
