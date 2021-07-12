@@ -65,7 +65,6 @@ export class MobileMultiChoice extends LitElement {
     const detail: CustomEventDetail = { value: [], oldValue: this.value };
     this.value = Array.from(selectEl.selectedOptions, option => option.value);
     detail.value = this.value;
-    console.log("detail", detail);
     this._dispatchCustomEvent("change", detail);
   }
 
@@ -191,10 +190,8 @@ export class MobileMultiChoice extends LitElement {
         }
 
         kuc-mobile-multi-choice {
-          display: block;
-          box-shadow: 0 1px 0 #ffffff;
-          padding: 0.5em 0.5em 1em;
-          border-bottom: 1px solid #dadada;
+          display: inline-block;
+          width: 100%;
         }
 
         kuc-mobile-multi-choice[hidden] {
@@ -202,7 +199,7 @@ export class MobileMultiChoice extends LitElement {
         }
 
         .kuc-mobile-multi-choice__label {
-          display: inline-block;
+          display: flex;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
