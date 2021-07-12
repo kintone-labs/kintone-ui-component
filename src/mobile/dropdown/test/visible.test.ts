@@ -14,7 +14,7 @@ describe("MobileDropdown", () => {
         items: initItems
       });
       const el = await fixture(container);
-      await expect(el).to.be.displayed;
+      expect(el).not.has.attribute("hidden");
     });
 
     it("should not see that on screen when initializing disabled value is false", async () => {
@@ -23,7 +23,7 @@ describe("MobileDropdown", () => {
         visible: false
       });
       const el = await fixture(container);
-      await expect(el).not.to.be.displayed;
+      expect(el).has.attribute("hidden");
     });
 
     it("should see that on screen when changing by setter", async () => {
@@ -35,7 +35,7 @@ describe("MobileDropdown", () => {
       });
       container.visible = true;
       const el = await fixture(container);
-      await expect(el).to.be.displayed;
+      expect(el).not.has.attribute("hidden");
     });
 
     it("should not see that on screen when changing by setter", async () => {
@@ -48,7 +48,7 @@ describe("MobileDropdown", () => {
       });
       container.visible = false;
       const el = await fixture(container);
-      await expect(el).not.to.be.displayed;
+      expect(el).has.attribute("hidden");
     });
   });
 });

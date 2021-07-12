@@ -9,8 +9,7 @@ describe("MobileDropdown", () => {
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
-      await expect(existRequiredIcon).to.be.false;
+      expect(requiredEl).has.attribute("hidden");
     });
 
     it("appear when initializing requiredIcon value is true", async () => {
@@ -19,8 +18,7 @@ describe("MobileDropdown", () => {
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
-      await expect(existRequiredIcon).to.be.true;
+      expect(requiredEl).not.has.attribute("hidden");
     });
 
     it("disappear when initializing requiredIcon value is false", async () => {
@@ -29,8 +27,7 @@ describe("MobileDropdown", () => {
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
-      await expect(existRequiredIcon).to.be.false;
+      expect(requiredEl).has.attribute("hidden");
     });
 
     it("appear when changing by setter", async () => {
@@ -40,8 +37,7 @@ describe("MobileDropdown", () => {
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
-      await expect(existRequiredIcon).to.be.true;
+      expect(requiredEl).not.has.attribute("hidden");
     });
 
     it("disappear when changing by setter", async () => {
@@ -51,8 +47,7 @@ describe("MobileDropdown", () => {
       const requiredEl = el.querySelector(
         ".kuc-mobile-dropdown__label__required-icon"
       ) as HTMLSpanElement;
-      const existRequiredIcon = !requiredEl.hasAttribute("hidden");
-      await expect(existRequiredIcon).to.be.false;
+      expect(requiredEl).has.attribute("hidden");
     });
   });
 });

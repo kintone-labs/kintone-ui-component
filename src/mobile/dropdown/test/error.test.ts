@@ -9,7 +9,7 @@ describe("MobileDropdown", () => {
       const errorEl = el.querySelector(
         ".kuc-mobile-dropdown__error"
       ) as HTMLDivElement;
-      await expect(errorEl).not.to.be.displayed;
+      expect(errorEl).has.attribute("hidden");
     });
 
     it('should be equal "error-message" when initializing error with "error-message"', async () => {
@@ -18,8 +18,8 @@ describe("MobileDropdown", () => {
       const errorEl = el.querySelector(
         ".kuc-mobile-dropdown__error"
       ) as HTMLDivElement;
-      await expect(errorEl.innerText).to.have.equal("error-message");
-      await expect(errorEl).to.be.displayed;
+      expect(errorEl.innerText).to.have.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
     });
 
     it('should be replace by "replace-error" when changing by setter', async () => {
@@ -31,8 +31,8 @@ describe("MobileDropdown", () => {
       const errorEl = el.querySelector(
         ".kuc-mobile-dropdown__error"
       ) as HTMLDivElement;
-      await expect(errorEl.innerText).to.have.equal("replace-error");
-      await expect(errorEl).to.be.displayed;
+      expect(errorEl.innerText).to.have.equal("replace-error");
+      expect(errorEl).not.has.attribute("hidden");
     });
   });
 });

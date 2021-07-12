@@ -6,6 +6,6 @@ describe("render successfully without props", () => {
   it("have 'kuc-mobile-dropdown'", async () => {
     const el = await fixture(container);
     const tagname = el.tagName;
-    await expect(tagname.toLowerCase()).to.be.equal("kuc-mobile-dropdown");
+    expect(tagname.toLowerCase()).to.be.equal("kuc-mobile-dropdown");
   });
 });

@@ -9,7 +9,7 @@ describe("MobileDropdown", () => {
       const labelEl = el.querySelector(
         ".kuc-mobile-dropdown__label__text"
       ) as HTMLSpanElement;
-      await expect(labelEl).to.be.visible;
+      expect(labelEl.innerText).to.have.equal("");
     });
 
     it('should be equal "options-label" when initializing label with "options-label"', async () => {
@@ -18,7 +18,7 @@ describe("MobileDropdown", () => {
       const labelEl = el.querySelector(
         ".kuc-mobile-dropdown__label__text"
       ) as HTMLSpanElement;
-      await expect(labelEl.innerText).to.have.equal("options-label");
+      expect(labelEl.innerText).to.have.equal("options-label");
     });
 
     it('should be replace by "replace-label" when changing by setter', async () => {
@@ -30,7 +30,7 @@ describe("MobileDropdown", () => {
       const labelEl = el.querySelector(
         ".kuc-mobile-dropdown__label__text"
       ) as HTMLSpanElement;
-      await expect(labelEl.textContent).to.have.equal("replace-label");
+      expect(labelEl.textContent).to.have.equal("replace-label");
     });
   });
 });

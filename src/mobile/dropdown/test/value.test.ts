@@ -13,19 +13,15 @@ describe("MobileDropdown", () => {
 
     it("should be empty when initializing without props option", async () => {
       const container = new MobileDropdown({});
-      await fixture(container);
-      const itemsEl = container.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(0);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const label = itemEl.textContent?.trim();
-        await expect(label).to.have.equal(expectedLabels[i]);
+        expect(label).to.have.equal(expectedLabels[i]);
       }
-      await expect(container.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
     });
 
     it("exists on element when initializing with props option", async () => {
@@ -33,19 +29,15 @@ describe("MobileDropdown", () => {
         items: initItems,
         value: initItems[1].value
       });
-      await fixture(container);
-      const itemsEl = container.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!container.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const label = itemEl.textContent?.trim();
-        await expect(label).to.have.equal(expectedLabels[i]);
+        expect(label).to.have.equal(expectedLabels[i]);
       }
-      await expect(container.value).to.be.equal(expectedValues[1]);
+      expect(container.value).to.be.equal(expectedValues[1]);
     });
 
     it("exists on element when changing by setter", async () => {
@@ -56,19 +48,15 @@ describe("MobileDropdown", () => {
         value: initItems[0].value
       });
       container.value = initItems[1].value;
-      await fixture(container);
-      const itemsEl = container.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const label = itemEl.textContent?.trim();
-        await expect(label).to.have.equal(expectedLabels[i]);
+        expect(label).to.have.equal(expectedLabels[i]);
       }
-      await expect(container.value).to.be.equal(expectedValues[1]);
+      expect(container.value).to.be.equal(expectedValues[1]);
     });
 
     it("is not selected when initializing with props option is empty string", async () => {
@@ -78,18 +66,14 @@ describe("MobileDropdown", () => {
         items: initItems,
         value: ""
       });
-      await fixture(container);
-      const itemsEl = container.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLOptionElement;
         const label = itemEl.text?.trim();
-        await expect(label).to.have.equal(expectedLabels[i]);
-        await expect(itemEl.getAttribute("selected")).to.be.equal(null);
+        expect(label).to.have.equal(expectedLabels[i]);
+        expect(itemEl.getAttribute("selected")).to.be.equal(null);
       }
     });
 
@@ -98,7 +82,7 @@ describe("MobileDropdown", () => {
       await fixture(container);
       container.value = initItems[2].value;
       const getval = container.value;
-      await expect(getval).to.be.equal(initItems[2].value);
+      expect(getval).to.be.equal(initItems[2].value);
     });
   });
 });

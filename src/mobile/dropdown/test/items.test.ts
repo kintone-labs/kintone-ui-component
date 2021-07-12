@@ -12,30 +12,22 @@ describe("MobileDropdown", () => {
     it("does not exists on element when initializing without props option", async () => {
       const container = new MobileDropdown();
       const el = await fixture(container);
-      const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(true);
-      }
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(0);
     });
 
     it("exists on element when initializing with props option", async () => {
       const expectedValues = ["-----", "orange", "apple"];
       const container = new MobileDropdown({ items: initItems });
       const el = await fixture(container);
-      const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
-        await expect(value).to.have.equal(expectedValues[i]);
+        expect(value).to.have.equal(expectedValues[i]);
       }
-      await expect(container.items).to.be.equal(initItems);
+      expect(container.items).to.be.equal(initItems);
     });
 
     it("exists on element when changing by setter", async () => {
@@ -43,17 +35,14 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown();
       container.items = initItems;
       const el = await fixture(container);
-      const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 3) {
-        await expect(false);
-      }
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
-        await expect(value).to.have.equal(expectedValues[i]);
+        expect(value).to.have.equal(expectedValues[i]);
       }
+      expect(container.items).to.be.equal(initItems);
     });
 
     it("items prop replace successfully", async () => {
@@ -73,12 +62,8 @@ describe("MobileDropdown", () => {
       container.items = newitems;
 
       const el = await fixture(container);
-      const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
-      )!.children as HTMLSelectElement;
-      if (!itemsEl.children || itemsEl.length !== 2) {
-        expect(false);
-      }
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(2);
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
