@@ -23,18 +23,17 @@ Spinner は、ローディングスピナーを表示します。
 | :--- | :--- | :--- | :--- | :--- |
 | text | string | "" | ローダーアイコン下部に表示するテキスト | text が未指定、あるいは空文字の場合*は、初期値を表示する |
 
-\* text が未指定、あるいは空文字の場合は、アクセシビリティを考慮して visually-hidden class を
-付与し、"now loading…" の文言を視覚的に見えない状態で表示する
+\* text が未指定、あるいは空文字の場合は、アクセシビリティを考慮して visually-hidden class を付与し、"now loading…" の文言を視覚的に見えない状態で表示する。
 
 ### Constructor
 
-Spinner(options)
+Spinner(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ### Method
 使用できるメソッドの一覧です。

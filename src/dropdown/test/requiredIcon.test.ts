@@ -7,7 +7,7 @@ describe("requiredIcon default prop is false", () => {
   it("requiredIcon default prop is false", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(requiredEl).to.be.visible;
@@ -20,7 +20,7 @@ describe("requiredIcon prop set to true successfully", () => {
   it("requiredIcon prop set to true successfully", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     expect(requiredEl.innerText).to.have.equal("*");
   });
@@ -33,7 +33,7 @@ describe("requiredIcon prop set to true successfully", () => {
   it("requiredIcon prop set to true successfully", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     expect(requiredEl.innerText).to.have.equal("*");
   });
@@ -46,7 +46,7 @@ describe("requiredIcon prop set to false successfully", () => {
   it("requiredIcon prop set to false successfully", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(requiredEl).to.be.visible;
@@ -60,7 +60,7 @@ describe("requiredIcon default prop set to null", () => {
   it("requiredIcon default prop set to null", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(requiredEl).to.be.visible;
@@ -75,7 +75,7 @@ describe("requiredIcon prop set to null", () => {
   it("requiredIcon prop set to null", async () => {
     const el = await fixture(container);
     const requiredEl = el.querySelector(
-      ".kuc-dropdown__label__required-icon"
+      ".kuc-dropdown__group__label__required-icon"
     ) as HTMLSpanElement;
     // eslint-disable-next-line no-unused-expressions
     expect(requiredEl).to.be.visible;

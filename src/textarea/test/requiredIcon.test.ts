@@ -7,7 +7,7 @@ describe("confirm requiredIcon default prop is false", () => {
   it("confirm requiredIcon default prop is false", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-textarea__label__required-icon"
+      ".kuc-textarea__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(window.getComputedStyle(requiredEl).display).to.be.equal(
@@ -22,7 +22,7 @@ describe("requiredIcon constructor set to true successfully", () => {
   it("requiredIcon constructor set to true successfully", async () => {
     const el = await fixture(container);
     const requiredIconEl = (await el.querySelector(
-      ".kuc-textarea__label__required-icon"
+      ".kuc-textarea__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(false);
     await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
@@ -38,7 +38,7 @@ describe("requiredIcon prop set to false successfully", () => {
   it("requiredIcon prop set to false successfully", async () => {
     const el = await fixture(container);
     const requiredIconEl = (await el.querySelector(
-      ".kuc-textarea__label__required-icon"
+      ".kuc-textarea__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
@@ -54,7 +54,7 @@ describe("requiredIcon default prop set to null successfully", () => {
   it("requiredIcon default prop set to null successfully", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-textarea__label__required-icon"
+      ".kuc-textarea__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(window.getComputedStyle(requiredEl).display).to.be.equal(
@@ -71,7 +71,7 @@ describe("requiredIcon prop set to null successfully", () => {
   it("requiredIcon prop set to null successfully", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-textarea__label__required-icon"
+      ".kuc-textarea__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl.hasAttribute("hidden")).to.be.equal(true);
     await expect(window.getComputedStyle(requiredEl).display).to.be.equal(

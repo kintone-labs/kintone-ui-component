@@ -24,7 +24,7 @@ describe("disabled default prop is false", () => {
 
   it("disabled default prop is false", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).not.to.have.attr(
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
       "disabled"
     );
   });
@@ -54,7 +54,9 @@ describe("disabled default prop set to true successfully", () => {
 
   it("disabled default prop set to true successfully", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).to.have.attr("disabled");
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).to.have.attr(
+      "disabled"
+    );
   });
 });
 
@@ -85,7 +87,9 @@ describe("disabled prop set to true successfully", () => {
 
   it("disabled prop set to true successfully", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).to.have.attr("disabled");
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).to.have.attr(
+      "disabled"
+    );
   });
 });
 
@@ -116,7 +120,7 @@ describe("disabled prop set to false successfully", () => {
 
   it("disabled prop set to false successfully", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).not.to.have.attr(
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
       "disabled"
     );
   });
@@ -147,7 +151,7 @@ describe("disabled default prop set to null", () => {
 
   it("disabled default prop set to null", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).not.to.have.attr(
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
       "disabled"
     );
   });
@@ -178,7 +182,7 @@ describe("disabled prop set to null", () => {
 
   it("disabled prop set to null", async () => {
     const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__toggle")).not.to.have.attr(
+    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
       "disabled"
     );
   });

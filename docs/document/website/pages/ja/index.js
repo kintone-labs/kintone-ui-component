@@ -42,7 +42,7 @@ const textContent = {
 })();
 
 \`\`\`
-  `,
+  `
 };
 
 class Index extends React.PureComponent {
@@ -51,9 +51,9 @@ class Index extends React.PureComponent {
     const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
-    const SplashContainer = (props) => (
+    const SplashContainer = props => (
       <div className="homeContainer">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
@@ -61,7 +61,7 @@ class Index extends React.PureComponent {
       </div>
     );
 
-    const ProjectTitle = (props) => (
+    const ProjectTitle = props => (
       <h2 className="projectTitle">
         {props.tagline}
         <span> with </span>
@@ -71,7 +71,7 @@ class Index extends React.PureComponent {
       </h2>
     );
 
-    const PromoSection = (props) => (
+    const PromoSection = props => (
       <div className="section promoSection">
         <div className="promoRow">
           <div className="pluginRowBlock">{props.children}</div>
@@ -79,7 +79,7 @@ class Index extends React.PureComponent {
       </div>
     );
 
-    const Button = (props) => (
+    const Button = props => (
       <div className="pluginWrapper buttonWrapper">
         <a className="button buttonTop" href={props.href} target={props.target}>
           {props.children}
@@ -163,7 +163,7 @@ class Index extends React.PureComponent {
             />
             <PromoSection>
               <Button href={docUrl("getting-started/quick-start.html")}>
-                Get Started
+                Getting Started
               </Button>
             </PromoSection>
           </div>

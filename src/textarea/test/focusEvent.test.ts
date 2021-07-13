@@ -10,7 +10,7 @@ describe("Function focus event run successfully", () => {
   it("Function focus event run successfully", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     inputEl.focus();
   });

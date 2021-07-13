@@ -38,14 +38,14 @@ MobileButton は、ボタンを表示します。
 
 ### Constructor
 
-Button(options)
+Button(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含む JSON オブジェクト | options 内の値は任意 |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 

@@ -25,7 +25,7 @@ describe("value default prop is not setted", () => {
   it("value default prop is not setted", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
@@ -64,7 +64,7 @@ describe("value prop set successfully", () => {
   it("value prop set successfully", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);
@@ -106,7 +106,7 @@ describe("value prop set successfully", () => {
   it("value prop set successfully", async () => {
     const el = await fixture(container);
     const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__menu"
+      ".kuc-multi-choice__group__menu"
     )!.children;
     if (!container.children || itemsEl.length !== 3) {
       expect(false);

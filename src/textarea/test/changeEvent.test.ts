@@ -11,7 +11,7 @@ describe("Function change event run successfully", () => {
   it("Function change event run successfully", async () => {
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLInputElement;
     inputEl.value = "Apple";
     const event = new CustomEvent("change");
@@ -20,7 +20,7 @@ describe("Function change event run successfully", () => {
 
   it("event mousedown", async () => {
     const el = await fixture(container);
-    el.querySelector(".kuc-textarea__resizer")!.dispatchEvent(
+    el.querySelector(".kuc-textarea__group__resizer")!.dispatchEvent(
       new CustomEvent("mousedown")
     );
     // TODO: Update expect() logic

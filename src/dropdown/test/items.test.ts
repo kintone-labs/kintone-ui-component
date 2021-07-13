@@ -6,7 +6,7 @@ describe("items default prop is null", () => {
 
   it("items default prop is null", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(true);
@@ -32,7 +32,7 @@ describe("items prop set successfully without label props", () => {
 
   it("items prop set successfully without label props", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
@@ -64,7 +64,7 @@ describe("items prop set successfully without label props", () => {
 
   it("items prop set successfully without label props", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
@@ -101,7 +101,7 @@ describe("items default set successfully with full optional props", () => {
 
   it("items default set successfully with full optional props", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
@@ -138,7 +138,7 @@ describe("items prop set successfully with full optional props", () => {
 
   it("items prop set successfully with full optional props", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 3) {
       expect(false);
@@ -180,7 +180,7 @@ describe("items prop replace successfully", () => {
 
   it("items prop replace successfully", async () => {
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__select-menu")!
+    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
       .children as HTMLSelectElement;
     if (!itemsEl.children || itemsEl.length !== 2) {
       expect(false);

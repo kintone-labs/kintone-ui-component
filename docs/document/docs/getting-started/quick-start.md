@@ -18,25 +18,25 @@ Kintone UI Component is a library that enables Kintone developers to build forms
 
 ## Preparation: Create App
 
-In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.  
+In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.
 
 First, follow the below steps to create an app to install Kintone UI Component.
 
-1. Create a blank app. （[Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html)）  
+1. Create a blank app. ([Creating an App from Scratch](https://get.kintone.help/k/en/user/create_app/tutorial.html))<br>
 You do not need to set up any fields in this app.
 
 ## Installation
 
-Kintone UI Component supports installation via a UMD, a CDN, or a npm package.  
-You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.  
+Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<br>
+You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br>
 In this article, we will show you how to install and implement using each approach.
 
-> See the Components section in the sidebar for more details on each component.
+> See the Components section in the sidebar for more details on each component.<br>
 > (Additional components will be added in order.）
 
 ### Use the UMD
 
-1. Download the file located inside Kintone UI Component repository[Each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
+1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```text
 ./umd/kuc.min.js
@@ -65,13 +65,13 @@ In this article, we will show you how to install and implement using each approa
 })();
 ```
 
-3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
+3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
 
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）  
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br>
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
    - For the latest version of Kintone UI Component:
@@ -86,7 +86,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 2. The following is the same as the UMD.
 
-> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.  
+> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.<br>
 > In the production environment, you can use the `kuc.min.js` of the UMD to avoid any failures and problems related to unpkg.
 
 ### Use the npm package
@@ -146,7 +146,6 @@ module.exports = (env = {}) => {
 4. Add webpack build script into `package.json`.
 
 ```json
-// package.json
 "scripts": {
   "build:webpack": "webpack --mode production",
   ...
@@ -164,7 +163,7 @@ Output Result：
 ./dist/customization.min.js
 ```
 
-6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. （[Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html)）
+6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](assets/button_customize.png)
 
@@ -176,19 +175,15 @@ Output Result：
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> The components have been tested in the latest version of each supported browser.  
-> Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
+> The components have been tested in the latest version of each supported browser.
 
 > You can preview the components in the Overview section in each component's reference page.
-> Please be noted that it is not supported in IE11.

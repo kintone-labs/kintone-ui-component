@@ -7,7 +7,7 @@ describe("requiredIcon default prop is false", () => {
   it("requiredIcon default prop is false", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl).to.be.visible;
   });
@@ -19,7 +19,7 @@ describe("requiredIcon prop set to true successfully", () => {
   it("requiredIcon prop set to true successfully", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl.innerText).to.have.equals("*");
   });
@@ -32,7 +32,7 @@ describe("requiredIcon prop set to true successfully", () => {
   it("requiredIcon prop set to true successfully", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl.innerText).to.have.equals("*");
   });
@@ -45,7 +45,7 @@ describe("requiredIcon prop set to false successfully", () => {
   it("requiredIcon prop set to false successfully", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl).to.be.visible;
   });
@@ -58,7 +58,7 @@ describe("requiredIcon default prop set to null", () => {
   it("requiredIcon default prop set to null", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl).to.be.visible;
   });
@@ -72,7 +72,7 @@ describe("requiredIcon prop set to null", () => {
   it("requiredIcon prop set to null", async () => {
     const el = await fixture(container);
     const requiredEl = (await el.querySelector(
-      ".kuc-multi-choice__label__required-icon"
+      ".kuc-multi-choice__group__label__required-icon"
     )) as HTMLSpanElement;
     await expect(requiredEl).to.be.visible;
   });

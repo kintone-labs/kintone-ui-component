@@ -90,19 +90,16 @@ text.addEventListener("change", event => {
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> 各対応ブラウザ最新版での動作を確認しております。<br />
-> kintone UI Component v1 は現在 kintone で使用されているライブラリとの兼ね合いで、IE11 では正常に動作しません。
+> 各対応ブラウザ最新版での動作を確認しております。
 
 ## v0の使い方
 kintone UI Component v0 を使用する場合は、こちらのリンクをご確認ください。
@@ -115,8 +112,8 @@ kintone UI Component v0 を使用する場合は、こちらのリンクをご�
 ## 移行ガイド
 v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />
 詳細は下記の記事をご参照ください。
-- [v0 と v1 の書き方の違い解説](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/blog/2021/03/04/v1.0.0-release-notes)
+- [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/docs/ja/guides/comparison-v0-v1)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/ja/releases/release-notes-v1.0.0)
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 

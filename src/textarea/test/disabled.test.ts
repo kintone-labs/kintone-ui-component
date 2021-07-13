@@ -7,7 +7,7 @@ describe("confirm disabled default prop is false", () => {
   it("confirm disabled default prop is false", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
   });
@@ -19,7 +19,7 @@ describe("disabled constructor set successfully", () => {
   it("disabled constructor set successfully'", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(true);
   });
@@ -32,7 +32,7 @@ describe("disabled prop set to true successfully", () => {
   it("disabled prop set to true successfully'", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(true);
   });
@@ -45,7 +45,7 @@ describe("disabled prop set to false successfully", () => {
   it("disabled prop set to false successfully'", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
   });
@@ -58,7 +58,7 @@ describe("disabled default prop set to null successfully", () => {
   it("disabled default prop set to null successfully'", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
   });
@@ -72,7 +72,7 @@ describe("disabled prop set to null successfully", () => {
   it("disabled prop set to null successfully'", async () => {
     const el = await fixture(container);
     const inputEl = (await el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     )) as HTMLInputElement;
     await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
   });

@@ -7,7 +7,7 @@ original_id: release-notes-v1.0.3
 
 ## Overview
 
-Here are the [kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) Release Notes.
+Here are the [kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) Release Notes.<br>
 Code review automation, maintenances, and security updates have been made.
 
 ## Update details
@@ -21,5 +21,5 @@ Code review automation, maintenances, and security updates have been made.
 ### Security Updates
 - Updated dependent libraries: webpack, ssri, react-dev-utils, elliptic.
 
-### Document Fixes
+### Document
 - Fixed the sample code of the search box customization tutorial.
