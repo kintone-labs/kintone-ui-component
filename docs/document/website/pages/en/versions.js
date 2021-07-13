@@ -20,11 +20,13 @@ const Versions = (props) => {
       <Container className="mainContainer versionsContainer">
         <div className="post">
           <header className="postHeader">
-            <h1>kintone UI Component Versions</h1>
+            <h1>Kintone UI Component versions</h1>
           </header>
-          <p>本プロジェクトの新しいバージョンは定期的にリリースされます。</p>
+          <p>
+            A new version of this project will be released on a regular basis.
+          </p>
           <h3 id="latest">Current version (Stable)</h3>
-          <p>現在の最新の安定バージョンです。</p>
+          <p>Here is the current stable version.</p>
           <table className="versions">
             <tbody>
               <tr>
@@ -85,44 +87,18 @@ const Versions = (props) => {
               )}
             </tbody>
           </table>
-          <p>
-            ※ v0 系のバージョンは
+          <div>
+            ※ Please find the version of v0 series
             <a
               href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
               target="_blank"
               rel="noreferrer"
             >
-              こちら
+              {" "}
+              here
             </a>
-            をご確認ください。
-          </p>
-          <h3 id="rc">Pre-release versions</h3>
-          <p>
-            まだリリースされていない最新の変更も下記よりご確認いただけます。
-          </p>
-          <table className="versions">
-            <tbody>
-              <tr>
-                <th>master</th>
-                <td>
-                  {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/next/:id" */}
-                  <a
-                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                      props.language ? props.language + "/" : ""
-                    }next/getting-started/quick-start`}
-                  >
-                    Documentation
-                  </a>
-                </td>
-                <td>
-                  <a href={repoUrl} target="_blank" rel="noreferrer">
-                    Source Code
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            .
+          </div>
         </div>
       </Container>
     </div>

@@ -87,15 +87,6 @@ export class Checkbox extends LitElement {
     }
   }
 
-  private _updateContainerWidth() {
-    let width = this._labelEl.getBoundingClientRect().width;
-    const selectMenuWidth = this._selectMenuEl.getBoundingClientRect().width;
-    if (width < selectMenuWidth) {
-      width = selectMenuWidth;
-    }
-    this.style.width = width + "px";
-  }
-
   private _getNewValue(value: string) {
     if (this.value.every(val => val !== value)) {
       return [...this.value, value];
@@ -220,8 +211,8 @@ export class Checkbox extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-checkbox__group">
-        <legend class="kuc-checkbox__group__label" ?hidden="${!this.label}">
+      <div class="kuc-checkbox__group">
+        <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
           <span class="kuc-checkbox__group__label__text">${this.label}</span
           ><!--
           --><span
@@ -229,7 +220,7 @@ export class Checkbox extends LitElement {
             ?hidden="${!this.requiredIcon}"
             >*</span
           >
-        </legend>
+        </div>
         <div
           class="kuc-checkbox__group__select-menu"
           ?borderVisible=${this.borderVisible}
@@ -238,7 +229,7 @@ export class Checkbox extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-checkbox__error"
+          class="kuc-checkbox__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -246,7 +237,7 @@ export class Checkbox extends LitElement {
         >
           ${this.error}
         </div>
-      </fieldset>
+      </div>
     `;
   }
 
@@ -254,7 +245,6 @@ export class Checkbox extends LitElement {
     this._inputEls.forEach((inputEl: HTMLInputElement) => {
       inputEl.checked = this.value.indexOf(inputEl.value) > -1;
     });
-    this._updateContainerWidth();
   }
 
   private _getDuplicatedIndex(values: string[]) {
@@ -311,9 +301,10 @@ export class Checkbox extends LitElement {
         kuc-checkbox {
           font-size: 14px;
           color: #333333;
-          display: inline-block;
+          display: inline-table;
           vertical-align: top;
           width: 239px;
+          min-width: 239px;
         }
         kuc-checkbox[hidden] {
           display: none;
@@ -404,7 +395,7 @@ export class Checkbox extends LitElement {
           vertical-align: middle;
           white-space: nowrap;
         }
-        .kuc-checkbox__error {
+        .kuc-checkbox__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -412,8 +403,9 @@ export class Checkbox extends LitElement {
           color: #ffffff;
           margin: 8px 0;
           word-break: break-all;
+          white-space: normal;
         }
-        .kuc-checkbox__error[hidden] {
+        .kuc-checkbox__group__error[hidden] {
           display: none;
         }
       </style>

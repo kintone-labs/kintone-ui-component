@@ -16,14 +16,14 @@ const siteConfig = {
   organizationName: "kintone-labs",
   headerLinks: [
     { doc: "getting-started/quick-start", label: "Documentation" },
-    { blog: true, label: "Releases" },
+    { doc: "releases/release-notes", label: "Releases" },
     {
       href: "https://github.com/kintone-labs/kintone-ui-component",
       label: "GitHub",
       external: true,
     },
     { search: true },
-    { languages: false },
+    { languages: true }
   ],
   headerIcon: "img/kuc_logo_white.png",
   footerIcon: "img/kuc_box_white.png",
@@ -52,14 +52,12 @@ const siteConfig = {
   blogSidebarCount: "ALL",
   blogSidebarTitle: { default: "Recent posts", all: "All posts" },
   scripts: [
+    "/js/gtmHeader.js",
     "/js/extra.js",
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     "/js/code-block-button.js",
   ],
-  // For Google Analytics
-  gaTrackingId: "G-L6E92QWQ8G",
-  gaGtag: true,
   // For Algolia DocSearch
   algolia: {
     apiKey: "df2e0c3351b9e7e24fd66f2e79e615d0",

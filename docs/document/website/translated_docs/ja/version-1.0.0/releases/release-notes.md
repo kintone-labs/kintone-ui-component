@@ -1,18 +1,19 @@
 ---
+id: version-1.0.0-release-notes
 title: v1.0.0 Release Notes
+sidebar_label: v1.0.0 Release Notes
+original_id: release-notes
 ---
 
 ## 概要
 
-[kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) のリリースノートです。  
+[kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) のリリースノートです。<br>
 v0 から v1 にアップデートした背景や今後の計画についてご紹介します。
 
 ## 背景
 
-v0 では様々ご要望をいただき、対応コンポーネントや機能の追加を行いました。
+v0 では様々ご要望をいただき、対応コンポーネントや機能の追加を行いました。<br>
 この度 kintone カスタマイズを行うエンジニアの皆さんが kintone ライクなパーツをより "簡単に" 作ることができるように、以下の検討を行い v1 としてリニューアルすることになりました。
-
-<!--truncate-->
 
 - v0 ユーザーからいただいた機能要望への対応
 - 具体的なユースケースに紐づいた仕様/機能検討
@@ -44,18 +45,18 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
-      id: 'kuc_button' // id プロパティを追加
+      text: 'Search',
+      id: 'kuc_button' // Add id property
     });
-    header.appendChild(button);　// ボタンを表示
+    header.appendChild(button);　// Show button
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
-    header.appendChild(button.render());　// ボタンを表示
+    header.appendChild(button.render());　// Show button
 ```
 
 - メソッドの呼び出しではなく、プロパティの利用で設定するように使用性の向上。
@@ -65,20 +66,20 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
 ```JavaScript
     const button = new Kuc.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
       id: 'kuc_button'
     });
     header.appendChild(button);
-    button.text = '登録'; // text プロパティを更新
+    button.text = 'Register'; // Update text property
 ```
 2. v0.7.4
 ```JavaScript
     const button = new kintoneUIComponent.Button({
       type: 'submit',
-      text: '検索',
+      text: 'Search',
     });
     header.appendChild(button.render());
-    button.setText('登録'); // text プロパティを更新
+    button.setText('Register'); // Update text property
 ```
 ​
 - kintone カスタマイズで実際に使う機能に絞って実装。​
@@ -90,8 +91,8 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
   - JavaScript のみで実装するのではなく、フレームワークを導入することで内部コードの品質向上を目指しました。
   - WebComponents でのインターフェースの提供は、今後検討します。
 
-以上により、v0 に比べてより使いやすい、実際の kintone カスタマイズのユースケースに沿ったコンポーネント提供を目指しました。
-v0 と v1 の書き方の違いについては[こちら](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1) の記事で解説しておりますので、詳細ご確認ください。
+以上により、v0 に比べてより使いやすい、実際の kintone カスタマイズのユースケースに沿ったコンポーネント提供を目指しました。<br>
+v0 と v1 の書き方の違いについては[こちら](../guides/comparison-v0-v1.md)の記事で解説しておりますので、詳細ご確認ください。
 
 ## 今後の計画
 
@@ -107,9 +108,9 @@ v0 と v1 の書き方の違いについては[こちら](https://kintone-ui-com
 
 ## おわりに
 
-最後まで読んでいただきありがとうございます。
-kintone UI Component v1 は、kintone カスタマイズやプラグイン開発に関わるエンジニアにとって使いやすい、便利なライブラリを目指して改良していきます。
+最後まで読んでいただきありがとうございます。<br>
+kintone UI Component v1 は、kintone カスタマイズやプラグイン開発に関わるエンジニアにとって使いやすい、便利なライブラリを目指して改良していきます。<br>
 今後ともご期待ください。
 
-フィードバックや改善リクエストにつきましては [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) へコメントいただけると幸いです。
+フィードバックや改善リクエストにつきましては [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) へコメントいただけると幸いです。<br>
 よろしくお願いいたします。

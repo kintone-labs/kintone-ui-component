@@ -50,7 +50,7 @@ kintone UI Component は UMD, CDN, npm パッケージから使用可能です�
   https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
-> unpkg はサイボウズが提供している CDN サービスではありません。検証用として利用することをお勧めします。  
+> unpkg はサイボウズが提供している CDN サービスではありません。検証用として利用することをお勧めします。<br />
 > 本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の kuc.min.js をご利用ください。
 
 ### npm
@@ -90,33 +90,32 @@ text.addEventListener("change", event => {
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
 > 各対応ブラウザ最新版での動作を確認しております。
-> kintone UI Component v1 は現在 kintone で使用されているライブラリとの兼ね合いで、IE11 では正常に動作しません。
 
 ## v0の使い方
 kintone UI Component v0 を使用する場合は、こちらのリンクをご確認ください。
 - [GitHub リポジトリ](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev)
 - [ドキュメントサイト](https://kintone-labs.github.io/kintone-ui-component/latest)
 
-> kintone UI Component v1 リリースに伴い、v0 については主に不具合改修とライブラリアップデートを継続します。
+> kintone UI Component v1 リリースに伴い、v0 については主に不具合改修とライブラリアップデートを継続します。<br />
 > 新規の機能開発は現在予定しておりません。
 
 ## 移行ガイド
-v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。
+v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />
 詳細は下記の記事をご参照ください。
-- [v0 と v1 の書き方の違い解説](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/blog/2021/03/04/v1.0.0-release-notes)
+- [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/docs/ja/guides/comparison-v0-v1)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/ja/releases/release-notes-v1.0.0)
+
+> v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
 ## ご要望
 kintone UI Component に関する質問や要望などありましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録ください。

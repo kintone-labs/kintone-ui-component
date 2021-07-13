@@ -7,7 +7,7 @@ describe("label default prop is null", () => {
   it("label default prop is null", async () => {
     const el = await fixture(container);
     const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__label__text"
+      ".kuc-multi-choice__group__label__text"
     )) as HTMLSpanElement;
     await expect(labelEl).to.be.visible;
   });
@@ -19,7 +19,7 @@ describe("label prop set successfully", () => {
   it("label prop set successfully", async () => {
     const el = await fixture(container);
     const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__label__text"
+      ".kuc-multi-choice__group__label__text"
     )) as HTMLSpanElement;
     await expect(labelEl.innerText).to.have.equals("options-label");
   });
@@ -34,7 +34,7 @@ describe("label prop replace successfully", () => {
   it("label prop replace successfully", async () => {
     const el = await fixture(container);
     const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__label__text"
+      ".kuc-multi-choice__group__label__text"
     )) as HTMLSpanElement;
     await expect(labelEl.textContent).to.have.equals("replace-label");
   });
@@ -49,7 +49,7 @@ describe("label default prop set to null", () => {
   it("label default prop set to null", async () => {
     const el = await fixture(container);
     const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__label"
+      ".kuc-multi-choice__group__label"
     )) as HTMLSpanElement;
     await expect(labelEl).to.be.visible;
   });
@@ -65,7 +65,7 @@ describe("label prop set to null", () => {
   it("label prop set to null", async () => {
     const el = await fixture(container);
     const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__label"
+      ".kuc-multi-choice__group__label"
     )) as HTMLSpanElement;
     await expect(labelEl).to.be.visible;
   });

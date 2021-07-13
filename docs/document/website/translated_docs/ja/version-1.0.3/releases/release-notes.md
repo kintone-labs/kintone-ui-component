@@ -1,10 +1,13 @@
 ---
+id: version-1.0.3-release-notes
 title: v1.0.3 Release Notes
+sidebar_label: v1.0.3 Release Notes
+original_id: release-notes
 ---
 
 ## 概要
 
-[kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) のリリースノートです。  
+[kintone UI Component v1.0.3](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.3) のリリースノートです。<br>
 セキュリティアップデート対応や内部実装の修正を行いました。
 
 ## アップデート内容
@@ -21,6 +24,6 @@ title: v1.0.3 Release Notes
 ### セキュリティアップデート
 - セキュリティアラートへの対応：webpack, ssri, react-dev-utils, elliptic
 
-### ドキュメント修正
+### ドキュメント
 - v1.0.3 Release Notes の追加
 - 検索ボックスカスタマイズ記事のサンプルコード修正

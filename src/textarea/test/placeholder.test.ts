@@ -7,7 +7,7 @@ describe("confirm placeholder default prop is null", () => {
   it("confirm placeholder default prop is null", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("");
   });
@@ -19,7 +19,7 @@ describe("placeholder constructor set successfully", () => {
   it("placeholder constructor set successfully'", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Fruit");
   });
@@ -32,7 +32,7 @@ describe("placeholder prop set successfully", () => {
   it("placeholder prop set successfully'", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Fruit");
   });
@@ -45,7 +45,7 @@ describe("placeholder prop replace successfully", () => {
   it("placeholder prop replace successfully'", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Food");
   });
@@ -58,7 +58,7 @@ describe("placeholder default prop set to null successfully", () => {
   it("placeholder default prop set to null successfully'", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("null");
   });
@@ -72,7 +72,7 @@ describe("placeholder prop set to null successfully", () => {
   it("placeholder prop set to null successfully'", async () => {
     const el = await fixture(container);
     const textAreaEl = el.querySelector(
-      ".kuc-textarea__textarea"
+      ".kuc-textarea__group__textarea"
     ) as HTMLTextAreaElement;
     expect(textAreaEl.getAttribute("placeholder")).to.be.equal("null");
   });

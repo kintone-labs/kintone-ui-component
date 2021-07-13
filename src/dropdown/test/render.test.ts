@@ -8,7 +8,14 @@ describe("Render successfully without props", () => {
     const tagname = (await el).tagName;
     expect(tagname.toLowerCase()).to.be.equal("kuc-dropdown");
     expect(el).dom.to.equalSnapshot({
-      ignoreAttributes: ["aria-describedby", "aria-labelledby", "id", "aria-live", "type", "style"]
+      ignoreAttributes: [
+        "aria-describedby",
+        "aria-labelledby",
+        "id",
+        "aria-live",
+        "type",
+        "style"
+      ]
     });
   });
 });
@@ -45,13 +52,13 @@ describe("Render successfully with showing and hiding selection list", () => {
   it("displaed select item", async () => {
     const el = await fixture(container);
     const toggle = (await el.querySelector(
-      ".kuc-dropdown__toggle"
+      ".kuc-dropdown__group__toggle"
     )) as HTMLDivElement;
     const itemsEl = (await el.querySelector(
-      ".kuc-dropdown__select-menu"
+      ".kuc-dropdown__group__select-menu"
     )) as HTMLDivElement;
     const outer = (await el.querySelector(
-      ".kuc-dropdown__label__text"
+      ".kuc-dropdown__group__label__text"
     )) as HTMLDivElement;
 
     toggle.click();
