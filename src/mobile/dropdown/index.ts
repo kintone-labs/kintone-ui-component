@@ -118,7 +118,10 @@ export class MobileDropdown extends LitElement {
         >
       </label>
       <div class="kuc-mobile-dropdown__input-form">
-        <div class="kuc-mobile-dropdown__input-form__select">
+        <div
+          class="kuc-mobile-dropdown__input-form__select"
+          aria-required=${this.requiredIcon}
+        >
           <select
             class="kuc-mobile-dropdown__input-form__select__input"
             id="${this._GUID}-label"
