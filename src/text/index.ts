@@ -2,7 +2,7 @@ import { html, property } from "lit-element";
 import { v4 as uuid } from "uuid";
 import { KucBase, dispatchCustomEvent, validateProps } from "../base/kuc-base";
 
-export type TextProps = {
+type TextProps = {
   className?: string;
   error?: string;
   id?: string;
