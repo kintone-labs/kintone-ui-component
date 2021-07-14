@@ -52,6 +52,7 @@ class Index extends React.PureComponent {
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const imgUrl = (url) => `${baseUrl}${url}`;
 
     const SplashContainer = (props) => (
       <div className="homeContainer">
@@ -91,16 +92,35 @@ class Index extends React.PureComponent {
       <Container padding={["bottom", "top"]}>
         <h2 align="center">Use Case</h2>
         <div className="usecase_sentense" align="center">
-          <span>
-            Kintone UI Component allows you to create Kintone-like components
-            easily. This library is useful to build Kintone customization and
-            plug-in.
-          </span>
+          {(() => {
+            if (language === "ja") {
+              return (
+                <span>
+                  kintone UI Component は、kintone
+                  一覧画面のヘッダーメニュー要素など取得できる要素、kintone
+                  プラグイン設定画面やカスタマイズビューに配置することで、kintone
+                  ライクな見た目を実現することができます。
+                </span>
+              );
+            }
+            return (
+              <span>
+                Kintone UI Component allows you to create Kintone-like
+                components easily. This library is useful to build Kintone
+                customization and plug-in.
+              </span>
+            );
+          })()}
         </div>
         <div className="usecase_group">
-          <h6>[ Sample code & the Button Component image ]</h6>
+          {(() => {
+            if (language === "ja") {
+              return <h6>[ Button Component イメージ & サンプルコード ]</h6>;
+            }
+            return <h6>[ Sample code & the Button Component image ]</h6>;
+          })()}
           <div className="usecase_image">
-            <img src="img/usecase_button.png" alt="button usecase" />
+            <img src={imgUrl("img/usecase_button.png")} alt="button usecase" />
           </div>
           <div className="usecase_code">
             <MarkdownBlock>{textContent.codeExample}</MarkdownBlock>
@@ -113,28 +133,69 @@ class Index extends React.PureComponent {
       <Container padding={["bottom", "top"]}>
         <div className="descriptionSection" style={{ textAlign: "left" }}>
           <blockquote className="quoteTop">
-            <p>
-              <strong className="quoteTop_title">Support Policy</strong>
-              <br />
-              <br />
-              You can ask questions and/or submit requests on
-              <a
-                href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {" "}
-                GitHub Issue
-              </a>
-              .
-              <br />
-              <br />
-              You are allowed to change the source code, redistribute it, and
-              use it in accordance with the license.
-              <br />
-              For more details of the license type please refer to the library
-              page or the GitHub repository.
-            </p>
+            {(() => {
+              if (language === "ja") {
+                return (
+                  <p>
+                    <strong className="quoteTop_title">Support Policy</strong>
+                    <br />
+                    <br />
+                    kintone UI Component
+                    の仕様については、テクニカルサポートへお問い合わせいただけます。
+                    <br />
+                    <a
+                      href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      サポートへのお問い合わせ方法
+                    </a>
+                    をご確認の上、お問合せください。
+                    <br />
+                    <br />
+                    その他{" "}
+                    <a
+                      href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GitHub Issue
+                    </a>{" "}
+                    にてご質問や機能リクエストを受け付けております。
+                    <br />
+                    <br />
+                    ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。
+                    <br />
+                    ライセンスの種別はクライアントライブラリのページまたは
+                    GitHub のリポジトリでご確認ください。
+                  </p>
+                );
+              }
+              return (
+                <p>
+                  <strong className="quoteTop_title">Support Policy</strong>
+                  <br />
+                  <br />
+                  You can ask questions and/or submit requests on
+                  <a
+                    href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    GitHub Issue
+                  </a>
+                  .
+                  <br />
+                  <br />
+                  You are allowed to change the source code, redistribute it,
+                  and use it in accordance with the license.
+                  <br />
+                  For more details of the license type please refer to the
+                  library page or the GitHub repository.
+                </p>
+              );
+            })()}
           </blockquote>
         </div>
       </Container>
