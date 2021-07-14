@@ -88,10 +88,10 @@ describe("MobileDropdown", () => {
       for (let i = 0; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
-        expect(value).to.have.equal(expectedValues[i]);
+        expect(value).to.have.equal(expectedValues[i + 1]);
 
         const label = itemEl.textContent?.trim();
-        expect(label).to.have.equal(expectedLabels[i]);
+        expect(label).to.have.equal(expectedLabels[i + 1]);
       }
     });
 

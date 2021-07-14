@@ -56,7 +56,7 @@ describe("MobileDropdown", () => {
       });
       const el = await fixture(container);
       const selectEl = el.querySelector("select") as HTMLSelectElement;
-      expect(selectEl.value).to.be.equal("");
+      expect(selectEl.value).to.be.equal("-----");
       expect(container.value).to.be.equal("");
     });
 
@@ -65,7 +65,7 @@ describe("MobileDropdown", () => {
       container.value = "value";
       const el = await fixture(container);
       const selectEl = el.querySelector("select") as HTMLSelectElement;
-      expect(selectEl.value).to.be.equal("value");
+      expect(selectEl.value).to.be.equal("");
       expect(container.value).to.be.equal("value");
     });
   });
