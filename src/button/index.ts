@@ -1,6 +1,7 @@
-import { LitElement, html, property } from "lit-element";
+import { html, property } from "lit-element";
+import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 
-type ButtonProps = {
+export type ButtonProps = {
   className?: string;
   id?: string;
   text?: string;
@@ -9,26 +10,11 @@ type ButtonProps = {
   visible?: boolean;
 };
 
-export class Button extends LitElement {
+export class Button extends KucBase {
   @property({ type: String }) text = "";
   @property({ type: String }) type = "normal";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) visible = true;
-
-  constructor(props?: ButtonProps) {
-    super();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.text = props.text !== undefined ? props.text : this.text;
-    this.type = props.type !== undefined ? props.type : this.type;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-  }
 
   private _updateVisible() {
     if (!this.visible) {
@@ -40,19 +26,7 @@ export class Button extends LitElement {
 
   private _handleClickButton(event: MouseEvent) {
     event.stopPropagation();
-    this._dispatchCustomEvent("click");
-  }
-
-  private _dispatchCustomEvent(eventName: string) {
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "click");
   }
 
   private _getButtonColorType() {
@@ -165,6 +139,7 @@ export class Button extends LitElement {
     `;
   }
 }
+
 if (!window.customElements.get("kuc-button")) {
   window.customElements.define("kuc-button", Button);
 }

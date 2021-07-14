@@ -1,7 +1,8 @@
-import { LitElement, html, property } from "lit-element";
+import { html, property } from "lit-element";
 import { v4 as uuid } from "uuid";
+import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 
-type TextProps = {
+export type TextProps = {
   className?: string;
   error?: string;
   id?: string;
@@ -21,7 +22,7 @@ type CustomEventDetail = {
   oldValue?: string;
 };
 
-export class Text extends LitElement {
+export class Text extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -36,28 +37,8 @@ export class Text extends LitElement {
   private _GUID: string;
 
   constructor(props?: TextProps) {
-    super();
+    super(props);
     this._GUID = this._generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.prefix = props.prefix !== undefined ? props.prefix : this.prefix;
-    this.suffix = props.suffix !== undefined ? props.suffix : this.suffix;
-    this.textAlign =
-      props.textAlign !== undefined ? props.textAlign : this.textAlign;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
   private _generateGUID(): string {
@@ -74,7 +55,7 @@ export class Text extends LitElement {
 
   private _handleFocusInput(event: FocusEvent) {
     const detail: CustomEventDetail = { value: this.value };
-    this._dispatchCustomEvent("focus", detail);
+    dispatchCustomEvent(this, "focus", detail);
   }
 
   private _handleChangeInput(event: Event) {
@@ -83,20 +64,7 @@ export class Text extends LitElement {
     const detail: CustomEventDetail = { value: "", oldValue: this.value };
     this.value = targetEl.value;
     detail.value = this.value;
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   render() {
