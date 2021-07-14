@@ -1,7 +1,7 @@
 import { html, property } from "lit-element";
-import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent, validateProps } from "../base/kuc-base";
 
-export type ButtonProps = {
+type ButtonProps = {
   className?: string;
   id?: string;
   text?: string;
@@ -15,6 +15,14 @@ export class Button extends KucBase {
   @property({ type: String }) type = "normal";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) visible = true;
+
+  constructor(props?: ButtonProps) {
+    super();
+
+    if (!props || typeof props !== "object") return;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
+  }
 
   private _updateVisible() {
     if (!this.visible) {

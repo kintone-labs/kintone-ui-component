@@ -18,34 +18,23 @@ export function dispatchCustomEvent(
   return el.dispatchEvent(event);
 }
 
+export function validateProps<Type>(props: Type) {
+  const validProps = { ...props };
+
+  for (const _propName in validProps) {
+    if (!Object.prototype.hasOwnProperty.call(validProps, _propName)) {
+      continue;
+    }
+
+    if (validProps[_propName] === undefined) {
+      delete validProps[_propName];
+    }
+  }
+
+  return validProps;
+}
+
 export abstract class KucBase extends LitElement {
-  private _initProps: any;
-
-  constructor(props?: any) {
-    super();
-    if (!props || typeof props !== "object") return;
-    this._initProps = props;
-  }
-
-  private _setProps<Type>(props: Type) {
-    const validProps = { ...props };
-
-    // for (const _propName in validProps) {
-    //   if (!Object.prototype.hasOwnProperty.call(validProps, _propName)) {
-    //     continue;
-    //   }
-
-    //   if (validProps[_propName] === undefined) {
-    //     delete validProps[_propName];
-    //   }
-    // }
-    Object.assign(this, validProps);
-  }
-
-  firstUpdated() {
-    this._setProps(this._initProps);
-  }
-
   createRenderRoot() {
     return this;
   }

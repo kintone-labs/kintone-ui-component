@@ -1,6 +1,6 @@
 import { html, property } from "lit-element";
 import { v4 as uuid } from "uuid";
-import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent, validateProps } from "../base/kuc-base";
 
 export type TextProps = {
   className?: string;
@@ -37,8 +37,12 @@ export class Text extends KucBase {
   private _GUID: string;
 
   constructor(props?: TextProps) {
-    super(props);
+    super();
     this._GUID = this._generateGUID();
+
+    if (!props || typeof props !== "object") return;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _generateGUID(): string {
