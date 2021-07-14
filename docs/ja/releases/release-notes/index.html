@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ja"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>v1.0.4 Release Notes · kintone UI Component</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概要"/><meta name="docsearch:version" content="1.0.4"/><meta name="docsearch:language" content="ja"/><meta property="og:title" content="v1.0.4 Release Notes · kintone UI Component"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kintone-ui-component.netlify.app/"/><meta property="og:description" content="## 概要"/><meta property="og:image" content="https://kintone-ui-component.netlify.app/img/kuc_box_yellow.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kintone-ui-component.netlify.app/img/kuc_box_yellow_twitter.png"/><link rel="shortcut icon" href="/img/kuc_box_yellow.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="/js/gtmHeader.js"></script><script type="text/javascript" src="/js/extra.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-button.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ja"><img class="logo" src="/img/kuc_logo_white.png" alt="kintone UI Component"/></a><a href="/ja/versions"><h3>1.0.4</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/ja/getting-started/quick-start" target="_self">Documentation</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/ja/releases/release-notes" target="_self">Releases</a></li><li class=""><a href="https://github.com/kintone-labs/kintone-ui-component" target="_blank">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>日本語</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/releases/release-notes">English</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Releases</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Releases<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ja/releases/release-notes">v1.0.4 Release Notes</a></li><li class="navListItem"><a class="navItem" href="/docs/ja/releases/release-notes-v1.0.3">v1.0.3 Release Notes</a></li><li class="navListItem"><a class="navItem" href="/docs/ja/releases/release-notes-v1.0.2">v1.0.2 Release Notes</a></li><li class="navListItem"><a class="navItem" href="/docs/ja/releases/release-notes-v1.0.1">v1.0.1 Release Notes</a></li><li class="navListItem"><a class="navItem" href="/docs/ja/releases/release-notes-v1.0.0">v1.0.0 Release Notes</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">v1.0.4 Release Notes</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概要"></a><a href="#概要" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概要</h2>
+<p><a href="https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.4">kintone UI Component v1.0.4</a> のリリースノートです。<br>
+英語のドキュメントサポート, 不具合修正, メンテナンス, セキュリティアップデート対応を行いました。</p>
+<h2><a class="anchor" aria-hidden="true" id="アップデート内容"></a><a href="#アップデート内容" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>アップデート内容</h2>
+<p>詳細は以下になります。</p>
+<h3><a class="anchor" aria-hidden="true" id="不具合修正"></a><a href="#不具合修正" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>不具合修正</h3>
+<ul>
+<li>Issue 対応：&quot;Dropdown display collapses on group field&quot; <a href="https://github.com/kintone-labs/kintone-ui-component/issues/512">#512</a> @juridon<br>
+グループフィールド内でも Desktop コンポーネントが正しく表示されるように修正</li>
+<li>TextArea コンポーネントに &quot;background-color: #ffffff;&quot; の設定を追加</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="メンテナンス"></a><a href="#メンテナンス" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>メンテナンス</h3>
+<ul>
+<li>ソースコードの coverage とユニットテストの品質を改善</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="セキュリティアップデート"></a><a href="#セキュリティアップデート" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>セキュリティアップデート</h3>
+<ul>
+<li>依存ライブラリを更新：webpack, ws, browserslist, postcss, hosted-git-info, xmlhttprequest-ssl, y18n</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="ドキュメント"></a><a href="#ドキュメント" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ドキュメント</h3>
+<ul>
+<li>ドキュメントの英語対応</li>
+<li>Quick Start の webpack ガイドを更新</li>
+<li>v0 で提供していた React 版のステータスを記載：v1 では現在対応予定なし</li>
+<li>Internet Explorer 11 の非サポート（Internet Explorer 11 は 2022年6月15日にサポート終了予定）<br>
+<a href="https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/">https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/5/2021</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/ja/releases/release-notes-v1.0.3"><span>v1.0.3 Release Notes</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概要">概要</a></li><li><a href="#アップデート内容">アップデート内容</a><ul class="toc-headings"><li><a href="#不具合修正">不具合修正</a></li><li><a href="#メンテナンス">メンテナンス</a></li><li><a href="#セキュリティアップデート">セキュリティアップデート</a></li><li><a href="#ドキュメント">ドキュメント</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><noscript><iframe title="googletagmanager" src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><section class="sitemap"><a href="/" class="nav-home"><img src="/img/kuc_box_white.png" alt="kintone UI Component" width="66" height="58"/></a><div><h5>Documentation</h5><a href="/docs/ja/getting-started/quick-start.html">Quick Start</a><a href="/docs/ja/components/desktop/button.html">Components</a></div><div><h5>Community</h5><a href="https://developer.cybozu.io/hc/ja/community/topics" target="_blank" rel="noreferrer noopener">cybozu developer network community topic</a><a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer noopener">GitHub issue</a></div></section><section class="copyright">Copyright © 2021 Cybozu Inc.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'df2e0c3351b9e7e24fd66f2e79e615d0',
+                indexName: 'kintone',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ja","version:1.0.4"]}
+              });
+            </script></body></html>
