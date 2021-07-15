@@ -166,8 +166,7 @@ class Index extends React.PureComponent {
                     <br />
                     ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。
                     <br />
-                    ライセンスの種別はクライアントライブラリのページまたは
-                    GitHub のリポジトリでご確認ください。
+                    ライセンスの種別は GitHub のリポジトリでご確認ください。
                   </p>
                 );
               }
@@ -192,7 +191,7 @@ class Index extends React.PureComponent {
                   and use it in accordance with the license.
                   <br />
                   For more details of the license type please refer to the
-                  library page or the GitHub repository.
+                  GitHub repository.
                 </p>
               );
             })()}

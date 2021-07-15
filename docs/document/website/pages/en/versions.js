@@ -19,9 +19,20 @@ const Versions = (props) => {
     <div className="docMainWrapper wrapper">
       <Container className="mainContainer versionsContainer">
         <div className="post">
-          <header className="postHeader">
-            <h1>Kintone UI Component versions</h1>
-          </header>
+          {(() => {
+            if (language === "ja") {
+              return (
+                <header className="postHeader">
+                  <h1>kintone UI Component versions</h1>
+                </header>
+              );
+            }
+            return (
+              <header className="postHeader">
+                <h1>Kintone UI Component versions</h1>
+              </header>
+            );
+          })()}
           {(() => {
             if (language === "ja") {
               return (
