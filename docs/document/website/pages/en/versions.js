@@ -12,7 +12,7 @@ const CWD = process.cwd();
 const versions = require(`${CWD}/versions.json`);
 
 const Versions = (props) => {
-  const { config: siteConfig } = props;
+  const { config: siteConfig, language = "" } = props;
   const latestVersion = versions[0];
   const repoUrl = `https://github.com/${siteConfig.organizationName}/${siteConfig.projectName}`;
   return (
@@ -22,11 +22,29 @@ const Versions = (props) => {
           <header className="postHeader">
             <h1>Kintone UI Component versions</h1>
           </header>
-          <p>
-            A new version of this project will be released on a regular basis.
-          </p>
-          <h3 id="latest">Current version (Stable)</h3>
-          <p>Here is the current stable version.</p>
+          {(() => {
+            if (language === "ja") {
+              return (
+                <div>
+                  <p>
+                    本プロジェクトの新しいバージョンは定期的にリリースされます。
+                  </p>
+                  <h3 id="latest">Current version (Stable)</h3>
+                  <p>現在の最新の安定バージョンです。</p>
+                </div>
+              );
+            }
+            return (
+              <div>
+                <p>
+                  A new version of this project will be released on a regular
+                  basis.
+                </p>
+                <h3 id="latest">Current version (Stable)</h3>
+                <p>Here is the current stable version.</p>
+              </div>
+            );
+          })()}
           <table className="versions">
             <tbody>
               <tr>
@@ -87,18 +105,37 @@ const Versions = (props) => {
               )}
             </tbody>
           </table>
-          <div>
-            ※ Please find the version of v0 series
-            <a
-              href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {" "}
-              here
-            </a>
-            .
-          </div>
+          {(() => {
+            if (language === "ja") {
+              return (
+                <div>
+                  ※ v0 系のバージョンは
+                  <a
+                    href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    こちら
+                  </a>
+                  をご確認ください。
+                </div>
+              );
+            }
+            return (
+              <div>
+                ※ Please find the version of v0 series
+                <a
+                  href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  here
+                </a>
+                .
+              </div>
+            );
+          })()}
         </div>
       </Container>
     </div>
