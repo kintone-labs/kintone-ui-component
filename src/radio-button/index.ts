@@ -241,11 +241,10 @@ export class RadioButton extends LitElement {
     const context = this._createContextElm();
     const clonedElm = elm.cloneNode(true);
     context.appendChild(clonedElm);
-    document.body.appendChild(context);
+    this.appendChild(context);
 
     const width = context.getBoundingClientRect().width;
-    document.body.removeChild(context);
-
+    this.removeChild(context);
     return width;
   }
 
