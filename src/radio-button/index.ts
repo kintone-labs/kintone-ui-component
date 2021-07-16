@@ -315,7 +315,7 @@ export class RadioButton extends LitElement {
         }
 
         .kuc-radio-button__group__label {
-          display: block;
+          display: inline-block;
           padding: 4px 0 8px 0;
           white-space: nowrap;
         }
@@ -337,13 +337,9 @@ export class RadioButton extends LitElement {
         }
 
         .kuc-radio-button__group__select-menu {
-          display: inline-flex;
+          display: block;
           min-width: 239px;
           width: 100%;
-        }
-
-        .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
-          display: block;
         }
 
         .kuc-radio-button__group__select-menu[bordervisible] {
