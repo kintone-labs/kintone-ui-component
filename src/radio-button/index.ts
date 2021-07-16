@@ -234,6 +234,21 @@ export class RadioButton extends LitElement {
     context.style.overflow = "hidden";
     context.style.display = "inline-block";
     context.style.fontSize = "14px";
+    const lang = document.documentElement.lang;
+    switch (lang) {
+      case "ja":
+        context.style.fontFamily =
+          "'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
+        break;
+      case "zh":
+        context.style.fontFamily =
+          "'微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif";
+        break;
+      default:
+        context.style.fontFamily =
+          "'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
+        break;
+    }
     return context;
   }
 
@@ -241,10 +256,10 @@ export class RadioButton extends LitElement {
     const context = this._createContextElm();
     const clonedElm = elm.cloneNode(true);
     context.appendChild(clonedElm);
-    this.appendChild(context);
+    document.body.appendChild(context);
 
     const width = context.getBoundingClientRect().width;
-    this.removeChild(context);
+    document.body.removeChild(context);
     return width;
   }
 
