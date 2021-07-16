@@ -4,6 +4,7 @@ import {
   property,
   PropertyValues,
   svg,
+  query,
   queryAll
 } from "lit-element";
 import { v4 as uuid } from "uuid";
@@ -37,6 +38,15 @@ export class RadioButton extends LitElement {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: Boolean }) visible = true;
   @property({ type: Array }) items: Item[] = [];
+
+  @query(".kuc-radio-button__group__label")
+  private _labelEl!: HTMLDivElement;
+
+  @query(".kuc-radio-button__group__error")
+  private _errorEl!: HTMLDivElement;
+
+  @query(".kuc-radio-button__group__select-menu")
+  private _selectMenuEl!: HTMLDivElement;
 
   @queryAll(".kuc-radio-button__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
@@ -215,6 +225,39 @@ export class RadioButton extends LitElement {
     this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
       inputEl.checked = this.value === inputEl.value;
     });
+    this._updateErrorWidth();
+  }
+
+  private _createContextElm() {
+    const context = document.createElement("div");
+    context.style.height = "0px";
+    context.style.overflow = "hidden";
+    context.style.display = "inline-block";
+    context.style.fontSize = "14px";
+    return context;
+  }
+
+  private _getWidthElm(elm: HTMLElement) {
+    let width = elm.getBoundingClientRect().width;
+    if (width > 0) return width;
+
+    const context = this._createContextElm();
+    const clonedElm = elm.cloneNode(true);
+    context.appendChild(clonedElm);
+    document.body.appendChild(context);
+
+    width = context.getBoundingClientRect().width;
+    document.body.removeChild(context);
+
+    return width;
+  }
+
+  private _updateErrorWidth() {
+    const MIN_WIDTH = 239;
+    const labelWidth = this._getWidthElm(this._labelEl);
+    const menuWidth = this._getWidthElm(this._selectMenuEl);
+    if (labelWidth > MIN_WIDTH || menuWidth > MIN_WIDTH)
+      this._errorEl.style.width = "auto";
   }
 
   private _validateItems() {
@@ -267,7 +310,7 @@ export class RadioButton extends LitElement {
           border: none;
           padding: 0px;
           height: auto;
-          display: table-caption;
+          display: inline-block;
           margin: 0px;
           width: 100%;
         }
@@ -374,6 +417,7 @@ export class RadioButton extends LitElement {
         }
 
         .kuc-radio-button__group__error {
+          width: 239px;
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
