@@ -5,23 +5,17 @@
 * [Git](https://git-scm.com/)
 
 ## ESM usage with JSX
-**Step** 1: init your project
+**Step** 1: Run commands
 ```
-$ mkdir customization
-$ cd customization
-$ npm init
+$ npm install -g create-react-app
+$ create-react-app my-customization
+$ cd my-customization
+$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli webpack babel-loader
+$ npm install uglifyjs-webpack-plugin --save-dev
+$ npm install @kintone/kintone-ui-component
+$ rm -f src/*
 ```
-
-**Step** 2: install devDependencies
-```
-$ npm i -D webpack-cli webpack 
-$ npm i -D tslib babel-loader @babel/core @babel/preset-env @babel/preset-react
-$ npm i -D style-loader css-loader
-$ npm i -D react@16.8.6 react-dom@16.8.6
-$ npm i -D @kintone/kintone-ui-component
-```
-
-**Step** 3: creating /customization/src/index.jsx
+**Step** 2: Add index.jsx file to src/ folder:
 ```
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -45,57 +39,68 @@ kintone.events.on("app.record.index.show", function(ev) {
 });
 ```
 
-**Step** 4: creating /customization/webpack.config.js
+**Step** 3: Add webpack.config.js file to my-customization/ folder
 ```
 const path = require('path');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env = {}) => {
-  return {
-    entry: {
-      "customization.min": './src/index.jsx'
-    },
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: '[name].js',
-    },
-    module: {
-      rules: [
-        {
-          test: /\.jsx$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-react', '@babel/preset-env']
-            }
-          }
+    return {
+        entry: {
+            "my-customization.min": './src/index.jsx'
         },
-        {
-          test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].js',
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.jsx$/,
+                    exclude: /(node_modules|bower_components)/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['react-app','@babel/preset-env'],
+                            plugins: ["transform-class-properties"]
+                        }
+                    }
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                      { loader: "style-loader" },
+                      { loader: "css-loader" }
+                    ]
+                }
+            ]
+        },
+        watch: env.watch,
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({
+                    include: /\.min\.js$/,
+                })
+            ]
         }
-      ]
     }
-  }
 }
 ```
-
-**Step** 5: Add a script to buiding by webpack to package.json
+**Step** 4: Add a script to buiding by webpack to package.json
 ```
 "scripts": {
-    "build:webpack": "webpack --mode=production",
+    "build-webpack": "cross-env NODE_ENV=production webpack",
     ...
 }
 ```
 * Run command to build the customization file
 ```
-$ npm run build:webpack
+$ npm run build-webpack
 ```
 ```
 result:
-* ./dist/customization.min.js
+* ./dist/my-customization.min.js
 ```
-* Attach customization.min.js into [kintone app setting](https://help.kintone.com/en/k/user/js_customize.html)
+* Attach my-customization.min.js into [kintone app setting](https://help.kintone.com/en/k/user/js_customize.html)
 
 ![](../img/result.PNG)
 
