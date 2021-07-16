@@ -381,7 +381,7 @@ export class Dropdown extends LitElement {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
+  updated() {
     this._updateContainerWidth();
   }
 
