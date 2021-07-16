@@ -238,15 +238,12 @@ export class RadioButton extends LitElement {
   }
 
   private _getWidthElm(elm: HTMLElement) {
-    let width = elm.getBoundingClientRect().width;
-    if (width > 0) return width;
-
     const context = this._createContextElm();
     const clonedElm = elm.cloneNode(true);
     context.appendChild(clonedElm);
     document.body.appendChild(context);
 
-    width = context.getBoundingClientRect().width;
+    const width = context.getBoundingClientRect().width;
     document.body.removeChild(context);
 
     return width;
@@ -256,8 +253,10 @@ export class RadioButton extends LitElement {
     const MIN_WIDTH = 239;
     const labelWidth = this._getWidthElm(this._labelEl);
     const menuWidth = this._getWidthElm(this._selectMenuEl);
-    if (labelWidth > MIN_WIDTH || menuWidth > MIN_WIDTH)
-      this._errorEl.style.width = "auto";
+
+    let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
+    if (menuWidth > errorWidth) errorWidth = menuWidth;
+    this._errorEl.style.width = errorWidth + "px";
   }
 
   private _validateItems() {
@@ -417,7 +416,6 @@ export class RadioButton extends LitElement {
         }
 
         .kuc-radio-button__group__error {
-          width: 239px;
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
