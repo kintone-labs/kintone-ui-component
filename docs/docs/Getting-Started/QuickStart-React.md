@@ -9,7 +9,7 @@
 ```
 $ mkdir customization
 $ cd customization
-$ npm init
+$ npm init -y
 ```
 
 **Step** 2: install devDependencies
