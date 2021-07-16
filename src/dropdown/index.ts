@@ -108,6 +108,8 @@ export class Dropdown extends LitElement {
   }
 
   private _handleClickDropdownToggle(event: MouseEvent) {
+    this._buttonEl.focus();
+
     if (!this._selectorVisible) {
       this._itemsEl.forEach((itemEl: HTMLLIElement) => {
         if (
@@ -379,7 +381,7 @@ export class Dropdown extends LitElement {
     `;
   }
 
-  updated() {
+  updated(changedProperties: PropertyValues) {
     this._updateContainerWidth();
   }
 
