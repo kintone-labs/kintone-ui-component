@@ -8,6 +8,7 @@ import {
   queryAll
 } from "lit-element";
 import { v4 as uuid } from "uuid";
+import { getWidthElmByContext } from "../base/context";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -228,45 +229,10 @@ export class RadioButton extends LitElement {
     this._updateErrorWidth();
   }
 
-  private _createContextElm() {
-    const context = document.createElement("div");
-    context.style.height = "0px";
-    context.style.overflow = "hidden";
-    context.style.display = "inline-block";
-    context.style.fontSize = "14px";
-    const lang = document.documentElement.lang;
-    switch (lang) {
-      case "ja":
-        context.style.fontFamily =
-          "'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
-        break;
-      case "zh":
-        context.style.fontFamily =
-          "'微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif";
-        break;
-      default:
-        context.style.fontFamily =
-          "'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
-        break;
-    }
-    return context;
-  }
-
-  private _getWidthElm(elm: HTMLElement) {
-    const context = this._createContextElm();
-    const clonedElm = elm.cloneNode(true);
-    context.appendChild(clonedElm);
-    document.body.appendChild(context);
-
-    const width = context.getBoundingClientRect().width;
-    document.body.removeChild(context);
-    return width;
-  }
-
   private _updateErrorWidth() {
     const MIN_WIDTH = 239;
-    const labelWidth = this._getWidthElm(this._labelEl);
-    const menuWidth = this._getWidthElm(this._selectMenuEl);
+    const labelWidth = getWidthElmByContext(this._labelEl);
+    const menuWidth = getWidthElmByContext(this._selectMenuEl);
 
     let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     if (menuWidth > errorWidth) errorWidth = menuWidth;
