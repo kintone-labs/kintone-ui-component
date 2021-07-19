@@ -4,7 +4,7 @@ export function createContextElm(elm: HTMLElement) {
   height: 0px;
   overflow: hidden;
   display: inline-block;
-  font: ${window.getComputedStyle(elm).font}
+  font: ${window.getComputedStyle(elm).font};
   `;
   return context;
 }
