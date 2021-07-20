@@ -59,6 +59,14 @@ export class MobileMultiChoice extends LitElement {
     return uuid();
   }
 
+  private _updateVisible() {
+    if (!this.visible) {
+      this.setAttribute("hidden", "");
+    } else {
+      this.removeAttribute("hidden");
+    }
+  }
+
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
@@ -127,6 +135,7 @@ export class MobileMultiChoice extends LitElement {
   }
 
   render() {
+    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <label
@@ -143,7 +152,10 @@ export class MobileMultiChoice extends LitElement {
         >
       </label>
       <div class="kuc-mobile-multi-choice__input-form">
-        <div class="kuc-mobile-multi-choice__input-form__select">
+        <div
+          class="kuc-mobile-multi-choice__input-form__select
+          ${this.requiredIcon ? "kuc--required" : ""}"
+        >
           <select
             class="kuc-mobile-multi-choice__input-form__select__input"
             id="${this._GUID}-label"
@@ -239,7 +251,7 @@ export class MobileMultiChoice extends LitElement {
           max-width: 100%;
         }
 
-        .kuc-mobile-multi-choice__input-form__select[aria-required="true"] {
+        .kuc-mobile-multi-choice__input-form__select.kuc--required {
           border: 1px solid #cf4a38;
         }
 
