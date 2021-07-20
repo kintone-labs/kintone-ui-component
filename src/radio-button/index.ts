@@ -164,6 +164,7 @@ export class RadioButton extends LitElement {
           class="kuc-radio-button__group__select-menu__item__input"
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
+          tabindex=${this._getTabIndex(index, item, this.items)}
           aria-required=${this.requiredIcon}
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
@@ -180,6 +181,13 @@ export class RadioButton extends LitElement {
         </label>
       </div>
     `;
+  }
+
+  private _getTabIndex(index: number, item: Item, items: Item[]) {
+    if (index === 0 && items.filter(e => e.value === this.value).length === 0)
+      return "0";
+    if (item.value === this.value) return "0";
+    return "-1";
   }
 
   update(changedProperties: PropertyValues) {
