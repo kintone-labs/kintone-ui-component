@@ -127,8 +127,8 @@
             id="current_vesion"
             style="text-decoration: underline;"
             href="../../versions"
-            data-version="0.8.0"
-          >v0.8.0</a>
+            data-version="0.8.1"
+          >v0.8.1</a>
         </div>
       </div>
 
@@ -667,16 +667,19 @@
 <li><a href="https://git-scm.com/">Git</a></li>
 </ul>
 <h2 id="esm-usage-with-jsx">ESM usage with JSX</h2>
-<p><strong>Step</strong> 1: Run commands</p>
-<pre><code>$ npm install -g create-react-app
-$ create-react-app my-customization
-$ cd my-customization
-$ npm install cross-env babel-preset-stage-0 css-loader style-loader webpack-cli webpack babel-loader
-$ npm install uglifyjs-webpack-plugin --save-dev
-$ npm install @kintone/kintone-ui-component
-$ rm -f src/*
+<p><strong>Step</strong> 1: init your project</p>
+<pre><code>$ mkdir customization
+$ cd customization
+$ npm init -y
 </code></pre>
-<p><strong>Step</strong> 2: Add index.jsx file to src/ folder:</p>
+<p><strong>Step</strong> 2: install devDependencies</p>
+<pre><code>$ npm i -D webpack-cli webpack 
+$ npm i -D tslib babel-loader @babel/core @babel/preset-env @babel/preset-react
+$ npm i -D style-loader css-loader
+$ npm i -D react@16.8.6 react-dom@16.8.6
+$ npm i -D @kintone/kintone-ui-component
+</code></pre>
+<p><strong>Step</strong> 3: creating /customization/src/index.jsx</p>
 <pre><code>import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from '@kintone/kintone-ui-component';
@@ -698,67 +701,55 @@ kintone.events.on(&quot;app.record.index.show&quot;, function(ev) {
     ReactDOM.render(&lt;MyCustomization /&gt;, kintoneSpaceElement);
 });
 </code></pre>
-<p><strong>Step</strong> 3: Add webpack.config.js file to my-customization/ folder</p>
+<p><strong>Step</strong> 4: creating /customization/webpack.config.js</p>
 <pre><code>const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = (env = {}) =&gt; {
-    return {
-        entry: {
-            &quot;my-customization.min&quot;: './src/index.jsx'
+  return {
+    entry: {
+      &quot;customization.min&quot;: './src/index.jsx'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-react', '@babel/preset-env']
+            }
+          }
         },
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: '[name].js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.jsx$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['react-app','@babel/preset-env'],
-                            plugins: [&quot;transform-class-properties&quot;]
-                        }
-                    }
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                      { loader: &quot;style-loader&quot; },
-                      { loader: &quot;css-loader&quot; }
-                    ]
-                }
-            ]
-        },
-        watch: env.watch,
-        optimization: {
-            minimizer: [
-                new UglifyJsPlugin({
-                    include: /\.min\.js$/,
-                })
-            ]
+        {
+          test: /\.css$/i,
+          use: [&quot;style-loader&quot;, &quot;css-loader&quot;],
         }
+      ]
     }
+  }
 }
 </code></pre>
-<p><strong>Step</strong> 4: Add a script to buiding by webpack to package.json</p>
+<p><strong>Step</strong> 5: Add a script to buiding by webpack to package.json</p>
 <pre><code>&quot;scripts&quot;: {
-    &quot;build-webpack&quot;: &quot;cross-env NODE_ENV=production webpack&quot;,
+    &quot;build:webpack&quot;: &quot;webpack --mode=production&quot;,
     ...
 }
 </code></pre>
 <ul>
 <li>Run command to build the customization file</li>
 </ul>
-<pre><code>$ npm run build-webpack
+<pre><code>$ npm run build:webpack
 </code></pre>
 <pre><code>result:
-* ./dist/my-customization.min.js
+* ./dist/customization.min.js
 </code></pre>
 <ul>
-<li>Attach my-customization.min.js into <a href="https://help.kintone.com/en/k/user/js_customize.html">kintone app setting</a></li>
+<li>Attach customization.min.js into <a href="https://help.kintone.com/en/k/user/js_customize.html">kintone app setting</a></li>
 </ul>
 <p><img alt="" src="../../img/result.PNG" /></p>
 <h2 id="umd-usage-without-jsx">UMD usage without JSX</h2>
