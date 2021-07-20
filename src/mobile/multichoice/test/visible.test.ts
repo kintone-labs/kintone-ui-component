@@ -28,8 +28,6 @@ describe("MobileMultiChoice", () => {
 
     it("should see that on screen when changing by setter", async () => {
       const container = new MobileMultiChoice({
-        label: "Fruit",
-        requiredIcon: false,
         items: initItems,
         visible: false
       });
@@ -40,11 +38,8 @@ describe("MobileMultiChoice", () => {
 
     it("should not see that on screen when changing by setter", async () => {
       const container = new MobileMultiChoice({
-        label: "Fruit",
-        requiredIcon: false,
         items: initItems,
-        visible: true,
-        className: "visible_test"
+        visible: true
       });
       container.visible = false;
       const el = await fixture(container);
