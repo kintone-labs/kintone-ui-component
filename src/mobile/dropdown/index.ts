@@ -2,31 +2,28 @@ import { LitElement, html, property, PropertyValues } from "lit-element";
 import { v4 as uuid } from "uuid";
 import { visiblePropConverter } from "../../base/converter";
 
-type Item = {
-  label?: string;
-  value?: string;
-};
-
-type MobileMultiChoiceProps = {
+type Item = { value?: string; label?: string };
+type MobileDropdownProps = {
   className?: string;
   error?: string;
   id?: string;
   label?: string;
+  value?: string;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
   items?: Item[];
-  value?: string[];
 };
 
 type CustomEventDetail = {
-  oldValue?: string[];
-  value?: string[];
+  value?: string;
+  oldValue?: string;
 };
 
-export class MobileMultiChoice extends LitElement {
+export class MobileDropdown extends LitElement {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
+  @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({
@@ -37,14 +34,12 @@ export class MobileMultiChoice extends LitElement {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
 
   private _GUID: string;
 
-  constructor(props?: MobileMultiChoiceProps) {
+  constructor(props?: MobileDropdownProps) {
     super();
     this._GUID = this._generateGUID();
-
     if (!props) {
       return;
     }
@@ -69,8 +64,8 @@ export class MobileMultiChoice extends LitElement {
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
-    const detail: CustomEventDetail = { value: [], oldValue: this.value };
-    this.value = Array.from(selectEl.selectedOptions, option => option.value);
+    const detail: CustomEventDetail = { value: "", oldValue: this.value };
+    this.value = selectEl.value;
     detail.value = this.value;
     this._dispatchCustomEvent("change", detail);
   }
@@ -89,87 +84,61 @@ export class MobileMultiChoice extends LitElement {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) this._validateValues();
+    if (changedProperties.has("items")) {
+      this._validateItems();
+    }
     super.update(changedProperties);
   }
 
-  private _getItemTemplate(item: Item) {
+  private _getItemTemplate(item: Item, index: number) {
     return html`
       <option
         value="${item.value || ""}"
-        ?selected="${item.value !== undefined
-          ? this.value.some(val => val === item.value)
-          : false}"
+        ?selected="${this.value === item.value}"
       >
         ${item.label === undefined ? item.value : item.label}
       </option>
     `;
   }
 
-  private _getDuplicatedIndex(values: string[]) {
-    for (let index = 0; index < values.length; index++) {
-      const value = values[index];
-      if (value !== undefined && values.indexOf(value) !== index) return index;
-    }
-    return -1;
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-    const itemsValue = this.items.map(item => item.value || "");
-    const index = this._getDuplicatedIndex(itemsValue);
-    if (index > -1)
-      throw new Error(`'items[${index}].value' property is duplicated`);
-  }
-
-  private _validateValues() {
-    if (!Array.isArray(this.value)) {
-      throw new Error("'value' property is not array");
-    }
-    const index = this._getDuplicatedIndex(this.value);
-    if (index > -1) throw new Error(`'value[${index}]' property is duplicated`);
-  }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <label
-        class="kuc-mobile-multi-choice__label"
+        class="kuc-mobile-dropdown__label"
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-multi-choice__label__text">${this.label}</span
+        <span class="kuc-mobile-dropdown__label__text">${this.label}</span
         ><!--
         --><span
-          class="kuc-mobile-multi-choice__label__required-icon"
+          class="kuc-mobile-dropdown__label__required-icon"
           ?hidden="${!this.requiredIcon}"
           >*</span
         >
       </label>
-      <div class="kuc-mobile-multi-choice__input-form">
+      <div class="kuc-mobile-dropdown__input-form">
         <div
-          class="kuc-mobile-multi-choice__input-form__select
+          class="kuc-mobile-dropdown__input-form__select
           ${this.requiredIcon ? "kuc--required" : ""}"
         >
           <select
-            class="kuc-mobile-multi-choice__input-form__select__input"
+            class="kuc-mobile-dropdown__input-form__select__input"
             id="${this._GUID}-label"
             aria-describedBy="${this._GUID}-error"
             aria-required=${this.requiredIcon}
             aria-invalid="${this.error !== ""}"
             ?disabled="${this.disabled}"
-            multiple
             @change="${this._handleChangeInput}"
           >
-            ${this.items.map(item => this._getItemTemplate(item))}
+            ${this.items.map((item, index) =>
+              this._getItemTemplate(item, index)
+            )}
           </select>
         </div>
       </div>
       <div
-        class="kuc-mobile-multi-choice__error"
+        class="kuc-mobile-dropdown__error"
         id="${this._GUID}-error"
         role="alert"
         aria-live="assertive"
@@ -183,8 +152,8 @@ export class MobileMultiChoice extends LitElement {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-multi-choice,
-        kuc-mobile-multi-choice * {
+        kuc-mobile-dropdown,
+        kuc-mobile-dropdown * {
           font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
@@ -192,80 +161,80 @@ export class MobileMultiChoice extends LitElement {
             "Lucida Sans Unicode", Arial, Verdana, sans-serif;
         }
 
-        :lang(zh) kuc-mobile-multi-choice,
-        :lang(zh) kuc-mobile-multi-choice * {
+        :lang(zh) kuc-mobile-dropdown,
+        :lang(zh) kuc-mobile-dropdown * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
             Verdana, sans-serif;
         }
 
-        kuc-mobile-multi-choice {
+        kuc-mobile-dropdown {
           display: inline-block;
           width: 100%;
         }
 
-        kuc-mobile-multi-choice[hidden] {
+        kuc-mobile-dropdown[hidden] {
           display: none;
         }
 
-        .kuc-mobile-multi-choice__label {
+        .kuc-mobile-dropdown__label {
           display: flex;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
         }
 
-        .kuc-mobile-multi-choice__label[hidden] {
+        .kuc-mobile-dropdown__label[hidden] {
           display: none;
         }
 
-        .kuc-mobile-multi-choice__label__text {
+        .kuc-mobile-dropdown__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           font-size: 86%;
           font-weight: bold;
         }
 
-        .kuc-mobile-multi-choice__label__required-icon {
+        .kuc-mobile-dropdown__label__required-icon {
           color: #d01212;
           left: 3px;
           position: relative;
         }
 
-        .kuc-mobile-multi-choice__label__required-icon[hidden] {
+        .kuc-mobile-dropdown__label__required-icon[hidden] {
           display: none;
         }
 
-        .kuc-mobile-multi-choice__input-form {
+        .kuc-mobile-dropdown__input-form {
           word-wrap: break-word;
           min-height: 1em;
           padding-left: 0.5em;
           padding-right: 0.5em;
         }
 
-        .kuc-mobile-multi-choice__input-form__select {
+        .kuc-mobile-dropdown__input-form__select {
           display: inline-block;
           border-radius: 0.4em;
           max-width: 100%;
         }
 
-        .kuc-mobile-multi-choice__input-form__select.kuc--required {
+        .kuc-mobile-dropdown__input-form__select.kuc--required {
           border: 1px solid #cf4a38;
         }
 
-        .kuc-mobile-multi-choice__input-form__select__input {
+        .kuc-mobile-dropdown__input-form__select__input {
           min-width: 100px;
           max-width: 100%;
         }
 
-        .kuc-mobile-multi-choice__input-form__select__input:disabled {
+        .kuc-mobile-dropdown__input-form__select__input:disabled {
           color: #999999;
           -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
         }
 
-        .kuc-mobile-multi-choice__error {
+        .kuc-mobile-dropdown__error {
           line-height: 1.5;
           color: #000000;
           background-color: #fdffc9;
@@ -278,7 +247,19 @@ export class MobileMultiChoice extends LitElement {
       </style>
     `;
   }
+
+  private _validateItems() {
+    if (!Array.isArray(this.items)) {
+      throw new Error("'items' property is not array");
+    }
+    const itemsValue = this.items.map(item => item.value);
+    itemsValue.forEach((value, number, self) => {
+      if (value !== undefined && self.indexOf(value) !== number) {
+        throw new Error(`'items[${number}].value' property is duplicated`);
+      }
+    });
+  }
 }
-if (!window.customElements.get("kuc-mobile-multi-choice")) {
-  window.customElements.define("kuc-mobile-multi-choice", MobileMultiChoice);
+if (!window.customElements.get("kuc-mobile-dropdown")) {
+  window.customElements.define("kuc-mobile-dropdown", MobileDropdown);
 }
