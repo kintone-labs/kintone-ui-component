@@ -183,10 +183,13 @@ export class RadioButton extends LitElement {
     `;
   }
 
-  private _getTabIndex(index: number, item: Item, items: Item[]) {
-    if (index === 0 && items.filter(e => e.value === this.value).length === 0)
+  private _getTabIndex(index: number, currentItem: Item, items: Item[]) {
+    if (
+      index === 0 &&
+      items.filter(item => item.value === this.value).length === 0
+    )
       return "0";
-    if (item.value === this.value) return "0";
+    if (currentItem.value === this.value) return "0";
     return "-1";
   }
 
