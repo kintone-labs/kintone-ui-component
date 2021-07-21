@@ -96,8 +96,9 @@ CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追
 
 ```sh
 mkdir customization && cd customization
+npm init -y
 npm install kintone-ui-component
-npm install webpack
+npm install webpack webpack-cli --save-dev
 ```
 
 > 必要に応じて、`babel-loader` や `css-loader` もインストールしてお使いください。
