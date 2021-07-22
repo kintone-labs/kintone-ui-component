@@ -8,6 +8,10 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" }
     ];
+    const duplicateItems = [
+      { label: "Orange", value: "orange" },
+      { label: "Apple", value: "orange" }
+    ];
     const expectedLabels = ["-----", "Orange", "Apple"];
     const expectedValues = ["-----", "orange", "apple"];
 
@@ -116,17 +120,8 @@ describe("MobileMultiChoice", () => {
 
     it("show error when initializing value is duplicated", async () => {
       const container = new MobileMultiChoice({
-        items: [
-          {
-            label: initItems[0].label,
-            value: initItems[0].value
-          },
-          {
-            label: initItems[1].label,
-            value: initItems[0].value
-          }
-        ],
-        value: [initItems[1].value]
+        items: duplicateItems,
+        value: [duplicateItems[1].value]
       });
       try {
         await fixture(container);
@@ -154,14 +149,7 @@ describe("MobileMultiChoice", () => {
 
     it("show error when initializing value duplicated value", async () => {
       const container = new MobileMultiChoice({});
-      container.items = [
-        {
-          value: initItems[0].value
-        },
-        {
-          value: initItems[0].value
-        }
-      ];
+      container.items = duplicateItems;
       try {
         await fixture(container);
       } catch (error) {
