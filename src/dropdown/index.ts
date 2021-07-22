@@ -107,32 +107,36 @@ export class Dropdown extends LitElement {
     return this.dispatchEvent(changeEvent);
   }
 
+  private _closeSelector() {
+    this._selectorVisible = false;
+    this._removeActiveDescendant();
+  }
+
+  private _highlightSelectedItemWhenSelectorNotVisible() {
+    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+      if (
+        itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
+      ) {
+        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+      }
+      if (itemEl.getAttribute("aria-checked") === "true") {
+        itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
+      }
+    });
+  }
+
   private _handleClickDropdownToggle(event: MouseEvent) {
     this._buttonEl.focus();
 
     if (!this._selectorVisible) {
-      this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (
-          itemEl.classList.contains(
-            "kuc-dropdown__group__select-menu__highlight"
-          )
-        ) {
-          itemEl.classList.remove(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-        }
-        if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-        }
-      });
+      this._highlightSelectedItemWhenSelectorNotVisible();
     }
     this._selectorVisible = !this._selectorVisible;
     this._removeActiveDescendant();
   }
 
   private _handleBlurDropdownToggle(event: Event) {
-    this._selectorVisible = false;
-    this._removeActiveDescendant();
+    this._closeSelector();
   }
 
   private _handleUpdateValue(value: string) {
@@ -170,83 +174,74 @@ export class Dropdown extends LitElement {
 
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
-      this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (
-          itemEl.classList.contains(
-            "kuc-dropdown__group__select-menu__highlight"
-          )
-        ) {
-          itemEl.classList.remove(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-        }
-        if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-        }
-      });
-    } else {
-      let highLightNumber = 0;
-      switch (event.key) {
-        case "Up": // IE/Edge specific value
-        case "ArrowUp": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-dropdown__group__select-menu__highlight"
-              );
-              highLightNumber = number - 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
-          this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-          this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-          break;
-        }
-        case "Down": // IE/Edge specific value
-        case "ArrowDown": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-dropdown__group__select-menu__highlight"
-              );
-              highLightNumber = number + 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
-          this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-          this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-          break;
-        }
-        case "Enter": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              const value = itemEl.getAttribute("value") as string;
-              this._handleUpdateValue(value);
-            }
-          });
-          break;
-        }
-        default:
-          break;
+      this._highlightSelectedItemWhenSelectorNotVisible();
+      return;
+    }
+
+    event.preventDefault();
+
+    let highLightNumber = 0;
+    switch (event.key) {
+      case "Up": // IE/Edge specific value
+      case "ArrowUp": {
+        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove(
+              "kuc-dropdown__group__select-menu__highlight"
+            );
+            highLightNumber = number - 1;
+          }
+        });
+        highLightNumber =
+          highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
+        this._itemsEl[highLightNumber].classList.add(
+          "kuc-dropdown__group__select-menu__highlight"
+        );
+        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
+        break;
       }
+      case "Down": // IE/Edge specific value
+      case "ArrowDown": {
+        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove(
+              "kuc-dropdown__group__select-menu__highlight"
+            );
+            highLightNumber = number + 1;
+          }
+        });
+        highLightNumber =
+          highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
+        this._itemsEl[highLightNumber].classList.add(
+          "kuc-dropdown__group__select-menu__highlight"
+        );
+        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
+        break;
+      }
+      case "Enter": {
+        this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            const value = itemEl.getAttribute("value") as string;
+            this._handleUpdateValue(value);
+            this._closeSelector();
+          }
+        });
+        break;
+      }
+      default:
+        break;
     }
   }
 

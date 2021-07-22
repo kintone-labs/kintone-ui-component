@@ -179,6 +179,8 @@ export class MultiChoice extends LitElement {
   }
 
   private _handleKeyDownMultiChoice(event: KeyboardEvent) {
+    event.preventDefault();
+
     if (this.disabled) {
       return;
     }
