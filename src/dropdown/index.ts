@@ -112,7 +112,7 @@ export class Dropdown extends LitElement {
     this._removeActiveDescendant();
   }
 
-  private _highlightSelectedItemWhenSelectorNotvisible() {
+  private _highlightSelectedItemWhenSelectorNotVisible() {
     this._itemsEl.forEach((itemEl: HTMLLIElement) => {
       if (
         itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
@@ -172,7 +172,7 @@ export class Dropdown extends LitElement {
 
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
-      this._highlightSelectedItemWhenSelectorNotvisible();
+      this._highlightSelectedItemWhenSelectorNotVisible();
       return;
     }
 
