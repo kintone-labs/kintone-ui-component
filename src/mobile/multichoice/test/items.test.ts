@@ -12,7 +12,7 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "orange" }
     ];
-    const newItems = [
+    const itemsForReplace = [
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" }
     ];
@@ -78,7 +78,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({
         items: initItems
       });
-      container.items = newItems;
+      container.items = itemsForReplace;
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -87,21 +87,20 @@ describe("MobileMultiChoice", () => {
 
       expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
-        newItems[0].value
+        itemsForReplace[0].value
       );
 
       expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
-        newItems[1].value
+        itemsForReplace[1].value
       );
-      expect(container.items).to.be.equal(newItems);
+      expect(container.items).to.be.equal(itemsForReplace);
     });
 
     it("show error when initializing with props is null", async () => {
       const container = new MobileMultiChoice({
         // @ts-expect-error
-        items: null,
-        value: [initItems[1].value]
+        items: null
       });
       try {
         await fixture(container);
