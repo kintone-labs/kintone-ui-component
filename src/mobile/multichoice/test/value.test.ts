@@ -16,11 +16,6 @@ describe("MobileMultiChoice", () => {
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
       expect(itemsEl.length).to.be.equal(0);
-      for (let i = 0; i < itemsEl.length; i++) {
-        const itemEl = itemsEl[i] as HTMLElement;
-        const label = itemEl.textContent?.trim();
-        expect(label).to.have.equal(expectedLabels[i]);
-      }
       expect(container.value).to.be.an("array").that.is.empty;
     });
 

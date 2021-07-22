@@ -9,7 +9,7 @@ describe("MobileMultiChoice", () => {
       { label: "Apple", value: "apple" }
     ];
 
-    it("does not exists on element when initializing without props option", async () => {
+    it("does not add into input element when initializing without props option", async () => {
       const container = new MobileMultiChoice({
         items: initItems
       });
@@ -20,7 +20,7 @@ describe("MobileMultiChoice", () => {
       expect(inputEl).not.to.have.attr("disabled");
     });
 
-    it("exists on element when initializing disabled value is true", async () => {
+    it("added into input element when initializing disabled value is true", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
         disabled: true
@@ -32,7 +32,7 @@ describe("MobileMultiChoice", () => {
       expect(inputEl).to.have.attr("disabled");
     });
 
-    it("exists on element when changing by setter", async () => {
+    it("added into input element when changing from false to true by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
         disabled: false
@@ -45,7 +45,7 @@ describe("MobileMultiChoice", () => {
       expect(inputEl).to.have.attr("disabled");
     });
 
-    it("does not exists on element when changing by setter", async () => {
+    it("removing from input element when changing from true to false by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
         disabled: true

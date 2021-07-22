@@ -21,12 +21,17 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
+
       expect(itemsEl.length).to.be.equal(3);
-      for (let i = 0; i < itemsEl.length; i++) {
-        const itemEl = itemsEl[i] as HTMLElement;
-        const value = itemEl.getAttribute("value")?.trim();
-        expect(value).to.have.equal(expectedValues[i]);
-      }
+      expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[0]
+      );
+      expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[1]
+      );
+      expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[2]
+      );
       expect(container.items).to.be.equal(initItems);
     });
 
@@ -36,12 +41,17 @@ describe("MobileMultiChoice", () => {
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
+
       expect(itemsEl.length).to.be.equal(3);
-      for (let i = 0; i < itemsEl.length; i++) {
-        const itemEl = itemsEl[i] as HTMLElement;
-        const value = itemEl.getAttribute("value")?.trim();
-        expect(value).to.have.equal(expectedValues[i]);
-      }
+      expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[0]
+      );
+      expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[1]
+      );
+      expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
+        expectedValues[2]
+      );
       expect(container.items).to.be.equal(initItems);
     });
 
@@ -63,12 +73,14 @@ describe("MobileMultiChoice", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
+
       expect(itemsEl.length).to.be.equal(2);
-      for (let i = 0; i < itemsEl.length; i++) {
-        const itemEl = itemsEl[i] as HTMLElement;
-        const value = itemEl.getAttribute("value")?.trim();
-        expect(value).to.have.equal(newitems[i].value);
-      }
+      expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
+        newitems[0].value
+      );
+      expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
+        newitems[1].value
+      );
       expect(container.items).to.be.equal(newitems);
     });
 
@@ -83,6 +95,8 @@ describe("MobileMultiChoice", () => {
       } catch (error) {
         expect(error.message).to.equal("'items' property is not array");
       }
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("show error when initializing value is duplicated", async () => {
@@ -106,6 +120,8 @@ describe("MobileMultiChoice", () => {
           "'items[1].value' property is duplicated"
         );
       }
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("show error when when changing by setter to null", async () => {
@@ -117,10 +133,11 @@ describe("MobileMultiChoice", () => {
       } catch (error) {
         expect(error.message).to.equal("'items' property is not array");
       }
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("show error when initializing value duplicated value", async () => {
-      const expectedValues = ["-----", "orange", "Apple"];
       const container = new MobileMultiChoice({});
       container.items = [
         {
@@ -137,6 +154,8 @@ describe("MobileMultiChoice", () => {
           "'items[1].value' property is duplicated"
         );
       }
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
   });
 });

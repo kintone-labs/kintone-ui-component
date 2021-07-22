@@ -29,12 +29,11 @@ describe("MobileMultiChoice", () => {
       ) as HTMLSelectElement;
       itemsEl.dispatchEvent(new Event("change"));
 
-      if (itemsEl.childElementCount > 0) {
-        const event = new CustomEvent("onchange", {
-          detail: { oldValue: initValues, value: expectValues }
-        });
-        container.dispatchEvent(event);
-      }
+      expect(itemsEl.childElementCount).to.equal(3);
+      const event = new CustomEvent("onchange", {
+        detail: { oldValue: initValues, value: expectValues }
+      });
+      container.dispatchEvent(event);
     });
   });
 });
