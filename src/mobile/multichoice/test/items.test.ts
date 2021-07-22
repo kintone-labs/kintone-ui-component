@@ -8,6 +8,8 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" }
     ];
+    const expectedLabels = ["-----", "Orange", "Apple"];
+    const expectedValues = ["-----", "orange", "apple"];
 
     it("does not exists on element when initializing without props option", async () => {
       const container = new MobileMultiChoice();
@@ -17,38 +19,47 @@ describe("MobileMultiChoice", () => {
     });
 
     it("exists on element when initializing with props option", async () => {
-      const expectedValues = ["-----", "orange", "apple"];
       const container = new MobileMultiChoice({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
 
       expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[0]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[0]
       );
+
+      expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[1]
       );
+
+      expect(itemsEl[2].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[2]
       );
+
       expect(container.items).to.be.equal(initItems);
     });
 
     it("exists on element when changing by setter", async () => {
-      const expectedValues = ["-----", "orange", "apple"];
       const container = new MobileMultiChoice();
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
 
       expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[0]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[0]
       );
+
+      expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[1]
       );
+
+      expect(itemsEl[2].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
         expectedValues[2]
       );
@@ -75,9 +86,13 @@ describe("MobileMultiChoice", () => {
       const itemsEl = el.getElementsByTagName("option");
 
       expect(itemsEl.length).to.be.equal(2);
+
+      expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
         newitems[0].value
       );
+
+      expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
         newitems[1].value
       );
