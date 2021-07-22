@@ -127,7 +127,7 @@ export class Dropdown extends LitElement {
 
   private _handleClickDropdownToggle(event: MouseEvent) {
     if (!this._selectorVisible) {
-      this._highlightSelectedItemWhenSelectorNotvisible();
+      this._highlightSelectedItemWhenSelectorNotVisible();
     }
     this._selectorVisible = !this._selectorVisible;
     this._removeActiveDescendant();
