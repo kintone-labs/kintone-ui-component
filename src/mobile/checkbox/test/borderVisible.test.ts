@@ -11,7 +11,7 @@ describe("MobileCheckbox", () => {
         ".kuc-mobile-checkbox__group__select-menu"
       ) as HTMLDivElement;
 
-      expect(selectMenuEl.hasAttribute("borderVisible")).to.be.equal(true);
+      expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(true);
     });
   });
 
@@ -23,7 +23,7 @@ describe("MobileCheckbox", () => {
       ".kuc-mobile-checkbox__group__select-menu"
     ) as HTMLDivElement;
 
-    expect(selectMenuEl.hasAttribute("borderVisible")).to.be.equal(false);
+    expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(false);
   });
 
   it("should be change to true if set true by setter", async () => {
@@ -35,7 +35,7 @@ describe("MobileCheckbox", () => {
       ".kuc-mobile-checkbox__group__select-menu"
     ) as HTMLDivElement;
 
-    expect(selectMenuEl.hasAttribute("borderVisible")).to.be.equal(true);
+    expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(true);
   });
 
   it("should be change to false if set false by setter", async () => {
@@ -47,6 +47,6 @@ describe("MobileCheckbox", () => {
       ".kuc-mobile-checkbox__group__select-menu"
     ) as HTMLDivElement;
 
-    expect(selectMenuEl.hasAttribute("borderVisible")).to.be.equal(false);
+    expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(false);
   });
 });
