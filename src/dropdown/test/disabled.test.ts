@@ -1,189 +1,46 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("disabled default prop is false", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
+describe("Dropdown", () => {
+  describe("disabled", () => {
+    it("should not be added into toggle element when not set in constructor", async () => {
+      const container = new Dropdown({ items: initItems });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(".kuc-dropdown__group__toggle");
 
-  it("disabled default prop is false", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
-      "disabled"
-    );
-  });
-});
+      expect(toggleEl).to.not.have.attr("disabled");
+    });
 
-describe("disabled default prop set to true successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+    it("should be added into toggle element when set true in constructor", async () => {
+      const container = new Dropdown({ items: initItems, disabled: true });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(".kuc-dropdown__group__toggle");
 
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: true
-  });
+      expect(toggleEl).to.have.attr("disabled");
+    });
 
-  it("disabled default prop set to true successfully", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).to.have.attr(
-      "disabled"
-    );
-  });
-});
+    it("should be added into toggle element when changed to true by setter", async () => {
+      const container = new Dropdown({ items: initItems, disabled: false });
+      container.disabled = true;
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(".kuc-dropdown__group__toggle");
 
-describe("disabled prop set to true successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+      expect(toggleEl).to.have.attr("disabled");
+    });
 
-  const container = new Dropdown({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: false
-  });
-  container.disabled = true;
+    it("should not be added into toggle element when set false in constructor", async () => {
+      const container = new Dropdown({ items: initItems, disabled: true });
+      container.disabled = false;
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(".kuc-dropdown__group__toggle");
 
-  it("disabled prop set to true successfully", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).to.have.attr(
-      "disabled"
-    );
-  });
-});
-
-describe("disabled prop set to false successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: true
-  });
-  container.disabled = false;
-
-  it("disabled prop set to false successfully", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
-      "disabled"
-    );
-  });
-});
-
-describe("disabled default prop set to null", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    // @ts-ignore
-    disabled: null
-  });
-
-  it("disabled default prop set to null", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
-      "disabled"
-    );
-  });
-});
-
-describe("disabled prop set to null", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
-  // @ts-ignore
-  container.disabled = null;
-
-  it("disabled prop set to null", async () => {
-    const el = await fixture(container);
-    expect(el.querySelector(".kuc-dropdown__group__toggle")).not.to.have.attr(
-      "disabled"
-    );
+      expect(toggleEl).to.not.have.attr("disabled");
+    });
   });
 });
