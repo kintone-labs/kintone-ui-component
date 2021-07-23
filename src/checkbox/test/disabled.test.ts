@@ -11,7 +11,7 @@ const initValues = ["apple"];
 
 describe("Checkbox", () => {
   describe("disabled", () => {
-    it("should not be added into input elements when not set on constructor", async () => {
+    it("should not be added into input elements when not set in constructor", async () => {
       const container = new Checkbox({ items: initItems, value: initValues });
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
@@ -23,7 +23,7 @@ describe("Checkbox", () => {
       expect(inputEls[2]).to.not.have.attr("disabled");
     });
 
-    it("should be added into input elements when set true on constructor", async () => {
+    it("should be added into input elements when set true in constructor", async () => {
       const container = new Checkbox({
         items: initItems,
         value: initValues,

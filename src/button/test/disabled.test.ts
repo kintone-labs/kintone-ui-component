@@ -3,7 +3,7 @@ import { Button } from "../index";
 
 describe("Button", () => {
   describe("disabled", () => {
-    it("should not be added into button element when not set on constructor", async () => {
+    it("should not be added into button element when not set in constructor", async () => {
       const container = new Button();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
@@ -13,7 +13,7 @@ describe("Button", () => {
       expect(buttonEl).to.not.have.attr("disabled");
     });
 
-    it("should be added into button element when set to true on constructor", async () => {
+    it("should be added into button element when set to true in constructor", async () => {
       const container = new Button({ disabled: true });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
