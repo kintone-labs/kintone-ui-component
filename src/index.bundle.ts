@@ -15,6 +15,7 @@ export * from "./textarea";
 export * from "./mobile/button";
 export * from "./mobile/checkbox";
 export * from "./mobile/dropdown";
+export * from "./mobile/multichoice";
 export * from "./mobile/radio-button";
 export * from "./mobile/text";
 export * from "./mobile/textarea";
