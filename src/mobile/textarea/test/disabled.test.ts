@@ -1,79 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileTextArea } from "../index";
 
-describe("confirm disabled default prop is false", () => {
-  const container = new MobileTextArea();
+describe("MobileTextArea", () => {
+  describe("disabled", () => {
+    it("should not be added into element when not assigned in constructor", async () => {
+      const container = new MobileTextArea();
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("confirm disabled default prop is false", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
+      expect(textareaEl).to.not.have.attr("disabled");
+    });
 
-describe("disabled constructor set successfully", () => {
-  const container = new MobileTextArea({ disabled: true });
+    it("should be added into element when assigned true in constructor", async () => {
+      const container = new MobileTextArea({ disabled: true });
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(true);
-  });
-});
+      expect(textareaEl).to.have.attr("disabled");
+    });
 
-describe("disabled prop set to true successfully", () => {
-  const container = new MobileTextArea({ disabled: false });
-  container.disabled = true;
+    it("should be added into element when changed to true by setter", async () => {
+      const container = new MobileTextArea({ disabled: false });
+      container.disabled = true;
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(true);
-  });
-});
+      expect(textareaEl).to.have.attr("disabled");
+    });
 
-describe("disabled prop set to false successfully", () => {
-  const container = new MobileTextArea({ disabled: true });
-  container.disabled = false;
+    it("should not be added into element when changed to false by setter", async () => {
+      const container = new MobileTextArea({ disabled: true });
+      container.disabled = false;
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
-
-describe("disabled default prop set to null successfully", () => {
-  // @ts-expect-error
-  const container = new MobileTextArea({ disabled: null });
-
-  it("disabled default prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
-
-describe("disabled prop set to null successfully", () => {
-  const container = new MobileTextArea();
-  // @ts-expect-error
-  container.disabled = null;
-
-  it("disabled prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = (await el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    )) as HTMLTextAreaElement;
-    await expect(textareaEl.hasAttribute("disabled")).to.have.equal(false);
+      expect(textareaEl).to.not.have.attr("disabled");
+    });
   });
 });
