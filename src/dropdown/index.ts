@@ -126,6 +126,8 @@ export class Dropdown extends LitElement {
   }
 
   private _handleClickDropdownToggle(event: MouseEvent) {
+    this._buttonEl.focus();
+
     if (!this._selectorVisible) {
       this._highlightSelectedItemWhenSelectorNotVisible();
     }
@@ -176,12 +178,12 @@ export class Dropdown extends LitElement {
       return;
     }
 
-    event.preventDefault();
-
     let highLightNumber = 0;
     switch (event.key) {
       case "Up": // IE/Edge specific value
       case "ArrowUp": {
+        event.preventDefault();
+
         this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -204,6 +206,8 @@ export class Dropdown extends LitElement {
       }
       case "Down": // IE/Edge specific value
       case "ArrowDown": {
+        event.preventDefault();
+
         this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -233,7 +237,6 @@ export class Dropdown extends LitElement {
           ) {
             const value = itemEl.getAttribute("value") as string;
             this._handleUpdateValue(value);
-            this._closeSelector();
           }
         });
         break;
