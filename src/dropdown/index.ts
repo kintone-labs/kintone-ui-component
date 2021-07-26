@@ -6,7 +6,8 @@ import {
   internalProperty,
   queryAll,
   query,
-  svg
+  svg,
+  eventOptions
 } from "lit-element";
 import { v4 as uuid } from "uuid";
 
@@ -107,12 +108,18 @@ export class Dropdown extends LitElement {
     return this.dispatchEvent(changeEvent);
   }
 
+  private _openSelector() {
+    this._buttonEl.focus();
+    this._selectorVisible = true;
+    this._highlightSelectedItem();
+  }
+
   private _closeSelector() {
     this._selectorVisible = false;
     this._removeActiveDescendant();
   }
 
-  private _highlightSelectedItemWhenSelectorNotVisible() {
+  private _highlightSelectedItem() {
     this._itemsEl.forEach((itemEl: HTMLLIElement) => {
       if (
         itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
@@ -125,17 +132,23 @@ export class Dropdown extends LitElement {
     });
   }
 
-  private _handleClickDropdownToggle(event: MouseEvent) {
-    this._buttonEl.focus();
-
-    if (!this._selectorVisible) {
-      this._highlightSelectedItemWhenSelectorNotVisible();
-    }
-    this._selectorVisible = !this._selectorVisible;
-    this._removeActiveDescendant();
+  private _handleMouseDownDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
   }
 
-  private _handleBlurDropdownToggle(event: Event) {
+  private _handleMouseUpDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  private _handleClickDropdownToggle() {
+    if (!this._selectorVisible) {
+      this._openSelector();
+    } else {
+      this._closeSelector();
+    }
+  }
+
+  private _handleBlurDropdownToggle() {
     this._closeSelector();
   }
 
@@ -174,7 +187,7 @@ export class Dropdown extends LitElement {
 
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
-      this._highlightSelectedItemWhenSelectorNotVisible();
+      this._highlightSelectedItem();
       return;
     }
 
@@ -343,6 +356,8 @@ export class Dropdown extends LitElement {
           aria-describedby="${this._GUID}-error"
           aria-required=${this.requiredIcon}
           ?disabled="${this.disabled}"
+          @mouseup="${this._handleMouseUpDropdownToggle}"
+          @mousedown="${this._handleMouseDownDropdownToggle}"
           @click="${this._handleClickDropdownToggle}"
           @blur="${this._handleBlurDropdownToggle}"
           @keydown="${this._handleKeyDownDropdownToggle}"
