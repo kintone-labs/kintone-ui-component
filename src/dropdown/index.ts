@@ -6,8 +6,7 @@ import {
   internalProperty,
   queryAll,
   query,
-  svg,
-  eventOptions
+  svg
 } from "lit-element";
 import { v4 as uuid } from "uuid";
 
