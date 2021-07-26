@@ -17,10 +17,14 @@ describe("MobileCheckbox", () => {
       });
 
       const el = await fixture(container);
+      const groupEl = el.querySelector(
+        ".kuc-mobile-checkbox__group__select-menu"
+      );
       const inputEls = el.querySelectorAll(
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
 
+      expect(groupEl).to.not.have.attr("disabled");
       expect(inputEls[0]).to.not.have.attr("disabled");
       expect(inputEls[1]).to.not.have.attr("disabled");
       expect(inputEls[2]).to.not.have.attr("disabled");
@@ -34,10 +38,14 @@ describe("MobileCheckbox", () => {
       });
 
       const el = await fixture(container);
+      const groupEl = el.querySelector(
+        ".kuc-mobile-checkbox__group__select-menu"
+      );
       const inputEls = el.querySelectorAll(
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
 
+      expect(groupEl).to.have.attr("disabled");
       expect(inputEls[0]).to.have.attr("disabled");
       expect(inputEls[1]).to.have.attr("disabled");
       expect(inputEls[2]).to.have.attr("disabled");
@@ -52,10 +60,14 @@ describe("MobileCheckbox", () => {
       container.disabled = true;
 
       const el = await fixture(container);
+      const groupEl = el.querySelector(
+        ".kuc-mobile-checkbox__group__select-menu"
+      );
       const inputEls = el.querySelectorAll(
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
 
+      expect(groupEl).to.have.attr("disabled");
       expect(inputEls[0]).to.have.attr("disabled");
       expect(inputEls[1]).to.have.attr("disabled");
       expect(inputEls[2]).to.have.attr("disabled");
@@ -70,10 +82,14 @@ describe("MobileCheckbox", () => {
       container.disabled = false;
 
       const el = await fixture(container);
+      const groupEl = el.querySelector(
+        ".kuc-mobile-checkbox__group__select-menu"
+      );
       const inputEls = el.querySelectorAll(
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
 
+      expect(groupEl).to.not.have.attr("disabled");
       expect(inputEls[0]).to.not.have.attr("disabled");
       expect(inputEls[1]).to.not.have.attr("disabled");
       expect(inputEls[2]).to.not.have.attr("disabled");
