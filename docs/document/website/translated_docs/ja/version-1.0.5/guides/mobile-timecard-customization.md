@@ -54,7 +54,7 @@ kintone.events.on('mobile.app.record.index.show', (event) => {
 
 ### CSS を使ったボタンの間隔の調整
 
-MobileButton コンポーネントの id プロパティに値を付与して、CSS でボタンの間隔を調整します。
+MobileButton コンポーネントの `id` プロパティに値を付与して、CSS でボタンの間隔を調整します。
 
 ```css
 @charset "UTF-8";
