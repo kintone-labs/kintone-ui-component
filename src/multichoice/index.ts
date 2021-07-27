@@ -232,6 +232,7 @@ export class MultiChoice extends LitElement {
       }
       case "Spacebar": // IE/Edge specific value
       case " ": {
+        event.preventDefault();
         this._itemsEl.forEach((itemEl: HTMLDivElement) => {
           if (
             itemEl.classList.contains(
