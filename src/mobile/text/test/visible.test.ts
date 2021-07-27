@@ -1,44 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileText } from "../index";
 
-describe("confirm visible default prop is true", () => {
-  const container = new MobileText();
+describe("MobileText", () => {
+  describe("visible", () => {
+    it("should be display block when not assigned in constructor", async () => {
+      const container = new MobileText();
 
-  it("confirm visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal("block");
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible constructor set to true successfully", () => {
-  const container = new MobileText({ visible: false });
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("block");
+    });
 
-  it("visible constructor set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+    it("should be display none when assigned false in constructor", async () => {
+      const container = new MobileText({ visible: false });
 
-describe("visible prop set to true successfully", () => {
-  const container = new MobileText({ visible: false });
-  container.visible = true;
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-  it("visible prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal("block");
-  });
-});
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-describe("visible prop set to false successfully", () => {
-  const container = new MobileText({ visible: true });
-  container.visible = false;
+    it("should be display block when changed to true by setter", async () => {
+      const container = new MobileText({ visible: false });
+      container.visible = true;
 
-  it("visible prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
+
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("block");
+    });
+
+    it("should be display none when changed to false by setter", async () => {
+      const container = new MobileText({ visible: true });
+      container.visible = false;
+
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
+
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });
