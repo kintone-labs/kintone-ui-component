@@ -1,61 +1,36 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Button } from "../index";
 
-describe("visible default prop is true", () => {
-  const container = new Button({});
+describe("Button", () => {
+  describe("visible", () => {
+    it("should be display inline-block when not assigned in constructor", async () => {
+      const container = new Button({});
+      const el = await fixture(container);
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-block");
+    });
 
-  it("visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
+    it("should be display none when assigned false in constructor", async () => {
+      const container = new Button({ visible: false });
+      const el = await fixture(container);
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-describe("visible default prop set to true successfully", () => {
-  const container = new Button({ visible: false });
+    it("should be display inline-block when changed to true by setter", async () => {
+      const container = new Button({ visible: false });
+      container.visible = true;
+      const el = await fixture(container);
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-block");
+    });
 
-  it("visible default prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
-
-describe("visible prop set to true successfully", () => {
-  const container = new Button({ visible: false });
-  container.visible = true;
-
-  it("visible prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
-
-describe("visible prop set to false successfully", () => {
-  const container = new Button({ visible: true });
-  container.visible = false;
-
-  it("visible prop set to false successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
-
-describe("visible default prop set to null", () => {
-  // @ts-ignore
-  const container = new Button({ visible: null });
-
-  it("visible default prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
-
-describe("visible prop set to null", () => {
-  const container = new Button({});
-  // @ts-ignore
-  container.visible = null;
-
-  it("visible prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
+    it("should be display none when changed to false by setter", async () => {
+      const container = new Button({ visible: true });
+      container.visible = false;
+      const el = await fixture(container);
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });
