@@ -1,0 +1,32 @@
+name: Netlify Staging Environment
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publishMasterCommit:
+    name: Deploying on Netlify Staging Environment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.pull_request.merged == 'true')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm i
+        working-directory: docs/document/website
+      - name: Build website
+        run: npm run build
+        working-directory: docs/document/website
+      - name:  Deploying on Netlify Staging Environment
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.STAGING_NETLIFY_SITE_ID }}
+          build-dir: './docs/document/website/build'
+          comment-on-commit: true
