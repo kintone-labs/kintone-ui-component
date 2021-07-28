@@ -22,11 +22,16 @@ jobs:
       - name: Build website
         run: npm run build
         working-directory: docs/document/website
-      - name:  Deploying on Netlify Staging Environment
-        uses: South-Paw/action-netlify-deploy@v1.2.0
+      - uses: jsmrcaga/action-netlify-deploy@master
         with:
-          github-token: ${{ secrets.WORKFLOW_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.STAGING_NETLIFY_SITE_ID }}
-          build-dir: './docs/document/website/build'
-          comment-on-commit: true
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          deploy_alias: 'staging'
+          build_directory: './docs/document/website/build'
+      - name: Status check
+        uses: Sibz/github-status-action@v1.1.1
+        with:
+          authToken: ${{ secrets.WORKFLOW_TOKEN }}
+          context: Netlify preview
+          state: success
+          target_url: https://staging--kintone-ui-component.netlify.app
