@@ -43,8 +43,8 @@
     "@storybook/addon-a11y": "^6.3.4",
     "@storybook/addon-viewport": "^6.3.4",
     "@storybook/builder-webpack5": "^6.3.4",
-    "@storybook/web-components": "^6.3.4",
     "@storybook/manager-webpack5": "^6.3.4",
+    "@storybook/web-components": "^6.3.4",
     "babel-loader": "^8.1.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.18.0",
@@ -64,7 +64,7 @@
     "dompurify": "^2.2.6",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "uuid": "^8.3.0",
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.5",
+    "uuid": "^8.3.0"
   }
 }

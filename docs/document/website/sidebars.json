@@ -32,12 +32,14 @@
     ],
     "Guides": [
       "guides/comparison-v0-v1",
-      "guides/search-box-customization"
+      "guides/search-box-customization",
+      "guides/mobile-timecard-customization"
     ]
   },
   "release-notes": {
     "Releases": [
       "releases/release-notes",
+      "releases/release-notes-v1.0.4",
       "releases/release-notes-v1.0.3",
       "releases/release-notes-v1.0.2",
       "releases/release-notes-v1.0.1",
