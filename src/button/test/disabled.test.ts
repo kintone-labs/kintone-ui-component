@@ -10,7 +10,7 @@ describe("Button", () => {
         ".kuc-button__button"
       ) as HTMLButtonElement;
 
-      expect(buttonEl).to.not.have.attr("disabled");
+      expect(buttonEl.hasAttribute("disabled")).to.equal(false);
     });
 
     it("should be added into button element when set to true in constructor", async () => {
@@ -20,7 +20,7 @@ describe("Button", () => {
         ".kuc-button__button"
       ) as HTMLButtonElement;
 
-      expect(buttonEl).to.have.attr("disabled");
+      expect(buttonEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be added into button element when changed to true by setter", async () => {
@@ -31,7 +31,7 @@ describe("Button", () => {
         ".kuc-button__button"
       ) as HTMLButtonElement;
 
-      expect(buttonEl).to.have.attr("disabled");
+      expect(buttonEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should not be added into button element when changed to false by setter", async () => {
@@ -42,7 +42,7 @@ describe("Button", () => {
         ".kuc-button__button"
       ) as HTMLButtonElement;
 
-      expect(buttonEl).to.not.have.attr("disabled");
+      expect(buttonEl.hasAttribute("disabled")).to.equal(false);
     });
   });
 });

@@ -10,7 +10,7 @@ describe("MobileText", () => {
         ".kuc-mobile-text__input-form__input"
       ) as HTMLInputElement;
 
-      expect(inputEl).to.not.have.attr("disabled");
+      expect(inputEl.hasAttribute("disabled")).to.equal(false);
     });
 
     it("should be added into input element when assigned true in constructor", async () => {
@@ -20,7 +20,7 @@ describe("MobileText", () => {
         ".kuc-mobile-text__input-form__input"
       ) as HTMLInputElement;
 
-      expect(inputEl).to.have.attr("disabled");
+      expect(inputEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be added into input element when changed to true by setter", async () => {
@@ -31,7 +31,7 @@ describe("MobileText", () => {
         ".kuc-mobile-text__input-form__input"
       ) as HTMLInputElement;
 
-      expect(inputEl).to.have.attr("disabled");
+      expect(inputEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should not be added into input element when changed to false by setter", async () => {
@@ -42,7 +42,7 @@ describe("MobileText", () => {
         ".kuc-mobile-text__input-form__input"
       ) as HTMLInputElement;
 
-      expect(inputEl).to.not.have.attr("disabled");
+      expect(inputEl.hasAttribute("disabled")).to.equal(false);
     });
   });
 });

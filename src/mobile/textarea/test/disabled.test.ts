@@ -10,7 +10,7 @@ describe("MobileTextArea", () => {
         ".kuc-mobile-textarea__form__textarea"
       ) as HTMLTextAreaElement;
 
-      expect(textareaEl).to.not.have.attr("disabled");
+      expect(textareaEl.hasAttribute("disabled")).to.equal(false);
     });
 
     it("should be added into element when assigned true in constructor", async () => {
@@ -20,7 +20,7 @@ describe("MobileTextArea", () => {
         ".kuc-mobile-textarea__form__textarea"
       ) as HTMLTextAreaElement;
 
-      expect(textareaEl).to.have.attr("disabled");
+      expect(textareaEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be added into element when changed to true by setter", async () => {
@@ -31,7 +31,7 @@ describe("MobileTextArea", () => {
         ".kuc-mobile-textarea__form__textarea"
       ) as HTMLTextAreaElement;
 
-      expect(textareaEl).to.have.attr("disabled");
+      expect(textareaEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should not be added into element when changed to false by setter", async () => {
@@ -42,7 +42,7 @@ describe("MobileTextArea", () => {
         ".kuc-mobile-textarea__form__textarea"
       ) as HTMLTextAreaElement;
 
-      expect(textareaEl).to.not.have.attr("disabled");
+      expect(textareaEl.hasAttribute("disabled")).to.equal(false);
     });
   });
 });

@@ -18,9 +18,9 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item__input"
       );
 
-      expect(inputEls[0]).to.not.have.attr("disabled");
-      expect(inputEls[1]).to.not.have.attr("disabled");
-      expect(inputEls[2]).to.not.have.attr("disabled");
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(false);
     });
 
     it("should be added into input elements when assigned true in constructor", async () => {
@@ -35,9 +35,9 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item__input"
       );
 
-      expect(inputEls[0]).to.have.attr("disabled");
-      expect(inputEls[1]).to.have.attr("disabled");
-      expect(inputEls[2]).to.have.attr("disabled");
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be added into input elements when changed to true by setter", async () => {
@@ -53,9 +53,9 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item__input"
       );
 
-      expect(inputEls[0]).to.have.attr("disabled");
-      expect(inputEls[1]).to.have.attr("disabled");
-      expect(inputEls[2]).to.have.attr("disabled");
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be not added into input elements when changed to false by setter", async () => {
@@ -71,9 +71,9 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item__input"
       );
 
-      expect(inputEls[0]).to.not.have.attr("disabled");
-      expect(inputEls[1]).to.not.have.attr("disabled");
-      expect(inputEls[2]).to.not.have.attr("disabled");
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(false);
     });
   });
 });

@@ -12,17 +12,21 @@ describe("MultiChoice", () => {
     it("should be not added into element when not assigned in constructor", async () => {
       const container = new MultiChoice({ items: initItems });
       const el = await fixture(container);
-      const menuEl = el.querySelector(".kuc-multi-choice__group__menu");
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-      expect(menuEl).to.not.have.attr("disabled");
+      expect(menuEl.hasAttribute("disabled")).to.equal(false);
     });
 
     it("should be added into element when assigned true in constructor", async () => {
       const container = new MultiChoice({ items: initItems, disabled: true });
       const el = await fixture(container);
-      const menuEl = el.querySelector(".kuc-multi-choice__group__menu");
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-      expect(menuEl).to.have.attr("disabled");
+      expect(menuEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be added into element when changed to true by setter", async () => {
@@ -30,9 +34,11 @@ describe("MultiChoice", () => {
       container.disabled = true;
 
       const el = await fixture(container);
-      const menuEl = el.querySelector(".kuc-multi-choice__group__menu");
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-      expect(menuEl).to.have.attr("disabled");
+      expect(menuEl.hasAttribute("disabled")).to.equal(true);
     });
 
     it("should be not added into element when changed to false by setter", async () => {
@@ -40,9 +46,11 @@ describe("MultiChoice", () => {
       container.disabled = false;
 
       const el = await fixture(container);
-      const menuEl = el.querySelector(".kuc-multi-choice__group__menu");
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-      expect(menuEl).to.not.have.attr("disabled");
+      expect(menuEl.hasAttribute("disabled")).to.equal(false);
     });
   });
 });
