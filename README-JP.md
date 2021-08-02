@@ -7,7 +7,7 @@
 
 <p align="center">
 kintone UI Component は、kintone カスタマイズ、プラグインのUI 開発を支援するための UI Component ライブラリです。<br />
-<strong>ドキュメントページは<a href="https://kintone-ui-component.netlify.app" rel="noopener" target="_blank">こちら</a>をご確認ください。</strong>
+<strong>ドキュメントページは<a href="https://kintone-ui-component.netlify.app/ja/" rel="noopener" target="_blank">こちら</a>をご確認ください。</strong>
 </p>
 
 <p align="center">

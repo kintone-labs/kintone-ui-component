@@ -70,13 +70,6 @@ class Footer extends React.Component {
           <div>
             <h5>Community</h5>
             <a
-              href="https://developer.cybozu.io/hc/ja/community/topics"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              cybozu developer network community topic
-            </a>
-            <a
               href="https://github.com/kintone-labs/kintone-ui-component/issues"
               target="_blank"
               rel="noreferrer noopener"
