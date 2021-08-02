@@ -1,75 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileButton } from "../index";
 
-describe("disabled default prop is false", () => {
-  const container = new MobileButton({});
+describe("MobileButton", () => {
+  describe("disabled", () => {
+    it("should not be added into button element when not assigned in constructor", async () => {
+      const container = new MobileButton({});
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-mobile-button__button"
+      ) as HTMLButtonElement;
 
-  it("disabled default prop is false", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-mobile-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
+      expect(buttonEl.hasAttribute("disabled")).to.equal(false);
+    });
 
-describe("disabled constructor set successfully", () => {
-  const container = new MobileButton({ disabled: true });
+    it("should be added into button element when assigned true in constructor", async () => {
+      const container = new MobileButton({ disabled: true });
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-mobile-button__button"
+      ) as HTMLButtonElement;
 
-  it("disabled constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-mobile-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.hasAttribute("disabled")).to.have.equal(true);
-  });
-});
+      expect(buttonEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-describe("disabled prop set to true successfully", () => {
-  const container = new MobileButton({ disabled: false });
-  container.disabled = true;
+    it("should be added into button element when changed to true by setter", async () => {
+      const container = new MobileButton({ disabled: false });
+      container.disabled = true;
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-mobile-button__button"
+      ) as HTMLButtonElement;
 
-  it("disabled prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el.querySelector(".kuc-mobile-button__button")).to.have.attr(
-      "disabled"
-    );
-  });
-});
+      expect(buttonEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-describe("disabled prop set to false successfully", () => {
-  const container = new MobileButton({ disabled: true });
-  container.disabled = false;
+    it("should not be added into button element when changed to false by setter", async () => {
+      const container = new MobileButton({ disabled: true });
+      container.disabled = false;
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-mobile-button__button"
+      ) as HTMLButtonElement;
 
-  it("disabled prop set to false successfully", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-mobile-button__button")
-    ).not.to.have.attr("disabled");
-  });
-});
-
-describe("disabled default prop set to null", () => {
-  // @ts-ignore
-  const container = new MobileButton({ disabled: null });
-
-  it("disabled default prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-mobile-button__button")
-    ).not.to.have.attr("disabled");
-  });
-});
-
-describe("disabled prop set to null", () => {
-  const container = new MobileButton({});
-  // @ts-ignore
-  container.disabled = null;
-
-  it("disabled prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-mobile-button__button")
-    ).not.to.have.attr("disabled");
+      expect(buttonEl.hasAttribute("disabled")).to.equal(false);
+    });
   });
 });

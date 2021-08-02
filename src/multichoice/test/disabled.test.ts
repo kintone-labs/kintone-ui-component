@@ -1,189 +1,56 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
-describe("disabled default prop is false", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+const initItems = [
+  { label: "Item 1", value: "item-1" },
+  { label: "Item 2", value: "item-2" },
+  { label: "Item 3", value: "item-3" }
+];
 
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
+describe("MultiChoice", () => {
+  describe("disabled", () => {
+    it("should be not added into element when not assigned in constructor", async () => {
+      const container = new MultiChoice({ items: initItems });
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-  it("disabled default prop is false", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).not.to.have.attr("disabled");
-  });
-});
+      expect(menuEl.hasAttribute("disabled")).to.equal(false);
+    });
 
-describe("disabled default prop set to true successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+    it("should be added into element when assigned true in constructor", async () => {
+      const container = new MultiChoice({ items: initItems, disabled: true });
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: true
-  });
+      expect(menuEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-  it("disabled default prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).to.have.attr("disabled");
-  });
-});
+    it("should be added into element when changed to true by setter", async () => {
+      const container = new MultiChoice({ items: initItems, disabled: false });
+      container.disabled = true;
 
-describe("disabled prop set to true successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: false
-  });
-  container.disabled = true;
+      expect(menuEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-  it("disabled prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).to.have.attr("disabled");
-  });
-});
+    it("should be not added into element when changed to false by setter", async () => {
+      const container = new MultiChoice({ items: initItems, disabled: true });
+      container.disabled = false;
 
-describe("disabled prop set to false successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
 
-  const container = new MultiChoice({
-    label: "MultiChoice",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    disabled: true
-  });
-  container.disabled = false;
-
-  it("disabled prop set to false successfully", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).not.to.have.attr("disabled");
-  });
-});
-
-describe("disabled default prop set to null", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    // @ts-ignore
-    disabled: null
-  });
-
-  it("disabled default prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).not.to.have.attr("disabled");
-  });
-});
-
-describe("disabled prop set to null", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
-  // @ts-ignore
-  container.disabled = null;
-
-  it("disabled prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(
-      el.querySelector(".kuc-multi-choice__group__menu")
-    ).not.to.have.attr("disabled");
+      expect(menuEl.hasAttribute("disabled")).to.equal(false);
+    });
   });
 });

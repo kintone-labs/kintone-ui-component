@@ -1,61 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Button } from "../index";
 
-describe("visible default prop is true", () => {
-  const container = new Button({});
+describe("Button", () => {
+  describe("visible", () => {
+    it("should be display inline-block when not assigned in constructor", async () => {
+      const container = new Button({});
 
-  it("visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible default prop set to true successfully", () => {
-  const container = new Button({ visible: false });
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-block");
+    });
 
-  it("visible default prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
+    it("should be display none when assigned false in constructor", async () => {
+      const container = new Button({ visible: false });
 
-describe("visible prop set to true successfully", () => {
-  const container = new Button({ visible: false });
-  container.visible = true;
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-  it("visible prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-describe("visible prop set to false successfully", () => {
-  const container = new Button({ visible: true });
-  container.visible = false;
+    it("should be display inline-block when changed to true by setter", async () => {
+      const container = new Button({ visible: false });
+      container.visible = true;
 
-  it("visible prop set to false successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible default prop set to null", () => {
-  // @ts-ignore
-  const container = new Button({ visible: null });
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-block");
+    });
 
-  it("visible default prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
+    it("should be display none when changed to false by setter", async () => {
+      const container = new Button({ visible: true });
+      container.visible = false;
 
-describe("visible prop set to null", () => {
-  const container = new Button({});
-  // @ts-ignore
-  container.visible = null;
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-  it("visible prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });

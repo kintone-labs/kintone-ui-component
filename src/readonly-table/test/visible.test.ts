@@ -1,66 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { ReadOnlyTable } from "../index";
 
-describe("confirm visible default prop is true", () => {
-  const container = new ReadOnlyTable();
+describe("ReadOnlyTable", () => {
+  describe("visible", () => {
+    it("should be display block when not assigned in constructor", async () => {
+      const container = new ReadOnlyTable();
 
-  it("confirm visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal("block");
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible constructor set to false successfully", () => {
-  const container = new ReadOnlyTable({ visible: false });
-  it("visible constructor set to false successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("block");
+    });
 
-describe("visible prop set to true successfully", () => {
-  const container = new ReadOnlyTable({ visible: false });
-  container.visible = true;
+    it("should be display none when assigned false in constructor", async () => {
+      const container = new ReadOnlyTable({ visible: false });
 
-  it("visible prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal("block");
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-describe("visible prop set to false successfully", () => {
-  const container = new ReadOnlyTable({ visible: true });
-  container.visible = false;
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-  it("visible prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+    it("should be display block when changed to true by setter", async () => {
+      const container = new ReadOnlyTable({ visible: false });
+      container.visible = true;
 
-describe("visible constructor set to null successfully", () => {
-  // @ts-ignore
-  const container = new ReadOnlyTable({ visible: null });
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-  it("visible constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("block");
+    });
 
-describe("visible prop set to null successfully", () => {
-  const container = new ReadOnlyTable({ visible: true });
-  // @ts-ignore
-  container.visible = null;
+    it("should be display none when changed to false by setter", async () => {
+      const container = new ReadOnlyTable({ visible: true });
+      container.visible = false;
 
-  it("visible prop set to null successfully", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
+
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });
