@@ -3,7 +3,7 @@ import { MobileNotification } from "../index";
 
 describe("MobileNotification", () => {
   describe("open", () => {
-    it("should be display when call open() method", async () => {
+    it("should be fadein when call open() method", async () => {
       const container = new MobileNotification();
       container.open();
 
