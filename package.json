@@ -40,11 +40,11 @@
     "@cybozu/eslint-config": "^11.0.3",
     "@open-wc/testing": "^2.5.17",
     "@open-wc/testing-karma": "^4.0.9",
-    "@storybook/addon-a11y": "^6.3.2",
-    "@storybook/addon-viewport": "^6.3.2",
-    "@storybook/builder-webpack5": "^6.3.2",
-    "@storybook/web-components": "^6.3.2",
-    "@storybook/manager-webpack5": "^6.3.2",
+    "@storybook/addon-a11y": "^6.3.4",
+    "@storybook/addon-viewport": "^6.3.4",
+    "@storybook/builder-webpack5": "^6.3.4",
+    "@storybook/manager-webpack5": "^6.3.4",
+    "@storybook/web-components": "^6.3.4",
     "babel-loader": "^8.1.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.18.0",
@@ -53,8 +53,7 @@
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.9.5",
-    "uuid": "^8.3.0",
-    "webpack": "^5.40.0",
+    "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
@@ -65,6 +64,7 @@
     "dompurify": "^2.2.6",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.5",
+    "uuid": "^8.3.0"
   }
 }

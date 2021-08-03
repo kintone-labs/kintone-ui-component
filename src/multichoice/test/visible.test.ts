@@ -1,182 +1,54 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
-describe("visible default prop is true", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+const initItems = [
+  { label: "Item 1", value: "item-1" },
+  { label: "Item 2", value: "item-2" },
+  { label: "Item 4", value: "item-3" }
+];
 
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
+describe("MultiChoice", () => {
+  describe("visible", () => {
+    it("should be display inline-table when not assigned in constructor", async () => {
+      const container = new MultiChoice({ items: initItems });
 
-  it("visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible prop set to false successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-table");
+    });
 
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    visible: false
-  });
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new MultiChoice({ items: initItems, visible: false });
 
-  it("visible prop set to false successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-describe("visible prop set to true successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    visible: false
-  });
-  container.visible = true;
+    it("should be display inline-table when changed to true by setter", async () => {
+      const container = new MultiChoice({ items: initItems, visible: false });
+      container.visible = true;
 
-  it("visible prop set to true successfully", async () => {
-    const el = await fixture(container);
-    await expect(el).to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible prop set to false successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-table");
+    });
 
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    visible: true,
-    className: "visible_test"
-  });
-  container.visible = false;
+    it("should be display none when changed to false by setter", async () => {
+      const container = new MultiChoice({ items: initItems, visible: true });
+      container.visible = false;
 
-  it("visible prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-describe("visible default prop set to null", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    // @ts-ignore
-    visible: null
-  });
-
-  it("visible default prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
-  });
-});
-
-describe("visible prop set to null", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
-  // @ts-ignore
-  container.visible = null;
-
-  it("visible prop set to null", async () => {
-    const el = await fixture(container);
-    await expect(el).not.to.be.displayed;
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });

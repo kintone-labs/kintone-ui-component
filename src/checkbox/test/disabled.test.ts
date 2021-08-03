@@ -1,210 +1,78 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
-describe("confirm disabled default value is false", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]]
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
+
+const initValues = ["apple"];
+
+describe("Checkbox", () => {
+  describe("disabled", () => {
+    it("should not be added into input elements when not set in constructor", async () => {
+      const container = new Checkbox({ items: initItems, value: initValues });
+      const el = await fixture(container);
+      const inputEls = el.querySelectorAll(
+        ".kuc-checkbox__group__select-menu__item__input"
+      );
+
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(false);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(false);
+    });
+
+    it("should be added into input elements when set true in constructor", async () => {
+      const container = new Checkbox({
+        items: initItems,
+        value: initValues,
+        disabled: true
+      });
+      const el = await fixture(container);
+      const inputEls = el.querySelectorAll(
+        ".kuc-checkbox__group__select-menu__item__input"
+      );
+
+      expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
+      expect(inputEls[2].hasAttribute("disabled")).to.equal(true);
+    });
   });
 
-  it("confirm disabled default value is false", async () => {
+  it("should be added into input elements when chenged to true by setter", async () => {
+    const container = new Checkbox({
+      items: initItems,
+      value: initValues,
+      disabled: false
+    });
+    container.disabled = true;
+
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(false);
-    }
-  });
-});
+    const inputEls = el.querySelectorAll(
+      ".kuc-checkbox__group__select-menu__item__input"
+    );
 
-describe("disabled constructor set successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]],
-    disabled: true
+    expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
+    expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
+    expect(inputEls[2].hasAttribute("disabled")).to.equal(true);
   });
 
-  it("disabled constructor set successfully", async () => {
+  it("should not be added into input elements when chenged to false by setter", async () => {
+    const container = new Checkbox({
+      items: initItems,
+      value: initValues,
+      disabled: true
+    });
+    container.disabled = false;
+
     const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(true);
-    }
-  });
-});
+    const inputEls = el.querySelectorAll(
+      ".kuc-checkbox__group__select-menu__item__input"
+    );
 
-describe("disabled prop set to true successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]],
-    disabled: false
-  });
-  container.disabled = true;
-
-  it("disabled prop set to true successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(true);
-    }
-  });
-});
-
-describe("disabled prop set to false successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]],
-    disabled: true
-  });
-  container.disabled = false;
-
-  it("disabled prop set to false successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(false);
-    }
-  });
-});
-
-describe("disabled constructor set to null successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]],
-    // @ts-ignore
-    disabled: null
-  });
-
-  it("disabled constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(false);
-    }
-  });
-});
-
-describe("disabled prop set to null successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Checkbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]],
-    disabled: true
-  });
-  // @ts-ignore
-  container.disabled = null;
-
-  it("disabled prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-checkbox__group__select-menu")!
-      .children as HTMLCollection;
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const inputEl = itemEl.children[0] as HTMLInputElement;
-      await expect(inputEl.hasAttribute("disabled")).to.be.equal(false);
-    }
+    expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
+    expect(inputEls[1].hasAttribute("disabled")).to.equal(false);
+    expect(inputEls[2].hasAttribute("disabled")).to.equal(false);
   });
 });
