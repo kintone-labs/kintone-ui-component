@@ -9,11 +9,9 @@ describe("Button", () => {
       const buttonEl = el.querySelector(
         ".kuc-button__button"
       ) as HTMLButtonElement;
-      await expect(buttonEl.classList.length).to.equal(2);
-      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
-      await expect(buttonEl.classList[1]).to.equal(
-        "kuc-button__button--normal"
-      );
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      expect(buttonEl.classList[1]).to.equal("kuc-button__button--normal");
     });
 
     it("should be normal when assigning by setter", async () => {
@@ -25,11 +23,9 @@ describe("Button", () => {
       const buttonEl = el.querySelector(
         ".kuc-button__button"
       ) as HTMLButtonElement;
-      await expect(buttonEl.classList.length).to.equal(2);
-      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
-      await expect(buttonEl.classList[1]).to.equal(
-        "kuc-button__button--normal"
-      );
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      expect(buttonEl.classList[1]).to.equal("kuc-button__button--normal");
     });
 
     it("should be alert when assigning alert by setter", async () => {
@@ -41,9 +37,9 @@ describe("Button", () => {
       const buttonEl = el.querySelector(
         ".kuc-button__button"
       ) as HTMLButtonElement;
-      await expect(buttonEl.classList.length).to.equal(2);
-      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
-      await expect(buttonEl.classList[1]).to.equal("kuc-button__button--alert");
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      expect(buttonEl.classList[1]).to.equal("kuc-button__button--alert");
     });
 
     it("should be submit when assigning submit by setter", async () => {
@@ -55,11 +51,9 @@ describe("Button", () => {
       const buttonEl = el.querySelector(
         ".kuc-button__button"
       ) as HTMLButtonElement;
-      await expect(buttonEl.classList.length).to.equal(2);
-      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
-      await expect(buttonEl.classList[1]).to.equal(
-        "kuc-button__button--submit"
-      );
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      expect(buttonEl.classList[1]).to.equal("kuc-button__button--submit");
     });
   });
 });

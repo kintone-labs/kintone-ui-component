@@ -11,11 +11,11 @@ describe("Notification", () => {
           const notificationEl = el.querySelector(
             ".kuc-notification__notification"
           ) as HTMLDivElement;
-          await expect(notificationEl.classList.length).to.equal(2);
-          await expect(notificationEl.classList[0]).to.equal(
+          expect(notificationEl.classList.length).to.equal(2);
+          expect(notificationEl.classList[0]).to.equal(
             "kuc-notification__notification"
           );
-          await expect(notificationEl.classList[1]).to.equal(
+          expect(notificationEl.classList[1]).to.equal(
             "kuc-notification__notification--danger"
           );
         });
@@ -29,11 +29,11 @@ describe("Notification", () => {
           const notificationEl = el.querySelector(
             ".kuc-notification__notification"
           ) as HTMLDivElement;
-          await expect(notificationEl.classList.length).to.equal(2);
-          await expect(notificationEl.classList[0]).to.equal(
+          expect(notificationEl.classList.length).to.equal(2);
+          expect(notificationEl.classList[0]).to.equal(
             "kuc-notification__notification"
           );
-          await expect(notificationEl.classList[1]).to.equal(
+          expect(notificationEl.classList[1]).to.equal(
             "kuc-notification__notification--danger"
           );
         });
@@ -47,11 +47,11 @@ describe("Notification", () => {
           const notificationEl = el.querySelector(
             ".kuc-notification__notification"
           ) as HTMLDivElement;
-          await expect(notificationEl.classList.length).to.equal(2);
-          await expect(notificationEl.classList[0]).to.equal(
+          expect(notificationEl.classList.length).to.equal(2);
+          expect(notificationEl.classList[0]).to.equal(
             "kuc-notification__notification"
           );
-          await expect(notificationEl.classList[1]).to.equal(
+          expect(notificationEl.classList[1]).to.equal(
             "kuc-notification__notification--info"
           );
         });
@@ -65,11 +65,11 @@ describe("Notification", () => {
           const notificationEl = el.querySelector(
             ".kuc-notification__notification"
           ) as HTMLDivElement;
-          await expect(notificationEl.classList.length).to.equal(2);
-          await expect(notificationEl.classList[0]).to.equal(
+          expect(notificationEl.classList.length).to.equal(2);
+          expect(notificationEl.classList[0]).to.equal(
             "kuc-notification__notification"
           );
-          await expect(notificationEl.classList[1]).to.equal(
+          expect(notificationEl.classList[1]).to.equal(
             "kuc-notification__notification--success"
           );
         });
