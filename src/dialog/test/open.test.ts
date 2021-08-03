@@ -1,4 +1,4 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Dialog } from "../index";
 
 describe("Dialog", () => {
