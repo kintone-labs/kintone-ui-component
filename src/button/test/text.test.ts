@@ -1,66 +1,34 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Button } from "../index";
 
-describe("text default prop is null", () => {
-  const container = new Button({});
+describe("Button", () => {
+  describe("text", () => {
+    it("should be null when not assigning on constructor", async () => {
+      const container = new Button();
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      expect(buttonEl.innerText).to.equal("");
+    });
 
-  it("text default prop is null", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.innerText).to.have.equals("");
-  });
-});
+    it("should be 'text' when assigning on constructor", async () => {
+      const container = new Button({ text: "text" });
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      expect(buttonEl.innerText).to.equal("text");
+    });
 
-describe("text default prop set successfully", () => {
-  const container = new Button({ text: "Alert" });
-
-  it("text default prop set successfully", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.innerText).to.have.equals("Alert");
-  });
-});
-
-describe("text prop replace successfully", () => {
-  const container = new Button({ text: "Alert" });
-  container.text = "update";
-
-  it("text prop replace successfully", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.innerText).to.have.equals("update");
-  });
-});
-
-describe("text default prop set to null", () => {
-  // @ts-ignore
-  const container = new Button({ text: null });
-
-  it("text default prop set to null", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.innerText).to.have.equals("");
-  });
-});
-
-describe("text prop set to null", () => {
-  const container = new Button({});
-  // @ts-ignore
-  container.text = null;
-
-  it("text prop set to null", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(buttonEl.innerText).to.have.equals("");
+    it("should be replaced by 'update' when changed by setter", async () => {
+      const container = new Button({ text: "Alert" });
+      container.text = "update";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      expect(buttonEl.innerText).to.equal("update");
+    });
   });
 });
