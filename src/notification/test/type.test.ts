@@ -1,101 +1,79 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Notification } from "../index";
 
-describe("type default prop is danger", () => {
-  const container = new Notification({});
+describe("Notification", () => {
+  describe("type", () => {
+    describe("Notification", () => {
+      describe("type", () => {
+        it("should be danger when not assigning on constructor", async () => {
+          const container = new Notification();
+          const el = await fixture(container);
+          const notificationEl = el.querySelector(
+            ".kuc-notification__notification"
+          ) as HTMLDivElement;
+          await expect(notificationEl.classList.length).to.equal(2);
+          await expect(notificationEl.classList[0]).to.equal(
+            "kuc-notification__notification"
+          );
+          await expect(notificationEl.classList[1]).to.equal(
+            "kuc-notification__notification--danger"
+          );
+        });
 
-  it("type default prop is danger", async () => {
-    const el = await fixture(container);
-    const typeEl = (await el.querySelector(
-      ".kuc-notification__notification"
-    )) as HTMLDivElement;
-    await expect(
-      [
-        "kuc-notification__notification",
-        "kuc-notification__notification--danger"
-      ].every(c => typeEl.classList.contains(c))
-    ).to.be.true;
-  });
-});
+        it("should be danger when assigning by setter", async () => {
+          const container = new Notification({
+            type: "info"
+          });
+          container.type = "danger";
+          const el = await fixture(container);
+          const notificationEl = el.querySelector(
+            ".kuc-notification__notification"
+          ) as HTMLDivElement;
+          await expect(notificationEl.classList.length).to.equal(2);
+          await expect(notificationEl.classList[0]).to.equal(
+            "kuc-notification__notification"
+          );
+          await expect(notificationEl.classList[1]).to.equal(
+            "kuc-notification__notification--danger"
+          );
+        });
 
-describe("type prop set to danger successfully", () => {
-  const container = new Notification({
-    type: "info"
-  });
-  container.type = "danger";
+        it("should be info when assigning info by setter", async () => {
+          const container = new Notification({
+            type: "danger"
+          });
+          container.type = "info";
+          const el = await fixture(container);
+          const notificationEl = el.querySelector(
+            ".kuc-notification__notification"
+          ) as HTMLDivElement;
+          await expect(notificationEl.classList.length).to.equal(2);
+          await expect(notificationEl.classList[0]).to.equal(
+            "kuc-notification__notification"
+          );
+          await expect(notificationEl.classList[1]).to.equal(
+            "kuc-notification__notification--info"
+          );
+        });
 
-  it("type prop set to danger successfully", async () => {
-    const el = await fixture(container);
-    const typeEl = (await el.querySelector(
-      ".kuc-notification__notification"
-    )) as HTMLDivElement;
-    await expect(
-      [
-        "kuc-notification__notification",
-        "kuc-notification__notification--danger"
-      ].every(c => typeEl.classList.contains(c))
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to info successfully", () => {
-  const container = new Notification({
-    type: "danger"
-  });
-  container.type = "info";
-
-  it("type prop set to info successfully", async () => {
-    const el = await fixture(container);
-    const typeEl = (await el.querySelector(
-      ".kuc-notification__notification"
-    )) as HTMLDivElement;
-    await expect(
-      [
-        "kuc-notification__notification",
-        "kuc-notification__notification--info"
-      ].every(c => typeEl.classList.contains(c))
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to success successfully", () => {
-  const container = new Notification({
-    type: "danger"
-  });
-  container.type = "success";
-
-  it("type prop set to success successfully", async () => {
-    const el = await fixture(container);
-    const typeEl = (await el.querySelector(
-      ".kuc-notification__notification"
-    )) as HTMLDivElement;
-    await expect(
-      [
-        "kuc-notification__notification",
-        "kuc-notification__notification--success"
-      ].every(c => typeEl.classList.contains(c))
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to null successfully", () => {
-  const container = new Notification({
-    type: "danger"
-  });
-
-  // @ts-ignore
-  container.type = null;
-
-  it("type prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const typeEl = (await el.querySelector(
-      ".kuc-notification__notification"
-    )) as HTMLDivElement;
-    await expect(
-      [
-        "kuc-notification__notification",
-        "kuc-notification__notification--null"
-      ].every(c => typeEl.classList.contains(c))
-    ).to.be.true;
+        it("should be success when assigning success by setter", async () => {
+          const container = new Notification({
+            type: "danger"
+          });
+          container.type = "success";
+          const el = await fixture(container);
+          const notificationEl = el.querySelector(
+            ".kuc-notification__notification"
+          ) as HTMLDivElement;
+          await expect(notificationEl.classList.length).to.equal(2);
+          await expect(notificationEl.classList[0]).to.equal(
+            "kuc-notification__notification"
+          );
+          await expect(notificationEl.classList[1]).to.equal(
+            "kuc-notification__notification--success"
+          );
+        });
+      });
+    });
   });
 });

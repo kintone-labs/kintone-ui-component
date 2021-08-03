@@ -1,110 +1,65 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Button } from "../index";
 
-describe("type default prop is normal", () => {
-  const container = new Button({});
+describe("Button", () => {
+  describe("type", () => {
+    it("should be normal when not assigning on constructor", async () => {
+      const container = new Button();
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      await expect(buttonEl.classList.length).to.equal(2);
+      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      await expect(buttonEl.classList[1]).to.equal(
+        "kuc-button__button--normal"
+      );
+    });
 
-  it("type default prop is normal", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--normal"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
-  });
-});
+    it("should be normal when assigning by setter", async () => {
+      const container = new Button({
+        type: "submit"
+      });
+      container.type = "normal";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      await expect(buttonEl.classList.length).to.equal(2);
+      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      await expect(buttonEl.classList[1]).to.equal(
+        "kuc-button__button--normal"
+      );
+    });
 
-describe("type prop set to normal successfully", () => {
-  const container = new Button({
-    type: "submit"
-  });
-  container.type = "normal";
+    it("should be alert when assigning alert by setter", async () => {
+      const container = new Button({
+        type: "normal"
+      });
+      container.type = "alert";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      await expect(buttonEl.classList.length).to.equal(2);
+      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      await expect(buttonEl.classList[1]).to.equal("kuc-button__button--alert");
+    });
 
-  it("type prop set to normal successfully", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--normal"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to alert successfully", () => {
-  const container = new Button({
-    type: "normal"
-  });
-  container.type = "alert";
-
-  it("type prop set to alert successfully", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--alert"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to submit successfully", () => {
-  const container = new Button({
-    type: "normal"
-  });
-  container.type = "submit";
-
-  it("type prop set to submit successfully", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--submit"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
-  });
-});
-
-describe("type default prop set to null", () => {
-  // @ts-ignore
-  const container = new Button({ type: null });
-
-  it("type default prop set to null", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--normal"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
-  });
-});
-
-describe("type prop set to null", () => {
-  const container = new Button({ type: "normal" });
-  // @ts-ignore
-  container.type = null;
-
-  it("type prop set to null", async () => {
-    const el = await fixture(container);
-    const buttonEl = (await el.querySelector(
-      ".kuc-button__button"
-    )) as HTMLButtonElement;
-    await expect(
-      ["kuc-button__button", "kuc-button__button--normal"].every(c =>
-        buttonEl.classList.contains(c)
-      )
-    ).to.be.true;
+    it("should be submit when assigning submit by setter", async () => {
+      const container = new Button({
+        type: "normal"
+      });
+      container.type = "submit";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      await expect(buttonEl.classList.length).to.equal(2);
+      await expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      await expect(buttonEl.classList[1]).to.equal(
+        "kuc-button__button--submit"
+      );
+    });
   });
 });
