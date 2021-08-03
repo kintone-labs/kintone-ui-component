@@ -3,7 +3,7 @@ import { MobileText } from "../index";
 
 describe("MobileText", () => {
   describe("placeholder", () => {
-    it("placeholder will be empty when not setting placeholder in constructor", async () => {
+    it("should be empty when not setting placeholder in constructor", async () => {
       const container = new MobileText();
 
       const el = await fixture(container);
@@ -14,7 +14,7 @@ describe("MobileText", () => {
       expect(inputEl.placeholder).to.equal("");
     });
 
-    it("placeholder will be not empty when setting placeholder in constructor", async () => {
+    it("should be not empty when setting placeholder in constructor", async () => {
       const container = new MobileText({ placeholder: "Apple" });
 
       const el = await fixture(container);
@@ -25,7 +25,7 @@ describe("MobileText", () => {
       expect(inputEl.placeholder).to.equal("Apple");
     });
 
-    it("placeholder will be changed when updating placeholder", async () => {
+    it("should be changed when updating placeholder", async () => {
       const container = new MobileText();
       container.placeholder = "Apple";
 
@@ -37,7 +37,7 @@ describe("MobileText", () => {
       expect(inputEl.placeholder).to.equal("Apple");
     });
 
-    it("placeholder will be changed when replacing placehoder", async () => {
+    it("should be changed when replacing placehoder", async () => {
       const container = new MobileText({ placeholder: "Orange" });
       container.placeholder = "Apple";
 

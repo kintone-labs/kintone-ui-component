@@ -3,7 +3,7 @@ import { Text } from "../index";
 
 describe("Text", () => {
   describe("textAlign", () => {
-    it("shoul be used default textAlign is left when not set textAlign in constructor", async () => {
+    it("shoul be left when not set textAlign in constructor", async () => {
       const container = new Text();
 
       const el = await fixture(container);
@@ -15,7 +15,7 @@ describe("Text", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("left");
     });
 
-    it("should be displayed when set right in constructor", async () => {
+    it("should be right when set right in constructor", async () => {
       const container = new Text({ textAlign: "right" });
 
       const el = await fixture(container);
@@ -27,7 +27,7 @@ describe("Text", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
     });
 
-    it("should be updated when textAlign update to right", async () => {
+    it("should be right when updating to right", async () => {
       const container = new Text();
       container.textAlign = "right";
 
@@ -40,7 +40,7 @@ describe("Text", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
     });
 
-    it("should be updated when replacing textAlign from left to right", async () => {
+    it("should be right when updating textAlign from left to right", async () => {
       const container = new Text({ textAlign: "left" });
       container.textAlign = "right";
 

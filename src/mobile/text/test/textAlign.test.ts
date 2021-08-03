@@ -3,7 +3,7 @@ import { MobileText } from "../index";
 
 describe("MobileText", () => {
   describe("textAlign", () => {
-    it("should be used default textAlign is left when not set textAlign in constructor", async () => {
+    it("should be left when not set textAlign in constructor", async () => {
       const container = new MobileText();
 
       const el = await fixture(container);
@@ -15,7 +15,7 @@ describe("MobileText", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("left");
     });
 
-    it("should be displayed when set right in constructor", async () => {
+    it("should be right when set right in constructor", async () => {
       const container = new MobileText({ textAlign: "right" });
 
       const el = await fixture(container);
@@ -27,7 +27,7 @@ describe("MobileText", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
     });
 
-    it("should be updated when updating to right ", async () => {
+    it("should be right when updating to right ", async () => {
       const container = new MobileText();
       container.textAlign = "right";
 
@@ -40,7 +40,7 @@ describe("MobileText", () => {
       expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
     });
 
-    it("should be updated when replacing textAlign from left to right", async () => {
+    it("should be right when replacing textAlign from left to right", async () => {
       const container = new MobileText({ textAlign: "left" });
       container.textAlign = "right";
 
