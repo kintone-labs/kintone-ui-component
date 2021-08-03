@@ -2,7 +2,7 @@ import { expect, fixture } from "@open-wc/testing";
 import { MobileTextArea } from "../index";
 describe("MobileTextarea", () => {
   describe("placeholder", () => {
-    it("placeholder will be not displayed when not setting placeholder in constructor", async () => {
+    it("placeholder will be empty when not setting placeholder in constructor", async () => {
       const container = new MobileTextArea();
 
       const el = await fixture(container);
@@ -14,7 +14,7 @@ describe("MobileTextarea", () => {
     });
   });
 
-  it("placeholder will be displayed when setting placeholder in constructor", async () => {
+  it("placeholder will be not empty when setting placeholder in constructor", async () => {
     const container = new MobileTextArea({ placeholder: "Apple" });
 
     const el = await fixture(container);

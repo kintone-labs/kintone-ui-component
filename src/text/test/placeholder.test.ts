@@ -3,7 +3,7 @@ import { Text } from "../index";
 
 describe("Text", () => {
   describe("placeholder", () => {
-    it("placeholder will be not displayed when not setting placeholder in constructor", async () => {
+    it("placeholder will be empty when not setting placeholder in constructor", async () => {
       const container = new Text();
 
       const el = await fixture(container);
@@ -15,7 +15,7 @@ describe("Text", () => {
     });
   });
 
-  it("placeholder will be displayed when setting placeholder in constructor", async () => {
+  it("placeholder will be not empty when setting placeholder in constructor", async () => {
     const container = new Text({ placeholder: "Apple" });
 
     const el = await fixture(container);

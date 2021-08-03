@@ -3,7 +3,7 @@ import { TextArea } from "../index";
 
 describe("Textarea", () => {
   describe("placeholder", () => {
-    it("placeholder will be not displayed when not setting placeholder in constructor", async () => {
+    it("placeholder will be empty when not setting placeholder in constructor", async () => {
       const container = new TextArea();
 
       const el = await fixture(container);
@@ -14,7 +14,7 @@ describe("Textarea", () => {
       expect(textAreaEl.getAttribute("placeholder")).to.equal("");
     });
 
-    it("placeholder will be displayed when setting placeholder in constructor", async () => {
+    it("placeholder will be not empty when setting placeholder in constructor", async () => {
       const container = new TextArea({ placeholder: "Fruit" });
 
       const el = await fixture(container);
