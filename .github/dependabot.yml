@@ -10,5 +10,7 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "*"
     open-pull-requests-limit: 0
     versioning-strategy: widen
