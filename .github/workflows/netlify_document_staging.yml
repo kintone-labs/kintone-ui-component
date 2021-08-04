@@ -1,4 +1,4 @@
-name: Netlify Staging Environment
+name: Netlify Document Staging Environment
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   publishMasterCommit:
-    name: Deploying on Netlify Staging Environment
+    name: Deploying on Netlify Document Staging Environment
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.pull_request.merged == 'true')
     steps:
@@ -19,13 +19,13 @@ jobs:
       - name: Install dependencies
         run: npm i
         working-directory: docs/document/website
-      - name: Build website
+      - name: Build document
         run: npm run build
         working-directory: docs/document/website
       - uses: jsmrcaga/action-netlify-deploy@master
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCUMENT_ID }}
           deploy_alias: 'staging'
           build_directory: './docs/document/website/build'
       - name: Status check
