@@ -212,8 +212,14 @@ export class Checkbox extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-checkbox__group">
-        <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
-          <span class="kuc-checkbox__group__label__text">${this.label}</span
+        <div
+          class="kuc-checkbox__group__label"
+          ?hidden="${!this.label}"
+          role="group"
+          aria-labelledby="group-label"
+        >
+          <span id="group-label" class="kuc-checkbox__group__label__text"
+            >${this.label}</span
           ><!--
           --><span
             class="kuc-checkbox__group__label__required-icon"

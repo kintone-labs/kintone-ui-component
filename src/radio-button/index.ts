@@ -203,8 +203,14 @@ export class RadioButton extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-radio-button__group">
-        <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span class="kuc-radio-button__group__label__text">${this.label}</span
+        <div
+          class="kuc-radio-button__group__label"
+          ?hidden="${!this.label}"
+          role="radiogroup"
+          aria-labelledby="group-label"
+        >
+          <span id="group-label" class="kuc-radio-button__group__label__text"
+            >${this.label}</span
           ><!--
             --><span
             class="kuc-radio-button__group__label__required-icon"
