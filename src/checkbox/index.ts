@@ -216,9 +216,11 @@ export class Checkbox extends LitElement {
           class="kuc-checkbox__group__label"
           ?hidden="${!this.label}"
           role="group"
-          aria-labelledby="group-label"
+          aria-labelledby="${this._GUID}-group-label"
         >
-          <span id="group-label" class="kuc-checkbox__group__label__text"
+          <span
+            id="${this._GUID}-group-label"
+            class="kuc-checkbox__group__label__text"
             >${this.label}</span
           ><!--
           --><span
