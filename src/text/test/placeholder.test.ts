@@ -38,7 +38,7 @@ describe("Text", () => {
     expect(inputEl.placeholder).to.equal("Apple");
   });
 
-  it("should be changed when replacing placehoder", async () => {
+  it("should be changed when replacing placeholder", async () => {
     const container = new Text({ placeholder: "Orange" });
     container.placeholder = "Apple";
 

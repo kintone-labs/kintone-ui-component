@@ -37,7 +37,7 @@ describe("Textarea", () => {
       expect(textAreaEl.getAttribute("placeholder")).to.equal("Fruit");
     });
 
-    it("should be changed when replacing placehoder", async () => {
+    it("should be changed when replacing placeholder", async () => {
       const container = new TextArea({ placeholder: "Fruit" });
       container.placeholder = "Food";
 
