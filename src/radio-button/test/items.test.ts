@@ -195,6 +195,9 @@ describe("MobileRadioButton", () => {
       } catch (error) {
         expect(error.message).to.equal("'items' property is not array");
       }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("should be throw error when assigned dupplicated items on constructor", async () => {
@@ -206,6 +209,9 @@ describe("MobileRadioButton", () => {
           "'items[1].value' is duplicated! You can specify unique one."
         );
       }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("should be throw error when assigned null by setter", async () => {
@@ -217,6 +223,9 @@ describe("MobileRadioButton", () => {
       } catch (error) {
         expect(error.message).to.equal("'items' property is not array");
       }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
 
     it("should be throw error when assigned dupplicated items by setter", async () => {
@@ -229,6 +238,9 @@ describe("MobileRadioButton", () => {
           "'items[1].value' is duplicated! You can specify unique one."
         );
       }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
   });
 });
