@@ -160,7 +160,7 @@ describe("MobileRadioButton", () => {
     it("should be changed when updated items by setter", async () => {
       const container = new MobileRadioButton({ items: initItems });
       container.items = replacedItems;
-  
+
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-mobile-radio-button__group__select-menu__item"
