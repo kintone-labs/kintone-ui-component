@@ -184,7 +184,7 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
+    it("should be throw error when assigned null on constructor", async () => {
       expect(() => {
         // @ts-expect-error
         const container = new MobileRadioButton({ items: null });
