@@ -42,19 +42,19 @@ describe("Checkbox", () => {
       expect(itemsEl.length).to.equal(3);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
-      expect(inputEl0.hasAttribute("checked")).to.equal(false);
+      expect(inputEl0.checked).to.equal(false);
       expect(inputEl0.value).to.equal(initItemsWithoutLabel[0].value);
       const labelEl0 = itemsEl[0].querySelector("label") as HTMLLabelElement;
       expect(labelEl0.innerText).to.equal(initItemsWithoutLabel[0].value);
 
       const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
-      expect(inputEl1.hasAttribute("checked")).to.equal(false);
+      expect(inputEl1.checked).to.equal(false);
       expect(inputEl1.value).to.equal(initItemsWithoutLabel[1].value);
       const labelEl1 = itemsEl[1].querySelector("label") as HTMLLabelElement;
       expect(labelEl1.innerText).to.equal(initItemsWithoutLabel[1].value);
 
       const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
-      expect(inputEl2.hasAttribute("checked")).to.equal(false);
+      expect(inputEl2.checked).to.equal(false);
       expect(inputEl2.value).to.equal(initItemsWithoutLabel[2].value);
       const labelEl2 = itemsEl[2].querySelector("label") as HTMLLabelElement;
       expect(labelEl2.innerText).to.equal(initItemsWithoutLabel[2].value);
@@ -71,19 +71,19 @@ describe("Checkbox", () => {
       expect(itemsEl.length).to.equal(3);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
-      expect(inputEl0.hasAttribute("checked")).to.equal(false);
+      expect(inputEl0.checked).to.equal(false);
       expect(inputEl0.value).to.equal(initItemsWithoutLabel[0].value);
       const labelEl0 = itemsEl[0].querySelector("label") as HTMLLabelElement;
       expect(labelEl0.innerText).to.equal(initItemsWithoutLabel[0].value);
 
       const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
-      expect(inputEl1.hasAttribute("checked")).to.equal(false);
+      expect(inputEl1.checked).to.equal(false);
       expect(inputEl1.value).to.equal(initItemsWithoutLabel[1].value);
       const labelEl1 = itemsEl[1].querySelector("label") as HTMLLabelElement;
       expect(labelEl1.innerText).to.equal(initItemsWithoutLabel[1].value);
 
       const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
-      expect(inputEl2.hasAttribute("checked")).to.equal(false);
+      expect(inputEl2.checked).to.equal(false);
       expect(inputEl2.value).to.equal(initItemsWithoutLabel[2].value);
       const labelEl2 = itemsEl[2].querySelector("label") as HTMLLabelElement;
       expect(labelEl2.innerText).to.equal(initItemsWithoutLabel[2].value);
@@ -99,19 +99,19 @@ describe("Checkbox", () => {
       expect(itemsEl.length).to.equal(3);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
-      expect(inputEl0.hasAttribute("checked")).to.equal(false);
+      expect(inputEl0.checked).to.equal(false);
       expect(inputEl0.value).to.equal(initItems[0].value);
       const labelEl0 = itemsEl[0].querySelector("label") as HTMLLabelElement;
       expect(labelEl0.innerText).to.equal(initItems[0].label);
 
       const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
-      expect(inputEl1.hasAttribute("checked")).to.equal(false);
+      expect(inputEl1.checked).to.equal(false);
       expect(inputEl1.value).to.equal(initItems[1].value);
       const labelEl1 = itemsEl[1].querySelector("label") as HTMLLabelElement;
       expect(labelEl1.innerText).to.equal(initItems[1].label);
 
       const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
-      expect(inputEl2.hasAttribute("checked")).to.equal(false);
+      expect(inputEl2.checked).to.equal(false);
       expect(inputEl2.value).to.equal(initItems[2].value);
       const labelEl2 = itemsEl[2].querySelector("label") as HTMLLabelElement;
       expect(labelEl2.innerText).to.equal(initItems[2].label);
@@ -130,13 +130,13 @@ describe("Checkbox", () => {
       expect(itemsEl.length).to.equal(2);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
-      expect(inputEl0.hasAttribute("checked")).to.equal(false);
+      expect(inputEl0.checked).to.equal(false);
       expect(inputEl0.value).to.equal(replacedItems[0].value);
       const labelEl0 = itemsEl[0].querySelector("label") as HTMLLabelElement;
       expect(labelEl0.innerText).to.equal(replacedItems[0].label);
 
       const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
-      expect(inputEl1.hasAttribute("checked")).to.equal(false);
+      expect(inputEl1.checked).to.equal(false);
       expect(inputEl1.value).to.equal(replacedItems[1].value);
       const labelEl1 = itemsEl[1].querySelector("label") as HTMLLabelElement;
       expect(labelEl1.innerText).to.equal(replacedItems[1].label);
