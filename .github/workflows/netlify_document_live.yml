@@ -1,0 +1,28 @@
+name: Netlify Document Production Environment
+
+on:
+  release:
+    types:
+      - released
+
+jobs:
+  publishOnMasterRelease:
+    name: Deploying on Netlify Document Production Environment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'released'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm i
+        working-directory: docs/document/website
+      - name: Build document
+        run: npm run build
+        working-directory: docs/document/website
+      - name: Deploying on Netlify Production Environment
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_DOCUMENT_ID }}
+          build-dir: './docs/document/website/build'
