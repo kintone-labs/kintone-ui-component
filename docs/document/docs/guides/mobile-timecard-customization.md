@@ -180,5 +180,5 @@ If an error occurs during the process, use the MobileNotification component to d
 }
 ```
 
-> This article was reviewed by Kintone and Google Chrome as of June, 2021.<br>
+> This article was reviewed by Kintone and Google Chrome as of August, 2021.<br>
 > In addition, the version of Kintone UI Component that is used for customization is v1.0.5.
