@@ -20,7 +20,7 @@ describe("Button", () => {
       expect(buttonEl.innerText).to.be.equal("click");
     });
 
-    it("should be not triggered click event when disbaled", async () => {
+    it("should be not triggered click event when disabled", async () => {
       const container = new Button({
         disabled: true,
         text: "no event"
