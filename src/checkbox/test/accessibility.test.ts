@@ -13,7 +13,7 @@ const initItems = [
 ];
 
 describe("Checkbox", () => {
-  describe("changeEvent", () => {
+  describe("accessibility", () => {
     it("can be focused and blured", async () => {
       const container = new Checkbox({
         items: initItems,
