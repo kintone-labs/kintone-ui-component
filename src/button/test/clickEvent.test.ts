@@ -37,7 +37,7 @@ describe("Button", () => {
       buttonEl.click();
       await elementUpdated(buttonEl);
 
-      expect(buttonEl.innerText).to.be.equal("no event");
+      expect(buttonEl.innerText).to.equal("no event");
     });
   });
 });
