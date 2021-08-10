@@ -28,7 +28,7 @@ describe("Dialog", () => {
 
     it("should be HTMLElement when assgined HTMLElement on constructor", async () => {
       const htmlElement = document.createElement("div");
-      htmlElement.className = "element-class";
+      htmlElement.className = "kuc-element-class";
 
       const container = new Dialog({ footer: htmlElement });
       container.open();
@@ -37,11 +37,11 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+      expect(cotentEl.firstElementChild!.className).to.equal("kuc-element-class");
     });
 
     it("should be HTMLElement when assgined html string on constructor", async () => {
-      const htmlString = `<div class="element-class">footer</div>`;
+      const htmlString = `<div class="kuc-element-class">footer</div>`;
       const container = new Dialog({ footer: htmlString });
       container.open();
       await elementUpdated(container);
@@ -49,7 +49,7 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+      expect(cotentEl.firstElementChild!.className).to.equal("kuc-element-class");
     });
 
     it('should be "footer" when set string by setter', async () => {
@@ -67,7 +67,7 @@ describe("Dialog", () => {
 
     it("should be HTMLElement when set HTMLElement by setter", async () => {
       const htmlElement = document.createElement("div");
-      htmlElement.className = "element-class";
+      htmlElement.className = "kuc-element-class";
 
       const container = new Dialog();
       container.open();
@@ -78,11 +78,11 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+      expect(cotentEl.firstElementChild!.className).to.equal("kuc-element-class");
     });
 
     it("should be HTMLElement when set html string by setter", async () => {
-      const htmlString = `<div class="element-class">footer</div>`;
+      const htmlString = `<div class="kuc-element-class">footer</div>`;
       const container = new Dialog();
       container.open();
 
@@ -92,7 +92,7 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+      expect(cotentEl.firstElementChild!.className).to.equal("kuc-element-class");
     });
 
     it("should be repacled by setter", async () => {
