@@ -9,16 +9,14 @@ const initItems = [
 
 describe("Dropdown", () => {
   it("should be triggered when mousedown on the item", async () => {
+    let triggeredEvent: any = null;
     const container = new Dropdown({
       items: initItems,
-      value: initItems[1].value,
-      error: ""
+      value: initItems[1].value
     });
 
     container.addEventListener("change", (event: any) => {
-      expect(event.detail.value).to.be.equal(initItems[2].value);
-      expect(event.detail.oldValue).to.be.equal(initItems[1].value);
-      container.error = "changed";
+      triggeredEvent = event;
     });
 
     const el = await fixture(container);
@@ -31,6 +29,9 @@ describe("Dropdown", () => {
       ".kuc-dropdown__group__select-menu__item"
     );
     (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
-    expect(container.error).to.equal("changed");
+
+    expect(triggeredEvent.type).to.equal("change");
+    expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
+    expect(triggeredEvent.detail.oldValue).to.equal(initItems[1].value);
   });
 });
