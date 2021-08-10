@@ -23,14 +23,14 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu__item"
       );
 
-      (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseover"));
+      itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
           "kuc-dropdown__group__select-menu__highlight"
         )
       ).to.equal(true);
 
-      (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mouseleave"));
+      itemsEl[2].dispatchEvent(new Event("mouseleave"));
       expect(
         itemsEl[2].classList.contains(
           "kuc-dropdown__group__select-menu__highlight"
@@ -38,7 +38,7 @@ describe("Dropdown", () => {
       ).to.equal(false);
     });
 
-    it('should be highlight next item when triggered "ArrowUp" keyboard event', async () => {
+    it('should be highlight prev item when triggered "ArrowUp" keyboard event', async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value
@@ -60,7 +60,7 @@ describe("Dropdown", () => {
       ).to.equal(true);
     });
 
-    it('should be highlight next item when triggered "Up" keyboard event for IE', async () => {
+    it('should be highlight prev item when triggered "Up" keyboard event for IE', async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value
