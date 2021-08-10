@@ -10,18 +10,13 @@ const initItems = [
 describe("MobileCheckbox", () => {
   describe("changeEvent", () => {
     it("should triggered when changed the input element", async () => {
-      let triggered = false;
+      let triggeredEvent: any = null;
       const container = new MobileCheckbox({
         items: initItems,
         value: [initItems[1].value]
       });
       container.addEventListener("change", (event: any) => {
-        expect(event.detail.oldValue).to.deep.equal([initItems[1].value]);
-        expect(event.detail.value).to.deep.equal([
-          initItems[1].value,
-          initItems[2].value
-        ]);
-        triggered = true;
+        triggeredEvent = event;
       });
 
       const el = await fixture(container);
@@ -29,7 +24,15 @@ describe("MobileCheckbox", () => {
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
       inputsEl[2].dispatchEvent(new Event("change"));
-      expect(triggered).to.equal(true);
+
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
     });
   });
 });
