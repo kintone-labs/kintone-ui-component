@@ -1,160 +1,110 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 import { Dialog } from "../index";
 
-describe("confirm footer default prop is null", () => {
-  const container = new Dialog();
-  it("confirm footer default prop is null", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.childElementCount).to.be.equals(0);
-  });
-});
+describe("Dialog", () => {
+  describe("footer", () => {
+    it("should be empty when not assgined on constructor", async () => {
+      const container = new Dialog();
+      container.open();
+      await elementUpdated(container);
 
-describe("constructor: footer set string successfully", () => {
-  const container = new Dialog({
-    footer: "this is footer"
-  });
-  it("footer constructor set successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.textContent!.trim()).to.be.equals("this is footer");
-  });
-});
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.childElementCount).to.equal(0);
+      expect(cotentEl.textContent?.trim()).to.equal("");
+    });
 
-describe("constructor: footer set HTMLElement successfully", () => {
-  const divElement = document.createElement("div");
-  divElement.textContent = "this is footer";
-  const container = new Dialog({
-    footer: divElement
-  });
-  it("footer constructor set successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.firstElementChild!.tagName.toLowerCase()).to.be.equal(
-      "div"
-    );
-    await expect(footerEl.firstElementChild!.textContent?.trim()).to.be.equal(
-      "this is footer"
-    );
-  });
-});
+    it('should be "footer" when assgined string on constructor', async () => {
+      const container = new Dialog({ footer: "footer" });
+      container.open();
+      await elementUpdated(container);
 
-describe("constructor: footer set HTMLElement from string successfully", () => {
-  const divElement = "<div>this is footer</div>";
-  const container = new Dialog({
-    footer: divElement
-  });
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.textContent?.trim()).to.equal("footer");
+    });
 
-  it("constructor: footer set HTMLElement from string successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.firstElementChild!.tagName.toLowerCase()).to.be.equal(
-      "div"
-    );
-    await expect(footerEl.firstElementChild!.textContent?.trim()).to.be.equal(
-      "this is footer"
-    );
-  });
-});
+    it("should be HTMLElement when assgined HTMLElement on constructor", async () => {
+      const htmlElement = document.createElement("div");
+      htmlElement.className = "element-class";
 
-describe("constructor: footer set to null successfully", () => {
-  const container = new Dialog({
-    // @ts-ignore
-    footer: null
-  });
+      const container = new Dialog({ footer: htmlElement });
+      container.open();
+      await elementUpdated(container);
 
-  it("constructor: content set to null successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.textContent!.trim()).to.be.equals("");
-  });
-});
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+    });
 
-describe("property: footer set string successfully", () => {
-  const container = new Dialog();
-  container.footer = "this is footer";
+    it("should be HTMLElement when assgined html string on constructor", async () => {
+      const htmlString = `<div class="element-class">footer</div>`;
+      const container = new Dialog({ footer: htmlString });
+      container.open();
+      await elementUpdated(container);
 
-  it("footer prop set successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.textContent!.trim()).to.be.equal("this is footer");
-  });
-});
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+    });
 
-describe("property: footer set HTMLElement successfully", () => {
-  const divElement = document.createElement("div");
-  divElement.textContent = "this is footer";
-  const container = new Dialog();
-  container.footer = divElement;
+    it('should be "footer" when set string by setter', async () => {
+      const container = new Dialog();
+      container.open();
 
-  it("property: footer set HTMLElement successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.firstElementChild!.tagName.toLowerCase()).to.be.equal(
-      "div"
-    );
-    await expect(footerEl.firstElementChild!.textContent?.trim()).to.be.equal(
-      "this is footer"
-    );
-  });
-});
+      container.footer = "footer";
+      await elementUpdated(container);
 
-describe("property: footer set HTMLElement from string successfully", () => {
-  const divElement = "<div>this is footer</div>";
-  const container = new Dialog();
-  container.footer = divElement;
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.textContent?.trim()).to.equal("footer");
+    });
 
-  it("property: footer set HTMLElement from string successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.firstElementChild!.tagName.toLowerCase()).to.be.equal(
-      "div"
-    );
-    await expect(footerEl.firstElementChild!.textContent?.trim()).to.be.equal(
-      "this is footer"
-    );
-  });
-});
+    it("should be HTMLElement when set HTMLElement by setter", async () => {
+      const htmlElement = document.createElement("div");
+      htmlElement.className = "element-class";
 
-describe("property: footer set to null successfully", () => {
-  const container = new Dialog();
-  // @ts-ignore
-  container.footer = null;
+      const container = new Dialog();
+      container.open();
 
-  it("property: footer set to null successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.textContent!.trim()).to.be.equal("");
-  });
-});
+      container.footer = htmlElement;
+      await elementUpdated(container);
 
-describe("footer prop replace successfully", () => {
-  const container = new Dialog({ footer: "this is footer" });
-  container.footer = "replace footer";
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+    });
 
-  it("footer prop replace successfully", async () => {
-    const el = await fixture(container);
-    const footerEl = el.querySelector(
-      ".kuc-dialog__dialog__footer"
-    ) as HTMLDivElement;
-    await expect(footerEl.textContent!.trim()).to.be.equal("replace footer");
+    it("should be HTMLElement when set html string by setter", async () => {
+      const htmlString = `<div class="element-class">footer</div>`;
+      const container = new Dialog();
+      container.open();
+
+      container.footer = htmlString;
+      await elementUpdated(container);
+
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.firstElementChild!.className).to.equal("element-class");
+    });
+
+    it("should be repacled by setter", async () => {
+      const container = new Dialog({ footer: "footer" });
+      container.open();
+      container.footer = "replaced footer";
+      await elementUpdated(container);
+
+      const cotentEl = container.querySelector(
+        ".kuc-dialog__dialog__footer"
+      ) as HTMLDivElement;
+      expect(cotentEl.textContent!.trim()).to.be.equal("replaced footer");
+    });
   });
 });
