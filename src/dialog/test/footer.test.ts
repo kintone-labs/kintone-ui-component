@@ -8,11 +8,11 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.childElementCount).to.equal(0);
-      expect(cotentEl.textContent?.trim()).to.equal("");
+      expect(footerEl.childElementCount).to.equal(0);
+      expect(footerEl.textContent?.trim()).to.equal("");
     });
 
     it('should be "footer" when assgined string on constructor', async () => {
@@ -20,10 +20,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent?.trim()).to.equal("footer");
+      expect(footerEl.textContent?.trim()).to.equal("footer");
     });
 
     it("should be HTMLElement when assgined HTMLElement on constructor", async () => {
@@ -34,10 +34,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(footerEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -48,10 +48,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(footerEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -63,10 +63,10 @@ describe("Dialog", () => {
       container.footer = "footer";
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent?.trim()).to.equal("footer");
+      expect(footerEl.textContent?.trim()).to.equal("footer");
     });
 
     it("should be HTMLElement when set HTMLElement by setter", async () => {
@@ -79,10 +79,10 @@ describe("Dialog", () => {
       container.footer = htmlElement;
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(footerEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -95,24 +95,24 @@ describe("Dialog", () => {
       container.footer = htmlString;
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(footerEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
 
-    it("should be repacled by setter", async () => {
+    it("should be repacled to 'replaced footer' when updated by setter", async () => {
       const container = new Dialog({ footer: "footer" });
       container.open();
       container.footer = "replaced footer";
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const footerEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent!.trim()).to.equal("replaced footer");
+      expect(footerEl.textContent!.trim()).to.equal("replaced footer");
     });
   });
 });

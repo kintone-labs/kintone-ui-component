@@ -8,11 +8,11 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.childElementCount).to.equal(0);
-      expect(cotentEl.textContent?.trim()).to.equal("");
+      expect(contentEl.childElementCount).to.equal(0);
+      expect(contentEl.textContent?.trim()).to.equal("");
     });
 
     it('should be "content" when assgined string on constructor', async () => {
@@ -20,10 +20,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent?.trim()).to.equal("content");
+      expect(contentEl.textContent?.trim()).to.equal("content");
     });
 
     it("should be HTMLElement when assgined HTMLElement on constructor", async () => {
@@ -34,10 +34,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -48,10 +48,10 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -63,10 +63,10 @@ describe("Dialog", () => {
       container.content = "content";
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent?.trim()).to.equal("content");
+      expect(contentEl.textContent?.trim()).to.equal("content");
     });
 
     it("should be HTMLElement when set HTMLElement by setter", async () => {
@@ -79,10 +79,10 @@ describe("Dialog", () => {
       container.content = htmlElement;
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
@@ -95,24 +95,24 @@ describe("Dialog", () => {
       container.content = htmlString;
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.firstElementChild!.className).to.equal(
+      expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
       );
     });
 
-    it("should be repacled by setter", async () => {
+    it("should be repacled to 'replaced content' when updated by setter", async () => {
       const container = new Dialog({ content: "content" });
       container.open();
       container.content = "replaced content";
       await elementUpdated(container);
 
-      const cotentEl = container.querySelector(
+      const contentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent!.trim()).to.equal("replaced content");
+      expect(contentEl.textContent!.trim()).to.equal("replaced content");
     });
   });
 });
