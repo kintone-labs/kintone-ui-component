@@ -1,11 +1,12 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileNotification } from "../index";
 
-describe("Render successfully without props", () => {
-  const container = new MobileNotification();
-  it('have "kuc-mobile-notification"', async () => {
-    const el = await fixture(container);
-    const tagname = el.tagName;
-    expect(tagname.toLowerCase()).to.be.equal("kuc-mobile-notification");
+describe("MobileNotification", () => {
+  describe("render", () => {
+    const container = new MobileNotification({});
+    it('should have "KUC-MOBILE-NOTIFICATION" tag name', async () => {
+      const el = await fixture(container);
+      expect(el.tagName).to.equal("KUC-MOBILE-NOTIFICATION");
+    });
   });
 });
