@@ -1,44 +1,33 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileRadioButton } from "../index";
 
-describe("Function change event run successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+const initItems = [
+  { label: "Item 1", value: "item-1" },
+  { label: "Item 2", value: "item-2" },
+  { label: "Item 3", value: "item-3" }
+];
 
-  const container = new MobileRadioButton({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[1]
-  });
+describe("MobileCheckbox", () => {
+  describe("changeEvent", () => {
+    it("should triggered when changed the input element", async () => {
+      let triggeredEvent: any = null;
+      const container = new MobileRadioButton({
+        items: initItems,
+        value: initItems[1].value
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
 
-  it("Function change event run successfully", async () => {
-    const el = await fixture(container);
-    const menuEl = (await el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu__item__input"
-    )) as HTMLInputElement;
+      const el = await fixture(container);
+      const inputsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item__input"
+      );
+      inputsEl[2].dispatchEvent(new Event("change"));
 
-    menuEl.addEventListener("change", (event: any) => {
-      expect(event.detail.oldValue).to.have.equal(expectedValues[1]);
-      expect(event.detail.value).to.have.equal(expectedValues[2]);
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.equal(initItems[1].value);
+      expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
     });
-
-    // eslint-disable-next-line require-atomic-updates
-    container.value = expectedValues[2];
-    const event = new CustomEvent("change", {
-      detail: { oldValue: expectedValues[1], value: expectedValues[2] }
-    });
-    menuEl.dispatchEvent(event);
   });
 });
