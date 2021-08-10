@@ -112,7 +112,7 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__footer"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent!.trim()).to.be.equal("replaced footer");
+      expect(cotentEl.textContent!.trim()).to.equal("replaced footer");
     });
   });
 });

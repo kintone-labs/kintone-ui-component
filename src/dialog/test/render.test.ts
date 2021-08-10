@@ -6,6 +6,6 @@ describe("Render successfully without props", () => {
   it('have "kuc-dialog"', async () => {
     const el = await fixture(container);
     const tagname = el.tagName;
-    expect(tagname.toLowerCase()).to.be.equal("kuc-dialog");
+    expect(tagname.toLowerCase()).to.equal("kuc-dialog");
   });
 });

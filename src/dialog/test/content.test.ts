@@ -112,7 +112,7 @@ describe("Dialog", () => {
       const cotentEl = container.querySelector(
         ".kuc-dialog__dialog__content"
       ) as HTMLDivElement;
-      expect(cotentEl.textContent!.trim()).to.be.equal("replaced content");
+      expect(cotentEl.textContent!.trim()).to.equal("replaced content");
     });
   });
 });

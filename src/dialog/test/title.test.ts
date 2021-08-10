@@ -11,7 +11,7 @@ describe("Dialog", () => {
       const titleEl = container.querySelector(
         ".kuc-dialog__dialog__header__title"
       ) as HTMLSpanElement;
-      expect(titleEl.textContent).to.be.equal("");
+      expect(titleEl.textContent).to.equal("");
     });
 
     it('should be "title" when assgined on constructor', async () => {
@@ -22,7 +22,7 @@ describe("Dialog", () => {
       const titleEl = container.querySelector(
         ".kuc-dialog__dialog__header__title"
       ) as HTMLSpanElement;
-      expect(titleEl.textContent).to.be.equal("title");
+      expect(titleEl.textContent).to.equal("title");
     });
 
     it('should be "title" when updated by setter', async () => {
@@ -35,7 +35,7 @@ describe("Dialog", () => {
       const titleEl = container.querySelector(
         ".kuc-dialog__dialog__header__title"
       ) as HTMLSpanElement;
-      expect(titleEl.textContent).to.be.equal("title");
+      expect(titleEl.textContent).to.equal("title");
     });
 
     it('should be replaced to "replaced title" when updated by setter', async () => {
@@ -48,7 +48,7 @@ describe("Dialog", () => {
       const titleEl = container.querySelector(
         ".kuc-dialog__dialog__header__title"
       ) as HTMLSpanElement;
-      expect(titleEl.textContent).to.be.equal("replaced title");
+      expect(titleEl.textContent).to.equal("replaced title");
     });
   });
 });
