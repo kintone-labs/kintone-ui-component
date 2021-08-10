@@ -10,18 +10,13 @@ const initItems = [
 describe("Checkbox", () => {
   describe("changeEvent", () => {
     it("should be triggered when input element triggered change event", async () => {
+      let triggeredEvent: any = null;
       const container = new Checkbox({
         items: initItems,
-        value: [initItems[1].value],
-        error: ""
+        value: [initItems[1].value]
       });
       container.addEventListener("change", (event: any) => {
-        expect(event.detail.oldValue).to.deep.equal([initItems[1].value]);
-        expect(event.detail.value).to.deep.equal([
-          initItems[1].value,
-          initItems[2].value
-        ]);
-        container.error = "changed";
+        triggeredEvent = event;
       });
 
       const el = await fixture(container);
@@ -31,7 +26,14 @@ describe("Checkbox", () => {
       expect(inputsEl.length).equal(3);
       inputsEl[2].dispatchEvent(new Event("change"));
 
-      expect(container.error).to.equal("changed");
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
     });
   });
 });
