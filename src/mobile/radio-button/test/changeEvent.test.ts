@@ -7,7 +7,7 @@ const initItems = [
   { label: "Item 3", value: "item-3" }
 ];
 
-describe("MobileCheckbox", () => {
+describe("MobileRadioButton", () => {
   describe("changeEvent", () => {
     it("should triggered when changed the input element", async () => {
       let triggeredEvent: any = null;
