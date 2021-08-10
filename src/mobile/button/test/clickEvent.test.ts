@@ -17,7 +17,7 @@ describe("MobileButton", () => {
       buttonEl.click();
       await elementUpdated(buttonEl);
 
-      expect(buttonEl.innerText).to.be.equal("click");
+      expect(buttonEl.innerText).to.equal("click");
     });
 
     it("should be not triggered click event when disabled", async () => {
