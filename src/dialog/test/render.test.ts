@@ -1,12 +1,12 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Dialog } from "../index";
 
 describe("Dialog", () => {
   describe("render", () => {
     it('should have "KUC-DIALOG" tag name when not assigning any prop in constructor', async () => {
       const container = new Dialog({});
-      const el = await fixture(container);
-      expect(el.tagName).to.equal("KUC-DIALOG");
+
+      expect(container.tagName).to.equal("KUC-DIALOG");
     });
   });
 });
