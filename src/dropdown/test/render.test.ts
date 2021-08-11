@@ -1,9 +1,4 @@
-import {
-  expect,
-  fixture,
-  elementUpdated,
-  triggerBlurFor
-} from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
 describe("Dropdown", () => {

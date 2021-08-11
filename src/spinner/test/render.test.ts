@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Spinner } from "../index";
 
 describe("Spinner", () => {
