@@ -3,8 +3,8 @@ import { MobileNotification } from "../index";
 
 describe("MobileNotification", () => {
   describe("render", () => {
-    const container = new MobileNotification({});
-    it('should have "KUC-MOBILE-NOTIFICATION" tag name', async () => {
+    it('should have "KUC-MOBILE-NOTIFICATION" tag name when not assigning any prop in constructor', async () => {
+      const container = new MobileNotification({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-MOBILE-NOTIFICATION");
     });

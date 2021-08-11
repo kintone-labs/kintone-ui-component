@@ -6,7 +6,7 @@ describe("MultiChoice", () => {
     it("should render successfully when initializing constructor without props", async () => {
       const container = new MultiChoice();
       const el = await fixture(container);
-      expect(el.tagName).to.be.equal("KUC-MULTI-CHOICE");
+      expect(el.tagName).to.equal("KUC-MULTI-CHOICE");
       expect(el).dom.to.equalSnapshot({
         ignoreAttributes: [
           "aria-describedby",

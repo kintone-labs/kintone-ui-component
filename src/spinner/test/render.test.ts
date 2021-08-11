@@ -3,8 +3,8 @@ import { Spinner } from "../index";
 
 describe("Spinner", () => {
   describe("render", () => {
-    const container = new Spinner({});
-    it('should have "KUC-SPINNER" tag name', async () => {
+    it('should have "KUC-SPINNER" tag name when not assigning any prop in constructor', async () => {
+      const container = new Spinner({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-SPINNER");
     });

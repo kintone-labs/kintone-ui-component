@@ -1,10 +1,15 @@
-import { expect, fixture } from "@open-wc/testing";
+import {
+  expect,
+  fixture,
+  elementUpdated,
+  triggerBlurFor
+} from "@open-wc/testing";
 import { Dropdown } from "../index";
 
 describe("Dropdown", () => {
   describe("render", () => {
-    const container = new Dropdown();
     it("should render successfully when initializing constructor without props", async () => {
+      const container = new Dropdown();
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-DROPDOWN");
       expect(el).dom.to.equalSnapshot({
@@ -47,24 +52,25 @@ describe("Dropdown", () => {
     // Add expectation
   });
 
-  it("should render successfully when showing and hiding selection list", async () => {
+  it("should show/hide menu element when clicking toggle button", async () => {
     const container = new Dropdown();
     const el = await fixture(container);
-    const toggle = (await el.querySelector(
+    const toggle = el.querySelector(
       ".kuc-dropdown__group__toggle"
-    )) as HTMLDivElement;
-    const itemsEl = (await el.querySelector(
+    ) as HTMLDivElement;
+    const menuEl = el.querySelector(
       ".kuc-dropdown__group__select-menu"
-    )) as HTMLDivElement;
-    const outer = (await el.querySelector(
-      ".kuc-dropdown__group__label__text"
-    )) as HTMLDivElement;
+    ) as HTMLDivElement;
 
     toggle.click();
-    outer.click();
-    expect(itemsEl).has.attribute("hidden");
+    await elementUpdated(container);
+    expect(menuEl).not.has.attribute("hidden");
+
+    await triggerBlurFor(toggle);
+    expect(menuEl).has.attribute("hidden");
 
     toggle.click();
-    expect(itemsEl).not.has.attribute("hidden");
+    await elementUpdated(container);
+    expect(menuEl).not.has.attribute("hidden");
   });
 });

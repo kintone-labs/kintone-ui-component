@@ -3,8 +3,8 @@ import { ReadOnlyTable } from "../index";
 
 describe("ReadOnlyTable", () => {
   describe("render", () => {
-    const container = new ReadOnlyTable({});
-    it('should have "KUC-READONLY-TABLE" tag name', async () => {
+    it('should have "KUC-READONLY-TABLE" tag name when not assigning any prop in constructor', async () => {
+      const container = new ReadOnlyTable({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-READONLY-TABLE");
     });

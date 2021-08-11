@@ -3,8 +3,8 @@ import { MobileCheckbox } from "../index";
 
 describe("MobileCheckbox", () => {
   describe("render", () => {
-    const container = new MobileCheckbox({});
-    it('should have "KUC-MOBILE-CHECKBOX" tag name', async () => {
+    it('should have "KUC-MOBILE-CHECKBOX" tag name when not assigning any prop in constructor', async () => {
+      const container = new MobileCheckbox({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-MOBILE-CHECKBOX");
     });

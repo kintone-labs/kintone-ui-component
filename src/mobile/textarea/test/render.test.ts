@@ -3,8 +3,8 @@ import { MobileTextArea } from "../index";
 
 describe("MobileTextArea", () => {
   describe("render", () => {
-    const container = new MobileTextArea({});
-    it('should have "KUC-MOBILE-TEXTAREA" tag name', async () => {
+    it('should have "KUC-MOBILE-TEXTAREA" tag name when not assigning any prop in constructor', async () => {
+      const container = new MobileTextArea({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-MOBILE-TEXTAREA");
     });

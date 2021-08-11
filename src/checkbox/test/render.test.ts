@@ -3,8 +3,8 @@ import { Checkbox } from "../index";
 
 describe("Checkbox", () => {
   describe("render", () => {
-    const container = new Checkbox({});
-    it('should have "KUC-CHECKBOX" tag name', async () => {
+    it('should have "KUC-CHECKBOX" tag name when not assigning any prop in constructor', async () => {
+      const container = new Checkbox({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-CHECKBOX");
     });

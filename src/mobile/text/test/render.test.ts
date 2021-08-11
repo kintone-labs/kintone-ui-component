@@ -3,8 +3,8 @@ import { MobileText } from "../index";
 
 describe("MobileText", () => {
   describe("render", () => {
-    const container = new MobileText({});
-    it('should have "KUC-MOBILE-TEXT" tag name', async () => {
+    it('should have "KUC-MOBILE-TEXT" tag name when not assigning any prop in constructor', async () => {
+      const container = new MobileText({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-MOBILE-TEXT");
     });

@@ -3,8 +3,8 @@ import { TextArea } from "../index";
 
 describe("TextArea", () => {
   describe("render", () => {
-    const container = new TextArea({});
-    it('should have "KUC-TEXTAREA" tag name', async () => {
+    it('should have "KUC-TEXTAREA" tag name when not assigning any prop in constructor', async () => {
+      const container = new TextArea({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-TEXTAREA");
     });

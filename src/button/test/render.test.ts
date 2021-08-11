@@ -3,8 +3,8 @@ import { Button } from "../index";
 
 describe("Button", () => {
   describe("render", () => {
-    const container = new Button({});
-    it('should have "KUC-BUTTON" tag name', async () => {
+    it('should have "KUC-BUTTON" tag name when not assigning any prop in constructor', async () => {
+      const container = new Button({});
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-BUTTON");
     });
