@@ -1,4 +1,9 @@
-import { fixture, expect } from "@open-wc/testing";
+import {
+  fixture,
+  expect,
+  elementUpdated,
+  triggerBlurFor
+} from "@open-wc/testing";
 import { Dropdown } from "../index";
 
 const initItems = [
@@ -9,6 +14,28 @@ const initItems = [
 
 describe("Dropdown", () => {
   describe("accessibility", () => {
+    it("should show/hide menu element when clicking toggle button", async () => {
+      const container = new Dropdown();
+      const el = await fixture(container);
+      const toggle = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLDivElement;
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
+
+      toggle.click();
+      await elementUpdated(container);
+      expect(menuEl).not.has.attribute("hidden");
+
+      await triggerBlurFor(toggle);
+      expect(menuEl).has.attribute("hidden");
+
+      toggle.click();
+      await elementUpdated(container);
+      expect(menuEl).not.has.attribute("hidden");
+    });
+
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
       const container = new Dropdown({
         items: initItems,

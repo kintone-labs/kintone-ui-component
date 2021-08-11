@@ -30,14 +30,8 @@ describe("Dropdown", () => {
       label: "Fruit",
       requiredIcon: false,
       items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
+        { label: "orange", value: "Orange" },
+        { label: "apple", value: "Apple" }
       ],
       value: "Orange",
       error: "Error occurred!",
@@ -50,27 +44,5 @@ describe("Dropdown", () => {
     const el = await fixture(container);
     // TODO:
     // Add expectation
-  });
-
-  it("should show/hide menu element when clicking toggle button", async () => {
-    const container = new Dropdown();
-    const el = await fixture(container);
-    const toggle = el.querySelector(
-      ".kuc-dropdown__group__toggle"
-    ) as HTMLDivElement;
-    const menuEl = el.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    ) as HTMLDivElement;
-
-    toggle.click();
-    await elementUpdated(container);
-    expect(menuEl).not.has.attribute("hidden");
-
-    await triggerBlurFor(toggle);
-    expect(menuEl).has.attribute("hidden");
-
-    toggle.click();
-    await elementUpdated(container);
-    expect(menuEl).not.has.attribute("hidden");
   });
 });
