@@ -3,11 +3,10 @@ import { Dialog } from "../index";
 
 describe("Dialog", () => {
   describe("render", () => {
-    it('should be "kuc-dialog" when not assigned any props', async () => {
+    it('should have "KUC-DIALOG" tag name', async () => {
       const container = new Dialog();
       const el = await fixture(container);
-      const tagname = el.tagName;
-      expect(tagname.toLowerCase()).to.equal("kuc-dialog");
+      expect(el.tagName).to.equal("KUC-DIALOG");
     });
   });
 });
