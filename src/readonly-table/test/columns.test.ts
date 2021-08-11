@@ -27,7 +27,7 @@ describe("ReadOnlyTable", () => {
       const columnsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__header th"
       );
-      expect(columnsEl.length).to.be.equal(0);
+      expect(columnsEl.length).to.equal(0);
     });
 
     it("should be set header when assigned columns without header prop on constructor", async () => {
@@ -37,13 +37,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(true);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("");
     });
 
     it("should be set header when assigned columns without visible prop on constructor", async () => {
@@ -53,13 +53,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("Fruit");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("Producing Area");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("Price");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
     });
 
     it("should be set header when assigned columns without header prop by setter", async () => {
@@ -70,13 +70,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(true);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("");
     });
 
     it("should be set header when assigned columns without visible prop by setter", async () => {
@@ -87,13 +87,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("Fruit");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("Producing Area");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("Price");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
     });
 
     it("should be set header when assigned columns with full optional props on constructor", async () => {
@@ -103,13 +103,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("Fruit");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("Producing Area");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(true);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("Price");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
     });
 
     it("should be set header when assigned columns with full optional props by setter", async () => {
@@ -120,13 +120,13 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(3);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("Fruit");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("Producing Area");
-      expect(columnsEl[2].hasAttribute("hidden")).to.have.equal(true);
-      expect(columnsEl[2].textContent?.trim()).to.have.equal("Price");
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
     });
 
     it("should be updated header when changed columns by setter", async () => {
@@ -145,11 +145,11 @@ describe("ReadOnlyTable", () => {
         ".kuc-readonly-table__table__header th"
       );
 
-      expect(columnsEl.length).to.be.equal(2);
-      expect(columnsEl[0].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.have.equal("Fruit");
-      expect(columnsEl[1].hasAttribute("hidden")).to.have.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.have.equal("Producing Area");
+      expect(columnsEl.length).to.equal(2);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
     });
   });
 
