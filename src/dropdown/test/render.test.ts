@@ -1,54 +1,55 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("Dropdown", () => {
-  describe("render", () => {
-    const container = new Dropdown();
-    it("should render successfully when initializing constructor without props", async () => {
-      const el = await fixture(container);
-      expect(el.tagName).to.equal("KUC-DROPDOWN");
-      expect(el).dom.to.equalSnapshot({
-        ignoreAttributes: [
-          "aria-describedby",
-          "aria-labelledby",
-          "id",
-          "aria-live",
-          "type",
-          "style"
-        ]
-      });
-    });
-  });
-
-  it("should render successfully when initializing constructor with full props", async () => {
-    const container = new Dropdown({
-      label: "Fruit",
-      requiredIcon: false,
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ],
-      value: "Orange",
-      error: "Error occurred!",
-      className: "options-class",
-      id: "options-id",
-      visible: true,
-      disabled: false
-    });
-
+describe("Render successfully without props", () => {
+  const container = new Dropdown();
+  it('have "kuc-dropdown"', async () => {
     const el = await fixture(container);
-    // TODO:
-    // Add expectation
+    const tagname = (await el).tagName;
+    expect(tagname.toLowerCase()).to.be.equal("kuc-dropdown");
+    expect(el).dom.to.equalSnapshot({
+      ignoreAttributes: [
+        "aria-describedby",
+        "aria-labelledby",
+        "id",
+        "aria-live",
+        "type",
+        "style"
+      ]
+    });
   });
+});
 
-  it("should render successfully when showing and hiding selection list", async () => {
-    const container = new Dropdown();
+describe("Render successfully full props", () => {
+  const container = new Dropdown({
+    label: "Fruit",
+    requiredIcon: false,
+    items: [
+      {
+        label: "orange",
+        value: "Orange"
+      },
+      {
+        label: "apple",
+        value: "Apple"
+      }
+    ],
+    value: "Orange",
+    error: "Error occurred!",
+    className: "options-class",
+    id: "options-id",
+    visible: true,
+    disabled: false
+  });
+  it('Render successfully full props"', async () => {
+    const el = await fixture(container);
+  });
+});
+
+describe("Render successfully with showing and hiding selection list", () => {
+  const container = new Dropdown();
+
+  it("displaed select item", async () => {
     const el = await fixture(container);
     const toggle = (await el.querySelector(
       ".kuc-dropdown__group__toggle"
@@ -62,9 +63,9 @@ describe("Dropdown", () => {
 
     toggle.click();
     outer.click();
-    expect(itemsEl).has.attribute("hidden");
+    await expect(itemsEl).not.to.be.displayed;
 
     toggle.click();
-    expect(itemsEl).not.has.attribute("hidden");
+    await expect(itemsEl).to.be.displayed;
   });
 });
