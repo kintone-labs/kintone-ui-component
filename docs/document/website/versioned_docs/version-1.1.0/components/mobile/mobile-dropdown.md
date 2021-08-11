@@ -26,7 +26,6 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value | string | ""  | Selected value | Nothing is updated if the value is unspecified |
-| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component from selecting | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
