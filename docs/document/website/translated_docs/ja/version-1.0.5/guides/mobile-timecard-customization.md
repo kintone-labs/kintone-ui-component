@@ -181,5 +181,5 @@ if (!resp.records.length) {
 }
 ```
 
-> 本記事は、 2021 年 6 月時点の kintone と Google Chrome で確認したものになります。<br>
+> 本記事は、 2021 年 8 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v1.0.5 です。
