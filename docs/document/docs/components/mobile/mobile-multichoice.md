@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Label text for each option | If `Item.label` is unspecified, the value of Item.value is displayed on the UI |
 | Item.value | string | null | Value of each option | Will result an error if there is duplicated value in Item.value |
-| value | Array\<string\> | ""  | Selected value | Will result an error if the value of items is not an array<br>Will result an error if there is duplicated value in an array |
+| value | Array\<string\> | ""  | Selected value | Will result an error if the value of items is not an array<br>Will result an error if there is duplicated value in an array<br>No option will be selected if the value is unspecified |
 
 ### Event
 Here is a list of events that can be specified:
