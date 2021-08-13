@@ -131,7 +131,10 @@ export class MobileDropdown extends LitElement {
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           >
-            <option></option>
+            <option
+              ?selected=${this.items.filter(item => item.value === this.value)
+                .length === 0}
+            ></option>
             ${this.items.map((item, index) =>
               this._getItemTemplate(item, index)
             )}
