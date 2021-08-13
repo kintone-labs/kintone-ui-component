@@ -242,7 +242,8 @@ export class RadioButton extends LitElement {
 
   updated() {
     this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
-      inputEl.checked = this.value === inputEl.value;
+      inputEl.removeAttribute("checked");
+      if (this.value === inputEl.value) inputEl.setAttribute("checked", "true");
     });
     this._updateErrorWidth();
   }
