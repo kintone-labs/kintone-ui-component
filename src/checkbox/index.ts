@@ -211,13 +211,12 @@ export class Checkbox extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-checkbox__group">
-        <div
-          class="kuc-checkbox__group__label"
-          ?hidden="${!this.label}"
-          role="group"
-          aria-labelledby="${this._GUID}-group-label"
-        >
+      <div
+        class="kuc-checkbox__group"
+        role="group"
+        aria-labelledby="${this._GUID}-group-label"
+      >
+        <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
           <span
             id="${this._GUID}-group-label"
             class="kuc-checkbox__group__label__text"
