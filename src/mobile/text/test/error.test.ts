@@ -1,76 +1,47 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileText } from "../index";
 
-describe("confirm error default prop is null", () => {
-  const container = new MobileText();
+describe("MobileText", () => {
+  describe("error", () => {
+    it("should not display when not assigning in constructor", async () => {
+      const container = new MobileText();
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-mobile-text__error"
+      ) as HTMLDivElement;
+      expect(errorEl).has.attribute("hidden");
+    });
 
-  it("confirm error default prop is null", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-mobile-text__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(errorText!.trim()).to.be.equal("");
-  });
-});
+    it('should be "error-message" when assigning in constructor', async () => {
+      const container = new MobileText({ error: "error-message" });
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-mobile-text__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
 
-describe("error constructor set successfully", () => {
-  const container = new MobileText({ error: "Error occurred!" });
+    it('should be "error-message" when setting by setter', async () => {
+      const container = new MobileText();
+      container.error = "error-message";
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-mobile-text__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
 
-  it("error constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-mobile-text__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText!.trim()).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error prop set successfully", () => {
-  const container = new MobileText();
-  container.error = "Error occurred!";
-
-  it("error prop set successfully'", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-mobile-text__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText!.trim()).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error prop replace successfully", () => {
-  const container = new MobileText({ error: "options-error" });
-  container.error = "Error occurred!";
-
-  it("error prop replace successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-mobile-text__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText!.trim()).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error prop set to null successfully", () => {
-  const container = new MobileText({ error: "Error occurred!" });
-  // @ts-expect-error
-  container.error = null;
-
-  it("error prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-mobile-text__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(errorText!.trim()).to.be.equal("");
+    it('should be replaced by "replace-error" when changing by setter', async () => {
+      const container = new MobileText({ error: "error-message" });
+      container.error = "replace-error";
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-mobile-text__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("replace-error");
+      expect(errorEl).not.has.attribute("hidden");
+    });
   });
 });

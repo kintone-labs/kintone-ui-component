@@ -1,45 +1,38 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileCheckbox } from "../index";
 
-describe("Function change event run successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "apple"];
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
-  const container = new MobileCheckbox({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: [expectedValues[1]]
-  });
-  container.addEventListener("change", (event: any) => {
-    expect(event.detail.value)
-      .to.be.an("array")
-      .that.includes(expectedValues[2], expectedValues[1]);
-    expect(event.detail.oldValue)
-      .to.be.an("array")
-      .that.includes(expectedValues[1]);
-  });
+describe("MobileCheckbox", () => {
+  describe("changeEvent", () => {
+    it("should triggered when changed the input element", async () => {
+      let triggeredEvent: any = null;
+      const container = new MobileCheckbox({
+        items: initItems,
+        value: [initItems[1].value]
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
 
-  it("Function change event run successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-checkbox__group__select-menu"
-    )!.children as HTMLCollection;
-    if (itemsEl.length > 0) {
-      const secondItemEl = itemsEl[2] as HTMLElement;
-      const inputEl = secondItemEl.children[0] as HTMLInputElement;
-      inputEl.dispatchEvent(new Event("change"));
-    }
+      const el = await fixture(container);
+      const inputsEl = el.querySelectorAll(
+        ".kuc-mobile-checkbox__group__select-menu__item__input"
+      );
+      inputsEl[2].dispatchEvent(new Event("change"));
+
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
+    });
   });
 });
