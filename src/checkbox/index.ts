@@ -1,13 +1,5 @@
-import {
-  LitElement,
-  html,
-  property,
-  PropertyValues,
-  queryAll,
-  svg,
-  query
-} from "lit-element";
-import { v4 as uuid } from "uuid";
+import { html, property, PropertyValues, queryAll, svg } from "lit-element";
+import { KucBase } from "../base/kuc-base";
 
 type Item = { value?: string; label?: string };
 type CheckboxProps = {
@@ -29,7 +21,7 @@ type CustomEventDetail = {
   oldValue?: string[];
 };
 
-export class Checkbox extends LitElement {
+export class Checkbox extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
@@ -44,10 +36,6 @@ export class Checkbox extends LitElement {
   @queryAll(".kuc-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
-
-  @query(".kuc-checkbox__group__label") private _labelEl!: HTMLLegendElement;
-  @query(".kuc-checkbox__group__select-menu")
-  private _selectMenuEl!: HTMLElement;
 
   constructor(props?: CheckboxProps) {
     super();
@@ -73,10 +61,6 @@ export class Checkbox extends LitElement {
     this.visible = props.visible !== undefined ? props.visible : this.visible;
     this.items = props.items !== undefined ? props.items : this.items;
     this.value = props.value !== undefined ? props.value : this.value;
-  }
-
-  private _generateGUID(): string {
-    return uuid();
   }
 
   private _updateVisible() {
@@ -124,10 +108,6 @@ export class Checkbox extends LitElement {
       composed: true
     });
     return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
