@@ -26,6 +26,7 @@
           "version-1.1.0-components/mobile/mobile-button",
           "version-1.1.0-components/mobile/mobile-checkbox",
           "version-1.1.0-components/mobile/mobile-dropdown",
+          "version-1.1.0-components/mobile/mobile-multichoice",
           "version-1.1.0-components/mobile/mobile-notification",
           "version-1.1.0-components/mobile/mobile-radio-button",
           "version-1.1.0-components/mobile/mobile-text",
