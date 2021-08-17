@@ -23,8 +23,8 @@ describe("RadioButton", () => {
       const inputsEl = el.querySelectorAll(
         ".kuc-radio-button__group__select-menu__item__input"
       );
-      const focusElm = inputsEl[2] as HTMLInputElement;
-      focusElm.focus();
+      const focusEl = inputsEl[2] as HTMLInputElement;
+      focusEl.focus();
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldValue).to.equal(initItems[1].value);

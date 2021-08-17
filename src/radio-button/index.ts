@@ -205,11 +205,11 @@ export class RadioButton extends LitElement {
       <div
         class="kuc-radio-button__group"
         role="radiogroup"
-        aria-labelledby="${this._GUID}-group-label"
+        aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
           <span
-            id="${this._GUID}-group-label"
+            id="${this._GUID}-group"
             class="kuc-radio-button__group__label__text"
             >${this.label}</span
           ><!--
