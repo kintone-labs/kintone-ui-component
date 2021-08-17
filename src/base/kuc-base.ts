@@ -10,15 +10,20 @@ export abstract class KucBase extends LitElement {
   public createRenderRoot() {
     return this;
   }
-  public dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
 }
+
+export const dispatchCustomEvent = (
+  el: HTMLElement,
+  eventName: string,
+  detail?: CustomEventDetail
+) => {
+  const event = new CustomEvent(eventName, {
+    detail,
+    bubbles: true,
+    composed: true
+  });
+  return el.dispatchEvent(event);
+};
 
 export { CustomEventDetail };
 export const generateGUID = () => uuid();

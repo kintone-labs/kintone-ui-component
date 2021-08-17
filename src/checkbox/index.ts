@@ -1,5 +1,10 @@
 import { html, property, PropertyValues, queryAll, svg } from "lit-element";
-import { KucBase, generateGUID, CustomEventDetail } from "../base/kuc-base";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 
 type Item = { value?: string; label?: string };
@@ -80,7 +85,7 @@ export class Checkbox extends KucBase {
     const newValue = this._getNewValue(value);
     this.value = newValue;
     const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    this.dispatchCustomEvent("change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _handleFocusInput(event: FocusEvent) {
