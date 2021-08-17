@@ -1,5 +1,6 @@
 import { html, property, PropertyValues, queryAll, svg } from "lit-element";
-import { KucBase } from "../base/kuc-base";
+import { KucBase, generateGUID, CustomEventDetail } from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Item = { value?: string; label?: string };
 type CheckboxProps = {
@@ -16,11 +17,6 @@ type CheckboxProps = {
   value?: string[];
 };
 
-type CustomEventDetail = {
-  value?: string[];
-  oldValue?: string[];
-};
-
 export class Checkbox extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
@@ -29,7 +25,13 @@ export class Checkbox extends KucBase {
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
 
@@ -39,7 +41,7 @@ export class Checkbox extends KucBase {
 
   constructor(props?: CheckboxProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -63,14 +65,6 @@ export class Checkbox extends KucBase {
     this.value = props.value !== undefined ? props.value : this.value;
   }
 
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _getNewValue(value: string) {
     if (this.value.every(val => val !== value)) {
       return [...this.value, value];
@@ -86,7 +80,7 @@ export class Checkbox extends KucBase {
     const newValue = this._getNewValue(value);
     this.value = newValue;
     const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    this._dispatchCustomEvent("change", detail);
+    this.dispatchCustomEvent("change", detail);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -99,15 +93,6 @@ export class Checkbox extends KucBase {
     const inputEl = event.target as HTMLInputElement;
     const menuEl = inputEl.parentNode as HTMLDivElement;
     menuEl.removeAttribute("focused");
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
   }
 
   private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
@@ -188,7 +173,6 @@ export class Checkbox extends KucBase {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-checkbox__group">
