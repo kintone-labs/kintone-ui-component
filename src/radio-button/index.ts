@@ -92,17 +92,17 @@ export class RadioButton extends LitElement {
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
     event.stopPropagation();
-    const inputEl = event.target as HTMLInputElement;
-    const value = inputEl.value;
-    const detail: CustomEventDetail = { value: value, oldValue: this.value };
-    this.value = value;
-    this._dispatchCustomEvent("change", detail);
   }
 
   private _handleFocusInput(event: FocusEvent) {
     const inputEl = event.target as HTMLInputElement;
     const menuEl = inputEl.parentNode as HTMLDivElement;
     menuEl.setAttribute("focused", "");
+
+    const value = inputEl.value;
+    const detail: CustomEventDetail = { value: value, oldValue: this.value };
+    this.value = value;
+    this._dispatchCustomEvent("change", detail);
   }
 
   private _handleBlurInput(event: FocusEvent) {
@@ -202,9 +202,16 @@ export class RadioButton extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-radio-button__group">
+      <div
+        class="kuc-radio-button__group"
+        role="radiogroup"
+        aria-labelledby="${this._GUID}-group"
+      >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span class="kuc-radio-button__group__label__text">${this.label}</span
+          <span
+            id="${this._GUID}-group"
+            class="kuc-radio-button__group__label__text"
+            >${this.label}</span
           ><!--
             --><span
             class="kuc-radio-button__group__label__required-icon"
@@ -233,9 +240,6 @@ export class RadioButton extends LitElement {
   }
 
   updated() {
-    this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
-      inputEl.checked = this.value === inputEl.value;
-    });
     this._updateErrorWidth();
   }
 
