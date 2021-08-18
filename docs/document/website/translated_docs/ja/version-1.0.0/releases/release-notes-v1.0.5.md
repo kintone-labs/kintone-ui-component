@@ -8,7 +8,7 @@ original_id: release-notes
 ## 概要
 
 [kintone UI Component v1.0.5](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.5) のリリースノートです。<br>
-不具合修正, メンテナンス対応, カスタマイズ記事作成を行いました。
+不具合修正, メンテナンス対応, カスタマイズ記事の追加を行いました。
 
 ## アップデート内容
 
