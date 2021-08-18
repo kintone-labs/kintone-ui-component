@@ -1,4 +1,5 @@
-import { LitElement, html, svg, property, query } from "lit-element";
+import { html, svg, property, query } from "lit-element";
+import { KucBase } from "../base/kuc-base";
 
 type NotificationProps = {
   className?: string;
@@ -6,7 +7,7 @@ type NotificationProps = {
   type?: "info" | "danger" | "success";
 };
 
-export class Notification extends LitElement {
+export class Notification extends KucBase {
   @property({ type: String }) text = "";
   @property({ type: String }) type: "info" | "danger" | "success" = "danger";
 
@@ -65,10 +66,6 @@ export class Notification extends LitElement {
         />
       </svg>
     `;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   open() {
