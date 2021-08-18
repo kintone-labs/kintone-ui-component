@@ -1,5 +1,4 @@
 import {
-  LitElement,
   html,
   property,
   PropertyValues,
@@ -7,7 +6,8 @@ import {
   query,
   svg
 } from "lit-element";
-import { v4 as uuid } from "uuid";
+import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Item = {
   label?: string;
@@ -26,31 +26,30 @@ type MultiChoiceProps = {
   items?: Item[];
 };
 
-type CustomEventDetail = {
-  oldValue?: string[];
-  value?: string[];
-};
-
-export class MultiChoice extends LitElement {
+export class MultiChoice extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
 
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
-
   @queryAll(".kuc-multi-choice__group__menu__item")
   private _itemsEl!: HTMLDivElement[];
-
   private _GUID: string;
 
   constructor(props?: MultiChoiceProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
 
     if (!props) {
       return;
@@ -65,7 +64,6 @@ export class MultiChoice extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-multi-choice__group">
@@ -108,10 +106,6 @@ export class MultiChoice extends LitElement {
     `;
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   private _initProps(props: MultiChoiceProps) {
     this.className =
       props.className !== undefined ? props.className : this.className;
@@ -127,33 +121,15 @@ export class MultiChoice extends LitElement {
     this.items = props.items !== undefined ? props.items : this.items;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
-    if (this.disabled) {
-      return;
-    }
-
+    if (this.disabled) return;
     const itemEl = event.target as HTMLDivElement;
     const value = itemEl.getAttribute("value") as string;
     this._handleChangeValue(value);
   }
 
   private _handleMouseOverMultiChoiceItem(event: Event) {
-    if (this.disabled) {
-      return;
-    }
-
+    if (this.disabled) return;
     this._itemsEl.forEach((itemEl: HTMLDivElement) => {
       if (
         itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
@@ -168,10 +144,7 @@ export class MultiChoice extends LitElement {
   }
 
   private _handleMouseLeaveMultiChoiceItem(event: Event) {
-    if (this.disabled) {
-      return;
-    }
-
+    if (this.disabled) return;
     const itemEl = event.currentTarget as HTMLDivElement;
     itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
 
@@ -179,10 +152,7 @@ export class MultiChoice extends LitElement {
   }
 
   private _handleKeyDownMultiChoice(event: KeyboardEvent) {
-    if (this.disabled) {
-      return;
-    }
-
+    if (this.disabled) return;
     let highLightNumber = 0;
     switch (event.key) {
       case "Up": // IE/Edge specific value
@@ -457,7 +427,7 @@ export class MultiChoice extends LitElement {
 
     if (newValue !== oldValue) {
       this.value = newValue;
-      this._dispatchCustomEvent("change", {
+      dispatchCustomEvent(this, "change", {
         oldValue,
         value: newValue
       });
@@ -469,15 +439,6 @@ export class MultiChoice extends LitElement {
       return [...this.value, value];
     }
     return this.value.filter(val => val !== value);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const customEvent = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    this.dispatchEvent(customEvent);
   }
 }
 if (!window.customElements.get("kuc-multi-choice")) {
