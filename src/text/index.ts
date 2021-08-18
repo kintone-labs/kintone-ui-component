@@ -1,5 +1,11 @@
-import { LitElement, html, property } from "lit-element";
-import { v4 as uuid } from "uuid";
+import { html, property } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type TextProps = {
   className?: string;
@@ -16,12 +22,7 @@ type TextProps = {
   visible?: boolean;
 };
 
-type CustomEventDetail = {
-  value: string;
-  oldValue?: string;
-};
-
-export class Text extends LitElement {
+export class Text extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -31,13 +32,19 @@ export class Text extends LitElement {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
 
   private _GUID: string;
 
   constructor(props?: TextProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -60,21 +67,9 @@ export class Text extends LitElement {
     this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleFocusInput(event: FocusEvent) {
     const detail: CustomEventDetail = { value: this.value };
-    this._dispatchCustomEvent("focus", detail);
+    dispatchCustomEvent(this, "focus", detail);
   }
 
   private _handleChangeInput(event: Event) {
@@ -83,24 +78,10 @@ export class Text extends LitElement {
     const detail: CustomEventDetail = { value: "", oldValue: this.value };
     this.value = targetEl.value;
     detail.value = this.value;
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-text__group">
