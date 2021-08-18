@@ -224,6 +224,7 @@ export class MobileMultiChoice extends LitElement {
           color: #888888;
           font-size: 86%;
           font-weight: bold;
+          white-space: normal;
         }
 
         .kuc-mobile-multi-choice__label__required-icon {
