@@ -1,4 +1,4 @@
-import { html, property, PropertyValues, queryAll, svg } from "lit-element";
+import { html, property, queryAll, svg } from "lit-element";
 import {
   KucBase,
   generateGUID,
