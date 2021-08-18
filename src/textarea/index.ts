@@ -1,5 +1,11 @@
-import { LitElement, html, property, query, svg } from "lit-element";
-import { v4 as uuid } from "uuid";
+import { html, property, query, svg } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type TextAreaProps = {
   className?: string;
@@ -13,24 +19,25 @@ type TextAreaProps = {
   visible?: boolean;
 };
 
-type CustomEventDetail = {
-  value: string;
-  oldValue?: string;
-};
-
 const TextAreaLayout = {
   MIN_WIDTH: 299,
   MIN_HEIGHT: 125
 };
 
-export class TextArea extends LitElement {
+export class TextArea extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
 
   private _GUID: string;
   private _onResize = false;
@@ -40,7 +47,7 @@ export class TextArea extends LitElement {
 
   constructor(props?: TextAreaProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -59,21 +66,9 @@ export class TextArea extends LitElement {
     this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleFocusTextarea(event: FocusEvent) {
     const detail: CustomEventDetail = { value: this.value };
-    this._dispatchCustomEvent("focus", detail);
+    dispatchCustomEvent(this, "focus", detail);
   }
 
   private _handleChangeTextarea(event: Event) {
@@ -82,7 +77,7 @@ export class TextArea extends LitElement {
     const detail: CustomEventDetail = { value: "", oldValue: this.value };
     this.value = targetEl.value;
     detail.value = this.value;
-    this._dispatchCustomEvent("change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _handleMouseDownResize() {
@@ -109,21 +104,7 @@ export class TextArea extends LitElement {
     this._textarea.style.height = textAreaHeight + "px";
   }
 
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
-  }
-
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-textarea__group">
