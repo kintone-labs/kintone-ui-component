@@ -1,4 +1,6 @@
-import { LitElement, html, property } from "lit-element";
+import { html, property, PropertyValues } from "lit-element";
+import { KucBase } from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Column = { header?: { text?: string }; visible?: boolean };
 type ReadOnlyTableProps = {
@@ -10,9 +12,15 @@ type ReadOnlyTableProps = {
   data?: string[][];
 };
 
-export class ReadOnlyTable extends LitElement {
+export class ReadOnlyTable extends KucBase {
   @property({ type: String }) label = "";
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({
     type: Array,
     hasChanged(newVal: Column[]) {
@@ -66,18 +74,6 @@ export class ReadOnlyTable extends LitElement {
     this.data = props.data !== undefined ? props.data : this.data;
   }
 
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
-  createRenderRoot() {
-    return this;
-  }
-
   private _getColumnsTemplate(column: Column) {
     return html`
       <th
@@ -118,7 +114,6 @@ export class ReadOnlyTable extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
