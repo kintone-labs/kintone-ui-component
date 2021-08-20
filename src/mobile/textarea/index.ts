@@ -155,7 +155,7 @@ export class MobileTextArea extends LitElement {
         .kuc-mobile-textarea__label {
           padding: 0;
           margin: 0 0 4px 0;
-          display: inline-block;
+          display: flex;
           white-space: nowrap;
         }
         .kuc-mobile-textarea__label[hidden] {
@@ -166,6 +166,7 @@ export class MobileTextArea extends LitElement {
           color: #888888;
           font-size: 86%;
           font-weight: bold;
+          white-space: normal;
         }
         .kuc-mobile-textarea__label__required-icon {
           position: relative;
