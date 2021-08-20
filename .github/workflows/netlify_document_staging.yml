@@ -27,7 +27,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCUMENT_ID }}
           deploy_alias: 'staging'
-          build_directory: './docs/document/website/build'
+          build_directory: './docs/document/website/build/kintone-ui-component'
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
         with:

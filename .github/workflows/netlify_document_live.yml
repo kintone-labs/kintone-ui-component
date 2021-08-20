@@ -25,4 +25,4 @@ jobs:
           github-token: ${{ secrets.WORKFLOW_TOKEN }}
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify-site-id: ${{ secrets.NETLIFY_DOCUMENT_ID }}
-          build-dir: './docs/document/website/build'
+          build-dir: './docs/document/website/build/kintone-ui-component'
