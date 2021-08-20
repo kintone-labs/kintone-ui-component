@@ -1,12 +1,11 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Spinner } from "../index";
 
-describe("Render successfully without props", () => {
-  const container = new Spinner({});
-  container.open();
-  it('have "kuc-spinner"', async () => {
-    const el = await fixture(container);
-    const tagname = (await el).tagName;
-    expect(tagname.toLowerCase()).to.be.equal("kuc-spinner");
+describe("Spinner", () => {
+  describe("render", () => {
+    it('should have "KUC-SPINNER" tag name when not assigning any prop in constructor', async () => {
+      const container = new Spinner({});
+      expect(container.tagName).to.equal("KUC-SPINNER");
+    });
   });
 });

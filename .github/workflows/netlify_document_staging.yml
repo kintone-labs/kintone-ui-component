@@ -1,0 +1,37 @@
+name: Netlify Document Staging Environment
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publishMasterCommit:
+    name: Deploying on Netlify Document Staging Environment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.pull_request.merged == 'true')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm i
+        working-directory: docs/document/website
+      - name: Build document
+        run: npm run build
+        working-directory: docs/document/website
+      - uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCUMENT_ID }}
+          deploy_alias: 'staging'
+          build_directory: './docs/document/website/build'
+      - name: Status check
+        uses: Sibz/github-status-action@v1.1.1
+        with:
+          authToken: ${{ secrets.WORKFLOW_TOKEN }}
+          context: Netlify preview
+          state: success
+          target_url: https://staging--kintone-ui-component.netlify.app

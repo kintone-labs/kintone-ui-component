@@ -26,7 +26,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 | id | string | "" | コンポーネントの id 名 ||
 | itemLayout | string | "horizontal" | 選択肢の並べ方 | 以下を指定できる<br>"horizontal" : 横並び<br>"vertical" : 縦並び |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| value | string | "" | 選択されている値 | value が未指定の場合、何も更新されない |
+| value | string | "" | 選択されている値 | value が未指定の場合、何も選択されない |
 | borderVisible | boolean | false | 選択肢を囲う枠線の表示/非表示設定 ||
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||

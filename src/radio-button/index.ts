@@ -159,6 +159,7 @@ export class RadioButton extends LitElement {
       >
         <input
           type="radio"
+          aria-checked=${this.value === item.value}
           aria-describedby="${this._GUID}-error"
           id="${this._GUID}-item-${index}"
           class="kuc-radio-button__group__select-menu__item__input"
@@ -202,9 +203,16 @@ export class RadioButton extends LitElement {
     this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-radio-button__group">
+      <div
+        class="kuc-radio-button__group"
+        role="radiogroup"
+        aria-labelledby="${this._GUID}-group"
+      >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span class="kuc-radio-button__group__label__text">${this.label}</span
+          <span
+            id="${this._GUID}-group"
+            class="kuc-radio-button__group__label__text"
+            >${this.label}</span
           ><!--
             --><span
             class="kuc-radio-button__group__label__required-icon"
@@ -233,9 +241,6 @@ export class RadioButton extends LitElement {
   }
 
   updated() {
-    this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
-      inputEl.checked = this.value === inputEl.value;
-    });
     this._updateErrorWidth();
   }
 

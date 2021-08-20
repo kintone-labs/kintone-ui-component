@@ -63,13 +63,30 @@ class Index extends React.PureComponent {
     );
 
     const ProjectTitle = (props) => (
-      <h2 className="projectTitle">
-        {props.tagline}
-        <span> with </span>
-        <span className="titleText">{props.title}</span>
-        <span>.</span>
-        <small>{props.subTagline}</small>
-      </h2>
+      <div>
+        {(() => {
+          if (language === "ja") {
+            return (
+              <h2 className="projectTitle">
+                Be a smart kintone developer
+                <span> with </span>
+                <span className="titleText">kintone UI Component</span>
+                <span>.</span>
+                <small>{props.subTagline}</small>
+              </h2>
+            );
+          }
+          return (
+            <h2 className="projectTitle">
+              Be a smart Kintone developer
+              <span> with </span>
+              <span className="titleText">Kintone UI Component</span>
+              <span>.</span>
+              <small>{props.subTagline}</small>
+            </h2>
+          );
+        })()}
+      </div>
     );
 
     const PromoSection = (props) => (
@@ -204,11 +221,7 @@ class Index extends React.PureComponent {
       <div>
         <SplashContainer>
           <div className="inner">
-            <ProjectTitle
-              tagline={siteConfig.tagline}
-              title={siteConfig.title}
-              subTagline={siteConfig.subTagline}
-            />
+            <ProjectTitle subTagline={siteConfig.subTagline} />
             <PromoSection>
               <Button href={docUrl("getting-started/quick-start.html")}>
                 Getting Started

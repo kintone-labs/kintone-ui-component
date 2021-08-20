@@ -1,71 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { TextArea } from "../index";
 
-describe("confirm visible default prop is true", () => {
-  const container = new TextArea();
+describe("TextArea", () => {
+  describe("visible", () => {
+    it("should be display inline-table when not assigned in constructor", async () => {
+      const container = new TextArea();
 
-  it("confirm visible default prop is true", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal(
-      "inline-table"
-    );
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible constructor set to true successfully", () => {
-  const container = new TextArea({ visible: false });
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-table");
+    });
 
-  it("visible constructor set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+    it("should be display none when assigned false in constructor", async () => {
+      const container = new TextArea({ visible: false });
 
-describe("visible prop set to true successfully", () => {
-  const container = new TextArea({ visible: false });
-  container.visible = true;
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-  it("visible prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(false);
-    await expect(window.getComputedStyle(el).display).to.be.equal(
-      "inline-table"
-    );
-  });
-});
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-describe("visible prop set to false successfully", () => {
-  const container = new TextArea({ visible: true });
-  container.visible = false;
+    it("should be display inline-table when changed to true by setter", async () => {
+      const container = new TextArea({ visible: false });
+      container.visible = true;
 
-  it("visible prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(false);
 
-describe("visible default prop set to null successfully", () => {
-  // @ts-ignore
-  const container = new TextArea({ visible: null });
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("inline-table");
+    });
 
-  it("visible default prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
-  });
-});
+    it("should be display none when changed to false by setter", async () => {
+      const container = new TextArea({ visible: true });
+      container.visible = false;
 
-describe("visible prop set to null successfully", () => {
-  const container = new TextArea();
-  // @ts-ignore
-  container.visible = null;
+      const el = await fixture(container);
+      expect(el.hasAttribute("hidden")).to.equal(true);
 
-  it("visible prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    await expect(el.hasAttribute("hidden")).to.have.equal(true);
-    await expect(window.getComputedStyle(el).display).to.be.equal("none");
+      const computedStyle = window.getComputedStyle(el);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });

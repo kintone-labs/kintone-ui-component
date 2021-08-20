@@ -203,7 +203,7 @@ export class MobileRadioButton extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-mobile-radio-button__error"
+          class="kuc-mobile-radio-button__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -358,7 +358,7 @@ export class MobileRadioButton extends LitElement {
           padding: 0px;
         }
 
-        .kuc-mobile-radio-button__error {
+        .kuc-mobile-radio-button__group__error {
           line-height: 1.5;
           color: #000000;
           border: 1px solid #e5db68;
@@ -369,7 +369,7 @@ export class MobileRadioButton extends LitElement {
           margin-left: 0.5em;
         }
 
-        .kuc-mobile-radio-button__error[hidden] {
+        .kuc-mobile-radio-button__group__error[hidden] {
           display: none;
         }
       </style>

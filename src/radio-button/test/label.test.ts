@@ -1,99 +1,54 @@
 import { expect, fixture } from "@open-wc/testing";
 import { RadioButton } from "../index";
 
-describe("confirm label default value is null", () => {
-  const container = new RadioButton();
+describe("RadioButton", () => {
+  describe("label", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new RadioButton();
+      const el = await fixture(container);
 
-  it("confirm label default value is null", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    const labelRadioButtonEl = el.querySelector(
-      ".kuc-radio-button__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(labelRadioButtonEl.textContent).to.be.equal("");
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-radio-button__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
-describe("label constructor set successfully", () => {
-  const container = new RadioButton({ label: "options-label" });
+      const labelTextEl = el.querySelector(
+        ".kuc-radio-button__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("");
+    });
 
-  it("label constructor set successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    const labelRadioButtonEl = el.querySelector(
-      ".kuc-radio-button__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelRadioButtonEl.textContent).to.be.equal("options-label");
-  });
-});
+    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+      const container = new RadioButton({ label: "options-label" });
+      const el = await fixture(container);
 
-describe("label prop set successfully", () => {
-  const container = new RadioButton();
-  container.label = "options-label";
+      const labelEl = el.querySelector(
+        ".kuc-radio-button__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-  it("label prop set successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    const labelRadioButtonEl = el.querySelector(
-      ".kuc-radio-button__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelRadioButtonEl.textContent).to.be.equal("options-label");
-  });
-});
+      const labelTextEl = el.querySelector(
+        ".kuc-radio-button__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("options-label");
+    });
 
-describe("label prop replace successfully", () => {
-  const container = new RadioButton({ label: "options-label" });
-  container.label = "replace-label";
+    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+      const container = new RadioButton({
+        label: "options-label"
+      });
+      container.label = "replace-label";
 
-  it("label prop replace successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    const labelRadioButtonEl = el.querySelector(
-      ".kuc-radio-button__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelRadioButtonEl.textContent).to.be.equal("replace-label");
-  });
-});
+      const el = await fixture(container);
+      const labelEl = el.querySelector(
+        ".kuc-radio-button__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-describe("label constructor set to null successfully", () => {
-  const container = new RadioButton({
-    // @ts-ignore
-    label: null
-  });
-
-  it("label constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-  });
-});
-
-describe("label prop set to null successfully", () => {
-  const container = new RadioButton({
-    label: "options-label"
-  });
-  // @ts-ignore
-  container.label = null;
-
-  it("label prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-radio-button__group__label"
-    ) as HTMLLegendElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
+      const labelTextEl = el.querySelector(
+        ".kuc-radio-button__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("replace-label");
+    });
   });
 });

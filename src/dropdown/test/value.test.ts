@@ -1,238 +1,221 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("value default prop is not set", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
+describe("Dropdown", () => {
+  describe("value", () => {
+    it("should be empty selected item label when not assigned on constructor", async () => {
+      const container = new Dropdown({ items: initItems });
+      const el = await fixture(container);
+      expect(container.value).to.be.equal("");
+
+      const selectedItemLabel = el.querySelector(
+        ".kuc-dropdown__group__toggle__selected-item-label"
+      );
+      expect(selectedItemLabel?.textContent).to.equal("");
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(0);
+      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    });
+
+    it("should be set to selected item label when assigned on constructor", async () => {
+      const container = new Dropdown({
+        items: initItems,
+        value: initItems[1].value
+      });
+      const el = await fixture(container);
+      expect(container.value).to.be.equal(initItems[1].value);
+
+      const selectedItemLabel = el.querySelector(
+        ".kuc-dropdown__group__toggle__selected-item-label"
+      );
+      expect(selectedItemLabel?.textContent).to.equal(initItems[1].label);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(1);
+      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    });
   });
 
-  it("value default prop is not set", async () => {
+  it("should be updated by setter", async () => {
+    const container = new Dropdown({
+      items: initItems,
+      value: initItems[0].value
+    });
+    container.value = initItems[1].value;
+
     const el = await fixture(container);
-    const itemsEl = container.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.be.equal("");
-  });
-});
+    expect(container.value).to.be.equal(initItems[1].value);
 
-describe("value prop set successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+    const selectedItemLabel = el.querySelector(
+      ".kuc-dropdown__group__toggle__selected-item-label"
+    );
+    expect(selectedItemLabel?.textContent).to.equal(initItems[1].label);
 
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[1]
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
+    const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+    expect(svgsEl0.length).to.equal(0);
+    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+    expect(svgsEl1.length).to.equal(1);
+    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+
+    const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+    expect(svgsEl2.length).to.equal(0);
+    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
   });
 
-  it("value prop set successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = container.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!container.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.be.equal(expectedValues[1]);
-  });
-});
-
-describe("value prop replace successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[0]
-  });
-  container.value = expectedValues[1];
-
-  it("value prop replace successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = container.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.be.equal(expectedValues[1]);
-  });
-});
-
-describe("value default prop set to null", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
+  it("should be null when assigned null on constructor", async () => {
     // @ts-ignore
-    value: null
-  });
+    const container = new Dropdown({ items: initItems, value: null });
 
-  it("value default prop set to null", async () => {
     const el = await fixture(container);
-    const selectedTextEl = el.querySelector(
-      ".kuc-dropdown__group__toggle__selected-item-label"
-    ) as HTMLSpanElement;
-    expect(selectedTextEl.textContent).to.be.equal("");
-    const itemsEl = container.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-      expect(itemEl.getAttribute("aria-checked")).to.be.equal("false");
-    }
     expect(container.value).to.be.equal(null);
+
+    const selectedItemLabel = el.querySelector(
+      ".kuc-dropdown__group__toggle__selected-item-label"
+    );
+    expect(selectedItemLabel?.textContent).to.equal("");
+
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
+    const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+    expect(svgsEl0.length).to.equal(0);
+    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+    expect(svgsEl1.length).to.equal(0);
+    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+    expect(svgsEl2.length).to.equal(0);
+    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
   });
-});
 
-describe("set to null value", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+  it("should be null when set null by setter", async () => {
+    const container = new Dropdown({
+      items: initItems,
+      value: initItems[0].value
+    });
+    // @ts-ignore
+    container.value = null;
 
-  const container = new Dropdown({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[0]
-  });
-  // @ts-ignore
-  container.value = null;
-
-  it("set to null value", async () => {
     const el = await fixture(container);
-    const selectedTextEl = el.querySelector(
-      ".kuc-dropdown__group__toggle__selected-item-label"
-    ) as HTMLSpanElement;
-    expect(selectedTextEl.textContent).to.be.equal("");
-    const itemsEl = container.querySelector(
-      ".kuc-dropdown__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-      expect(itemEl.getAttribute("aria-checked")).to.be.equal("false");
-    }
     expect(container.value).to.be.equal(null);
+
+    const selectedItemLabel = el.querySelector(
+      ".kuc-dropdown__group__toggle__selected-item-label"
+    );
+    expect(selectedItemLabel?.textContent).to.equal("");
+
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
+    const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+    expect(svgsEl0.length).to.equal(0);
+    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+    expect(svgsEl1.length).to.equal(0);
+    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+    expect(svgsEl2.length).to.equal(0);
+    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
   });
-});
 
-describe("set nonexistent value", () => {
-  const expectedValues = ["-----", "orange", "Apple"];
-  const container = new Dropdown({});
-  container.value = expectedValues[2];
-  const getval = container.value;
+  it("should be set to nonexistent value", async () => {
+    const container = new Dropdown({
+      items: initItems,
+      value: initItems[0].value
+    });
+    container.value = "nonexistent";
 
-  it("set nonexistent value", async () => {
-    expect(getval).to.be.equal(expectedValues[2]);
+    const el = await fixture(container);
+    expect(container.value).to.be.equal("nonexistent");
+
+    const selectedItemLabel = el.querySelector(
+      ".kuc-dropdown__group__toggle__selected-item-label"
+    );
+    expect(selectedItemLabel?.textContent).to.equal("");
+
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
+    const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+    expect(svgsEl0.length).to.equal(0);
+    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+    expect(svgsEl1.length).to.equal(0);
+    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+    expect(svgsEl2.length).to.equal(0);
+    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
   });
-});
 
-describe("set number value", () => {
-  const container = new Dropdown({});
-  // @ts-ignore
-  container.value = 1;
-  const getval = container.value;
+  it("should be set to number value", async () => {
+    const container = new Dropdown({
+      items: initItems,
+      value: initItems[0].value
+    });
+    // @ts-ignore
+    container.value = 1;
 
-  it("set number value", async () => {
-    expect(getval).to.be.equal(1);
+    const el = await fixture(container);
+    expect(container.value).to.be.equal(1);
+
+    const selectedItemLabel = el.querySelector(
+      ".kuc-dropdown__group__toggle__selected-item-label"
+    );
+    expect(selectedItemLabel?.textContent).to.equal("");
+
+    const itemsEl = el.querySelectorAll(
+      ".kuc-dropdown__group__select-menu__item"
+    );
+    const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+    expect(svgsEl0.length).to.equal(0);
+    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+    expect(svgsEl1.length).to.equal(0);
+    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+    const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+    expect(svgsEl2.length).to.equal(0);
+    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
   });
 });
