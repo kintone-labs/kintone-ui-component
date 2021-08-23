@@ -257,7 +257,8 @@ export class MobileRadioButton extends LitElement {
         }
 
         .kuc-mobile-radio-button__group__label {
-          display: flex;
+          display: inline-block;
+          line-height: 1.5;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;

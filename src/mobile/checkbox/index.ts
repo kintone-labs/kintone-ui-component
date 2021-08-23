@@ -287,7 +287,8 @@ export class MobileCheckbox extends LitElement {
         }
 
         .kuc-mobile-checkbox__group__label {
-          display: flex;
+          display: inline-block;
+          line-height: 1.5;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
