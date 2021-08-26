@@ -1,80 +1,54 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 import { Dialog } from "../index";
 
-describe("confirm title default prop is null", () => {
-  const container = new Dialog();
-  it("confirm title default prop is null", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("");
-  });
-});
+describe("Dialog", () => {
+  describe("title", () => {
+    it("should be empty string when not assgined on constructor", async () => {
+      const container = new Dialog();
+      container.open();
+      await elementUpdated(container);
 
-describe("title constructor set successfully", () => {
-  const container = new Dialog({
-    title: "this is title"
-  });
-  it("title constructor set successfully", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("this is title");
-  });
-});
+      const titleEl = container.querySelector(
+        ".kuc-dialog__dialog__header__title"
+      ) as HTMLSpanElement;
+      expect(titleEl.textContent).to.equal("");
+    });
 
-describe("title prop set successfully", () => {
-  const container = new Dialog();
-  container.title = "this is title";
-  it("title prop set successfully", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("this is title");
-  });
-});
+    it('should be "title" when assgined on constructor', async () => {
+      const container = new Dialog({ title: "title" });
+      container.open();
+      await elementUpdated(container);
 
-describe("title constructor set to null successfully", () => {
-  const container = new Dialog({
-    // @ts-ignore
-    title: null
-  });
+      const titleEl = container.querySelector(
+        ".kuc-dialog__dialog__header__title"
+      ) as HTMLSpanElement;
+      expect(titleEl.textContent).to.equal("title");
+    });
 
-  it("title constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("");
-  });
-});
+    it('should be "title" when updated by setter', async () => {
+      const container = new Dialog();
+      container.open();
 
-describe("title prop set to null successfully", () => {
-  const container = new Dialog();
-  // @ts-ignore
-  container.title = null;
-  it("title prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("");
-  });
-});
+      container.title = "title";
+      await elementUpdated(container);
 
-describe("title prop replace successfully", () => {
-  const container = new Dialog({
-    title: "this is title"
-  });
-  container.title = "this is replace title";
-  it("title prop replace successfully", async () => {
-    const el = await fixture(container);
-    const titleEl = el.querySelector(
-      ".kuc-dialog__dialog__header__title"
-    ) as HTMLSpanElement;
-    await expect(titleEl.textContent).to.be.equal("this is replace title");
+      const titleEl = container.querySelector(
+        ".kuc-dialog__dialog__header__title"
+      ) as HTMLSpanElement;
+      expect(titleEl.textContent).to.equal("title");
+    });
+
+    it('should be replaced to "replaced title" when updated by setter', async () => {
+      const container = new Dialog({ title: "title" });
+      container.open();
+
+      container.title = "replaced title";
+      await elementUpdated(container);
+
+      const titleEl = container.querySelector(
+        ".kuc-dialog__dialog__header__title"
+      ) as HTMLSpanElement;
+      expect(titleEl.textContent).to.equal("replaced title");
+    });
   });
 });

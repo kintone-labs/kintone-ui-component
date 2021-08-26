@@ -1,72 +1,54 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
-describe("label default prop is null", () => {
-  const container = new MultiChoice({});
+describe("MultiChoice", () => {
+  describe("label", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new MultiChoice();
+      const el = await fixture(container);
 
-  it("label default prop is null", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl).to.be.visible;
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-multi-choice__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
-describe("label prop set successfully", () => {
-  const container = new MultiChoice({ label: "options-label" });
+      const labelTextEl = el.querySelector(
+        ".kuc-multi-choice__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("");
+    });
 
-  it("label prop set successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.innerText).to.have.equals("options-label");
-  });
-});
+    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+      const container = new MultiChoice({ label: "options-label" });
+      const el = await fixture(container);
 
-describe("label prop replace successfully", () => {
-  const container = new MultiChoice({
-    label: "options-label"
-  });
-  container.label = "replace-label";
+      const labelEl = el.querySelector(
+        ".kuc-multi-choice__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-  it("label prop replace successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.textContent).to.have.equals("replace-label");
-  });
-});
+      const labelTextEl = el.querySelector(
+        ".kuc-multi-choice__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("options-label");
+    });
 
-describe("label default prop set to null", () => {
-  const container = new MultiChoice({
-    // @ts-ignore
-    label: null
-  });
+    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+      const container = new MultiChoice({
+        label: "options-label"
+      });
+      container.label = "replace-label";
 
-  it("label default prop set to null", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__group__label"
-    )) as HTMLSpanElement;
-    await expect(labelEl).to.be.visible;
-  });
-});
+      const el = await fixture(container);
+      const labelEl = el.querySelector(
+        ".kuc-multi-choice__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-describe("label prop set to null", () => {
-  const container = new MultiChoice({
-    label: "options-label"
-  });
-  // @ts-ignore
-  container.label = null;
-
-  it("label prop set to null", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-multi-choice__group__label"
-    )) as HTMLSpanElement;
-    await expect(labelEl).to.be.visible;
+      const labelTextEl = el.querySelector(
+        ".kuc-multi-choice__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("replace-label");
+    });
   });
 });

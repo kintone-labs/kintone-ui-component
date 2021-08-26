@@ -1,82 +1,52 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
-describe("confirm label default value is null", () => {
-  const container = new Checkbox();
+describe("Checkbox", () => {
+  describe("label", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new Checkbox();
+      const el = await fixture(container);
 
-  it("confirm label default value is null", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-checkbox__group__label"
-    ) as HTMLLegendElement;
-    const labelCheckboxEl = el.querySelector(
-      ".kuc-checkbox__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(labelCheckboxEl.textContent).to.be.equal("");
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-checkbox__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
-describe("label constructor set successfully", () => {
-  const container = new Checkbox({ label: "options-label" });
+      const labelCheckboxEl = el.querySelector(
+        ".kuc-checkbox__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelCheckboxEl.textContent).to.equal("");
+    });
 
-  it("label constructor set successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-checkbox__group__label"
-    ) as HTMLLegendElement;
-    const labelCheckboxEl = el.querySelector(
-      ".kuc-checkbox__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelCheckboxEl.textContent).to.be.equal("options-label");
-  });
-});
+    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+      const container = new Checkbox({ label: "options-label" });
+      const el = await fixture(container);
 
-describe("label prop replace successfully", () => {
-  const container = new Checkbox({ label: "options-label" });
-  container.label = "replace-label";
+      const labelEl = el.querySelector(
+        ".kuc-checkbox__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-  it("label prop replace successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-checkbox__group__label"
-    ) as HTMLLegendElement;
-    const labelCheckboxEl = el.querySelector(
-      ".kuc-checkbox__group__label__text"
-    ) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelCheckboxEl.textContent).to.be.equal("replace-label");
-  });
-});
+      const labelCheckboxEl = el.querySelector(
+        ".kuc-checkbox__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelCheckboxEl.textContent).to.equal("options-label");
+    });
 
-describe("label constructor set to null successfully", () => {
-  const container = new Checkbox({
-    // @ts-ignore
-    label: null
-  });
+    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+      const container = new Checkbox({ label: "options-label" });
+      container.label = "replace-label";
+      const el = await fixture(container);
 
-  it("label constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-checkbox__group__label"
-    ) as HTMLLegendElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-checkbox__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-describe("label prop set to null successfully", () => {
-  const container = new Checkbox({
-    label: "options-label"
-  });
-  // @ts-ignore
-  container.label = null;
-
-  it("label prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = el.querySelector(
-      ".kuc-checkbox__group__label"
-    ) as HTMLLegendElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
+      const labelCheckboxEl = el.querySelector(
+        ".kuc-checkbox__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelCheckboxEl.textContent).to.equal("replace-label");
+    });
   });
 });

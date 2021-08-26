@@ -1,64 +1,56 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Text } from "../index";
 
-describe("confirm textAlign default prop is left", () => {
-  const container = new Text();
+describe("Text", () => {
+  describe("textAlign", () => {
+    it("shoul be left when not set textAlign in constructor", async () => {
+      const container = new Text();
 
-  it("confirm textAlign default prop is left", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
-    ) as HTMLInputElement;
-    await expect(inputEl.getAttribute("textalign")).to.be.equal("left");
-    await expect(window.getComputedStyle(inputEl).textAlign).to.be.equal(
-      "left"
-    );
-  });
-});
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-text__group__input-form__input-outer__input"
+      ) as HTMLInputElement;
 
-describe("textAlign constructor set successfully", () => {
-  const container = new Text({ textAlign: "right" });
+      expect(inputEl.getAttribute("textalign")).to.equal("left");
+      expect(window.getComputedStyle(inputEl).textAlign).to.equal("left");
+    });
 
-  it("textAlign constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
-    ) as HTMLInputElement;
-    await expect(inputEl.getAttribute("textalign")).to.be.equal("right");
-    await expect(window.getComputedStyle(inputEl).textAlign).to.be.equal(
-      "right"
-    );
-  });
-});
+    it("should be right when set right in constructor", async () => {
+      const container = new Text({ textAlign: "right" });
 
-describe("textAlign prop set successfully", () => {
-  const container = new Text();
-  container.textAlign = "right";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-text__group__input-form__input-outer__input"
+      ) as HTMLInputElement;
 
-  it("textAlign prop set successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
-    ) as HTMLInputElement;
-    await expect(inputEl.getAttribute("textalign")).to.be.equal("right");
-    await expect(window.getComputedStyle(inputEl).textAlign).to.be.equal(
-      "right"
-    );
-  });
-});
+      expect(inputEl.getAttribute("textalign")).to.equal("right");
+      expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
+    });
 
-describe("textAlign prop replace successfully", () => {
-  const container = new Text({ textAlign: "left" });
-  container.textAlign = "right";
+    it("should be right when updating to right", async () => {
+      const container = new Text();
+      container.textAlign = "right";
 
-  it("textAlign prop replace successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
-    ) as HTMLInputElement;
-    await expect(inputEl.getAttribute("textalign")).to.be.equal("right");
-    await expect(window.getComputedStyle(inputEl).textAlign).to.be.equal(
-      "right"
-    );
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-text__group__input-form__input-outer__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.getAttribute("textalign")).to.equal("right");
+      expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
+    });
+
+    it("should be right when updating textAlign from left to right", async () => {
+      const container = new Text({ textAlign: "left" });
+      container.textAlign = "right";
+
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-text__group__input-form__input-outer__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.getAttribute("textalign")).to.equal("right");
+      expect(window.getComputedStyle(inputEl).textAlign).to.equal("right");
+    });
   });
 });

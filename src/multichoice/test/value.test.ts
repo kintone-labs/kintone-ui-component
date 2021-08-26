@@ -1,234 +1,140 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
-describe("value default prop is not setted", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
+const initItems = [
+  { label: "Item 1", value: "item-1" },
+  { label: "Item 2", value: "item-2" },
+  { label: "Item 3", value: "item-3" }
+];
 
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
+describe("MultiChoice", () => {
+  describe("value", () => {
+    it("should be empty array when not assigned on constructor", async () => {
+      const container = new MultiChoice({ items: initItems });
+      const el = await fixture(container);
+
+      expect(container.value).to.deep.equal([]);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(0);
+      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    });
+
+    it("should be selected item when assigned on constructor", async () => {
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[1].value]
+      });
+      const el = await fixture(container);
+
+      expect(container.value).to.deep.equal([initItems[1].value]);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(1);
+      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    });
+
+    it("should be selected item by setter", async () => {
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[0].value]
+      });
+      container.value = [initItems[1].value];
+      const el = await fixture(container);
+
+      expect(container.value).to.deep.equal([initItems[1].value]);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+
+      const svgsEl1 = itemsEl[1].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(1);
+      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    });
+
+    it("should be throw error when assigned null on constructor", async () => {
+      // @ts-expect-error
+      const container = new MultiChoice({ items: initItems, value: null });
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'value' property is not array");
       }
-    ]
-  });
 
-  it("value default prop is not setted", async () => {
-    const el = await fixture(container);
-    const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__group__menu"
-    )!.children;
-    if (!container.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.deep.equal([]);
-  });
-});
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
 
-describe("value prop set successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
+    it("should be throw error when assigned dupplicated value on constructor", async () => {
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[0].value, initItems[0].value]
+      });
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'value[1]' property is duplicated");
       }
-    ],
-    value: [expectedValues[1]]
-  });
 
-  it("value prop set successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__group__menu"
-    )!.children;
-    if (!container.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.deep.equal([expectedValues[1]]);
-  });
-});
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
 
-describe("value prop set successfully", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  const container = new MultiChoice({
-    label: "Fruit",
-    requiredIcon: false,
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
+    it("should be throw error when set null by setter", async () => {
+      const container = new MultiChoice({ items: initItems });
+      // @ts-expect-error
+      container.value = null;
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'value' property is not array");
       }
-    ],
-    value: [expectedValues[0]]
-  });
-  container.value = [expectedValues[1]];
 
-  it("value prop set successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl: HTMLCollection = container.querySelector(
-      ".kuc-multi-choice__group__menu"
-    )!.children;
-    if (!container.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-    expect(container.value).to.deep.equal([expectedValues[1]]);
-  });
-});
-
-describe("throw error when set by constructor", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  it("have value which is not array", async () => {
-    const container = new MultiChoice({
-      items: [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0]
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1]
-        },
-        {
-          label: expectedLabels[2],
-          value: expectedValues[2]
-        }
-      ],
-      // @ts-ignore
-      value: null
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'value' property is not array");
-    }
-  });
 
-  it("have duplicated value", async () => {
-    const container = new MultiChoice({
-      items: [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0]
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1]
-        },
-        {
-          label: expectedLabels[2],
-          value: expectedValues[2]
-        }
-      ],
-      value: [expectedValues[0], expectedValues[0]]
+    it("should be throw error when set dupplicated value by setter", async () => {
+      const container = new MultiChoice({ items: initItems });
+      container.value = [initItems[0].value, initItems[0].value];
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'value[1]' property is duplicated");
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'value[1]' property is duplicated");
-    }
-  });
-});
-
-describe("throw error when set by prop", () => {
-  const expectedLabels = ["Item 1", "Item 2", "Item 3"];
-  const expectedValues = ["item-1", "item-2", "item-3"];
-
-  it("have value which is not array", async () => {
-    const container = new MultiChoice({
-      items: [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0]
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1]
-        },
-        {
-          label: expectedLabels[2],
-          value: expectedValues[2]
-        }
-      ]
-    });
-    // @ts-ignore
-    container.value = null;
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'value' property is not array");
-    }
-  });
-
-  it("have duplicated value", async () => {
-    const container = new MultiChoice({
-      items: [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0]
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1]
-        },
-        {
-          label: expectedLabels[2],
-          value: expectedValues[2]
-        }
-      ]
-    });
-    container.value = [expectedValues[0], expectedValues[0]];
-
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'value[1]' property is duplicated");
-    }
   });
 });

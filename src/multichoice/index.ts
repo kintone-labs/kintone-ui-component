@@ -187,6 +187,8 @@ export class MultiChoice extends LitElement {
     switch (event.key) {
       case "Up": // IE/Edge specific value
       case "ArrowUp": {
+        event.preventDefault();
+
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -208,6 +210,7 @@ export class MultiChoice extends LitElement {
       }
       case "Down": // IE/Edge specific value
       case "ArrowDown": {
+        event.preventDefault();
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -229,6 +232,7 @@ export class MultiChoice extends LitElement {
       }
       case "Spacebar": // IE/Edge specific value
       case " ": {
+        event.preventDefault();
         this._itemsEl.forEach((itemEl: HTMLDivElement) => {
           if (
             itemEl.classList.contains(

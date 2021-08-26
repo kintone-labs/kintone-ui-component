@@ -1,14 +1,14 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Spinner } from "../index";
 
-describe("open method successfully", () => {
-  const container = new Spinner({});
+describe("Spinner", () => {
+  describe("open", () => {
+    it("should be display when call open() method", async () => {
+      const container = new Spinner({});
+      container.open();
 
-  it("open method successfully", async () => {
-    const el = await fixture(container);
-    container.open();
-    await elementUpdated(el);
-    const bodyel = document.querySelector("BODY");
-    await expect(bodyel!.querySelector("kuc-spinner")).not.to.be.null;
+      const parrentEl = container.parentNode as HTMLElement;
+      expect(parrentEl.nodeName).to.equal("BODY");
+    });
   });
 });

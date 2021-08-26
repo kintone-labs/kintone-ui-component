@@ -229,7 +229,7 @@ export class MobileCheckbox extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-mobile-checkbox__error"
+          class="kuc-mobile-checkbox__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -404,7 +404,7 @@ export class MobileCheckbox extends LitElement {
           content: "";
         }
 
-        .kuc-mobile-checkbox__error {
+        .kuc-mobile-checkbox__group__error {
           line-height: 1.5;
           border: 1px solid #e5db68;
           background-color: #fdffc9;
@@ -415,7 +415,7 @@ export class MobileCheckbox extends LitElement {
           color: #000000;
         }
 
-        .kuc-mobile-checkbox__error[hidden] {
+        .kuc-mobile-checkbox__group__error[hidden] {
           display: none;
         }
       </style>
