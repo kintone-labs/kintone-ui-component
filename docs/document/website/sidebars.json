@@ -23,6 +23,8 @@
         "ids": [
           "components/mobile/mobile-button",
           "components/mobile/mobile-checkbox",
+          "components/mobile/mobile-dropdown",
+          "components/mobile/mobile-multichoice",
           "components/mobile/mobile-notification",
           "components/mobile/mobile-radio-button",
           "components/mobile/mobile-text",
