@@ -16,7 +16,7 @@ export class CalendarPresentationFooter extends KucBase {
       <style>
         kuc-calendar-presentation-footer {
           display: flex;
-          align-items: bottom;
+          align-items: flex-end;
           box-sizing: border-box;
           padding: 0;
           height: 27px;
