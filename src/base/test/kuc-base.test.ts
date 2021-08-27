@@ -7,8 +7,8 @@ import {
   CustomEventDetail
 } from "../kuc-base";
 
-describe("Base", () => {
-  describe("KucBase", () => {
+describe("KucBase", () => {
+  describe("generateGUID", () => {
     it("should be return GUID when calling generateGUID function", async () => {
       const pattern =
         "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$";
@@ -16,23 +16,28 @@ describe("Base", () => {
       const regex = new RegExp(pattern, "i");
       expect(regex.test(guid)).to.equal(true);
     });
-
-    it("render the template into the main DOM when component extend from KucBase uses createRenderRoot", async () => {
-      const conatiner = new KucTest({ value: "MyTest" });
-      const el = await fixture(conatiner);
-      expect(el.hasChildNodes()).to.equal(true);
+  });
+  describe("createRenderRoot", () => {
+    it("render the template into the main DOM when component extend from KucBase", async () => {
+      const container = new KucTest();
+      const el = await fixture(container);
+      expect(el.firstElementChild?.classList.contains("kuc-test")).to.equal(
+        true
+      );
     });
-
-    it("function change event run successfully when uses dispatchCustomEvent extend from KucBase", async () => {
+  });
+  describe("dispatchCustomEvent", () => {
+    it("function change event run successfully", async () => {
       let triggeredEvent: any = null;
-      const container = new KucTest({ value: "Orange" });
+      const container = document.createElement("div");
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;
       });
-      const el = await fixture(container);
-      const inputEl = el.querySelector(".kuc-test") as HTMLInputElement;
-      inputEl.value = "Apple";
-      inputEl.dispatchEvent(new CustomEvent("change"));
+      const detail: CustomEventDetail = {
+        value: "Apple",
+        oldValue: "Orange"
+      };
+      dispatchCustomEvent(container, "change", detail);
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldValue).to.equal("Orange");
@@ -41,33 +46,10 @@ describe("Base", () => {
   });
 });
 
-type KucTestProps = {
-  value: string;
-};
 class KucTest extends KucBase {
-  @property({ type: String }) value = "";
-  constructor(props?: KucTestProps) {
-    super();
-    this.value = props?.value ? props.value : this.value;
-  }
-  private _handleChangeInput(event: MouseEvent) {
-    event.stopPropagation();
-
-    const targetEl = event.target as HTMLInputElement;
-    const detail: CustomEventDetail = { value: "", oldValue: this.value };
-    this.value = targetEl.value;
-    detail.value = this.value;
-    dispatchCustomEvent(this, "change", detail);
-  }
-
   render() {
     return html`
-      <input
-        class="kuc-test"
-        type="button"
-        @change="${this._handleChangeInput}"
-        value="${this.value}"
-      />
+      <div class="kuc-test"></div>
     `;
   }
 }
