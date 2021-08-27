@@ -1,80 +1,54 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Text } from "../index";
 
-describe("confirm label default prop is null", () => {
-  const container = new Text();
+describe("Text", () => {
+  describe("label", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new Text();
+      const el = await fixture(container);
 
-  it("confirm label default prop is null", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-text__group__label"
-    )) as HTMLLabelElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-text__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
-describe("label constructor set successfully", () => {
-  const container = new Text({ label: "options-label" });
+      const labelTextEl = el.querySelector(
+        ".kuc-text__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("");
+    });
 
-  it("label constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-text__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-text__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("options-label");
-  });
-});
+    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+      const container = new Text({ label: "options-label" });
+      const el = await fixture(container);
 
-describe("label prop set successfully", () => {
-  const container = new Text();
-  container.label = "options-label";
+      const labelEl = el.querySelector(
+        ".kuc-text__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-  it("label prop set successfully'", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-text__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-text__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("options-label");
-  });
-});
+      const labelTextEl = el.querySelector(
+        ".kuc-text__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("options-label");
+    });
 
-describe("label prop replace successfully", () => {
-  const container = new Text({ label: "options-label" });
-  container.label = "replace-label";
+    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+      const container = new Text({
+        label: "options-label"
+      });
+      container.label = "replace-label";
 
-  it("label prop replace successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-text__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-text__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("replace-label");
-  });
-});
+      const el = await fixture(container);
+      const labelEl = el.querySelector(
+        ".kuc-text__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-describe("label prop set to null successfully", () => {
-  const container = new Text({
-    label: "options-label"
-  });
-  // @ts-ignore
-  container.label = null;
-
-  it("label prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-text__group__label"
-    )) as HTMLLabelElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
+      const labelTextEl = el.querySelector(
+        ".kuc-text__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("replace-label");
+    });
   });
 });

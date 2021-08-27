@@ -23,8 +23,8 @@ function generateDupplicatedItems() {
   ];
 }
 
-const expectedLabels = ["-----", "Orange", "Apple"];
-const expectedValues = ["-----", "orange", "apple"];
+const expectedLabels = ["", "-----", "Orange", "Apple"];
+const expectedValues = ["", "-----", "orange", "apple"];
 
 describe("MobileDropdown", () => {
   describe("items", () => {
@@ -32,7 +32,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown();
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(0);
+      expect(itemsEl.length).to.be.equal(1);
     });
 
     it("exists on element when initializing with props option", async () => {
@@ -42,9 +42,9 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl.length).to.be.equal(4);
 
-      for (let i = 0; i < itemsEl.length; i++) {
+      for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
         expect(value).to.have.equal(expectedValues[i]);
@@ -63,9 +63,9 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl.length).to.be.equal(4);
 
-      for (let i = 0; i < itemsEl.length; i++) {
+      for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
         expect(value).to.have.equal(expectedValues[i]);
@@ -83,9 +83,9 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(2);
+      expect(itemsEl.length).to.be.equal(3);
 
-      for (let i = 0; i < itemsEl.length; i++) {
+      for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
         const value = itemEl.getAttribute("value")?.trim();
         expect(value).to.have.equal(expectedValues[i + 1]);

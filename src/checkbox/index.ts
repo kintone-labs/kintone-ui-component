@@ -71,8 +71,12 @@ export class Checkbox extends KucBase {
   }
 
   private _getNewValue(value: string) {
-    if (this.value.every(val => val !== value)) {
-      return [...this.value, value];
+    const sorting = this.items.map(item => item.value);
+    if (this.value.indexOf(value) === -1) {
+      return [...this.value, value].sort(
+        (item1: string, item2: any) =>
+          sorting.indexOf(item1) - sorting.indexOf(item2)
+      );
     }
     return this.value.filter(val => val !== value);
   }
@@ -180,9 +184,16 @@ export class Checkbox extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-checkbox__group">
+      <div
+        class="kuc-checkbox__group"
+        role="group"
+        aria-labelledby="${this._GUID}-group"
+      >
         <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
-          <span class="kuc-checkbox__group__label__text">${this.label}</span
+          <span
+            id="${this._GUID}-group"
+            class="kuc-checkbox__group__label__text"
+            >${this.label}</span
           ><!--
           --><span
             class="kuc-checkbox__group__label__required-icon"

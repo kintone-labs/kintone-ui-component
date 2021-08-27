@@ -157,6 +157,8 @@ export class MultiChoice extends KucBase {
     switch (event.key) {
       case "Up": // IE/Edge specific value
       case "ArrowUp": {
+        event.preventDefault();
+
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -178,6 +180,7 @@ export class MultiChoice extends KucBase {
       }
       case "Down": // IE/Edge specific value
       case "ArrowDown": {
+        event.preventDefault();
         this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
           if (
             itemEl.classList.contains(
@@ -199,6 +202,7 @@ export class MultiChoice extends KucBase {
       }
       case "Spacebar": // IE/Edge specific value
       case " ": {
+        event.preventDefault();
         this._itemsEl.forEach((itemEl: HTMLDivElement) => {
           if (
             itemEl.classList.contains(
@@ -435,8 +439,12 @@ export class MultiChoice extends KucBase {
   }
 
   private _getNewValue(value: string) {
-    if (this.value.every(val => val !== value)) {
-      return [...this.value, value];
+    const sorting = this.items.map(item => item.value);
+    if (this.value.indexOf(value) === -1) {
+      return [...this.value, value].sort(
+        (item1: string, item2: any) =>
+          sorting.indexOf(item1) - sorting.indexOf(item2)
+      );
     }
     return this.value.filter(val => val !== value);
   }

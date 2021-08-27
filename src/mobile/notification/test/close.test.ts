@@ -1,18 +1,39 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { MobileNotification } from "../index";
 
-describe("close method successfully", () => {
-  const container = new MobileNotification();
-  container.open();
+describe("MobileNotification", () => {
+  describe("close", () => {
+    it("should be fadeout when call close() method", async () => {
+      const container = new MobileNotification();
+      container.open();
 
-  it("close method successfully", async () => {
-    const el = await fixture(container);
-    container.close();
-    await elementUpdated(el);
-    const bodyEl = document.querySelector("BODY");
-    await expect(bodyEl!.querySelector("kuc-mobile-notification")).to.not.be
-      .null;
-    await expect(el.classList.contains("kuc-mobile-notification-fadeout")).to.be
-      .true;
+      container.close();
+
+      const parrentEl = container.parentNode as HTMLElement;
+      expect(parrentEl.nodeName).to.equal("BODY");
+
+      expect(container.classList.length).to.equal(1);
+      expect(container.classList[0]).to.equal(
+        "kuc-mobile-notification-fadeout"
+      );
+    });
+
+    it("should be fadeout when clicked close button", async () => {
+      const container = new MobileNotification();
+      container.open();
+
+      const closeBtnEl = container.querySelector(
+        ".kuc-mobile-notification__notification__closeButton"
+      ) as HTMLButtonElement;
+      closeBtnEl.click();
+
+      const parrentEl = container.parentNode as HTMLElement;
+      expect(parrentEl.nodeName).to.equal("BODY");
+
+      expect(container.classList.length).to.equal(1);
+      expect(container.classList[0]).to.equal(
+        "kuc-mobile-notification-fadeout"
+      );
+    });
   });
 });

@@ -1,4 +1,11 @@
-import { html, property, PropertyValues, svg, queryAll } from "lit-element";
+import {
+  html,
+  property,
+  PropertyValues,
+  svg,
+  query,
+  queryAll
+} from "lit-element";
 import {
   KucBase,
   generateGUID,
@@ -38,6 +45,15 @@ export class RadioButton extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
+
+  @query(".kuc-radio-button__group__label")
+  private _labelEl!: HTMLDivElement;
+
+  @query(".kuc-radio-button__group__error")
+  private _errorEl!: HTMLDivElement;
+
+  @query(".kuc-radio-button__group__select-menu")
+  private _selectMenuEl!: HTMLDivElement;
 
   @queryAll(".kuc-radio-button__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
@@ -125,11 +141,13 @@ export class RadioButton extends KucBase {
       >
         <input
           type="radio"
+          aria-checked=${this.value === item.value}
           aria-describedby="${this._GUID}-error"
           id="${this._GUID}-item-${index}"
           class="kuc-radio-button__group__select-menu__item__input"
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
+          tabindex=${this._getTabIndex(index, item, this.items)}
           aria-required=${this.requiredIcon}
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
@@ -148,6 +166,16 @@ export class RadioButton extends KucBase {
     `;
   }
 
+  private _getTabIndex(index: number, currentItem: Item, items: Item[]) {
+    if (
+      index === 0 &&
+      items.filter(item => item.value === this.value).length === 0
+    )
+      return "0";
+    if (currentItem.value === this.value) return "0";
+    return "-1";
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
     super.update(changedProperties);
@@ -156,9 +184,16 @@ export class RadioButton extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-radio-button__group">
+      <div
+        class="kuc-radio-button__group"
+        role="radiogroup"
+        aria-labelledby="${this._GUID}-group"
+      >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span class="kuc-radio-button__group__label__text">${this.label}</span
+          <span
+            id="${this._GUID}-group"
+            class="kuc-radio-button__group__label__text"
+            >${this.label}</span
           ><!--
             --><span
             class="kuc-radio-button__group__label__required-icon"
@@ -187,9 +222,52 @@ export class RadioButton extends KucBase {
   }
 
   updated() {
-    this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
-      inputEl.checked = this.value === inputEl.value;
-    });
+    this._updateErrorWidth();
+  }
+
+  private _createContextElm() {
+    const context = document.createElement("div");
+    context.style.height = "0px";
+    context.style.overflow = "hidden";
+    context.style.display = "inline-block";
+    context.style.fontSize = "14px";
+    const lang = document.documentElement.lang;
+    switch (lang) {
+      case "ja":
+        context.style.fontFamily =
+          "'メイリオ', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
+        break;
+      case "zh":
+        context.style.fontFamily =
+          "'微软雅黑', 'Microsoft YaHei', '新宋体', NSimSun, STHeiti, Hei, 'Heiti SC', sans-serif";
+        break;
+      default:
+        context.style.fontFamily =
+          "'HelveticaNeueW02-45Ligh', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif";
+        break;
+    }
+    return context;
+  }
+
+  private _getWidthElm(elm: HTMLElement) {
+    const context = this._createContextElm();
+    const clonedElm = elm.cloneNode(true);
+    context.appendChild(clonedElm);
+    document.body.appendChild(context);
+
+    const width = context.getBoundingClientRect().width;
+    document.body.removeChild(context);
+    return width;
+  }
+
+  private _updateErrorWidth() {
+    const MIN_WIDTH = 239;
+    const labelWidth = this._getWidthElm(this._labelEl);
+    const menuWidth = this._getWidthElm(this._selectMenuEl);
+
+    let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
+    if (menuWidth > errorWidth) errorWidth = menuWidth;
+    this._errorEl.style.width = errorWidth + "px";
   }
 
   private _validateItems() {
@@ -242,13 +320,13 @@ export class RadioButton extends KucBase {
           border: none;
           padding: 0px;
           height: auto;
-          display: table-caption;
+          display: inline-block;
           margin: 0px;
           width: 100%;
         }
 
         .kuc-radio-button__group__label {
-          display: block;
+          display: inline-block;
           padding: 4px 0 8px 0;
           white-space: nowrap;
         }
@@ -270,13 +348,9 @@ export class RadioButton extends KucBase {
         }
 
         .kuc-radio-button__group__select-menu {
-          display: inline-flex;
+          display: block;
           min-width: 239px;
           width: 100%;
-        }
-
-        .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
-          display: block;
         }
 
         .kuc-radio-button__group__select-menu[bordervisible] {

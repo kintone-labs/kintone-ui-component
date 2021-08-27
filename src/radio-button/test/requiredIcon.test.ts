@@ -1,97 +1,52 @@
 import { expect, fixture } from "@open-wc/testing";
 import { RadioButton } from "../index";
 
-describe("confirm requiredIcon default value is false", () => {
-  const container = new RadioButton();
+describe("RadioButton", () => {
+  describe("requiredIcon", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new RadioButton();
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-radio-button__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-  it("confirm requiredIcon default value is false", async () => {
-    const el = await fixture(container);
-    const requiredIconEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
-      "none"
-    );
-  });
-});
+    it("should be display inline when assigned true in constructor", async () => {
+      const container = new RadioButton({ requiredIcon: true });
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-radio-button__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("inline");
+    });
 
-describe("requiredIcon constructor set successfully", () => {
-  const container = new RadioButton({ requiredIcon: true });
+    it("should be display inline when changed to true by setter", async () => {
+      const container = new RadioButton({ requiredIcon: false });
+      container.requiredIcon = true;
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-radio-button__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("inline");
+    });
 
-  it("requiredIcon constructor set successfully", async () => {
-    const el = await fixture(container);
-    const requiredIconEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
-      "inline"
-    );
-  });
-});
-
-describe("requiredIcon prop set to true successfully", () => {
-  const container = new RadioButton({ requiredIcon: false });
-  container.requiredIcon = true;
-
-  it("requiredIcon prop set to true successfully", async () => {
-    const el = await fixture(container);
-    const requiredIconEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
-      "inline"
-    );
-  });
-});
-
-describe("requiredIcon set to false successfully", () => {
-  const container = new RadioButton({ requiredIcon: true });
-  container.requiredIcon = false;
-
-  it("requiredIcon prop set to false successfully", async () => {
-    const el = await fixture(container);
-    const requiredIconEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredIconEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(window.getComputedStyle(requiredIconEl).display).to.be.equal(
-      "none"
-    );
-  });
-});
-
-describe("requiredIcon constructor set to null successfully", () => {
-  // @ts-ignore
-  const container = new RadioButton({ requiredIcon: null });
-
-  it("requiredIcon constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(window.getComputedStyle(requiredEl).display).to.be.equal(
-      "none"
-    );
-  });
-});
-
-describe("requiredIcon prop set to null successfully", () => {
-  const container = new RadioButton();
-  // @ts-ignore
-  container.requiredIcon = null;
-
-  it("requiredIcon prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-radio-button__group__label__required-icon"
-    ) as HTMLSpanElement;
-    await expect(requiredEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(window.getComputedStyle(requiredEl).display).to.be.equal(
-      "none"
-    );
+    it("should be display none when changed to false by setter", async () => {
+      const container = new RadioButton({ requiredIcon: true });
+      container.requiredIcon = false;
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-radio-button__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });

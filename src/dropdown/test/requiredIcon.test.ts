@@ -1,83 +1,52 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("requiredIcon default prop is false", () => {
-  const container = new Dropdown({});
+describe("Dropdown", () => {
+  describe("requiredIcon", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new Dropdown();
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-dropdown__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("none");
+    });
 
-  it("requiredIcon default prop is false", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(requiredEl).to.be.visible;
-  });
-});
+    it("should be display inline when assigned true in constructor", async () => {
+      const container = new Dropdown({ requiredIcon: true });
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-dropdown__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("inline");
+    });
 
-describe("requiredIcon prop set to true successfully", () => {
-  const container = new Dropdown({ requiredIcon: true });
+    it("should be display inline when changed to true by setter", async () => {
+      const container = new Dropdown({ requiredIcon: false });
+      container.requiredIcon = true;
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-dropdown__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("inline");
+    });
 
-  it("requiredIcon prop set to true successfully", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    expect(requiredEl.innerText).to.have.equal("*");
-  });
-});
-
-describe("requiredIcon prop set to true successfully", () => {
-  const container = new Dropdown({});
-  container.requiredIcon = true;
-
-  it("requiredIcon prop set to true successfully", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    expect(requiredEl.innerText).to.have.equal("*");
-  });
-});
-
-describe("requiredIcon prop set to false successfully", () => {
-  const container = new Dropdown({});
-  container.requiredIcon = false;
-
-  it("requiredIcon prop set to false successfully", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(requiredEl).to.be.visible;
-  });
-});
-
-describe("requiredIcon default prop set to null", () => {
-  // @ts-ignore
-  const container = new Dropdown({ requiredIcon: null });
-
-  it("requiredIcon default prop set to null", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(requiredEl).to.be.visible;
-  });
-});
-
-describe("requiredIcon prop set to null", () => {
-  const container = new Dropdown({});
-  // @ts-ignore
-  container.requiredIcon = null;
-
-  it("requiredIcon prop set to null", async () => {
-    const el = await fixture(container);
-    const requiredEl = el.querySelector(
-      ".kuc-dropdown__group__label__required-icon"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(requiredEl).to.be.visible;
+    it("should be display none when changed to false by setter", async () => {
+      const container = new Dropdown({ requiredIcon: true });
+      container.requiredIcon = false;
+      const el = await fixture(container);
+      const requiredIconEl = el.querySelector(
+        ".kuc-dropdown__group__label__required-icon"
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("none");
+    });
   });
 });

@@ -1,0 +1,28 @@
+name: Netlify Storybook Production Environment
+
+on:
+  release:
+    types:
+      - released
+
+jobs:
+  publishOnMasterRelease:
+    name: Deploying on Netlify Storybook Production Environment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'released'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm i
+        working-directory: ./
+      - name: Build storybook
+        run: npm run build:storybook
+        working-directory: ./
+      - name: Deploying on Netlify Storybook Production Environment
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_STORYBOOK_ID }}
+          build-dir: './docs/storybook'

@@ -1,66 +1,65 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileTextArea } from "../index";
 
-describe("confirm value default prop is null", () => {
-  const container = new MobileTextArea();
+describe("MobileTextArea", () => {
+  describe("value", () => {
+    it("should be empty string when not assigned on constructor", async () => {
+      const container = new MobileTextArea();
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("");
+    });
 
-  it("confirm value default prop is null", async () => {
-    const el = await fixture(container);
-    const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textareaEl.value).to.be.equal("");
-  });
-});
+    it('should be "Apple" when  assigned "Apple" on constructor', async () => {
+      const container = new MobileTextArea({ value: "Apple" });
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("Apple");
+    });
 
-describe("value constructor set successfully", () => {
-  const container = new MobileTextArea({ value: "Apple" });
+    it('should be "Apple" when  set "Apple" by setter', async () => {
+      const container = new MobileTextArea();
+      container.value = "Apple";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("Apple");
+    });
 
-  it("value constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textareaEl.value).to.be.equal("Apple");
-  });
-});
+    it('should be changed to "Orange" when  set "Orange" by setter', async () => {
+      const container = new MobileTextArea({ value: "Apple" });
+      container.value = "Orange";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("Orange");
+    });
 
-describe("value prop replace successfully", () => {
-  const container = new MobileTextArea({ value: "Orange" });
-  container.value = "Apple";
+    it("should be empty string when assigned null on constructor", async () => {
+      // @ts-ignore
+      const container = new MobileTextArea({ value: null });
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("");
+    });
 
-  it("value prop replace successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textareaEl.value).to.be.equal("Apple");
-  });
-});
-
-describe("value default prop set to null successfully", () => {
-  // @ts-expect-error
-  const container = new MobileTextArea({ value: null });
-
-  it("value default prop set successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textareaEl.value).to.be.equal("");
-  });
-});
-
-describe("value prop set to null successfully", () => {
-  const container = new MobileTextArea();
-  // @ts-expect-error
-  container.value = null;
-
-  it("value prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textareaEl.value).to.be.equal("");
+    it("should be empty string when set null by setter", async () => {
+      const container = new MobileTextArea({ value: "Apple" });
+      // @ts-ignore
+      container.value = null;
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-textarea__form__textarea"
+      ) as HTMLTextAreaElement;
+      expect(inputEl.value).to.be.equal("");
+    });
   });
 });

@@ -135,6 +135,9 @@ export class MobileTextArea extends KucBase {
           padding: 0;
           margin: 0 0 4px 0;
           display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           white-space: nowrap;
         }
         .kuc-mobile-textarea__label[hidden] {
@@ -143,8 +146,7 @@ export class MobileTextArea extends KucBase {
         .kuc-mobile-textarea__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
         .kuc-mobile-textarea__label__required-icon {
           position: relative;

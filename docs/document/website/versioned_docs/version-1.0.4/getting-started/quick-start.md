@@ -96,6 +96,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 ```sh
 mkdir customization && cd customization
+npm init -y
 npm install kintone-ui-component
 npm install webpack webpack-cli --save-dev
 ```
@@ -129,7 +130,6 @@ import { Button } from 'kintone-ui-component/lib/button';
 3. Add the following `webpack.config.js` file into the root:
 
 ```js
-// webpack.config.js
 const path = require('path');
 module.exports = (env = {}) => {
   return {
