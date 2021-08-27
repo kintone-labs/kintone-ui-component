@@ -1,7 +1,14 @@
+import { query } from "lit-element";
 import { html } from "lit-html";
-import { KucBase } from "../../../base/kuc-base";
+import { CustomEventDetail, dispatchCustomEvent, KucBase } from "../../../base/kuc-base";
 
 export class CalendarPresentationHeader extends KucBase {
+  @query(".kuc-calendar-presentation-header__month")
+  private _monthSelectEl: HTMLSelectElement | undefined;
+
+  @query(".kuc-calendar-presentation-header__year")
+  private _yearSelectEl: HTMLSelectElement | undefined;
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -14,8 +21,26 @@ export class CalendarPresentationHeader extends KucBase {
         </button></span
       >
       <span class="kuc-calendar-presentation-header__year-month">
-        <select></select>
-        <select></select>
+        <select
+          class="kuc-calendar-presentation-header__month"
+          @change="${this._handleChangeMonthSelect}"
+        >
+          ${this._getMonthSelectOptions().map((month: string) => {
+            return html`
+              <option value="${month}">${month}</option>
+            `;
+          })}
+        </select>
+        <select
+          class="kuc-calendar-presentation-header__year"
+          @change="${this._handleChangeYearSelect}"
+        >
+          ${this._getYearSelectOptions().map((month: string) => {
+            return html`
+              <option value="${month}">${month}</option>
+            `;
+          })}
+        </select>
       </span>
       <span
         ><button
@@ -29,11 +54,57 @@ export class CalendarPresentationHeader extends KucBase {
   }
 
   private _handleClickPrevButton() {
-    console.log("prev");
+    if (!this._monthSelectEl) return;
+    const selectedIndex = this._monthSelectEl.selectedIndex;
+    this._monthSelectEl.selectedIndex = selectedIndex - 1;
+    this._dispatchChangeMonthYearEvent();
   }
 
   private _handleClickNextButton() {
-    console.log("next");
+    if (!this._monthSelectEl) return;
+    const selectedIndex = this._monthSelectEl.selectedIndex;
+    this._monthSelectEl.selectedIndex = selectedIndex + 1;
+    this._dispatchChangeMonthYearEvent();
+  }
+
+  private _handleChangeMonthSelect(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this._dispatchChangeMonthYearEvent();
+  }
+
+  private _handleChangeYearSelect(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this._dispatchChangeMonthYearEvent();
+  }
+
+  private _dispatchChangeMonthYearEvent() {
+    const year = this._yearSelectEl?.value;
+    const month = this._monthSelectEl?.value;
+    const detail: CustomEventDetail = { value: `${year}-${month}` };
+    dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _getYearSelectOptions() {
+    return ["2018", "2019", "2020", "2021", "2022", "2023"];
+  }
+
+  private _getMonthSelectOptions() {
+    return [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER"
+    ];
   }
 
   private _getStyleTagTemplate() {

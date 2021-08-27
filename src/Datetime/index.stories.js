@@ -15,6 +15,9 @@ storiesOf("Datetime", module)
     const calendarheader = document.createElement(
       "kuc-calendar-presentation-header"
     );
+    calendarheader.addEventListener("change", event => {
+      console.log(event.detail.value);
+    });
     return calendarheader;
   })
   .add("components/calendar/body", () => {
