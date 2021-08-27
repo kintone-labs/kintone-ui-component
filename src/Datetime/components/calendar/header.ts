@@ -29,11 +29,13 @@ export class CalendarPresentationHeader extends KucBase {
           class="kuc-calendar-presentation-header__month"
           @change="${this._handleChangeMonthSelect}"
         >
-          ${this._getMonthSelectOptions().map((month: string) => {
-            return html`
-              <option value="${month}">${month}</option>
-            `;
-          })}
+          ${this._getMonthSelectOptions().map(
+            (month: string, index: number) => {
+              return html`
+                <option value="${index}">${month}</option>
+              `;
+            }
+          )}
         </select>
         <select
           class="kuc-calendar-presentation-header__year"

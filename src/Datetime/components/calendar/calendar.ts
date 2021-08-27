@@ -3,19 +3,34 @@ import { KucBase } from "../../../base/kuc-base";
 import "./header";
 import "./body";
 import "./footer";
+import { query } from "lit-element";
 
 export class Calendar extends KucBase {
+  @query("kuc-calendar-presentation-body")
+  private _bodyEl: HTMLElement | undefined;
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-calendar">
         <div class="kuc-calendar-presentation">
-          <kuc-calendar-presentation-header></kuc-calendar-presentation-header>
-          <kuc-calendar-presentation-body></kuc-calendar-presentation-body>
+          <kuc-calendar-presentation-header
+            @change="${this._handleChangeHeader}"
+          ></kuc-calendar-presentation-header>
+          <kuc-calendar-presentation-body
+            month="1"
+            year="2018"
+          ></kuc-calendar-presentation-body>
           <kuc-calendar-presentation-footer></kuc-calendar-presentation-footer>
         </div>
       </div>
     `;
+  }
+
+  private _handleChangeHeader(event: CustomEvent) {
+    const value = event.detail.value.split("-");
+    this._bodyEl?.setAttribute("year", value[0]);
+    this._bodyEl?.setAttribute("month", value[1]);
   }
 
   private _getStyleTagTemplate() {

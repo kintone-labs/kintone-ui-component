@@ -1,7 +1,11 @@
+import { property } from "lit-element";
 import { html } from "lit-html";
 import { KucBase } from "../../../base/kuc-base";
 
 export class CalendarPresentationBody extends KucBase {
+  @property() month = 0;
+  @property() year = 1970;
+
   render() {
     return html`
       ${this._getStyleTagTemplate()} ${this._getWeekDayTemplate()}
@@ -10,7 +14,7 @@ export class CalendarPresentationBody extends KucBase {
   }
 
   private _getWeekDayTemplate() {
-    const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const weekDays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
     return html`
       ${weekDays.map(wday => {
@@ -21,16 +25,65 @@ export class CalendarPresentationBody extends KucBase {
     `;
   }
 
-  private _getDateTemplate() {
-    const dates = [];
-    for (let i = 0; i < 42; i++) {
-      dates.push(i);
+  private _getDateRange() {
+    const dateObj = new Date(this.year, this.month, 0);
+    const day = dateObj.getDay();
+    const previousMonth: string[] = [];
+    const currentMonth: string[] = [];
+    const nextMonth: string[] = [];
+
+    let _tmpDate: Date = new Date(dateObj);
+    _tmpDate.setDate(_tmpDate.getDate() - day + 1);
+    for (let i = 0; i < day; i++) {
+      _tmpDate.setDate(_tmpDate.getDate() + 1);
+      previousMonth.push(_tmpDate.toISOString().substring(0, 10));
     }
 
+    const startDateObj = new Date(this.year, this.month, 1);
+    const endDateObj = new Date(this.year, Number(this.month) + 1, 0);
+    const endDate = endDateObj.getDate();
+    for (let i = 0; i < endDate; i++) {
+      startDateObj.setDate(startDateObj.getDate() + 1);
+      currentMonth.push(startDateObj.toISOString().substring(0, 10));
+    }
+
+    const dayEnd = endDateObj.getDay();
+    _tmpDate = new Date(endDateObj);
+    _tmpDate.setDate(_tmpDate.getDate() - day + 1);
+    for (let i = dayEnd; i < 7; i++) {
+      _tmpDate.setDate(_tmpDate.getDate() + 1);
+      nextMonth.push(_tmpDate.toISOString().substring(0, 10));
+    }
+
+    return {
+      previousMonth,
+      currentMonth,
+      nextMonth
+    };
+  }
+
+  private _getDateTemplate() {
+    const ranges = this._getDateRange();
     return html`
-      ${dates.map(date => {
+      ${ranges.previousMonth.map(date => {
         return html`
-          <span class="kuc-calendar-presentation-cell">${date}</span>
+          <span class="kuc-calendar-presentation-cell"
+            >${date.substring(8, 10)}</span
+          >
+        `;
+      })}
+      ${ranges.currentMonth.map(date => {
+        return html`
+          <span class="kuc-calendar-presentation-cell"
+            >${date.substring(8, 10)}</span
+          >
+        `;
+      })}
+      ${ranges.nextMonth.map(date => {
+        return html`
+          <span class="kuc-calendar-presentation-cell"
+            >${date.substring(8, 10)}</span
+          >
         `;
       })}
     `;
