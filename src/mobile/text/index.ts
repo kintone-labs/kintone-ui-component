@@ -174,6 +174,9 @@ export class MobileText extends LitElement {
         }
         .kuc-mobile-text__label {
           display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           padding: 0;
           margin: 0 0 4px 0;
           white-space: nowrap;
@@ -184,8 +187,7 @@ export class MobileText extends LitElement {
         .kuc-mobile-text__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
         .kuc-mobile-text__label__required-icon {
           position: relative;

@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/web-components";
 
 // Describe the component name to the first argument storiesOf
 storiesOf("mobile/multichoice", module)
+  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
   .add("Base", () => {
     const root = document.createElement("div");
     const multiChoice = new MobileMultiChoice({
