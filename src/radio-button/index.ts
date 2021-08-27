@@ -55,8 +55,6 @@ export class RadioButton extends KucBase {
   @query(".kuc-radio-button__group__select-menu")
   private _selectMenuEl!: HTMLDivElement;
 
-  @queryAll(".kuc-radio-button__group__select-menu__item__input")
-  private _inputEls!: HTMLInputElement[];
   private _GUID: string;
 
   constructor(props?: RadioButtonProps) {

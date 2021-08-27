@@ -93,23 +93,6 @@ export class Dropdown extends KucBase {
     return selectedItemLabel;
   }
 
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const changeEvent = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(changeEvent);
-  }
-
   private _openSelector() {
     this._buttonEl.focus();
     this._selectorVisible = true;
