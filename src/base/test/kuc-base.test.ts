@@ -17,15 +17,15 @@ describe("KucBase", () => {
       expect(regex.test(guid)).to.equal(true);
     });
   });
+
   describe("createRenderRoot", () => {
     it("render the template into the main DOM when component extend from KucBase", async () => {
       const container = new KucTest();
       const el = await fixture(container);
-      expect(el.firstElementChild?.classList.contains("kuc-test")).to.equal(
-        true
-      );
+      expect(el.querySelector(".kuc-test") !== null).to.equal(true);
     });
   });
+
   describe("dispatchCustomEvent", () => {
     it("function change event run successfully", async () => {
       let triggeredEvent: any = null;
