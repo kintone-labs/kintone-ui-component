@@ -1,33 +1,50 @@
-import { CalendarPresentationHeader } from "./components/presentation/header.ts";
-import { CalendarPresentationBody } from "./components/presentation/body.ts";
-import { CalendarPresentationFooter } from "./components/presentation/footer.ts";
+import "./components/menu.ts";
+import "./components/presentation/header.ts";
+import "./components/presentation/body.ts";
+import "./components/presentation/footer.ts";
 import { Calendar } from "./calendar.ts";
-import { Datetime } from "./index.ts";
+import { Datetime, Date as KucDate, Time as KucTime } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
 storiesOf("Datetime", module)
+  .add("menu", () => {
+    const menu = document.createElement("kuc-menu");
+    return menu;
+  })
   .add("calendar header", () => {
-    const root = document.createElement("div");
-    const calendarheader = new CalendarPresentationHeader();
-    root.appendChild(calendarheader);
-    return root;
+    const calendarheader = document.createElement(
+      "kuc-calendar-presentation-header"
+    );
+    return calendarheader;
   })
   .add("calendar body", () => {
-    const root = document.createElement("div");
-    const calendarbody = new CalendarPresentationBody();
-    root.appendChild(calendarbody);
-    return root;
+    const calendarbody = document.createElement(
+      "kuc-calendar-presentation-body"
+    );
+    return calendarbody;
   })
   .add("calendar footer", () => {
-    const root = document.createElement("div");
-    const calendarFooter = new CalendarPresentationFooter();
-    root.appendChild(calendarFooter);
-    return root;
+    const calendarFooter = document.createElement(
+      "kuc-calendar-presentation-body"
+    );
+    return calendarFooter;
   })
   .add("calendar", () => {
     const root = document.createElement("div");
     const calendar = new Calendar();
     root.appendChild(calendar);
+    return root;
+  })
+  .add("date", () => {
+    const root = document.createElement("div");
+    const date = new KucDate();
+    root.appendChild(date);
+    return root;
+  })
+  .add("time", () => {
+    const root = document.createElement("div");
+    const time = new KucTime();
+    root.appendChild(time);
     return root;
   })
   .add("datetime", () => {
