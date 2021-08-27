@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { KucBase } from "../base/kuc-base";
-import "./calendar";
+import "./components/calendar/calendar";
 
 export class Date extends KucBase {
   render() {

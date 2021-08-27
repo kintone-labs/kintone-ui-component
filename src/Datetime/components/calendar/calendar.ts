@@ -1,8 +1,8 @@
 import { html } from "lit-html";
-import { KucBase } from "../base/kuc-base";
-import "./components/presentation/header";
-import "./components/presentation/body";
-import "./components/presentation/footer";
+import { KucBase } from "../../../base/kuc-base";
+import "./header";
+import "./body";
+import "./footer";
 
 export class Calendar extends KucBase {
   render() {

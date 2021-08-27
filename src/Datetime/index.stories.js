@@ -1,35 +1,35 @@
 import "./components/menu.ts";
-import "./components/presentation/header.ts";
-import "./components/presentation/body.ts";
-import "./components/presentation/footer.ts";
-import { Calendar } from "./calendar.ts";
+import "./components/calendar/header.ts";
+import "./components/calendar/body.ts";
+import "./components/calendar/footer.ts";
+import { Calendar } from "./components/calendar/calendar.ts";
 import { Datetime, Date as KucDate, Time as KucTime } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
 storiesOf("Datetime", module)
-  .add("menu", () => {
+  .add("components/menu", () => {
     const menu = document.createElement("kuc-menu");
     return menu;
   })
-  .add("calendar header", () => {
+  .add("components/calendar/header", () => {
     const calendarheader = document.createElement(
       "kuc-calendar-presentation-header"
     );
     return calendarheader;
   })
-  .add("calendar body", () => {
+  .add("components/calendar/body", () => {
     const calendarbody = document.createElement(
       "kuc-calendar-presentation-body"
     );
     return calendarbody;
   })
-  .add("calendar footer", () => {
+  .add("components/calendar/footer", () => {
     const calendarFooter = document.createElement(
-      "kuc-calendar-presentation-body"
+      "kuc-calendar-presentation-footer"
     );
     return calendarFooter;
   })
-  .add("calendar", () => {
+  .add("components/calendar", () => {
     const root = document.createElement("div");
     const calendar = new Calendar();
     root.appendChild(calendar);
