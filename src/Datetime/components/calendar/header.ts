@@ -1,6 +1,10 @@
 import { query } from "lit-element";
 import { html } from "lit-html";
-import { CustomEventDetail, dispatchCustomEvent, KucBase } from "../../../base/kuc-base";
+import {
+  CustomEventDetail,
+  dispatchCustomEvent,
+  KucBase
+} from "../../../base/kuc-base";
 
 export class CalendarPresentationHeader extends KucBase {
   @query(".kuc-calendar-presentation-header__month")
