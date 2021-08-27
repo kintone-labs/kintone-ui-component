@@ -1,5 +1,5 @@
 import { html } from "lit-html";
-import { KucBase } from "../../base/kuc-base";
+import { KucBase } from "../../../base/kuc-base";
 
 export class CalendarPresentationFooter extends KucBase {
   render() {
@@ -20,6 +20,7 @@ export class CalendarPresentationFooter extends KucBase {
           box-sizing: border-box;
           padding: 0;
           height: 27px;
+          width: 272px;
         }
         .kuc-calendar-presentation-footer__center {
           width: 100%;

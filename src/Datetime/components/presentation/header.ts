@@ -1,25 +1,30 @@
 import { html } from "lit-html";
-import { KucBase } from "../../base/kuc-base";
-import "./calendar-button";
+import { KucBase } from "../../../base/kuc-base";
 
 export class CalendarPresentationHeader extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <span
-        ><kuc-calendar-button
-          action="prev"
+        ><button
+          class="kuc-calendar-button kuc-calendar-button--prev"
           @click=${this._handleClickPrevButton}
-      /></span>
+        >
+          <
+        </button></span
+      >
       <span class="kuc-calendar-presentation-header__year-month">
         <select></select>
         <select></select>
       </span>
       <span
-        ><kuc-calendar-button
-          action="next"
+        ><button
+          class="kuc-calendar-button kuc-calendar-button--next"
           @click=${this._handleClickNextButton}
-      /></span>
+        >
+          >
+        </button></span
+      >
     `;
   }
 
@@ -38,12 +43,26 @@ export class CalendarPresentationHeader extends KucBase {
           display: flex;
           align-items: center;
           box-sizing: border-box;
+          width: 272px;
           padding: 0;
           height: 44px;
           border-bottom: 1px solid #e3e7e8;
         }
         .kuc-calendar-presentation-header__year-month {
           width: 100%;
+        }
+        .kuc-calendar-button {
+          background-color: unset;
+          border: unset;
+          cursor: pointer;
+        }
+        .kuc-calendar-button--prev,
+        .kuc-calendar-button--next {
+          width: 38px;
+          height: 32px;
+          margin: 0;
+          padding: 0;
+          border-style: none;
         }
       </style>
     `;

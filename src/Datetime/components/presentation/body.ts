@@ -1,5 +1,5 @@
 import { html } from "lit-html";
-import { KucBase } from "../../base/kuc-base";
+import { KucBase } from "../../../base/kuc-base";
 
 export class CalendarPresentationBody extends KucBase {
   render() {
@@ -43,6 +43,7 @@ export class CalendarPresentationBody extends KucBase {
           font-size: 10px;
           display: flex;
           flex-wrap: wrap;
+          width: 272px;
         }
         .kuc-calendar-presentation-cell {
           display: inline-flex;

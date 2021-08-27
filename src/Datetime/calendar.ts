@@ -1,8 +1,8 @@
 import { html } from "lit-html";
 import { KucBase } from "../base/kuc-base";
-import "./components/calendar-presentation-header";
-import "./components/calendar-presentation-body";
-import "./components/calendar-presentation-footer";
+import "./components/presentation/header";
+import "./components/presentation/body";
+import "./components/presentation/footer";
 
 export class Calendar extends KucBase {
   render() {
@@ -39,6 +39,7 @@ export class Calendar extends KucBase {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-calendar {
+          display: flex;
           width: 336px;
           background: #fff;
           box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
