@@ -114,6 +114,10 @@ export class MobileDropdown extends KucBase {
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           >
+            <option
+              ?selected=${this.items.filter(item => item.value === this.value)
+                .length === 0}
+            ></option>
             ${this.items.map((item, index) =>
               this._getItemTemplate(item, index)
             )}
@@ -161,7 +165,10 @@ export class MobileDropdown extends KucBase {
         }
 
         .kuc-mobile-dropdown__label {
-          display: flex;
+          display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
@@ -174,8 +181,7 @@ export class MobileDropdown extends KucBase {
         .kuc-mobile-dropdown__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
 
         .kuc-mobile-dropdown__label__required-icon {
@@ -215,6 +221,10 @@ export class MobileDropdown extends KucBase {
           -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
+        }
+
+        .kuc-mobile-dropdown__input-form__select__input option:first-of-type {
+          display: none;
         }
 
         .kuc-mobile-dropdown__error {

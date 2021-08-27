@@ -1,4 +1,4 @@
-import { html, property, PropertyValues, svg, queryAll } from "lit-element";
+import { html, property, svg, queryAll } from "lit-element";
 import {
   KucBase,
   generateGUID,
@@ -185,7 +185,7 @@ export class MobileRadioButton extends KucBase {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-mobile-radio-button__error"
+          class="kuc-mobile-radio-button__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -254,6 +254,9 @@ export class MobileRadioButton extends KucBase {
 
         .kuc-mobile-radio-button__group__label {
           display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
@@ -262,8 +265,7 @@ export class MobileRadioButton extends KucBase {
         .kuc-mobile-radio-button__group__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
 
         .kuc-mobile-radio-button__group__label[hidden] {
@@ -354,7 +356,7 @@ export class MobileRadioButton extends KucBase {
           padding: 0px;
         }
 
-        .kuc-mobile-radio-button__error {
+        .kuc-mobile-radio-button__group__error {
           line-height: 1.5;
           color: #000000;
           border: 1px solid #e5db68;
@@ -365,7 +367,7 @@ export class MobileRadioButton extends KucBase {
           margin-left: 0.5em;
         }
 
-        .kuc-mobile-radio-button__error[hidden] {
+        .kuc-mobile-radio-button__group__error[hidden] {
           display: none;
         }
       </style>

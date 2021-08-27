@@ -1,79 +1,36 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("error default prop is null", () => {
-  const container = new Dropdown({});
+describe("Dropdown", () => {
+  describe("error", () => {
+    it("should not display when not assigning in constructor", async () => {
+      const container = new Dropdown();
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-dropdown__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl).has.attribute("hidden");
+    });
 
-  it("error default prop is null", async () => {
-    const el = await fixture(container);
-    const errorEl = el.querySelector(
-      ".kuc-dropdown__group__error"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(errorEl).not.to.be.displayed;
-  });
-});
+    it('should be "error-message" when assigning in constructor', async () => {
+      const container = new Dropdown({ error: "error-message" });
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-dropdown__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
 
-describe("error default prop set successfully", () => {
-  const container = new Dropdown({ error: "error-message" });
-
-  it("error default prop set successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = el.querySelector(
-      ".kuc-dropdown__group__error"
-    ) as HTMLSpanElement;
-    expect(errorEl.innerText).to.have.equal("error-message");
-    // eslint-disable-next-line no-unused-expressions
-    expect(errorEl).to.be.displayed;
-  });
-});
-
-describe("error prop replace successfully", () => {
-  const container = new Dropdown({
-    error: "error-message"
-  });
-  container.error = "replace-error";
-
-  it("error prop replace successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = el.querySelector(
-      ".kuc-dropdown__group__error"
-    ) as HTMLSpanElement;
-    expect(errorEl.innerText).to.have.equal("replace-error");
-    // eslint-disable-next-line no-unused-expressions
-    expect(errorEl).to.be.displayed;
-  });
-});
-
-describe("error defaoult prop set to null", () => {
-  const container = new Dropdown({
-    // @ts-ignore
-    error: null
-  });
-
-  it("error default prop set to null", async () => {
-    const el = await fixture(container);
-    const errorEl = el.querySelector(
-      ".kuc-dropdown__group__error"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(errorEl).not.to.be.displayed;
-  });
-});
-
-describe("error prop set to null", () => {
-  const container = new Dropdown({
-    error: "error-message"
-  });
-  // @ts-ignore
-  container.error = null;
-
-  it("error prop set to null", async () => {
-    const el = await fixture(container);
-    const errorEl = el.querySelector(
-      ".kuc-dropdown__group__error"
-    ) as HTMLSpanElement;
-    // eslint-disable-next-line no-unused-expressions
-    expect(errorEl).not.to.be.displayed;
+    it('should be replaced by "replace-error" when changing by setter', async () => {
+      const container = new Dropdown({ error: "error-message" });
+      container.error = "replace-error";
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-dropdown__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("replace-error");
+      expect(errorEl).not.has.attribute("hidden");
+    });
   });
 });

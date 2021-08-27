@@ -1,266 +1,192 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
-describe("items default prop is null", () => {
-  const container = new Dropdown();
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
-  it("items default prop is null", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(true);
-    }
-  });
-});
+const initItemsWithoutLabel = [
+  { value: "-----" },
+  { value: "orange" },
+  { value: "apple" }
+];
 
-describe("items prop set successfully without label props", () => {
-  const expectedValues = ["-----", "orange", "Apple"];
-  const newitems = [
-    {
-      value: expectedValues[0]
-    },
-    {
-      value: expectedValues[1]
-    },
-    {
-      value: expectedValues[2]
-    }
-  ];
+const replacedItems = [
+  { label: "-----", value: "-----" },
+  { label: "Apple", value: "apple" }
+];
 
-  const container = new Dropdown({ items: newitems });
+const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
-  it("items prop set successfully without label props", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedValues[i]);
-    }
-  });
-});
+describe("Dropdown", () => {
+  describe("items", () => {
+    it("should not have item when not asigned on constuctor", async () => {
+      const container = new Dropdown();
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
 
-describe("items prop set successfully without label props", () => {
-  const expectedValues = ["-----", "orange", "Apple"];
-  const newitems = [
-    {
-      value: expectedValues[0]
-    },
-    {
-      value: expectedValues[1]
-    },
-    {
-      value: expectedValues[2]
-    }
-  ];
-
-  const container = new Dropdown();
-  container.items = newitems;
-
-  it("items prop set successfully without label props", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedValues[i]);
-    }
-  });
-});
-
-describe("items default set successfully with full optional props", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const newitems = [
-    {
-      label: expectedLabels[0],
-      value: expectedValues[0]
-    },
-    {
-      label: expectedLabels[1],
-      value: expectedValues[1]
-    },
-    {
-      label: expectedLabels[2],
-      value: expectedValues[2]
-    }
-  ];
-
-  const container = new Dropdown({
-    items: newitems
-  });
-
-  it("items default set successfully with full optional props", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-  });
-  expect(container.items).to.be.equal(newitems);
-});
-
-describe("items prop set successfully with full optional props", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-  const newitems = [
-    {
-      label: expectedLabels[0],
-      value: expectedValues[0]
-    },
-    {
-      label: expectedLabels[1],
-      value: expectedValues[1]
-    },
-    {
-      label: expectedLabels[2],
-      value: expectedValues[2]
-    }
-  ];
-
-  const container = new Dropdown();
-  container.items = newitems;
-
-  it("items prop set successfully with full optional props", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-  });
-  expect(container.items).to.be.equal(newitems);
-});
-
-describe("items prop replace successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  const container = new Dropdown({
-    items: [
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ]
-  });
-
-  const newitems = [
-    {
-      label: expectedLabels[0],
-      value: expectedValues[0]
-    },
-    {
-      label: expectedLabels[1],
-      value: expectedValues[1]
-    }
-  ];
-
-  container.items = newitems;
-
-  it("items prop replace successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(".kuc-dropdown__group__select-menu")!
-      .children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 2) {
-      expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const label = itemEl.textContent?.trim();
-      expect(label).to.have.equal(expectedLabels[i]);
-    }
-  });
-  expect(container.items).to.be.equal(newitems);
-});
-
-describe("throw error when default props", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
-
-  it("items default property is not array", async () => {
-    const container = new Dropdown({
-      // @ts-ignore
-      items: null,
-      value: expectedValues[1]
+      expect(itemsEl.length).to.equal(0);
     });
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'items' property is not array");
-    }
-  });
-  it("default value is duplicated", async () => {
-    const container = new Dropdown({
-      items: [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0]
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[0]
-        }
-      ],
-      value: expectedValues[1]
+
+    it("should set label the same as value when not assigned items label on constructor", async () => {
+      const container = new Dropdown({ items: initItemsWithoutLabel });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+
+      expect(itemsEl.length).to.equal(3);
+
+      expect(itemsEl[0].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[0].value
+      );
+      expect(itemsEl[0].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[0].value
+      );
+
+      expect(itemsEl[1].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[1].value
+      );
+      expect(itemsEl[1].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[1].value
+      );
+
+      expect(itemsEl[2].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[2].value
+      );
+      expect(itemsEl[2].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[2].value
+      );
     });
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'items[1].value' property is duplicated");
-    }
-  });
-});
 
-describe("throw error when item set by props", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "Apple"];
+    it("should set label the same as value when not assigned items label by setter", async () => {
+      const container = new Dropdown();
+      container.items = initItemsWithoutLabel;
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
 
-  it("items property is not array", async () => {
-    const container = new Dropdown({});
-    // @ts-ignore
-    container.items = null;
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'items' property is not array");
-    }
-  });
+      expect(itemsEl.length).to.equal(3);
 
-  it("duplicated value", async () => {
-    const container = new Dropdown({});
-    container.items = [
-      {
-        value: expectedValues[0]
-      },
-      {
-        value: expectedValues[0]
+      expect(itemsEl[0].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[0].value
+      );
+      expect(itemsEl[0].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[0].value
+      );
+
+      expect(itemsEl[1].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[1].value
+      );
+      expect(itemsEl[1].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[1].value
+      );
+
+      expect(itemsEl[2].getAttribute("value")).to.equal(
+        initItemsWithoutLabel[2].value
+      );
+      expect(itemsEl[2].textContent?.trim()).to.equal(
+        initItemsWithoutLabel[2].value
+      );
+    });
+
+    it("should set items when assigned items by setter", async () => {
+      const container = new Dropdown({ items: initItems });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+
+      expect(itemsEl.length).to.equal(3);
+
+      expect(itemsEl[0].getAttribute("value")).to.equal(initItems[0].value);
+      expect(itemsEl[0].textContent?.trim()).to.equal(initItems[0].label);
+
+      expect(itemsEl[1].getAttribute("value")).to.equal(initItems[1].value);
+      expect(itemsEl[1].textContent?.trim()).to.equal(initItems[1].label);
+
+      expect(itemsEl[2].getAttribute("value")).to.equal(initItems[2].value);
+      expect(itemsEl[2].textContent?.trim()).to.equal(initItems[2].label);
+    });
+
+    it("should be changed when updated items by setter", async () => {
+      const container = new Dropdown({ items: initItems });
+      container.items = replacedItems;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+
+      expect(container.items).to.be.equal(replacedItems);
+      expect(itemsEl.length).to.equal(2);
+
+      expect(itemsEl[0].getAttribute("value")).to.equal(replacedItems[0].value);
+      expect(itemsEl[0].textContent?.trim()).to.equal(replacedItems[0].label);
+
+      expect(itemsEl[1].getAttribute("value")).to.equal(replacedItems[1].value);
+      expect(itemsEl[1].textContent?.trim()).to.equal(replacedItems[1].label);
+    });
+
+    it("should be throw error when assigned null on constructor", async () => {
+      // @ts-expect-error
+      const container = new Dropdown({ items: null });
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'items' property is not array");
       }
-    ];
-    try {
-      await fixture(container);
-    } catch (error) {
-      expect(error.message).to.equal("'items[1].value' property is duplicated");
-    }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
+
+    it("should be throw error when assigned dupplicated items on constructor", async () => {
+      const container = new Dropdown({ items: dupplicatedItems });
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal(
+          "'items[1].value' property is duplicated"
+        );
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
+
+    it("should be throw error when assigned null by setter", async () => {
+      const container = new Dropdown();
+      // @ts-expect-error
+      container.items = null;
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal("'items' property is not array");
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
+
+    it("should be throw error when assigned dupplicated items by setter", async () => {
+      const container = new Dropdown();
+      container.items = dupplicatedItems;
+      try {
+        await fixture(container);
+      } catch (error) {
+        expect(error.message).to.equal(
+          "'items[1].value' property is duplicated"
+        );
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
+    });
   });
 });

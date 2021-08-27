@@ -1,4 +1,4 @@
-import { html, property, PropertyValues } from "lit-element";
+import { html, property } from "lit-element";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 

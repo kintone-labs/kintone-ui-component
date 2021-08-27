@@ -1,79 +1,52 @@
 import { expect, fixture } from "@open-wc/testing";
 import { TextArea } from "../index";
 
-describe("confirm placeholder default prop is null", () => {
-  const container = new TextArea();
+describe("Textarea", () => {
+  describe("placeholder", () => {
+    it("should be empty when not setting placeholder in constructor", async () => {
+      const container = new TextArea();
 
-  it("confirm placeholder default prop is null", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("");
-  });
-});
+      const el = await fixture(container);
+      const textAreaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-describe("placeholder constructor set successfully", () => {
-  const container = new TextArea({ placeholder: "Fruit" });
+      expect(textAreaEl.getAttribute("placeholder")).to.equal("");
+    });
 
-  it("placeholder constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Fruit");
-  });
-});
+    it("should be not empty when setting placeholder in constructor", async () => {
+      const container = new TextArea({ placeholder: "Fruit" });
 
-describe("placeholder prop set successfully", () => {
-  const container = new TextArea();
-  container.placeholder = "Fruit";
+      const el = await fixture(container);
+      const textAreaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("placeholder prop set successfully'", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Fruit");
-  });
-});
+      expect(textAreaEl.getAttribute("placeholder")).to.equal("Fruit");
+    });
 
-describe("placeholder prop replace successfully", () => {
-  const container = new TextArea({ placeholder: "Fruit" });
-  container.placeholder = "Food";
+    it("should be changed when updating placeholder", async () => {
+      const container = new TextArea();
+      container.placeholder = "Fruit";
 
-  it("placeholder prop replace successfully'", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("Food");
-  });
-});
+      const el = await fixture(container);
+      const textAreaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-describe("placeholder default prop set to null successfully", () => {
-  // @ts-ignore
-  const container = new TextArea({ placeholder: null });
+      expect(textAreaEl.getAttribute("placeholder")).to.equal("Fruit");
+    });
 
-  it("placeholder default prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("null");
-  });
-});
+    it("should be changed when replacing placeholder", async () => {
+      const container = new TextArea({ placeholder: "Fruit" });
+      container.placeholder = "Food";
 
-describe("placeholder prop set to null successfully", () => {
-  const container = new TextArea();
-  // @ts-ignore
-  container.placeholder = null;
+      const el = await fixture(container);
+      const textAreaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("placeholder prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const textAreaEl = el.querySelector(
-      ".kuc-textarea__group__textarea"
-    ) as HTMLTextAreaElement;
-    expect(textAreaEl.getAttribute("placeholder")).to.be.equal("null");
+      expect(textAreaEl.getAttribute("placeholder")).to.equal("Food");
+    });
   });
 });

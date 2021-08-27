@@ -93,30 +93,48 @@ export class Dropdown extends KucBase {
     return selectedItemLabel;
   }
 
-  private _handleClickDropdownToggle(event: MouseEvent) {
-    if (!this._selectorVisible) {
-      this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (
-          itemEl.classList.contains(
-            "kuc-dropdown__group__select-menu__highlight"
-          )
-        ) {
-          itemEl.classList.remove(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-        }
-        if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-        }
-      });
-    }
-    this._selectorVisible = !this._selectorVisible;
+  private _openSelector() {
+    this._buttonEl.focus();
+    this._selectorVisible = true;
+    this._highlightSelectedItem();
+  }
+
+  private _closeSelector() {
+    this._selectorVisible = false;
     this._removeActiveDescendant();
   }
 
-  private _handleBlurDropdownToggle(event: Event) {
-    this._selectorVisible = false;
-    this._removeActiveDescendant();
+  private _highlightSelectedItem() {
+    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+      if (
+        itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
+      ) {
+        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+      }
+      if (itemEl.getAttribute("aria-checked") === "true") {
+        itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
+      }
+    });
+  }
+
+  private _handleMouseDownDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  private _handleMouseUpDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  private _handleClickDropdownToggle() {
+    if (!this._selectorVisible) {
+      this._openSelector();
+    } else {
+      this._closeSelector();
+    }
+  }
+
+  private _handleBlurDropdownToggle() {
+    this._closeSelector();
   }
 
   private _handleUpdateValue(value: string) {
@@ -154,83 +172,75 @@ export class Dropdown extends KucBase {
 
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
-      this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        if (
-          itemEl.classList.contains(
-            "kuc-dropdown__group__select-menu__highlight"
-          )
-        ) {
-          itemEl.classList.remove(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-        }
-        if (itemEl.getAttribute("aria-checked") === "true") {
-          itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-        }
-      });
-    } else {
-      let highLightNumber = 0;
-      switch (event.key) {
-        case "Up": // IE/Edge specific value
-        case "ArrowUp": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-dropdown__group__select-menu__highlight"
-              );
-              highLightNumber = number - 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
-          this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-          this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-          break;
-        }
-        case "Down": // IE/Edge specific value
-        case "ArrowDown": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-dropdown__group__select-menu__highlight"
-              );
-              highLightNumber = number + 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
-          this._itemsEl[highLightNumber].classList.add(
-            "kuc-dropdown__group__select-menu__highlight"
-          );
-          this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-          break;
-        }
-        case "Enter": {
-          this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-dropdown__group__select-menu__highlight"
-              )
-            ) {
-              const value = itemEl.getAttribute("value") as string;
-              this._handleUpdateValue(value);
-            }
-          });
-          break;
-        }
-        default:
-          break;
+      this._highlightSelectedItem();
+      return;
+    }
+
+    let highLightNumber = 0;
+    switch (event.key) {
+      case "Up": // IE/Edge specific value
+      case "ArrowUp": {
+        event.preventDefault();
+
+        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove(
+              "kuc-dropdown__group__select-menu__highlight"
+            );
+            highLightNumber = number - 1;
+          }
+        });
+        highLightNumber =
+          highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
+        this._itemsEl[highLightNumber].classList.add(
+          "kuc-dropdown__group__select-menu__highlight"
+        );
+        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
+        break;
       }
+      case "Down": // IE/Edge specific value
+      case "ArrowDown": {
+        event.preventDefault();
+
+        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            itemEl.classList.remove(
+              "kuc-dropdown__group__select-menu__highlight"
+            );
+            highLightNumber = number + 1;
+          }
+        });
+        highLightNumber =
+          highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
+        this._itemsEl[highLightNumber].classList.add(
+          "kuc-dropdown__group__select-menu__highlight"
+        );
+        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
+        break;
+      }
+      case "Enter": {
+        this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+          if (
+            itemEl.classList.contains(
+              "kuc-dropdown__group__select-menu__highlight"
+            )
+          ) {
+            const value = itemEl.getAttribute("value") as string;
+            this._handleUpdateValue(value);
+          }
+        });
+        break;
+      }
+      default:
+        break;
     }
   }
 
@@ -326,6 +336,8 @@ export class Dropdown extends KucBase {
           aria-describedby="${this._GUID}-error"
           aria-required=${this.requiredIcon}
           ?disabled="${this.disabled}"
+          @mouseup="${this._handleMouseUpDropdownToggle}"
+          @mousedown="${this._handleMouseDownDropdownToggle}"
           @click="${this._handleClickDropdownToggle}"
           @blur="${this._handleBlurDropdownToggle}"
           @keydown="${this._handleKeyDownDropdownToggle}"
