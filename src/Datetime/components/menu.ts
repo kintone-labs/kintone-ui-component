@@ -1,22 +1,58 @@
+import { property, query } from "lit-element";
 import { html } from "lit-html";
 import { KucBase } from "../../base/kuc-base";
 
 export class Menu extends KucBase {
+  @property() for = "";
+  @property() items = ["Item-1", "Item-2", "Item-3", "Item-4", "Item-5"];
+
+  @query("ul") ulEl: HTMLUListElement | undefined;
+
+  updated() {
+    if (this.for === "") return;
+
+    const mainEl = document.getElementById(this.for);
+    if (mainEl === null) return;
+
+    this.appendChild(mainEl);
+    this.ulEl?.classList.add("kuc-menu--managed-by-main");
+    this.ulEl?.setAttribute("hidden", "");
+
+    this._handleMainEvent(mainEl);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <ul class="kuc-menu__menu">
-        <li class="kuc-menu__menu__item" value="item-1">Item 1</li>
-        <li class="kuc-menu__menu__item" value="item-2">Item 2</li>
-        <li class="kuc-menu__menu__item" value="item-3">Item 3</li>
-        <li class="kuc-menu__menu__item" value="item-4">Item 4</li>
-        <li class="kuc-menu__menu__item" value="item-5">Item 5</li>
-        <li class="kuc-menu__menu__item" value="item-6">Item 6</li>
-        <li class="kuc-menu__menu__item" value="item-7">Item 7</li>
-        <li class="kuc-menu__menu__item" value="item-8">Item 8</li>
-        <li class="kuc-menu__menu__item" value="item-9">Item 9</li>
+        ${this.items.map(item => {
+          return html`
+            <li
+              class="kuc-menu__menu__item"
+              value="${item}"
+              @click="${this._handleClickItem}"
+            >
+              ${item}
+            </li>
+          `;
+        })}
       </ul>
     `;
+  }
+
+  private _handleClickItem(event: MouseEvent) {
+    const mainEl = document.getElementById(this.for);
+    if (mainEl === null) return;
+
+    const value = (event.target as HTMLElement).getAttribute("value");
+    mainEl?.setAttribute("value", value ? value : "");
+    this.ulEl?.setAttribute("hidden", "");
+  }
+
+  private _handleMainEvent(mainEl: HTMLElement) {
+    mainEl.addEventListener("focus", () => {
+      this.ulEl?.removeAttribute("hidden");
+    });
   }
 
   private _getStyleTagTemplate() {
@@ -31,7 +67,15 @@ export class Menu extends KucBase {
           font-size: 14px;
         }
         kuc-menu {
+          position: relative;
+          display: inline-flex;
+        }
+        .kuc-menu__menu.kuc-menu--managed-by-main {
           position: absolute;
+          min-width: 92px;
+          top: 21px;
+        }
+        .kuc-menu__menu {
           z-index: 2000;
           margin: 0;
           padding: 8px 0;
@@ -40,8 +84,6 @@ export class Menu extends KucBase {
           list-style: none;
           line-height: 1;
           -webkit-tap-highlight-color: transparent;
-        }
-        .kuc-menu__menu {
           padding-inline: 0px;
           margin-block: 0px;
           margin-inline: 0px;
@@ -50,6 +92,7 @@ export class Menu extends KucBase {
           color: #333;
           list-style: none;
           padding: 8px 16px 8px 25px;
+          cursor: pointer;
         }
       </style>
     `;
