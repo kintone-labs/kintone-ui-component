@@ -141,11 +141,13 @@ export class MobileNotification extends LitElement {
         .kuc-mobile-notification__notification__title {
           display: inline-block;
           vertical-align: middle;
-          word-break: break-word;
           padding: 17px 44px 11px 44px;
           margin: 0 0 0 -20px;
           max-width: 500px;
           text-align: left;
+          font-weight: 700;
+          word-break: break-word;
+          white-space: pre-wrap;
         }
 
         .kuc-mobile-notification__notification__closeButton {

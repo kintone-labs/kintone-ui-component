@@ -178,9 +178,10 @@ export class Notification extends LitElement {
         .kuc-notification__notification__title {
           display: inline-block;
           margin: 0px;
-          word-break: break-word;
           font-size: 16px;
           max-width: 500px;
+          word-break: break-word;
+          white-space: pre-wrap;
         }
         .kuc-notification__notification__closeButton {
           position: absolute;
