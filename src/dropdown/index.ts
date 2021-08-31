@@ -184,9 +184,24 @@ export class Dropdown extends LitElement {
     this._removeActiveDescendant();
   }
 
+  private _handleDropwdownOpen(event: KeyboardEvent) {
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp":
+      case "Down":
+      case "ArrowDown": {
+        this._openSelector();
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
   private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
     if (!this._selectorVisible) {
       this._highlightSelectedItem();
+      this._handleDropwdownOpen(event);
       return;
     }
 
@@ -253,9 +268,36 @@ export class Dropdown extends LitElement {
         });
         break;
       }
+      case "Escape": {
+        this._closeSelector();
+        break;
+      }
+      case "Home": {
+        this._handleSelectingOption();
+        break;
+      }
+      case "End": {
+        this._handleSelectingOption(false);
+        break;
+      }
       default:
         break;
     }
+  }
+
+  private _handleSelectingOption(isFirstOption: boolean = true) {
+    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+      itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+    });
+    const highLightNumber = isFirstOption ? 0 : this._itemsEl.length - 1;
+    this._itemsEl[highLightNumber].classList.add(
+      "kuc-dropdown__group__select-menu__highlight"
+    );
+    this._setActiveDescendant(this._itemsEl[highLightNumber].id);
+    const value = this._itemsEl[highLightNumber].getAttribute(
+      "value"
+    ) as string;
+    this._handleUpdateValue(value);
   }
 
   private _getToggleIconSvgTemplate() {
