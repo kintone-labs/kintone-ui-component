@@ -146,6 +146,7 @@ export class MobileNotification extends LitElement {
           text-align: left;
           font-weight: inherit;
           font-family: inherit;
+          word-break: break-word;
           white-space: pre-wrap;
         }
 
