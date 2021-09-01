@@ -36,12 +36,16 @@
     ],
     "Guides": [
       "version-1.1.0-guides/comparison-v0-v1",
-      "version-1.1.0-guides/search-box-customization"
+      "version-1.1.0-guides/search-box-customization",
+      "version-1.1.0-guides/mobile-timecard-customization",
+      "version-1.1.0-guides/cleaning-check-list-customization"
     ]
   },
   "version-1.1.0-release-notes": {
     "Releases": [
       "version-1.1.0-releases/release-notes",
+      "version-1.1.0-releases/release-notes-v1.0.5",
+      "version-1.1.0-releases/release-notes-v1.0.4",
       "version-1.1.0-releases/release-notes-v1.0.3",
       "version-1.1.0-releases/release-notes-v1.0.2",
       "version-1.1.0-releases/release-notes-v1.0.1",
