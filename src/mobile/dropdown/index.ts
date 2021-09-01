@@ -131,6 +131,10 @@ export class MobileDropdown extends LitElement {
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           >
+            <option
+              ?selected=${this.items.filter(item => item.value === this.value)
+                .length === 0}
+            ></option>
             ${this.items.map((item, index) =>
               this._getItemTemplate(item, index)
             )}
@@ -193,6 +197,7 @@ export class MobileDropdown extends LitElement {
           color: #888888;
           font-size: 86%;
           font-weight: bold;
+          white-space: normal;
         }
 
         .kuc-mobile-dropdown__label__required-icon {
@@ -232,6 +237,10 @@ export class MobileDropdown extends LitElement {
           -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
+        }
+
+        .kuc-mobile-dropdown__input-form__select__input option:first-of-type {
+          display: none;
         }
 
         .kuc-mobile-dropdown__error {

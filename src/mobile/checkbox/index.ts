@@ -111,8 +111,12 @@ export class MobileCheckbox extends LitElement {
   }
 
   private _getNewValue(value: string) {
-    if (this.value.every(val => val !== value)) {
-      return [...this.value, value];
+    const sorting = this.items.map(item => item.value);
+    if (this.value.indexOf(value) === -1) {
+      return [...this.value, value].sort(
+        (item1: string, item2: any) =>
+          sorting.indexOf(item1) - sorting.indexOf(item2)
+      );
     }
     return this.value.filter(val => val !== value);
   }
@@ -225,7 +229,7 @@ export class MobileCheckbox extends LitElement {
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
         <div
-          class="kuc-mobile-checkbox__error"
+          class="kuc-mobile-checkbox__group__error"
           id="${this._GUID}-error"
           role="alert"
           aria-live="assertive"
@@ -400,7 +404,7 @@ export class MobileCheckbox extends LitElement {
           content: "";
         }
 
-        .kuc-mobile-checkbox__error {
+        .kuc-mobile-checkbox__group__error {
           line-height: 1.5;
           border: 1px solid #e5db68;
           background-color: #fdffc9;
@@ -411,7 +415,7 @@ export class MobileCheckbox extends LitElement {
           color: #000000;
         }
 
-        .kuc-mobile-checkbox__error[hidden] {
+        .kuc-mobile-checkbox__group__error[hidden] {
           display: none;
         }
       </style>

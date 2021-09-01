@@ -1,194 +1,163 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileRadioButton } from "../index";
 
-describe("confirm value default value is not set", () => {
-  const container = new MobileRadioButton();
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
-  it("confirm value default value is not set", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      await expect(true);
-    }
-  });
-});
+describe("MobileRadioButton", () => {
+  describe("value", () => {
+    it("should be none selected item when not assigned on constructor", async () => {
+      const container = new MobileRadioButton({ items: initItems });
 
-describe("value constructor set successfully", () => {
-  const expectedValues = ["-----", "orange", "apple"];
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const container = new MobileRadioButton({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[1]
-  });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
 
-  it("value constructor set successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      await expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const labelEl = itemEl.children[1] as HTMLLabelElement;
-      const svgEl = labelEl.children[0] as SVGElement;
-      const isChecked = svgEl.children.length === 3;
-      await expect(labelEl.innerText).to.be.equal(expectedLabels[i]);
-      if (i === 1) {
-        await expect(isChecked).to.be.equal(true);
-      } else {
-        await expect(isChecked).to.be.equal(false);
-      }
-    }
-  });
-});
+      expect(container.value).to.equal("");
+      expect(itemsEl.length).to.equal(3);
 
-describe("value prop replace successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "apple"];
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.checked).to.equal(false);
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
 
-  const container = new MobileRadioButton({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[1]
-  });
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.checked).to.equal(false);
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(1);
 
-  const newValue = expectedValues[2];
-  container.value = newValue;
+      const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
+      expect(inputEl2.checked).to.equal(false);
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(1);
+    });
 
-  it("value prop replace successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      await expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const labelEl = itemEl.children[1] as HTMLLabelElement;
-      const svgEl = labelEl.children[0] as SVGElement;
-      const isChecked = svgEl.children.length === 3;
-      await expect(labelEl.innerText).to.be.equal(expectedLabels[i]);
-      if (i === 2) {
-        await expect(isChecked).to.be.equal(true);
-      } else {
-        await expect(isChecked).to.be.equal(false);
-      }
-    }
-    expect(container.value).to.be.equal(newValue);
-  });
-});
+    it("should be selected item when assigned on constructor", async () => {
+      const container = new MobileRadioButton({
+        items: initItems,
+        value: initItems[1].value
+      });
 
-describe("value constructor set to null successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "apple"];
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
 
-  const container = new MobileRadioButton({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    // @ts-expect-error
-    value: null
-  });
+      expect(container.value).to.equal(initItems[1].value);
+      expect(itemsEl.length).to.equal(3);
 
-  it("value constructor set to null successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      await expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const labelEl = itemEl.children[1] as HTMLLabelElement;
-      const svgEl = labelEl.children[0] as SVGElement;
-      const isChecked = svgEl.children.length === 3;
-      await expect(labelEl.innerText).to.be.equal(expectedLabels[i]);
-      await expect(isChecked).to.be.equal(false);
-    }
-  });
-});
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.checked).to.equal(false);
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
 
-describe("value prop set to null successfully", () => {
-  const expectedLabels = ["-----", "Orange", "Apple"];
-  const expectedValues = ["-----", "orange", "apple"];
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.checked).to.equal(true);
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(2);
 
-  const container = new MobileRadioButton({
-    items: [
-      {
-        label: expectedLabels[0],
-        value: expectedValues[0]
-      },
-      {
-        label: expectedLabels[1],
-        value: expectedValues[1]
-      },
-      {
-        label: expectedLabels[2],
-        value: expectedValues[2]
-      }
-    ],
-    value: expectedValues[1]
-  });
-  // @ts-expect-error
-  container.value = null;
+      const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
+      expect(inputEl2.checked).to.equal(false);
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(1);
+    });
 
-  it("value prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const itemsEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
-    )!.children as HTMLSelectElement;
-    if (!itemsEl.children || itemsEl.length !== 3) {
-      await expect(false);
-    }
-    for (let i = 0; i < itemsEl.length; i++) {
-      const itemEl = itemsEl[i] as HTMLElement;
-      const labelEl = itemEl.children[1] as HTMLLabelElement;
-      const svgEl = labelEl.children[0] as SVGElement;
-      const isChecked = svgEl.children.length === 3;
-      await expect(labelEl.innerText).to.be.equal(expectedLabels[i]);
-      await expect(isChecked).to.be.equal(false);
-    }
+    it("should be changed selected item when changed by setter", async () => {
+      const container = new MobileRadioButton({
+        items: initItems,
+        value: initItems[1].value
+      });
+      container.value = initItems[2].value;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
+
+      expect(container.value).to.equal(initItems[2].value);
+      expect(itemsEl.length).to.equal(3);
+
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.checked).to.equal(false);
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
+
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.checked).to.equal(false);
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(1);
+
+      const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
+      expect(inputEl2.checked).to.equal(true);
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(2);
+    });
+
+    it("should be none selected item when assigned null on constructor", async () => {
+      const container = new MobileRadioButton({
+        items: initItems,
+        // @ts-ignore
+        value: null
+      });
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
+
+      expect(container.value).to.equal(null);
+      expect(itemsEl.length).to.equal(3);
+
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.checked).to.equal(false);
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
+
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.checked).to.equal(false);
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(1);
+
+      const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
+      expect(inputEl2.checked).to.equal(false);
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(1);
+    });
+
+    it("should be none selected item when set null by setter", async () => {
+      const container = new MobileRadioButton({
+        items: initItems,
+        value: initItems[1].value
+      });
+      // @ts-ignore
+      container.value = null;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
+
+      expect(container.value).to.equal(null);
+      expect(itemsEl.length).to.equal(3);
+
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.checked).to.equal(false);
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
+
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.checked).to.equal(false);
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(1);
+
+      const inputEl2 = itemsEl[2].querySelector("input") as HTMLInputElement;
+      expect(inputEl2.checked).to.equal(false);
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(1);
+    });
   });
 });

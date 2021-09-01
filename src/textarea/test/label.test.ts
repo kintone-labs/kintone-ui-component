@@ -1,93 +1,54 @@
 import { expect, fixture } from "@open-wc/testing";
 import { TextArea } from "../index";
 
-describe("confirm label default prop is null", () => {
-  const container = new TextArea();
+describe("TextArea", () => {
+  describe("label", () => {
+    it("should be display none when not assigned in constructor", async () => {
+      const container = new TextArea();
+      const el = await fixture(container);
 
-  it("confirm label default prop is null", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-  });
-});
+      const labelEl = el.querySelector(
+        ".kuc-textarea__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
-describe("label constructor set successfully", () => {
-  const container = new TextArea({ label: "options-label" });
+      const labelTextEl = el.querySelector(
+        ".kuc-textarea__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("");
+    });
 
-  it("label constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-textarea__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("options-label");
-  });
-});
+    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+      const container = new TextArea({ label: "options-label" });
+      const el = await fixture(container);
 
-describe("label prop set successfully", () => {
-  const container = new TextArea();
-  container.label = "options-label";
+      const labelEl = el.querySelector(
+        ".kuc-textarea__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-  it("label prop set successfully'", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-textarea__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("options-label");
-  });
-});
+      const labelTextEl = el.querySelector(
+        ".kuc-textarea__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("options-label");
+    });
 
-describe("label prop replace successfully", () => {
-  const container = new TextArea({ label: "options-label" });
-  container.label = "replace-label";
+    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+      const container = new TextArea({
+        label: "options-label"
+      });
+      container.label = "replace-label";
 
-  it("label prop replace successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    const labelTextEl = (await el.querySelector(
-      ".kuc-textarea__group__label__text"
-    )) as HTMLSpanElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(labelTextEl.textContent).to.be.equal("replace-label");
-  });
-});
+      const el = await fixture(container);
+      const labelEl = el.querySelector(
+        ".kuc-textarea__group__label"
+      ) as HTMLLegendElement;
+      expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
-describe("label default prop set to null successfully", () => {
-  // @ts-ignore
-  const container = new TextArea({ label: null });
-
-  it("label prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
-  });
-});
-
-describe("label prop set to null successfully", () => {
-  const container = new TextArea({
-    label: "options-label"
-  });
-  // @ts-ignore
-  container.label = null;
-
-  it("label prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const labelEl = (await el.querySelector(
-      ".kuc-textarea__group__label"
-    )) as HTMLLabelElement;
-    await expect(labelEl.hasAttribute("hidden")).to.be.equal(true);
+      const labelTextEl = el.querySelector(
+        ".kuc-textarea__group__label__text"
+      ) as HTMLSpanElement;
+      expect(labelTextEl.textContent).to.equal("replace-label");
+    });
   });
 });

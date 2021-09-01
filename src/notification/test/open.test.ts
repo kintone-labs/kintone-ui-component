@@ -1,19 +1,17 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect } from "@open-wc/testing";
 import { Notification } from "../index";
 
-describe("open method successfully", () => {
-  const container = new Notification();
+describe("Notification", () => {
+  describe("open", () => {
+    it("should be fadein when call open() method", async () => {
+      const container = new Notification();
+      container.open();
 
-  it("open method successfully", async () => {
-    const el = await fixture(container);
-    container.open();
-    await elementUpdated(el);
-    const bodyel = document.querySelector("BODY");
-    await expect(bodyel!.querySelector("kuc-notification")).to.not.be.null;
-    await expect(
-      ["kuc-notification-fadein", "kuc-notification-fadeout"].every(c =>
-        el.classList.contains(c)
-      )
-    ).to.be.false;
+      const parrentEl = container.parentNode as HTMLElement;
+      expect(parrentEl.nodeName).to.equal("BODY");
+
+      expect(container.classList.length).to.equal(1);
+      expect(container.classList[0]).to.equal("kuc-notification-fadein");
+    });
   });
 });

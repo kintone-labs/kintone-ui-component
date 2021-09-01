@@ -1,290 +1,169 @@
 import { expect, fixture } from "@open-wc/testing";
 import { ReadOnlyTable } from "../index";
 
-describe("confirm columns default value is not set", () => {
-  const container = new ReadOnlyTable();
+const columns = [
+  { header: { text: "Fruit" }, visible: true },
+  { header: { text: "Producing Area" }, visible: true },
+  { header: { text: "Price" }, visible: false }
+];
 
-  it("confirm columns default value is not set", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    await expect(columnsEl[0].children.length).to.be.equal(0);
-  });
-});
+const columnsWithoutHeader = [
+  { visible: true },
+  { visible: true },
+  { visible: false }
+];
 
-describe("columns constructor set successfully without header prop", () => {
-  const container = new ReadOnlyTable({
-    columns: [
-      {
-        visible: true
-      },
-      {
-        visible: true
-      },
-      {
-        visible: false
-      }
-    ]
-  });
+const columnsWithoutVisible = [
+  { header: { text: "Fruit" } },
+  { header: { text: "Producing Area" } },
+  { header: { text: "Price" } }
+];
 
-  it("columns constructor set successfully without header prop", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      if (i === 2) {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(true);
-      } else {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(false);
-      }
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal("");
-    }
-  });
-});
+describe("ReadOnlyTable", () => {
+  describe("data", () => {
+    it("should be empty header when not assigned on constructor", async () => {
+      const container = new ReadOnlyTable();
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
+      expect(columnsEl.length).to.equal(0);
+    });
 
-describe("columns constructor set successfully without visible prop", () => {
-  const expectedHeaderTexts = ["fruit", "Producing area", "Price"];
-  const container = new ReadOnlyTable({
-    columns: [
-      {
-        header: {
-          text: expectedHeaderTexts[0]
-        }
-      },
-      {
-        header: {
-          text: expectedHeaderTexts[1]
-        }
-      },
-      {
-        header: {
-          text: expectedHeaderTexts[2]
-        }
-      }
-    ]
-  });
+    it("should be set header when assigned columns without header prop on constructor", async () => {
+      const container = new ReadOnlyTable({ columns: columnsWithoutHeader });
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
 
-  it("columns constructor set successfully without visible prop", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal(expectedHeaderTexts[i]);
-    }
-  });
-});
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("");
+    });
 
-describe("columns prop set successfully without header prop", () => {
-  const newColums = [
-    {
-      visible: true
-    },
-    {
-      visible: true
-    },
-    {
-      visible: false
-    }
-  ];
-  const container = new ReadOnlyTable({});
-  container.columns = newColums;
+    it("should be set header when assigned columns without visible prop on constructor", async () => {
+      const container = new ReadOnlyTable({ columns: columnsWithoutVisible });
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
 
-  it("columns prop set successfully without header prop", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      if (i === 2) {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(true);
-      } else {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(false);
-      }
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal("");
-    }
-  });
-});
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
+    });
 
-describe("columns prop set successfully without visible prop", () => {
-  const expectedHeaderTexts = ["fruit", "Producing area", "Price"];
-  const newColums = [
-    {
-      header: {
-        text: expectedHeaderTexts[0]
-      }
-    },
-    {
-      header: {
-        text: expectedHeaderTexts[1]
-      }
-    },
-    {
-      header: {
-        text: expectedHeaderTexts[2]
-      }
-    }
-  ];
-  const container = new ReadOnlyTable({});
-  container.columns = newColums;
+    it("should be set header when assigned columns without header prop by setter", async () => {
+      const container = new ReadOnlyTable();
+      container.columns = columnsWithoutHeader;
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
 
-  it("columns prop set successfully without visible prop", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal(expectedHeaderTexts[i]);
-    }
-  });
-});
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("");
+    });
 
-describe("columns constructor set successfully with full optional props", () => {
-  const expectedHeaderTexts = ["fruit", "Producing area", "Price"];
-  const container = new ReadOnlyTable({
-    columns: [
-      {
-        header: {
-          text: expectedHeaderTexts[0]
-        },
-        visible: true
-      },
-      {
-        header: {
-          text: expectedHeaderTexts[1]
-        },
-        visible: true
-      },
-      {
-        header: {
-          text: expectedHeaderTexts[2]
-        },
-        visible: false
-      }
-    ]
+    it("should be set header when assigned columns without visible prop by setter", async () => {
+      const container = new ReadOnlyTable();
+      container.columns = columnsWithoutVisible;
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
+
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
+    });
+
+    it("should be set header when assigned columns with full optional props on constructor", async () => {
+      const container = new ReadOnlyTable({ columns });
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
+
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
+    });
+
+    it("should be set header when assigned columns with full optional props by setter", async () => {
+      const container = new ReadOnlyTable();
+      container.columns = columns;
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
+
+      expect(columnsEl.length).to.equal(3);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+      expect(columnsEl[2].hasAttribute("hidden")).to.equal(true);
+      expect(columnsEl[2].textContent?.trim()).to.equal("Price");
+    });
+
+    it("should be updated header when changed columns by setter", async () => {
+      const container = new ReadOnlyTable({
+        columns: [{ header: { text: "Price" }, visible: false }]
+      });
+
+      const newColumns = [
+        { header: { text: "Fruit" }, visible: true },
+        { header: { text: "Producing Area" }, visible: true }
+      ];
+      container.columns = newColumns;
+
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header th"
+      );
+
+      expect(columnsEl.length).to.equal(2);
+      expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[0].textContent?.trim()).to.equal("Fruit");
+      expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
+      expect(columnsEl[1].textContent?.trim()).to.equal("Producing Area");
+    });
   });
 
-  it("columns constructor set successfully without header prop", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      if (i === 2) {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(true);
-      } else {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(false);
-      }
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal(expectedHeaderTexts[i]);
-    }
-  });
-});
-
-describe("columns prop set successfully with full optional props", () => {
-  const expectedHeaderTexts = ["fruit", "Producing area", "Price"];
-  const newColums = [
-    {
-      header: {
-        text: expectedHeaderTexts[0]
-      },
-      visible: true
-    },
-    {
-      header: {
-        text: expectedHeaderTexts[1]
-      },
-      visible: true
-    },
-    {
-      header: {
-        text: expectedHeaderTexts[2]
-      },
-      visible: false
-    }
-  ];
-  const container = new ReadOnlyTable({});
-  container.columns = newColums;
-
-  it("columns prop set successfully with full optional props", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      if (i === 2) {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(true);
-      } else {
-        await expect(columnEl.hasAttribute("hidden")).to.have.equal(false);
-      }
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal(expectedHeaderTexts[i]);
-    }
-    await expect(container.columns).to.be.equal(newColums);
-  });
-});
-
-describe("columns prop replace successfully", () => {
-  const expectedHeaderTexts = ["fruit", "Producing area", "Price"];
-  const container = new ReadOnlyTable({
-    columns: [
-      {
-        header: {
-          text: expectedHeaderTexts[2]
-        },
-        visible: false
-      }
-    ]
-  });
-
-  const newColums = [
-    {
-      header: {
-        text: expectedHeaderTexts[0]
-      },
-      visible: true
-    },
-    {
-      header: {
-        text: expectedHeaderTexts[1]
-      },
-      visible: true
-    }
-  ];
-  container.columns = newColums;
-
-  it("columns prop replace successfully", async () => {
-    const el = await fixture(container);
-    const columnsEl = el.querySelector(".kuc-readonly-table__table__header")!
-      .children as HTMLCollection;
-    for (let i = 0; i < columnsEl[0].children.length; i++) {
-      const columnEl = columnsEl[0].children[i] as HTMLTableHeaderCellElement;
-      const value = columnEl.textContent?.trim();
-      await expect(value).to.have.equal(expectedHeaderTexts[i]);
-    }
-    await expect(container.columns).to.be.equal(newColums);
-  });
-});
-
-describe("throw error when set by constructor", () => {
-  it("have columns which is not array", async () => {
-    await expect(() => {
-      // @ts-ignore
+  it("should throw error when assigned wrong type on constrcutor", () => {
+    expect(() => {
+      // @ts-expect-error
       const container = new ReadOnlyTable({ columns: null });
     }).to.throw(Error, "'columns' property is invalid");
   });
-});
 
-describe("throw error when set by prop", () => {
-  it("have columns which is not array", async () => {
-    await expect(() => {
+  it("should throw error when assigned wrong type by setter", () => {
+    expect(() => {
       const container = new ReadOnlyTable();
-      // @ts-ignore
+      // @ts-expect-error
       container.columns = null;
     }).to.throw(Error, "'columns' property is invalid");
   });

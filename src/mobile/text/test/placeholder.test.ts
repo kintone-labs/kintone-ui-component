@@ -1,52 +1,52 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileText } from "../index";
 
-describe("confirm placeholder default prop is null", () => {
-  const container = new MobileText();
+describe("MobileText", () => {
+  describe("placeholder", () => {
+    it("should be empty when not setting placeholder in constructor", async () => {
+      const container = new MobileText();
 
-  it("confirm placeholder default prop is null", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-mobile-text__input-form__input"
-    ) as HTMLInputElement;
-    expect(inputEl.placeholder).to.be.equal("");
-  });
-});
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-text__input-form__input"
+      ) as HTMLInputElement;
 
-describe("placeholder constructor set successfully", () => {
-  const container = new MobileText({ placeholder: "Apple" });
+      expect(inputEl.placeholder).to.equal("");
+    });
 
-  it("placeholder constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-mobile-text__input-form__input"
-    ) as HTMLInputElement;
-    await expect(inputEl.placeholder).to.be.equal("Apple");
-  });
-});
+    it("should be not empty when setting placeholder in constructor", async () => {
+      const container = new MobileText({ placeholder: "Apple" });
 
-describe("placeholder prop set successfully", () => {
-  const container = new MobileText();
-  container.placeholder = "Apple";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-text__input-form__input"
+      ) as HTMLInputElement;
 
-  it("placeholder prop set successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-mobile-text__input-form__input"
-    ) as HTMLInputElement;
-    expect(inputEl.placeholder).to.be.equal("Apple");
-  });
-});
+      expect(inputEl.placeholder).to.equal("Apple");
+    });
 
-describe("placeholder prop replace successfully", () => {
-  const container = new MobileText({ placeholder: "Orange" });
-  container.placeholder = "Apple";
+    it("should be changed when updating placeholder", async () => {
+      const container = new MobileText();
+      container.placeholder = "Apple";
 
-  it("placeholder prop replace successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = el.querySelector(
-      ".kuc-mobile-text__input-form__input"
-    ) as HTMLInputElement;
-    expect(inputEl.placeholder).to.be.equal("Apple");
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-text__input-form__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.placeholder).to.equal("Apple");
+    });
+
+    it("should be changed when replacing placeholder", async () => {
+      const container = new MobileText({ placeholder: "Orange" });
+      container.placeholder = "Apple";
+
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-text__input-form__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.placeholder).to.equal("Apple");
+    });
   });
 });

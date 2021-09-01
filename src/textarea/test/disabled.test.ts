@@ -1,79 +1,48 @@
 import { expect, fixture } from "@open-wc/testing";
 import { TextArea } from "../index";
 
-describe("confirm disabled default prop is false", () => {
-  const container = new TextArea();
+describe("TextArea", () => {
+  describe("disabled", () => {
+    it("should be not added into element when not assigned in constructor", async () => {
+      const container = new TextArea();
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("confirm disabled default prop is false", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
+      expect(textareaEl.hasAttribute("disabled")).to.equal(false);
+    });
 
-describe("disabled constructor set successfully", () => {
-  const container = new TextArea({ disabled: true });
+    it("should be added into element when assigned true in constructor", async () => {
+      const container = new TextArea({ disabled: true });
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(true);
-  });
-});
+      expect(textareaEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-describe("disabled prop set to true successfully", () => {
-  const container = new TextArea({ disabled: false });
-  container.disabled = true;
+    it("should be added into element when changed to true by setter", async () => {
+      const container = new TextArea({ disabled: false });
+      container.disabled = true;
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled prop set to true successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(true);
-  });
-});
+      expect(textareaEl.hasAttribute("disabled")).to.equal(true);
+    });
 
-describe("disabled prop set to false successfully", () => {
-  const container = new TextArea({ disabled: true });
-  container.disabled = false;
+    it("should be not added into element when changed to false by setter", async () => {
+      const container = new TextArea({ disabled: true });
+      container.disabled = false;
+      const el = await fixture(container);
+      const textareaEl = el.querySelector(
+        ".kuc-textarea__group__textarea"
+      ) as HTMLTextAreaElement;
 
-  it("disabled prop set to false successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
-
-describe("disabled default prop set to null successfully", () => {
-  // @ts-ignore
-  const container = new TextArea({ disabled: null });
-
-  it("disabled default prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
-  });
-});
-
-describe("disabled prop set to null successfully", () => {
-  const container = new TextArea();
-  // @ts-ignore
-  container.disabled = null;
-
-  it("disabled prop set to null successfully'", async () => {
-    const el = await fixture(container);
-    const inputEl = (await el.querySelector(
-      ".kuc-textarea__group__textarea"
-    )) as HTMLInputElement;
-    await expect(inputEl.hasAttribute("disabled")).to.have.equal(false);
+      expect(textareaEl.hasAttribute("disabled")).to.equal(false);
+    });
   });
 });

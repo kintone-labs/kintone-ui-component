@@ -25,7 +25,7 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| value | string | ""  | Selected value | Nothing will be updated if value is unspecified |
+| value | string | ""  | Selected value | No option will be selected if the value is unspecified |
 | borderVisible | boolean | false | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
@@ -50,7 +50,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | JObject that includes component properties |  |
+| options | object | {} | Object that includes component properties |  |
 
 ---
 ## Sample Code

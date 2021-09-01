@@ -1,11 +1,12 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileText } from "../index";
 
-describe("Render successfully without props", () => {
-  const container = new MobileText();
-  it('have "kuc-mobile-text"', async () => {
-    const el = await fixture(container);
-    const tagname = (await el).tagName;
-    expect(tagname.toLowerCase()).to.be.equal("kuc-mobile-text");
+describe("MobileText", () => {
+  describe("render", () => {
+    it('should have "KUC-MOBILE-TEXT" tag name when not assigning any prop in constructor', async () => {
+      const container = new MobileText({});
+      const el = await fixture(container);
+      expect(el.tagName).to.equal("KUC-MOBILE-TEXT");
+    });
   });
 });

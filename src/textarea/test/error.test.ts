@@ -1,91 +1,47 @@
 import { expect, fixture } from "@open-wc/testing";
 import { TextArea } from "../index";
 
-describe("confirm error default prop is null", () => {
-  const container = new TextArea();
+describe("TextArea", () => {
+  describe("error", () => {
+    it("should not display when not assigning in constructor", async () => {
+      const container = new TextArea();
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-textarea__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl).has.attribute("hidden");
+    });
 
-  it("confirm error default prop is null", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.textContent;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(errorText!.trim()).to.be.equal("");
-  });
-});
+    it('should be "error-message" when assigning in constructor', async () => {
+      const container = new TextArea({ error: "error-message" });
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-textarea__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
 
-describe("error constructor set successfully", () => {
-  const container = new TextArea({ error: "Error occurred!" });
+    it('should be "error-message" when setting by setter', async () => {
+      const container = new TextArea();
+      container.error = "error-message";
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-textarea__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
 
-  it("error constructor set successfully'", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.innerText;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error prop set successfully", () => {
-  const container = new TextArea();
-  container.error = "Error occurred!";
-
-  it("error prop set successfully'", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.innerText;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error prop replace successfully", () => {
-  const container = new TextArea({ error: "options-error" });
-  container.error = "Error occurred!";
-
-  it("error prop replace successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.innerText;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(false);
-    await expect(errorText).to.be.equal("Error occurred!");
-  });
-});
-
-describe("error default prop set to null successfully", () => {
-  // @ts-ignore
-  const container = new TextArea({ error: null });
-
-  it("error default prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.innerText;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(errorText!.trim()).to.be.equal("");
-  });
-});
-
-describe("error prop set to null successfully", () => {
-  const container = new TextArea({ error: "Error occurred!" });
-  // @ts-ignore
-  container.error = null;
-
-  it("error prop set to null successfully", async () => {
-    const el = await fixture(container);
-    const errorEl = (await el.querySelector(
-      ".kuc-textarea__group__error"
-    )) as HTMLDivElement;
-    const errorText = errorEl.innerText;
-    await expect(errorEl.hasAttribute("hidden")).to.be.equal(true);
-    await expect(errorText!.trim()).to.be.equal("");
+    it('should be replaced by "replace-error" when changing by setter', async () => {
+      const container = new TextArea({ error: "error-message" });
+      container.error = "replace-error";
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-textarea__group__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("replace-error");
+      expect(errorEl).not.has.attribute("hidden");
+    });
   });
 });
