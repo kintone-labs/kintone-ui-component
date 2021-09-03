@@ -8,7 +8,7 @@ original_id: release-notes-v1.1.0
 ## 概要
 
 [kintone UI Component v1.1.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.1.0) のリリースノートです。<br>
-新コンポーネント・機能開発, カスタマイズ記事の追加を行いました。
+新コンポーネント開発, 不具合修正, メンテナンス対応, カスタマイズ記事の追加を行いました。
 
 ## アップデート内容
 
@@ -18,11 +18,15 @@ original_id: release-notes-v1.1.0
 - MobileDropdown コンポーネントの追加
 - MobileMultiChoice コンポーネントの追加
 
-### 新機能
+### 不具合修正
+- MobileCheckbox, MobileRadioButton, MobileText, MobileTextArea コンポーネントの label 要素に改行の設定を追加
+
+### メンテナンス
 - Notification と MobileNotification コンポーネントの `text` プロパティにて、改行コードを入力できるように改善
+- Checkbox, MultiChoice, MobileCheckbox コンポーネントの `value` 配列のインデックス処理を、`items` プロパティの値の順番で並べるように変更
 
 ### ドキュメント
-- Cleaning check list 記事の追加
+- Cleaning check list customization 記事の追加
 
 ## トピック
 ### MobileDropdown, MobileMultiChoice
