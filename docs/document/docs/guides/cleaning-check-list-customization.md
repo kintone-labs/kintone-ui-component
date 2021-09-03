@@ -11,11 +11,11 @@ You can also learn how to transfer values from components to Kintone fields.
 
 
 ### Components to use
-- RadioButton
-- Checkbox
-- Dropdown
-- Button
-- Notification
+- [RadioButton](../components/desktop/radio-button.md)
+- [Checkbox](../components/desktop/checkbox.md)
+- [Dropdown](../components/desktop/dropdown.md)
+- [Button](../components/desktop/button.md)
+- [Notification](../components/desktop/notification.md)
 
 ## Completed image
 

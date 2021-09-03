@@ -11,11 +11,11 @@ original_id: cleaning-check-list-customization
 また、ここでは、コンポーネントの値を kintone のフィールドに受け渡す方法を学ぶことができます。
 
 ### 使用するコンポーネント
-- RadioButton
-- Checkbox
-- Dropdown
-- Button
-- Notification
+- [RadioButton](../components/desktop/radio-button.md)
+- [Checkbox](../components/desktop/checkbox.md)
+- [Dropdown](../components/desktop/dropdown.md)
+- [Button](../components/desktop/button.md)
+- [Notification](../components/desktop/notification.md)
 
 ## 完成イメージ
 
