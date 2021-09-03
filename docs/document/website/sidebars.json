@@ -35,7 +35,8 @@
     "Guides": [
       "guides/comparison-v0-v1",
       "guides/search-box-customization",
-      "guides/mobile-timecard-customization"
+      "guides/mobile-timecard-customization",
+      "guides/cleaning-check-list-customization"
     ]
   },
   "release-notes": {
