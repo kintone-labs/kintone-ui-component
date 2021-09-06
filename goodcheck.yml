@@ -85,13 +85,3 @@ rules:
       ex: kuc-dropdown
     glob: "**/*.ts"
 
-  - id: dom.structure
-    pattern:
-      regexp: \sid="(?!\${this._GUID}-)[^"]+"
-    message: |
-      Please put uuid to id using _generateGUID function
-      ex: <div
-            class="kuc-multi-choice__group__label"
-            id="${this._GUID}-label">
-          </div>
-    glob: "**/*.ts"

@@ -18,9 +18,9 @@ module.exports = {
               composed: true
             });
             return el.dispatchEvent(event);
-          }`,
+          }`
         });
-      },
+      }
     };
-  },
+  }
 };
