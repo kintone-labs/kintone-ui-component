@@ -1,11 +1,11 @@
-import { LitElement, html, svg, property, query } from "lit-element";
-
+import { html, svg, property, query } from "lit-element";
+import { KucBase } from "../../base/kuc-base";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
 };
 
-export class MobileNotification extends LitElement {
+export class MobileNotification extends KucBase {
   @property({ type: String }) text = "";
 
   @query(".kuc-mobile-notification__notification__title")
@@ -41,10 +41,6 @@ export class MobileNotification extends LitElement {
         </g>
       </svg>
     `;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   open() {

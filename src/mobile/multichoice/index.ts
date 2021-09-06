@@ -1,5 +1,10 @@
-import { LitElement, html, property, PropertyValues } from "lit-element";
-import { v4 as uuid } from "uuid";
+import { html, property, PropertyValues } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 
 type Item = {
@@ -19,12 +24,7 @@ type MobileMultiChoiceProps = {
   value?: string[];
 };
 
-type CustomEventDetail = {
-  oldValue?: string[];
-  value?: string[];
-};
-
-export class MobileMultiChoice extends LitElement {
+export class MobileMultiChoice extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
@@ -43,7 +43,7 @@ export class MobileMultiChoice extends LitElement {
 
   constructor(props?: MobileMultiChoiceProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
 
     if (!props) {
       return;
@@ -62,30 +62,13 @@ export class MobileMultiChoice extends LitElement {
     this.items = props.items !== undefined ? props.items : this.items;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
     const detail: CustomEventDetail = { value: [], oldValue: this.value };
     this.value = Array.from(selectEl.selectedOptions, option => option.value);
     detail.value = this.value;
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   update(changedProperties: PropertyValues) {

@@ -1,6 +1,7 @@
-import { LitElement, html, svg, property, query, queryAll } from "lit-element";
+import { html, svg, property, query, queryAll } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import DOMPurify from "dompurify";
+import { KucBase } from "../base/kuc-base";
 
 type DialogProps = {
   title?: string;
@@ -8,7 +9,7 @@ type DialogProps = {
   footer?: string | HTMLElement;
 };
 
-export class Dialog extends LitElement {
+export class Dialog extends KucBase {
   @property({ type: String }) title = "";
   @property() content: string | HTMLElement = "";
   @property() footer: string | HTMLElement = "";
@@ -44,10 +45,6 @@ export class Dialog extends LitElement {
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
     }
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   render() {

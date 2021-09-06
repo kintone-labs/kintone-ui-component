@@ -1,10 +1,10 @@
-import { LitElement, html, svg, property } from "lit-element";
-
+import { html, svg, property } from "lit-element";
+import { KucBase } from "../base/kuc-base";
 type SpinnerProps = {
   text?: string;
 };
 
-export class Spinner extends LitElement {
+export class Spinner extends KucBase {
   @property({ type: String }) text = "";
 
   constructor(props?: SpinnerProps) {
@@ -45,10 +45,6 @@ export class Spinner extends LitElement {
 
   close() {
     this.parentNode && this.parentNode.removeChild(this);
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   render() {

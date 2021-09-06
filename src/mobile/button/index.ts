@@ -1,4 +1,6 @@
-import { LitElement, html, property } from "lit-element";
+import { html, property } from "lit-element";
+import { KucBase, dispatchCustomEvent } from "../../base/kuc-base";
+import { visiblePropConverter } from "../../base/converter";
 
 type MobileButtonProps = {
   className?: string;
@@ -9,11 +11,17 @@ type MobileButtonProps = {
   visible?: boolean;
 };
 
-export class MobileButton extends LitElement {
+export class MobileButton extends KucBase {
   @property({ type: String }) text = "";
   @property({ type: String }) type = "normal";
   @property({ type: Boolean }) disabled = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
 
   constructor(props?: MobileButtonProps) {
     super();
@@ -30,29 +38,9 @@ export class MobileButton extends LitElement {
     this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleClickButton(event: MouseEvent) {
     event.stopPropagation();
-    this._dispatchCustomEvent("click");
-  }
-
-  private _dispatchCustomEvent(eventName: string) {
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "click");
   }
 
   private _getButtonColorType() {
@@ -63,7 +51,6 @@ export class MobileButton extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <button

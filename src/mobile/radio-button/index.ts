@@ -1,5 +1,11 @@
-import { LitElement, html, property, svg, queryAll } from "lit-element";
-import { v4 as uuid } from "uuid";
+import { html, property, svg, queryAll } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../../base/kuc-base";
+import { visiblePropConverter } from "../../base/converter";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -14,19 +20,21 @@ type RadioButtonProps = {
   visible?: boolean;
   items?: Item[];
 };
-type CustomEventDetail = {
-  value?: string;
-  oldValue?: string;
-};
 
-export class MobileRadioButton extends LitElement {
+export class MobileRadioButton extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({
     type: Array,
     hasChanged(newVal: Item[], _oldVal) {
@@ -54,7 +62,7 @@ export class MobileRadioButton extends LitElement {
 
   constructor(props?: RadioButtonProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -76,38 +84,13 @@ export class MobileRadioButton extends LitElement {
     this.items = props.items !== undefined ? props.items : this.items;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
     const value = inputEl.value;
     const detail: CustomEventDetail = { value: value, oldValue: this.value };
     this.value = value;
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _getRadioIconSvgTemplate(disabled: boolean, checked: boolean) {
@@ -177,7 +160,6 @@ export class MobileRadioButton extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-mobile-radio-button__group">
@@ -218,6 +200,20 @@ export class MobileRadioButton extends LitElement {
   updated() {
     this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
       inputEl.checked = this.value === inputEl.value;
+    });
+  }
+
+  private _validateItems() {
+    if (!Array.isArray(this.items)) {
+      throw new Error("'items' property is not array");
+    }
+    const itemsValue = this.items.map(item => item.value);
+    itemsValue.forEach((value, index, self) => {
+      if (value !== undefined && self.indexOf(value) !== index) {
+        throw new Error(
+          `'items[${index}].value' is duplicated! You can specify unique one.`
+        );
+      }
     });
   }
 
