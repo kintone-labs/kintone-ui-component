@@ -176,7 +176,7 @@ export class Notification extends LitElement {
           background-color: #e74c3c;
         }
         .kuc-notification__notification__title {
-          display: inline-block;
+          display: block;
           margin: 0px;
           font-size: 16px;
           max-width: 500px;
