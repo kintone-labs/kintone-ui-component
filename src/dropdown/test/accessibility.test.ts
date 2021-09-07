@@ -1,9 +1,4 @@
-import {
-  fixture,
-  expect,
-  elementUpdated,
-  triggerBlurFor
-} from "@open-wc/testing";
+import { fixture, expect, elementUpdated } from "@open-wc/testing";
 import { Dropdown } from "../index";
 
 const initItems = [
@@ -19,7 +14,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggle = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       const menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu"
       ) as HTMLDivElement;
@@ -28,12 +23,28 @@ describe("Dropdown", () => {
       await elementUpdated(container);
       expect(menuEl).not.has.attribute("hidden");
 
-      await triggerBlurFor(toggle);
+      toggle.click();
+      await elementUpdated(container);
       expect(menuEl).has.attribute("hidden");
+    });
+
+    it("should hide menu element when blur toggle button", async () => {
+      const container = new Dropdown();
+      const el = await fixture(container);
+      const toggle = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
 
       toggle.click();
       await elementUpdated(container);
       expect(menuEl).not.has.attribute("hidden");
+
+      toggle.dispatchEvent(new Event("blur"));
+      await elementUpdated(container);
+      expect(menuEl).has.attribute("hidden");
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
@@ -44,7 +55,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggleEl = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       toggleEl.click();
       const itemsEl = el.querySelectorAll(
         ".kuc-dropdown__group__select-menu__item"
@@ -57,7 +68,20 @@ describe("Dropdown", () => {
         )
       ).to.equal(true);
 
-      itemsEl[2].dispatchEvent(new Event("mouseleave"));
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
+      menuEl.dispatchEvent(new Event("mouseleave"));
+      expect(
+        itemsEl[0].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+      expect(
+        itemsEl[1].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
       expect(
         itemsEl[2].classList.contains(
           "kuc-dropdown__group__select-menu__highlight"
@@ -73,7 +97,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggleEl = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
@@ -95,7 +119,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggleEl = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
 
@@ -117,7 +141,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggleEl = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowDown" })
@@ -141,7 +165,7 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       const toggleEl = el.querySelector(
         ".kuc-dropdown__group__toggle"
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
 
