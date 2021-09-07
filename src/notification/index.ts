@@ -91,9 +91,11 @@ export class Notification extends KucBase {
         class="kuc-notification__notification kuc-notification__notification--${this
           .type}"
       >
-        <p class="kuc-notification__notification__title" aria-live="assertive">
-          ${this.text}
-        </p>
+        <pre
+          class="kuc-notification__notification__title"
+          aria-live="assertive"
+        ><!--
+        -->${this.text}</pre>
         <button
           class="kuc-notification__notification__closeButton"
           type="button"
@@ -129,17 +131,18 @@ export class Notification extends KucBase {
         kuc-notification {
           color: #ffffff;
           font-weight: 700;
-          text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.5);
-          font-size: 0;
-          line-height: normal;
-          display: inline-block;
-          width: 100%;
-          position: fixed;
-          top: 0;
-          z-index: 10000;
-          pointer-events: none;
-          margin-top: 16px;
           text-align: center;
+          text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.5);
+        }
+        kuc-notification {
+          position: fixed;
+          display: inline-block;
+          top: 0;
+          width: 100%;
+          line-height: 1.5;
+          z-index: 10000;
+          margin-top: 16px;
+          pointer-events: none;
           visibility: hidden;
           animation-fill-mode: forwards;
         }
@@ -154,7 +157,10 @@ export class Notification extends KucBase {
           animation-timing-function: ease-out;
         }
         .kuc-notification__notification {
+          position: relative;
           display: inline-block;
+          text-align: left;
+          padding: 16px 56px 16px 24px;
           background-color: #e74c3c;
         }
         .kuc-notification__notification--info {
@@ -167,22 +173,25 @@ export class Notification extends KucBase {
           background-color: #e74c3c;
         }
         .kuc-notification__notification__title {
-          display: inline-block;
-          vertical-align: middle;
-          word-break: break-word;
+          display: block;
+          margin: 0px;
           font-size: 16px;
-          margin: 16px 8px 16px 24px;
           max-width: 500px;
+          min-height: 24px;
+          word-break: break-word;
+          white-space: pre-wrap;
         }
         .kuc-notification__notification__closeButton {
+          position: absolute;
+          top: 5px;
+          right: 0px;
           width: 48px;
           height: 48px;
-          padding: 0;
           background-color: transparent;
           outline: none;
           border: none;
-          vertical-align: middle;
           pointer-events: auto;
+          cursor: pointer;
         }
         @keyframes kuc-notification-fade-in {
           0% {
