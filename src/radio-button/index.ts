@@ -1,5 +1,4 @@
 import {
-  LitElement,
   html,
   property,
   PropertyValues,
@@ -7,7 +6,13 @@ import {
   query,
   queryAll
 } from "lit-element";
-import { v4 as uuid } from "uuid";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -23,12 +28,8 @@ type RadioButtonProps = {
   visible?: boolean;
   items?: Item[];
 };
-type CustomEventDetail = {
-  value?: string;
-  oldValue?: string;
-};
 
-export class RadioButton extends LitElement {
+export class RadioButton extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) itemLayout = "horizontal";
   @property({ type: String }) label = "";
@@ -36,7 +37,13 @@ export class RadioButton extends LitElement {
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
 
   @query(".kuc-radio-button__group__label")
@@ -48,13 +55,11 @@ export class RadioButton extends LitElement {
   @query(".kuc-radio-button__group__select-menu")
   private _selectMenuEl!: HTMLDivElement;
 
-  @queryAll(".kuc-radio-button__group__select-menu__item__input")
-  private _inputEls!: HTMLInputElement[];
   private _GUID: string;
 
   constructor(props?: RadioButtonProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -78,25 +83,13 @@ export class RadioButton extends LitElement {
     this.items = props.items !== undefined ? props.items : this.items;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
     const value = inputEl.value;
     const detail: CustomEventDetail = { value: value, oldValue: this.value };
     this.value = value;
-    this._dispatchCustomEvent("change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -109,19 +102,6 @@ export class RadioButton extends LitElement {
     const inputEl = event.target as HTMLInputElement;
     const menuEl = inputEl.parentNode as HTMLDivElement;
     menuEl.removeAttribute("focused");
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   private _getRadioIconSvgTemplate(disabled: boolean, checked: boolean) {
@@ -200,7 +180,6 @@ export class RadioButton extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div

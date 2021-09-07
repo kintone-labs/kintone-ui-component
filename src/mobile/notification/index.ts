@@ -1,11 +1,11 @@
-import { LitElement, html, svg, property, query } from "lit-element";
-
+import { html, svg, property, query } from "lit-element";
+import { KucBase } from "../../base/kuc-base";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
 };
 
-export class MobileNotification extends LitElement {
+export class MobileNotification extends KucBase {
   @property({ type: String }) text = "";
 
   @query(".kuc-mobile-notification__notification__title")
@@ -43,10 +43,6 @@ export class MobileNotification extends LitElement {
     `;
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   open() {
     this.classList.add("kuc-mobile-notification-fadein");
     this.classList.remove("kuc-mobile-notification-fadeout");
@@ -67,12 +63,10 @@ export class MobileNotification extends LitElement {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-mobile-notification__notification">
-        <p
+        <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
-        >
-          ${this.text}
-        </p>
+        ><!---->${this.text}</pre>
         <button
           class="kuc-mobile-notification__notification__closeButton"
           type="button"
@@ -143,11 +137,13 @@ export class MobileNotification extends LitElement {
         .kuc-mobile-notification__notification__title {
           display: inline-block;
           vertical-align: middle;
-          word-break: break-word;
           padding: 17px 44px 11px 44px;
-          margin-left: -20px;
-          max-width: 500px;
+          margin: 0 0 0 -20px;
           text-align: left;
+          font-weight: inherit;
+          font-family: inherit;
+          word-break: break-word;
+          white-space: pre-wrap;
         }
 
         .kuc-mobile-notification__notification__closeButton {

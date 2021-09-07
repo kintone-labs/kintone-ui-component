@@ -10,7 +10,7 @@ sidebar_label: A commentary on the difference between v0 and v1
 This section explains the differences between the code written in v0 and v1, as well as the key advantages when using v1 for customizing the Kintone app.
 
 ## Completed image
-For example, you can use the Kintone UI Component to create a search button on the "Record List" view.<br>
+For example, you can use the Kintone UI Component to create a search button on the Record List page.<br>
 Here is the image for example:
 
 ![Search box](assets/v1_search_box.png)

@@ -1,13 +1,11 @@
+import { html, property, PropertyValues, queryAll, svg } from "lit-element";
 import {
-  LitElement,
-  html,
-  property,
-  PropertyValues,
-  queryAll,
-  svg,
-  query
-} from "lit-element";
-import { v4 as uuid } from "uuid";
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Item = { value?: string; label?: string };
 type CheckboxProps = {
@@ -24,12 +22,7 @@ type CheckboxProps = {
   value?: string[];
 };
 
-type CustomEventDetail = {
-  value?: string[];
-  oldValue?: string[];
-};
-
-export class Checkbox extends LitElement {
+export class Checkbox extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
@@ -37,7 +30,13 @@ export class Checkbox extends LitElement {
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
 
@@ -45,13 +44,9 @@ export class Checkbox extends LitElement {
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
 
-  @query(".kuc-checkbox__group__label") private _labelEl!: HTMLLegendElement;
-  @query(".kuc-checkbox__group__select-menu")
-  private _selectMenuEl!: HTMLElement;
-
   constructor(props?: CheckboxProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -75,18 +70,6 @@ export class Checkbox extends LitElement {
     this.value = props.value !== undefined ? props.value : this.value;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _getNewValue(value: string) {
     const sorting = this.items.map(item => item.value);
     if (this.value.indexOf(value) === -1) {
@@ -106,7 +89,7 @@ export class Checkbox extends LitElement {
     const newValue = this._getNewValue(value);
     this.value = newValue;
     const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    this._dispatchCustomEvent("change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -119,19 +102,6 @@ export class Checkbox extends LitElement {
     const inputEl = event.target as HTMLInputElement;
     const menuEl = inputEl.parentNode as HTMLDivElement;
     menuEl.removeAttribute("focused");
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
@@ -212,7 +182,6 @@ export class Checkbox extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div

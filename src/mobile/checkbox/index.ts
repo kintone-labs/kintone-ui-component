@@ -1,4 +1,11 @@
-import { LitElement, html, property, queryAll, svg } from "lit-element";
+import { html, property, queryAll, svg } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../../base/kuc-base";
+import { visiblePropConverter } from "../../base/converter";
 
 type Item = { value?: string; label?: string };
 type MobileCheckboxProps = {
@@ -14,18 +21,19 @@ type MobileCheckboxProps = {
   value?: string[];
 };
 
-type CustomEventDetail = {
-  value?: string[];
-  oldValue?: string[];
-};
-
-export class MobileCheckbox extends LitElement {
+export class MobileCheckbox extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({
     type: Array,
     hasChanged(newVal: Item[], _oldVal) {
@@ -73,7 +81,7 @@ export class MobileCheckbox extends LitElement {
 
   constructor(props?: MobileCheckboxProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -95,21 +103,6 @@ export class MobileCheckbox extends LitElement {
     this.value = props.value !== undefined ? props.value : this.value;
   }
 
-  private _generateGUID(): string {
-    return (
-      new Date().getTime().toString(16) +
-      Math.floor(Math.random() * 0x1000).toString(16)
-    );
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _getNewValue(value: string) {
     const sorting = this.items.map(item => item.value);
     if (this.value.indexOf(value) === -1) {
@@ -128,20 +121,7 @@ export class MobileCheckbox extends LitElement {
     const newValue = this._getNewValue(inputEl.value);
     this.value = newValue;
     const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _getCheckboxIconSvgTemplate(checked: boolean) {
@@ -202,7 +182,6 @@ export class MobileCheckbox extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <fieldset class="kuc-mobile-checkbox__group">
@@ -288,6 +267,9 @@ export class MobileCheckbox extends LitElement {
 
         .kuc-mobile-checkbox__group__label {
           display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
@@ -300,8 +282,7 @@ export class MobileCheckbox extends LitElement {
         .kuc-mobile-checkbox__group__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
 
         .kuc-mobile-checkbox__group__label__required-icon {

@@ -19,7 +19,7 @@ Kintone UI Component is a library that enables Kintone developers to build forms
 
 ## Preparation: Create App
 
-In this tutorial, you will place a Button component inside the header menu space in the list view of a Kintone app.
+In this tutorial, you will place a Button component inside the header menu space on the Record List page of a Kintone app.
 
 First, follow the below steps to create an app to install Kintone UI Component.
 

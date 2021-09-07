@@ -1,5 +1,4 @@
 import {
-  LitElement,
   html,
   property,
   PropertyValues,
@@ -8,7 +7,13 @@ import {
   query,
   svg
 } from "lit-element";
-import { v4 as uuid } from "uuid";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
 
 type Item = {
   label?: string;
@@ -25,18 +30,20 @@ type DropdownProps = {
   visible?: boolean;
   items?: Item[];
 };
-type CustomEventDetail = {
-  value?: string;
-  oldValue?: string;
-};
 
-export class Dropdown extends LitElement {
+export class Dropdown extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Array }) items: Item[] = [];
 
   @internalProperty()
@@ -58,7 +65,7 @@ export class Dropdown extends LitElement {
 
   constructor(props?: DropdownProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -76,10 +83,6 @@ export class Dropdown extends LitElement {
     this.items = props.items !== undefined ? props.items : this.items;
   }
 
-  private _generateGUID(): string {
-    return uuid();
-  }
-
   private _getSelectedLabel() {
     let selectedItemLabel = "";
     this.items.forEach(item => {
@@ -88,23 +91,6 @@ export class Dropdown extends LitElement {
       }
     });
     return selectedItemLabel;
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const changeEvent = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    return this.dispatchEvent(changeEvent);
   }
 
   private _openSelector() {
@@ -155,7 +141,7 @@ export class Dropdown extends LitElement {
     if (this.value === value) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
-    this._dispatchCustomEvent("change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _handleMousedownDropdownItem(event: MouseEvent) {
@@ -317,10 +303,6 @@ export class Dropdown extends LitElement {
     `;
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) {
       this._validateItems();
@@ -329,7 +311,6 @@ export class Dropdown extends LitElement {
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-dropdown__group">

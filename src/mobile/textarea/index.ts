@@ -1,4 +1,11 @@
-import { LitElement, html, property } from "lit-element";
+import { html, property } from "lit-element";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../../base/kuc-base";
+import { visiblePropConverter } from "../../base/converter";
 
 type MobileTextAreaProps = {
   className?: string;
@@ -12,25 +19,26 @@ type MobileTextAreaProps = {
   visible?: boolean;
 };
 
-type CustomEventDetail = {
-  value: string;
-  oldValue?: string;
-};
-
-export class MobileTextArea extends LitElement {
+export class MobileTextArea extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: Boolean }) visible = true;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
 
   private _GUID: string;
 
   constructor(props?: MobileTextAreaProps) {
     super();
-    this._GUID = this._generateGUID();
+    this._GUID = generateGUID();
     if (!props) {
       return;
     }
@@ -49,24 +57,9 @@ export class MobileTextArea extends LitElement {
     this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
-  private _generateGUID(): string {
-    return (
-      new Date().getTime().toString(16) +
-      Math.floor(Math.random() * 0x1000).toString(16)
-    );
-  }
-
-  private _updateVisible() {
-    if (!this.visible) {
-      this.setAttribute("hidden", "");
-    } else {
-      this.removeAttribute("hidden");
-    }
-  }
-
   private _handleFocusInput(event: FocusEvent) {
     const detail: CustomEventDetail = { value: this.value };
-    this._dispatchCustomEvent("focus", detail);
+    dispatchCustomEvent(this, "focus", detail);
   }
 
   private _handleChangeInput(event: Event) {
@@ -75,24 +68,10 @@ export class MobileTextArea extends LitElement {
     const detail: CustomEventDetail = { value: "", oldValue: this.value };
     this.value = targetEl.value;
     detail.value = this.value;
-    this._dispatchCustomEvent("change", detail);
-  }
-
-  private _dispatchCustomEvent(eventName: string, detail?: CustomEventDetail) {
-    const event = new CustomEvent(eventName, {
-      detail,
-      bubbles: true,
-      composed: true
-    });
-    this.dispatchEvent(event);
-  }
-
-  createRenderRoot() {
-    return this;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   render() {
-    this._updateVisible();
     return html`
       ${this._getStyleTagTemplate()}
       <label
@@ -156,6 +135,9 @@ export class MobileTextArea extends LitElement {
           padding: 0;
           margin: 0 0 4px 0;
           display: inline-block;
+          font-size: 86%;
+          font-weight: bold;
+          line-height: 1.5;
           white-space: nowrap;
         }
         .kuc-mobile-textarea__label[hidden] {
@@ -164,8 +146,7 @@ export class MobileTextArea extends LitElement {
         .kuc-mobile-textarea__label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
-          font-size: 86%;
-          font-weight: bold;
+          white-space: normal;
         }
         .kuc-mobile-textarea__label__required-icon {
           position: relative;
