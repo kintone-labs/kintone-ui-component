@@ -180,6 +180,7 @@ export class Notification extends LitElement {
           margin: 0px;
           font-size: 16px;
           max-width: 500px;
+          min-height: 24px;
           word-break: break-word;
           white-space: pre-wrap;
         }
