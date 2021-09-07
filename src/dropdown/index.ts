@@ -197,7 +197,7 @@ export class Dropdown extends KucBase {
     this._updateContainerWidth();
   }
 
-  private _handleMousedownDropdownItem(event: MouseEvent) {
+  private _handleMouseDownDropdownItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     const value = itemEl.getAttribute("value") as string;
     this._actionUpdateValue(value);
@@ -532,7 +532,7 @@ export class Dropdown extends KucBase {
         aria-checked=${item.value === this.value ? "true" : "false"}
         value=${item.value !== undefined ? item.value : ""}
         id="${this._GUID}-menuitem-${index}"
-        @mousedown="${this._handleMousedownDropdownItem}"
+        @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
         ${this._getDropdownIconSvgTemplate(item.value === this.value)}
@@ -557,7 +557,7 @@ export class Dropdown extends KucBase {
             fill-rule='evenodd'
             clip-rule='evenodd'
             d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
-            fill='#3498DB'/>
+            fill='#3498db'/>
         </svg>`
           : ""
       }`;
