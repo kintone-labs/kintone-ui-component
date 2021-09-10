@@ -1,7 +1,7 @@
 import { html, property, query, svg } from "lit-element";
 import { KucBase } from "../../../kuc-base";
 
-export class BaseDateTimeMenu extends KucBase {
+export class BaseDateTimeCalendarBody extends KucBase {
   render() {
     return html`
       <div>CALENDAR BODY</div>
@@ -36,6 +36,6 @@ export class BaseDateTimeMenu extends KucBase {
 if (!window.customElements.get("kuc-base-datetime-calendar-body")) {
   window.customElements.define(
     "kuc-base-datetime-calendar-body",
-    BaseDateTimeMenu
+    BaseDateTimeCalendarBody
   );
 }
