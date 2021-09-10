@@ -2,8 +2,12 @@ import { html, property, query, svg } from "lit-element";
 import { KucBase } from "../../../kuc-base";
 
 export class BaseDateTimeCalendarBody extends KucBase {
+  @property() month = 0;
+  @property() year = 1970;
+
   render() {
     return html`
+      ${this._getStyleTagTemplate()}
       <div>CALENDAR BODY</div>
     `;
   }

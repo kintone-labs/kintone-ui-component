@@ -60,5 +60,13 @@ storiesOf("base/datetime/calendar/body", module).add("Base", () => {
   );
   bodyWrapEl.appendChild(calendarBodyEl);
 
+  monthSelectEl.addEventListener("change", _ => {
+    calendarBodyEl.setAttribute("month", monthSelectEl.value);
+  });
+
+  yearSelectEl.addEventListener("change", _ => {
+    calendarBodyEl.setAttribute("year", yearSelectEl.value);
+  });
+
   return rootEl;
 });
