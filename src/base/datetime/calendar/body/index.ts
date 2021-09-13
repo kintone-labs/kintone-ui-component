@@ -1,5 +1,6 @@
 import { html, property, query, svg } from "lit-element";
 import { KucBase } from "../../../kuc-base";
+import { getDisplayingDates } from "../../utils/index";
 
 type WeekDaysItems = {
   text: string;
@@ -7,8 +8,8 @@ type WeekDaysItems = {
 };
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property() month = 0;
-  @property() year = 1970;
+  @property({ type: Number }) month = 0;
+  @property({ type: Number }) year = 1970;
   @property() weekDays: WeekDaysItems[] | undefined;
 
   constructor() {
@@ -31,18 +32,19 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <table class="kuc-base-datetime-calendar-body__table" role="grid">
-        ${this._getWeekDayItemsTemplate()}
+        ${this._getHeaderItemsTemplate()}<!--
+        -->${this._getDateItemsTemplate()}
       </table>
     `;
   }
 
-  private _getWeekDayItemsTemplate() {
+  private _getHeaderItemsTemplate() {
     return html`
       <thead>
         ${this.weekDays?.map(wday => {
           return html`
             <th
-              class="kuc-base-datetime-calendar-body__header-column"
+              class="kuc-base-datetime-calendar-body__header"
               role="columnheader"
               abbr="${wday.abbr}"
             >
@@ -52,6 +54,50 @@ export class BaseDateTimeCalendarBody extends KucBase {
         })}
       </thead>
     `;
+  }
+
+  private _getDateItemsTemplate() {
+    const displayingDates = getDisplayingDates(this.year, this.month);
+
+    return html`
+      <tbody>
+        ${displayingDates.map(weeks => {
+          return html`
+            <tr>
+              ${weeks.map(weekDate => {
+                const dateParts = weekDate.split("-");
+                return html`
+                  <td role="gridcell">
+                    <button
+                      class="${this._getDateClass(dateParts, this.month)}"
+                      data-date="${weekDate}"
+                    >
+                      ${dateParts[2]}
+                    </button>
+                  </td>
+                `;
+              })}
+            </tr>
+          `;
+        })}
+      </tbody>
+    `;
+  }
+
+  private _getDateClass(dateParts: string[], thisMonth: number) {
+    let className = "kuc-base-datetime-calendar-body__date";
+
+    const today = new Date();
+    if (parseInt(dateParts[2], 10) === today.getDate()) {
+      className += " kuc-base-datetime-calendar-body__date--today";
+      return className;
+    }
+
+    if (parseInt(dateParts[1], 10) !== this.month + 1) {
+      className += " kuc-base-datetime-calendar-body__date--other-month";
+    }
+
+    return className;
   }
 
   private _getStyleTagTemplate() {
@@ -78,21 +124,38 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border-collapse: separate;
           border-spacing: 0;
         }
-        .kuc-base-datetime-calendar-body__header-column {
+        .kuc-base-datetime-calendar-body__date,
+        .kuc-base-datetime-calendar-body__header {
+          text-align: center;
           text-transform: uppercase;
           font-size: 10px;
           font-weight: 400;
-          color: #333;
+          color: #333333;
         }
-        .kuc-base-datetime-calendar-body__date-column,
-        .kuc-base-datetime-calendar-body__header-column {
+        .kuc-base-datetime-calendar-body__date,
+        .kuc-base-datetime-calendar-body__header {
           box-sizing: border-box;
           padding: 8px 0;
-          width: 38px;
-          border: 1px solid #fff;
+          width: 36px;
+          border: 1px solid #ffffff;
+          line-height: 1.5;
         }
-        .kuc-base-datetime-calendar-body__header-column:nth-child(1),
-        .kuc-base-datetime-calendar-body__header-column:nth-child(7) {
+        .kuc-base-datetime-calendar-body__header:nth-child(1),
+        .kuc-base-datetime-calendar-body__header:nth-child(7) {
+          color: #d4d7d7;
+        }
+        .kuc-base-datetime-calendar-body__date {
+          background: none;
+          cursor: pointer;
+        }
+        .kuc-base-datetime-calendar-body__date--today {
+          color: #ffffff;
+          background: #888888;
+        }
+        .kuc-base-datetime-calendar-body__date--today:hover {
+          color: #333333;
+        }
+        .kuc-base-datetime-calendar-body__date--other-month {
           color: #d4d7d7;
         }
       </style>
