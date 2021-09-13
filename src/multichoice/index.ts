@@ -375,7 +375,6 @@ export class MultiChoice extends KucBase {
           overflow-y: auto;
           overflow-x: hidden;
           max-height: 134px;
-          display: table;
           width: 100%;
         }
         .kuc-multi-choice__group__menu:not([disabled]):focus {
