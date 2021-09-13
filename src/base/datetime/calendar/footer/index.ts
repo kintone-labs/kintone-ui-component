@@ -5,12 +5,12 @@ export class BaseDateTimeCalendarFooter extends KucBase {
   @property({ type: String }) noneButtonText = "None";
   @property({ type: String }) todayButtonText = "Today";
 
-  private _handleClickFooterButtonNone(event: MouseEvent) {
+  private _handleClickCalendarFooterButtonNone(event: MouseEvent) {
     event.stopPropagation();
     dispatchCustomEvent(this, "kuc:calendar-footer-click-none");
   }
 
-  private _handleClickFooterButtonToday(event: MouseEvent) {
+  private _handleClickCalendarFooterButtonToday(event: MouseEvent) {
     event.stopPropagation();
     dispatchCustomEvent(this, "kuc:calendar-footer-click-today");
   }
@@ -22,7 +22,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         <button
           type="button"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--today"
-          @click=${this._handleClickFooterButtonToday}
+          @click=${this._handleClickCalendarFooterButtonToday}
         >
           ${this.todayButtonText}
         </button>
@@ -30,7 +30,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         <button
           type="button"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
-          @click=${this._handleClickFooterButtonNone}
+          @click=${this._handleClickCalendarFooterButtonNone}
         >
           ${this.noneButtonText}
         </button>
