@@ -2,10 +2,10 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeCalendarFooter } from "../index";
 
 describe("BaseDateTimeCalendarFooter", () => {
-  describe("clickTodayEvent", () => {
-    it("should be triggered clickToday event", async () => {
+  describe("kuc:calendar-footer-click-today event", () => {
+    it("should be triggered kuc:calendar-footer-click-today event", async () => {
       const container = new BaseDateTimeCalendarFooter();
-      container.addEventListener("clickToday", event => {
+      container.addEventListener("kuc:calendar-footer-click-today", event => {
         container.todayButtonText = event.type;
       });
 
@@ -17,7 +17,7 @@ describe("BaseDateTimeCalendarFooter", () => {
       buttonEl.click();
       await elementUpdated(buttonEl);
 
-      expect(buttonEl.innerText).to.equal("clickToday");
+      expect(buttonEl.innerText).to.equal("kuc:calendar-footer-click-today");
     });
   });
 });

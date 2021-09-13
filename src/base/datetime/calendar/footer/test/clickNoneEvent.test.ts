@@ -2,10 +2,10 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeCalendarFooter } from "../index";
 
 describe("BaseDateTimeCalendarFooter", () => {
-  describe("clickNoneEvent", () => {
-    it("should be triggered clickNone event", async () => {
+  describe("kuc:calendar-footer-click-none event", () => {
+    it("should be triggered kuc:calendar-footer-click-none event", async () => {
       const container = new BaseDateTimeCalendarFooter();
-      container.addEventListener("clickNone", event => {
+      container.addEventListener("kuc:calendar-footer-click-none", event => {
         container.noneButtonText = event.type;
       });
 
@@ -17,7 +17,7 @@ describe("BaseDateTimeCalendarFooter", () => {
       buttonEl.click();
       await elementUpdated(buttonEl);
 
-      expect(buttonEl.innerText).to.equal("clickNone");
+      expect(buttonEl.innerText).to.equal("kuc:calendar-footer-click-none");
     });
   });
 });

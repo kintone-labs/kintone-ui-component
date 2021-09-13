@@ -6,10 +6,10 @@ storiesOf("base/datetime/calendar/footer", module).add("Base", () => {
   const calendarFooter = new BaseDateTimeCalendarFooter();
   // calendarFooter.todayButtonText = "今日";
   // calendarFooter.noneButtonText = "選択を解除";
-  calendarFooter.addEventListener("clickToday", event => {
+  calendarFooter.addEventListener("kuc:calendar-footer-click-today", event => {
     console.log([event.type, event]);
   });
-  calendarFooter.addEventListener("clickNone", event => {
+  calendarFooter.addEventListener("kuc:calendar-footer-click-none", event => {
     console.log([event.type, event]);
   });
   root.appendChild(calendarFooter);

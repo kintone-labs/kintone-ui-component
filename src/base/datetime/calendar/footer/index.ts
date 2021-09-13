@@ -7,12 +7,12 @@ export class BaseDateTimeCalendarFooter extends KucBase {
 
   private _handleClickFooterButtonNone(event: MouseEvent) {
     event.stopPropagation();
-    dispatchCustomEvent(this, "clickNone");
+    dispatchCustomEvent(this, "kuc:calendar-footer-click-none");
   }
 
   private _handleClickFooterButtonToday(event: MouseEvent) {
     event.stopPropagation();
-    dispatchCustomEvent(this, "clickToday");
+    dispatchCustomEvent(this, "kuc:calendar-footer-click-today");
   }
 
   render() {
@@ -71,6 +71,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           background: transparent;
           border: none;
           color: #3498db;
+          cursor: pointer;
           font-size: 13px;
           outline: none;
         }
