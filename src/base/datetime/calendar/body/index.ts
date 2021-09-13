@@ -69,7 +69,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td role="gridcell">
                     <button
-                      class="${this._getDateClass(dateParts, this.month)}"
+                      class="${this._getDateClass(dateParts)}"
                       data-date="${weekDate}"
                     >
                       ${dateParts[2]}
@@ -84,16 +84,22 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
-  private _getDateClass(dateParts: string[], thisMonth: number) {
+  private _getDateClass(dateParts: string[]) {
     let className = "kuc-base-datetime-calendar-body__date";
 
     const today = new Date();
-    if (parseInt(dateParts[2], 10) === today.getDate()) {
+    const isToday =
+      parseInt(dateParts[0], 10) === today.getFullYear() &&
+      parseInt(dateParts[1], 10) === today.getMonth() + 1 &&
+      parseInt(dateParts[2], 10) === today.getDate();
+
+    if (isToday) {
       className += " kuc-base-datetime-calendar-body__date--today";
       return className;
     }
 
-    if (parseInt(dateParts[1], 10) !== this.month + 1) {
+    const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
+    if (isOtherMonth) {
       className += " kuc-base-datetime-calendar-body__date--other-month";
     }
 
