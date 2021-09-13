@@ -146,7 +146,7 @@ export class RadioButton extends KucBase {
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
           tabindex=${this._getTabIndex(index, item, this.items)}
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
           @focus="${this._handleFocusInput}"
@@ -201,7 +201,7 @@ export class RadioButton extends KucBase {
         </div>
         <div
           class="kuc-radio-button__group__select-menu"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           itemLayout="${this.itemLayout}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}

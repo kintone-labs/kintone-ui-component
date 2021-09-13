@@ -334,7 +334,7 @@ export class Dropdown extends KucBase {
           aria-haspopup="true"
           aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           ?disabled="${this.disabled}"
           @mouseup="${this._handleMouseUpDropdownToggle}"
           @mousedown="${this._handleMouseDownDropdownToggle}"

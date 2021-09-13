@@ -114,7 +114,7 @@ export class Text extends KucBase {
               textAlign=${this.textAlign}
               type="text"
               .value=${this.value}
-              aria-required=${this.requiredIcon}
+              aria-required="${this.requiredIcon}"
               aria-invalid="${this.error !== ""}"
               aria-describedby="${this._GUID}-error"
               @focus="${this._handleFocusInput}"
@@ -134,7 +134,7 @@ export class Text extends KucBase {
           class="kuc-text__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden=${!this.error}
+          ?hidden="${!this.error}"
         >
           ${this.error}
         </div>

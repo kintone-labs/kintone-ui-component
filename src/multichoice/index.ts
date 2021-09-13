@@ -252,7 +252,7 @@ export class MultiChoice extends KucBase {
         class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
         aria-checked=${this.value.some(val => val === item.value)}
-        aria-required=${this.requiredIcon}
+        aria-required="${this.requiredIcon}"
         value=${item.value !== undefined ? item.value : ""}
         id="${this._GUID}-menuitem-${index}"
         @mousedown=${this._handleMouseDownMultiChoiceItem}

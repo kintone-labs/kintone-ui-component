@@ -109,7 +109,7 @@ export class MobileDropdown extends KucBase {
             class="kuc-mobile-dropdown__input-form__select__input"
             id="${this._GUID}-label"
             aria-describedBy="${this._GUID}-error"
-            aria-required=${this.requiredIcon}
+            aria-required="${this.requiredIcon}"
             aria-invalid="${this.error !== ""}"
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
