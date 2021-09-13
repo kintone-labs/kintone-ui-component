@@ -90,6 +90,7 @@ The main difference is as follows:
 - Improved DOM positioning
 - Restructured the component property
 - Included additional properties for Alert and Label
+- Auto-completion of Item.label
 
 The following section will explain in further detail.
 
@@ -262,6 +263,24 @@ When you initialize the message (hide the error message), you will only need to 
 
 ![search_box_error](assets/v1_search_box_error.png)
 
+---
+#### Auto-completion of Item.label
+---
+In choice components of v0, both `Item.label` and `Item.value` are required to specify.
+
+In v1, only `Item.value` is required. If `Item.label` is not specified, the value of `Item.value` will be set.<br>
+It is now more compact to write when the label displayed in the UI and the value are the same.
+
+You can abbreviate it as follows:
+```
+const checkbox = new Kuc.Checkbox({
+  items: [
+    {
+      value: "orange"
+    }
+  ],
+});
+```
 
 ## Conclusion
 
