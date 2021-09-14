@@ -266,12 +266,12 @@ When you initialize the message (hide the error message), you will only need to 
 ---
 #### Auto-completion of Item.label
 ---
-In choice components of v0, both `Item.label` and `Item.value` are required to specify.
+When creating multiple choice components in v0, the developer had to specify both `Item.label` and `Item.value`.
 
-In v1, only `Item.value` is required. If `Item.label` is not specified, the value of `Item.value` will be set.<br>
-It is now more compact to write when the label displayed in the UI and the value are the same.
+However, when using v1, only `Item.value` is required. If `Item.label` is not specified, only the value of `Item.value` will be set.<br>
+This means that the coding will be more concise when the backend value and the label displayed in the UI are the same.
 
-You can abbreviate it as follows:
+You can abbreviate the coding as follows:
 ```
 const checkbox = new Kuc.Checkbox({
   items: [
