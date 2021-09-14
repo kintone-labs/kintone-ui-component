@@ -270,11 +270,15 @@ export class Dropdown extends KucBase {
         break;
       }
       case "Home": {
-        this._actionShowMenu(this._firstItemEl);
+        if (this._selectorVisible) {
+          this._setHighlightAndActiveDescendantMenu(this._firstItemEl);
+        }
         break;
       }
       case "End": {
-        this._actionShowMenu(this._lastItemEl);
+        if (this._selectorVisible) {
+          this._setHighlightAndActiveDescendantMenu(this._lastItemEl);
+        }
         break;
       }
       default:
@@ -282,13 +286,16 @@ export class Dropdown extends KucBase {
     }
   }
 
-  private _actionShowMenu(selectedItemEl?: HTMLLIElement) {
-    const currentSelectedItemEl = selectedItemEl || this._selectedItemEl;
-    if (currentSelectedItemEl === null) return;
+  private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
+    this._actionHighlightMenuItem(selectedItemEl);
+    this._actionSetActiveDescendant(selectedItemEl.id);
+  }
+
+  private _actionShowMenu() {
+    if (this._selectedItemEl === null) return;
 
     this._selectorVisible = true;
-    this._actionHighlightMenuItem(currentSelectedItemEl);
-    this._actionSetActiveDescendant(currentSelectedItemEl.id);
+    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     this._buttonEl.focus();
   }
 
