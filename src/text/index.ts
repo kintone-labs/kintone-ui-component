@@ -110,10 +110,10 @@ export class Text extends KucBase {
             <input
               class="kuc-text__group__input-form__input-outer__input"
               id="${this._GUID}-label"
-              placeholder=${this.placeholder}
-              textAlign=${this.textAlign}
+              placeholder="${this.placeholder}"
+              textAlign="${this.textAlign}"
               type="text"
-              .value=${this.value}
+              .value="${this.value}"
               aria-required="${this.requiredIcon}"
               aria-invalid="${this.error !== ""}"
               aria-describedby="${this._GUID}-error"

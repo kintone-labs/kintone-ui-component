@@ -125,7 +125,7 @@ export class TextArea extends KucBase {
           id="${this._GUID}-label"
           class="kuc-textarea__group__textarea"
           placeholder="${this.placeholder}"
-          .value=${this.value}
+          .value="${this.value}"
           aria-describedby="${this._GUID}-error"
           aria-required="${this.requiredIcon}"
           aria-invalid="${!this.error}"

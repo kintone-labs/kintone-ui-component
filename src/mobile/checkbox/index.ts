@@ -163,7 +163,7 @@ export class MobileCheckbox extends KucBase {
           id="${this._GUID}-item-${index}"
           class="kuc-mobile-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           aria-describedby="${this._GUID}-error}"
           aria-required="${this.requiredIcon}"
           aria-invalid="${!this.error}"

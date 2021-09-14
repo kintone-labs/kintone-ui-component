@@ -87,7 +87,7 @@ export class MobileText extends KucBase {
       <label
         class="kuc-mobile-text__label"
         for="${this._GUID}-label"
-        ?hidden=${!this.label}
+        ?hidden="${!this.label}"
       >
         <span class="kuc-mobile-text__label__text">${this.label}</span
         ><!--
@@ -106,10 +106,10 @@ export class MobileText extends KucBase {
         <input
           class="kuc-mobile-text__input-form__input"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
-          textAlign=${this.textAlign}
+          placeholder="${this.placeholder}"
+          textAlign="${this.textAlign}"
           type="text"
-          .value=${this.value}
+          .value="${this.value}"
           ?disabled="${this.disabled}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"

@@ -115,8 +115,8 @@ export class MobileDropdown extends KucBase {
             @change="${this._handleChangeInput}"
           >
             <option
-              ?selected=${this.items.filter(item => item.value === this.value)
-                .length === 0}
+              ?selected="${this.items.filter(item => item.value === this.value)
+                .length === 0}"
             ></option>
             ${this.items.map((item, index) =>
               this._getItemTemplate(item, index)

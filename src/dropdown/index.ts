@@ -289,9 +289,9 @@ export class Dropdown extends KucBase {
       <li
         class="kuc-dropdown__group__select-menu__item"
         role="menuitem"
-        tabindex=${item.value === this.value ? "0" : "-1"}
-        aria-checked=${item.value === this.value ? "true" : "false"}
-        value=${item.value !== undefined ? item.value : ""}
+        tabindex="${item.value === this.value ? "0" : "-1"}"
+        aria-checked="${item.value === this.value ? "true" : "false"}"
+        value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMousedownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"

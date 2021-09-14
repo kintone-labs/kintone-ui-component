@@ -91,9 +91,9 @@ export class MobileTextArea extends KucBase {
         <textarea
           class="kuc-mobile-textarea__form__textarea"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
+          placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
-          .value=${this.value}
+          .value="${this.value}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"
           aria-required="${this.requiredIcon}"

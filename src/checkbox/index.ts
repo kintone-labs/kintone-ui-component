@@ -155,7 +155,7 @@ export class Checkbox extends KucBase {
           id="${this._GUID}-item-${index}"
           class="kuc-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
           @focus="${this._handleFocusInput}"
