@@ -10,40 +10,52 @@ const initItems = [
 describe("Dropdown", () => {
   describe("accessibility", () => {
     it("should show/hide menu element when clicking toggle button", async () => {
-      const container = new Dropdown();
+      const container = new Dropdown({
+        items: initItems,
+        value: initItems[0].value
+      });
       const el = await fixture(container);
       const toggle = el.querySelector(
         ".kuc-dropdown__group__toggle"
       ) as HTMLButtonElement;
-      const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
-      ) as HTMLDivElement;
 
       toggle.click();
       await elementUpdated(container);
+      let menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       toggle.click();
       await elementUpdated(container);
+      menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
 
     it("should hide menu element when blur toggle button", async () => {
-      const container = new Dropdown();
+      const container = new Dropdown({
+        items: initItems,
+        value: initItems[0].value
+      });
       const el = await fixture(container);
       const toggle = el.querySelector(
         ".kuc-dropdown__group__toggle"
       ) as HTMLButtonElement;
-      const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
-      ) as HTMLDivElement;
 
       toggle.click();
       await elementUpdated(container);
+      let menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       toggle.dispatchEvent(new Event("blur"));
       await elementUpdated(container);
+      menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
 
