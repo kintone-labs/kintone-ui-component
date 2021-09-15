@@ -271,13 +271,13 @@ export class Dropdown extends KucBase {
       }
       case "Home": {
         if (this._selectorVisible) {
-          this._setHighlightAndActiveDescendantMenu(this._firstItemEl);
+          this._actionHighlightFirstMenuItem();
         }
         break;
       }
       case "End": {
         if (this._selectorVisible) {
-          this._setHighlightAndActiveDescendantMenu(this._lastItemEl);
+          this._actionHighlightLastMenuItem();
         }
         break;
       }
@@ -286,17 +286,12 @@ export class Dropdown extends KucBase {
     }
   }
 
-  private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
-    this._actionHighlightMenuItem(selectedItemEl);
-    this._actionSetActiveDescendant(selectedItemEl.id);
-  }
-
   private _actionShowMenu() {
-    if (this._selectedItemEl === null) return;
-
-    this._selectorVisible = true;
-    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     this._buttonEl.focus();
+    this._selectorVisible = true;
+
+    if (this._selectedItemEl === null) return;
+    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
   }
 
   private _actionHideMenu() {
@@ -313,16 +308,12 @@ export class Dropdown extends KucBase {
     this._actionShowMenu();
   }
 
-  private _actionClearAllHighlightMenuItem() {
-    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-      itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
-    });
-    this._actionRemoveActiveDescendant();
+  private _actionHighlightFirstMenuItem() {
+    this._setHighlightAndActiveDescendantMenu(this._firstItemEl);
   }
 
-  private _actionHighlightMenuItem(item: HTMLLIElement) {
-    this._actionClearAllHighlightMenuItem();
-    item.classList.add("kuc-dropdown__group__select-menu__highlight");
+  private _actionHighlightLastMenuItem() {
+    this._setHighlightAndActiveDescendantMenu(this._lastItemEl);
   }
 
   private _actionHighlightPrevMenuItem() {
@@ -338,8 +329,7 @@ export class Dropdown extends KucBase {
       prevItem = this._lastItemEl;
     }
 
-    prevItem.classList.add("kuc-dropdown__group__select-menu__highlight");
-    this._actionSetActiveDescendant(prevItem.id);
+    this._setHighlightAndActiveDescendantMenu(prevItem);
   }
 
   private _actionHighlightNextMenuItem() {
@@ -355,8 +345,24 @@ export class Dropdown extends KucBase {
       nextItem = this._firstItemEl;
     }
 
-    nextItem.classList.add("kuc-dropdown__group__select-menu__highlight");
-    this._actionSetActiveDescendant(nextItem.id);
+    this._setHighlightAndActiveDescendantMenu(nextItem);
+  }
+
+  private _actionClearAllHighlightMenuItem() {
+    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+      itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+    });
+    this._actionRemoveActiveDescendant();
+  }
+
+  private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
+    this._actionHighlightMenuItem(selectedItemEl);
+    this._actionSetActiveDescendant(selectedItemEl.id);
+  }
+
+  private _actionHighlightMenuItem(item: HTMLLIElement) {
+    this._actionClearAllHighlightMenuItem();
+    item.classList.add("kuc-dropdown__group__select-menu__highlight");
   }
 
   private _actionUpdateValue(value: string) {
