@@ -1,7 +1,7 @@
 import { Dropdown } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("dropdown", module)
+storiesOf("desktop/dropdown", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const dropdown = new Dropdown({

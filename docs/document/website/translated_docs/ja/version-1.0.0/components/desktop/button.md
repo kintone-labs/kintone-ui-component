@@ -9,7 +9,7 @@ original_id: button
 
 Button は、ボタンを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=button--document" title="button image" width="550px" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-button--document" title="button image" width="550px" height="80px"></iframe>
 
 ---
 

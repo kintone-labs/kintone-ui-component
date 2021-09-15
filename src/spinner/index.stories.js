@@ -1,7 +1,7 @@
 import { Spinner } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("spinner", module)
+storiesOf("desktop/spinner", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const spinner = new Spinner({
