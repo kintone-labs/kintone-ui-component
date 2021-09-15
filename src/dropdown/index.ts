@@ -287,11 +287,11 @@ export class Dropdown extends KucBase {
   }
 
   private _actionShowMenu() {
-    if (this._selectedItemEl === null) return;
-
-    this._selectorVisible = true;
-    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     this._buttonEl.focus();
+    this._selectorVisible = true;
+
+    if (this._selectedItemEl === null) return;
+    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
   }
 
   private _actionHideMenu() {
