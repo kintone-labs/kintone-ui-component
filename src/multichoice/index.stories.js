@@ -2,7 +2,7 @@ import { MultiChoice } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
 // Describe the component name to the first argument storiesOf
-storiesOf("multichoice", module)
+storiesOf("desktop/multichoice", module)
   .add("Base", () => {
     const root = document.createElement("div");
     // Generate component for testing

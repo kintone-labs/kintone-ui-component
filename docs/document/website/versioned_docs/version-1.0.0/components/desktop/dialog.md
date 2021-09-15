@@ -9,7 +9,7 @@ original_id: dialog
 
 The Dialog component displays a dialog box.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=dialog--document" title="dialog image" width="700px" height="300px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-dialog--document" title="dialog image" width="700px" height="300px"></iframe>
 
 ---
 

@@ -9,7 +9,7 @@ original_id: checkbox
 
 Checkbox は、複数選択のチェックボックスを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=checkbox--document" title="checkbox image" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-checkbox--document" title="checkbox image" height="80px"></iframe>
 
 ---
 

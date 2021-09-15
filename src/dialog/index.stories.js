@@ -1,7 +1,7 @@
 import { Dialog } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("dialog", module)
+storiesOf("desktop/dialog", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const dialog = new Dialog({

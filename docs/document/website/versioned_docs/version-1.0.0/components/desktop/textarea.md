@@ -9,7 +9,7 @@ original_id: textarea
 
 The TextArea component allows the user to display multiple lines of text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
 
 ---
 
