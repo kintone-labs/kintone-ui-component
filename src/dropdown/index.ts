@@ -266,17 +266,20 @@ export class Dropdown extends KucBase {
         break;
       }
       case "Escape": {
+        event.preventDefault();
         this._actionHideMenu();
         break;
       }
       case "Home": {
         if (this._selectorVisible) {
+          event.preventDefault();
           this._actionHighlightFirstMenuItem();
         }
         break;
       }
       case "End": {
         if (this._selectorVisible) {
+          event.preventDefault();
           this._actionHighlightLastMenuItem();
         }
         break;
