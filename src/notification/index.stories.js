@@ -1,7 +1,7 @@
 import { Notification } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("notification", module)
+storiesOf("desktop/notification", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const notification = new Notification({

@@ -1,7 +1,7 @@
 import { ReadOnlyTable } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("readonly-table", module)
+storiesOf("desktop/readonly-table", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const readOnlyTable = new ReadOnlyTable({
