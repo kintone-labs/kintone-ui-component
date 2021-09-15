@@ -6,6 +6,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type MobileTextProps = {
   className?: string;
@@ -45,26 +46,8 @@ export class MobileText extends KucBase {
   constructor(props?: MobileTextProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.prefix = props.prefix !== undefined ? props.prefix : this.prefix;
-    this.suffix = props.suffix !== undefined ? props.suffix : this.suffix;
-    this.textAlign =
-      props.textAlign !== undefined ? props.textAlign : this.textAlign;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleFocusInput(event: FocusEvent) {
