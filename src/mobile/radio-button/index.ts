@@ -138,7 +138,7 @@ export class MobileRadioButton extends KucBase {
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
           aria-invalid="${this.error !== ""}"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
         />
@@ -179,7 +179,7 @@ export class MobileRadioButton extends KucBase {
         </div>
         <div
           class="kuc-mobile-radio-button__group__select-menu"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           ?disabled="${this.disabled}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}

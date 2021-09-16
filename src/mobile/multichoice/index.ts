@@ -141,7 +141,7 @@ export class MobileMultiChoice extends KucBase {
             class="kuc-mobile-multi-choice__input-form__select__input"
             id="${this._GUID}-label"
             aria-describedBy="${this._GUID}-error"
-            aria-required=${this.requiredIcon}
+            aria-required="${this.requiredIcon}"
             aria-invalid="${this.error !== ""}"
             ?disabled="${this.disabled}"
             multiple

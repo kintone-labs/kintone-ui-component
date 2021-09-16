@@ -156,16 +156,16 @@ export class MobileCheckbox extends KucBase {
       <label
         for="${this._GUID}-item-${index}"
         class="kuc-mobile-checkbox__group__select-menu__item"
-        ?borderVisible=${this.borderVisible}
+        ?borderVisible="${this.borderVisible}"
       >
         <input
           type="checkbox"
           id="${this._GUID}-item-${index}"
           class="kuc-mobile-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           aria-describedby="${this._GUID}-error}"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           aria-invalid="${!this.error}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
@@ -202,7 +202,7 @@ export class MobileCheckbox extends KucBase {
           class="kuc-mobile-checkbox__group__select-menu ${this.requiredIcon
             ? "kuc-mobile-checkbox__group__select-menu--required"
             : ""}"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           ?disabled="${this.disabled}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
