@@ -104,6 +104,7 @@ storiesOf("desktop/radio-button", module)
     root.appendChild(radioButton);
     return root;
   })
+  // Check for duplicate Item.value validation
   .add("Base4", () => {
     const root = document.createElement("div");
     const radioButton = new RadioButton({
