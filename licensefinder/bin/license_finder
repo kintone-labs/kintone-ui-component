@@ -13,7 +13,7 @@ if type docker >/dev/null; then
     -v "${HOME}/.gradle:/root/.gradle" \
     --workdir /scan \
     licensefinder/license_finder \
-    bash -lc "$(echo license_finder $@)"
+    bash -lc "license_finder $@"
 else
   echo "You do not have docker installed. Please install it:"
   echo "  https://docs.docker.com/engine/install/"
