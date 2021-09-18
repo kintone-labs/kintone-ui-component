@@ -1,0 +1,232 @@
+# ライセンス判断ファイル(for devDependency)
+---
+
+# GNU General Public License（GPL）
+- - :permit
+  - GPL-2.0-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - GPL-3.0-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# GNU Affero General Public License（AGPL）
+- - :restrict
+  - AGPL-3.0-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# European Union Public license （EUPL）
+- - :permit
+  - EUPL-1.1
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Mozilla Public License（MPL）
+- - :permit
+  - MPL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - MPL-1.1
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - MPL-2.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# GNU Lesser General Public License（LGPL）
+- - :permit
+  - LGPL-2.0-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - LGPL-2.1-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - LGPL-3.0-only
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Common Development and Distribution License（CDDL）
+- - :permit
+  - CDDL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Common Public License（CPL）
+- - :permit
+  - CPL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Eclipse Public License（EPL）
+- - :permit
+  - EPL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Yahoo Public License（YPL）
+- - :permit
+  - YPL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - YPL-1.1
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# BSD License
+- - :permit
+  - BSD-3-Clause
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - BSD-2-Clause
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - 0BSD
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Apache License 2.0（ASL）
+- - :permit
+  - Apache-2.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# MIT License
+- - :permit
+  - MIT
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Sendmail License
+- - :permit
+  - Sendmail
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# OpenSSL License/SSLeay License
+- - :permit
+  - OpenSSL
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Code Project Open License（CPOL）
+- - :permit
+  - CPOL-1.02
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# ISC License
+- - :permit
+  - ISC
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# Artistic License
+- - :permit
+  - Artistic-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - Artistic-2.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2014-02-04 07:41:00.000000000 Z
+
+# DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE（WTFPL）
+- - :permit
+  - WTFPL
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2015-07-24 04:29:00.000000000 Z
+
+# zlib License
+- - :permit
+  - Zlib
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2017-03-21 04:56:00.000000000 Z
+
+# Server Side Public License (SSPL)
+- - :restrict
+  - SSPL-1.0
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2019-02-01 04:21:00.000000000 Z
+
+# SIL OPEN FONT LICENSE（OFL）
+- - :permit
+  - OFL-1.1
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2020-05-20 10:04:00.000000000 Z
+
+# Unlicense
+- - :permit
+  - Unlicense
+  - :who: OSPO
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2020-10-08 11:20:00.000000000 Z
