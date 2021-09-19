@@ -85,7 +85,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     if (!Number.isInteger(this.year)) {
       this.year = 2021;
     }
-    for (let i = this.year - 100; i < this.year + 100; i++) {
+    for (let i = this.year - 100; i <= this.year + 100; i++) {
       yearSelectOptions.push(i);
     }
     return yearSelectOptions;
