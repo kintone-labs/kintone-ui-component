@@ -324,14 +324,21 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           outline: none;
           width: 38px;
           height: 32px;
-          padding: 0;
+          padding: 1px;
           margin: 0;
+          text-align: center;
+        }
+        .kuc-base-datetime-calendar-header__group__button:focus {
+          padding: 1px;
+          border: 1px solid #e3e7e8;
+          border-radius: 4px;
+          outline: none;
         }
         .kuc-base-datetime-calendar-header__group__button-icon {
           vertical-align: middle;
         }
         .kuc-base-datetime-calendar-header__group__center {
-          width: 100%;
+          width: 196px;
           text-align: center;
         }
       </style>
