@@ -11,7 +11,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSelectElement;
 
       expect(yearSelectEl.value).to.equal("2021");
-      expect(yearSelectEl.options.length).to.equal(200);
+      expect(yearSelectEl.options.length).to.equal(201);
     });
 
     it("should be 2020 when assigning 2020 on constructor", async () => {
