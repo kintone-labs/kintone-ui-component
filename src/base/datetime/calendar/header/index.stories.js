@@ -6,18 +6,9 @@ storiesOf("base/datetime/calendar/header", module)
     const root = document.createElement("div");
 
     const calendarHeaderEN = new BaseDateTimeCalendarHeader({ language: "en" });
-    calendarHeaderEN.addEventListener(
-      "kuc:calendar-header-click-previous-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
-    calendarHeaderEN.addEventListener(
-      "kuc:calendar-header-click-next-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
+    calendarHeaderEN.addEventListener("kuc:calendar-header-change", event => {
+      console.log([event.type, event.detail.value]);
+    });
     root.appendChild(calendarHeaderEN);
     return root;
   })
@@ -28,18 +19,9 @@ storiesOf("base/datetime/calendar/header", module)
       language: "zh",
       month: 10
     });
-    calendarHeaderZH.addEventListener(
-      "kuc:calendar-header-click-previous-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
-    calendarHeaderZH.addEventListener(
-      "kuc:calendar-header-click-next-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
+    calendarHeaderZH.addEventListener("kuc:calendar-header-change", event => {
+      console.log([event.type, event.detail.value]);
+    });
     root.appendChild(calendarHeaderZH);
     return root;
   })
@@ -51,18 +33,9 @@ storiesOf("base/datetime/calendar/header", module)
       month: 9,
       year: 2022
     });
-    calendarHeaderJA.addEventListener(
-      "kuc:calendar-header-click-previous-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
-    calendarHeaderJA.addEventListener(
-      "kuc:calendar-header-click-next-month",
-      event => {
-        console.log([event.type, event]);
-      }
-    );
+    calendarHeaderJA.addEventListener("kuc:calendar-header-change", event => {
+      console.log([event.type, event.detail.value]);
+    });
     root.appendChild(calendarHeaderJA);
     return root;
   });

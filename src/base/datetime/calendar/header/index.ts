@@ -1,5 +1,9 @@
-import { html, property, svg } from "lit-element";
-import { KucBase, dispatchCustomEvent } from "../../../kuc-base";
+import { html, property, svg, query } from "lit-element";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  CustomEventDetail
+} from "../../../kuc-base";
 
 type BaseDateTimeCalendarHeaderProps = {
   language?: "en" | "zh" | "ja";
@@ -11,6 +15,12 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
+
+  @query(".kuc-base-datetime-calendar-header__group__year")
+  private _yearSelectEl: HTMLSelectElement | undefined;
+
+  @query(".kuc-base-datetime-calendar-header__group__month")
+  private _monthSelectEl: HTMLSelectElement | undefined;
 
   constructor(props?: BaseDateTimeCalendarHeaderProps) {
     super();
@@ -45,12 +55,49 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _handleClickCalendarHeaderButtonPreviousMonth(event: MouseEvent) {
     event.stopPropagation();
-    dispatchCustomEvent(this, "kuc:calendar-header-click-previous-month");
+    if (!this._monthSelectEl || !this._yearSelectEl) return;
+    const monthSelectedIndex = this._monthSelectEl.selectedIndex;
+    const yearSelectedIndex = this._yearSelectEl.selectedIndex;
+    if (monthSelectedIndex === 0) {
+      this._monthSelectEl.selectedIndex = 11;
+      this._yearSelectEl.selectedIndex = yearSelectedIndex - 1;
+    } else {
+      this._monthSelectEl.selectedIndex = monthSelectedIndex - 1;
+    }
+    this._handleChangeCalendarHeader();
   }
 
   private _handleClickCalendarHeaderButtonNextMonth(event: MouseEvent) {
     event.stopPropagation();
-    dispatchCustomEvent(this, "kuc:calendar-header-click-next-month");
+    if (!this._monthSelectEl || !this._yearSelectEl) return;
+    const monthSelectedIndex = this._monthSelectEl.selectedIndex;
+    const yearSelectedIndex = this._yearSelectEl.selectedIndex;
+    if (monthSelectedIndex === 11) {
+      this._monthSelectEl.selectedIndex = 0;
+      this._yearSelectEl.selectedIndex = yearSelectedIndex + 1;
+    } else {
+      this._monthSelectEl.selectedIndex = monthSelectedIndex + 1;
+    }
+    this._handleChangeCalendarHeader();
+  }
+
+  private _handleChangeCalendarHeaderYearSelect(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this._handleChangeCalendarHeader();
+  }
+
+  private _handleChangeCalendarHeaderMonthSelect(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this._handleChangeCalendarHeader();
+  }
+
+  private _handleChangeCalendarHeader() {
+    const year = this._yearSelectEl?.value;
+    const month = this._monthSelectEl?.value;
+    const detail: CustomEventDetail = { value: `${year}-${month}` };
+    dispatchCustomEvent(this, "kuc:calendar-header-change", detail);
   }
 
   private _getYearSelectOptions() {
@@ -128,7 +175,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getYearTemplate() {
     return html`
-      <select class="kuc-base-datetime-calendar-header__group__year">
+      <select
+        class="kuc-base-datetime-calendar-header__group__year"
+        @change="${this._handleChangeCalendarHeaderYearSelect}"
+      >
         ${this._getYearSelectOptions().map((year: number) => {
           return html`
             <option ?selected="${this.year === year}" value="${year}"
@@ -144,7 +194,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getMonthTemplate() {
     return html`
-      <select class="kuc-base-datetime-calendar-header__group__month">
+      <select
+        class="kuc-base-datetime-calendar-header__group__month"
+        @change="${this._handleChangeCalendarHeaderMonthSelect}"
+      >
         ${this._getMonthSelectOptions().map((month: string, index: number) => {
           return html`
             <option ?selected="${this.month === index + 1}" value="${index + 1}"
@@ -194,10 +247,9 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   }
 
   private _getCalendarHeaderButtonIconSvgTemplate(type: string) {
-    return svg`
-      ${
-        type === "previous-month"
-          ? svg`
+    switch (type) {
+      case "previous-month":
+        return svg`
         <svg
           class="kuc-base-datetime-calendar-header__group__button-icon"
           width="9"
@@ -212,8 +264,9 @@ export class BaseDateTimeCalendarHeader extends KucBase {
             d="M3.06077 7L8.53044 1.53033L7.46978 0.469666L0.939453 7L7.46978 13.5303L8.53044 12.4697L3.06077 7Z" 
             fill="#888888"
           />
-        </svg>`
-          : svg`
+        </svg>`;
+      case "next-month":
+        return svg`
         <svg
           class="kuc-base-datetime-calendar-header__group__button-icon"
           width="9" 
@@ -228,8 +281,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
             d="M5.93923 7L0.469557 1.53033L1.53022 0.469666L8.06055 7L1.53022 13.5303L0.469557 12.4697L5.93923 7Z"
             fill="#888888"
           />
-        </svg>`
-      }`;
+        </svg>`;
+      default:
+        return "";
+    }
   }
 
   private _getStyleTagTemplate() {
@@ -267,6 +322,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           border: none;
           cursor: pointer;
           outline: none;
+          width: 38px;
+          height: 32px;
+          padding: 0;
+          margin: 0;
         }
         .kuc-base-datetime-calendar-header__group__button-icon {
           vertical-align: middle;
