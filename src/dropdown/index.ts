@@ -14,6 +14,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type Item = {
   label?: string;
@@ -32,6 +33,8 @@ type DropdownProps = {
 };
 
 export class Dropdown extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
@@ -66,21 +69,8 @@ export class Dropdown extends KucBase {
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getSelectedLabel() {
