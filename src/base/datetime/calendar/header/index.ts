@@ -4,6 +4,7 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
+import { en, zh, ja } from "../../resource/locale";
 
 type BaseDateTimeCalendarHeaderProps = {
   language?: "en" | "zh" | "ja";
@@ -94,69 +95,31 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthSelectOptions() {
     switch (this.language) {
       case "en":
-        return [
-          "JANUARY",
-          "FEBRUARY",
-          "MARCH",
-          "APRIL",
-          "MAY",
-          "JUNE",
-          "JULY",
-          "AUGUST",
-          "SEPTEMBER",
-          "OCTOBER",
-          "NOVEMBER",
-          "DECEMBER"
-        ];
+        return en.MONTHS_SELECT;
       case "zh":
-        return [
-          "1月",
-          "2月",
-          "3月",
-          "4月",
-          "5月",
-          "6月",
-          "7月",
-          "8月",
-          "9月",
-          "10月",
-          "11月",
-          "12月"
-        ];
+        return zh.MONTHS_SELECT;
       case "ja":
-        return [
-          "1月",
-          "2月",
-          "3月",
-          "4月",
-          "5月",
-          "6月",
-          "7月",
-          "8月",
-          "9月",
-          "10月",
-          "11月",
-          "12月"
-        ];
+        return ja.MONTHS_SELECT;
       default:
-        return [
-          "JANUARY",
-          "FEBRUARY",
-          "MARCH",
-          "APRIL",
-          "MAY",
-          "JUNE",
-          "JULY",
-          "AUGUST",
-          "SEPTEMBER",
-          "OCTOBER",
-          "NOVEMBER",
-          "DECEMBER"
-        ];
+        return en.MONTHS_SELECT;
+    }
+  }
+
+  private _getYearSelectPostfix() {
+    switch (this.language) {
+      case "en":
+        return en.YEAR_SELECT_POSTFIX;
+      case "zh":
+        return zh.YEAR_SELECT_POSTFIX;
+      case "ja":
+        return ja.YEAR_SELECT_POSTFIX;
+      default:
+        return en.YEAR_SELECT_POSTFIX;
     }
   }
 
   private _getYearTemplate() {
+    const yearSelectPostfix = this._getYearSelectPostfix();
     return html`
       <select
         class="kuc-base-datetime-calendar-header__group__year"
@@ -165,9 +128,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         ${this._getYearSelectOptions().map((year: number) => {
           return html`
             <option ?selected="${this.year === year}" value="${year}"
-              >${year}${this.language === "zh" || this.language === "ja"
-                ? "年"
-                : ""}</option
+              >${year}${yearSelectPostfix}</option
             >
           `;
         })}
