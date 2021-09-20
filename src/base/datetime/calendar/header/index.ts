@@ -17,7 +17,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @query(".kuc-base-datetime-calendar-header__group__month")
   private _monthSelectEl: HTMLSelectElement | undefined;
 
-  private locale = en;
+  private _locale = en;
 
   private _getLocale(language: string) {
     switch (language) {
@@ -34,7 +34,8 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
-      propName === "language" && (this.locale = this._getLocale(this.language));
+      propName === "language" &&
+        (this._locale = this._getLocale(this.language));
     });
     super.update(changedProperties);
   }
@@ -98,7 +99,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   }
 
   private _getYearTemplate() {
-    const yearSelectPostfix = this.locale.YEAR_SELECT_POSTFIX;
+    const yearSelectPostfix = this._locale.YEAR_SELECT_POSTFIX;
     return html`
       <select
         class="kuc-base-datetime-calendar-header__group__year"
@@ -121,7 +122,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         class="kuc-base-datetime-calendar-header__group__month"
         @change="${this._handleChangeCalendarHeaderMonthSelect}"
       >
-        ${this.locale.MONTHS_SELECT.map((month: string, index: number) => {
+        ${this._locale.MONTHS_SELECT.map((month: string, index: number) => {
           return html`
             <option ?selected="${this.month === index + 1}" value="${index + 1}"
               >${month}</option
