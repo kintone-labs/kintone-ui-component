@@ -1,7 +1,7 @@
 import { RadioButton } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("radio-button", module)
+storiesOf("desktop/radio-button", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const radioButton = new RadioButton({
@@ -104,6 +104,7 @@ storiesOf("radio-button", module)
     root.appendChild(radioButton);
     return root;
   })
+  // Check for duplicate Item.value validation
   .add("Base4", () => {
     const root = document.createElement("div");
     const radioButton = new RadioButton({

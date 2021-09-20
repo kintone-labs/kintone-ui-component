@@ -87,7 +87,7 @@ export class MultiChoice extends KucBase {
           aria-labelledby="${this._GUID}-label"
           ?disabled="${this.disabled}"
           tabindex="${this.disabled ? "-1" : "0"}"
-          @keydown=${this._handleKeyDownMultiChoice}
+          @keydown="${this._handleKeyDownMultiChoice}"
         >
           ${this.items.map((item, number) =>
             this._getMenuItemTemplate(item, number)
@@ -251,13 +251,13 @@ export class MultiChoice extends KucBase {
       <div
         class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
-        aria-checked=${this.value.some(val => val === item.value)}
-        aria-required=${this.requiredIcon}
-        value=${item.value !== undefined ? item.value : ""}
+        aria-checked="${this.value.some(val => val === item.value)}"
+        aria-required="${this.requiredIcon}"
+        value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
-        @mousedown=${this._handleMouseDownMultiChoiceItem}
-        @mouseover=${this._handleMouseOverMultiChoiceItem}
-        @mouseleave=${this._handleMouseLeaveMultiChoiceItem}
+        @mousedown="${this._handleMouseDownMultiChoiceItem}"
+        @mouseover="${this._handleMouseOverMultiChoiceItem}"
+        @mouseleave="${this._handleMouseLeaveMultiChoiceItem}"
       >
         ${this._getMultiChoiceCheckedIconSvgTemplate(
           this.disabled,
@@ -375,7 +375,6 @@ export class MultiChoice extends KucBase {
           overflow-y: auto;
           overflow-x: hidden;
           max-height: 134px;
-          display: table;
           width: 100%;
         }
         .kuc-multi-choice__group__menu:not([disabled]):focus {
