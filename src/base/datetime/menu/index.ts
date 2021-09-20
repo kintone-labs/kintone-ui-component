@@ -36,6 +36,12 @@ export class BaseDateTimeMenu extends KucBase {
       : "";
   }
 
+  public getHighlightValue() {
+    return this._highlightItemEl
+      ? this._highlightItemEl.getAttribute("value")
+      : "";
+  }
+
   public highlightFirstItem() {
     if (this._highlightItemEl) {
       this._highlightItemEl.classList.remove(

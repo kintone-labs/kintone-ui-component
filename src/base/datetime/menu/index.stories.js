@@ -1,4 +1,5 @@
 import "./index.ts";
+import { html } from "lit-html";
 
 export default {
   title: "base/datetime/menu",
@@ -26,25 +27,41 @@ export default {
 };
 
 const Template = ({ selectedValue, items }) => {
-  const rootEl = document.createElement("div");
-  const actionGroupEl = document.createElement("div");
-  rootEl.appendChild(actionGroupEl);
-  const menuContainerEl = document.createElement("div");
-  rootEl.appendChild(menuContainerEl);
-
-  const menuEl = document.createElement("kuc-base-datetime-menu");
-  menuEl.items = items;
-  menuEl.selectedValue = selectedValue;
-  menuEl.addEventListener("kuc:calendar-menu-click", event => {
-    menuEl.selectedValue = event.detail.value;
-  });
-  menuContainerEl.appendChild(menuEl);
-
-  const actions = createActions(menuEl);
-  actionGroupEl.appendChild(actions);
-
-  return rootEl;
+  return html`
+    <kuc-base-datetime-menu .items=${items} .selectedValue=${selectedValue}>
+    </kuc-base-datetime-menu>
+  `;
 };
+
+document.addEventListener("kuc:calendar-menu-click", event => {
+  const root = document.getElementsByTagName("kuc-base-datetime-menu")[0];
+  root.setAttribute("selectedValue", event.detail.value);
+});
+
+document.addEventListener("keydown", event => {
+  const root = document.getElementsByTagName("kuc-base-datetime-menu")[0];
+  switch (event.key) {
+    case "Up":
+    case "ArrowUp": {
+      event.preventDefault();
+      root.highlightPrevItem();
+      break;
+    }
+    case "Down":
+    case "ArrowDown": {
+      event.preventDefault();
+      root.highlightNextItem();
+      break;
+    }
+    case "Enter": {
+      event.preventDefault();
+      root.setAttribute("selectedValue", root.getHighlightValue());
+      break;
+    }
+    default:
+      break;
+  }
+});
 
 export const base = Template.bind({});
 base.args = {
@@ -63,51 +80,4 @@ base.args = {
     { value: "10", label: "NOVEMBER" },
     { value: "11", label: "DECEMBER" }
   ]
-};
-
-const createActionsEl = actions => {
-  const actionsEl = document.createElement("div");
-  actions.forEach(item => {
-    const btnEl = document.createElement("button");
-    btnEl.textContent = item.text;
-    btnEl.onclick = item.action;
-    actionsEl.appendChild(btnEl);
-  });
-  return actionsEl;
-};
-
-const createActions = menuEl => {
-  const actions = createActionsEl([
-    {
-      text: "Open/Close",
-      action: () => {
-        menuEl.hidden = !menuEl.hidden;
-      }
-    },
-    {
-      text: "Set Highlight First Item",
-      action: () => {
-        menuEl.highlightFirstItem();
-      }
-    },
-    {
-      text: "Next Item",
-      action: () => {
-        menuEl.highlightNextItem();
-      }
-    },
-    {
-      text: "Highlight Last Item",
-      action: () => {
-        menuEl.highlightLastItem();
-      }
-    },
-    {
-      text: "Previous Item",
-      action: () => {
-        menuEl.highlightPrevItem();
-      }
-    }
-  ]);
-  return actions;
 };
