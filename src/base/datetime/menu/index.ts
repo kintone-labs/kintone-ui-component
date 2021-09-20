@@ -178,7 +178,7 @@ export class BaseDateTimeMenu extends KucBase {
           margin: 0;
           padding: 8px 0;
           border: 1px solid #e3e7e8;
-          background-color: #fff;
+          background-color: #ffffff;
           list-style: none;
           line-height: 1;
           -webkit-tap-highlight-color: transparent;
@@ -190,7 +190,7 @@ export class BaseDateTimeMenu extends KucBase {
           box-sizing: border-box;
           width: 100%;
           padding: 8px 16px 8px 25px;
-          color: #333;
+          color: #333333;
           cursor: pointer;
           -webkit-tap-highlight-color: initial;
           text-align: left;
