@@ -1,6 +1,7 @@
 import { html, property, query, svg } from "lit-element";
 import {
   KucBase,
+  generateGUID,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../kuc-base";
@@ -23,14 +24,16 @@ export class BaseDateTimeMenu extends KucBase {
   @query(".kuc-base-datetime-menu__menu--highlight")
   private _highlightItemEl!: HTMLLIElement;
 
+  private _GUID = generateGUID();
+
   public getHighlightItemEl() {
     return this._highlightItemEl;
   }
 
   public getHighlightItemId() {
     return this._highlightItemEl
-      ? this._highlightItemEl.getAttribute("value")
-      : null;
+      ? this._highlightItemEl.getAttribute("id")
+      : "";
   }
 
   public highlightFirstItem() {
@@ -97,7 +100,7 @@ export class BaseDateTimeMenu extends KucBase {
     const value = itemEl.getAttribute("value");
 
     const detail: CustomEventDetail = { value: value ? value : "" };
-    dispatchCustomEvent(this, "click", detail);
+    dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
   }
 
   private _handleMouseOverItem(event: MouseEvent) {
@@ -117,6 +120,7 @@ export class BaseDateTimeMenu extends KucBase {
         role="menuitemradio"
         aria-checked="${this.selectedValue === item.value}"
         title="${item.label || ""}"
+        id="${this._GUID}-menuitem-${index}"
         value="${item.value !== undefined ? item.value : ""}"
         @mouseover=${this._handleMouseOverItem}
         @mouseleave=${this._handleMouseLeaveItem}
