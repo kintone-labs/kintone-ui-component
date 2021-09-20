@@ -1,16 +1,10 @@
-import { html, property, svg, query } from "lit-element";
+import { html, property, svg, query, PropertyValues } from "lit-element";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
 import { en, zh, ja } from "../../resource/locale";
-
-type BaseDateTimeCalendarHeaderProps = {
-  language?: "en" | "zh" | "ja";
-  month?: number;
-  year?: number;
-};
 
 export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: String }) language = "en";
@@ -23,18 +17,29 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @query(".kuc-base-datetime-calendar-header__group__month")
   private _monthSelectEl: HTMLSelectElement | undefined;
 
-  constructor(props?: BaseDateTimeCalendarHeaderProps) {
-    super();
-    if (!props) {
-      return;
+  private locale = en;
+
+  private _getLocale(language: string) {
+    switch (language) {
+      case "en":
+        return en;
+      case "zh":
+        return zh;
+      case "ja":
+        return ja;
+      default:
+        return en;
     }
-    this.language =
-      props.language !== undefined ? props.language : this.language;
-    this.month = props.month !== undefined ? props.month : this.month;
-    this.year = props.year !== undefined ? props.year : this.year;
   }
 
-  private _handleClickCalendarHeaderButtonPreviousMonth(event: MouseEvent) {
+  update(changedProperties: PropertyValues) {
+    changedProperties.forEach((_oldValue, propName) => {
+      propName === "language" && (this.locale = this._getLocale(this.language));
+    });
+    super.update(changedProperties);
+  }
+
+  private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     if (!this._monthSelectEl || !this._yearSelectEl) return;
     const monthSelectedIndex = this._monthSelectEl.selectedIndex;
@@ -48,7 +53,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     this._handleChangeCalendarHeader();
   }
 
-  private _handleClickCalendarHeaderButtonNextMonth(event: MouseEvent) {
+  private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     if (!this._monthSelectEl || !this._yearSelectEl) return;
     const monthSelectedIndex = this._monthSelectEl.selectedIndex;
@@ -92,34 +97,8 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     return yearSelectOptions;
   }
 
-  private _getMonthSelectOptions() {
-    switch (this.language) {
-      case "en":
-        return en.MONTHS_SELECT;
-      case "zh":
-        return zh.MONTHS_SELECT;
-      case "ja":
-        return ja.MONTHS_SELECT;
-      default:
-        return en.MONTHS_SELECT;
-    }
-  }
-
-  private _getYearSelectPostfix() {
-    switch (this.language) {
-      case "en":
-        return en.YEAR_SELECT_POSTFIX;
-      case "zh":
-        return zh.YEAR_SELECT_POSTFIX;
-      case "ja":
-        return ja.YEAR_SELECT_POSTFIX;
-      default:
-        return en.YEAR_SELECT_POSTFIX;
-    }
-  }
-
   private _getYearTemplate() {
-    const yearSelectPostfix = this._getYearSelectPostfix();
+    const yearSelectPostfix = this.locale.YEAR_SELECT_POSTFIX;
     return html`
       <select
         class="kuc-base-datetime-calendar-header__group__year"
@@ -142,7 +121,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         class="kuc-base-datetime-calendar-header__group__month"
         @change="${this._handleChangeCalendarHeaderMonthSelect}"
       >
-        ${this._getMonthSelectOptions().map((month: string, index: number) => {
+        ${this.locale.MONTHS_SELECT.map((month: string, index: number) => {
           return html`
             <option ?selected="${this.month === index + 1}" value="${index + 1}"
               >${month}</option
@@ -171,9 +150,9 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           aria-label="previous month"
           type="button"
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button-previous-month"
-          @click=${this._handleClickCalendarHeaderButtonPreviousMonth}
+          @click=${this._handleClickCalendarPrevMonthBtn}
         >
-          ${this._getCalendarHeaderButtonPreviousMonthIconSvgTemplate()}
+          ${this._getLeftArrowIconSvgTemplate()}
         </button>
         <span class="kuc-base-datetime-calendar-header__group__center"
           >${this._getYearMonthTemplate()}</span
@@ -182,15 +161,15 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           aria-label="next month"
           type="button"
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button-next-month"
-          @click=${this._handleClickCalendarHeaderButtonNextMonth}
+          @click=${this._handleClickCalendarNextMonthBtn}
         >
-          ${this._getCalendarHeaderButtonNextMonthIconSvgTemplate()}
+          ${this._getRightArrowIconSvgTemplate()}
         </button>
       </div>
     `;
   }
 
-  private _getCalendarHeaderButtonPreviousMonthIconSvgTemplate() {
+  private _getLeftArrowIconSvgTemplate() {
     return svg`
       <svg
         class="kuc-base-datetime-calendar-header__group__button-icon"
@@ -209,7 +188,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       </svg>`;
   }
 
-  private _getCalendarHeaderButtonNextMonthIconSvgTemplate() {
+  private _getRightArrowIconSvgTemplate() {
     return svg`
       <svg
         class="kuc-base-datetime-calendar-header__group__button-icon"
