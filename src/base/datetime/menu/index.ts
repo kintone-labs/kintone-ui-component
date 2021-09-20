@@ -23,11 +23,31 @@ export class BaseDateTimeMenu extends KucBase {
   @query(".kuc-base-datetime-menu__menu--highlight")
   private _highlightItemEl!: HTMLLIElement;
 
+  public getHighlightItemEl() {
+    return this._highlightItemEl;
+  }
+
+  public getHighlightItemId() {
+    return this._highlightItemEl
+      ? this._highlightItemEl.getAttribute("value")
+      : null;
+  }
+
   public highlightFirstItem() {
+    if (this._highlightItemEl) {
+      this._highlightItemEl.classList.remove(
+        "kuc-base-datetime-menu__menu--highlight"
+      );
+    }
     this._firstItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
   public highlightLastItem() {
+    if (this._highlightItemEl) {
+      this._highlightItemEl.classList.remove(
+        "kuc-base-datetime-menu__menu--highlight"
+      );
+    }
     this._lastItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
@@ -36,7 +56,6 @@ export class BaseDateTimeMenu extends KucBase {
       this.highlightFirstItem();
       return;
     }
-
     const nextItemEl = this._highlightItemEl.nextElementSibling;
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
@@ -49,7 +68,6 @@ export class BaseDateTimeMenu extends KucBase {
       this.highlightLastItem();
       return;
     }
-
     const prevItemEl = this._highlightItemEl.previousElementSibling;
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
@@ -98,6 +116,7 @@ export class BaseDateTimeMenu extends KucBase {
         class="kuc-base-datetime-menu__menu__item"
         role="menuitemradio"
         aria-checked="${this.selectedValue === item.value}"
+        title="${item.label || ""}"
         value="${item.value !== undefined ? item.value : ""}"
         @mouseover=${this._handleMouseOverItem}
         @mouseleave=${this._handleMouseLeaveItem}

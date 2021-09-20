@@ -32,6 +32,18 @@ const createActions = menuEl => {
       action: () => {
         menuEl.highlightPrevItem();
       }
+    },
+    {
+      text: "Highlight First Item",
+      action: () => {
+        menuEl.highlightFirstItem();
+      }
+    },
+    {
+      text: "Highlight Last Item",
+      action: () => {
+        menuEl.highlightLastItem();
+      }
     }
   ]);
   return actions;
