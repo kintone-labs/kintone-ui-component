@@ -12,8 +12,8 @@ type Item = {
 };
 
 export class BaseDateTimeMenu extends KucBase {
-  @property({ type: Array }) items: Item[] = [];
   @property({ type: String }) selectedValue: string = "";
+  @property({ type: Array }) items: Item[] = [];
 
   @query(".kuc-base-datetime-menu__menu__item")
   private _firstItemEl!: HTMLLIElement;
