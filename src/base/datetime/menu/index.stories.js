@@ -27,41 +27,64 @@ export default {
 };
 
 const Template = ({ selectedValue, items }) => {
+  const _handleClickBtn = () => {
+    const _menuEl = document.querySelector("kuc-base-datetime-menu");
+    _menuEl.hidden = !_menuEl.hidden;
+  };
+
+  const _handleKeydownBtn = event => {
+    event.preventDefault();
+    const _menuEl = document.querySelector("kuc-base-datetime-menu");
+    switch (event.key) {
+      case "ArrowUp": {
+        _menuEl.highlightPrevItem();
+        break;
+      }
+      case "ArrowDown": {
+        _menuEl.highlightNextItem();
+        break;
+      }
+      case "Home": {
+        _menuEl.highlightFirstItem();
+        break;
+      }
+      case "End": {
+        _menuEl.highlightLastItem();
+        break;
+      }
+      case "Enter": {
+        _changeValue(_menuEl.getHighlightValue());
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  const _handleClickCalendarMenu = event => {
+    _changeValue(event.detail.value);
+  };
+
+  const _changeValue = value => {
+    const _menuEl = document.querySelector("kuc-base-datetime-menu");
+    _menuEl.setAttribute("selectedValue", value);
+
+    const _btn = document.querySelector("button");
+    _btn.textContent = value;
+  };
+
   return html`
-    <kuc-base-datetime-menu .items=${items} .selectedValue=${selectedValue}>
+    <button @click="${_handleClickBtn}" @keydown="${_handleKeydownBtn}">
+      ${selectedValue}
+    </button>
+    <kuc-base-datetime-menu
+      .items="${items}"
+      .selectedValue="${selectedValue}"
+      @kuc:calendar-menu-click="${_handleClickCalendarMenu}"
+    >
     </kuc-base-datetime-menu>
   `;
 };
-
-document.addEventListener("kuc:calendar-menu-click", event => {
-  const root = document.getElementsByTagName("kuc-base-datetime-menu")[0];
-  root.setAttribute("selectedValue", event.detail.value);
-});
-
-document.addEventListener("keydown", event => {
-  const root = document.getElementsByTagName("kuc-base-datetime-menu")[0];
-  switch (event.key) {
-    case "Up":
-    case "ArrowUp": {
-      event.preventDefault();
-      root.highlightPrevItem();
-      break;
-    }
-    case "Down":
-    case "ArrowDown": {
-      event.preventDefault();
-      root.highlightNextItem();
-      break;
-    }
-    case "Enter": {
-      event.preventDefault();
-      root.setAttribute("selectedValue", root.getHighlightValue());
-      break;
-    }
-    default:
-      break;
-  }
-});
 
 export const base = Template.bind({});
 base.args = {
