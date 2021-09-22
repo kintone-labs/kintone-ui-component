@@ -10,7 +10,7 @@ export class MobileNotification extends KucBase {
   @property({ type: String }) text = "";
 
   @state()
-  private _notificationTitleRole = "";
+  private _isOpened = false;
 
   constructor(props?: MobileNotificationProps) {
     super();
@@ -44,15 +44,13 @@ export class MobileNotification extends KucBase {
 
   open() {
     document.body.appendChild(this);
-    this.classList.add("kuc-mobile-notification-fadein");
-    this.classList.remove("kuc-mobile-notification-fadeout");
-    this._notificationTitleRole = "alert";
+    this.className = "kuc-notification-fadein";
+    this._isOpened = true;
   }
 
   close() {
-    this.classList.add("kuc-mobile-notification-fadeout");
-    this.classList.remove("kuc-mobile-notification-fadein");
-    this._notificationTitleRole = "";
+    this._isOpened = false;
+    this.className = "kuc-notification-fadeout";
   }
 
   render() {
@@ -62,7 +60,7 @@ export class MobileNotification extends KucBase {
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
-          role="${this._notificationTitleRole}"
+          role="${this._isOpened ? "alert" : ""}"
         ><!---->${this.text}</pre>
         <button
           class="kuc-mobile-notification__notification__closeButton"
