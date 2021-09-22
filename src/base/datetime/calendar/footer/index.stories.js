@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "lit";
 import { BaseDateTimeCalendarFooter } from "./index.ts";
 
 export default {
