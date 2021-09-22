@@ -9,7 +9,7 @@ original_id: readonly-table
 
 The ReadOnlyTable component allows the user to display a read table on the Kintone details screen.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
 
 ---
 

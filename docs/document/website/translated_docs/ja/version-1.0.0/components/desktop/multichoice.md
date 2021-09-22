@@ -9,7 +9,7 @@ original_id: multichoice
 
 MultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=multichoice--document" title="multichoice image" height="130px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-multichoice--document" title="multichoice image" height="130px"></iframe>
 
 ---
 

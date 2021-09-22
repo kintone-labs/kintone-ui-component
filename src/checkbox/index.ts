@@ -151,11 +151,11 @@ export class Checkbox extends KucBase {
         <input
           type="checkbox"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           id="${this._GUID}-item-${index}"
           class="kuc-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
           @focus="${this._handleFocusInput}"
@@ -203,7 +203,7 @@ export class Checkbox extends KucBase {
         </div>
         <div
           class="kuc-checkbox__group__select-menu"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           itemLayout="${this.itemLayout}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}

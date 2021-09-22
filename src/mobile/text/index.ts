@@ -70,13 +70,13 @@ export class MobileText extends KucBase {
       <label
         class="kuc-mobile-text__label"
         for="${this._GUID}-label"
-        ?hidden=${!this.label}
+        ?hidden="${!this.label}"
       >
         <span class="kuc-mobile-text__label__text">${this.label}</span
         ><!--
         --><span
           class="kuc-mobile-text__label__required-icon"
-          ?hidden=${!this.requiredIcon}
+          ?hidden="${!this.requiredIcon}"
           >*</span
         >
       </label>
@@ -89,14 +89,14 @@ export class MobileText extends KucBase {
         <input
           class="kuc-mobile-text__input-form__input"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
-          textAlign=${this.textAlign}
+          placeholder="${this.placeholder}"
+          textAlign="${this.textAlign}"
           type="text"
-          .value=${this.value}
+          .value="${this.value}"
           ?disabled="${this.disabled}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
         />
@@ -110,7 +110,7 @@ export class MobileText extends KucBase {
         class="kuc-mobile-text__error"
         id="${this._GUID}-error"
         role="alert"
-        ?hidden=${!this.error}
+        ?hidden="${!this.error}"
       >
         ${this.error}
       </div>

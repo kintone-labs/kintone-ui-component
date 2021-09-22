@@ -64,13 +64,13 @@ export class MobileTextArea extends KucBase {
       <label
         class="kuc-mobile-textarea__label"
         for="${this._GUID}-label"
-        ?hidden=${!this.label}
+        ?hidden="${!this.label}"
       >
         <span class="kuc-mobile-textarea__label__text">${this.label}</span
         ><!--
         --><span
           class="kuc-mobile-textarea__label__required-icon"
-          ?hidden=${!this.requiredIcon}
+          ?hidden="${!this.requiredIcon}"
           >*</span
         >
       </label>
@@ -78,12 +78,12 @@ export class MobileTextArea extends KucBase {
         <textarea
           class="kuc-mobile-textarea__form__textarea"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
+          placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
-          .value=${this.value}
+          .value="${this.value}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
         /></textarea>
@@ -92,7 +92,7 @@ export class MobileTextArea extends KucBase {
         class="kuc-mobile-textarea__error"
         id="${this._GUID}-error"
         role="alert"
-        ?hidden=${!this.error}
+        ?hidden="${!this.error}"
       >
         ${this.error}
       </div>

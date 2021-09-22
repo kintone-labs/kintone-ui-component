@@ -13,6 +13,8 @@ type ButtonProps = {
 };
 
 export class Button extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) text = "";
   @property({ type: String }) type = "normal";
   @property({ type: Boolean }) disabled = false;
