@@ -2,7 +2,7 @@ import {
   html,
   property,
   PropertyValues,
-  internalProperty,
+  state,
   queryAll,
   query,
   svg
@@ -46,7 +46,7 @@ export class Dropdown extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
 
-  @internalProperty()
+  @state()
   private _selectorVisible = false;
 
   @query(".kuc-dropdown__group")
