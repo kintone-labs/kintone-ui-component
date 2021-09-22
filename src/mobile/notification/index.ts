@@ -1,4 +1,5 @@
-import { html, svg, property, query } from "lit-element";
+import { html, svg } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
@@ -10,16 +11,25 @@ export class MobileNotification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
 
-  @query(".kuc-mobile-notification__notification__title")
-  private _notificationTitleEl!: HTMLParagraphElement;
+  @state()
+  private _notificationTitleRole = "";
 
   constructor(props?: MobileNotificationProps) {
     super();
 
+<<<<<<< HEAD
     this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+=======
+    if (!props) {
+      return;
+    }
+    this.className =
+      props.className !== undefined ? props.className : this.className;
+    this.text = props.text !== undefined ? props.text : this.text;
+>>>>>>> a9524227 (update lit for mobile components)
   }
 
   private _handleClickCloseButton(event: MouseEvent) {
@@ -42,19 +52,16 @@ export class MobileNotification extends KucBase {
   }
 
   open() {
+    document.body.appendChild(this);
     this.classList.add("kuc-mobile-notification-fadein");
     this.classList.remove("kuc-mobile-notification-fadeout");
-    this._notificationTitleEl.setAttribute("role", "alert");
+    this._notificationTitleRole = "alert";
   }
 
   close() {
     this.classList.add("kuc-mobile-notification-fadeout");
     this.classList.remove("kuc-mobile-notification-fadein");
-    this._notificationTitleEl.removeAttribute("role");
-  }
-
-  firstUpdated() {
-    document.body.appendChild(this);
+    this._notificationTitleRole = "";
   }
 
   render() {
@@ -64,6 +71,7 @@ export class MobileNotification extends KucBase {
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
+          role="${this._notificationTitleRole}"
         ><!---->${this.text}</pre>
         <button
           class="kuc-mobile-notification__notification__closeButton"

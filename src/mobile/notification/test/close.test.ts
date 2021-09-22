@@ -1,4 +1,4 @@
-import { expect } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 import { MobileNotification } from "../index";
 
 describe("MobileNotification", () => {
@@ -21,6 +21,7 @@ describe("MobileNotification", () => {
     it("should be fadeout when clicked close button", async () => {
       const container = new MobileNotification();
       container.open();
+      await elementUpdated(container);
 
       const closeBtnEl = container.querySelector(
         ".kuc-mobile-notification__notification__closeButton"
