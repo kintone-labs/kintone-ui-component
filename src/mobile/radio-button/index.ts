@@ -6,6 +6,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
