@@ -6,7 +6,6 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
 
 type MobileTextAreaProps = {
   className?: string;
@@ -40,8 +39,22 @@ export class MobileTextArea extends KucBase {
   constructor(props?: MobileTextAreaProps) {
     super();
     this._GUID = generateGUID();
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
+    if (!props) {
+      return;
+    }
+    this.className =
+      props.className !== undefined ? props.className : this.className;
+    this.error = props.error !== undefined ? props.error : this.error;
+    this.id = props.id !== undefined ? props.id : this.id;
+    this.label = props.label !== undefined ? props.label : this.label;
+    this.placeholder =
+      props.placeholder !== undefined ? props.placeholder : this.placeholder;
+    this.value = props.value !== undefined ? props.value : this.value;
+    this.disabled =
+      props.disabled !== undefined ? props.disabled : this.disabled;
+    this.requiredIcon =
+      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
+    this.visible = props.visible !== undefined ? props.visible : this.visible;
   }
 
   private _handleFocusInput(event: FocusEvent) {

@@ -1,6 +1,5 @@
 import { html, svg, property, query } from "lit-element";
 import { KucBase } from "../../base/kuc-base";
-import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
@@ -17,8 +16,12 @@ export class MobileNotification extends KucBase {
 
     this.performUpdate();
 
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
+    if (!props) {
+      return;
+    }
+    this.className =
+      props.className !== undefined ? props.className : this.className;
+    this.text = props.text !== undefined ? props.text : this.text;
   }
 
   private _handleClickCloseButton(event: MouseEvent) {

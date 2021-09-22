@@ -6,7 +6,6 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -64,8 +63,25 @@ export class MobileRadioButton extends KucBase {
   constructor(props?: RadioButtonProps) {
     super();
     this._GUID = generateGUID();
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
+    if (!props) {
+      return;
+    }
+    this.className =
+      props.className !== undefined ? props.className : this.className;
+    this.error = props.error !== undefined ? props.error : this.error;
+    this.id = props.id !== undefined ? props.id : this.id;
+    this.label = props.label !== undefined ? props.label : this.label;
+    this.value = props.value !== undefined ? props.value : this.value;
+    this.borderVisible =
+      props.borderVisible !== undefined
+        ? props.borderVisible
+        : this.borderVisible;
+    this.disabled =
+      props.disabled !== undefined ? props.disabled : this.disabled;
+    this.requiredIcon =
+      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
+    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    this.items = props.items !== undefined ? props.items : this.items;
   }
 
   private _handleChangeInput(event: Event) {
