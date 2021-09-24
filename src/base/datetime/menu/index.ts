@@ -105,8 +105,7 @@ export class BaseDateTimeMenu extends KucBase {
     const itemEl = event.target as HTMLLIElement;
 
     const value = itemEl.getAttribute("value") || "";
-    const detail: CustomEventDetail = { oldValue: this.value, value: value };
-    this.value = value;
+    const detail: CustomEventDetail = { value: value };
     dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
   }
 
@@ -132,9 +131,7 @@ export class BaseDateTimeMenu extends KucBase {
         @mouseover="${this._handleMouseOverItem}"
         @mouseleave="${this._handleMouseLeaveItem}"
       >
-        ${this.value === item.value
-          ? this._getCheckedIconSvgTemplate()
-          : ""}
+        ${this.value === item.value ? this._getCheckedIconSvgTemplate() : ""}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
