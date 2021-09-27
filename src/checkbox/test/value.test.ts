@@ -63,7 +63,11 @@ describe("Checkbox", () => {
     try {
       await fixture(container);
     } catch (error) {
-      expect(error.message).to.equal("'value' property is not array");
+      let errorMessage = "'value' property is not array";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.equal("'value' property is not array");
     }
 
     // TODO:
@@ -78,7 +82,12 @@ describe("Checkbox", () => {
     try {
       await fixture(container);
     } catch (error) {
-      expect(error.message).to.equal(
+      let errorMessage =
+        "'value[1]' is duplicated! You can specify unique one.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.equal(
         "'value[1]' is duplicated! You can specify unique one."
       );
     }
@@ -97,7 +106,11 @@ describe("Checkbox", () => {
       container.value = null;
       await fixture(container);
     } catch (error) {
-      expect(error.message).to.equal("'value' property is not array");
+      let errorMessage = "'value' property is not array";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.equal("'value' property is not array");
     }
 
     // TODO:
@@ -113,7 +126,12 @@ describe("Checkbox", () => {
       container.value = [initItems[0].value, initItems[0].value];
       await fixture(container);
     } catch (error) {
-      expect(error.message).to.equal(
+      let errorMessage =
+        "'value[1]' is duplicated! You can specify unique one.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.equal(
         "'value[1]' is duplicated! You can specify unique one."
       );
     }
