@@ -1,4 +1,4 @@
-import { html, property, query, svg } from "lit-element";
+import { html, property, query, queryAll, svg } from "lit-element";
 import {
   KucBase,
   generateGUID,
@@ -14,6 +14,13 @@ type Item = {
 export class BaseDateTimeMenu extends KucBase {
   @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
+  @property({ type: Number }) maxHeight = 300;
+
+  @query(".kuc-base-datetime-menu__menu")
+  private _menuEl!: HTMLLIElement;
+
+  @queryAll(".kuc-base-datetime-menu__menu__item")
+  private _itemsEl!: HTMLLIElement[];
 
   @query(".kuc-base-datetime-menu__menu__item")
   private _firstItemEl!: HTMLLIElement;
@@ -25,6 +32,8 @@ export class BaseDateTimeMenu extends KucBase {
   private _highlightItemEl!: HTMLLIElement;
 
   private _GUID = generateGUID();
+  private _scrollOffsetHeight = 0;
+  private _lineHeight = 0;
 
   public getHighlightItemEl() {
     return this._highlightItemEl;
@@ -42,21 +51,30 @@ export class BaseDateTimeMenu extends KucBase {
       : "";
   }
 
-  public highlightFirstItem() {
+  public highlightSelectedItem() {
+    for (let index = 0; index < this._itemsEl.length; index++) {
+      const itemEl = this._itemsEl[index];
+      if (itemEl.getAttribute("aria-checked") === "true") {
+        this._removeHighlight();
+        itemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+        break;
+      }
+    }
+  }
+  private _removeHighlight() {
     if (this._highlightItemEl) {
       this._highlightItemEl.classList.remove(
         "kuc-base-datetime-menu__menu--highlight"
       );
     }
+  }
+  public highlightFirstItem() {
+    this._removeHighlight();
     this._firstItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
   public highlightLastItem() {
-    if (this._highlightItemEl) {
-      this._highlightItemEl.classList.remove(
-        "kuc-base-datetime-menu__menu--highlight"
-      );
-    }
+    this._removeHighlight();
     this._lastItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
@@ -65,6 +83,8 @@ export class BaseDateTimeMenu extends KucBase {
       this.highlightFirstItem();
       return;
     }
+    this._scrollOffsetHeight += this._lineHeight;
+    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
     const nextItemEl = this._highlightItemEl.nextElementSibling;
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
@@ -78,6 +98,8 @@ export class BaseDateTimeMenu extends KucBase {
       return;
     }
     const prevItemEl = this._highlightItemEl.previousElementSibling;
+    this._scrollOffsetHeight -= this._lineHeight;
+    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
     );
@@ -90,7 +112,7 @@ export class BaseDateTimeMenu extends KucBase {
       <ul
         class="kuc-base-datetime-menu__menu"
         role="menu"
-        @click=${this._handleClickMenu}
+        @mousedown="${this._handleMouseDown}"
       >
         ${this.items.map((item, number) =>
           this._getMenuItemTemplate(item, number)
@@ -99,18 +121,39 @@ export class BaseDateTimeMenu extends KucBase {
     `;
   }
 
-  private _handleClickMenu(event: MouseEvent) {
+  updated(_changedProperties: any) {
+    if (!this._firstItemEl) {
+      return;
+    }
+    this._lineHeight = this._firstItemEl.offsetHeight;
+    this._updateScrollOffset();
+    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
+  }
+  private _updateScrollOffset() {
+    let currentPositionIndex = this.items.findIndex(item => {
+      return item.value === this.value;
+    });
+    const offsetItemCount = this.maxHeight / this._lineHeight / 2;
+    currentPositionIndex =
+      currentPositionIndex - offsetItemCount < 0
+        ? 0
+        : currentPositionIndex - offsetItemCount;
+    this._scrollOffsetHeight = currentPositionIndex * this._lineHeight;
+  }
+  private _handleMouseDown(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
 
-    const value = itemEl.getAttribute("value") || "";
-    const detail: CustomEventDetail = { value: value };
-    dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
+    const value = itemEl.getAttribute("value");
+    if (value) {
+      const detail: CustomEventDetail = { value: value };
+      dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
+    }
   }
-
   private _handleMouseOverItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
+    this._removeHighlight();
     itemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
@@ -185,6 +228,8 @@ export class BaseDateTimeMenu extends KucBase {
           background-color: #ffffff;
           list-style: none;
           line-height: 1;
+          overflow-y: auto;
+          max-height: ${this.maxHeight}px;
           -webkit-tap-highlight-color: transparent;
           box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
         }
