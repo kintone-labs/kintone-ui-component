@@ -1,5 +1,10 @@
-import { html, property, query, svg } from "lit-element";
-import { KucBase } from "../../../kuc-base";
+import { html, property, query, PropertyValues } from "lit-element";
+import {
+  KucBase,
+  CustomEventDetail,
+  dispatchCustomEvent
+} from "../../../kuc-base";
+import { en, zh, ja } from "../../resource/locale";
 import { getDisplayingDates } from "../../utils/index";
 
 type WeekDaysItems = {
@@ -8,24 +13,51 @@ type WeekDaysItems = {
 };
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property({ type: Number }) month = 0;
-  @property({ type: Number }) year = 1970;
+  @property({ type: Number }) month = 1;
+  @property({ type: Number }) year = 2021;
+  @property({ type: String }) language = "en";
   @property() weekDays: WeekDaysItems[] | undefined;
 
+  @query(".kuc-base-datetime-calendar-body__date--selected")
+  private _selectedItemEl!: HTMLButtonElement;
+
+  @query(".kuc-base-datetime-calendar-body__date--today")
+  private _todayItemEm!: HTMLButtonElement;
+
+  private _locale = en;
+  private _selectedValue = "";
   constructor() {
     super();
-
     if (!this.weekDays || this.weekDays.length === 0) {
-      this.weekDays = [
-        { text: "SUN", abbr: "Sunday" },
-        { text: "MON", abbr: "Monday" },
-        { text: "TUE", abbr: "Tuesday" },
-        { text: "WED", abbr: "Wednesday" },
-        { text: "THU", abbr: "Thursday" },
-        { text: "FRI", abbr: "Friday" },
-        { text: "SAT", abbr: "Saturday" }
-      ];
+      this.weekDays = this._locale.WEEK_DAYS;
     }
+  }
+
+  public getTodayItemEl() {
+    return this._todayItemEm;
+  }
+
+  public getTodayValue() {
+    const today = this._getTodayObj();
+    return `${today.fullYear}-${today.month}-${today.date}`;
+  }
+
+  public getSelectedItemEl() {
+    return this._selectedItemEl;
+  }
+
+  public getSelectedValue() {
+    return this._selectedItemEl
+      ? this._selectedItemEl.getAttribute("data-date")
+      : "";
+  }
+
+  update(changedProperties: PropertyValues) {
+    changedProperties.forEach((_oldValue, propName) => {
+      propName === "language" &&
+        (this._locale = this._getLocale(this.language));
+    });
+    super.update(changedProperties);
   }
 
   render() {
@@ -36,6 +68,19 @@ export class BaseDateTimeCalendarBody extends KucBase {
         -->${this._getDateItemsTemplate()}
       </table>
     `;
+  }
+
+  private _getLocale(language: string) {
+    switch (language) {
+      case "en":
+        return en;
+      case "zh":
+        return zh;
+      case "ja":
+        return ja;
+      default:
+        return en;
+    }
   }
 
   private _getHeaderItemsTemplate() {
@@ -58,7 +103,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateItemsTemplate() {
     const displayingDates = getDisplayingDates(this.year, this.month);
-
+    const today = this.getTodayValue();
     return html`
       <tbody>
         ${displayingDates.map(weeks => {
@@ -69,10 +114,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td role="gridcell">
                     <button
+                      aria-selected="${this._selectedValue === weekDate}"
+                      tabindex="${weekDate === today ? "0" : "-1"}"
                       class="${this._getDateClass(dateParts)}"
                       data-date="${weekDate}"
+                      @click=${this._handleClickDate}
                     >
-                      ${dateParts[2]}
+                      ${dateParts[2] || ""}
                     </button>
                   </td>
                 `;
@@ -84,26 +132,62 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
+  private _handleClickDate(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const itemEl = event.target as HTMLButtonElement;
+    this._setSelectedEl(itemEl);
+
+    const value = itemEl.getAttribute("data-date") || "";
+    const detail: CustomEventDetail = {
+      oldValue: this._selectedValue,
+      value: value
+    };
+    this._selectedValue = value;
+    dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
+  }
+
+  private _setSelectedEl(itemEl: HTMLButtonElement) {
+    if (this._selectedItemEl)
+      this._selectedItemEl.classList.remove(
+        "kuc-base-datetime-calendar-body__date--selected"
+      );
+    itemEl.classList.add("kuc-base-datetime-calendar-body__date--selected");
+  }
+
   private _getDateClass(dateParts: string[]) {
     let className = "kuc-base-datetime-calendar-body__date";
 
-    const today = new Date();
-    const isToday =
-      parseInt(dateParts[0], 10) === today.getFullYear() &&
-      parseInt(dateParts[1], 10) === today.getMonth() + 1 &&
-      parseInt(dateParts[2], 10) === today.getDate();
-
+    const isToday = this._isToday(dateParts);
     if (isToday) {
-      className += " kuc-base-datetime-calendar-body__date--today";
-      return className;
+      return (className += " kuc-base-datetime-calendar-body__date--today");
     }
 
     const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
     if (isOtherMonth) {
-      className += " kuc-base-datetime-calendar-body__date--other-month";
+      return (className +=
+        " kuc-base-datetime-calendar-body__date--other-month");
     }
-
     return className;
+  }
+
+  private _getTodayObj() {
+    const today = new Date();
+    return {
+      fullYear: today.getFullYear(),
+      month: today.getMonth() + 1,
+      date: today.getDate()
+    };
+  }
+
+  private _isToday(dateParts: string[]) {
+    const today = this._getTodayObj();
+    return (
+      parseInt(dateParts[0], 10) === today.fullYear &&
+      parseInt(dateParts[1], 10) === today.month &&
+      parseInt(dateParts[2], 10) === today.date
+    );
   }
 
   private _getStyleTagTemplate() {
@@ -153,6 +237,12 @@ export class BaseDateTimeCalendarBody extends KucBase {
         .kuc-base-datetime-calendar-body__date {
           background: none;
           cursor: pointer;
+        }
+        .kuc-base-datetime-calendar-body__date--selected {
+          border: 1px solid #3498db;
+        }
+        .kuc-base-datetime-calendar-body__date--selected:focus-visible {
+          outline: none;
         }
         .kuc-base-datetime-calendar-body__date--today {
           color: #ffffff;
