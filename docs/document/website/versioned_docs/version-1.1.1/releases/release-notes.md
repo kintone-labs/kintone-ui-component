@@ -13,8 +13,8 @@ Maintenances, and security updates have been made.
 ## Update details
 ### Maintenance
 - Improved some keyboard behaviors of Dropdown component.<br>
-  (Enabled the control using Escape key, Arrow own and up key, Home and End key)
+  (Enabled the control using Escape key, Arrow down and up key, Home and End key)
 - Added max-height and scroll bar setting on menu part of MultiChoice component.
 
 ### Security Updates
-- Updated dependent libraries: TBD.
+- Updated dependent libraries: TypeScript, ua-parser-js, trim, tar, immer, ansi-regex, set-value, prismjs, and nth-check.

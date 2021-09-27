@@ -20,4 +20,4 @@ original_id: release-notes-v1.1.1
 - MultiChoice コンポーネントのメニューパーツにて max-height とスクロールバーの設定を追加
 
 ### セキュリティアップデート
-- 依存ライブラリを更新：TBD
+- 依存ライブラリを更新：TypeScript, ua-parser-js, trim, tar, immer, ansi-regex, set-value, prismjs, nth-check
