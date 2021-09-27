@@ -1,7 +1,8 @@
 ---
-id: release-notes
+id: version-1.1.1-release-notes
 title: v1.1.1 Release Notes
 sidebar_label: v1.1.1 Release Notes
+original_id: release-notes
 ---
 
 ## Overview
