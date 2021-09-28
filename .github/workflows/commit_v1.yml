@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: Remove package-lock
-      run: rm -rf package-lock.json
     - name: Cache dependencies
       uses: actions/cache@v2
       with:

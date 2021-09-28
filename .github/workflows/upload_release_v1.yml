@@ -13,8 +13,6 @@ jobs:
     #   if: github.event.client_payload.status != 'success'
     #   run: exit 1
     - uses: actions/checkout@v2
-    - name: Remove package-lock
-      run: rm -rf package-lock.json
     - name: Cache dependencies
       uses: actions/cache@v2
       with:

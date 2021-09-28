@@ -12,8 +12,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Remove package-lock
-      run: rm -rf package-lock.json
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
