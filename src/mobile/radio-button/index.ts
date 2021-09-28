@@ -104,7 +104,7 @@ export class MobileRadioButton extends KucBase {
       xmlns='http://www.w3.org/2000/svg'
     >
     <defs>
-      <radialGradient id="shadow">
+      <radialGradient id="${this._GUID}-shadow">
         <stop offset="0%" style="stop-color:#5B5B5B;stop-opacity:0" />
         <stop offset="30%" style="stop-color:#5B5B5B;stop-opacity:0" />
         <stop offset="80%" style="stop-color:#5B5B5B;stop-opacity:0.1" />

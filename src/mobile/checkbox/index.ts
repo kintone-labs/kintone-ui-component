@@ -129,7 +129,6 @@ export class MobileCheckbox extends KucBase {
      <svg
        class="kuc-mobile-checkbox__group__select-menu__item__label__icon"
        xmlns="http://www.w3.org/2000/svg"
-       id="Layer_1"
        x="0px"
        y="0px"
        width="44px"
@@ -137,7 +136,7 @@ export class MobileCheckbox extends KucBase {
        viewBox="0 0 44 34"
        enable-background="new 0 0 44 34"
        xml:space="preserve">
-       <image id="image0" width="44" height="34" x="0" y="0" href='${this._getSVGStrokeValue(
+       <image width="44" height="34" x="0" y="0" href='${this._getSVGStrokeValue(
          checked
        )}'/>
     </svg>
