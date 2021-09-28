@@ -1,7 +1,7 @@
 import { Text } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("text", module)
+storiesOf("desktop/text", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const text = new Text({

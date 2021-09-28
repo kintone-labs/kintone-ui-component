@@ -8,11 +8,11 @@ sidebar_label: Notification
 
 The Notification component allows the user to display pop-up notifications.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=notification--documentinfo" title="notification info image" height="70px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documentinfo" title="notification info image" height="70px"></iframe>
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=notification--documentsuccess" title="notification success image" height="70px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documentsuccess" title="notification success image" height="70px"></iframe>
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=notification--documenterror" title="notification error image" height="70px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documenterror" title="notification error image" height="70px"></iframe>
 
 ---
 

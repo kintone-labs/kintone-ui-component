@@ -8,7 +8,7 @@ sidebar_label: Spinner
 
 The Spinner component allows the user to display a rolling spinner.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=spinner--document" title="spinner image" width="300px" height="200px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-spinner--document" title="spinner image" width="300px" height="200px"></iframe>
 
 ---
 

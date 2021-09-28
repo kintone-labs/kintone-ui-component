@@ -1,6 +1,6 @@
 {
   "name": "kintone-ui-component",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
@@ -53,7 +53,7 @@
     "karma-coverage": "^2.0.3",
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.9.5",
+    "typescript": "^4.4.3",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
   },

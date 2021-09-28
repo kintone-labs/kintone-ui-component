@@ -91,6 +91,7 @@ storiesOf("mobile/checkbox", module)
     root.appendChild(checkbox);
     return root;
   })
+  // Check for duplicate value validation
   .add("Base4", () => {
     const root = document.createElement("div");
     const checkbox = new MobileCheckbox({

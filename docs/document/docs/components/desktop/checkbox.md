@@ -8,7 +8,7 @@ sidebar_label: Checkbox
 
 The Checkbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=checkbox--document" title="checkbox image" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-checkbox--document" title="checkbox image" height="80px"></iframe>
 
 ---
 

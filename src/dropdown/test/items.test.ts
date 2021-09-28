@@ -139,7 +139,11 @@ describe("Dropdown", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'items' property is not array");
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
       }
 
       // TODO:
@@ -151,7 +155,11 @@ describe("Dropdown", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal(
+        let errorMessage = "'items[1].value' property is duplicated";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal(
           "'items[1].value' property is duplicated"
         );
       }
@@ -167,7 +175,11 @@ describe("Dropdown", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'items' property is not array");
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
       }
 
       // TODO:
@@ -180,7 +192,11 @@ describe("Dropdown", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal(
+        let errorMessage = "'items[1].value' property is duplicated";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal(
           "'items[1].value' property is duplicated"
         );
       }

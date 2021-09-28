@@ -89,6 +89,7 @@ The main difference is as follows:
 - Improved DOM positioning
 - Restructured the component property
 - Included additional properties for Alert and Label
+- Auto-completion of Item.value
 
 The following section will explain in further detail.
 
@@ -260,6 +261,25 @@ The `error` property is used to display the error message.
 When you initialize the message (hide the error message), you will only need to assign an empty string to text.error property.
 
 ![search_box_error](assets/v1_search_box_error.png)
+
+---
+#### Auto-completion of Item.label
+---
+When creating multiple choice components in v0, the developer had to specify both `Item.label` and `Item.value`.
+
+However, when using v1, only `Item.value` is required. If `Item.label` is not specified, only the value of `Item.value` will be set.<br>
+This means that the coding will be more concise when the backend value and the label displayed in the UI are the same.
+
+You can abbreviate the coding as follows:
+```
+const checkbox = new Kuc.Checkbox({
+  items: [
+    {
+      value: "orange"
+    }
+  ],
+});
+```
 
 
 ## Conclusion
