@@ -77,7 +77,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
                       tabindex="${weekDate === today || this.value === weekDate
                         ? "0"
                         : "-1"}"
-                      class="${this._getDateClass(dateParts)}"
+                      class="kuc-base-datetime-calendar-body__date${this._getDateClass(
+                        dateParts
+                      )}"
                       data-date="${weekDate}"
                       @click=${this._handleClickDateCalendarBody}
                       @keydown="${this._handleKeyDownDateCalendarBody}"
@@ -202,19 +204,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateClass(dateParts: string[]) {
-    let className = "kuc-base-datetime-calendar-body__date";
-
     const isToday = this._isToday(dateParts);
-    if (isToday) {
-      return (className += " kuc-base-datetime-calendar-body__date--today");
-    }
+    if (isToday) return " kuc-base-datetime-calendar-body__date--today";
 
     const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
-    if (isOtherMonth) {
-      return (className +=
-        " kuc-base-datetime-calendar-body__date--other-month");
-    }
-    return className;
+    if (isOtherMonth)
+      return " kuc-base-datetime-calendar-body__date--other-month";
+    return "";
   }
 
   private _getDateString(date = new Date()) {
