@@ -7,11 +7,6 @@ import {
 import { en, zh, ja } from "../../resource/locale";
 import { getDisplayingDates } from "../../utils/index";
 
-type WeekDaysItems = {
-  text: string;
-  abbr: string;
-};
-
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
   @property({ type: Number }) year = 2021;
@@ -36,10 +31,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         -->${this._getDateItemsTemplate()}
       </table>
     `;
-  }
-
-  showHide() {
-    this.hidden = !this.hidden;
   }
 
   private _getHeaderItemsTemplate() {
@@ -104,7 +95,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     itemEl.setAttribute("aria-selected", "true");
 
     const value = itemEl.getAttribute("data-date") || "";
-    this._handleUpdateValue(value);
+    this._handleDispatchEvent(value);
     this._close();
   }
 
@@ -114,31 +105,31 @@ export class BaseDateTimeCalendarBody extends KucBase {
       case "Up":
       case "ArrowUp": {
         flag = true;
-        this._moveToPositionOfDate(-7);
+        this._moveToDate(-7);
         break;
       }
       case "Down":
       case "ArrowDown": {
         flag = true;
-        this._moveToPositionOfDate(7);
+        this._moveToDate(7);
         break;
       }
       case "Left":
       case "ArrowLeft": {
         flag = true;
-        this._moveToPositionOfDate(-1);
+        this._moveToDate(-1);
         break;
       }
       case "Right":
       case "ArrowRight": {
         flag = true;
-        this._moveToPositionOfDate(1);
+        this._moveToDate(1);
         break;
       }
       case "Enter": {
         flag = true;
         const value = this._getValueSelected();
-        this._handleUpdateValue(value);
+        this._handleDispatchEvent(value);
         this._close();
         break;
       }
@@ -178,14 +169,14 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return "";
   }
 
-  private _handleUpdateValue(value: string) {
+  private _handleDispatchEvent(value: string) {
     if (this.value === value) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
     this.value = value;
   }
 
-  private _moveToPositionOfDate(days: number) {
+  private _moveToDate(days: number) {
     const date = new Date(this.value || this._getDateString());
     date.setDate(date.getDate() + days);
 
