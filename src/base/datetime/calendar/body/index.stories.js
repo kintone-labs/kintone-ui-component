@@ -1,72 +1,80 @@
 import "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit-html";
 
-function generateSelectEl(items) {
-  const selectEl = document.createElement("select");
-  items.forEach(item => {
-    const optionEl = document.createElement("option");
-    optionEl.value = item.value;
-    optionEl.textContent = item.label;
-    selectEl.appendChild(optionEl);
-  });
+export default {
+  title: "base/datetime/calendar/body",
+  argTypes: {
+    month: {
+      name: "month",
+      control: {
+        type: "select",
+        options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      }
+    },
+    year: {
+      name: "year",
+      control: {
+        type: "select",
+        options: [2019, 2020, 2021, 2022, 2023]
+      }
+    },
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh"],
+      control: { type: "select" }
+    },
+    value: {
+      name: "value",
+      control: {
+        type: "text"
+      }
+    }
+  },
+  parameters: {
+    actions: {
+      handles: ["kuc:calendar-body-change-date"]
+    }
+  }
+};
 
-  selectEl.value = items[0].value;
+const Template = ({ month, year, language, value }) => {
+  const _handleClickBtn = () => {
+    const _menuEl = document.querySelector("kuc-base-datetime-calendar-body");
+    _menuEl.showHide();
+  };
 
-  return selectEl;
-}
+  const _handleChangeDateCalendarBody = event => {
+    const newValue = event.detail.value;
+    const _btn = document.querySelector("button");
+    _btn.textContent = newValue;
+  };
 
-function createMonthSelectEl() {
-  return generateSelectEl([
-    { value: "0", label: "JANUARY" },
-    { value: "1", label: "FEBRUARY" },
-    { value: "2", label: "MARCH" },
-    { value: "3", label: "APRIL" },
-    { value: "4", label: "MAY" },
-    { value: "5", label: "JUNE" },
-    { value: "6", label: "JULY" },
-    { value: "7", label: "AUGUST" },
-    { value: "8", label: "SEPTEMBER" },
-    { value: "9", label: "OCTOBER" },
-    { value: "10", label: "NOVEMBER" },
-    { value: "11", label: "DECEMBER}" }
-  ]);
-}
+  const _handleClickDateCalendarBody = event => {
+    const newValue = event.detail.value;
+    const _btn = document.querySelector("button");
+    _btn.textContent = newValue;
+  };
 
-function createYearSelectEl() {
-  return generateSelectEl([
-    { value: "2019", label: "2019" },
-    { value: "2020", label: "2020" },
-    { value: "2021", label: "2021" },
-    { value: "2022", label: "2022" }
-  ]);
-}
+  return html`
+    <button @click="${_handleClickBtn}">
+      ${value}
+    </button>
+    <kuc-base-datetime-calendar-body
+      .month="${month}"
+      .year="${year}"
+      .language="${language}"
+      .value="${value}"
+      @kuc:calendar-body-click-date="${_handleClickDateCalendarBody}"
+      @kuc:calendar-body-change-date="${_handleChangeDateCalendarBody}"
+    >
+    </kuc-base-datetime-calendar-body>
+  `;
+};
 
-storiesOf("base/datetime/calendar/body", module).add("Base", () => {
-  const rootEl = document.createElement("div");
-  const actionWrapEl = document.createElement("div");
-  rootEl.appendChild(actionWrapEl);
-
-  const monthSelectEl = createMonthSelectEl();
-  actionWrapEl.appendChild(monthSelectEl);
-
-  const yearSelectEl = createYearSelectEl();
-  actionWrapEl.appendChild(yearSelectEl);
-
-  const bodyWrapEl = document.createElement("div");
-  rootEl.appendChild(bodyWrapEl);
-
-  const calendarBodyEl = document.createElement(
-    "kuc-base-datetime-calendar-body"
-  );
-  bodyWrapEl.appendChild(calendarBodyEl);
-
-  monthSelectEl.addEventListener("change", _ => {
-    calendarBodyEl.setAttribute("month", monthSelectEl.value);
-  });
-
-  yearSelectEl.addEventListener("change", _ => {
-    calendarBodyEl.setAttribute("year", yearSelectEl.value);
-  });
-
-  return rootEl;
-});
+export const base = Template.bind({});
+base.args = {
+  month: 8,
+  year: 2021,
+  language: "en",
+  value: "2021-9-22"
+};
