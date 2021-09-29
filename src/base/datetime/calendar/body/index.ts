@@ -103,7 +103,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
     const value = itemEl.getAttribute("data-date") || "";
     this._handleUpdateValue(value);
-    this.close();
+    this._close();
   }
 
   private _handleKeyDownDateCalendarBody(event: KeyboardEvent) {
@@ -137,7 +137,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
         flag = true;
         const value = this._getValueSelected();
         this._handleUpdateValue(value);
-        this.close();
+        this._close();
         break;
       }
       default:
@@ -162,7 +162,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     }
   }
 
-  private close() {
+  private _close() {
     this.hidden = true;
   }
 
