@@ -9,7 +9,7 @@ original_id: readonly-table
 
 ReadOnlyTable は、kintone 詳細画面の読み取りテーブルを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
 
 ---
 

@@ -1,6 +1,7 @@
 import { html, property } from "lit-element";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type ButtonProps = {
   className?: string;
@@ -12,6 +13,8 @@ type ButtonProps = {
 };
 
 export class Button extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) text = "";
   @property({ type: String }) type = "normal";
   @property({ type: Boolean }) disabled = false;
@@ -25,17 +28,8 @@ export class Button extends KucBase {
 
   constructor(props?: ButtonProps) {
     super();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.text = props.text !== undefined ? props.text : this.text;
-    this.type = props.type !== undefined ? props.type : this.type;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleClickButton(event: MouseEvent) {

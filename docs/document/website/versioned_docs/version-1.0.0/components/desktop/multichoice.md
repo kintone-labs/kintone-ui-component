@@ -9,7 +9,7 @@ original_id: multichoice
 
 The MultiChoice component allows the user to select multiple values from multiple options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=multichoice--document" title="multichoice image" height="130px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-multichoice--document" title="multichoice image" height="130px"></iframe>
 
 ---
 
