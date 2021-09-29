@@ -15,7 +15,7 @@ type WeekDaysItems = {
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
   @property({ type: Number }) year = 2021;
-  @property({ type: String }) language = "ja";
+  @property({ type: String }) language = "en";
   @property({ type: String }) value = "";
 
   private _locale = en;
