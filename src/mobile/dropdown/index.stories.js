@@ -82,6 +82,7 @@ storiesOf("mobile/dropdown", module)
     root.appendChild(dropdown);
     return root;
   })
+  // Check for array validation of items
   .add("Base4", () => {
     const root = document.createElement("div");
     const dropdown = new MobileDropdown();
@@ -94,6 +95,7 @@ storiesOf("mobile/dropdown", module)
     root.appendChild(dropdown);
     return root;
   })
+  // Check for duplicate Item.value validation
   .add("Base5", () => {
     const root = document.createElement("div");
     const dropdown = new MobileDropdown();

@@ -77,6 +77,16 @@ class Footer extends React.Component {
               GitHub issue
             </a>
           </div>
+          <div>
+            <h5>Other</h5>
+            <a
+              href="https://cybozu.co.jp/privacy/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>
       </footer>

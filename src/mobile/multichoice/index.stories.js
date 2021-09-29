@@ -68,6 +68,7 @@ storiesOf("mobile/multichoice", module)
     root.appendChild(multiChoice);
     return root;
   })
+  // Check for duplicate value validation
   .add("Base2", () => {
     const root = document.createElement("div");
     const multiChoice = new MobileMultiChoice({

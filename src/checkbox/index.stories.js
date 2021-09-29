@@ -1,7 +1,7 @@
 import { Checkbox } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("checkbox", module)
+storiesOf("desktop/checkbox", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const checkbox = new Checkbox({
