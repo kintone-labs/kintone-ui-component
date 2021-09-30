@@ -75,8 +75,29 @@ export class BaseDateTimeMenu extends KucBase {
     this._lastItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
-  public setScrollTop(top: number) {
-    this._menuEl.scrollTop = top;
+  public scrollToView() {
+    if (!this._highlightItemEl || !this._menuEl) {
+      return;
+    }
+    const lineHeight = this._highlightItemEl.offsetHeight;
+    const offsetItemCount = this._menuEl.clientHeight / lineHeight / 2;
+    const offsetScrollTop =
+      this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
+        ? 0
+        : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
+    this._menuEl.scrollTop = offsetScrollTop;
+  }
+  public scrollToTop() {
+    if (!this._menuEl) {
+      return;
+    }
+    this._menuEl.scrollTop = 0;
+  }
+  public scrollToBottom() {
+    if (!this._menuEl) {
+      return;
+    }
+    this._menuEl.scrollTop = this._menuEl.scrollHeight;
   }
 
   public highlightNextItem() {
@@ -128,20 +149,9 @@ export class BaseDateTimeMenu extends KucBase {
   }
 
   updated(_changedProperties: any) {
-    this._scrollToSelectedItem();
+    this.scrollToView();
   }
-  private _scrollToSelectedItem() {
-    if (!this._highlightItemEl) {
-      return;
-    }
-    const lineHeight = this._highlightItemEl.offsetHeight;
-    const offsetItemCount = this._menuEl.clientHeight / lineHeight / 2;
-    const offsetScrollTop =
-      this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
-        ? 0
-        : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
-    this._menuEl.scrollTop = offsetScrollTop;
-  }
+
   private _handleMouseDownMenu(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
