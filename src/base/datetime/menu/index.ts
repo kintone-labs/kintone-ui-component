@@ -1,4 +1,4 @@
-import { html, property, query, svg } from "lit-element";
+import { html, property, query, queryAll, svg } from "lit-element";
 import {
   KucBase,
   generateGUID,
@@ -14,6 +14,13 @@ type Item = {
 export class BaseDateTimeMenu extends KucBase {
   @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
+  @property({ type: Number }) maxHeight = 300;
+
+  @query(".kuc-base-datetime-menu__menu")
+  private _menuEl!: HTMLLIElement;
+
+  @queryAll(".kuc-base-datetime-menu__menu__item")
+  private _itemsEl!: HTMLLIElement[];
 
   @query(".kuc-base-datetime-menu__menu__item")
   private _firstItemEl!: HTMLLIElement;
@@ -25,7 +32,6 @@ export class BaseDateTimeMenu extends KucBase {
   private _highlightItemEl!: HTMLLIElement;
 
   private _GUID = generateGUID();
-
   public getHighlightItemEl() {
     return this._highlightItemEl;
   }
@@ -42,22 +48,56 @@ export class BaseDateTimeMenu extends KucBase {
       : "";
   }
 
-  public highlightFirstItem() {
+  public highlightSelectedItem() {
+    for (let index = 0; index < this._itemsEl.length; index++) {
+      const itemEl = this._itemsEl[index];
+      if (itemEl.getAttribute("aria-checked") === "true") {
+        this._removeHighlight();
+        itemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+        break;
+      }
+    }
+  }
+  private _removeHighlight() {
     if (this._highlightItemEl) {
       this._highlightItemEl.classList.remove(
         "kuc-base-datetime-menu__menu--highlight"
       );
     }
+  }
+  public highlightFirstItem() {
+    this._removeHighlight();
     this._firstItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
   public highlightLastItem() {
-    if (this._highlightItemEl) {
-      this._highlightItemEl.classList.remove(
-        "kuc-base-datetime-menu__menu--highlight"
-      );
-    }
+    this._removeHighlight();
     this._lastItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+  }
+
+  public scrollToView() {
+    if (!this._highlightItemEl || !this._menuEl) {
+      return;
+    }
+    const lineHeight = this._highlightItemEl.offsetHeight;
+    const offsetItemCount = this._menuEl.clientHeight / lineHeight / 2;
+    const offsetScrollTop =
+      this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
+        ? 0
+        : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
+    this._menuEl.scrollTop = offsetScrollTop;
+  }
+  public scrollToTop() {
+    if (!this._menuEl) {
+      return;
+    }
+    this._menuEl.scrollTop = 0;
+  }
+  public scrollToBottom() {
+    if (!this._menuEl) {
+      return;
+    }
+    this._menuEl.scrollTop = this._menuEl.scrollHeight;
   }
 
   public highlightNextItem() {
@@ -69,7 +109,11 @@ export class BaseDateTimeMenu extends KucBase {
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
     );
-    nextItemEl?.classList.add("kuc-base-datetime-menu__menu--highlight");
+    if (nextItemEl) {
+      nextItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+      return;
+    }
+    this.highlightFirstItem();
   }
 
   public highlightPrevItem() {
@@ -81,16 +125,21 @@ export class BaseDateTimeMenu extends KucBase {
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
     );
-    prevItemEl?.classList.add("kuc-base-datetime-menu__menu--highlight");
+    if (prevItemEl) {
+      prevItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+      return;
+    }
+    this.highlightLastItem();
   }
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <ul
+        style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-menu__menu"
         role="menu"
-        @click=${this._handleClickMenu}
+        @mousedown="${this._handleMouseDownMenu}"
       >
         ${this.items.map((item, number) =>
           this._getMenuItemTemplate(item, number)
@@ -99,18 +148,24 @@ export class BaseDateTimeMenu extends KucBase {
     `;
   }
 
-  private _handleClickMenu(event: MouseEvent) {
+  updated(_changedProperties: any) {
+    this.scrollToView();
+  }
+
+  private _handleMouseDownMenu(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
 
-    const value = itemEl.getAttribute("value") || "";
-    const detail: CustomEventDetail = { value: value };
-    dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
+    const value = itemEl.getAttribute("value");
+    if (value) {
+      const detail: CustomEventDetail = { value: value };
+      dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
+    }
   }
-
   private _handleMouseOverItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
+    this._removeHighlight();
     itemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
@@ -185,6 +240,7 @@ export class BaseDateTimeMenu extends KucBase {
           background-color: #ffffff;
           list-style: none;
           line-height: 1;
+          overflow-y: auto;
           -webkit-tap-highlight-color: transparent;
           box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
         }
