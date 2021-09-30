@@ -32,9 +32,6 @@ export class BaseDateTimeMenu extends KucBase {
   private _highlightItemEl!: HTMLLIElement;
 
   private _GUID = generateGUID();
-  private _scrollOffsetHeight = 0;
-  private _lineHeight = 0;
-
   public getHighlightItemEl() {
     return this._highlightItemEl;
   }
@@ -78,18 +75,24 @@ export class BaseDateTimeMenu extends KucBase {
     this._lastItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
   }
 
+  public setScrollTop(top: number) {
+    this._menuEl.scrollTop = top;
+  }
+
   public highlightNextItem() {
     if (this._highlightItemEl === null) {
       this.highlightFirstItem();
       return;
     }
-    this._scrollOffsetHeight += this._lineHeight;
-    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
     const nextItemEl = this._highlightItemEl.nextElementSibling;
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
     );
-    nextItemEl?.classList.add("kuc-base-datetime-menu__menu--highlight");
+    if (nextItemEl) {
+      nextItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+      return;
+    }
+    this.highlightFirstItem();
   }
 
   public highlightPrevItem() {
@@ -98,21 +101,24 @@ export class BaseDateTimeMenu extends KucBase {
       return;
     }
     const prevItemEl = this._highlightItemEl.previousElementSibling;
-    this._scrollOffsetHeight -= this._lineHeight;
-    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-menu__menu--highlight"
     );
-    prevItemEl?.classList.add("kuc-base-datetime-menu__menu--highlight");
+    if (prevItemEl) {
+      prevItemEl.classList.add("kuc-base-datetime-menu__menu--highlight");
+      return;
+    }
+    this.highlightLastItem();
   }
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <ul
+        style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-menu__menu"
         role="menu"
-        @mousedown="${this._handleMouseDown}"
+        @mousedown="${this._handleMouseDownMenu}"
       >
         ${this.items.map((item, number) =>
           this._getMenuItemTemplate(item, number)
@@ -122,25 +128,21 @@ export class BaseDateTimeMenu extends KucBase {
   }
 
   updated(_changedProperties: any) {
-    if (!this._firstItemEl) {
+    this._scrollToSelectedItem();
+  }
+  private _scrollToSelectedItem() {
+    if (!this._highlightItemEl) {
       return;
     }
-    this._lineHeight = this._firstItemEl.offsetHeight;
-    this._updateScrollOffset();
-    this._menuEl.scrollTo(0, this._scrollOffsetHeight);
-  }
-  private _updateScrollOffset() {
-    let currentPositionIndex = this.items.findIndex(item => {
-      return item.value === this.value;
-    });
-    const offsetItemCount = this.maxHeight / this._lineHeight / 2;
-    currentPositionIndex =
-      currentPositionIndex - offsetItemCount < 0
+    const lineHeight = this._highlightItemEl.offsetHeight;
+    const offsetItemCount = this._menuEl.clientHeight / lineHeight / 2;
+    const offsetScrollTop =
+      this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
         ? 0
-        : currentPositionIndex - offsetItemCount;
-    this._scrollOffsetHeight = currentPositionIndex * this._lineHeight;
+        : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
+    this._menuEl.scrollTop = offsetScrollTop;
   }
-  private _handleMouseDown(event: MouseEvent) {
+  private _handleMouseDownMenu(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
@@ -229,7 +231,6 @@ export class BaseDateTimeMenu extends KucBase {
           list-style: none;
           line-height: 1;
           overflow-y: auto;
-          max-height: ${this.maxHeight}px;
           -webkit-tap-highlight-color: transparent;
           box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
         }
