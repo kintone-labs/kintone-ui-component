@@ -107,37 +107,33 @@
 
       <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.."
-            title="kintone UI Component"
-            class="md-header-nav__button md-logo">
+        <a href="../.." title="kintone UI Component" class="md-header-nav__button md-logo">
           
-            <i class="md-icon">cloud</i>
+          <i class="md-icon">cloud</i>
           
         </a>
       </div>
 
       <!-- Button to toggle drawer -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button"
-            for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
       </div>
 
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title"
-            data-md-component="title">
-            <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;" href="../../../latest/versions">v0.3.4</a>
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;"
+            href="../../../latest/versions">v0.3.4</a>
         </div>
       </div>
 
       <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button"
-              for="__search"></label>
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
 
-          <!-- Search interface -->
-          
+        <!-- Search interface -->
+        
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -165,9 +161,9 @@
 
       <!-- Repository containing source -->
       
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <div class="md-header-nav__source">
+          
 
 
   
@@ -184,8 +180,8 @@
     GitHub
   </div>
 </a>
-          </div>
         </div>
+      </div>
       
     </div>
   </nav>
@@ -1205,41 +1201,55 @@ export default class Plugin extends React.Component {
         </div>
       </main>
       
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
+        <footer class="md-footer">
+  <div class="md-footer-nav">
+    
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../Text/" title="Text" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
+        
+          <a href="../Text/"
+            title="Previous: Text" class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+            rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  Text
                 </span>
-                Text
-              </span>
-            </div>
-          </a>
+              </div>
+            </a>
         
         
       </nav>
-    </div>
-  
+    
+  </div>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
-        
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+        <div class="md-footer-copyright__highlight"> Copyright © 2021 Cybozu Inc. </div>
+           Made with
+           <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs Insiders </a>
       </div>
-      
+      <div style="float: left;width: calc(100% - 400px);font-size: 13px;color: hsla(0,0%,100%,.7);padding: 10px 0px 10px 0px;margin-left: 100px;">
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px">Documentation</div>
+          <a style="display: block; margin-top: 4px;" href="../../Getting-Started/QuickStart-Javascript/">Quick Start</a>
+          <a style="display: block; margin-top: 4px;" href="../../Reference/Alert/">Components</a>
+        </div>
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px;">Community</div>
+          <a style="display: block; margin-top: 4px;" href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer noopener">GitHub issue</a>
+        </div>
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px;">Other</div>
+          <a style="display: block; margin-top: 4px;" href="https://cybozu.co.jp/privacy/" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
