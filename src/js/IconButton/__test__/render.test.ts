@@ -31,13 +31,18 @@ describe('Unit test IconButton render', () => {
   });
 
   test('Render successfully with wrong props', () => {
-    // @ts-ignore
     const iconButton = new IconButton({
+      // @ts-ignore
       color: 'gold',
+      // @ts-ignore
       type: 'hoge',
+      // @ts-ignore
       size: 'medium',
+      // @ts-ignore
       shape: 'triangle',
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = iconButton.render();

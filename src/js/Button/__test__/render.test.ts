@@ -40,10 +40,12 @@ describe('Unit test Button render', () => {
 
   test('Render successfully with wrong props', () => {
     // 不正な値を設定した場合はデフォルト値がセットされることを確認する
-    // @ts-ignore
     const button = new Button({
+      // @ts-ignore
       type: 'button',
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = button.render();
