@@ -123,7 +123,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           <a href="../..">kintone UI Component</a> <a style="text-decoration: underline;"
-            href="../../../latest/versions">v0.8.0</a>
+            href="../../../latest/versions">v0.7.7</a>
         </div>
       </div>
 
@@ -846,14 +846,6 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For <b>datetime</b> type, both <b>date (item-1)</b> and <b>time (item-2)</b> will be cleared (set to empty string) when:
-<ul>
-  <li> The value options is set to null on <b>Constructor</b> or <b>setValue</b> method. </li>
-  <li> Clicking <b>clear (item-5)</b> on <b>date picker (item-3)</b>.</li>
-</ul></p>
-</div>
 <h2 id="constructor">Constructor</h2>
 <p><strong>Parameter</strong></p>
 <table>
@@ -874,7 +866,7 @@
 </tr>
 <tr>
 <td>options.value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>No</td>
 <td>The Default DateTime Value.</td>
 </tr>
@@ -987,7 +979,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <tbody>
 <tr>
 <td>value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>The value of datetime field.</td>
 </tr>
 </tbody>
@@ -1039,7 +1031,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <tbody>
 <tr>
 <td>value</td>
-<td>Date|null</td>
+<td>Date</td>
 <td>Yes</td>
 <td>The value of datetime field.</td>
 </tr>
@@ -1386,55 +1378,70 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
         </div>
       </main>
       
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
+        <footer class="md-footer">
+  <div class="md-footer-nav">
+    
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../ColorPicker/" title="ColorPicker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
+        
+          <a href="../ColorPicker/"
+            title="Previous: ColorPicker" class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+            rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  ColorPicker
                 </span>
-                ColorPicker
-              </span>
-            </div>
-          </a>
+              </div>
+            </a>
         
         
-          <a href="../Dialog/" title="Dialog" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
+          
+            <a href="../Dialog/"
+              title="Next: Dialog"
+              class="md-flex md-footer-nav__link md-footer-nav__link--next"
+              rel="next">
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Next
+                  </span>
+                  Dialog
                 </span>
-                Dialog
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
+              </div>
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+              </div>
+            </a>
+          
       </nav>
-    </div>
-  
+    
+  </div>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+      <div style="font-size: 13px;color: hsla(0,0%,100%,.7);padding: 10px 0px 10px 0px;margin-left: 250px;">
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px">Documentation</div>
+          <a style="display: block; margin-top: 4px;" href="../../Getting-Started/QuickStart-Javascript/">Quick Start</a>
+          <a style="display: block; margin-top: 4px;" href="../../Reference/Alert/">Components</a>
+        </div>
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px;">Community</div>
+          <a style="display: block; margin-top: 4px;" href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer noopener">GitHub issue</a>
+        </div>
+        <div style="width: 33%;float:left;">
+          <div style="font-size: 16px;font-weight: 600;margin-bottom: 10px;">Other</div>
+          <a style="display: block; margin-top: 4px;" href="https://cybozu.co.jp/privacy/" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </div>
       </div>
-      
+      <div class="md-copyright" style="padding: 10px 0px; text-align: center; clear: both; font-size: 13px;color: hsla(0,0%,100%,.7)">
+        Copyright © 2021 Cybozu Inc. <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs Insiders. </a>
+      </div>
     </div>
   </div>
 </footer>
