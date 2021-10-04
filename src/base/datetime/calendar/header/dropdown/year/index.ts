@@ -1,10 +1,5 @@
 import { html, property, svg, query, PropertyValues, state } from "lit-element";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  CustomEventDetail,
-  generateGUID
-} from "../../../../../kuc-base";
+import { KucBase, generateGUID } from "../../../../../kuc-base";
 import { BaseDateTimeMenu, Item } from "../../../../menu";
 
 export class BaseDateTimeYearDropdown extends KucBase {
@@ -13,6 +8,9 @@ export class BaseDateTimeYearDropdown extends KucBase {
 
   @state()
   private _menuVisible = false;
+
+  @state()
+  private _currentYear = new Date().getFullYear();
 
   private _GUID = generateGUID();
   private _menuItems: Item[] | undefined;
@@ -27,7 +25,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
     this._menuItems = this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this.postfix}`
+        label: `${year}${this.postfix}`,
       };
       return item;
     });
@@ -36,6 +34,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
 
   render() {
     return html`
+      ${this._getStyleTagTemplate()}
       <button
         class="kuc-base-datetime-year-dropdown__toggle"
         aria-haspopup="true"
@@ -50,19 +49,45 @@ export class BaseDateTimeYearDropdown extends KucBase {
           class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
           >${this.year}</span
         >
-        <span class="kuc-base-datetime-calendar-header__group__toggle__icon"
+        <span class="kuc-base-datetime-year__toggle__icon"
           >${this._getToggleIconSvgTemplate()}
         </span>
       </button>
       <kuc-base-datetime-menu
         .items="${this._menuItems}"
-        .value="${this.year}"
+        .value="${this.year.toString()}"
         class="kuc-base-datetime-year-dropdown__menu"
         @kuc:calendar-menu-click="${this._handleChangeMenu}"
         aria-hidden="${!this._menuVisible}"
         ?hidden="${!this._menuVisible}"
       >
       </kuc-base-datetime-menu>
+    `;
+  }
+
+  private _getStyleTagTemplate() {
+    return html`
+      <style>
+        .kuc-base-datetime-year-dropdown__toggle {
+          position: relative;
+          box-sizing: border-box;
+          height: 32px;
+          padding: 0 24px 0 8px;
+          line-height: 30px;
+          overflow: hidden;
+          background-color: white;
+          text-overflow: ellipsis;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+          border: 1px solid transparent;
+        }
+        .kuc-base-datetime-year__toggle__icon {
+          flex: none;
+          width: 38px;
+          height: 38px;
+        }
+      </style>
     `;
   }
 
@@ -182,10 +207,11 @@ export class BaseDateTimeYearDropdown extends KucBase {
 
   private _getYearOptions() {
     const options = [];
+    const year = this._currentYear;
     if (!Number.isInteger(this.year)) {
       this.year = 2021;
     }
-    for (let i = this.year - 100; i <= this.year + 100; i++) {
+    for (let i = year - 100; i <= year + 100; i++) {
       options.push(i);
     }
     return options;

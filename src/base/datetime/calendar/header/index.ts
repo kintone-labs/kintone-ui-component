@@ -1,11 +1,9 @@
-import { html, property, svg, query, PropertyValues, state } from "lit-element";
+import { html, property, svg, query, PropertyValues } from "lit-element";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
-  generateGUID
 } from "../../../kuc-base";
-import { BaseDateTimeMenu } from "../../menu";
 import { en, zh, ja } from "../../resource/locale";
 
 export class BaseDateTimeCalendarHeader extends KucBase {
@@ -13,20 +11,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
 
-  @state()
-  private _yearSelecterVisibile = false;
-
-  @query(".kuc-base-datetime-calendar-header__group__select_year")
-  private _yearSelectButtonEl!: HTMLButtonElement;
-
-  @query(".kuc-base-datetime-calendar-header__year__menu")
-  private _yearSelectMenuEl!: BaseDateTimeMenu;
-
   @query(".kuc-base-datetime-calendar-header__group__month")
   private _monthSelectEl: HTMLSelectElement | undefined;
 
   private _locale = en;
-  private _GUID = generateGUID();
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
@@ -122,20 +110,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           display: inline-block;
           white-space: nowrap;
         }
-        .kuc-base-datetime-calendar-header__group__select_year {
-          position: relative;
-          box-sizing: border-box;
-          height: 32px;
-          padding: 0 24px 0 8px;
-          line-height: 30px;
-          overflow: hidden;
-          background-color: white;
-          text-overflow: ellipsis;
-          font-size: 13px;
-          font-weight: 700;
-          cursor: pointer;
-          border: 1px solid transparent;
-        }
         .kuc-base-datetime-calendar-header__group__toggle__selected-item-label {
           display: inline-block;
           box-sizing: border-box;
@@ -189,39 +163,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getYearTemplate() {
     const yearSelectPostfix = this._locale.YEAR_SELECT_POSTFIX;
-    const items = this._getYearSelectOptions().map((year: number) => {
-      return { value: year, label: `${year}${yearSelectPostfix}` };
-    });
     return html`
       <div class="kuc-base-datetime-calendar-header__group_center_year">
-        <button
-          class="kuc-base-datetime-calendar-header__group__select_year"
-          aria-haspopup="true"
-          aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
-          @click="${this._handleClickDropdownYearToggle}"
-          @mouseup="${this._handleMouseUpDropdownToggle}"
-          @mousedown="${this._handleMouseDownDropdownToggle}"
-          @blur="${this._handleBlurDropdownYearToggle}"
-          @keydown="${this._handleKeydownYearToggle}"
+        <kuc-base-datetime-year-dropdown
+          .postfix="${yearSelectPostfix}"
+          .year="${this.year}"
         >
-          <span
-            class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
-            >${this.year}</span
-          >
-          <span class="kuc-base-datetime-calendar-header__group__toggle__icon"
-            >${this._getToggleIconSvgTemplate()}
-          </span>
-        </button>
-        <kuc-base-datetime-menu
-          .items="${items}"
-          .value="${this.year}"
-          class="kuc-base-datetime-calendar-header__year__menu"
-          @kuc:calendar-menu-click="${this
-            ._handleChangeCalendarHeaderYearSelect}"
-          aria-hidden="${!this._yearSelecterVisibile}"
-          ?hidden="${!this._yearSelecterVisibile}"
-        >
-        </kuc-base-datetime-menu>
+        </kuc-base-datetime-year-dropdown>
       </div>
     `;
   }
@@ -252,106 +200,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           ${this._getMonthTemplate()}${this._getYearTemplate()}
         `;
   }
-  private _getToggleIconSvgTemplate() {
-    return svg`
-    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.5V1.2764L6 7.5L12 1.2764V0.5L6 6.5L0 0.5Z" fill="#888888"/>
-    </svg>
-    `;
-  }
-  private _handleBlurDropdownYearToggle(event: Event) {
-    this._yearSelecterVisibile = false;
-  }
-  private _handleMouseUpDropdownToggle(event: MouseEvent) {
-    event.preventDefault();
-  }
-  private _handleMouseDownDropdownToggle(event: MouseEvent) {
-    event.preventDefault();
-  }
-  private _handleClickDropdownYearToggle(event: MouseEvent) {
-    if (!this._yearSelecterVisibile) {
-      this._openYearSelector();
-    } else {
-      this._closeYearSelector();
-    }
-  }
-  private _openYearSelector() {
-    this._yearSelectButtonEl.focus();
-    this._yearSelecterVisibile = !this._yearSelecterVisibile;
-    this._yearSelectMenuEl.highlightSelectedItem();
-  }
-  private _closeYearSelector() {
-    this._yearSelecterVisibile = false;
-    this._removeActiveDescendant(this._yearSelectButtonEl);
-  }
-  private _handleKeydownYearToggle(event: KeyboardEvent) {
-    if (!this._yearSelecterVisibile) {
-      this._yearSelectMenuEl.highlightFirstItem();
-      return;
-    }
-    switch (event.key) {
-      case "Up":
-      case "ArrowUp": {
-        event.preventDefault();
-        this._yearSelectMenuEl.highlightPrevItem();
-        this._yearSelectMenuEl.scrollToView();
-        this._setActiveDescendant(
-          this._yearSelectButtonEl,
-          this._yearSelectMenuEl.getHighlightItemId() ?? ""
-        );
-        break;
-      }
-      case "Down":
-      case "ArrowDown": {
-        event.preventDefault();
-        this._yearSelectMenuEl.highlightNextItem();
-        this._yearSelectMenuEl.scrollToView();
-        this._setActiveDescendant(
-          this._yearSelectButtonEl,
-          this._yearSelectMenuEl.getHighlightItemId() ?? ""
-        );
-        break;
-      }
-      case "Home":
-        event.preventDefault();
-        this._yearSelectMenuEl.highlightFirstItem();
-        this._yearSelectMenuEl.scrollToTop();
-        this._setActiveDescendant(
-          this._yearSelectButtonEl,
-          this._yearSelectMenuEl.getHighlightItemId() ?? ""
-        );
-        break;
-      case "End":
-        event.preventDefault();
-        this._yearSelectMenuEl.highlightLastItem();
-        this._yearSelectMenuEl.scrollToBottom();
-        this._setActiveDescendant(
-          this._yearSelectButtonEl,
-          this._yearSelectMenuEl.getHighlightItemId() ?? ""
-        );
-        break;
-      case "Enter": {
-        event.preventDefault();
-        const highlightValue = this._yearSelectMenuEl.getHighlightValue();
-        if (highlightValue) {
-          this.year = Number(highlightValue);
-          this._handleChangeCalendarHeader();
-        }
-        this._yearSelecterVisibile = false;
-        break;
-      }
-    }
-  }
-
-  private _setActiveDescendant(_buttonEl: HTMLButtonElement, value?: string) {
-    if (value !== undefined && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
-  }
 
   private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
@@ -368,7 +216,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
     event.stopPropagation();
-    if (!this._monthSelectEl || !this._yearSelectButtonEl) return;
+    if (!this._monthSelectEl) return;
     const monthSelectedIndex = this._monthSelectEl.selectedIndex;
     if (monthSelectedIndex === 11) {
       this._monthSelectEl.selectedIndex = 0;
@@ -376,14 +224,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     } else {
       this._monthSelectEl.selectedIndex = monthSelectedIndex + 1;
     }
-    this._handleChangeCalendarHeader();
-  }
-
-  private _handleChangeCalendarHeaderYearSelect(event: CustomEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.year = Number(event.detail.value);
-    this._yearSelecterVisibile = false;
     this._handleChangeCalendarHeader();
   }
 
@@ -398,17 +238,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     const month = this._monthSelectEl?.value;
     const detail: CustomEventDetail = { value: `${year}-${month}` };
     dispatchCustomEvent(this, "kuc:calendar-header-change", detail);
-  }
-
-  private _getYearSelectOptions() {
-    const yearSelectOptions = [];
-    if (!Number.isInteger(this.year)) {
-      this.year = 2021;
-    }
-    for (let i = this.year - 100; i <= this.year + 100; i++) {
-      yearSelectOptions.push(i);
-    }
-    return yearSelectOptions;
   }
 
   private _getLocale(language: string) {
