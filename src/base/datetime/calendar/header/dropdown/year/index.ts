@@ -11,6 +11,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
 
   @state()
   private _currentYear = new Date().getFullYear();
+  // console.log('test')
 
   private _GUID = generateGUID();
   private _menuItems: Item[] | undefined;
