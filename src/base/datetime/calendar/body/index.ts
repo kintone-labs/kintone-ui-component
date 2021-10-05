@@ -123,9 +123,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
   private _getSelectedValue() {
     const selectedEl = this.querySelectorAll(
       '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-    )[0];
+    );
     if (selectedEl) {
-      return selectedEl.getAttribute("data-date") || "";
+      return selectedEl[0].getAttribute("data-date") || "";
     }
     return "";
   }
