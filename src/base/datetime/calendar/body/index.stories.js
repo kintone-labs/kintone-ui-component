@@ -38,35 +38,27 @@ export default {
 };
 
 const Template = ({ month, year, language, value }) => {
-  const _handleClickBtn = () => {
-    const _menuEl = document.querySelector("kuc-base-datetime-calendar-body");
-    _menuEl.hidden = !_menuEl.hidden;
-  };
-
-  const _handleChangeDateCalendarBody = event => {
+  const _handleChangeDate = event => {
     const newValue = event.detail.value;
     const _btn = document.querySelector("input");
     _btn.value = newValue;
   };
 
-  const _handleClickDateCalendarBody = event => {
+  const _handleClickDate = event => {
     const newValue = event.detail.value;
     const _btn = document.querySelector("input");
     _btn.value = newValue;
   };
 
   return html`
-    <button @click="${_handleClickBtn}">
-      Open/Close
-    </button>
     <input typ="text" value="${value}" />
     <kuc-base-datetime-calendar-body
       .month="${month}"
       .year="${year}"
       .language="${language}"
       .value="${value}"
-      @kuc:calendar-body-click-date="${_handleClickDateCalendarBody}"
-      @kuc:calendar-body-change-date="${_handleChangeDateCalendarBody}"
+      @kuc:calendar-body-click-date="${_handleClickDate}"
+      @kuc:calendar-body-change-date="${_handleChangeDate}"
     >
     </kuc-base-datetime-calendar-body>
   `;

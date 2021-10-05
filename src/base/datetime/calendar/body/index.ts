@@ -72,8 +72,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
                         dateParts
                       )}"
                       data-date="${weekDate}"
-                      @click=${this._handleClickDateCalendarBody}
-                      @keydown="${this._handleKeyDownDateCalendarBody}"
+                      @click=${this._handleClickDateBtn}
+                      @keydown="${this._handleKeyDownDateBtn}"
                     >
                       ${dateParts[2] || ""}
                     </button>
@@ -87,7 +87,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
-  private _handleClickDateCalendarBody(event: MouseEvent | KeyboardEvent) {
+  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -96,47 +96,45 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
     const value = itemEl.getAttribute("data-date") || "";
     this._handleDispatchEvent(value);
-    this._close();
   }
 
-  private _handleKeyDownDateCalendarBody(event: KeyboardEvent) {
-    let flag = false;
+  private _handleKeyDownDateBtn(event: KeyboardEvent) {
+    let doPreventEvent = false;
     switch (event.key) {
       case "Up":
       case "ArrowUp": {
-        flag = true;
+        doPreventEvent = true;
         this._moveToDate(-7);
         break;
       }
       case "Down":
       case "ArrowDown": {
-        flag = true;
+        doPreventEvent = true;
         this._moveToDate(7);
         break;
       }
       case "Left":
       case "ArrowLeft": {
-        flag = true;
+        doPreventEvent = true;
         this._moveToDate(-1);
         break;
       }
       case "Right":
       case "ArrowRight": {
-        flag = true;
+        doPreventEvent = true;
         this._moveToDate(1);
         break;
       }
       case "Enter": {
-        flag = true;
+        doPreventEvent = true;
         const value = this._getValueSelected();
         this._handleDispatchEvent(value);
-        this._close();
         break;
       }
       default:
         break;
     }
-    if (flag) {
+    if (doPreventEvent) {
       event.stopPropagation();
       event.preventDefault();
     }
@@ -153,10 +151,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
       default:
         return en;
     }
-  }
-
-  private _close() {
-    this.hidden = true;
   }
 
   private _getValueSelected() {
