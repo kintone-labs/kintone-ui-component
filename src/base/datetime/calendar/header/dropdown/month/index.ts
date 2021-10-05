@@ -11,9 +11,7 @@ import { _getToggleIconSvgTemplate } from "../../ultils";
 
 export class BaseDateTimeMonthDropdown extends KucBase {
   @property({ type: String }) language = "en";
-  @property({ type: String }) data = "";
   @property({ type: Number }) month = 1;
-  @property({ type: Number }) postfix = 2021;
 
   @state()
   private _menuVisible = false;
