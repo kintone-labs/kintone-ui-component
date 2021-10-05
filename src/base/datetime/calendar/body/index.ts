@@ -74,7 +74,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
       case "Enter": {
         doPreventEvent = true;
         const value = this._getSelectedValue();
-        this._handleDispatchEvent(value);
+        this._dispatchClickEvent(value);
         break;
       }
       default:
