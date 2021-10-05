@@ -33,6 +33,130 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
+  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const itemEl = event.target as HTMLButtonElement;
+    itemEl.setAttribute("aria-selected", "true");
+
+    const value = itemEl.getAttribute("data-date") || "";
+    this._dispatchClickEvent(value);
+  }
+
+  private _handleKeyDownDateBtn(event: KeyboardEvent) {
+    let doPreventEvent = false;
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp": {
+        doPreventEvent = true;
+        this._moveToDate(-7);
+        break;
+      }
+      case "Down":
+      case "ArrowDown": {
+        doPreventEvent = true;
+        this._moveToDate(7);
+        break;
+      }
+      case "Left":
+      case "ArrowLeft": {
+        doPreventEvent = true;
+        this._moveToDate(-1);
+        break;
+      }
+      case "Right":
+      case "ArrowRight": {
+        doPreventEvent = true;
+        this._moveToDate(1);
+        break;
+      }
+      case "Enter": {
+        doPreventEvent = true;
+        const value = this._getSelectedValue();
+        this._handleDispatchEvent(value);
+        break;
+      }
+      default:
+        break;
+    }
+    if (doPreventEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+  private _dispatchClickEvent(value: string) {
+    if (this.value === value) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
+    dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
+    this.value = value;
+  }
+
+  private _isToday(dateParts: string[]) {
+    const today = new Date();
+    return (
+      parseInt(dateParts[0], 10) === today.getFullYear() &&
+      parseInt(dateParts[1], 10) === today.getMonth() + 1 &&
+      parseInt(dateParts[2], 10) === today.getDate()
+    );
+  }
+
+  private _moveToDate(days: number) {
+    const date = new Date(this.value || this._getDateString());
+    date.setDate(date.getDate() + days);
+
+    const nextDate = this._getDateString(date);
+    const nextMonth = date.getMonth();
+    const nextYear = date.getFullYear();
+    if (nextMonth !== this.month) this.month = nextMonth;
+    if (nextYear !== this.year) this.year = nextYear;
+
+    const detail: CustomEventDetail = {
+      oldValue: this.value,
+      value: nextDate
+    };
+    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
+    this.value = nextDate;
+  }
+
+  private _getSelectedValue() {
+    const selectedEl = this.querySelectorAll(
+      '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
+    )[0];
+    if (selectedEl) {
+      return selectedEl.getAttribute("data-date") || "";
+    }
+    return "";
+  }
+
+  private _getDateClass(dateParts: string[]) {
+    const isToday = this._isToday(dateParts);
+    if (isToday) return " kuc-base-datetime-calendar-body__date--today";
+
+    const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
+    if (isOtherMonth)
+      return " kuc-base-datetime-calendar-body__date--other-month";
+    return "";
+  }
+
+  private _getDateString(date = new Date()) {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  }
+
+  private _getLocale(language: string) {
+    switch (language) {
+      case "en":
+        return en;
+      case "zh":
+        return zh;
+      case "ja":
+        return ja;
+      default:
+        return en;
+    }
+  }
+
   private _getHeaderItemsTemplate() {
     return html`
       <thead>
@@ -85,130 +209,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         })}
       </tbody>
     `;
-  }
-
-  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const itemEl = event.target as HTMLButtonElement;
-    itemEl.setAttribute("aria-selected", "true");
-
-    const value = itemEl.getAttribute("data-date") || "";
-    this._handleDispatchEvent(value);
-  }
-
-  private _handleKeyDownDateBtn(event: KeyboardEvent) {
-    let doPreventEvent = false;
-    switch (event.key) {
-      case "Up":
-      case "ArrowUp": {
-        doPreventEvent = true;
-        this._moveToDate(-7);
-        break;
-      }
-      case "Down":
-      case "ArrowDown": {
-        doPreventEvent = true;
-        this._moveToDate(7);
-        break;
-      }
-      case "Left":
-      case "ArrowLeft": {
-        doPreventEvent = true;
-        this._moveToDate(-1);
-        break;
-      }
-      case "Right":
-      case "ArrowRight": {
-        doPreventEvent = true;
-        this._moveToDate(1);
-        break;
-      }
-      case "Enter": {
-        doPreventEvent = true;
-        const value = this._getValueSelected();
-        this._handleDispatchEvent(value);
-        break;
-      }
-      default:
-        break;
-    }
-    if (doPreventEvent) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-
-  private _getLocale(language: string) {
-    switch (language) {
-      case "en":
-        return en;
-      case "zh":
-        return zh;
-      case "ja":
-        return ja;
-      default:
-        return en;
-    }
-  }
-
-  private _getValueSelected() {
-    const selectedEl = this.querySelectorAll(
-      '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-    )[0];
-    if (selectedEl) {
-      return selectedEl.getAttribute("data-date") || "";
-    }
-    return "";
-  }
-
-  private _handleDispatchEvent(value: string) {
-    if (this.value === value) return;
-    const detail: CustomEventDetail = { oldValue: this.value, value: value };
-    dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
-    this.value = value;
-  }
-
-  private _moveToDate(days: number) {
-    const date = new Date(this.value || this._getDateString());
-    date.setDate(date.getDate() + days);
-
-    const nextDate = this._getDateString(date);
-    const nextMonth = date.getMonth();
-    const nextYear = date.getFullYear();
-    if (nextMonth !== this.month) this.month = nextMonth;
-    if (nextYear !== this.year) this.year = nextYear;
-
-    const detail: CustomEventDetail = {
-      oldValue: this.value,
-      value: nextDate
-    };
-    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
-    this.value = nextDate;
-  }
-
-  private _getDateClass(dateParts: string[]) {
-    const isToday = this._isToday(dateParts);
-    if (isToday) return " kuc-base-datetime-calendar-body__date--today";
-
-    const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
-    if (isOtherMonth)
-      return " kuc-base-datetime-calendar-body__date--other-month";
-    return "";
-  }
-
-  private _getDateString(date = new Date()) {
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  }
-
-  private _isToday(dateParts: string[]) {
-    const today = new Date();
-    return (
-      parseInt(dateParts[0], 10) === today.getFullYear() &&
-      parseInt(dateParts[1], 10) === today.getMonth() + 1 &&
-      parseInt(dateParts[2], 10) === today.getDate()
-    );
   }
 
   private _getStyleTagTemplate() {

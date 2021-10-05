@@ -32,7 +32,7 @@ export default {
   },
   parameters: {
     actions: {
-      handles: ["kuc:calendar-body-change-date"]
+      handles: ["kuc:calendar-body-click-date", "kuc:calendar-body-change-date"]
     }
   }
 };
