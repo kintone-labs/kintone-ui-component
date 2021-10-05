@@ -1,9 +1,10 @@
-import { html, property, svg, query, PropertyValues } from "lit-element";
+import { eventOptions, html, property, svg } from "lit-element";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
 } from "../../../kuc-base";
+import "../../calendar/header/dropdown/month";
 import { en, zh, ja } from "../../resource/locale";
 
 export class BaseDateTimeCalendarHeader extends KucBase {
@@ -11,18 +12,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
 
-  @query(".kuc-base-datetime-calendar-header__group__month")
-  private _monthSelectEl: HTMLSelectElement | undefined;
-
   private _locale = en;
-
-  update(changedProperties: PropertyValues) {
-    changedProperties.forEach((_oldValue, propName) => {
-      propName === "language" &&
-        (this._locale = this._getLocale(this.language));
-    });
-    super.update(changedProperties);
-  }
 
   render() {
     return html`
@@ -104,6 +94,8 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         .kuc-base-datetime-calendar-header__group__center {
           width: 196px;
           text-align: center;
+          display: flex;
+          justify-content: center;
         }
         .kuc-base-datetime-calendar-header__group_center_year {
           position: relative;
@@ -176,18 +168,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getMonthTemplate() {
     return html`
-      <select
-        class="kuc-base-datetime-calendar-header__group__month"
-        @change="${this._handleChangeCalendarHeaderMonthSelect}"
-      >
-        ${this._locale.MONTHS_SELECT.map((month: string, index: number) => {
-          return html`
-            <option ?selected="${this.month === index + 1}" value="${index + 1}"
-              >${month}</option
-            >
-          `;
-        })}
-      </select>
+      <div @kuc:month-dropdown-change="${this._handleMonthDropdownChange}">
+        <kuc-base-datetime-month-dropdown
+          .month="${this.month}"
+          .language="${this.language}"
+        >
+        </kuc-base-datetime-month-dropdown>
+      </div>
     `;
   }
 
@@ -201,56 +188,42 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         `;
   }
 
+  private _handleMonthDropdownChange(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.month = parseInt(event.detail.value);
+    this._handleChangeCalendarHeader();
+  }
+
   private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
-    if (!this._monthSelectEl) return;
-    const monthSelectedIndex = this._monthSelectEl.selectedIndex;
-    if (monthSelectedIndex === 0) {
-      this._monthSelectEl.selectedIndex = 11;
+    const monthSelected = this.month;
+    if (monthSelected === 1) {
+      this.month = 12;
       this.year--;
     } else {
-      this._monthSelectEl.selectedIndex = monthSelectedIndex - 1;
+      this.month -= 1;
     }
     this._handleChangeCalendarHeader();
   }
 
   private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
     event.stopPropagation();
-    if (!this._monthSelectEl) return;
-    const monthSelectedIndex = this._monthSelectEl.selectedIndex;
-    if (monthSelectedIndex === 11) {
-      this._monthSelectEl.selectedIndex = 0;
+    const monthSelected = this.month;
+    if (monthSelected === 12) {
+      this.month = 1;
       this.year++;
     } else {
-      this._monthSelectEl.selectedIndex = monthSelectedIndex + 1;
+      this.month += 1;
     }
-    this._handleChangeCalendarHeader();
-  }
-
-  private _handleChangeCalendarHeaderMonthSelect(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
     this._handleChangeCalendarHeader();
   }
 
   private _handleChangeCalendarHeader() {
     const year = this.year;
-    const month = this._monthSelectEl?.value;
+    const month = this.month;
     const detail: CustomEventDetail = { value: `${year}-${month}` };
     dispatchCustomEvent(this, "kuc:calendar-header-change", detail);
-  }
-
-  private _getLocale(language: string) {
-    switch (language) {
-      case "en":
-        return en;
-      case "zh":
-        return zh;
-      case "ja":
-        return ja;
-      default:
-        return en;
-    }
   }
 }
 

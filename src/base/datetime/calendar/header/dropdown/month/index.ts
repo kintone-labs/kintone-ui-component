@@ -1,35 +1,53 @@
 import { html, property, query, PropertyValues, state } from "lit-element";
-import { KucBase, generateGUID } from "../../../../../kuc-base";
+import {
+  KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  CustomEventDetail,
+} from "../../../../../kuc-base";
 import { BaseDateTimeMenu, Item } from "../../../../menu";
+import { en, zh, ja } from "../../../../resource/locale";
 import { _getToggleIconSvgTemplate } from "../../ultils";
 
-export class BaseDateTimeYearDropdown extends KucBase {
-  @property({ type: Number }) year = 2021;
+export class BaseDateTimeMonthDropdown extends KucBase {
+  @property({ type: String }) language = "en";
+  @property({ type: String }) data = "";
+  @property({ type: Number }) month = 1;
   @property({ type: Number }) postfix = 2021;
 
   @state()
   private _menuVisible = false;
-
-  @state()
-  private _currentYear = new Date().getFullYear();
-
+  private _locale = en;
+  private _monthLabel = "";
   private _GUID = generateGUID();
   private _menuItems: Item[] | undefined;
 
-  @query(".kuc-base-datetime-year-dropdown__toggle")
+  @query(".kuc-base-datetime-month-dropdown__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-year-dropdown__menu")
+  @query(".kuc-base-datetime-month-dropdown__menu")
   private _menuEl!: BaseDateTimeMenu;
 
   update(changedProperties: PropertyValues) {
-    this._menuItems = this._getYearOptions().map((year: number) => {
-      const item: Item = {
-        value: `${year}`,
-        label: `${year}${this.postfix}`,
-      };
-      return item;
+    changedProperties.forEach((_oldValue, propName) => {
+      propName === "language" &&
+        (this._locale = this._getLocale(this.language));
     });
+
+    this._menuItems = this._locale.MONTHS_SELECT.map(
+      (month: string, index: number) => {
+        if (index + 1 === this.month) {
+          this._monthLabel = month;
+        }
+
+        const item: Item = {
+          value: `${index + 1}`,
+          label: `${month}`,
+        };
+        return item;
+      }
+    );
+
     super.update(changedProperties);
   }
 
@@ -37,18 +55,18 @@ export class BaseDateTimeYearDropdown extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <button
-        class="kuc-base-datetime-year-dropdown__toggle"
+        class="kuc-base-datetime-month-dropdown__toggle"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
         @mousedown="${this._handleMouseDownDropdownToggle}"
-        @click="${this._handleClickDropdownYearToggle}"
+        @click="${this._handleClickDropdownMonthToggle}"
         @blur="${this._handleBlurDropdownYearToggle}"
-        @keydown="${this._handleKeydownYearToggle}"
+        @keydown="${this._handleKeydownMonthToggle}"
       >
         <span
           class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
-          >${this.year}</span
+          >${this._monthLabel}</span
         >
         <span class="kuc-base-datetime-year__toggle__icon"
           >${_getToggleIconSvgTemplate()}
@@ -56,8 +74,8 @@ export class BaseDateTimeYearDropdown extends KucBase {
       </button>
       <kuc-base-datetime-menu
         .items="${this._menuItems}"
-        .value="${this.year.toString()}"
-        class="kuc-base-datetime-year-dropdown__menu"
+        .value="${this.month.toString()}"
+        class="kuc-base-datetime-month-dropdown__menu"
         @kuc:calendar-menu-click="${this._handleChangeMenu}"
         aria-hidden="${!this._menuVisible}"
         ?hidden="${!this._menuVisible}"
@@ -69,7 +87,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-datetime-year-dropdown__toggle {
+        .kuc-base-datetime-month-dropdown__toggle {
           position: relative;
           box-sizing: border-box;
           height: 32px;
@@ -92,6 +110,14 @@ export class BaseDateTimeYearDropdown extends KucBase {
     `;
   }
 
+  private _handleClickDropdownMonthToggle(event: MouseEvent) {
+    if (!this._menuVisible) {
+      this._openMenu();
+    } else {
+      this._closeMenu();
+    }
+  }
+
   private _handleMouseUpDropdownToggle(event: MouseEvent) {
     event.preventDefault();
   }
@@ -100,15 +126,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownYearToggle(event: MouseEvent) {
-    if (!this._menuVisible) {
-      this._openMenu();
-    } else {
-      this._closeMenu();
-    }
-  }
-
-  private _handleKeydownYearToggle(event: KeyboardEvent) {
+  private _handleKeydownMonthToggle(event: KeyboardEvent) {
     if (!this._menuVisible) {
       this._menuEl.highlightFirstItem();
       return;
@@ -158,11 +176,17 @@ export class BaseDateTimeYearDropdown extends KucBase {
         event.preventDefault();
         const highlightValue = this._menuEl.getHighlightValue();
         if (highlightValue) {
-          this.year = Number(highlightValue);
+          this.month = Number(highlightValue);
         }
         this._menuVisible = false;
         break;
       }
+    }
+  }
+
+  private _setActiveDescendant(_buttonEl: HTMLButtonElement, value?: string) {
+    if (value !== undefined && _buttonEl !== null) {
+      _buttonEl.setAttribute("aria-activedescendant", value);
     }
   }
 
@@ -173,8 +197,10 @@ export class BaseDateTimeYearDropdown extends KucBase {
   private _handleChangeMenu(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this.year = Number(event.detail.value);
+    this.month = Number(event.detail.value);
     this._menuVisible = false;
+    const detail: CustomEventDetail = { value: `${this.month}` };
+    dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
   }
 
   private _openMenu() {
@@ -188,32 +214,27 @@ export class BaseDateTimeYearDropdown extends KucBase {
     this._removeActiveDescendant(this._toggleEl);
   }
 
-  private _setActiveDescendant(_buttonEl: HTMLButtonElement, value?: string) {
-    if (value !== undefined && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
-  }
-
   private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
     _buttonEl.removeAttribute("aria-activedescendant");
   }
 
-  private _getYearOptions() {
-    const options = [];
-    const year = this._currentYear;
-    if (!Number.isInteger(this.year)) {
-      this.year = 2021;
+  private _getLocale(language: string) {
+    switch (language) {
+      case "en":
+        return en;
+      case "zh":
+        return zh;
+      case "ja":
+        return ja;
+      default:
+        return en;
     }
-    for (let i = year - 100; i <= year + 100; i++) {
-      options.push(i);
-    }
-    return options;
   }
 }
 
-if (!window.customElements.get("kuc-base-datetime-year-dropdown")) {
+if (!window.customElements.get("kuc-base-datetime-month-dropdown")) {
   window.customElements.define(
-    "kuc-base-datetime-year-dropdown",
-    BaseDateTimeYearDropdown
+    "kuc-base-datetime-month-dropdown",
+    BaseDateTimeMonthDropdown
   );
 }
