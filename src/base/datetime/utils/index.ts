@@ -1,3 +1,8 @@
+export type WeekDate = {
+  text: string;
+  attr: string;
+};
+
 export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
   let date = new Date(dateRanges.start);

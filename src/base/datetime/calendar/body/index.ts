@@ -5,7 +5,7 @@ import {
   dispatchCustomEvent
 } from "../../../kuc-base";
 import { en, zh, ja } from "../../resource/locale";
-import { getDisplayingDates } from "../../utils/index";
+import { getDisplayingDates, WeekDate } from "../../utils/index";
 
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
@@ -106,7 +106,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _moveToDate(days: number) {
     const date = new Date(this.value);
-    if(isNaN(date.getTime())) return;
+    if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
     const nextDate = this._getDateString(date);
@@ -186,13 +186,19 @@ export class BaseDateTimeCalendarBody extends KucBase {
         ${displayingDates.map(weeks => {
           return html`
             <tr>
-              ${weeks.map(weekDate => {
+              ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
                 return html`
-                  <td role="gridcell" class="${this.value === weekDate.attr ? 'kuc-base-datetime-calendar-body__date--selected' : ''}">
+                  <td
+                    role="gridcell"
+                    class="${this.value === weekDate.attr
+                      ? "kuc-base-datetime-calendar-body__date--selected"
+                      : ""}"
+                  >
                     <button
                       aria-selected="${this.value === weekDate.attr}"
-                      tabindex="${weekDate.attr === today || this.value === weekDate.attr
+                      tabindex="${weekDate.attr === today ||
+                      this.value === weekDate.attr
                         ? "0"
                         : "-1"}"
                       class="kuc-base-datetime-calendar-body__date${this._getDateClass(
@@ -269,7 +275,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border: 1px solid #3498db;
           box-sizing: border-box;
         }
-        .kuc-base-datetime-calendar-body__date--selected .kuc-base-datetime-calendar-body__date{
+        .kuc-base-datetime-calendar-body__date--selected
+          .kuc-base-datetime-calendar-body__date {
           width: 34px;
           height: 29px;
         }
