@@ -2,58 +2,58 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/datetime/menu",
+  title: "base/datetime/listbox",
   argTypes: {
     value: {
       name: "value",
       control: {
         type: "select",
-        options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-      }
+        options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+      },
     },
     items: {
       name: "items",
       control: {
         type: "object",
-        options: []
-      }
-    }
+        options: [],
+      },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:calendar-menu-click"]
-    }
-  }
+      handles: ["kuc:calendar-listbox-click"],
+    },
+  },
 };
 
 const Template = ({ value, items }) => {
   const _handleClickBtn = () => {
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
-    _menuEl.hidden = !_menuEl.hidden;
+    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listboxEl.hidden = !_listboxEl.hidden;
   };
 
-  const _handleKeydownBtn = event => {
+  const _handleKeydownBtn = (event) => {
     event.preventDefault();
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
+    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
     switch (event.key) {
       case "ArrowUp": {
-        _menuEl.highlightPrevItem();
+        _listboxEl.highlightPrevItem();
         break;
       }
       case "ArrowDown": {
-        _menuEl.highlightNextItem();
+        _listboxEl.highlightNextItem();
         break;
       }
       case "Home": {
-        _menuEl.highlightFirstItem();
+        _listboxEl.highlightFirstItem();
         break;
       }
       case "End": {
-        _menuEl.highlightLastItem();
+        _listboxEl.highlightLastItem();
         break;
       }
       case "Enter": {
-        _changeValue(_menuEl.getHighlightValue());
+        _changeValue(_listboxEl.getHighlightValue());
         break;
       }
       default:
@@ -61,13 +61,13 @@ const Template = ({ value, items }) => {
     }
   };
 
-  const _handleClickCalendarMenu = event => {
+  const _handleClickCalendarListbox = (event) => {
     _changeValue(event.detail.value);
   };
 
-  const _changeValue = newValue => {
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
-    _menuEl.setAttribute("value", newValue);
+  const _changeValue = (newValue) => {
+    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listboxEl.setAttribute("value", newValue);
 
     const _btn = document.querySelector("button");
     _btn.textContent = newValue;
@@ -77,12 +77,12 @@ const Template = ({ value, items }) => {
     <button @click="${_handleClickBtn}" @keydown="${_handleKeydownBtn}">
       ${value}
     </button>
-    <kuc-base-datetime-menu
+    <kuc-base-datetime-listbox
       .items="${items}"
       .value="${value}"
-      @kuc:calendar-menu-click="${_handleClickCalendarMenu}"
+      @kuc:calendar-listbox-click="${_handleClickCalendarListbox}"
     >
-    </kuc-base-datetime-menu>
+    </kuc-base-datetime-listbox>
   `;
 };
 
@@ -101,6 +101,6 @@ base.args = {
     { value: "8", label: "SEPTEMBER" },
     { value: "9", label: "OCTOBER" },
     { value: "10", label: "NOVEMBER" },
-    { value: "11", label: "DECEMBER" }
-  ]
+    { value: "11", label: "DECEMBER" },
+  ],
 };

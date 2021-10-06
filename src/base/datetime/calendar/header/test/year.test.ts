@@ -9,14 +9,14 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       const el = await fixture(container);
       const yearSelectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
+        ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
       const optionMonthEl = el.querySelector(
         ".kuc-base-datetime-year-dropdown__menu"
       ) as HTMLUListElement;
 
-      expect(yearSelectEl.dataset.year).to.equal("2021");
+      expect(yearSelectEl.innerText).to.equal("2021");
       expect(optionMonthEl.children[1].children.length).to.equal(201);
     });
 
@@ -27,10 +27,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.setAttribute("year", "2022");
       const el = await fixture(container);
       const yearSelectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
+        ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
-      expect(yearSelectEl.dataset.year).to.equal("2022");
+      expect(yearSelectEl.innerText).to.equal("2022");
     });
 
     it("should be 2021 when assigning invalid value by setter", async () => {
@@ -40,10 +40,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.setAttribute("year", "123.33");
       const el = await fixture(container);
       const yearSelectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
+        ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
-      expect(yearSelectEl.dataset.year).to.equal("2021");
+      expect(yearSelectEl.innerText).to.equal("2021");
     });
   });
 });

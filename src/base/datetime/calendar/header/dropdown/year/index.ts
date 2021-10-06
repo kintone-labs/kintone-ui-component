@@ -5,7 +5,7 @@ import {
   CustomEventDetail,
   dispatchCustomEvent,
 } from "../../../../../kuc-base";
-import { BaseDateTimeMenu, Item } from "../../../../menu";
+import { BaseDateTimeListbox, Item } from "../../../../listbox";
 import { _getToggleIconSvgTemplate } from "../../ultils";
 
 export class BaseDateTimeYearDropdown extends KucBase {
@@ -25,7 +25,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
   private _toggleEl!: HTMLButtonElement;
 
   @query(".kuc-base-datetime-year-dropdown__menu")
-  private _menuEl!: BaseDateTimeMenu;
+  private _menuEl!: BaseDateTimeListbox;
 
   update(changedProperties: PropertyValues) {
     this._menuItems = this._getYearOptions().map((year: number) => {
@@ -51,24 +51,22 @@ export class BaseDateTimeYearDropdown extends KucBase {
         @blur="${this._handleBlurDropdownYearToggle}"
         @keydown="${this._handleKeyDownYearToggle}"
       >
-        <span
-          class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
-          data-year="${this.year}"
+        <span class="kuc-base-datetime-year-dropdown__toggle__label"
           >${this.year}</span
         >
-        <span class="kuc-base-datetime-year__toggle__icon"
+        <span class="kuc-base-datetime-year-dropdown__toggle__icon"
           >${_getToggleIconSvgTemplate()}
         </span>
       </button>
-      <kuc-base-datetime-menu
+      <kuc-base-datetime-listbox
         .items="${this._menuItems || []}"
         .value="${this.year.toString()}"
         class="kuc-base-datetime-year-dropdown__menu"
-        @kuc:calendar-menu-click="${this._handleChangeMenu}"
+        @kuc:calendar-listbox-click="${this._handleChangeMenu}"
         aria-hidden="${!this._menuVisible}"
         ?hidden="${!this._menuVisible}"
       >
-      </kuc-base-datetime-menu>
+      </kuc-base-datetime-listbox>
     `;
   }
 
@@ -86,7 +84,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-year__toggle__icon {
+        .kuc-base-datetime-year-dropdown__toggle__icon {
           flex: none;
           width: 38px;
           height: 38px;
