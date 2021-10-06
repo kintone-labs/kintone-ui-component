@@ -1,4 +1,4 @@
-import { html, property } from "lit-element";
+import { html, property, PropertyValues } from "lit-element";
 import {
   KucBase,
   dispatchCustomEvent,
@@ -6,6 +6,7 @@ import {
 } from "../../../kuc-base";
 import {
   _getLeftArrowIconSvgTemplate,
+  _getLocale,
   _getRightArrowIconSvgTemplate,
 } from "../header/ultils";
 import "../../calendar/header/dropdown/month";
@@ -19,6 +20,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: Number }) year = 2021;
 
   private _locale = en;
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = _getLocale(this.language);
+    }
+    super.update(changedProperties);
+  }
 
   render() {
     return html`
@@ -122,11 +130,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   }
 
   private _getYearTemplate() {
-    const yearSelectPostfix = this._locale.YEAR_SELECT_POSTFIX;
     return html`
       <kuc-base-datetime-year-dropdown
         class="kuc-base-datetime-calendar-year-dropdown"
-        .postfix="${yearSelectPostfix}"
+        .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
       >

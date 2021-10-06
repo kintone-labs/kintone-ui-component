@@ -1,4 +1,5 @@
 import { svg } from "lit-element";
+import { en, zh, ja } from "../../../resource/locale";
 
 export const _getToggleIconSvgTemplate = () => {
   return svg`
@@ -44,4 +45,17 @@ export const _getRightArrowIconSvgTemplate = () => {
         fill="#888888"
       />
     </svg>`;
+};
+
+export const _getLocale = (language: string) => {
+  switch (language) {
+    case "en":
+      return en;
+    case "zh":
+      return zh;
+    case "ja":
+      return ja;
+    default:
+      return en;
+  }
 };

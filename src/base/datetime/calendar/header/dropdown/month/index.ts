@@ -6,8 +6,8 @@ import {
   CustomEventDetail,
 } from "../../../../../kuc-base";
 import { BaseDateTimeMenu, Item } from "../../../../menu";
-import { en, zh, ja } from "../../../../resource/locale";
-import { _getToggleIconSvgTemplate } from "../../ultils";
+import { en } from "../../../../resource/locale";
+import { _getToggleIconSvgTemplate, _getLocale } from "../../ultils";
 
 export class BaseDateTimeMonthDropdown extends KucBase {
   @property({ type: String }) language = "en";
@@ -28,25 +28,13 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   private _menuEl!: BaseDateTimeMenu;
 
   update(changedProperties: PropertyValues) {
-    changedProperties.forEach((_oldValue, propName) => {
-      propName === "language" &&
-        (this._locale = this._getLocale(this.language));
-    });
-
-    this._menuItems = this._locale.MONTHS_SELECT.map(
-      (month: string, index: number) => {
-        if (index + 1 === this.month) {
-          this._monthLabel = month;
-        }
-
-        const item: Item = {
-          value: `${index + 1}`,
-          label: `${month}`,
-        };
-        return item;
-      }
-    );
-
+    if (changedProperties.has("language")) {
+      this._locale = _getLocale(this.language);
+      this._menuItems = this._getMenuItems();
+    }
+    if (changedProperties.has("month")) {
+      this._monthLabel = this._getMonthLabel();
+    }
     super.update(changedProperties);
   }
 
@@ -63,12 +51,10 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         @blur="${this._handleBlurDropdownMonthToggle}"
         @keydown="${this._handleKeyDownMonthToggle}"
       >
-        <span
-          class="kuc-base-datetime-calendar-header__group__toggle__selected-month-label"
-          data-month="${this.month}"
+        <span class="kuc-base-datetime-month-dropdown__toggle__label"
           >${this._monthLabel}</span
         >
-        <span class="kuc-base-datetime-month__toggle__icon"
+        <span class="kuc-base-datetime-month-dropdown__toggle__icon"
           >${_getToggleIconSvgTemplate()}
         </span>
       </button>
@@ -99,7 +85,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-month__toggle__icon {
+        .kuc-base-datetime-month-dropdown__toggle__icon {
           flex: none;
           width: 38px;
           height: 38px;
@@ -214,17 +200,21 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     _buttonEl.removeAttribute("aria-activedescendant");
   }
 
-  private _getLocale(language: string) {
-    switch (language) {
-      case "en":
-        return en;
-      case "zh":
-        return zh;
-      case "ja":
-        return ja;
-      default:
-        return en;
-    }
+  private _getMenuItems() {
+    return this._locale.MONTHS_SELECT.map((month: string, index: number) => {
+      const item: Item = {
+        value: `${index + 1}`,
+        label: `${month}`,
+      };
+      return item;
+    });
+  }
+
+  private _getMonthLabel() {
+    const monthSelected = this._locale.MONTHS_SELECT.filter(
+      (month: string, index: number) => this.month === index + 1
+    );
+    return monthSelected.length > 0 ? monthSelected[0] : "JANUARY";
   }
 }
 

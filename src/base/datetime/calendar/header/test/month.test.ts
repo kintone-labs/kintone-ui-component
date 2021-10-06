@@ -9,14 +9,14 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       const el = await fixture(container);
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__toggle__selected-month-label"
+        ".kuc-base-datetime-month-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
       const optionMonthEl = el.querySelector(
         ".kuc-base-datetime-month-dropdown__menu"
       ) as HTMLUListElement;
 
-      expect(monthSelectEl.dataset.month).to.equal("1");
+      expect(monthSelectEl.innerText).to.equal("JANUARY");
       expect(optionMonthEl.children[1].children.length).to.equal(12);
     });
 
@@ -27,10 +27,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.setAttribute("month", "5");
       const el = await fixture(container);
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__toggle__selected-month-label"
+        ".kuc-base-datetime-month-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
-      expect(monthSelectEl.dataset.month).to.equal("5");
+      expect(monthSelectEl.innerText).to.equal("MAY");
     });
   });
 });
