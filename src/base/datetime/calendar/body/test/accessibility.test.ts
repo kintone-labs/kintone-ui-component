@@ -3,96 +3,94 @@ import { BaseDateTimeCalendarBody } from "../index";
 
 describe("BaseDateTimeCalendarBody", () => {
   describe("accessibility", () => {
-    const InitValue = {
-      month: 8,
+    const initValue = {
+      month: 7,
       year: 2021,
-      value: "2021-09-22",
-      previousDay: "2021-09-21",
-      previousWeek: "2021-09-15",
-      nextDay: "2021-09-23",
-      nextWeek: "2021-09-29",
-      next2Weeks: "2021-10-06"
+      value: "2021-08-22"
+    };
+
+    const expectValue = {
+      previousDay: "2021-08-21",
+      previousWeek: "2021-08-15",
+      nextDay: "2021-08-23",
+      nextWeek: "2021-08-29",
+      next2Weeks: "2021-09-05"
     };
 
     it('should be highlight previous week when triggered "Up" keyboard event for IE', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.previousWeek);
+      expect(container.value).to.equal(expectValue.previousWeek);
     });
 
     it('should be highlight previous week when triggered "ArrowUp" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowUp" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.previousWeek);
+      expect(container.value).to.equal(expectValue.previousWeek);
     });
 
     it('should be highlight previous week when triggered "Down" keyboard event for IE', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.nextWeek);
+      expect(container.value).to.equal(expectValue.nextWeek);
     });
 
     it('should be highlight next week when triggered "ArrowDown" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowDown" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.nextWeek);
+      expect(container.value).to.equal(expectValue.nextWeek);
     });
 
     it('should be highlight next 2 weeks when triggered "ArrowDown" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowDown" })
       );
@@ -101,88 +99,83 @@ describe("BaseDateTimeCalendarBody", () => {
         new KeyboardEvent("keydown", { key: "ArrowDown" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.next2Weeks);
+      expect(container.value).to.equal(expectValue.next2Weeks);
     });
 
     it('should be highlight previous week when triggered "Left" keyboard event for IE', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Left" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.previousDay);
+      expect(container.value).to.equal(expectValue.previousDay);
     });
 
     it('should be highlight previous day when triggered "ArrowLeft" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowLeft" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.previousDay);
+      expect(container.value).to.equal(expectValue.previousDay);
     });
 
     it('should be highlight previous week when triggered "Right" keyboard event for IE', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Right" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.nextDay);
+      expect(container.value).to.equal(expectValue.nextDay);
     });
 
     it('should be highlight next day when triggered "ArrowRight" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.nextDay);
+      expect(container.value).to.equal(expectValue.nextDay);
     });
 
     it('should changed value when pressing "Enter" key', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );
@@ -190,23 +183,41 @@ describe("BaseDateTimeCalendarBody", () => {
 
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.nextDay);
+      expect(container.value).to.equal(expectValue.nextDay);
     });
 
     it("should do nothing when pressing not handled key", async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = InitValue.month;
-      container.year = InitValue.year;
-      container.value = InitValue.value;
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
 
       const el = await fixture(container);
-      const selectedEl = el.querySelectorAll(
+      const selectedEl = el.querySelector(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-      )[0] as HTMLButtonElement;
-      selectedEl.click();
+      ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "a" }));
       await elementUpdated(el);
-      expect(container.value).to.equal(InitValue.value);
+      expect(container.value).to.equal(initValue.value);
+    });
+
+    it("should do nothing when pressing 'ArrowRight' key but the value is invalid", async () => {
+      const container = new BaseDateTimeCalendarBody();
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
+
+      const el = await fixture(container);
+      const selectedEl = el.querySelector(
+        '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
+      ) as HTMLButtonElement;
+
+      container.value = "";
+      selectedEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowRight" })
+      );
+      await elementUpdated(el);
+      expect(container.value).to.equal("");
     });
 
     it('should be highlight next year when triggered "ArrowRight" keyboard event', async () => {
@@ -219,7 +230,6 @@ describe("BaseDateTimeCalendarBody", () => {
       const selectedEl = el.querySelectorAll(
         '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
       )[0] as HTMLButtonElement;
-      selectedEl.click();
       selectedEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );

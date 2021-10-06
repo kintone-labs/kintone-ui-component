@@ -66,8 +66,8 @@ const Template = ({ month, year, language, value }) => {
 
 export const base = Template.bind({});
 base.args = {
-  month: 8,
+  month: 7,
   year: 2021,
   language: "en",
-  value: "2021-09-22"
+  value: "2021-08-22"
 };

@@ -6,13 +6,13 @@ describe("BaseDateTimeCalendarBody", () => {
     it("should be triggered kuc:kuc:calendar-body-click-date event", async () => {
       let triggeredEvent: any = null;
       const InitValue = {
-        month: 8,
+        month: 7,
         year: 2021,
-        value: "2021-09-22"
+        value: "2021-08-22"
       };
       const ItemForTest = {
         index: 17,
-        value: "2021-09-15"
+        value: "2021-08-18"
       };
 
       const container = new BaseDateTimeCalendarBody();

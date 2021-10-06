@@ -51,10 +51,7 @@ const getDateRanges = (year: number, month: number) => {
   const rangeLength =
     (endDayOfEndWeek.getTime() - startDayOfFirstWeek.getTime()) /
     (1000 * 60 * 60 * 24);
-
-  if (rangeLength < 42) {
-    endDayOfEndWeek.setDate(endDayOfEndWeek.getDate() + (42 - rangeLength));
-  }
+  endDayOfEndWeek.setDate(endDayOfEndWeek.getDate() + (42 - rangeLength));
 
   return {
     start: startDayOfFirstWeek,

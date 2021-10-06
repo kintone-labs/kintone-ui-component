@@ -6,9 +6,9 @@ describe("BaseDateTimeCalendarBody", () => {
     it('The first day of the week is "SUN" when not assigning language prop', async () => {
       const container = new BaseDateTimeCalendarBody();
       const el = await fixture(container);
-      const item = el.querySelectorAll(
+      const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__header"
-      )[0] as HTMLTableHeaderCellElement;
+      ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
 
@@ -16,9 +16,9 @@ describe("BaseDateTimeCalendarBody", () => {
       const container = new BaseDateTimeCalendarBody();
       container.language = "vn";
       const el = await fixture(container);
-      const item = el.querySelectorAll(
+      const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__header"
-      )[0] as HTMLTableHeaderCellElement;
+      ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
 
@@ -26,9 +26,9 @@ describe("BaseDateTimeCalendarBody", () => {
       const container = new BaseDateTimeCalendarBody();
       container.language = "en";
       const el = await fixture(container);
-      const item = el.querySelectorAll(
+      const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__header"
-      )[0] as HTMLTableHeaderCellElement;
+      ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
 
@@ -36,9 +36,9 @@ describe("BaseDateTimeCalendarBody", () => {
       const container = new BaseDateTimeCalendarBody();
       container.language = "ja";
       const el = await fixture(container);
-      const item = el.querySelectorAll(
+      const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__header"
-      )[0] as HTMLTableHeaderCellElement;
+      ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("日");
     });
 
@@ -46,9 +46,9 @@ describe("BaseDateTimeCalendarBody", () => {
       const container = new BaseDateTimeCalendarBody();
       container.language = "zh";
       const el = await fixture(container);
-      const item = el.querySelectorAll(
+      const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__header"
-      )[0] as HTMLTableHeaderCellElement;
+      ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("周日");
     });
   });

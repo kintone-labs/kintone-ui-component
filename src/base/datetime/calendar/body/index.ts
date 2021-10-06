@@ -1,4 +1,4 @@
-import { html, property, PropertyValues } from "lit-element";
+import { html, property, query, PropertyValues } from "lit-element";
 import {
   KucBase,
   CustomEventDetail,
@@ -13,6 +13,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
+  @query('.kuc-base-datetime-calendar-body__date[aria-selected="true"]')
+  private _selectedItem!: HTMLButtonElement;
   private _locale = en;
 
   update(changedProperties: PropertyValues) {
@@ -103,7 +105,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    const date = new Date(this.value || this._getDateString());
+    const date = new Date(this.value);
+    if(isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
     const nextDate = this._getDateString(date);
@@ -121,11 +124,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getSelectedValue() {
-    const selectedEl = this.querySelectorAll(
-      '.kuc-base-datetime-calendar-body__date[aria-selected="true"]'
-    );
-    if (selectedEl) {
-      return selectedEl[0].getAttribute("data-date") || "";
+    if (this._selectedItem) {
+      return this._selectedItem.getAttribute("data-date") || "";
     }
     return "";
   }
