@@ -69,5 +69,5 @@ base.args = {
   month: 8,
   year: 2021,
   language: "en",
-  value: "2021-9-22"
+  value: "2021-09-22"
 };

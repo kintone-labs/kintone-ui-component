@@ -8,11 +8,11 @@ describe("BaseDateTimeCalendarBody", () => {
       const InitValue = {
         month: 8,
         year: 2021,
-        value: "2021-9-22"
+        value: "2021-09-22"
       };
       const ItemForTest = {
         index: 17,
-        value: "2021-9-15"
+        value: "2021-09-15"
       };
 
       const container = new BaseDateTimeCalendarBody();

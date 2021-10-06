@@ -5,7 +5,7 @@ export const getDisplayingDates = (year: number, month: number) => {
   let count = 0;
   const displayingDates = [];
   while (date <= dateRanges.end) {
-    weekDates.push(getDateString(date));
+    weekDates.push(getDateObj(date));
     if (weekDates.length === 7) {
       displayingDates.push(weekDates);
       weekDates = [];
@@ -19,10 +19,16 @@ export const getDisplayingDates = (year: number, month: number) => {
   return displayingDates;
 };
 
-const getDateString = (date: Date) => {
+const getDateObj = (date: Date) => {
   const tmpDate = new Date(date);
-  return `${tmpDate.getFullYear()}-${tmpDate.getMonth() +
+  const year = tmpDate.getFullYear();
+  const month = String(tmpDate.getMonth() + 1).padStart(2, "0");
+  const day = String(tmpDate.getDate()).padStart(2, "0");
+
+  const text = `${tmpDate.getFullYear()}-${tmpDate.getMonth() +
     1}-${tmpDate.getDate()}`;
+  const attr = `${year}-${month}-${day}`;
+  return { text, attr };
 };
 
 const getDateRanges = (year: number, month: number) => {

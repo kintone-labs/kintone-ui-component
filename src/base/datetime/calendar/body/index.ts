@@ -11,7 +11,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
   @property({ type: Number }) year = 2021;
   @property({ type: String }) language = "en";
-  @property({ type: String }) value = "";
+  @property({ type: String, reflect: true }) value = "";
 
   private _locale = en;
 
@@ -141,7 +141,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateString(date = new Date()) {
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   }
 
   private _getLocale(language: string) {
@@ -184,19 +187,19 @@ export class BaseDateTimeCalendarBody extends KucBase {
           return html`
             <tr>
               ${weeks.map(weekDate => {
-                const dateParts = weekDate.split("-");
+                const dateParts = weekDate.text.split("-");
                 return html`
                   <td role="gridcell">
                     <button
-                      aria-selected="${this.value === weekDate}"
-                      tabindex="${weekDate === today || this.value === weekDate
+                      aria-selected="${this.value === weekDate.attr}"
+                      tabindex="${weekDate.attr === today || this.value === weekDate.attr
                         ? "0"
                         : "-1"}"
                       class="kuc-base-datetime-calendar-body__date${this._getDateClass(
                         dateParts
                       )}"
-                      data-date="${weekDate}"
-                      @click=${this._handleClickDateBtn}
+                      data-date="${weekDate.attr}"
+                      @click="${this._handleClickDateBtn}"
                       @keydown="${this._handleKeyDownDateBtn}"
                     >
                       ${dateParts[2] || ""}

@@ -6,12 +6,12 @@ describe("BaseDateTimeCalendarBody", () => {
     const InitValue = {
       month: 8,
       year: 2021,
-      value: "2021-9-22",
-      previousDay: "2021-9-21",
-      previousWeek: "2021-9-15",
-      nextDay: "2021-9-23",
-      nextWeek: "2021-9-29",
-      next2Weeks: "2021-10-6"
+      value: "2021-09-22",
+      previousDay: "2021-09-21",
+      previousWeek: "2021-09-15",
+      nextDay: "2021-09-23",
+      nextWeek: "2021-09-29",
+      next2Weeks: "2021-10-06"
     };
 
     it('should be highlight previous week when triggered "Up" keyboard event for IE', async () => {
@@ -224,7 +224,7 @@ describe("BaseDateTimeCalendarBody", () => {
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );
       await elementUpdated(el);
-      expect(container.value).to.equal("2022-1-1");
+      expect(container.value).to.equal("2022-01-01");
     });
   });
 });
