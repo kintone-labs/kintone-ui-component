@@ -15,12 +15,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-calendar-header__group__month"
+          "kuc-base-datetime-calendar-month-dropdown"
         )
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-calendar-header__group__year"
+          "kuc-base-datetime-calendar-year-dropdown"
         )
       ).to.equal(true);
     });
@@ -38,12 +38,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-calendar-header__group__year"
+          "kuc-base-datetime-calendar-year-dropdown"
         )
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-calendar-header__group__month"
+          "kuc-base-datetime-calendar-month-dropdown"
         )
       ).to.equal(true);
     });
@@ -61,12 +61,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-calendar-header__group__year"
+          "kuc-base-datetime-calendar-year-dropdown"
         )
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-calendar-header__group__month"
+          "kuc-base-datetime-calendar-month-dropdown"
         )
       ).to.equal(true);
     });
@@ -84,12 +84,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-calendar-header__group__month"
+          "kuc-base-datetime-calendar-month-dropdown"
         )
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-calendar-header__group__year"
+          "kuc-base-datetime-calendar-year-dropdown"
         )
       ).to.equal(true);
     });
@@ -98,7 +98,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const container = document.createElement(
         "kuc-base-datetime-calendar-header"
       );
-      container.setAttribute("language", "xxx");
+      container.setAttribute("language", "xx");
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
         ".kuc-base-datetime-calendar-header__group__center"
@@ -107,12 +107,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-calendar-header__group__month"
+          "kuc-base-datetime-calendar-month-dropdown"
         )
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-calendar-header__group__year"
+          "kuc-base-datetime-calendar-year-dropdown"
         )
       ).to.equal(true);
     });

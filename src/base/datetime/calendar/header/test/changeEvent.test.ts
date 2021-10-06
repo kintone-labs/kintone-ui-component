@@ -100,9 +100,14 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const selectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__year"
-      ) as HTMLSelectElement;
-      selectEl.dispatchEvent(new Event("change"));
+        ".kuc-base-datetime-calendar-year-dropdown"
+      ) as HTMLElement;
+
+      selectEl.dispatchEvent(
+        new CustomEvent("kuc:year-dropdown-change", {
+          detail: { value: "2022" },
+        })
+      );
 
       expect(triggeredEvent.type).to.equal("kuc:calendar-header-change");
     });
@@ -120,9 +125,13 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const selectEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__month"
+        ".kuc-base-datetime-calendar-month-dropdown"
       ) as HTMLSelectElement;
-      selectEl.dispatchEvent(new Event("change"));
+      selectEl.dispatchEvent(
+        new CustomEvent("kuc:month-dropdown-change", {
+          detail: { value: "1" },
+        })
+      );
 
       expect(triggeredEvent.type).to.equal("kuc:calendar-header-change");
     });

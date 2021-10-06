@@ -6,7 +6,7 @@ import {
   CustomEventDetail
 } from "../../kuc-base";
 
-type Item = {
+export type Item = {
   label?: string;
   value?: string;
 };
