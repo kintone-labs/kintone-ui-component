@@ -54,10 +54,12 @@ describe('unit test NotifyPopup render', () => {
   });
 
   test('Render successfully with wrong option', () => {
-    // @ts-ignore
     const notifyPopup = new NotifyPopup({
+      // @ts-ignore
       text: 123,
+      // @ts-ignore
       type: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = notifyPopup.render();

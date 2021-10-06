@@ -121,8 +121,10 @@ describe('Unit test Table react', () => {
         // @ts-ignore
         columns={columns}
         data={tableData}
+        // @ts-ignore
         onRowAdd={handleRowAdd}
         onCellChange={handleCellChange}
+        // @ts-ignore
         onRowRemove={handleRowRemove}
         defaultRowData={defaultRowData}
       />
@@ -186,6 +188,7 @@ describe('Unit test Table react', () => {
         // @ts-ignore
         columns={columns}
         data={tableData}
+        // @ts-ignore
         onRowAdd={handleRowAdd}
       />
     );
