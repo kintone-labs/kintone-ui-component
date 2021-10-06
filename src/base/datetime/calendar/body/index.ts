@@ -189,7 +189,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
               ${weeks.map(weekDate => {
                 const dateParts = weekDate.text.split("-");
                 return html`
-                  <td role="gridcell">
+                  <td role="gridcell" class="${this.value === weekDate.attr ? 'kuc-base-datetime-calendar-body__date--selected' : ''}">
                     <button
                       aria-selected="${this.value === weekDate.attr}"
                       tabindex="${weekDate.attr === today || this.value === weekDate.attr
@@ -251,8 +251,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
           box-sizing: border-box;
           padding: 8px 0;
           width: 36px;
+          height: 31px;
           border: 1px solid #ffffff;
-          line-height: 1.5;
         }
         .kuc-base-datetime-calendar-body__header:nth-child(1),
         .kuc-base-datetime-calendar-body__header:nth-child(7) {
@@ -263,10 +263,15 @@ export class BaseDateTimeCalendarBody extends KucBase {
           cursor: pointer;
         }
         .kuc-base-datetime-calendar-body__date:hover {
-          color:#000000;
+          color: #000000;
         }
-        .kuc-base-datetime-calendar-body__date[aria-selected="true"] {
+        .kuc-base-datetime-calendar-body__date--selected {
           border: 1px solid #3498db;
+          box-sizing: border-box;
+        }
+        .kuc-base-datetime-calendar-body__date--selected .kuc-base-datetime-calendar-body__date{
+          width: 34px;
+          height: 29px;
         }
         .kuc-base-datetime-calendar-body__date:focus-visible {
           outline: none;
