@@ -262,6 +262,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
           background: none;
           cursor: pointer;
         }
+        .kuc-base-datetime-calendar-body__date:hover {
+          color:#000000;
+        }
         .kuc-base-datetime-calendar-body__date[aria-selected="true"] {
           border: 1px solid #3498db;
         }
