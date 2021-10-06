@@ -10,7 +10,7 @@ import { _getToggleIconSvgTemplate } from "../../ultils";
 
 export class BaseDateTimeYearDropdown extends KucBase {
   @property({ type: Number }) year = 2021;
-  @property({ type: Number }) postfix = 2021;
+  @property({ type: String }) postfix = "";
 
   @state()
   private _menuVisible = false;
@@ -61,7 +61,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         </span>
       </button>
       <kuc-base-datetime-menu
-        .items="${this._menuItems}"
+        .items="${this._menuItems || []}"
         .value="${this.year.toString()}"
         class="kuc-base-datetime-year-dropdown__menu"
         @kuc:calendar-menu-click="${this._handleChangeMenu}"
@@ -163,7 +163,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         if (highlightValue) {
           this.year = Number(highlightValue);
           const detail: CustomEventDetail = { value: `${this.year}` };
-          dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
+          dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
         }
         this._menuVisible = false;
         break;
