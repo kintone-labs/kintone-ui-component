@@ -61,7 +61,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         @mousedown="${this._handleMouseDownDropdownToggle}"
         @click="${this._handleClickDropdownMonthToggle}"
         @blur="${this._handleBlurDropdownMonthToggle}"
-        @keydown="${this._handleKeydownMonthToggle}"
+        @keydown="${this._handleKeyDownMonthToggle}"
       >
         <span
           class="kuc-base-datetime-calendar-header__group__toggle__selected-month-label"
@@ -124,7 +124,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     event.preventDefault();
   }
 
-  private _handleKeydownMonthToggle(event: KeyboardEvent) {
+  private _handleKeyDownMonthToggle(event: KeyboardEvent) {
     if (!this._menuVisible) {
       this._menuEl.highlightFirstItem();
       return;
@@ -171,6 +171,8 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         const highlightValue = this._menuEl.getHighlightValue();
         if (highlightValue) {
           this.month = Number(highlightValue);
+          const detail: CustomEventDetail = { value: `${this.month}` };
+          dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
         }
         this._menuVisible = false;
         break;

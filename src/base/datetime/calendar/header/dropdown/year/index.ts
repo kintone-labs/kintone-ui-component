@@ -49,7 +49,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         @mousedown="${this._handleMouseDownDropdownToggle}"
         @click="${this._handleClickDropdownYearToggle}"
         @blur="${this._handleBlurDropdownYearToggle}"
-        @keydown="${this._handleKeydownYearToggle}"
+        @keydown="${this._handleKeyDownYearToggle}"
       >
         <span
           class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
@@ -111,7 +111,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
     }
   }
 
-  private _handleKeydownYearToggle(event: KeyboardEvent) {
+  private _handleKeyDownYearToggle(event: KeyboardEvent) {
     if (!this._menuVisible) {
       this._menuEl.highlightFirstItem();
       return;
@@ -162,6 +162,8 @@ export class BaseDateTimeYearDropdown extends KucBase {
         const highlightValue = this._menuEl.getHighlightValue();
         if (highlightValue) {
           this.year = Number(highlightValue);
+          const detail: CustomEventDetail = { value: `${this.year}` };
+          dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
         }
         this._menuVisible = false;
         break;

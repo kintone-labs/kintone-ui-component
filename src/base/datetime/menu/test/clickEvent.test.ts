@@ -8,12 +8,12 @@ describe("BaseDateTimeMenu", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" }
+        { value: "2", label: "MARCH" },
       ];
 
       const container = new BaseDateTimeMenu();
       container.items = initItems;
-      container.addEventListener("kuc:calendar-menu-click", event => {
+      container.addEventListener("kuc:calendar-menu-click", (event) => {
         triggeredEvent = event;
       });
 
@@ -21,7 +21,10 @@ describe("BaseDateTimeMenu", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-menu__menu__item"
       );
-      (itemsEl[2] as HTMLDivElement).click();
+      (itemsEl[2] as HTMLLIElement).dispatchEvent(
+        new CustomEvent("mousedown", { bubbles: true })
+      );
+
       expect(triggeredEvent.type).to.equal("kuc:calendar-menu-click");
       expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
     });
