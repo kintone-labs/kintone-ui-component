@@ -1,5 +1,10 @@
 import { html, property, query, PropertyValues, state } from "lit-element";
-import { KucBase, generateGUID } from "../../../../../kuc-base";
+import {
+  KucBase,
+  generateGUID,
+  CustomEventDetail,
+  dispatchCustomEvent,
+} from "../../../../../kuc-base";
 import { BaseDateTimeMenu, Item } from "../../../../menu";
 import { _getToggleIconSvgTemplate } from "../../ultils";
 
@@ -48,6 +53,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
       >
         <span
           class="kuc-base-datetime-calendar-header__group__toggle__selected-year-label"
+          data-year="${this.year}"
           >${this.year}</span
         >
         <span class="kuc-base-datetime-year__toggle__icon"
@@ -73,15 +79,12 @@ export class BaseDateTimeYearDropdown extends KucBase {
           position: relative;
           box-sizing: border-box;
           height: 32px;
-          padding: 0 24px 0 8px;
+          padding: 0 14px 0 8px;
           line-height: 30px;
           overflow: hidden;
           background-color: white;
-          text-overflow: ellipsis;
-          font-size: 13px;
-          font-weight: 700;
-          cursor: pointer;
           border: 1px solid transparent;
+          cursor: pointer;
         }
         .kuc-base-datetime-year__toggle__icon {
           flex: none;
@@ -175,6 +178,8 @@ export class BaseDateTimeYearDropdown extends KucBase {
     event.stopPropagation();
     this.year = Number(event.detail.value);
     this._menuVisible = false;
+    const detail: CustomEventDetail = { value: `${this.year}` };
+    dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
   }
 
   private _openMenu() {
