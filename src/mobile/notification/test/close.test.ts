@@ -6,8 +6,10 @@ describe("MobileNotification", () => {
     it("should be fadeout when call close() method", async () => {
       const container = new MobileNotification();
       container.open();
+      await elementUpdated(container);
 
       container.close();
+      await elementUpdated(container);
 
       const parrentEl = container.parentNode as HTMLElement;
       expect(parrentEl.nodeName).to.equal("BODY");
@@ -27,6 +29,7 @@ describe("MobileNotification", () => {
         ".kuc-mobile-notification__notification__closeButton"
       ) as HTMLButtonElement;
       closeBtnEl.click();
+      await elementUpdated(container);
 
       const parrentEl = container.parentNode as HTMLElement;
       expect(parrentEl.nodeName).to.equal("BODY");
