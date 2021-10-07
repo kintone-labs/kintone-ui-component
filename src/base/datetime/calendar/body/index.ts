@@ -132,11 +132,11 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateClass(dateParts: string[]) {
     const isToday = this._isToday(dateParts);
-    if (isToday) return " kuc-base-datetime-calendar-body__date--today";
+    if (isToday) return " kuc-base-datetime-calendar-body__date__button--today";
 
     const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
     if (isOtherMonth)
-      return " kuc-base-datetime-calendar-body__date--other-month";
+      return " kuc-base-datetime-calendar-body__date__button--other-month";
     return "";
   }
 
@@ -194,7 +194,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                     class="kuc-base-datetime-calendar-body__date${this.value ===
                     weekDate.attr
                       ? "--selected"
-                      : "--unselected"}"
+                      : ""}"
                   >
                     <button
                       aria-selected="${this.value === weekDate.attr}"
@@ -202,7 +202,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                       this.value === weekDate.attr
                         ? "0"
                         : "-1"}"
-                      class="kuc-base-datetime-calendar-body__date${this._getDateClass(
+                      class="kuc-base-datetime-calendar-body__date__button${this._getDateClass(
                         dateParts
                       )}"
                       data-date="${weekDate.attr}"
@@ -245,7 +245,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border-collapse: separate;
           border-spacing: 0;
         }
-        .kuc-base-datetime-calendar-body__date,
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button,
+        .kuc-base-datetime-calendar-body__date--selected
+          .kuc-base-datetime-calendar-body__date__button,
         .kuc-base-datetime-calendar-body__header {
           text-align: center;
           text-transform: uppercase;
@@ -253,7 +256,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
           font-weight: 400;
           color: #333333;
         }
-        .kuc-base-datetime-calendar-body__date,
+        .kuc-base-datetime-calendar-body__date--selected
+          .kuc-base-datetime-calendar-body__date__button,
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button,
         .kuc-base-datetime-calendar-body__header {
           box-sizing: border-box;
           padding: 8px 0;
@@ -265,11 +271,15 @@ export class BaseDateTimeCalendarBody extends KucBase {
         .kuc-base-datetime-calendar-body__header:nth-child(7) {
           color: #d4d7d7;
         }
-        .kuc-base-datetime-calendar-body__date {
+        .kuc-base-datetime-calendar-body__date--selected
+          .kuc-base-datetime-calendar-body__date__button,
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button {
           background: none;
           cursor: pointer;
         }
-        .kuc-base-datetime-calendar-body__date:hover {
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button:hover {
           color: #000000;
         }
         .kuc-base-datetime-calendar-body__date--selected {
@@ -277,21 +287,28 @@ export class BaseDateTimeCalendarBody extends KucBase {
           box-sizing: border-box;
         }
         .kuc-base-datetime-calendar-body__date--selected
-          .kuc-base-datetime-calendar-body__date {
+          .kuc-base-datetime-calendar-body__date__button {
           width: 34px;
           height: 29px;
-        }
-        .kuc-base-datetime-calendar-body__date:focus-visible {
           outline: none;
         }
-        .kuc-base-datetime-calendar-body__date--today {
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button:focus-visible {
+          outline: none;
+        }
+        .kuc-base-datetime-calendar-body__date--selected
+          .kuc-base-datetime-calendar-body__date__button--today,
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button--today {
           color: #ffffff;
           background: #888888;
         }
-        .kuc-base-datetime-calendar-body__date--today:hover {
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button--today:hover {
           color: #333333;
         }
-        .kuc-base-datetime-calendar-body__date--other-month {
+        .kuc-base-datetime-calendar-body__date
+          .kuc-base-datetime-calendar-body__date__button--other-month {
           color: #d4d7d7;
         }
       </style>
