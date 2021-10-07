@@ -1,4 +1,5 @@
-import { html, property, query, PropertyValues } from "lit-element";
+import { html, PropertyValues } from "lit";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
