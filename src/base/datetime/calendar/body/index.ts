@@ -13,7 +13,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
-  @query('.kuc-base-datetime-calendar-body__date[aria-selected="true"]')
+  @query('.kuc-base-datetime-calendar-body__date__button[aria-selected="true"]')
   private _selectedItem!: HTMLButtonElement;
   private _locale = en;
 

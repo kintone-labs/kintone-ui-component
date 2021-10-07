@@ -26,7 +26,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-calendar-body__date"
+        ".kuc-base-datetime-calendar-body__date__button"
       );
       (itemsEl[ItemForTest.index] as HTMLDivElement).click();
       expect(triggeredEvent.type).to.equal("kuc:calendar-body-click-date");
