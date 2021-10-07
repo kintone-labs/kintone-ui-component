@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type TextAreaProps = {
   className?: string;
@@ -26,6 +27,8 @@ const TextAreaLayout = {
 };
 
 export class TextArea extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -49,22 +52,8 @@ export class TextArea extends KucBase {
   constructor(props?: TextAreaProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleFocusTextarea(event: FocusEvent) {
@@ -126,9 +115,9 @@ export class TextArea extends KucBase {
           id="${this._GUID}-label"
           class="kuc-textarea__group__textarea"
           placeholder="${this.placeholder}"
-          .value=${this.value}
+          .value="${this.value}"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           aria-invalid="${!this.error}"
           @change="${this._handleChangeTextarea}"
           @focus="${this._handleFocusTextarea}"

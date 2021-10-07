@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type MobileTextProps = {
   className?: string;
@@ -24,6 +25,8 @@ type MobileTextProps = {
 };
 
 export class MobileText extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -46,26 +49,8 @@ export class MobileText extends KucBase {
   constructor(props?: MobileTextProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.prefix = props.prefix !== undefined ? props.prefix : this.prefix;
-    this.suffix = props.suffix !== undefined ? props.suffix : this.suffix;
-    this.textAlign =
-      props.textAlign !== undefined ? props.textAlign : this.textAlign;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -88,13 +73,13 @@ export class MobileText extends KucBase {
       <label
         class="kuc-mobile-text__label"
         for="${this._GUID}-label"
-        ?hidden=${!this.label}
+        ?hidden="${!this.label}"
       >
         <span class="kuc-mobile-text__label__text">${this.label}</span
         ><!--
         --><span
           class="kuc-mobile-text__label__required-icon"
-          ?hidden=${!this.requiredIcon}
+          ?hidden="${!this.requiredIcon}"
           >*</span
         >
       </label>
@@ -107,14 +92,14 @@ export class MobileText extends KucBase {
         <input
           class="kuc-mobile-text__input-form__input"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
-          textAlign=${this.textAlign}
+          placeholder="${this.placeholder}"
+          textAlign="${this.textAlign}"
           type="text"
-          .value=${this.value}
+          .value="${this.value}"
           ?disabled="${this.disabled}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
         />
@@ -128,7 +113,7 @@ export class MobileText extends KucBase {
         class="kuc-mobile-text__error"
         id="${this._GUID}-error"
         role="alert"
-        ?hidden=${!this.error}
+        ?hidden="${!this.error}"
       >
         ${this.error}
       </div>

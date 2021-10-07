@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type MobileTextAreaProps = {
   className?: string;
@@ -21,6 +22,8 @@ type MobileTextAreaProps = {
 };
 
 export class MobileTextArea extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -40,22 +43,8 @@ export class MobileTextArea extends KucBase {
   constructor(props?: MobileTextAreaProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -78,13 +67,13 @@ export class MobileTextArea extends KucBase {
       <label
         class="kuc-mobile-textarea__label"
         for="${this._GUID}-label"
-        ?hidden=${!this.label}
+        ?hidden="${!this.label}"
       >
         <span class="kuc-mobile-textarea__label__text">${this.label}</span
         ><!--
         --><span
           class="kuc-mobile-textarea__label__required-icon"
-          ?hidden=${!this.requiredIcon}
+          ?hidden="${!this.requiredIcon}"
           >*</span
         >
       </label>
@@ -92,12 +81,12 @@ export class MobileTextArea extends KucBase {
         <textarea
           class="kuc-mobile-textarea__form__textarea"
           id="${this._GUID}-label"
-          placeholder=${this.placeholder}
+          placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
-          .value=${this.value}
+          .value="${this.value}"
           aria-invalid="${this.error !== ""}"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
         /></textarea>
@@ -106,7 +95,7 @@ export class MobileTextArea extends KucBase {
         class="kuc-mobile-textarea__error"
         id="${this._GUID}-error"
         role="alert"
-        ?hidden=${!this.error}
+        ?hidden="${!this.error}"
       >
         ${this.error}
       </div>

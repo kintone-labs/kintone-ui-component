@@ -2,6 +2,7 @@ import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type Column = { header?: { text?: string }; visible?: boolean };
 type ReadOnlyTableProps = {
@@ -14,6 +15,8 @@ type ReadOnlyTableProps = {
 };
 
 export class ReadOnlyTable extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({
     type: Boolean,
@@ -54,15 +57,9 @@ export class ReadOnlyTable extends KucBase {
     if (!props) {
       return;
     }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
     if (!Array.isArray(props.columns) && props.columns !== undefined) {
       throw new Error("'columns' property is invalid");
     }
-    this.columns = props.columns !== undefined ? props.columns : this.columns;
     if (!Array.isArray(props.data) && props.data !== undefined) {
       throw new Error("'data' property is invalid");
     }
@@ -72,7 +69,9 @@ export class ReadOnlyTable extends KucBase {
           throw new Error("'data' property is invalid");
         }
       });
-    this.data = props.data !== undefined ? props.data : this.data;
+
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getColumnsTemplate(column: Column) {

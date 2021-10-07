@@ -1,6 +1,7 @@
 import { html, svg } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
+import { validateProps } from "../base/validator";
 type SpinnerProps = {
   text?: string;
 };
@@ -10,10 +11,8 @@ export class Spinner extends KucBase {
 
   constructor(props?: SpinnerProps) {
     super();
-    if (!props) {
-      return;
-    }
-    this.text = props.text !== undefined ? props.text : this.text;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getSpinnerSvgTemplate() {

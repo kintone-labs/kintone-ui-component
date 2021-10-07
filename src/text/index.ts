@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type TextProps = {
   className?: string;
@@ -24,6 +25,8 @@ type TextProps = {
 };
 
 export class Text extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
@@ -46,26 +49,8 @@ export class Text extends KucBase {
   constructor(props?: TextProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.placeholder =
-      props.placeholder !== undefined ? props.placeholder : this.placeholder;
-    this.prefix = props.prefix !== undefined ? props.prefix : this.prefix;
-    this.suffix = props.suffix !== undefined ? props.suffix : this.suffix;
-    this.textAlign =
-      props.textAlign !== undefined ? props.textAlign : this.textAlign;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -111,11 +96,11 @@ export class Text extends KucBase {
             <input
               class="kuc-text__group__input-form__input-outer__input"
               id="${this._GUID}-label"
-              placeholder=${this.placeholder}
-              textAlign=${this.textAlign}
+              placeholder="${this.placeholder}"
+              textAlign="${this.textAlign}"
               type="text"
-              .value=${this.value}
-              aria-required=${this.requiredIcon}
+              .value="${this.value}"
+              aria-required="${this.requiredIcon}"
               aria-invalid="${this.error !== ""}"
               aria-describedby="${this._GUID}-error"
               @focus="${this._handleFocusInput}"
@@ -135,7 +120,7 @@ export class Text extends KucBase {
           class="kuc-text__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden=${!this.error}
+          ?hidden="${!this.error}"
         >
           ${this.error}
         </div>

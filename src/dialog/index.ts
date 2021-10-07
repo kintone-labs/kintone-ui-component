@@ -3,6 +3,7 @@ import { property, query, queryAll } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import DOMPurify from "dompurify";
 import { KucBase } from "../base/kuc-base";
+import { validateProps } from "../base/validator";
 
 type DialogProps = {
   title?: string;
@@ -25,12 +26,8 @@ export class Dialog extends KucBase {
   constructor(props?: DialogProps) {
     super();
 
-    if (!props) {
-      return;
-    }
-    this.title = props.title !== undefined ? props.title : this.title;
-    this.content = props.content !== undefined ? props.content : this.content;
-    this.footer = props.footer !== undefined ? props.footer : this.footer;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   open() {

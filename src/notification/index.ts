@@ -1,6 +1,7 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
+import { validateProps } from "../base/validator";
 
 type NotificationProps = {
   className?: string;
@@ -9,6 +10,7 @@ type NotificationProps = {
 };
 
 export class Notification extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
   @property({ type: String }) type: "info" | "danger" | "success" = "danger";
 
@@ -17,13 +19,9 @@ export class Notification extends KucBase {
 
   constructor(props?: NotificationProps) {
     super();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.text = props.text !== undefined ? props.text : this.text;
-    this.type = props.type !== undefined ? props.type : this.type;
+
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleClickCloseButton(event: MouseEvent) {

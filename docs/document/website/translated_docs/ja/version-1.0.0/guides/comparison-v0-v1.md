@@ -90,6 +90,7 @@ header.appendChild(button);
 - パーツ並びの利便性向上
 - プロパティの見直し
 - Alert と Label コンポーネントのプロパティ化
+- Item.label の自動補完
 
 ひとつずつ解説していきます。
 
@@ -262,6 +263,25 @@ button.addEventListener('click', event => {
 
 ![search_box_error](assets/v1_search_box_error.png)
 
+---
+#### Item.label の自動補完
+---
+選択肢系のコンポーネントにおいて、v0 では `Item.label` と `Item.value` どちらも指定する必要がありました。
+
+v1 では `Item.value` のみが必須項目となります。もし `Item.label` の指定がない場合は、`Item.value` の値が設定されます。<br>
+UI で表示するラベルと内部的に持つ値が一緒の場合の書き方がコンパクトになりました。
+
+以下のように省略して書くことができます。
+
+```
+const checkbox = new Kuc.Checkbox({
+  items: [
+    {
+      value: "orange"
+    }
+  ],
+});
+```
 
 ## おわりに
 

@@ -1,7 +1,7 @@
 import { Button } from "./index.ts";
 import { storiesOf } from "@storybook/web-components";
 
-storiesOf("button", module)
+storiesOf("desktop/button", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const normalButton = new Button({

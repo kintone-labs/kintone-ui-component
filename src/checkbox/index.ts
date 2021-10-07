@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type Item = { value?: string; label?: string };
 type CheckboxProps = {
@@ -24,6 +25,8 @@ type CheckboxProps = {
 };
 
 export class Checkbox extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
@@ -48,27 +51,8 @@ export class Checkbox extends KucBase {
   constructor(props?: CheckboxProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.itemLayout =
-      props.itemLayout !== undefined ? props.itemLayout : this.itemLayout;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.borderVisible =
-      props.borderVisible !== undefined
-        ? props.borderVisible
-        : this.borderVisible;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
-    this.value = props.value !== undefined ? props.value : this.value;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getNewValue(value: string) {
@@ -152,11 +136,11 @@ export class Checkbox extends KucBase {
         <input
           type="checkbox"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           id="${this._GUID}-item-${index}"
           class="kuc-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
           @focus="${this._handleFocusInput}"
@@ -204,7 +188,7 @@ export class Checkbox extends KucBase {
         </div>
         <div
           class="kuc-checkbox__group__select-menu"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           itemLayout="${this.itemLayout}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}

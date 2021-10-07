@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type Item = {
   label?: string;
@@ -25,6 +26,8 @@ type DropdownProps = {
 };
 
 export class Dropdown extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
@@ -54,26 +57,25 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__label")
   private _labelEl!: HTMLDivElement;
 
+  @query(".kuc-dropdown__group__select-menu__item")
+  private _firstItemEl!: HTMLLIElement;
+
+  @query(".kuc-dropdown__group__select-menu__item:last-child")
+  private _lastItemEl!: HTMLLIElement;
+
+  @query(".kuc-dropdown__group__select-menu__item[aria-checked=true]")
+  private _selectedItemEl!: HTMLLIElement;
+
+  @query(".kuc-dropdown__group__select-menu__highlight")
+  private _highlightItemEl!: HTMLLIElement;
+
   private _GUID: string;
 
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getSelectedLabel() {
@@ -84,157 +86,6 @@ export class Dropdown extends KucBase {
       }
     });
     return selectedItemLabel;
-  }
-
-  private _openSelector() {
-    this._buttonEl.focus();
-    this._selectorVisible = true;
-    this._highlightSelectedItem();
-  }
-
-  private _closeSelector() {
-    this._selectorVisible = false;
-    this._removeActiveDescendant();
-  }
-
-  private _highlightSelectedItem() {
-    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-      if (
-        itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
-      ) {
-        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
-      }
-      if (itemEl.getAttribute("aria-checked") === "true") {
-        itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-      }
-    });
-  }
-
-  private _handleMouseDownDropdownToggle(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  private _handleMouseUpDropdownToggle(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  private _handleClickDropdownToggle() {
-    if (!this._selectorVisible) {
-      this._openSelector();
-    } else {
-      this._closeSelector();
-    }
-  }
-
-  private _handleBlurDropdownToggle() {
-    this._closeSelector();
-  }
-
-  private _handleUpdateValue(value: string) {
-    if (this.value === value) return;
-    const detail: CustomEventDetail = { oldValue: this.value, value: value };
-    this.value = value;
-    dispatchCustomEvent(this, "change", detail);
-  }
-
-  private _handleMousedownDropdownItem(event: MouseEvent) {
-    const itemEl = event.target as HTMLLIElement;
-    this._selectorVisible = false;
-    const value = itemEl.getAttribute("value") as string;
-    this._handleUpdateValue(value);
-  }
-
-  private _handleMouseOverDropdownItem(event: Event) {
-    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-      if (
-        itemEl.classList.contains("kuc-dropdown__group__select-menu__highlight")
-      ) {
-        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
-      }
-    });
-    const itemEl = event.currentTarget as HTMLLIElement;
-    itemEl.classList.add("kuc-dropdown__group__select-menu__highlight");
-    this._setActiveDescendant(itemEl.id);
-  }
-
-  private _handleMouseLeaveDropdownItem(event: Event) {
-    const itemEl = event.currentTarget as HTMLLIElement;
-    itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
-    this._removeActiveDescendant();
-  }
-
-  private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
-    if (!this._selectorVisible) {
-      this._highlightSelectedItem();
-      return;
-    }
-
-    let highLightNumber = 0;
-    switch (event.key) {
-      case "Up": // IE/Edge specific value
-      case "ArrowUp": {
-        event.preventDefault();
-
-        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-          if (
-            itemEl.classList.contains(
-              "kuc-dropdown__group__select-menu__highlight"
-            )
-          ) {
-            itemEl.classList.remove(
-              "kuc-dropdown__group__select-menu__highlight"
-            );
-            highLightNumber = number - 1;
-          }
-        });
-        highLightNumber =
-          highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
-        this._itemsEl[highLightNumber].classList.add(
-          "kuc-dropdown__group__select-menu__highlight"
-        );
-        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-        break;
-      }
-      case "Down": // IE/Edge specific value
-      case "ArrowDown": {
-        event.preventDefault();
-
-        this._itemsEl.forEach((itemEl: HTMLLIElement, number: number) => {
-          if (
-            itemEl.classList.contains(
-              "kuc-dropdown__group__select-menu__highlight"
-            )
-          ) {
-            itemEl.classList.remove(
-              "kuc-dropdown__group__select-menu__highlight"
-            );
-            highLightNumber = number + 1;
-          }
-        });
-        highLightNumber =
-          highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
-        this._itemsEl[highLightNumber].classList.add(
-          "kuc-dropdown__group__select-menu__highlight"
-        );
-        this._setActiveDescendant(this._itemsEl[highLightNumber].id);
-        break;
-      }
-      case "Enter": {
-        this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-          if (
-            itemEl.classList.contains(
-              "kuc-dropdown__group__select-menu__highlight"
-            )
-          ) {
-            const value = itemEl.getAttribute("value") as string;
-            this._handleUpdateValue(value);
-          }
-        });
-        break;
-      }
-      default:
-        break;
-    }
   }
 
   private _getToggleIconSvgTemplate() {
@@ -252,47 +103,6 @@ export class Dropdown extends KucBase {
           d='M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z'
           fill='#3498DB'/>
       </svg>
-    `;
-  }
-
-  private _getDropdownIconSvgTemplate(checked: boolean) {
-    return svg`
-      ${
-        checked
-          ? svg`<svg
-          class='kuc-dropdown__group__select-menu__item__icon'
-          width='11'
-          height='9'
-          viewBox='0 0 11 9'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
-            fill='#3498DB'/>
-        </svg>`
-          : ""
-      }`;
-  }
-
-  private _getItemTemplate(item: Item, index: number) {
-    return html`
-      <li
-        class="kuc-dropdown__group__select-menu__item"
-        role="menuitem"
-        tabindex=${item.value === this.value ? "0" : "-1"}
-        aria-checked=${item.value === this.value ? "true" : "false"}
-        value=${item.value !== undefined ? item.value : ""}
-        id="${this._GUID}-menuitem-${index}"
-        @mousedown="${this._handleMousedownDropdownItem}"
-        @mouseover="${this._handleMouseOverDropdownItem}"
-        @mouseleave="${this._handleMouseLeaveDropdownItem}"
-      >
-        ${this._getDropdownIconSvgTemplate(item.value === this.value)}
-        ${item.label === undefined ? item.value : item.label}
-      </li>
     `;
   }
 
@@ -327,7 +137,7 @@ export class Dropdown extends KucBase {
           aria-haspopup="true"
           aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
           aria-describedby="${this._GUID}-error"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           ?disabled="${this.disabled}"
           @mouseup="${this._handleMouseUpDropdownToggle}"
           @mousedown="${this._handleMouseDownDropdownToggle}"
@@ -347,6 +157,7 @@ export class Dropdown extends KucBase {
           role="menu"
           aria-hidden="${!this._selectorVisible}"
           ?hidden="${!this._selectorVisible}"
+          @mouseleave="${this._handleMouseLeaveMenu}"
         >
           ${this.items.map((item, number) =>
             this._getItemTemplate(item, number)
@@ -367,6 +178,194 @@ export class Dropdown extends KucBase {
 
   updated() {
     this._updateContainerWidth();
+  }
+
+  private _handleMouseDownDropdownItem(event: MouseEvent) {
+    const itemEl = event.target as HTMLLIElement;
+    const value = itemEl.getAttribute("value") as string;
+    this._actionUpdateValue(value);
+  }
+
+  private _handleMouseOverDropdownItem(event: Event) {
+    const itemEl = event.target as HTMLLIElement;
+    this._actionHighlightMenuItem(itemEl);
+  }
+
+  private _handleMouseLeaveMenu() {
+    this._actionClearAllHighlightMenuItem();
+  }
+
+  private _handleMouseDownDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  private _handleMouseUpDropdownToggle(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  private _handleClickDropdownToggle() {
+    this._actionToggleMenu();
+  }
+
+  private _handleBlurDropdownToggle() {
+    this._actionHideMenu();
+  }
+
+  private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
+    switch (event.key) {
+      case "Up": // IE/Edge specific value
+      case "ArrowUp": {
+        event.preventDefault();
+        if (!this._selectorVisible) {
+          this._actionShowMenu();
+          break;
+        }
+        this._actionHighlightPrevMenuItem();
+        break;
+      }
+      case "Down": // IE/Edge specific value
+      case "ArrowDown": {
+        event.preventDefault();
+        if (!this._selectorVisible) {
+          this._actionShowMenu();
+          break;
+        }
+        this._actionHighlightNextMenuItem();
+        break;
+      }
+      case "Enter": {
+        event.preventDefault();
+        if (!this._selectorVisible) {
+          this._actionShowMenu();
+          break;
+        }
+
+        const itemEl = this._highlightItemEl as HTMLLIElement;
+        if (itemEl === null) break;
+
+        const value = itemEl.getAttribute("value") as string;
+        this._actionUpdateValue(value);
+        this._actionHideMenu();
+        break;
+      }
+      case "Escape": {
+        event.preventDefault();
+        this._actionHideMenu();
+        break;
+      }
+      case "Home": {
+        if (this._selectorVisible) {
+          event.preventDefault();
+          this._actionHighlightFirstMenuItem();
+        }
+        break;
+      }
+      case "End": {
+        if (this._selectorVisible) {
+          event.preventDefault();
+          this._actionHighlightLastMenuItem();
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  private _actionShowMenu() {
+    this._buttonEl.focus();
+    this._selectorVisible = true;
+
+    if (this._selectedItemEl === null) return;
+    this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
+  }
+
+  private _actionHideMenu() {
+    this._selectorVisible = false;
+    this._actionRemoveActiveDescendant();
+  }
+
+  private _actionToggleMenu() {
+    if (this._selectorVisible) {
+      this._actionHideMenu();
+      return;
+    }
+
+    this._actionShowMenu();
+  }
+
+  private _actionHighlightFirstMenuItem() {
+    this._setHighlightAndActiveDescendantMenu(this._firstItemEl);
+  }
+
+  private _actionHighlightLastMenuItem() {
+    this._setHighlightAndActiveDescendantMenu(this._lastItemEl);
+  }
+
+  private _actionHighlightPrevMenuItem() {
+    let prevItem = null;
+    if (this._highlightItemEl !== null) {
+      prevItem = this._highlightItemEl.previousElementSibling as HTMLLIElement;
+      this._highlightItemEl.classList.remove(
+        "kuc-dropdown__group__select-menu__highlight"
+      );
+    }
+
+    if (prevItem === null) {
+      prevItem = this._lastItemEl;
+    }
+
+    this._setHighlightAndActiveDescendantMenu(prevItem);
+  }
+
+  private _actionHighlightNextMenuItem() {
+    let nextItem = null;
+    if (this._highlightItemEl !== null) {
+      nextItem = this._highlightItemEl.nextElementSibling as HTMLLIElement;
+      this._highlightItemEl.classList.remove(
+        "kuc-dropdown__group__select-menu__highlight"
+      );
+    }
+
+    if (nextItem === null) {
+      nextItem = this._firstItemEl;
+    }
+
+    this._setHighlightAndActiveDescendantMenu(nextItem);
+  }
+
+  private _actionClearAllHighlightMenuItem() {
+    this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+      itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+    });
+    this._actionRemoveActiveDescendant();
+  }
+
+  private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
+    this._actionHighlightMenuItem(selectedItemEl);
+    this._actionSetActiveDescendant(selectedItemEl.id);
+  }
+
+  private _actionHighlightMenuItem(item: HTMLLIElement) {
+    this._actionClearAllHighlightMenuItem();
+    item.classList.add("kuc-dropdown__group__select-menu__highlight");
+  }
+
+  private _actionUpdateValue(value: string) {
+    if (this.value === value) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
+    this.value = value;
+    dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _actionSetActiveDescendant(value?: string) {
+    if (value !== undefined && this._buttonEl !== null) {
+      this._buttonEl.setAttribute("aria-activedescendant", value);
+    }
+  }
+
+  private _actionRemoveActiveDescendant() {
+    this._buttonEl.removeAttribute("aria-activedescendant");
   }
 
   private _getLabelWidth() {
@@ -535,14 +534,44 @@ export class Dropdown extends KucBase {
     `;
   }
 
-  private _setActiveDescendant(value?: string) {
-    if (value !== undefined && this._buttonEl !== null) {
-      this._buttonEl.setAttribute("aria-activedescendant", value);
-    }
+  private _getItemTemplate(item: Item, index: number) {
+    return html`
+      <li
+        class="kuc-dropdown__group__select-menu__item"
+        role="menuitem"
+        tabindex="${item.value === this.value ? "0" : "-1"}"
+        aria-checked="${item.value === this.value ? "true" : "false"}"
+        value="${item.value !== undefined ? item.value : ""}"
+        id="${this._GUID}-menuitem-${index}"
+        @mousedown="${this._handleMouseDownDropdownItem}"
+        @mouseover="${this._handleMouseOverDropdownItem}"
+      >
+        ${this._getDropdownIconSvgTemplate(item.value === this.value)}
+        ${item.label === undefined ? item.value : item.label}
+      </li>
+    `;
   }
 
-  private _removeActiveDescendant() {
-    this._buttonEl.removeAttribute("aria-activedescendant");
+  private _getDropdownIconSvgTemplate(checked: boolean) {
+    return svg`
+      ${
+        checked
+          ? svg`<svg
+          class='kuc-dropdown__group__select-menu__item__icon'
+          width='11'
+          height='9'
+          viewBox='0 0 11 9'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fill-rule='evenodd'
+            clip-rule='evenodd'
+            d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
+            fill='#3498db'/>
+        </svg>`
+          : ""
+      }`;
   }
 
   private _validateItems() {

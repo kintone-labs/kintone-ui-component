@@ -4,8 +4,8 @@ import { html } from "lit";
 export default {
   title: "base/datetime/menu",
   argTypes: {
-    selectedValue: {
-      name: "selectedValue",
+    value: {
+      name: "value",
       control: {
         type: "select",
         options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
@@ -26,7 +26,7 @@ export default {
   }
 };
 
-const Template = ({ selectedValue, items }) => {
+const Template = ({ value, items }) => {
   const _handleClickBtn = () => {
     const _menuEl = document.querySelector("kuc-base-datetime-menu");
     _menuEl.hidden = !_menuEl.hidden;
@@ -65,21 +65,21 @@ const Template = ({ selectedValue, items }) => {
     _changeValue(event.detail.value);
   };
 
-  const _changeValue = value => {
+  const _changeValue = newValue => {
     const _menuEl = document.querySelector("kuc-base-datetime-menu");
-    _menuEl.setAttribute("selectedValue", value);
+    _menuEl.setAttribute("value", newValue);
 
     const _btn = document.querySelector("button");
-    _btn.textContent = value;
+    _btn.textContent = newValue;
   };
 
   return html`
     <button @click="${_handleClickBtn}" @keydown="${_handleKeydownBtn}">
-      ${selectedValue}
+      ${value}
     </button>
     <kuc-base-datetime-menu
       .items="${items}"
-      .selectedValue="${selectedValue}"
+      .value="${value}"
       @kuc:calendar-menu-click="${_handleClickCalendarMenu}"
     >
     </kuc-base-datetime-menu>
@@ -88,7 +88,7 @@ const Template = ({ selectedValue, items }) => {
 
 export const base = Template.bind({});
 base.args = {
-  selectedValue: "9",
+  value: "9",
   items: [
     { value: "0", label: "JANUARY" },
     { value: "1", label: "FEBRUARY" },

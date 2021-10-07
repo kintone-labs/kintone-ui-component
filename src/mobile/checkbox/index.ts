@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type MobileCheckboxProps = {
@@ -23,6 +24,8 @@ type MobileCheckboxProps = {
 };
 
 export class MobileCheckbox extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) borderVisible = true;
@@ -83,25 +86,8 @@ export class MobileCheckbox extends KucBase {
   constructor(props?: MobileCheckboxProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.borderVisible =
-      props.borderVisible !== undefined
-        ? props.borderVisible
-        : this.borderVisible;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
-    this.value = props.value !== undefined ? props.value : this.value;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _getNewValue(value: string) {
@@ -130,7 +116,6 @@ export class MobileCheckbox extends KucBase {
      <svg
        class="kuc-mobile-checkbox__group__select-menu__item__label__icon"
        xmlns="http://www.w3.org/2000/svg"
-       id="Layer_1"
        x="0px"
        y="0px"
        width="44px"
@@ -138,7 +123,7 @@ export class MobileCheckbox extends KucBase {
        viewBox="0 0 44 34"
        enable-background="new 0 0 44 34"
        xml:space="preserve">
-       <image id="image0" width="44" height="34" x="0" y="0" href='${this._getSVGStrokeValue(
+       <image width="44" height="34" x="0" y="0" href='${this._getSVGStrokeValue(
          checked
        )}'/>
     </svg>
@@ -157,16 +142,16 @@ export class MobileCheckbox extends KucBase {
       <label
         for="${this._GUID}-item-${index}"
         class="kuc-mobile-checkbox__group__select-menu__item"
-        ?borderVisible=${this.borderVisible}
+        ?borderVisible="${this.borderVisible}"
       >
         <input
           type="checkbox"
           id="${this._GUID}-item-${index}"
           class="kuc-mobile-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
-          value=${item.value !== undefined ? item.value : ""}
+          value="${item.value !== undefined ? item.value : ""}"
           aria-describedby="${this._GUID}-error}"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           aria-invalid="${!this.error}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
@@ -203,7 +188,7 @@ export class MobileCheckbox extends KucBase {
           class="kuc-mobile-checkbox__group__select-menu ${this.requiredIcon
             ? "kuc-mobile-checkbox__group__select-menu--required"
             : ""}"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           ?disabled="${this.disabled}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}

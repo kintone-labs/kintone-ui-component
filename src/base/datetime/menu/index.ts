@@ -13,7 +13,7 @@ type Item = {
 };
 
 export class BaseDateTimeMenu extends KucBase {
-  @property({ type: String }) selectedValue: string = "";
+  @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
 
   @query(".kuc-base-datetime-menu__menu__item")
@@ -104,9 +104,9 @@ export class BaseDateTimeMenu extends KucBase {
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
-    const value = itemEl.getAttribute("value");
 
-    const detail: CustomEventDetail = { value: value ? value : "" };
+    const value = itemEl.getAttribute("value") || "";
+    const detail: CustomEventDetail = { value: value };
     dispatchCustomEvent(this, "kuc:calendar-menu-click", detail);
   }
 
@@ -125,16 +125,14 @@ export class BaseDateTimeMenu extends KucBase {
       <li
         class="kuc-base-datetime-menu__menu__item"
         role="menuitemradio"
-        aria-checked="${this.selectedValue === item.value}"
+        aria-checked="${this.value === item.value}"
         title="${item.label || ""}"
         id="${this._GUID}-menuitem-${index}"
         value="${item.value !== undefined ? item.value : ""}"
-        @mouseover=${this._handleMouseOverItem}
-        @mouseleave=${this._handleMouseLeaveItem}
+        @mouseover="${this._handleMouseOverItem}"
+        @mouseleave="${this._handleMouseLeaveItem}"
       >
-        ${this.selectedValue === item.value
-          ? this._getCheckedIconSvgTemplate()
-          : ""}
+        ${this.value === item.value ? this._getCheckedIconSvgTemplate() : ""}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
@@ -209,12 +207,14 @@ export class BaseDateTimeMenu extends KucBase {
         }
         .kuc-base-datetime-menu__menu--highlight {
           background-color: #e2f2fe;
+          color: #3498db;
           cursor: pointer;
         }
         .kuc-base-datetime-menu__menu__item__icon {
           position: absolute;
           left: 8px;
           top: 10px;
+          background-color: transparent;
         }
       </style>
     `;

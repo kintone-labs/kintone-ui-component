@@ -1,12 +1,14 @@
 import { html, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
+import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
 };
 
 export class MobileNotification extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
 
   @state()
@@ -15,12 +17,8 @@ export class MobileNotification extends KucBase {
   constructor(props?: MobileNotificationProps) {
     super();
 
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.text = props.text !== undefined ? props.text : this.text;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleClickCloseButton(event: MouseEvent) {
