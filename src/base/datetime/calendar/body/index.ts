@@ -5,7 +5,7 @@ import {
   dispatchCustomEvent
 } from "../../../kuc-base";
 import { en, zh, ja } from "../../resource/locale";
-import { getDisplayingDates, WeekDate } from "../../utils/index";
+import { getDisplayingDates, padStart, WeekDate } from "../../utils/index";
 
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
@@ -142,8 +142,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateString(date = new Date()) {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const month = padStart(date.getMonth() + 1);
+    const day = padStart(date.getDate());
     return `${year}-${month}-${day}`;
   }
 
