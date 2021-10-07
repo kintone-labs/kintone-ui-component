@@ -191,10 +191,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-td${this.value ===
+                    class="kuc-base-datetime-calendar-body__date${this.value ===
                     weekDate.attr
                       ? "--selected"
-                      : ""}"
+                      : "--unselected"}"
                   >
                     <button
                       aria-selected="${this.value === weekDate.attr}"
@@ -272,11 +272,11 @@ export class BaseDateTimeCalendarBody extends KucBase {
         .kuc-base-datetime-calendar-body__date:hover {
           color: #000000;
         }
-        .kuc-base-datetime-calendar-td--selected {
+        .kuc-base-datetime-calendar-body__date--selected {
           border: 1px solid #3498db;
           box-sizing: border-box;
         }
-        .kuc-base-datetime-calendar-td--selected
+        .kuc-base-datetime-calendar-body__date--selected
           .kuc-base-datetime-calendar-body__date {
           width: 34px;
           height: 29px;
