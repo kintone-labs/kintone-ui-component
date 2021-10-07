@@ -1,4 +1,4 @@
-import { expect } from "@open-wc/testing";
+import { expect, elementUpdated } from "@open-wc/testing";
 import { Notification } from "../index";
 
 describe("Notification", () => {
@@ -6,6 +6,7 @@ describe("Notification", () => {
     it("should be fadein when call open() method", async () => {
       const container = new Notification();
       container.open();
+      await elementUpdated(container);
 
       const parrentEl = container.parentNode as HTMLElement;
       expect(parrentEl.nodeName).to.equal("BODY");
