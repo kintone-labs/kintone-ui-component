@@ -3,7 +3,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
+  CustomEventDetail
 } from "../../../../../kuc-base";
 import { BaseDateTimeListbox, Item } from "../../../../listbox";
 import { en } from "../../../../resource/locale";
@@ -24,7 +24,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   @query(".kuc-base-datetime-month-dropdown__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-month-dropdown__menu")
+  @query(".kuc-base-datetime-month-dropdown__listbox")
   private _menuEl!: BaseDateTimeListbox;
 
   update(changedProperties: PropertyValues) {
@@ -62,7 +62,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         .items="${this._menuItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
-        class="kuc-base-datetime-month-dropdown__menu"
+        class="kuc-base-datetime-month-dropdown__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeMenu}"
         aria-hidden="${!this._menuVisible}"
         ?hidden="${!this._menuVisible}"
@@ -122,7 +122,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         this._menuEl.highlightPrevItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       }
@@ -132,7 +132,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         this._menuEl.highlightNextItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       }
@@ -141,7 +141,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         this._menuEl.highlightFirstItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       case "End":
@@ -149,7 +149,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         this._menuEl.highlightLastItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       case "Enter": {
@@ -166,8 +166,11 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     }
   }
 
-  private _setActiveDescendant(_buttonEl: HTMLButtonElement, value?: string) {
-    if (value !== undefined && _buttonEl !== null) {
+  private _setActiveDescendant(
+    _buttonEl: HTMLButtonElement,
+    value?: string | null
+  ) {
+    if (value && _buttonEl !== null) {
       _buttonEl.setAttribute("aria-activedescendant", value);
     }
   }

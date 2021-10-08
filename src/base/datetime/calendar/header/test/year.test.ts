@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../index";
 
 describe("BaseDateTimeCalendarHeader", () => {
@@ -8,12 +8,12 @@ describe("BaseDateTimeCalendarHeader", () => {
         "kuc-base-datetime-calendar-header"
       );
       const el = await fixture(container);
+
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
-
       const optionMonthEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__menu"
+        ".kuc-base-datetime-year-dropdown__listbox"
       ) as HTMLUListElement;
 
       expect(yearSelectEl.innerText).to.equal("2021");
@@ -26,6 +26,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       container.setAttribute("year", "2022");
       const el = await fixture(container);
+
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
@@ -39,11 +40,34 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       container.setAttribute("year", "123.33");
       const el = await fixture(container);
+
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-year-dropdown__toggle__label"
       ) as HTMLSpanElement;
 
       expect(yearSelectEl.innerText).to.equal("2021");
+    });
+
+    it("should open/close dropdown year when click button year toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-year-dropdown__toggle"
+      ) as HTMLSpanElement;
+      const datetimeListboxEl = el.querySelector(
+        ".kuc-base-datetime-year-dropdown__listbox"
+      ) as HTMLSpanElement;
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
+      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("false");
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
+      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("true");
     });
   });
 });
