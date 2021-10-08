@@ -24,14 +24,14 @@ export class BaseDateTimeYearDropdown extends KucBase {
   @query(".kuc-base-datetime-year-dropdown__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-year-dropdown__menu")
+  @query(".kuc-base-datetime-year-dropdown__listbox")
   private _menuEl!: BaseDateTimeListbox;
 
   update(changedProperties: PropertyValues) {
     this._menuItems = this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this.postfix}`
+        label: `${year}${this.postfix}`,
       };
       return item;
     });
@@ -59,9 +59,9 @@ export class BaseDateTimeYearDropdown extends KucBase {
         </span>
       </button>
       <kuc-base-datetime-listbox
-        .items="${this._menuItems || []}"
+        .items="${this._menuItems}"
         .value="${this.year.toString()}"
-        class="kuc-base-datetime-year-dropdown__menu"
+        class="kuc-base-datetime-year-dropdown__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeMenu}"
         aria-hidden="${!this._menuVisible}"
         ?hidden="${!this._menuVisible}"
@@ -122,7 +122,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         this._menuEl.scrollToView();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       }
@@ -133,7 +133,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         this._menuEl.scrollToView();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       }
@@ -143,7 +143,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         this._menuEl.scrollToTop();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       case "End":
@@ -152,7 +152,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
         this._menuEl.scrollToBottom();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId() ?? ""
+          this._menuEl.getHighlightItemId()
         );
         break;
       case "Enter": {
@@ -193,8 +193,11 @@ export class BaseDateTimeYearDropdown extends KucBase {
     this._removeActiveDescendant(this._toggleEl);
   }
 
-  private _setActiveDescendant(_buttonEl: HTMLButtonElement, value?: string) {
-    if (value !== undefined && _buttonEl !== null) {
+  private _setActiveDescendant(
+    _buttonEl: HTMLButtonElement,
+    value: string | null
+  ) {
+    if (value && _buttonEl !== null) {
       _buttonEl.setAttribute("aria-activedescendant", value);
     }
   }

@@ -105,7 +105,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       selectEl.dispatchEvent(
         new CustomEvent("kuc:year-dropdown-change", {
-          detail: { value: "2022" }
+          detail: { value: "2022" },
         })
       );
 
@@ -129,7 +129,53 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSelectElement;
       selectEl.dispatchEvent(
         new CustomEvent("kuc:month-dropdown-change", {
-          detail: { value: "1" }
+          detail: { value: "1" },
+        })
+      );
+
+      expect(triggeredEvent.type).to.equal("kuc:calendar-header-change");
+    });
+
+    it("should be triggered when change calendar year listbox", async () => {
+      let triggeredEvent: any = null;
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.addEventListener("kuc:calendar-header-change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const listboxEl = el.querySelector(
+        ".kuc-base-datetime-year-dropdown__listbox"
+      ) as HTMLSelectElement;
+
+      listboxEl.dispatchEvent(
+        new CustomEvent("kuc:calendar-listbox-click", {
+          detail: { value: "2022" },
+        })
+      );
+
+      expect(triggeredEvent.type).to.equal("kuc:calendar-header-change");
+    });
+
+    it("should be triggered when change calendar month listbox", async () => {
+      let triggeredEvent: any = null;
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.addEventListener("kuc:calendar-header-change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const listboxEl = el.querySelector(
+        ".kuc-base-datetime-month-dropdown__listbox"
+      ) as HTMLSelectElement;
+
+      listboxEl.dispatchEvent(
+        new CustomEvent("kuc:calendar-listbox-click", {
+          detail: { value: "JANUARY" },
         })
       );
 
