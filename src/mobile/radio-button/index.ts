@@ -6,6 +6,7 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
+import { validateProps } from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -22,6 +23,8 @@ type RadioButtonProps = {
 };
 
 export class MobileRadioButton extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
@@ -63,25 +66,8 @@ export class MobileRadioButton extends KucBase {
   constructor(props?: RadioButtonProps) {
     super();
     this._GUID = generateGUID();
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.borderVisible =
-      props.borderVisible !== undefined
-        ? props.borderVisible
-        : this.borderVisible;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   private _handleChangeInput(event: Event) {
@@ -104,7 +90,7 @@ export class MobileRadioButton extends KucBase {
       xmlns='http://www.w3.org/2000/svg'
     >
     <defs>
-      <radialGradient id="shadow">
+      <radialGradient id="${this._GUID}-shadow">
         <stop offset="0%" style="stop-color:#5B5B5B;stop-opacity:0" />
         <stop offset="30%" style="stop-color:#5B5B5B;stop-opacity:0" />
         <stop offset="80%" style="stop-color:#5B5B5B;stop-opacity:0.1" />
@@ -138,7 +124,7 @@ export class MobileRadioButton extends KucBase {
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
           aria-invalid="${this.error !== ""}"
-          aria-required=${this.requiredIcon}
+          aria-required="${this.requiredIcon}"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeInput}"
         />
@@ -179,7 +165,7 @@ export class MobileRadioButton extends KucBase {
         </div>
         <div
           class="kuc-mobile-radio-button__group__select-menu"
-          ?borderVisible=${this.borderVisible}
+          ?borderVisible="${this.borderVisible}"
           ?disabled="${this.disabled}"
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
