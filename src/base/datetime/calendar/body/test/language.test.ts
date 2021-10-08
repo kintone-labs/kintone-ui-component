@@ -7,7 +7,7 @@ describe("BaseDateTimeCalendarBody", () => {
       const container = new BaseDateTimeCalendarBody();
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-datetime-calendar-body__header"
+        ".kuc-base-datetime-calendar-body__table__header"
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -17,7 +17,7 @@ describe("BaseDateTimeCalendarBody", () => {
       container.language = "vn";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-datetime-calendar-body__header"
+        ".kuc-base-datetime-calendar-body__table__header"
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -27,7 +27,7 @@ describe("BaseDateTimeCalendarBody", () => {
       container.language = "en";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-datetime-calendar-body__header"
+        ".kuc-base-datetime-calendar-body__table__header"
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -37,7 +37,7 @@ describe("BaseDateTimeCalendarBody", () => {
       container.language = "ja";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-datetime-calendar-body__header"
+        ".kuc-base-datetime-calendar-body__table__header"
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("日");
     });
@@ -47,7 +47,7 @@ describe("BaseDateTimeCalendarBody", () => {
       container.language = "zh";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-datetime-calendar-body__header"
+        ".kuc-base-datetime-calendar-body__table__header"
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("周日");
     });
