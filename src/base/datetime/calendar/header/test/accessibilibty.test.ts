@@ -49,7 +49,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
         key: "Enter",
-        bubbles: true,
+        bubbles: true
       });
 
       btnYearToggleEl.dispatchEvent(eventKeyDown);
@@ -78,7 +78,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
         key: "Enter",
-        bubbles: true,
+        bubbles: true
       });
 
       btnMonthToggleEl.dispatchEvent(eventKeyDown);
