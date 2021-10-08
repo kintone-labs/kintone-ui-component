@@ -7,9 +7,9 @@ export default {
   argTypes: {},
   parameters: {
     actions: {
-      handles: ["kuc:month-dropdown-change"],
-    },
-  },
+      handles: ["kuc:month-dropdown-change"]
+    }
+  }
 };
 
 const Template = ({ month, language }) =>
@@ -23,5 +23,5 @@ const Template = ({ month, language }) =>
 export const Base = Template.bind({});
 Base.args = {
   month: 1,
-  language: "en",
+  language: "en"
 };

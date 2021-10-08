@@ -1,31 +1,31 @@
 import { expect, fixture } from "@open-wc/testing";
-import { BaseDateTimeMenu } from "../index";
+import { BaseDateTimeListbox } from "../index";
 
-describe("BaseDateTimeMenu", () => {
-  describe("kuc:calendar-menu-click event", () => {
-    it("should be triggered kuc:calendar-menu-click event", async () => {
+describe("BaseDateTimeListbox", () => {
+  describe("kuc:calendar-listbox-click event", () => {
+    it("should be triggered kuc:calendar-listbox-click event", async () => {
       let triggeredEvent: any = null;
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
+        { value: "2", label: "MARCH" }
       ];
 
-      const container = new BaseDateTimeMenu();
+      const container = new BaseDateTimeListbox();
       container.items = initItems;
-      container.addEventListener("kuc:calendar-menu-click", (event) => {
+      container.addEventListener("kuc:calendar-listbox-click", event => {
         triggeredEvent = event;
       });
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-menu__menu__item"
+        ".kuc-base-datetime-listbox__listbox__item"
       );
       (itemsEl[2] as HTMLLIElement).dispatchEvent(
         new CustomEvent("mousedown", { bubbles: true })
       );
 
-      expect(triggeredEvent.type).to.equal("kuc:calendar-menu-click");
+      expect(triggeredEvent.type).to.equal("kuc:calendar-listbox-click");
       expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
     });
   });
