@@ -5,7 +5,8 @@ ignore:
   - "src/index.ts"
   - "src/index.bundle.ts"
   - "src/polyfill/index.ts"
-  - "src/base/"
+  - "src/base/**.ts"
+  - "src/base/datetime/utils/index.ts"
 branches:
   exclude:
     - /^v0..*/
