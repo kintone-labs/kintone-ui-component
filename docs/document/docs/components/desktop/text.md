@@ -8,7 +8,7 @@ sidebar_label: Text
 
 The Text component allows the user to display a single line text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=text--document" title="text image" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-text--document" title="text image" height="80px"></iframe>
 
 ---
 

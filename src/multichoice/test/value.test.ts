@@ -88,7 +88,11 @@ describe("MultiChoice", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'value' property is not array");
+        let errorMessage = "'value' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value' property is not array");
       }
 
       // TODO:
@@ -103,7 +107,11 @@ describe("MultiChoice", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'value[1]' property is duplicated");
+        let errorMessage = "'value[1]' property is duplicated";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value[1]' property is duplicated");
       }
 
       // TODO:
@@ -117,7 +125,11 @@ describe("MultiChoice", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'value' property is not array");
+        let errorMessage = "'value' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value' property is not array");
       }
 
       // TODO:
@@ -130,7 +142,11 @@ describe("MultiChoice", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'value[1]' property is duplicated");
+        let errorMessage = "'value[1]' property is duplicated";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value[1]' property is duplicated");
       }
 
       // TODO:

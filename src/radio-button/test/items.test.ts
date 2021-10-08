@@ -193,7 +193,11 @@ describe("MobileRadioButton", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'items' property is not array");
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
       }
 
       // TODO:
@@ -205,7 +209,12 @@ describe("MobileRadioButton", () => {
       try {
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal(
+        let errorMessage =
+          "'items[1].value' is duplicated! You can specify unique one.";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal(
           "'items[1].value' is duplicated! You can specify unique one."
         );
       }
@@ -221,7 +230,11 @@ describe("MobileRadioButton", () => {
         container.items = null;
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal("'items' property is not array");
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
       }
 
       // TODO:
@@ -234,7 +247,12 @@ describe("MobileRadioButton", () => {
         container.items = dupplicatedItems;
         await fixture(container);
       } catch (error) {
-        expect(error.message).to.equal(
+        let errorMessage =
+          "'items[1].value' is duplicated! You can specify unique one.";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal(
           "'items[1].value' is duplicated! You can specify unique one."
         );
       }

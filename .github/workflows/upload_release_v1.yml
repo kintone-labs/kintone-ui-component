@@ -13,11 +13,15 @@ jobs:
     #   if: github.event.client_payload.status != 'success'
     #   run: exit 1
     - uses: actions/checkout@v2
-    - name: Remove package-lock
-      run: rm -rf package-lock.json
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: npm-${{ hashFiles('package-lock.json') }}
+        restore-keys: npm-
     - name: Install dependencies
       run: |
-        npm install
+        npm ci
         npm i @actions/core
     - name: Check version
       id: check_version

@@ -8,6 +8,7 @@ import {
 } from "lit-element";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 
 type Item = {
   label?: string;
@@ -27,6 +28,8 @@ type MultiChoiceProps = {
 };
 
 export class MultiChoice extends KucBase {
+  @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
@@ -51,10 +54,8 @@ export class MultiChoice extends KucBase {
     super();
     this._GUID = generateGUID();
 
-    if (!props) {
-      return;
-    }
-    this._initProps(props);
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
   }
 
   update(changedProperties: PropertyValues) {
@@ -87,7 +88,7 @@ export class MultiChoice extends KucBase {
           aria-labelledby="${this._GUID}-label"
           ?disabled="${this.disabled}"
           tabindex="${this.disabled ? "-1" : "0"}"
-          @keydown=${this._handleKeyDownMultiChoice}
+          @keydown="${this._handleKeyDownMultiChoice}"
         >
           ${this.items.map((item, number) =>
             this._getMenuItemTemplate(item, number)
@@ -104,21 +105,6 @@ export class MultiChoice extends KucBase {
         </div>
       </div>
     `;
-  }
-
-  private _initProps(props: MultiChoiceProps) {
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.error = props.error !== undefined ? props.error : this.error;
-    this.id = props.id !== undefined ? props.id : this.id;
-    this.label = props.label !== undefined ? props.label : this.label;
-    this.value = props.value !== undefined ? props.value : this.value;
-    this.disabled =
-      props.disabled !== undefined ? props.disabled : this.disabled;
-    this.requiredIcon =
-      props.requiredIcon !== undefined ? props.requiredIcon : this.requiredIcon;
-    this.visible = props.visible !== undefined ? props.visible : this.visible;
-    this.items = props.items !== undefined ? props.items : this.items;
   }
 
   private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
@@ -251,13 +237,13 @@ export class MultiChoice extends KucBase {
       <div
         class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
-        aria-checked=${this.value.some(val => val === item.value)}
-        aria-required=${this.requiredIcon}
-        value=${item.value !== undefined ? item.value : ""}
+        aria-checked="${this.value.some(val => val === item.value)}"
+        aria-required="${this.requiredIcon}"
+        value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
-        @mousedown=${this._handleMouseDownMultiChoiceItem}
-        @mouseover=${this._handleMouseOverMultiChoiceItem}
-        @mouseleave=${this._handleMouseLeaveMultiChoiceItem}
+        @mousedown="${this._handleMouseDownMultiChoiceItem}"
+        @mouseover="${this._handleMouseOverMultiChoiceItem}"
+        @mouseleave="${this._handleMouseLeaveMultiChoiceItem}"
       >
         ${this._getMultiChoiceCheckedIconSvgTemplate(
           this.disabled,
@@ -375,7 +361,6 @@ export class MultiChoice extends KucBase {
           overflow-y: auto;
           overflow-x: hidden;
           max-height: 134px;
-          display: table;
           width: 100%;
         }
         .kuc-multi-choice__group__menu:not([disabled]):focus {
