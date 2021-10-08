@@ -129,7 +129,6 @@ export class BaseDateTimeYearDropdown extends KucBase {
       case "Down":
       case "ArrowDown": {
         event.preventDefault();
-        // console.log(this._menuEl.getHighlightItemId(), "mouse down");
         this._menuEl.highlightNextItem();
         this._menuEl.scrollToView();
         this._setActiveDescendant(
