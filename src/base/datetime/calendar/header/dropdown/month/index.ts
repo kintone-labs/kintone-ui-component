@@ -3,7 +3,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
+  CustomEventDetail
 } from "../../../../../kuc-base";
 import { BaseDateTimeListbox, Item } from "../../../../listbox";
 import { en } from "../../../../resource/locale";
@@ -59,7 +59,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         </span>
       </button>
       <kuc-base-datetime-listbox
-        .items="${this._menuItems}"
+        .items="${this._menuItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
         class="kuc-base-datetime-month-dropdown__listbox"

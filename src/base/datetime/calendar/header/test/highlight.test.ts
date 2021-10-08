@@ -1,7 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../index";
-import { BaseDateTimeCalendarHeader } from "../index";
-import { BaseDateTimeListbox } from "../../../listbox";
 
 describe("BaseDateTimeCalendarHeader", () => {
   describe("Highlight year dropdown", () => {
