@@ -2,12 +2,12 @@ import { html, property, PropertyValues } from "lit-element";
 import {
   KucBase,
   dispatchCustomEvent,
-  CustomEventDetail,
+  CustomEventDetail
 } from "../../../kuc-base";
 import {
-  _getLeftArrowIconSvgTemplate,
-  _getLocale,
-  _getRightArrowIconSvgTemplate,
+  getLeftArrowIconSvgTemplate,
+  getLocale,
+  getRightArrowIconSvgTemplate
 } from "../header/ultils";
 import "../../calendar/header/dropdown/month";
 import "../../calendar/header/dropdown/year";
@@ -23,7 +23,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
-      this._locale = _getLocale(this.language);
+      this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
   }
@@ -38,7 +38,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button-previous-month"
           @click=${this._handleClickCalendarPrevMonthBtn}
         >
-          ${_getLeftArrowIconSvgTemplate()}
+          ${getLeftArrowIconSvgTemplate()}
         </button>
         <span class="kuc-base-datetime-calendar-header__group__center"
           >${this._getYearMonthTemplate()}</span
@@ -49,7 +49,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button-next-month"
           @click=${this._handleClickCalendarNextMonthBtn}
         >
-          ${_getRightArrowIconSvgTemplate()}
+          ${getRightArrowIconSvgTemplate()}
         </button>
       </div>
     `;
@@ -166,14 +166,14 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _handleMonthDropdownChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this.month = parseInt(event.detail.value);
+    this.month = parseInt(event.detail.value, 10);
     this._dispatchCalendarHeaderChangeEvent();
   }
 
   private _handleYearDropdownChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this.year = parseInt(event.detail.value);
+    this.year = parseInt(event.detail.value, 10);
     this._dispatchCalendarHeaderChangeEvent();
   }
 

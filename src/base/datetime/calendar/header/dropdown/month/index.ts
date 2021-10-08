@@ -7,7 +7,7 @@ import {
 } from "../../../../../kuc-base";
 import { BaseDateTimeListbox, Item } from "../../../../listbox";
 import { en } from "../../../../resource/locale";
-import { _getToggleIconSvgTemplate, _getLocale } from "../../ultils";
+import { getToggleIconSvgTemplate, getLocale } from "../../ultils";
 
 export class BaseDateTimeMonthDropdown extends KucBase {
   @property({ type: String }) language = "en";
@@ -29,7 +29,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
-      this._locale = _getLocale(this.language);
+      this._locale = getLocale(this.language);
       this._menuItems = this._getMenuItems();
     }
     if (changedProperties.has("month")) {
@@ -55,11 +55,11 @@ export class BaseDateTimeMonthDropdown extends KucBase {
           >${this._monthLabel}</span
         >
         <span class="kuc-base-datetime-month-dropdown__toggle__icon"
-          >${_getToggleIconSvgTemplate()}
+          >${getToggleIconSvgTemplate()}
         </span>
       </button>
       <kuc-base-datetime-listbox
-        .items="${this._menuItems}"
+        .items="${this._menuItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
         class="kuc-base-datetime-month-dropdown__menu"

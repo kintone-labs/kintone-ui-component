@@ -6,7 +6,7 @@ import {
   dispatchCustomEvent,
 } from "../../../../../kuc-base";
 import { BaseDateTimeListbox, Item } from "../../../../listbox";
-import { _getToggleIconSvgTemplate } from "../../ultils";
+import { getToggleIconSvgTemplate } from "../../ultils";
 
 export class BaseDateTimeYearDropdown extends KucBase {
   @property({ type: Number }) year = 2021;
@@ -31,7 +31,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
     this._menuItems = this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this.postfix}`,
+        label: `${year}${this.postfix}`
       };
       return item;
     });
@@ -55,7 +55,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
           >${this.year}</span
         >
         <span class="kuc-base-datetime-year-dropdown__toggle__icon"
-          >${_getToggleIconSvgTemplate()}
+          >${getToggleIconSvgTemplate()}
         </span>
       </button>
       <kuc-base-datetime-listbox

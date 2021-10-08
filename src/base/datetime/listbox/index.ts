@@ -3,7 +3,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
+  CustomEventDetail
 } from "../../kuc-base";
 
 export type Item = {

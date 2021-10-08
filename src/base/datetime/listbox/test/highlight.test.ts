@@ -8,7 +8,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
@@ -38,7 +38,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
@@ -60,7 +60,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
@@ -88,7 +88,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
@@ -116,7 +116,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
@@ -134,7 +134,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
       const container = new BaseDateTimeListbox();
       container.items = initItems;
