@@ -1,7 +1,7 @@
 import { expect, fixture } from "@open-wc/testing";
-import { BaseDateTimeListbox } from "../index";
+import { BaseDateTimeListBox } from "../index";
 
-describe("BaseDateTimeListbox", () => {
+describe("BaseDateTimeListBox", () => {
   describe("accessibility", () => {
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
       const initItems = [
@@ -9,7 +9,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
 
       const el = await fixture(container);

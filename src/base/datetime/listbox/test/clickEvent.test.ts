@@ -1,7 +1,7 @@
 import { expect, fixture } from "@open-wc/testing";
-import { BaseDateTimeListbox } from "../index";
+import { BaseDateTimeListBox } from "../index";
 
-describe("BaseDateTimeListbox", () => {
+describe("BaseDateTimeListBox", () => {
   describe("kuc:calendar-listbox-click event", () => {
     it("should be triggered kuc:calendar-listbox-click event", async () => {
       let triggeredEvent: any = null;
@@ -11,7 +11,7 @@ describe("BaseDateTimeListbox", () => {
         { value: "2", label: "MARCH" }
       ];
 
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       container.addEventListener("kuc:calendar-listbox-click", event => {
         triggeredEvent = event;
