@@ -169,7 +169,7 @@ export class BaseDateTimeYearDropdown extends KucBase {
     }
   }
 
-  private _handleBlurDropdownYearToggle(event: Event) {
+  private _handleBlurDropdownYearToggle() {
     this._listBoxVisible = false;
   }
 
