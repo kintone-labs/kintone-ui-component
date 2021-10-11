@@ -46,7 +46,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         <button
           aria-label="next month"
           type="button"
-          class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button-next-month"
+          class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button--next-month"
           @click=${this._handleClickCalendarNextMonthBtn}
         >
           ${getRightArrowIconSvgTemplate()}
