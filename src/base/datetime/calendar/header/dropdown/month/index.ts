@@ -175,7 +175,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     }
   }
 
-  private _handleBlurDropdownMonthToggle(event: Event) {
+  private _handleBlurDropdownMonthToggle() {
     this._listBoxVisible = false;
   }
 
