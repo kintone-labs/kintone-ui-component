@@ -4,7 +4,8 @@ export const createContextElm = (elm: HTMLElement) => {
   height: 0px;
   overflow: hidden;
   display: inline-block;
-  font: ${window.getComputedStyle(elm).font};
+  font-size: 14px;
+  font-family: ${window.getComputedStyle(elm).fontFamily};
   `;
   return context;
 };

@@ -5,9 +5,12 @@ describe("Context", () => {
   describe("createContextElm", () => {
     it("should return a context element", async () => {
       const elm = document.createElement("div");
-      elm.style.fontSize = "14px";
+      elm.style.fontFamily =
+        'メイリオ, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif';
       document.body.appendChild(elm);
-      expect(createContextElm(elm).style.fontSize).to.equal("14px");
+      expect(createContextElm(elm).style.fontFamily).to.equal(
+        'メイリオ, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'
+      );
     });
   });
 
