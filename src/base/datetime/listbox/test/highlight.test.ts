@@ -195,7 +195,7 @@ describe("BaseDateTimeListBox", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox__item"
       );
-      console.log((itemsEl[1] as HTMLLIElement).value, "checks");
+
       expect((itemsEl[1] as HTMLLIElement).value).to.equal(0);
     });
 

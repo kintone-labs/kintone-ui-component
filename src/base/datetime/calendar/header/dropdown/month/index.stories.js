@@ -14,10 +14,10 @@ export default {
 
 const Template = ({ month, language }) =>
   html`
-    <kuc-base-datetime-month-dropdown
+    <kuc-base-datetime-header-month
       .month="${month}"
       .year="${language}"
-    ></kuc-base-datetime-month-dropdown>
+    ></kuc-base-datetime-header-month>
   `;
 
 export const Base = Template.bind({});

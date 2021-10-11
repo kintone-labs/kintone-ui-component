@@ -111,45 +111,31 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           display: flex;
           justify-content: center;
         }
-        .kuc-base-datetime-calendar-header__group_center_year {
-          position: relative;
-          display: inline-block;
-          white-space: nowrap;
-        }
-        .kuc-base-datetime-calendar-header__group__toggle__selected-item-label {
-          display: inline-block;
-          box-sizing: border-box;
-        }
-        .kuc-base-datetime-calendar-header__group__toggle__icon {
-          flex: none;
-          width: 38px;
-          height: 38px;
-        }
       </style>
     `;
   }
 
   private _getYearTemplate() {
     return html`
-      <kuc-base-datetime-year-dropdown
-        class="kuc-base-datetime-calendar-year-dropdown"
+      <kuc-base-datetime-header-year
+        class="kuc-base-datetime-header__year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
       >
-      </kuc-base-datetime-year-dropdown>
+      </kuc-base-datetime-header-year>
     `;
   }
 
   private _getMonthTemplate() {
     return html`
-      <kuc-base-datetime-month-dropdown
-        class="kuc-base-datetime-calendar-month-dropdown"
+      <kuc-base-datetime-header-month
+        class="kuc-base-datetime-header__month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
       >
-      </kuc-base-datetime-month-dropdown>
+      </kuc-base-datetime-header-month>
     `;
   }
 
