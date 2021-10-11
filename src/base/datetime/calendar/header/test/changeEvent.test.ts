@@ -105,7 +105,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       selectEl.dispatchEvent(
         new CustomEvent("kuc:year-dropdown-change", {
-          detail: { value: "2022" },
+          detail: { value: "2022" }
         })
       );
 
@@ -129,7 +129,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSelectElement;
       selectEl.dispatchEvent(
         new CustomEvent("kuc:month-dropdown-change", {
-          detail: { value: "1" },
+          detail: { value: "1" }
         })
       );
 
@@ -152,7 +152,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       listboxEl.dispatchEvent(
         new CustomEvent("kuc:calendar-listbox-click", {
-          detail: { value: "2022" },
+          detail: { value: "2022" }
         })
       );
 
@@ -175,7 +175,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       listboxEl.dispatchEvent(
         new CustomEvent("kuc:calendar-listbox-click", {
-          detail: { value: "JANUARY" },
+          detail: { value: "JANUARY" }
         })
       );
 

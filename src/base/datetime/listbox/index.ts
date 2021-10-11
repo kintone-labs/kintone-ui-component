@@ -11,13 +11,13 @@ export type Item = {
   value?: string;
 };
 
-export class BaseDateTimeListbox extends KucBase {
+export class BaseDateTimeListBox extends KucBase {
   @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Number }) maxHeight = 300;
 
   @query(".kuc-base-datetime-listbox__listbox")
-  private _listboxEl!: HTMLLIElement;
+  private _listBoxEl!: HTMLLIElement;
 
   @queryAll(".kuc-base-datetime-listbox__listbox__item")
   private _itemsEl!: HTMLLIElement[];
@@ -80,28 +80,28 @@ export class BaseDateTimeListbox extends KucBase {
   }
 
   public scrollToView() {
-    if (!this._highlightItemEl || !this._listboxEl) {
+    if (!this._highlightItemEl || !this._listBoxEl) {
       return;
     }
     const lineHeight = this._highlightItemEl.offsetHeight;
-    const offsetItemCount = this._listboxEl.clientHeight / lineHeight / 2;
+    const offsetItemCount = this._listBoxEl.clientHeight / lineHeight / 2;
     const offsetScrollTop =
       this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
         ? 0
         : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
-    this._listboxEl.scrollTop = offsetScrollTop;
+    this._listBoxEl.scrollTop = offsetScrollTop;
   }
   public scrollToTop() {
-    if (!this._listboxEl) {
+    if (!this._listBoxEl) {
       return;
     }
-    this._listboxEl.scrollTop = 0;
+    this._listBoxEl.scrollTop = 0;
   }
   public scrollToBottom() {
-    if (!this._listboxEl) {
+    if (!this._listBoxEl) {
       return;
     }
-    this._listboxEl.scrollTop = this._listboxEl.scrollHeight;
+    this._listBoxEl.scrollTop = this._listBoxEl.scrollHeight;
   }
 
   public highlightNextItem() {
@@ -143,10 +143,10 @@ export class BaseDateTimeListbox extends KucBase {
         style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-listbox__listbox"
         role="listbox"
-        @mousedown="${this._handleMouseDownListbox}"
+        @mousedown="${this._handleMouseDownListBox}"
       >
         ${this.items.map((item, number) =>
-          this._getListboxItemTemplate(item, number)
+          this._getListBoxItemTemplate(item, number)
         )}
       </ul>
     `;
@@ -156,7 +156,7 @@ export class BaseDateTimeListbox extends KucBase {
     this.scrollToView();
   }
 
-  private _handleMouseDownListbox(event: MouseEvent) {
+  private _handleMouseDownListBox(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
@@ -178,7 +178,7 @@ export class BaseDateTimeListbox extends KucBase {
     itemEl.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
   }
 
-  private _getListboxItemTemplate(item: Item, index: number) {
+  private _getListBoxItemTemplate(item: Item, index: number) {
     return html`
       <li
         class="kuc-base-datetime-listbox__listbox__item"
@@ -283,6 +283,6 @@ export class BaseDateTimeListbox extends KucBase {
 if (!window.customElements.get("kuc-base-datetime-listbox")) {
   window.customElements.define(
     "kuc-base-datetime-listbox",
-    BaseDateTimeListbox
+    BaseDateTimeListBox
   );
 }

@@ -28,32 +28,32 @@ export default {
 
 const Template = ({ value, items }) => {
   const _handleClickBtn = () => {
-    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
-    _listboxEl.hidden = !_listboxEl.hidden;
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listBoxEl.hidden = !_listBoxEl.hidden;
   };
 
   const _handleKeydownBtn = event => {
     event.preventDefault();
-    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
     switch (event.key) {
       case "ArrowUp": {
-        _listboxEl.highlightPrevItem();
+        _listBoxEl.highlightPrevItem();
         break;
       }
       case "ArrowDown": {
-        _listboxEl.highlightNextItem();
+        _listBoxEl.highlightNextItem();
         break;
       }
       case "Home": {
-        _listboxEl.highlightFirstItem();
+        _listBoxEl.highlightFirstItem();
         break;
       }
       case "End": {
-        _listboxEl.highlightLastItem();
+        _listBoxEl.highlightLastItem();
         break;
       }
       case "Enter": {
-        _changeValue(_listboxEl.getHighlightValue());
+        _changeValue(_listBoxEl.getHighlightValue());
         break;
       }
       default:
@@ -61,13 +61,13 @@ const Template = ({ value, items }) => {
     }
   };
 
-  const _handleClickCalendarListbox = event => {
+  const _handleClickCalendarListBox = event => {
     _changeValue(event.detail.value);
   };
 
   const _changeValue = newValue => {
-    const _listboxEl = document.querySelector("kuc-base-datetime-listbox");
-    _listboxEl.setAttribute("value", newValue);
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listBoxEl.setAttribute("value", newValue);
 
     const _btn = document.querySelector("button");
     _btn.textContent = newValue;
@@ -80,7 +80,7 @@ const Template = ({ value, items }) => {
     <kuc-base-datetime-listbox
       .items="${items}"
       .value="${value}"
-      @kuc:calendar-listbox-click="${_handleClickCalendarListbox}"
+      @kuc:calendar-listbox-click="${_handleClickCalendarListBox}"
     >
     </kuc-base-datetime-listbox>
   `;

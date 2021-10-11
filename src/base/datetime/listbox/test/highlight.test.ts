@@ -1,16 +1,16 @@
 import { expect, fixture } from "@open-wc/testing";
-import { BaseDateTimeListbox } from "../index";
+import { BaseDateTimeListBox } from "../index";
 
-describe("BaseDateTimeListbox", () => {
+describe("BaseDateTimeListBox", () => {
   describe("hightlight", () => {
     it("should be highlight first item when uses highlightFirstItem function", async () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       container.highlightFirstItem();
@@ -38,9 +38,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       container.highlightLastItem();
@@ -60,9 +60,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -88,9 +88,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -116,9 +116,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       let idHighlighted = container.getHighlightItemId() || "";
@@ -134,9 +134,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
       const el = await fixture(container);
       container.highlightLastItem();
@@ -152,9 +152,9 @@ describe("BaseDateTimeListbox", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
+        { value: "2", label: "MARCH" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
 
       const el = await fixture(container);
@@ -171,7 +171,7 @@ describe("BaseDateTimeListbox", () => {
 
     it("should be return title null when item listbox dont have label", async () => {
       const initItems = [{ value: "0" }, { value: "1" }, { value: "2" }];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
 
       const el = await fixture(container);
@@ -186,9 +186,9 @@ describe("BaseDateTimeListbox", () => {
       const initItems = [
         { label: "2021" },
         { label: "2022" },
-        { label: "2023" },
+        { label: "2023" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
 
       const el = await fixture(container);
@@ -204,9 +204,9 @@ describe("BaseDateTimeListbox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" },
+        { value: "3", label: "APRIL" }
       ];
-      const container = new BaseDateTimeListbox();
+      const container = new BaseDateTimeListBox();
       container.items = initItems;
 
       expect(container.getHighlightItemId()).to.equal("");
