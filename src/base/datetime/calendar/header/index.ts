@@ -36,7 +36,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           aria-label="previous month"
           type="button"
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button--previous-month"
-          @click=${this._handleClickCalendarPrevMonthBtn}
+          @click="${this._handleClickCalendarPrevMonthBtn}"
         >
           ${getLeftArrowIconSvgTemplate()}
         </button>
