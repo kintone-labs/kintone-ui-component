@@ -9,11 +9,11 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       const el = await fixture(container);
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle__label"
+        ".kuc-base-datetime-header-dropdown-month__toggle__label"
       ) as HTMLSpanElement;
 
       const optionMonthEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-month__listbox"
       ) as HTMLUListElement;
 
       expect(monthSelectEl.innerText).to.equal("JANUARY");
@@ -28,7 +28,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle__label"
+        ".kuc-base-datetime-header-dropdown-month__toggle__label"
       ) as HTMLSpanElement;
 
       expect(monthSelectEl.innerText).to.equal("MAY");
@@ -43,7 +43,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle__label"
+        ".kuc-base-datetime-header-dropdown-month__toggle__label"
       ) as HTMLSpanElement;
 
       expect(monthSelectEl.innerText).to.equal("JANUARY");
@@ -56,10 +56,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLSpanElement;
       const datetimeListboxEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-month__listbox"
       ) as HTMLSpanElement;
 
       btnYearToggleEl.click();

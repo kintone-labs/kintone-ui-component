@@ -16,7 +16,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__button-previous-month"
+        ".kuc-base-datetime-calendar-header__group__button--previous-month"
       ) as HTMLButtonElement;
       buttonEl.click();
 
@@ -37,7 +37,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__button-previous-month"
+        ".kuc-base-datetime-calendar-header__group__button--previous-month"
       ) as HTMLButtonElement;
       buttonEl.click();
 
@@ -58,7 +58,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__button-next-month"
+        ".kuc-base-datetime-calendar-header__group__button--next-month"
       ) as HTMLButtonElement;
       buttonEl.click();
 
@@ -79,7 +79,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__button-next-month"
+        ".kuc-base-datetime-calendar-header__group__button--next-month"
       ) as HTMLButtonElement;
       buttonEl.click();
 
@@ -147,7 +147,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-year__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(
@@ -170,7 +170,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-month__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(

@@ -9,7 +9,7 @@ import { BaseDateTimeListBox, Item } from "../../../../listbox";
 import { en } from "../../../../resource/locale";
 import { getToggleIconSvgTemplate, getLocale } from "../../ultils";
 
-export class BaseDateTimeMonthDropdown extends KucBase {
+export class BaseDateTimeDropdownMonth extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: Number }) month = 1;
 
@@ -21,10 +21,10 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   private _listBoxItems: Item[] | undefined;
   private _maxHeight = 1000;
 
-  @query(".kuc-base-datetime-month-dropdown__toggle")
+  @query(".kuc-base-datetime-header-dropdown-month__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-month-dropdown__listbox")
+  @query(".kuc-base-datetime-header-dropdown-month__listbox")
   private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
@@ -42,7 +42,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <button
-        class="kuc-base-datetime-month-dropdown__toggle"
+        class="kuc-base-datetime-header-dropdown-month__toggle"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
@@ -51,10 +51,10 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         @blur="${this._handleBlurDropdownMonthToggle}"
         @keydown="${this._handleKeyDownMonthToggle}"
       >
-        <span class="kuc-base-datetime-month-dropdown__toggle__label"
+        <span class="kuc-base-datetime-header-dropdown-month__toggle__label"
           >${this._monthLabel}</span
         >
-        <span class="kuc-base-datetime-month-dropdown__toggle__icon"
+        <span class="kuc-base-datetime-header-dropdown-month__toggle__icon"
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
@@ -62,7 +62,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         .items="${this._listBoxItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
-        class="kuc-base-datetime-month-dropdown__listbox"
+        class="kuc-base-datetime-header-dropdown-month__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
         aria-hidden="${!this._listBoxVisible}"
         ?hidden="${!this._listBoxVisible}"
@@ -74,7 +74,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-datetime-month-dropdown__toggle {
+        .kuc-base-datetime-header-dropdown-month__toggle {
           position: relative;
           box-sizing: border-box;
           height: 32px;
@@ -85,7 +85,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-month-dropdown__toggle__icon {
+        .kuc-base-datetime-header-dropdown-month__toggle__icon {
           flex: none;
           width: 38px;
           height: 38px;
@@ -94,7 +94,7 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     `;
   }
 
-  private _handleClickDropdownMonthToggle(event: MouseEvent) {
+  private _handleClickDropdownMonthToggle() {
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
@@ -215,15 +215,15 @@ export class BaseDateTimeMonthDropdown extends KucBase {
 
   private _getMonthLabel() {
     const monthSelected = this._locale.MONTHS_SELECT.filter(
-      (month: string, index: number) => this.month === index + 1
+      (_, index: number) => this.month === index + 1
     );
     return monthSelected.length > 0 ? monthSelected[0] : "JANUARY";
   }
 }
 
-if (!window.customElements.get("kuc-base-datetime-month-dropdown")) {
+if (!window.customElements.get("kuc-base-datetime-dropdown-month")) {
   window.customElements.define(
-    "kuc-base-datetime-month-dropdown",
-    BaseDateTimeMonthDropdown
+    "kuc-base-datetime-dropdown-month",
+    BaseDateTimeDropdownMonth
   );
 }

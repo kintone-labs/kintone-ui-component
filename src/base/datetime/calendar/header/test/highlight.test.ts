@@ -11,7 +11,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-year__toggle"
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
@@ -41,7 +41,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-year__toggle"
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
@@ -71,7 +71,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-year__toggle"
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
@@ -95,7 +95,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-year__toggle"
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
@@ -119,10 +119,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const yearListboxEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-year__listbox"
       ) as HTMLElement;
       const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-year-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-year__toggle"
       ) as HTMLButtonElement;
 
       btnYearToggleEl.focus();
@@ -148,7 +148,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
@@ -177,7 +177,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
@@ -206,7 +206,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
@@ -230,7 +230,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
@@ -253,10 +253,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const monthListboxEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__listbox"
+        ".kuc-base-datetime-header-dropdown-month__listbox"
       ) as HTMLSpanElement;
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-month-dropdown__toggle"
+        ".kuc-base-datetime-header-dropdown-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.focus();
