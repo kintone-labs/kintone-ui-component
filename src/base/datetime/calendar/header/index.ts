@@ -117,25 +117,25 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getYearTemplate() {
     return html`
-      <kuc-base-datetime-dropdown-year
-        class="kuc-base-datetime-calendar-year-dropdown"
+      <kuc-base-datetime-header-year
+        class="kuc-base-datetime-header__year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
       >
-      </kuc-base-datetime-dropdown-year>
+      </kuc-base-datetime-header-year>
     `;
   }
 
   private _getMonthTemplate() {
     return html`
-      <kuc-base-datetime-dropdown-month
-        class="kuc-base-datetime-calendar-month-dropdown"
+      <kuc-base-datetime-header-month
+        class="kuc-base-datetime-header__month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
       >
-      </kuc-base-datetime-dropdown-month>
+      </kuc-base-datetime-header-month>
     `;
   }
 

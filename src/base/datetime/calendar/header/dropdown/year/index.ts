@@ -8,7 +8,7 @@ import {
 import { BaseDateTimeListBox, Item } from "../../../../listbox";
 import { getToggleIconSvgTemplate } from "../../ultils";
 
-export class BaseDateTimeDropdownYear extends KucBase {
+export class BaseDateTimeHeaderYear extends KucBase {
   @property({ type: Number }) year = 2021;
   @property({ type: String }) postfix = "";
 
@@ -21,10 +21,10 @@ export class BaseDateTimeDropdownYear extends KucBase {
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
 
-  @query(".kuc-base-datetime-header-dropdown-year__toggle")
+  @query(".kuc-base-datetime-header__year__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-header-dropdown-year__listbox")
+  @query(".kuc-base-datetime-header__year__listbox")
   private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
@@ -42,7 +42,7 @@ export class BaseDateTimeDropdownYear extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <button
-        class="kuc-base-datetime-header-dropdown-year__toggle"
+        class="kuc-base-datetime-header__year__toggle"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
@@ -51,17 +51,17 @@ export class BaseDateTimeDropdownYear extends KucBase {
         @blur="${this._handleBlurDropdownYearToggle}"
         @keydown="${this._handleKeyDownYearToggle}"
       >
-        <span class="kuc-base-datetime-header-dropdown-year__toggle__label"
+        <span class="kuc-base-datetime-header__year__toggle__label"
           >${this.year}${this.postfix}</span
         >
-        <span class="kuc-base-datetime-header-dropdown-year__toggle__icon"
+        <span class="kuc-base-datetime-header__year__toggle__icon"
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
       <kuc-base-datetime-listbox
         .items="${this._listBoxItems || []}"
         .value="${this.year.toString()}"
-        class="kuc-base-datetime-header-dropdown-year__listbox"
+        class="kuc-base-datetime-header__year__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
         aria-hidden="${!this._listBoxVisible}"
         ?hidden="${!this._listBoxVisible}"
@@ -73,7 +73,7 @@ export class BaseDateTimeDropdownYear extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-datetime-header-dropdown-year__toggle {
+        .kuc-base-datetime-header__year__toggle {
           position: relative;
           box-sizing: border-box;
           height: 32px;
@@ -84,7 +84,7 @@ export class BaseDateTimeDropdownYear extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-header-dropdown-year__toggle__icon {
+        .kuc-base-datetime-header__year__toggle__icon {
           flex: none;
           width: 38px;
           height: 38px;
@@ -219,9 +219,9 @@ export class BaseDateTimeDropdownYear extends KucBase {
   }
 }
 
-if (!window.customElements.get("kuc-base-datetime-dropdown-year")) {
+if (!window.customElements.get("kuc-base-datetime-header-year")) {
   window.customElements.define(
-    "kuc-base-datetime-dropdown-year",
-    BaseDateTimeDropdownYear
+    "kuc-base-datetime-header-year",
+    BaseDateTimeHeaderYear
   );
 }
