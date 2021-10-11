@@ -5,7 +5,7 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../../../kuc-base";
-import { BaseDateTimeListbox, Item } from "../../../../listbox";
+import { BaseDateTimeListBox, Item } from "../../../../listbox";
 import { en } from "../../../../resource/locale";
 import { getToggleIconSvgTemplate, getLocale } from "../../ultils";
 
@@ -14,23 +14,23 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   @property({ type: Number }) month = 1;
 
   @state()
-  private _menuVisible = false;
+  private _listBoxVisible = false;
   private _locale = en;
   private _monthLabel = "";
   private _GUID = generateGUID();
-  private _menuItems: Item[] | undefined;
+  private _listBoxItems: Item[] | undefined;
   private _maxHeight = 1000;
 
   @query(".kuc-base-datetime-month-dropdown__toggle")
   private _toggleEl!: HTMLButtonElement;
 
   @query(".kuc-base-datetime-month-dropdown__listbox")
-  private _menuEl!: BaseDateTimeListbox;
+  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
-      this._menuItems = this._getMenuItems();
+      this._listBoxItems = this._getListBoxItems();
     }
     if (changedProperties.has("month")) {
       this._monthLabel = this._getMonthLabel();
@@ -59,13 +59,13 @@ export class BaseDateTimeMonthDropdown extends KucBase {
         </span>
       </button>
       <kuc-base-datetime-listbox
-        .items="${this._menuItems || []}"
+        .items="${this._listBoxItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
         class="kuc-base-datetime-month-dropdown__listbox"
-        @kuc:calendar-listbox-click="${this._handleChangeMenu}"
-        aria-hidden="${!this._menuVisible}"
-        ?hidden="${!this._menuVisible}"
+        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
+        aria-hidden="${!this._listBoxVisible}"
+        ?hidden="${!this._listBoxVisible}"
       >
       </kuc-base-datetime-listbox>
     `;
@@ -95,10 +95,10 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   }
 
   private _handleClickDropdownMonthToggle(event: MouseEvent) {
-    if (!this._menuVisible) {
-      this._openMenu();
+    if (!this._listBoxVisible) {
+      this._openListBox();
     } else {
-      this._closeMenu();
+      this._closeListBox();
     }
   }
 
@@ -111,56 +111,56 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   }
 
   private _handleKeyDownMonthToggle(event: KeyboardEvent) {
-    if (!this._menuVisible) {
-      this._menuEl.highlightFirstItem();
+    if (!this._listBoxVisible) {
+      this._listBoxEl.highlightFirstItem();
       return;
     }
     switch (event.key) {
       case "Up":
       case "ArrowUp": {
         event.preventDefault();
-        this._menuEl.highlightPrevItem();
+        this._listBoxEl.highlightPrevItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       }
       case "Down":
       case "ArrowDown": {
         event.preventDefault();
-        this._menuEl.highlightNextItem();
+        this._listBoxEl.highlightNextItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       }
       case "Home":
         event.preventDefault();
-        this._menuEl.highlightFirstItem();
+        this._listBoxEl.highlightFirstItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       case "End":
         event.preventDefault();
-        this._menuEl.highlightLastItem();
+        this._listBoxEl.highlightLastItem();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       case "Enter": {
         event.preventDefault();
-        const highlightValue = this._menuEl.getHighlightValue();
+        const highlightValue = this._listBoxEl.getHighlightValue();
         if (highlightValue) {
           this.month = Number(highlightValue);
           const detail: CustomEventDetail = { value: `${this.month}` };
           dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
         }
-        this._menuVisible = false;
+        this._listBoxVisible = false;
         break;
       }
     }
@@ -176,26 +176,26 @@ export class BaseDateTimeMonthDropdown extends KucBase {
   }
 
   private _handleBlurDropdownMonthToggle(event: Event) {
-    this._menuVisible = false;
+    this._listBoxVisible = false;
   }
 
-  private _handleChangeMenu(event: CustomEvent) {
+  private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
     this.month = Number(event.detail.value);
-    this._menuVisible = false;
+    this._listBoxVisible = false;
     const detail: CustomEventDetail = { value: `${this.month}` };
     dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
   }
 
-  private _openMenu() {
+  private _openListBox() {
     this._toggleEl.focus();
-    this._menuVisible = true;
-    this._menuEl.highlightSelectedItem();
+    this._listBoxVisible = true;
+    this._listBoxEl.highlightSelectedItem();
   }
 
-  private _closeMenu() {
-    this._menuVisible = false;
+  private _closeListBox() {
+    this._listBoxVisible = false;
     this._removeActiveDescendant(this._toggleEl);
   }
 
@@ -203,11 +203,11 @@ export class BaseDateTimeMonthDropdown extends KucBase {
     _buttonEl.removeAttribute("aria-activedescendant");
   }
 
-  private _getMenuItems() {
+  private _getListBoxItems() {
     return this._locale.MONTHS_SELECT.map((month: string, index: number) => {
       const item: Item = {
         value: `${index + 1}`,
-        label: `${month}`,
+        label: `${month}`
       };
       return item;
     });

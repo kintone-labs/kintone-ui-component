@@ -5,7 +5,7 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../../../kuc-base";
-import { BaseDateTimeListbox, Item } from "../../../../listbox";
+import { BaseDateTimeListBox, Item } from "../../../../listbox";
 import { getToggleIconSvgTemplate } from "../../ultils";
 
 export class BaseDateTimeYearDropdown extends KucBase {
@@ -13,22 +13,22 @@ export class BaseDateTimeYearDropdown extends KucBase {
   @property({ type: String }) postfix = "";
 
   @state()
-  private _menuVisible = false;
+  private _listBoxVisible = false;
 
   @state()
   private _currentYear = new Date().getFullYear();
 
   private _GUID = generateGUID();
-  private _menuItems: Item[] | undefined;
+  private _listBoxItems: Item[] | undefined;
 
   @query(".kuc-base-datetime-year-dropdown__toggle")
   private _toggleEl!: HTMLButtonElement;
 
   @query(".kuc-base-datetime-year-dropdown__listbox")
-  private _menuEl!: BaseDateTimeListbox;
+  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
-    this._menuItems = this._getYearOptions().map((year: number) => {
+    this._listBoxItems = this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
         label: `${year}${this.postfix}`
@@ -59,12 +59,12 @@ export class BaseDateTimeYearDropdown extends KucBase {
         </span>
       </button>
       <kuc-base-datetime-listbox
-        .items="${this._menuItems || []}"
+        .items="${this._listBoxItems || []}"
         .value="${this.year.toString()}"
         class="kuc-base-datetime-year-dropdown__listbox"
-        @kuc:calendar-listbox-click="${this._handleChangeMenu}"
-        aria-hidden="${!this._menuVisible}"
-        ?hidden="${!this._menuVisible}"
+        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
+        aria-hidden="${!this._listBoxVisible}"
+        ?hidden="${!this._listBoxVisible}"
       >
       </kuc-base-datetime-listbox>
     `;
@@ -102,94 +102,94 @@ export class BaseDateTimeYearDropdown extends KucBase {
   }
 
   private _handleClickDropdownYearToggle(event: MouseEvent) {
-    if (!this._menuVisible) {
-      this._openMenu();
+    if (!this._listBoxVisible) {
+      this._openListBox();
     } else {
-      this._closeMenu();
+      this._closeListBox();
     }
   }
 
   private _handleKeyDownYearToggle(event: KeyboardEvent) {
-    if (!this._menuVisible) {
-      this._menuEl.highlightFirstItem();
+    if (!this._listBoxVisible) {
+      this._listBoxEl.highlightFirstItem();
       return;
     }
     switch (event.key) {
       case "Up":
       case "ArrowUp": {
         event.preventDefault();
-        this._menuEl.highlightPrevItem();
-        this._menuEl.scrollToView();
+        this._listBoxEl.highlightPrevItem();
+        this._listBoxEl.scrollToView();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       }
       case "Down":
       case "ArrowDown": {
         event.preventDefault();
-        this._menuEl.highlightNextItem();
-        this._menuEl.scrollToView();
+        this._listBoxEl.highlightNextItem();
+        this._listBoxEl.scrollToView();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       }
       case "Home":
         event.preventDefault();
-        this._menuEl.highlightFirstItem();
-        this._menuEl.scrollToTop();
+        this._listBoxEl.highlightFirstItem();
+        this._listBoxEl.scrollToTop();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       case "End":
         event.preventDefault();
-        this._menuEl.highlightLastItem();
-        this._menuEl.scrollToBottom();
+        this._listBoxEl.highlightLastItem();
+        this._listBoxEl.scrollToBottom();
         this._setActiveDescendant(
           this._toggleEl,
-          this._menuEl.getHighlightItemId()
+          this._listBoxEl.getHighlightItemId()
         );
         break;
       case "Enter": {
         event.preventDefault();
-        const highlightValue = this._menuEl.getHighlightValue();
+        const highlightValue = this._listBoxEl.getHighlightValue();
         if (highlightValue) {
           this.year = Number(highlightValue);
           const detail: CustomEventDetail = { value: `${this.year}` };
           dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
         }
-        this._menuVisible = false;
+        this._listBoxVisible = false;
         break;
       }
     }
   }
 
   private _handleBlurDropdownYearToggle(event: Event) {
-    this._menuVisible = false;
+    this._listBoxVisible = false;
   }
 
-  private _handleChangeMenu(event: CustomEvent) {
+  private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
     this.year = Number(event.detail.value);
-    this._menuVisible = false;
+    this._listBoxVisible = false;
     const detail: CustomEventDetail = { value: `${this.year}` };
     dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
   }
 
-  private _openMenu() {
+  private _openListBox() {
     this._toggleEl.focus();
-    this._menuVisible = true;
-    this._menuEl.highlightSelectedItem();
+    this._listBoxVisible = true;
+    this._listBoxEl.highlightSelectedItem();
   }
 
-  private _closeMenu() {
-    this._menuVisible = false;
+  private _closeListBox() {
+    this._listBoxVisible = false;
     this._removeActiveDescendant(this._toggleEl);
   }
 
