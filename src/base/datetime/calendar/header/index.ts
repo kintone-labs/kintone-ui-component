@@ -20,12 +20,45 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: Number }) year = 2021;
 
   private _locale = en;
+  private _defaultMonth = 1;
+  private _defaultYear = 2021;
+  private _rangeYear = 100;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
     }
+    if (changedProperties.has("month")) {
+      this.month = this._getValidMonthYear(this.month, this.year).validMonth;
+    }
+    if (changedProperties.has("year")) {
+      this.year = this._getValidMonthYear(this.month, this.year).validYear;
+    }
+
     super.update(changedProperties);
+  }
+
+  private _getValidMonthYear(month: number, year: number) {
+    let validMonth = this._defaultMonth;
+    let validYear = this._defaultYear;
+
+    if (!Number.isInteger(month) || !Number.isInteger(year)) {
+      return { validMonth, validYear };
+    }
+
+    const isValidMonth = month >= 1 && month <= 12;
+    const isValidYear =
+      year >= validYear - this._rangeYear &&
+      year <= validYear + this._rangeYear;
+
+    if (isValidMonth) {
+      validMonth = month;
+    }
+    if (isValidYear) {
+      validYear = year;
+    }
+
+    return { validMonth, validYear };
   }
 
   render() {
