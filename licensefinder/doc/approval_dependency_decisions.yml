@@ -1,2 +1,28 @@
 # approvalの設定ファイル(for dependency)
 ---
+- - :approve
+  - "@kintone-plugins/gantt-task"
+  - :who: 
+    :why: In npm, a check of the License Finder will include the product itself.
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :permit
+  - MIT
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 03:22:18.970745000 Z
+- - :permit
+  - NewBsd
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 03:25:18.970745000 Z
+
+- - :approve
+  - "dompurify"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:33:24.889757000 Z
+    

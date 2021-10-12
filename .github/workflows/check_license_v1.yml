@@ -1,7 +1,9 @@
 name: Check v1 license
 
 on:
-  push: 
+  push:
+    branches: [master]
+  pull_request:
     branches: [master]
   release:
     types: [created]
@@ -17,20 +19,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache Dependencies
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+          
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Check licenses
         run: license_finder --decisions-file=licensefinder/doc/check-dependency-license.yml
         
@@ -44,19 +41,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache Devdependencies
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Check dev-licenses
         run: license_finder --decisions-file=licensefinder/doc/check-devdependency-license.yml
