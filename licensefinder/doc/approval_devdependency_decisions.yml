@@ -1,4 +1,4 @@
-# approvalの設定ファイル(for devDependency)
+# approval configuration file (for devdependency)
 ---
 - - :permit
   - CC-BY-3.0
