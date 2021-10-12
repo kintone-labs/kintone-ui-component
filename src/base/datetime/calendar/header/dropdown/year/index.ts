@@ -15,9 +15,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @state()
   private _listBoxVisible = false;
 
-  @state()
-  private _currentYear = new Date().getFullYear();
-
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
 
@@ -217,11 +214,10 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   private _getYearOptions() {
     const options = [];
-    const year = this._currentYear;
     if (!Number.isInteger(this.year)) {
       this.year = 2021;
     }
-    for (let i = year - 100; i <= year + 100; i++) {
+    for (let i = this.year - 100; i <= this.year + 100; i++) {
       options.push(i);
     }
     return options;
