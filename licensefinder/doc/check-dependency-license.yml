@@ -1,4 +1,4 @@
-# License Finder実行用の設定ファイル(for dependency)
+# configuration file used to execute License Finder(for dependency)
 ---
 - - :inherit_from
   - "./licensefinder/doc/use-with-redistribution-decisions.yml"

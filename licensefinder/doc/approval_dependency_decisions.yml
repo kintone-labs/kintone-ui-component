@@ -1,4 +1,4 @@
-# approvalの設定ファイル(for dependency)
+# approval configuration file (for dependency)
 ---
 - - :approve
   - "@kintone/kintone-ui-component"
