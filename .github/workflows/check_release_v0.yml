@@ -12,11 +12,15 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Remove package-lock
-      run: rm -rf package-lock.json
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: npm-${{ hashFiles('package-lock.json') }}
+        restore-keys: npm-
     - name: Install dependencies
       run: |
-        npm install
+        npm ci
         npm i @actions/core
     - name: Check version
       id: check_version
