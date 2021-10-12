@@ -77,7 +77,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
           position: relative;
           box-sizing: border-box;
           height: 32px;
-          padding: 0 14px 0 8px;
+          padding: 0 24px 0 8px;
           line-height: 30px;
           overflow: hidden;
           background-color: white;
@@ -85,9 +85,18 @@ export class BaseDateTimeHeaderYear extends KucBase {
           cursor: pointer;
         }
         .kuc-base-datetime-header__year__toggle__icon {
+          position: absolute;
           flex: none;
-          width: 38px;
-          height: 38px;
+          width: 24px;
+          height: 32px;
+        }
+        .kuc-base-datetime-header__year__toggle__label {
+          font-size: 13px;
+          color: #333333;
+        }
+        .kuc-base-datetime-header__year__toggle:focus {
+          border: 1px solid #3498db;
+          outline: none;
         }
       </style>
     `;
