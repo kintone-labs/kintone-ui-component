@@ -11,7 +11,7 @@ $ npm link
 
 2. set up this demo project
 ```bash
-$ npm install
+$ npm ci
 $ npm link kintone-ui-component
 ```
 > Note: Please run `npm link` after running `npm install` at the demos/esm-dev-app directory.
