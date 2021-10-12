@@ -13,7 +13,7 @@ type TableColumnJS = {
 }
 
 type DispatchParams = {
-  type: string;
+  type?: string;
   data?: Array<Record<string, any>>;
   rowIndex: number;
   fieldName?: string;
@@ -84,12 +84,13 @@ export default class Table extends Control<TableProps> {
   }
 
   private _triggerChange(args: DispatchParams) {
-    const {type, ...updatedArgs} = args;
+    const {type} = args;
+    delete args.type;
     if (type === 'REMOVE_ROW' && this._props.onRowRemove) {
-      this._props.onRowRemove(updatedArgs);
+      this._props.onRowRemove(args);
     }
     if (type === 'CELL_CHANGE' && this._props.onCellChange) {
-      this._props.onCellChange(updatedArgs);
+      this._props.onCellChange(args);
     }
   }
 
