@@ -84,13 +84,12 @@ export default class Table extends Control<TableProps> {
   }
 
   private _triggerChange(args: DispatchParams) {
-    const {type} = args;
-    delete args.type;
+    const {type, ...updatedArgs} = args;
     if (type === 'REMOVE_ROW' && this._props.onRowRemove) {
-      this._props.onRowRemove(args);
+      this._props.onRowRemove(updatedArgs);
     }
     if (type === 'CELL_CHANGE' && this._props.onCellChange) {
-      this._props.onCellChange(args);
+      this._props.onCellChange(updatedArgs);
     }
   }
 
