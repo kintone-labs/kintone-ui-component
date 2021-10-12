@@ -111,6 +111,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           margin: 0;
           text-align: center;
         }
+        .kuc-base-datetime-calendar-header__group__button:focus {
+          border: 1px solid #3498db;
+          outline: none;
+        }
         .kuc-base-datetime-calendar-header__group__button-icon {
           vertical-align: middle;
         }
