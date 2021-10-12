@@ -19,7 +19,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache Dependencies
         uses: actions/cache@v2
         with:
           path: ~/.npm
@@ -41,7 +41,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache Devdependencies
         uses: actions/cache@v2
         with:
           path: ~/.npm
