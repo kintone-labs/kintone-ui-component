@@ -100,7 +100,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const selectEl = el.querySelector(
-        ".kuc-base-datetime-header__year"
+        "kuc-base-datetime-header-year"
       ) as HTMLElement;
 
       selectEl.dispatchEvent(
@@ -147,7 +147,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-header__year__listbox"
+        ".kuc-base-datetime-header-year__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(

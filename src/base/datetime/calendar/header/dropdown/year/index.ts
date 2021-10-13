@@ -18,10 +18,10 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
 
-  @query(".kuc-base-datetime-header__year__toggle")
+  @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-header__year__listbox")
+  @query(".kuc-base-datetime-header-year__listbox")
   private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
@@ -39,7 +39,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <button
-        class="kuc-base-datetime-header__year__toggle"
+        class="kuc-base-datetime-header-year__toggle"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
@@ -48,17 +48,17 @@ export class BaseDateTimeHeaderYear extends KucBase {
         @blur="${this._handleBlurDropdownYearToggle}"
         @keydown="${this._handleKeyDownYearToggle}"
       >
-        <span class="kuc-base-datetime-header__year__toggle__label"
+        <span class="kuc-base-datetime-header-year__toggle__label"
           >${this.year}${this.postfix}</span
         >
-        <span class="kuc-base-datetime-header__year__toggle__icon"
+        <span class="kuc-base-datetime-header-year__toggle__icon"
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
       <kuc-base-datetime-listbox
         .items="${this._listBoxItems || []}"
         .value="${this.year.toString()}"
-        class="kuc-base-datetime-header__year__listbox"
+        class="kuc-base-datetime-header-year__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
         aria-hidden="${!this._listBoxVisible}"
         ?hidden="${!this._listBoxVisible}"
@@ -70,7 +70,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-datetime-header__year__toggle {
+        .kuc-base-datetime-header-year__toggle {
           position: relative;
           box-sizing: border-box;
           height: 32px;
@@ -81,17 +81,17 @@ export class BaseDateTimeHeaderYear extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-header__year__toggle__icon {
+        .kuc-base-datetime-header-year__toggle__icon {
           position: absolute;
           flex: none;
           width: 24px;
           height: 32px;
         }
-        .kuc-base-datetime-header__year__toggle__label {
+        .kuc-base-datetime-header-year__toggle__label {
           font-size: 13px;
           color: #333333;
         }
-        .kuc-base-datetime-header__year__toggle:focus {
+        .kuc-base-datetime-header-year__toggle:focus {
           border: 1px solid #3498db;
           outline: none;
         }

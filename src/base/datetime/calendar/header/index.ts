@@ -134,7 +134,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getYearTemplate() {
     return html`
       <kuc-base-datetime-header-year
-        class="kuc-base-datetime-header__year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"

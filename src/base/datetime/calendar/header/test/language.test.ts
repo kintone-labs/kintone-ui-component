@@ -16,11 +16,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.children[0].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
-      expect(
-        headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-header__year"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
     });
 
     it("should be 'ja' when assigning 'ja' by setter", async () => {
@@ -34,11 +32,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(
-        headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-header__year"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
       expect(headerCenterEl.children[1].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
@@ -55,11 +51,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(
-        headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-header__year"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
       expect(headerCenterEl.children[1].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
@@ -79,11 +73,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.children[0].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
-      expect(
-        headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-header__year"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
     });
 
     it("should be 'en' when assigning invalid value by setter", async () => {
@@ -100,11 +92,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(headerCenterEl.children[0].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
-      expect(
-        headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-header__year"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
     });
   });
 });
