@@ -67,13 +67,15 @@ export class Notification extends KucBase {
 
   open() {
     document.body.appendChild(this);
-    this.className = "kuc-notification-fadein";
+    this.classList.remove("kuc-notification-fadeout");
+    this.classList.add("kuc-notification-fadein");
     this._isOpened = true;
   }
 
   close() {
     this._isOpened = false;
-    this.className = "kuc-notification-fadeout";
+    this.classList.remove("kuc-notification-fadein");
+    this.classList.add("kuc-notification-fadeout");
   }
 
   render() {
