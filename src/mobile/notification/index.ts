@@ -53,6 +53,8 @@ export class MobileNotification extends KucBase {
 
   open() {
     document.body.appendChild(this);
+    this.performUpdate();
+
     this.classList.remove("kuc-mobile-notification-fadeout");
     this.classList.add("kuc-mobile-notification-fadein");
     this._isOpened = true;
