@@ -266,7 +266,6 @@ export class BaseDateTimeListBox extends KucBase {
         }
         .kuc-base-datetime-listbox__listbox--highlight {
           background-color: #e2f2fe;
-          color: #3498db;
           cursor: pointer;
         }
         .kuc-base-datetime-listbox__listbox__item__icon {
