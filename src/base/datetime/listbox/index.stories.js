@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit";
 
 export default {
-  title: "base/datetime/menu",
+  title: "base/datetime/listbox",
   argTypes: {
     value: {
       name: "value",
@@ -21,39 +21,39 @@ export default {
   },
   parameters: {
     actions: {
-      handles: ["kuc:calendar-menu-click"]
+      handles: ["kuc:calendar-listbox-click"]
     }
   }
 };
 
 const Template = ({ value, items }) => {
   const _handleClickBtn = () => {
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
-    _menuEl.hidden = !_menuEl.hidden;
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listBoxEl.hidden = !_listBoxEl.hidden;
   };
 
   const _handleKeydownBtn = event => {
     event.preventDefault();
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
     switch (event.key) {
       case "ArrowUp": {
-        _menuEl.highlightPrevItem();
+        _listBoxEl.highlightPrevItem();
         break;
       }
       case "ArrowDown": {
-        _menuEl.highlightNextItem();
+        _listBoxEl.highlightNextItem();
         break;
       }
       case "Home": {
-        _menuEl.highlightFirstItem();
+        _listBoxEl.highlightFirstItem();
         break;
       }
       case "End": {
-        _menuEl.highlightLastItem();
+        _listBoxEl.highlightLastItem();
         break;
       }
       case "Enter": {
-        _changeValue(_menuEl.getHighlightValue());
+        _changeValue(_listBoxEl.getHighlightValue());
         break;
       }
       default:
@@ -61,13 +61,13 @@ const Template = ({ value, items }) => {
     }
   };
 
-  const _handleClickCalendarMenu = event => {
+  const _handleClickCalendarListBox = event => {
     _changeValue(event.detail.value);
   };
 
   const _changeValue = newValue => {
-    const _menuEl = document.querySelector("kuc-base-datetime-menu");
-    _menuEl.setAttribute("value", newValue);
+    const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
+    _listBoxEl.setAttribute("value", newValue);
 
     const _btn = document.querySelector("button");
     _btn.textContent = newValue;
@@ -77,12 +77,12 @@ const Template = ({ value, items }) => {
     <button @click="${_handleClickBtn}" @keydown="${_handleKeydownBtn}">
       ${value}
     </button>
-    <kuc-base-datetime-menu
+    <kuc-base-datetime-listbox
       .items="${items}"
       .value="${value}"
-      @kuc:calendar-menu-click="${_handleClickCalendarMenu}"
+      @kuc:calendar-listbox-click="${_handleClickCalendarListBox}"
     >
-    </kuc-base-datetime-menu>
+    </kuc-base-datetime-listbox>
   `;
 };
 
