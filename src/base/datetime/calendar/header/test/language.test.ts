@@ -13,11 +13,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(
-        headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-header__month"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
       expect(
         headerCenterEl.children[1].classList.contains(
           "kuc-base-datetime-header__year"
@@ -41,11 +39,9 @@ describe("BaseDateTimeCalendarHeader", () => {
           "kuc-base-datetime-header__year"
         )
       ).to.equal(true);
-      expect(
-        headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-header__month"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
     });
 
     it("should be 'zh' when assigning 'zh' by setter", async () => {
@@ -64,11 +60,9 @@ describe("BaseDateTimeCalendarHeader", () => {
           "kuc-base-datetime-header__year"
         )
       ).to.equal(true);
-      expect(
-        headerCenterEl.children[1].classList.contains(
-          "kuc-base-datetime-header__month"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
     });
 
     it("should be 'en' when assigning 'en' by setter", async () => {
@@ -82,11 +76,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(
-        headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-header__month"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
       expect(
         headerCenterEl.children[1].classList.contains(
           "kuc-base-datetime-header__year"
@@ -105,11 +97,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(
-        headerCenterEl.children[0].classList.contains(
-          "kuc-base-datetime-header__month"
-        )
-      ).to.equal(true);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
       expect(
         headerCenterEl.children[1].classList.contains(
           "kuc-base-datetime-header__year"

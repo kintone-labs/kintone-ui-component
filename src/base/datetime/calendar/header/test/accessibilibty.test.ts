@@ -66,10 +66,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const el = await fixture(container);
 
       const monthSelectEl = el.querySelector(
-        ".kuc-base-datetime-header__month__toggle__label"
+        ".kuc-base-datetime-header-month__toggle__label"
       ) as HTMLSpanElement;
       const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-header__month__toggle"
+        ".kuc-base-datetime-header-month__toggle"
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();

@@ -21,10 +21,10 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _listBoxItems: Item[] | undefined;
   private _maxHeight = 1000;
 
-  @query(".kuc-base-datetime-header__month__toggle")
+  @query(".kuc-base-datetime-header-month__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  @query(".kuc-base-datetime-header__month__listbox")
+  @query(".kuc-base-datetime-header-month__listbox")
   private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
@@ -42,7 +42,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <button
-        class="kuc-base-datetime-header__month__toggle"
+        class="kuc-base-datetime-header-month__toggle"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
@@ -51,10 +51,10 @@ export class BaseDateTimeHeaderMonth extends KucBase {
         @blur="${this._handleBlurDropdownMonthToggle}"
         @keydown="${this._handleKeyDownMonthToggle}"
       >
-        <span class="kuc-base-datetime-header__month__toggle__label"
+        <span class="kuc-base-datetime-header-month__toggle__label"
           >${this._monthLabel}</span
         >
-        <span class="kuc-base-datetime-header__month__toggle__icon"
+        <span class="kuc-base-datetime-header-month__toggle__icon"
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
@@ -62,7 +62,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
         .items="${this._listBoxItems || []}"
         .value="${this.month.toString()}"
         .maxHeight="${this._maxHeight}"
-        class="kuc-base-datetime-header__month__listbox"
+        class="kuc-base-datetime-header-month__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
         aria-hidden="${!this._listBoxVisible}"
         ?hidden="${!this._listBoxVisible}"
@@ -74,7 +74,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-datetime-header__month__toggle {
+        .kuc-base-datetime-header-month__toggle {
           position: relative;
           box-sizing: border-box;
           height: 32px;
@@ -85,17 +85,17 @@ export class BaseDateTimeHeaderMonth extends KucBase {
           border: 1px solid transparent;
           cursor: pointer;
         }
-        .kuc-base-datetime-header__month__toggle__icon {
+        .kuc-base-datetime-header-month__toggle__icon {
           position: absolute;
           flex: none;
           width: 24px;
           height: 32px;
         }
-        .kuc-base-datetime-header__month__toggle__label {
+        .kuc-base-datetime-header-month__toggle__label {
           font-size: 13px;
           color: #333333;
         }
-        .kuc-base-datetime-header__month__toggle:focus {
+        .kuc-base-datetime-header-month__toggle:focus {
           border: 1px solid #3498db;
           outline: none;
         }

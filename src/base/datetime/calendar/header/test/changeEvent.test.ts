@@ -125,7 +125,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const selectEl = el.querySelector(
-        ".kuc-base-datetime-header__month"
+        "kuc-base-datetime-header-month"
       ) as HTMLSelectElement;
       selectEl.dispatchEvent(
         new CustomEvent("kuc:month-dropdown-change", {
@@ -170,7 +170,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const el = await fixture(container);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-header__month__listbox"
+        ".kuc-base-datetime-header-month__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(

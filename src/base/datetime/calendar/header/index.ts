@@ -124,7 +124,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           display: flex;
           justify-content: center;
         }
-        .kuc-base-datetime-header__month {
+        .kuc-base-datetime-header-month {
           margin: 0 4px 0 4px;
         }
       </style>
@@ -146,7 +146,6 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthTemplate() {
     return html`
       <kuc-base-datetime-header-month
-        class="kuc-base-datetime-header__month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
