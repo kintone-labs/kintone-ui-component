@@ -6,8 +6,7 @@ storiesOf("desktop/notification", module)
     const root = document.createElement("div");
     const notification = new Notification({
       text: "不正です!!",
-      type: "info",
-      className: "xxx"
+      type: "info"
     });
 
     const button = document.createElement("button");

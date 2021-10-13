@@ -1,4 +1,4 @@
-import { html, PropertyValues, svg } from "lit";
+import { html, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
