@@ -1,5 +1,5 @@
 export const en = {
-  MONTHS_SELECT: [
+  MONTH_SELECT: [
     "JANUARY",
     "FEBRUARY",
     "MARCH",
@@ -26,7 +26,7 @@ export const en = {
 };
 
 export const ja = {
-  MONTHS_SELECT: [
+  MONTH_SELECT: [
     "1月",
     "2月",
     "3月",
@@ -53,7 +53,7 @@ export const ja = {
 };
 
 export const zh = {
-  MONTHS_SELECT: [
+  MONTH_SELECT: [
     "1月",
     "2月",
     "3月",

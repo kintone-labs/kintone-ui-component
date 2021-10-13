@@ -213,7 +213,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   }
 
   private _getListBoxItems() {
-    return this._locale.MONTHS_SELECT.map((month: string, index: number) => {
+    return this._locale.MONTH_SELECT.map((month: string, index: number) => {
       const item: Item = {
         value: `${index + 1}`,
         label: `${month}`
@@ -223,7 +223,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   }
 
   private _getMonthLabel() {
-    const monthSelected = this._locale.MONTHS_SELECT.filter(
+    const monthSelected = this._locale.MONTH_SELECT.filter(
       (_, index: number) => this.month === index + 1
     );
     return monthSelected.length > 0 ? monthSelected[0] : "JANUARY";
