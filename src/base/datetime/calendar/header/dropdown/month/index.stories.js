@@ -4,7 +4,13 @@ import "./index.ts";
 
 export default {
   title: "base/datetime/calendar/header/dropdown/month",
-  argTypes: {},
+  argTypes: {
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh"],
+      control: { type: "select" }
+    }
+  },
   parameters: {
     actions: {
       handles: ["kuc:month-dropdown-change"]
@@ -16,7 +22,7 @@ const Template = ({ month, language }) =>
   html`
     <kuc-base-datetime-header-month
       .month="${month}"
-      .year="${language}"
+      .language="${language}"
     ></kuc-base-datetime-header-month>
   `;
 
