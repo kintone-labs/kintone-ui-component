@@ -6,8 +6,7 @@ import {
   CustomEventDetail
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBox, Item } from "../../../../listbox";
-import { en } from "../../../../resource/locale";
-import { getToggleIconSvgTemplate, getLocale } from "../../ultils";
+import { getToggleIconSvgTemplate, getLocale } from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
   @property({ type: String }) language = "en";
@@ -15,7 +14,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   @state()
   private _listBoxVisible = false;
-  private _locale = en;
+  private _locale = getLocale("en");
   private _monthLabel = "";
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
@@ -224,7 +223,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _getMonthLabel() {
     const monthSelected = this._locale.MONTH_SELECT.filter(
-      (_, index: number) => this.month === index + 1
+      (_: string, index: number) => this.month === index + 1
     );
     return monthSelected.length > 0 ? monthSelected[0] : "JANUARY";
   }

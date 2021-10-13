@@ -4,15 +4,14 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
-import {
-  getLeftArrowIconSvgTemplate,
-  getLocale,
-  getRightArrowIconSvgTemplate
-} from "../header/ultils";
 import "../../calendar/header/dropdown/month";
 import "../../calendar/header/dropdown/year";
 import "../../listbox";
-import { en } from "../../resource/locale";
+import {
+  getLeftArrowIconSvgTemplate,
+  getRightArrowIconSvgTemplate,
+  getLocale
+} from "../../utils/";
 
 function isValidDate(d: Date) {
   return d instanceof Date && !isNaN(d.getTime());
@@ -35,7 +34,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   })
   year = 2021;
 
-  private _locale = en;
+  private _locale = getLocale("en");
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
