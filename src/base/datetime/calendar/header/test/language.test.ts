@@ -32,9 +32,11 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(headerCenterEl.children[0].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-YEAR"
-      );
+
+      const yearEl = headerCenterEl.children[0];
+      expect(yearEl.tagName).to.equal("KUC-BASE-DATETIME-HEADER-YEAR");
+      expect(yearEl.textContent).to.contain("年");
+
       expect(headerCenterEl.children[1].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
@@ -51,9 +53,11 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
-      expect(headerCenterEl.children[0].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-YEAR"
-      );
+
+      const yearEl = headerCenterEl.children[0];
+      expect(yearEl.tagName).to.equal("KUC-BASE-DATETIME-HEADER-YEAR");
+      expect(yearEl.textContent).to.contain("年");
+
       expect(headerCenterEl.children[1].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-MONTH"
       );
