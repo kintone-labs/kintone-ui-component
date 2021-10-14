@@ -16,6 +16,12 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" }
     ];
+    const initItemsWithoutLabel = [
+      { value: "-----" },
+      { value: "orange" },
+      { value: "apple" }
+    ];
+    const initItemsWithoutValue = [{ label: "-----" }];
     const expectedLabels = ["-----", "Orange", "Apple"];
     const expectedValues = ["-----", "orange", "apple"];
 
@@ -50,6 +56,35 @@ describe("MobileMultiChoice", () => {
       expect(container.items).to.be.equal(initItems);
     });
 
+    it("exists on element and set item label the same as value when initializing with props option without label", async () => {
+      const container = new MobileMultiChoice({ items: initItemsWithoutLabel });
+
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
+
+      for (let i = 0; i < itemsEl.length; i++) {
+        const itemEl = itemsEl[i] as HTMLElement;
+        const value = itemEl.getAttribute("value")?.trim();
+        expect(value).to.have.equal(expectedValues[i]);
+
+        const label = itemEl.textContent?.trim();
+        expect(label).to.have.equal(expectedValues[i]);
+      }
+    });
+    it('exists on element and set item value "" when initializing with props option without value', async () => {
+      const container = new MobileMultiChoice({ items: initItemsWithoutValue });
+
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(1);
+
+      for (let i = 0; i < itemsEl.length; i++) {
+        const itemEl = itemsEl[i] as HTMLElement;
+        const value = itemEl.getAttribute("value")?.trim();
+        expect(value).to.have.equal("");
+      }
+    });
     it("exists on element when changing by setter", async () => {
       const container = new MobileMultiChoice();
       container.items = initItems;

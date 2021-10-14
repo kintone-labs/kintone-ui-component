@@ -47,5 +47,20 @@ describe("MobileButton", () => {
         "kuc-mobile-button__button--submit"
       );
     });
+    it('should be normal when assigning a type other than "normal | submit" by setter', async () => {
+      const container = new MobileButton({
+        type: "submit"
+      });
+      container.type = "other_type";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-mobile-button__button"
+      ) as HTMLButtonElement;
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-mobile-button__button");
+      expect(buttonEl.classList[1]).to.equal(
+        "kuc-mobile-button__button--normal"
+      );
+    });
   });
 });

@@ -9,6 +9,13 @@ function generateInitItems() {
   ];
 }
 
+function generateInitItemsWithoutLabel() {
+  return [{ value: "-----" }, { value: "orange" }, { value: "apple" }];
+}
+
+function generateInitItemsWithoutValue() {
+  return [{ label: "-----" }];
+}
 function generateReplacedItems() {
   return [
     { label: "Orange", value: "orange" },
@@ -75,6 +82,39 @@ describe("MobileDropdown", () => {
       }
     });
 
+    it("exists on element and set label as the same as value when initializing with props option without label", async () => {
+      const initItems = generateInitItemsWithoutLabel();
+      const container = new MobileDropdown({ items: initItems });
+      expect(container.items).to.be.equal(initItems);
+
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(4);
+
+      for (let i = 1; i < itemsEl.length; i++) {
+        const itemEl = itemsEl[i] as HTMLElement;
+        const value = itemEl.getAttribute("value")?.trim();
+        expect(value).to.have.equal(expectedValues[i]);
+
+        const label = itemEl.textContent?.trim();
+        expect(label).to.have.equal(expectedValues[i]);
+      }
+    });
+    it('exists on element and set value "" when initializing with props option without value', async () => {
+      const initItems = generateInitItemsWithoutValue();
+      const container = new MobileDropdown({ items: initItems });
+      expect(container.items).to.be.equal(initItems);
+
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(2);
+
+      for (let i = 1; i < itemsEl.length; i++) {
+        const itemEl = itemsEl[i] as HTMLElement;
+        const value = itemEl.getAttribute("value")?.trim();
+        expect(value).to.have.equal("");
+      }
+    });
     it("should be replaced successfully", async () => {
       const container = new MobileDropdown({ items: generateInitItems() });
       const newItems = generateReplacedItems();
