@@ -1,4 +1,19 @@
 export const en = {
+  MONTH_SELECT: [
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER"
+  ],
+  YEAR_SELECT_POSTFIX: "",
   WEEK_DAYS: [
     { text: "SUN", abbr: "Sunday" },
     { text: "MON", abbr: "Monday" },
@@ -11,6 +26,21 @@ export const en = {
 };
 
 export const ja = {
+  MONTH_SELECT: [
+    "1月",
+    "2月",
+    "3月",
+    "4月",
+    "5月",
+    "6月",
+    "7月",
+    "8月",
+    "9月",
+    "10月",
+    "11月",
+    "12月"
+  ],
+  YEAR_SELECT_POSTFIX: "年",
   WEEK_DAYS: [
     { text: "日", abbr: "日" },
     { text: "月", abbr: "月" },
@@ -23,6 +53,21 @@ export const ja = {
 };
 
 export const zh = {
+  MONTH_SELECT: [
+    "1月",
+    "2月",
+    "3月",
+    "4月",
+    "5月",
+    "6月",
+    "7月",
+    "8月",
+    "9月",
+    "10月",
+    "11月",
+    "12月"
+  ],
+  YEAR_SELECT_POSTFIX: "年",
   WEEK_DAYS: [
     { text: "周日", abbr: "周日" },
     { text: "周一", abbr: "周一" },

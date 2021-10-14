@@ -4,8 +4,12 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../kuc-base";
-import { en, zh, ja } from "../../resource/locale";
-import { getDisplayingDates, padStart, WeekDate } from "../../utils/";
+import {
+  getDisplayingDates,
+  padStart,
+  WeekDate,
+  getLocale
+} from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
@@ -17,12 +21,11 @@ export class BaseDateTimeCalendarBody extends KucBase {
     '.kuc-base-datetime-calendar-body__table__date__button[aria-selected="true"]'
   )
   private _selectedItem!: HTMLButtonElement;
-  private _locale = en;
+  private _locale = getLocale("en");
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
-      propName === "language" &&
-        (this._locale = this._getLocale(this.language));
+      propName === "language" && (this._locale = getLocale(this.language));
     });
     super.update(changedProperties);
   }
@@ -148,19 +151,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const month = padStart(date.getMonth() + 1);
     const day = padStart(date.getDate());
     return `${year}-${month}-${day}`;
-  }
-
-  private _getLocale(language: string) {
-    switch (language) {
-      case "en":
-        return en;
-      case "zh":
-        return zh;
-      case "ja":
-        return ja;
-      default:
-        return en;
-    }
   }
 
   private _getHeaderItemsTemplate() {
