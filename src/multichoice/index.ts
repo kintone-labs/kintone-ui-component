@@ -84,6 +84,7 @@ export class MultiChoice extends KucBase {
         <div
           class="kuc-multi-choice__group__menu"
           role="listbox"
+          aria-multiselectable="true"
           aria-describedby="${this._GUID}-error"
           aria-labelledby="${this._GUID}-label"
           ?disabled="${this.disabled}"
