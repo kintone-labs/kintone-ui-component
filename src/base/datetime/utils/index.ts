@@ -1,4 +1,4 @@
-import { svg } from "lit-element";
+import { svg } from "lit";
 import { en, zh, ja } from "../resource/locale";
 
 export type WeekDate = {

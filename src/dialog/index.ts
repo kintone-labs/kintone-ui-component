@@ -1,5 +1,6 @@
-import { html, svg, property, query, queryAll } from "lit-element";
-import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import { html, svg } from "lit";
+import { property, query, queryAll } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import DOMPurify from "dompurify";
 import { KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
