@@ -1,4 +1,5 @@
-import { html, svg, property, query } from "lit-element";
+import { html, svg } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
@@ -13,12 +14,11 @@ export class Notification extends KucBase {
   @property({ type: String }) text = "";
   @property({ type: String }) type: "info" | "danger" | "success" = "danger";
 
-  @query(".kuc-notification__notification__title")
-  private _notificationTitleEl!: HTMLPreElement;
+  @state()
+  private _isOpened = false;
 
   constructor(props?: NotificationProps) {
     super();
-    this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -66,19 +66,18 @@ export class Notification extends KucBase {
   }
 
   open() {
-    this.classList.add("kuc-notification-fadein");
+    document.body.appendChild(this);
+    this.performUpdate();
+
     this.classList.remove("kuc-notification-fadeout");
-    this._notificationTitleEl.setAttribute("role", "alert");
+    this.classList.add("kuc-notification-fadein");
+    this._isOpened = true;
   }
 
   close() {
-    this.classList.add("kuc-notification-fadeout");
+    this._isOpened = false;
     this.classList.remove("kuc-notification-fadein");
-    this._notificationTitleEl.removeAttribute("role");
-  }
-
-  firstUpdated() {
-    document.body.appendChild(this);
+    this.classList.add("kuc-notification-fadeout");
   }
 
   render() {
@@ -91,6 +90,7 @@ export class Notification extends KucBase {
         <pre
           class="kuc-notification__notification__title"
           aria-live="assertive"
+          role="${this._isOpened ? "alert" : ""}"
         ><!--
         -->${this.text}</pre>
         <button
