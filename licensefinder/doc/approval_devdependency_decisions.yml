@@ -1,0 +1,98 @@
+# approval configuration file (for devdependency)
+---
+- - :permit
+  - CC-BY-3.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 06:15:35.098597000 Z
+- - :permit
+  - CC0-1.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 06:15:41.098597000 Z
+- - :permit
+  - CC-BY-4.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 06:23:41.098597000 Z
+- - :permit
+  - ODC-By-1.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 06:23:25.098597000 Z
+- - :permit
+  - Bsd
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 06:23:25.098597000 Z
+- - :approve
+  - "bindings"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "component-bind"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "component-inherit"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "eslint-plugin-kuc-v1"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "file-uri-to-path"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "fsevents"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "indexof"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "intersection-observer"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "json-schema"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "nan"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
+- - :approve
+  - "sinon"
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:24.889757000 Z
