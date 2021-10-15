@@ -14,10 +14,10 @@ $ npm init -y
 
 **Step** 2: install devDependencies
 ```
-$ npm i -D webpack-cli webpack 
+$ npm i -D webpack-cli webpack
 $ npm i -D tslib babel-loader @babel/core @babel/preset-env @babel/preset-react
 $ npm i -D style-loader css-loader
-$ npm i -D react@16.8.6 react-dom@16.8.6
+$ npm i -D react@17.0.2 react-dom@17.0.2
 $ npm i -D @kintone/kintone-ui-component
 ```
 
@@ -102,8 +102,8 @@ result:
 ## UMD usage without JSX
 *  Attach 'react' and 'react-dom' UMD scripts into kintone app
 ```
-https://unpkg.com/react@16/umd/react.production.min.js
-https://unpkg.com/react-dom@16/umd/react-dom.production.min.js
+https://unpkg.com/react@17/umd/react.production.min.js
+https://unpkg.com/react-dom@17/umd/react-dom.production.min.js
 ```
 
 <div id="attach_files"></div>
