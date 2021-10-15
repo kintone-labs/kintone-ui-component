@@ -5,8 +5,12 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../kuc-base";
-import { en, zh, ja } from "../../resource/locale";
-import { getDisplayingDates, WeekDate } from "../../utils/index";
+import {
+  getDisplayingDates,
+  padStart,
+  WeekDate,
+  getLocale
+} from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 0;
@@ -14,14 +18,15 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
-  @query('.kuc-base-datetime-calendar-body__date[aria-selected="true"]')
+  @query(
+    '.kuc-base-datetime-calendar-body__table__date__button[aria-selected="true"]'
+  )
   private _selectedItem!: HTMLButtonElement;
-  private _locale = en;
+  private _locale = getLocale("en");
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
-      propName === "language" &&
-        (this._locale = this._getLocale(this.language));
+      propName === "language" && (this._locale = getLocale(this.language));
     });
     super.update(changedProperties);
   }
@@ -133,32 +138,20 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateClass(dateParts: string[]) {
     const isToday = this._isToday(dateParts);
-    if (isToday) return " kuc-base-datetime-calendar-body__date--today";
+    if (isToday)
+      return " kuc-base-datetime-calendar-body__table__date__button--today";
 
     const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
     if (isOtherMonth)
-      return " kuc-base-datetime-calendar-body__date--other-month";
+      return " kuc-base-datetime-calendar-body__table__date__button--other-month";
     return "";
   }
 
   private _getDateString(date = new Date()) {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const month = padStart(date.getMonth() + 1);
+    const day = padStart(date.getDate());
     return `${year}-${month}-${day}`;
-  }
-
-  private _getLocale(language: string) {
-    switch (language) {
-      case "en":
-        return en;
-      case "zh":
-        return zh;
-      case "ja":
-        return ja;
-      default:
-        return en;
-    }
   }
 
   private _getHeaderItemsTemplate() {
@@ -167,7 +160,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
         ${this._locale.WEEK_DAYS.map(wday => {
           return html`
             <th
-              class="kuc-base-datetime-calendar-body__header"
+              class="kuc-base-datetime-calendar-body__table__header"
               role="columnheader"
               abbr="${wday.abbr}"
             >
@@ -192,10 +185,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__date${this.value ===
-                    weekDate.attr
+                    class="kuc-base-datetime-calendar-body__table__date${this
+                      .value === weekDate.attr
                       ? "--selected"
-                      : "--unselected"}"
+                      : ""}"
                   >
                     <button
                       aria-selected="${this.value === weekDate.attr}"
@@ -203,7 +196,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                       this.value === weekDate.attr
                         ? "0"
                         : "-1"}"
-                      class="kuc-base-datetime-calendar-body__date${this._getDateClass(
+                      class="kuc-base-datetime-calendar-body__table__date__button${this._getDateClass(
                         dateParts
                       )}"
                       data-date="${weekDate.attr}"
@@ -246,53 +239,70 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border-collapse: separate;
           border-spacing: 0;
         }
-        .kuc-base-datetime-calendar-body__date,
-        .kuc-base-datetime-calendar-body__header {
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button,
+        .kuc-base-datetime-calendar-body__table__date--selected
+          .kuc-base-datetime-calendar-body__table__date__button,
+        .kuc-base-datetime-calendar-body__table__header {
           text-align: center;
           text-transform: uppercase;
           font-size: 10px;
           font-weight: 400;
           color: #333333;
         }
-        .kuc-base-datetime-calendar-body__date,
-        .kuc-base-datetime-calendar-body__header {
+        .kuc-base-datetime-calendar-body__table__date--selected
+          .kuc-base-datetime-calendar-body__table__date__button,
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button,
+        .kuc-base-datetime-calendar-body__table__header {
           box-sizing: border-box;
           padding: 8px 0;
           width: 36px;
           height: 31px;
           border: 1px solid #ffffff;
         }
-        .kuc-base-datetime-calendar-body__header:nth-child(1),
-        .kuc-base-datetime-calendar-body__header:nth-child(7) {
+        .kuc-base-datetime-calendar-body__table__header:nth-child(1),
+        .kuc-base-datetime-calendar-body__table__header:nth-child(7) {
           color: #d4d7d7;
         }
-        .kuc-base-datetime-calendar-body__date {
+        .kuc-base-datetime-calendar-body__table__date--selected
+          .kuc-base-datetime-calendar-body__table__date__button,
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button {
           background: none;
           cursor: pointer;
         }
-        .kuc-base-datetime-calendar-body__date:hover {
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button:hover {
           color: #000000;
         }
-        .kuc-base-datetime-calendar-body__date--selected {
+        .kuc-base-datetime-calendar-body__table__date--selected {
           border: 1px solid #3498db;
           box-sizing: border-box;
         }
-        .kuc-base-datetime-calendar-body__date--selected
-          .kuc-base-datetime-calendar-body__date {
+        .kuc-base-datetime-calendar-body__table__date--selected
+          .kuc-base-datetime-calendar-body__table__date__button {
           width: 34px;
           height: 29px;
-        }
-        .kuc-base-datetime-calendar-body__date:focus-visible {
           outline: none;
         }
-        .kuc-base-datetime-calendar-body__date--today {
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button:focus-visible {
+          outline: none;
+        }
+        .kuc-base-datetime-calendar-body__table__date--selected
+          .kuc-base-datetime-calendar-body__table__date__button--today,
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button--today {
           color: #ffffff;
           background: #888888;
         }
-        .kuc-base-datetime-calendar-body__date--today:hover {
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button--today:hover {
           color: #333333;
         }
-        .kuc-base-datetime-calendar-body__date--other-month {
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button--other-month {
           color: #d4d7d7;
         }
       </style>
