@@ -19,7 +19,6 @@ export class Notification extends KucBase {
 
   constructor(props?: NotificationProps) {
     super();
-    this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);

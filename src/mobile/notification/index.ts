@@ -17,19 +17,8 @@ export class MobileNotification extends KucBase {
   constructor(props?: MobileNotificationProps) {
     super();
 
-<<<<<<< HEAD
-    this.performUpdate();
-
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-=======
-    if (!props) {
-      return;
-    }
-    this.className =
-      props.className !== undefined ? props.className : this.className;
-    this.text = props.text !== undefined ? props.text : this.text;
->>>>>>> a9524227 (update lit for mobile components)
   }
 
   private _handleClickCloseButton(event: MouseEvent) {
