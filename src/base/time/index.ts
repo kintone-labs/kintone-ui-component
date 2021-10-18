@@ -16,7 +16,7 @@ export class BaseDateTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) visible = false;
   @property({ type: String }) value = "";
-  @property({ type: String }) timeStep = 30;
+  @property({ type: Number }) timeStep = 30;
 
   @state()
   private _listBoxVisible = false;

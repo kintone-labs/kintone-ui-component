@@ -15,7 +15,7 @@ export class BaseDateTimeListBox extends KucBase {
   @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Number }) maxHeight = 300;
-  @property({ type: Number }) isHighlightItem = true;
+  @property({ type: Boolean }) isHighlightItem = true;
 
   @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxEl!: HTMLLIElement;
