@@ -33,7 +33,7 @@ export default {
   },
   parameters: {
     actions: {
-      handles: []
+      handles: ["kuc:date-time-change"]
     }
   }
 };
@@ -53,5 +53,5 @@ Base.args = {
   disabled: false,
   hour12: false,
   visible: false,
-  value: "13:00"
+  value: "5:15"
 };

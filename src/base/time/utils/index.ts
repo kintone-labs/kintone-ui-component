@@ -44,39 +44,39 @@ export const timeList12H = [
     value: "05:00"
   },
   {
-    label: "05:30 AM",
+    label: "5:30 AM",
     value: "05:30"
   },
   {
-    label: "06:00 AM",
+    label: "6:00 AM",
     value: "06:00"
   },
   {
-    label: "06:30 AM",
+    label: "6:30 AM",
     value: "06:30"
   },
   {
-    label: "07:00 AM",
+    label: "7:00 AM",
     value: "07:00"
   },
   {
-    label: "07:30 AM",
+    label: "7:30 AM",
     value: "07:30"
   },
   {
-    label: "08:00 AM",
+    label: "8:00 AM",
     value: "08:00"
   },
   {
-    label: "08:30 AM",
+    label: "8:30 AM",
     value: "08:30"
   },
   {
-    label: "09:00 AM",
+    label: "9:00 AM",
     value: "09:00"
   },
   {
-    label: "09:30 AM",
+    label: "9:30 AM",
     value: "09:30"
   },
   {
@@ -191,7 +191,7 @@ export const timeList12H = [
     label: "11:30 PM",
     value: "23:30"
   }
-]
+];
 
 export const timeList24H = [
   {
