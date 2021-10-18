@@ -1,11 +1,12 @@
 import { html, PropertyValues } from "lit";
-import { state, property } from "lit/decorators.js";
+import { state, property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
   generateGUID
 } from "../../kuc-base";
+import { padStart } from "..//utils/";
 import { getLocale } from "../utils";
 import "./header";
 import "./body";
@@ -20,6 +21,8 @@ export class BaseDateTimeCalendar extends KucBase {
   private _year = 2021;
   private _locale = getLocale("en");
 
+  @query(".kuc-base-datetime-calendar__group")
+  private _groupEl!: HTMLElement;
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
@@ -79,6 +82,9 @@ export class BaseDateTimeCalendar extends KucBase {
           text-align: center;
           font-size: 13px;
         }
+        .kuc-base-datetime-calendar__group[hidden] {
+          display: none;
+        }
       </style>
     `;
   }
@@ -89,15 +95,33 @@ export class BaseDateTimeCalendar extends KucBase {
     this._month = values[1] - 1;
   }
 
-  private _handleClickCalendarFooterButtonNone(event: CustomEvent) {
-    this.value = "";
+  private _handleClickCalendarFooterButtonNone(event: MouseEvent) {
     event.preventDefault();
+    event.stopPropagation();
+    this.value = "";
+    this._dispatchClickEvent(this.value);
+    this._groupEl.setAttribute("hidden", "true");
   }
 
   private _handleClickCalendarFooterButtonToday(event: CustomEvent) {
-    const today = new Date();
-    this.value = today.getFullYear() + today.getMonth() + 1 && today.getDate();
     event.preventDefault();
+    event.stopPropagation();
+    this.value = this._getDateString();
+    this._groupEl.setAttribute("hidden", "true");
+  }
+
+  private _dispatchClickEvent(value: string) {
+    if (this.value === value) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
+    dispatchCustomEvent(this, "calendar-footer-click-none", detail);
+    this.value = value;
+  }
+
+  private _getDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = padStart(date.getMonth() + 1);
+    const day = padStart(date.getDate());
+    return `${year}-${month}-${day}`;
   }
 }
 

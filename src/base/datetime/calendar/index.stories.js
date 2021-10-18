@@ -13,6 +13,14 @@ export default {
       name: "value",
       control: { type: "text" }
     }
+  },
+  parameters: {
+    actions: {
+      handles: [
+        "kuc:calendar-footer-click-today",
+        "kuc:calendar-footer-click-none"
+      ]
+    }
   }
 };
 
