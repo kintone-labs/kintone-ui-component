@@ -1,4 +1,5 @@
-import { html, property } from "lit-element";
+import { html } from "lit";
+import { property } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../../../kuc-base";
 
 export class BaseDateTimeCalendarFooter extends KucBase {

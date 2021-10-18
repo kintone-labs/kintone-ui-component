@@ -1,4 +1,5 @@
-import { html, svg, property } from "lit-element";
+import { html, svg } from "lit";
+import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 type SpinnerProps = {
