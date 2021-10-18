@@ -53,5 +53,5 @@ Base.args = {
   disabled: false,
   hour12: false,
   visible: true,
-  value: "5:15"
+  value: "13:15"
 };
