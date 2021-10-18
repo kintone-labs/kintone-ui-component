@@ -38,13 +38,14 @@ export default {
   }
 };
 
-const Template = ({ disabled, hour12, visible, value }) =>
+const Template = ({ disabled, hour12, visible, value, timeStep }) =>
   html`
     <kuc-base-time
       .disabled=${disabled}
       .hour12=${hour12}
       .visible=${visible}
       .value=${value}
+      .timeStep=${timeStep}
     ></kuc-base-time>
   `;
 
@@ -53,5 +54,6 @@ Base.args = {
   disabled: false,
   hour12: false,
   visible: true,
-  value: "13:15"
+  value: "13:15",
+  timeStep: 15
 };

@@ -15,6 +15,7 @@ export class BaseDateTimeListBox extends KucBase {
   @property({ type: String }) value: string = "";
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Number }) maxHeight = 300;
+  @property({ type: Number }) isHighlightItem = true;
 
   @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxEl!: HTMLLIElement;
@@ -191,7 +192,7 @@ export class BaseDateTimeListBox extends KucBase {
       <li
         class="kuc-base-datetime-listbox__listbox__item"
         role="option"
-        aria-selected="${this.value === item.value}"
+        aria-selected="${this.isHighlightItem && this.value === item.value}"
         title="${item.label || ""}"
         data-label="${item.label || ""}"
         id="${this._GUID}-listboxitem-${index}"
@@ -199,7 +200,9 @@ export class BaseDateTimeListBox extends KucBase {
         @mouseover="${this._handleMouseOverItem}"
         @mouseleave="${this._handleMouseLeaveItem}"
       >
-        ${this.value === item.value ? this._getCheckedIconSvgTemplate() : ""}
+        ${this.isHighlightItem && this.value === item.value
+          ? this._getCheckedIconSvgTemplate()
+          : ""}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
