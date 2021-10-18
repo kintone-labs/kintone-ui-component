@@ -52,6 +52,6 @@ export const Base = Template.bind({});
 Base.args = {
   disabled: false,
   hour12: false,
-  visible: false,
+  visible: true,
   value: "5:15"
 };

@@ -51,6 +51,9 @@ export class BaseDateTime extends KucBase {
         @keydown="${this._handleKeyDownTime}"
         @focus="${this._handleFocusTime}"
         value="${this._timeValue}"
+        ?disabled="${this.disabled}"
+        aria-hidden="${!this.visible}"
+        ?hidden="${!this.visible}"
       />
       <kuc-base-datetime-listbox
         .items="${this._listBoxItems || []}"
@@ -136,7 +139,9 @@ export class BaseDateTime extends KucBase {
     let keyCode = event.keyCode || event.which;
     const key = String.fromCharCode(keyCode);
     const isNumber = /^[0-9]$/i.test(key);
+    console.log(event.key);
     switch (event.key) {
+      case "Enter":
       case "Tab":
         this._handleKeyTab();
         break;
