@@ -6,8 +6,7 @@ import {
   CustomEventDetail,
   generateGUID
 } from "../../kuc-base";
-import { padStart } from "..//utils/";
-import { getLocale } from "../utils";
+import { getLocale, padStart } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
