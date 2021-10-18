@@ -2,10 +2,21 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/datetime/calendar"
+  title: "base/datetime/calendar",
+  argsTypes: {
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh"],
+      control: { type: "select" }
+    },
+    value: {
+      name: "value",
+      control: { type: "text" }
+    }
+  }
 };
 
-const Template = () => {
+const Template = ({ language, value }) => {
   return html`
     <style>
       #root-inner {
@@ -17,10 +28,16 @@ const Template = () => {
         left: 0px;
       }
     </style>
-    <input typ="text" />
-    <kuc-base-datetime-calendar></kuc-base-datetime-calendar>
+    <input type="text" value="${value}" />
+    <kuc-base-datetime-calendar
+      .language="${language}"
+      .value="${value}"
+    ></kuc-base-datetime-calendar>
   `;
 };
 
 export const base = Template.bind({});
-base.args = {};
+base.args = {
+  language: "en",
+  value: "2021-08-22"
+};

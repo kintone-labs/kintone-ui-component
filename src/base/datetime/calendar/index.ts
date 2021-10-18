@@ -1,13 +1,31 @@
-import { html } from "lit";
-import { state } from "lit/decorators.js";
-import { KucBase } from "../../kuc-base";
+import { html, PropertyValues } from "lit";
+import { state, property } from "lit/decorators.js";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  CustomEventDetail,
+  generateGUID
+} from "../../kuc-base";
+import { getLocale } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
 
 export class BaseDateTimeCalendar extends KucBase {
-  @state() _month = 0;
-  @state() _year = 2021;
+  @property({ type: String }) language = "en";
+  @property({ type: String, reflect: true }) value = "";
+
+  @state()
+  private _month = 0;
+  private _year = 2021;
+  private _locale = getLocale("en");
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
+    }
+    super.update(changedProperties);
+  }
 
   render() {
     return html`
@@ -20,7 +38,13 @@ export class BaseDateTimeCalendar extends KucBase {
           month="${this._month}"
           year="${this._year}"
         ></kuc-base-datetime-calendar-body>
-        <kuc-base-datetime-calendar-footer></kuc-base-datetime-calendar-footer>
+        <kuc-base-datetime-calendar-footer
+          class="kuc-base-datetime-calendar-footer"
+          @kuc:calendar-footer-click-today="${this
+            ._handleClickCalendarFooterButtonToday}"
+          @kuc:calendar-footer-click-none="${this
+            ._handleClickCalendarFooterButtonNone}"
+        ></kuc-base-datetime-calendar-footer>
       </div>
     `;
   }
@@ -28,6 +52,23 @@ export class BaseDateTimeCalendar extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
+        kuc-base-datetime-calendar,
+        kuc-base-datetime-calendar *,
+        :lang(en) kuc-base-datetime-calendar,
+        :lang(en) kuc-base-datetime-calendar * {
+          font-family: "HelveticaNeueW02-45Ligh", Arial,
+            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        }
+        :lang(ja) kuc-base-datetime-calendar,
+        :lang(ja) kuc-base-datetime-calendar * {
+          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
+            sans-serif;
+        }
+        :lang(zh) kuc-base-datetime-calendar,
+        :lang(zh) kuc-base-datetime-calendar * {
+          font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
+            Hei, "Heiti SC", sans-serif;
+        }
         .kuc-base-datetime-calendar__group {
           display: inline-block;
           box-sizing: border-box;
@@ -46,6 +87,17 @@ export class BaseDateTimeCalendar extends KucBase {
     const values = event.detail.value.split("-");
     this._year = values[0];
     this._month = values[1] - 1;
+  }
+
+  private _handleClickCalendarFooterButtonNone(event: CustomEvent) {
+    this.value = "";
+    event.preventDefault();
+  }
+
+  private _handleClickCalendarFooterButtonToday(event: CustomEvent) {
+    const today = new Date();
+    this.value = today.getFullYear() + today.getMonth() + 1 && today.getDate();
+    event.preventDefault();
   }
 }
 
