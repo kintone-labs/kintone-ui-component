@@ -327,7 +327,7 @@ export class KucDate extends KucBase {
           width: 336px;
           position: absolute;
           z-index: 2000;
-          background-color: #fff;
+          background-color: #ffffff;
           box-shadow: 0 0 8px 2px rgb(0, 0, 0, 0.1);
           text-align: center;
           box-sizing: border-box;
