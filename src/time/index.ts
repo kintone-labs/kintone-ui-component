@@ -102,6 +102,34 @@ export class Time extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
+        kuc-time,
+        kuc-time *,
+        :lang(en) kuc-time,
+        :lang(en) kuc-time * {
+          font-family: "HelveticaNeueW02-45Ligh", Arial,
+            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        }
+        :lang(ja) kuc-time,
+        :lang(ja) kuc-time * {
+          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
+            sans-serif;
+        }
+        :lang(zh) kuc-time,
+        :lang(zh) kuc-time * {
+          font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
+            Hei, "Heiti SC", sans-serif;
+        }
+        kuc-time {
+          font-size: 14px;
+          color: #333333;
+          display: inline-table;
+          vertical-align: top;
+          min-width: 193px;
+          width: 193px;
+        }
+        kuc-time[hidden] {
+          display: none;
+        }
         .kuc-time__group {
           display: flex;
           flex-direction: column;

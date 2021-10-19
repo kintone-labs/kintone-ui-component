@@ -38,8 +38,8 @@ export class BaseDateTime extends KucBase {
     minutes: { start: 3, end: 5 },
     suffix: { start: 6, end: 8 }
   };
-  private _suffixAm = "AM";
-  private _suffixPm = "PM";
+  private _suffixAM = "AM";
+  private _suffixPM = "PM";
 
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
@@ -101,8 +101,8 @@ export class BaseDateTime extends KucBase {
       minutes = i % this._maxMinutes;
       ampm =
         hours % this._maxHour24 < this._maxHour12
-          ? this._suffixAm
-          : this._suffixPm;
+          ? this._suffixAM
+          : this._suffixPM;
       hours = isHour12 ? hours % this._maxHour12 : hours % this._maxHour24;
       if (hours === 0 && isHour12) hours = this._maxHour12;
       if (hours < 10) hours = "0" + hours;
@@ -129,7 +129,7 @@ export class BaseDateTime extends KucBase {
     let tempTime: string =
       (time.getHours() % this._maxHour24) + ":" + time.getMinutes();
     if (this.hour12) {
-      suffix = hour >= this._maxHour12 ? this._suffixPm : this._suffixAm;
+      suffix = hour >= this._maxHour12 ? this._suffixPM : this._suffixAM;
       tempTime = (time.getHours() % this._maxHour12) + ":" + time.getMinutes();
     }
     return this._addZeroToTime(tempTime, suffix);
@@ -292,7 +292,7 @@ export class BaseDateTime extends KucBase {
     const oldValue = this._timeValue;
     const { hours, minutes, suffix } = this._separateTime(this._timeValue);
     const newSuffix =
-      suffix === this._suffixAm ? this._suffixPm : this._suffixAm;
+      suffix === this._suffixAM ? this._suffixPM : this._suffixAM;
 
     this._timeValue = hours + ":" + minutes + " " + newSuffix;
     this._setTimeValueOnInput(this._timeValue, this._selectionRange.suffix);

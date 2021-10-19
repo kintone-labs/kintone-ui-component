@@ -8,11 +8,11 @@ storiesOf("desktop/time", module).add("Base", () => {
     timeStep: 30,
     className: "sample-class",
     id: "sample-id",
-    error: "",
+    error: "Error",
     label: "Time",
-    value: "00:00",
+    value: "13:15",
     disabled: false,
-    hour12: false,
+    hour12: true,
     visible: true,
     requiredIcon: false
   });

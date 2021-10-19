@@ -52,7 +52,7 @@ export const Base = Template.bind({});
 Base.args = {
   timeStep: 15,
   disabled: false,
-  hour12: false,
+  hour12: true,
   visible: true,
   value: "13:15"
 };
