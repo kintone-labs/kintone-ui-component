@@ -6,30 +6,62 @@ import {
   dispatchCustomEvent
 } from "../kuc-base";
 import { BaseDateTimeListBox, Item } from "../datetime/listbox";
-import { timeList12H, timeList24H } from "./utils";
 
+type selectionItem = {
+  start: number;
+  end: number;
+};
 export class BaseDateTime extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) visible = false;
   @property({ type: String }) value = "";
+  @property({ type: Number }) timeStep = 30;
 
   @state()
   private _listBoxVisible = false;
   @state()
-  private _listBoxValue = "";
+  private _timeValue = "5:00";
 
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
+  private _maxHour12 = 12;
+  private _maxHour24 = 24;
+  private _maxMinutes = 60;
+  private _isHighlightItemListbox = false;
+  private _selectionRange = {
+    hours: {
+      start: 0,
+      end: 2
+    },
+    minutes: {
+      start: 3,
+      end: 5
+    },
+    suffix: {
+      start: 6,
+      end: 8
+    }
+  };
 
-  @query(".kuc-base-time__toggle")
-  private _toggleEl!: HTMLButtonElement;
+  @query(".kuc-base-time__input")
+  private _inputEl!: HTMLInputElement;
 
   @query(".kuc-base-time__listbox")
   private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
-    this._listBoxItems = this._getTimeOptions(this.hour12);
+    if (changedProperties.has("value")) {
+      const { hours, minutes } = this._separateTime(this.value);
+      const time = this._getValidTime(hours, minutes);
+      this._timeValue = this._getValidTimeLabel(time);
+    }
+    if (changedProperties.has("hour12") || changedProperties.has("timeStep")) {
+      this._listBoxItems = this._generateTimeOptions(
+        this.hour12,
+        this.timeStep
+      );
+    }
     super.update(changedProperties);
   }
 
@@ -38,19 +70,22 @@ export class BaseDateTime extends KucBase {
       ${this._getStyleTagTemplate()}
       <input
         type="text"
-        class="kuc-base-time__toggle"
+        class="kuc-base-time__input"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
-        @mouseup="${this._handleMouseUpDateTime}"
-        @mousedown="${this._handleMouseDownDateTime}"
-        @click="${this._handleClickDateTime}"
-        @blur="${this._handleBlurDateTime}"
-        @keydown="${this._handleKeyDownDateTime}"
-        value="${this._listBoxValue}"
+        @click="${this._handleClickTime}"
+        @blur="${this._handleBlurTime}"
+        @keydown="${this._handleKeyDownTime}"
+        @focus="${this._handleFocusTime}"
+        value="${this._timeValue}"
+        ?disabled="${this.disabled}"
+        aria-hidden="${!this.visible}"
+        ?hidden="${!this.visible}"
       />
       <kuc-base-datetime-listbox
         .items="${this._listBoxItems || []}"
         .value="${this.value}"
+        .isHighlightItem="${this._isHighlightItemListbox}"
         class="kuc-base-time__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
         aria-hidden="${!this._listBoxVisible}"
@@ -60,150 +95,397 @@ export class BaseDateTime extends KucBase {
     `;
   }
 
-  private _handleMouseUpDateTime(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  private _handleMouseDownDateTime(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  private _handleClickDateTime() {
-    if (!this._listBoxVisible) {
-      this._openListBox();
-    } else {
-      this._closeListBox();
+  private _generateTimeOptions(isHour12: boolean, timeStep: number = 30) {
+    const timeOptions = [];
+    let hours, minutes, ampm;
+    const limitLoop = (this._maxMinutes / timeStep) * 24;
+    for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
+      hours = Math.floor(i / this._maxMinutes);
+      minutes = i % this._maxMinutes;
+      ampm = hours % this._maxHour24 < this._maxHour12 ? "AM" : "PM";
+      hours = isHour12 ? hours % this._maxHour12 : hours % this._maxHour24;
+      if (hours === 0 && isHour12) {
+        hours = this._maxHour12;
+      }
+      if (hours < 10) {
+        hours = "0" + hours;
+      }
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      const timeItem: Item = {
+        label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
+        value: hours + ":" + minutes
+      };
+      timeOptions.push(timeItem);
     }
+    return timeOptions;
   }
 
-  private _handleKeyDownDateTime(event: KeyboardEvent) {
-    if (!this._listBoxVisible) {
-      this._listBoxEl.highlightFirstItem();
+  private _getValidTime(hours: string, minutes: string) {
+    const time = new Date();
+    time.setHours(parseInt(hours, 10));
+    time.setMinutes(parseInt(minutes, 10));
+    return time;
+  }
+
+  private _getValidTimeLabel(time: Date) {
+    const hour = time.getHours();
+    let suffix: string = "";
+    let tempTime: string;
+    if (this.hour12) {
+      suffix = hour >= this._maxHour12 ? "PM" : "AM";
+      tempTime = (time.getHours() % this._maxHour12) + ":" + time.getMinutes();
+    } else {
+      tempTime = (time.getHours() % this._maxHour24) + ":" + time.getMinutes();
+    }
+    return this._addZeroToTime(tempTime, suffix);
+  }
+
+  private _handleClickTime() {
+    this._openListBox();
+    const start = this._inputEl.selectionStart;
+    if (start === null) return;
+    if (start <= this._selectionRange.hours.start) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.hours.start,
+        this._selectionRange.hours.end
+      );
       return;
     }
-    switch (event.key) {
-      case "Up":
-      case "ArrowUp": {
-        event.preventDefault();
-        this._listBoxEl.highlightPrevItem();
-        this._listBoxEl.scrollToView();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Down":
-      case "ArrowDown": {
-        event.preventDefault();
-        this._listBoxEl.highlightNextItem();
-        this._listBoxEl.scrollToView();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Home":
-        event.preventDefault();
-        this._listBoxEl.highlightFirstItem();
-        this._listBoxEl.scrollToTop();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "End":
-        event.preventDefault();
-        this._listBoxEl.highlightLastItem();
-        this._listBoxEl.scrollToBottom();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "Enter": {
-        event.preventDefault();
-        const highlightValue = this._listBoxEl.getHighlightValue();
-        if (highlightValue) {
-          this.value = highlightValue;
-          const detail: CustomEventDetail = { value: `${this.value}` };
-          dispatchCustomEvent(this, "kuc:date-time-change", detail);
-        }
-        this._listBoxVisible = false;
-        break;
-      }
+    if (
+      start >= this._selectionRange.minutes.start &&
+      start <= this._selectionRange.minutes.end
+    ) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.minutes.start,
+        this._selectionRange.minutes.end
+      );
+      return;
     }
+    this._inputEl.setSelectionRange(
+      this._selectionRange.suffix.start,
+      this._selectionRange.suffix.end
+    );
   }
 
-  private _handleBlurDateTime() {
-    this._listBoxVisible = false;
+  private _handleFocusTime(event: Event) {
+    setTimeout(() => {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.hours.start,
+        this._selectionRange.hours.end
+      );
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      event.stopPropagation();
+    }, 1);
+  }
+
+  private _handleBlurTime() {
+    this._closeListBox();
+    this._inputEl.setSelectionRange(0, 0);
   }
 
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this.value = event.detail.value;
     this._listBoxVisible = false;
-    this._listBoxValue = this._listBoxEl.getHighlightDataLabel() || "";
-    const detail: CustomEventDetail = { value: `${this.value}` };
-    dispatchCustomEvent(this, "kuc:date-time-change", detail);
+    const oldValue = this._timeValue;
+    const listboxVal = this._listBoxEl.getHighlightDataLabel() || "";
+    const { suffix } = this._separateTime(listboxVal);
+
+    this._timeValue = this._addZeroToTime(listboxVal, suffix || "");
+    this._inputEl.blur();
+    this._inputEl.value = this._timeValue;
+    this._handleDispatchEventTimeChange(this._timeValue, oldValue);
+  }
+
+  private _handleKeyDownTime(event: KeyboardEvent) {
+    event.preventDefault();
+    const selectionStart = this._inputEl.selectionStart;
+    const { isSelectSuffix } = this._getSelectionTimeValue();
+    const keyCode = event.key;
+    const isNumber = /^[0-9]$/i.test(keyCode);
+    switch (keyCode) {
+      case "Enter":
+      case "Tab":
+        this._handleKeyTab();
+        break;
+      case "ArrowLeft":
+      case "Left":
+        this._closeListBox();
+        if (selectionStart === null || selectionStart <= 0) break;
+        if (
+          selectionStart >= this._selectionRange.minutes.start &&
+          selectionStart <= this._selectionRange.minutes.end
+        ) {
+          this._inputEl.setSelectionRange(
+            this._selectionRange.hours.start,
+            this._selectionRange.hours.end
+          );
+          break;
+        }
+        this._inputEl.setSelectionRange(
+          this._selectionRange.minutes.start,
+          this._selectionRange.minutes.end
+        );
+        break;
+      case "ArrowRight":
+      case "Right":
+        this._closeListBox();
+        if (selectionStart === null || selectionStart > this._timeValue.length)
+          break;
+        if (
+          selectionStart >= this._selectionRange.hours.start &&
+          selectionStart <= this._selectionRange.hours.end
+        ) {
+          this._inputEl.setSelectionRange(
+            this._selectionRange.minutes.start,
+            this._selectionRange.minutes.end
+          );
+          break;
+        }
+        this._inputEl.setSelectionRange(
+          this._selectionRange.suffix.start,
+          this._selectionRange.suffix.end
+        );
+        break;
+      case "ArrowUp":
+      case "Up":
+        this._handleKeyUpDown(1, this._timeValue);
+        break;
+      case "ArrowDown":
+      case "Down":
+        this._handleKeyUpDown(-1, this._timeValue);
+        break;
+      default:
+        if (isNumber && !isSelectSuffix) {
+          this._handleSetTimeValueOnInput(keyCode);
+          break;
+        }
+        if (isSelectSuffix) {
+          this._changeSuffixTime();
+        }
+        break;
+    }
+  }
+
+  private _handleKeyTab() {
+    const { isSelectHours, isSelectMinutes } = this._getSelectionTimeValue();
+    if (isSelectHours) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.minutes.start,
+        this._selectionRange.minutes.end
+      );
+    }
+    if (this.hour12 && isSelectMinutes) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.suffix.start,
+        this._selectionRange.suffix.end
+      );
+    }
+    this._closeListBox();
+  }
+
+  private _changeSuffixTime() {
+    const oldValue = this._timeValue;
+    const { hours, minutes, suffix } = this._separateTime(this._timeValue);
+    const newSuffix = suffix === "AM" ? "PM" : "AM";
+
+    this._timeValue = hours + ":" + minutes + " " + newSuffix;
+    this._setTimeValueOnInput(this._timeValue, this._selectionRange.suffix);
+    this._handleDispatchEventTimeChange(this._timeValue, oldValue);
+  }
+
+  private _handleKeyUpDown(type: number, oldValue: string) {
+    const { isSelectMinutes, isSelectSuffix } = this._getSelectionTimeValue();
+    if (isSelectSuffix) {
+      this._changeSuffixTime();
+      return;
+    }
+    if (isSelectMinutes) {
+      this._changeMinutesBy(type);
+    } else {
+      this._changeHoursBy(type);
+    }
+    this._handleDispatchEventTimeChange(this._timeValue, oldValue);
+    this._closeListBox();
+  }
+
+  private _changeMinutesBy(minutesChange: number) {
+    let newMinutes;
+    const { hours, minutes, suffix } = this._separateTime(this._timeValue);
+    const currentMinute = parseInt(minutes, 10);
+    if (!this._timeValue) return;
+    if (minutesChange > 0) {
+      newMinutes =
+        currentMinute === this._maxMinutes - 1
+          ? 0
+          : currentMinute + minutesChange;
+    } else {
+      newMinutes =
+        currentMinute === 0
+          ? this._maxMinutes - 1
+          : currentMinute + minutesChange;
+    }
+    const timeTemp = hours + ":" + newMinutes;
+    this._timeValue = this._addZeroToTime(timeTemp, suffix || "");
+    this._setTimeValueOnInput(this._timeValue, this._selectionRange.minutes);
+  }
+
+  private _changeHoursBy(hoursChange: number) {
+    if (!this._timeValue) return;
+    const { hours, minutes, suffix } = this._separateTime(this._timeValue);
+    const currentHour = parseInt(hours, 10);
+    let newHours = currentHour + hoursChange;
+    if (this.hour12) {
+      newHours %= this._maxHour12;
+      newHours = newHours < 0 ? this._maxHour12 - 1 : newHours;
+    } else {
+      newHours %= this._maxHour24;
+      newHours = newHours < 0 ? this._maxHour24 - 1 : newHours;
+    }
+    const timeTemp = newHours + ":" + minutes;
+    this._timeValue = this._addZeroToTime(timeTemp, suffix || "");
+    this._setTimeValueOnInput(this._timeValue, this._selectionRange.hours);
+  }
+
+  private _setTimeValueOnInput(value: string, selection: selectionItem) {
+    this._inputEl.value = value;
+    this._inputEl.dataset.previousValidTime = value;
+    this._inputEl.setSelectionRange(selection.start, selection.end);
+  }
+
+  private _handleSetTimeValueOnInput(key: string) {
+    const oldValue = this._timeValue;
+    const { isSelectMinutes } = this._getSelectionTimeValue();
+    const { hours, minutes, suffix } = this._separateTime(this._timeValue);
+    let newTime = this._inputEl.value;
+
+    if (!this._timeValue) return;
+    if (!newTime) {
+      newTime = "";
+    }
+    if (isSelectMinutes) {
+      const previousMinutes = this._getPreviousMinutes(minutes);
+      const tempTime = hours + ":" + previousMinutes + key;
+      newTime = this._addZeroToTime(tempTime, suffix || "");
+      this._setTimeValueOnInput(newTime, this._selectionRange.minutes);
+    } else {
+      const previousHours = this._getPreviousHours(hours, key);
+      const tempTime = parseInt(previousHours, 10) + key + ":" + minutes;
+      newTime = this._addZeroToTime(tempTime, suffix || "");
+      this._setTimeValueOnInput(newTime, this._selectionRange.hours);
+    }
+    this._timeValue = newTime;
+    this._handleDispatchEventTimeChange(this._timeValue, oldValue);
+  }
+
+  private _getPreviousMinutes(minutes: string) {
+    let previousMinutes: string;
+    if (parseInt(minutes, 10) > 10) {
+      previousMinutes = ("" + parseInt(minutes, 10))[1];
+    } else {
+      previousMinutes = "" + parseInt(minutes, 10);
+    }
+    if (parseInt(previousMinutes, 10) > 5) {
+      previousMinutes = "0";
+    }
+    return previousMinutes;
+  }
+
+  private _getPreviousHours(hours: string, key: string) {
+    let previousHours: string;
+    if (parseInt(hours, 10) > 10) {
+      previousHours = ("" + hours)[1];
+    } else {
+      previousHours = "" + hours;
+    }
+    const newHoursNumber = parseInt(previousHours + key, 10);
+    if (
+      (this.hour12 && newHoursNumber >= this._maxHour12) ||
+      (!this.hour12 && newHoursNumber >= this._maxHour24)
+    ) {
+      previousHours = "0";
+      return previousHours;
+    }
+    return previousHours;
+  }
+
+  private _separateTime(time: string) {
+    const indexColon = time.indexOf(":");
+    const hours = time.substring(0, indexColon);
+    const minutes = time.substring(indexColon + 1, indexColon + 3);
+    const suffix = time.substring(indexColon + 4, indexColon + 6);
+
+    return { hours, minutes, suffix, indexColon };
+  }
+
+  private _getSelectionTimeValue() {
+    const start = this._inputEl.selectionStart;
+    const end = this._inputEl.selectionEnd;
+    const isSelectHours =
+      start === this._selectionRange.hours.start &&
+      end === this._selectionRange.hours.end;
+    const isSelectMinutes =
+      start === this._selectionRange.minutes.start &&
+      end === this._selectionRange.minutes.end;
+    const isSelectSuffix =
+      start === this._selectionRange.suffix.start &&
+      end === this._selectionRange.suffix.end;
+
+    return { isSelectHours, isSelectMinutes, isSelectSuffix };
+  }
+
+  private _addZeroToTime(value: string, suffix: string = "") {
+    let { hours, minutes } = this._separateTime(value);
+    if (parseInt(hours, 10) < 10) {
+      hours = "0" + parseInt(hours, 10);
+    }
+    if (parseInt(minutes, 10) < 10) {
+      minutes = "0" + parseInt(minutes, 10);
+    }
+    return hours + ":" + minutes + (suffix ? " " + suffix : "");
+  }
+
+  private _handleDispatchEventTimeChange(value: string, oldValue: string) {
+    const detail: CustomEventDetail = {
+      value: value,
+      oldValue: oldValue
+    };
+    dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 
   private _openListBox() {
-    this._toggleEl.focus();
+    this._inputEl.focus();
     this._listBoxVisible = true;
-    this._listBoxEl.highlightSelectedItem();
   }
 
   private _closeListBox() {
     this._listBoxVisible = false;
-    this._removeActiveDescendant(this._toggleEl);
+    this._removeActiveDescendant(this._inputEl);
   }
 
-  private _getTimeOptions(hour12 = false) {
-    if (hour12) return timeList12H;
-    return timeList24H;
-  }
-
-  private _setActiveDescendant(
-    _buttonEl: HTMLButtonElement,
-    value: string | null
-  ) {
-    if (value && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
+  private _removeActiveDescendant(_inputEl: HTMLInputElement) {
+    _inputEl.removeAttribute("aria-activedescendant");
   }
 
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-time__toggle {
+        .kuc-base-time__input {
           position: relative;
           box-sizing: border-box;
-          height: 32px;
-          padding: 0 24px 0 8px;
-          line-height: 30px;
-          overflow: hidden;
-          background-color: white;
-          border: 1px solid #d5d5d5;
-          cursor: pointer;
-        }
-        .kuc-base-time__toggle__icon {
-          position: absolute;
-          flex: none;
-          width: 24px;
-          height: 32px;
-        }
-        .kuc-base-time__toggle__label {
-          font-size: 13px;
+          width: 85px;
+          height: 40px;
+          padding: 0;
+          text-align: center;
           color: #333333;
+          overflow: hidden;
+          background-color: #ffffff;
+          border: 1px solid #e3e7e8;
         }
-        .kuc-base-time__toggle:focus {
+        .kuc-base-time__input:focus {
           border: 1px solid #3498db;
           outline: none;
         }
