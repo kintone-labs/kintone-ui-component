@@ -129,6 +129,21 @@ describe('Unit test Dropdown react', () => {
     fireEvent.click(itemEl);
   });
 
+  test('Render successfully with allow unselected props', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      }
+    ];
+    // @ts-ignore
+    const {container} = render(<Dropdown items={expectedItems} value={expectedValues[1]} isAllowUnSelect={true} />);
+    const childEl = container.firstElementChild!;
+    
+    const selectedTextEl = childEl.querySelector('.kuc-dropdown-selected-label') as HTMLSpanElement;
+    expect(selectedTextEl.textContent).toBe("");
+  });
+
   test('onClick event will not work', () => {
     const expectedItems = [
       {
