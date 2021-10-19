@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query, state } from "lit/decorators";
+import { property, query, state } from "lit/decorators.js";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -328,7 +328,7 @@ export class KucDate extends KucBase {
           position: absolute;
           z-index: 2000;
           background-color: #fff;
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
+          box-shadow: 0 0 8px 2px rgb(0, 0, 0, 0.1);
           text-align: center;
           box-sizing: border-box;
           padding: 32px 32px 24px;
