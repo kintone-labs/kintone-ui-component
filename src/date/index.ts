@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
+import { visiblePropConverter } from "../base/converter";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -37,6 +38,13 @@ export class KucDate extends KucBase {
   private _GUID: string;
   @state()
   private _datePickerVisible = false;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   constructor(props?: DateProps) {
     super();
     this._GUID = generateGUID();
