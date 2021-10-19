@@ -453,7 +453,7 @@ export class BaseDateTime extends KucBase {
       value: value,
       oldValue: oldValue
     };
-    dispatchCustomEvent(this, "kuc:date-time-change", detail);
+    dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 
   private _openListBox() {

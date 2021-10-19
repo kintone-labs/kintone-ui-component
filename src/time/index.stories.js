@@ -3,7 +3,7 @@ import { html } from "lit-html";
 import "./index.ts";
 
 export default {
-  title: "base/time",
+  title: "desktop/time",
   argTypes: {
     disabled: {
       name: "disabled",
@@ -33,27 +33,42 @@ export default {
   },
   parameters: {
     actions: {
-      handles: ["kuc:base-time-change"]
+      handles: ["kuc:time-change"]
     }
   }
 };
 
-const Template = ({ disabled, hour12, visible, value, timeStep }) =>
+const Template = ({
+  label,
+  error,
+  value,
+  timeStep,
+  disabled,
+  hour12,
+  visible,
+  requiredIcon
+}) =>
   html`
-    <kuc-base-time
-      .disabled=${disabled}
-      .hour12=${hour12}
-      .visible=${visible}
-      .value=${value}
-      .timeStep=${timeStep}
-    ></kuc-base-time>
+    <kuc-time
+      .label="${label}"
+      .error="${error}"
+      .value="${value}"
+      .timeStep="${timeStep}"
+      ?hour12="${hour12}"
+      ?visible="${visible}"
+      ?disabled="${disabled}"
+      ?requiredIcon="${requiredIcon}"
+    ></kuc-time>
   `;
 
 export const Base = Template.bind({});
 Base.args = {
+  label: "Time",
+  error: "",
+  value: "13:15",
+  timeStep: 30,
   disabled: false,
   hour12: false,
   visible: true,
-  value: "13:15",
-  timeStep: 15
+  requiredIcon: false
 };
