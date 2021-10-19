@@ -8,14 +8,6 @@ export default {
       name: "language",
       options: ["en", "ja", "zh"],
       control: { type: "select" }
-    },
-    todayButtonText: {
-      name: "todayButtonText",
-      controls: { type: "text" }
-    },
-    noneButtonText: {
-      name: "noneButtonText",
-      controls: { type: "text" }
     }
   },
   parameters: {
@@ -28,19 +20,15 @@ export default {
   }
 };
 
-const Template = ({ language, todayButtonText, noneButtonText }) => {
+const Template = ({ language }) => {
   return html`
     <kuc-base-datetime-calendar-footer
       .language="${language}"
-      .todayButtonText="${todayButtonText}"
-      .noneButtonText="${noneButtonText}"
     ></kuc-base-datetime-calendar-footer>
   `;
 };
 
 export const base = Template.bind({});
 base.args = {
-  language: "en",
-  todayButtonText: "Today",
-  noneButtonText: "None"
+  language: "en"
 };

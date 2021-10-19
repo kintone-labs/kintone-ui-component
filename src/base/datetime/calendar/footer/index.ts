@@ -5,8 +5,6 @@ import { getLocale } from "../../utils";
 
 export class BaseDateTimeCalendarFooter extends KucBase {
   @property({ type: String }) language = "en";
-  @property({ type: String }) noneButtonText = "None";
-  @property({ type: String }) todayButtonText = "Today";
 
   @state()
   private _locale = getLocale("en");
