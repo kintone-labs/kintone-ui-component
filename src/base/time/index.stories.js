@@ -1,5 +1,4 @@
 import { html } from "lit-html";
-
 import "./index.ts";
 
 export default {
@@ -38,22 +37,22 @@ export default {
   }
 };
 
-const Template = ({ disabled, hour12, visible, value, timeStep }) =>
+const Template = ({ timeStep, disabled, hour12, visible, value }) =>
   html`
     <kuc-base-time
+      .timeStep=${timeStep}
       .disabled=${disabled}
       .hour12=${hour12}
       .visible=${visible}
       .value=${value}
-      .timeStep=${timeStep}
     ></kuc-base-time>
   `;
 
 export const Base = Template.bind({});
 Base.args = {
+  timeStep: 15,
   disabled: false,
   hour12: false,
   visible: true,
-  value: "13:15",
-  timeStep: 15
+  value: "13:15"
 };

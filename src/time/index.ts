@@ -8,12 +8,12 @@ import {
 import "../base/time";
 
 export class Time extends KucBase {
+  @property({ type: Number }) timeStep = 30;
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) error = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
-  @property({ type: Number }) timeStep = 30;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) visible = false;
@@ -44,8 +44,8 @@ export class Time extends KucBase {
           .hour12="${this.hour12}"
           .visible="${this.visible}"
           .timeStep="${this.timeStep}"
-          @kuc:base-time-change="${this._handleTimeChange}"
           .disabled="${this.disabled}"
+          @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>
         <div

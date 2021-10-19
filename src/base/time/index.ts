@@ -1,4 +1,5 @@
-import { html, property, query, PropertyValues, state } from "lit-element";
+import { html, PropertyValues } from "lit";
+import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -11,17 +12,18 @@ type selectionItem = {
   start: number;
   end: number;
 };
+
 export class BaseDateTime extends KucBase {
+  @property({ type: Number }) timeStep = 30;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) visible = false;
   @property({ type: String }) value = "";
-  @property({ type: Number }) timeStep = 30;
 
   @state()
   private _listBoxVisible = false;
   @state()
-  private _timeValue = "5:00";
+  private _timeValue = "12:00";
 
   private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
@@ -30,18 +32,9 @@ export class BaseDateTime extends KucBase {
   private _maxMinutes = 60;
   private _isHighlightItemListbox = false;
   private _selectionRange = {
-    hours: {
-      start: 0,
-      end: 2
-    },
-    minutes: {
-      start: 3,
-      end: 5
-    },
-    suffix: {
-      start: 6,
-      end: 8
-    }
+    hours: { start: 0, end: 2 },
+    minutes: { start: 3, end: 5 },
+    suffix: { start: 6, end: 8 }
   };
 
   @query(".kuc-base-time__input")
@@ -69,27 +62,27 @@ export class BaseDateTime extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <input
-        type="text"
-        class="kuc-base-time__input"
+        aria-hidden="${!this.visible}"
         aria-haspopup="true"
         aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
+        type="text"
+        class="kuc-base-time__input"
+        value="${this._timeValue}"
+        ?disabled="${this.disabled}"
+        ?hidden="${!this.visible}"
         @click="${this._handleClickTime}"
         @blur="${this._handleBlurTime}"
         @keydown="${this._handleKeyDownTime}"
         @focus="${this._handleFocusTime}"
-        value="${this._timeValue}"
-        ?disabled="${this.disabled}"
-        aria-hidden="${!this.visible}"
-        ?hidden="${!this.visible}"
       />
       <kuc-base-datetime-listbox
+        aria-hidden="${!this._listBoxVisible}"
+        class="kuc-base-time__listbox"
+        ?hidden="${!this._listBoxVisible}"
         .items="${this._listBoxItems || []}"
         .value="${this.value}"
         .isHighlightItem="${this._isHighlightItemListbox}"
-        class="kuc-base-time__listbox"
         @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-        aria-hidden="${!this._listBoxVisible}"
-        ?hidden="${!this._listBoxVisible}"
       >
       </kuc-base-datetime-listbox>
     `;
@@ -104,18 +97,12 @@ export class BaseDateTime extends KucBase {
       minutes = i % this._maxMinutes;
       ampm = hours % this._maxHour24 < this._maxHour12 ? "AM" : "PM";
       hours = isHour12 ? hours % this._maxHour12 : hours % this._maxHour24;
-      if (hours === 0 && isHour12) {
-        hours = this._maxHour12;
-      }
-      if (hours < 10) {
-        hours = "0" + hours;
-      }
-      if (minutes < 10) {
-        minutes = "0" + minutes;
-      }
+      if (hours === 0 && isHour12) hours = this._maxHour12;
+      if (hours < 10) hours = "0" + hours;
+      if (minutes < 10) minutes = "0" + minutes;
       const timeItem: Item = {
         label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
-        value: hours + ":" + minutes
+        value: `${hours} ":" ${minutes}`
       };
       timeOptions.push(timeItem);
     }
@@ -132,12 +119,11 @@ export class BaseDateTime extends KucBase {
   private _getValidTimeLabel(time: Date) {
     const hour = time.getHours();
     let suffix: string = "";
-    let tempTime: string;
+    let tempTime: string =
+      (time.getHours() % this._maxHour24) + ":" + time.getMinutes();
     if (this.hour12) {
       suffix = hour >= this._maxHour12 ? "PM" : "AM";
       tempTime = (time.getHours() % this._maxHour12) + ":" + time.getMinutes();
-    } else {
-      tempTime = (time.getHours() % this._maxHour24) + ":" + time.getMinutes();
     }
     return this._addZeroToTime(tempTime, suffix);
   }
@@ -360,12 +346,9 @@ export class BaseDateTime extends KucBase {
     const oldValue = this._timeValue;
     const { isSelectMinutes } = this._getSelectionTimeValue();
     const { hours, minutes, suffix } = this._separateTime(this._timeValue);
-    let newTime = this._inputEl.value;
+    let newTime = this._inputEl.value || "";
 
     if (!this._timeValue) return;
-    if (!newTime) {
-      newTime = "";
-    }
     if (isSelectMinutes) {
       const previousMinutes = this._getPreviousMinutes(minutes);
       const tempTime = hours + ":" + previousMinutes + key;
