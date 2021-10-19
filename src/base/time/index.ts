@@ -7,6 +7,7 @@ import {
   dispatchCustomEvent
 } from "../kuc-base";
 import { BaseDateTimeListBox, Item } from "../datetime/listbox";
+import { padStart } from "../datetime/utils";
 
 type selectionItem = {
   start: number;
@@ -30,12 +31,15 @@ export class BaseDateTime extends KucBase {
   private _maxHour12 = 12;
   private _maxHour24 = 24;
   private _maxMinutes = 60;
+  private _timeLength = 2;
   private _isHighlightItemListbox = false;
   private _selectionRange = {
     hours: { start: 0, end: 2 },
     minutes: { start: 3, end: 5 },
     suffix: { start: 6, end: 8 }
   };
+  private _suffixAm = "AM";
+  private _suffixPm = "PM";
 
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
@@ -64,7 +68,7 @@ export class BaseDateTime extends KucBase {
       <input
         aria-hidden="${!this.visible}"
         aria-haspopup="true"
-        aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
+        aria-labelledby="${this._GUID}-label"
         type="text"
         class="kuc-base-time__input"
         value="${this._timeValue}"
@@ -91,11 +95,14 @@ export class BaseDateTime extends KucBase {
   private _generateTimeOptions(isHour12: boolean, timeStep: number = 30) {
     const timeOptions = [];
     let hours, minutes, ampm;
-    const limitLoop = (this._maxMinutes / timeStep) * 24;
+    const limitLoop = (this._maxMinutes / timeStep) * this._maxHour24;
     for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
       hours = Math.floor(i / this._maxMinutes);
       minutes = i % this._maxMinutes;
-      ampm = hours % this._maxHour24 < this._maxHour12 ? "AM" : "PM";
+      ampm =
+        hours % this._maxHour24 < this._maxHour12
+          ? this._suffixAm
+          : this._suffixPm;
       hours = isHour12 ? hours % this._maxHour12 : hours % this._maxHour24;
       if (hours === 0 && isHour12) hours = this._maxHour12;
       if (hours < 10) hours = "0" + hours;
@@ -122,7 +129,7 @@ export class BaseDateTime extends KucBase {
     let tempTime: string =
       (time.getHours() % this._maxHour24) + ":" + time.getMinutes();
     if (this.hour12) {
-      suffix = hour >= this._maxHour12 ? "PM" : "AM";
+      suffix = hour >= this._maxHour12 ? this._suffixPm : this._suffixAm;
       tempTime = (time.getHours() % this._maxHour12) + ":" + time.getMinutes();
     }
     return this._addZeroToTime(tempTime, suffix);
@@ -132,7 +139,7 @@ export class BaseDateTime extends KucBase {
     this._openListBox();
     const start = this._inputEl.selectionStart;
     if (start === null) return;
-    if (start <= this._selectionRange.hours.start) {
+    if (start <= this._selectionRange.hours.end) {
       this._inputEl.setSelectionRange(
         this._selectionRange.hours.start,
         this._selectionRange.hours.end
@@ -201,40 +208,14 @@ export class BaseDateTime extends KucBase {
       case "Left":
         this._closeListBox();
         if (selectionStart === null || selectionStart <= 0) break;
-        if (
-          selectionStart >= this._selectionRange.minutes.start &&
-          selectionStart <= this._selectionRange.minutes.end
-        ) {
-          this._inputEl.setSelectionRange(
-            this._selectionRange.hours.start,
-            this._selectionRange.hours.end
-          );
-          break;
-        }
-        this._inputEl.setSelectionRange(
-          this._selectionRange.minutes.start,
-          this._selectionRange.minutes.end
-        );
+        this._handleKeyLeft(selectionStart);
         break;
       case "ArrowRight":
       case "Right":
         this._closeListBox();
         if (selectionStart === null || selectionStart > this._timeValue.length)
           break;
-        if (
-          selectionStart >= this._selectionRange.hours.start &&
-          selectionStart <= this._selectionRange.hours.end
-        ) {
-          this._inputEl.setSelectionRange(
-            this._selectionRange.minutes.start,
-            this._selectionRange.minutes.end
-          );
-          break;
-        }
-        this._inputEl.setSelectionRange(
-          this._selectionRange.suffix.start,
-          this._selectionRange.suffix.end
-        );
+        this._handleKeyRight(selectionStart);
         break;
       case "ArrowUp":
       case "Up":
@@ -273,10 +254,45 @@ export class BaseDateTime extends KucBase {
     this._closeListBox();
   }
 
+  private _handleKeyLeft(selectionStart: number) {
+    if (
+      selectionStart >= this._selectionRange.minutes.start &&
+      selectionStart <= this._selectionRange.minutes.end
+    ) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.hours.start,
+        this._selectionRange.hours.end
+      );
+      return;
+    }
+    this._inputEl.setSelectionRange(
+      this._selectionRange.minutes.start,
+      this._selectionRange.minutes.end
+    );
+  }
+
+  private _handleKeyRight(selectionStart: number) {
+    if (
+      selectionStart >= this._selectionRange.hours.start &&
+      selectionStart <= this._selectionRange.hours.end
+    ) {
+      this._inputEl.setSelectionRange(
+        this._selectionRange.minutes.start,
+        this._selectionRange.minutes.end
+      );
+      return;
+    }
+    this._inputEl.setSelectionRange(
+      this._selectionRange.suffix.start,
+      this._selectionRange.suffix.end
+    );
+  }
+
   private _changeSuffixTime() {
     const oldValue = this._timeValue;
     const { hours, minutes, suffix } = this._separateTime(this._timeValue);
-    const newSuffix = suffix === "AM" ? "PM" : "AM";
+    const newSuffix =
+      suffix === this._suffixAm ? this._suffixPm : this._suffixAm;
 
     this._timeValue = hours + ":" + minutes + " " + newSuffix;
     this._setTimeValueOnInput(this._timeValue, this._selectionRange.suffix);
@@ -299,19 +315,17 @@ export class BaseDateTime extends KucBase {
   }
 
   private _changeMinutesBy(minutesChange: number) {
-    let newMinutes;
     const { hours, minutes, suffix } = this._separateTime(this._timeValue);
     const currentMinute = parseInt(minutes, 10);
+    let newMinutes =
+      currentMinute === 0
+        ? this._maxMinutes - 1
+        : currentMinute + minutesChange;
     if (!this._timeValue) return;
     if (minutesChange > 0) {
       newMinutes =
         currentMinute === this._maxMinutes - 1
           ? 0
-          : currentMinute + minutesChange;
-    } else {
-      newMinutes =
-        currentMinute === 0
-          ? this._maxMinutes - 1
           : currentMinute + minutesChange;
     }
     const timeTemp = hours + ":" + newMinutes;
@@ -397,10 +411,13 @@ export class BaseDateTime extends KucBase {
 
   private _separateTime(time: string) {
     const indexColon = time.indexOf(":");
+    const indexSpace = time.indexOf(" ");
     const hours = time.substring(0, indexColon);
-    const minutes = time.substring(indexColon + 1, indexColon + 3);
-    const suffix = time.substring(indexColon + 4, indexColon + 6);
-
+    const minutes = time.substr(indexColon + 1, this._timeLength);
+    let suffix = "";
+    if (indexSpace !== -1) {
+      suffix = time.substr(indexSpace + 1, this._timeLength);
+    }
     return { hours, minutes, suffix, indexColon };
   }
 
@@ -422,12 +439,8 @@ export class BaseDateTime extends KucBase {
 
   private _addZeroToTime(value: string, suffix: string = "") {
     let { hours, minutes } = this._separateTime(value);
-    if (parseInt(hours, 10) < 10) {
-      hours = "0" + parseInt(hours, 10);
-    }
-    if (parseInt(minutes, 10) < 10) {
-      minutes = "0" + parseInt(minutes, 10);
-    }
+    hours = padStart(hours);
+    minutes = padStart(minutes);
     return hours + ":" + minutes + (suffix ? " " + suffix : "");
   }
 

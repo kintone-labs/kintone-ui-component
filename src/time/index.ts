@@ -1,30 +1,59 @@
-import { html, property } from "lit-element";
+import { html } from "lit";
+import { property } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
   CustomEventDetail,
   dispatchCustomEvent
 } from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
+import { validateProps } from "../base/validator";
 import "../base/time";
+
+type TimeProps = {
+  timeStep?: number;
+  className?: string;
+  id?: string;
+  error?: string;
+  label?: string;
+  value?: string;
+  disabled?: boolean;
+  hour12?: boolean;
+  visible?: boolean;
+  requiredIcon?: boolean;
+};
 
 export class Time extends KucBase {
   @property({ type: Number }) timeStep = 30;
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
-  @property({ type: Boolean }) visible = false;
+  @property({
+    type: Boolean,
+    attribute: "hidden",
+    reflect: true,
+    converter: visiblePropConverter
+  })
+  visible = true;
   @property({ type: Boolean }) requiredIcon = false;
 
-  private _GUID = generateGUID();
+  private _GUID: string;
+
+  constructor(props?: TimeProps) {
+    super();
+    this._GUID = generateGUID();
+    const validProps = validateProps(props);
+    Object.assign(this, validProps);
+  }
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-time__group" ?hidden="${!this.visible}">
+      <div class="kuc-time__group">
         <label
           class="kuc-time__group__label"
           for="${this._GUID}-label"
@@ -67,7 +96,7 @@ export class Time extends KucBase {
       value: event.detail.value,
       oldValue: event.detail.oldValue
     };
-    dispatchCustomEvent(this, "kuc:time-change", detail);
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _getStyleTagTemplate() {
@@ -80,9 +109,6 @@ export class Time extends KucBase {
           padding: 0px;
           height: auto;
           margin: 0px;
-        }
-        .kuc-time__group[hidden] {
-          display: none;
         }
         .kuc-time__group__label {
           display: inline-block;
@@ -115,6 +141,9 @@ export class Time extends KucBase {
           white-space: normal;
         }
         .kuc-time__group__error[hidden] {
+          display: none;
+        }
+        .kuc-time__group[hidden] {
           display: none;
         }
       </style>

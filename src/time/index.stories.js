@@ -1,74 +1,24 @@
-import { html } from "lit-html";
+// import { html } from "lit-html";
+import { storiesOf } from "@storybook/web-components";
+import { Time } from "./index.ts";
 
-import "./index.ts";
-
-export default {
-  title: "desktop/time",
-  argTypes: {
-    disabled: {
-      name: "disabled",
-      control: {
-        type: "select",
-        options: [true, false]
-      }
-    },
-    hour12: {
-      name: "hour12",
-      control: {
-        type: "select",
-        options: [true, false]
-      }
-    },
-    visible: {
-      name: "visible",
-      control: {
-        type: "select",
-        options: [true, false]
-      }
-    },
-    value: {
-      name: "value",
-      controls: { type: "text" }
-    }
-  },
-  parameters: {
-    actions: {
-      handles: ["kuc:time-change"]
-    }
-  }
-};
-
-const Template = ({
-  label,
-  error,
-  value,
-  timeStep,
-  disabled,
-  hour12,
-  visible,
-  requiredIcon
-}) =>
-  html`
-    <kuc-time
-      .label="${label}"
-      .error="${error}"
-      .value="${value}"
-      .timeStep="${timeStep}"
-      ?hour12="${hour12}"
-      ?visible="${visible}"
-      ?disabled="${disabled}"
-      ?requiredIcon="${requiredIcon}"
-    ></kuc-time>
-  `;
-
-export const Base = Template.bind({});
-Base.args = {
-  label: "Time",
-  error: "",
-  value: "13:15",
-  timeStep: 30,
-  disabled: false,
-  hour12: false,
-  visible: true,
-  requiredIcon: false
-};
+storiesOf("desktop/time", module).add("Base", () => {
+  const root = document.createElement("div");
+  const TimeComponent = new Time({
+    timeStep: 30,
+    className: "sample-class",
+    id: "sample-id",
+    error: "",
+    label: "Time",
+    value: "00:00",
+    disabled: false,
+    hour12: false,
+    visible: true,
+    requiredIcon: false
+  });
+  TimeComponent.addEventListener("change", function(event) {
+    console.log(event.detail);
+  });
+  root.appendChild(TimeComponent);
+  return root;
+});
