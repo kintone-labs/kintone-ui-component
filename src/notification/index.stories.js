@@ -25,6 +25,22 @@ storiesOf("desktop/notification", module)
 
     return root;
   })
+  .add("Base1", () => {
+    const root = document.createElement("div");
+    const notification = new Notification({
+      text: "Duration 3 seconds",
+      type: "info",
+      duration: 3000
+    });
+
+    const button = document.createElement("button");
+    button.textContent = "open";
+    button.addEventListener("click", function() {
+      notification.open();
+    });
+    root.appendChild(button);
+    return root;
+  })
   // UI For document site. Do not change or delete below.
   .add("DocumentInfo", () => {
     const root = document.createElement("div");

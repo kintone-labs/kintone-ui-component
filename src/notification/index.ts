@@ -6,15 +6,19 @@ type NotificationProps = {
   className?: string;
   text?: string;
   type?: "info" | "danger" | "success";
+  duration?: number;
 };
 
 export class Notification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
   @property({ type: String }) type: "info" | "danger" | "success" = "danger";
+  @property({ type: Number }) duration = -1;
 
   @query(".kuc-notification__notification__title")
   private _notificationTitleEl!: HTMLPreElement;
+
+  private _timeoutID!: number;
 
   constructor(props?: NotificationProps) {
     super();
@@ -69,12 +73,16 @@ export class Notification extends KucBase {
     this.classList.add("kuc-notification-fadein");
     this.classList.remove("kuc-notification-fadeout");
     this._notificationTitleEl.setAttribute("role", "alert");
+
+    this._setAutoHideTimer();
   }
 
   close() {
     this.classList.add("kuc-notification-fadeout");
     this.classList.remove("kuc-notification-fadein");
     this._notificationTitleEl.removeAttribute("role");
+
+    this._clearAutoHideTimer();
   }
 
   firstUpdated() {
@@ -215,6 +223,21 @@ export class Notification extends KucBase {
         }
       </style>
     `;
+  }
+
+  private _setAutoHideTimer() {
+    if (!Number.isFinite(this.duration) || this.duration < 0) {
+      return;
+    }
+
+    this._clearAutoHideTimer();
+    this._timeoutID = window.setTimeout(() => {
+      this.close();
+    }, this.duration);
+  }
+
+  private _clearAutoHideTimer() {
+    this._timeoutID && window.clearTimeout(this._timeoutID);
   }
 }
 if (!window.customElements.get("kuc-notification")) {
