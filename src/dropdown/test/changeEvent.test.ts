@@ -35,7 +35,7 @@ describe("Dropdown", () => {
     expect(triggeredEvent.detail.oldValue).to.equal(initItems[1].value);
   });
 
-  it("should not be triggered when mousedown on the item as same as the slected item", async () => {
+  it("should not be triggered when mousedown on the item as same as the selected item", async () => {
     let triggeredEvent: any = null;
     const container = new Dropdown({
       items: initItems,

@@ -47,7 +47,7 @@ describe("MobileButton", () => {
         "kuc-mobile-button__button--submit"
       );
     });
-    it('should be normal when assigning a type other than "normal | submit" by setter', async () => {
+    it('should be normal when assigning a type other than "normal | alert | submit" by setter', async () => {
       const container = new MobileButton({
         type: "submit"
       });

@@ -1,34 +1,25 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileDropdown } from "../index";
 
-function generateInitItems() {
-  return [
-    { label: "-----", value: "-----" },
-    { label: "Orange", value: "orange" },
-    { label: "Apple", value: "apple" }
-  ];
-}
-
-function generateInitItemsWithoutLabel() {
-  return [{ value: "-----" }, { value: "orange" }, { value: "apple" }];
-}
-
-function generateInitItemsWithoutValue() {
-  return [{ label: "-----" }];
-}
-function generateReplacedItems() {
-  return [
-    { label: "Orange", value: "orange" },
-    { label: "Apple", value: "apple" }
-  ];
-}
-
-function generateDupplicatedItems() {
-  return [
-    { label: "Orange", value: "orange" },
-    { label: "Apple", value: "orange" }
-  ];
-}
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
+const initItemsWithoutLabel = [
+  { value: "-----" },
+  { value: "orange" },
+  { value: "apple" }
+];
+const initItemsWithoutValue = [{ label: "-----" }];
+const replacedItems = [
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
+const dupplicatedItems = [
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "orange" }
+];
 
 const expectedLabels = ["", "-----", "Orange", "Apple"];
 const expectedValues = ["", "-----", "orange", "apple"];
@@ -43,7 +34,6 @@ describe("MobileDropdown", () => {
     });
 
     it("exists on element when initializing with props option", async () => {
-      const initItems = generateInitItems();
       const container = new MobileDropdown({ items: initItems });
       expect(container.items).to.be.equal(initItems);
 
@@ -63,7 +53,6 @@ describe("MobileDropdown", () => {
 
     it("exists on element when changing by setter", async () => {
       const container = new MobileDropdown();
-      const initItems = generateInitItems();
 
       container.items = initItems;
       expect(container.items).to.be.equal(initItems);
@@ -83,9 +72,8 @@ describe("MobileDropdown", () => {
     });
 
     it("exists on element and set label as the same as value when initializing with props option without label", async () => {
-      const initItems = generateInitItemsWithoutLabel();
-      const container = new MobileDropdown({ items: initItems });
-      expect(container.items).to.be.equal(initItems);
+      const container = new MobileDropdown({ items: initItemsWithoutLabel });
+      expect(container.items).to.be.equal(initItemsWithoutLabel);
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -101,9 +89,8 @@ describe("MobileDropdown", () => {
       }
     });
     it('exists on element and set value "" when initializing with props option without value', async () => {
-      const initItems = generateInitItemsWithoutValue();
-      const container = new MobileDropdown({ items: initItems });
-      expect(container.items).to.be.equal(initItems);
+      const container = new MobileDropdown({ items: initItemsWithoutValue });
+      expect(container.items).to.be.equal(initItemsWithoutValue);
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -116,10 +103,9 @@ describe("MobileDropdown", () => {
       }
     });
     it("should be replaced successfully", async () => {
-      const container = new MobileDropdown({ items: generateInitItems() });
-      const newItems = generateReplacedItems();
-      container.items = newItems;
-      expect(container.items).to.be.equal(newItems);
+      const container = new MobileDropdown({ items: initItems });
+      container.items = replacedItems;
+      expect(container.items).to.be.equal(replacedItems);
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -153,7 +139,6 @@ describe("MobileDropdown", () => {
     });
 
     it("show error when initializing value is duplicated", async () => {
-      const dupplicatedItems = generateDupplicatedItems();
       const container = new MobileDropdown({ items: dupplicatedItems });
       try {
         await fixture(container);
@@ -193,7 +178,6 @@ describe("MobileDropdown", () => {
     it("show error when changing by setter to duplicated items vaule", async () => {
       const container = new MobileDropdown({});
 
-      const dupplicatedItems = generateDupplicatedItems();
       container.items = dupplicatedItems;
       try {
         await fixture(container);
