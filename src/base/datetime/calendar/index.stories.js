@@ -16,24 +16,55 @@ export default {
   },
   parameters: {
     actions: {
-      handles: [
-        "kuc:calendar-footer-click-today",
-        "kuc:calendar-footer-click-none"
-      ]
+      handles: []
     }
   }
 };
 
 const Template = ({ language, value }) => {
-  const _handleClickCalendarFooterButtonNone = event => {
-    const _btn = document.querySelector("input");
-    _btn.value = "";
+  const _setValue = val => {
+    const _inputEl = document.querySelector("input");
+    _inputEl.value = val;
   };
 
-  const _handleClickCalendarFooterButtonToday = event => {
-    const _btn = document.querySelector("input");
-    // _btn.value = new Date();
+  const _showCalendar = _ => {
+    const _calendarEl = document.querySelector("kuc-base-datetime-calendar");
+    _calendarEl.hidden = false;
   };
+
+  const _hideCalendar = _ => {
+    const _calendarEl = document.querySelector("kuc-base-datetime-calendar");
+    _calendarEl.hidden = true;
+  };
+
+  const _handleFocusInput = _ => {
+    _showCalendar();
+  };
+
+  const _handleBlurInput = _ => {
+    _hideCalendar();
+  };
+
+  const _handleClickCalendarBodyChangeDate = event => {
+    _setValue(event.detail.value);
+  };
+
+  const _handleClickCalendarBodyClickDate = event => {
+    _setValue(event.detail.value);
+    _hideCalendar();
+  };
+
+  const _handleClickCalendarFooterButtonNone = _ => {
+    _setValue("");
+    _hideCalendar();
+  };
+
+  const _handleClickCalendarFooterButtonToday = _ => {
+    const date = new Date();
+    _setValue(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+    _hideCalendar();
+  };
+
   return html`
     <style>
       #root-inner {
@@ -45,10 +76,17 @@ const Template = ({ language, value }) => {
         left: 0px;
       }
     </style>
-    <input type="text" value="${value}" />
+    <input
+      type="text"
+      value="${value}"
+      @focus="${_handleFocusInput}"
+      @blur="${_handleBlurInput}"
+    />
     <kuc-base-datetime-calendar
       .language="${language}"
       .value="${value}"
+      @kuc:calendar-body-change-date="${_handleClickCalendarBodyChangeDate}"
+      @kuc:calendar-body-click-date="${_handleClickCalendarBodyClickDate}"
       @kuc:calendar-footer-click-none="${_handleClickCalendarFooterButtonNone}"
       @kuc:calendar-footer-click-today="${_handleClickCalendarFooterButtonToday}"
     ></kuc-base-datetime-calendar>

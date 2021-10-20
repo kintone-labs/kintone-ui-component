@@ -17,18 +17,12 @@ export class BaseDateTimeCalendar extends KucBase {
 
   @state()
   private _month = 0;
+
+  @state()
   private _year = 2021;
-  private _locale = getLocale("en");
 
   @query(".kuc-base-datetime-calendar__group")
   private _groupEl!: HTMLElement;
-
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("language")) {
-      this._locale = getLocale(this.language);
-    }
-    super.update(changedProperties);
-  }
 
   render() {
     return html`
@@ -39,16 +33,14 @@ export class BaseDateTimeCalendar extends KucBase {
           @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
+          .month="${this._month}"
+          .year="${this._year}"
           .language="${this.language}"
           .value="${this.value}"
         ></kuc-base-datetime-calendar-body>
         <kuc-base-datetime-calendar-footer
           class="kuc-base-datetime-calendar-footer"
           .language="${this.language}"
-          @kuc:calendar-footer-click-today="${this
-            ._handleClickCalendarFooterButtonToday}"
-          @kuc:calendar-footer-click-none="${this
-            ._handleClickCalendarFooterButtonNone}"
         ></kuc-base-datetime-calendar-footer>
       </div>
     `;
@@ -84,9 +76,6 @@ export class BaseDateTimeCalendar extends KucBase {
           text-align: center;
           font-size: 13px;
         }
-        .kuc-base-datetime-calendar__group[hidden] {
-          display: none;
-        }
       </style>
     `;
   }
@@ -95,27 +84,6 @@ export class BaseDateTimeCalendar extends KucBase {
     const values = event.detail.value.split("-");
     this._year = values[0];
     this._month = values[1] - 1;
-  }
-
-  private _handleClickCalendarFooterButtonNone(event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.value = "";
-    this._groupEl.setAttribute("hidden", "true");
-  }
-
-  private _getDateString(date = new Date()) {
-    const year = date.getFullYear();
-    const month = padStart(date.getMonth() + 1);
-    const day = padStart(date.getDate());
-    return `${year}-${month}-${day}`;
-  }
-
-  private _handleClickCalendarFooterButtonToday(event: CustomEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.value = this._getDateString();
-    this._groupEl.setAttribute("hidden", "true");
   }
 }
 
