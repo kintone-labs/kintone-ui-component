@@ -23,6 +23,11 @@ storiesOf("desktop/textarea", module)
       console.log(event);
       console.log(event.detail.value);
     });
+    textarea.addEventListener("input", event => {
+      console.log(event);
+      console.log(event.detail.data);
+      console.log(event.detail.value);
+    });
     root.appendChild(textarea);
     return root;
   })

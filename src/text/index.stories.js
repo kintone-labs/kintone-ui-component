@@ -20,6 +20,9 @@ storiesOf("desktop/text", module)
     text.addEventListener("change", event => {
       console.log(event);
     });
+    text.addEventListener("input", event => {
+      console.log(event);
+    });
     root.appendChild(text);
     return root;
   })

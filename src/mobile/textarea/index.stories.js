@@ -24,6 +24,10 @@ storiesOf("mobile/textarea", module)
     mobileTextArea.addEventListener("focus", function(event) {
       console.log(event);
     });
+
+    mobileTextArea.addEventListener("input", function(event) {
+      console.log(event);
+    });
     root.appendChild(mobileTextArea);
 
     return root;

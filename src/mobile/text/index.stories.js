@@ -15,6 +15,9 @@ storiesOf("mobile/text", module)
     mobileText.addEventListener("change", event => {
       console.log(event.detail);
     });
+    mobileText.addEventListener("input", event => {
+      console.log(event.detail);
+    });
     root.appendChild(mobileText);
 
     return root;
