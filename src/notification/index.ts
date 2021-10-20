@@ -74,7 +74,7 @@ export class Notification extends KucBase {
     this.classList.remove("kuc-notification-fadeout");
     this._notificationTitleEl.setAttribute("role", "alert");
 
-    this._setAutoHideTimer();
+    this._setAutoCloseTimer();
   }
 
   close() {
@@ -82,7 +82,7 @@ export class Notification extends KucBase {
     this.classList.remove("kuc-notification-fadein");
     this._notificationTitleEl.removeAttribute("role");
 
-    this._clearAutoHideTimer();
+    this._clearAutoCloseTimer();
   }
 
   firstUpdated() {
@@ -225,18 +225,18 @@ export class Notification extends KucBase {
     `;
   }
 
-  private _setAutoHideTimer() {
+  private _setAutoCloseTimer() {
     if (!Number.isFinite(this.duration) || this.duration < 0) {
       return;
     }
 
-    this._clearAutoHideTimer();
+    this._clearAutoCloseTimer();
     this._timeoutID = window.setTimeout(() => {
       this.close();
     }, this.duration);
   }
 
-  private _clearAutoHideTimer() {
+  private _clearAutoCloseTimer() {
     this._timeoutID && window.clearTimeout(this._timeoutID);
   }
 }
