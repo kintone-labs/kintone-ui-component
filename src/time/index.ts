@@ -11,7 +11,6 @@ import { validateProps } from "../base/validator";
 import "../base/time";
 
 type TimeProps = {
-  timeStep?: number;
   className?: string;
   id?: string;
   error?: string;
@@ -24,7 +23,6 @@ type TimeProps = {
 };
 
 export class Time extends KucBase {
-  @property({ type: Number }) timeStep = 30;
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
@@ -71,8 +69,6 @@ export class Time extends KucBase {
           class="kuc-time__group__input"
           .value="${this.value}"
           .hour12="${this.hour12}"
-          .visible="${this.visible}"
-          .timeStep="${this.timeStep}"
           .disabled="${this.disabled}"
           @kuc:base-time-change="${this._handleTimeChange}"
         >
