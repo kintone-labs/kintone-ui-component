@@ -41,10 +41,6 @@ const Template = ({ language, value }) => {
     _showCalendar();
   };
 
-  const _handleBlurInput = _ => {
-    _hideCalendar();
-  };
-
   const _handleClickCalendarBodyChangeDate = event => {
     _setValue(event.detail.value);
   };
@@ -76,12 +72,7 @@ const Template = ({ language, value }) => {
         left: 0px;
       }
     </style>
-    <input
-      type="text"
-      value="${value}"
-      @focus="${_handleFocusInput}"
-      @blur="${_handleBlurInput}"
-    />
+    <input type="text" value="${value}" @focus="${_handleFocusInput}" />
     <kuc-base-datetime-calendar
       .language="${language}"
       .value="${value}"
