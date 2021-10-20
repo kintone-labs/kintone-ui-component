@@ -3,7 +3,7 @@ import { html } from "lit-html";
 
 export default {
   title: "base/datetime/calendar",
-  argsTypes: {
+  argTypes: {
     language: {
       name: "language",
       options: ["en", "ja", "zh"],
@@ -25,6 +25,15 @@ export default {
 };
 
 const Template = ({ language, value }) => {
+  const _handleClickCalendarFooterButtonNone = event => {
+    const _btn = document.querySelector("input");
+    _btn.value = "";
+  };
+
+  const _handleClickCalendarFooterButtonToday = event => {
+    const _btn = document.querySelector("input");
+    // _btn.value = new Date();
+  };
   return html`
     <style>
       #root-inner {
@@ -40,6 +49,8 @@ const Template = ({ language, value }) => {
     <kuc-base-datetime-calendar
       .language="${language}"
       .value="${value}"
+      @kuc:calendar-footer-click-none="${_handleClickCalendarFooterButtonNone}"
+      @kuc:calendar-footer-click-today="${_handleClickCalendarFooterButtonToday}"
     ></kuc-base-datetime-calendar>
   `;
 };

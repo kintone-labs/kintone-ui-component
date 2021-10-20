@@ -22,6 +22,7 @@ export class BaseDateTimeCalendar extends KucBase {
 
   @query(".kuc-base-datetime-calendar__group")
   private _groupEl!: HTMLElement;
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
@@ -34,14 +35,16 @@ export class BaseDateTimeCalendar extends KucBase {
       ${this._getStyleTagTemplate()}
       <div class="kuc-base-datetime-calendar__group">
         <kuc-base-datetime-calendar-header
-          @kuc:calendar-header-change="${this._handleKucCalendarHeaderChange}"
+          .language="${this.language}"
+          @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
-          month="${this._month}"
-          year="${this._year}"
+          .language="${this.language}"
+          .value="${this.value}"
         ></kuc-base-datetime-calendar-body>
         <kuc-base-datetime-calendar-footer
           class="kuc-base-datetime-calendar-footer"
+          .language="${this.language}"
           @kuc:calendar-footer-click-today="${this
             ._handleClickCalendarFooterButtonToday}"
           @kuc:calendar-footer-click-none="${this
@@ -88,7 +91,7 @@ export class BaseDateTimeCalendar extends KucBase {
     `;
   }
 
-  private _handleKucCalendarHeaderChange(event: CustomEvent) {
+  private _handleCalendarHeaderChange(event: CustomEvent) {
     const values = event.detail.value.split("-");
     this._year = values[0];
     this._month = values[1] - 1;
@@ -98,22 +101,7 @@ export class BaseDateTimeCalendar extends KucBase {
     event.preventDefault();
     event.stopPropagation();
     this.value = "";
-    this._dispatchClickEvent(this.value);
     this._groupEl.setAttribute("hidden", "true");
-  }
-
-  private _handleClickCalendarFooterButtonToday(event: CustomEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.value = this._getDateString();
-    this._groupEl.setAttribute("hidden", "true");
-  }
-
-  private _dispatchClickEvent(value: string) {
-    if (this.value === value) return;
-    const detail: CustomEventDetail = { oldValue: this.value, value: value };
-    dispatchCustomEvent(this, "calendar-footer-click-none", detail);
-    this.value = value;
   }
 
   private _getDateString(date = new Date()) {
@@ -121,6 +109,13 @@ export class BaseDateTimeCalendar extends KucBase {
     const month = padStart(date.getMonth() + 1);
     const day = padStart(date.getDate());
     return `${year}-${month}-${day}`;
+  }
+
+  private _handleClickCalendarFooterButtonToday(event: CustomEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.value = this._getDateString();
+    this._groupEl.setAttribute("hidden", "true");
   }
 }
 
