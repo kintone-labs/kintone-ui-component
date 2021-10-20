@@ -21,9 +21,6 @@ export class BaseDateTimeCalendar extends KucBase {
   @state()
   private _year = 2021;
 
-  @query(".kuc-base-datetime-calendar__group")
-  private _groupEl!: HTMLElement;
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
