@@ -22,7 +22,11 @@ export const en = {
     { text: "THU", abbr: "Thursday" },
     { text: "FRI", abbr: "Friday" },
     { text: "SAT", abbr: "Saturday" }
-  ]
+  ],
+  TIME_SELECT_SUFFIX: {
+    am: "AM",
+    pm: "PM"
+  }
 };
 
 export const ja = {
@@ -49,7 +53,11 @@ export const ja = {
     { text: "木", abbr: "木" },
     { text: "金", abbr: "金" },
     { text: "土", abbr: "土" }
-  ]
+  ],
+  TIME_SELECT_SUFFIX: {
+    am: "AM",
+    pm: "PM"
+  }
 };
 
 export const zh = {
@@ -76,5 +84,9 @@ export const zh = {
     { text: "周四", abbr: "周四" },
     { text: "周五", abbr: "周五" },
     { text: "周六", abbr: "周六" }
-  ]
+  ],
+  TIME_SELECT_SUFFIX: {
+    am: "AM",
+    pm: "PM"
+  }
 };

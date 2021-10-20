@@ -6,6 +6,10 @@ export type WeekDate = {
   attr: string;
 };
 
+export const maxMinutes = 60;
+export const maxHour24 = 24;
+export const maxHour12 = 12;
+
 export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
   let date = new Date(dateRanges.start);
@@ -45,6 +49,55 @@ export const padStart = (
 ) => {
   const s = `0000000000${filterString}`;
   return s.substr(s.length - maxLength);
+};
+
+export const generateTimeOptions = (
+  isHour12: boolean,
+  timeStep: number = 30
+) => {
+  const timeOptions = [];
+  let hours, minutes, ampm;
+  const limitLoop = (maxMinutes / timeStep) * maxHour24;
+  for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
+    hours = Math.floor(i / maxMinutes);
+    minutes = i % maxMinutes;
+    ampm =
+      hours % maxHour24 < maxHour12
+        ? en.TIME_SELECT_SUFFIX.am
+        : en.TIME_SELECT_SUFFIX.pm;
+    hours = isHour12 ? hours % maxHour12 : hours % maxHour24;
+    if (hours === 0 && isHour12) hours = maxHour12;
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    const timeItem = {
+      label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
+      value: `${hours} ":" ${minutes}`
+    };
+    timeOptions.push(timeItem);
+  }
+  return timeOptions;
+};
+
+export const formatTimeValue = (hours: string, minutes: string) => {
+  const time = new Date();
+  time.setHours(parseInt(hours, 10));
+  time.setMinutes(parseInt(minutes, 10));
+  return time;
+};
+
+export const convertTimeValueToHour12 = (time: Date, hour12: boolean) => {
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  let newHours = padStart(hours % maxHour24);
+  let suffix: string = "";
+  let newTime: string = newHours + ":" + padStart(minutes);
+  if (hour12) {
+    newHours = padStart(hours % maxHour12);
+    suffix =
+      hours >= maxHour12 ? en.TIME_SELECT_SUFFIX.pm : en.TIME_SELECT_SUFFIX.am;
+    newTime = newHours + ":" + padStart(minutes) + " " + suffix;
+  }
+  return newTime;
 };
 
 const getDateRanges = (year: number, month: number) => {
