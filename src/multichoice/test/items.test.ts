@@ -12,7 +12,7 @@ const initItemsWithoutLabel = [
   { value: "item-2" },
   { value: "item-3" }
 ];
-
+const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "Item 2", value: "item-2" },
   { label: "Item 3", value: "item-3" }
@@ -96,7 +96,17 @@ describe("MobileCheckbox", () => {
         initItemsWithoutLabel[2].value
       );
     });
-
+    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+      const container = new MultiChoice({
+        items: initItemsWithoutValue
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      expect(itemsEl.length).to.equal(1);
+      expect(itemsEl[0].getAttribute("value")).to.equal("");
+    });
     it("should set items when assigned items on constructor", async () => {
       const container = new MultiChoice({ items: initItems });
 

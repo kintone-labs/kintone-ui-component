@@ -13,6 +13,7 @@ const initItemsWithoutLabel = [
   { value: "apple" }
 ];
 
+const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" }
@@ -232,6 +233,17 @@ describe("MobileCheckbox", () => {
         Error,
         "'items[1].value' is duplicated! You can specify unique one."
       );
+    });
+    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+      const container = new MobileCheckbox({
+        items: initItemsWithoutValue
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-checkbox__group__select-menu__item"
+      );
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.value).to.equal("");
     });
   });
 });

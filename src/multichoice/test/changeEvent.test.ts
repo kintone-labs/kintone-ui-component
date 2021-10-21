@@ -33,6 +33,35 @@ describe("MultiChoice", () => {
         initItems[1].value,
         initItems[2].value
       ]);
+      itemsEl[1].dispatchEvent(new Event("mousedown"));
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([initItems[2].value]);
+    });
+
+    it("should be triggered when input element triggered change event and prop disabled is true", async () => {
+      let triggeredEvent: any = null;
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[1].value],
+        disabled: true
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      itemsEl[2].dispatchEvent(new Event("mouseover"));
+      itemsEl[2].dispatchEvent(new Event("mousedown"));
+      expect(triggeredEvent).to.equal(null);
+      itemsEl[2].dispatchEvent(new Event("mouseup"));
+      itemsEl[2].dispatchEvent(new Event("mouseleave"));
     });
   });
 });
