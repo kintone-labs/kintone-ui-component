@@ -68,7 +68,6 @@ export class Text extends KucBase {
 
   private _handleInputText(event: InputEvent) {
     event.stopPropagation();
-    console.log(event);
     const targetEl = event.target as HTMLInputElement;
     const detail: CustomEventDetail = {
       value: targetEl.value,
