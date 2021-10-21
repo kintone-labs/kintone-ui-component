@@ -71,7 +71,7 @@ export const generateTimeOptions = (
     if (minutes < 10) minutes = "0" + minutes;
     const timeItem = {
       label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
-      value: `${hours} ":" ${minutes}`
+      value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
     };
     timeOptions.push(timeItem);
   }

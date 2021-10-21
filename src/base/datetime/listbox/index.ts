@@ -49,12 +49,6 @@ export class BaseDateTimeListBox extends KucBase {
       : "";
   }
 
-  public getHighlightDataLabel() {
-    return this._highlightItemEl
-      ? this._highlightItemEl.getAttribute("data-label")
-      : "";
-  }
-
   public highlightSelectedItem() {
     for (let index = 0; index < this._itemsEl.length; index++) {
       const itemEl = this._itemsEl[index];
@@ -194,7 +188,6 @@ export class BaseDateTimeListBox extends KucBase {
         role="option"
         aria-selected="${this.value === item.value}"
         title="${item.label || ""}"
-        data-label="${item.label || ""}"
         id="${this._GUID}-listboxitem-${index}"
         value="${item.value !== undefined ? item.value : ""}"
         @mouseover="${this._handleMouseOverItem}"
