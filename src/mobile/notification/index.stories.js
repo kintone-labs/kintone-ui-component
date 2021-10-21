@@ -7,7 +7,7 @@ storiesOf("mobile/notification", module)
     const root = document.createElement("div");
     const notification = new MobileNotification();
     notification.addEventListener("close", function(event) {
-      console.log("close");
+      console.log(event);
     });
     const button = document.createElement("button");
     button.textContent = "open";

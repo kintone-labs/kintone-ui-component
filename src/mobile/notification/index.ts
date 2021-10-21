@@ -29,7 +29,7 @@ export class MobileNotification extends KucBase {
   private _handleClickCloseButton(event: MouseEvent) {
     this._notificationEl && this._notificationEl.blur();
   }
-  private _handleKeydownNotificationToggle(event: KeyboardEvent) {
+  private _handleKeyDownNotificationToggle(event: KeyboardEvent) {
     if (event.key === "Escape" && this._notificationEl) {
       this._notificationEl.blur();
     }
@@ -89,7 +89,7 @@ export class MobileNotification extends KucBase {
         class="kuc-mobile-notification__notification"
         tabindex="0"
         @blur="${this._handleBlurNotificationToggle}"
-        @keydown="${this._handleKeydownNotificationToggle}"
+        @keydown="${this._handleKeyDownNotificationToggle}"
       >
         <pre
           class="kuc-mobile-notification__notification__title"
