@@ -239,6 +239,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border-collapse: separate;
           border-spacing: 0;
         }
+        :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
+          font-weight: 700;
+        }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button,
         .kuc-base-datetime-calendar-body__table__date--selected

@@ -39,23 +39,6 @@ export class BaseDateTimeCalendar extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-base-datetime-calendar,
-        kuc-base-datetime-calendar *,
-        :lang(en) kuc-base-datetime-calendar,
-        :lang(en) kuc-base-datetime-calendar * {
-          font-family: "HelveticaNeueW02-45Ligh", Arial,
-            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-        }
-        :lang(ja) kuc-base-datetime-calendar,
-        :lang(ja) kuc-base-datetime-calendar * {
-          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
-            sans-serif;
-        }
-        :lang(zh) kuc-base-datetime-calendar,
-        :lang(zh) kuc-base-datetime-calendar * {
-          font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
-            Hei, "Heiti SC", sans-serif;
-        }
         .kuc-base-datetime-calendar__group {
           display: inline-block;
           box-sizing: border-box;
