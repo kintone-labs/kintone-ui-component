@@ -12,6 +12,7 @@ const initItemsWithoutLabel = [
   { value: "orange" },
   { value: "apple" }
 ];
+const initItemsWithoutValue = [{ label: "-----" }];
 
 const replacedItems = [
   { label: "-----", value: "-----" },
@@ -213,6 +214,17 @@ describe("Checkbox", () => {
 
       // TODO:
       // Implement checking if source code does not throw error in _validateItems function
+    });
+    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+      const container = new Checkbox({
+        items: initItemsWithoutValue
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-checkbox__group__select-menu__item"
+      );
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.value).to.equal("");
     });
   });
 });
