@@ -1,5 +1,5 @@
 import { html, svg, property, query } from "lit-element";
-import { KucBase } from "../../base/kuc-base";
+import { dispatchCustomEvent, KucBase } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
@@ -13,6 +13,10 @@ export class MobileNotification extends KucBase {
   @query(".kuc-mobile-notification__notification__title")
   private _notificationTitleEl!: HTMLParagraphElement;
 
+  @query(".kuc-mobile-notification__notification")
+  private _notificationEl!: HTMLDivElement;
+  private _triggeredElement: Element | null = null;
+  private _isNotificationShown = false;
   constructor(props?: MobileNotificationProps) {
     super();
 
@@ -23,6 +27,14 @@ export class MobileNotification extends KucBase {
   }
 
   private _handleClickCloseButton(event: MouseEvent) {
+    this._notificationEl && this._notificationEl.blur();
+  }
+  private _handleKeydownNotificationToggle(event: KeyboardEvent) {
+    if (event.key === "Escape" && this._notificationEl) {
+      this._notificationEl.blur();
+    }
+  }
+  private _handleBlurNotificationToggle(event: Event) {
     this.close();
   }
 
@@ -42,17 +54,30 @@ export class MobileNotification extends KucBase {
   }
 
   open() {
+    this._triggeredElement = document.activeElement;
     this.classList.add("kuc-mobile-notification-fadein");
     this.classList.remove("kuc-mobile-notification-fadeout");
     this._notificationTitleEl.setAttribute("role", "alert");
+    this._notificationEl && this._notificationEl.focus();
+    this._isNotificationShown = true;
   }
 
   close() {
+    if (!this._isNotificationShown) {
+      return;
+    }
     this.classList.add("kuc-mobile-notification-fadeout");
     this.classList.remove("kuc-mobile-notification-fadein");
     this._notificationTitleEl.removeAttribute("role");
+    if (this._triggeredElement instanceof HTMLElement) {
+      this._triggeredElement.focus();
+    }
+    this._dispatchCloseEvent();
+    this._isNotificationShown = false;
   }
-
+  private _dispatchCloseEvent() {
+    dispatchCustomEvent(this, "close");
+  }
   firstUpdated() {
     document.body.appendChild(this);
   }
@@ -60,7 +85,12 @@ export class MobileNotification extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-mobile-notification__notification">
+      <div
+        class="kuc-mobile-notification__notification"
+        tabindex="0"
+        @blur="${this._handleBlurNotificationToggle}"
+        @keydown="${this._handleKeydownNotificationToggle}"
+      >
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
@@ -130,6 +160,7 @@ export class MobileNotification extends KucBase {
           color: #333;
           text-align: center;
           vertical-align: top;
+          outline: none;
         }
 
         .kuc-mobile-notification__notification__title {

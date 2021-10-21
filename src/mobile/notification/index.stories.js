@@ -6,7 +6,9 @@ storiesOf("mobile/notification", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const notification = new MobileNotification();
-
+    notification.addEventListener("close", function(event) {
+      console.log("close");
+    });
     const button = document.createElement("button");
     button.textContent = "open";
     button.addEventListener("click", function() {
