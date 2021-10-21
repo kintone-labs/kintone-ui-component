@@ -1,5 +1,5 @@
-import { html } from "lit-html";
 import "./index.ts";
+import { html } from "lit-html";
 
 export default {
   title: "base/datetime/listbox",
