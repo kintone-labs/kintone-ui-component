@@ -1,12 +1,6 @@
-import { html, PropertyValues } from "lit";
-import { state, property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  CustomEventDetail,
-  generateGUID
-} from "../../kuc-base";
-import { getLocale, padStart } from "../utils";
+import { html } from "lit";
+import { state, property } from "lit/decorators.js";
+import { KucBase } from "../../kuc-base";
 import "./header";
 import "./body";
 import "./footer";
@@ -36,7 +30,6 @@ export class BaseDateTimeCalendar extends KucBase {
           .value="${this.value}"
         ></kuc-base-datetime-calendar-body>
         <kuc-base-datetime-calendar-footer
-          class="kuc-base-datetime-calendar-footer"
           .language="${this.language}"
         ></kuc-base-datetime-calendar-footer>
       </div>

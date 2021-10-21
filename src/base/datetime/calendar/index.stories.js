@@ -16,7 +16,12 @@ export default {
   },
   parameters: {
     actions: {
-      handles: []
+      handles: [
+        "kuc:calendar-body-change-date",
+        "kuc:calendar-body-click-date",
+        "kuc:calendar-footer-click-none",
+        "kuc:calendar-footer-click-today"
+      ]
     }
   }
 };
