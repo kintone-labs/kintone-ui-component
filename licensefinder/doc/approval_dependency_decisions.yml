@@ -1,5 +1,24 @@
 # approval configuration file (for dependency)
 ---
+- - :permit
+  - MIT
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-22 02:38:41.771698300 Z
+- - :permit
+  - NewBsd
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-22 02:39:33.528878300 Z
+- - :approve
+  - dompurify
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-22 02:40:52.153315000 Z
+    
 #- - :approve
 #  - "@kintone-plugins/gantt-task"
 #  - :who: 
