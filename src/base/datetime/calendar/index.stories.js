@@ -92,5 +92,5 @@ const Template = ({ language, value }) => {
 export const base = Template.bind({});
 base.args = {
   language: "en",
-  value: "2021-08-22"
+  value: "2021-09-22"
 };

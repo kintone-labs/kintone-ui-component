@@ -1,19 +1,19 @@
-import { html } from "lit";
-import { state, property } from "lit/decorators.js";
+import { html, PropertyValues } from "lit";
+import { state, property, query } from "lit/decorators.js";
 import { KucBase } from "../../kuc-base";
-import "./header";
-import "./body";
+import { BaseDateTimeCalendarHeader } from "./header";
+import { BaseDateTimeCalendarBody } from "./body";
 import "./footer";
 
 export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
-  @state()
-  private _month = 1;
+  @query("kuc-base-datetime-calendar-header")
+  _headerEl!: BaseDateTimeCalendarHeader;
 
-  @state()
-  private _year = 2021;
+  @query("kuc-base-datetime-calendar-body")
+  _bodyEl!: BaseDateTimeCalendarBody;
 
   render() {
     return html`
@@ -21,23 +21,22 @@ export class BaseDateTimeCalendar extends KucBase {
       <div class="kuc-base-datetime-calendar__group">
         <kuc-base-datetime-calendar-header
           .language="${this.language}"
-          .month="${this._month}"
-          .year="${this._year}"
           @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
-          .month="${this._month}"
-          .year="${this._year}"
           .language="${this.language}"
-          .value="${this.value}"
           @kuc:calendar-body-change-date="${this._handleCalendarBodyChangeDate}"
-          @kuc:calendar-body-click-date="${this._handleCalendarBodyClickDate}"
         ></kuc-base-datetime-calendar-body>
         <kuc-base-datetime-calendar-footer
           .language="${this.language}"
         ></kuc-base-datetime-calendar-footer>
       </div>
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) this._updateValue();
+    super.updated(changedProperties);
   }
 
   private _getStyleTagTemplate() {
@@ -58,21 +57,41 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _handleCalendarHeaderChange(event: CustomEvent) {
-    const values = event.detail.value.split("-");
-    this._year = values[0];
-    this._month = values[1] - 1;
+    const { year, month } = this._separateValue(event.detail.value);
+    this._updateBodyEl(year, month);
   }
 
   private _handleCalendarBodyChangeDate(event: CustomEvent) {
-    const values = event.detail.value.split("-");
-    this._year = values[0];
-    this._month = values[1] - 1;
+    const { year, month } = this._separateValue(event.detail.value);
+    this._updateHeaderEl(year, month);
   }
 
-  private _handleCalendarBodyClickDate(event: CustomEvent) {
-    const values = event.detail.value.split("-");
-    this._year = values[0];
-    this._month = values[1] - 1;
+  private _updateValue() {
+    const dateParts = this.value.split("-");
+    const year = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10);
+    this._updateHeaderEl(year, month);
+    this._updateBodyEl(year, month, this.value);
+  }
+
+  private _updateHeaderEl(year: number, month: number) {
+    this._headerEl.year = year;
+    this._headerEl.month = month;
+  }
+
+  private _updateBodyEl(year: number, month: number, value?: string) {
+    this._bodyEl.year = year;
+    this._bodyEl.month = month;
+    if (value) this._bodyEl.value = value;
+  }
+
+  private _separateValue(value: string) {
+    const dateParts = value.split("-");
+    return {
+      year: parseInt(dateParts[0], 10),
+      month: parseInt(dateParts[1], 10),
+      day: parseInt(dateParts[2], 10)
+    };
   }
 }
 

@@ -141,10 +141,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (isToday)
       return " kuc-base-datetime-calendar-body__table__date__button--today";
 
-    const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
-    if (isOtherMonth)
-      return " kuc-base-datetime-calendar-body__table__date__button--other-month";
-    return "";
+    const isThisMonth = parseInt(dateParts[1], 10) !== this.month;
+    if (isThisMonth) return "";
+
+    return " kuc-base-datetime-calendar-body__table__date__button--other-month";
   }
 
   private _getDateString(date = new Date()) {
