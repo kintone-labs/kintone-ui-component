@@ -118,7 +118,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const nextDate = this._getDateString(date);
     const nextMonth = date.getMonth();
     const nextYear = date.getFullYear();
-    if (nextMonth !== this.month) this.month = nextMonth;
+    if (nextMonth !== this.month) this.month = nextMonth + 1;
     if (nextYear !== this.year) this.year = nextYear;
 
     const detail: CustomEventDetail = {
