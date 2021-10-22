@@ -76,6 +76,7 @@ export class BaseDateTime extends KucBase {
         @focus="${this._handleFocusTime}"
       />
       <kuc-base-datetime-listbox
+        maxHeight="165"
         aria-hidden="${!this._listBoxVisible}"
         class="kuc-base-time__listbox"
         ?hidden="${!this._listBoxVisible}"
