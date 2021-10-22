@@ -10,7 +10,7 @@ import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import "../base/time";
 
-type TimeProps = {
+type TimePickerProps = {
   className?: string;
   id?: string;
   error?: string;
@@ -22,7 +22,7 @@ type TimeProps = {
   requiredIcon?: boolean;
 };
 
-export class Time extends KucBase {
+export class TimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
@@ -41,7 +41,7 @@ export class Time extends KucBase {
 
   private _GUID: string;
 
-  constructor(props?: TimeProps) {
+  constructor(props?: TimePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
@@ -51,22 +51,22 @@ export class Time extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-time__group">
+      <div class="kuc-time-picker__group">
         <label
-          class="kuc-time__group__label"
+          class="kuc-time-picker__group__label"
           for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-time__group__label__text">${this.label}</span>
+          <span class="kuc-time-picker__group__label__text">${this.label}</span>
           <span
-            class="kuc-time__group__label__required-icon"
+            class="kuc-time-picker__group__label__required-icon"
             ?hidden="${!this.requiredIcon}"
           >
             *
           </span>
         </label>
         <kuc-base-time
-          class="kuc-time__group__input"
+          class="kuc-time-picker__group__input"
           .value="${this.value}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
@@ -74,7 +74,7 @@ export class Time extends KucBase {
         >
         </kuc-base-time>
         <div
-          class="kuc-time__group__error"
+          class="kuc-time-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
           ?hidden="${!this.error}"
@@ -83,6 +83,14 @@ export class Time extends KucBase {
         </div>
       </div>
     `;
+  }
+
+  updated() {
+    /**
+     * TODO:
+     * Use base context to set container width equal "label" element
+     * Ref Dropdown component: this._updateContainerWidth();
+     */
   }
 
   private _handleTimeChange(event: CustomEvent) {
@@ -98,35 +106,33 @@ export class Time extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-time,
-        kuc-time *,
-        :lang(en) kuc-time,
-        :lang(en) kuc-time * {
+        kuc-time-picker,
+        kuc-time-picker *,
+        :lang(en) kuc-time-picker,
+        :lang(en) kuc-time-picker * {
           font-family: "HelveticaNeueW02-45Ligh", Arial,
             "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
         }
-        :lang(ja) kuc-time,
-        :lang(ja) kuc-time * {
+        :lang(ja) kuc-time-picker,
+        :lang(ja) kuc-time-picker * {
           font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
             sans-serif;
         }
-        :lang(zh) kuc-time,
-        :lang(zh) kuc-time * {
+        :lang(zh) kuc-time-picker,
+        :lang(zh) kuc-time-picker * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", sans-serif;
         }
-        kuc-time {
+        kuc-time-picker {
           font-size: 14px;
           color: #333333;
-          display: inline-table;
+          display: inline-block;
           vertical-align: top;
-          min-width: 193px;
-          width: 193px;
         }
-        kuc-time[hidden] {
+        kuc-time-picker[hidden] {
           display: none;
         }
-        .kuc-time__group {
+        .kuc-time-picker__group {
           display: flex;
           flex-direction: column;
           border: none;
@@ -134,27 +140,24 @@ export class Time extends KucBase {
           height: auto;
           margin: 0px;
         }
-        .kuc-time__group__label {
-          display: inline-block;
+        .kuc-time-picker__group__label {
           padding: 4px 0px 8px 0px;
           white-space: nowrap;
         }
-        .kuc-time__group__label[hidden] {
+        .kuc-time-picker__group__label[hidden] {
           display: none;
         }
-        .kuc-time__group__label__required-icon {
+        .kuc-time-picker__group__label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-time__group__label__required-icon[hidden] {
+        .kuc-time-picker__group__label__required-icon[hidden] {
           display: none;
         }
-        .kuc-time__group__error {
-          display: flex;
-          width: 85px;
+        .kuc-time-picker__group__error {
           line-height: 1.5;
           padding: 4px 18px;
           box-sizing: border-box;
@@ -164,10 +167,7 @@ export class Time extends KucBase {
           word-break: break-all;
           white-space: normal;
         }
-        .kuc-time__group__error[hidden] {
-          display: none;
-        }
-        .kuc-time__group[hidden] {
+        .kuc-time-picker__group__error[hidden] {
           display: none;
         }
       </style>
@@ -175,6 +175,6 @@ export class Time extends KucBase {
   }
 }
 
-if (!window.customElements.get("kuc-time")) {
-  window.customElements.define("kuc-time", Time);
+if (!window.customElements.get("kuc-time-picker")) {
+  window.customElements.define("kuc-time-picker", TimePicker);
 }
