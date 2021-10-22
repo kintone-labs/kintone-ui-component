@@ -67,9 +67,7 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _updateValue() {
-    const dateParts = this.value.split("-");
-    const year = parseInt(dateParts[0], 10);
-    const month = parseInt(dateParts[1], 10);
+    const { year, month } = this._separateValue(this.value);
     this._updateHeaderEl(year, month);
     this._updateBodyEl(year, month, this.value);
   }
@@ -86,11 +84,19 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _separateValue(value: string) {
+    let date = new Date(this.value);
+    if (isNaN(date.getTime())) {
+      date = new Date();
+      return {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1
+      };
+    }
+
     const dateParts = value.split("-");
     return {
       year: parseInt(dateParts[0], 10),
-      month: parseInt(dateParts[1], 10),
-      day: parseInt(dateParts[2], 10)
+      month: parseInt(dateParts[1], 10)
     };
   }
 }
