@@ -21,9 +21,11 @@ import {
 type TimeItem = { type: string; value: string };
 
 export class BaseDateTime extends KucBase {
+  @property({ type: String }) inputId = "";
+  @property({ type: Boolean }) inputAriaInvalid = "";
+  @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
-  @property({ type: String }) value = "";
 
   @state()
   private _listBoxVisible = false;
@@ -44,6 +46,8 @@ export class BaseDateTime extends KucBase {
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
 
+  private _GUID: string | undefined;
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
       this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
@@ -51,6 +55,9 @@ export class BaseDateTime extends KucBase {
     }
     if (changedProperties.has("value")) {
       this._handleUpdateValueProperty(this.value);
+    }
+    if (changedProperties.has("inputId")) {
+      this._GUID = this.inputId;
     }
     super.update(changedProperties);
   }
@@ -61,6 +68,9 @@ export class BaseDateTime extends KucBase {
       <input
         type="text"
         class="kuc-base-time__input"
+        id="${this._GUID}-label"
+        aria-describedby="${this._GUID}-error"
+        aria-invalid="${this.inputAriaInvalid}"
         .value="${this._inputValue}"
         ?disabled="${this.disabled}"
         @click="${this._handleClickInput}"
