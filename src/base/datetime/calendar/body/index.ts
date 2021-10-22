@@ -116,17 +116,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
     date.setDate(date.getDate() + days);
 
     const nextDate = this._getDateString(date);
-    const nextMonth = date.getMonth();
+    const nextMonth = date.getMonth() + 1;
     const nextYear = date.getFullYear();
-    if (nextMonth !== this.month) this.month = nextMonth + 1;
+
+    if (nextMonth !== this.month) this.month = nextMonth;
     if (nextYear !== this.year) this.year = nextYear;
 
-    const detail: CustomEventDetail = {
-      oldValue: this.value,
-      value: nextDate
-    };
-    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
+    const oldValue = this.value;
     this.value = nextDate;
+
+    const detail: CustomEventDetail = { oldValue: oldValue, value: nextDate };
+    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
   }
 
   private _getSelectedValue() {
