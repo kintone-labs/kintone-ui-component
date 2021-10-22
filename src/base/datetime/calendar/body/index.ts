@@ -239,9 +239,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
           border-collapse: separate;
           border-spacing: 0;
         }
-        :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
-          font-weight: 700;
-        }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button,
         .kuc-base-datetime-calendar-body__table__date--selected
@@ -252,6 +249,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
           font-size: 10px;
           font-weight: 400;
           color: #333333;
+        }
+        :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
+          font-weight: 700;
         }
         .kuc-base-datetime-calendar-body__table__date--selected
           .kuc-base-datetime-calendar-body__table__date__button,

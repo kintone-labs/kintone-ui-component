@@ -65,20 +65,14 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _handleCalendarBodyChangeDate(event: CustomEvent) {
     const values = event.detail.value.split("-");
-    console.log(values);
     this._year = values[0];
     this._month = values[1] - 1;
-    console.log(this._year);
-    console.log(this._month);
   }
 
   private _handleCalendarBodyClickDate(event: CustomEvent) {
     const values = event.detail.value.split("-");
-    console.log(values);
     this._year = values[0];
     this._month = values[1] - 1;
-    console.log(this._year);
-    console.log(this._month);
   }
 }
 

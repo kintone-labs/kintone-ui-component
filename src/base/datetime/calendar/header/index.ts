@@ -205,6 +205,8 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _dispatchCalendarHeaderChangeEvent() {
     const year = this.year;
     const month = this.month;
+    console.log(year);
+    console.log(month);
     const detail: CustomEventDetail = { value: `${year}-${month}` };
     dispatchCustomEvent(this, "kuc:calendar-header-change", detail);
   }
