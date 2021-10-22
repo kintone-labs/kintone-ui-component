@@ -21,6 +21,8 @@ export class BaseDateTimeCalendar extends KucBase {
       <div class="kuc-base-datetime-calendar__group">
         <kuc-base-datetime-calendar-header
           .language="${this.language}"
+          .month="${this._month}"
+          .year="${this._year}"
           @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
@@ -28,6 +30,8 @@ export class BaseDateTimeCalendar extends KucBase {
           .year="${this._year}"
           .language="${this.language}"
           .value="${this.value}"
+          @kuc:calendar-body-change-date="${this._handleCalendarBodyChangeDate}"
+          @kuc:calendar-body-click-date="${this._handleCalendarBodyClickDate}"
         ></kuc-base-datetime-calendar-body>
         <kuc-base-datetime-calendar-footer
           .language="${this.language}"
@@ -57,6 +61,24 @@ export class BaseDateTimeCalendar extends KucBase {
     const values = event.detail.value.split("-");
     this._year = values[0];
     this._month = values[1] - 1;
+  }
+
+  private _handleCalendarBodyChangeDate(event: CustomEvent) {
+    const values = event.detail.value.split("-");
+    console.log(values);
+    this._year = values[0];
+    this._month = values[1] - 1;
+    console.log(this._year);
+    console.log(this._month);
+  }
+
+  private _handleCalendarBodyClickDate(event: CustomEvent) {
+    const values = event.detail.value.split("-");
+    console.log(values);
+    this._year = values[0];
+    this._month = values[1] - 1;
+    console.log(this._year);
+    console.log(this._month);
   }
 }
 

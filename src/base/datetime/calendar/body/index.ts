@@ -299,6 +299,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
           .kuc-base-datetime-calendar-body__table__date__button--today {
           color: #ffffff;
           background: #888888;
+          border: none;
         }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button--today:hover {
