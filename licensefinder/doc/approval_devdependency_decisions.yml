@@ -34,61 +34,61 @@
   - "bindings"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [1.5.0]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "component-bind"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [1.0.0]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "component-inherit"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [0.0.3]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "eslint-plugin-kuc-v1"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [1.0.0]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "file-uri-to-path"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [1.0.0]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "fsevents"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [1.2.13,2.3.2]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "indexof"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [0.0.1]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "intersection-observer"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [0.7.0]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "json-schema"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [0.2.3]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "nan"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [2.14.2]
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
   - "sinon"
