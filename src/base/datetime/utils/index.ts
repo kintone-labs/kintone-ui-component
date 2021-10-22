@@ -6,9 +6,9 @@ export type WeekDate = {
   attr: string;
 };
 
-export const maxMinutes = 60;
-export const maxHour24 = 24;
-export const maxHour12 = 12;
+export const MaxMinutes = 60;
+export const MaxHour24 = 24;
+export const MaxHour12 = 12;
 
 export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
@@ -56,26 +56,31 @@ export const generateTimeOptions = (
   timeStep: number = 30
 ) => {
   const timeOptions = [];
-  let hours, minutes, ampm;
-  const limitLoop = (maxMinutes / timeStep) * maxHour24;
+  const limitLoop = (MaxMinutes / timeStep) * MaxHour24;
   for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
-    hours = Math.floor(i / maxMinutes);
-    minutes = i % maxMinutes;
-    ampm =
-      hours % maxHour24 < maxHour12
-        ? en.TIME_SELECT_SUFFIX.am
-        : en.TIME_SELECT_SUFFIX.pm;
-    hours = isHour12 ? hours % maxHour12 : hours % maxHour24;
-    if (hours === 0 && isHour12) hours = maxHour12;
-    if (hours < 10) hours = "0" + hours;
-    if (minutes < 10) minutes = "0" + minutes;
-    const timeItem = {
-      label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
-      value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
-    };
-    timeOptions.push(timeItem);
+    const timeOption = generateTimeOption(i, isHour12);
+    timeOptions.push(timeOption);
   }
   return timeOptions;
+};
+
+const generateTimeOption = (i: number, isHour12: boolean) => {
+  let hours, minutes;
+  hours = Math.floor(i / MaxMinutes);
+  minutes = i % MaxMinutes;
+  const ampm =
+    hours % MaxHour24 < MaxHour12
+      ? en.TIME_SELECT_SUFFIX.am
+      : en.TIME_SELECT_SUFFIX.pm;
+  hours = isHour12 ? hours % MaxHour12 : hours % MaxHour24;
+  if (hours === 0 && isHour12) hours = MaxHour12;
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  const timeOption = {
+    label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
+    value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
+  };
+  return timeOption;
 };
 
 export const formatTimeValue = (hours: string, minutes: string) => {
@@ -88,13 +93,13 @@ export const formatTimeValue = (hours: string, minutes: string) => {
 export const convertTimeValueToHour12 = (time: Date, hour12: boolean) => {
   const hours = time.getHours();
   const minutes = time.getMinutes();
-  let newHours = padStart(hours % maxHour24);
+  let newHours = padStart(hours % MaxHour24);
   let suffix: string = "";
   let newTime: string = newHours + ":" + padStart(minutes);
   if (hour12) {
-    newHours = padStart(hours % maxHour12);
+    newHours = padStart(hours % MaxHour12);
     suffix =
-      hours >= maxHour12 ? en.TIME_SELECT_SUFFIX.pm : en.TIME_SELECT_SUFFIX.am;
+      hours >= MaxHour12 ? en.TIME_SELECT_SUFFIX.pm : en.TIME_SELECT_SUFFIX.am;
     newTime = newHours + ":" + padStart(minutes) + " " + suffix;
   }
   return newTime;
