@@ -59,7 +59,6 @@ export class BaseDateTimeListBox extends KucBase {
       }
     }
   }
-
   private _removeHighlight() {
     if (this._highlightItemEl) {
       this._highlightItemEl.classList.remove(
@@ -67,7 +66,6 @@ export class BaseDateTimeListBox extends KucBase {
       );
     }
   }
-
   public highlightFirstItem() {
     this._removeHighlight();
     this._firstItemEl.classList.add(

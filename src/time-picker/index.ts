@@ -8,7 +8,7 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
-import "../base/time";
+import "../base/datetime/time";
 
 type TimePickerProps = {
   className?: string;

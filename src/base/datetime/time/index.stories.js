@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import "./index.ts";
 
 export default {
-  title: "base/time",
+  title: "base/datetime/time",
   argTypes: {},
   parameters: {
     actions: {
