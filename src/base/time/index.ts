@@ -397,6 +397,12 @@ export class BaseDateTime extends KucBase {
           border: 1px solid #3498db;
           outline: none;
         }
+        .kuc-base-time__input:disabled {
+          color: #888888;
+          background-color: #d4d7d7;
+          box-shadow: none;
+          cursor: not-allowed;
+        }
       </style>
     `;
   }
