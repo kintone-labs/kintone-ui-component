@@ -11,9 +11,9 @@ import {
   generateTimeOptions,
   formatTimeValue,
   convertTimeValueToHour12,
-  MaxMinutes,
-  MaxHour12,
-  MaxHour24,
+  MAX_MINUTES,
+  MAX_HOURS12,
+  MAX_HOURS24,
   getLocale
 } from "../utils";
 
@@ -54,15 +54,6 @@ export class BaseDateTime extends KucBase {
     super.update(changedProperties);
   }
 
-  private _handleUpdateValueProperty() {
-    const { hours, minutes } = this._separateTimeValue(this.value);
-    const time = formatTimeValue(hours, minutes);
-    const isValidTime = time instanceof Date && !isNaN(time.getTime());
-    this._inputValue = isValidTime
-      ? convertTimeValueToHour12(time, this.hour12)
-      : "";
-  }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -71,10 +62,10 @@ export class BaseDateTime extends KucBase {
         class="kuc-base-time__input"
         value="${this._inputValue}"
         ?disabled="${this.disabled}"
-        @click="${this._handleClickTime}"
-        @blur="${this._handleBlurTime}"
-        @keydown="${this._handleKeyDownTime}"
-        @focus="${this._handleFocusTime}"
+        @click="${this._handleClickInput}"
+        @blur="${this._handleBlurInput}"
+        @keydown="${this._handleKeyDownInput}"
+        @focus="${this._handleFocusInput}"
       />
       <kuc-base-datetime-listbox
         aria-hidden="${!this._listBoxVisible}"
@@ -87,15 +78,98 @@ export class BaseDateTime extends KucBase {
     `;
   }
 
-  private _handleBlurTime() {
+  private _handleUpdateValueProperty() {
+    const { hours, minutes } = this._separateInputValue(this.value);
+    const time = formatTimeValue(hours, minutes);
+    const isValidTime = time instanceof Date && !isNaN(time.getTime());
+    this._inputValue = isValidTime
+      ? convertTimeValueToHour12(time, this.hour12)
+      : "";
+  }
+
+  private _handleFocusInput() {
+    this._inputEl.setSelectionRange(
+      this._selectionRange.hours.start,
+      this._selectionRange.hours.end
+    );
+  }
+
+  private _handleBlurInput() {
     this._closeListBox();
     this._inputEl.setSelectionRange(0, 0);
   }
 
-  private _handleClickTime() {
+  private _handleClickInput() {
     this._openListBox();
     const selectionRange = this._getSelectionRange();
     this._inputEl.setSelectionRange(selectionRange.start, selectionRange.end);
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    this._closeListBox();
+
+    if (this._handleTabKey(event)) return;
+
+    if (this._handleNotSupportedKey(event)) return;
+
+    this._handleSupportedKey(event);
+  }
+
+  private _handleTabKey(event: KeyboardEvent) {
+    const currentSelection = this._getCurrentSelection();
+
+    if (event.key !== "Tab") return false;
+    if (event.shiftKey) {
+      if (currentSelection === "hours") return true;
+      event.preventDefault();
+      this._actionSelectPreviousRange(currentSelection);
+      return true;
+    }
+
+    const isLastSelectionRange =
+      (this.hour12 && currentSelection === "suffix") ||
+      (!this.hour12 && currentSelection === "minutes");
+    if (isLastSelectionRange) {
+      return true;
+    }
+
+    event.preventDefault();
+    this._actionSelectNextRange(currentSelection);
+    return true;
+  }
+
+  private _handleNotSupportedKey(event: KeyboardEvent) {
+    event.preventDefault();
+    return ["Meta", "Shift", "Alt", "Backspace", "CapsLock", "Escape"].includes(
+      event.key
+    );
+  }
+
+  private _handleSupportedKey(event: KeyboardEvent) {
+    const currentSelection = this._getCurrentSelection();
+    const keyCode = event.key;
+    let newValue;
+    switch (keyCode) {
+      case "Enter":
+      case "ArrowRight":
+        this._actionSelectNextRange(currentSelection);
+        break;
+      case "ArrowLeft":
+        this._actionSelectPreviousRange(currentSelection);
+        break;
+      case "ArrowUp":
+        newValue = this._getNewValueByArrowUpDown(currentSelection, 1);
+        this._actionUpdateInputValue(newValue);
+        break;
+      case "ArrowDown":
+        newValue = this._getNewValueByArrowUpDown(currentSelection, -1);
+        this._actionUpdateInputValue(newValue);
+        break;
+      default:
+        newValue = this._getNewValueByDefaultKey(keyCode);
+        this._actionUpdateInputValue(newValue);
+        break;
+    }
   }
 
   private _handleChangeListBox(event: CustomEvent) {
@@ -107,82 +181,7 @@ export class BaseDateTime extends KucBase {
     this._actionUpdateInputValue(listboxVal);
   }
 
-  private _handleDispatchEventTimeChange(value: string, oldValue: string) {
-    const detail: CustomEventDetail = {
-      value: value,
-      oldValue: oldValue
-    };
-    dispatchCustomEvent(this, "kuc:base-time-change", detail);
-  }
-
-  private _handleFocusTime() {
-    this._inputEl.setSelectionRange(
-      this._selectionRange.hours.start,
-      this._selectionRange.hours.end
-    );
-  }
-
-  private _handleKeyDownTime(event: KeyboardEvent) {
-    const keyCode = event.key;
-    if (keyCode === "ArrowLeft" || (event.shiftKey && keyCode === "Tab")) {
-      this._handleSelectPreviousRange(event);
-      return;
-    }
-    const isNotSupport = this._validateNotSupportKeyCode(event);
-    if (isNotSupport) return;
-    this._handleSupportKeyCode(event);
-  }
-
-  private _validateNotSupportKeyCode(event: KeyboardEvent) {
-    const listKeyNotSupport = [
-      "Meta",
-      "Shift",
-      "Alt",
-      "Backspace",
-      "CapsLock",
-      "Escape"
-    ];
-    const keyCode = event.key;
-    if (!listKeyNotSupport.includes(keyCode)) return false;
-    event.preventDefault();
-    return true;
-  }
-
-  private _handleSupportKeyCode(event: KeyboardEvent) {
-    const keyCode = event.key;
-    if (keyCode === "Tab" || keyCode === "Enter" || keyCode === "ArrowRight") {
-      this._handleSelectNextRange(event);
-      return;
-    }
-    const newValue = this._getNewInputValue(event);
-    this._actionUpdateInputValue(newValue);
-  }
-
-  private _handleSelectNextRange(event: KeyboardEvent) {
-    this._closeListBox();
-    const currentSelection = this._getCurrentSelection();
-    const isLastSelectionRange =
-      (this.hour12 && currentSelection === "suffix") ||
-      (!this.hour12 && currentSelection === "minutes");
-    if (event.key === "Tab" && isLastSelectionRange) {
-      return;
-    }
-    this._actionSelectNextRange(event);
-  }
-
-  private _handleSelectPreviousRange(event: KeyboardEvent) {
-    this._closeListBox();
-    const currentSelection = this._getCurrentSelection();
-    const isShiftTabKey = event.key === "Tab" && event.shiftKey;
-    if (isShiftTabKey && currentSelection === "hours") {
-      return;
-    }
-    this._actionSelectPreviousRange(event);
-  }
-
-  private _actionSelectNextRange(event: KeyboardEvent) {
-    event.preventDefault();
-    const currentSelection = this._getCurrentSelection();
+  private _actionSelectNextRange(currentSelection: string) {
     if (currentSelection === "hours") {
       this._inputEl.setSelectionRange(
         this._selectionRange.minutes.start,
@@ -198,9 +197,7 @@ export class BaseDateTime extends KucBase {
     }
   }
 
-  private _actionSelectPreviousRange(event: KeyboardEvent) {
-    event.preventDefault();
-    const currentSelection = this._getCurrentSelection();
+  private _actionSelectPreviousRange(currentSelection: string) {
     if (currentSelection === "suffix") {
       this._inputEl.setSelectionRange(
         this._selectionRange.minutes.start,
@@ -217,36 +214,31 @@ export class BaseDateTime extends KucBase {
   }
 
   private _actionUpdateInputValue(newValue: string) {
+    const selectionRange = this._getSelectionRange();
     const oldValue = this._inputValue;
     if (oldValue === newValue) return;
-    this._handleDispatchEventTimeChange(newValue, oldValue);
-    const selectionRange = this._getSelectionRange();
+
     this._inputValue = newValue;
     this._inputEl.value = newValue;
     this._inputEl.setSelectionRange(selectionRange.start, selectionRange.end);
+
+    this._dispatchEventTimeChange(newValue, oldValue);
   }
 
-  private _getNewInputValue(event: KeyboardEvent) {
-    event.preventDefault();
-    const key = event.key;
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      return this._getNewValueByArrowUpDown(key);
-    }
-    return this._getNewValueByTyping(key);
-  }
-
-  private _getNewValueByArrowUpDown(key: string) {
-    const currentSelection = this._getCurrentSelection();
+  private _getNewValueByArrowUpDown(
+    currentSelection: string,
+    changeStep: number
+  ) {
     if (currentSelection === "hours") {
-      return this._getNewValueByChangeHours(key);
+      return this._getNewValueByChangeHours(changeStep);
     }
     if (currentSelection === "minutes") {
-      return this._getNewValueByChangeMinutes(key);
+      return this._getNewValueByChangeMinutes(changeStep);
     }
     return this._getNewValueByChangeSuffix();
   }
 
-  private _getNewValueByTyping(key: string) {
+  private _getNewValueByDefaultKey(key: string) {
     const isNumber = /^[0-9]$/i.test(key);
     const currentSelection = this._getCurrentSelection();
     if (isNumber) {
@@ -260,61 +252,56 @@ export class BaseDateTime extends KucBase {
 
   private _getNewValueIsNumber(key: string) {
     const currentSelection = this._getCurrentSelection();
-    const { hours, minutes } = this._separateTimeValue();
+    const { hours, minutes } = this._separateInputValue();
     if (currentSelection === "minutes") {
       const previousMinutes = this._getPreviousMinutes(minutes);
       const newMinutes = padStart(previousMinutes + key);
-      return this._groupingNewTime({ type: "minutes", value: newMinutes });
+      return this._formatInputValue({ type: "minutes", value: newMinutes });
     }
     if (currentSelection === "hours") {
       const previousHours = this._getPreviousHours(hours, key);
       const newHours = padStart(parseInt(previousHours, 10) + key);
-      return this._groupingNewTime({ type: "hours", value: newHours });
+      return this._formatInputValue({ type: "hours", value: newHours });
     }
     return this._inputValue;
   }
 
-  private _getNewValueByChangeHours(key: string) {
-    const { hours } = this._separateTimeValue();
+  private _getNewValueByChangeHours(changeStep: number) {
+    const { hours } = this._separateInputValue();
     const currentHour = parseInt(hours, 10);
-    const hoursChange = key === "ArrowDown" ? -1 : 1;
-    let newHours = currentHour + hoursChange;
+    let newHours = currentHour + changeStep;
     if (this.hour12) {
-      newHours %= MaxHour12;
-      newHours = newHours < 0 ? MaxHour12 - 1 : newHours;
+      newHours %= MAX_HOURS12;
+      newHours = newHours < 0 ? MAX_HOURS12 - 1 : newHours;
     } else {
-      newHours %= MaxHour24;
-      newHours = newHours < 0 ? MaxHour24 - 1 : newHours;
+      newHours %= MAX_HOURS24;
+      newHours = newHours < 0 ? MAX_HOURS24 - 1 : newHours;
     }
-    return this._groupingNewTime({
+    return this._formatInputValue({
       type: "hours",
       value: padStart(newHours)
     });
   }
 
-  private _getNewValueByChangeMinutes(key: string) {
-    const { minutes } = this._separateTimeValue();
-    const minutesChange = key === "ArrowDown" ? -1 : 1;
+  private _getNewValueByChangeMinutes(changeStep: number) {
+    const { minutes } = this._separateInputValue();
     const currentMinute = parseInt(minutes, 10);
-    let newMinutes =
-      currentMinute === 0 ? MaxMinutes - 1 : currentMinute + minutesChange;
-    if (minutesChange > 0) {
-      newMinutes =
-        currentMinute === MaxMinutes - 1 ? 0 : currentMinute + minutesChange;
-    }
-    return this._groupingNewTime({
+    let newMinutes = currentMinute + changeStep;
+    newMinutes %= MAX_MINUTES;
+    newMinutes = newMinutes < 0 ? MAX_MINUTES - 1 : newMinutes;
+    return this._formatInputValue({
       type: "minutes",
       value: padStart(newMinutes)
     });
   }
 
   private _getNewValueByChangeSuffix() {
-    const { suffix } = this._separateTimeValue();
+    const { suffix } = this._separateInputValue();
     const newSuffix =
       suffix === this._locale.TIME_SELECT_SUFFIX.am
         ? this._locale.TIME_SELECT_SUFFIX.pm
         : this._locale.TIME_SELECT_SUFFIX.am;
-    return this._groupingNewTime({
+    return this._formatInputValue({
       type: "suffix",
       value: newSuffix
     });
@@ -333,28 +320,10 @@ export class BaseDateTime extends KucBase {
     previousHours = parseInt(hours, 10) > 10 ? ("" + hours)[1] : "" + hours;
     const newHours = parseInt(previousHours + key, 10);
     const isMaxHours =
-      (this.hour12 && newHours >= MaxHour12) ||
-      (!this.hour12 && newHours >= MaxHour24);
+      (this.hour12 && newHours >= MAX_HOURS12) ||
+      (!this.hour12 && newHours >= MAX_HOURS24);
     previousHours = isMaxHours ? "0" : previousHours;
     return previousHours;
-  }
-
-  private _groupingNewTime(itemChange: TimeItem) {
-    let { hours, minutes, suffix } = this._separateTimeValue();
-    hours = itemChange.type === "hours" ? itemChange.value : hours;
-    minutes = itemChange.type === "minutes" ? itemChange.value : minutes;
-    suffix = itemChange.type === "suffix" ? itemChange.value : suffix;
-    return hours + ":" + minutes + (suffix ? " " + suffix : "");
-  }
-
-  private _separateTimeValue(time: string = this._inputValue) {
-    const indexColon = time.indexOf(":");
-    const indexSpace = time.indexOf(" ");
-    const hours = time.substring(0, indexColon);
-    const minutes = time.substr(indexColon + 1, this._timeLength);
-    const suffix =
-      indexSpace !== -1 ? time.substr(indexSpace + 1, this._timeLength) : "";
-    return { hours, minutes, suffix, indexColon };
   }
 
   private _getCurrentSelection() {
@@ -378,6 +347,24 @@ export class BaseDateTime extends KucBase {
     return this._selectionRange.suffix;
   }
 
+  private _formatInputValue(itemChange: TimeItem) {
+    let { hours, minutes, suffix } = this._separateInputValue();
+    hours = itemChange.type === "hours" ? itemChange.value : hours;
+    minutes = itemChange.type === "minutes" ? itemChange.value : minutes;
+    suffix = itemChange.type === "suffix" ? itemChange.value : suffix;
+    return hours + ":" + minutes + (suffix ? " " + suffix : "");
+  }
+
+  private _separateInputValue(time: string = this._inputValue) {
+    const indexColon = time.indexOf(":");
+    const indexSpace = time.indexOf(" ");
+    const hours = time.substring(0, indexColon);
+    const minutes = time.substr(indexColon + 1, this._timeLength);
+    const suffix =
+      indexSpace !== -1 ? time.substr(indexSpace + 1, this._timeLength) : "";
+    return { hours, minutes, suffix, indexColon };
+  }
+
   private _openListBox() {
     this._inputEl.focus();
     this._listBoxVisible = true;
@@ -385,6 +372,14 @@ export class BaseDateTime extends KucBase {
 
   private _closeListBox() {
     this._listBoxVisible = false;
+  }
+
+  private _dispatchEventTimeChange(value: string, oldValue: string) {
+    const detail: CustomEventDetail = {
+      value: value,
+      oldValue: oldValue
+    };
+    dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 
   private _getStyleTagTemplate() {

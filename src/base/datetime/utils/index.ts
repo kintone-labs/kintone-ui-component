@@ -6,9 +6,9 @@ export type WeekDate = {
   attr: string;
 };
 
-export const MaxMinutes = 60;
-export const MaxHour24 = 24;
-export const MaxHour12 = 12;
+export const MAX_MINUTES = 60;
+export const MAX_HOURS24 = 24;
+export const MAX_HOURS12 = 12;
 
 export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
@@ -56,7 +56,7 @@ export const generateTimeOptions = (
   timeStep: number = 30
 ) => {
   const timeOptions = [];
-  const limitLoop = (MaxMinutes / timeStep) * MaxHour24;
+  const limitLoop = (MAX_MINUTES / timeStep) * MAX_HOURS24;
   for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
     const timeOption = generateTimeOption(i, isHour12);
     timeOptions.push(timeOption);
@@ -66,14 +66,14 @@ export const generateTimeOptions = (
 
 const generateTimeOption = (i: number, isHour12: boolean) => {
   let hours, minutes;
-  hours = Math.floor(i / MaxMinutes);
-  minutes = i % MaxMinutes;
+  hours = Math.floor(i / MAX_MINUTES);
+  minutes = i % MAX_MINUTES;
   const ampm =
-    hours % MaxHour24 < MaxHour12
+    hours % MAX_HOURS24 < MAX_HOURS12
       ? en.TIME_SELECT_SUFFIX.am
       : en.TIME_SELECT_SUFFIX.pm;
-  hours = isHour12 ? hours % MaxHour12 : hours % MaxHour24;
-  if (hours === 0 && isHour12) hours = MaxHour12;
+  hours = isHour12 ? hours % MAX_HOURS12 : hours % MAX_HOURS24;
+  if (hours === 0 && isHour12) hours = MAX_HOURS12;
   if (hours < 10) hours = "0" + hours;
   if (minutes < 10) minutes = "0" + minutes;
   const timeOption = {
@@ -93,13 +93,15 @@ export const formatTimeValue = (hours: string, minutes: string) => {
 export const convertTimeValueToHour12 = (time: Date, hour12: boolean) => {
   const hours = time.getHours();
   const minutes = time.getMinutes();
-  let newHours = padStart(hours % MaxHour24);
+  let newHours = padStart(hours % MAX_HOURS24);
   let suffix: string = "";
   let newTime: string = newHours + ":" + padStart(minutes);
   if (hour12) {
-    newHours = padStart(hours % MaxHour12);
+    newHours = padStart(hours % MAX_HOURS12);
     suffix =
-      hours >= MaxHour12 ? en.TIME_SELECT_SUFFIX.pm : en.TIME_SELECT_SUFFIX.am;
+      hours >= MAX_HOURS12
+        ? en.TIME_SELECT_SUFFIX.pm
+        : en.TIME_SELECT_SUFFIX.am;
     newTime = newHours + ":" + padStart(minutes) + " " + suffix;
   }
   return newTime;
