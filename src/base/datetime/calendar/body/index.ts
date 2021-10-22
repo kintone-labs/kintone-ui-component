@@ -141,7 +141,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (isToday)
       return " kuc-base-datetime-calendar-body__table__date__button--today";
 
-    const isThisMonth = parseInt(dateParts[1], 10) !== this.month;
+    const isThisMonth = parseInt(dateParts[1], 10) === this.month;
     if (isThisMonth) return "";
 
     return " kuc-base-datetime-calendar-body__table__date__button--other-month";
@@ -173,7 +173,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateItemsTemplate() {
-    const displayingDates = getDisplayingDates(this.year, this.month);
+    const displayingDates = getDisplayingDates(this.year, this.month - 1);
     const today = this._getDateString();
     return html`
       <tbody>
@@ -235,9 +235,16 @@ export class BaseDateTimeCalendarBody extends KucBase {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", sans-serif;
         }
-        .kuc-base-datetime-calendar-body__table {
+        .kuc-base-datetime-calendar-body__table,
+        .kuc-base-datetime-calendar-body__table tr {
           border-collapse: separate;
           border-spacing: 0;
+        }
+        .kuc-base-datetime-calendar-body__table__date,
+        .kuc-base-datetime-calendar-body__table__date--selected {
+          border-spacing: 1px;
+          padding: 0px;
+          border: 1px solid #ffffff;
         }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button,
@@ -285,8 +292,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         }
         .kuc-base-datetime-calendar-body__table__date--selected
           .kuc-base-datetime-calendar-body__table__date__button {
-          width: 34px;
-          height: 29px;
           outline: none;
         }
         .kuc-base-datetime-calendar-body__table__date
