@@ -13,7 +13,7 @@ import {
 } from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property({ type: Number }) month = 0;
+  @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";

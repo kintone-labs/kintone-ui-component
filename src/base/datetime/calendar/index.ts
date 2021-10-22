@@ -10,7 +10,7 @@ export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String, reflect: true }) value = "";
 
   @state()
-  private _month = 0;
+  private _month = 1;
 
   @state()
   private _year = 2021;
