@@ -1,7 +1,7 @@
 # approval configuration file (for dependency)
 ---
 - - :approve
-  - "@kintone/kintone-ui-component"
+  - "kintone-ui-component"
   - :who: 
     :why: In npm, a check of the License Finder will include the product itself.
     :versions: []
