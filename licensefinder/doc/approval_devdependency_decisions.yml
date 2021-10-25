@@ -1,0 +1,32 @@
+# approval configuration file (for devdependency)
+---
+- - :permit
+  - CC-BY-3.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 02:15:35.098597000 Z
+- - :permit
+  - CC0-1.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 02:15:41.098597000 Z
+- - :permit
+  - CC-BY-4.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:41.098597000 Z
+- - :permit
+  - ODC-By-1.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2021-10-11 05:23:25.098597000 Z
+- - :approve
+  - fsevents
+  - :who: 
+    :why: Because of the MIT License
+    :versions: [2.3.2]
+    :when: 2021-10-11 05:23:25.098597000 Z
