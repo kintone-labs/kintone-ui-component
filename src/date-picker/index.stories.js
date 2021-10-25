@@ -1,34 +1,42 @@
-import { storiesOf } from "@storybook/web-components";
-import { DatePicker } from "./index.ts";
-storiesOf("desktop/date-picker", module).add("Base", () => {
-  const root = document.createElement("div");
-  const date = new DatePicker({
-    value: "10/20/2021",
-    requiredIcon: true,
-    error: "error",
-    label: "DATE",
-    language: "en"
-  });
-  root.appendChild(date);
-  return root;
-});
-storiesOf("desktop/date-picker", module).add("Under", () => {
-  const root = document.createElement("div");
-  const date = new DatePicker({
-    requiredIcon: true,
-    error: "error",
-    label: "DATE",
-    language: "auto"
-  });
-  date.addEventListener("change", function(event){
+import "./index.ts";
+import { html } from "lit-html";
+
+export default {
+  title: "desktop/date picker",
+  argTypes: {},
+  parameters: {
+    actions: {
+      handles: ["change"]
+    }
+  }
+};
+const Template = args => {
+  const handleDateChange = event => {
     console.log(event);
-  })
-  const div = document.createElement("div");
-  div.style.height = "400px";
-  const divFooter = document.createElement("div");
-  divFooter.style.height = "300px";
-  root.appendChild(div);
-  root.appendChild(date);
-  root.appendChild(divFooter);
-  return root;
-});
+  };
+  return html`
+    <kuc-date-picker
+      .disabled=${args.disabled}
+      .language=${args.language}
+      .value=${args.value}
+      .id=${args.id}
+      .label=${args.label}
+      .requiredIcon=${args.requiredIcon}
+      .visivle=${args.visible}
+      .className=${args.className}
+      .error=${args.error}
+      @change="${handleDateChange}"
+    ></kuc-date-picker>
+  `;
+};
+export const Base = Template.bind({});
+Base.args = {
+  className: "date-picker-class",
+  error: "date picker error",
+  id: "date-picker-id",
+  label: "Date Picker Label",
+  value: "2021-10-20",
+  requiredIcron: true,
+  visible: true
+}
+

@@ -22,31 +22,40 @@ export default {
       control: {
         type: "text"
       }
+    },
+    inputId: {
+      name: "inputId",
+      control: {
+        type: "text"
+      }
     }
   },
   parameters: {
-      actions: {
-          handles: ["kuc:base-date-change"]
-      }
+    actions: {
+      handles: ["kuc:base-date-change"]
+    }
   }
 };
 
-const Template = ({ disabled, language, value }) =>{
-  const handleDateChange = (event)=>{
+const Template = ({ disabled, language, value, inputId }) => {
+  const handleDateChange = event => {
     console.log(event);
-  }
+  };
   return html`
-  <kuc-base-date2
-    .disabled=${disabled}
-    .language=${language}
-    .value=${value}
-    @kuc:base-date-change="${handleDateChange}"
-  ></kuc-base-date2>
-`;
-}
-  
+    <kuc-base-date
+      .disabled=${disabled}
+      .language=${language}
+      .value=${value}
+      .inputId=${inputId}
+      @kuc:base-date-change="${handleDateChange}"
+    ></kuc-base-date>
+  `;
+};
+
 export const base = Template.bind({});
 base.args = {
-    disabled: false,
-    language: "en"
-}
+  disabled: false,
+  language: "en",
+  value: "2021-10-20",
+  inputId: "e7ef328d-2841-42e5-aca6"
+};

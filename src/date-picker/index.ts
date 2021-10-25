@@ -20,13 +20,17 @@ type DatePickerProps = {
   visible?: boolean;
   language?: "ja" | "en" | "zh" | "auto";
 };
-
+function getFormatDate(date: Date) {
+  return `${date.getFullYear()}-${
+    date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
+  }-${date.getDate() < 9 ? "0" + date.getDate() : date.getDate()}`;
+}
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) value = getFormatDate(new Date());
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
@@ -40,13 +44,16 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
+  private _locale = this._getLocale("en");
+
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
-  private _locale = this._getLocale("en");
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = this._getLocale(this._getLanguage());
@@ -66,6 +73,7 @@ export class DatePicker extends KucBase {
         return { INVALID_FORMAT: "Format is not valid." };
     }
   }
+
   _getLanguage() {
     switch (this.language) {
       case "auto": {
@@ -86,7 +94,8 @@ export class DatePicker extends KucBase {
         return "en";
     }
   }
-  _handleChangeBaseDateToggle(event: CustomEvent) {
+
+  _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
     const newValue = event.detail.value;
@@ -96,10 +105,12 @@ export class DatePicker extends KucBase {
     this._disptchChangeEvent(newValue);
     this.value = newValue;
   }
+
   _validateFormat(date: string) {
     // To do: validate date format
     return false;
   }
+
   _disptchChangeEvent(newValue: string) {
     const detail: CustomEventDetail = { value: "", oldValue: this.value };
     detail.value = newValue;
@@ -123,11 +134,14 @@ export class DatePicker extends KucBase {
             >*</span
           >
         </label>
-        <kuc-base-date 
-        .language="${this._getLanguage()}"
-        .value="${this.value}"
-        .disabled="${this.disabled}"
-        @kuc:base-date-change="${this._handleChangeBaseDateToggle}">
+        <kuc-base-date
+          .language="${this._getLanguage()}"
+          .value="${this.value}"
+          .inputId="${this._GUID}"
+          .inputAriaInvalid="${this.error !== ""}"
+          .disabled="${this.disabled}"
+          @kuc:base-date-change="${this._handleDateChange}"
+        >
         </kuc-base-date>
         <div
           class="kuc-date-picker__group__error"
@@ -140,6 +154,7 @@ export class DatePicker extends KucBase {
       </div>
     `;
   }
+
   _getStyleTagTemplate() {
     return html`
       <style>
@@ -196,7 +211,6 @@ export class DatePicker extends KucBase {
         .kuc-date-picker__group__label__required-icon[hidden] {
           display: none;
         }
-        
 
         .kuc-date-picker__group__error {
           line-height: 1.5;
@@ -208,7 +222,6 @@ export class DatePicker extends KucBase {
           word-break: break-all;
           white-space: normal;
         }
-
       </style>
     `;
   }
