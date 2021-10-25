@@ -1,7 +1,7 @@
 # approval configuration file (for dependency)
 ---
 - - :approve
-  - "@kintone-plugins/gantt-task"
+  - "kintone-ui-component"
   - :who: 
     :why: In npm, a check of the License Finder will include the product itself.
     :versions: []
@@ -23,6 +23,6 @@
   - "dompurify"
   - :who: 
     :why: 
-    :versions: []
+    :versions: [2.3.3]
     :when: 2021-10-11 05:33:24.889757000 Z
     
