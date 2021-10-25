@@ -38,5 +38,4 @@ Base.args = {
   value: "2021-10-20",
   requiredIcron: true,
   visible: true
-}
-
+};
