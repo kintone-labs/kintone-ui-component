@@ -9,21 +9,23 @@ export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
-  @query("kuc-base-datetime-calendar-header")
-  _headerEl!: BaseDateTimeCalendarHeader;
-
-  @query("kuc-base-datetime-calendar-body")
-  _bodyEl!: BaseDateTimeCalendarBody;
+  @state() _month = 1;
+  @state() _Year = 2021;
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-base-datetime-calendar__group">
         <kuc-base-datetime-calendar-header
+          .year="${this._Year}"
+          .month="${this._month}"
           .language="${this.language}"
           @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
+          .year="${this._Year}"
+          .month="${this._month}"
+          .value="${this.value}"
           .language="${this.language}"
           @kuc:calendar-body-change-date="${this._handleCalendarBodyChangeDate}"
         ></kuc-base-datetime-calendar-body>
@@ -58,29 +60,22 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _handleCalendarHeaderChange(event: CustomEvent) {
     const { year, month } = this._separateValue(event.detail.value);
-    this._updateBodyEl(year, month);
+    this._Year = year;
+    this._month = month;
   }
 
   private _handleCalendarBodyChangeDate(event: CustomEvent) {
     const { year, month } = this._separateValue(event.detail.value);
-    this._updateHeaderEl(year, month);
+    this._Year = year;
+    this._month = month;
   }
 
   private _updateValue() {
+    if (this.value === "") return;
+
     const { year, month } = this._separateValue(this.value);
-    this._updateHeaderEl(year, month);
-    this._updateBodyEl(year, month, this.value);
-  }
-
-  private _updateHeaderEl(year: number, month: number) {
-    this._headerEl.year = year;
-    this._headerEl.month = month;
-  }
-
-  private _updateBodyEl(year: number, month: number, value?: string) {
-    this._bodyEl.year = year;
-    this._bodyEl.month = month;
-    if (value) this._bodyEl.value = value;
+    this._Year = year;
+    this._month = month;
   }
 
   private _separateValue(value: string) {
