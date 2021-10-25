@@ -1,14 +1,11 @@
 import { svg } from "lit";
 import { en, zh, ja } from "../resource/locale";
+import { MAX_MINUTES, MAX_HOURS12, MAX_HOURS24 } from "../resource/constant";
 
 export type WeekDate = {
   text: string;
   attr: string;
 };
-
-export const MAX_MINUTES = 60;
-export const MAX_HOURS24 = 24;
-export const MAX_HOURS12 = 12;
 
 export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
@@ -83,7 +80,7 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
   return timeOption;
 };
 
-export const formatTimeValue = (hours: string, minutes: string) => {
+export const createTimeObj = (hours: string, minutes: string) => {
   const time = new Date();
   time.setHours(parseInt(hours, 10));
   time.setMinutes(parseInt(minutes, 10));

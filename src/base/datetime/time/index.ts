@@ -6,15 +6,13 @@ import {
   dispatchCustomEvent
 } from "../../kuc-base";
 import { Item } from "../listbox";
+import { MAX_MINUTES, MAX_HOURS12, MAX_HOURS24 } from "../resource/constant";
 import {
   padStart,
   generateTimeOptions,
-  formatTimeValue,
+  createTimeObj,
   convertTimeValueToHour12,
   convertTimeValueToHour24,
-  MAX_MINUTES,
-  MAX_HOURS12,
-  MAX_HOURS24,
   getLocale
 } from "../utils";
 
@@ -92,7 +90,7 @@ export class BaseDateTime extends KucBase {
 
   private _handleUpdateValueProperty(value: string) {
     const { hours, minutes, suffix } = this._separateInputValue(value);
-    const dateTime = formatTimeValue(hours, minutes);
+    const dateTime = createTimeObj(hours, minutes);
     const isValidTime = dateTime instanceof Date && !isNaN(dateTime.getTime());
     if (!isValidTime) {
       this._inputValue = "";
