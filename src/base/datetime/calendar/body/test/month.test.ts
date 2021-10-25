@@ -17,7 +17,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
     it("The day is selected when assigning month prop is valid", async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = 7;
+      container.month = 8;
       container.year = 2021;
       container.value = "2021-08-22";
       const el = await fixture(container);

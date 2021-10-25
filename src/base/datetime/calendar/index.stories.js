@@ -35,6 +35,9 @@ const Template = ({ language, value }) => {
   const _showCalendar = _ => {
     const _calendarEl = document.querySelector("kuc-base-datetime-calendar");
     _calendarEl.hidden = false;
+
+    const _inputEl = document.querySelector("input");
+    _calendarEl.value = _inputEl.value;
   };
 
   const _hideCalendar = _ => {
@@ -62,7 +65,7 @@ const Template = ({ language, value }) => {
 
   const _handleClickCalendarFooterButtonToday = _ => {
     const date = new Date();
-    _setValue(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+    _setValue(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
     _hideCalendar();
   };
 
@@ -92,5 +95,5 @@ const Template = ({ language, value }) => {
 export const base = Template.bind({});
 base.args = {
   language: "en",
-  value: "2021-08-22"
+  value: "2021-09-22"
 };
