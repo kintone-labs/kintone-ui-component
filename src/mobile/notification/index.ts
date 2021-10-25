@@ -1,4 +1,4 @@
-import { html, svg, property, query } from "lit-element";
+import { html, svg, property, state } from "lit-element";
 import { KucBase } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
@@ -12,15 +12,13 @@ export class MobileNotification extends KucBase {
   @property({ type: String }) text = "";
   @property({ type: Number }) duration = -1;
 
-  @query(".kuc-mobile-notification__notification__title")
-  private _notificationTitleEl!: HTMLParagraphElement;
+  @state()
+  private _isOpened = false;
 
   private _timeoutID!: number;
 
   constructor(props?: MobileNotificationProps) {
     super();
-
-    this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -46,23 +44,22 @@ export class MobileNotification extends KucBase {
   }
 
   open() {
-    this.classList.add("kuc-mobile-notification-fadein");
+    document.body.appendChild(this);
+    this.performUpdate();
+
     this.classList.remove("kuc-mobile-notification-fadeout");
-    this._notificationTitleEl.setAttribute("role", "alert");
+    this.classList.add("kuc-mobile-notification-fadein");
+    this._isOpened = true;
 
     this._setAutoCloseTimer();
   }
 
   close() {
-    this.classList.add("kuc-mobile-notification-fadeout");
+    this._isOpened = false;
     this.classList.remove("kuc-mobile-notification-fadein");
-    this._notificationTitleEl.removeAttribute("role");
+    this.classList.add("kuc-mobile-notification-fadeout");
 
     this._clearAutoCloseTimer();
-  }
-
-  firstUpdated() {
-    document.body.appendChild(this);
   }
 
   render() {
@@ -72,6 +69,7 @@ export class MobileNotification extends KucBase {
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
+          role="${this._isOpened ? "alert" : ""}"
         ><!---->${this.text}</pre>
         <button
           class="kuc-mobile-notification__notification__closeButton"

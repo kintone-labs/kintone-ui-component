@@ -1,4 +1,4 @@
-import { expect } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 import { MobileNotification } from "../index";
 
 describe("MobileNotification", () => {
@@ -6,8 +6,10 @@ describe("MobileNotification", () => {
     it("should be fadeout when call close() method", async () => {
       const container = new MobileNotification();
       container.open();
+      await elementUpdated(container);
 
       container.close();
+      await elementUpdated(container);
 
       const parrentEl = container.parentNode as HTMLElement;
       expect(parrentEl.nodeName).to.equal("BODY");
@@ -21,11 +23,13 @@ describe("MobileNotification", () => {
     it("should be fadeout when clicked close button", async () => {
       const container = new MobileNotification();
       container.open();
+      await elementUpdated(container);
 
       const closeBtnEl = container.querySelector(
         ".kuc-mobile-notification__notification__closeButton"
       ) as HTMLButtonElement;
       closeBtnEl.click();
+      await elementUpdated(container);
 
       const parrentEl = container.parentNode as HTMLElement;
       expect(parrentEl.nodeName).to.equal("BODY");
