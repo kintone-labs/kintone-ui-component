@@ -1,4 +1,4 @@
-import { html, svg, property, query } from "lit-element";
+import { html, svg, property, query, state } from "lit-element";
 import { dispatchCustomEvent, KucBase } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
@@ -10,8 +10,8 @@ export class MobileNotification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
 
-  @query(".kuc-mobile-notification__notification__title")
-  private _notificationTitleEl!: HTMLParagraphElement;
+  @state()
+  private _isOpened = false;
 
   @query(".kuc-mobile-notification__notification")
   private _notificationEl!: HTMLDivElement;
@@ -19,8 +19,6 @@ export class MobileNotification extends KucBase {
   private _isNotificationShown = false;
   constructor(props?: MobileNotificationProps) {
     super();
-
-    this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -54,10 +52,14 @@ export class MobileNotification extends KucBase {
   }
 
   open() {
+    document.body.appendChild(this);
+    this.performUpdate();
+
     this._triggeredElement = document.activeElement;
-    this.classList.add("kuc-mobile-notification-fadein");
+
     this.classList.remove("kuc-mobile-notification-fadeout");
-    this._notificationTitleEl.setAttribute("role", "alert");
+    this.classList.add("kuc-mobile-notification-fadein");
+    this._isOpened = true;
     this._notificationEl && this._notificationEl.focus();
     this._isNotificationShown = true;
   }
@@ -66,9 +68,9 @@ export class MobileNotification extends KucBase {
     if (!this._isNotificationShown) {
       return;
     }
-    this.classList.add("kuc-mobile-notification-fadeout");
+    this._isOpened = false;
     this.classList.remove("kuc-mobile-notification-fadein");
-    this._notificationTitleEl.removeAttribute("role");
+    this.classList.add("kuc-mobile-notification-fadeout");
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
     }
@@ -78,10 +80,6 @@ export class MobileNotification extends KucBase {
   private _dispatchCloseEvent() {
     dispatchCustomEvent(this, "close");
   }
-  firstUpdated() {
-    document.body.appendChild(this);
-  }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -94,6 +92,7 @@ export class MobileNotification extends KucBase {
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
+          role="${this._isOpened ? "alert" : ""}"
         ><!---->${this.text}</pre>
         <button
           class="kuc-mobile-notification__notification__closeButton"
