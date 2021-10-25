@@ -22,9 +22,9 @@ type TimeItem = { type: string; value: string };
 
 export class BaseDateTime extends KucBase {
   @property({ type: String }) inputId = "";
-  @property({ type: Boolean }) inputAriaInvalid = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
+  @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) hour12 = false;
 
   @state()
