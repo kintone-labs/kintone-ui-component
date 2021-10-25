@@ -10,20 +10,20 @@ export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String, reflect: true }) value = "";
 
   @state() _month = 1;
-  @state() _Year = 2021;
+  @state() _year = 2021;
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-base-datetime-calendar__group">
         <kuc-base-datetime-calendar-header
-          .year="${this._Year}"
+          .year="${this._year}"
           .month="${this._month}"
           .language="${this.language}"
           @kuc:calendar-header-change="${this._handleCalendarHeaderChange}"
         ></kuc-base-datetime-calendar-header>
         <kuc-base-datetime-calendar-body
-          .year="${this._Year}"
+          .year="${this._year}"
           .month="${this._month}"
           .value="${this.value}"
           .language="${this.language}"
@@ -60,13 +60,13 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _handleCalendarHeaderChange(event: CustomEvent) {
     const { year, month } = this._separateValue(event.detail.value);
-    this._Year = year;
+    this._year = year;
     this._month = month;
   }
 
   private _handleCalendarBodyChangeDate(event: CustomEvent) {
     const { year, month } = this._separateValue(event.detail.value);
-    this._Year = year;
+    this._year = year;
     this._month = month;
   }
 
@@ -74,20 +74,11 @@ export class BaseDateTimeCalendar extends KucBase {
     if (this.value === "") return;
 
     const { year, month } = this._separateValue(this.value);
-    this._Year = year;
+    this._year = year;
     this._month = month;
   }
 
   private _separateValue(value: string) {
-    let date = new Date(this.value);
-    if (isNaN(date.getTime())) {
-      date = new Date();
-      return {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1
-      };
-    }
-
     const dateParts = value.split("-");
     return {
       year: parseInt(dateParts[0], 10),
