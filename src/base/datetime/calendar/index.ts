@@ -1,8 +1,8 @@
 import { html, PropertyValues } from "lit";
-import { state, property, query } from "lit/decorators.js";
+import { state, property } from "lit/decorators.js";
 import { KucBase } from "../../kuc-base";
-import { BaseDateTimeCalendarHeader } from "./header";
-import { BaseDateTimeCalendarBody } from "./body";
+import "./header";
+import "./body";
 import "./footer";
 
 export class BaseDateTimeCalendar extends KucBase {
