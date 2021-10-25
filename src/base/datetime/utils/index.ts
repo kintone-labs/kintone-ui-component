@@ -90,21 +90,23 @@ export const formatTimeValue = (hours: string, minutes: string) => {
   return time;
 };
 
-export const convertTimeValueToHour12 = (time: Date, hour12: boolean) => {
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  let newHours = padStart(hours % MAX_HOURS24);
-  let suffix: string = "";
-  let newTime: string = newHours + ":" + padStart(minutes);
-  if (hour12) {
-    newHours = padStart(hours % MAX_HOURS12);
-    suffix =
-      hours >= MAX_HOURS12
-        ? en.TIME_SELECT_SUFFIX.pm
-        : en.TIME_SELECT_SUFFIX.am;
-    newTime = newHours + ":" + padStart(minutes) + " " + suffix;
+export const convertTimeValueToHour12 = (dateTime: Date) => {
+  const hours = dateTime.getHours();
+  const minutes = dateTime.getMinutes();
+  const newHours = padStart(hours % MAX_HOURS12);
+  const suffix =
+    hours >= MAX_HOURS12 ? en.TIME_SELECT_SUFFIX.pm : en.TIME_SELECT_SUFFIX.am;
+  return newHours + ":" + padStart(minutes) + " " + suffix;
+};
+
+export const convertTimeValueToHour24 = (dateTime: Date, suffix: string) => {
+  const hours = dateTime.getHours();
+  const minutes = dateTime.getMinutes();
+  let newHours = hours % MAX_HOURS12;
+  if (suffix === "PM") {
+    newHours += 12;
   }
-  return newTime;
+  return padStart(newHours) + ":" + padStart(minutes);
 };
 
 const getDateRanges = (year: number, month: number) => {

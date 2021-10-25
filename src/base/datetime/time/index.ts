@@ -11,6 +11,7 @@ import {
   generateTimeOptions,
   formatTimeValue,
   convertTimeValueToHour12,
+  convertTimeValueToHour24,
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
@@ -20,9 +21,11 @@ import {
 type TimeItem = { type: string; value: string };
 
 export class BaseDateTime extends KucBase {
-  @property({ type: Boolean }) disabled = false;
-  @property({ type: Boolean }) hour12 = false;
+  @property({ type: String }) inputId = "";
   @property({ type: String }) value = "";
+  @property({ type: Boolean }) disabled = false;
+  @property({ type: Boolean }) inputAriaInvalid = false;
+  @property({ type: Boolean }) hour12 = false;
 
   @state()
   private _listBoxVisible = false;
@@ -43,13 +46,18 @@ export class BaseDateTime extends KucBase {
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
 
+  private _GUID: string | undefined;
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
       this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
-      this._handleUpdateValueProperty();
+      this._handleUpdateValueProperty(this._inputValue);
     }
     if (changedProperties.has("value")) {
-      this._handleUpdateValueProperty();
+      this._handleUpdateValueProperty(this.value);
+    }
+    if (changedProperties.has("inputId")) {
+      this._GUID = this.inputId;
     }
     super.update(changedProperties);
   }
@@ -60,7 +68,10 @@ export class BaseDateTime extends KucBase {
       <input
         type="text"
         class="kuc-base-time__input"
-        value="${this._inputValue}"
+        id="${this._GUID}-label"
+        aria-describedby="${this._GUID}-error"
+        aria-invalid="${this.inputAriaInvalid}"
+        .value="${this._inputValue}"
         ?disabled="${this.disabled}"
         @click="${this._handleClickInput}"
         @blur="${this._handleBlurInput}"
@@ -79,13 +90,17 @@ export class BaseDateTime extends KucBase {
     `;
   }
 
-  private _handleUpdateValueProperty() {
-    const { hours, minutes } = this._separateInputValue(this.value);
-    const time = formatTimeValue(hours, minutes);
-    const isValidTime = time instanceof Date && !isNaN(time.getTime());
-    this._inputValue = isValidTime
-      ? convertTimeValueToHour12(time, this.hour12)
-      : "";
+  private _handleUpdateValueProperty(value: string) {
+    const { hours, minutes, suffix } = this._separateInputValue(value);
+    const dateTime = formatTimeValue(hours, minutes);
+    const isValidTime = dateTime instanceof Date && !isNaN(dateTime.getTime());
+    if (!isValidTime) {
+      this._inputValue = "";
+      return;
+    }
+    this._inputValue = this.hour12
+      ? convertTimeValueToHour12(dateTime)
+      : convertTimeValueToHour24(dateTime, suffix);
   }
 
   private _handleFocusInput() {

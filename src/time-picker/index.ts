@@ -67,6 +67,8 @@ export class TimePicker extends KucBase {
         </label>
         <kuc-base-time
           class="kuc-time-picker__group__input"
+          .inputId="${this._GUID}"
+          .inputAriaInvalid="${this.error !== ""}"
           .value="${this.value}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
