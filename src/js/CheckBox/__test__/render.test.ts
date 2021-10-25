@@ -132,7 +132,6 @@ describe('Unit test CheckBox render', () => {
 
   test('Render successfully with wrong props', () => {
     // 不正な値を設定した場合はデフォルト値がセットされることを確認する
-    // @ts-ignore
     const checkBox = new CheckBox({
       items: [
         {
@@ -140,7 +139,9 @@ describe('Unit test CheckBox render', () => {
           value: expectedValues[0],
           isDisabled: false
         }],
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = checkBox.render();
@@ -163,8 +164,8 @@ describe('Unit test CheckBox render', () => {
 
   test('throw error with invalid option.items', () => {
     expect(() => {
-      // @ts-ignore
       new CheckBox({
+        // @ts-ignore
         items: ['orange', 'banana', 'lemon']
       });
     }).toThrowError();
@@ -192,7 +193,6 @@ describe('Unit test CheckBox render', () => {
 
   test('throw error with invalid prop type of option.value', () => {
     expect(() => {
-      // @ts-ignore
       new CheckBox({
         items: [
           {
@@ -201,6 +201,7 @@ describe('Unit test CheckBox render', () => {
             isDisabled: false
           }
         ],
+        // @ts-ignore
         value: expectedValues[0]
       });
     }).toThrowError();

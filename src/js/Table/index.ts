@@ -13,7 +13,7 @@ type TableColumnJS = {
 }
 
 type DispatchParams = {
-  type: string;
+  type?: string;
   data?: Array<Record<string, any>>;
   rowIndex: number;
   fieldName?: string;

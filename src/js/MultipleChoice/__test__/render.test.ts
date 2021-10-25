@@ -124,7 +124,6 @@ describe('Unit test MultipleChoice render', () => {
 
   test('Render successfully with wrong props', () => {
     // Confirm to be set the default values if an invalid value was set.
-    // @ts-ignore
     const multipleChoice = new MultipleChoice({
       items: [
         {
@@ -132,7 +131,9 @@ describe('Unit test MultipleChoice render', () => {
           value: expectedValues[0],
           isDisabled: false
         }],
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = multipleChoice.render();
@@ -157,8 +158,8 @@ describe('Unit test MultipleChoice render', () => {
 
   test('Throw error with invalid option.items', () => {
     expect(() => {
-      // @ts-ignore
       new MultipleChoice({
+        // @ts-ignore
         items: ['orange', 'banana', 'lemon']
       });
     }).toThrowError();
@@ -186,7 +187,6 @@ describe('Unit test MultipleChoice render', () => {
 
   test('Throw error with invalid prop type of option.value', () => {
     expect(() => {
-      // @ts-ignore
       new MultipleChoice({
         items: [
           {
@@ -196,6 +196,7 @@ describe('Unit test MultipleChoice render', () => {
           }
         ],
         // In case of not specify by array type.
+        // @ts-ignore
         value: expectedValues[0]
       });
     }).toThrowError();

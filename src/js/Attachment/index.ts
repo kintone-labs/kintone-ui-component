@@ -212,7 +212,7 @@ class Attachment extends Control<AttachmentProps> {
     if (event.dataTransfer && event.dataTransfer.items) {
       for (let i = 0; i < event.dataTransfer.items.length; i++) {
         if (typeof (event.dataTransfer.items[i].webkitGetAsEntry) === 'function'
-                && event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
+                && event.dataTransfer.items[i].webkitGetAsEntry()!.isDirectory) {
           return false;
         }
       }

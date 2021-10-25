@@ -90,10 +90,11 @@ describe('Unit test RadioButton render', () => {
 
   test('Render successfully with wrong props', () => {
     // 不正な値を設定した場合はデフォルト値がセットされることを確認する
-    // @ts-ignore
     const radioButton = new RadioButton({
       name: 'fruit',
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = radioButton.render();
@@ -106,8 +107,8 @@ describe('Unit test RadioButton render', () => {
 
   test('throw error with invalid option.items', () => {
     expect(() => {
-      // @ts-ignore
       const radioButton = new RadioButton({
+        // @ts-ignore
         items: ['orange', 'banana', 'lemon']
       });
       radioButton.render();

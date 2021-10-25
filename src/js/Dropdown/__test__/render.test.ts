@@ -85,10 +85,12 @@ describe('Unit test Dropdown render', () => {
   });
 
   test('Render successfully with wrong props', () => {
-    // @ts-ignore
     const dropdown = new Dropdown({
+      // @ts-ignore
       items: 0,
+      // @ts-ignore
       isDisabled: 'abc',
+      // @ts-ignore
       isVisible: 'abc'
     });
     const container = dropdown.render();
@@ -129,8 +131,8 @@ describe('Unit test Dropdown render', () => {
 
   test('Throw error with invalid option.items', () => {
     expect(() => {
-      // @ts-ignore
       new Dropdown({
+        // @ts-ignore
         items: ['orange', 'banana', 'lemon']
       });
     }).toThrowError();

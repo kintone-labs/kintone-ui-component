@@ -95,8 +95,8 @@ describe('Unit test Dialog render', () => {
 
   test('Init failed with invalid header props', () => {
     try {
-      // @ts-ignore
       const myDialog = new Dialog({
+        // @ts-ignore
         header: 1,
       });
       if (myDialog) {
@@ -110,8 +110,8 @@ describe('Unit test Dialog render', () => {
 
   test('Init failed with invalid content props', () => {
     try {
-      // @ts-ignore
       const myDialog = new Dialog({
+        // @ts-ignore
         content: 1,
       });
       if (myDialog) {
@@ -125,8 +125,8 @@ describe('Unit test Dialog render', () => {
 
   test('Init failed with invalid footer props', () => {
     try {
-      // @ts-ignore
       const myDialog = new Dialog({
+        // @ts-ignore
         footer: 1,
       });
       if (myDialog) {
@@ -140,8 +140,8 @@ describe('Unit test Dialog render', () => {
 
   test('Init failed with invalid showCloseButton props', () => {
     try {
-      // @ts-ignore
       const myDialog = new Dialog({
+        // @ts-ignore
         showCloseButton: 'abc',
       });
       if (myDialog) {
@@ -155,8 +155,8 @@ describe('Unit test Dialog render', () => {
 
   test('Init failed with invalid isVisible props', () => {
     try {
-      // @ts-ignore
       const myDialog = new Dialog({
+        // @ts-ignore
         isVisible: 'abc',
       });
       if (myDialog) {

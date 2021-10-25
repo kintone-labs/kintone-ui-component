@@ -86,8 +86,8 @@ describe('Unit test for Table render', () => {
 
   test('Throw error when validate props fail', () => {
     try {
-      // @ts-ignore
       const myTable = new Table({
+        // @ts-ignore
         data: 1
       });
     } catch (error) {
