@@ -114,7 +114,7 @@ export class BaseDateTime extends KucBase {
       newHours += 12;
     }
 
-    return padStart(newHours) + ":" + padStart(minutes);
+    return `${padStart(newHours)}:${padStart(minutes)}`;
   }
 
   private _handleFocusInput() {
