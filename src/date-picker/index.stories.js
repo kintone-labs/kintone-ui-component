@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "desktop/date picker",
+  title: "desktop/date-picker",
   argTypes: {},
   parameters: {
     actions: {
