@@ -1,5 +1,6 @@
 .date-time-container {
   display: inline-flex;
+  position: relative;
   /* font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif; */
 }
