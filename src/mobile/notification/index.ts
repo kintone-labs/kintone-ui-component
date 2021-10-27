@@ -4,14 +4,18 @@ import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
+  duration?: number;
 };
 
 export class MobileNotification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
+  @property({ type: Number }) duration = -1;
 
   @state()
   private _isOpened = false;
+
+  private _timeoutID!: number;
 
   @query(".kuc-mobile-notification__notification")
   private _notificationEl!: HTMLDivElement;
@@ -62,6 +66,8 @@ export class MobileNotification extends KucBase {
     this._isOpened = true;
     this._notificationEl && this._notificationEl.focus();
     this._isNotificationShown = true;
+
+    this._setAutoCloseTimer();
   }
 
   close() {
@@ -76,6 +82,8 @@ export class MobileNotification extends KucBase {
     }
     this._dispatchCloseEvent();
     this._isNotificationShown = false;
+
+    this._clearAutoCloseTimer();
   }
   private _dispatchCloseEvent() {
     dispatchCustomEvent(this, "close");
@@ -219,6 +227,21 @@ export class MobileNotification extends KucBase {
         }
       </style>
     `;
+  }
+
+  private _setAutoCloseTimer() {
+    if (!Number.isFinite(this.duration) || this.duration < 0) {
+      return;
+    }
+
+    this._clearAutoCloseTimer();
+    this._timeoutID = window.setTimeout(() => {
+      this.close();
+    }, this.duration);
+  }
+
+  private _clearAutoCloseTimer() {
+    this._timeoutID && window.clearTimeout(this._timeoutID);
   }
 }
 if (!window.customElements.get("kuc-mobile-notification")) {
