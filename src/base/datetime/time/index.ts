@@ -6,13 +6,13 @@ import {
   dispatchCustomEvent
 } from "../../kuc-base";
 import { Item } from "../listbox";
-import { MAX_MINUTES, MAX_HOURS12, MAX_HOURS24 } from "../resource/constant";
 import {
-  padStart,
-  generateTimeOptions,
-  createTimeObj,
-  getLocale
-} from "../utils";
+  MAX_MINUTES,
+  MAX_HOURS12,
+  MAX_HOURS24,
+  TIME_SELECT_SUFFIX
+} from "../resource/constant";
+import { padStart, generateTimeOptions, createTimeObj } from "../utils";
 
 type TimeItem = { type: string; value: string };
 
@@ -37,7 +37,6 @@ export class BaseDateTime extends KucBase {
     suffix: { start: 6, end: 8 }
   };
   private _timeLength = 2;
-  private _locale = getLocale("en");
 
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
@@ -103,14 +102,12 @@ export class BaseDateTime extends KucBase {
     let newHours = hours % MAX_HOURS24;
     if (this.hour12) {
       const newSuffix =
-        hours >= MAX_HOURS12
-          ? this._locale.TIME_SELECT_SUFFIX.pm
-          : this._locale.TIME_SELECT_SUFFIX.am;
+        hours >= MAX_HOURS12 ? TIME_SELECT_SUFFIX.pm : TIME_SELECT_SUFFIX.am;
       newHours = hours % MAX_HOURS12;
       newHours = newHours === 0 ? MAX_HOURS12 : newHours;
       return `${padStart(newHours)}:${padStart(minutes)} ${newSuffix}`;
     }
-    if (suffix === this._locale.TIME_SELECT_SUFFIX.pm) {
+    if (suffix === TIME_SELECT_SUFFIX.pm) {
       newHours =
         newHours === MAX_HOURS12 ? MAX_HOURS12 : newHours + MAX_HOURS12;
       return `${padStart(newHours)}:${padStart(minutes)}`;
@@ -327,9 +324,9 @@ export class BaseDateTime extends KucBase {
   private _computeKeyDownSuffixValue() {
     const { suffix } = this._separateInputValue();
     const newSuffix =
-      suffix === this._locale.TIME_SELECT_SUFFIX.am
-        ? this._locale.TIME_SELECT_SUFFIX.pm
-        : this._locale.TIME_SELECT_SUFFIX.am;
+      suffix === TIME_SELECT_SUFFIX.am
+        ? TIME_SELECT_SUFFIX.pm
+        : TIME_SELECT_SUFFIX.am;
     return this._formatKeyDownValue({
       type: "suffix",
       value: newSuffix
