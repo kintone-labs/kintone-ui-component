@@ -419,8 +419,10 @@ export class BaseDateTime extends KucBase {
           height: 40px;
           padding: 0;
           text-align: center;
+          font-size: 14px;
           color: #333333;
           overflow: hidden;
+          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           background-color: #ffffff;
           border: 1px solid #e3e7e8;
         }
