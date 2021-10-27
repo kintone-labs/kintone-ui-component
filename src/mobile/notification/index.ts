@@ -1,5 +1,5 @@
-import { html, svg, property, query, state } from "lit-element";
-import { dispatchCustomEvent, KucBase } from "../../base/kuc-base";
+import { html, svg, property, state } from "lit-element";
+import { KucBase, dispatchCustomEvent } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
@@ -17,10 +17,6 @@ export class MobileNotification extends KucBase {
 
   private _timeoutID!: number;
 
-  @query(".kuc-mobile-notification__notification")
-  private _notificationEl!: HTMLDivElement;
-  private _triggeredElement: Element | null = null;
-  private _isNotificationShown = false;
   constructor(props?: MobileNotificationProps) {
     super();
 
@@ -29,14 +25,6 @@ export class MobileNotification extends KucBase {
   }
 
   private _handleClickCloseButton(event: MouseEvent) {
-    this._notificationEl && this._notificationEl.blur();
-  }
-  private _handleKeyDownNotificationToggle(event: KeyboardEvent) {
-    if (event.key === "Escape" && this._notificationEl) {
-      this._notificationEl.blur();
-    }
-  }
-  private _handleBlurNotificationToggle(event: Event) {
     this.close();
   }
 
@@ -59,44 +47,27 @@ export class MobileNotification extends KucBase {
     document.body.appendChild(this);
     this.performUpdate();
 
-    this._triggeredElement = document.activeElement;
-
     this.classList.remove("kuc-mobile-notification-fadeout");
     this.classList.add("kuc-mobile-notification-fadein");
     this._isOpened = true;
-    this._notificationEl && this._notificationEl.focus();
-    this._isNotificationShown = true;
 
     this._setAutoCloseTimer();
   }
 
   close() {
-    if (!this._isNotificationShown) {
-      return;
-    }
     this._isOpened = false;
     this.classList.remove("kuc-mobile-notification-fadein");
     this.classList.add("kuc-mobile-notification-fadeout");
-    if (this._triggeredElement instanceof HTMLElement) {
-      this._triggeredElement.focus();
-    }
-    this._dispatchCloseEvent();
-    this._isNotificationShown = false;
 
     this._clearAutoCloseTimer();
-  }
-  private _dispatchCloseEvent() {
+
     dispatchCustomEvent(this, "close");
   }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-mobile-notification__notification"
-        tabindex="0"
-        @blur="${this._handleBlurNotificationToggle}"
-        @keydown="${this._handleKeyDownNotificationToggle}"
-      >
+      <div class="kuc-mobile-notification__notification">
         <pre
           class="kuc-mobile-notification__notification__title"
           aria-live="assertive"
@@ -167,7 +138,6 @@ export class MobileNotification extends KucBase {
           color: #333;
           text-align: center;
           vertical-align: top;
-          outline: none;
         }
 
         .kuc-mobile-notification__notification__title {

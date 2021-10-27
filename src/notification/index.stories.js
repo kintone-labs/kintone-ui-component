@@ -8,6 +8,9 @@ storiesOf("desktop/notification", module)
       text: "不正です!!",
       type: "info"
     });
+    notification.addEventListener("close", event => {
+      console.log(event);
+    });
 
     const button = document.createElement("button");
     button.textContent = "open";
@@ -31,6 +34,9 @@ storiesOf("desktop/notification", module)
       text: "Duration 3 seconds",
       type: "info",
       duration: 3000
+    });
+    notification.addEventListener("close", event => {
+      console.log(event);
     });
 
     const button = document.createElement("button");
