@@ -1,14 +1,7 @@
-import {
-  html,
-  svg,
-  property,
-  query,
-  queryAll,
-  PropertyValues
-} from "lit-element";
+import { html, svg, property, query, queryAll } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import DOMPurify from "dompurify";
-import { dispatchCustomEvent, KucBase } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 type DialogProps = {
@@ -28,7 +21,7 @@ export class Dialog extends KucBase {
   )
   private _focusableElements!: HTMLElement[];
   private _triggeredElement: Element | null = null;
-  private _isDialogShown = false;
+
   constructor(props?: DialogProps) {
     super();
 
@@ -37,43 +30,22 @@ export class Dialog extends KucBase {
   }
 
   open() {
-    if (this._isDialogShown) {
-      return;
-    }
     const body = document.getElementsByTagName("body")[0];
     body.appendChild(this);
     this.setAttribute("opened", "");
     this._triggeredElement = document.activeElement;
     this._dialogEl && this._dialogEl.focus();
-    this._isDialogShown = true;
   }
-  updated(changedProperties: PropertyValues) {
-    if (this._isDialogShown) {
-      this._dialogEl && this._dialogEl.focus();
-    }
-  }
-  private _handleClickCloseButton(event: Event) {
-    this._dialogEl && this._dialogEl.blur();
-  }
+
   close() {
     this.removeAttribute("opened");
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
     }
-    this._isDialogShown = false;
-    this._dispatchCloseEvent();
-  }
-  private _handleBlurDialogToggle(event: Event) {
-    this.close();
-  }
-  private _handleKeyDownDialogToggle(event: KeyboardEvent) {
-    if (event.key === "Escape" && this._dialogEl) {
-      this._dialogEl.blur();
-    }
-  }
-  private _dispatchCloseEvent() {
+
     dispatchCustomEvent(this, "close");
   }
+
   render() {
     const cleanContent = DOMPurify.sanitize(this.content);
     const cleanFooter = DOMPurify.sanitize(this.footer);
@@ -85,20 +57,14 @@ export class Dialog extends KucBase {
         tabIndex="0"
         @focus="${this._handleFocusFirstDummy}"
       ></span>
-      <div
-        class="kuc-dialog__dialog"
-        role="dialog"
-        tabindex="0"
-        @blur="${this._handleBlurDialogToggle}"
-        @keydown="${this._handleKeyDownDialogToggle}"
-      >
+      <div class="kuc-dialog__dialog" role="dialog" tabindex="0">
         <div class="kuc-dialog__dialog__header">
           <span class="kuc-dialog__dialog__header__title">${this.title}</span>
           <button
             class="kuc-dialog__dialog__header__close-button"
             type="button"
             aria-label="close"
-            @click="${this._handleClickCloseButton}"
+            @click="${this.close}"
           >
             ${this._getCloseButtonSvgTemplate()}
           </button>
@@ -195,7 +161,6 @@ export class Dialog extends KucBase {
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 10000;
-          outline: none;
         }
 
         .kuc-dialog__dialog__header {
