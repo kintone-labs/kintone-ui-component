@@ -100,20 +100,22 @@ export class BaseDateTime extends KucBase {
   private _formatInputValue(timeObj: Date, suffix: string) {
     const hours = timeObj.getHours();
     const minutes = timeObj.getMinutes();
-
-    let newHours = hours % MAX_HOURS12;
+    let newHours = hours % MAX_HOURS24;
     if (this.hour12) {
       const newSuffix =
         hours >= MAX_HOURS12
           ? this._locale.TIME_SELECT_SUFFIX.pm
           : this._locale.TIME_SELECT_SUFFIX.am;
+      newHours = hours % MAX_HOURS12;
+      newHours = newHours === 0 ? MAX_HOURS12 : newHours;
       return `${padStart(newHours)}:${padStart(minutes)} ${newSuffix}`;
     }
-
     if (suffix === this._locale.TIME_SELECT_SUFFIX.pm) {
-      newHours += 12;
+      newHours =
+        newHours === MAX_HOURS12 ? MAX_HOURS12 : newHours + MAX_HOURS12;
+      return `${padStart(newHours)}:${padStart(minutes)}`;
     }
-
+    newHours = newHours === MAX_HOURS12 ? 0 : newHours;
     return `${padStart(newHours)}:${padStart(minutes)}`;
   }
 
@@ -299,7 +301,7 @@ export class BaseDateTime extends KucBase {
     let newHours = currentHour + changeStep;
     if (this.hour12) {
       newHours %= MAX_HOURS12;
-      newHours = newHours < 0 ? MAX_HOURS12 - 1 : newHours;
+      newHours = newHours <= 0 ? MAX_HOURS12 : newHours;
     } else {
       newHours %= MAX_HOURS24;
       newHours = newHours < 0 ? MAX_HOURS24 - 1 : newHours;
@@ -347,7 +349,7 @@ export class BaseDateTime extends KucBase {
     previousHours = parseInt(hours, 10) > 10 ? ("" + hours)[1] : "" + hours;
     const newHours = parseInt(previousHours + key, 10);
     const isMaxHours =
-      (this.hour12 && newHours >= MAX_HOURS12) ||
+      (this.hour12 && newHours > MAX_HOURS12) ||
       (!this.hour12 && newHours >= MAX_HOURS24);
     previousHours = isMaxHours ? "0" : previousHours;
     return previousHours;
