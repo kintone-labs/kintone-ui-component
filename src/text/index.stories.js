@@ -15,13 +15,13 @@ storiesOf("desktop/text", module)
       error: "エラーです"
     });
     text.addEventListener("focus", event => {
-      console.log(event);
+      console.log(event.detail);
     });
     text.addEventListener("change", event => {
-      console.log(event);
+      console.log(event.detail);
     });
     text.addEventListener("input", event => {
-      console.log(event);
+      console.log(event.detail);
     });
     root.appendChild(text);
     return root;

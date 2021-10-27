@@ -15,18 +15,13 @@ storiesOf("desktop/textarea", module)
       disabled: false
     });
     textarea.addEventListener("change", event => {
-      console.log(event);
-      console.log(event.detail.oldValue);
-      console.log(event.detail.value);
+      console.log(event.detail);
     });
     textarea.addEventListener("focus", event => {
-      console.log(event);
-      console.log(event.detail.value);
+      console.log(event.detail);
     });
     textarea.addEventListener("input", event => {
-      console.log(event);
-      console.log(event.detail.data);
-      console.log(event.detail.value);
+      console.log(event.detail);
     });
     root.appendChild(textarea);
     return root;
