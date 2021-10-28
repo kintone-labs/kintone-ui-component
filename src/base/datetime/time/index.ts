@@ -5,7 +5,7 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../kuc-base";
-import { Item } from "../listbox";
+import { BaseDateTimeListBox, Item } from "../listbox";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
@@ -41,6 +41,9 @@ export class BaseDateTime extends KucBase {
   @query(".kuc-base-time__input")
   private _inputEl!: HTMLInputElement;
 
+  @query(".kuc-base-time__listbox")
+  private _listBoxEl!: BaseDateTimeListBox;
+
   private _GUID: string | undefined;
 
   update(changedProperties: PropertyValues) {
@@ -55,6 +58,12 @@ export class BaseDateTime extends KucBase {
       this._GUID = this.inputId;
     }
     super.update(changedProperties);
+  }
+
+  updated() {
+    if (this._listBoxVisible) {
+      this._listBoxEl.scrollToView(this._inputValue);
+    }
   }
 
   render() {
