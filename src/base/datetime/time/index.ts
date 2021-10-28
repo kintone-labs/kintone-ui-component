@@ -23,10 +23,15 @@ export class BaseDateTime extends KucBase {
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) hour12 = false;
 
-  @state()
-  private _listBoxVisible = false;
+  /**
+   * Change to considering name
+   * and change to prop when publishing _timeStep
+   */
   @state()
   private _timeStep = 30;
+
+  @state()
+  private _listBoxVisible = false;
   @state()
   private _inputValue = "12:00";
 
