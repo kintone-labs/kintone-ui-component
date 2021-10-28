@@ -2,8 +2,8 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeCalendar } from "../index";
 
 describe("BaseDateTimeCalendar", () => {
-  describe("kuc:calendar-body-change-date event", () => {
-    it("should be triggered kuc:calendar-body-change-date event", async () => {
+  describe("kuc:calendar-header-change event", () => {
+    it("should be triggered kuc:calendar-header-change event", async () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendar();
       container.value = "2021-08-22";
