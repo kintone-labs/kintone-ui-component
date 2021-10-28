@@ -386,7 +386,11 @@ export class BaseDateTime extends KucBase {
       start >= this._selectionRange.minutes.start &&
       end <= this._selectionRange.minutes.end;
     if (isSelectMinutes) return "minutes";
-    return "suffix";
+    const isSelectSuffix =
+      start >= this._selectionRange.suffix.start &&
+      end <= this._selectionRange.suffix.end;
+    if (isSelectSuffix) return "suffix";
+    return "hours";
   }
 
   private _getSelectionRange() {
