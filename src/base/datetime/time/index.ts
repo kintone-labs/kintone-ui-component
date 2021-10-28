@@ -10,7 +10,7 @@ import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SELECT_SUFFIX
+  TIME_SUFFIX
 } from "../resource/constant";
 import { padStart, generateTimeOptions, createTimeObj } from "../utils";
 
@@ -110,13 +110,12 @@ export class BaseDateTime extends KucBase {
     const minutes = timeObj.getMinutes();
     let newHours = hours % MAX_HOURS24;
     if (this.hour12) {
-      const newSuffix =
-        hours >= MAX_HOURS12 ? TIME_SELECT_SUFFIX.pm : TIME_SELECT_SUFFIX.am;
+      const newSuffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
       newHours = hours % MAX_HOURS12;
       newHours = newHours === 0 ? MAX_HOURS12 : newHours;
       return `${padStart(newHours)}:${padStart(minutes)} ${newSuffix}`;
     }
-    if (suffix === TIME_SELECT_SUFFIX.pm) {
+    if (suffix === TIME_SUFFIX.PM) {
       newHours =
         newHours === MAX_HOURS12 ? MAX_HOURS12 : newHours + MAX_HOURS12;
       return `${padStart(newHours)}:${padStart(minutes)}`;
@@ -333,9 +332,7 @@ export class BaseDateTime extends KucBase {
   private _computeKeyDownSuffixValue() {
     const { suffix } = this._separateInputValue();
     const newSuffix =
-      suffix === TIME_SELECT_SUFFIX.am
-        ? TIME_SELECT_SUFFIX.pm
-        : TIME_SELECT_SUFFIX.am;
+      suffix === TIME_SUFFIX.AM ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
     return this._formatKeyDownValue({
       type: "suffix",
       value: newSuffix

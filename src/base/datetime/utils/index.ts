@@ -4,7 +4,7 @@ import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SELECT_SUFFIX
+  TIME_SUFFIX
 } from "../resource/constant";
 
 export type WeekDate = {
@@ -71,9 +71,7 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
   hours = Math.floor(i / MAX_MINUTES);
   minutes = i % MAX_MINUTES;
   const ampm =
-    hours % MAX_HOURS24 < MAX_HOURS12
-      ? TIME_SELECT_SUFFIX.am
-      : TIME_SELECT_SUFFIX.pm;
+    hours % MAX_HOURS24 < MAX_HOURS12 ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
   hours = isHour12 ? hours % MAX_HOURS12 : hours % MAX_HOURS24;
   if (hours === 0 && isHour12) hours = MAX_HOURS12;
   if (hours < 10) hours = "0" + hours;
