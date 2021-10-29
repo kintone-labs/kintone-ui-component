@@ -1,9 +1,6 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { BaseDateTimeCalendar } from "../index";
 
-// const year = 2020;
-// const month = 1;
-
 describe("BaseDateTimeCalendar", () => {
   describe("value", () => {
     it("should be selected when updating value prop", async () => {
