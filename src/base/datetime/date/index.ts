@@ -132,6 +132,21 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 
+  private _handleClickDocument() {
+    window.document.addEventListener("click", event => {
+      const targetEl = event.target as HTMLElement;
+      const ignoreClass = [
+        "kuc-base-date__input",
+        "kuc-base-datetime-calendar__group"
+      ];
+      for (let index = 0; index < ignoreClass.length; index++) {
+        const className = ignoreClass[index];
+        if (targetEl.classList.contains(className)) return;
+      }
+      this._closeCalendar();
+    });
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -162,6 +177,10 @@ export class BaseDate extends KucBase {
       >
       </kuc-base-datetime-calendar>
     `;
+  }
+
+  firstUpdated() {
+    this._handleClickDocument();
   }
 
   _getStyleTagTemplate() {
