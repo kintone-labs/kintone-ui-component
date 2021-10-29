@@ -38,7 +38,48 @@ const getDateObj = (date: Date) => {
   const attr = `${year}-${month}-${day}`;
   return { text, attr };
 };
+export const formatDateByLocale = (date: string, language: string = "ja") => {
+  const tempDate = new Date(date);
+  if (!isValidDate(tempDate)) {
+    return date;
+  }
+  const year = tempDate.getFullYear();
+  const month = padStart(tempDate.getMonth() + 1);
+  const day = padStart(tempDate.getDate());
+  if (language === "ja" || language === "zh") return `${year}-${month}-${day}`;
+  return `${month}/${day}/${year}`;
+};
 
+const isValidDate = (d: Date) => {
+  return d instanceof Date && !isNaN(d.getTime());
+};
+export const isInvalidDateFormat = (dateString: string, language: string) => {
+  const isEnLanguage = language === "en";
+  const splitStr = isEnLanguage ? "/" : "-";
+  const splitDates = dateString.split(splitStr);
+  if (splitDates.length !== 3) {
+    return true;
+  }
+  const year = Number(isEnLanguage ? splitDates[2] : splitDates[0]);
+  const month = Number(isEnLanguage ? splitDates[0] : splitDates[1]);
+  const day = Number(isEnLanguage ? splitDates[1] : splitDates[2]);
+  if (isNaN(year) || isNaN(month) || isNaN(day)) {
+    return true;
+  }
+  const tempDate = new Date(dateString);
+  if (!isValidDate(tempDate)) {
+    return true;
+  }
+  if (
+    year !== tempDate.getFullYear() ||
+    month !== tempDate.getMonth() + 1 ||
+    day !== tempDate.getDate()
+  ) {
+    return true;
+  }
+
+  return false;
+};
 export const padStart = (
   filterString: string | number,
   maxLength: number = 2

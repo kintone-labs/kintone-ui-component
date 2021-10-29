@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -10,7 +10,6 @@ import {
 import { validateProps } from "../base/validator";
 
 type DatePickerProps = {
-  value?: string;
   className?: string;
   error?: string;
   id?: string;
@@ -20,17 +19,12 @@ type DatePickerProps = {
   visible?: boolean;
   language?: "ja" | "en" | "zh" | "auto";
 };
-function getFormatDate(date: Date) {
-  return `${date.getFullYear()}-${
-    date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
-  }-${date.getDate() < 9 ? "0" + date.getDate() : date.getDate()}`;
-}
+
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = getFormatDate(new Date());
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
@@ -45,33 +39,11 @@ export class DatePicker extends KucBase {
   })
   visible = true;
 
-  private _locale = this._getLocale("en");
-
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-  }
-
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("language")) {
-      this._locale = this._getLocale(this._getLanguage());
-    }
-    super.update(changedProperties);
-  }
-
-  _getLocale(language: string) {
-    switch (language) {
-      case "ja":
-        return { INVALID_FORMAT: "日付の形式が不正です。" };
-      case "zh":
-        return {
-          INVALID_FORMAT: "日期格式不正确。"
-        };
-      default:
-        return { INVALID_FORMAT: "Format is not valid." };
-    }
   }
 
   _getLanguage() {
@@ -98,23 +70,16 @@ export class DatePicker extends KucBase {
   _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    const newValue = event.detail.value;
-    this.error = !this._validateFormat(newValue)
-      ? this._locale.INVALID_FORMAT
-      : "";
-    this._disptchChangeEvent(newValue);
-    this.value = newValue;
+    if (event.detail.error) {
+      this.error = event.detail.error;
+    } else {
+      this.error = "";
+    }
+    this._disptchChangeEvent(event.detail);
   }
 
-  _validateFormat(date: string) {
-    // To do: validate date format
-    return false;
-  }
-
-  _disptchChangeEvent(newValue: string) {
-    const detail: CustomEventDetail = { value: "", oldValue: this.value };
-    detail.value = newValue;
-    dispatchCustomEvent(this, "change", detail);
+  _disptchChangeEvent(eventDetail: CustomEventDetail) {
+    dispatchCustomEvent(this, "change", eventDetail);
   }
 
   render() {
@@ -136,7 +101,6 @@ export class DatePicker extends KucBase {
         </label>
         <kuc-base-date
           .language="${this._getLanguage()}"
-          .value="${this.value}"
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
