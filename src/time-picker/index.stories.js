@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import "./index.ts";
 
 export default {
-  title: "desktop/time picker",
+  title: "desktop/time-picker",
   argTypes: {},
   parameters: {
     actions: {
