@@ -42,16 +42,17 @@ export class BaseDate extends KucBase {
   }
 
   private _updateDateTimeCalendarPosition() {
-    if (this._dateTimeCalendarVisible) {
-      const datePickerHeight = this._dateTimeCalendar.offsetHeight;
-      const dateInputTop = this._dateInput.offsetTop;
-      let datePickerTop = dateInputTop + this._dateInput.offsetHeight;
-      if (this._dateInput.getBoundingClientRect().top > datePickerHeight) {
-        datePickerTop = dateInputTop - datePickerHeight;
-      }
-      this._dateTimeCalendar.style.top = datePickerTop + "px";
-      this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
+    if (!this._dateTimeCalendarVisible) {
+      return;
     }
+    const datePickerHeight = this._dateTimeCalendar.offsetHeight;
+    const dateInputTop = this._dateInput.offsetTop;
+    let datePickerTop = dateInputTop + this._dateInput.offsetHeight;
+    if (this._dateInput.getBoundingClientRect().top > datePickerHeight) {
+      datePickerTop = dateInputTop - datePickerHeight;
+    }
+    this._dateTimeCalendar.style.top = datePickerTop + "px";
+    this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
   }
 
   private _handleBlurToggle(event: FocusEvent) {
