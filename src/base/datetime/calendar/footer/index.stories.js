@@ -1,16 +1,13 @@
 import { html } from "lit-html";
-import { BaseDateTimeCalendarFooter } from "./index.ts";
+import "./index.ts";
 
 export default {
   title: "base/datetime/calendar/footer",
   argTypes: {
-    todayButtonText: {
-      name: "todayButtonText",
-      controls: { type: "text" }
-    },
-    noneButtonText: {
-      name: "noneButtonText",
-      controls: { type: "text" }
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh"],
+      control: { type: "select" }
     }
   },
   parameters: {
@@ -23,16 +20,15 @@ export default {
   }
 };
 
-const Template = ({ todayButtonText, noneButtonText }) =>
-  html`
+const Template = ({ language }) => {
+  return html`
     <kuc-base-datetime-calendar-footer
-      .todayButtonText=${todayButtonText}
-      .noneButtonText=${noneButtonText}
+      .language="${language}"
     ></kuc-base-datetime-calendar-footer>
   `;
+};
 
 export const base = Template.bind({});
 base.args = {
-  todayButtonText: "Today",
-  noneButtonText: "None"
+  language: "en"
 };

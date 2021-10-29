@@ -1,10 +1,20 @@
-import { html } from "lit";
-import { property } from "lit/decorators.js";
+import { html, PropertyValues } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../../../kuc-base";
+import { getLocale } from "../../utils";
 
 export class BaseDateTimeCalendarFooter extends KucBase {
-  @property({ type: String }) noneButtonText = "None";
-  @property({ type: String }) todayButtonText = "Today";
+  @property({ type: String }) language = "en";
+
+  @state()
+  private _locale = getLocale("en");
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
+    }
+    super.update(changedProperties);
+  }
 
   private _handleClickCalendarFooterButtonNone(event: MouseEvent) {
     event.stopPropagation();
@@ -25,7 +35,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--today"
           @click=${this._handleClickCalendarFooterButtonToday}
         >
-          ${this.todayButtonText}
+          ${this._locale.CALENDAR_FOOTER_TEXT.today}
         </button>
         <span class="kuc-base-datetime-calendar-footer__group__center"></span>
         <button
@@ -33,7 +43,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
           @click=${this._handleClickCalendarFooterButtonNone}
         >
-          ${this.noneButtonText}
+          ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
       </div>
     `;

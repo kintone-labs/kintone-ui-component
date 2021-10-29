@@ -4,9 +4,10 @@ import { BaseDateTimeCalendarFooter } from "../index";
 describe("BaseDateTimeCalendarFooter", () => {
   describe("kuc:calendar-footer-click-none event", () => {
     it("should be triggered kuc:calendar-footer-click-none event", async () => {
+      let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendarFooter();
       container.addEventListener("kuc:calendar-footer-click-none", event => {
-        container.noneButtonText = event.type;
+        triggeredEvent = event.type;
       });
 
       const el = await fixture(container);
@@ -17,7 +18,7 @@ describe("BaseDateTimeCalendarFooter", () => {
       buttonEl.click();
       await elementUpdated(buttonEl);
 
-      expect(buttonEl.innerText).to.equal("kuc:calendar-footer-click-none");
+      expect(triggeredEvent).to.equal("kuc:calendar-footer-click-none");
     });
   });
 });

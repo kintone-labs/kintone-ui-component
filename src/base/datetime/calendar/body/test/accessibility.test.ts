@@ -4,7 +4,7 @@ import { BaseDateTimeCalendarBody } from "../index";
 describe("BaseDateTimeCalendarBody", () => {
   describe("accessibility", () => {
     const initValue = {
-      month: 7,
+      month: 8,
       year: 2021,
       value: "2021-08-22"
     };
@@ -223,7 +223,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
     it('should be highlight next year when triggered "ArrowRight" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
-      container.month = 11;
+      container.month = 12;
       container.year = 2021;
       container.value = "2021-12-31";
 

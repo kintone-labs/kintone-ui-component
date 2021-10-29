@@ -85,6 +85,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         :lang(ja) kuc-base-datetime-calendar-header * {
           font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
             sans-serif;
+          font-weight: 700;
         }
         :lang(zh) kuc-base-datetime-calendar-header,
         :lang(zh) kuc-base-datetime-calendar-header * {
