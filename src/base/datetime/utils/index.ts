@@ -53,32 +53,32 @@ export const formatDateByLocale = (date: string, language: string = "ja") => {
 const isValidDate = (d: Date) => {
   return d instanceof Date && !isNaN(d.getTime());
 };
-export const isInvalidDateFormat = (dateString: string, language: string) => {
+export const isValidDateFormat = (dateString: string, language: string) => {
   const isEnLanguage = language === "en";
   const splitStr = isEnLanguage ? "/" : "-";
   const splitDates = dateString.split(splitStr);
   if (splitDates.length !== 3) {
-    return true;
+    return false;
   }
   const year = Number(isEnLanguage ? splitDates[2] : splitDates[0]);
   const month = Number(isEnLanguage ? splitDates[0] : splitDates[1]);
   const day = Number(isEnLanguage ? splitDates[1] : splitDates[2]);
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    return true;
+    return false;
   }
   const tempDate = new Date(dateString);
   if (!isValidDate(tempDate)) {
-    return true;
+    return false;
   }
   if (
     year !== tempDate.getFullYear() ||
     month !== tempDate.getMonth() + 1 ||
     day !== tempDate.getDate()
   ) {
-    return true;
+    return false;
   }
 
-  return false;
+  return true;
 };
 export const padStart = (
   filterString: string | number,

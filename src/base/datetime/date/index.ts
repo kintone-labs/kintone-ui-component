@@ -6,7 +6,7 @@ import {
   dispatchCustomEvent,
   KucBase
 } from "../../kuc-base";
-import { formatDateByLocale, getLocale, isInvalidDateFormat } from "../utils";
+import { formatDateByLocale, getLocale, isValidDateFormat } from "../utils";
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String }) language = "en";
@@ -22,8 +22,10 @@ export class BaseDate extends KucBase {
   private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
-  private _handleMouseDownInputToggle(event: Event) {
-    this._openCalendar();
+  private _handleMouseDownInputToggle() {
+    if (!this._dateTimeCalendarVisible) {
+      this._openCalendar();
+    }
   }
   private _locale = getLocale("en");
   updated(changedProperties: PropertyValues) {
@@ -55,16 +57,13 @@ export class BaseDate extends KucBase {
     this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
   }
 
-  private _handleBlurToggle(event: FocusEvent) {
-    // console.log(event.relatedTarget);
-    // To do: close calendar when clicking outside area of input and calendar
-    // this._closeCalendar();
+  firstUpdated() {
+    this._handleClickDocument();
   }
-
   private _handleChangeInputToggle(event: Event) {
     event.stopPropagation();
     const newValue = (event.target as HTMLInputElement).value;
-    if (isInvalidDateFormat(newValue, this.language)) {
+    if (!isValidDateFormat(newValue, this.language)) {
       const detail: CustomEventDetail = {
         value: newValue,
         oldValue: this.value,
@@ -111,7 +110,20 @@ export class BaseDate extends KucBase {
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
-
+  private _handleClickDocument() {
+    window.document.addEventListener("click", event => {
+      const targetEl = event.target as HTMLElement;
+      const ignoreClass = [
+        "kuc-base-date__input",
+        "kuc-base-datetime-calendar__group"
+      ];
+      for (let index = 0; index < ignoreClass.length; index++) {
+        const className = ignoreClass[index];
+        if (targetEl.classList.contains(className)) return;
+      }
+      this._closeCalendar();
+    });
+  }
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -125,7 +137,6 @@ export class BaseDate extends KucBase {
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
         @mousedown="${this._handleMouseDownInputToggle}"
-        @blur="${this._handleBlurToggle}"
         @change="${this._handleChangeInputToggle}"
       />
       <kuc-base-datetime-calendar
