@@ -13,7 +13,7 @@ import {
 } from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property({ type: Number }) month = 0;
+  @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
@@ -116,17 +116,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
     date.setDate(date.getDate() + days);
 
     const nextDate = this._getDateString(date);
-    const nextMonth = date.getMonth();
+    const nextMonth = date.getMonth() + 1;
     const nextYear = date.getFullYear();
+
     if (nextMonth !== this.month) this.month = nextMonth;
     if (nextYear !== this.year) this.year = nextYear;
 
-    const detail: CustomEventDetail = {
-      oldValue: this.value,
-      value: nextDate
-    };
-    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
+    const oldValue = this.value;
     this.value = nextDate;
+
+    const detail: CustomEventDetail = { oldValue: oldValue, value: nextDate };
+    dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
   }
 
   private _getSelectedValue() {
@@ -141,10 +141,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (isToday)
       return " kuc-base-datetime-calendar-body__table__date__button--today";
 
-    const isOtherMonth = parseInt(dateParts[1], 10) !== this.month + 1;
-    if (isOtherMonth)
-      return " kuc-base-datetime-calendar-body__table__date__button--other-month";
-    return "";
+    const isThisMonth = parseInt(dateParts[1], 10) === this.month;
+    if (isThisMonth) return "";
+
+    return " kuc-base-datetime-calendar-body__table__date__button--other-month";
   }
 
   private _getDateString(date = new Date()) {
@@ -173,7 +173,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateItemsTemplate() {
-    const displayingDates = getDisplayingDates(this.year, this.month);
+    const displayingDates = getDisplayingDates(this.year, this.month - 1);
     const today = this._getDateString();
     return html`
       <tbody>
@@ -235,9 +235,16 @@ export class BaseDateTimeCalendarBody extends KucBase {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", sans-serif;
         }
-        .kuc-base-datetime-calendar-body__table {
+        .kuc-base-datetime-calendar-body__table,
+        .kuc-base-datetime-calendar-body__table tr {
           border-collapse: separate;
           border-spacing: 0;
+        }
+        .kuc-base-datetime-calendar-body__table__date,
+        .kuc-base-datetime-calendar-body__table__date--selected {
+          border-spacing: 1px;
+          padding: 0px;
+          border: 1px solid #ffffff;
         }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button,
@@ -249,6 +256,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
           font-size: 10px;
           font-weight: 400;
           color: #333333;
+        }
+        :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
+          font-weight: 700;
         }
         .kuc-base-datetime-calendar-body__table__date--selected
           .kuc-base-datetime-calendar-body__table__date__button,
@@ -282,8 +292,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         }
         .kuc-base-datetime-calendar-body__table__date--selected
           .kuc-base-datetime-calendar-body__table__date__button {
-          width: 34px;
-          height: 29px;
           outline: none;
         }
         .kuc-base-datetime-calendar-body__table__date
@@ -296,6 +304,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
           .kuc-base-datetime-calendar-body__table__date__button--today {
           color: #ffffff;
           background: #888888;
+          border: none;
         }
         .kuc-base-datetime-calendar-body__table__date
           .kuc-base-datetime-calendar-body__table__date__button--today:hover {

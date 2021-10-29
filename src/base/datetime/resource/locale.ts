@@ -23,7 +23,8 @@ export const en = {
     { text: "FRI", abbr: "Friday" },
     { text: "SAT", abbr: "Saturday" }
   ],
-  INVALID_FORMAT: "Format is not valid."
+  INVALID_FORMAT: "Format is not valid.",
+  CALENDAR_FOOTER_TEXT: { none: "None", today: "Today" }
 };
 
 export const ja = {
@@ -51,7 +52,8 @@ export const ja = {
     { text: "金", abbr: "金" },
     { text: "土", abbr: "土" }
   ],
-  INVALID_FORMAT: "日付の形式が不正です。"
+  INVALID_FORMAT: "日付の形式が不正です。",
+  CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日" }
 };
 
 export const zh = {
@@ -79,5 +81,6 @@ export const zh = {
     { text: "周五", abbr: "周五" },
     { text: "周六", abbr: "周六" }
   ],
-  INVALID_FORMAT: "日期格式不正确。"
+  INVALID_FORMAT: "日期格式不正确。",
+  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天" }
 };
