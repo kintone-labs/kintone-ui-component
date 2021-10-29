@@ -24,8 +24,8 @@ export class BaseDateTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
 
   /**
-   * Change to considering name
-   * and change to prop when publishing _timeStep
+   * Considering name again
+   * and change @state to @property to public.
    */
   @state()
   private _timeStep = 30;
