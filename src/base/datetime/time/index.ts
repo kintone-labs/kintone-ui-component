@@ -202,7 +202,7 @@ export class BaseDateTime extends KucBase {
     return (
       ["Meta", "Shift", "Alt", "Backspace", "CapsLock", "Escape"].indexOf(
         event.key
-      ) !== -1
+      ) > -1
     );
   }
 
