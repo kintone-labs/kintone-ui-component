@@ -80,18 +80,34 @@ export class BaseDateTimeListBox extends KucBase {
     );
   }
 
-  public scrollToView() {
-    if (!this._highlightItemEl || !this._listBoxEl) {
+  private _getHighlightEl(itemValue: string) {
+    const listLiEl = Array.from(this._listBoxEl.children);
+    const itemTimeObj = new Date(Date.parse(`2021/01/01 ${itemValue}`));
+    const liEl = listLiEl.find(
+      element =>
+        new Date(
+          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
+        ) >= itemTimeObj
+    );
+    return liEl as HTMLLIElement;
+  }
+
+  public scrollToView(itemValue?: string) {
+    const higlightItemEl = itemValue
+      ? this._getHighlightEl(itemValue)
+      : this._highlightItemEl;
+    if (!higlightItemEl || !this._listBoxEl) {
       return;
     }
-    const lineHeight = this._highlightItemEl.offsetHeight;
+    const lineHeight = higlightItemEl.offsetHeight;
     const offsetItemCount = this._listBoxEl.clientHeight / lineHeight / 2;
     const offsetScrollTop =
-      this._highlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
+      higlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
         ? 0
-        : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
+        : higlightItemEl.offsetTop - offsetItemCount * lineHeight;
     this._listBoxEl.scrollTop = offsetScrollTop;
   }
+
   public scrollToTop() {
     if (!this._listBoxEl) {
       return;
