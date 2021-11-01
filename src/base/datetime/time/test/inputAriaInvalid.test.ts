@@ -6,35 +6,37 @@ describe("BaseTime", () => {
     it("should be false when not assigning", async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.getAttribute("aria-invalid")).to.equal("false");
+      expect(container.inputAriaInvalid).to.equal(false);
     });
 
-    it("should be true when assigning on constructor", async () => {
+    it("should be true when assigned by setter", async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
       container.inputAriaInvalid = true;
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.getAttribute("aria-invalid")).to.equal("true");
+      expect(container.inputAriaInvalid).to.equal(true);
     });
 
-    // it('should be replaced to "replace-id" after changing by setter', async () => {
-    //   const container = document.createElement("kuc-base-time") as BaseDateTime;
-    //   container.inputId = "inputid";
-    //   const el = await fixture(container);
-    //   container.inputId = "newid";
-    //   await elementUpdated(el);
+    it("should be false when changed to false", async () => {
+      const container = document.createElement("kuc-base-time") as BaseDateTime;
+      container.inputAriaInvalid = true;
+      container.inputAriaInvalid = false;
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
 
-    //   const inputEl = el.querySelector(
-    //     ".kuc-base-time__group__input"
-    //   ) as HTMLInputElement;
-    //   expect(inputEl.id).to.equal("newid-label");
-    // });
+      expect(inputEl.getAttribute("aria-invalid")).to.equal("false");
+      expect(container.inputAriaInvalid).to.equal(false);
+    });
   });
 });

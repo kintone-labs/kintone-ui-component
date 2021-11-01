@@ -3,37 +3,39 @@ import { BaseDateTime } from "../index";
 
 describe("BaseTime", () => {
   describe("inputId", () => {
-    it('should be "" when not assigning on constructor', async () => {
+    it("should be empty string when not assigning", async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
+      expect(container.inputId).to.equal("");
       expect(inputEl.id).to.equal("-label");
     });
 
-    it('should be "inputid-label" when assigning on constructor', async () => {
+    it('should be "my-inputid" when assigned by setter', async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
-      container.inputId = "inputid";
+      container.inputId = "my-inputid";
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
-      expect(inputEl.id).to.equal("inputid-label");
+
+      expect(container.inputId).to.equal("my-inputid");
+      expect(inputEl.id).to.equal("my-inputid-label");
     });
 
-    it('should be replaced to "replace-id" after changing by setter', async () => {
+    it('should be "newid" when changed to "newid"', async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
-      container.inputId = "inputid";
-      const el = await fixture(container);
+      container.inputId = "my-inputid";
       container.inputId = "newid";
-      await elementUpdated(el);
-
+      const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
+      expect(container.inputId).to.equal("newid");
       expect(inputEl.id).to.equal("newid-label");
     });
   });

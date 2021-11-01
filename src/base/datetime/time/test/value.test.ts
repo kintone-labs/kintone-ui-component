@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../index";
 
 describe("BaseTime", () => {
@@ -6,10 +6,10 @@ describe("BaseTime", () => {
     it("should be empty string when not assigning", async () => {
       const container = document.createElement("kuc-base-time");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.value).to.be.equal("");
     });
 
@@ -17,10 +17,10 @@ describe("BaseTime", () => {
       const container = document.createElement("kuc-base-time");
       container.setAttribute("value", "11:15");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.value).to.be.equal("11:15");
     });
 
@@ -29,44 +29,48 @@ describe("BaseTime", () => {
       container.setAttribute("value", "11:15");
       container.setAttribute("value", "13:15");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.value).to.be.equal("13:15");
     });
 
-    it('should be "12:15" when changed hour12 to false by setter', async () => {
-      const container = document.createElement("kuc-base-time");
-      container.setAttribute("value", "12:15 PM");
-      const el = await fixture(container);
-
-      const inputEl = el.querySelector(
-        ".kuc-base-time__group__input"
-      ) as HTMLInputElement;
-      expect(inputEl.value).to.be.equal("12:15");
-    });
-
-    it('should be "13:15" when changed hour12 to false by setter', async () => {
+    it('should be "13:15" when assigned "01:15 PM" by setter', async () => {
       const container = document.createElement("kuc-base-time");
       container.setAttribute("value", "01:15 PM");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.value).to.be.equal("13:15");
     });
 
-    it("should be empty string when assigned invalid value", async () => {
+    it('should be "01:15 PM" when assigned "13:15" and hour12 to true', async () => {
       const container = document.createElement("kuc-base-time");
-      container.setAttribute("value", "11:as");
+      container.setAttribute("value", "13:15");
+      container.setAttribute("hour12", "true");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
-      expect(inputEl.value).to.be.equal("");
+
+      expect(inputEl.value).to.be.equal("01:15 PM");
+    });
+
+    it("should not changed when typing Caplock key on input element", async () => {
+      const container = document.createElement("kuc-base-time");
+      container.setAttribute("value", "05:30");
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
+      inputEl.focus();
+      await elementUpdated(el);
+      inputEl.dispatchEvent(new KeyboardEvent("keydown", { key: "CapsLock" }));
+
+      expect(inputEl.value).to.equal("05:30");
     });
   });
 });

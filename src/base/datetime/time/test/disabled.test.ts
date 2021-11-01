@@ -6,7 +6,6 @@ describe("BaseTime", () => {
     it("should be not added into input element when not assigned", async () => {
       const container = document.createElement("kuc-base-time");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
@@ -18,7 +17,6 @@ describe("BaseTime", () => {
       const container = document.createElement("kuc-base-time");
       container.setAttribute("disabled", "true");
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
@@ -26,15 +24,15 @@ describe("BaseTime", () => {
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
     });
 
-    it("should be added into input element when changed to true by setter", async () => {
+    it("should be added into input element when changed to true", async () => {
       const container = document.createElement("kuc-base-time") as BaseDateTime;
       container.disabled = false;
       container.disabled = true;
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
     });
 
@@ -43,10 +41,10 @@ describe("BaseTime", () => {
       container.disabled = true;
       container.disabled = false;
       const el = await fixture(container);
-
       const inputEl = el.querySelector(
         ".kuc-base-time__group__input"
       ) as HTMLInputElement;
+
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
     });
   });
