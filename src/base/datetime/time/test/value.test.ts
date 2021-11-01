@@ -1,4 +1,4 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import "../index";
 
 describe("BaseTime", () => {
@@ -57,20 +57,6 @@ describe("BaseTime", () => {
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.be.equal("01:15 PM");
-    });
-
-    it("should not changed when typing Caplock key on input element", async () => {
-      const container = document.createElement("kuc-base-time");
-      container.setAttribute("value", "05:30");
-      const el = await fixture(container);
-      const inputEl = el.querySelector(
-        ".kuc-base-time__group__input"
-      ) as HTMLInputElement;
-      inputEl.focus();
-      await elementUpdated(el);
-      inputEl.dispatchEvent(new KeyboardEvent("keydown", { key: "CapsLock" }));
-
-      expect(inputEl.value).to.equal("05:30");
     });
   });
 });
