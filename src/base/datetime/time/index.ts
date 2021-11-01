@@ -199,8 +199,10 @@ export class BaseDateTime extends KucBase {
 
   private _handleNotSupportedKey(event: KeyboardEvent) {
     event.preventDefault();
-    return ["Meta", "Shift", "Alt", "Backspace", "CapsLock", "Escape"].includes(
-      event.key
+    return (
+      ["Meta", "Shift", "Alt", "Backspace", "CapsLock", "Escape"].indexOf(
+        event.key
+      ) !== -1
     );
   }
 
