@@ -22,16 +22,7 @@ export class BaseDate extends KucBase {
   private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
-  private _handleMouseDownInputToggle() {
-    if (!this._dateTimeCalendarVisible) {
-      this._openCalendar();
-    }
-  }
   private _locale = getLocale("en");
-  updated(changedProperties: PropertyValues) {
-    this._updateDateTimeCalendarPosition();
-    super.updated(changedProperties);
-  }
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
@@ -41,6 +32,12 @@ export class BaseDate extends KucBase {
       this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
+  }
+
+  private _handleMouseDownInputToggle() {
+    if (!this._dateTimeCalendarVisible) {
+      this._openCalendar();
+    }
   }
 
   private _updateDateTimeCalendarPosition() {
@@ -57,9 +54,6 @@ export class BaseDate extends KucBase {
     this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
   }
 
-  firstUpdated() {
-    this._handleClickDocument();
-  }
   private _handleChangeInputToggle(event: Event) {
     event.stopPropagation();
     const newValue = (event.target as HTMLInputElement).value;
@@ -110,6 +104,7 @@ export class BaseDate extends KucBase {
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
+
   private _handleClickDocument() {
     window.document.addEventListener("click", event => {
       const targetEl = event.target as HTMLElement;
@@ -124,6 +119,7 @@ export class BaseDate extends KucBase {
       this._closeCalendar();
     });
   }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -153,6 +149,15 @@ export class BaseDate extends KucBase {
       >
       </kuc-base-datetime-calendar>
     `;
+  }
+
+  firstUpdated() {
+    this._handleClickDocument();
+  }
+
+  updated(changedProperties: PropertyValues) {
+    this._updateDateTimeCalendarPosition();
+    super.updated(changedProperties);
   }
 
   _getStyleTagTemplate() {
