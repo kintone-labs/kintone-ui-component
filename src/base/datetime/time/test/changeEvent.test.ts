@@ -19,7 +19,7 @@ describe("BaseTime", () => {
           ".kuc-base-time__group__input"
         ) as HTMLInputElement;
 
-        inputEl.focus();
+        inputEl.click();
         inputEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
         expect(triggeredEvent.type).to.equal("kuc:base-time-change");
@@ -42,7 +42,7 @@ describe("BaseTime", () => {
           ".kuc-base-time__group__input"
         ) as HTMLInputElement;
 
-        inputEl.focus();
+        inputEl.click();
         inputEl.dispatchEvent(
           new KeyboardEvent("keydown", { key: "ArrowDown" })
         );
@@ -67,7 +67,7 @@ describe("BaseTime", () => {
           ".kuc-base-time__group__input"
         ) as HTMLInputElement;
 
-        inputEl.focus();
+        inputEl.click();
         inputEl.dispatchEvent(new KeyboardEvent("keydown", { key: "3" }));
 
         expect(triggeredEvent.type).to.equal("kuc:base-time-change");

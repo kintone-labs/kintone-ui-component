@@ -36,6 +36,28 @@ describe("BaseTime", () => {
       expect(inputEl.value).to.be.equal("13:15");
     });
 
+    it('should be "12:15" when changed hour12 to false by setter', async () => {
+      const container = document.createElement("kuc-base-time");
+      container.setAttribute("value", "12:15 PM");
+      const el = await fixture(container);
+
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
+      expect(inputEl.value).to.be.equal("12:15");
+    });
+
+    it('should be "13:15" when changed hour12 to false by setter', async () => {
+      const container = document.createElement("kuc-base-time");
+      container.setAttribute("value", "01:15 PM");
+      const el = await fixture(container);
+
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
+      expect(inputEl.value).to.be.equal("13:15");
+    });
+
     it("should be empty string when assigned invalid value", async () => {
       const container = document.createElement("kuc-base-time");
       container.setAttribute("value", "11:as");
