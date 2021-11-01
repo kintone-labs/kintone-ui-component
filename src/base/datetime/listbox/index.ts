@@ -101,10 +101,9 @@ export class BaseDateTimeListBox extends KucBase {
     }
     const lineHeight = higlightItemEl.offsetHeight;
     const offsetItemCount = this._listBoxEl.clientHeight / lineHeight / 2;
-    const offsetScrollTop =
-      higlightItemEl.offsetTop - offsetItemCount * lineHeight < 0
-        ? 0
-        : higlightItemEl.offsetTop - offsetItemCount * lineHeight;
+    let offsetScrollTop =
+      higlightItemEl.offsetTop - offsetItemCount * lineHeight;
+    if (offsetScrollTop < 0) offsetScrollTop = 0;
     this._listBoxEl.scrollTop = offsetScrollTop;
   }
 
