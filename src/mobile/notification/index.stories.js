@@ -6,6 +6,9 @@ storiesOf("mobile/notification", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const notification = new MobileNotification();
+    notification.addEventListener("close", event => {
+      console.log(event);
+    });
 
     const button = document.createElement("button");
     button.textContent = "open";
@@ -36,6 +39,9 @@ storiesOf("mobile/notification", module)
     const notification = new MobileNotification({
       text: "Duration 3 seconds",
       duration: 3000
+    });
+    notification.addEventListener("close", event => {
+      console.log(event);
     });
 
     const button = document.createElement("button");

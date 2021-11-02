@@ -1,5 +1,5 @@
 import { html, svg, property, state } from "lit-element";
-import { KucBase } from "../../base/kuc-base";
+import { KucBase, dispatchCustomEvent } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
@@ -60,6 +60,8 @@ export class MobileNotification extends KucBase {
     this.classList.add("kuc-mobile-notification-fadeout");
 
     this._clearAutoCloseTimer();
+
+    dispatchCustomEvent(this, "close");
   }
 
   render() {
