@@ -113,7 +113,7 @@ export class BaseDateTime extends KucBase {
     this._ulListBoxEl.style.left = "auto";
     if (distanceInputToBottom >= listBoxHeight) return;
     this._ulListBoxEl.style.bottom = "40px";
-    this._ulListBoxEl.style.left = "0";
+    this._ulListBoxEl.style.left = "0px";
   }
 
   private _updateInputValue(value: string) {
