@@ -24,6 +24,14 @@ Here is a list of properties that can be used for modifying the component:
 | content | string \|   HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the content property is automatically sanitized internally to prevent XSS attacks.
 | footer | string \| HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitized internally to prevent XSS attacks |
 
+### Event
+
+Here is a list of events that can be specified:
+
+| Name | Type | Description | Remark |
+| :--- | :--- | :--- | :--- |
+| close | function | Event handler when the component has been closed | It will pass the event object as the argument |
+
 ### Constructor
 
 Dialog(options)<br>

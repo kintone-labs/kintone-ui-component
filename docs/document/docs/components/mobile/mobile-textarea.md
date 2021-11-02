@@ -38,6 +38,7 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument.<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
 | focus | function | Event handler for the focused time | It will pass the event object as the argument.<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
+| input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.data : Value of inputted characters<br>event.detail.value : Value of target |
 
 ### Constructor
 
