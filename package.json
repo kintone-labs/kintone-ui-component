@@ -1,6 +1,7 @@
 {
   "name": "kintone-ui-component",
   "version": "1.1.1",
+  "devVersion": "1.2.2",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
@@ -28,7 +29,8 @@
   "scripts": {
     "build:umd_dev": "webpack --mode development",
     "build:umd_prod": "webpack --mode production",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:esm_dev": "tsc -p tsconfig.esm.json && webpack --mode development --config webpack.esm.config.js",
+    "build:esm_prod": "tsc -p tsconfig.esm.json && webpack --mode production --config webpack.esm.config.js",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
