@@ -58,5 +58,28 @@ describe("BaseTime", () => {
 
       expect(inputEl.value).to.be.equal("01:15 PM");
     });
+
+    it('should be "09:00 AM" when assigned "09:00" and hour12 to true', async () => {
+      const container = document.createElement("kuc-base-time");
+      container.setAttribute("value", "09:00");
+      container.setAttribute("hour12", "true");
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.value).to.be.equal("09:00 AM");
+    });
+
+    it('should be "12:00" when assigned "12:00 PM"', async () => {
+      const container = document.createElement("kuc-base-time");
+      container.setAttribute("value", "12:00 PM");
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-base-time__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.value).to.be.equal("12:00");
+    });
   });
 });
