@@ -77,4 +77,8 @@ mobileTextArea.addEventListener('change', event => {
 mobileTextArea.addEventListener('focus', event => {
   console.log(event);
 });
+
+mobileTextArea.addEventListener('input', event => {
+  console.log(event);
+});
 ```

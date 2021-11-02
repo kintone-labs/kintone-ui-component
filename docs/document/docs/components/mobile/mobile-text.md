@@ -83,5 +83,9 @@ mobileText.addEventListener('change', event => {
 mobileText.addEventListener('focus', event => {
   console.log(event);
 });
+
+mobileText.addEventListener('input', event => {
+  console.log(event);
+});
 ```
 

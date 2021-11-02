@@ -83,4 +83,8 @@ text.addEventListener('change', event => {
 text.addEventListener('focus', event => {
   console.log(event);
 });
+
+text.addEventListener('input', event => {
+  console.log(event);
+});
 ```

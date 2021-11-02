@@ -72,8 +72,14 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const mobileNotification = new Kuc.MobileNotification({
   text:  'Error occurred!',
-  className: 'options-class'
+  className: 'options-class',
+  duration: 2000
 });
+
+mobileNotification.addEventListener('close', event => {
+  console.log(event);
+});
+
 mobileNotification.open();
 mobileNotification.close();
 ```

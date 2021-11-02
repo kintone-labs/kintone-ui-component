@@ -77,4 +77,8 @@ textarea.addEventListener('change', event => {
 textarea.addEventListener('focus', event => {
   console.log(event);
 });
+
+textarea.addEventListener('input', event => {
+  console.log(event);
+});
 ```

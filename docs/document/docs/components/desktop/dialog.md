@@ -75,6 +75,11 @@ const dialog = new Kuc.Dialog({
   content: '<div>This is Content</div>',
   footer: 'Footer'
 });
+
+dialog.addEventListener('close', event => {
+  console.log(event);
+});
+
 dialog.open();
 dialog.close();
 ```

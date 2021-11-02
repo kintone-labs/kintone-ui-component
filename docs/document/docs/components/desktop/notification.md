@@ -78,8 +78,14 @@ Here is a sample code when all parameters are specified:
 const notification = new Kuc.Notification({
   text:  'Error occurred!',
   type: 'danger',
-  className: 'options-class'
+  className: 'options-class',
+  duration: 2000
 });
+
+notification.addEventListener('close', event => {
+  console.log(event);
+});
+
 notification.open();
 notification.close();
 ```
