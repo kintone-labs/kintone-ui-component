@@ -1,6 +1,7 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
+import { formatDateByLocale, isValidDateFormat } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -18,8 +19,9 @@ type DatePickerProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   language?: "ja" | "en" | "zh" | "auto";
+  value: string;
 };
-
+const Common_Language = "ja";
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -28,9 +30,10 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
-
+  @property({ type: String }) value = formatDateByLocale(
+    new Date().toDateString()
+  );
   private _GUID: string;
-
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -46,28 +49,30 @@ export class DatePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
-  _getLanguage() {
-    switch (this.language) {
-      case "auto": {
-        switch (document.documentElement.lang) {
-          case "ja":
-            return "ja";
-          case "zh":
-            return "zh";
-          default:
-            return "en";
-        }
-      }
-      case "ja":
-        return "ja";
-      case "zh":
-        return "zh";
-      default:
-        return "en";
+  update(changedProperties: PropertyValues) {
+    if (
+      changedProperties.has("value") &&
+      this.value &&
+      !isValidDateFormat(this.value, Common_Language)
+    ) {
+      this.value = "";
     }
+    super.update(changedProperties);
   }
 
-  _handleDateChange(event: CustomEvent) {
+  private _getLanguage() {
+    // eslint-disable-next-line no-nested-ternary
+    return this.language === "en" ||
+      this.language === "ja" ||
+      this.language === "zh"
+      ? this.language
+      : document.documentElement.lang === "ja" ||
+        document.documentElement.lang === "zh"
+      ? document.documentElement.lang
+      : "en";
+  }
+
+  private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
     if (event.detail.error) {
@@ -78,7 +83,7 @@ export class DatePicker extends KucBase {
     this._disptchChangeEvent(event.detail);
   }
 
-  _disptchChangeEvent(eventDetail: CustomEventDetail) {
+  private _disptchChangeEvent(eventDetail: CustomEventDetail) {
     dispatchCustomEvent(this, "change", eventDetail);
   }
 
@@ -100,10 +105,11 @@ export class DatePicker extends KucBase {
           >
         </label>
         <kuc-base-date
-          .language="${this._getLanguage()}"
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
+          .value="${this.value}"
+          .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >
         </kuc-base-date>
@@ -119,7 +125,7 @@ export class DatePicker extends KucBase {
     `;
   }
 
-  _getStyleTagTemplate() {
+  private _getStyleTagTemplate() {
     return html`
       <style>
         kuc-date-picker,

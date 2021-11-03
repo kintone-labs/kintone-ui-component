@@ -9,10 +9,12 @@ import {
 import { formatDateByLocale, getLocale, isValidDateFormat } from "../utils";
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
-  @property({ type: String }) language = "en";
-  @property({ type: String, reflect: true }) value = formatDateByLocale(
-    new Date().toDateString()
-  );
+  @property({ type: String, reflect: true }) language = "en";
+  @property({
+    type: String,
+    reflect: true
+  })
+  value = "";
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
   @query(".kuc-base-date-calendar")
@@ -59,7 +61,7 @@ export class BaseDate extends KucBase {
     const newValue = (event.target as HTMLInputElement).value;
     if (!isValidDateFormat(newValue, this.language)) {
       const detail: CustomEventDetail = {
-        value: newValue,
+        value: "undefined",
         oldValue: this.value,
         error: this._locale.INVALID_FORMAT
       };
@@ -78,14 +80,16 @@ export class BaseDate extends KucBase {
   }
 
   private _handleClickCalendarChangeDate(event: CustomEvent) {
-    dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
+    event.detail.oldValue = this.value;
     this.value = event.detail.value;
+    dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
   private _handleClickCalendarClickDate(event: CustomEvent) {
     this._closeCalendar();
-    dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
+    event.detail.oldValue = this.value;
     this.value = event.detail.value;
+    dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
   private _handleClickCalendarFooterButtonNone() {
@@ -138,7 +142,7 @@ export class BaseDate extends KucBase {
       <kuc-base-datetime-calendar
         class="kuc-base-date-calendar"
         .language="${this.language}"
-        .value="${this.value}"
+        .value="${formatDateByLocale(this.value)}"
         ?hidden="${!this._dateTimeCalendarVisible}"
         @kuc:calendar-body-change-date="${this._handleClickCalendarChangeDate}"
         @kuc:calendar-body-click-date="${this._handleClickCalendarClickDate}"
@@ -160,7 +164,7 @@ export class BaseDate extends KucBase {
     super.updated(changedProperties);
   }
 
-  _getStyleTagTemplate() {
+  private _getStyleTagTemplate() {
     return html`
       <style>
         .kuc-base-date__input {

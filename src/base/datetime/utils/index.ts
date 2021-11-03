@@ -39,6 +39,9 @@ const getDateObj = (date: Date) => {
   return { text, attr };
 };
 export const formatDateByLocale = (date: string, language: string = "ja") => {
+  if (isStringValueEmpty(date)) {
+    return date;
+  }
   const tempDate = new Date(date);
   if (!isValidDate(tempDate)) {
     return date;
@@ -49,11 +52,22 @@ export const formatDateByLocale = (date: string, language: string = "ja") => {
   if (language === "ja" || language === "zh") return `${year}-${month}-${day}`;
   return `${month}/${day}/${year}`;
 };
-
+const isStringValueEmpty = (value: any) => {
+  return (
+    value === null ||
+    value === undefined ||
+    value.length === 0 ||
+    !/[^(^\s*)|(\s*$)]/.test(value)
+  );
+};
 const isValidDate = (d: Date) => {
   return d instanceof Date && !isNaN(d.getTime());
 };
 export const isValidDateFormat = (dateString: string, language: string) => {
+  const tempDate = new Date(dateString);
+  if (!isValidDate(tempDate)) {
+    return false;
+  }
   const isEnLanguage = language === "en";
   const splitStr = isEnLanguage ? "/" : "-";
   const splitDates = dateString.split(splitStr);
@@ -64,10 +78,6 @@ export const isValidDateFormat = (dateString: string, language: string) => {
   const month = Number(isEnLanguage ? splitDates[0] : splitDates[1]);
   const day = Number(isEnLanguage ? splitDates[1] : splitDates[2]);
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    return false;
-  }
-  const tempDate = new Date(dateString);
-  if (!isValidDate(tempDate)) {
     return false;
   }
   if (

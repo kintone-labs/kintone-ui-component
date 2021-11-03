@@ -22,7 +22,7 @@ const Template = args => {
       .id=${args.id}
       .label=${args.label}
       .requiredIcon=${args.requiredIcon}
-      .visivle=${args.visible}
+      .visible=${args.visible}
       .className=${args.className}
       .error=${args.error}
       @change="${handleDateChange}"
@@ -35,7 +35,8 @@ Base.args = {
   error: "date picker error",
   id: "date-picker-id",
   label: "Date Picker Label",
-  value: "2021-10-20",
-  requiredIcron: true,
+  requiredIcon: false,
+  language: "auto",
+  value: "2021-2-28",
   visible: true
 };
