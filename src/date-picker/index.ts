@@ -12,7 +12,7 @@ import {
   KucBase
 } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
-
+import "../base/datetime/date";
 type DatePickerProps = {
   className?: string;
   error?: string;

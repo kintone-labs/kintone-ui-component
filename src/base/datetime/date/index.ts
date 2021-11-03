@@ -12,6 +12,7 @@ import {
   getTodayStringByLocale,
   isValidDateFormat
 } from "../utils";
+export { BaseDateTimeCalendar };
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
@@ -35,15 +36,6 @@ export class BaseDate extends KucBase {
       this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
-  }
-
-  firstUpdated() {
-    this._handleClickDocument();
-  }
-
-  updated(changedProperties: PropertyValues) {
-    this._updateDateTimeCalendarPosition();
-    super.updated(changedProperties);
   }
 
   render() {
@@ -75,6 +67,15 @@ export class BaseDate extends KucBase {
       >
       </kuc-base-datetime-calendar>
     `;
+  }
+
+  firstUpdated() {
+    this._handleClickDocument();
+  }
+
+  updated(changedProperties: PropertyValues) {
+    this._updateDateTimeCalendarPosition();
+    super.updated(changedProperties);
   }
 
   private _getStyleTagTemplate() {
