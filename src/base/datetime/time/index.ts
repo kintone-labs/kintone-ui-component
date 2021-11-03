@@ -16,6 +16,7 @@ import { padStart, generateTimeOptions, createTimeObj } from "../utils";
 
 type TimeItem = { type: string; value: string };
 
+export { BaseDateTimeListBox };
 export class BaseDateTime extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String }) value = "";
@@ -451,6 +452,7 @@ export class BaseDateTime extends KucBase {
         .kuc-base-time__group__input {
           position: relative;
           box-sizing: border-box;
+          max-width: 85px;
           width: 85px;
           height: 40px;
           padding: 0;
