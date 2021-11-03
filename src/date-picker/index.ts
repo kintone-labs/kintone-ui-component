@@ -79,6 +79,7 @@ export class DatePicker extends KucBase {
       this.error = event.detail.error;
     } else {
       this.error = "";
+      this.value = event.detail.value;
     }
     this._disptchChangeEvent(event.detail);
   }
