@@ -1,7 +1,10 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
-import { formatDateByLocale, isValidDateFormat } from "../base/datetime/utils";
+import {
+  getTodayStringByLocale,
+  isValidDateFormat
+} from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -30,9 +33,7 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value = formatDateByLocale(
-    new Date().toDateString()
-  );
+  @property({ type: String }) value = getTodayStringByLocale();
   private _GUID: string;
   @property({
     type: Boolean,
@@ -58,34 +59,6 @@ export class DatePicker extends KucBase {
       this.value = "";
     }
     super.update(changedProperties);
-  }
-
-  private _getLanguage() {
-    // eslint-disable-next-line no-nested-ternary
-    return this.language === "en" ||
-      this.language === "ja" ||
-      this.language === "zh"
-      ? this.language
-      : document.documentElement.lang === "ja" ||
-        document.documentElement.lang === "zh"
-      ? document.documentElement.lang
-      : "en";
-  }
-
-  private _handleDateChange(event: CustomEvent) {
-    event.stopPropagation();
-    event.preventDefault();
-    if (event.detail.error) {
-      this.error = event.detail.error;
-    } else {
-      this.error = "";
-      this.value = event.detail.value;
-    }
-    this._disptchChangeEvent(event.detail);
-  }
-
-  private _disptchChangeEvent(eventDetail: CustomEventDetail) {
-    dispatchCustomEvent(this, "change", eventDetail);
   }
 
   render() {
@@ -195,6 +168,31 @@ export class DatePicker extends KucBase {
         }
       </style>
     `;
+  }
+  private _getLanguage() {
+    const langs = ["en", "ja", "zh"];
+    if (langs.indexOf(this.language) !== -1) return this.language;
+
+    if (langs.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
+  }
+
+  private _handleDateChange(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.detail.error) {
+      this.error = event.detail.error;
+    } else {
+      this.error = "";
+      this.value = event.detail.value;
+    }
+    this._disptchChangeEvent(event.detail);
+  }
+
+  private _disptchChangeEvent(eventDetail: CustomEventDetail) {
+    dispatchCustomEvent(this, "change", eventDetail);
   }
 }
 if (!window.customElements.get("kuc-date-picker")) {

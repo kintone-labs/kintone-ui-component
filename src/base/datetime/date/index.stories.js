@@ -1,7 +1,7 @@
 import "./index.ts";
 import { html } from "lit-html";
 export default {
-  title: "base/date",
+  title: "base/datetime/date",
   argTypes: {
     disabled: {
       name: "disabled",

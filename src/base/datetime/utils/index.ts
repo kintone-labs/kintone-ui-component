@@ -38,20 +38,28 @@ const getDateObj = (date: Date) => {
   const attr = `${year}-${month}-${day}`;
   return { text, attr };
 };
+
 export const formatDateByLocale = (date: string, language: string = "ja") => {
   if (isStringValueEmpty(date)) {
     return date;
   }
-  const tempDate = new Date(date);
-  if (!isValidDate(tempDate)) {
-    return date;
+  let dates = date.split("-");
+  let year, month, day;
+  if (dates.length !== 3) {
+    dates = date.split("/");
+    year = dates[2];
+    month = dates[0];
+    day = dates[1];
+  } else {
+    year = dates[0];
+    month = dates[1];
+    day = dates[2];
   }
-  const year = tempDate.getFullYear();
-  const month = padStart(tempDate.getMonth() + 1);
-  const day = padStart(tempDate.getDate());
-  if (language === "ja" || language === "zh") return `${year}-${month}-${day}`;
-  return `${month}/${day}/${year}`;
+  return language === "en"
+    ? `${month}/${day}/${year}`
+    : `${year}-${month}-${day}`;
 };
+
 const isStringValueEmpty = (value: any) => {
   return (
     value === null ||
@@ -60,36 +68,35 @@ const isStringValueEmpty = (value: any) => {
     !/[^(^\s*)|(\s*$)]/.test(value)
   );
 };
-const isValidDate = (d: Date) => {
-  return d instanceof Date && !isNaN(d.getTime());
+
+export const getTodayStringByLocale = (language: string = "ja") => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = padStart(today.getMonth() + 1);
+  const day = padStart(today.getDate());
+  return language === "ja" || language === "zh"
+    ? year + "-" + month + "-" + day
+    : month + "/" + day + "/" + year;
 };
+
 export const isValidDateFormat = (dateString: string, language: string) => {
-  const tempDate = new Date(dateString);
-  if (!isValidDate(tempDate)) {
-    return false;
-  }
+  if (isStringValueEmpty(dateString)) return false;
   const isEnLanguage = language === "en";
   const splitStr = isEnLanguage ? "/" : "-";
-  const splitDates = dateString.split(splitStr);
-  if (splitDates.length !== 3) {
-    return false;
-  }
-  const year = Number(isEnLanguage ? splitDates[2] : splitDates[0]);
-  const month = Number(isEnLanguage ? splitDates[0] : splitDates[1]);
-  const day = Number(isEnLanguage ? splitDates[1] : splitDates[2]);
-  if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    return false;
-  }
-  if (
-    year !== tempDate.getFullYear() ||
-    month !== tempDate.getMonth() + 1 ||
-    day !== tempDate.getDate()
-  ) {
-    return false;
-  }
+  const dateObj = new Date(dateString);
+  const notExistedDate =
+    dateObj.getDate() !==
+    parseInt(dateString.split(splitStr)[isEnLanguage ? 1 : 2], 10);
+  if (notExistedDate) return false;
 
-  return true;
+  const enRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(\d{4})$/;
+  if (language === "en") {
+    return dateString.match(enRegex) !== null;
+  }
+  const jaRegex = /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
+  return dateString.match(jaRegex) !== null;
 };
+
 export const padStart = (
   filterString: string | number,
   maxLength: number = 2
