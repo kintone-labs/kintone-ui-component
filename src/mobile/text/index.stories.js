@@ -10,9 +10,12 @@ storiesOf("mobile/text", module)
       requiredIcon: true
     });
     mobileText.addEventListener("focus", event => {
-      console.log(event);
+      console.log(event.detail);
     });
     mobileText.addEventListener("change", event => {
+      console.log(event.detail);
+    });
+    mobileText.addEventListener("input", event => {
       console.log(event.detail);
     });
     root.appendChild(mobileText);
