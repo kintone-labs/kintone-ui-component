@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 type CustomEventDetail = {
   value?: string | string[];
   oldValue?: string | string[];
+  data?: string | null;
 };
 
 export abstract class KucBase extends LitElement {
