@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const packageJSON = require("./package.json");
 
-module.exports = (env, argv) => ({
+module.exports = {
   entry: "./src/version.ts",
   output: {
     path: path.resolve(__dirname, "lib"),
@@ -27,10 +27,7 @@ module.exports = (env, argv) => ({
   },
   plugins: [
     new webpack.DefinePlugin({
-      VERSION:
-        argv.mode === "development"
-          ? JSON.stringify(packageJSON.devVersion)
-          : JSON.stringify(packageJSON.version)
+      VERSION: JSON.stringify(packageJSON.version)
     })
   ]
-});
+};

@@ -1,7 +1,6 @@
 {
   "name": "kintone-ui-component",
   "version": "1.1.1",
-  "devVersion": "1.2.2",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
