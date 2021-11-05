@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const packageJSON = require("./package.json");
 
 module.exports = {
+  mode: "production",
   entry: "./src/version.ts",
   output: {
     path: path.resolve(__dirname, "lib"),
