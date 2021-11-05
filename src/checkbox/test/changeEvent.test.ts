@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
 const initItems = [
@@ -13,7 +13,7 @@ describe("Checkbox", () => {
       let triggeredEvent: any = null;
       const container = new Checkbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value, initItems[2].value]
       });
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;
@@ -24,14 +24,16 @@ describe("Checkbox", () => {
         ".kuc-checkbox__group__select-menu__item__input"
       );
       expect(inputsEl.length).equal(3);
-      inputsEl[2].dispatchEvent(new Event("change"));
+      inputsEl[1].dispatchEvent(new Event("change"));
+      await elementUpdated(el);
+      inputsEl[0].dispatchEvent(new Event("change"));
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldValue).to.deep.equal([
-        initItems[1].value
+        initItems[2].value
       ]);
       expect(triggeredEvent.detail.value).to.deep.equal([
-        initItems[1].value,
+        initItems[0].value,
         initItems[2].value
       ]);
     });

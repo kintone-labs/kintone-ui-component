@@ -13,9 +13,18 @@ storiesOf("desktop/checkbox", module)
         {
           label: "sample2",
           value: "sample2"
+        },
+        {
+          label: "sample3",
+          value: "sample3"
+        },
+        {
+          label: "sample2",
+          value: "sample2"
         }
       ],
-      value: ["sample1"],
+      value: ["sample1", "sample3", "sample2"],
+      selectedIndexes: [0, 2, 3],
       className: "sample-class",
       id: "sample-id",
       visible: true,

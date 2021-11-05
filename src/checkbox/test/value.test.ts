@@ -74,28 +74,6 @@ describe("Checkbox", () => {
     // Implement checking if source code does not throw error in _validateItems function
   });
 
-  it("should be throw error when set dupplicated value on constructor", async () => {
-    const container = new Checkbox({
-      items: initItems,
-      value: [initItems[0].value, initItems[0].value]
-    });
-    try {
-      await fixture(container);
-    } catch (error) {
-      let errorMessage =
-        "'value[1]' is duplicated! You can specify unique one.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      expect(errorMessage).to.equal(
-        "'value[1]' is duplicated! You can specify unique one."
-      );
-    }
-
-    // TODO:
-    // Implement checking if source code does not throw error in _validateItems function
-  });
-
   it("should be throw error when set null by setter", async () => {
     const container = new Checkbox({
       items: initItems,
@@ -111,29 +89,6 @@ describe("Checkbox", () => {
         errorMessage = error.message;
       }
       expect(errorMessage).to.equal("'value' property is not array");
-    }
-
-    // TODO:
-    // Implement checking if source code does not throw error in _validateItems function
-  });
-
-  it("should be throw error when set dupplicated value by setter", async () => {
-    const container = new Checkbox({
-      items: initItems,
-      value: [initItems[0].value]
-    });
-    try {
-      container.value = [initItems[0].value, initItems[0].value];
-      await fixture(container);
-    } catch (error) {
-      let errorMessage =
-        "'value[1]' is duplicated! You can specify unique one.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      expect(errorMessage).to.equal(
-        "'value[1]' is duplicated! You can specify unique one."
-      );
     }
 
     // TODO:

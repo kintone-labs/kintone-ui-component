@@ -99,25 +99,6 @@ describe("MultiChoice", () => {
       // Implement checking if source code does not throw error in _validateItems function
     });
 
-    it("should be throw error when assigned dupplicated value on constructor", async () => {
-      const container = new MultiChoice({
-        items: initItems,
-        value: [initItems[0].value, initItems[0].value]
-      });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value[1]' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value[1]' property is duplicated");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
     it("should be throw error when set null by setter", async () => {
       const container = new MultiChoice({ items: initItems });
       // @ts-expect-error
@@ -130,23 +111,6 @@ describe("MultiChoice", () => {
           errorMessage = error.message;
         }
         expect(errorMessage).to.equal("'value' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when set dupplicated value by setter", async () => {
-      const container = new MultiChoice({ items: initItems });
-      container.value = [initItems[0].value, initItems[0].value];
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value[1]' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value[1]' property is duplicated");
       }
 
       // TODO:

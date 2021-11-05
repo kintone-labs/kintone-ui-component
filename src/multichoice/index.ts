@@ -455,9 +455,9 @@ export class MultiChoice extends KucBase {
     const newValue = { ...this._valueMapping };
     if (keys.indexOf(selectedIndex) > -1) {
       delete newValue[selectedIndexNumber];
-    } else {
-      newValue[selectedIndexNumber] = value;
+      return newValue;
     }
+    newValue[selectedIndexNumber] = value;
     return newValue;
   }
 }

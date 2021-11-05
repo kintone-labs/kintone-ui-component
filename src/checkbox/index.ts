@@ -1,5 +1,5 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, queryAll } from "lit/decorators.js";
+import { property, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -22,6 +22,7 @@ type CheckboxProps = {
   visible?: boolean;
   items?: Item[];
   value?: string[];
+  selectedIndexes?: number[];
 };
 
 export class Checkbox extends KucBase {
@@ -43,10 +44,14 @@ export class Checkbox extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
+  @property({ type: Array }) selectedIndexes: number[] = [];
 
   @queryAll(".kuc-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
+
+  @state()
+  private _valueMapping: any = {};
 
   constructor(props?: CheckboxProps) {
     super();
@@ -55,114 +60,15 @@ export class Checkbox extends KucBase {
     Object.assign(this, validProps);
   }
 
-  private _getNewValue(value: string) {
-    const sorting = this.items.map(item => item.value);
-    if (this.value.indexOf(value) === -1) {
-      return [...this.value, value].sort(
-        (item1: string, item2: any) =>
-          sorting.indexOf(item1) - sorting.indexOf(item2)
-      );
-    }
-    return this.value.filter(val => val !== value);
-  }
-
-  private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
-    event.stopPropagation();
-    const inputEl = event.target as HTMLInputElement;
-    const value = inputEl.value;
-    const oldValue = this.value;
-    const newValue = this._getNewValue(value);
-    this.value = newValue;
-    const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    dispatchCustomEvent(this, "change", detail);
-  }
-
-  private _handleFocusInput(event: FocusEvent) {
-    const inputEl = event.target as HTMLInputElement;
-    const menuEl = inputEl.parentNode as HTMLDivElement;
-    menuEl.setAttribute("focused", "");
-  }
-
-  private _handleBlurInput(event: FocusEvent) {
-    const inputEl = event.target as HTMLInputElement;
-    const menuEl = inputEl.parentNode as HTMLDivElement;
-    menuEl.removeAttribute("focused");
-  }
-
-  private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
-    return svg`
-    <svg
-      class="kuc-checkbox__group__select-menu__item__label__icon"
-      width='21'
-      height='21'
-      viewBox='0 0 21 21'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <rect
-        x='1'
-        y='1'
-        width='19'
-        height='19'
-        rx='1'
-        fill='white'
-        stroke='${this._getSVGStrokeValue(disabled, checked)}'
-        stroke-width='2'/>
-      ${
-        checked
-          ? svg`<path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M5 11L6.5 9L9.5 11.5L14.5 6L16 7.5L9.5 14.5L5 11Z'
-            fill='${disabled ? "#d8d8d8" : "#3498db"}'/>`
-          : ""
-      }
-    </svg>
-  `;
-  }
-
-  private _getSVGStrokeValue(disabled: boolean, checked: boolean) {
-    if (disabled) return "#d8d8d8";
-    if (checked) return "#3498db";
-    return "#d8d8d8";
-  }
-
-  private _getItemTemplate(item: Item, index: number) {
-    return html`
-      <div
-        class="kuc-checkbox__group__select-menu__item"
-        itemLayout="${this.itemLayout}"
-      >
-        <input
-          type="checkbox"
-          aria-describedby="${this._GUID}-error"
-          aria-required="${this.requiredIcon}"
-          id="${this._GUID}-item-${index}"
-          class="kuc-checkbox__group__select-menu__item__input"
-          name="${this._GUID}-group"
-          value="${item.value !== undefined ? item.value : ""}"
-          ?disabled="${this.disabled}"
-          @change="${this._handleChangeInput}"
-          @focus="${this._handleFocusInput}"
-          @blur="${this._handleBlurInput}"
-        />
-        <label
-          for="${this._GUID}-item-${index}"
-          class="kuc-checkbox__group__select-menu__item__label"
-          >${this._getCheckboxIconSvgTemplate(
-            this.disabled,
-            item.value !== undefined
-              ? this.value.some(val => val === item.value)
-              : false
-          )}${item.label === undefined ? item.value : item.label}
-        </label>
-      </div>
-    `;
-  }
-
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) this._validateValues();
+    if (changedProperties.has("value")) {
+      this._validateValues();
+      this._valueMapping = this._getValueMapping();
+    }
+    if (changedProperties.has("selectedIndexes")) {
+      this._valueMapping = this._getValueMapping();
+    }
     super.update(changedProperties);
   }
 
@@ -207,40 +113,163 @@ export class Checkbox extends KucBase {
   }
 
   updated() {
-    this._inputEls.forEach((inputEl: HTMLInputElement) => {
-      inputEl.checked = this.value.indexOf(inputEl.value) > -1;
+    this._inputEls.forEach((inputEl: HTMLInputElement, index: number) => {
+      inputEl.checked = this._isCheckedItem(inputEl.value, index);
     });
   }
 
-  private _getDuplicatedIndex(values: string[]) {
-    for (let index = 0; index < values.length; index++) {
-      const value = values[index];
-      if (value !== undefined && values.indexOf(value) !== index) return index;
+  private _getValueMapping() {
+    const listValues = this.items.map(item => item.value);
+    const itemsMapping = Object.assign({}, listValues);
+
+    const valueMapping: any = {};
+    const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
+    for (let i = 0; i < validValue.length; i++) {
+      const indexValue = listValues.indexOf(validValue[i]);
+      if (itemsMapping[this.selectedIndexes[i]] === validValue[i]) {
+        valueMapping[this.selectedIndexes[i]] = validValue[i];
+        continue;
+      }
+      valueMapping[indexValue] = validValue[i];
     }
-    return -1;
+    return valueMapping;
+  }
+
+  private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
+    event.stopPropagation();
+    const selectedIndex = (event.target as HTMLInputElement).getAttribute(
+      "selected-index"
+    );
+    if (selectedIndex === null) return;
+
+    const inputEl = event.target as HTMLInputElement;
+    const inputvalue = inputEl.value;
+    const oldValue = this.value;
+    const newValueMapping = this._getNewValueMapping(inputvalue, selectedIndex);
+    const newValue: string[] = Object.values(newValueMapping);
+    const newSelectedIndexes = Object.keys(
+      newValueMapping
+    ).map((item: string) => parseInt(item, 10));
+
+    this.value = newValue;
+    this.selectedIndexes = newSelectedIndexes;
+    const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
+    dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _getNewValueMapping(value: string, selectedIndex: string) {
+    const selectedIndexNumber = parseInt(selectedIndex, 10);
+    const keys = Object.keys(this._valueMapping);
+    const newValue = { ...this._valueMapping };
+    if (keys.indexOf(selectedIndex) > -1) {
+      delete newValue[selectedIndexNumber];
+      return newValue;
+    }
+    newValue[selectedIndexNumber] = value;
+    return newValue;
+  }
+
+  private _handleFocusInput(event: FocusEvent) {
+    const inputEl = event.target as HTMLInputElement;
+    const menuEl = inputEl.parentNode as HTMLDivElement;
+    menuEl.setAttribute("focused", "");
+  }
+
+  private _handleBlurInput(event: FocusEvent) {
+    const inputEl = event.target as HTMLInputElement;
+    const menuEl = inputEl.parentNode as HTMLDivElement;
+    menuEl.removeAttribute("focused");
+  }
+
+  private _isCheckedItem(value: string, index: number) {
+    const values = Object.values(this._valueMapping);
+    const keys = Object.keys(this._valueMapping);
+    const result = values.filter(
+      (val, indexVal) => val === value && index === parseInt(keys[indexVal], 10)
+    );
+    return result.length > 0;
+  }
+
+  private _getItemTemplate(item: Item, index: number) {
+    return html`
+      <div
+        class="kuc-checkbox__group__select-menu__item"
+        itemLayout="${this.itemLayout}"
+      >
+        <input
+          type="checkbox"
+          aria-describedby="${this._GUID}-error"
+          aria-required="${this.requiredIcon}"
+          selected-index="${index}"
+          id="${this._GUID}-item-${index}"
+          class="kuc-checkbox__group__select-menu__item__input"
+          name="${this._GUID}-group"
+          value="${item.value !== undefined ? item.value : ""}"
+          ?disabled="${this.disabled}"
+          @change="${this._handleChangeInput}"
+          @focus="${this._handleFocusInput}"
+          @blur="${this._handleBlurInput}"
+        />
+        <label
+          for="${this._GUID}-item-${index}"
+          class="kuc-checkbox__group__select-menu__item__label"
+          >${this._getCheckboxIconSvgTemplate(
+            this.disabled,
+            this._isCheckedItem(item.value || "", index)
+          )}${item.label === undefined ? item.value : item.label}
+        </label>
+      </div>
+    `;
+  }
+
+  private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
+    return svg`
+    <svg
+      class="kuc-checkbox__group__select-menu__item__label__icon"
+      width='21'
+      height='21'
+      viewBox='0 0 21 21'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect
+        x='1'
+        y='1'
+        width='19'
+        height='19'
+        rx='1'
+        fill='white'
+        stroke='${this._getSVGStrokeValue(disabled, checked)}'
+        stroke-width='2'/>
+      ${
+        checked
+          ? svg`<path
+            fill-rule='evenodd'
+            clip-rule='evenodd'
+            d='M5 11L6.5 9L9.5 11.5L14.5 6L16 7.5L9.5 14.5L5 11Z'
+            fill='${disabled ? "#d8d8d8" : "#3498db"}'/>`
+          : ""
+      }
+    </svg>
+  `;
+  }
+
+  private _getSVGStrokeValue(disabled: boolean, checked: boolean) {
+    if (disabled) return "#d8d8d8";
+    if (checked) return "#3498db";
+    return "#d8d8d8";
   }
 
   private _validateItems() {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value || "");
-    const index = this._getDuplicatedIndex(itemsValue);
-    if (index > -1)
-      throw new Error(
-        `'items[${index}].value' is duplicated! You can specify unique one.`
-      );
   }
 
   private _validateValues() {
     if (!Array.isArray(this.value)) {
       throw new Error("'value' property is not array");
     }
-    const index = this._getDuplicatedIndex(this.value);
-    if (index > -1)
-      throw new Error(
-        `'value[${index}]' is duplicated! You can specify unique one.`
-      );
   }
 
   private _getStyleTagTemplate() {
