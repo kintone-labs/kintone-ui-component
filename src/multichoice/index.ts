@@ -1,5 +1,5 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, queryAll, query } from "lit/decorators.js";
+import { property, queryAll, query, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -15,6 +15,7 @@ type MultiChoiceProps = {
   id?: string;
   label?: string;
   value?: string[];
+  selectedIndexes?: number[];
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -37,12 +38,16 @@ export class MultiChoice extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
+  @property({ type: Array }) selectedIndexes: number[] = [];
 
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
   @queryAll(".kuc-multi-choice__group__menu__item")
   private _itemsEl!: HTMLDivElement[];
   private _GUID: string;
+
+  @state()
+  private _valueMapping: any = {};
 
   constructor(props?: MultiChoiceProps) {
     super();
@@ -54,8 +59,31 @@ export class MultiChoice extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) this._validateValues();
+    if (changedProperties.has("value")) {
+      this._validateValues();
+      this._valueMapping = this._getValueMapping();
+    }
+    if (changedProperties.has("selectedIndexes")) {
+      this._valueMapping = this._getValueMapping();
+    }
     super.update(changedProperties);
+  }
+
+  private _getValueMapping() {
+    const listValues = this.items.map(item => item.value);
+    const itemsMapping = Object.assign({}, listValues);
+
+    const valueMapping: any = {};
+    const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
+    for (let i = 0; i < validValue.length; i++) {
+      const indexValue = listValues.indexOf(validValue[i]);
+      if (itemsMapping[this.selectedIndexes[i]] === validValue[i]) {
+        valueMapping[this.selectedIndexes[i]] = validValue[i];
+        continue;
+      }
+      valueMapping[indexValue] = validValue[i];
+    }
+    return valueMapping;
   }
 
   render() {
@@ -105,7 +133,8 @@ export class MultiChoice extends KucBase {
     if (this.disabled) return;
     const itemEl = event.target as HTMLDivElement;
     const value = itemEl.getAttribute("value") as string;
-    this._handleChangeValue(value);
+    const selectedIndex = itemEl.getAttribute("selected-index") as string;
+    this._handleChangeValue(value, selectedIndex);
   }
 
   private _handleMouseOverMultiChoiceItem(event: Event) {
@@ -190,7 +219,10 @@ export class MultiChoice extends KucBase {
             )
           ) {
             const value = itemEl.getAttribute("value") as string;
-            this._handleChangeValue(value);
+            const selectedIndex = itemEl.getAttribute(
+              "selected-index"
+            ) as string;
+            this._handleChangeValue(value, selectedIndex);
           }
         });
         break;
@@ -226,13 +258,24 @@ export class MultiChoice extends KucBase {
       }`;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    const values = Object.values(this._valueMapping);
+    const keys = Object.keys(this._valueMapping);
+    const result = values.filter(
+      (val, indexVal) =>
+        val === item.value && index === parseInt(keys[indexVal], 10)
+    );
+    return result.length > 0;
+  }
+
   private _getMenuItemTemplate(item: Item, index: number) {
     return html`
       <div
         class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
-        aria-checked="${this.value.some(val => val === item.value)}"
+        aria-checked="${this._isCheckedItem(item, index)}"
         aria-required="${this.requiredIcon}"
+        selected-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownMultiChoiceItem}"
@@ -241,39 +284,23 @@ export class MultiChoice extends KucBase {
       >
         ${this._getMultiChoiceCheckedIconSvgTemplate(
           this.disabled,
-          item.value !== undefined
-            ? this.value.some(val => val === item.value)
-            : false
+          this._isCheckedItem(item, index)
         )}
         ${item.label === undefined ? item.value : item.label}
       </div>
     `;
   }
 
-  private _getDuplicatedIndex(values: string[]) {
-    for (let index = 0; index < values.length; index++) {
-      const value = values[index];
-      if (value !== undefined && values.indexOf(value) !== index) return index;
-    }
-    return -1;
-  }
-
   private _validateItems() {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value || "");
-    const index = this._getDuplicatedIndex(itemsValue);
-    if (index > -1)
-      throw new Error(`'items[${index}].value' property is duplicated`);
   }
 
   private _validateValues() {
     if (!Array.isArray(this.value)) {
       throw new Error("'value' property is not array");
     }
-    const index = this._getDuplicatedIndex(this.value);
-    if (index > -1) throw new Error(`'value[${index}]' property is duplicated`);
   }
 
   private _getStyleTagTemplate() {
@@ -404,12 +431,17 @@ export class MultiChoice extends KucBase {
       : this._menuEl.removeAttribute("aria-activedescendant");
   }
 
-  private _handleChangeValue(value: string) {
-    const oldValue = this.value;
-    const newValue = this._getNewValue(value);
+  private _handleChangeValue(value: string, selectedIndex: string) {
+    const oldValue: string[] = Object.values(this._valueMapping);
+    const newValueMapping = this._getNewValueMapping(value, selectedIndex);
+    const newValue: string[] = Object.values(newValueMapping);
+    const newSelectedIndexes = Object.keys(
+      newValueMapping
+    ).map((item: string) => parseInt(item, 10));
 
     if (newValue !== oldValue) {
       this.value = newValue;
+      this.selectedIndexes = newSelectedIndexes;
       dispatchCustomEvent(this, "change", {
         oldValue,
         value: newValue
@@ -417,15 +449,16 @@ export class MultiChoice extends KucBase {
     }
   }
 
-  private _getNewValue(value: string) {
-    const sorting = this.items.map(item => item.value);
-    if (this.value.indexOf(value) === -1) {
-      return [...this.value, value].sort(
-        (item1: string, item2: any) =>
-          sorting.indexOf(item1) - sorting.indexOf(item2)
-      );
+  private _getNewValueMapping(value: string, selectedIndex: string) {
+    const selectedIndexNumber = parseInt(selectedIndex, 10);
+    const keys = Object.keys(this._valueMapping);
+    const newValue = { ...this._valueMapping };
+    if (keys.indexOf(selectedIndex) > -1) {
+      delete newValue[selectedIndexNumber];
+    } else {
+      newValue[selectedIndexNumber] = value;
     }
-    return this.value.filter(val => val !== value);
+    return newValue;
   }
 }
 if (!window.customElements.get("kuc-multi-choice")) {
