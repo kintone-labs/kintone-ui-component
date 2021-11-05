@@ -19,6 +19,10 @@ storiesOf("desktop/multichoice", module)
           value: "item-2"
         },
         {
+          label: "Item 2",
+          value: "item-2"
+        },
+        {
           label: "Item 3",
           value: "item-3"
         },
@@ -36,7 +40,7 @@ storiesOf("desktop/multichoice", module)
         }
       ],
       value: ["item-1", "item-2"],
-      selectedIndexes: [0, 1],
+      selectedIndexes: [1, 0],
       error: "Error occurred!",
       className: "sample-class",
       id: "sample-id",
