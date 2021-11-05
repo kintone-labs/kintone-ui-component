@@ -69,23 +69,6 @@ export class MultiChoice extends KucBase {
     super.update(changedProperties);
   }
 
-  private _getValueMapping() {
-    const listValues = this.items.map(item => item.value);
-    const itemsMapping = Object.assign({}, listValues);
-
-    const valueMapping: any = {};
-    const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
-    for (let i = 0; i < validValue.length; i++) {
-      const indexValue = listValues.indexOf(validValue[i]);
-      if (itemsMapping[this.selectedIndexes[i]] === validValue[i]) {
-        valueMapping[this.selectedIndexes[i]] = validValue[i];
-        continue;
-      }
-      valueMapping[indexValue] = validValue[i];
-    }
-    return valueMapping;
-  }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -127,6 +110,23 @@ export class MultiChoice extends KucBase {
         </div>
       </div>
     `;
+  }
+
+  private _getValueMapping() {
+    const listValues = this.items.map(item => item.value);
+    const itemsMapping = Object.assign({}, listValues);
+
+    const valueMapping: any = {};
+    const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
+    for (let i = 0; i < validValue.length; i++) {
+      const indexValue = listValues.indexOf(validValue[i]);
+      if (itemsMapping[this.selectedIndexes[i]] === validValue[i]) {
+        valueMapping[this.selectedIndexes[i]] = validValue[i];
+        continue;
+      }
+      valueMapping[indexValue] = validValue[i];
+    }
+    return valueMapping;
   }
 
   private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
