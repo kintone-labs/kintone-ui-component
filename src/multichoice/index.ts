@@ -117,20 +117,30 @@ export class MultiChoice extends KucBase {
   }
 
   private _getValueMapping() {
-    const listValues = this.items.map(item => item.value);
-    const itemsMapping = Object.assign({}, listValues);
+    const result: ValueMapping = {};
+    const validSelectedIndexes = this._getValidSelectedIndexes();
+    validSelectedIndexes.forEach((key, i) => (result[key] = this.value[i]));
+    return result;
+  }
 
-    const valueMapping: ValueMapping = {};
-    const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
-    for (let i = 0; i < validValue.length; i++) {
-      const indexValue = listValues.indexOf(validValue[i]);
-      if (itemsMapping[this.selectedIndexes[i]] === validValue[i]) {
-        valueMapping[this.selectedIndexes[i]] = validValue[i];
+  private _getValidSelectedIndexes() {
+    const itemsValue = this.items.map(item => item.value);
+    const itemsMapping = Object.assign({}, itemsValue);
+
+    const validSelectedIndexes: number[] = [];
+    for (let i = 0; i < this.value.length; i++) {
+      const selectedIndex = this.selectedIndexes[i];
+      if (itemsMapping[selectedIndex] === this.value[i]) {
+        validSelectedIndexes.push(selectedIndex);
         continue;
       }
-      valueMapping[indexValue] = validValue[i];
+      const firstIndex = this.items.findIndex(
+        item => item.value === this.value[i]
+      );
+      validSelectedIndexes.push(firstIndex);
     }
-    return valueMapping;
+
+    return validSelectedIndexes;
   }
 
   private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
@@ -434,9 +444,13 @@ export class MultiChoice extends KucBase {
   }
 
   private _handleChangeValue(value: string, selectedIndex: string) {
+    const itemsValue = this.items.map(item => item.value);
     const oldValue: string[] = Object.values(this._valueMapping);
     const newValueMapping = this._getNewValueMapping(value, selectedIndex);
-    const newValue: string[] = Object.values(newValueMapping);
+
+    const newValue: string[] = Object.values(newValueMapping).filter(
+      item => itemsValue.indexOf(item) > -1
+    );
     const newSelectedIndexes = Object.keys(
       newValueMapping
     ).map((item: string) => parseInt(item, 10));
