@@ -19,7 +19,7 @@ storiesOf("desktop/dropdown", module)
           value: "apple"
         }
       ],
-      value: "-----k",
+      value: "-----",
       label: "フルーツ一覧",
       requiredIcon: true,
       disabled: false,

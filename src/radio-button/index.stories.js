@@ -17,14 +17,9 @@ storiesOf("desktop/radio-button", module)
         {
           label: "Item 3",
           value: "item-3"
-        },
-        {
-          label: "Item 3-2",
-          value: "item-3"
         }
       ],
-      value: "item-3",
-      selectedIndex: 3,
+      value: "item-2",
       className: "sample-class",
       id: "sample-id",
       visible: true,
