@@ -62,7 +62,7 @@ describe("MultiChoice", () => {
           "style",
           "role",
           "aria-live",
-          "selected-index"
+          "data-index"
         ]
       });
     });

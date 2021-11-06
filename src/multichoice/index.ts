@@ -22,6 +22,10 @@ type MultiChoiceProps = {
   items?: Item[];
 };
 
+type ValueMapping = {
+  [key: number]: string;
+};
+
 export class MultiChoice extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -47,7 +51,7 @@ export class MultiChoice extends KucBase {
   private _GUID: string;
 
   @state()
-  private _valueMapping: any = {};
+  private _valueMapping: ValueMapping = {};
 
   constructor(props?: MultiChoiceProps) {
     super();
@@ -116,7 +120,7 @@ export class MultiChoice extends KucBase {
     const listValues = this.items.map(item => item.value);
     const itemsMapping = Object.assign({}, listValues);
 
-    const valueMapping: any = {};
+    const valueMapping: ValueMapping = {};
     const validValue = this.value.filter(item => listValues.indexOf(item) > -1);
     for (let i = 0; i < validValue.length; i++) {
       const indexValue = listValues.indexOf(validValue[i]);
@@ -133,7 +137,7 @@ export class MultiChoice extends KucBase {
     if (this.disabled) return;
     const itemEl = event.target as HTMLDivElement;
     const value = itemEl.getAttribute("value") as string;
-    const selectedIndex = itemEl.getAttribute("selected-index") as string;
+    const selectedIndex = itemEl.dataset.index!;
     this._handleChangeValue(value, selectedIndex);
   }
 
@@ -219,9 +223,7 @@ export class MultiChoice extends KucBase {
             )
           ) {
             const value = itemEl.getAttribute("value") as string;
-            const selectedIndex = itemEl.getAttribute(
-              "selected-index"
-            ) as string;
+            const selectedIndex = itemEl.dataset.index!;
             this._handleChangeValue(value, selectedIndex);
           }
         });
@@ -275,7 +277,7 @@ export class MultiChoice extends KucBase {
         role="menuitemcheckbox"
         aria-checked="${this._isCheckedItem(item, index)}"
         aria-required="${this.requiredIcon}"
-        selected-index="${index}"
+        data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownMultiChoiceItem}"
@@ -439,14 +441,13 @@ export class MultiChoice extends KucBase {
       newValueMapping
     ).map((item: string) => parseInt(item, 10));
 
-    if (newValue !== oldValue) {
-      this.value = newValue;
-      this.selectedIndexes = newSelectedIndexes;
-      dispatchCustomEvent(this, "change", {
-        oldValue,
-        value: newValue
-      });
-    }
+    if (newValue === oldValue) return;
+    this.value = newValue;
+    this.selectedIndexes = newSelectedIndexes;
+    dispatchCustomEvent(this, "change", {
+      oldValue,
+      value: newValue
+    });
   }
 
   private _getNewValueMapping(value: string, selectedIndex: string) {
