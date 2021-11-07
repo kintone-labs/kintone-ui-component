@@ -444,18 +444,17 @@ export class MultiChoice extends KucBase {
   }
 
   private _handleChangeValue(value: string, selectedIndex: string) {
-    const itemsValue = this.items.map(item => item.value);
-    const oldValue: string[] = Object.values(this._valueMapping);
+    const oldValue = [...this.value];
     const newValueMapping = this._getNewValueMapping(value, selectedIndex);
-
-    const newValue: string[] = Object.values(newValueMapping).filter(
+    const itemsValue = this.items.map(item => item.value);
+    const newValue = Object.values(newValueMapping).filter(
       item => itemsValue.indexOf(item) > -1
     );
+    if (newValue === oldValue) return;
+
     const newSelectedIndexes = Object.keys(
       newValueMapping
     ).map((item: string) => parseInt(item, 10));
-
-    if (newValue === oldValue) return;
     this.value = newValue;
     this.selectedIndexes = newSelectedIndexes;
     dispatchCustomEvent(this, "change", {
