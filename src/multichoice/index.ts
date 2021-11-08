@@ -117,16 +117,26 @@ export class MultiChoice extends KucBase {
   }
 
   private _getValueMapping() {
+    const itemsValue = this.items.map(item => item.value || "");
+    const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
-    const validSelectedIndexes = this._getValidSelectedIndexes();
+    if (this.value.length === 0) {
+      const value = this._getValidValue(itemsMapping);
+      this.selectedIndexes.forEach((key, i) => (result[key] = value[i]));
+      return result;
+    }
+    const validSelectedIndexes = this._getValidSelectedIndexes(itemsMapping);
     validSelectedIndexes.forEach((key, i) => (result[key] = this.value[i]));
     return result;
   }
 
-  private _getValidSelectedIndexes() {
-    const itemsValue = this.items.map(item => item.value);
-    const itemsMapping = Object.assign({}, itemsValue);
+  private _getValidValue(itemsMapping: ValueMapping) {
+    return this.selectedIndexes
+      .filter(item => itemsMapping[item])
+      .map(item => itemsMapping[item]);
+  }
 
+  private _getValidSelectedIndexes(itemsMapping: ValueMapping) {
     const validSelectedIndexes: number[] = [];
     for (let i = 0; i < this.value.length; i++) {
       const selectedIndex = this.selectedIndexes[i];
