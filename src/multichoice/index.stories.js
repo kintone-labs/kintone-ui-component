@@ -40,7 +40,7 @@ storiesOf("desktop/multichoice", module)
         }
       ],
       value: ["item-1", "item-2"],
-      selectedIndexes: [1, 0],
+      selectedIndexes: [0, 1],
       error: "Error occurred!",
       className: "sample-class",
       id: "sample-id",
