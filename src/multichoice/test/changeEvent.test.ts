@@ -23,6 +23,7 @@ describe("MultiChoice", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-multi-choice__group__menu__item"
       );
+      itemsEl[1].dispatchEvent(new Event("mousedown"));
       itemsEl[2].dispatchEvent(new Event("mousedown"));
 
       expect(triggeredEvent.type).to.equal("change");

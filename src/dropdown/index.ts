@@ -19,6 +19,7 @@ type DropdownProps = {
   id?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -31,6 +32,7 @@ export class Dropdown extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({
@@ -80,8 +82,8 @@ export class Dropdown extends KucBase {
 
   private _getSelectedLabel() {
     let selectedItemLabel = "";
-    this.items.forEach(item => {
-      if (item.value === this.value) {
+    this.items.forEach((item, index) => {
+      if (item.value === this.value && this.selectedIndex === index) {
         selectedItemLabel = item.label === undefined ? item.value : item.label;
       }
     });
@@ -110,7 +112,22 @@ export class Dropdown extends KucBase {
     if (changedProperties.has("items")) {
       this._validateItems();
     }
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this.selectedIndex = this._getSelectedIndex();
+    }
     super.update(changedProperties);
+  }
+
+  private _getSelectedIndex() {
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
   render() {
@@ -183,7 +200,8 @@ export class Dropdown extends KucBase {
   private _handleMouseDownDropdownItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     const value = itemEl.getAttribute("value") as string;
-    this._actionUpdateValue(value);
+    const selectedIndex = itemEl.dataset.index!;
+    this._actionUpdateValue(value, selectedIndex);
   }
 
   private _handleMouseOverDropdownItem(event: Event) {
@@ -244,7 +262,8 @@ export class Dropdown extends KucBase {
         if (itemEl === null) break;
 
         const value = itemEl.getAttribute("value") as string;
-        this._actionUpdateValue(value);
+        const selectedIndex = itemEl.dataset.index!;
+        this._actionUpdateValue(value, selectedIndex);
         this._actionHideMenu();
         break;
       }
@@ -351,10 +370,12 @@ export class Dropdown extends KucBase {
     item.classList.add("kuc-dropdown__group__select-menu__highlight");
   }
 
-  private _actionUpdateValue(value: string) {
-    if (this.value === value) return;
+  private _actionUpdateValue(value: string, index: string) {
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -539,14 +560,22 @@ export class Dropdown extends KucBase {
       <li
         class="kuc-dropdown__group__select-menu__item"
         role="menuitem"
-        tabindex="${item.value === this.value ? "0" : "-1"}"
-        aria-checked="${item.value === this.value ? "true" : "false"}"
+        tabindex="${item.value === this.value && this.selectedIndex === index
+          ? "0"
+          : "-1"}"
+        aria-checked="${item.value === this.value &&
+        this.selectedIndex === index
+          ? "true"
+          : "false"}"
+        data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
-        ${this._getDropdownIconSvgTemplate(item.value === this.value)}
+        ${this._getDropdownIconSvgTemplate(
+          item.value === this.value && this.selectedIndex === index
+        )}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
@@ -578,12 +607,6 @@ export class Dropdown extends KucBase {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, number, self) => {
-      if (value !== undefined && self.indexOf(value) !== number) {
-        throw new Error(`'items[${number}].value' property is duplicated`);
-      }
-    });
   }
 }
 if (!window.customElements.get("kuc-dropdown")) {

@@ -45,6 +45,7 @@ describe("MultiChoice", () => {
           }
         ],
         value: ["item-1", "item-3"],
+        selectedIndexes: [0, 2],
         error: "Error occurred!",
         className: "sample-class",
         id: "sample-id",
@@ -60,7 +61,8 @@ describe("MultiChoice", () => {
           "id",
           "style",
           "role",
-          "aria-live"
+          "aria-live",
+          "data-index"
         ]
       });
     });
