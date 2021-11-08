@@ -46,7 +46,7 @@ MobileText は、単一行のテキストを表示します。
 
 ### Constructor
 
-Text(options)<br>
+MobileText(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -85,7 +85,7 @@ mobileText.addEventListener('focus', event => {
   console.log(event);
 });
 
-text.addEventListener('input', event => {
+mobileText.addEventListener('input', event => {
   console.log(event);
 });
 ```

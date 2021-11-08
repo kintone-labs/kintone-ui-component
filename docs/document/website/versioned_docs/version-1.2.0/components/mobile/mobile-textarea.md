@@ -43,7 +43,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-TextArea(options)<br>
+MobileTextArea(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
