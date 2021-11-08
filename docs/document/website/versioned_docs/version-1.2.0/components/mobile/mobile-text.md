@@ -1,7 +1,8 @@
 ---
-id: mobile-text
+id: version-1.2.0-mobile-text
 title: MobileText
 sidebar_label: MobileText
+original_id: mobile-text
 ---
 
 ## Overview
