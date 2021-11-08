@@ -81,13 +81,11 @@ export class Dropdown extends KucBase {
   }
 
   private _getSelectedLabel() {
-    let selectedItemLabel = "";
-    this.items.forEach((item, index) => {
-      if (item.value === this.value && this.selectedIndex === index) {
-        selectedItemLabel = item.label === undefined ? item.value : item.label;
-      }
-    });
-    return selectedItemLabel;
+    const items = this.items.filter((item, index) =>
+      this._isCheckedItem(item, index)
+    );
+    if (!items[0]) return "";
+    return items[0].label === undefined ? items[0].value : items[0].label;
   }
 
   private _getToggleIconSvgTemplate() {
@@ -122,6 +120,7 @@ export class Dropdown extends KucBase {
   }
 
   private _getSelectedIndex() {
+    if (!this.value) return this.selectedIndex;
     const firstIndex = this.items.findIndex(item => item.value === this.value);
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
@@ -555,27 +554,25 @@ export class Dropdown extends KucBase {
     `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
     return html`
       <li
         class="kuc-dropdown__group__select-menu__item"
         role="menuitem"
-        tabindex="${item.value === this.value && this.selectedIndex === index
-          ? "0"
-          : "-1"}"
-        aria-checked="${item.value === this.value &&
-        this.selectedIndex === index
-          ? "true"
-          : "false"}"
+        tabindex="${this._isCheckedItem(item, index) ? "0" : "-1"}"
+        aria-checked="${this._isCheckedItem(item, index) ? "true" : "false"}"
         data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
-        ${this._getDropdownIconSvgTemplate(
-          item.value === this.value && this.selectedIndex === index
-        )}
+        ${this._getDropdownIconSvgTemplate(this._isCheckedItem(item, index))}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
