@@ -7,13 +7,12 @@ original_id: version
 
 ## Overview
 
-The version feature allows the user to define or retrieve the version information of the package.
+The version feature allows the user to retrieve the version information of the package.
 
 ---
 ## Specification
 
-You can define or retrieve the package's version information of the version property value in package.json.<br>
-When you defining, about the format, please refer to the [npm document](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#version).
+You can retrieve the package's version information of the version property value in package.json.
 
 ---
 ## Sample Code
