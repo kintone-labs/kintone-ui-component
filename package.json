@@ -28,7 +28,7 @@
   "scripts": {
     "build:umd_dev": "webpack --mode development",
     "build:umd_prod": "webpack --mode production",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:esm": "tsc -p tsconfig.esm.json && webpack --config webpack.esm.config.js",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
