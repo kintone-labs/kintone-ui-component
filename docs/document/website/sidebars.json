@@ -32,6 +32,9 @@
         ]
       }
     ],
+    "Utilities": [
+      "utilities/version"
+    ],
     "Guides": [
       "guides/comparison-v0-v1",
       "guides/search-box-customization",

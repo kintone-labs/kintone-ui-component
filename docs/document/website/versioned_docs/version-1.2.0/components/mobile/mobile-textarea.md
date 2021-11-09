@@ -1,14 +1,15 @@
 ---
-id: textarea
-title: TextArea
-sidebar_label: TextArea
+id: version-1.2.0-mobile-textarea
+title: MobileTextArea
+sidebar_label: MobileTextArea
+original_id: mobile-textarea
 ---
 
 ## Overview
 
-The TextArea component allows the user to display multiple lines of text element.
+The MobileTextArea component allows the user to display multiple lines of text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px" width="100%"></iframe>
 
 ---
 
@@ -36,13 +37,13 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
-| focus | function | Event handler for the focused time | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument.<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
+| focus | function | Event handler for the focused time | It will pass the event object as the argument.<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
 | input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.data : Value of inserted characters<br>event.detail.value : Value of target element<br><br>*Notes on the value of "event.detail.data"<br>It is inserted characters when inserting text<br>It will be "null" when insert by "Paste" or "Drag and Drop"<br>It will be "null" when pressing "Enter", "Delete", or "Backspace" |
 
 ### Constructor
 
-TextArea(options)<br>
+MobileTextArea(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -56,8 +57,8 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.app.record.getSpaceElement('space');
-const textarea = new Kuc.TextArea({
+const space = kintone.mobile.app.record.getSpaceElement('space');
+const mobileTextArea = new Kuc.MobileTextArea({
   label: 'Fruit',
   requiredIcon: true,
   placeholder: 'Apple',
@@ -68,17 +69,17 @@ const textarea = new Kuc.TextArea({
   visible: true,
   disabled: false
 });
-space.appendChild(textarea);
+space.appendChild(mobileTextArea);
 
-textarea.addEventListener('change', event => {
+mobileTextArea.addEventListener('change', event => {
   console.log(event);
 });
 
-textarea.addEventListener('focus', event => {
+mobileTextArea.addEventListener('focus', event => {
   console.log(event);
 });
 
-textarea.addEventListener('input', event => {
+mobileTextArea.addEventListener('input', event => {
   console.log(event);
 });
 ```

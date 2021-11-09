@@ -44,7 +44,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-Checkbox(options)<br>
+MobileCheckbox(options)<br>
 Here is a list of available constructors:
 
 #### Parameter

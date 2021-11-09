@@ -1,15 +1,15 @@
 ---
-id: version-1.0.0-mobile-radio-button
-title: MobileRadioButton
-sidebar_label: MobileRadioButton
-original_id: mobile-radio-button
+id: version-1.0.0-mobile-textarea
+title: MobileTextArea
+sidebar_label: MobileTextArea
+original_id: mobile-textarea
 ---
 
 ## Overview
 
-MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
+MobileTextArea は、複数行のテキストを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-radio-button--document" title="mobile radiobutton image" height="140px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px" width="100%"></iframe>
 
 ---
 
@@ -25,29 +25,28 @@ MobileRadioButton は、複数選択肢の中から一つの値を選択する�
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| value | string | "" | 選択されている値 | value が未指定の場合、何も選択されない |
-| borderVisible | boolean | false | コンポーネントの境界線表示/非表示設定 ||
+| placeholder | string | "" | 空欄時に入力例として表示されるテキスト ||
+| value | string | "" | 表示されるテキスト ||
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
-| items | Array\<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
-| Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
-| Item.value | string | null | 各選択肢の値 | Item.value の値が重複した場合、エラーを出力する |
 
 ### Event
+
 指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
 | change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.oldValue : 変更前の value の値<br>event.detail.value : 変更後の value の値 |
+| focus | function | フォーカスされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.value : フォーカス時の value の値 |
+| input | function | 値が入力されている時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br><br>event.detail で以下の値を受け取ることができる<br>event.detail.data : 入力された文字列<br>event.detail.value : ターゲット要素の value の値<br><br>※ event.detail.data の値についての補足<br>入力された文字列を指す<br>ペーストやドラッグ&ドロップによって入力した場合は、null になる<br>Enter, Delete, Backspace をクリックした場合は、null になる |
 
 ### Constructor
 
-MobileRadioButton(options)<br>
+MobileTextArea(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
-
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
@@ -59,29 +58,28 @@ MobileRadioButton(options)<br>
 
 ```javascript
 const space = kintone.mobile.app.record.getSpaceElement('space');
-const mobileRadioButton = new Kuc.MobileRadioButton({
+const mobileTextArea = new Kuc.MobileTextArea({
   label: 'Fruit',
   requiredIcon: true,
-  items: [
-    {
-      label: 'orange',
-      value: 'Orange'
-    },
-    {
-      label: 'apple',
-      value: 'Apple'
-    }
-  ],
-  value : 'Orange',
+  placeholder: 'Apple',
+  value: 'Apple',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
   disabled: false
 });
-space.appendChild(mobileRadioButton);
+space.appendChild(mobileTextArea);
 
-mobileRadioButton.addEventListener('change', event => {
+mobileTextArea.addEventListener('change', event => {
+  console.log(event);
+});
+
+mobileTextArea.addEventListener('focus', event => {
+  console.log(event);
+});
+
+mobileTextArea.addEventListener('input', event => {
   console.log(event);
 });
 ```

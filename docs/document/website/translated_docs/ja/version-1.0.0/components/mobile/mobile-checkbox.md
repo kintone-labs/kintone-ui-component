@@ -44,7 +44,7 @@ MobileCheckbox は、複数選択のチェックボックスを表示します�
 
 ### Constructor
 
-Checkbox(options)<br>
+MobileCheckbox(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter

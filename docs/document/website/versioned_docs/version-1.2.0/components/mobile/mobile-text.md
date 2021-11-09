@@ -1,14 +1,15 @@
 ---
-id: textarea
-title: TextArea
-sidebar_label: TextArea
+id: version-1.2.0-mobile-text
+title: MobileText
+sidebar_label: MobileText
+original_id: mobile-text
 ---
 
 ## Overview
 
-The TextArea component allows the user to display multiple lines of text element.
+The MobileText component allows the user to display a single line text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-text--document" title="mobile text image" height="60px"></iframe>
 
 ---
 
@@ -23,8 +24,11 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
-| label | string | ""  | Label for the component | Label will not be displayed if unspecified or is empty |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | placeholder | string | ""  | Placeholder text for entry example | |
+| prefix | string | ""  | Text to be displayed before the input text | |
+| suffix | string | ""  | Text to be displayed after the input text | |
+| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Justified to the left<br>"right" : Justified to the right |
 | value | string | ""  | Text to be displayed | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
@@ -42,13 +46,13 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-TextArea(options)<br>
+MobileText(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
+| options  | object | {} | Object that includes component properties |  |
 
 ---
 ## Sample Code
@@ -56,29 +60,33 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.app.record.getSpaceElement('space');
-const textarea = new Kuc.TextArea({
+const space = kintone.mobile.app.record.getSpaceElement('space');
+const mobileText = new Kuc.MobileText({
   label: 'Fruit',
   requiredIcon: true,
-  placeholder: 'Apple',
   value: 'Apple',
+  placeholder: 'Apple',
+  prefix: '$',
+  suffix: 'yen',
+  textAlign: 'left',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
   disabled: false
 });
-space.appendChild(textarea);
+space.appendChild(mobileText);
 
-textarea.addEventListener('change', event => {
+mobileText.addEventListener('change', event => {
   console.log(event);
 });
 
-textarea.addEventListener('focus', event => {
+mobileText.addEventListener('focus', event => {
   console.log(event);
 });
 
-textarea.addEventListener('input', event => {
+mobileText.addEventListener('input', event => {
   console.log(event);
 });
 ```
+

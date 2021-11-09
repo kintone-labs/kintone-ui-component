@@ -1,7 +1,8 @@
 ---
-id: mobile-notification
+id: version-1.2.0-mobile-notification
 title: MobileNotification
 sidebar_label: MobileNotification
+original_id: mobile-notification
 ---
 
 ## Overview
