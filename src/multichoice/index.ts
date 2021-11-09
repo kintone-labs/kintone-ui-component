@@ -157,7 +157,7 @@ export class MultiChoice extends KucBase {
     if (this.disabled) return;
     const itemEl = event.target as HTMLDivElement;
     const value = itemEl.getAttribute("value") as string;
-    const selectedIndex = itemEl.dataset.index!;
+    const selectedIndex = itemEl.dataset.index || "0";
     this._handleChangeValue(value, selectedIndex);
   }
 
@@ -243,7 +243,7 @@ export class MultiChoice extends KucBase {
             )
           ) {
             const value = itemEl.getAttribute("value") as string;
-            const selectedIndex = itemEl.dataset.index!;
+            const selectedIndex = itemEl.dataset.index || "0";
             this._handleChangeValue(value, selectedIndex);
           }
         });
@@ -291,11 +291,12 @@ export class MultiChoice extends KucBase {
   }
 
   private _getMenuItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <div
         class="kuc-multi-choice__group__menu__item"
         role="menuitemcheckbox"
-        aria-checked="${this._isCheckedItem(item, index)}"
+        aria-checked="${isCheckedItem}"
         aria-required="${this.requiredIcon}"
         data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
@@ -306,7 +307,7 @@ export class MultiChoice extends KucBase {
       >
         ${this._getMultiChoiceCheckedIconSvgTemplate(
           this.disabled,
-          this._isCheckedItem(item, index)
+          isCheckedItem
         )}
         ${item.label === undefined ? item.value : item.label}
       </div>
