@@ -84,7 +84,7 @@ export class Dropdown extends KucBase {
     const items = this.items.filter((item, index) =>
       this._isCheckedItem(item, index)
     );
-    if (!items[0]) return "";
+    if (items.length === 0) return "";
     return items[0].label === undefined ? items[0].value : items[0].label;
   }
 
@@ -199,7 +199,7 @@ export class Dropdown extends KucBase {
   private _handleMouseDownDropdownItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     const value = itemEl.getAttribute("value") as string;
-    const selectedIndex = itemEl.dataset.index!;
+    const selectedIndex = itemEl.dataset.index || "0";
     this._actionUpdateValue(value, selectedIndex);
   }
 
@@ -261,7 +261,7 @@ export class Dropdown extends KucBase {
         if (itemEl === null) break;
 
         const value = itemEl.getAttribute("value") as string;
-        const selectedIndex = itemEl.dataset.index!;
+        const selectedIndex = itemEl.dataset.index || "0";
         this._actionUpdateValue(value, selectedIndex);
         this._actionHideMenu();
         break;
@@ -560,19 +560,20 @@ export class Dropdown extends KucBase {
   }
 
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <li
         class="kuc-dropdown__group__select-menu__item"
         role="menuitem"
-        tabindex="${this._isCheckedItem(item, index) ? "0" : "-1"}"
-        aria-checked="${this._isCheckedItem(item, index) ? "true" : "false"}"
+        tabindex="${isCheckedItem ? "0" : "-1"}"
+        aria-checked="${isCheckedItem ? "true" : "false"}"
         data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
-        ${this._getDropdownIconSvgTemplate(this._isCheckedItem(item, index))}
+        ${this._getDropdownIconSvgTemplate(isCheckedItem)}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
