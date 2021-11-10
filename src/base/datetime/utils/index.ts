@@ -60,7 +60,7 @@ export const formatDateByLocale = (date: string, language: string = "ja") => {
     : `${year}-${month}-${day}`;
 };
 
-const isStringValueEmpty = (value: any) => {
+export const isStringValueEmpty = (value: any) => {
   return (
     value === null ||
     value === undefined ||

@@ -1,10 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
-import {
-  getTodayStringByLocale,
-  isValidDateFormat
-} from "../base/datetime/utils";
+import { getTodayStringByLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -24,7 +21,7 @@ type DatePickerProps = {
   language?: "ja" | "en" | "zh" | "auto";
   value: string;
 };
-const Common_Language = "ja";
+
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -33,7 +30,7 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value = getTodayStringByLocale();
+  @property({ type: String }) value? = getTodayStringByLocale();
   private _GUID: string;
   @property({
     type: Boolean,
@@ -42,25 +39,19 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-
+  private _baseDateValue?: string;
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
-
   update(changedProperties: PropertyValues) {
-    if (
-      changedProperties.has("value") &&
-      this.value &&
-      !isValidDateFormat(this.value, Common_Language)
-    ) {
-      this.value = "";
+    if (changedProperties.has("value") && this.value) {
+      this._baseDateValue = this.value;
     }
     super.update(changedProperties);
   }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -82,7 +73,7 @@ export class DatePicker extends KucBase {
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
-          .value="${this.value}"
+          .value="${this._baseDateValue}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >
@@ -182,13 +173,18 @@ export class DatePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
+    const eventDetail: CustomEventDetail = {
+      oldValue: this.value,
+      value: event.detail.value
+    };
     if (event.detail.error) {
       this.error = event.detail.error;
+      this.value = undefined;
     } else {
       this.error = "";
       this.value = event.detail.value;
     }
-    this._disptchChangeEvent(event.detail);
+    this._disptchChangeEvent(eventDetail);
   }
 
   private _disptchChangeEvent(eventDetail: CustomEventDetail) {

@@ -220,7 +220,9 @@ export class BaseDateTimeHeaderYear extends KucBase {
     if (!Number.isInteger(this.year)) {
       this.year = 2021;
     }
-    for (let i = this.year - 100; i <= this.year + 100; i++) {
+    let i = this.year < 100 ? 0 : this.year - 100;
+    const maxYear = this.year >= 9999 - 100 ? 9999 : this.year + 100;
+    for (i; i <= maxYear; i++) {
       options.push(i);
     }
     return options;

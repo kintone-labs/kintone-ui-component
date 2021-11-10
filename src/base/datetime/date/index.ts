@@ -10,9 +10,12 @@ import {
   formatDateByLocale,
   getLocale,
   getTodayStringByLocale,
+  isStringValueEmpty,
   isValidDateFormat
 } from "../utils";
 export { BaseDateTimeCalendar };
+const Common_Language = "ja";
+
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
@@ -27,7 +30,7 @@ export class BaseDate extends KucBase {
   @state()
   private _dateTimeCalendarVisible = false;
   private _locale = getLocale("en");
-
+  private _calendarValue?: string = "";
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
       this._GUID = this.inputId;
@@ -35,6 +38,17 @@ export class BaseDate extends KucBase {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
     }
+    if (changedProperties.has("value")) {
+      if (
+        isStringValueEmpty(this.value) ||
+        !isValidDateFormat(this.value, Common_Language)
+      ) {
+        this.value = "";
+      } else {
+        this._calendarValue = this.value;
+      }
+    }
+
     super.update(changedProperties);
   }
 
@@ -56,7 +70,7 @@ export class BaseDate extends KucBase {
       <kuc-base-datetime-calendar
         class="kuc-base-date-calendar"
         .language="${this.language}"
-        .value="${formatDateByLocale(this.value)}"
+        .value="${this._calendarValue}"
         ?hidden="${!this._dateTimeCalendarVisible}"
         @kuc:calendar-body-change-date="${this._handleClickCalendarChangeDate}"
         @kuc:calendar-body-click-date="${this._handleClickCalendarClickDate}"
@@ -137,10 +151,11 @@ export class BaseDate extends KucBase {
     const newValue = (event.target as HTMLInputElement).value;
     if (!isValidDateFormat(newValue, this.language)) {
       const detail: CustomEventDetail = {
-        value: "undefined",
+        value: newValue,
         oldValue: this.value,
         error: this._locale.INVALID_FORMAT
       };
+      this._calendarValue = "";
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
     }
