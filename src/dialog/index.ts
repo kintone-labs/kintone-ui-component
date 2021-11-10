@@ -109,7 +109,7 @@ export class Dialog extends KucBase {
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z"
-          fill="#F7F9FA"
+          fill="#f7f9fa"
         />
         <path
           fill-rule="evenodd"
@@ -153,7 +153,7 @@ export class Dialog extends KucBase {
         .kuc-dialog__dialog {
           min-width: 600px;
           font-size: 20px;
-          background-color: #fff;
+          background-color: #ffffff;
 
           position: absolute;
           top: 50%;
@@ -180,7 +180,7 @@ export class Dialog extends KucBase {
           width: 48px;
           height: 48px;
           border: none;
-          background-color: #fff;
+          background-color: #ffffff;
           margin-right: 12px;
         }
 
@@ -205,7 +205,7 @@ export class Dialog extends KucBase {
           display: block;
           width: 100%;
           height: 100%;
-          background-color: #000;
+          background-color: #000000;
           opacity: 0.6;
           z-index: 9999;
         }

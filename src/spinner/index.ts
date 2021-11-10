@@ -53,9 +53,9 @@ export class Spinner extends KucBase {
       <div class="kuc-spinner__spinner" aria-live="assertive" role="alert">
         ${this._getSpinnerSvgTemplate()}
         <div
-          class="${!this.text
-            ? "kuc-spinner__spinner__text visually-hidden"
-            : "kuc-spinner__spinner__text"}"
+          class="kuc-spinner__spinner__text${!this.text
+            ? " visually-hidden"
+            : ""}"
         >
           ${!this.text ? "now loading…" : this.text}
         </div>

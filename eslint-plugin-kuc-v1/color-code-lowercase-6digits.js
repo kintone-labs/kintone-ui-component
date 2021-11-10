@@ -5,7 +5,7 @@ module.exports = {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
         const sourceCode = context.getSourceCode().getText();
-        const pattern = "\\#(?![a-z0-9]{6})";
+        const pattern = "(?<!url\\()\\#(?![a-z0-9]{6})";
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;
         context.report({
