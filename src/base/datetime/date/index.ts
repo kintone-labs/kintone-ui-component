@@ -19,7 +19,7 @@ const Common_Language = "ja";
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
-  @property({ type: String, reflect: true }) value = "";
+  @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
   @query(".kuc-base-date-calendar")
@@ -41,9 +41,12 @@ export class BaseDate extends KucBase {
     if (changedProperties.has("value")) {
       if (
         isStringValueEmpty(this.value) ||
-        !isValidDateFormat(this.value, Common_Language)
+        !isValidDateFormat(Common_Language, this.value)
       ) {
-        this.value = "";
+        console.log(
+          `${this._locale.INVALID_FORMAT} Invalid value: ${this.value}`
+        );
+        this.value = undefined;
       } else {
         this._calendarValue = this.value;
       }
@@ -194,7 +197,7 @@ export class BaseDate extends KucBase {
     this._dispathDateChangeCustomEvent(today);
   }
 
-  private _dispathDateChangeCustomEvent(newValue: string) {
+  private _dispathDateChangeCustomEvent(newValue?: string) {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
