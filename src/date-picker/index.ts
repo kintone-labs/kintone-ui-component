@@ -175,7 +175,7 @@ export class DatePicker extends KucBase {
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
       oldValue: this.value,
-      value: event.detail.value
+      value: ""
     };
     if (event.detail.error) {
       this.error = event.detail.error;
@@ -184,6 +184,7 @@ export class DatePicker extends KucBase {
       this.error = "";
       this.value = event.detail.value;
     }
+    eventDetail.value = this.value;
     this._disptchChangeEvent(eventDetail);
   }
 
