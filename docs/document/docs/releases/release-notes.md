@@ -1,5 +1,5 @@
 ---
-id: release-notes-v1.2.0
+id: release-notes
 title: v1.2.0 Release Notes
 sidebar_label: v1.2.0 Release Notes
 ---
@@ -27,6 +27,7 @@ New Features, maintenances, document updates, and security updates have been mad
 ### Document
 - Notification and MobileNotification: Added description of `duration` property and `close` event.
 - Text, TextArea, MobileText, MobileTextArea: Added description of `input` event.
+- Added the page of version function.
 
 ## Topics to share!
 
@@ -37,14 +38,14 @@ You can also use the `close` event to get the timing when clicking the close but
 
 
 ### input event
-We added `input` event to get the value when inserting characters on Text, TextArea, MobileText, and MobileTextArea components. <br>
+We added `input` event to get the value when inserting characters on Text, TextArea, MobileText, and MobileTextArea components.<br>
 You can utilize it in case you want to implement "incremental search", and so on.
 
 
 ### version function
 Now you can get the version information of the package using version property of Kuc.<br>
 
-In UMD, you can use version property of Kuc.
+In UMD, you can use version property of Kuc.<br>
 Example:
 
 ```JavaScript
@@ -52,7 +53,7 @@ console.log(Kuc.version);
 ```
 <br>
 
-In ESM, you can import “version“ from kintone-ui-component.
+In ESM, you can import "version" from kintone-ui-component.<br>
 Example:
 
 ```JavaScript

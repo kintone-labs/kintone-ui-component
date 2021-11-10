@@ -21,7 +21,7 @@ original_id: release-notes
 - バージョン情報を取得する機能を追加
 
 ### メンテナンス
-- プロジェクトに対するサードパーティーライブラリのライセンスを確認するために License Finderをインストール
+- プロジェクト内の 3rd party ライブラリのライセンスを確認するために License Finder を導入
 - Dropdown と MultiChoice コンポーネントのアクセシビリティの属性値を修正
 - いくつかの内部処理を改善
 
@@ -31,6 +31,7 @@ original_id: release-notes
 ### ドキュメント
 - Notification と MobileNotification コンポーネント: `duration` プロパティと `close` イベントの記載を追加
 - Text, TextArea, MobileText, MobileTextArea コンポーネント: `input` イベントの記載を追加
+- version 取得機能のページを追加
 
 ## トピック
 
@@ -41,13 +42,13 @@ Notification と MobileNotification コンポーネントに、新しいプロ�
 
 
 ### input イベント
-Text、TextArea、MobileText、および MobileTextArea コンポーネントに、文字列を挿入するときに値を取得するために、`input` イベントを追加しました。 <br>
-逐次検索を実装したい場合などに活用できます。
+Text、TextArea、MobileText、および MobileTextArea コンポーネントに、文字列を挿入した時の値を取得するために、`input` イベントを追加しました。<br>
+インクリメント検索を実装したい場合などに活用できます。
 
 ### バージョン取得機能
 Kuc の version プロパティを使用して、パッケージのバージョン情報を取得できます。<br>
 
-UMD では、Kuc の version プロパティを使用できます。
+UMD では、Kuc の version プロパティを使用できます。<br>
 例:
 
 ```JavaScript
@@ -55,7 +56,7 @@ console.log(Kuc.version);
 ```
 <br>
 
-ESM では、kintone-ui-componentから "version" をインポートできます。
+ESM では、kintone-ui-componentから "version" をインポートできます。<br>
 例:
 
 ```JavaScript
