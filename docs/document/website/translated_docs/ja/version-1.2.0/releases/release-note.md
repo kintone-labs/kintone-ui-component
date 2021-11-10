@@ -21,7 +21,7 @@ original_id: release-notes
 - バージョン情報を取得する機能を追加
 
 ### メンテナンス
-- プロジェクト内の 3rd party ライブラリのライセンスを確認するために License Finder を導入
+- プロジェクト内のサードパーティライブラリのライセンスを確認するために License Finder を導入
 - Dropdown と MultiChoice コンポーネントのアクセシビリティの属性値を修正
 - いくつかの内部処理を改善
 
