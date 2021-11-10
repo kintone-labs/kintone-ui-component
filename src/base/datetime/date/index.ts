@@ -7,7 +7,8 @@ import {
   KucBase
 } from "../../kuc-base";
 import {
-  formatDateByLocale,
+  formatInputValueToValue,
+  formatValueToInputValue,
   getLocale,
   getTodayStringByLocale,
   isStringValueEmpty,
@@ -31,6 +32,7 @@ export class BaseDate extends KucBase {
   private _dateTimeCalendarVisible = false;
   private _locale = getLocale("en");
   private _calendarValue?: string = "";
+  private _inputValue?: string = "";
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
       this._GUID = this.inputId;
@@ -39,17 +41,7 @@ export class BaseDate extends KucBase {
       this._locale = getLocale(this.language);
     }
     if (changedProperties.has("value")) {
-      if (
-        isStringValueEmpty(this.value) ||
-        !isValidDateFormat(Common_Language, this.value)
-      ) {
-        console.log(
-          `${this._locale.INVALID_FORMAT} Invalid value: ${this.value}`
-        );
-        this.value = undefined;
-      } else {
-        this._calendarValue = this.value;
-      }
+      this._updateValueProp();
     }
 
     super.update(changedProperties);
@@ -63,7 +55,7 @@ export class BaseDate extends KucBase {
         id="${this._GUID}-label"
         type="text"
         text-align="center"
-        .value="${formatDateByLocale(this.value, this.language)}"
+        .value="${this._inputValue}"
         aria-describedby="${this._GUID}-error"
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
@@ -149,20 +141,40 @@ export class BaseDate extends KucBase {
     this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
   }
 
+  private _updateValueProp() {
+    if (
+      isStringValueEmpty(this.value) ||
+      !isValidDateFormat(Common_Language, this.value)
+    ) {
+      if (this.value !== undefined) {
+        this._inputValue = undefined;
+        console.log(
+          `${this._locale.INVALID_FORMAT} Invalid value: ${this.value}`
+        );
+      }
+    } else {
+      this._inputValue = formatValueToInputValue(this.language, this.value);
+      this._calendarValue = this.value;
+    }
+  }
   private _handleChangeInputToggle(event: Event) {
     event.stopPropagation();
     const newValue = (event.target as HTMLInputElement).value;
-    if (!isValidDateFormat(newValue, this.language)) {
+    if (!isValidDateFormat(this.language, newValue)) {
       const detail: CustomEventDetail = {
-        value: newValue,
+        value: undefined,
         oldValue: this.value,
         error: this._locale.INVALID_FORMAT
       };
       this._calendarValue = "";
+      this._inputValue = newValue;
+      this.value = undefined;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
     }
-    this._dispathDateChangeCustomEvent(formatDateByLocale(newValue));
+    this._dispathDateChangeCustomEvent(
+      formatInputValueToValue(this.language, newValue)
+    );
   }
 
   private _closeCalendar() {
@@ -193,7 +205,7 @@ export class BaseDate extends KucBase {
 
   private _handleClickCalendarFooterButtonToday() {
     this._closeCalendar();
-    const today = formatDateByLocale(getTodayStringByLocale());
+    const today = getTodayStringByLocale();
     this._dispathDateChangeCustomEvent(today);
   }
 

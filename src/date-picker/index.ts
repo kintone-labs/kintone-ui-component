@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
 import { getTodayStringByLocale } from "../base/datetime/utils";
@@ -39,18 +39,11 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-  private _baseDateValue?: string;
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-  }
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value") && this.value) {
-      this._baseDateValue = this.value;
-    }
-    super.update(changedProperties);
   }
   render() {
     return html`
@@ -73,7 +66,7 @@ export class DatePicker extends KucBase {
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
-          .value="${this._baseDateValue}"
+          .value="${this.value}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >

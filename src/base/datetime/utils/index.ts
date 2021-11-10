@@ -39,25 +39,33 @@ const getDateObj = (date: Date) => {
   return { text, attr };
 };
 
-export const formatDateByLocale = (date?: string, language: string = "ja") => {
+export const formatValueToInputValue = (language: string, date?: string) => {
   if (date && !isStringValueEmpty(date)) {
-    let dates = date.split("-");
-    let year, month, day;
+    const dates = date.split("-");
     if (dates.length !== 3) {
-      dates = date.split("/");
-      year = dates[2];
-      month = dates[0];
-      day = dates[1];
-    } else {
-      year = dates[0];
-      month = dates[1];
-      day = dates[2];
+      return date;
     }
+    const year = dates[0];
+    const month = dates[1];
+    const day = dates[2];
     return language === "en"
       ? `${month}/${day}/${year}`
       : `${year}-${month}-${day}`;
   }
   return date;
+};
+
+export const formatInputValueToValue = (language: string, date: string) => {
+  if (isStringValueEmpty(date)) {
+    return date;
+  }
+  const isEnLanguage = language === "en";
+  const splitStr = isEnLanguage ? "/" : "-";
+  const dates = date.split(splitStr);
+  const year = isEnLanguage ? dates[2] : dates[0];
+  const month = isEnLanguage ? dates[0] : dates[1];
+  const day = isEnLanguage ? dates[1] : dates[2];
+  return `${year}-${month}-${day}`;
 };
 
 export const isStringValueEmpty = (value: any) => {
