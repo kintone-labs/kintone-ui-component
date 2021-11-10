@@ -25,6 +25,14 @@ MobileNotification は、ポップアップの通知を表示します。
 | text | string | "" | 表示するテキスト ||
 | duration | number | -1 | コンポーネントを閉じるまでのミリ秒 | 単位はミリ秒<br>0以上の数値を指定できる<br>もし不正な値を指定した場合（0未満もしくは数値以外）、コンポーネントは開かれたまま自動的には閉じない |
 
+### Event
+
+指定できるイベントの一覧です。
+
+| Name | Type | Description | Remark |
+| :--- | :--- | :--- | :--- |
+| close | function | コンポーネントが閉じられた時のイベントハンドラ | 引数には Event の event オブジェクトをとる |
+
 ### Constructor
 
 MobileNotification(options)<br>
