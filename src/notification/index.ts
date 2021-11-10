@@ -1,24 +1,27 @@
-import { html, svg, property, query } from "lit-element";
-import { KucBase } from "../base/kuc-base";
+import { html, svg, property, state } from "lit-element";
+import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 type NotificationProps = {
   className?: string;
   text?: string;
   type?: "info" | "danger" | "success";
+  duration?: number;
 };
 
 export class Notification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
   @property({ type: String }) type: "info" | "danger" | "success" = "danger";
+  @property({ type: Number }) duration = -1;
 
-  @query(".kuc-notification__notification__title")
-  private _notificationTitleEl!: HTMLPreElement;
+  @state()
+  private _isOpened = false;
+
+  private _timeoutID!: number;
 
   constructor(props?: NotificationProps) {
     super();
-    this.performUpdate();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -66,19 +69,24 @@ export class Notification extends KucBase {
   }
 
   open() {
-    this.classList.add("kuc-notification-fadein");
+    document.body.appendChild(this);
+    this.performUpdate();
+
     this.classList.remove("kuc-notification-fadeout");
-    this._notificationTitleEl.setAttribute("role", "alert");
+    this.classList.add("kuc-notification-fadein");
+    this._isOpened = true;
+
+    this._setAutoCloseTimer();
   }
 
   close() {
-    this.classList.add("kuc-notification-fadeout");
+    this._isOpened = false;
     this.classList.remove("kuc-notification-fadein");
-    this._notificationTitleEl.removeAttribute("role");
-  }
+    this.classList.add("kuc-notification-fadeout");
 
-  firstUpdated() {
-    document.body.appendChild(this);
+    this._clearAutoCloseTimer();
+
+    dispatchCustomEvent(this, "close");
   }
 
   render() {
@@ -91,6 +99,7 @@ export class Notification extends KucBase {
         <pre
           class="kuc-notification__notification__title"
           aria-live="assertive"
+          role="${this._isOpened ? "alert" : ""}"
         ><!--
         -->${this.text}</pre>
         <button
@@ -215,6 +224,21 @@ export class Notification extends KucBase {
         }
       </style>
     `;
+  }
+
+  private _setAutoCloseTimer() {
+    if (!Number.isFinite(this.duration) || this.duration < 0) {
+      return;
+    }
+
+    this._clearAutoCloseTimer();
+    this._timeoutID = window.setTimeout(() => {
+      this.close();
+    }, this.duration);
+  }
+
+  private _clearAutoCloseTimer() {
+    this._timeoutID && window.clearTimeout(this._timeoutID);
   }
 }
 if (!window.customElements.get("kuc-notification")) {

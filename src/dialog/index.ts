@@ -1,7 +1,7 @@
 import { html, svg, property, query, queryAll } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import DOMPurify from "dompurify";
-import { KucBase } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 type DialogProps = {
@@ -32,6 +32,8 @@ export class Dialog extends KucBase {
   open() {
     const body = document.getElementsByTagName("body")[0];
     body.appendChild(this);
+    this.performUpdate();
+
     this.setAttribute("opened", "");
     this._triggeredElement = document.activeElement;
     this._dialogEl && this._dialogEl.focus();
@@ -42,6 +44,8 @@ export class Dialog extends KucBase {
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
     }
+
+    dispatchCustomEvent(this, "close");
   }
 
   render() {
@@ -55,7 +59,12 @@ export class Dialog extends KucBase {
         tabIndex="0"
         @focus="${this._handleFocusFirstDummy}"
       ></span>
-      <div class="kuc-dialog__dialog" role="dialog" tabindex="0">
+      <div
+        class="kuc-dialog__dialog"
+        role="dialog"
+        tabindex="0"
+        @keydown="${this._handleKeyDownDialog}"
+      >
         <div class="kuc-dialog__dialog__header">
           <span class="kuc-dialog__dialog__header__title">${this.title}</span>
           <button
@@ -92,6 +101,13 @@ export class Dialog extends KucBase {
 
   private _handleFocusLastDummy() {
     this._dialogEl.focus();
+  }
+
+  private _handleKeyDownDialog(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      this.close();
+    }
   }
 
   private _getCloseButtonSvgTemplate() {

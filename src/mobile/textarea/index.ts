@@ -60,6 +60,16 @@ export class MobileTextArea extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _handleInputTextArea(event: InputEvent) {
+    event.stopPropagation();
+    const targetEl = event.target as HTMLTextAreaElement;
+    const detail: CustomEventDetail = {
+      value: targetEl.value,
+      data: event.data
+    };
+    dispatchCustomEvent(this, "input", detail);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -88,6 +98,7 @@ export class MobileTextArea extends KucBase {
           aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
+          @input="${this._handleInputTextArea}"
         /></textarea>
       </div>
       <div
