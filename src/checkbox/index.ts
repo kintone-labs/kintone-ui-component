@@ -1,4 +1,5 @@
-import { html, property, PropertyValues, queryAll, svg } from "lit-element";
+import { html, PropertyValues, svg } from "lit";
+import { property, queryAll } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,

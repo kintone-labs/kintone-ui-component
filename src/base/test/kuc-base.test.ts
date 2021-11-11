@@ -1,4 +1,4 @@
-import { html, property } from "lit-element";
+import { html } from "lit";
 import { expect, fixture } from "@open-wc/testing";
 import {
   KucBase,

@@ -1,12 +1,5 @@
-import {
-  html,
-  property,
-  PropertyValues,
-  internalProperty,
-  queryAll,
-  query,
-  svg
-} from "lit-element";
+import { html, PropertyValues, svg } from "lit";
+import { property, state, queryAll, query } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -49,7 +42,7 @@ export class Dropdown extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
 
-  @internalProperty()
+  @state()
   private _selectorVisible = false;
 
   @query(".kuc-dropdown__group")

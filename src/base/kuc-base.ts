@@ -1,4 +1,4 @@
-import { LitElement } from "lit-element";
+import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
 
 type CustomEventDetail = {

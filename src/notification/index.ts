@@ -1,4 +1,5 @@
-import { html, svg, property, state } from "lit-element";
+import { html, svg } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
