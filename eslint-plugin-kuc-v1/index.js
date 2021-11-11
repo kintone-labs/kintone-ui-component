@@ -3,8 +3,8 @@ const noUsingCustomEvent = require("./no-using-custom-event");
 const noUsingGenerateGUIDFunction = require("./no-using-generate-guid-function");
 const noDescribeStyleTagInsideHtml = require("./no-describe-style-tag-inside-html");
 const noUsingImage = require("./no-using-image");
-const colorCodeLowercase6Digits = require("./color-code-lowercase-6digits");
-const cssClassKucPrefix = require("./css-class-kuc-prefix");
+const noLowercase6DigitsColorCode = require("./no-lowercase-6digits-color-code");
+const noKucClassPrefix = require("./no-kuc-class-prefix");
 
 module.exports = {
   rules: {
@@ -13,7 +13,7 @@ module.exports = {
     "no-using-generate-guid-function": noUsingGenerateGUIDFunction,
     "no-describe-style-tag-inside-html": noDescribeStyleTagInsideHtml,
     "no-using-image": noUsingImage,
-    "color-code-lowercase-6digits": colorCodeLowercase6Digits,
-    "css-class-kuc-prefix": cssClassKucPrefix
+    "no-lowercase-6digits-color-code": noLowercase6DigitsColorCode,
+    "no-kuc-class-prefix": noKucClassPrefix
   }
 };

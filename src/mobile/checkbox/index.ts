@@ -23,6 +23,7 @@ type MobileCheckboxProps = {
   value?: string[];
 };
 
+// eslint-disable-next-line kuc-v1/no-using-image
 export class MobileCheckbox extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
