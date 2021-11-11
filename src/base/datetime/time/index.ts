@@ -84,6 +84,7 @@ export class BaseDateTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @click="${this._handleClickInput}"
+          ?disabled="${this.disabled}"
           value="${this._hours}"
         />
         <span class="kuc-base-time__group__colon">:</span>
@@ -96,6 +97,7 @@ export class BaseDateTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @click="${this._handleClickInput}"
+          ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
         ${this.hour12
@@ -108,6 +110,7 @@ export class BaseDateTime extends KucBase {
                 @blur="${this._handleBlurInput}"
                 @click="${this._handleClickInput}"
                 @keydown="${this._handleKeyDownInput}"
+                ?disabled="${this.disabled}"
                 value="${this._suffix}"
               />
             `
@@ -120,6 +123,7 @@ export class BaseDateTime extends KucBase {
         @keydown="${this._handleKeyDownButton}"
         @focus="${this._handleFocusButton}"
         @blur="${this._handleBlurButton}"
+        ?disabled="${this.disabled}"
       >
         show time picker
       </button>
@@ -139,7 +143,18 @@ export class BaseDateTime extends KucBase {
     if (changedProperties.has("_listBoxVisible")) {
       this._scrollToView();
     }
+    if (changedProperties.has("disabled")) {
+      this._toggleDisabledGroup();
+    }
     super.update(changedProperties);
+  }
+
+  private _toggleDisabledGroup() {
+    if (this.disabled)
+      return this._inputGroupEl.classList.add("kuc-base-time__group--disabled");
+    return this._inputGroupEl.classList.remove(
+      "kuc-base-time__group--disabled"
+    );
   }
 
   private _scrollToView() {
@@ -492,6 +507,7 @@ export class BaseDateTime extends KucBase {
           align-items: center;
           width: 85px;
           height: 40px;
+          color: #333333;
           border: solid 1px #e3e7e8;
           box-sizing: border-box;
           padding: 0px 8px;
@@ -522,7 +538,6 @@ export class BaseDateTime extends KucBase {
         }
         .kuc-base-time__group__colon {
           width: 4px;
-          color: #333333;
           text-align: center;
         }
         .kuc-base-time__group__suffix {
@@ -553,6 +568,16 @@ export class BaseDateTime extends KucBase {
           border: 0px !important;
           height: 1px !important;
           width: 1px !important;
+        }
+        .kuc-base-time__group--disabled {
+          background-color: #d4d7d7;
+          box-shadow: none;
+          color: #888888;
+          cursor: not-allowed;
+        }
+        .kuc-base-time__group--disabled input {
+          cursor: not-allowed;
+          color: #888888;
         }
       </style>
     `;
