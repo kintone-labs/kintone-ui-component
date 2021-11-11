@@ -74,7 +74,7 @@ export class BaseDateTime extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-base-time__group" role="group" aria-label="time-group">
+      <div class="kuc-base-time__group">
         <input
           type="text"
           class="kuc-base-time__group__hours"
