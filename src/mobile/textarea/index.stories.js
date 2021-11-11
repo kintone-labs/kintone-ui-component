@@ -18,11 +18,15 @@ storiesOf("mobile/textarea", module)
     });
 
     mobileTextArea.addEventListener("change", function(event) {
-      console.log(event);
+      console.log(event.detail);
     });
 
     mobileTextArea.addEventListener("focus", function(event) {
-      console.log(event);
+      console.log(event.detail);
+    });
+
+    mobileTextArea.addEventListener("input", function(event) {
+      console.log(event.detail);
     });
     root.appendChild(mobileTextArea);
 

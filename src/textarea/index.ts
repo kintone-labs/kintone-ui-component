@@ -70,6 +70,16 @@ export class TextArea extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _handleInputTextArea(event: InputEvent) {
+    event.stopPropagation();
+    const targetEl = event.target as HTMLTextAreaElement;
+    const detail: CustomEventDetail = {
+      value: targetEl.value,
+      data: event.data
+    };
+    dispatchCustomEvent(this, "input", detail);
+  }
+
   private _handleMouseDownResize() {
     this._onResize = true;
   }
@@ -121,6 +131,7 @@ export class TextArea extends KucBase {
           aria-invalid="${!this.error}"
           @change="${this._handleChangeTextarea}"
           @focus="${this._handleFocusTextarea}"
+          @input="${this._handleInputTextArea}"
           ?disabled="${this.disabled}"
         >
         </textarea>

@@ -42,7 +42,7 @@ MobileTextArea は、複数行のテキストを表示します。
 
 ### Constructor
 
-TextArea(options)<br>
+MobileTextArea(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
