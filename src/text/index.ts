@@ -67,6 +67,16 @@ export class Text extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _handleInputText(event: InputEvent) {
+    event.stopPropagation();
+    const targetEl = event.target as HTMLInputElement;
+    const detail: CustomEventDetail = {
+      value: targetEl.value,
+      data: event.data
+    };
+    dispatchCustomEvent(this, "input", detail);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -105,6 +115,7 @@ export class Text extends KucBase {
               aria-describedby="${this._GUID}-error"
               @focus="${this._handleFocusInput}"
               @change="${this._handleChangeInput}"
+              @input="${this._handleInputText}"
               ?disabled="${this.disabled}"
             />
           </div>

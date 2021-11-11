@@ -1,18 +1,22 @@
 import { html, svg } from "lit";
 import { property, state } from "lit/decorators.js";
-import { KucBase } from "../../base/kuc-base";
+import { KucBase, dispatchCustomEvent } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
   className?: string;
   text?: string;
+  duration?: number;
 };
 
 export class MobileNotification extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) text = "";
+  @property({ type: Number }) duration = -1;
 
   @state()
   private _isOpened = false;
+
+  private _timeoutID!: number;
 
   constructor(props?: MobileNotificationProps) {
     super();
@@ -47,12 +51,18 @@ export class MobileNotification extends KucBase {
     this.classList.remove("kuc-mobile-notification-fadeout");
     this.classList.add("kuc-mobile-notification-fadein");
     this._isOpened = true;
+
+    this._setAutoCloseTimer();
   }
 
   close() {
     this._isOpened = false;
     this.classList.remove("kuc-mobile-notification-fadein");
     this.classList.add("kuc-mobile-notification-fadeout");
+
+    this._clearAutoCloseTimer();
+
+    dispatchCustomEvent(this, "close");
   }
 
   render() {
@@ -188,6 +198,21 @@ export class MobileNotification extends KucBase {
         }
       </style>
     `;
+  }
+
+  private _setAutoCloseTimer() {
+    if (!Number.isFinite(this.duration) || this.duration < 0) {
+      return;
+    }
+
+    this._clearAutoCloseTimer();
+    this._timeoutID = window.setTimeout(() => {
+      this.close();
+    }, this.duration);
+  }
+
+  private _clearAutoCloseTimer() {
+    this._timeoutID && window.clearTimeout(this._timeoutID);
   }
 }
 if (!window.customElements.get("kuc-mobile-notification")) {

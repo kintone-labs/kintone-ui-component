@@ -34,6 +34,12 @@ describe("Checkbox", () => {
         initItems[1].value,
         initItems[2].value
       ]);
+      inputsEl[2].dispatchEvent(new Event("change"));
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([initItems[1].value]);
     });
   });
 });
