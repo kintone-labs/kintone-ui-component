@@ -5,14 +5,14 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../kuc-base";
-import { BaseDateTimeListBox } from "../listbox";
+import { BaseDateTimeListBox, Item } from "../listbox";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
   TIME_SUFFIX
 } from "../resource/constant";
-import { padStart } from "../utils";
+import { padStart, generateTimeOptions } from "../utils";
 
 export { BaseDateTimeListBox };
 export class BaseDateTime extends KucBase {
@@ -28,6 +28,9 @@ export class BaseDateTime extends KucBase {
   private _timeStep = 30;
 
   @state()
+  private _listBoxVisible = false;
+
+  @state()
   private _hours = "";
 
   @state()
@@ -36,22 +39,30 @@ export class BaseDateTime extends KucBase {
   @state()
   private _suffix = "";
 
-  private _timeLength = 2;
+  @state()
+  private _inputFocusEl!: HTMLInputElement | null;
 
-  @query(".kuc-base-time__group__fieldset__hours")
+  private _timeLength = 2;
+  private _listBoxItems: Item[] | undefined;
+
+  @query(".kuc-base-time__group__hours")
   private _hoursEl!: HTMLInputElement;
 
-  @query(".kuc-base-time__group__fieldset__minutes")
+  @query(".kuc-base-time__group__minutes")
   private _minutesEl!: HTMLInputElement;
 
-  @query(".kuc-base-time__group__fieldset__suffix")
+  @query(".kuc-base-time__group__suffix")
   private _suffixEl!: HTMLInputElement;
 
-  @query(".kuc-base-time__group__fieldset")
-  private _fieldsetEl!: HTMLInputElement;
+  @query(".kuc-base-time__group")
+  private _inputGroupEl!: HTMLInputElement;
+
+  @query(".kuc-base-time__group__listbox")
+  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
+      this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
       this._updateInputValue();
     }
     if (changedProperties.has("value")) {
@@ -63,45 +74,79 @@ export class BaseDateTime extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-base-time__group">
-        <fieldset class="kuc-base-time__group__fieldset">
-          <input
-            type="text"
-            class="kuc-base-time__group__fieldset__hours"
-            role="spinbutton"
-            aria-label="hours"
-            @focus="${this._handleFocusInput}"
-            @blur="${this._handleBlurInput}"
-            @keydown="${this._handleKeyDownInput}"
-            value="${this._hours}"
-          />
-          <span class="kuc-base-time__group__fieldset__colon">:</span>
-          <input
-            type="text"
-            class="kuc-base-time__group__fieldset__minutes"
-            role="spinbutton"
-            aria-label="minutes"
-            @focus="${this._handleFocusInput}"
-            @blur="${this._handleBlurInput}"
-            @keydown="${this._handleKeyDownInput}"
-            value="${this._minutes}"
-          />
-          ${this.hour12
-            ? html`
-                <input
-                  class="kuc-base-time__group__fieldset__suffix"
-                  role="spinbutton"
-                  aria-label="suffix"
-                  @focus="${this._handleFocusInput}"
-                  @blur="${this._handleBlurInput}"
-                  @keydown="${this._handleKeyDownInput}"
-                  value="${this._suffix}"
-                />
-              `
-            : ""}
-        </fieldset>
+      <div class="kuc-base-time__group" role="group" aria-label="time-group">
+        <input
+          type="text"
+          class="kuc-base-time__group__hours"
+          role="spinbutton"
+          aria-label="hours"
+          @focus="${this._handleFocusInput}"
+          @blur="${this._handleBlurInput}"
+          @keydown="${this._handleKeyDownInput}"
+          @click="${this._handleClickInput}"
+          value="${this._hours}"
+        />
+        <span class="kuc-base-time__group__colon">:</span>
+        <input
+          type="text"
+          class="kuc-base-time__group__minutes"
+          role="spinbutton"
+          aria-label="minutes"
+          @focus="${this._handleFocusInput}"
+          @blur="${this._handleBlurInput}"
+          @keydown="${this._handleKeyDownInput}"
+          @click="${this._handleClickInput}"
+          value="${this._minutes}"
+        />
+        ${this.hour12
+          ? html`
+              <input
+                class="kuc-base-time__group__suffix"
+                role="spinbutton"
+                aria-label="${this._suffix}"
+                @focus="${this._handleFocusInput}"
+                @blur="${this._handleBlurInput}"
+                @click="${this._handleClickInput}"
+                @keydown="${this._handleKeyDownInput}"
+                value="${this._suffix}"
+              />
+            `
+          : ""}
       </div>
+      <button
+        aria-haspopup="menu"
+        aria-expanded="${this._listBoxVisible}"
+        class="kuc-base-time__assistive-text"
+        @keydown="${this._handleKeyDownButton}"
+        @focus="${this._handleFocusButton}"
+        @blur="${this._handleBlurButton}"
+      >
+        show time picker
+      </button>
+      <kuc-base-datetime-listbox
+        maxHeight="165"
+        aria-hidden="${!this._listBoxVisible}"
+        class="kuc-base-time__group__listbox"
+        ?hidden="${!this._listBoxVisible}"
+        .items="${this._listBoxItems || []}"
+        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
+      >
+      </kuc-base-datetime-listbox>
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("_listBoxVisible")) {
+      this._scrollToView();
+    }
+    super.update(changedProperties);
+  }
+
+  private _scrollToView() {
+    if (!this._listBoxVisible) return;
+    const liEl = this._getHighlightEl();
+    liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
+    this._listBoxEl.scrollToView();
   }
 
   private _updateInputValue() {
@@ -115,27 +160,141 @@ export class BaseDateTime extends KucBase {
     const { hours, minutes, suffix } = this._separateInputValue(this.value);
     this._hours = hours;
     this._minutes = minutes;
-    this._suffix = suffix || this._suffix;
+    if (suffix) {
+      this._suffix = suffix || this._suffix;
+    }
   }
 
-  private _handleBlurInput(event: Event) {
-    this._fieldsetEl.classList.remove("kuc-base-time__group__fieldset--focus");
+  private _getHighlightEl() {
+    const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
+    const itemsEl = this._getListItemEl();
+    const liEl = itemsEl.find(
+      element =>
+        new Date(
+          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
+        ) >= itemTimeObj
+    ) as HTMLLIElement;
+    return liEl;
+  }
+
+  private _getListItemEl() {
+    const itemsEl = Array.from(this._listBoxEl.children[1].children);
+    return itemsEl.map(item => {
+      item.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
+      return item;
+    });
+  }
+
+  private _handleKeyDownButton(event: KeyboardEvent) {
+    if (this._handleTabKey(event)) return;
+    if (this._openListBoxByKey(event.key)) return;
+    const keyCode = event.key;
+    event?.preventDefault();
+    switch (keyCode) {
+      case "Enter":
+      case " ":
+        this._closeListBoxByKey();
+        break;
+      case "Escape":
+        if (!this._listBoxVisible) break;
+        this._closeListBoxByKey();
+        break;
+      case "Up":
+      case "ArrowUp":
+      case "Down":
+      case "ArrowDown": {
+        event.preventDefault();
+        this._handleKeyUpDownListBox(keyCode);
+        break;
+      }
+      case "Home":
+        event.preventDefault();
+        this._listBoxEl.highlightFirstItem();
+        this._listBoxEl.scrollToTop();
+        break;
+      case "End":
+        event.preventDefault();
+        this._listBoxEl.highlightLastItem();
+        this._listBoxEl.scrollToBottom();
+        break;
+      default:
+        break;
+    }
+  }
+
+  private _handleKeyUpDownListBox(key: string) {
+    if (key === "ArrowUp") this._listBoxEl.highlightPrevItem();
+    if (key === "ArrowDown") this._listBoxEl.highlightNextItem();
+    this._listBoxEl.scrollToView();
+    const value = this._listBoxEl.getHighlightValue();
+    this._actionUpdateInputValue(value || "");
+  }
+
+  private _handleBlurButton() {
+    this._listBoxVisible = false;
+    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
+  }
+
+  private _handleFocusButton() {
+    this._inputGroupEl.classList.add("kuc-base-time__group--focus");
+  }
+
+  private _openListBoxByKey(keyCode: string) {
+    if (
+      ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1 &&
+      !this._listBoxVisible
+    ) {
+      this._listBoxVisible = true;
+      return true;
+    }
+    return false;
+  }
+
+  private _closeListBoxByKey() {
+    this._listBoxVisible = false;
+    this._hoursEl.select();
+  }
+
+  private _handleChangeListBox(event: CustomEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const listboxVal = event.detail.value;
+    this._actionUpdateInputValue(listboxVal);
+    this._inputFocusEl?.blur();
+    this._handleBlurButton();
   }
 
   private _handleFocusInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this._fieldsetEl.classList.add("kuc-base-time__group__fieldset--focus");
-    input.setSelectionRange(0, 2);
+    this._inputFocusEl = event.target as HTMLInputElement;
+    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
-  private _handleKeyDownInput(event: KeyboardEvent) {
-    if (this._handleTabKey(event)) return;
-    this._handleSupportedKey(event);
+  private _handleBlurInput(event: FocusEvent) {
+    this._inputFocusEl = null;
+    const newTarget = event.relatedTarget;
+    if (
+      newTarget &&
+      newTarget instanceof HTMLInputElement &&
+      [this._hoursEl, this._minutesEl, this._suffixEl].indexOf(newTarget) > -1
+    )
+      return;
+    this._listBoxVisible = false;
+  }
+
+  private _handleClickInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.select();
+    this._openListBox();
   }
 
   private _handleTabKey(event: KeyboardEvent) {
     if (event.key === "Tab") return true;
     return false;
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    if (this._handleTabKey(event)) return;
+    this._handleSupportedKey(event);
   }
 
   private _handleSupportedKey(event: KeyboardEvent) {
@@ -147,10 +306,10 @@ export class BaseDateTime extends KucBase {
     switch (keyCode) {
       case "Enter":
       case "ArrowRight":
-        this._actionSelectNextRange(range, event);
+        this._actionSelectNextRange(range);
         break;
       case "ArrowLeft":
-        this._actionSelectPreviousRange(range, event);
+        this._actionSelectPreviousRange(range);
         break;
       case "ArrowUp":
         newValue = this._computeArrowUpDownValue(range, 1);
@@ -167,7 +326,7 @@ export class BaseDateTime extends KucBase {
     }
   }
 
-  private _actionUpdateInputValue(newValue: string, input: HTMLInputElement) {
+  private _actionUpdateInputValue(newValue: string, input?: HTMLInputElement) {
     const oldValue = this._formatKeyDownValue();
     if (oldValue === newValue) return;
     const { hours, minutes, suffix } = this._separateInputValue(newValue);
@@ -177,7 +336,7 @@ export class BaseDateTime extends KucBase {
     this._hours = this._hoursEl.value = hours;
     this._minutes = this._minutesEl.value = minutes;
     this.value = newValue;
-    input.setSelectionRange(0, 2);
+    input?.select();
     this._dispatchEventTimeChange(newValue, oldValue);
   }
 
@@ -199,7 +358,6 @@ export class BaseDateTime extends KucBase {
     }
     if (key !== "a" && key !== "p") return this._formatKeyDownValue();
     const newSuffix = key === "a" ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
-
     return this._formatKeyDownValue({ suffix: newSuffix });
   }
 
@@ -213,7 +371,6 @@ export class BaseDateTime extends KucBase {
       newHours %= MAX_HOURS24;
       newHours = newHours < 0 ? MAX_HOURS24 - 1 : newHours;
     }
-
     return this._formatKeyDownValue({ hours: newHours.toString() });
   }
 
@@ -230,7 +387,7 @@ export class BaseDateTime extends KucBase {
     if (isNumber) {
       return this._computeNumberKeyValue(range, key);
     }
-    if (range === "suffix") {
+    if (range === TIME_SUFFIX.AM || range === TIME_SUFFIX.PM) {
       return this._computeKeyDownSuffixValue(key);
     }
     return this._formatKeyDownValue();
@@ -269,23 +426,23 @@ export class BaseDateTime extends KucBase {
     return previousHours;
   }
 
-  private _actionSelectNextRange(range: string, event: KeyboardEvent) {
+  private _actionSelectNextRange(range: string) {
     if (range === "hours") {
-      this._minutesEl.focus();
+      this._minutesEl.select();
       return;
     }
     if (this.hour12 && range === "minutes") {
-      this._suffixEl.focus();
+      this._suffixEl.select();
     }
   }
 
-  private _actionSelectPreviousRange(range: string, event: KeyboardEvent) {
-    if (range === "suffix") {
-      this._minutesEl.focus();
+  private _actionSelectPreviousRange(range: string) {
+    if (range === TIME_SUFFIX.AM || range === TIME_SUFFIX.PM) {
+      this._minutesEl.select();
       return;
     }
     if (range === "minutes") {
-      this._hoursEl.focus();
+      this._hoursEl.select();
     }
   }
 
@@ -319,64 +476,83 @@ export class BaseDateTime extends KucBase {
     )} ${props.suffix || this._suffix}`;
   }
 
+  private _openListBox() {
+    if (this._listBoxVisible) return;
+    this._listBoxVisible = true;
+  }
+
   private _getStyleTagTemplate() {
     return html`
       <style>
         .kuc-base-time__group {
-          position: relative;
-          display: inline-block;
-          width: 85px;
-          height: 40px;
-        }
-        .kuc-base-time__group__fieldset {
           display: inline-flex;
+          position: relative;
           justify-content: center;
           -webkit-box-align: center;
           align-items: center;
           width: 85px;
           height: 40px;
           border: solid 1px #e3e7e8;
-          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           box-sizing: border-box;
           padding: 0px 8px;
+          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+          background-color: #ffffff;
         }
-        .kuc-base-time__group__fieldset__hours {
+        .kuc-base-time__group__hours {
           border: 0px;
           padding: 0px;
-          width: 2ch;
+          width: 16px;
           font-size: 14px;
           outline: none;
           background-color: transparent;
+          color: #333333;
           caret-color: transparent;
           user-select: none;
         }
-        .kuc-base-time__group__fieldset__minutes {
+        .kuc-base-time__group__minutes {
           border: 0px;
           padding: 0px;
-          width: 2ch;
+          width: 16px;
           font-size: 14px;
           outline: none;
           background-color: transparent;
+          color: #333333;
           caret-color: transparent;
           user-select: none;
         }
-        .kuc-base-time__group__fieldset__colon {
+        .kuc-base-time__group__colon {
           width: 4px;
+          color: #333333;
           text-align: center;
         }
-        .kuc-base-time__group__fieldset__suffix {
+        .kuc-base-time__group__suffix {
           border: 0px;
           width: 24px;
+          text-align: right;
           font-size: 14px;
           outline: none;
           appearance: none;
-          margin-left: 4px;
+          margin-left: 1px;
+          padding: 0px;
           background-color: transparent;
+          color: #333333;
           caret-color: transparent;
           user-select: none;
         }
-        .kuc-base-time__group__fieldset--focus {
-          background-color: #e2f2fe;
+        .kuc-base-time__group--focus {
+          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+          border: 1px solid #3498db;
+          background-color: #ffffff;
+          color: #333333;
+        }
+        .kuc-base-time__assistive-text {
+          clip: rect(1px, 1px, 1px, 1px);
+          overflow: hidden;
+          position: absolute !important;
+          padding: 0px !important;
+          border: 0px !important;
+          height: 1px !important;
+          width: 1px !important;
         }
       </style>
     `;
