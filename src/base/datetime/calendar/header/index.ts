@@ -14,23 +14,25 @@ import {
   getLocale
 } from "../../utils/";
 
-function isValidDate(d: Date) {
-  return d instanceof Date && !isNaN(d.getTime());
+function isValidMonth(month: number) {
+  return month > 0 && month < 13;
 }
-
+function isValidYear(year: number) {
+  return year >= 0 && year < 10000;
+}
 export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: String }) language = "en";
   @property({
     type: Number,
     hasChanged(newVal: number) {
-      return isValidDate(new Date(`2021-${newVal}-1`));
+      return isValidMonth(newVal);
     }
   })
   month = 1;
   @property({
     type: Number,
     hasChanged(newVal: number) {
-      return isValidDate(new Date(`${newVal}-1-1`));
+      return isValidYear(newVal);
     }
   })
   year = 2021;

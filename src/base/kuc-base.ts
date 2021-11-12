@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 type CustomEventDetail = {
   value?: string | string[];
   oldValue?: string | string[];
+  error?: string;
   data?: string | null;
 };
 
