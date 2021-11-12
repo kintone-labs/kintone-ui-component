@@ -566,7 +566,7 @@ export class Dropdown extends KucBase {
         class="kuc-dropdown__group__select-menu__item"
         role="option"
         tabindex="${isCheckedItem ? "0" : "-1"}"
-        aria-checked="${isCheckedItem ? "true" : "false"}"
+        aria-selected="${isCheckedItem ? "true" : "false"}"
         data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
