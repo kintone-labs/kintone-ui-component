@@ -3,7 +3,7 @@ module.exports = {
     return {
       ClassDeclaration: function(node) {
         const physicalFilename = context.getPhysicalFilename();
-        const ignorePath = "^.*(.stories.js|[/\\\\]src[/\\\\]base[/\\\\]).*$";
+        const ignorePath = "^.*(.stories.js|.test.ts).*$";
         const regexPath = new RegExp(ignorePath, "i");
         if (regexPath.test(physicalFilename)) return;
 
