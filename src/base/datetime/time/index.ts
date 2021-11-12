@@ -15,7 +15,7 @@ import {
 import { padStart, generateTimeOptions } from "../utils";
 
 export { BaseDateTimeListBox };
-export class BaseDateTime extends KucBase {
+export class BaseTime extends KucBase {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
@@ -585,5 +585,5 @@ export class BaseDateTime extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-time")) {
-  window.customElements.define("kuc-base-time", BaseDateTime);
+  window.customElements.define("kuc-base-time", BaseTime);
 }
