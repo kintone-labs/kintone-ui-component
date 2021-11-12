@@ -5,7 +5,6 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../kuc-base";
-import { BaseDateTimeListBox, Item } from "../listbox";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
@@ -14,8 +13,10 @@ import {
 } from "../resource/constant";
 import { padStart, generateTimeOptions } from "../utils";
 
+import { BaseDateTimeListBox, Item } from "../listbox";
 export { BaseDateTimeListBox };
-export class BaseDateTime extends KucBase {
+
+export class BaseTime extends KucBase {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
@@ -585,5 +586,5 @@ export class BaseDateTime extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-time")) {
-  window.customElements.define("kuc-base-time", BaseDateTime);
+  window.customElements.define("kuc-base-time", BaseTime);
 }
