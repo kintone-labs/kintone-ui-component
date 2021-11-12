@@ -1,5 +1,5 @@
 import { html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -7,6 +7,7 @@ import {
   dispatchCustomEvent
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { getWidthElmByContext } from "../base/context";
 import { validateProps } from "../base/validator";
 import "../base/datetime/time";
 
@@ -38,6 +39,12 @@ export class TimePicker extends KucBase {
   })
   visible = true;
   @property({ type: Boolean }) requiredIcon = false;
+
+  @query(".kuc-time-picker__group__label")
+  private _labelEl!: HTMLFieldSetElement;
+
+  @query(".kuc-time-picker__group__error")
+  private _errorEl!: HTMLDivElement;
 
   private _GUID: string;
 
@@ -82,11 +89,17 @@ export class TimePicker extends KucBase {
   }
 
   updated() {
-    /**
-     * TODO:
-     * Use base context to set container width equal "label" element
-     * Ref Dropdown component: this._updateContainerWidth();
-     */
+    this._updateErrorWidth();
+  }
+
+  private _updateErrorWidth() {
+    const labelWidth = getWidthElmByContext(this._labelEl);
+    const inputGroupWitdh = 85;
+    if (labelWidth > inputGroupWitdh) {
+      this._errorEl.style.width = labelWidth + "px";
+      return;
+    }
+    this._errorEl.style.width = inputGroupWitdh + "px";
   }
 
   private _handleTimeChange(event: CustomEvent) {
