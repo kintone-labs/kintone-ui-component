@@ -129,7 +129,7 @@ export class DateTimePicker extends KucBase {
           display: none;
         }
         .kuc-datetime-picker__group__label__text {
-          color: #333;
+          color: #333333;
           font-size: 14px;
         }
         .kuc-datetime-picker__group__label__required-icon {
