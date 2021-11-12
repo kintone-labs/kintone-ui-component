@@ -45,7 +45,7 @@ MobileText は、単一行のテキストを表示します。
 
 ### Constructor
 
-Text(options)<br>
+MobileText(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
