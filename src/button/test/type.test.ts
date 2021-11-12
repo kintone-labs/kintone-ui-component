@@ -55,5 +55,17 @@ describe("Button", () => {
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");
       expect(buttonEl.classList[1]).to.equal("kuc-button__button--submit");
     });
+
+    it('should be normal when assigning a type other than "normal | alert | submit" by setter', async () => {
+      const container = new Button({ type: "submit" });
+      container.type = "other_type";
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-button__button"
+      ) as HTMLButtonElement;
+      expect(buttonEl.classList.length).to.equal(2);
+      expect(buttonEl.classList[0]).to.equal("kuc-button__button");
+      expect(buttonEl.classList[1]).to.equal("kuc-button__button--normal");
+    });
   });
 });

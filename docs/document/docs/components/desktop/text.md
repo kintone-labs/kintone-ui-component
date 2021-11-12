@@ -41,6 +41,7 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
 | focus | function | Event handler when the component is focused | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
+| input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.data : Value of inserted characters<br>event.detail.value : Value of target element<br><br>*Notes on the value of "event.detail.data"<br>It is inserted characters when inserting text<br>It will be "null" when insert by "Paste" or "Drag and Drop"<br>It will be "null" when pressing "Enter", "Delete", or "Backspace" |
 
 ### Constructor
 
@@ -80,6 +81,10 @@ text.addEventListener('change', event => {
 });
 
 text.addEventListener('focus', event => {
+  console.log(event);
+});
+
+text.addEventListener('input', event => {
   console.log(event);
 });
 ```

@@ -13,6 +13,8 @@ const initItemsWithoutLabel = [
   { value: "apple" }
 ];
 
+const initItemsWithoutValue = [{ label: "-----" }];
+
 const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" }
@@ -92,7 +94,18 @@ describe("MobileRadioButton", () => {
       const circlesEl2 = itemsEl[2].querySelectorAll("circle");
       expect(circlesEl2.length).to.equal(1);
     });
-
+    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+      const container = new RadioButton({
+        items: initItemsWithoutValue
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-radio-button__group__select-menu__item"
+      );
+      expect(itemsEl.length).to.equal(1);
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.value).to.equal("");
+    });
     it("should set items when assigned items on constructor", async () => {
       const container = new RadioButton({ items: initItems });
 

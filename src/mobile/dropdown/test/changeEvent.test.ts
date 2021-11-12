@@ -1,18 +1,15 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileDropdown } from "../index";
 
-function generateInitItems() {
-  return [
-    { label: "-----", value: "-----" },
-    { label: "Orange", value: "orange" },
-    { label: "Apple", value: "apple" }
-  ];
-}
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
 describe("MobileDropdown", () => {
   describe("changeEvent", () => {
     it("should be triggered when changing the value", async () => {
-      const initItems = generateInitItems();
       const container = new MobileDropdown({
         items: initItems,
         value: initItems[0].value

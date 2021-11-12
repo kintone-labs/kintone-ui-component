@@ -1,6 +1,6 @@
 {
   "name": "kintone-ui-component",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
@@ -28,11 +28,11 @@
   "scripts": {
     "build:umd_dev": "webpack --mode development",
     "build:umd_prod": "webpack --mode production",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:esm": "tsc -p tsconfig.esm.json && webpack --config webpack.esm.config.js",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
-    "es-lint": "node_modules/.bin/eslint src/**/**.ts src/**.ts src/**/**.js"
+    "es-lint": "node_modules/.bin/eslint src/**/**.ts src/**.ts src/**/**.js src/mobile/**/**.js src/mobile/**/**.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -40,13 +40,13 @@
     "@cybozu/eslint-config": "^11.0.3",
     "@open-wc/testing": "^2.5.17",
     "@open-wc/testing-karma": "^4.0.9",
-    "@storybook/addon-a11y": "^6.3.8",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-controls": "^6.3.8",
-    "@storybook/addon-viewport": "^6.3.8",
-    "@storybook/builder-webpack5": "^6.3.8",
-    "@storybook/manager-webpack5": "^6.3.8",
-    "@storybook/web-components": "^6.3.8",
+    "@storybook/addon-a11y": "^6.3.12",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-controls": "^6.3.12",
+    "@storybook/addon-viewport": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/web-components": "^6.3.12",
     "babel-loader": "^8.1.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.18.0",
@@ -56,8 +56,8 @@
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
     "typescript": "^4.4.3",
-    "webpack": "^5.44.0",
-    "webpack-cli": "^4.7.2"
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "@types/dompurify": "^2.0.3",

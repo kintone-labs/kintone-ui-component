@@ -24,15 +24,15 @@ describe("Dropdown", () => {
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl1 = itemsEl[1].querySelectorAll("svg");
       expect(svgsEl1.length).to.equal(0);
-      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
     it("should be set to selected item label when assigned on constructor", async () => {
@@ -53,15 +53,15 @@ describe("Dropdown", () => {
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl1 = itemsEl[1].querySelectorAll("svg");
       expect(svgsEl1.length).to.equal(1);
-      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+      expect(itemsEl[1].getAttribute("aria-selected")).to.equal("true");
 
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
   });
 
@@ -85,15 +85,15 @@ describe("Dropdown", () => {
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
-    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl1 = itemsEl[1].querySelectorAll("svg");
     expect(svgsEl1.length).to.equal(1);
-    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+    expect(itemsEl[1].getAttribute("aria-selected")).to.equal("true");
 
     const svgsEl2 = itemsEl[2].querySelectorAll("svg");
     expect(svgsEl2.length).to.equal(0);
-    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
   it("should be null when assigned null on constructor", async () => {
@@ -113,15 +113,15 @@ describe("Dropdown", () => {
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
-    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl1 = itemsEl[1].querySelectorAll("svg");
     expect(svgsEl1.length).to.equal(0);
-    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl2 = itemsEl[2].querySelectorAll("svg");
     expect(svgsEl2.length).to.equal(0);
-    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
   it("should be null when set null by setter", async () => {
@@ -145,15 +145,15 @@ describe("Dropdown", () => {
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
-    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl1 = itemsEl[1].querySelectorAll("svg");
     expect(svgsEl1.length).to.equal(0);
-    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl2 = itemsEl[2].querySelectorAll("svg");
     expect(svgsEl2.length).to.equal(0);
-    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
   it("should be set to nonexistent value", async () => {
@@ -176,15 +176,15 @@ describe("Dropdown", () => {
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
-    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl1 = itemsEl[1].querySelectorAll("svg");
     expect(svgsEl1.length).to.equal(0);
-    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl2 = itemsEl[2].querySelectorAll("svg");
     expect(svgsEl2.length).to.equal(0);
-    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
   it("should be set to number value", async () => {
@@ -208,14 +208,14 @@ describe("Dropdown", () => {
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
-    expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl1 = itemsEl[1].querySelectorAll("svg");
     expect(svgsEl1.length).to.equal(0);
-    expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
     const svgsEl2 = itemsEl[2].querySelectorAll("svg");
     expect(svgsEl2.length).to.equal(0);
-    expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+    expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 });

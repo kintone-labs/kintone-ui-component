@@ -9,6 +9,9 @@ storiesOf("desktop/dialog", module)
       content: `<div><p style="margin: 0;">Content</p><div>`,
       footer: ""
     });
+    dialog.addEventListener("close", event => {
+      console.log(event);
+    });
 
     const button = document.createElement("button");
     button.textContent = "open!!";
