@@ -71,8 +71,8 @@ export class DateTimePicker extends KucBase {
           >
         </legend>
         <div class="kuc-datetime-picker__group__inputs">
-          <kuc-base-date value="2021-11-12"> </kuc-base-date>
-          <kuc-base-time value="08:30"> </kuc-base-time>
+          <kuc-base-date value="2021-11-12"></kuc-base-date
+          ><kuc-base-time value="08:30"></kuc-base-time>
         </div>
         <div
           class="kuc-datetime-picker__group__error"
@@ -141,6 +141,9 @@ export class DateTimePicker extends KucBase {
         }
         .kuc-datetime-picker__group__label__required-icon[hidden] {
           display: none;
+        }
+        .kuc-datetime-picker__group__inputs {
+          display: flex;
         }
         .kuc-datetime-picker__group__error {
           box-sizing: border-box;
