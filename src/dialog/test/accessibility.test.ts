@@ -30,5 +30,18 @@ describe("Dialog", () => {
 
       expect(document.activeElement?.className).to.equal("kuc-dialog__dialog");
     });
+
+    it("should close Dialog when pressing Escape key", async () => {
+      const container = new Dialog();
+      container.open();
+
+      const el: HTMLElement = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dialog__dialog"
+      ) as HTMLDivElement;
+
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      expect(container.hasAttribute("opened")).to.equal(false);
+    });
   });
 });

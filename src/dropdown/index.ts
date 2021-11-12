@@ -65,7 +65,7 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__select-menu__item:last-child")
   private _lastItemEl!: HTMLLIElement;
 
-  @query(".kuc-dropdown__group__select-menu__item[aria-checked=true]")
+  @query(".kuc-dropdown__group__select-menu__item[aria-selected=true]")
   private _selectedItemEl!: HTMLLIElement;
 
   @query(".kuc-dropdown__group__select-menu__highlight")
@@ -170,7 +170,7 @@ export class Dropdown extends KucBase {
         </button>
         <ul
           class="kuc-dropdown__group__select-menu"
-          role="menu"
+          role="listbox"
           aria-hidden="${!this._selectorVisible}"
           ?hidden="${!this._selectorVisible}"
           @mouseleave="${this._handleMouseLeaveMenu}"
@@ -544,10 +544,10 @@ export class Dropdown extends KucBase {
           left: 6px;
           margin-top: -5px;
         }
-        .kuc-dropdown__group__select-menu__item[aria-checked="true"] {
+        .kuc-dropdown__group__select-menu__item[aria-selected="true"] {
           color: #3498db;
         }
-        .kuc-dropdown__group__select-menu__highlight[role="menuitem"] {
+        .kuc-dropdown__group__select-menu__highlight[role="option"] {
           background-color: #e2f2fe;
         }
       </style>

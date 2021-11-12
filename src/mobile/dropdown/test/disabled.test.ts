@@ -1,18 +1,16 @@
 import { expect, fixture } from "@open-wc/testing";
 import { MobileDropdown } from "../index";
 
-function generateInitItems() {
-  return [
-    { label: "-----", value: "-----" },
-    { label: "Orange", value: "orange" },
-    { label: "Apple", value: "apple" }
-  ];
-}
+const initItems = [
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
+];
 
 describe("MobileDropdown", () => {
   describe("disabled", () => {
     it("does not exists on element when initializing without props option", async () => {
-      const container = new MobileDropdown({ items: generateInitItems() });
+      const container = new MobileDropdown({ items: initItems });
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-dropdown__input-form__select__input"
@@ -22,7 +20,7 @@ describe("MobileDropdown", () => {
 
     it("exists on element when initializing disabled value is true", async () => {
       const container = new MobileDropdown({
-        items: generateInitItems(),
+        items: initItems,
         disabled: true
       });
       const el = await fixture(container);
@@ -36,7 +34,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
-        items: generateInitItems(),
+        items: initItems,
         disabled: false
       });
       container.disabled = true;
@@ -51,7 +49,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({
         label: "Fruit",
         requiredIcon: false,
-        items: generateInitItems(),
+        items: initItems,
         disabled: true
       });
       container.disabled = false;

@@ -1,4 +1,6 @@
 const path = require("path");
+const webpack = require("webpack");
+const packageJSON = require("./package.json");
 
 module.exports = {
   entry: "./src/index.bundle.ts",
@@ -41,5 +43,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".js"]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(packageJSON.version)
+    })
+  ]
 };

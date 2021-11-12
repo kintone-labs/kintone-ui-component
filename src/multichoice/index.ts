@@ -92,7 +92,8 @@ export class MultiChoice extends KucBase {
         </div>
         <div
           class="kuc-multi-choice__group__menu"
-          role="menu"
+          role="listbox"
+          aria-multiselectable="true"
           aria-describedby="${this._GUID}-error"
           aria-labelledby="${this._GUID}-label"
           ?disabled="${this.disabled}"
@@ -432,15 +433,15 @@ export class MultiChoice extends KucBase {
           margin-top: -6px;
           pointer-events: none;
         }
-        .kuc-multi-choice__group__menu__item[aria-checked="true"] {
+        .kuc-multi-choice__group__menu__item[aria-selected="true"] {
           color: #3498db;
           padding-left: 32px;
         }
         .kuc-multi-choice__group__menu[disabled]
-          .kuc-multi-choice__group__menu__item[aria-checked="true"] {
+          .kuc-multi-choice__group__menu__item[aria-selected="true"] {
           color: #888;
         }
-        .kuc-multi-choice__group__menu__highlight[role="menuitemcheckbox"] {
+        .kuc-multi-choice__group__menu__highlight[role="option"] {
           background-color: #e2f2fe;
           cursor: pointer;
         }
