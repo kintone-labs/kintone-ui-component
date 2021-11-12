@@ -297,7 +297,7 @@ export class MultiChoice extends KucBase {
       <div
         class="kuc-multi-choice__group__menu__item"
         role="option"
-        aria-checked="${isCheckedItem}"
+        aria-selected="${isCheckedItem}"
         aria-required="${this.requiredIcon}"
         data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"

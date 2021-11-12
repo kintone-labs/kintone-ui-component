@@ -14,7 +14,8 @@ describe("MultiChoice", () => {
           "aria-labelledby",
           "id",
           "style",
-          "aria-live"
+          "aria-live",
+          "role"
         ]
       });
     });
@@ -64,7 +65,9 @@ describe("MultiChoice", () => {
           "style",
           "role",
           "aria-live",
-          "data-index"
+          "data-index",
+          "aria-checked",
+          "aria-selected"
         ]
       });
     });
