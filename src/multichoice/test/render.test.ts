@@ -9,6 +9,7 @@ describe("MultiChoice", () => {
       expect(el.tagName).to.equal("KUC-MULTI-CHOICE");
       expect(el).dom.to.equalSnapshot({
         ignoreAttributes: [
+          "aria-multiselectable",
           "aria-describedby",
           "aria-labelledby",
           "id",
@@ -56,6 +57,7 @@ describe("MultiChoice", () => {
       const el = await fixture(container);
       expect(el).dom.to.equalSnapshot({
         ignoreAttributes: [
+          "aria-multiselectable",
           "aria-describedby",
           "aria-labelledby",
           "id",

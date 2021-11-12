@@ -17,7 +17,7 @@ const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" }
 ];
-
+const initItemsWithoutValue = [{ label: "-----" }, { label: "orange" }];
 const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("Dropdown", () => {
@@ -33,7 +33,10 @@ describe("Dropdown", () => {
     });
 
     it("should set label the same as value when not assigned items label on constructor", async () => {
-      const container = new Dropdown({ items: initItemsWithoutLabel });
+      const container = new Dropdown({
+        items: initItemsWithoutLabel,
+        value: initItemsWithoutLabel[1].value
+      });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-dropdown__group__select-menu__item"
