@@ -299,7 +299,7 @@
     text: {value: 'overwritten field value'},
     text1: { value: 'overwritten field1 value' },
     text2: { value: 'overwritten field2 value' },
-    // overriden data of radio buttons
+    // overridden data of radio buttons
     fruit: {
       name: 'fruit',
       items: [
@@ -321,7 +321,7 @@
        ],
       value: 'Banana'
     },
-    // overriden data of multiple choices
+    // overridden data of multiple choices
     colors: {
       items: [
            {
@@ -342,7 +342,7 @@
        ],
       value: ['red']
     },
-    // overriden data of checkbox
+    // overridden data of checkbox
     vegetables: {
       items: [
            {
@@ -363,7 +363,7 @@
        ],
       value: ['potato', 'celery']
     },
-    // overriden data of dropdown
+    // overridden data of dropdown
     toys: {
       items: [
            {
@@ -536,7 +536,7 @@ Dom element
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -635,7 +635,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -746,7 +746,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -878,7 +878,7 @@ Register callback for an event
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -987,7 +987,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1094,7 +1094,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1201,7 +1201,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1308,7 +1308,7 @@ None
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1419,7 +1419,7 @@ update data of row at rowIndex with new data
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {
       text: { value: 'this is a text field' },
@@ -1567,7 +1567,7 @@ create a table cell with 1 of the built-in supported components
 **Javascript**
 ```
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],

@@ -256,10 +256,10 @@
 
   // return this data to override default row data onRowAdd
   var overriddenRowData = {
-    // overriden data of text
+    // overridden data of text
     text: { value: 'overwritten field value' },
 
-    // overriden data of radio buttons
+    // overridden data of radio buttons
     fruit: {
       name: 'fruit',
       value: 'Banana',
@@ -270,7 +270,7 @@
       ]
     },
 
-    // overriden data of multiple choices
+    // overridden data of multiple choices
     colors: {
       value: ['red'],
       items: [
@@ -280,7 +280,7 @@
       ]
     },
 
-    // overriden data of checkbox
+    // overridden data of checkbox
     vegetables: {
       value: ['potato', 'celery'],
       items: [
@@ -290,7 +290,7 @@
       ]
     },
 
-    // overriden data of dropdown
+    // overridden data of dropdown
     toys: {
       value: 'cars',
       items: [
@@ -300,16 +300,16 @@
       ]
     },
 
-    // overriden data of label
+    // overridden data of label
     label: { text: 'Name', textColor: '#e74c3c', backgroundColor: 'yellow', isRequired: true },
 
-    // overriden data of icon button
+    // overridden data of icon button
     iconBtn: { type: 'insert', color: 'blue', size: 'small' },
 
-    // overriden data of alert
+    // overridden data of alert
     alert: { text: 'Network error', type: 'error' },
 
-    // overriden data of custom cell containing 2 text fields
+    // overridden data of custom cell containing 2 text fields
     text1: { value: 'overwritten field1 value' },
     text2: { value: 'overwritten field2 value' },
   };
@@ -434,7 +434,7 @@ Dom element
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -533,7 +533,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -651,7 +651,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -789,7 +789,7 @@ Register callback for an event
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -898,7 +898,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1013,7 +1013,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1132,7 +1132,7 @@ Update data of row at rowIndex with new data
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
       {
         text: { value: 'this is a text field1' },
@@ -1288,7 +1288,7 @@ render(<Plugin />, kintone.app.getHeaderSpaceElement());
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1394,7 +1394,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
@@ -1509,7 +1509,7 @@ None
 **Javascript**
 ```javascript
 var table = new kintoneUIComponent.Table({
-  // inital table data
+  // initial table data
   data: [
     {text: { value: 'this is a text field' }}
   ],
