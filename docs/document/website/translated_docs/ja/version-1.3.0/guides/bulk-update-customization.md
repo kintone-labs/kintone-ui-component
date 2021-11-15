@@ -91,7 +91,7 @@ button.addEventListener('click', () => {
   // When there is no records being processed
   if (event.records.length === 0) {
     const updateAlert = new Kuc.Notification({
-      text: 'There are no records being processed.',
+      text: 'There are no records being processed.'
     });
     updateAlert.open();
     return event;
@@ -107,7 +107,7 @@ button.addEventListener('click', () => {
     if (!resp.isConfirmed) {
       const cancelInfo = new Kuc.Notification({
         text: 'Canceled.',
-        type: 'info',
+        type: 'info'
       });
       cancelInfo.open();
       return event;
@@ -115,7 +115,7 @@ button.addEventListener('click', () => {
 
     // Write subsequent process
 
-});   
+  });   
 });
 ```
 
