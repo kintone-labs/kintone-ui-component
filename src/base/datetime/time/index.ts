@@ -163,7 +163,6 @@ export class BaseTime extends KucBase {
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has("_listBoxVisible")) {
       this._scrollToView();
-      this._updateInputValue();
       this._calculateListBoxPosition();
     }
     if (changedProperties.has("disabled")) {
@@ -196,7 +195,6 @@ export class BaseTime extends KucBase {
     if (!this._listBoxVisible) return;
     const liEl = this._getHighlightEl();
     liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
-    this._setActiveDescendantAndListBoxValue();
     this._listBoxEl.scrollToView();
   }
 
@@ -290,9 +288,6 @@ export class BaseTime extends KucBase {
       this._listBoxEl.getHighlightItemId()
     );
     this._listBoxValue = this._listBoxEl.getHighlightValue() || "";
-    const currentTime = this._formatKeyDownValue();
-    if (currentTime === this._listBoxValue) return;
-    this._actionUpdateInputValue(this._listBoxValue);
   }
 
   private _setActiveDescendant(
