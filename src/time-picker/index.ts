@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
   KucBase,
@@ -8,7 +8,7 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
-import { validateProps } from "../base/validator";
+import { validateProps, validateTimeValue } from "../base/validator";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -53,6 +53,13 @@ export class TimePicker extends KucBase {
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) {
+      this.value = validateTimeValue(this.value);
+    }
+    super.update(changedProperties);
   }
 
   render() {
@@ -137,6 +144,9 @@ export class TimePicker extends KucBase {
           color: #333333;
           display: inline-block;
           vertical-align: top;
+        }
+        .kuc-time-picker__group__input {
+          position: relative;
         }
         kuc-time-picker[hidden] {
           display: none;
