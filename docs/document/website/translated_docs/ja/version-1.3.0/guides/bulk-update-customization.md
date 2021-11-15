@@ -91,7 +91,7 @@ button.addEventListener('click', () => {
   // When there is no records being processed
   if (event.records.length === 0) {
     const updateAlert = new Kuc.Notification({
-      text: 'There are no records being processed.'
+      text: 'There are no records being processed.',
     });
     updateAlert.open();
     return event;
@@ -107,7 +107,7 @@ button.addEventListener('click', () => {
     if (!resp.isConfirmed) {
       const cancelInfo = new Kuc.Notification({
         text: 'Canceled.',
-        type: 'info'
+        type: 'info',
       });
       cancelInfo.open();
       return event;
@@ -155,20 +155,25 @@ const param = {
 ```
 
 更新に成功したら、 Notification でメッセージを表示させます。<br>
-メッセージ内容には、更新が成功したことと画面リロードが必要なことを記載します。<br>
-Spinner の close() メソッドを使って、ローディング画面を終了させることを忘れないでください。
+Spinner の close() メソッドを使って、ローディング画面を終了させることを忘れないでください。<br>
+v1.2.0 で追加された close イベントを使って、Notification の閉じるボタンを押したタイミングで画面をリロードさせることもできます。
 
 ```javascript
 kintone.api(kintone.api.url('/k/v1/records/status', true), 'PUT', param).then(() => {
 
   const successInfo = new Kuc.Notification({
-    text: 'Bulk approval was successful!  \nPlease reload the screen.',
+    text: 'Bulk approval was successful!',
     type: 'info'
   });
   successInfo.open();
 
   // Finish bulk approval
   spinner.close();
+
+  // When close button is pressed
+  successInfo.addEventListener('close', () => {
+    location.reload();  
+  });
 
 }).catch(error => {
   // Process when REST API error occurs
