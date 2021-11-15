@@ -46,7 +46,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      VERSION: JSON.stringify(packageJSON.version)
+      VERSION: JSON.stringify(packageJSON.version),
+      DEV_INFO: JSON.stringify(process.env.KUC_DEV_INFO)
     })
   ]
 };
