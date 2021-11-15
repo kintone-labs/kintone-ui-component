@@ -9,7 +9,7 @@ original_id: bulk-update-customization
 
 プロセス管理利用時、ステータス承認が必要なレコードが溜まってきたケースを想定します。<br>
 複数レコードの個別承認は手間がかかるので、レコード一覧画面から一括で承認ができるようにカスタマイズします。<br>
-UI 周りに KUC を使用することで、kintone にマッチする画面をスピーディーに作成できます。
+UI 周りに kintone UI Component を使用することで、kintone にマッチする画面をスピーディーに作成できます。
 
 ### 使用するコンポーネント
 - [Button](../components/desktop/button.md)
@@ -33,8 +33,7 @@ kintone UI Component の UMD ファイルをアプリに読み込んだ上で、
 ファイルのアップロード方法などは、[Quick Start](../getting-started/quick-start.md) をご覧ください。<br>
 
 今回は、確認画面の作成に SweetAlert2 を使用するので、別途以下ファイルを読み込みます。
-- https://js.cybozu.com/sweetalert2/v11.1.9/sweetalert2.min.js
-- https://js.cybozu.com/sweetalert2/v11.1.9/sweetalert2.min.css
+- https://cdn.jsdelivr.net/npm/sweetalert2@11
 
 今後のバージョンアップデートで Dialog コンポーネントの提供を予定しているので、確認画面の実装は将来的にはそちらで置き換えることも可能です。
 
@@ -44,94 +43,9 @@ kintone UI Component の UMD ファイルをアプリに読み込んだ上で、
 (() => {
   'use strict';
   kintone.events.on('app.record.index.show', (event) => {
-    if (event.viewId !== 6342505) {
-      return event;
-    }
+    
+    // Write the process here
 
-    // Prevent duplication bug with ID granted by property
-    if (document.getElementById('kuc_button') !== null) {
-      return event;
-    }
-
-    const header = kintone.app.getHeaderMenuSpaceElement();
-    const button = new Kuc.Button({
-      type: 'submit',
-      text: 'Bulk approval',
-      id: 'kuc_button'
-    });
-    header.appendChild(button);
-
-    const appId = kintone.app.getId();
-
-    button.addEventListener('click', () => {
-
-      // When there is no records being processed
-      if (event.records.length === 0) {
-        const updateAlert = new Kuc.Notification({
-          text: 'There are no records being processed.'
-        });
-        updateAlert.open();
-        return event;
-      }
-
-      Swal.fire({
-        title: 'Are you sure to approve the displayed records in bulk?',
-        icon: 'question',
-        showCancelButton: true,
-      }).then((resp) => {
-
-        // When Cancel is pressed
-        if (!resp.isConfirmed) {
-          const cancelInfo = new Kuc.Notification({
-            text: 'Canceled.',
-            type: 'info'
-          });
-          cancelInfo.open();
-          return event;
-        }
-
-        // Start bulk approval
-        const spinner = new Kuc.Spinner({
-          text: 'now loading...'
-        });
-        spinner.open();
-
-        const records =  event.records.map(record => {
-          let obj = {};
-          obj.id = record.$id.value;
-          obj.action = 'Approve';
-          return obj;
-        });
-        const param = {
-          'app': appId,
-          'records': records
-        };
-
-        kintone.api(kintone.api.url('/k/v1/records/status', true), 'PUT', param).then(() => {
-
-          const successInfo = new Kuc.Notification({
-            text: 'Bulk approval was successful!  \nPlease reload the screen.',
-            type: 'info'
-          });
-          successInfo.open();
-
-          // Finish bulk approval
-          spinner.close();
-
-        }).catch(error => {
-          // Process when REST API error occurs
-          let errmsg = 'An error occurred while retrieving the record.';
-          if (error.message) {
-            errmsg += ' ' + error.message;
-          }
-          const updateError = new Kuc.Notification({
-            text: errmsg
-          });
-          updateError.open();
-          spinner.close();
-        });
-      });
-    });
   });
 })();
 ```
@@ -139,14 +53,27 @@ kintone UI Component の UMD ファイルをアプリに読み込んだ上で、
 ### 一覧画面にボタンを設置
 ---
 
-KUC の Button コンポーネントを利用して、レコード一覧画面に Bulk approval ボタンを設置します。<br>
+Button コンポーネントを利用して、レコード一覧画面に Bulk approval ボタンを設置します。<br>
 ここでは、各一覧が持つ view ID を利用して、一括承認専用の一覧にのみボタンを表示させています。<br>
 ※ view ID はレコード一覧画面の URL から取得できます。
 
 ```javascript
 if (event.viewId !== 6342505) {
   return event;
-}  
+}
+
+// Prevent duplication bug with ID granted by property
+if (document.getElementById('kuc_button') !== null) {
+  return event;
+}
+
+const header = kintone.app.getHeaderMenuSpaceElement();
+const button = new Kuc.Button({
+  type: 'submit',
+  text: 'Bulk approval',
+  id: 'kuc_button'
+});
+header.appendChild(button); 
 ```
 
 ---
@@ -159,20 +86,42 @@ Bulk approval ボタンをクリックした時の動作です。<br>
 メッセージの表示には Notification コンポーネントを使用しています。
 
 ```javascript
-// When Cancel is pressed
-if (!resp.isConfirmed) {
-  const cancelInfo = new Kuc.Notification({
-    text: 'Canceled.',
-    type: 'info'
+button.addEventListener('click', () => {
+
+  // When there is no records being processed
+  if (event.records.length === 0) {
+    const updateAlert = new Kuc.Notification({
+      text: 'There are no records being processed.'
     });
-  cancelInfo.open();
-  return event;
-}
+    updateAlert.open();
+    return event;
+  }
+
+  Swal.fire({
+    title: 'Are you sure to approve the displayed records in bulk?',
+    icon: 'question',
+    showCancelButton: true,
+  }).then((resp) => {
+
+    // When Cancel is pressed
+    if (!resp.isConfirmed) {
+      const cancelInfo = new Kuc.Notification({
+        text: 'Canceled.',
+        type: 'info'
+      });
+      cancelInfo.open();
+      return event;
+    }
+
+    // Write subsequent process
+
+});   
+});
 ```
 
 今回は複数レコードの一括処理なので、更新に時間がかかる場合があります。<br>
 そのため、更新中に表示するローディング画面を実装してみます。<br>
-ローディング画面の実装には、 KUC の Spinner コンポーネントを使います。<br>
+ローディング画面の実装には、 Spinner コンポーネントを使います。<br>
 
 open() メソッドで、ローディングが始まります。
 
@@ -187,7 +136,7 @@ open() メソッドで、ローディングが始まります。
 一括更新処理に使うパラメーターを作成します。
 
 一覧画面で表示中のレコードをループさせて、レコード ID とプロセス管理で設定されたアクション名を持ったオブジェクトを含む配列データを作成します。<br>
-obj.acton には、プロセス管理で設定されたアクション名を記述します。<br>
+obj.action には、プロセス管理で設定されたアクション名を記述します。<br>
 更新対象は、一覧画面で表示中のレコードのみであることにご注意ください。
 
 ```javascript
@@ -197,6 +146,8 @@ const records =  event.records.map(record => {
   obj.action = 'Approve';
   return obj;
 });
+
+const appId = kintone.app.getId();
 const param = {
   'app': appId,
   'records': records
@@ -208,14 +159,21 @@ const param = {
 Spinner の close() メソッドを使って、ローディング画面を終了させることを忘れないでください。
 
 ```javascript
-const successInfo = new Kuc.Notification({
-  text: 'Bulk approval was successful!  \nPlease reload the screen.',
-  type: 'info'
-});
-successInfo.open();
+kintone.api(kintone.api.url('/k/v1/records/status', true), 'PUT', param).then(() => {
 
-// Finish bulk approval
-spinner.close();
+  const successInfo = new Kuc.Notification({
+    text: 'Bulk approval was successful!  \nPlease reload the screen.',
+    type: 'info'
+  });
+  successInfo.open();
+
+  // Finish bulk approval
+  spinner.close();
+
+}).catch(error => {
+  // Process when REST API error occurs
+  
+});
 ```
 
 ---
@@ -239,5 +197,5 @@ spinner.close();
 });
 ```
 
-> 本記事は、 2021 年 10 月時点の kintone と Google Chrome で確認したものになります。<br>
-> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.1.0 です。
+> 本記事は、 2021 年 11 月時点の kintone と Google Chrome で確認したものになります。<br>
+> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.3.0 です。
