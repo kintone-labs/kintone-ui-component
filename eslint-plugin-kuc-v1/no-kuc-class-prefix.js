@@ -10,7 +10,7 @@ module.exports = {
         if (!regex.test(sourceCode)) return;
         context.report({
           node: node,
-          message: `Please start class css with kuc prefix
+          message: `Please start class name with kuc prefix
           ex: kuc-dropdown`
         });
       }
