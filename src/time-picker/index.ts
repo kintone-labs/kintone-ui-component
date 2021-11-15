@@ -65,7 +65,10 @@ export class TimePicker extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-time-picker__group">
+      <fieldset
+        class="kuc-time-picker__group"
+        aria-describedby="${this._GUID}-error"
+      >
         <legend class="kuc-time-picker__group__label">
           <span class="kuc-time-picker__group__label__text">${this.label}</span
           ><!--
