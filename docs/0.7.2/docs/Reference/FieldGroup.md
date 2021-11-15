@@ -145,7 +145,7 @@ const customCell = function() {
     }
 };
 const table = new kintoneUIComponent.Table({
-    // inital table data
+    // initial table data
     data: [
         {
             text: { value: 'text field' },
