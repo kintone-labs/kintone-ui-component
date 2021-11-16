@@ -141,6 +141,7 @@ export class BaseTime extends KucBase {
         aria-expanded="${this._listBoxVisible}"
         class="kuc-base-time__assistive-text"
         @keydown="${this._handleKeyDownButton}"
+        @focus="${this._handleFocusButton}"
         @blur="${this._handleBlurButton}"
         ?disabled="${this.disabled}"
       >
@@ -300,6 +301,11 @@ export class BaseTime extends KucBase {
 
   private _handleBlurButton() {
     this._closeListBox();
+    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
+  }
+
+  private _handleFocusButton() {
+    this._inputGroupEl.classList.add("kuc-base-time__group--focus");
   }
 
   private _openListBoxByKey(keyCode: string) {
@@ -308,6 +314,7 @@ export class BaseTime extends KucBase {
       !this._listBoxVisible
     ) {
       this._listBoxVisible = true;
+      this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
       return true;
     }
     return false;
