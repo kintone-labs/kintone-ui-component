@@ -24,5 +24,5 @@ export const Base = Template.bind({});
 Base.args = {
   disabled: false,
   hour12: true,
-  value: "08:15 AM"
+  value: "08:15"
 };
