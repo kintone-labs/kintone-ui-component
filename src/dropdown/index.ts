@@ -78,6 +78,8 @@ export class Dropdown extends KucBase {
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+    this.selectedIndex = this._getSelectedIndex();
+    this.value = this._getValue() || "";
   }
 
   private _getSelectedLabel() {
@@ -115,18 +117,29 @@ export class Dropdown extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
     }
     super.update(changedProperties);
   }
 
   private _getSelectedIndex() {
-    if (!this.value) return this.selectedIndex;
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
     const firstIndex = this.items.findIndex(item => item.value === this.value);
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
     );
     return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
   }
 
   render() {

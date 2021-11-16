@@ -15,7 +15,7 @@ type MultiChoiceProps = {
   id?: string;
   label?: string;
   value?: string[];
-  selectedIndexes?: number[];
+  selectedIndex?: number[];
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -42,7 +42,7 @@ export class MultiChoice extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
-  @property({ type: Array }) selectedIndexes: number[] = [];
+  @property({ type: Array }) selectedIndex: number[] = [];
 
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
@@ -59,17 +59,21 @@ export class MultiChoice extends KucBase {
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+    this._valueMapping = this._getValueMapping();
+    this._setValueAndSelectedIndex();
   }
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) {
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
       this._validateValues();
       this._valueMapping = this._getValueMapping();
+      this._setValueAndSelectedIndex();
     }
-    if (changedProperties.has("selectedIndexes")) {
-      this._valueMapping = this._getValueMapping();
-    }
+
     super.update(changedProperties);
   }
 
@@ -123,35 +127,42 @@ export class MultiChoice extends KucBase {
     const result: ValueMapping = {};
     if (this.value.length === 0) {
       const value = this._getValidValue(itemsMapping);
-      this.selectedIndexes.forEach((key, i) => (result[key] = value[i]));
+      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
       return result;
     }
-    const validSelectedIndexes = this._getValidSelectedIndexes(itemsMapping);
-    validSelectedIndexes.forEach((key, i) => (result[key] = this.value[i]));
+    const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
+    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
     return result;
   }
 
   private _getValidValue(itemsMapping: ValueMapping) {
-    return this.selectedIndexes
+    return this.selectedIndex
       .filter(item => itemsMapping[item])
       .map(item => itemsMapping[item]);
   }
 
-  private _getValidSelectedIndexes(itemsMapping: ValueMapping) {
-    const validSelectedIndexes: number[] = [];
+  private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    const validSelectedIndex: number[] = [];
     for (let i = 0; i < this.value.length; i++) {
-      const selectedIndex = this.selectedIndexes[i];
+      const selectedIndex = this.selectedIndex[i];
       if (itemsMapping[selectedIndex] === this.value[i]) {
-        validSelectedIndexes.push(selectedIndex);
+        validSelectedIndex.push(selectedIndex);
         continue;
       }
       const firstIndex = this.items.findIndex(
         item => item.value === this.value[i]
       );
-      validSelectedIndexes.push(firstIndex);
+      validSelectedIndex.push(firstIndex);
     }
 
-    return validSelectedIndexes;
+    return validSelectedIndex;
+  }
+
+  private _setValueAndSelectedIndex() {
+    this.value = Object.values(this._valueMapping);
+    this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+      parseInt(key, 10)
+    );
   }
 
   private _handleMouseDownMultiChoiceItem(event: MouseEvent) {
@@ -464,11 +475,11 @@ export class MultiChoice extends KucBase {
     );
     if (newValue === oldValue) return;
 
-    const newSelectedIndexes = Object.keys(
-      newValueMapping
-    ).map((item: string) => parseInt(item, 10));
+    const newSelectedIndex = Object.keys(newValueMapping).map((item: string) =>
+      parseInt(item, 10)
+    );
     this.value = newValue;
-    this.selectedIndexes = newSelectedIndexes;
+    this.selectedIndex = newSelectedIndex;
     dispatchCustomEvent(this, "change", {
       oldValue,
       value: newValue
