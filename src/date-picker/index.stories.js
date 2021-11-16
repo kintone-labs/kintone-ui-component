@@ -10,6 +10,7 @@ export default {
     }
   }
 };
+
 const Template = args => {
   const handleDateChange = event => {
     console.log(event);
@@ -29,14 +30,14 @@ const Template = args => {
     ></kuc-date-picker>
   `;
 };
+
 export const Base = Template.bind({});
 Base.args = {
   className: "date-picker-class",
-  error: "date picker error",
   id: "date-picker-id",
   label: "Date Picker Label",
   requiredIcon: false,
   language: "auto",
-  value: "2021-2-28",
+  value: "2021-02-28",
   visible: true
 };

@@ -1,7 +1,13 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
-import { getTodayStringByLocale } from "../base/datetime/utils";
+import {
+  getTodayStringByLocale,
+  getLocale,
+  isStringValueEmpty,
+  isValidDateFormat,
+  formatValueToInputValue
+} from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -10,6 +16,7 @@ import {
 } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 import "../base/datetime/date";
+
 type DatePickerProps = {
   className?: string;
   error?: string;
@@ -21,6 +28,7 @@ type DatePickerProps = {
   language?: "ja" | "en" | "zh" | "auto";
   value: string;
 };
+const commonLanguage = "ja";
 
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
@@ -32,6 +40,7 @@ export class DatePicker extends KucBase {
   @property({ type: String }) language = "auto";
   @property({ type: String }) value? = getTodayStringByLocale();
   private _GUID: string;
+  private _locale = getLocale("en");
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -39,12 +48,24 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
+    }
+    if (changedProperties.has("value")) {
+      this._updateValueProp();
+    }
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -83,6 +104,18 @@ export class DatePicker extends KucBase {
     `;
   }
 
+  private _updateValueProp() {
+    if (
+      isStringValueEmpty(this.value) ||
+      !isValidDateFormat(commonLanguage, this.value)
+    ) {
+      if (this.value !== undefined) {
+        this.value = "";
+        throw new Error(`${this._locale.INVALID_FORMAT}`);
+      }
+    }
+  }
+
   private _getStyleTagTemplate() {
     return html`
       <style>
@@ -108,7 +141,7 @@ export class DatePicker extends KucBase {
           color: #333333;
           display: inline-table;
           vertical-align: top;
-          msx-width: 100px;
+          max-width: 100px;
           width: 100px;
         }
         kuc-date-picker[hidden] {

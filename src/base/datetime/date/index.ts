@@ -15,7 +15,7 @@ import {
   isValidDateFormat
 } from "../utils";
 export { BaseDateTimeCalendar };
-const Common_Language = "ja";
+const commonLanguage = "ja";
 
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
@@ -33,6 +33,7 @@ export class BaseDate extends KucBase {
   private _locale = getLocale("en");
   private _calendarValue?: string = "";
   private _inputValue?: string = "";
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
       this._GUID = this.inputId;
@@ -144,19 +145,17 @@ export class BaseDate extends KucBase {
   private _updateValueProp() {
     if (
       isStringValueEmpty(this.value) ||
-      !isValidDateFormat(Common_Language, this.value)
+      !isValidDateFormat(commonLanguage, this.value)
     ) {
       if (this.value !== undefined) {
         this._inputValue = undefined;
-        console.log(
-          `${this._locale.INVALID_FORMAT} Invalid value: ${this.value}`
-        );
       }
     } else {
       this._inputValue = formatValueToInputValue(this.language, this.value);
       this._calendarValue = this.value;
     }
   }
+
   private _handleChangeInputToggle(event: Event) {
     event.stopPropagation();
     const newValue = (event.target as HTMLInputElement).value;
