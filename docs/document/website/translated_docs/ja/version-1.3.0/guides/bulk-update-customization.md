@@ -20,7 +20,7 @@ UI 周りに kintone UI Component を使用することで、kintone にマッ�
 
 以下が、画面の完成イメージです。
 
-![Bulk Update](assets/bulk_update.png)
+![Bulk Update](assets/bulk_update.gif)
 
 ## 事前準備
 
@@ -127,10 +127,10 @@ open() メソッドで、ローディングが始まります。
 
 ```javascript
 // Start bulk approval
-  const spinner = new Kuc.Spinner({
-    text: 'now loading...'
-  });
-  spinner.open();
+const spinner = new Kuc.Spinner({
+  text: 'now loading...'
+});
+spinner.open();
 ```
 
 一括更新処理に使うパラメーターを作成します。
