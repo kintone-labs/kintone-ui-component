@@ -2,16 +2,10 @@ module.exports = {
   create: function(context) {
     return {
       ClassDeclaration: function(node) {
-        const physicalFilename = context.getPhysicalFilename();
-        const ignorePath =
-          "^.*[/\\\\]src[/\\\\]mobile[/\\\\]checkbox[/\\\\]index.ts$";
-        const regexPath = new RegExp(ignorePath, "i");
-        if (regexPath.test(physicalFilename)) return;
-
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
         const sourceCode = context.getSourceCode().getText();
-        const pattern = "data\\:image\\/.*base64|\\.png";
+        const pattern = "\\<img[\\s|\\>]+";
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;
         context.report({
