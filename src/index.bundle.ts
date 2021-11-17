@@ -22,3 +22,4 @@ export * from "./mobile/textarea";
 export * from "./mobile/notification";
 
 export * from "./version";
+export * from "./dev-info";

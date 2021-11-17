@@ -4,10 +4,13 @@ const packageJSON = require("./package.json");
 
 module.exports = {
   mode: "production",
-  entry: "./src/version.ts",
+  entry: {
+    version: "./src/version.ts",
+    "dev-info": "./src/dev-info.ts"
+  },
   output: {
     path: path.resolve(__dirname, "lib"),
-    filename: "version.js",
+    filename: "[name].js",
     library: {
       type: "module"
     }
@@ -28,7 +31,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      VERSION: JSON.stringify(packageJSON.version)
+      VERSION: JSON.stringify(packageJSON.version),
+      DEV_INFO: JSON.stringify(process.env.KUC_DEV_INFO)
     })
   ]
 };
