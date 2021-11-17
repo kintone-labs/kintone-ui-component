@@ -1,4 +1,4 @@
-import { html, svg } from "lit";
+import { html, svg, PropertyValues } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import {
   KucBase,
@@ -33,6 +33,7 @@ export class BaseDateTimeListBox extends KucBase {
   private _highlightItemEl!: HTMLLIElement;
 
   private _GUID = generateGUID();
+
   public getHighlightItemEl() {
     return this._highlightItemEl;
   }
@@ -55,12 +56,15 @@ export class BaseDateTimeListBox extends KucBase {
       if (itemEl.getAttribute("aria-selected") === "true") {
         this._removeHighlight();
         itemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
+        itemEl.setAttribute("tabindex", "0");
+        this.focusHiglightItemEl();
         break;
       }
     }
   }
   private _removeHighlight() {
     if (this._highlightItemEl) {
+      this._highlightItemEl.setAttribute("tabindex", "-1");
       this._highlightItemEl.classList.remove(
         "kuc-base-datetime-listbox__listbox--highlight"
       );
@@ -71,6 +75,8 @@ export class BaseDateTimeListBox extends KucBase {
     this._firstItemEl.classList.add(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
+    this._firstItemEl.setAttribute("tabindex", "0");
+    this.focusHiglightItemEl();
   }
 
   public highlightLastItem() {
@@ -78,6 +84,8 @@ export class BaseDateTimeListBox extends KucBase {
     this._lastItemEl.classList.add(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
+    this._lastItemEl.setAttribute("tabindex", "0");
+    this.focusHiglightItemEl();
   }
 
   public scrollToView() {
@@ -92,12 +100,14 @@ export class BaseDateTimeListBox extends KucBase {
         : this._highlightItemEl.offsetTop - offsetItemCount * lineHeight;
     this._listBoxEl.scrollTop = offsetScrollTop;
   }
+
   public scrollToTop() {
     if (!this._listBoxEl) {
       return;
     }
     this._listBoxEl.scrollTop = 0;
   }
+
   public scrollToBottom() {
     if (!this._listBoxEl) {
       return;
@@ -111,11 +121,14 @@ export class BaseDateTimeListBox extends KucBase {
       return;
     }
     const nextItemEl = this._highlightItemEl.nextElementSibling;
+    this._highlightItemEl.setAttribute("tabindex", "-1");
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
     if (nextItemEl) {
       nextItemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
+      nextItemEl.setAttribute("tabindex", "0");
+      this.focusHiglightItemEl();
       return;
     }
     this.highlightFirstItem();
@@ -127,14 +140,38 @@ export class BaseDateTimeListBox extends KucBase {
       return;
     }
     const prevItemEl = this._highlightItemEl.previousElementSibling;
+    this._highlightItemEl.setAttribute("tabindex", "-1");
     this._highlightItemEl.classList.remove(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
     if (prevItemEl) {
       prevItemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
+      prevItemEl.setAttribute("tabindex", "0");
+      this.focusHiglightItemEl();
       return;
     }
     this.highlightLastItem();
+  }
+
+  public focusHiglightItemEl() {
+    const liEl = this.getHighlightItemEl() as HTMLLIElement;
+    if (!liEl) return;
+    liEl.focus();
+  }
+
+  constructor() {
+    super();
+    this._handleClickDocument = this._handleClickDocument.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("click", this._handleClickDocument);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("click", this._handleClickDocument);
+    super.disconnectedCallback();
   }
 
   render() {
@@ -145,6 +182,8 @@ export class BaseDateTimeListBox extends KucBase {
         class="kuc-base-datetime-listbox__listbox"
         role="listbox"
         @mousedown="${this._handleMouseDownListBox}"
+        @keydown="${this._handleKeyDownListBox}"
+        @click="${this._handleClickListBox}"
       >
         ${this.items.map((item, number) =>
           this._getListBoxItemTemplate(item, number)
@@ -155,6 +194,50 @@ export class BaseDateTimeListBox extends KucBase {
 
   updated(_changedProperties: any) {
     this.scrollToView();
+  }
+
+  private _handleClickDocument() {
+    dispatchCustomEvent(this, "kuc:focus-out-listbox", {});
+  }
+
+  private _handleClickListBox(event: Event) {
+    event.stopPropagation();
+  }
+
+  private _handleKeyDownListBox(event: KeyboardEvent) {
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp": {
+        event.preventDefault();
+        this.highlightPrevItem();
+        break;
+      }
+      case "Down":
+      case "ArrowDown":
+        event.preventDefault();
+        this.highlightNextItem();
+        break;
+      case "Home":
+        event.preventDefault();
+        this.highlightFirstItem();
+        break;
+      case "End":
+        event.preventDefault();
+        this.highlightLastItem();
+        break;
+      case "Escape":
+        dispatchCustomEvent(this, "kuc:calendar-listbox-click", {});
+        break;
+      case "Enter": {
+        event.preventDefault();
+        const highlightValue = this.getHighlightValue();
+        if (highlightValue) {
+          const detail: CustomEventDetail = { value: highlightValue };
+          dispatchCustomEvent(this, "kuc:calendar-listbox-click", detail);
+        }
+        break;
+      }
+    }
   }
 
   private _handleMouseDownListBox(event: MouseEvent) {
@@ -171,12 +254,16 @@ export class BaseDateTimeListBox extends KucBase {
   private _handleMouseOverItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     this._removeHighlight();
+    itemEl.setAttribute("tabindex", "0");
     itemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
+    this.focusHiglightItemEl();
   }
 
   private _handleMouseLeaveItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
+    itemEl.setAttribute("tabindex", "-1");
     itemEl.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
+    this.focusHiglightItemEl();
   }
 
   private _getListBoxItemTemplate(item: Item, index: number) {
@@ -184,6 +271,7 @@ export class BaseDateTimeListBox extends KucBase {
       <li
         class="kuc-base-datetime-listbox__listbox__item"
         role="option"
+        tabindex="${this.value === item.value ? "0" : "-1"}"
         aria-selected="${this.value === item.value}"
         title="${item.label || ""}"
         id="${this._GUID}-listboxitem-${index}"
@@ -274,6 +362,9 @@ export class BaseDateTimeListBox extends KucBase {
           left: 8px;
           top: 10px;
           background-color: transparent;
+        }
+        .kuc-base-datetime-listbox__listbox__item:focus {
+          outline: none;
         }
       </style>
     `;
