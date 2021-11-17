@@ -38,6 +38,6 @@ Base.args = {
   label: "Date Picker Label",
   requiredIcon: false,
   language: "auto",
-  value: "2021-02-28",
+  value: "2021-03-31",
   visible: true
 };

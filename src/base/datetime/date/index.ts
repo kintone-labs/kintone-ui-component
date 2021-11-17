@@ -61,6 +61,7 @@ export class BaseDate extends KucBase {
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
         @mousedown="${this._handleMouseDownInputToggle}"
+        @keydown="${this._handleKeyDownInput}"
         @change="${this._handleChangeInputToggle}"
       />
       <kuc-base-datetime-calendar
@@ -194,17 +195,21 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
     event.detail.oldValue = this.value;
     this.value = event.detail.value;
+    this._dateInput.focus();
     dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
   private _handleClickCalendarFooterButtonNone() {
     this._closeCalendar();
-    this._dispathDateChangeCustomEvent("");
+    this._dateInput.focus();
+    this._inputValue = "";
+    this._dispathDateChangeCustomEvent(undefined);
   }
 
   private _handleClickCalendarFooterButtonToday() {
     this._closeCalendar();
     const today = getTodayStringByLocale();
+    this._dateInput.focus();
     this._dispathDateChangeCustomEvent(today);
   }
 
@@ -227,6 +232,21 @@ export class BaseDate extends KucBase {
       }
       this._closeCalendar();
     });
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    event.preventDefault();
+    const keyCode = event.key;
+    switch (keyCode) {
+      case " ":
+      case "ArrowDown":
+        this._openCalendar();
+        this._dateInput.blur();
+        this._dateTimeCalendar.focus();
+        break;
+      default:
+        break;
+    }
   }
 }
 

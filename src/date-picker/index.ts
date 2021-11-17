@@ -5,8 +5,7 @@ import {
   getTodayStringByLocale,
   getLocale,
   isStringValueEmpty,
-  isValidDateFormat,
-  formatValueToInputValue
+  isValidDateFormat
 } from "../base/datetime/utils";
 import {
   CustomEventDetail,
@@ -69,7 +68,7 @@ export class DatePicker extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-date-picker-group">
+      <div class="kuc-date-picker__group">
         <label
           class="kuc-date-picker__group__label"
           for="${this._GUID}-label"
