@@ -109,7 +109,7 @@ describe("MobileRadioButton", () => {
         ".kuc-mobile-radio-button__group__select-menu__item"
       );
 
-      expect(container.value).to.equal(null);
+      expect(container.value).to.equal("");
       expect(itemsEl.length).to.equal(3);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
@@ -141,7 +141,7 @@ describe("MobileRadioButton", () => {
         ".kuc-mobile-radio-button__group__select-menu__item"
       );
 
-      expect(container.value).to.equal(null);
+      expect(container.value).to.equal("");
       expect(itemsEl.length).to.equal(3);
 
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
