@@ -96,12 +96,12 @@ describe("Dropdown", () => {
     expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
-  it("should be null when assigned null on constructor", async () => {
+  it("should be empty when assigned null on constructor", async () => {
     // @ts-ignore
     const container = new Dropdown({ items: initItems, value: null });
 
     const el = await fixture(container);
-    expect(container.value).to.be.equal(null);
+    expect(container.value).to.be.equal("");
 
     const selectedItemLabel = el.querySelector(
       ".kuc-dropdown__group__toggle__selected-item-label"
@@ -124,7 +124,7 @@ describe("Dropdown", () => {
     expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
-  it("should be null when set null by setter", async () => {
+  it("should be empty when set null by setter", async () => {
     const container = new Dropdown({
       items: initItems,
       value: initItems[0].value
@@ -133,7 +133,7 @@ describe("Dropdown", () => {
     container.value = null;
 
     const el = await fixture(container);
-    expect(container.value).to.be.equal(null);
+    expect(container.value).to.be.equal("");
 
     const selectedItemLabel = el.querySelector(
       ".kuc-dropdown__group__toggle__selected-item-label"
@@ -156,7 +156,7 @@ describe("Dropdown", () => {
     expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
-  it("should be set to nonexistent value", async () => {
+  it("should be empty when set to nonexistent", async () => {
     const container = new Dropdown({
       items: initItems,
       value: initItems[0].value
@@ -164,7 +164,7 @@ describe("Dropdown", () => {
     container.value = "nonexistent";
 
     const el = await fixture(container);
-    expect(container.value).to.be.equal("nonexistent");
+    expect(container.value).to.be.equal("");
 
     const selectedItemLabel = el.querySelector(
       ".kuc-dropdown__group__toggle__selected-item-label"
@@ -187,7 +187,7 @@ describe("Dropdown", () => {
     expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
   });
 
-  it("should be set to number value", async () => {
+  it("should be empty when set to number", async () => {
     const container = new Dropdown({
       items: initItems,
       value: initItems[0].value
@@ -196,7 +196,7 @@ describe("Dropdown", () => {
     container.value = 1;
 
     const el = await fixture(container);
-    expect(container.value).to.be.equal(1);
+    expect(container.value).to.be.equal("");
 
     const selectedItemLabel = el.querySelector(
       ".kuc-dropdown__group__toggle__selected-item-label"

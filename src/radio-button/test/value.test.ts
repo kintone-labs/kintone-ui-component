@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { RadioButton } from "../index";
 
 const initItems = [
@@ -91,7 +91,7 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item"
       );
 
-      expect(container.value).to.equal(null);
+      expect(container.value).to.equal("");
       expect(itemsEl.length).to.equal(3);
 
       const circlesEl0 = itemsEl[0].querySelectorAll("circle");
@@ -117,7 +117,7 @@ describe("RadioButton", () => {
         ".kuc-radio-button__group__select-menu__item"
       );
 
-      expect(container.value).to.equal(null);
+      expect(container.value).to.equal("");
       expect(itemsEl.length).to.equal(3);
 
       const circlesEl0 = itemsEl[0].querySelectorAll("circle");

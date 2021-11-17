@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
 const initItems = [
@@ -25,6 +25,7 @@ describe("Checkbox", () => {
       );
       expect(inputsEl.length).equal(3);
       inputsEl[2].dispatchEvent(new Event("change"));
+      await elementUpdated(el);
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldValue).to.deep.equal([

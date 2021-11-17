@@ -78,8 +78,6 @@ export class Dropdown extends KucBase {
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-    this.selectedIndex = this._getSelectedIndex();
-    this.value = this._getValue() || "";
   }
 
   private _getSelectedLabel() {
