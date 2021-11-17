@@ -163,7 +163,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return `${year}-${month}-${day}`;
   }
 
-  private _isSameDayOfAnyTime(dates: string[]) {
+  private _isSameDayOfMoment(dates: string[]) {
     const month = parseInt(dates[1], 10);
     const day = parseInt(dates[2], 10);
     const year = parseInt(dates[0], 10);
@@ -211,7 +211,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
             <tr>
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
-                const isSameDate = this._isSameDayOfAnyTime(dateParts);
+                const isSameDate = this._isSameDayOfMoment(dateParts);
                 return html`
                   <td
                     role="gridcell"
