@@ -205,6 +205,7 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _handleKeyDownListBox(event: KeyboardEvent) {
+    event.preventDefault();
     switch (event.key) {
       case "Up":
       case "ArrowUp": {
@@ -225,6 +226,7 @@ export class BaseDateTimeListBox extends KucBase {
         event.preventDefault();
         this.highlightLastItem();
         break;
+      case "Tab":
       case "Escape":
         dispatchCustomEvent(this, "kuc:calendar-listbox-click", {});
         break;
