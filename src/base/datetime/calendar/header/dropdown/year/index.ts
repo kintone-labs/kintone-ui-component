@@ -2,7 +2,6 @@ import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
-  generateGUID,
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../../../kuc-base";
@@ -16,7 +15,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @state()
   private _listBoxVisible = false;
 
-  private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
 
   @query(".kuc-base-datetime-header-year__toggle")
@@ -41,12 +39,12 @@ export class BaseDateTimeHeaderYear extends KucBase {
       ${this._getStyleTagTemplate()}
       <button
         class="kuc-base-datetime-header-year__toggle"
-        aria-haspopup="true"
-        aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
+        aria-haspopup="listbox"
+        aria-expanded="${this._listBoxVisible}"
+        tabindex="${this._listBoxVisible ? "-1" : "0"}"
         @mouseup="${this._handleMouseUpDropdownToggle}"
         @mousedown="${this._handleMouseDownDropdownToggle}"
         @click="${this._handleClickDropdownYearToggle}"
-        @blur="${this._handleBlurDropdownYearToggle}"
         @keydown="${this._handleKeyDownYearToggle}"
       >
         <span class="kuc-base-datetime-header-year__toggle__label"
@@ -56,16 +54,36 @@ export class BaseDateTimeHeaderYear extends KucBase {
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
-      <kuc-base-datetime-listbox
-        .items="${this._listBoxItems || []}"
-        .value="${this.year.toString()}"
-        class="kuc-base-datetime-header-year__listbox"
-        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-        aria-hidden="${!this._listBoxVisible}"
-        ?hidden="${!this._listBoxVisible}"
-      >
-      </kuc-base-datetime-listbox>
+      ${this._listBoxVisible
+        ? html`
+            <kuc-base-datetime-listbox
+              .items="${this._listBoxItems || []}"
+              .value="${this.year.toString()}"
+              class="kuc-base-datetime-header-year__listbox"
+              @kuc:calendar-listbox-click="${this._handleChangeListBox}"
+              @kuc:focus-out-listbox="${this._handleFocusOutListBox}"
+              aria-hidden="${!this._listBoxVisible}"
+              ?hidden="${!this._listBoxVisible}"
+            >
+            </kuc-base-datetime-listbox>
+          `
+        : ""}
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("_listBoxVisible")) {
+      if (!this._listBoxVisible) return;
+      setTimeout(() => {
+        this._listBoxEl.highlightSelectedItem();
+      });
+    }
+    super.update(changedProperties);
+  }
+
+  private _handleFocusOutListBox() {
+    this._listBoxVisible = false;
+    this._toggleEl.focus();
   }
 
   private _getStyleTagTemplate() {
@@ -108,7 +126,8 @@ export class BaseDateTimeHeaderYear extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownYearToggle() {
+  private _handleClickDropdownYearToggle(event: Event) {
+    event.stopPropagation();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
@@ -117,72 +136,23 @@ export class BaseDateTimeHeaderYear extends KucBase {
   }
 
   private _handleKeyDownYearToggle(event: KeyboardEvent) {
-    if (!this._listBoxVisible) {
-      this._listBoxEl.highlightFirstItem();
-      return;
-    }
-    switch (event.key) {
-      case "Up":
-      case "ArrowUp": {
-        event.preventDefault();
-        this._listBoxEl.highlightPrevItem();
-        this._listBoxEl.scrollToView();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Down":
-      case "ArrowDown": {
-        event.preventDefault();
-        this._listBoxEl.highlightNextItem();
-        this._listBoxEl.scrollToView();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Home":
-        event.preventDefault();
-        this._listBoxEl.highlightFirstItem();
-        this._listBoxEl.scrollToTop();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "End":
-        event.preventDefault();
-        this._listBoxEl.highlightLastItem();
-        this._listBoxEl.scrollToBottom();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "Enter": {
-        event.preventDefault();
-        const highlightValue = this._listBoxEl.getHighlightValue();
-        if (highlightValue) {
-          this.year = Number(highlightValue);
-          const detail: CustomEventDetail = { value: `${this.year}` };
-          dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
-        }
-        this._listBoxVisible = false;
-        break;
-      }
-    }
+    if (event.key === "Tab") return;
+    event.preventDefault();
+    this._openListBoxByKey(event.key);
   }
 
-  private _handleBlurDropdownYearToggle() {
-    this._listBoxVisible = false;
+  private _openListBoxByKey(key: string) {
+    const isOpenListBox =
+      [" ", "Up", "ArrowUp", "Down", "ArrowDown", "Enter"].indexOf(key) > -1;
+    if (!isOpenListBox) return;
+    this._openListBox();
   }
 
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this._closeListBox();
+    if (!event.detail.value) return;
     this.year = Number(event.detail.value);
     this._listBoxVisible = false;
     const detail: CustomEventDetail = { value: `${this.year}` };
@@ -190,27 +160,12 @@ export class BaseDateTimeHeaderYear extends KucBase {
   }
 
   private _openListBox() {
-    this._toggleEl.focus();
     this._listBoxVisible = true;
-    this._listBoxEl.highlightSelectedItem();
   }
 
   private _closeListBox() {
     this._listBoxVisible = false;
-    this._removeActiveDescendant(this._toggleEl);
-  }
-
-  private _setActiveDescendant(
-    _buttonEl: HTMLButtonElement,
-    value: string | null
-  ) {
-    if (value && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
+    this._toggleEl.focus();
   }
 
   private _getYearOptions() {

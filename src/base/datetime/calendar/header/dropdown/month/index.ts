@@ -2,7 +2,6 @@ import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
-  generateGUID,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../../../kuc-base";
@@ -17,7 +16,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _listBoxVisible = false;
   private _locale = getLocale("en");
   private _monthLabel = "";
-  private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
   private _maxHeight = 1000;
 
@@ -46,7 +44,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
         aria-haspopup="listbox"
         aria-expanded="${this._listBoxVisible}"
         tabindex="${this._listBoxVisible ? "-1" : "0"}"
-        aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
         @mouseup="${this._handleMouseUpDropdownToggle}"
         @mousedown="${this._handleMouseDownDropdownToggle}"
         @click="${this._handleClickDropdownMonthToggle}"
@@ -175,11 +172,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _closeListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
-    this._removeActiveDescendant(this._toggleEl);
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
   }
 
   private _getListBoxItems() {
