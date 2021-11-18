@@ -10,7 +10,7 @@ module.exports = {
         if (!regex.test(sourceCode)) return;
         context.report({
           node: node,
-          message: `Please using svg element code
+          message: `Please use svg element code. If you cannot, please use base64 image file instead.
           ex: private _getCloseButtonSvgTemplate() {
             return svg\`
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
