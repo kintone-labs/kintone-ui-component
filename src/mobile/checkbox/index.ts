@@ -1,5 +1,5 @@
-import { html, svg } from "lit";
-import { property, queryAll } from "lit/decorators.js";
+import { html, svg, PropertyValues } from "lit";
+import { property, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -21,6 +21,10 @@ type MobileCheckboxProps = {
   visible?: boolean;
   items?: Item[];
   value?: string[];
+  selectedIndex?: number[];
+};
+type ValueMapping = {
+  [key: number]: string;
 };
 
 export class MobileCheckbox extends KucBase {
@@ -44,17 +48,6 @@ export class MobileCheckbox extends KucBase {
       if (!Array.isArray(newVal)) {
         throw new Error("'items' property is not array");
       }
-      const checkedList: string[] = [];
-      newVal.forEach((item, index) => {
-        if (
-          checkedList.indexOf(item.value === undefined ? "" : item.value) > -1
-        ) {
-          throw new Error(
-            `'items[${index}].value' is duplicated! You can specify unique one.`
-          );
-        }
-        checkedList.push(item.value === undefined ? "" : item.value);
-      });
       return true;
     }
   })
@@ -65,23 +58,18 @@ export class MobileCheckbox extends KucBase {
       if (!Array.isArray(newVal)) {
         throw new Error("'value' property is not array");
       }
-      const checkedList: string[] = [];
-      newVal.forEach((value, index) => {
-        if (checkedList.indexOf(value === undefined ? "" : value) > -1) {
-          throw new Error(
-            `'value[${index}]' is duplicated! You can specify unique one.`
-          );
-        }
-        checkedList.push(value === undefined ? "" : value);
-      });
       return true;
     }
   })
   value: string[] = [];
+  @property({ type: Array }) selectedIndex: number[] = [];
 
   @queryAll(".kuc-mobile-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
+
+  @state()
+  private _valueMapping: ValueMapping = {};
 
   constructor(props?: MobileCheckboxProps) {
     super();
@@ -90,25 +78,41 @@ export class MobileCheckbox extends KucBase {
     Object.assign(this, validProps);
   }
 
-  private _getNewValue(value: string) {
-    const sorting = this.items.map(item => item.value);
-    if (this.value.indexOf(value) === -1) {
-      return [...this.value, value].sort(
-        (item1: string, item2: any) =>
-          sorting.indexOf(item1) - sorting.indexOf(item2)
-      );
+  private _getNewValueMapping(value: string, selectedIndex: string) {
+    const selectedIndexNumber = parseInt(selectedIndex, 10);
+    const keys = Object.keys(this._valueMapping);
+    const newValue = { ...this._valueMapping };
+    if (keys.indexOf(selectedIndex) > -1) {
+      delete newValue[selectedIndexNumber];
+      return newValue;
     }
-    return this.value.filter(val => val !== value);
+    newValue[selectedIndexNumber] = value;
+    return newValue;
   }
 
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
-    const oldValue = this.value;
-    const newValue = this._getNewValue(inputEl.value);
+    const selectedIndex = inputEl.dataset.index || "0";
+    const value = inputEl.value;
+
+    const oldValue = [...this.value];
+    const newValueMapping = this._getNewValueMapping(value, selectedIndex);
+    const itemsValue = this.items.map(item => item.value);
+    const newValue = Object.values(newValueMapping).filter(
+      item => itemsValue.indexOf(item) > -1
+    );
+    if (newValue === oldValue) return;
+
+    const newSelectedIndex = Object.keys(newValueMapping).map((item: string) =>
+      parseInt(item, 10)
+    );
     this.value = newValue;
-    const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    dispatchCustomEvent(this, "change", detail);
+    this.selectedIndex = newSelectedIndex;
+    dispatchCustomEvent(this, "change", {
+      oldValue,
+      value: newValue
+    });
   }
 
   private _getCheckboxIconSvgTemplate(checked: boolean) {
@@ -137,7 +141,18 @@ export class MobileCheckbox extends KucBase {
     return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAiCAQAAACOh/P6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElN RQfkCQcFIRBGJW6QAAACvklEQVRIx6XWQZKbRhSA4Z8GBhACenwC5wZUypXKMlRlmUVcXrtKHMEn meQEUmWfmnHZe65ATpDcIA3MMGKEhBdgGRAaWZqnjarp94H6PTWtNWg0tPEX54fARNzwT72qed8b Ny6weqFzhbO0Fg1rHlf9Ky+CdSw5X3q/O+x4WAro0S+ADSw5T4LQw6LBRFt+5rc9LV7CeokMA1xs bOYE+MvPixfCBpb0ExkGzDDR0bFG9EVwywahzwwDAWiIPf1pcSHcZ/U90NIuHrObv+UF8DTb0hoG utKjd+qgKzSA/R9mirWlN8lCw5Yn9RT9kh4shc6VtJdXUp9ENQzs18fZmkrdR2/Sr4/QC+e1dWuG m3AdVaqeYJ3QS3zp4xxhi+jHdD//215xF84TV17xRJEWI7pl/SSQ8wl2x5a1uu+xvaW4C/3kWl4T IJGhn1jSGLCz0E+k9HC6Bhuyj2nxg0r7o92cj13aDBsXn6BHt6yXSOlhY3QFHrJ59L/KOIA/9tJ0 dGYdbUsD0WOtSbZMs0ipnMcxfDtKE+jMCJBh8K8b2rgn2DzKVM6aYbkNcG496Q7SBOAAQhpJ/cG8 8eT8BFsx7iIBRmSmBmKQJtBx8HklXy2vL2BBwK//raNNumM3umBg4xFwrGTPsV3xflZ5VKbbEa2h Y2Jhoh+w9Ql2324/HaEFYrRIsGNDedd2wjEWxNctZ5o+jB0bylX2VqniGXawCX0PvWPDwyqLFcVB gx2FITtBt2weKwoqts/+sgGcd3Q9SX9j70+yI7giR6ksKu82B/SQPVWJEVxTUaBU9rZcDelz2YNX U03TfuIGd2F29z2fnTgJbaloaCAGd2Gitewf+YfsDHbyiLWlar/EMFvobCjjfJXxcAZ75Oy26+gm 3mIuqrhYZTyexR49FLZ0wyY2/qzSkpKns1jQmrOmf398ARuVc7WA4gOtAAAAJXRFWHRkYXRlOmNy ZWF0ZQAyMDIwLTA5LTA3VDA1OjMzOjE2KzAwOjAw76ZY7wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAy MC0wOS0wN1QwNTozMzoxNiswMDowMJ774FMAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh ZHlxyWU8AAAAAElFTkSuQmCC";
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    const values = Object.values(this._valueMapping);
+    const keys = Object.keys(this._valueMapping);
+    const result = values.filter(
+      (val, indexVal) =>
+        val === item.value && index === parseInt(keys[indexVal], 10)
+    );
+    return result.length > 0;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <label
         for="${this._GUID}-item-${index}"
@@ -149,6 +164,7 @@ export class MobileCheckbox extends KucBase {
           id="${this._GUID}-item-${index}"
           class="kuc-mobile-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
+          data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           aria-describedby="${this._GUID}-error}"
           aria-required="${this.requiredIcon}"
@@ -157,14 +173,24 @@ export class MobileCheckbox extends KucBase {
           @change="${this._handleChangeInput}"
         />
         <div class="kuc-mobile-checkbox__group__select-menu__item__label">
-          ${this._getCheckboxIconSvgTemplate(
-            item.value !== undefined
-              ? this.value.some(val => val === item.value)
-              : false
-          )}${item.label === undefined ? item.value : item.label}
+          ${this._getCheckboxIconSvgTemplate(isCheckedItem)}${item.label ===
+          undefined
+            ? item.value
+            : item.label}
         </div>
       </label>
     `;
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._valueMapping = this._getValueMapping();
+      this._setValueAndSelectedIndex();
+    }
+    super.update(changedProperties);
   }
 
   render() {
@@ -210,6 +236,50 @@ export class MobileCheckbox extends KucBase {
     this._inputEls.forEach((inputEl: HTMLInputElement) => {
       inputEl.checked = this.value.indexOf(inputEl.value) > -1;
     });
+  }
+
+  private _setValueAndSelectedIndex() {
+    this.value = Object.values(this._valueMapping);
+    this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+      parseInt(key, 10)
+    );
+  }
+
+  private _getValueMapping() {
+    const itemsValue = this.items.map(item => item.value || "");
+    const itemsMapping = Object.assign({}, itemsValue);
+    const result: ValueMapping = {};
+    if (this.value.length === 0) {
+      const value = this._getValidValue(itemsMapping);
+      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+      return result;
+    }
+    const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
+    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    return result;
+  }
+
+  private _getValidValue(itemsMapping: ValueMapping) {
+    return this.selectedIndex
+      .filter(item => itemsMapping[item])
+      .map(item => itemsMapping[item]);
+  }
+
+  private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    const validSelectedIndex: number[] = [];
+    for (let i = 0; i < this.value.length; i++) {
+      const selectedIndex = this.selectedIndex[i];
+      if (itemsMapping[selectedIndex] === this.value[i]) {
+        validSelectedIndex.push(selectedIndex);
+        continue;
+      }
+      const firstIndex = this.items.findIndex(
+        item => item.value === this.value[i]
+      );
+      validSelectedIndex.push(firstIndex);
+    }
+
+    return validSelectedIndex;
   }
 
   private _getStyleTagTemplate() {

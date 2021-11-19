@@ -59,8 +59,6 @@ export class MultiChoice extends KucBase {
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-    this._valueMapping = this._getValueMapping();
-    this._setValueAndSelectedIndex();
   }
 
   update(changedProperties: PropertyValues) {

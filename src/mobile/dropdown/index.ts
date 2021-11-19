@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -16,6 +16,7 @@ type MobileDropdownProps = {
   id?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -28,6 +29,7 @@ export class MobileDropdown extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({
@@ -38,6 +40,9 @@ export class MobileDropdown extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
+
+  @query(".kuc-mobile-dropdown__input-form__select__input")
+  private _selectEl!: HTMLSelectElement;
 
   private _GUID: string;
 
@@ -51,9 +56,12 @@ export class MobileDropdown extends KucBase {
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
-    const detail: CustomEventDetail = { value: "", oldValue: this.value };
-    this.value = selectEl.value;
-    detail.value = this.value;
+    const value = selectEl.value;
+    if (this.value === value && this.selectedIndex === selectEl.selectedIndex)
+      return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
+    this.value = value;
+    this.selectedIndex = selectEl.selectedIndex;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -61,15 +69,45 @@ export class MobileDropdown extends KucBase {
     if (changedProperties.has("items")) {
       this._validateItems();
     }
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
     super.update(changedProperties);
   }
 
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
+  }
+
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
-      <option
-        value="${item.value || ""}"
-        ?selected="${this.value === item.value}"
-      >
+      <option value="${item.value || ""}" ?selected="${isCheckedItem}">
         ${item.label === undefined ? item.value : item.label}
       </option>
     `;
@@ -105,10 +143,6 @@ export class MobileDropdown extends KucBase {
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           >
-            <option
-              ?selected="${this.items.filter(item => item.value === this.value)
-                .length === 0}"
-            ></option>
             ${this.items.map((item, index) =>
               this._getItemTemplate(item, index)
             )}
@@ -125,6 +159,13 @@ export class MobileDropdown extends KucBase {
         ${this.error}
       </div>
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("selectedIndex")) {
+      this._selectEl.selectedIndex = this.selectedIndex;
+    }
+    super.update(changedProperties);
   }
 
   private _getStyleTagTemplate() {
@@ -214,10 +255,6 @@ export class MobileDropdown extends KucBase {
           opacity: 1;
         }
 
-        .kuc-mobile-dropdown__input-form__select__input option:first-of-type {
-          display: none;
-        }
-
         .kuc-mobile-dropdown__error {
           line-height: 1.5;
           color: #000000;
@@ -236,12 +273,6 @@ export class MobileDropdown extends KucBase {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, number, self) => {
-      if (value !== undefined && self.indexOf(value) !== number) {
-        throw new Error(`'items[${number}].value' property is duplicated`);
-      }
-    });
   }
 }
 if (!window.customElements.get("kuc-mobile-dropdown")) {
