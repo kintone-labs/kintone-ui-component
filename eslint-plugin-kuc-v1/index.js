@@ -5,6 +5,7 @@ const noDescribeStyleTagInsideHtml = require("./no-describe-style-tag-inside-htm
 const noUsingImgTag = require("./no-using-img-tag");
 const noLowercase6DigitsColorCode = require("./no-lowercase-6digits-color-code");
 const noKucClassPrefix = require("./no-kuc-class-prefix");
+const noPrefixOfPrivateFunction = require("./no-prefix-of-private-function");
 
 module.exports = {
   rules: {
@@ -14,6 +15,7 @@ module.exports = {
     "no-describe-style-tag-inside-html": noDescribeStyleTagInsideHtml,
     "no-using-img-tag": noUsingImgTag,
     "no-lowercase-6digits-color-code": noLowercase6DigitsColorCode,
-    "no-kuc-class-prefix": noKucClassPrefix
+    "no-kuc-class-prefix": noKucClassPrefix,
+    "no-prefix-of-private-function": noPrefixOfPrivateFunction
   }
 };
