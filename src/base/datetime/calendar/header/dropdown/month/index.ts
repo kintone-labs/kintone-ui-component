@@ -74,16 +74,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("_listBoxVisible")) {
-      if (!this._listBoxVisible) return;
-      setTimeout(() => {
-        this._listBoxEl.highlightSelectedItem();
-      });
-    }
-    super.update(changedProperties);
-  }
-
   private _handleFocusOutListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();

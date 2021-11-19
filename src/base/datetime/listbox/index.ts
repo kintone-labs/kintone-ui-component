@@ -38,30 +38,19 @@ export class BaseDateTimeListBox extends KucBase {
     return this._highlightItemEl;
   }
 
-  public getHighlightItemId() {
-    return this._highlightItemEl
-      ? this._highlightItemEl.getAttribute("id")
-      : "";
-  }
-
-  public getHighlightValue() {
-    return this._highlightItemEl
-      ? this._highlightItemEl.getAttribute("value")
-      : "";
-  }
-
-  public highlightSelectedItem() {
+  private highlightSelectedItem() {
     for (let index = 0; index < this._itemsEl.length; index++) {
       const itemEl = this._itemsEl[index];
       if (itemEl.getAttribute("aria-selected") === "true") {
         this._removeHighlight();
         itemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
         itemEl.setAttribute("tabindex", "0");
-        this.focusHiglightItemEl();
+        this.focusHighlightItemEl();
         break;
       }
     }
   }
+
   private _removeHighlight() {
     if (this._highlightItemEl) {
       this._highlightItemEl.setAttribute("tabindex", "-1");
@@ -70,28 +59,30 @@ export class BaseDateTimeListBox extends KucBase {
       );
     }
   }
-  public highlightFirstItem() {
+
+  private highlightFirstItem() {
     this._removeHighlight();
     this._firstItemEl.classList.add(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
     this._firstItemEl.setAttribute("tabindex", "0");
-    this.focusHiglightItemEl();
+    this.focusHighlightItemEl();
   }
 
-  public highlightLastItem() {
+  private highlightLastItem() {
     this._removeHighlight();
     this._lastItemEl.classList.add(
       "kuc-base-datetime-listbox__listbox--highlight"
     );
     this._lastItemEl.setAttribute("tabindex", "0");
-    this.focusHiglightItemEl();
+    this.focusHighlightItemEl();
   }
 
-  public scrollToView() {
+  private scrollToView() {
     if (!this._highlightItemEl || !this._listBoxEl) {
       return;
     }
+
     const lineHeight = this._highlightItemEl.offsetHeight;
     const offsetItemCount = this._listBoxEl.clientHeight / lineHeight / 2;
     const offsetScrollTop =
@@ -101,21 +92,7 @@ export class BaseDateTimeListBox extends KucBase {
     this._listBoxEl.scrollTop = offsetScrollTop;
   }
 
-  public scrollToTop() {
-    if (!this._listBoxEl) {
-      return;
-    }
-    this._listBoxEl.scrollTop = 0;
-  }
-
-  public scrollToBottom() {
-    if (!this._listBoxEl) {
-      return;
-    }
-    this._listBoxEl.scrollTop = this._listBoxEl.scrollHeight;
-  }
-
-  public highlightNextItem() {
+  private highlightNextItem() {
     if (this._highlightItemEl === null) {
       this.highlightFirstItem();
       return;
@@ -128,13 +105,13 @@ export class BaseDateTimeListBox extends KucBase {
     if (nextItemEl) {
       nextItemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
       nextItemEl.setAttribute("tabindex", "0");
-      this.focusHiglightItemEl();
+      this.focusHighlightItemEl();
       return;
     }
     this.highlightFirstItem();
   }
 
-  public highlightPrevItem() {
+  private highlightPrevItem() {
     if (this._highlightItemEl === null) {
       this.highlightLastItem();
       return;
@@ -147,13 +124,13 @@ export class BaseDateTimeListBox extends KucBase {
     if (prevItemEl) {
       prevItemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
       prevItemEl.setAttribute("tabindex", "0");
-      this.focusHiglightItemEl();
+      this.focusHighlightItemEl();
       return;
     }
     this.highlightLastItem();
   }
 
-  public focusHiglightItemEl() {
+  private focusHighlightItemEl() {
     const liEl = this.getHighlightItemEl() as HTMLLIElement;
     if (!liEl) return;
     liEl.focus();
@@ -193,6 +170,7 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   updated(_changedProperties: any) {
+    this.highlightSelectedItem();
     this.scrollToView();
   }
 
@@ -208,22 +186,19 @@ export class BaseDateTimeListBox extends KucBase {
     event.preventDefault();
     switch (event.key) {
       case "Up":
-      case "ArrowUp": {
-        event.preventDefault();
+      case "ArrowUp":
         this.highlightPrevItem();
+        this.scrollToView();
         break;
-      }
       case "Down":
       case "ArrowDown":
-        event.preventDefault();
         this.highlightNextItem();
+        this.scrollToView();
         break;
       case "Home":
-        event.preventDefault();
         this.highlightFirstItem();
         break;
       case "End":
-        event.preventDefault();
         this.highlightLastItem();
         break;
       case "Tab":
@@ -231,8 +206,7 @@ export class BaseDateTimeListBox extends KucBase {
         dispatchCustomEvent(this, "kuc:calendar-listbox-click", {});
         break;
       case "Enter": {
-        event.preventDefault();
-        const highlightValue = this.getHighlightValue();
+        const highlightValue = this._highlightItemEl.value.toString();
         if (highlightValue) {
           const detail: CustomEventDetail = { value: highlightValue };
           dispatchCustomEvent(this, "kuc:calendar-listbox-click", detail);
@@ -258,14 +232,14 @@ export class BaseDateTimeListBox extends KucBase {
     this._removeHighlight();
     itemEl.setAttribute("tabindex", "0");
     itemEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
-    this.focusHiglightItemEl();
+    this.focusHighlightItemEl();
   }
 
   private _handleMouseLeaveItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     itemEl.setAttribute("tabindex", "-1");
     itemEl.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
-    this.focusHiglightItemEl();
+    this.focusHighlightItemEl();
   }
 
   private _getListBoxItemTemplate(item: Item, index: number) {

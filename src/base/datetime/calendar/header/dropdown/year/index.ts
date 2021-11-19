@@ -71,16 +71,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("_listBoxVisible")) {
-      if (!this._listBoxVisible) return;
-      setTimeout(() => {
-        this._listBoxEl.highlightSelectedItem();
-      });
-    }
-    super.update(changedProperties);
-  }
-
   private _handleFocusOutListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
@@ -154,7 +144,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
     this._closeListBox();
     if (!event.detail.value) return;
     this.year = Number(event.detail.value);
-    this._listBoxVisible = false;
     const detail: CustomEventDetail = { value: `${this.year}` };
     dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
   }
