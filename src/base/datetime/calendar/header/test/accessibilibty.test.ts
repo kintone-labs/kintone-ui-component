@@ -22,7 +22,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
-      )[1];
+      )[0];
       const item101 = itemsEl.children[101];
       item101.dispatchEvent(new CustomEvent("mousedown", { bubbles: true }));
       await elementUpdated(el);
@@ -46,14 +46,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       btnYearToggleEl.click();
       await elementUpdated(container);
 
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
         key: "Enter",
         bubbles: true
       });
 
-      btnYearToggleEl.dispatchEvent(eventKeyDown);
-      btnYearToggleEl.dispatchEvent(eventKeyEnter);
+      itemsEl.dispatchEvent(eventKeyDown);
+      itemsEl.dispatchEvent(eventKeyEnter);
       await elementUpdated(container);
 
       expect(yearSelectEl.innerText).to.equal("2022");
@@ -74,6 +78,9 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnMonthToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
 
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
@@ -81,8 +88,8 @@ describe("BaseDateTimeCalendarHeader", () => {
         bubbles: true
       });
 
-      btnMonthToggleEl.dispatchEvent(eventKeyDown);
-      btnMonthToggleEl.dispatchEvent(eventKeyEnter);
+      itemsEl.dispatchEvent(eventKeyDown);
+      itemsEl.dispatchEvent(eventKeyEnter);
       await elementUpdated(container);
 
       expect(monthSelectEl.innerText).to.equal("FEBRUARY");

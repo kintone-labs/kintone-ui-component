@@ -64,8 +64,7 @@ describe("BaseDateTimeListBox", () => {
       const container = new BaseDateTimeListBox();
       container.items = initItems;
 
-      expect(container.getHighlightItemEl().id).to.equal("");
-      expect(container.getHighlightItemEl().value).to.equal("");
+      expect(container.getHighlightItemEl()).to.equal(null);
     });
   });
 });
