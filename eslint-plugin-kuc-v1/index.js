@@ -6,6 +6,7 @@ const noUsingImgTag = require("./no-using-img-tag");
 const noLowercase6DigitsColorCode = require("./no-lowercase-6digits-color-code");
 const noKucClassPrefix = require("./no-kuc-class-prefix");
 const noPrefixOfPrivateFunction = require("./no-prefix-of-private-function");
+const noUsingBemMethodForClassname = require("./no-using-bem-method-for-classname");
 
 module.exports = {
   rules: {
@@ -16,6 +17,7 @@ module.exports = {
     "no-using-img-tag": noUsingImgTag,
     "no-lowercase-6digits-color-code": noLowercase6DigitsColorCode,
     "no-kuc-class-prefix": noKucClassPrefix,
-    "no-prefix-of-private-function": noPrefixOfPrivateFunction
+    "no-prefix-of-private-function": noPrefixOfPrivateFunction,
+    "no-using-bem-method-for-classname": noUsingBemMethodForClassname
   }
 };
