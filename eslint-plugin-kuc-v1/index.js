@@ -15,8 +15,7 @@ module.exports = {
     "no-describe-style-tag-inside-html": noDescribeStyleTagInsideHtml,
     "no-using-img-tag": noUsingImgTag,
     "no-lowercase-6digits-color-code": noLowercase6DigitsColorCode,
-    "no-kuc-class-prefix": noKucClassPrefix
-    "no-using-generate-guid-function": noUsingGenerateGUIDFunction,
+    "no-kuc-class-prefix": noKucClassPrefix,
     "validator-in-update": validatorInUpdate
   }
 };
