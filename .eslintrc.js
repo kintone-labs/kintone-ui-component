@@ -11,5 +11,6 @@ module.exports = {
     "kuc-v1/no-kuc-class-prefix": "error",
     "kuc-v1/no-prefix-of-private-function": "error",
     "kuc-v1/no-using-bem-method-for-classname": "error",
+    "kuc-v1/no-using-event-handler-name": "error",
   }
 };
