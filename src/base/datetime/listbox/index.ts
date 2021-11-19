@@ -1,8 +1,7 @@
-import { html, svg, PropertyValues } from "lit";
+import { html, svg } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import {
   KucBase,
-  generateGUID,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../kuc-base";
@@ -31,8 +30,6 @@ export class BaseDateTimeListBox extends KucBase {
 
   @query(".kuc-base-datetime-listbox__listbox--highlight")
   private _highlightItemEl!: HTMLLIElement;
-
-  private _GUID = generateGUID();
 
   public getHighlightItemEl() {
     return this._highlightItemEl;
@@ -162,9 +159,7 @@ export class BaseDateTimeListBox extends KucBase {
         @keydown="${this._handleKeyDownListBox}"
         @click="${this._handleClickListBox}"
       >
-        ${this.items.map((item, number) =>
-          this._getListBoxItemTemplate(item, number)
-        )}
+        ${this.items.map(item => this._getListBoxItemTemplate(item))}
       </ul>
     `;
   }
@@ -242,7 +237,7 @@ export class BaseDateTimeListBox extends KucBase {
     this.focusHighlightItemEl();
   }
 
-  private _getListBoxItemTemplate(item: Item, index: number) {
+  private _getListBoxItemTemplate(item: Item) {
     return html`
       <li
         class="kuc-base-datetime-listbox__listbox__item"
@@ -250,7 +245,6 @@ export class BaseDateTimeListBox extends KucBase {
         tabindex="${this.value === item.value ? "0" : "-1"}"
         aria-selected="${this.value === item.value}"
         title="${item.label || ""}"
-        id="${this._GUID}-listboxitem-${index}"
         value="${item.value !== undefined ? item.value : ""}"
         @mouseover="${this._handleMouseOverItem}"
         @mouseleave="${this._handleMouseLeaveItem}"
