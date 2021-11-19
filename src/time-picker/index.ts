@@ -6,7 +6,7 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
+import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import { validateProps, validateTimeValue } from "../base/validator";
 import "../base/datetime/time";
@@ -57,7 +57,8 @@ export class TimePicker extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      this.value = validateTimeValue(this.value);
+      validateTimeValue(this.value);
+      this.value = timeValueConverter(this.value);
     }
     super.update(changedProperties);
   }
