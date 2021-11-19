@@ -84,11 +84,11 @@ export class MobileRadioButton extends KucBase {
     return svg`
     <svg
       class="kuc-mobile-radio-button__group__select-menu__item__label__icon"
-      width='21'
-      height='21'
-      viewBox='0 0 21 21'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
     <defs>
       <radialGradient id="${this._GUID}-shadow">
@@ -101,13 +101,13 @@ export class MobileRadioButton extends KucBase {
     </defs>
       <circle
         fill="url(#shadow)"
-        cx='10.5'
-        cy='10.5'
-        r='10.15'
-        stroke='#bbbbbb' stroke-width='1'/>
+        cx="10.5"
+        cy="10.5"
+        r="10.15"
+        stroke="#bbbbbb" stroke-width="1"/>
       ${
         checked
-          ? svg`<circle cx='10.5' cy='10.5' r='6.5' fill='${"#5b5b5b"}'/>`
+          ? svg`<circle cx="10.5" cy="10.5" r="6.5" fill="${"#5b5b5b"}"/>`
           : ""
       }
     </svg>

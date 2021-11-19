@@ -6,6 +6,7 @@ const noUsingImgTag = require("./no-using-img-tag");
 const noLowercase6DigitsColorCode = require("./no-lowercase-6digits-color-code");
 const noKucClassPrefix = require("./no-kuc-class-prefix");
 const validatorInUpdate = require("./validator-in-update");
+const doubleQuoteAttributeValue = require("./double-quote-attribute-value");
 
 module.exports = {
   rules: {
@@ -16,6 +17,7 @@ module.exports = {
     "no-using-img-tag": noUsingImgTag,
     "no-lowercase-6digits-color-code": noLowercase6DigitsColorCode,
     "no-kuc-class-prefix": noKucClassPrefix,
-    "validator-in-update": validatorInUpdate
+    "validator-in-update": validatorInUpdate,
+    "double-quote-attribute-value": doubleQuoteAttributeValue
   }
 };

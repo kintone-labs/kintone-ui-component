@@ -9,6 +9,7 @@ module.exports = {
     "kuc-v1/no-using-img-tag": "error",
     "kuc-v1/no-lowercase-6digits-color-code": "error",
     "kuc-v1/no-kuc-class-prefix": "error",
-    "kuc-v1/validator-in-update": "error"
+    "kuc-v1/validator-in-update": "error",
+    "kuc-v1/double-quote-attribute-value": "error"
   }
 };
