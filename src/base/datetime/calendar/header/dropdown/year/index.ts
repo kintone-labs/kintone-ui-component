@@ -5,7 +5,7 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../../../kuc-base";
-import { BaseDateTimeListBox, Item } from "../../../../listbox";
+import { Item } from "../../../../listbox";
 import { getToggleIconSvgTemplate } from "../../../../utils";
 
 export class BaseDateTimeHeaderYear extends KucBase {
@@ -19,9 +19,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
-
-  @query(".kuc-base-datetime-header-year__listbox")
-  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     this._listBoxItems = this._getYearOptions().map((year: number) => {

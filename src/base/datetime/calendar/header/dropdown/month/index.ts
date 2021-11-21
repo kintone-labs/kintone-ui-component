@@ -5,7 +5,7 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../../../kuc-base";
-import { BaseDateTimeListBox, Item } from "../../../../listbox";
+import { Item } from "../../../../listbox";
 import { getToggleIconSvgTemplate, getLocale } from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
@@ -21,9 +21,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   @query(".kuc-base-datetime-header-month__toggle")
   private _toggleEl!: HTMLButtonElement;
-
-  @query(".kuc-base-datetime-header-month__listbox")
-  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
