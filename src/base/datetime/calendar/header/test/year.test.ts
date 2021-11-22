@@ -8,6 +8,12 @@ describe("BaseDateTimeCalendarHeader", () => {
         "kuc-base-datetime-calendar-header"
       );
       const el = await fixture(container);
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLSpanElement;
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
 
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-header-year__toggle__label"
@@ -57,17 +63,20 @@ describe("BaseDateTimeCalendarHeader", () => {
       const btnYearToggleEl = el.querySelector(
         ".kuc-base-datetime-header-year__toggle"
       ) as HTMLSpanElement;
-      const datetimeListboxEl = el.querySelector(
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
+      const listBoxElShow = el.querySelector(
         ".kuc-base-datetime-header-year__listbox"
       ) as HTMLSpanElement;
+      expect(listBoxElShow.getAttribute("aria-hidden")).to.equal("false");
 
       btnYearToggleEl.click();
       await elementUpdated(container);
-      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("false");
-
-      btnYearToggleEl.click();
-      await elementUpdated(container);
-      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("true");
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-year__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide).to.equal(null);
     });
   });
 });

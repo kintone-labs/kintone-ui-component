@@ -101,7 +101,7 @@ export class Dropdown extends KucBase {
           fill-rule='evenodd'
           clip-rule='evenodd'
           d='M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z'
-          fill='#3498DB'/>
+          fill='#3498db'/>
       </svg>
     `;
   }
