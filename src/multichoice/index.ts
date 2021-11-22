@@ -300,7 +300,7 @@ export class MultiChoice extends KucBase {
         kuc-multi-choice {
           display: inline-table;
           font-size: 14px;
-          color: #333;
+          color: #333333;
           width: 180px;
           min-width: 180px;
         }
@@ -366,7 +366,7 @@ export class MultiChoice extends KucBase {
           background-color: #dbdcdd;
           box-shadow: none;
           cursor: not-allowed;
-          color: #888;
+          color: #888888;
           outline: none;
         }
         .kuc-multi-choice__group__menu__item {
@@ -389,7 +389,7 @@ export class MultiChoice extends KucBase {
         }
         .kuc-multi-choice__group__menu[disabled]
           .kuc-multi-choice__group__menu__item[aria-selected="true"] {
-          color: #888;
+          color: #888888;
         }
         .kuc-multi-choice__group__menu__highlight[role="option"] {
           background-color: #e2f2fe;
