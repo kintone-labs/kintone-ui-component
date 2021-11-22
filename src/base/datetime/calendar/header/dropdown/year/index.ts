@@ -51,21 +51,24 @@ export class BaseDateTimeHeaderYear extends KucBase {
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
-      ${this._listBoxVisible
-        ? html`
-            <kuc-base-datetime-listbox
-              .items="${this._listBoxItems || []}"
-              .value="${this.year.toString()}"
-              class="kuc-base-datetime-header-year__listbox"
-              @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-              @kuc:focus-out-listbox="${this._handleFocusOutListBox}"
-              aria-hidden="${!this._listBoxVisible}"
-              ?hidden="${!this._listBoxVisible}"
-            >
-            </kuc-base-datetime-listbox>
-          `
-        : ""}
+      ${this._getListBoxTemplate()}
     `;
+  }
+
+  private _getListBoxTemplate() {
+    return this._listBoxVisible
+      ? html`
+          <kuc-base-datetime-listbox
+            .items="${this._listBoxItems || []}"
+            .value="${this.year.toString()}"
+            class="kuc-base-datetime-header-year__listbox"
+            @kuc:listbox-click="${this._handleChangeListBox}"
+            @kuc:listbox-blur="${this._handleFocusOutListBox}"
+            aria-hidden="${!this._listBoxVisible}"
+          >
+          </kuc-base-datetime-listbox>
+        `
+      : "";
   }
 
   private _handleFocusOutListBox() {

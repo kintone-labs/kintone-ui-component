@@ -2,8 +2,8 @@ import { expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeListBox } from "../index";
 
 describe("BaseDateTimeListBox", () => {
-  describe("kuc:calendar-listbox-click event", () => {
-    it("should be triggered kuc:calendar-listbox-click event", async () => {
+  describe("kuc:listbox-click event", () => {
+    it("should be triggered kuc:listbox-click event", async () => {
       let triggeredEvent: any = null;
       const initItems = [
         { value: "0", label: "JANUARY" },
@@ -13,7 +13,7 @@ describe("BaseDateTimeListBox", () => {
 
       const container = new BaseDateTimeListBox();
       container.items = initItems;
-      container.addEventListener("kuc:calendar-listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", event => {
         triggeredEvent = event;
       });
 
@@ -25,7 +25,7 @@ describe("BaseDateTimeListBox", () => {
         new CustomEvent("mousedown", { bubbles: true })
       );
 
-      expect(triggeredEvent.type).to.equal("kuc:calendar-listbox-click");
+      expect(triggeredEvent.type).to.equal("kuc:listbox-click");
       expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
     });
   });

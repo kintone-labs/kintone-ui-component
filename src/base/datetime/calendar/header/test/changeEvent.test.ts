@@ -151,7 +151,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:calendar-listbox-click", {
+        new CustomEvent("kuc:listbox-click", {
           detail: { value: "2022" }
         })
       );
@@ -174,7 +174,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:calendar-listbox-click", {
+        new CustomEvent("kuc:listbox-click", {
           detail: { value: "JANUARY" }
         })
       );
