@@ -18,7 +18,7 @@ export function validateProps<Type>(props: Type) {
   return validProps;
 }
 
-export const validDateValueProp = (date: string | undefined) => {
+export const formatDateValueProp = (date: string | undefined) => {
   if (date === undefined) return "";
 
   let dateParts: string[] = [];

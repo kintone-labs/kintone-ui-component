@@ -8,7 +8,7 @@ import {
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps, validDateValueProp } from "../base/validator";
+import { validateProps, formatDateValueProp } from "../base/validator";
 import "../base/datetime/date";
 
 type DatePickerProps = {
@@ -54,7 +54,7 @@ export class DatePicker extends KucBase {
       this._locale = getLocale(this.language);
     }
     if (changedProperties.has("value")) {
-      this.value = validDateValueProp(this.value);
+      this.value = formatDateValueProp(this.value);
     }
     super.update(changedProperties);
   }
