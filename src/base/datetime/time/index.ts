@@ -43,7 +43,10 @@ export class BaseTime extends KucBase {
   private _listBoxVisible = false;
 
   @state()
-  private _listBoxValue = "";
+  private _valueLabel = "";
+
+  @state()
+  private _doFocusListBox = false;
 
   @state()
   private _hours = "";
@@ -70,15 +73,6 @@ export class BaseTime extends KucBase {
 
   @query(".kuc-base-time__group")
   private _inputGroupEl!: HTMLInputElement;
-
-  @query(".kuc-base-time__assistive-text")
-  private _toggleEl!: HTMLButtonElement;
-
-  @query(".kuc-base-time__group__listbox")
-  private _listBoxEl!: BaseDateTimeListBox;
-
-  @query(".kuc-base-datetime-listbox__listbox")
-  private _ulListBoxEl!: HTMLUListElement;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
@@ -147,40 +141,37 @@ export class BaseTime extends KucBase {
       >
         show time picker
       </button>
-      <kuc-base-datetime-listbox
-        maxHeight="165"
-        aria-hidden="${!this._listBoxVisible}"
-        class="kuc-base-time__group__listbox"
-        ?hidden="${!this._listBoxVisible}"
-        .items="${this._listBoxItems || []}"
-        .value="${this._listBoxValue}"
-        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-      >
-      </kuc-base-datetime-listbox>
+      ${this._getListBoxTemplate()}
     `;
   }
 
   updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("_listBoxVisible")) {
-      this._scrollToView();
-      this._calculateListBoxPosition();
-    }
     if (changedProperties.has("disabled")) {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
   }
 
-  private _calculateListBoxPosition() {
-    if (!this._listBoxVisible) return;
-    const listBoxHeight = this._ulListBoxEl.getBoundingClientRect().height;
-    const distanceInputToBottom =
-      window.innerHeight - this._inputGroupEl.getBoundingClientRect().bottom;
-    this._ulListBoxEl.style.bottom = "auto";
-    this._ulListBoxEl.style.left = "auto";
-    if (distanceInputToBottom >= listBoxHeight) return;
-    this._ulListBoxEl.style.bottom = "40px";
-    this._ulListBoxEl.style.left = "0px";
+  private _getListBoxTemplate() {
+    return this._listBoxVisible
+      ? html`
+          <kuc-base-datetime-listbox
+            maxHeight="165"
+            aria-hidden="${!this._listBoxVisible}"
+            class="kuc-base-time__group__listbox"
+            .items="${this._listBoxItems || []}"
+            .value="${this._valueLabel}"
+            .doFocus="${this._doFocusListBox}"
+            @kuc:listbox-click="${this._handleChangeListBox}"
+            @kuc:listbox-blur="${this._handleBlurListBox}"
+          ></kuc-base-datetime-listbox>
+        `
+      : "";
+  }
+
+  private _handleBlurListBox(event: Event) {
+    event.preventDefault();
+    this._listBoxVisible = false;
   }
 
   private _toggleDisabledGroup() {
@@ -191,21 +182,21 @@ export class BaseTime extends KucBase {
     );
   }
 
-  private _scrollToView() {
-    if (!this._listBoxVisible) return;
-    const liEl = this._getHighlightEl();
-    liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
-    this._listBoxEl.scrollToView();
-  }
-
   private _updateInputValue() {
     const times = formatTimeValueToInputValue(this.value, this.hour12);
     this._hours = times.hours;
     this._minutes = times.minutes;
     this._suffix = times.suffix || "";
+    this._valueLabel = this._getValueLabel(times);
     if (!this._inputGroupEl) return;
     this._setValueToInput(times);
     this._inputFocusEl?.select();
+  }
+
+  private _getValueLabel(times: Time) {
+    const newLabel = `${times.hours}:${times.minutes}`;
+    if (!times.suffix) return newLabel;
+    return newLabel + ` ${times.suffix}`;
   }
 
   private _setValueToInput(times: Time) {
@@ -215,92 +206,13 @@ export class BaseTime extends KucBase {
     this._suffixEl.value = times.suffix || "";
   }
 
-  private _getHighlightEl() {
-    const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
-    const itemsEl = this._getListItemEl();
-    const liEl = itemsEl.find(
-      element =>
-        new Date(
-          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
-        ) >= itemTimeObj
-    ) as HTMLLIElement;
-    return liEl;
-  }
-
-  private _getListItemEl() {
-    const itemsEl = Array.from(this._listBoxEl.children[1].children);
-    return itemsEl.map(item => {
-      item.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
-      return item;
-    });
-  }
-
   private _handleKeyDownButton(event: KeyboardEvent) {
     if (this._handleTabKey(event)) return;
-    if (this._openListBoxByKey(event.key)) return;
-    const keyCode = event.key;
     event?.preventDefault();
-    switch (keyCode) {
-      case "Enter":
-      case " ":
-        this._closeListBoxByKey();
-        break;
-      case "Escape":
-        if (!this._listBoxVisible) break;
-        this._closeListBoxByKey();
-        break;
-      case "Up":
-      case "ArrowUp":
-      case "Down":
-      case "ArrowDown":
-        event.preventDefault();
-        this._handleKeyUpDownListBox(keyCode);
-        this._setActiveDescendantAndListBoxValue();
-        break;
-      case "Home":
-        event.preventDefault();
-        this._listBoxEl.highlightFirstItem();
-        this._listBoxEl.scrollToTop();
-        this._setActiveDescendantAndListBoxValue();
-        break;
-      case "End":
-        event.preventDefault();
-        this._listBoxEl.highlightLastItem();
-        this._listBoxEl.scrollToBottom();
-        this._setActiveDescendantAndListBoxValue();
-        break;
-      default:
-        break;
-    }
-  }
-
-  private _handleKeyUpDownListBox(key: string) {
-    if (key === "ArrowUp") this._listBoxEl.highlightPrevItem();
-    if (key === "ArrowDown") this._listBoxEl.highlightNextItem();
-    this._listBoxEl.scrollToView();
-    const value = this._listBoxEl.getHighlightValue();
-    this._actionUpdateInputValue(value || "");
-  }
-
-  private _setActiveDescendantAndListBoxValue() {
-    this._setActiveDescendant(
-      this._toggleEl,
-      this._listBoxEl.getHighlightItemId()
-    );
-    this._listBoxValue = this._listBoxEl.getHighlightValue() || "";
-  }
-
-  private _setActiveDescendant(
-    _buttonEl: HTMLButtonElement,
-    value?: string | null
-  ) {
-    if (value && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
+    this._openListBoxByKey(event.key);
   }
 
   private _handleBlurButton() {
-    this._closeListBox();
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
@@ -313,6 +225,7 @@ export class BaseTime extends KucBase {
       ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1 &&
       !this._listBoxVisible
     ) {
+      this._doFocusListBox = true;
       this._listBoxVisible = true;
       this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
       return true;
@@ -320,18 +233,15 @@ export class BaseTime extends KucBase {
     return false;
   }
 
-  private _closeListBoxByKey() {
-    this._closeListBox();
-    this._hoursEl.select();
-  }
-
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this._closeListBox();
+    this._handleBlurButton();
+    this._hoursEl.focus();
+    if (!event.detail.value) return;
     const listboxVal = event.detail.value;
     this._actionUpdateInputValue(listboxVal);
-    this._inputFocusEl?.blur();
-    this._handleBlurButton();
   }
 
   private _handleFocusInput(event: Event) {
@@ -353,6 +263,7 @@ export class BaseTime extends KucBase {
   }
 
   private _handleClickInput(event: Event) {
+    event.stopPropagation();
     const input = event.target as HTMLInputElement;
     input.select();
     this._openListBox();
@@ -535,17 +446,13 @@ export class BaseTime extends KucBase {
 
   private _openListBox() {
     if (this._listBoxVisible) return;
+    this._doFocusListBox = false;
     this._listBoxVisible = true;
   }
 
   private _closeListBox() {
+    this._doFocusListBox = false;
     this._listBoxVisible = false;
-    this._listBoxValue = "";
-    this._removeActiveDescendant(this._toggleEl);
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
   }
 
   private _getStyleTagTemplate() {
@@ -557,6 +464,7 @@ export class BaseTime extends KucBase {
           justify-content: center;
           -webkit-box-align: center;
           align-items: center;
+          max-width: 85px;
           width: 85px;
           height: 40px;
           color: #333333;
