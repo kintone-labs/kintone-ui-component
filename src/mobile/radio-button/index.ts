@@ -92,11 +92,11 @@ export class MobileRadioButton extends KucBase {
     >
     <defs>
       <radialGradient id="${this._GUID}-shadow">
-        <stop offset="0%" style="stop-color:#5B5B5B;stop-opacity:0" />
-        <stop offset="30%" style="stop-color:#5B5B5B;stop-opacity:0" />
-        <stop offset="80%" style="stop-color:#5B5B5B;stop-opacity:0.1" />
-        <stop offset="90%" style="stop-color:#5B5B5B;stop-opacity:0.15" />
-        <stop offset="100%" style="stop-color:#5B5B5B;stop-opacity:0.2" />
+        <stop offset="0%" style="stop-color:#5b5b5b;stop-opacity:0" />
+        <stop offset="30%" style="stop-color:#5b5b5b;stop-opacity:0" />
+        <stop offset="80%" style="stop-color:#5b5b5b;stop-opacity:0.1" />
+        <stop offset="90%" style="stop-color:#5b5b5b;stop-opacity:0.15" />
+        <stop offset="100%" style="stop-color:#5b5b5b;stop-opacity:0.2" />
       </radialGradient>
     </defs>
       <circle
@@ -107,7 +107,7 @@ export class MobileRadioButton extends KucBase {
         stroke='#bbbbbb' stroke-width='1'/>
       ${
         checked
-          ? svg`<circle cx='10.5' cy='10.5' r='6.5' fill='${"#5B5B5B"}'/>`
+          ? svg`<circle cx='10.5' cy='10.5' r='6.5' fill='${"#5b5b5b"}'/>`
           : ""
       }
     </svg>
