@@ -5,8 +5,9 @@ module.exports = {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
         const sourceCode = context.getSourceCode().getText();
-        // eslint-disable-next-line no-template-curly-in-string
-        const pattern = '\\s(aria-describedby|aria-describedby|id|name|for)="(?!\\${this._GUID}-)[^"]+"';
+        const pattern =
+          // eslint-disable-next-line no-template-curly-in-string
+          '\\s(aria-describedby|aria-describedby|id|name|for)="(?!\\${this._GUID}-)[^"]+"';
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;
         context.report({
