@@ -24,13 +24,23 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
-| value | string | ""  | Selected value | No option will be selected if the value is unspecified |
+| value *1 | string | ""  | Selected value | No option will be selected if the valid value or selectedIndex is unspecified |
+| selectedIndex *1 | number | -1  | Index of selected item | If `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set and `selectedIndex` value exists in `items`, item that has the index number will be selected |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of Item.value is displayed on the UI |
-| Item.value | string | null | Value of each option | Will result an error if there is duplicated value in Item.value |
+| Item.value | string | null | Value of each option | Can set duplicated value in Item.value |
+
+> *1: You can define duplicated value in Item.value. In case defining duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
+> Example: When defining `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`<br>
+> If setting `value` as below:<br>
+> - 'fruit': The first mapped value item in Item.value will be selected.<br>
+> - 'other': No item will be selected.<br>
+> If don't setting `value` and setting `selectedIndex` as below:<br>
+> - 1: The second item will be selected.<br>
+> - 99: No item will be selected.
 
 ### Event
 
@@ -72,6 +82,7 @@ const dropdown = new Kuc.Dropdown({
     }
   ],
   value:  'Orange',
+  selectedIndex: 0,
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
