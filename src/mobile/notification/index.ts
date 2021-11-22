@@ -75,7 +75,7 @@ export class MobileNotification extends KucBase {
           role="${this._isOpened ? "alert" : ""}"
         ><!---->${this.text}</pre>
         <button
-          class="kuc-mobile-notification__notification__closeButton"
+          class="kuc-mobile-notification__notification__close-button"
           type="button"
           aria-label="close"
           @click="${this._handleClickCloseButton}"
@@ -153,7 +153,7 @@ export class MobileNotification extends KucBase {
           white-space: pre-wrap;
         }
 
-        .kuc-mobile-notification__notification__closeButton {
+        .kuc-mobile-notification__notification__close-button {
           position: absolute;
           right: 0;
           top: 0;

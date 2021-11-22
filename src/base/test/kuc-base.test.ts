@@ -22,7 +22,7 @@ describe("KucBase", () => {
     it("render the template into the main DOM when component extend from KucBase", async () => {
       const container = new KucTest();
       const el = await fixture(container);
-      expect(el.querySelector(".kuc-test") !== null).to.equal(true);
+      expect(el.querySelector(".kuc-test__test") !== null).to.equal(true);
     });
   });
 
@@ -49,7 +49,7 @@ describe("KucBase", () => {
 class KucTest extends KucBase {
   render() {
     return html`
-      <div class="kuc-test"></div>
+      <div class="kuc-test__test"></div>
     `;
   }
 }

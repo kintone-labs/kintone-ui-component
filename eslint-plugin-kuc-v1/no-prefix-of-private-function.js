@@ -5,7 +5,7 @@ module.exports = {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
         const sourceCode = context.getSourceCode().getText();
-        const pattern = 'private [^_]'
+        const pattern = "private [^_]";
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;
         context.report({
