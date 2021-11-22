@@ -43,7 +43,7 @@ describe("BaseDateTimeListBox", () => {
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        0
+        1
       );
 
       itemsEl[0].dispatchEvent(
@@ -51,7 +51,7 @@ describe("BaseDateTimeListBox", () => {
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        1
+        2
       );
     });
 

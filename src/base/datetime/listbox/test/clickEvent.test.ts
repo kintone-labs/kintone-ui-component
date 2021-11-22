@@ -39,8 +39,7 @@ describe("BaseDateTimeListBox", () => {
 
       const container = new BaseDateTimeListBox();
       container.items = initItems;
-      container.addEventListener("kuc:calendar-listbox-click", event => {
-        console.log("event");
+      container.addEventListener("kuc:listbox-click", event => {
         triggeredEvent = event;
       });
 
@@ -52,7 +51,7 @@ describe("BaseDateTimeListBox", () => {
         new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
       );
 
-      expect(triggeredEvent.type).to.equal("kuc:calendar-listbox-click");
+      expect(triggeredEvent.type).to.equal("kuc:listbox-click");
       expect(triggeredEvent.detail.value).to.equal(undefined);
     });
   });

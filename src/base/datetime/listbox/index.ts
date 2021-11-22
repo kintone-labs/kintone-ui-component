@@ -87,7 +87,7 @@ export class BaseDateTimeListBox extends KucBase {
         ) >= itemTimeObj
     ) as HTMLLIElement;
 
-    if (!this.doFocus) return liEl;
+    if (!this.doFocus || !liEl) return liEl;
     liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
     liEl.setAttribute("tabindex", "0");
     this._focusHighlightItemEl();
