@@ -11,6 +11,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       const monthSelectEl = el.querySelector(
         ".kuc-base-datetime-header-month__toggle__label"
       ) as HTMLSpanElement;
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+
+      btnMonthToggleEl.click();
+      await elementUpdated(container);
 
       const optionMonthEl = el.querySelector(
         ".kuc-base-datetime-header-month__listbox"
@@ -55,20 +61,24 @@ describe("BaseDateTimeCalendarHeader", () => {
       );
       const el = await fixture(container);
 
-      const btnYearToggleEl = el.querySelector(
+      const btnMonthToggleEl = el.querySelector(
         ".kuc-base-datetime-header-month__toggle"
       ) as HTMLSpanElement;
-      const datetimeListboxEl = el.querySelector(
+
+      btnMonthToggleEl.click();
+      await elementUpdated(container);
+      const listBoxElShow = el.querySelector(
         ".kuc-base-datetime-header-month__listbox"
       ) as HTMLSpanElement;
 
-      btnYearToggleEl.click();
-      await elementUpdated(container);
-      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("false");
+      expect(listBoxElShow.getAttribute("aria-hidden")).to.equal("false");
 
-      btnYearToggleEl.click();
+      btnMonthToggleEl.click();
       await elementUpdated(container);
-      expect(datetimeListboxEl.getAttribute("aria-hidden")).to.equal("true");
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-month__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide).to.equal(null);
     });
   });
 });
