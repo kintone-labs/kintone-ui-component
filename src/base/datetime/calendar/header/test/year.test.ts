@@ -78,5 +78,52 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
       expect(listBoxElHide).to.equal(null);
     });
+
+    it("should close dropdown year when click outside listbox", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLSpanElement;
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
+
+      document.dispatchEvent(new Event("click"));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-year__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide).to.equal(null);
+    });
+
+    it("should close year dropdown when press key Escape on year dropdown", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+
+      btnYearToggleEl.click();
+      await elementUpdated(container);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      itemsEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-year__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide).to.equal(null);
+    });
   });
 });
