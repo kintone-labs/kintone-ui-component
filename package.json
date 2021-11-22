@@ -32,7 +32,7 @@
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
-    "es-lint": "node_modules/.bin/eslint src/**/**.ts src/**.ts src/**/**.js src/mobile/**/**.js src/mobile/**/**.ts"
+    "es-lint": "node_modules/.bin/eslint \"src/**\""
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
