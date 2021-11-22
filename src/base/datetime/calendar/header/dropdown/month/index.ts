@@ -2,11 +2,10 @@ import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
-  generateGUID,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../../../kuc-base";
-import { BaseDateTimeListBox, Item } from "../../../../listbox";
+import { Item } from "../../../../listbox";
 import { getToggleIconSvgTemplate, getLocale } from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
@@ -17,15 +16,11 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _listBoxVisible = false;
   private _locale = getLocale("en");
   private _monthLabel = "";
-  private _GUID = generateGUID();
   private _listBoxItems: Item[] | undefined;
   private _maxHeight = 1000;
 
   @query(".kuc-base-datetime-header-month__toggle")
   private _toggleEl!: HTMLButtonElement;
-
-  @query(".kuc-base-datetime-header-month__listbox")
-  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -43,12 +38,12 @@ export class BaseDateTimeHeaderMonth extends KucBase {
       ${this._getStyleTagTemplate()}
       <button
         class="kuc-base-datetime-header-month__toggle"
-        aria-haspopup="true"
-        aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
+        aria-haspopup="listbox"
+        aria-expanded="${this._listBoxVisible}"
+        tabindex="${this._listBoxVisible ? "-1" : "0"}"
         @mouseup="${this._handleMouseUpDropdownToggle}"
         @mousedown="${this._handleMouseDownDropdownToggle}"
         @click="${this._handleClickDropdownMonthToggle}"
-        @blur="${this._handleBlurDropdownMonthToggle}"
         @keydown="${this._handleKeyDownMonthToggle}"
       >
         <span class="kuc-base-datetime-header-month__toggle__label"
@@ -58,17 +53,30 @@ export class BaseDateTimeHeaderMonth extends KucBase {
           >${getToggleIconSvgTemplate()}
         </span>
       </button>
-      <kuc-base-datetime-listbox
-        .items="${this._listBoxItems || []}"
-        .value="${this.month.toString()}"
-        .maxHeight="${this._maxHeight}"
-        class="kuc-base-datetime-header-month__listbox"
-        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-        aria-hidden="${!this._listBoxVisible}"
-        ?hidden="${!this._listBoxVisible}"
-      >
-      </kuc-base-datetime-listbox>
+      ${this._getListBoxTemplate()}
     `;
+  }
+
+  private _getListBoxTemplate() {
+    return this._listBoxVisible
+      ? html`
+          <kuc-base-datetime-listbox
+            .items="${this._listBoxItems || []}"
+            .value="${this.month.toString()}"
+            .maxHeight="${this._maxHeight}"
+            class="kuc-base-datetime-header-month__listbox"
+            @kuc:listbox-click="${this._handleChangeListBox}"
+            @kuc:listbox-blur="${this._handleFocusOutListBox}"
+            aria-hidden="${!this._listBoxVisible}"
+          >
+          </kuc-base-datetime-listbox>
+        `
+      : "";
+  }
+
+  private _handleFocusOutListBox() {
+    this._listBoxVisible = false;
+    this._toggleEl.focus();
   }
 
   private _getStyleTagTemplate() {
@@ -103,7 +111,8 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
-  private _handleClickDropdownMonthToggle() {
+  private _handleClickDropdownMonthToggle(event: Event) {
+    event.stopPropagation();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
@@ -120,96 +129,39 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   }
 
   private _handleKeyDownMonthToggle(event: KeyboardEvent) {
-    if (!this._listBoxVisible) {
-      this._listBoxEl.highlightFirstItem();
-      return;
-    }
-    switch (event.key) {
-      case "Up":
-      case "ArrowUp": {
-        event.preventDefault();
-        this._listBoxEl.highlightPrevItem();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Down":
-      case "ArrowDown": {
-        event.preventDefault();
-        this._listBoxEl.highlightNextItem();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      }
-      case "Home":
-        event.preventDefault();
-        this._listBoxEl.highlightFirstItem();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "End":
-        event.preventDefault();
-        this._listBoxEl.highlightLastItem();
-        this._setActiveDescendant(
-          this._toggleEl,
-          this._listBoxEl.getHighlightItemId()
-        );
-        break;
-      case "Enter": {
-        event.preventDefault();
-        const highlightValue = this._listBoxEl.getHighlightValue();
-        if (highlightValue) {
-          this.month = Number(highlightValue);
-          const detail: CustomEventDetail = { value: `${this.month}` };
-          dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
-        }
-        this._listBoxVisible = false;
-        break;
-      }
-    }
+    if (this._handleTabKey(event.key)) return;
+    event.preventDefault();
+    this._openListBoxByKey(event.key);
   }
 
-  private _setActiveDescendant(
-    _buttonEl: HTMLButtonElement,
-    value?: string | null
-  ) {
-    if (value && _buttonEl !== null) {
-      _buttonEl.setAttribute("aria-activedescendant", value);
-    }
+  private _openListBoxByKey(key: string) {
+    const isOpenListBox =
+      [" ", "Up", "ArrowUp", "Down", "ArrowDown", "Enter"].indexOf(key) > -1;
+    if (!isOpenListBox) return;
+    this._openListBox();
   }
 
-  private _handleBlurDropdownMonthToggle() {
-    this._listBoxVisible = false;
+  private _handleTabKey(key: string) {
+    return key === "Tab";
   }
 
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this._closeListBox();
+    if (!event.detail.value) return;
     this.month = Number(event.detail.value);
-    this._listBoxVisible = false;
     const detail: CustomEventDetail = { value: `${this.month}` };
     dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
   }
 
   private _openListBox() {
-    this._toggleEl.focus();
     this._listBoxVisible = true;
-    this._listBoxEl.highlightSelectedItem();
   }
 
   private _closeListBox() {
     this._listBoxVisible = false;
-    this._removeActiveDescendant(this._toggleEl);
-  }
-
-  private _removeActiveDescendant(_buttonEl: HTMLButtonElement) {
-    _buttonEl.removeAttribute("aria-activedescendant");
+    this._toggleEl.focus();
   }
 
   private _getListBoxItems() {
