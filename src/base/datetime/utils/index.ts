@@ -66,8 +66,15 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
 export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
   const times = value.split(":");
   const hours = parseInt(times[0], 10);
-  const minutes = times[1];
+  const minutes = parseInt(times[1], 10);
   const newHours = hours % MAX_HOURS24;
+  if (isNaN(newHours) || isNaN(minutes)) {
+    return {
+      hours: "",
+      minutes: "",
+      suffix: ""
+    };
+  }
   if (hour12) {
     return convertTime24To12(hours, minutes);
   }
@@ -78,7 +85,7 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
   };
 };
 
-export const convertTime24To12 = (hours: number, minutes: string) => {
+export const convertTime24To12 = (hours: number, minutes: number) => {
   const suffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
   let newHours = hours % MAX_HOURS12;
   newHours = newHours === 0 ? MAX_HOURS12 : newHours;

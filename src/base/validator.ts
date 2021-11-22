@@ -17,6 +17,7 @@ export function validateProps<Type>(props: Type) {
 
 export function validateTimeValue(value: string) {
   const regexHour24 = /^(2[0-3]|[01]?[0-9]):([0-9]|[0-5][0-9])$/;
-  if (regexHour24.test(value)) return true;
-  throw new Error("Format is not valid.");
+  if (value === "" || regexHour24.test(value)) return true;
+
+  return false;
 }

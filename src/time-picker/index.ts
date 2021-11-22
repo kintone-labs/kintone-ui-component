@@ -57,7 +57,9 @@ export class TimePicker extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      validateTimeValue(this.value);
+      if (!validateTimeValue(this.value)) {
+        throw new Error("Format is not valid.");
+      }
       this.value = timeValueConverter(this.value);
     }
     super.update(changedProperties);
