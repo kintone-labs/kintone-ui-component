@@ -97,7 +97,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _dispatchClickEvent(value: string) {
-    if (this.value === value) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
     this.value = value;
@@ -163,12 +162,14 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return `${year}-${month}-${day}`;
   }
 
-  private _isSameDayOfMoment(dates: string[]) {
+  private _isSameDayOfMoment(dates: string[], value: string) {
+    if (!value) return false;
+
     const month = parseInt(dates[1], 10);
     const day = parseInt(dates[2], 10);
     const year = parseInt(dates[0], 10);
-
     let dateFocused = day;
+
     if (this.value) dateFocused = new Date(this.value).getDate();
     if (dateFocused === day && month === this.month) return true;
     const lastDayOfMonth = new Date(year, this.month, 0).getDate();
@@ -211,7 +212,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
             <tr>
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
-                const isSameDate = this._isSameDayOfMoment(dateParts);
+                const isSameDate = this._isSameDayOfMoment(
+                  dateParts,
+                  this.value
+                );
                 return html`
                   <td
                     role="gridcell"

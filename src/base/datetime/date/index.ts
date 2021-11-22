@@ -11,11 +11,9 @@ import {
   formatValueToInputValue,
   getLocale,
   getTodayStringByLocale,
-  isStringValueEmpty,
   isValidDateFormat
 } from "../utils";
 export { BaseDateTimeCalendar };
-const commonLanguage = "ja";
 
 export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
@@ -27,6 +25,8 @@ export class BaseDate extends KucBase {
   private _dateTimeCalendar!: BaseDateTimeCalendar;
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
+  @query(".kuc-base-date__assistive-text")
+  private _toggleEl!: HTMLButtonElement;
   private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
@@ -61,9 +61,17 @@ export class BaseDate extends KucBase {
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
         @mousedown="${this._handleMouseDownInputToggle}"
-        @keydown="${this._handleKeyDownInput}"
         @change="${this._handleChangeInputToggle}"
       />
+      <button
+        aria-haspopup="menu"
+        aria-expanded="${this._dateTimeCalendarVisible}"
+        class="kuc-base-date__assistive-text"
+        @keydown="${this._handleKeyDownButton}"
+        ?disabled="${this.disabled}"
+      >
+        show date picker
+      </button>
       <kuc-base-datetime-calendar
         class="kuc-base-date-calendar"
         .language="${this.language}"
@@ -120,6 +128,15 @@ export class BaseDate extends KucBase {
           text-align: center;
           box-sizing: border-box;
         }
+        .kuc-base-date__assistive-text {
+          clip: rect(1px, 1px, 1px, 1px);
+          overflow: hidden;
+          position: absolute !important;
+          padding: 0px !important;
+          border: 0px !important;
+          height: 1px !important;
+          width: 1px !important;
+        }
       </style>
     `;
   }
@@ -144,16 +161,11 @@ export class BaseDate extends KucBase {
   }
 
   private _updateValueProp() {
-    if (
-      isStringValueEmpty(this.value) ||
-      !isValidDateFormat(commonLanguage, this.value)
-    ) {
-      if (this.value !== undefined) {
-        this._inputValue = undefined;
-      }
-    } else {
+    if (this.value) {
       this._inputValue = formatValueToInputValue(this.language, this.value);
       this._calendarValue = this.value;
+    } else {
+      this._inputValue = undefined;
     }
   }
 
@@ -234,15 +246,21 @@ export class BaseDate extends KucBase {
     });
   }
 
-  private _handleKeyDownInput(event: KeyboardEvent) {
+  private _openCalendarByKeyCode() {
+    this._openCalendar();
+    this._toggleEl.blur();
+    this._dateTimeCalendar.focus();
+  }
+
+  private _handleKeyDownButton(event: KeyboardEvent) {
     event.preventDefault();
     const keyCode = event.key;
     switch (keyCode) {
-      case " ":
+      case "ArrowUp":
       case "ArrowDown":
-        this._openCalendar();
-        this._dateInput.blur();
-        this._dateTimeCalendar.focus();
+      case "Enter":
+      case " ":
+        this._openCalendarByKeyCode();
         break;
       default:
         break;

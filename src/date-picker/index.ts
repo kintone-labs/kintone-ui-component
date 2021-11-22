@@ -1,19 +1,14 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter } from "../base/converter";
-import {
-  getTodayStringByLocale,
-  getLocale,
-  isStringValueEmpty,
-  isValidDateFormat
-} from "../base/datetime/utils";
+import { getTodayStringByLocale, getLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { validateProps, validDateValueProp } from "../base/validator";
 import "../base/datetime/date";
 
 type DatePickerProps = {
@@ -27,7 +22,6 @@ type DatePickerProps = {
   language?: "ja" | "en" | "zh" | "auto";
   value: string;
 };
-const commonLanguage = "ja";
 
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
@@ -60,7 +54,7 @@ export class DatePicker extends KucBase {
       this._locale = getLocale(this.language);
     }
     if (changedProperties.has("value")) {
-      this._updateValueProp();
+      this.value = validDateValueProp(this.value);
     }
     super.update(changedProperties);
   }
@@ -101,18 +95,6 @@ export class DatePicker extends KucBase {
         </div>
       </div>
     `;
-  }
-
-  private _updateValueProp() {
-    if (
-      isStringValueEmpty(this.value) ||
-      !isValidDateFormat(commonLanguage, this.value)
-    ) {
-      if (this.value !== undefined) {
-        this.value = "";
-        throw new Error(`${this._locale.INVALID_FORMAT}`);
-      }
-    }
   }
 
   private _getStyleTagTemplate() {

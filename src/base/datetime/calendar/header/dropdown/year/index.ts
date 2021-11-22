@@ -55,6 +55,11 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
+  closeListBox() {
+    this._listBoxVisible = false;
+    this._toggleEl.focus();
+  }
+
   private _getListBoxTemplate() {
     return this._listBoxVisible
       ? html`
@@ -121,8 +126,12 @@ export class BaseDateTimeHeaderYear extends KucBase {
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
-      this._closeListBox();
+      this.closeListBox();
     }
+    dispatchCustomEvent(this, "kuc:year-dropdown-click", {
+      value: this._listBoxVisible.toString(),
+      oldValue: (!this._listBoxVisible).toString()
+    });
   }
 
   private _handleKeyDownYearToggle(event: KeyboardEvent) {
@@ -141,7 +150,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this._closeListBox();
+    this.closeListBox();
     if (!event.detail.value) return;
     this.year = Number(event.detail.value);
     const detail: CustomEventDetail = { value: `${this.year}` };
@@ -150,11 +159,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   private _openListBox() {
     this._listBoxVisible = true;
-  }
-
-  private _closeListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
   }
 
   private _getYearOptions() {
