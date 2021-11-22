@@ -72,7 +72,7 @@ export class Dialog extends KucBase {
             class="kuc-dialog__dialog__header__close-button"
             type="button"
             aria-label="close"
-            @click="${this.close}"
+            @click="${this._handleClickCloseButton}"
           >
             ${this._getCloseButtonSvgTemplate()}
           </button>
@@ -109,6 +109,10 @@ export class Dialog extends KucBase {
       event.preventDefault();
       this.close();
     }
+  }
+
+  private _handleClickCloseButton(event: MouseEvent) {
+    this.close();
   }
 
   private _getCloseButtonSvgTemplate() {
