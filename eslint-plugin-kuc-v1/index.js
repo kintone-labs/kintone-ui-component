@@ -8,6 +8,7 @@ const noKucClassPrefix = require("./no-kuc-class-prefix");
 const noPrefixOfPrivateFunction = require("./no-prefix-of-private-function");
 const noUsingBemMethodForClassname = require("./no-using-bem-method-for-classname");
 const noUsingEventHandlerName = require("./no-using-event-handler-name");
+const privateCustomEvent = require("./private-custom-event");
 
 module.exports = {
   rules: {
@@ -20,6 +21,7 @@ module.exports = {
     "no-kuc-class-prefix": noKucClassPrefix,
     "no-prefix-of-private-function": noPrefixOfPrivateFunction,
     "no-using-bem-method-for-classname": noUsingBemMethodForClassname,
-    "no-using-event-handler-name": noUsingEventHandlerName
+    "no-using-event-handler-name": noUsingEventHandlerName,
+    "private-custom-event": privateCustomEvent
   }
 };
