@@ -187,7 +187,8 @@ export class BaseTime extends KucBase {
   private _handleKeyDownButton(event: KeyboardEvent) {
     if (this._handleTabKey(event)) return;
 
-    event?.preventDefault();
+    event.preventDefault();
+    event.stopPropagation();
     if (this._openListBoxByKey(event.key)) return;
 
     this._handleDefaultKeyButton(event.key);
@@ -226,11 +227,17 @@ export class BaseTime extends KucBase {
     event.stopPropagation();
     this._closeListBox();
     this._handleBlurButton();
-    this._hoursEl.focus();
+    this._hoursEl.select();
     if (!event.detail.value) return;
 
     const listboxVal = event.detail.value;
     this._actionUpdateInputValue(listboxVal);
+  }
+
+  private _handleListBoxFocusChange(event: CustomEvent) {
+    const listBoxValue = event.detail.value;
+    const times = formatInputValueToTimeValue(listBoxValue);
+    this._actionUpdateInputValue(times);
   }
 
   private _handleFocusInput(event: Event) {
@@ -297,6 +304,7 @@ export class BaseTime extends KucBase {
         this._actionUpdateInputValue(newValue);
         break;
       case "Backspace":
+      case "Delete":
         newValue = "";
         this._actionUpdateInputValue(newValue);
         this._toggleEl.focus();
@@ -313,6 +321,7 @@ export class BaseTime extends KucBase {
       this.value === "" ? this.value : this._formatKeyDownValue();
     const oldValueProp = formatInputValueToTimeValue(oldValue);
     const newValueProp = formatInputValueToTimeValue(newValue);
+    if (oldValueProp === newValueProp) return;
     this.value = newValueProp;
     this._dispatchEventTimeChange(newValueProp, oldValueProp);
   }
@@ -516,6 +525,7 @@ export class BaseTime extends KucBase {
             .doFocus="${this._doFocusListBox}"
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleBlurListBox}"
+            @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
           ></kuc-base-datetime-listbox>
         `
       : "";

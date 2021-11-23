@@ -8,6 +8,7 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
+import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 import { validateProps, validateTimeValue } from "../base/validator";
 import "../base/datetime/time";
 
@@ -58,7 +59,7 @@ export class TimePicker extends KucBase {
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
       if (!validateTimeValue(this.value)) {
-        throw new Error("Format is not valid.");
+        throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.value = timeValueConverter(this.value);
     }
