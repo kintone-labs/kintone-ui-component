@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { state, property } from "lit/decorators.js";
+import { state, property, query } from "lit/decorators.js";
 import { KucBase } from "../../kuc-base";
 import "./header";
 import "./body";
@@ -8,6 +8,9 @@ import "./footer";
 export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
+
+  @query(".kuc-base-datetime-calendar__group")
+  private _baseCalendarGroupEl!: HTMLDivElement;
 
   @state() _month = 1;
   @state() _year = 2021;
@@ -38,7 +41,32 @@ export class BaseDateTimeCalendar extends KucBase {
 
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) this._updateValue();
+    this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
+  }
+
+  private _calculateBodyCalendarPosition() {
+    const dateTimePickerEl = this._baseCalendarGroupEl.closest(
+      ".kuc-date-picker__group"
+    ) as HTMLDivElement;
+    if (!dateTimePickerEl) return;
+
+    const dateInputEl = dateTimePickerEl.querySelector(
+      ".kuc-base-date__input"
+    ) as HTMLInputElement;
+    if (!dateInputEl) return;
+
+    const dateHeight = dateTimePickerEl.offsetHeight;
+    const dateInputTop = dateInputEl.offsetTop;
+    let dateTop = dateInputTop + dateInputEl.offsetHeight;
+    if (dateInputEl.getBoundingClientRect().top > dateHeight) {
+      dateTop = dateInputTop - dateHeight;
+    }
+
+    const baseDatetimeCalendarEl = this._baseCalendarGroupEl.parentElement;
+    if (!baseDatetimeCalendarEl) return;
+    baseDatetimeCalendarEl.style.top = dateTop + "px";
+    baseDatetimeCalendarEl.style.left = dateInputEl.offsetLeft + "px";
   }
 
   private _getStyleTagTemplate() {

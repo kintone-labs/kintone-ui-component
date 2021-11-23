@@ -1,6 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
-import { visiblePropConverter } from "../base/converter";
+import { visiblePropConverter, dateValueConverter } from "../base/converter";
 import { getTodayStringByLocale, getLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
@@ -8,8 +8,9 @@ import {
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps, formatDateValueProp } from "../base/validator";
+import { validateProps, validateDateValue } from "../base/validator";
 import "../base/datetime/date";
+import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 type DatePickerProps = {
   className?: string;
@@ -54,7 +55,10 @@ export class DatePicker extends KucBase {
       this._locale = getLocale(this.language);
     }
     if (changedProperties.has("value")) {
-      this.value = formatDateValueProp(this.value);
+      if (!validateDateValue(this.value)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this.value = dateValueConverter(this.value);
     }
     super.update(changedProperties);
   }

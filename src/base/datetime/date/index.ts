@@ -21,12 +21,16 @@ export class BaseDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
+
   @query(".kuc-base-date-calendar")
   private _dateTimeCalendar!: BaseDateTimeCalendar;
+
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
+
   @query(".kuc-base-date__assistive-text")
   private _toggleEl!: HTMLButtonElement;
+
   private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
@@ -60,41 +64,50 @@ export class BaseDate extends KucBase {
         aria-describedby="${this._GUID}-error"
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
-        @mousedown="${this._handleMouseDownInputToggle}"
-        @change="${this._handleChangeInputToggle}"
+        @click="${this._handleClickInput}"
+        @change="${this._handleChangeInput}"
       />
       <button
         aria-haspopup="menu"
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
         @keydown="${this._handleKeyDownButton}"
+        @focus="${this._handleFocusButton}"
+        @blur="${this._handleBlurButton}"
         ?disabled="${this.disabled}"
       >
         show date picker
       </button>
-      <kuc-base-datetime-calendar
-        class="kuc-base-date-calendar"
-        .language="${this.language}"
-        .value="${this._calendarValue}"
-        ?hidden="${!this._dateTimeCalendarVisible}"
-        @kuc:calendar-body-change-date="${this._handleClickCalendarChangeDate}"
-        @kuc:calendar-body-click-date="${this._handleClickCalendarClickDate}"
-        @kuc:calendar-footer-click-none="${this
-          ._handleClickCalendarFooterButtonNone}"
-        @kuc:calendar-footer-click-today="${this
-          ._handleClickCalendarFooterButtonToday}"
-      >
-      </kuc-base-datetime-calendar>
+      ${this._dateTimeCalendarVisible
+        ? html`
+            <kuc-base-datetime-calendar
+              class="kuc-base-date-calendar"
+              .language="${this.language}"
+              .value="${this._calendarValue}"
+              ?hidden="${!this._dateTimeCalendarVisible}"
+              @kuc:calendar-body-change-date="${this
+                ._handleClickCalendarChangeDate}"
+              @kuc:calendar-body-click-date="${this
+                ._handleClickCalendarClickDate}"
+              @kuc:calendar-footer-click-none="${this
+                ._handleClickCalendarFooterButtonNone}"
+              @kuc:calendar-footer-click-today="${this
+                ._handleClickCalendarFooterButtonToday}"
+              @kuc:calendar-body-blur="${this._handleCalendarBlurBody}"
+            >
+            </kuc-base-datetime-calendar>
+          `
+        : ""}
     `;
   }
 
-  firstUpdated() {
-    this._handleClickDocument();
+  updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
   }
 
-  updated(changedProperties: PropertyValues) {
-    this._updateDateTimeCalendarPosition();
-    super.updated(changedProperties);
+  private _handleCalendarBlurBody(event: Event) {
+    event.preventDefault();
+    this._dateTimeCalendarVisible = false;
   }
 
   private _getStyleTagTemplate() {
@@ -114,6 +127,12 @@ export class BaseDate extends KucBase {
         .kuc-base-date__input:focus {
           outline: none;
           border: 1px solid #3498db;
+        }
+        .kuc-base-date__input--focus {
+          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+          border: 1px solid #3498db;
+          background-color: #ffffff;
+          color: #333333;
         }
         .kuc-base-date__input:disabled {
           color: #888888;
@@ -140,24 +159,13 @@ export class BaseDate extends KucBase {
       </style>
     `;
   }
-  private _handleMouseDownInputToggle() {
+  private _handleClickInput(event: Event) {
+    event.stopPropagation();
     if (!this._dateTimeCalendarVisible) {
       this._openCalendar();
+    } else {
+      this._closeCalendar();
     }
-  }
-
-  private _updateDateTimeCalendarPosition() {
-    if (!this._dateTimeCalendarVisible) {
-      return;
-    }
-    const dateHeight = this._dateTimeCalendar.offsetHeight;
-    const dateInputTop = this._dateInput.offsetTop;
-    let dateTop = dateInputTop + this._dateInput.offsetHeight;
-    if (this._dateInput.getBoundingClientRect().top > dateHeight) {
-      dateTop = dateInputTop - dateHeight;
-    }
-    this._dateTimeCalendar.style.top = dateTop + "px";
-    this._dateTimeCalendar.style.left = this._dateInput.offsetLeft + "px";
   }
 
   private _updateValueProp() {
@@ -165,11 +173,11 @@ export class BaseDate extends KucBase {
       this._inputValue = formatValueToInputValue(this.language, this.value);
       this._calendarValue = this.value;
     } else {
-      this._inputValue = undefined;
+      this._inputValue = "";
     }
   }
 
-  private _handleChangeInputToggle(event: Event) {
+  private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const newValue = (event.target as HTMLInputElement).value;
     if (!isValidDateFormat(this.language, newValue)) {
@@ -231,25 +239,18 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 
-  private _handleClickDocument() {
-    window.document.addEventListener("click", event => {
-      const targetEl = event.target as HTMLElement;
-      const ignoreClass = [
-        "kuc-base-date__input",
-        "kuc-base-datetime-calendar__group"
-      ];
-      for (let index = 0; index < ignoreClass.length; index++) {
-        const className = ignoreClass[index];
-        if (targetEl.classList.contains(className)) return;
-      }
-      this._closeCalendar();
-    });
-  }
-
   private _openCalendarByKeyCode() {
     this._openCalendar();
     this._toggleEl.blur();
     this._dateTimeCalendar.focus();
+  }
+
+  private _handleBlurButton() {
+    this._dateInput.classList.remove("kuc-base-date__input--focus");
+  }
+
+  private _handleFocusButton() {
+    this._dateInput.classList.add("kuc-base-date__input--focus");
   }
 
   private _handleKeyDownButton(event: KeyboardEvent) {

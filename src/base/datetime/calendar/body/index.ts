@@ -22,9 +22,26 @@ export class BaseDateTimeCalendarBody extends KucBase {
     '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
   )
   private _selectedItem!: HTMLButtonElement;
+
   @query('.kuc-base-datetime-calendar-body__table__date__button[tabindex="0"]')
   private _focusedItem!: HTMLButtonElement;
+
   private _locale = getLocale("en");
+
+  constructor() {
+    super();
+    this._handleClickDocument = this._handleClickDocument.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("click", this._handleClickDocument);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("click", this._handleClickDocument);
+    super.disconnectedCallback();
+  }
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
@@ -41,6 +58,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
         -->${this._getDateItemsTemplate()}
       </table>
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) {
+      this._focusDateButtonEl();
+    }
+    super.update(changedProperties);
+  }
+
+  private _handleClickDocument() {
+    dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
   }
 
   private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
@@ -162,13 +190,11 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return `${year}-${month}-${day}`;
   }
 
-  private _isSameDayOfMoment(dates: string[], value: string) {
-    if (!value) return false;
-
+  private _isSameDayOfMoment(dates: string[]) {
     const month = parseInt(dates[1], 10);
     const day = parseInt(dates[2], 10);
     const year = parseInt(dates[0], 10);
-    let dateFocused = day;
+    let dateFocused = new Date().getDate();
 
     if (this.value) dateFocused = new Date(this.value).getDate();
     if (dateFocused === day && month === this.month) return true;
@@ -212,10 +238,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
             <tr>
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
-                const isSameDate = this._isSameDayOfMoment(
-                  dateParts,
-                  this.value
-                );
+                const isSameDate = this._isSameDayOfMoment(dateParts);
                 return html`
                   <td
                     role="gridcell"
@@ -248,6 +271,12 @@ export class BaseDateTimeCalendarBody extends KucBase {
         })}
       </tbody>
     `;
+  }
+
+  private _focusDateButtonEl() {
+    const buttonEl = this._focusedItem as HTMLButtonElement;
+    if (!buttonEl) return;
+    buttonEl.focus();
   }
 
   private _getStyleTagTemplate() {
