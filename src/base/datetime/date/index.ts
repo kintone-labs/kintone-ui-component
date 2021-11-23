@@ -66,6 +66,7 @@ export class BaseDate extends KucBase {
         ?disabled="${this.disabled}"
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
+        @keydown="${this._handleKeyDownInput}"
       />
       <button
         aria-haspopup="menu"
@@ -179,6 +180,7 @@ export class BaseDate extends KucBase {
 
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
+    this._closeCalendar();
     const newValue = (event.target as HTMLInputElement).value;
     if (!isValidDateFormat(this.language, newValue)) {
       const detail: CustomEventDetail = {
@@ -242,7 +244,6 @@ export class BaseDate extends KucBase {
   private _openCalendarByKeyCode() {
     this._openCalendar();
     this._toggleEl.blur();
-    this._dateTimeCalendar.focus();
   }
 
   private _handleBlurButton() {
@@ -253,7 +254,23 @@ export class BaseDate extends KucBase {
     this._dateInput.classList.add("kuc-base-date__input--focus");
   }
 
+  private _handleTabKey(event: KeyboardEvent) {
+    if (event.key === "Tab") return true;
+    return false;
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    this._closeCalendar();
+    if (this._handleTabKey(event)) return;
+    this._handleSupportedKey(event);
+  }
+
   private _handleKeyDownButton(event: KeyboardEvent) {
+    if (this._handleTabKey(event)) return;
+    this._handleSupportedKey(event);
+  }
+
+  private _handleSupportedKey(event: KeyboardEvent) {
     event.preventDefault();
     const keyCode = event.key;
     switch (keyCode) {

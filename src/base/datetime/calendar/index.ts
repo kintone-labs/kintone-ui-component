@@ -46,22 +46,17 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _calculateBodyCalendarPosition() {
-    const dateTimePickerEl = this._baseCalendarGroupEl.closest(
-      ".kuc-date-picker__group"
-    ) as HTMLDivElement;
-    if (!dateTimePickerEl) return;
+    const baseDateTimeEl = this._baseCalendarGroupEl.parentElement
+      ?.parentElement;
+    if (!baseDateTimeEl) return;
 
-    const dateInputEl = dateTimePickerEl.querySelector(
+    const dateInputEl = baseDateTimeEl.querySelector(
       ".kuc-base-date__input"
     ) as HTMLInputElement;
     if (!dateInputEl) return;
 
-    const dateHeight = dateTimePickerEl.offsetHeight;
     const dateInputTop = dateInputEl.offsetTop;
-    let dateTop = dateInputTop + dateInputEl.offsetHeight;
-    if (dateInputEl.getBoundingClientRect().top > dateHeight) {
-      dateTop = dateInputTop - dateHeight;
-    }
+    const dateTop = dateInputTop + dateInputEl.offsetHeight;
 
     const baseDatetimeCalendarEl = this._baseCalendarGroupEl.parentElement;
     if (!baseDatetimeCalendarEl) return;

@@ -39,5 +39,6 @@ Base.args = {
   requiredIcon: false,
   language: "auto",
   value: "2021-03-31",
-  visible: true
+  visible: true,
+  error: ""
 };
