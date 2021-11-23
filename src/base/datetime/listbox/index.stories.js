@@ -53,7 +53,7 @@ const Template = ({ value, items }) => {
         break;
       }
       case "Enter": {
-        _changeValue(_listBoxEl.getFocusedItemEl().value);
+        _changeValue(_listBoxEl.getHighlightItemEl().value);
         break;
       }
       default:
