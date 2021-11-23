@@ -11,6 +11,7 @@ module.exports = {
     "kuc-v1/no-kuc-class-prefix": "error",
     "kuc-v1/validator-in-update": "error",
     "kuc-v1/double-quote-attribute-value": "error",
-    "kuc-v1/inherit-from-KucBase": "error"
+    "kuc-v1/inherit-from-KucBase": "error",
+    "kuc-v1/super-update": "error"
   }
 };

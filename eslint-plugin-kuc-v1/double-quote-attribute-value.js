@@ -14,7 +14,7 @@ module.exports = {
             if (!regex.test(quasiText)) continue;
             context.report({
               node: quasi,
-              message: `Please enclose the attribute value with double-quotation
+              message: `Please enclose the attribute value with double-quotation for XSS vulnerability prevention.
               ex: ?disabled="\${this.disabled}"
                   value="\${item.value !== undefined ? item.value : ""}"
                   type="button"
