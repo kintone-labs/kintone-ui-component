@@ -91,6 +91,7 @@ export class BaseDateTimeListBox extends KucBase {
     liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
     liEl.setAttribute("tabindex", "0");
     this._focusHighlightItemEl();
+    this._dispatchListBoxFocusChange();
     return liEl;
   }
 
@@ -219,17 +220,21 @@ export class BaseDateTimeListBox extends KucBase {
       case "ArrowUp":
         this._highlightPrevItem();
         this._scrollToView();
+        this._dispatchListBoxFocusChange();
         break;
       case "Down":
       case "ArrowDown":
         this._highlightNextItem();
         this._scrollToView();
+        this._dispatchListBoxFocusChange();
         break;
       case "Home":
         this._highlightFirstItem();
+        this._dispatchListBoxFocusChange();
         break;
       case "End":
         this._highlightLastItem();
+        this._dispatchListBoxFocusChange();
         break;
       case "Tab":
       case "Escape":
@@ -244,6 +249,12 @@ export class BaseDateTimeListBox extends KucBase {
         break;
       }
     }
+  }
+
+  private _dispatchListBoxFocusChange() {
+    const highlightValue = this._highlightItemEl.getAttribute("value") || "";
+    const detail: CustomEventDetail = { value: highlightValue };
+    dispatchCustomEvent(this, "kuc:listbox-focus-change", detail);
   }
 
   private _handleMouseDownListBox(event: MouseEvent) {
