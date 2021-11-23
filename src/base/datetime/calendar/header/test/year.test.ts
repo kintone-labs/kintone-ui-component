@@ -117,7 +117,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
-      itemsEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
+      liEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
       await elementUpdated(container);
 
       const listBoxElHide = el.querySelector(

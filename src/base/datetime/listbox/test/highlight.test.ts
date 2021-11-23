@@ -36,9 +36,10 @@ describe("BaseDateTimeListBox", () => {
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
-      );
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
       );
       await elementUpdated(el);
@@ -46,7 +47,7 @@ describe("BaseDateTimeListBox", () => {
         1
       );
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "Down", bubbles: true })
       );
       await elementUpdated(el);
@@ -67,9 +68,10 @@ describe("BaseDateTimeListBox", () => {
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
-      );
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })
       );
       await elementUpdated(el);
@@ -77,7 +79,7 @@ describe("BaseDateTimeListBox", () => {
         2
       );
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "Up", bubbles: true })
       );
       await elementUpdated(el);
@@ -98,9 +100,10 @@ describe("BaseDateTimeListBox", () => {
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
-      );
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "Home", bubbles: true })
       );
       await elementUpdated(el);
@@ -108,7 +111,7 @@ describe("BaseDateTimeListBox", () => {
         0
       );
 
-      itemsEl[0].dispatchEvent(
+      liEl.dispatchEvent(
         new KeyboardEvent("keydown", { key: "End", bubbles: true })
       );
       await elementUpdated(el);

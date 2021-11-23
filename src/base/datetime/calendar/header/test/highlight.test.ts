@@ -19,17 +19,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventDown = new KeyboardEvent("keydown", { key: "Down" });
 
-      itemsEl.dispatchEvent(eventArrowDown);
+      liEl.dispatchEvent(eventArrowDown);
       const firstHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlightEl.value).to.equal(2022);
 
-      itemsEl.dispatchEvent(eventDown);
+      liEl.dispatchEvent(eventDown);
       const secondHiglightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -52,17 +53,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowUp = new KeyboardEvent("keydown", { key: "ArrowUp" });
       const eventUp = new KeyboardEvent("keydown", { key: "Up" });
 
-      itemsEl.dispatchEvent(eventArrowUp);
+      liEl.dispatchEvent(eventArrowUp);
       const firstHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlightEl.value).to.equal(2020);
 
-      itemsEl.dispatchEvent(eventUp);
+      liEl.dispatchEvent(eventUp);
       const secondHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -85,10 +87,11 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "Home" });
+      liEl.dispatchEvent(event);
 
-      itemsEl.dispatchEvent(event);
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -112,9 +115,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "End" });
-      itemsEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
@@ -140,17 +144,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventDown = new KeyboardEvent("keydown", { key: "Down" });
 
-      itemsEl.dispatchEvent(eventArrowDown);
+      liEl.dispatchEvent(eventArrowDown);
       const firstHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlight.value).to.equal(2);
 
-      itemsEl.dispatchEvent(eventDown);
+      liEl.dispatchEvent(eventDown);
       const secondHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -172,17 +177,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowUp = new KeyboardEvent("keydown", { key: "ArrowUp" });
       const eventUp = new KeyboardEvent("keydown", { key: "Up" });
 
-      itemsEl.dispatchEvent(eventArrowUp);
+      liEl.dispatchEvent(eventArrowUp);
       const firstHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlight.value).to.equal(12);
 
-      itemsEl.dispatchEvent(eventUp);
+      liEl.dispatchEvent(eventUp);
       const secondHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -202,8 +208,13 @@ describe("BaseDateTimeCalendarHeader", () => {
       btnMonthToggleEl.click();
       await elementUpdated(container);
 
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
       const event = new KeyboardEvent("keydown", { key: "Home" });
-      btnMonthToggleEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
@@ -228,9 +239,10 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "End" });
-      itemsEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
