@@ -72,6 +72,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
@@ -79,8 +80,8 @@ describe("BaseDateTimeCalendarHeader", () => {
         bubbles: true
       });
 
-      itemsEl.dispatchEvent(eventKeyDown);
-      itemsEl.dispatchEvent(eventKeyEnter);
+      liEl.dispatchEvent(eventKeyDown);
+      liEl.dispatchEvent(eventKeyEnter);
       await elementUpdated(container);
 
       expect(yearSelectEl.innerText).to.equal("2022");
@@ -104,6 +105,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventKeyEnter = new KeyboardEvent("keydown", {
@@ -111,8 +113,8 @@ describe("BaseDateTimeCalendarHeader", () => {
         bubbles: true
       });
 
-      itemsEl.dispatchEvent(eventKeyDown);
-      itemsEl.dispatchEvent(eventKeyEnter);
+      liEl.dispatchEvent(eventKeyDown);
+      liEl.dispatchEvent(eventKeyEnter);
       await elementUpdated(container);
 
       expect(monthSelectEl.innerText).to.equal("FEBRUARY");
