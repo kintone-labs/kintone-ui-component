@@ -91,17 +91,17 @@ export class Dropdown extends KucBase {
   private _getToggleIconSvgTemplate() {
     return svg`
       <svg
-        width='36'
-        height='36'
-        viewBox='0 0 36 36'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
-          d='M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z'
-          fill='#3498db'/>
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z"
+          fill="#3498db"/>
       </svg>
     `;
   }
@@ -557,18 +557,18 @@ export class Dropdown extends KucBase {
       ${
         checked
           ? svg`<svg
-          class='kuc-dropdown__group__select-menu__item__icon'
-          width='11'
-          height='9'
-          viewBox='0 0 11 9'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
+          class="kuc-dropdown__group__select-menu__item__icon"
+          width="11"
+          height="9"
+          viewBox="0 0 11 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
-            fill='#3498db'/>
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
+            fill="#3498db"/>
         </svg>`
           : ""
       }`;

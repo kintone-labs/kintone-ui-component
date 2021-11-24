@@ -1,153 +1,8 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeListBox } from "../index";
 
 describe("BaseDateTimeListBox", () => {
   describe("hightlight", () => {
-    it("should be highlight first item when uses highlightFirstItem function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      container.highlightFirstItem();
-
-      const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
-      );
-      expect(
-        itemsEl[0].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-
-      container.highlightLastItem();
-      container.highlightFirstItem();
-      expect(
-        itemsEl[0].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-    });
-
-    it("should be highlight last item when uses highlightLastItem function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      container.highlightLastItem();
-
-      const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
-      );
-      expect(
-        itemsEl[3].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-    });
-
-    it("should be highlight next item when uses highlightNextItem function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
-      );
-      container.highlightNextItem();
-      expect(
-        itemsEl[0].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-
-      container.highlightNextItem();
-      expect(
-        itemsEl[1].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-    });
-
-    it("should be highlight previous item when uses highlightPrevItem function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
-      );
-      container.highlightPrevItem();
-      expect(
-        itemsEl[3].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-
-      container.highlightPrevItem();
-      expect(
-        itemsEl[2].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-    });
-
-    it("should be return the id of the highlighted item when uses getHighlightItemId function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      let idHighlighted = container.getHighlightItemId() || "";
-      expect(idHighlighted).to.equal("");
-
-      container.highlightLastItem();
-      idHighlighted = container.getHighlightItemId() || "";
-      expect(idHighlighted.includes("-listboxitem-3")).to.equal(true);
-    });
-
-    it("should be return the element of the highlighted item when uses getHighlightItemEl function", async () => {
-      const initItems = [
-        { value: "0", label: "JANUARY" },
-        { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
-      ];
-      const container = new BaseDateTimeListBox();
-      container.items = initItems;
-      const el = await fixture(container);
-      container.highlightLastItem();
-      const highlightEl = container.getHighlightItemEl();
-      expect(
-        highlightEl.classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
-    });
-
     it("should be return highlight element when call getHighlightItemEl function", async () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
@@ -164,6 +19,102 @@ describe("BaseDateTimeListBox", () => {
 
       itemsEl[2].dispatchEvent(new Event("mouseover"));
 
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        2
+      );
+    });
+
+    it("should be highlight FEBRUARY element when press ArrowDown key", async () => {
+      const initItems = [
+        { value: "0", label: "JANUARY" },
+        { value: "1", label: "FEBRUARY" },
+        { value: "2", label: "MARCH" }
+      ];
+      const container = new BaseDateTimeListBox();
+      container.items = initItems;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
+      );
+      await elementUpdated(el);
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        1
+      );
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Down", bubbles: true })
+      );
+      await elementUpdated(el);
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        2
+      );
+    });
+
+    it("should be highlight DECEMBER element when press ArrowUp key", async () => {
+      const initItems = [
+        { value: "0", label: "JANUARY" },
+        { value: "1", label: "FEBRUARY" },
+        { value: "2", label: "MARCH" }
+      ];
+      const container = new BaseDateTimeListBox();
+      container.items = initItems;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })
+      );
+      await elementUpdated(el);
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        2
+      );
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Up", bubbles: true })
+      );
+      await elementUpdated(el);
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        1
+      );
+    });
+
+    it("should be highlight JANUARY/MARCH element when press Home/End key", async () => {
+      const initItems = [
+        { value: "0", label: "JANUARY" },
+        { value: "1", label: "FEBRUARY" },
+        { value: "2", label: "MARCH" }
+      ];
+      const container = new BaseDateTimeListBox();
+      container.items = initItems;
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Home", bubbles: true })
+      );
+      await elementUpdated(el);
+      expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
+        0
+      );
+
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "End", bubbles: true })
+      );
+      await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
         2
       );
@@ -209,8 +160,7 @@ describe("BaseDateTimeListBox", () => {
       const container = new BaseDateTimeListBox();
       container.items = initItems;
 
-      expect(container.getHighlightItemId()).to.equal("");
-      expect(container.getHighlightValue()).to.equal("");
+      expect(container.getHighlightItemEl()).to.equal(null);
     });
   });
 });

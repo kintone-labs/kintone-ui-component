@@ -16,17 +16,21 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnYearToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventDown = new KeyboardEvent("keydown", { key: "Down" });
 
-      btnYearToggleEl.dispatchEvent(eventArrowDown);
+      liEl.dispatchEvent(eventArrowDown);
       const firstHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlightEl.value).to.equal(2022);
 
-      btnYearToggleEl.dispatchEvent(eventDown);
+      liEl.dispatchEvent(eventDown);
       const secondHiglightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -46,17 +50,21 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnYearToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowUp = new KeyboardEvent("keydown", { key: "ArrowUp" });
       const eventUp = new KeyboardEvent("keydown", { key: "Up" });
 
-      btnYearToggleEl.dispatchEvent(eventArrowUp);
+      liEl.dispatchEvent(eventArrowUp);
       const firstHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlightEl.value).to.equal(2020);
 
-      btnYearToggleEl.dispatchEvent(eventUp);
+      liEl.dispatchEvent(eventUp);
       const secondHighlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -76,10 +84,14 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnYearToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "Home" });
+      liEl.dispatchEvent(event);
 
-      btnYearToggleEl.dispatchEvent(event);
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -100,43 +112,19 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnYearToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "End" });
-      btnYearToggleEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
 
       expect(highlightEl.value).to.equal(2121);
-    });
-
-    it("should be highlight first item when press key while listbox hide", async () => {
-      const container = document.createElement(
-        "kuc-base-datetime-calendar-header"
-      );
-      container.setAttribute("year", "2021");
-      const el = await fixture(container);
-
-      const yearListboxEl = el.querySelector(
-        ".kuc-base-datetime-header-year__listbox"
-      ) as HTMLElement;
-      const btnYearToggleEl = el.querySelector(
-        ".kuc-base-datetime-header-year__toggle"
-      ) as HTMLButtonElement;
-
-      btnYearToggleEl.focus();
-      await elementUpdated(container);
-
-      const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
-      btnYearToggleEl.dispatchEvent(eventKeyDown);
-      await elementUpdated(container);
-
-      expect(
-        yearListboxEl.children[1].children[0].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
     });
   });
 
@@ -153,17 +141,21 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnMonthToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
       const eventDown = new KeyboardEvent("keydown", { key: "Down" });
 
-      btnMonthToggleEl.dispatchEvent(eventArrowDown);
+      liEl.dispatchEvent(eventArrowDown);
       const firstHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlight.value).to.equal(2);
 
-      btnMonthToggleEl.dispatchEvent(eventDown);
+      liEl.dispatchEvent(eventDown);
       const secondHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -182,17 +174,21 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnMonthToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const eventArrowUp = new KeyboardEvent("keydown", { key: "ArrowUp" });
       const eventUp = new KeyboardEvent("keydown", { key: "Up" });
 
-      btnMonthToggleEl.dispatchEvent(eventArrowUp);
+      liEl.dispatchEvent(eventArrowUp);
       const firstHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
       expect(firstHighlight.value).to.equal(12);
 
-      btnMonthToggleEl.dispatchEvent(eventUp);
+      liEl.dispatchEvent(eventUp);
       const secondHighlight = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
@@ -212,8 +208,13 @@ describe("BaseDateTimeCalendarHeader", () => {
       btnMonthToggleEl.click();
       await elementUpdated(container);
 
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
+
       const event = new KeyboardEvent("keydown", { key: "Home" });
-      btnMonthToggleEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
@@ -235,42 +236,19 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       btnMonthToggleEl.click();
       await elementUpdated(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-base-datetime-listbox__listbox"
+      )[0];
+      const liEl = itemsEl.children[0] as HTMLLIElement;
 
       const event = new KeyboardEvent("keydown", { key: "End" });
-      btnMonthToggleEl.dispatchEvent(event);
+      liEl.dispatchEvent(event);
 
       const highlightEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox--highlight"
       ) as HTMLLIElement;
 
       expect(highlightEl.value).to.equal(12);
-    });
-
-    it("should be highlight first item when press key while listbox hide", async () => {
-      const container = document.createElement(
-        "kuc-base-datetime-calendar-header"
-      );
-      const el = await fixture(container);
-
-      const monthListboxEl = el.querySelector(
-        ".kuc-base-datetime-header-month__listbox"
-      ) as HTMLSpanElement;
-      const btnMonthToggleEl = el.querySelector(
-        ".kuc-base-datetime-header-month__toggle"
-      ) as HTMLButtonElement;
-
-      btnMonthToggleEl.focus();
-      await elementUpdated(container);
-
-      const eventKeyDown = new KeyboardEvent("keydown", { key: "ArrowDown" });
-      btnMonthToggleEl.dispatchEvent(eventKeyDown);
-      await elementUpdated(container);
-
-      expect(
-        monthListboxEl.children[1].children[0].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(true);
     });
   });
 });
