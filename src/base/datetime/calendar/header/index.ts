@@ -5,8 +5,8 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
-import { BaseDateTimeHeaderYear } from "../../calendar/header/dropdown/year";
-import { BaseDateTimeHeaderMonth } from "../../calendar/header/dropdown/month";
+import "../../calendar/header/dropdown/year";
+import "../../calendar/header/dropdown/month";
 import "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
@@ -37,10 +37,10 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   })
   year = 2021;
   private _locale = getLocale("en");
-  @query(".base-datetime-header-month")
-  private _baseDateTimeHeaderMonthEl!: BaseDateTimeHeaderMonth;
-  @query(".base-datetime-header-year")
-  private _baseDateTimeHeaderYearEl!: BaseDateTimeHeaderYear;
+  @query(".kuc-base-datetime-header-month")
+  private _baseDateTimeHeaderMonthEl!: any;
+  @query(".kuc-base-datetime-header-year")
+  private _baseDateTimeHeaderYearEl!: any;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -140,7 +140,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getYearTemplate() {
     return html`
       <kuc-base-datetime-header-year
-        class="base-datetime-header-year"
+        class="kuc-base-datetime-header-year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
@@ -153,7 +153,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthTemplate() {
     return html`
       <kuc-base-datetime-header-month
-        class="base-datetime-header-month"
+        class="kuc-base-datetime-header-month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
