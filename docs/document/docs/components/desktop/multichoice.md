@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Label text for each option | If `Item.label` is unspecified, the value of Item.value is displayed on the UI |
 | Item.value | string | null | Value of each option | Can set duplicated value in Item.value |
-| value *1 | Array\<string\> | []  | Selected value | Will result an error if the value of items is not an array<br>Will result an error if there is duplicated value in an array<br>No option will be selected if the value or selectedIndex is unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in Item.value will be selected and `selectedIndex` will be the index number |
+| value *1 | Array\<string\> | []  | Selected value | Will result an error if the value of items is not an array<br>No option will be selected if the value or selectedIndex is unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in Item.value will be selected and `selectedIndex` will be the index number |
 | selectedIndex *1 | Array\<Number\> | []  | List of index of selected item | If `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set and `selectedIndex` value exists in `items`, item that has the index number will be selected |
 
 > *1: You can define duplicated value in value and Item.value. In case defining duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
