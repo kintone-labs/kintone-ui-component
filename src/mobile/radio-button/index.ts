@@ -29,8 +29,26 @@ export class MobileRadioButton extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
-  @property({ type: Number }) selectedIndex = -1;
+  @property({
+    type: String,
+    hasChanged(newVal: string, _oldVal) {
+      if (typeof newVal !== "string") {
+        throw new Error("'value' property is not array");
+      }
+      return true;
+    }
+  })
+  value = "";
+  @property({
+    type: Number,
+    hasChanged(newVal: number, _oldVal) {
+      if (typeof newVal !== "number") {
+        throw new Error("'selectedIndex' property is not array");
+      }
+      return true;
+    }
+  })
+  selectedIndex = -1;
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;

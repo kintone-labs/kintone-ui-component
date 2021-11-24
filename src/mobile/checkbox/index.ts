@@ -62,7 +62,16 @@ export class MobileCheckbox extends KucBase {
     }
   })
   value: string[] = [];
-  @property({ type: Array }) selectedIndex: number[] = [];
+  @property({
+    type: Array,
+    hasChanged(newVal: number[], _oldVal) {
+      if (!Array.isArray(newVal)) {
+        throw new Error("'selectedIndex' property is not array");
+      }
+      return true;
+    }
+  })
+  selectedIndex: number[] = [];
 
   @queryAll(".kuc-mobile-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];

@@ -173,6 +173,8 @@ export class RadioButton extends KucBase {
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
+      this._validateValue();
+      this._validateSelectedIndex();
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
@@ -256,6 +258,18 @@ export class RadioButton extends KucBase {
   private _validateItems() {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
+    }
+  }
+
+  private _validateValue() {
+    if (typeof this.value !== "string") {
+      throw new Error("'value' property is not string");
+    }
+  }
+
+  private _validateSelectedIndex() {
+    if (typeof this.selectedIndex !== "number") {
+      throw new Error("'selectedIndex' property is not number");
     }
   }
 
