@@ -24,7 +24,7 @@ module.exports = {
 
             context.report({
               node: body,
-              message: `Please write super.update(changedProperties) using PropertyValues to map the changed properties with old values.
+              message: `Please write super.update(changedProperties) using PropertyValues to map the changed properties with old values in the update lifecycle.
               ex: update(changedProperties: PropertyValues) {
                     super.update(changedProperties);
                   }`
