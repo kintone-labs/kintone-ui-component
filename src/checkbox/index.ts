@@ -93,28 +93,28 @@ export class Checkbox extends KucBase {
     return svg`
     <svg
       class="kuc-checkbox__group__select-menu__item__label__icon"
-      width='21'
-      height='21'
-      viewBox='0 0 21 21'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <rect
-        x='1'
-        y='1'
-        width='19'
-        height='19'
-        rx='1'
-        fill='white'
-        stroke='${this._getSVGStrokeValue(disabled, checked)}'
-        stroke-width='2'/>
+        x="1"
+        y="1"
+        width="19"
+        height="19"
+        rx="1"
+        fill="white"
+        stroke="${this._getSVGStrokeValue(disabled, checked)}"
+        stroke-width="2"/>
       ${
         checked
           ? svg`<path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M5 11L6.5 9L9.5 11.5L14.5 6L16 7.5L9.5 14.5L5 11Z'
-            fill='${disabled ? "#d8d8d8" : "#3498db"}'/>`
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5 11L6.5 9L9.5 11.5L14.5 6L16 7.5L9.5 14.5L5 11Z"
+            fill="${disabled ? "#d8d8d8" : "#3498db"}"/>`
           : ""
       }
     </svg>
