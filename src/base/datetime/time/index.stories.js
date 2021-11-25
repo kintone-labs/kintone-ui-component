@@ -14,9 +14,9 @@ export default {
 const Template = ({ disabled, hour12, value }) =>
   html`
     <kuc-base-time
-      .disabled=${disabled}
-      .hour12=${hour12}
-      .value=${value}
+      .disabled="${disabled}"
+      .hour12="${hour12}"
+      .value="${value}"
     ></kuc-base-time>
   `;
 
