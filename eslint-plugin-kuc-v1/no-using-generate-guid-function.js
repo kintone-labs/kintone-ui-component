@@ -5,8 +5,8 @@ module.exports = {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
         const sourceCode = context.getSourceCode().getText();
-        // eslint-disable-next-line no-template-curly-in-string
-        const pattern = '\\sid="(?!\\${this._GUID}-)[^"]+"';
+        const pattern =
+          '\\s(aria-describedby|aria-describedby|id|name|for)="(?!\\$\\{this\\._GUID\\}-)[^"]+"';
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;
         context.report({
@@ -14,7 +14,7 @@ module.exports = {
           message: `Please put uuid to id using generateGUID function
           ex: <div
                 class="kuc-multi-choice__group__label"
-                id="${this._GUID}-label">
+                id="\${this._GUID}-label">
               </div>`
         });
       }

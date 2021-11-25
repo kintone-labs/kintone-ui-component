@@ -111,8 +111,9 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
-  private _handleClickDropdownMonthToggle(event: Event) {
+  private _handleClickDropdownMonthToggle(event: MouseEvent) {
     event.stopPropagation();
+    event.preventDefault();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {

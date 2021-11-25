@@ -126,6 +126,74 @@ const getDateObj = (date: Date) => {
   return { text, attr };
 };
 
+export const formatValueToInputValue = (language: string, date?: string) => {
+  if (date && !isStringValueEmpty(date)) {
+    const dates = date.split("-");
+    if (dates.length !== 3) {
+      return date;
+    }
+    const year = dates[0];
+    const month = dates[1];
+    const day = dates[2];
+    return language === "en"
+      ? `${month}/${day}/${year}`
+      : `${year}-${month}-${day}`;
+  }
+  return date;
+};
+
+export const formatInputValueToValue = (language: string, date: string) => {
+  if (isStringValueEmpty(date)) {
+    return date;
+  }
+  const isEnLanguage = language === "en";
+  const splitStr = isEnLanguage ? "/" : "-";
+  const dates = date.split(splitStr);
+  const year = isEnLanguage ? dates[2] : dates[0];
+  const month = isEnLanguage ? dates[0] : dates[1];
+  const day = isEnLanguage ? dates[1] : dates[2];
+  return `${year}-${month}-${day}`;
+};
+
+export const isStringValueEmpty = (value: any) => {
+  return (
+    value === null ||
+    value === undefined ||
+    value.length === 0 ||
+    !/[^(^\s*)|(\s*$)]/.test(value)
+  );
+};
+
+export const getTodayStringByLocale = (language: string = "ja") => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = padStart(today.getMonth() + 1);
+  const day = padStart(today.getDate());
+  return language === "ja" || language === "zh"
+    ? year + "-" + month + "-" + day
+    : month + "/" + day + "/" + year;
+};
+
+export const isValidDateFormat = (language: string, dateString?: string) => {
+  if (dateString && !isStringValueEmpty(dateString)) {
+    const isEnLanguage = language === "en";
+    const splitStr = isEnLanguage ? "/" : "-";
+    const dateObj = new Date(dateString);
+    const notExistedDate =
+      dateObj.getDate() !==
+      parseInt(dateString.split(splitStr)[isEnLanguage ? 1 : 2], 10);
+    if (notExistedDate) return false;
+
+    const enRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(\d{4})$/;
+    if (language === "en") {
+      return dateString.match(enRegex) !== null;
+    }
+    const jaRegex = /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
+    return dateString.match(jaRegex) !== null;
+  }
+  return false;
+};
+
 export const padStart = (
   filterString: string | number,
   maxLength: number = 2
