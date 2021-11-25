@@ -1,15 +1,17 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
-import { visiblePropConverter } from "../base/converter";
-import { getTodayStringByLocale } from "../base/datetime/utils";
+import { visiblePropConverter, dateValueConverter } from "../base/converter";
+import { getTodayStringByLocale, getLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { validateProps, validateDateValue } from "../base/validator";
 import "../base/datetime/date";
+import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+
 type DatePickerProps = {
   className?: string;
   error?: string;
@@ -32,6 +34,7 @@ export class DatePicker extends KucBase {
   @property({ type: String }) language = "auto";
   @property({ type: String }) value? = getTodayStringByLocale();
   private _GUID: string;
+  private _locale = getLocale("en");
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -39,16 +42,31 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
   constructor(props?: DatePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
+    }
+    if (changedProperties.has("value")) {
+      if (!validateDateValue(this.value)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this.value = dateValueConverter(this.value);
+    }
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-date-picker-group">
+      <div class="kuc-date-picker__group">
         <label
           class="kuc-date-picker__group__label"
           for="${this._GUID}-label"
@@ -108,7 +126,7 @@ export class DatePicker extends KucBase {
           color: #333333;
           display: inline-table;
           vertical-align: top;
-          msx-width: 100px;
+          max-width: 100px;
           width: 100px;
         }
         kuc-date-picker[hidden] {
