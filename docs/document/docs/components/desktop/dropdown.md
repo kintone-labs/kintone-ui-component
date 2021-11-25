@@ -25,7 +25,7 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | value *1 | string | ""  | Selected value | No option will be selected if the valid value or selectedIndex is unspecified |
-| selectedIndex *1 | number | -1  | Index of selected item | If `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set and `selectedIndex` value exists in `items`, item that has the index number will be selected |
+| selectedIndex *1 | number | -1  | Index of selected item | If `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set and `selectedIndex` value exists in `items`, item that has the index number will be selected<br>Will result an error if the value of selectedIndex is not a number |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
