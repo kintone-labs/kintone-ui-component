@@ -16,16 +16,16 @@ const Template = args => {
   };
   return html`
     <kuc-datetime-picker
-      .className=${args.className}
-      .error=${args.error}
-      .id=${args.id}
-      .label=${args.label}
-      .language=${args.language}
-      .value=${args.value}
-      .disabled=${args.disabled}
-      .hour12=${args.hour12}
-      .requiredIcon=${args.requiredIcon}
-      .visible=${args.visible}
+      .className="${args.className}"
+      .error="${args.error}"
+      .id="${args.id}"
+      .label="${args.label}"
+      .language="${args.language}"
+      .value="${args.value}"
+      .disabled="${args.disabled}"
+      .hour12="${args.hour12}"
+      .requiredIcon="${args.requiredIcon}"
+      .visible="${args.visible}"
       @change="${handleDateChange}"
     ></kuc-datetime-picker>
   `;
