@@ -22,6 +22,7 @@ export const dateValueConverter = (date: string | undefined) => {
       dateParts[2]
     )}`;
   return "";
+};
 
 export const timeValueConverter = (time: string) => {
   const maxLength = 5;
