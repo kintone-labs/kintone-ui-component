@@ -18,7 +18,7 @@ type CheckBoxProps = {
 };
 
 const CheckBox = (props: CheckBoxProps) => {
-  const {_hasDuplicatedItems, _hasValidValue} = AbstractMultiSelection;
+  const {_hasDuplicatedItems} = AbstractMultiSelection;
   const _handleItemClick = (itemValue: string) => {
     const value = props.value ? props.value.slice() : [];
     const length = value.length;
@@ -60,10 +60,6 @@ const CheckBox = (props: CheckBoxProps) => {
 
   if (AbstractMultiSelection._hasCheckedItemListDuplicated(props.value)) {
     throw new Error(Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE);
-  }
-
-  if (!_hasValidValue(props.items, props.value)) {
-    throw new Error(Message.common.INVALID_ARGUMENT);
   }
 
   return (

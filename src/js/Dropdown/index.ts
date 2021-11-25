@@ -197,7 +197,7 @@ class Dropdown extends Control<DropdownProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (!AbstractSingleSelection._hasValidValue(items, value) || !AbstractSingleSelection._hasValidItems(items)) {
+    if (!AbstractSingleSelection._hasValidValue(items, value)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;
@@ -218,16 +218,14 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   setValue(value: string) {
-    if (value === null || value === undefined) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
     const validationErr = this._validator(this._props.items, value);
     if (validationErr) {
       throw new Error(validationErr);
     }
+    this.label = '';
+    this._props.value = value;
     this._props.items && this._props.items.forEach(data => {
       if (data.value === value) {
-        this._props.value = data.value;
         this.label = data.label;
       }
     });
