@@ -1,5 +1,11 @@
 import { svg } from "lit";
 import { en, zh, ja } from "../resource/locale";
+import {
+  MAX_MINUTES,
+  MAX_HOURS12,
+  MAX_HOURS24,
+  TIME_SUFFIX
+} from "../resource/constant";
 
 export type WeekDate = {
   text: string;
@@ -25,6 +31,87 @@ export const getDisplayingDates = (year: number, month: number) => {
   }
 
   return displayingDates;
+};
+
+export const generateTimeOptions = (
+  isHour12: boolean,
+  timeStep: number = 30
+) => {
+  const timeOptions = [];
+  const limitLoop = (MAX_MINUTES / timeStep) * MAX_HOURS24;
+  for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
+    const timeOption = generateTimeOption(i, isHour12);
+    timeOptions.push(timeOption);
+  }
+  return timeOptions;
+};
+
+const generateTimeOption = (i: number, isHour12: boolean) => {
+  let hours, minutes;
+  hours = Math.floor(i / MAX_MINUTES);
+  minutes = i % MAX_MINUTES;
+  const ampm =
+    hours % MAX_HOURS24 < MAX_HOURS12 ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
+  hours = isHour12 ? hours % MAX_HOURS12 : hours % MAX_HOURS24;
+  if (hours === 0 && isHour12) hours = MAX_HOURS12;
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  const timeOption = {
+    label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
+    value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
+  };
+  return timeOption;
+};
+
+export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
+  const times = value.split(":");
+  const hours = parseInt(times[0], 10);
+  const minutes = parseInt(times[1], 10);
+  const newHours = hours % MAX_HOURS24;
+  if (isNaN(newHours) || isNaN(minutes)) {
+    return {
+      hours: "",
+      minutes: "",
+      suffix: ""
+    };
+  }
+  if (hour12) {
+    return convertTime24To12(hours, minutes);
+  }
+  return {
+    hours: padStart(newHours),
+    minutes: padStart(minutes),
+    suffix: ""
+  };
+};
+
+export const convertTime24To12 = (hours: number, minutes: number) => {
+  const suffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+  let newHours = hours % MAX_HOURS12;
+  newHours = newHours === 0 ? MAX_HOURS12 : newHours;
+  return {
+    hours: padStart(newHours),
+    minutes: padStart(minutes),
+    suffix: suffix
+  };
+};
+
+export const formatInputValueToTimeValue = (inputValue: string) => {
+  const [time, ampm] = inputValue.split(" ");
+  const [hours, minutes] = time.split(":");
+  if (!ampm) return inputValue;
+  const newHour = convertTime12To24(hours, ampm);
+  return `${newHour}:${minutes}`;
+};
+
+export const convertTime12To24 = (hours: string, suffix: string) => {
+  const currentHour = parseInt(hours, 10);
+  if (suffix === TIME_SUFFIX.PM) {
+    const newHours = currentHour === MAX_HOURS12 ? 12 : currentHour + 12;
+    return padStart(newHours);
+  }
+  const newHours = currentHour === MAX_HOURS12 ? 0 : currentHour;
+  return padStart(newHours);
 };
 
 const getDateObj = (date: Date) => {
