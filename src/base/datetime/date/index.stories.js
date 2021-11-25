@@ -43,10 +43,10 @@ const Template = ({ disabled, language, value, inputId }) => {
   };
   return html`
     <kuc-base-date
-      .disabled=${disabled}
-      .language=${language}
-      .value=${value}
-      .inputId=${inputId}
+      .disabled="${disabled}"
+      .language="${language}"
+      .value="${value}"
+      .inputId="${inputId}"
       @kuc:base-date-change="${handleDateChange}"
     ></kuc-base-date>
   `;
