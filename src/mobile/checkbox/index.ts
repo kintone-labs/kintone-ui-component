@@ -123,9 +123,9 @@ export class MobileCheckbox extends KucBase {
        viewBox="0 0 44 34"
        enable-background="new 0 0 44 34"
        xml:space="preserve">
-       <image width="44" height="34" x="0" y="0" href='${this._getSVGStrokeValue(
+       <image width="44" height="34" x="0" y="0" href="${this._getSVGStrokeValue(
          checked
-       )}'/>
+       )}"/>
     </svg>
      `;
   }

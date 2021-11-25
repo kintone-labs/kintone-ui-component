@@ -209,18 +209,18 @@ export class MultiChoice extends KucBase {
       ${
         checked
           ? svg`<svg
-          class='kuc-multi-choice__group__menu__item__icon'
-          width='11'
-          height='9'
-          viewBox='0 0 11 9'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
+          class="kuc-multi-choice__group__menu__item__icon"
+          width="11"
+          height="9"
+          viewBox="0 0 11 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
-            fill='${disabled ? "#d8d8d8" : "#3498db"}'
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
+            fill="${disabled ? "#d8d8d8" : "#3498db"}"
           />
         </svg>`
           : ""
@@ -300,7 +300,7 @@ export class MultiChoice extends KucBase {
         kuc-multi-choice {
           display: inline-table;
           font-size: 14px;
-          color: #333;
+          color: #333333;
           width: 180px;
           min-width: 180px;
         }
@@ -366,7 +366,7 @@ export class MultiChoice extends KucBase {
           background-color: #dbdcdd;
           box-shadow: none;
           cursor: not-allowed;
-          color: #888;
+          color: #888888;
           outline: none;
         }
         .kuc-multi-choice__group__menu__item {
@@ -389,7 +389,7 @@ export class MultiChoice extends KucBase {
         }
         .kuc-multi-choice__group__menu[disabled]
           .kuc-multi-choice__group__menu__item[aria-selected="true"] {
-          color: #888;
+          color: #888888;
         }
         .kuc-multi-choice__group__menu__highlight[role="option"] {
           background-color: #e2f2fe;

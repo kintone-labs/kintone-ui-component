@@ -23,13 +23,6 @@ describe("BaseDateTimeListBox", () => {
           "kuc-base-datetime-listbox__listbox--highlight"
         )
       ).to.equal(true);
-
-      itemsEl[2].dispatchEvent(new Event("mouseleave"));
-      expect(
-        itemsEl[2].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
-      ).to.equal(false);
     });
   });
 });

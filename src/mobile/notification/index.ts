@@ -136,7 +136,7 @@ export class MobileNotification extends KucBase {
           font-weight: 700;
           line-height: 14px;
           text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-          color: #333;
+          color: #333333;
           text-align: center;
           vertical-align: top;
         }
