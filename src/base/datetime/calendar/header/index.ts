@@ -1,12 +1,12 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
-import "../../calendar/header/dropdown/month";
 import "../../calendar/header/dropdown/year";
+import "../../calendar/header/dropdown/month";
 import "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
@@ -36,8 +36,11 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     }
   })
   year = 2021;
-
   private _locale = getLocale("en");
+  @query(".kuc-base-datetime-header-month")
+  private _baseDateTimeHeaderMonthEl!: any;
+  @query(".kuc-base-datetime-header-year")
+  private _baseDateTimeHeaderYearEl!: any;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -137,9 +140,11 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getYearTemplate() {
     return html`
       <kuc-base-datetime-header-year
+        class="kuc-base-datetime-header-year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
+        @kuc:year-dropdown-click="${this._handleYearDropdownClick}"
       >
       </kuc-base-datetime-header-year>
     `;
@@ -148,9 +153,11 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthTemplate() {
     return html`
       <kuc-base-datetime-header-month
+        class="kuc-base-datetime-header-month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
+        @kuc:month-dropdown-click="${this._handleMonthDropdownClick}"
       >
       </kuc-base-datetime-header-month>
     `;
@@ -178,6 +185,14 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     event.preventDefault();
     this.year = parseInt(event.detail.value, 10);
     this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleYearDropdownClick() {
+    this._baseDateTimeHeaderMonthEl.closeListBox();
+  }
+
+  private _handleMonthDropdownClick() {
+    this._baseDateTimeHeaderYearEl.closeListBox();
   }
 
   private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {

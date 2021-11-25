@@ -19,10 +19,29 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: String, reflect: true }) value = "";
 
   @query(
-    '.kuc-base-datetime-calendar-body__table__date__button[aria-selected="true"]'
+    '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
   )
   private _selectedItem!: HTMLButtonElement;
+
+  @query('.kuc-base-datetime-calendar-body__table__date__button[tabindex="0"]')
+  private _focusedItem!: HTMLButtonElement;
+
   private _locale = getLocale("en");
+
+  constructor() {
+    super();
+    this._handleClickDocument = this._handleClickDocument.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("click", this._handleClickDocument);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("click", this._handleClickDocument);
+    super.disconnectedCallback();
+  }
 
   update(changedProperties: PropertyValues) {
     changedProperties.forEach((_oldValue, propName) => {
@@ -41,12 +60,23 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) {
+      this._focusDateButtonEl();
+    }
+    super.update(changedProperties);
+  }
+
+  private _handleClickDocument() {
+    dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+  }
+
   private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
     const itemEl = event.target as HTMLButtonElement;
-    itemEl.setAttribute("aria-selected", "true");
+    itemEl.setAttribute("aria-current", "true");
 
     const value = itemEl.getAttribute("data-date") || "";
     this._dispatchClickEvent(value);
@@ -95,7 +125,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _dispatchClickEvent(value: string) {
-    if (this.value === value) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     dispatchCustomEvent(this, "kuc:calendar-body-click-date", detail);
     this.value = value;
@@ -111,7 +140,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    const date = new Date(this.value);
+    const date = new Date(this._getValueItemFocused() || this.value);
     if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
@@ -136,6 +165,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return "";
   }
 
+  private _getValueItemFocused() {
+    if (this._focusedItem) {
+      return this._focusedItem.getAttribute("data-date") || "";
+    }
+    return "";
+  }
+
   private _getDateClass(dateParts: string[]) {
     const isToday = this._isToday(dateParts);
     if (isToday)
@@ -154,20 +190,40 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return `${year}-${month}-${day}`;
   }
 
+  private _isSameDayOfMoment(dates: string[]) {
+    const month = parseInt(dates[1], 10);
+    const day = parseInt(dates[2], 10);
+    const year = parseInt(dates[0], 10);
+    let dateFocused = new Date().getDate();
+
+    if (this.value) dateFocused = new Date(this.value).getDate();
+    if (dateFocused === day && month === this.month) return true;
+    const lastDayOfMonth = new Date(year, this.month, 0).getDate();
+    if (
+      dateFocused > lastDayOfMonth &&
+      lastDayOfMonth === day &&
+      month === this.month
+    )
+      return true;
+    return false;
+  }
+
   private _getHeaderItemsTemplate() {
     return html`
       <thead>
-        ${this._locale.WEEK_DAYS.map(wday => {
-          return html`
-            <th
-              class="kuc-base-datetime-calendar-body__table__header"
-              role="columnheader"
-              abbr="${wday.abbr}"
-            >
-              ${wday.text}
-            </th>
-          `;
-        })}
+        <tr>
+          ${this._locale.WEEK_DAYS.map(wday => {
+            return html`
+              <th
+                class="kuc-base-datetime-calendar-body__table__header"
+                role="columnheader"
+                abbr="${wday.abbr}"
+              >
+                ${wday.text}
+              </th>
+            `;
+          })}
+        </tr>
       </thead>
     `;
   }
@@ -182,18 +238,20 @@ export class BaseDateTimeCalendarBody extends KucBase {
             <tr>
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
+                const isSameDate = this._isSameDayOfMoment(dateParts);
                 return html`
                   <td
                     role="gridcell"
                     class="kuc-base-datetime-calendar-body__table__date${this
-                      .value === weekDate.attr
+                      .value === weekDate.attr || isSameDate
                       ? "--selected"
                       : ""}"
                   >
                     <button
-                      aria-selected="${this.value === weekDate.attr}"
+                      aria-current="${this.value === weekDate.attr}"
                       tabindex="${weekDate.attr === today ||
-                      this.value === weekDate.attr
+                      this.value === weekDate.attr ||
+                      isSameDate
                         ? "0"
                         : "-1"}"
                       class="kuc-base-datetime-calendar-body__table__date__button${this._getDateClass(
@@ -213,6 +271,12 @@ export class BaseDateTimeCalendarBody extends KucBase {
         })}
       </tbody>
     `;
+  }
+
+  private _focusDateButtonEl() {
+    const buttonEl = this._focusedItem as HTMLButtonElement;
+    if (!buttonEl) return;
+    buttonEl.focus();
   }
 
   private _getStyleTagTemplate() {
