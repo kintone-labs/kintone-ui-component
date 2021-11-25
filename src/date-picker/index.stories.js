@@ -16,15 +16,15 @@ const Template = args => {
   };
   return html`
     <kuc-date-picker
-      .disabled=${args.disabled}
-      .language=${args.language}
-      .value=${args.value}
-      .id=${args.id}
-      .label=${args.label}
-      .requiredIcon=${args.requiredIcon}
-      .visible=${args.visible}
-      .className=${args.className}
-      .error=${args.error}
+      .disabled="${args.disabled}"
+      .language="${args.language}"
+      .value="${args.value}"
+      .id="${args.id}"
+      .label="${args.label}"
+      .requiredIcon="${args.requiredIcon}"
+      .visible="${args.visible}"
+      .className="${args.className}"
+      .error="${args.error}"
       @change="${handleDateChange}"
     ></kuc-date-picker>
   `;
