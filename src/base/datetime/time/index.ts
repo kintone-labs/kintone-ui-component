@@ -11,10 +11,21 @@ import {
   MAX_HOURS24,
   TIME_SUFFIX
 } from "../resource/constant";
-import { padStart, generateTimeOptions } from "../utils";
+import {
+  padStart,
+  generateTimeOptions,
+  formatTimeValueToInputValue,
+  formatInputValueToTimeValue
+} from "../utils";
 
 import { BaseDateTimeListBox, Item } from "../listbox";
 export { BaseDateTimeListBox };
+
+type Time = {
+  hours: string;
+  minutes: string;
+  suffix?: string;
+};
 
 export class BaseTime extends KucBase {
   @property({ type: String }) value = "";
@@ -32,6 +43,12 @@ export class BaseTime extends KucBase {
   private _listBoxVisible = false;
 
   @state()
+  private _valueLabel = "";
+
+  @state()
+  private _doFocusListBox = false;
+
+  @state()
   private _hours = "";
 
   @state()
@@ -43,7 +60,6 @@ export class BaseTime extends KucBase {
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
 
-  private _timeLength = 2;
   private _listBoxItems: Item[] | undefined;
 
   @query(".kuc-base-time__group__hours")
@@ -55,11 +71,11 @@ export class BaseTime extends KucBase {
   @query(".kuc-base-time__group__suffix")
   private _suffixEl!: HTMLInputElement;
 
+  @query(".kuc-base-time__assistive-text")
+  private _toggleEl!: HTMLButtonElement;
+
   @query(".kuc-base-time__group")
   private _inputGroupEl!: HTMLInputElement;
-
-  @query(".kuc-base-time__group__listbox")
-  private _listBoxEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
@@ -80,6 +96,7 @@ export class BaseTime extends KucBase {
           type="text"
           class="kuc-base-time__group__hours"
           role="spinbutton"
+          tabindex="${this._hours ? "0" : "-1"}"
           aria-label="hours"
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
@@ -88,11 +105,12 @@ export class BaseTime extends KucBase {
           ?disabled="${this.disabled}"
           value="${this._hours}"
         />
-        <span class="kuc-base-time__group__colon">:</span>
+        ${this._getColonTemplate()}
         <input
           type="text"
           class="kuc-base-time__group__minutes"
           role="spinbutton"
+          tabindex="${this._minutes ? "0" : "-1"}"
           aria-label="minutes"
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
@@ -101,21 +119,7 @@ export class BaseTime extends KucBase {
           ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
-        ${this.hour12
-          ? html`
-              <input
-                class="kuc-base-time__group__suffix"
-                role="spinbutton"
-                aria-label="${this._suffix}"
-                @focus="${this._handleFocusInput}"
-                @blur="${this._handleBlurInput}"
-                @click="${this._handleClickInput}"
-                @keydown="${this._handleKeyDownInput}"
-                ?disabled="${this.disabled}"
-                value="${this._suffix}"
-              />
-            `
-          : ""}
+        ${this._getSuffixTemplate()}
       </div>
       <button
         aria-haspopup="menu"
@@ -128,126 +132,69 @@ export class BaseTime extends KucBase {
       >
         show time picker
       </button>
-      <kuc-base-datetime-listbox
-        maxHeight="165"
-        aria-hidden="${!this._listBoxVisible}"
-        class="kuc-base-time__group__listbox"
-        ?hidden="${!this._listBoxVisible}"
-        .items="${this._listBoxItems || []}"
-        @kuc:calendar-listbox-click="${this._handleChangeListBox}"
-      >
-      </kuc-base-datetime-listbox>
+      ${this._getListBoxTemplate()}
     `;
   }
 
   updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("_listBoxVisible")) {
-      this._scrollToView();
-    }
     if (changedProperties.has("disabled")) {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
   }
 
+  private _handleBlurListBox(event: Event) {
+    event.preventDefault();
+    this._listBoxVisible = false;
+  }
+
   private _toggleDisabledGroup() {
     if (this.disabled)
       return this._inputGroupEl.classList.add("kuc-base-time__group--disabled");
+
     return this._inputGroupEl.classList.remove(
       "kuc-base-time__group--disabled"
     );
   }
 
-  private _scrollToView() {
-    if (!this._listBoxVisible) return;
-    const liEl = this._getHighlightEl();
-    liEl.classList.add("kuc-base-datetime-listbox__listbox--highlight");
-    this._listBoxEl.scrollToView();
-  }
-
   private _updateInputValue() {
-    const regexHour12 = /^(0?[1-9]|1[0-2]):([0-5]\d)\s((?:[A|a]|[P|p])\.?[M|m]\.?)$/gm;
-    const regexHour24 = /^(2[0-3]|[01]?[0-9]):([0-5][0-9])$/;
-    if (
-      (!this.hour12 && !regexHour24.test(this.value)) ||
-      (this.hour12 && !regexHour12.test(this.value))
-    )
-      return;
-    const { hours, minutes, suffix } = this._separateInputValue(this.value);
-    this._hours = hours;
-    this._minutes = minutes;
-    if (suffix) {
-      this._suffix = suffix || this._suffix;
-    }
+    const times = formatTimeValueToInputValue(this.value, this.hour12);
+    this._hours = times.hours;
+    this._minutes = times.minutes;
+    this._suffix = times.suffix || "";
+    this._valueLabel = this._getValueLabel(times);
+    if (!this._inputGroupEl) return;
+
+    this._setValueToInput(times);
+    this._inputFocusEl?.select();
   }
 
-  private _getHighlightEl() {
-    const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
-    const itemsEl = this._getListItemEl();
-    const liEl = itemsEl.find(
-      element =>
-        new Date(
-          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
-        ) >= itemTimeObj
-    ) as HTMLLIElement;
-    return liEl;
+  private _getValueLabel(times: Time) {
+    const newLabel = `${times.hours}:${times.minutes}`;
+    if (!times.suffix) return newLabel;
+
+    return newLabel + ` ${times.suffix}`;
   }
 
-  private _getListItemEl() {
-    const itemsEl = Array.from(this._listBoxEl.children[1].children);
-    return itemsEl.map(item => {
-      item.classList.remove("kuc-base-datetime-listbox__listbox--highlight");
-      return item;
-    });
+  private _setValueToInput(times: Time) {
+    this._hoursEl.value = times.hours;
+    this._minutesEl.value = times.minutes;
+    if (!this._suffixEl) return;
+
+    this._suffixEl.value = times.suffix || "";
   }
 
   private _handleKeyDownButton(event: KeyboardEvent) {
     if (this._handleTabKey(event)) return;
-    if (this._openListBoxByKey(event.key)) return;
-    const keyCode = event.key;
-    event?.preventDefault();
-    switch (keyCode) {
-      case "Enter":
-      case " ":
-        this._closeListBoxByKey();
-        break;
-      case "Escape":
-        if (!this._listBoxVisible) break;
-        this._closeListBoxByKey();
-        break;
-      case "Up":
-      case "ArrowUp":
-      case "Down":
-      case "ArrowDown": {
-        event.preventDefault();
-        this._handleKeyUpDownListBox(keyCode);
-        break;
-      }
-      case "Home":
-        event.preventDefault();
-        this._listBoxEl.highlightFirstItem();
-        this._listBoxEl.scrollToTop();
-        break;
-      case "End":
-        event.preventDefault();
-        this._listBoxEl.highlightLastItem();
-        this._listBoxEl.scrollToBottom();
-        break;
-      default:
-        break;
-    }
-  }
 
-  private _handleKeyUpDownListBox(key: string) {
-    if (key === "ArrowUp") this._listBoxEl.highlightPrevItem();
-    if (key === "ArrowDown") this._listBoxEl.highlightNextItem();
-    this._listBoxEl.scrollToView();
-    const value = this._listBoxEl.getHighlightValue();
-    this._actionUpdateInputValue(value || "");
+    event.preventDefault();
+    event.stopPropagation();
+    if (this._openListBoxByKey(event.key)) return;
+
+    this._handleDefaultKeyButton(event.key);
   }
 
   private _handleBlurButton() {
-    this._listBoxVisible = false;
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
@@ -256,33 +203,46 @@ export class BaseTime extends KucBase {
   }
 
   private _openListBoxByKey(keyCode: string) {
-    if (
-      ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1 &&
-      !this._listBoxVisible
-    ) {
-      this._listBoxVisible = true;
-      return true;
-    }
-    return false;
+    const isSupportedKey =
+      ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1;
+    if (!isSupportedKey || this._listBoxVisible) return false;
+
+    this._doFocusListBox = true;
+    this._listBoxVisible = true;
+    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
+    return true;
   }
 
-  private _closeListBoxByKey() {
-    this._listBoxVisible = false;
+  private _handleDefaultKeyButton(keyCode: string) {
+    const isNumber = /^[0-9]$/i.test(keyCode);
+    if (!isNumber || this.value !== "") return;
+
+    const newValue = this._computeNumberKeyValueHours(keyCode);
+    this._actionUpdateInputValue(newValue);
     this._hoursEl.select();
   }
 
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this._closeListBox();
+    this._handleBlurButton();
+    this._hoursEl.select();
+    if (!event.detail.value) return;
+
     const listboxVal = event.detail.value;
     this._actionUpdateInputValue(listboxVal);
-    this._inputFocusEl?.blur();
-    this._handleBlurButton();
+  }
+
+  private _handleListBoxFocusChange(event: CustomEvent) {
+    const listBoxValue = event.detail.value;
+    const times = formatInputValueToTimeValue(listBoxValue);
+    this._actionUpdateInputValue(times);
   }
 
   private _handleFocusInput(event: Event) {
     this._inputFocusEl = event.target as HTMLInputElement;
-    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
+    this._inputGroupEl.classList.add("kuc-base-time__group--focus");
   }
 
   private _handleBlurInput(event: FocusEvent) {
@@ -294,10 +254,18 @@ export class BaseTime extends KucBase {
       [this._hoursEl, this._minutesEl, this._suffixEl].indexOf(newTarget) > -1
     )
       return;
-    this._listBoxVisible = false;
+
+    this._closeListBox();
+    this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
   private _handleClickInput(event: Event) {
+    event.stopPropagation();
+    if (this.value === "") {
+      this._toggleEl.focus();
+      this._openListBox();
+      return;
+    }
     const input = event.target as HTMLInputElement;
     input.select();
     this._openListBox();
@@ -309,60 +277,62 @@ export class BaseTime extends KucBase {
   }
 
   private _handleKeyDownInput(event: KeyboardEvent) {
+    this._closeListBox();
     if (this._handleTabKey(event)) return;
+
     this._handleSupportedKey(event);
   }
 
   private _handleSupportedKey(event: KeyboardEvent) {
     event.preventDefault();
-    const input = event.target as HTMLInputElement;
-    const range = input.getAttribute("aria-label") || "";
     const keyCode = event.key;
     let newValue;
     switch (keyCode) {
       case "Enter":
       case "ArrowRight":
-        this._actionSelectNextRange(range);
+        this._actionSelectNextRange();
         break;
       case "ArrowLeft":
-        this._actionSelectPreviousRange(range);
+        this._actionSelectPreviousRange();
         break;
       case "ArrowUp":
-        newValue = this._computeArrowUpDownValue(range, 1);
-        this._actionUpdateInputValue(newValue, input);
+        newValue = this._computeArrowUpDownValue(1);
+        this._actionUpdateInputValue(newValue);
         break;
       case "ArrowDown":
-        newValue = this._computeArrowUpDownValue(range, -1);
-        this._actionUpdateInputValue(newValue, input);
+        newValue = this._computeArrowUpDownValue(-1);
+        this._actionUpdateInputValue(newValue);
+        break;
+      case "Backspace":
+      case "Delete":
+        newValue = "";
+        this._actionUpdateInputValue(newValue);
+        this._toggleEl.focus();
         break;
       default:
-        newValue = this._computeDefaultKeyValue(range, keyCode);
-        this._actionUpdateInputValue(newValue, input);
+        newValue = this._computeDefaultKeyValue(keyCode);
+        this._actionUpdateInputValue(newValue);
         break;
     }
   }
 
-  private _actionUpdateInputValue(newValue: string, input?: HTMLInputElement) {
-    const oldValue = this._formatKeyDownValue();
-    if (oldValue === newValue) return;
-    const { hours, minutes, suffix } = this._separateInputValue(newValue);
-    if (this.hour12) {
-      this._suffix = this._suffixEl.value = suffix;
-    }
-    this._hours = this._hoursEl.value = hours;
-    this._minutes = this._minutesEl.value = minutes;
-    this.value = newValue;
-    input?.select();
-    this._dispatchEventTimeChange(newValue, oldValue);
+  private _actionUpdateInputValue(newValue: string) {
+    const oldValue =
+      this.value === "" ? this.value : this._formatKeyDownValue();
+    const oldValueProp = formatInputValueToTimeValue(oldValue);
+    const newValueProp = formatInputValueToTimeValue(newValue);
+    if (oldValueProp === newValueProp) return;
+    this.value = newValueProp;
+    this._dispatchEventTimeChange(newValueProp, oldValueProp);
   }
 
-  private _computeArrowUpDownValue(range: string, changeStep: number) {
-    if (range === "hours") {
+  private _computeArrowUpDownValue(changeStep: number) {
+    if (this._inputFocusEl === this._hoursEl)
       return this._computeArrowUpDownHourValue(changeStep);
-    }
-    if (range === "minutes") {
+
+    if (this._inputFocusEl === this._minutesEl)
       return this._computeArrowUpDownMinuteValue(changeStep);
-    }
+
     return this._computeKeyDownSuffixValue();
   }
 
@@ -374,6 +344,9 @@ export class BaseTime extends KucBase {
     }
     if (key !== "a" && key !== "p") return this._formatKeyDownValue();
     const newSuffix = key === "a" ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
+    if (this.value === "") {
+      this._hoursEl.select();
+    }
     return this._formatKeyDownValue({ suffix: newSuffix });
   }
 
@@ -398,29 +371,44 @@ export class BaseTime extends KucBase {
     return this._formatKeyDownValue({ minutes: newMinutes.toString() });
   }
 
-  private _computeDefaultKeyValue(range: string, key: string) {
+  private _computeDefaultKeyValue(key: string) {
     const isNumber = /^[0-9]$/i.test(key);
-    if (isNumber) {
-      return this._computeNumberKeyValue(range, key);
-    }
-    if (range === TIME_SUFFIX.AM || range === TIME_SUFFIX.PM) {
+    if (isNumber) return this._computeNumberKeyValue(key);
+
+    if (this._inputFocusEl === this._suffixEl)
       return this._computeKeyDownSuffixValue(key);
-    }
+
     return this._formatKeyDownValue();
   }
 
-  private _computeNumberKeyValue(range: string, key: string) {
-    if (range === "minutes") {
-      const previousMinutes = this._getPreviousMinutes(this._minutes);
-      const newMinutes = padStart(previousMinutes + key);
-      return this._formatKeyDownValue({ minutes: newMinutes });
-    }
-    if (range === "hours") {
-      const previousHours = this._getPreviousHours(this._hours, key);
-      const newHours = padStart(parseInt(previousHours, 10) + key);
-      return this._formatKeyDownValue({ hours: newHours });
-    }
+  private _computeNumberKeyValue(key: string) {
+    if (this._inputFocusEl === this._minutesEl)
+      return this._computeNumberKeyValueMinutes(key);
+
+    if (this._inputFocusEl === this._hoursEl)
+      return this._computeNumberKeyValueHours(key);
+
     return this._formatKeyDownValue();
+  }
+
+  private _computeNumberKeyValueMinutes(keyCode: string) {
+    const previousMinutes = this._getPreviousMinutes(this._minutes);
+    const newMinutes = padStart(previousMinutes + keyCode);
+    if (this.value === "") {
+      this._hoursEl.select();
+      return this._computeNumberKeyValueHours(keyCode);
+    }
+
+    return this._formatKeyDownValue({ minutes: newMinutes });
+  }
+
+  private _computeNumberKeyValueHours(keyCode: string) {
+    const previousHours = this._getPreviousHours(this._hours, keyCode);
+    const newHours = padStart(previousHours + keyCode);
+    if (this.value === "")
+      return this._formatKeyDownValue({ hours: newHours, minutes: "00" });
+
+    return this._formatKeyDownValue({ hours: newHours });
   }
 
   private _getPreviousMinutes(minutes: string) {
@@ -442,22 +430,22 @@ export class BaseTime extends KucBase {
     return previousHours;
   }
 
-  private _actionSelectNextRange(range: string) {
-    if (range === "hours") {
+  private _actionSelectNextRange() {
+    if (this._inputFocusEl === this._hoursEl) {
       this._minutesEl.select();
       return;
     }
-    if (this.hour12 && range === "minutes") {
+    if (this.hour12 && this._inputFocusEl === this._minutesEl) {
       this._suffixEl.select();
     }
   }
 
-  private _actionSelectPreviousRange(range: string) {
-    if (range === TIME_SUFFIX.AM || range === TIME_SUFFIX.PM) {
+  private _actionSelectPreviousRange() {
+    if (this._inputFocusEl === this._suffixEl) {
       this._minutesEl.select();
       return;
     }
-    if (range === "minutes") {
+    if (this._inputFocusEl === this._minutesEl) {
       this._hoursEl.select();
     }
   }
@@ -470,16 +458,6 @@ export class BaseTime extends KucBase {
     dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 
-  private _separateInputValue(time: string) {
-    const indexColon = time.indexOf(":");
-    const indexSpace = time.indexOf(" ");
-    const hours = time.substring(0, indexColon);
-    const minutes = time.substr(indexColon + 1, this._timeLength);
-    const suffix =
-      indexSpace !== -1 ? time.substr(indexSpace + 1, this._timeLength) : "";
-    return { hours, minutes, suffix, indexColon };
-  }
-
   private _formatKeyDownValue(
     props: {
       hours?: string;
@@ -487,14 +465,70 @@ export class BaseTime extends KucBase {
       suffix?: string;
     } = { hours: this._hours, minutes: this._minutes, suffix: this._suffix }
   ) {
-    return `${padStart(props.hours || this._hours)}:${padStart(
-      props.minutes || this._minutes
-    )} ${props.suffix || this._suffix}`;
+    const hours = props.hours || this._hours;
+    const minutes = props.minutes || this._minutes;
+    const suffix = props.suffix || this._suffix;
+    const timeStr = `${padStart(hours)}:${padStart(minutes)}`;
+    if (!suffix) return timeStr;
+
+    return `${timeStr} ${suffix}`;
   }
 
   private _openListBox() {
     if (this._listBoxVisible) return;
+
+    this._doFocusListBox = false;
     this._listBoxVisible = true;
+  }
+
+  private _closeListBox() {
+    this._doFocusListBox = false;
+    this._listBoxVisible = false;
+  }
+
+  private _getColonTemplate() {
+    return this._hours
+      ? html`
+          <span class="kuc-base-time__group__colon">:</span>
+        `
+      : "";
+  }
+
+  private _getSuffixTemplate() {
+    return this.hour12
+      ? html`
+          <input
+            class="kuc-base-time__group__suffix"
+            role="spinbutton"
+            tabindex="${this._suffix ? "0" : "-1"}"
+            aria-label="${this._suffix || "suffix"}"
+            @focus="${this._handleFocusInput}"
+            @blur="${this._handleBlurInput}"
+            @click="${this._handleClickInput}"
+            @keydown="${this._handleKeyDownInput}"
+            ?disabled="${this.disabled}"
+            value="${this._suffix}"
+          />
+        `
+      : "";
+  }
+
+  private _getListBoxTemplate() {
+    return this._listBoxVisible
+      ? html`
+          <kuc-base-datetime-listbox
+            maxHeight="165"
+            aria-hidden="${!this._listBoxVisible}"
+            class="kuc-base-time__group__listbox"
+            .items="${this._listBoxItems || []}"
+            .value="${this._valueLabel}"
+            .doFocus="${this._doFocusListBox}"
+            @kuc:listbox-click="${this._handleChangeListBox}"
+            @kuc:listbox-blur="${this._handleBlurListBox}"
+            @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
+          ></kuc-base-datetime-listbox>
+        `
+      : "";
   }
 
   private _getStyleTagTemplate() {
@@ -506,6 +540,7 @@ export class BaseTime extends KucBase {
           justify-content: center;
           -webkit-box-align: center;
           align-items: center;
+          max-width: 85px;
           width: 85px;
           height: 40px;
           color: #333333;
