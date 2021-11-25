@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
   KucBase,
@@ -6,9 +6,10 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
+import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
-import { validateProps } from "../base/validator";
+import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import { validateProps, validateTimeValue } from "../base/validator";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -55,10 +56,23 @@ export class TimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) {
+      if (!validateTimeValue(this.value)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this.value = timeValueConverter(this.value);
+    }
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-time-picker__group">
+      <fieldset
+        class="kuc-time-picker__group"
+        aria-describedby="${this._GUID}-error"
+      >
         <legend class="kuc-time-picker__group__label">
           <span class="kuc-time-picker__group__label__text">${this.label}</span
           ><!--
@@ -137,6 +151,9 @@ export class TimePicker extends KucBase {
           color: #333333;
           display: inline-block;
           vertical-align: top;
+        }
+        .kuc-time-picker__group__input {
+          position: relative;
         }
         kuc-time-picker[hidden] {
           display: none;

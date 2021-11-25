@@ -63,6 +63,57 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
   return timeOption;
 };
 
+export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
+  const times = value.split(":");
+  const hours = parseInt(times[0], 10);
+  const minutes = parseInt(times[1], 10);
+  const newHours = hours % MAX_HOURS24;
+  if (isNaN(newHours) || isNaN(minutes)) {
+    return {
+      hours: "",
+      minutes: "",
+      suffix: ""
+    };
+  }
+  if (hour12) {
+    return convertTime24To12(hours, minutes);
+  }
+  return {
+    hours: padStart(newHours),
+    minutes: padStart(minutes),
+    suffix: ""
+  };
+};
+
+export const convertTime24To12 = (hours: number, minutes: number) => {
+  const suffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+  let newHours = hours % MAX_HOURS12;
+  newHours = newHours === 0 ? MAX_HOURS12 : newHours;
+  return {
+    hours: padStart(newHours),
+    minutes: padStart(minutes),
+    suffix: suffix
+  };
+};
+
+export const formatInputValueToTimeValue = (inputValue: string) => {
+  const [time, ampm] = inputValue.split(" ");
+  const [hours, minutes] = time.split(":");
+  if (!ampm) return inputValue;
+  const newHour = convertTime12To24(hours, ampm);
+  return `${newHour}:${minutes}`;
+};
+
+export const convertTime12To24 = (hours: string, suffix: string) => {
+  const currentHour = parseInt(hours, 10);
+  if (suffix === TIME_SUFFIX.PM) {
+    const newHours = currentHour === MAX_HOURS12 ? 12 : currentHour + 12;
+    return padStart(newHours);
+  }
+  const newHours = currentHour === MAX_HOURS12 ? 0 : currentHour;
+  return padStart(newHours);
+};
+
 const getDateObj = (date: Date) => {
   const tmpDate = new Date(date);
   const year = tmpDate.getFullYear();
