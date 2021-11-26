@@ -16,7 +16,7 @@ export function validateProps<Type>(props: Type) {
 }
 
 export function validateDateValue(value: string | undefined) {
-  const regex = /^(\d{1,4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
+  const regex = /(^(\d{1,4})-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$)|(^(\d{1,4})$)|(^(\d{1,4})-(0?[1-9]|1[0-2])$)/g;
   if (value === "" || value === undefined || regex.test(value)) return true;
 
   return false;
