@@ -35,11 +35,11 @@ Here is a list of properties that can be used for modifying the component:
 
 > *1: You can define duplicated value in value and Item.value. In case defining duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
 > Example: When defining `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`<br>
-> - If setting `value` as below:<br>
+> - If setting `value` as follows:<br>
 >   - ['fruit', 'vegetable']: The first and third items will be selected.<br>
 >   - ['meat', 'other']: No item will be selected.<br>
 >
-> - If don't setting `value` and setting `selectedIndex` as below:<br>
+> - If don't setting `value` and setting `selectedIndex` as follows:<br>
 >   - [0, 1]: The first and second items will be selected.<br>
 >   - [98, 99]: No item will be selected.
 
