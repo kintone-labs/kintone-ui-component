@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "desktop/date-picker",
+  title: "desktop/datetime-picker",
   argTypes: {},
   parameters: {
     actions: {
@@ -10,35 +10,36 @@ export default {
     }
   }
 };
-
 const Template = args => {
   const handleDateChange = event => {
     console.log(event);
   };
   return html`
-    <kuc-date-picker
-      .disabled="${args.disabled}"
-      .language="${args.language}"
-      .value="${args.value}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
+    <kuc-datetime-picker
       .className="${args.className}"
       .error="${args.error}"
+      .id="${args.id}"
+      .label="${args.label}"
+      .language="${args.language}"
+      .value="${args.value}"
+      .disabled="${args.disabled}"
+      .hour12="${args.hour12}"
+      .requiredIcon="${args.requiredIcon}"
+      .visible="${args.visible}"
       @change="${handleDateChange}"
-    ></kuc-date-picker>
+    ></kuc-datetime-picker>
   `;
 };
-
 export const Base = Template.bind({});
 Base.args = {
-  className: "date-picker-class",
-  id: "date-picker-id",
-  label: "Date Picker Label",
-  requiredIcon: false,
+  className: "datetime-class",
+  error: "Date and Time error",
+  id: "datetime-id",
+  label: "Date and Time label",
   language: "auto",
-  value: "2021-03-31",
-  visible: true,
-  error: ""
+  value: "2021-2-28",
+  disabled: false,
+  hour12: false,
+  requiredIcon: true,
+  visible: true
 };

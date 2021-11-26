@@ -121,8 +121,9 @@ export class BaseDateTimeHeaderYear extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownYearToggle(event: Event) {
+  private _handleClickDropdownYearToggle(event: MouseEvent) {
     event.stopPropagation();
+    event.preventDefault();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {

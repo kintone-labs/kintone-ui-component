@@ -34,7 +34,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           type="button"
           tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--today"
-          @click=${this._handleClickCalendarFooterButtonToday}
+          @click="${this._handleClickCalendarFooterButtonToday}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.today}
         </button>
@@ -43,7 +43,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           type="button"
           tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
-          @click=${this._handleClickCalendarFooterButtonNone}
+          @click="${this._handleClickCalendarFooterButtonNone}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
