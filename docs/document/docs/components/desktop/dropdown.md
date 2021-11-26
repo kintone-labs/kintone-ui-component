@@ -38,6 +38,7 @@ Here is a list of properties that can be used for modifying the component:
 > If setting `value` as below:<br>
 > - 'fruit': The first mapped value item in Item.value will be selected.<br>
 > - 'other': No item will be selected.<br>
+>
 > If don't setting `value` and setting `selectedIndex` as below:<br>
 > - 1: The second item will be selected.<br>
 > - 99: No item will be selected.
