@@ -38,6 +38,7 @@ Here is a list of properties that can be used for modifying the component:
 > If setting `value` as below:<br>
 > - ['fruit', 'vegetable']: The first and third items will be selected.<br>
 > - ['meat', 'other']: No item will be selected.<br>
+>
 > If don't setting `value` and setting `selectedIndex` as below:<br>
 > - [0, 1]: The first and second items will be selected.<br>
 > - [98, 99]: No item will be selected.
