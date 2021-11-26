@@ -61,9 +61,9 @@ export class BaseDateTimeCalendarHeader extends KucBase {
         >
           ${getLeftArrowIconSvgTemplate()}
         </button>
-        <span class="kuc-base-datetime-calendar-header__group__center"
-          >${this._getYearMonthTemplate()}</span
-        >
+        <div class="kuc-base-datetime-calendar-header__group__center">
+          ${this._getYearMonthTemplate()}
+        </div>
         <button
           aria-label="next month"
           type="button"

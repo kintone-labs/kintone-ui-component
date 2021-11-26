@@ -34,7 +34,6 @@ export class DatePicker extends KucBase {
   @property({ type: String }) language = "auto";
   @property({ type: String }) value? = getTodayStringByLocale();
   private _GUID: string;
-  private _locale = getLocale("en");
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -51,9 +50,6 @@ export class DatePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("language")) {
-      this._locale = getLocale(this.language);
-    }
     if (changedProperties.has("value")) {
       if (!validateDateValue(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
