@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
-import { getTodayStringByLocale, getLocale } from "../base/datetime/utils";
+import { getTodayStringByLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,

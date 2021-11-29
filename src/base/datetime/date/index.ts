@@ -22,9 +22,6 @@ export class BaseDate extends KucBase {
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
 
-  @query(".kuc-base-date-calendar")
-  private _dateTimeCalendar!: BaseDateTimeCalendar;
-
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
 
@@ -44,6 +41,7 @@ export class BaseDate extends KucBase {
     }
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
+      this._updateValueProp();
     }
     if (changedProperties.has("value")) {
       this._updateValueProp();
@@ -66,7 +64,6 @@ export class BaseDate extends KucBase {
         ?disabled="${this.disabled}"
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
-        @keydown="${this._handleKeyDownInput}"
       />
       <button
         aria-haspopup="menu"
@@ -257,12 +254,6 @@ export class BaseDate extends KucBase {
   private _handleTabKey(event: KeyboardEvent) {
     if (event.key === "Tab") return true;
     return false;
-  }
-
-  private _handleKeyDownInput(event: KeyboardEvent) {
-    this._closeCalendar();
-    if (this._handleTabKey(event)) return;
-    this._handleSupportedKey(event);
   }
 
   private _handleKeyDownButton(event: KeyboardEvent) {
