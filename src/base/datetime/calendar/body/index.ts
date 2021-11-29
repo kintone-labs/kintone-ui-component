@@ -140,7 +140,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    const date = new Date(this._getValueItemFocused() || this.value);
+    const date = new Date(this.value || this._getValueItemFocused());
     if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
