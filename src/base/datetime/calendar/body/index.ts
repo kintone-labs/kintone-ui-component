@@ -172,14 +172,11 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return "";
   }
 
-  private _getDateClass(dateParts: string[]) {
+  private _getDateClass(dateParts: string[], isThisMonth: boolean) {
+    if (isThisMonth) return "";
     const isToday = this._isToday(dateParts);
     if (isToday)
       return " kuc-base-datetime-calendar-body__table__date__button--today";
-
-    const isThisMonth = parseInt(dateParts[1], 10) === this.month;
-    if (isThisMonth) return "";
-
     return " kuc-base-datetime-calendar-body__table__date__button--other-month";
   }
 
@@ -239,23 +236,28 @@ export class BaseDateTimeCalendarBody extends KucBase {
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
+                const isThisMonth = parseInt(dateParts[1], 10) === this.month;
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__table__date${this
-                      .value === weekDate.attr || isSameDate
+                    class="kuc-base-datetime-calendar-body__table__date${(this
+                      .value === weekDate.attr ||
+                      isSameDate) &&
+                    isThisMonth
                       ? "--selected"
                       : ""}"
                   >
                     <button
                       aria-current="${this.value === weekDate.attr}"
-                      tabindex="${weekDate.attr === today ||
-                      this.value === weekDate.attr ||
-                      isSameDate
+                      tabindex="${(weekDate.attr === today ||
+                        this.value === weekDate.attr ||
+                        isSameDate) &&
+                      isThisMonth
                         ? "0"
                         : "-1"}"
                       class="kuc-base-datetime-calendar-body__table__date__button${this._getDateClass(
-                        dateParts
+                        dateParts,
+                        isThisMonth
                       )}"
                       data-date="${weekDate.attr}"
                       @click="${this._handleClickDateBtn}"
@@ -375,7 +377,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
           color: #333333;
         }
         .kuc-base-datetime-calendar-body__table__date
-          .kuc-base-datetime-calendar-body__table__date__button--other-month {
+          .kuc-base-datetime-calendar-body__table__date__button--other-month,
+        .kuc-base-datetime-calendar-body__table__date
+          .kuc-base-datetime-calendar-body__table__date__button--other-month:hover {
           color: #d4d7d7;
         }
       </style>
