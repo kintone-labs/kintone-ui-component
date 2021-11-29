@@ -1,14 +1,17 @@
-import { html } from "lit";
-import { property } from "lit/decorators.js";
+import { html, PropertyValues } from "lit";
+import { property, state } from "lit/decorators.js";
+import { generateGUID, KucBase } from "../base/kuc-base";
 import {
-  CustomEventDetail,
-  dispatchCustomEvent,
-  generateGUID,
-  KucBase
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
-import { getTodayStringByLocale } from "../base/datetime/utils";
+  visiblePropConverter,
+  dateValueConverter,
+  timeValueConverter
+} from "../base/converter";
+import {
+  validateProps,
+  validateDateValue,
+  validateTimeValue
+} from "../base/validator";
+import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
 import "../base/datetime/time";
@@ -28,11 +31,11 @@ type DateTimePickerProps = {
 
 export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
+  @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) language = "auto";
-  @property({ type: String }) value? = getTodayStringByLocale();
+  @property({ type: String }) language = "en";
+  @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -44,6 +47,12 @@ export class DateTimePicker extends KucBase {
   })
   visible = true;
 
+  @state()
+  private _dateValue = "";
+
+  @state()
+  private _timeValue = "";
+
   private _GUID: string;
 
   constructor(props?: DateTimePickerProps) {
@@ -53,10 +62,43 @@ export class DateTimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) {
+      const dateTime = this._getDateTimeValue(this.value);
+      if (
+        !dateTime ||
+        !validateDateValue(dateTime.date) ||
+        !validateTimeValue(dateTime.time)
+      ) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+
+      this._dateValue = dateValueConverter(dateTime.date);
+      this._timeValue = timeValueConverter(dateTime.time);
+    }
+    super.update(changedProperties);
+  }
+
+  private _getDateTimeValue(value: string) {
+    const dateTime = value.split("T");
+    if (dateTime.length > 2 || value.indexOf("T") === value.length - 1)
+      return false;
+
+    const date = dateTime[0];
+    const time = dateTime[1];
+    if (!time) return { date, time: "00:00" };
+
+    const [hours, minutes] = time.split(":");
+    return { date, time: `${hours}:${minutes || "00"}` };
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-datetime-picker__group">
+      <fieldset
+        class="kuc-datetime-picker__group"
+        aria-describedby="${this._GUID}-error"
+      >
         <legend
           class="kuc-datetime-picker__group__label"
           ?hidden="${!this.label}"
@@ -71,8 +113,16 @@ export class DateTimePicker extends KucBase {
           >
         </legend>
         <div class="kuc-datetime-picker__group__inputs">
-          <kuc-base-date value="2021-11-12"></kuc-base-date
-          ><kuc-base-time value="08:30"></kuc-base-time>
+          <kuc-base-date
+            .value="${this._dateValue}"
+            .language="${this.language}"
+            .disabled="${this.disabled}"
+          ></kuc-base-date
+          ><kuc-base-time
+            .value="${this._timeValue}"
+            .hour12="${this.hour12}"
+            .disabled="${this.disabled}"
+          ></kuc-base-time>
         </div>
         <div
           class="kuc-datetime-picker__group__error"
@@ -121,7 +171,7 @@ export class DateTimePicker extends KucBase {
           margin: 0px;
         }
         .kuc-datetime-picker__group__label {
-          display: inline-block;
+          position: relative;
           padding: 4px 0px 8px 0px;
           white-space: nowrap;
         }
@@ -133,10 +183,10 @@ export class DateTimePicker extends KucBase {
           font-size: 14px;
         }
         .kuc-datetime-picker__group__label__required-icon {
-          margin-left: 4px;
-          line-height: 1;
-          vertical-align: -3px;
+          position: absolute;
+          right: -12px;
           color: #e74c3c;
+          top: 2px;
           font-size: 20px;
         }
         .kuc-datetime-picker__group__label__required-icon[hidden] {

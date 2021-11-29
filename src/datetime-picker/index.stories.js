@@ -3,7 +3,19 @@ import { html } from "lit-html";
 
 export default {
   title: "desktop/datetime-picker",
-  argTypes: {},
+  argTypes: {
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh"],
+      control: { type: "select" }
+    },
+    value: {
+      name: "value",
+      control: {
+        type: "text"
+      }
+    }
+  },
   parameters: {
     actions: {
       handles: ["change"]
@@ -36,8 +48,8 @@ Base.args = {
   error: "Date and Time error",
   id: "datetime-id",
   label: "Date and Time label",
-  language: "auto",
-  value: "2021-2-28",
+  language: "en",
+  value: "2021-12-12T06:30:30",
   disabled: false,
   hour12: false,
   requiredIcon: true,
