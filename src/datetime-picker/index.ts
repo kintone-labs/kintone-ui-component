@@ -6,11 +6,7 @@ import {
   dateValueConverter,
   timeValueConverter
 } from "../base/converter";
-import {
-  validateProps,
-  validateDateValue,
-  validateTimeValue
-} from "../base/validator";
+import { validateProps, validateDateTimeValue } from "../base/validator";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -65,31 +61,13 @@ export class DateTimePicker extends KucBase {
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
       const dateTime = this._getDateTimeValue(this.value);
-      if (
-        !dateTime ||
-        !validateDateValue(dateTime.date) ||
-        !validateTimeValue(dateTime.time)
-      ) {
+      if (!validateDateTimeValue(dateTime.date, dateTime.time)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-
       this._dateValue = dateValueConverter(dateTime.date);
       this._timeValue = timeValueConverter(dateTime.time);
     }
     super.update(changedProperties);
-  }
-
-  private _getDateTimeValue(value: string) {
-    const dateTime = value.split("T");
-    if (dateTime.length > 2 || value.indexOf("T") === value.length - 1)
-      return false;
-
-    const date = dateTime[0];
-    const time = dateTime[1];
-    if (!time) return { date, time: "00:00" };
-
-    const [hours, minutes] = time.split(":");
-    return { date, time: `${hours}:${minutes || "00"}` };
   }
 
   render() {
@@ -134,6 +112,19 @@ export class DateTimePicker extends KucBase {
         </div>
       </fieldset>
     `;
+  }
+
+  private _getDateTimeValue(value: string) {
+    const dateTime = value.split("T");
+    const date = dateTime[0];
+    const time = dateTime[1];
+    if (value.indexOf("T") === value.length - 1 || dateTime.length > 2)
+      return { date, time: "" };
+
+    if (!time) return { date, time: "00:00" };
+
+    const [hours, minutes] = time.split(":");
+    return { date, time: `${hours}:${minutes || "00"}` };
   }
 
   private _getStyleTagTemplate() {

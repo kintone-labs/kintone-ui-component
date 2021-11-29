@@ -28,3 +28,11 @@ export function validateTimeValue(value: string) {
 
   return false;
 }
+
+export function validateDateTimeValue(date: string, time: string) {
+  const regexDate = /(^(\d{4})-(0[0-9]|1[0-2])-(0[1-9]|([12][0-9]|3[01]))$)|(^(\d{4})$)|(^(\d{4})-(0[0-9]|1[0-2])$)/g;
+  const regexTime = /(^[01][0-9]|2[0-3])$|(^([01][0-9]|2[0-3]):([0-5][0-9]))$|(^([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])$/;
+  if (!regexDate.test(date) || !regexTime.test(time)) return false;
+
+  return true;
+}
