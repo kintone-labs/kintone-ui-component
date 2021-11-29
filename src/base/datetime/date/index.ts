@@ -187,7 +187,7 @@ export class BaseDate extends KucBase {
       };
       this._calendarValue = "";
       this._inputValue = newValue;
-      this.value = undefined;
+      this.value = newValue;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
     }

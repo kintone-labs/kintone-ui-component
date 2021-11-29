@@ -33,7 +33,6 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
   @property({ type: String }) value? = getTodayStringByLocale();
-  private _GUID: string;
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -41,6 +40,8 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
+  private _GUID: string;
 
   constructor(props?: DatePickerProps) {
     super();
@@ -184,11 +185,10 @@ export class DatePicker extends KucBase {
       oldValue: this.value,
       value: ""
     };
+    this.error = "";
     if (event.detail.error) {
       this.error = event.detail.error;
-      this.value = undefined;
     } else {
-      this.error = "";
       this.value = event.detail.value;
     }
     eventDetail.value = this.value;
