@@ -90,7 +90,7 @@ export class BaseTime extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-base-time__group">
+      <div class="kuc-base-time__group" @click="${this._handleClickInputGroup}">
         <input
           type="text"
           class="kuc-base-time__group__hours"
@@ -140,6 +140,11 @@ export class BaseTime extends KucBase {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
+  }
+
+  private _handleClickInputGroup(event: Event) {
+    event.stopPropagation();
+    this._hoursEl.click();
   }
 
   private _handleBlurListBox(event: Event) {
