@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
-import { getTodayStringByLocale, getLocale } from "../base/datetime/utils";
+import { getTodayStringByLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -33,8 +33,6 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
   @property({ type: String }) value? = getTodayStringByLocale();
-  private _GUID: string;
-  private _locale = getLocale("en");
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -42,6 +40,8 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
+  private _GUID: string;
 
   constructor(props?: DatePickerProps) {
     super();
@@ -51,9 +51,6 @@ export class DatePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("language")) {
-      this._locale = getLocale(this.language);
-    }
     if (changedProperties.has("value")) {
       if (!validateDateValue(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
@@ -143,6 +140,7 @@ export class DatePicker extends KucBase {
           display: inline-block;
           padding: 4px 0px 8px 0px;
           white-space: nowrap;
+          position: relative;
         }
         .kuc-date-picker__group__label[hidden] {
           display: none;
@@ -153,6 +151,7 @@ export class DatePicker extends KucBase {
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
+          position: absolute;
         }
         .kuc-date-picker__group__label__required-icon[hidden] {
           display: none;
@@ -188,11 +187,10 @@ export class DatePicker extends KucBase {
       oldValue: this.value,
       value: ""
     };
+    this.error = "";
     if (event.detail.error) {
       this.error = event.detail.error;
-      this.value = undefined;
     } else {
-      this.error = "";
       this.value = event.detail.value;
     }
     eventDetail.value = this.value;
