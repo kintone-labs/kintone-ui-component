@@ -30,7 +30,7 @@ export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) language = "en";
+  @property({ type: String }) language = "auto";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
@@ -93,7 +93,7 @@ export class DateTimePicker extends KucBase {
         <div class="kuc-datetime-picker__group__inputs">
           <kuc-base-date
             .value="${this._dateValue}"
-            .language="${this.language}"
+            .language="${this._getLanguage()}"
             .disabled="${this.disabled}"
           ></kuc-base-date
           ><kuc-base-time
@@ -125,6 +125,16 @@ export class DateTimePicker extends KucBase {
 
     const [hours, minutes] = time.split(":");
     return { date, time: `${hours}:${minutes || "00"}` };
+  }
+
+  private _getLanguage() {
+    const langs = ["en", "ja", "zh"];
+    if (langs.indexOf(this.language) !== -1) return this.language;
+
+    if (langs.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
   }
 
   private _getStyleTagTemplate() {

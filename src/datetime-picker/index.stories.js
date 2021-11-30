@@ -6,7 +6,7 @@ export default {
   argTypes: {
     language: {
       name: "language",
-      options: ["en", "ja", "zh"],
+      options: ["en", "ja", "zh", "auto"],
       control: { type: "select" }
     },
     value: {
@@ -48,7 +48,7 @@ Base.args = {
   error: "Date and Time error",
   id: "datetime-id",
   label: "Date and Time label",
-  language: "en",
+  language: "auto",
   value: "2021-12-12T06:30:30",
   disabled: false,
   hour12: false,
