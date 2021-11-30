@@ -1,7 +1,6 @@
 import { html, svg } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import DOMPurify from "dompurify";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
@@ -50,9 +49,6 @@ export class Dialog extends KucBase {
   }
 
   render() {
-    const cleanContent = DOMPurify.sanitize(this.content);
-    const cleanFooter = DOMPurify.sanitize(this.footer);
-
     return html`
       ${this._getStyleTagTemplate()}
       <span
@@ -78,10 +74,14 @@ export class Dialog extends KucBase {
           </button>
         </div>
         <div class="kuc-dialog__dialog__content">
-          ${unsafeHTML(cleanContent)}
+          ${this.content instanceof HTMLElement
+            ? this.content
+            : unsafeHTML(this.content)}
         </div>
         <div class="kuc-dialog__dialog__footer">
-          ${unsafeHTML(cleanFooter)}
+          ${this.footer instanceof HTMLElement
+            ? this.footer
+            : unsafeHTML(this.footer)}
         </div>
       </div>
       <span
@@ -167,7 +167,7 @@ export class Dialog extends KucBase {
         }
 
         .kuc-dialog__dialog {
-          min-width: 600px;
+          min-width: 320px;
           font-size: 20px;
           background-color: #ffffff;
 
