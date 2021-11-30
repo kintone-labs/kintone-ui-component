@@ -67,7 +67,15 @@ export class BaseDateTimeCalendarBody extends KucBase {
     super.update(changedProperties);
   }
 
-  private _handleClickDocument() {
+  private _handleClickDocument(event: Event) {
+    const target = event.target as HTMLElement;
+    if (
+      target &&
+      target.className.indexOf(
+        "kuc-base-datetime-calendar-body__table__header"
+      ) > -1
+    )
+      return;
     dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
   }
 
