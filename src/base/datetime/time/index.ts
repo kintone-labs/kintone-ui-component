@@ -33,8 +33,7 @@ export class BaseTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
 
   /**
-   * Considering name again
-   * and change @state to @property to public.
+   * Please consider name again and change @state to @property when publishing the function.
    */
   @state()
   private _timeStep = 30;
