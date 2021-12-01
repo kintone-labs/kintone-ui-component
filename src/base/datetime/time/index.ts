@@ -309,9 +309,8 @@ export class BaseTime extends KucBase {
         break;
       case "Backspace":
       case "Delete":
-        newValue = "";
+        newValue = this._computeDeleteValue();
         this._actionUpdateInputValue(newValue);
-        this._toggleEl.focus();
         break;
       default:
         newValue = this._computeDefaultKeyValue(keyCode);
@@ -328,6 +327,16 @@ export class BaseTime extends KucBase {
     if (oldValueProp === newValueProp) return;
     this.value = newValueProp;
     this._dispatchEventTimeChange(newValueProp, oldValueProp);
+  }
+
+  private _computeDeleteValue() {
+    if (this._inputFocusEl === this._minutesEl)
+      return this._formatKeyDownValue({ minutes: "00" });
+
+    if (this._inputFocusEl === this._hoursEl)
+      return this._formatKeyDownValue({ hours: "00" });
+
+    return this._formatKeyDownValue();
   }
 
   private _computeArrowUpDownValue(changeStep: number) {
