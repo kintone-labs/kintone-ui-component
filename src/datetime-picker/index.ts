@@ -1,6 +1,11 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { generateGUID, KucBase } from "../base/kuc-base";
+import {
+  generateGUID,
+  KucBase,
+  CustomEventDetail,
+  dispatchCustomEvent
+} from "../base/kuc-base";
 import {
   visiblePropConverter,
   dateValueConverter,
@@ -95,11 +100,13 @@ export class DateTimePicker extends KucBase {
             .value="${this._dateValue}"
             .language="${this._getLanguage()}"
             .disabled="${this.disabled}"
+            @kuc:base-date-change="${this._handleDateChange}"
           ></kuc-base-date
           ><kuc-base-time
             .value="${this._timeValue}"
             .hour12="${this.hour12}"
             .disabled="${this.disabled}"
+            @kuc:base-time-change="${this._handleTimeChange}"
           ></kuc-base-time>
         </div>
         <div
@@ -112,6 +119,45 @@ export class DateTimePicker extends KucBase {
         </div>
       </fieldset>
     `;
+  }
+
+  private _handleDateChange(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.error = "";
+    let newValue = this._dateValue;
+    if (event.detail.error) {
+      this.error = event.detail.error;
+    } else {
+      newValue = event.detail.value;
+    }
+    this._updateDateTimeValue(newValue, "date");
+  }
+
+  private _handleTimeChange(event: CustomEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const newValue = event.detail.value;
+    this._updateDateTimeValue(newValue, "time");
+  }
+
+  private _updateDateTimeValue(newValue: string, type: string) {
+    const oldDateTime = `${this._dateValue}T${this._timeValue}:00`;
+    if (type === "date") {
+      this._dateValue = newValue;
+    } else {
+      this._timeValue = newValue;
+    }
+    let newDateTime = `${this._dateValue}`;
+    if (this._timeValue) {
+      newDateTime += `T${this._timeValue}:00`;
+    }
+    const detail: CustomEventDetail = {
+      value: newDateTime,
+      oldValue: oldDateTime
+    };
+    this.value = newDateTime;
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _getDateTimeValue(value: string) {

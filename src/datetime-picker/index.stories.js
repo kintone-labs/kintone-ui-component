@@ -24,7 +24,7 @@ export default {
 };
 const Template = args => {
   const handleDateChange = event => {
-    console.log(event);
+    // console.log(event);
   };
   return html`
     <kuc-datetime-picker
@@ -45,7 +45,7 @@ const Template = args => {
 export const Base = Template.bind({});
 Base.args = {
   className: "datetime-class",
-  error: "Date and Time error",
+  error: "",
   id: "datetime-id",
   label: "Date and Time label",
   language: "auto",
