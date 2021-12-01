@@ -26,10 +26,36 @@ const Template = args =>
     ></kuc-time-picker>
   `;
 
-export const Base = Template.bind({});
-Base.args = {
+export const BaseHour24 = Template.bind({});
+BaseHour24.args = {
   className: "time-picker-class",
-  error: "time picker error.",
+  error: "",
+  id: "time-picker-id",
+  label: "Time Picker Label",
+  value: "13:15",
+  disabled: false,
+  hour12: false,
+  requiredIcon: false,
+  visible: true
+};
+
+export const BaseHour12 = Template.bind({});
+BaseHour12.args = {
+  className: "time-picker-class",
+  error: "",
+  id: "time-picker-id",
+  label: "Time Picker Label",
+  value: "13:15",
+  disabled: false,
+  hour12: true,
+  requiredIcon: false,
+  visible: true
+};
+
+export const BaseError = Template.bind({});
+BaseError.args = {
+  className: "time-picker-class",
+  error: "TimePicker error",
   id: "time-picker-id",
   label: "Time Picker Label",
   value: "13:15",
