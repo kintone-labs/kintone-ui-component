@@ -33,8 +33,7 @@ export class BaseTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
 
   /**
-   * Considering name again
-   * and change @state to @property to public.
+   * Please consider name again and change @state to @property when publishing the function.
    */
   @state()
   private _timeStep = 30;
@@ -91,7 +90,7 @@ export class BaseTime extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-base-time__group">
+      <div class="kuc-base-time__group" @click="${this._handleClickInputGroup}">
         <input
           type="text"
           class="kuc-base-time__group__hours"
@@ -141,6 +140,11 @@ export class BaseTime extends KucBase {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
+  }
+
+  private _handleClickInputGroup(event: Event) {
+    event.stopPropagation();
+    this._hoursEl.click();
   }
 
   private _handleBlurListBox(event: Event) {
@@ -305,9 +309,8 @@ export class BaseTime extends KucBase {
         break;
       case "Backspace":
       case "Delete":
-        newValue = "";
+        newValue = this._computeDeleteValue();
         this._actionUpdateInputValue(newValue);
-        this._toggleEl.focus();
         break;
       default:
         newValue = this._computeDefaultKeyValue(keyCode);
@@ -324,6 +327,16 @@ export class BaseTime extends KucBase {
     if (oldValueProp === newValueProp) return;
     this.value = newValueProp;
     this._dispatchEventTimeChange(newValueProp, oldValueProp);
+  }
+
+  private _computeDeleteValue() {
+    if (this._inputFocusEl === this._minutesEl)
+      return this._formatKeyDownValue({ minutes: "00" });
+
+    if (this._inputFocusEl === this._hoursEl)
+      return this._formatKeyDownValue({ hours: "00" });
+
+    return this._formatKeyDownValue();
   }
 
   private _computeArrowUpDownValue(changeStep: number) {
