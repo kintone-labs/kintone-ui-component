@@ -70,6 +70,7 @@ export class MobileDropdown extends KucBase {
       this._validateItems();
     }
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
