@@ -197,7 +197,7 @@ class Dropdown extends Control<DropdownProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (!AbstractSingleSelection._hasValidValue(items, value)) {
+    if (!AbstractSingleSelection._hasValidItems(items)) {
       err = Message.common.INVALID_ARGUMENT;
     }
     return err;

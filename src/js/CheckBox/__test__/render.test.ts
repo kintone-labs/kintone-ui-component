@@ -207,20 +207,20 @@ describe('Unit test CheckBox render', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid option.value', () => {
-    expect(() => {
-      // @ts-ignore
-      new CheckBox({
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0],
-            isDisabled: false
-          }
-        ],
-        value: [expectedValues[1]]
-      });
-    }).toThrowError();
+  test('The value will be set as it is with invalid option.value', () => {
+    // @ts-ignore
+    const checkBox = new CheckBox({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+          isDisabled: false
+        }
+      ],
+      value: [expectedValues[1]]
+    });
+    checkBox.render();
+    expect(checkBox.getValue()).toEqual([expectedValues[1]]);
   });
 
   test('throw error with duplicate option.value', () => {

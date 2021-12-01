@@ -203,37 +203,5 @@ describe('Unit test RadioButton react', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid prop type of option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1],
-        }
-      ];
-      // @ts-ignore
-      render(<RadioButton name="Fruit" items={expectedItems} value={[expectedValues[0]]} />);
-    }).toThrowError();
-  });
-
-  test('throw error with invalid prop value of option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1],
-        }
-      ];
-      render(<RadioButton name="Fruit" items={expectedItems} value={expectedValues[2]} />);
-    }).toThrowError();
-  });
 
 });

@@ -115,18 +115,19 @@ describe('Unit test Dropdown render', () => {
     expect(itemsEl).not.toBeVisible();
   });
 
-  test('throw error with invalid option.value not in item list', () => {
-    expect(() => {
-      new Dropdown({
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0]
-          }
-        ],
-        value: expectedValues[1]
-      });
-    }).toThrowError();
+  test('The value will be set as it is with invalid option.value not in item list', () => {
+    const dropdown = new Dropdown({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0]
+        }
+      ],
+      value: expectedValues[1]
+    });
+    dropdown.render();
+    expect(dropdown.getValue()).toBe(expectedValues[1]);
+
   });
 
   test('Throw error with invalid option.items', () => {

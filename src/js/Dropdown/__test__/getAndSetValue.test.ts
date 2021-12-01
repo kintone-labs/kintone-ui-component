@@ -57,26 +57,13 @@ describe('Unit test Dropdown setValue and getValue', () => {
     expect(dropdown.getValue()).toBe(expectedValues[1]);
   });
 
-  test('throw error without value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      // @ts-ignore
-      dropdown.setValue(null);
-    }).toThrowError();
-  });
-
-  test('throw error with nonexistent value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      dropdown.setValue(expectedValues[1]);
-    }).toThrowError();
-  });
-
-  test('throw error with number value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      // @ts-ignore
-      dropdown.setValue(1);
-    }).toThrowError();
+  test('The value will be set as it is with nonexistent value', () => {
+    const dropdown = new Dropdown();
+    dropdown.render();
+    // @ts-ignore
+    dropdown.setValue(null);
+    expect(dropdown.getValue()).toBe(null);
+    dropdown.setValue(expectedValues[1]);
+    expect(dropdown.getValue()).toBe(expectedValues[1]);
   });
 });
