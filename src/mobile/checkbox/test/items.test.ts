@@ -208,15 +208,6 @@ describe("MobileCheckbox", () => {
       }).to.throw(Error, "'items' property is not array");
     });
 
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      expect(() => {
-        const container = new MobileCheckbox({ items: dupplicatedItems });
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
-    });
-
     it("should be throw error when assigned null by setter", async () => {
       expect(() => {
         const container = new MobileCheckbox();
@@ -225,15 +216,6 @@ describe("MobileCheckbox", () => {
       }).to.throw(Error, "'items' property is not array");
     });
 
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      expect(() => {
-        const container = new MobileCheckbox();
-        container.items = dupplicatedItems;
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
-    });
     it('should set item value "" when asigned item value undefined on constuctor', async () => {
       const container = new MobileCheckbox({
         items: initItemsWithoutValue
