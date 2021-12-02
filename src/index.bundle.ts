@@ -11,6 +11,7 @@ export * from "./radio-button";
 export * from "./spinner";
 export * from "./text";
 export * from "./textarea";
+export * from "./datetime-picker";
 
 export * from "./mobile/button";
 export * from "./mobile/checkbox";
