@@ -7,7 +7,12 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
+import {
+  validateProps,
+  validateValueString,
+  validateSelectedIndex,
+  validateItems
+} from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type RadioButtonProps = {
@@ -29,26 +34,8 @@ export class MobileRadioButton extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
-  @property({
-    type: String,
-    hasChanged(newVal: string, _oldVal) {
-      if (typeof newVal !== "string") {
-        throw new Error("'value' property is not array");
-      }
-      return true;
-    }
-  })
-  value = "";
-  @property({
-    type: Number,
-    hasChanged(newVal: number, _oldVal) {
-      if (typeof newVal !== "number") {
-        throw new Error("'selectedIndex' property is not array");
-      }
-      return true;
-    }
-  })
-  selectedIndex = -1;
+  @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -59,16 +46,7 @@ export class MobileRadioButton extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-  @property({
-    type: Array,
-    hasChanged(newVal: Item[], _oldVal) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'items' property is not array");
-      }
-      return true;
-    }
-  })
-  items: Item[] = [];
+  @property({ type: Array }) items: Item[] = [];
 
   @queryAll(".kuc-mobile-radio-button__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
@@ -167,10 +145,13 @@ export class MobileRadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
+      validateValueString(this.value);
+      validateSelectedIndex(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }

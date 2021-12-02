@@ -7,7 +7,12 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueString,
+  validateSelectedIndex
+} from "../base/validator";
 import { getWidthElmByContext } from "../base/context";
 
 type Item = { value?: string; label?: string };
@@ -168,13 +173,13 @@ export class RadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValue();
-      this._validateSelectedIndex();
+      validateValueString(this.value);
+      validateSelectedIndex(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
@@ -253,24 +258,6 @@ export class RadioButton extends KucBase {
     let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     if (menuWidth > errorWidth) errorWidth = menuWidth;
     this._errorEl.style.width = errorWidth + "px";
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValue() {
-    if (typeof this.value !== "string") {
-      throw new Error("'value' property is not string");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (typeof this.selectedIndex !== "number") {
-      throw new Error("'selectedIndex' property is not number");
-    }
   }
 
   private _getStyleTagTemplate() {

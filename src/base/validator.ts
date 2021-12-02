@@ -1,3 +1,5 @@
+type Item = { value?: string; label?: string };
+
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};
 
@@ -27,4 +29,34 @@ export function validateTimeValue(value: string) {
   if (value === "" || regexHour24.test(value)) return true;
 
   return false;
+}
+
+export function validateItems(value: Item[]) {
+  if (!Array.isArray(value)) {
+    throw new Error("'items' property is not array");
+  }
+}
+
+export function validateValueArray(value: string[]) {
+  if (!Array.isArray(value)) {
+    throw new Error("'value' property is not array");
+  }
+}
+
+export function validateValueString(value: string) {
+  if (typeof value !== "string") {
+    throw new Error("'value' property is not string");
+  }
+}
+
+export function validateSelectedIndexes(selectedIndex: number[]) {
+  if (!Array.isArray(selectedIndex)) {
+    throw new Error("'selectedIndex' property is not array");
+  }
+}
+
+export function validateSelectedIndex(selectedIndex: number) {
+  if (typeof selectedIndex !== "number") {
+    throw new Error("'selectedIndex' property is not number");
+  }
 }

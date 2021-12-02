@@ -2,7 +2,12 @@ import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueArray,
+  validateSelectedIndexes
+} from "../base/validator";
 
 type Item = { value?: string; label?: string };
 type CheckboxProps = {
@@ -190,13 +195,13 @@ export class Checkbox extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValues();
-      this._validateSelectedIndex();
+      validateValueArray(this.value);
+      validateSelectedIndexes(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
@@ -291,24 +296,6 @@ export class Checkbox extends KucBase {
     this.selectedIndex = Object.keys(this._valueMapping).map(key =>
       parseInt(key, 10)
     );
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValues() {
-    if (!Array.isArray(this.value)) {
-      throw new Error("'value' property is not array");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (!Array.isArray(this.selectedIndex)) {
-      throw new Error("'selectedIndex' property is not array");
-    }
   }
 
   private _getStyleTagTemplate() {

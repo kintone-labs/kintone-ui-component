@@ -7,7 +7,12 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
+import {
+  validateProps,
+  validateValueString,
+  validateItems,
+  validateSelectedIndex
+} from "../../base/validator";
 
 type Item = { value?: string; label?: string };
 type MobileDropdownProps = {
@@ -66,16 +71,14 @@ export class MobileDropdown extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) {
-      this._validateItems();
-    }
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValue();
-      this._validateSelectedIndex();
+      validateValueString(this.value);
+      validateSelectedIndex(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
@@ -270,24 +273,6 @@ export class MobileDropdown extends KucBase {
         }
       </style>
     `;
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValue() {
-    if (typeof this.value !== "string") {
-      throw new Error("'value' property is not string");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (typeof this.selectedIndex !== "number") {
-      throw new Error("'selectedIndex' property is not number");
-    }
   }
 }
 if (!window.customElements.get("kuc-mobile-dropdown")) {
