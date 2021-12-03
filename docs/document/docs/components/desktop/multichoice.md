@@ -34,7 +34,7 @@ Here is a list of properties that can be used for modifying the component:
 | selectedIndex *1 | Array\<Number\> | []  | List of index of selected item | It supports specifying which duplicated Item.value will be selected if there is duplicated Item.value in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated Item.value and `selectedIndex` value maps with duplicated Item.value specified in `value`, item that has the index number will be selected<br>Will result an error if the value of selectedIndex is not an array |
 
 > *1: You can set duplicated value in value and Item.value. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
-> Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`
+> Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]`
 >
 > - If setting `value` and not setting `selectedIndex` as follows:
 >   - value = ['fruit', 'vegetable']: The first and third items will be selected.
