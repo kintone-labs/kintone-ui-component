@@ -39,7 +39,7 @@ Here is a list of properties that can be used for modifying the component:
 > - If setting `value` and not setting `selectedIndex` as follows:
 >   - value = 'fruit': The first item will be selected.
 >   - value = 'other': No item will be selected.
-
+>
 > - If not setting `value` and setting `selectedIndex` as follows:
 >   - selectedIndex = 1: The second item will be selected.
 >   - selectedIndex = 99: No item will be selected.

@@ -48,7 +48,6 @@ Here is a list of properties that can be used for modifying the component:
 >   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: The second and third items will be selected.
 >   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: The second, third, and fourth items will be selected.
 >   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: The first and second items will be selected.
->
 
 ### Event
 Here is a list of events that can be specified:
