@@ -88,20 +88,22 @@ describe("ReadOnlyTable", () => {
       }).to.throw(Error, "'data' property is invalid");
     });
 
-    it("should throw error when set wrong type by setter", () => {
-      expect(() => {
-        const container = new ReadOnlyTable();
+    it("should be throw error when assigned null by setter", async () => {
+      const container = new ReadOnlyTable();
+      try {
         // @ts-expect-error
-        container.data = null;
-      }).to.throw(Error, "'data' property is invalid");
-    });
+        container.items = null;
+        await fixture(container);
+      } catch (error) {
+        let errorMessage = "'data' property is invalid";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'data' property is invalid");
+      }
 
-    it("should throw error when set null array by setter", () => {
-      expect(() => {
-        const container = new ReadOnlyTable();
-        // @ts-expect-error
-        container.data = [null];
-      }).to.throw(Error, "'data' property is invalid");
+      // TODO:
+      // Implement checking if source code does not throw error in _validateItems function
     });
   });
 });

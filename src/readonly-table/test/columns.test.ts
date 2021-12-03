@@ -160,11 +160,21 @@ describe("ReadOnlyTable", () => {
     }).to.throw(Error, "'columns' property is invalid");
   });
 
-  it("should throw error when assigned wrong type by setter", () => {
-    expect(() => {
-      const container = new ReadOnlyTable();
+  it("should be throw error when assigned null by setter", async () => {
+    const container = new ReadOnlyTable();
+    try {
       // @ts-expect-error
-      container.columns = null;
-    }).to.throw(Error, "'columns' property is invalid");
+      container.items = null;
+      await fixture(container);
+    } catch (error) {
+      let errorMessage = "'columns' property is invalid";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      expect(errorMessage).to.equal("'columns' property is invalid");
+    }
+
+    // TODO:
+    // Implement checking if source code does not throw error in _validateItems function
   });
 });
