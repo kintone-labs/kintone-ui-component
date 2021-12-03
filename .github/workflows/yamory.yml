@@ -1,0 +1,18 @@
+name: yamory for v0
+on:
+  push:
+    branches: [v0_dev]
+
+jobs:
+  check_v0_dev:
+    name: excute yamory_v0_dev
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: run Yamory
+      run: |
+        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
+      env:
+        CI: true
+        PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
+        YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
