@@ -49,13 +49,13 @@ export function validateValueString(value: string) {
   }
 }
 
-export function validateSelectedIndexes(selectedIndex: number[]) {
+export function validateSelectedIndexArray(selectedIndex: number[]) {
   if (!Array.isArray(selectedIndex)) {
     throw new Error("'selectedIndex' property is not array");
   }
 }
 
-export function validateSelectedIndex(selectedIndex: number) {
+export function validateSelectedIndexNumber(selectedIndex: number) {
   if (typeof selectedIndex !== "number") {
     throw new Error("'selectedIndex' property is not number");
   }

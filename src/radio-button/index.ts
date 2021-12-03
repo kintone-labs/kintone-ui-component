@@ -11,7 +11,7 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndex
+  validateSelectedIndexNumber
 } from "../base/validator";
 import { getWidthElmByContext } from "../base/context";
 
@@ -179,7 +179,7 @@ export class RadioButton extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       validateValueString(this.value);
-      validateSelectedIndex(this.selectedIndex);
+      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }

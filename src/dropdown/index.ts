@@ -11,7 +11,7 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndex
+  validateSelectedIndexNumber
 } from "../base/validator";
 
 type Item = {
@@ -120,7 +120,7 @@ export class Dropdown extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       validateValueString(this.value);
-      validateSelectedIndex(this.selectedIndex);
+      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }

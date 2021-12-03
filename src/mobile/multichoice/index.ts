@@ -11,7 +11,7 @@ import {
   validateProps,
   validateItems,
   validateValueArray,
-  validateSelectedIndexes
+  validateSelectedIndexArray
 } from "../../base/validator";
 
 type Item = {
@@ -95,7 +95,7 @@ export class MobileMultiChoice extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       validateValueArray(this.value);
-      validateSelectedIndexes(this.selectedIndex);
+      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }

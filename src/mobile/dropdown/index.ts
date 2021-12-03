@@ -11,7 +11,7 @@ import {
   validateProps,
   validateValueString,
   validateItems,
-  validateSelectedIndex
+  validateSelectedIndexNumber
 } from "../../base/validator";
 
 type Item = { value?: string; label?: string };
@@ -78,7 +78,7 @@ export class MobileDropdown extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       validateValueString(this.value);
-      validateSelectedIndex(this.selectedIndex);
+      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }

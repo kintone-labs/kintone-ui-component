@@ -10,7 +10,7 @@ import { visiblePropConverter } from "../../base/converter";
 import {
   validateProps,
   validateValueString,
-  validateSelectedIndex,
+  validateSelectedIndexNumber,
   validateItems
 } from "../../base/validator";
 
@@ -151,7 +151,7 @@ export class MobileRadioButton extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       validateValueString(this.value);
-      validateSelectedIndex(this.selectedIndex);
+      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
