@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileCheckbox } from "../index";
 
 const initItems = [
@@ -24,6 +24,7 @@ describe("MobileCheckbox", () => {
         ".kuc-mobile-checkbox__group__select-menu__item__input"
       );
       inputsEl[2].dispatchEvent(new Event("change"));
+      await elementUpdated(el);
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldValue).to.deep.equal([
@@ -33,6 +34,14 @@ describe("MobileCheckbox", () => {
         initItems[1].value,
         initItems[2].value
       ]);
+      inputsEl[1].dispatchEvent(new Event("change"));
+      await elementUpdated(el);
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([
+        initItems[1].value,
+        initItems[2].value
+      ]);
+      expect(triggeredEvent.detail.value).to.deep.equal([initItems[2].value]);
     });
   });
 });

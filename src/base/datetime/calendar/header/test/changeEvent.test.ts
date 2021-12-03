@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import "../index";
 
 describe("BaseDateTimeCalendarHeader", () => {
@@ -146,12 +146,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       });
 
       const el = await fixture(container);
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+      btnYearToggleEl.click();
+      await elementUpdated(el);
+
       const listboxEl = el.querySelector(
         ".kuc-base-datetime-header-year__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:calendar-listbox-click", {
+        new CustomEvent("kuc:listbox-click", {
           detail: { value: "2022" }
         })
       );
@@ -169,12 +175,18 @@ describe("BaseDateTimeCalendarHeader", () => {
       });
 
       const el = await fixture(container);
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+      btnMonthToggleEl.click();
+      await elementUpdated(el);
+
       const listboxEl = el.querySelector(
         ".kuc-base-datetime-header-month__listbox"
       ) as HTMLSelectElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:calendar-listbox-click", {
+        new CustomEvent("kuc:listbox-click", {
           detail: { value: "JANUARY" }
         })
       );

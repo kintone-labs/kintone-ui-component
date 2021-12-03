@@ -67,6 +67,16 @@ export class MobileText extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _handleInputText(event: InputEvent) {
+    event.stopPropagation();
+    const targetEl = event.target as HTMLInputElement;
+    const detail: CustomEventDetail = {
+      value: targetEl.value,
+      data: event.data
+    };
+    dispatchCustomEvent(this, "input", detail);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -102,6 +112,7 @@ export class MobileText extends KucBase {
           aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
+          @input="${this._handleInputText}"
         />
         <span
           class="kuc-mobile-text__input-form__suffix"

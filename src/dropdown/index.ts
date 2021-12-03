@@ -19,6 +19,7 @@ type DropdownProps = {
   id?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -31,6 +32,7 @@ export class Dropdown extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({
@@ -63,7 +65,7 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__select-menu__item:last-child")
   private _lastItemEl!: HTMLLIElement;
 
-  @query(".kuc-dropdown__group__select-menu__item[aria-checked=true]")
+  @query(".kuc-dropdown__group__select-menu__item[aria-selected=true]")
   private _selectedItemEl!: HTMLLIElement;
 
   @query(".kuc-dropdown__group__select-menu__highlight")
@@ -79,29 +81,27 @@ export class Dropdown extends KucBase {
   }
 
   private _getSelectedLabel() {
-    let selectedItemLabel = "";
-    this.items.forEach(item => {
-      if (item.value === this.value) {
-        selectedItemLabel = item.label === undefined ? item.value : item.label;
-      }
-    });
-    return selectedItemLabel;
+    const items = this.items.filter((item, index) =>
+      this._isCheckedItem(item, index)
+    );
+    if (items.length === 0) return "";
+    return items[0].label === undefined ? items[0].value : items[0].label;
   }
 
   private _getToggleIconSvgTemplate() {
     return svg`
       <svg
-        width='36'
-        height='36'
-        viewBox='0 0 36 36'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
-          d='M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z'
-          fill='#3498DB'/>
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z"
+          fill="#3498db"/>
       </svg>
     `;
   }
@@ -110,7 +110,36 @@ export class Dropdown extends KucBase {
     if (changedProperties.has("items")) {
       this._validateItems();
     }
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._validateValue();
+      this._validateSelectedIndex();
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
     super.update(changedProperties);
+  }
+
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
   }
 
   render() {
@@ -154,7 +183,7 @@ export class Dropdown extends KucBase {
         </button>
         <ul
           class="kuc-dropdown__group__select-menu"
-          role="menu"
+          role="listbox"
           aria-hidden="${!this._selectorVisible}"
           ?hidden="${!this._selectorVisible}"
           @mouseleave="${this._handleMouseLeaveMenu}"
@@ -183,7 +212,8 @@ export class Dropdown extends KucBase {
   private _handleMouseDownDropdownItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     const value = itemEl.getAttribute("value") as string;
-    this._actionUpdateValue(value);
+    const selectedIndex = itemEl.dataset.index || "0";
+    this._actionUpdateValue(value, selectedIndex);
   }
 
   private _handleMouseOverDropdownItem(event: Event) {
@@ -244,7 +274,8 @@ export class Dropdown extends KucBase {
         if (itemEl === null) break;
 
         const value = itemEl.getAttribute("value") as string;
-        this._actionUpdateValue(value);
+        const selectedIndex = itemEl.dataset.index || "0";
+        this._actionUpdateValue(value, selectedIndex);
         this._actionHideMenu();
         break;
       }
@@ -351,10 +382,12 @@ export class Dropdown extends KucBase {
     item.classList.add("kuc-dropdown__group__select-menu__highlight");
   }
 
-  private _actionUpdateValue(value: string) {
-    if (this.value === value) return;
+  private _actionUpdateValue(value: string, index: string) {
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -524,29 +557,36 @@ export class Dropdown extends KucBase {
           left: 6px;
           margin-top: -5px;
         }
-        .kuc-dropdown__group__select-menu__item[aria-checked="true"] {
+        .kuc-dropdown__group__select-menu__item[aria-selected="true"] {
           color: #3498db;
         }
-        .kuc-dropdown__group__select-menu__highlight[role="menuitem"] {
+        .kuc-dropdown__group__select-menu__highlight[role="option"] {
           background-color: #e2f2fe;
         }
       </style>
     `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <li
         class="kuc-dropdown__group__select-menu__item"
-        role="menuitem"
-        tabindex="${item.value === this.value ? "0" : "-1"}"
-        aria-checked="${item.value === this.value ? "true" : "false"}"
+        role="option"
+        tabindex="${isCheckedItem ? "0" : "-1"}"
+        aria-selected="${isCheckedItem ? "true" : "false"}"
+        data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
-        ${this._getDropdownIconSvgTemplate(item.value === this.value)}
+        ${this._getDropdownIconSvgTemplate(isCheckedItem)}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
@@ -557,18 +597,18 @@ export class Dropdown extends KucBase {
       ${
         checked
           ? svg`<svg
-          class='kuc-dropdown__group__select-menu__item__icon'
-          width='11'
-          height='9'
-          viewBox='0 0 11 9'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
+          class="kuc-dropdown__group__select-menu__item__icon"
+          width="11"
+          height="9"
+          viewBox="0 0 11 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
-            d='M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z'
-            fill='#3498db'/>
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
+            fill="#3498db"/>
         </svg>`
           : ""
       }`;
@@ -578,12 +618,18 @@ export class Dropdown extends KucBase {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, number, self) => {
-      if (value !== undefined && self.indexOf(value) !== number) {
-        throw new Error(`'items[${number}].value' property is duplicated`);
-      }
-    });
+  }
+
+  private _validateValue() {
+    if (typeof this.value !== "string") {
+      throw new Error("'value' property is not string");
+    }
+  }
+
+  private _validateSelectedIndex() {
+    if (typeof this.selectedIndex !== "number") {
+      throw new Error("'selectedIndex' property is not number");
+    }
   }
 }
 if (!window.customElements.get("kuc-dropdown")) {

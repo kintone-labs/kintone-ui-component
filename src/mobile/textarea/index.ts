@@ -61,6 +61,16 @@ export class MobileTextArea extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _handleInputTextArea(event: InputEvent) {
+    event.stopPropagation();
+    const targetEl = event.target as HTMLTextAreaElement;
+    const detail: CustomEventDetail = {
+      value: targetEl.value,
+      data: event.data
+    };
+    dispatchCustomEvent(this, "input", detail);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -89,6 +99,7 @@ export class MobileTextArea extends KucBase {
           aria-required="${this.requiredIcon}"
           @focus="${this._handleFocusInput}"
           @change="${this._handleChangeInput}"
+          @input="${this._handleInputTextArea}"
         /></textarea>
       </div>
       <div
@@ -156,7 +167,7 @@ export class MobileTextArea extends KucBase {
           padding: 0.4em;
           border: 1px solid #b3b3b3;
           outline: 0;
-          box-shadow: 0 1px 0 #fff, inset 0 2px 3px #dadada;
+          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
           border-radius: 0.4em;
           box-sizing: border-box;
         }
@@ -164,7 +175,7 @@ export class MobileTextArea extends KucBase {
           border: 1px solid #cf4a38;
         }
         .kuc-mobile-textarea__form__textarea:disabled {
-          color: #999;
+          color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
         }

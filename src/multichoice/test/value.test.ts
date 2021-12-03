@@ -20,15 +20,15 @@ describe("MultiChoice", () => {
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl1 = itemsEl[1].querySelectorAll("svg");
       expect(svgsEl1.length).to.equal(0);
-      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[1].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
     it("should be selected item when assigned on constructor", async () => {
@@ -45,15 +45,15 @@ describe("MultiChoice", () => {
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl1 = itemsEl[1].querySelectorAll("svg");
       expect(svgsEl1.length).to.equal(1);
-      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+      expect(itemsEl[1].getAttribute("aria-selected")).to.equal("true");
 
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
     it("should be selected item by setter", async () => {
@@ -71,15 +71,15 @@ describe("MultiChoice", () => {
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
 
       const svgsEl1 = itemsEl[1].querySelectorAll("svg");
       expect(svgsEl1.length).to.equal(1);
-      expect(itemsEl[1].getAttribute("aria-checked")).to.equal("true");
+      expect(itemsEl[1].getAttribute("aria-selected")).to.equal("true");
 
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-checked")).to.equal("false");
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
     it("should be throw error when assigned null on constructor", async () => {
@@ -99,25 +99,6 @@ describe("MultiChoice", () => {
       // Implement checking if source code does not throw error in _validateItems function
     });
 
-    it("should be throw error when assigned dupplicated value on constructor", async () => {
-      const container = new MultiChoice({
-        items: initItems,
-        value: [initItems[0].value, initItems[0].value]
-      });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value[1]' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value[1]' property is duplicated");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
     it("should be throw error when set null by setter", async () => {
       const container = new MultiChoice({ items: initItems });
       // @ts-expect-error
@@ -130,23 +111,6 @@ describe("MultiChoice", () => {
           errorMessage = error.message;
         }
         expect(errorMessage).to.equal("'value' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when set dupplicated value by setter", async () => {
-      const container = new MultiChoice({ items: initItems });
-      container.value = [initItems[0].value, initItems[0].value];
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value[1]' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value[1]' property is duplicated");
       }
 
       // TODO:

@@ -17,7 +17,7 @@ const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" }
 ];
-
+const initItemsWithoutValue = [{ label: "-----" }, { label: "orange" }];
 const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("Dropdown", () => {
@@ -33,7 +33,10 @@ describe("Dropdown", () => {
     });
 
     it("should set label the same as value when not assigned items label on constructor", async () => {
-      const container = new Dropdown({ items: initItemsWithoutLabel });
+      const container = new Dropdown({
+        items: initItemsWithoutLabel,
+        value: initItemsWithoutLabel[1].value
+      });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-dropdown__group__select-menu__item"
@@ -150,24 +153,6 @@ describe("Dropdown", () => {
       // Implement checking if source code does not throw error in _validateItems function
     });
 
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      const container = new Dropdown({ items: dupplicatedItems });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
     it("should be throw error when assigned null by setter", async () => {
       const container = new Dropdown();
       // @ts-expect-error
@@ -180,25 +165,6 @@ describe("Dropdown", () => {
           errorMessage = error.message;
         }
         expect(errorMessage).to.equal("'items' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      const container = new Dropdown();
-      container.items = dupplicatedItems;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
       }
 
       // TODO:
