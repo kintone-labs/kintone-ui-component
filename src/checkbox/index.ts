@@ -1,11 +1,6 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, queryAll } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  CustomEventDetail
-} from "../base/kuc-base";
+import { property, queryAll, state } from "lit/decorators.js";
+import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 
@@ -22,6 +17,11 @@ type CheckboxProps = {
   visible?: boolean;
   items?: Item[];
   value?: string[];
+  selectedIndex?: number[];
+};
+
+type ValueMapping = {
+  [key: number]: string;
 };
 
 export class Checkbox extends KucBase {
@@ -43,10 +43,14 @@ export class Checkbox extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
+  @property({ type: Array }) selectedIndex: number[] = [];
 
   @queryAll(".kuc-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
   private _GUID: string;
+
+  @state()
+  private _valueMapping: ValueMapping = {};
 
   constructor(props?: CheckboxProps) {
     super();
@@ -55,26 +59,41 @@ export class Checkbox extends KucBase {
     Object.assign(this, validProps);
   }
 
-  private _getNewValue(value: string) {
-    const sorting = this.items.map(item => item.value);
-    if (this.value.indexOf(value) === -1) {
-      return [...this.value, value].sort(
-        (item1: string, item2: any) =>
-          sorting.indexOf(item1) - sorting.indexOf(item2)
-      );
+  private _getNewValueMapping(value: string, selectedIndex: string) {
+    const selectedIndexNumber = parseInt(selectedIndex, 10);
+    const keys = Object.keys(this._valueMapping);
+    const newValue = { ...this._valueMapping };
+    if (keys.indexOf(selectedIndex) > -1) {
+      delete newValue[selectedIndexNumber];
+      return newValue;
     }
-    return this.value.filter(val => val !== value);
+    newValue[selectedIndexNumber] = value;
+    return newValue;
   }
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
+    const selectedIndex = inputEl.dataset.index || "0";
     const value = inputEl.value;
-    const oldValue = this.value;
-    const newValue = this._getNewValue(value);
+
+    const oldValue = [...this.value];
+    const newValueMapping = this._getNewValueMapping(value, selectedIndex);
+    const itemsValue = this.items.map(item => item.value);
+    const newValue = Object.values(newValueMapping).filter(
+      item => itemsValue.indexOf(item) > -1
+    );
+    if (newValue === oldValue) return;
+
+    const newSelectedIndex = Object.keys(newValueMapping).map((item: string) =>
+      parseInt(item, 10)
+    );
     this.value = newValue;
-    const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
-    dispatchCustomEvent(this, "change", detail);
+    this.selectedIndex = newSelectedIndex;
+    dispatchCustomEvent(this, "change", {
+      oldValue,
+      value: newValue
+    });
   }
 
   private _handleFocusInput(event: FocusEvent) {
@@ -127,7 +146,18 @@ export class Checkbox extends KucBase {
     return "#d8d8d8";
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    const values = Object.values(this._valueMapping);
+    const keys = Object.keys(this._valueMapping);
+    const result = values.filter(
+      (val, indexVal) =>
+        val === item.value && index === parseInt(keys[indexVal], 10)
+    );
+    return result.length > 0;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <div
         class="kuc-checkbox__group__select-menu__item"
@@ -137,6 +167,7 @@ export class Checkbox extends KucBase {
           type="checkbox"
           aria-describedby="${this._GUID}-error"
           aria-required="${this.requiredIcon}"
+          data-index="${index}"
           id="${this._GUID}-item-${index}"
           class="kuc-checkbox__group__select-menu__item__input"
           name="${this._GUID}-group"
@@ -151,9 +182,7 @@ export class Checkbox extends KucBase {
           class="kuc-checkbox__group__select-menu__item__label"
           >${this._getCheckboxIconSvgTemplate(
             this.disabled,
-            item.value !== undefined
-              ? this.value.some(val => val === item.value)
-              : false
+            isCheckedItem
           )}${item.label === undefined ? item.value : item.label}
         </label>
       </div>
@@ -162,7 +191,15 @@ export class Checkbox extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) this._validateValues();
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._validateValues();
+      this._validateSelectedIndex();
+      this._valueMapping = this._getValueMapping();
+      this._setValueAndSelectedIndex();
+    }
     super.update(changedProperties);
   }
 
@@ -212,35 +249,66 @@ export class Checkbox extends KucBase {
     });
   }
 
-  private _getDuplicatedIndex(values: string[]) {
-    for (let index = 0; index < values.length; index++) {
-      const value = values[index];
-      if (value !== undefined && values.indexOf(value) !== index) return index;
+  private _getValueMapping() {
+    const itemsValue = this.items.map(item => item.value || "");
+    const itemsMapping = Object.assign({}, itemsValue);
+    const result: ValueMapping = {};
+    if (this.value.length === 0) {
+      const value = this._getValidValue(itemsMapping);
+      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+      return result;
     }
-    return -1;
+    const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
+    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    return result;
+  }
+
+  private _getValidValue(itemsMapping: ValueMapping) {
+    return this.selectedIndex
+      .filter(item => itemsMapping[item])
+      .map(item => itemsMapping[item]);
+  }
+
+  private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    const validSelectedIndex: number[] = [];
+    for (let i = 0; i < this.value.length; i++) {
+      const selectedIndex = this.selectedIndex[i];
+      if (itemsMapping[selectedIndex] === this.value[i]) {
+        validSelectedIndex.push(selectedIndex);
+        continue;
+      }
+      const firstIndex = this.items.findIndex(
+        item => item.value === this.value[i]
+      );
+      validSelectedIndex.push(firstIndex);
+    }
+
+    return validSelectedIndex;
+  }
+
+  private _setValueAndSelectedIndex() {
+    this.value = Object.values(this._valueMapping);
+    this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+      parseInt(key, 10)
+    );
   }
 
   private _validateItems() {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value || "");
-    const index = this._getDuplicatedIndex(itemsValue);
-    if (index > -1)
-      throw new Error(
-        `'items[${index}].value' is duplicated! You can specify unique one.`
-      );
   }
 
   private _validateValues() {
     if (!Array.isArray(this.value)) {
       throw new Error("'value' property is not array");
     }
-    const index = this._getDuplicatedIndex(this.value);
-    if (index > -1)
-      throw new Error(
-        `'value[${index}]' is duplicated! You can specify unique one.`
-      );
+  }
+
+  private _validateSelectedIndex() {
+    if (!Array.isArray(this.selectedIndex)) {
+      throw new Error("'selectedIndex' property is not array");
+    }
   }
 
   private _getStyleTagTemplate() {
