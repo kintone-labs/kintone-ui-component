@@ -369,6 +369,9 @@ class DateTime extends Control<DateTimeProps> {
     this._renderDateTextInput();
     dateContainer.appendChild(this._dateTextInput);
     dateContainer.appendChild(this._dateErrorDiv);
+    if (this._props.value !== null && (!(this._props.value instanceof Date) || isNaN(this._props.value.getTime()))) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
 
     // render calendar
     const calendar = new Calendar({
@@ -500,7 +503,7 @@ class DateTime extends Control<DateTimeProps> {
       this._time = null;
       this.rerender(['dateTextInput', 'timeTextInput']);
       return;
-    } else if (date === undefined || !(date instanceof Date)) {
+    } else if (!(date instanceof Date) || isNaN(date.getTime())) {
       throw new Error(Message.common.INVALID_ARGUMENT);
     }
 
