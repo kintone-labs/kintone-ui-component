@@ -190,10 +190,11 @@ export class DatePicker extends KucBase {
     this.error = "";
     if (event.detail.error) {
       this.error = event.detail.error;
+      eventDetail.value = undefined;
     } else {
       this.value = event.detail.value;
+      eventDetail.value = this.value;
     }
-    eventDetail.value = this.value;
     this._disptchChangeEvent(eventDetail);
   }
 
