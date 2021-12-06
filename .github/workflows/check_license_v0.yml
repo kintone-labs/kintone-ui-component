@@ -19,7 +19,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-    
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
           
       - name: Install Dependencies
         run: npm ci
