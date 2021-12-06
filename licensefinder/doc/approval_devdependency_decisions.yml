@@ -34,5 +34,23 @@
   - postcss
   - :who: 
     :why: Because of the MIT License
-    :versions: []
-    :when: 2021-10-26 12:23:25.098597000 Z
+    :versions: ["^7.0.2"]
+    :when: 2021-12-06 12:23:25.098597000 Z
+- - :approve
+  - babel-plugin-transform-class-properties
+  - :who: 
+    :why: Because of the MIT License
+    :versions: [6.24.1]
+    :when: 2021-12-06 12:23:25.098597000 Z
+- - :approve
+  - babel-plugin-transform-runtime
+  - :who: 
+    :why: Because of the MIT License
+    :versions: [6.23.0]
+    :when: 2021-12-06 12:23:25.098597000 Z
+- - :approve
+  - jest-canvas-mock
+  - :who: 
+    :why: Because of the MIT License
+    :versions: [2.3.1]
+    :when: 2021-12-06 12:23:25.098597000 Z
