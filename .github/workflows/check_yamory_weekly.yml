@@ -1,4 +1,4 @@
-name: check yamory weekly
+name: check yamory weekly on v0 and v1
 
 on: 
   schedule:
