@@ -1,4 +1,4 @@
-name: yamory for v0
+name: yamory
 on:
   push:
     branches: [v0_dev]
