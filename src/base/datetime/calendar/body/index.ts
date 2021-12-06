@@ -9,12 +9,14 @@ import {
   getDisplayingDates,
   padStart,
   WeekDate,
-  getLocale
+  getLocale,
+  getCurrentMonth,
+  getCurrentYear
 } from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property({ type: Number }) month = 1;
-  @property({ type: Number }) year = 2021;
+  @property({ type: Number }) month = getCurrentMonth();
+  @property({ type: Number }) year = getCurrentYear();
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 

@@ -11,7 +11,9 @@ import "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
   getRightArrowIconSvgTemplate,
-  getLocale
+  getLocale,
+  getCurrentMonth,
+  getCurrentYear
 } from "../../utils/";
 
 function isValidMonth(month: number) {
@@ -28,14 +30,14 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       return isValidMonth(newVal);
     }
   })
-  month = 1;
+  month = getCurrentMonth();
   @property({
     type: Number,
     hasChanged(newVal: number) {
       return isValidYear(newVal);
     }
   })
-  year = 2021;
+  year = getCurrentYear();
   private _locale = getLocale("en");
   @query(".kuc-base-datetime-header-month")
   private _baseDateTimeHeaderMonthEl!: any;

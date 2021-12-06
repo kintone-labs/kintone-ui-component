@@ -243,6 +243,14 @@ export const getLocale = (language: string) => {
   }
 };
 
+export const getCurrentMonth = () => {
+  return new Date().getMonth();
+};
+
+export const getCurrentYear = () => {
+  return new Date().getFullYear();
+};
+
 export const getToggleIconSvgTemplate = () => {
   return svg`
     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">

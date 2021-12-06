@@ -6,10 +6,10 @@ import {
   dispatchCustomEvent
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
-import { getToggleIconSvgTemplate } from "../../../../utils";
+import { getToggleIconSvgTemplate, getCurrentYear } from "../../../../utils";
 
 export class BaseDateTimeHeaderYear extends KucBase {
-  @property({ type: Number }) year = 2021;
+  @property({ type: Number }) year = getCurrentYear();
   @property({ type: String }) postfix = "";
 
   @state()
