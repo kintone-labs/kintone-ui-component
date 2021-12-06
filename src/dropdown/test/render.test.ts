@@ -14,7 +14,8 @@ describe("Dropdown", () => {
           "id",
           "aria-live",
           "type",
-          "style"
+          "style",
+          "role"
         ]
       });
     });

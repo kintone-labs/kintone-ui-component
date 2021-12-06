@@ -32,16 +32,18 @@ export class BaseDateTimeCalendarFooter extends KucBase {
       <div class="kuc-base-datetime-calendar-footer__group">
         <button
           type="button"
+          tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--today"
-          @click=${this._handleClickCalendarFooterButtonToday}
+          @click="${this._handleClickCalendarFooterButtonToday}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.today}
         </button>
         <span class="kuc-base-datetime-calendar-footer__group__center"></span>
         <button
           type="button"
+          tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
-          @click=${this._handleClickCalendarFooterButtonNone}
+          @click="${this._handleClickCalendarFooterButtonNone}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
@@ -80,7 +82,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         }
         .kuc-base-datetime-calendar-footer__group__button {
           background: transparent;
-          border: none;
+          border: 1px solid transparent;
           color: #3498db;
           cursor: pointer;
           font-size: 13px;
@@ -88,6 +90,10 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         }
         .kuc-base-datetime-calendar-footer__group__button:hover {
           color: #217dbb;
+        }
+        .kuc-base-datetime-calendar-footer__group__button:focus {
+          border: 1px solid #3498db;
+          outline: none;
         }
         .kuc-base-datetime-calendar-footer__group__center {
           width: 100%;

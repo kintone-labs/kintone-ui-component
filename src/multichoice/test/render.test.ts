@@ -9,11 +9,13 @@ describe("MultiChoice", () => {
       expect(el.tagName).to.equal("KUC-MULTI-CHOICE");
       expect(el).dom.to.equalSnapshot({
         ignoreAttributes: [
+          "aria-multiselectable",
           "aria-describedby",
           "aria-labelledby",
           "id",
           "style",
-          "aria-live"
+          "aria-live",
+          "role"
         ]
       });
     });
@@ -45,6 +47,7 @@ describe("MultiChoice", () => {
           }
         ],
         value: ["item-1", "item-3"],
+        selectedIndex: [0, 2],
         error: "Error occurred!",
         className: "sample-class",
         id: "sample-id",
@@ -55,12 +58,16 @@ describe("MultiChoice", () => {
       const el = await fixture(container);
       expect(el).dom.to.equalSnapshot({
         ignoreAttributes: [
+          "aria-multiselectable",
           "aria-describedby",
           "aria-labelledby",
           "id",
           "style",
           "role",
-          "aria-live"
+          "aria-live",
+          "data-index",
+          "aria-checked",
+          "aria-selected"
         ]
       });
     });

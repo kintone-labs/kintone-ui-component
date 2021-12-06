@@ -12,7 +12,7 @@ const initItemsWithoutLabel = [
   { value: "orange" },
   { value: "apple" }
 ];
-
+const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" }
@@ -124,6 +124,17 @@ describe("MobileRadioButton", () => {
       expect(circlesEl2.length).to.equal(1);
     });
 
+    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+      const container = new MobileRadioButton({
+        items: initItemsWithoutValue
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.value).to.equal("");
+    });
     it("should set items when assigned items by setter", async () => {
       const container = new MobileRadioButton();
       container.items = initItems;
@@ -184,38 +195,12 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned null on constructor", async () => {
-      expect(() => {
-        // @ts-expect-error
-        const container = new MobileRadioButton({ items: null });
-      }).to.throw(Error, "'items' property is not array");
-    });
-
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      expect(() => {
-        const container = new MobileRadioButton({ items: dupplicatedItems });
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
-    });
-
     it("should be throw error when assigned null by setter", async () => {
       expect(() => {
         const container = new MobileRadioButton();
         // @ts-expect-error
         container.items = null;
       }).to.throw(Error, "'items' property is not array");
-    });
-
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      expect(() => {
-        const container = new MobileRadioButton();
-        container.items = dupplicatedItems;
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
     });
   });
 });

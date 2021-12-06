@@ -21,7 +21,7 @@ export default {
   },
   parameters: {
     actions: {
-      handles: ["kuc:calendar-listbox-click"]
+      handles: ["kuc:listbox-click"]
     }
   }
 };
@@ -37,23 +37,23 @@ const Template = ({ value, items }) => {
     const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
     switch (event.key) {
       case "ArrowUp": {
-        _listBoxEl.highlightPrevItem();
+        _listBoxEl._highlightPrevItem();
         break;
       }
       case "ArrowDown": {
-        _listBoxEl.highlightNextItem();
+        _listBoxEl._highlightNextItem();
         break;
       }
       case "Home": {
-        _listBoxEl.highlightFirstItem();
+        _listBoxEl._highlightFirstItem();
         break;
       }
       case "End": {
-        _listBoxEl.highlightLastItem();
+        _listBoxEl._highlightLastItem();
         break;
       }
       case "Enter": {
-        _changeValue(_listBoxEl.getHighlightValue());
+        _changeValue(_listBoxEl.getHighlightItemEl().value);
         break;
       }
       default:
@@ -80,7 +80,7 @@ const Template = ({ value, items }) => {
     <kuc-base-datetime-listbox
       .items="${items}"
       .value="${value}"
-      @kuc:calendar-listbox-click="${_handleClickCalendarListBox}"
+      @kuc:listbox-click="${_handleClickCalendarListBox}"
     >
     </kuc-base-datetime-listbox>
   `;
