@@ -3,7 +3,19 @@ import { html } from "lit-html";
 
 export default {
   title: "desktop/datetime-picker",
-  argTypes: {},
+  argTypes: {
+    language: {
+      name: "language",
+      options: ["en", "ja", "zh", "auto"],
+      control: { type: "select" }
+    },
+    value: {
+      name: "value",
+      control: {
+        type: "text"
+      }
+    }
+  },
   parameters: {
     actions: {
       handles: ["change"]
@@ -12,7 +24,7 @@ export default {
 };
 const Template = args => {
   const handleDateChange = event => {
-    console.log(event);
+    // console.log(event);
   };
   return html`
     <kuc-datetime-picker
@@ -33,11 +45,11 @@ const Template = args => {
 export const Base = Template.bind({});
 Base.args = {
   className: "datetime-class",
-  error: "Date and Time error",
+  error: "",
   id: "datetime-id",
   label: "Date and Time label",
   language: "auto",
-  value: "2021-2-28",
+  value: "2021-12-12T06:30:30",
   disabled: false,
   hour12: false,
   requiredIcon: true,
