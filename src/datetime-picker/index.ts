@@ -153,7 +153,7 @@ export class DateTimePicker extends KucBase {
       newDateTime += `T${this._timeValue}:00`;
     }
     const detail: CustomEventDetail = {
-      value: newDateTime,
+      value: this.error ? undefined : newDateTime,
       oldValue: oldDateTime
     };
     this.value = newDateTime;
