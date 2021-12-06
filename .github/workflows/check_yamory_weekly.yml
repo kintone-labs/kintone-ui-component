@@ -1,4 +1,4 @@
-name: schedule and yamory
+name: check yamory weekly
 
 on: 
   schedule:

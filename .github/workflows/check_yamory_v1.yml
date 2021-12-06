@@ -1,4 +1,4 @@
-name: yamory for master
+name: check v1 yamory
 
 on: 
   push:
