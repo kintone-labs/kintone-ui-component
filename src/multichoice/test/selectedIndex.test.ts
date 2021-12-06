@@ -97,7 +97,7 @@ describe("MultiChoice", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateSelectedIndexArray function
     });
   });
 });

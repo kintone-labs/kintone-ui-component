@@ -210,7 +210,7 @@ describe("MobileRadioButton", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });

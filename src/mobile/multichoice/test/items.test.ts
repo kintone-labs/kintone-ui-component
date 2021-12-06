@@ -145,7 +145,7 @@ describe("MobileMultiChoice", () => {
         expect(errorMessage).to.equal("'items' property is not array");
       }
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when initializing value is duplicated", async () => {
@@ -165,7 +165,7 @@ describe("MobileMultiChoice", () => {
         );
       }
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when when changing by setter to null", async () => {
@@ -182,7 +182,7 @@ describe("MobileMultiChoice", () => {
         expect(errorMessage).to.equal("'items' property is not array");
       }
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when initializing value duplicated value", async () => {
@@ -200,7 +200,7 @@ describe("MobileMultiChoice", () => {
         );
       }
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });

@@ -70,7 +70,7 @@ describe("MobileCheckbox", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateValueArray function
     });
 
     it("should be throw error when set null by setter", async () => {
@@ -91,7 +91,7 @@ describe("MobileCheckbox", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateValueArray function
     });
   });
 });

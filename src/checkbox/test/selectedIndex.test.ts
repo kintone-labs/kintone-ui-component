@@ -71,7 +71,7 @@ describe("Checkbox", () => {
     }
 
     // TODO:
-    // Implement checking if source code does not throw error in _validateItems function
+    // Implement checking if source code does not throw error in validateSelectedIndexArray function
   });
 
   it("should be throw error when set null by setter", async () => {
@@ -92,6 +92,6 @@ describe("Checkbox", () => {
     }
 
     // TODO:
-    // Implement checking if source code does not throw error in _validateItems function
+    // Implement checking if source code does not throw error in validateSelectedIndexArray function
   });
 });
