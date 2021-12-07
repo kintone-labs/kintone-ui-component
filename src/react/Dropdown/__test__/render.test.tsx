@@ -153,6 +153,39 @@ describe('Unit test Dropdown react', () => {
     expect(counter).toBe(0);
   });
 
+  test('The value will be set as it is and no item is selected with invalid option.value', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      },
+    ];
+    const value = expectedValues[2];
+    const {container} =
+      render(
+        <Dropdown
+          items={expectedItems}
+          value={value}
+        />);
+    if (container.firstElementChild) {
+      const childEl = container.firstElementChild;
+      const itemsEl = childEl.querySelector('.kuc-list-outer')!.children;
+      if (!childEl.children || itemsEl.length !== 2) {
+        expect(false);
+      }
+      for (let i = 0; i < itemsEl.length; i++) {
+        const itemEl = itemsEl[i] as HTMLDivElement;
+        expect(itemEl.classList.contains('kuc-list-item-selected')).toBe(false);
+      }
+    } else {
+      expect(false);
+    }
+  });
+
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
@@ -160,18 +193,6 @@ describe('Unit test Dropdown react', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        }
-      ];
-      // @ts-ignore
-      render(<Dropdown items={expectedItems} value={expectedValues[1]} />);
-    }).toThrowError();
-  });
 
   test('throw error with duplicate option.items[x].value', () => {
     expect(() => {

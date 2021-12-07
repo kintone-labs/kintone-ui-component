@@ -36,7 +36,7 @@ class RadioButton extends Control<RadioButtonProps> {
     if (params) {
       this._props = {...this._props, ...params};
     }
-    const validationErr = this._validator(this._props.items, this._props.value!);
+    const validationErr = this._validator(this._props.items);
     if (validationErr) {
       throw new Error(validationErr);
     }
@@ -73,13 +73,12 @@ class RadioButton extends Control<RadioButtonProps> {
     this._props.onChange && this._props.onChange(this._props.value);
   }
 
-  private _validator(items?: item[], value?: string): string | undefined {
+  private _validator(items?: item[]): string | undefined {
     let err;
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items && value && !AbstractSingleSelection._hasValidValue(items, value)
-       || !AbstractSingleSelection._hasValidItems(items)
+    if (!AbstractSingleSelection._hasValidItems(items)
     ) {
       err = Message.common.INVALID_ARGUMENT;
     }
@@ -115,13 +114,6 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   setValue(value: string) {
-    if (value === null || value === undefined) {
-      throw new Error(Message.common.INVALID_ARGUMENT);
-    }
-    const validationErr = this._validator(this._props.items, value);
-    if (validationErr) {
-      throw new Error(validationErr);
-    }
     this._props.value = value;
     this.rerender(['value']);
   }
