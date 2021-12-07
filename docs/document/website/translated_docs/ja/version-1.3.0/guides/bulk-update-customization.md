@@ -43,7 +43,7 @@ kintone UI Component の UMD ファイルをアプリに読み込んだ上で、
 (() => {
   'use strict';
   kintone.events.on('app.record.index.show', (event) => {
-    
+
     // Write the process here
 
   });
@@ -73,7 +73,7 @@ const button = new Kuc.Button({
   text: 'Bulk approval',
   id: 'kuc_button'
 });
-header.appendChild(button); 
+header.appendChild(button);
 ```
 
 ---
@@ -115,7 +115,7 @@ button.addEventListener('click', () => {
 
     // Write subsequent process
 
-  });   
+  });
 });
 ```
 
@@ -172,12 +172,12 @@ kintone.api(kintone.api.url('/k/v1/records/status', true), 'PUT', param).then(()
 
   // When close button is pressed
   successInfo.addEventListener('close', () => {
-    location.reload();  
+    location.reload();
   });
 
 }).catch(error => {
   // Process when REST API error occurs
-  
+
 });
 ```
 

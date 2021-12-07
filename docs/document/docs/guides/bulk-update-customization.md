@@ -42,7 +42,7 @@ A Dialog component is scheduled to be provided in a future version update. In th
 (() => {
   'use strict';
   kintone.events.on('app.record.index.show', (event) => {
-    
+
     // Write the process here
 
   });
@@ -54,7 +54,7 @@ A Dialog component is scheduled to be provided in a future version update. In th
 
 This section shows how to use the Button component to place a bulk approval button in a Record List page.<br>
 The implementation shown below uses a unique view ID to ensure that the button is only displayed in the dedicated bulk approval view.<br>
-* The view ID can be found in the record view’s URL.
+*The view ID can be found in the record view’s URL.
 
 ```javascript
 if (event.viewId !== 6342505) {
@@ -72,14 +72,14 @@ const button = new Kuc.Button({
   text: 'Bulk approval',
   id: 'kuc_button'
 });
-header.appendChild(button); 
+header.appendChild(button);
 ```
 
 ---
 ### What happens when the bulk approval button is clicked?
 ---
 
-The following operation is triggered when the Bulk approval button is clicked.<br>
+The following operation is triggered when the bulk approval button is clicked.<br>
 If there is no applicable record, the processing will be suspended before displaying the confirmation dialog. <br>
 The processing is also suspended if Cancel is selected in the confirmation dialog.<br>
 The Notification component is used to display the message.
@@ -114,7 +114,7 @@ button.addEventListener('click', () => {
 
     // Write subsequent process
 
-  });   
+  });
 });
 ```
 Since multiple records are processed, the update may take some time.<br>
@@ -169,12 +169,12 @@ kintone.api(kintone.api.url('/k/v1/records/status', true), 'PUT', param).then(()
 
   // When close button is pressed
   successInfo.addEventListener('close', () => {
-    location.reload();  
+    location.reload();
   });
 
 }).catch(error => {
   // Process when REST API error occurs
-  
+
 });
 ```
 
