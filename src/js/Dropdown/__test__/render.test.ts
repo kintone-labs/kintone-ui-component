@@ -115,19 +115,31 @@ describe('Unit test Dropdown render', () => {
     expect(itemsEl).not.toBeVisible();
   });
 
-  test('The value will be set as it is with invalid option.value not in item list', () => {
+  test('The value will be set as it is and no item selected with invalid option.value not in item list', () => {
     const dropdown = new Dropdown({
       items: [
         {
           label: expectedLabels[0],
           value: expectedValues[0]
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1]
         }
       ],
-      value: expectedValues[1]
+      value: expectedValues[2]
     });
     dropdown.render();
-    expect(dropdown.getValue()).toBe(expectedValues[1]);
-
+    expect(dropdown.getValue()).toBe(expectedValues[2]);
+    const container = dropdown.render();
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
+    if (!container.children || itemsEl.length !== 2) {
+      expect(false);
+    }
+    for (let i = 0; i < itemsEl.length; i++) {
+      const itemEl = itemsEl[i];
+      expect(itemEl.classList.contains('kuc-list-item-selected')).toBe(false);
+    }
   });
 
   test('Throw error with invalid option.items', () => {

@@ -78,8 +78,7 @@ class RadioButton extends Control<RadioButtonProps> {
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
     }
-    if (items
-       && !AbstractSingleSelection._hasValidItems(items)
+    if (!AbstractSingleSelection._hasValidItems(items)
     ) {
       err = Message.common.INVALID_ARGUMENT;
     }
@@ -115,10 +114,6 @@ class RadioButton extends Control<RadioButtonProps> {
   }
 
   setValue(value: string) {
-    const validationErr = this._validator(this._props.items);
-    if (validationErr) {
-      throw new Error(validationErr);
-    }
     this._props.value = value;
     this.rerender(['value']);
   }
