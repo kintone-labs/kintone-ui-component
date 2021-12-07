@@ -48,7 +48,7 @@ class Dropdown extends Control<DropdownProps> {
       this._props = {...this._props, ...params};
     }
     // for Non-null assertion operator
-    const validationErr = this._validator(this._props.items, this._props.value!);
+    const validationErr = this._validator(this._props.items);
     if (validationErr) {
       throw new Error(validationErr);
     }
@@ -192,7 +192,7 @@ class Dropdown extends Control<DropdownProps> {
     return subcontainerEl;
   }
 
-  private _validator(items?: item[], value?: string): string | undefined {
+  private _validator(items?: item[]): string | undefined {
     let err;
     if (items && AbstractSingleSelection._hasDuplicatedItems(items)) {
       err = Message.common.SELECTTION_DUPLICATE_VALUE;
@@ -218,10 +218,6 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   setValue(value: string) {
-    const validationErr = this._validator(this._props.items, value);
-    if (validationErr) {
-      throw new Error(validationErr);
-    }
     this.label = '';
     this._props.value = value;
     this._props.items && this._props.items.forEach(data => {
