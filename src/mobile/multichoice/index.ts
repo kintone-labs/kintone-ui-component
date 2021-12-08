@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -24,6 +24,11 @@ type MobileMultiChoiceProps = {
   visible?: boolean;
   items?: Item[];
   value?: string[];
+  selectedIndex?: number[];
+};
+
+type ValueMapping = {
+  [key: number]: string;
 };
 
 export class MobileMultiChoice extends KucBase {
@@ -42,6 +47,10 @@ export class MobileMultiChoice extends KucBase {
   visible = true;
   @property({ type: Array }) items: Item[] = [];
   @property({ type: Array }) value: string[] = [];
+  @property({ type: Array }) selectedIndex: number[] = [];
+
+  @state()
+  private _valueMapping: ValueMapping = {};
 
   private _GUID: string;
 
@@ -56,55 +65,133 @@ export class MobileMultiChoice extends KucBase {
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
-    const detail: CustomEventDetail = { value: [], oldValue: this.value };
-    this.value = Array.from(selectEl.selectedOptions, option => option.value);
-    detail.value = this.value;
+
+    const oldValue = [...this.value];
+    const newValue = Array.from(
+      selectEl.selectedOptions,
+      option => option.value
+    );
+    const newSelectedIndex = Array.from(
+      selectEl.selectedOptions,
+      option => option.dataset.index
+    );
+    const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
+    this.value = newValue;
+    this.selectedIndex = newSelectedIndex.map(item =>
+      item ? parseInt(item, 10) : 0
+    );
     dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _getNewValueMapping(value: string, selectedIndex: string) {
+    const selectedIndexNumber = parseInt(selectedIndex, 10);
+    const keys = Object.keys(this._valueMapping);
+    const newValue = { ...this._valueMapping };
+    if (keys.indexOf(selectedIndex) > -1) {
+      delete newValue[selectedIndexNumber];
+      return newValue;
+    }
+    newValue[selectedIndexNumber] = value;
+    return newValue;
   }
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
-    if (changedProperties.has("value")) this._validateValues();
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._validateValues();
+      this._validateSelectedIndex();
+      this._valueMapping = this._getValueMapping();
+      this._setValueAndSelectedIndex();
+    }
     super.update(changedProperties);
   }
 
-  private _getItemTemplate(item: Item) {
+  private _getValueMapping() {
+    const itemsValue = this.items.map(item => item.value || "");
+    const itemsMapping = Object.assign({}, itemsValue);
+    const result: ValueMapping = {};
+    if (this.value.length === 0) {
+      const value = this._getValidValue(itemsMapping);
+      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+      return result;
+    }
+    const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
+    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    return result;
+  }
+
+  private _getValidValue(itemsMapping: ValueMapping) {
+    return this.selectedIndex
+      .filter(item => itemsMapping[item])
+      .map(item => itemsMapping[item]);
+  }
+
+  private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    const validSelectedIndex: number[] = [];
+    for (let i = 0; i < this.value.length; i++) {
+      const selectedIndex = this.selectedIndex[i];
+      if (itemsMapping[selectedIndex] === this.value[i]) {
+        validSelectedIndex.push(selectedIndex);
+        continue;
+      }
+      const firstIndex = this.items.findIndex(
+        item => item.value === this.value[i]
+      );
+      validSelectedIndex.push(firstIndex);
+    }
+
+    return validSelectedIndex;
+  }
+
+  private _setValueAndSelectedIndex() {
+    this.value = Object.values(this._valueMapping);
+    this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+      parseInt(key, 10)
+    );
+  }
+
+  private _isCheckedItem(item: Item, index: number) {
+    const values = Object.values(this._valueMapping);
+    const keys = Object.keys(this._valueMapping);
+    const result = values.filter(
+      (val, indexVal) =>
+        val === item.value && index === parseInt(keys[indexVal], 10)
+    );
+    return result.length > 0;
+  }
+
+  private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <option
         value="${item.value || ""}"
-        ?selected="${item.value !== undefined
-          ? this.value.some(val => val === item.value)
-          : false}"
+        data-index="${index}"
+        ?selected="${item.value !== undefined ? isCheckedItem : false}"
       >
         ${item.label === undefined ? item.value : item.label}
       </option>
     `;
   }
 
-  private _getDuplicatedIndex(values: string[]) {
-    for (let index = 0; index < values.length; index++) {
-      const value = values[index];
-      if (value !== undefined && values.indexOf(value) !== index) return index;
-    }
-    return -1;
-  }
-
   private _validateItems() {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value || "");
-    const index = this._getDuplicatedIndex(itemsValue);
-    if (index > -1)
-      throw new Error(`'items[${index}].value' property is duplicated`);
   }
 
   private _validateValues() {
     if (!Array.isArray(this.value)) {
       throw new Error("'value' property is not array");
     }
-    const index = this._getDuplicatedIndex(this.value);
-    if (index > -1) throw new Error(`'value[${index}]' property is duplicated`);
+  }
+
+  private _validateSelectedIndex() {
+    if (!Array.isArray(this.selectedIndex)) {
+      throw new Error("'selectedIndex' property is not array");
+    }
   }
 
   render() {
@@ -138,7 +225,9 @@ export class MobileMultiChoice extends KucBase {
             multiple
             @change="${this._handleChangeInput}"
           >
-            ${this.items.map(item => this._getItemTemplate(item))}
+            ${this.items.map((item, index) =>
+              this._getItemTemplate(item, index)
+            )}
           </select>
         </div>
       </div>

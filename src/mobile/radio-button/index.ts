@@ -1,4 +1,4 @@
-import { html, svg } from "lit";
+import { html, svg, PropertyValues } from "lit";
 import { property, queryAll } from "lit/decorators.js";
 import {
   KucBase,
@@ -16,6 +16,7 @@ type RadioButtonProps = {
   id?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   borderVisible?: boolean;
   disabled?: boolean;
   requiredIcon?: boolean;
@@ -28,7 +29,26 @@ export class MobileRadioButton extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({
+    type: String,
+    hasChanged(newVal: string, _oldVal) {
+      if (typeof newVal !== "string") {
+        throw new Error("'value' property is not array");
+      }
+      return true;
+    }
+  })
+  value = "";
+  @property({
+    type: Number,
+    hasChanged(newVal: number, _oldVal) {
+      if (typeof newVal !== "number") {
+        throw new Error("'selectedIndex' property is not array");
+      }
+      return true;
+    }
+  })
+  selectedIndex = -1;
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -45,16 +65,6 @@ export class MobileRadioButton extends KucBase {
       if (!Array.isArray(newVal)) {
         throw new Error("'items' property is not array");
       }
-      const checkedList: string[] = [];
-      newVal.forEach((item, index) => {
-        const value = item.value === undefined ? "" : item.value;
-        if (checkedList.indexOf(value) > -1) {
-          throw new Error(
-            `'items[${index}].value' is duplicated! You can specify unique one.`
-          );
-        }
-        checkedList.push(value);
-      });
       return true;
     }
   })
@@ -62,6 +72,7 @@ export class MobileRadioButton extends KucBase {
 
   @queryAll(".kuc-mobile-radio-button__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
+
   private _GUID: string;
 
   constructor(props?: RadioButtonProps) {
@@ -75,8 +86,13 @@ export class MobileRadioButton extends KucBase {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
     const value = inputEl.value;
-    const detail: CustomEventDetail = { value: value, oldValue: this.value };
+    const index = inputEl.dataset.index || "0";
+
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -114,13 +130,20 @@ export class MobileRadioButton extends KucBase {
   `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <div class="kuc-mobile-radio-button__group__select-menu__item">
         <input
           type="radio"
           aria-describedby="${this._GUID}-error"
           id="${this._GUID}-item-${index}"
+          data-index="${index}"
           class="kuc-mobile-radio-button__group__select-menu__item__input"
           name="${this._GUID}-group"
           value="${item.value !== undefined ? item.value : ""}"
@@ -132,10 +155,7 @@ export class MobileRadioButton extends KucBase {
         <label
           class="kuc-mobile-radio-button__group__select-menu__item__label"
           for="${this._GUID}-item-${index}"
-          >${this._getRadioIconSvgTemplate(
-            this.disabled,
-            item.value !== undefined ? this.value === item.value : false
-          )}
+          >${this._getRadioIconSvgTemplate(this.disabled, isCheckedItem)}
           <div
             class="kuc-mobile-radio-button__group__select-menu__item__label__value"
           >
@@ -144,6 +164,17 @@ export class MobileRadioButton extends KucBase {
         </label>
       </div>
     `;
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
+    super.update(changedProperties);
   }
 
   render() {
@@ -186,22 +217,29 @@ export class MobileRadioButton extends KucBase {
 
   updated() {
     this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
-      inputEl.checked = this.value === inputEl.value;
+      inputEl.checked =
+        this.value === inputEl.value && idx === this.selectedIndex;
     });
   }
 
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, index, self) => {
-      if (value !== undefined && self.indexOf(value) !== index) {
-        throw new Error(
-          `'items[${index}].value' is duplicated! You can specify unique one.`
-        );
-      }
-    });
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
   }
 
   private _getStyleTagTemplate() {

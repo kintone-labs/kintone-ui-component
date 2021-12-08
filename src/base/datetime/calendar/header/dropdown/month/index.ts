@@ -57,6 +57,11 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
+  closeListBox() {
+    this._listBoxVisible = false;
+    this._toggleEl.focus();
+  }
+
   private _getListBoxTemplate() {
     return this._listBoxVisible
       ? html`
@@ -111,13 +116,18 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
-  private _handleClickDropdownMonthToggle(event: Event) {
+  private _handleClickDropdownMonthToggle(event: MouseEvent) {
     event.stopPropagation();
+    event.preventDefault();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
-      this._closeListBox();
+      this.closeListBox();
     }
+    dispatchCustomEvent(this, "kuc:month-dropdown-click", {
+      value: this._listBoxVisible.toString(),
+      oldValue: (!this._listBoxVisible).toString()
+    });
   }
 
   private _handleMouseUpDropdownToggle(event: MouseEvent) {
@@ -148,7 +158,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this._closeListBox();
+    this.closeListBox();
     if (!event.detail.value) return;
     this.month = Number(event.detail.value);
     const detail: CustomEventDetail = { value: `${this.month}` };
@@ -157,11 +167,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _openListBox() {
     this._listBoxVisible = true;
-  }
-
-  private _closeListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
   }
 
   private _getListBoxItems() {

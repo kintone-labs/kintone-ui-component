@@ -32,7 +32,7 @@ describe("BaseDateTimeCalendar", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
       ) as HTMLButtonElement;
 
       selectedEl.dispatchEvent(

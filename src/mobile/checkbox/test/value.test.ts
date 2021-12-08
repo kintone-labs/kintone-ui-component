@@ -63,34 +63,12 @@ describe("MobileCheckbox", () => {
       }).to.throw(Error, "'value' property is not array");
     });
 
-    it("should be throw error when set dupplicated value on constructor", async () => {
-      expect(() => {
-        const container = new MobileCheckbox({
-          items: initItems,
-          value: [initItems[0].value, initItems[0].value]
-        });
-      }).to.throw(
-        Error,
-        "'value[1]' is duplicated! You can specify unique one."
-      );
-    });
-
     it("should be throw error when set null by setter", async () => {
       expect(() => {
         const container = new MobileCheckbox({ items: initItems });
         // @ts-expect-error
         container.value = null;
       }).to.throw(Error, "'value' property is not array");
-    });
-
-    it("should be throw error when set dupplicated value by setter", async () => {
-      expect(() => {
-        const container = new MobileCheckbox({ items: initItems });
-        container.value = [initItems[0].value, initItems[0].value];
-      }).to.throw(
-        Error,
-        "'value[1]' is duplicated! You can specify unique one."
-      );
     });
   });
 });

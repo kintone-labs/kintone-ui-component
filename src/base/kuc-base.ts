@@ -5,6 +5,7 @@ type CustomEventDetail = {
   data?: string | null;
   oldValue?: string | string[];
   value?: string | string[];
+  error?: string;
 };
 
 export abstract class KucBase extends LitElement {

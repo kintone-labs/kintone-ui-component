@@ -19,6 +19,7 @@ type DropdownProps = {
   id?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
@@ -31,6 +32,7 @@ export class Dropdown extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({
@@ -79,13 +81,11 @@ export class Dropdown extends KucBase {
   }
 
   private _getSelectedLabel() {
-    let selectedItemLabel = "";
-    this.items.forEach(item => {
-      if (item.value === this.value) {
-        selectedItemLabel = item.label === undefined ? item.value : item.label;
-      }
-    });
-    return selectedItemLabel;
+    const items = this.items.filter((item, index) =>
+      this._isCheckedItem(item, index)
+    );
+    if (items.length === 0) return "";
+    return items[0].label === undefined ? items[0].value : items[0].label;
   }
 
   private _getToggleIconSvgTemplate() {
@@ -110,7 +110,36 @@ export class Dropdown extends KucBase {
     if (changedProperties.has("items")) {
       this._validateItems();
     }
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._validateValue();
+      this._validateSelectedIndex();
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
     super.update(changedProperties);
+  }
+
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
   }
 
   render() {
@@ -183,7 +212,8 @@ export class Dropdown extends KucBase {
   private _handleMouseDownDropdownItem(event: MouseEvent) {
     const itemEl = event.target as HTMLLIElement;
     const value = itemEl.getAttribute("value") as string;
-    this._actionUpdateValue(value);
+    const selectedIndex = itemEl.dataset.index || "0";
+    this._actionUpdateValue(value, selectedIndex);
   }
 
   private _handleMouseOverDropdownItem(event: Event) {
@@ -244,7 +274,8 @@ export class Dropdown extends KucBase {
         if (itemEl === null) break;
 
         const value = itemEl.getAttribute("value") as string;
-        this._actionUpdateValue(value);
+        const selectedIndex = itemEl.dataset.index || "0";
+        this._actionUpdateValue(value, selectedIndex);
         this._actionHideMenu();
         break;
       }
@@ -351,10 +382,12 @@ export class Dropdown extends KucBase {
     item.classList.add("kuc-dropdown__group__select-menu__highlight");
   }
 
-  private _actionUpdateValue(value: string) {
-    if (this.value === value) return;
+  private _actionUpdateValue(value: string, index: string) {
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
     const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -534,19 +567,26 @@ export class Dropdown extends KucBase {
     `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <li
         class="kuc-dropdown__group__select-menu__item"
         role="option"
-        tabindex="${item.value === this.value ? "0" : "-1"}"
-        aria-selected="${item.value === this.value ? "true" : "false"}"
+        tabindex="${isCheckedItem ? "0" : "-1"}"
+        aria-selected="${isCheckedItem ? "true" : "false"}"
+        data-index="${index}"
         value="${item.value !== undefined ? item.value : ""}"
         id="${this._GUID}-menuitem-${index}"
         @mousedown="${this._handleMouseDownDropdownItem}"
         @mouseover="${this._handleMouseOverDropdownItem}"
       >
-        ${this._getDropdownIconSvgTemplate(item.value === this.value)}
+        ${this._getDropdownIconSvgTemplate(isCheckedItem)}
         ${item.label === undefined ? item.value : item.label}
       </li>
     `;
@@ -578,12 +618,18 @@ export class Dropdown extends KucBase {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, number, self) => {
-      if (value !== undefined && self.indexOf(value) !== number) {
-        throw new Error(`'items[${number}].value' property is duplicated`);
-      }
-    });
+  }
+
+  private _validateValue() {
+    if (typeof this.value !== "string") {
+      throw new Error("'value' property is not string");
+    }
+  }
+
+  private _validateSelectedIndex() {
+    if (typeof this.selectedIndex !== "number") {
+      throw new Error("'selectedIndex' property is not number");
+    }
   }
 }
 if (!window.customElements.get("kuc-dropdown")) {

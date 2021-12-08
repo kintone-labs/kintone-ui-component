@@ -55,6 +55,11 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
+  closeListBox() {
+    this._listBoxVisible = false;
+    this._toggleEl.focus();
+  }
+
   private _getListBoxTemplate() {
     return this._listBoxVisible
       ? html`
@@ -116,13 +121,18 @@ export class BaseDateTimeHeaderYear extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownYearToggle(event: Event) {
+  private _handleClickDropdownYearToggle(event: MouseEvent) {
     event.stopPropagation();
+    event.preventDefault();
     if (!this._listBoxVisible) {
       this._openListBox();
     } else {
-      this._closeListBox();
+      this.closeListBox();
     }
+    dispatchCustomEvent(this, "kuc:year-dropdown-click", {
+      value: this._listBoxVisible.toString(),
+      oldValue: (!this._listBoxVisible).toString()
+    });
   }
 
   private _handleKeyDownYearToggle(event: KeyboardEvent) {
@@ -141,7 +151,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _handleChangeListBox(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this._closeListBox();
+    this.closeListBox();
     if (!event.detail.value) return;
     this.year = Number(event.detail.value);
     const detail: CustomEventDetail = { value: `${this.year}` };
@@ -152,17 +162,14 @@ export class BaseDateTimeHeaderYear extends KucBase {
     this._listBoxVisible = true;
   }
 
-  private _closeListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
-  }
-
   private _getYearOptions() {
     const options = [];
     if (!Number.isInteger(this.year)) {
       this.year = 2021;
     }
-    for (let i = this.year - 100; i <= this.year + 100; i++) {
+    let i = this.year < 100 ? 0 : this.year - 100;
+    const maxYear = this.year >= 9999 - 100 ? 9999 : this.year + 100;
+    for (i; i <= maxYear; i++) {
       options.push(i);
     }
     return options;

@@ -18,6 +18,7 @@ type RadioButtonProps = {
   itemLayout?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   borderVisible?: boolean;
   disabled?: boolean;
   requiredIcon?: boolean;
@@ -32,6 +33,7 @@ export class RadioButton extends KucBase {
   @property({ type: String }) itemLayout = "horizontal";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -66,8 +68,13 @@ export class RadioButton extends KucBase {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
     const value = inputEl.value;
-    const detail: CustomEventDetail = { value: value, oldValue: this.value };
+    const index = inputEl.dataset.index || "0";
+
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -110,7 +117,13 @@ export class RadioButton extends KucBase {
   `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <div
         class="kuc-radio-button__group__select-menu__item"
@@ -118,8 +131,9 @@ export class RadioButton extends KucBase {
       >
         <input
           type="radio"
-          aria-checked="${this.value === item.value}"
+          aria-checked="${isCheckedItem}"
           aria-describedby="${this._GUID}-error"
+          data-index="${index}"
           id="${this._GUID}-item-${index}"
           class="kuc-radio-button__group__select-menu__item__input"
           name="${this._GUID}-group"
@@ -136,7 +150,7 @@ export class RadioButton extends KucBase {
           for="${this._GUID}-item-${index}"
           >${this._getRadioIconSvgTemplate(
             this.disabled,
-            item.value !== undefined ? this.value === item.value : false
+            isCheckedItem
           )}${item.label === undefined ? item.value : item.label}
         </label>
       </div>
@@ -155,6 +169,15 @@ export class RadioButton extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("items")) this._validateItems();
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._validateValue();
+      this._validateSelectedIndex();
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
     super.update(changedProperties);
   }
 
@@ -202,6 +225,26 @@ export class RadioButton extends KucBase {
     this._updateErrorWidth();
   }
 
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
+  }
+
   private _updateErrorWidth() {
     const MIN_WIDTH = 239;
     const labelWidth = getWidthElmByContext(this._labelEl);
@@ -216,14 +259,18 @@ export class RadioButton extends KucBase {
     if (!Array.isArray(this.items)) {
       throw new Error("'items' property is not array");
     }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, index, self) => {
-      if (value !== undefined && self.indexOf(value) !== index) {
-        throw new Error(
-          `'items[${index}].value' is duplicated! You can specify unique one.`
-        );
-      }
-    });
+  }
+
+  private _validateValue() {
+    if (typeof this.value !== "string") {
+      throw new Error("'value' property is not string");
+    }
+  }
+
+  private _validateSelectedIndex() {
+    if (typeof this.selectedIndex !== "number") {
+      throw new Error("'selectedIndex' property is not number");
+    }
   }
 
   private _getStyleTagTemplate() {
