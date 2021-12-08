@@ -79,7 +79,7 @@ export class BaseDate extends KucBase {
       ${this._dateTimeCalendarVisible
         ? html`
             <kuc-base-datetime-calendar
-              class="kuc-base-date-calendar"
+              class="kuc-base-date__calendar"
               .language="${this.language}"
               .value="${this._calendarValue}"
               ?hidden="${!this._dateTimeCalendarVisible}"
@@ -138,7 +138,7 @@ export class BaseDate extends KucBase {
           box-shadow: none;
           cursor: not-allowed;
         }
-        .kuc-base-date-calendar {
+        .kuc-base-date__calendar {
           position: absolute;
           z-index: 2000;
           background-color: #ffffff;
