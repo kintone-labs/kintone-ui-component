@@ -30,14 +30,17 @@ export function validateTimeValue(value: string) {
 }
 
 export function isValidDate(date: string) {
-  const [year, month, day] = date.split("-").map(item => Number(item));
-  const dateObj = new Date(year, month - 1, day);
+  const [year, month, day] = date.split("-");
+  const dateObj = new Date(date);
+  const newYear = dateObj.getFullYear();
+  const newMonth = dateObj.getMonth();
+  const newDay = dateObj.getDate();
   if (
-    dateObj.getFullYear() === year &&
-    dateObj.getMonth() === month - 1 &&
-    dateObj.getDate() === day
-  ) {
+    newYear === Number(year) &&
+    newMonth === Number(month) - 1 &&
+    newDay === Number(day)
+  )
     return true;
-  }
+
   return false;
 }
