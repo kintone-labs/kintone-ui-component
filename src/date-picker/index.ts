@@ -59,7 +59,7 @@ export class DatePicker extends KucBase {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.value = dateValueConverter(this.value);
-      if (this.value !== "" && !isValidDate(new Date(this.value))) {
+      if (this.value !== "" && !isValidDate(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
     }

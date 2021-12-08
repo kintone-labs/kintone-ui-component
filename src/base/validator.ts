@@ -29,6 +29,15 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
-export function isValidDate(date: Date) {
-  return date instanceof Date && !isNaN(date.getTime());
+export function isValidDate(date: string) {
+  const [year, month, day] = date.split("-").map(item => Number(item));
+  const dateObj = new Date(year, month - 1, day);
+  if (
+    dateObj.getFullYear() === year &&
+    dateObj.getMonth() === month - 1 &&
+    dateObj.getDate() === day
+  ) {
+    return true;
+  }
+  return false;
 }
