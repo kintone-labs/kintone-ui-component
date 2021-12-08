@@ -4,6 +4,7 @@ import { KucBase } from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import { BaseDateTimeListBox } from "../listbox";
+import { getTodayStringByLocale } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
@@ -118,8 +119,9 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _updateValue() {
-    if (this.value === "") return;
-
+    if (this.value === "") {
+      this.value = getTodayStringByLocale().slice(0, 7);
+    }
     const { year, month } = this._separateValue(this.value);
     this._year = year;
     this._month = month;

@@ -59,7 +59,7 @@ export class DatePicker extends KucBase {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.value = dateValueConverter(this.value);
-      if (!isValidDate(new Date(this.value))) {
+      if (this.value !== "" && !isValidDate(new Date(this.value))) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
     }
@@ -190,7 +190,7 @@ export class DatePicker extends KucBase {
     event.stopPropagation();
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
-      oldValue: this.value,
+      oldValue: this.value === "" ? undefined : this.value,
       value: ""
     };
     this.error = "";
