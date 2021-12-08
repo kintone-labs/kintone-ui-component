@@ -117,7 +117,7 @@ describe('Unit test DateTime onEvent', () => {
   });
 
   test('should selected range successfully inside the Time input when pressing Arrow Right/Left button', () => {
-    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
+    const mockFn = jest.spyOn(HTMLInputElement.prototype, 'setSelectionRange');
 
     const datetime = new DateTime({type: 'time', value: new Date('Mon, 6 Jan 2020 18:40:00 GMT+7')});
     const container = datetime.render();
