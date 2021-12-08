@@ -90,9 +90,10 @@ module.exports = {
             if (expressionArguments.length === 0) {
               if (prop.typeAnnotation) {
                 // @property() c: string = "";
-                typeValue = sourceCode.getTokenByRangeStart(
-                  prop.typeAnnotation.typeAnnotation.range[0]
-                ).value;
+                const typeAnnotation = prop.typeAnnotation.typeAnnotation;
+                typeValue = `${
+                  sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
+                }_${typeAnnotation.type}`;
               }
             } else {
               // @property({ type: String }) a = "";
@@ -120,9 +121,10 @@ module.exports = {
       TSTypeAliasDeclaration: function(node) {
         const props = node.typeAnnotation.members;
         const propInfos = props.map(prop => {
-          const type = prop.typeAnnotation.typeAnnotation;
-          const typeValue = sourceCode.getTokenByRangeStart(type.range[0])
-            .value;
+          const typeAnnotation = prop.typeAnnotation.typeAnnotation;
+          const typeValue = `${
+            sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
+          }_${typeAnnotation.type}`;
 
           return { name: prop.key.name, type: typeValue };
         });

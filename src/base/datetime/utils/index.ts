@@ -2,8 +2,8 @@ import { svg } from "lit";
 import { en, zh, ja } from "../resource/locale";
 
 export type WeekDate = {
-  text: string;
   attr: string;
+  text: string;
 };
 
 export const getDisplayingDates = (year: number, month: number) => {

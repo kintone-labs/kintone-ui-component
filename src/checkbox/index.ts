@@ -9,7 +9,7 @@ import {
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type CheckboxProps = {
   className?: string;
   error?: string;
@@ -26,8 +26,8 @@ type CheckboxProps = {
 
 export class Checkbox extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
   @property({ type: String }) label = "";
