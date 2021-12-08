@@ -1,4 +1,4 @@
-name: check v0 yamory
+name: excute yamory when pushing to v0
 on:
   push:
     branches: [v0_dev]
