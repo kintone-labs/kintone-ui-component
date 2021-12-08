@@ -1,4 +1,4 @@
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};

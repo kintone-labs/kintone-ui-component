@@ -48,8 +48,8 @@ export class MobileCheckbox extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @queryAll(".kuc-mobile-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
