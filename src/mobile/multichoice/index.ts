@@ -46,8 +46,8 @@ export class MobileMultiChoice extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @state()
   private _valueMapping: ValueMapping = {};

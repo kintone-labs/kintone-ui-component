@@ -120,13 +120,16 @@ module.exports = {
       },
       TSTypeAliasDeclaration: function(node) {
         const props = node.typeAnnotation.members;
-        const propInfos = props.map(prop => {
+        const propInfos = [];
+        props.forEach(prop => {
+          if (prop.type !== "TSPropertySignature") return;
+
           const typeAnnotation = prop.typeAnnotation.typeAnnotation;
           const typeValue = `${
             sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
           }_${typeAnnotation.type}`;
 
-          return { name: prop.key.name, type: typeValue };
+          propInfos.push({ name: prop.key.name, type: typeValue });
         });
 
         const wrongOrderNames = checkNames(propInfos);
