@@ -7,7 +7,12 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueArray,
+  validateSelectedIndexArray
+} from "../../base/validator";
 
 type Item = {
   label?: string;
@@ -83,26 +88,14 @@ export class MobileMultiChoice extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
-  private _getNewValueMapping(value: string, selectedIndex: string) {
-    const selectedIndexNumber = parseInt(selectedIndex, 10);
-    const keys = Object.keys(this._valueMapping);
-    const newValue = { ...this._valueMapping };
-    if (keys.indexOf(selectedIndex) > -1) {
-      delete newValue[selectedIndexNumber];
-      return newValue;
-    }
-    newValue[selectedIndexNumber] = value;
-    return newValue;
-  }
-
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValues();
-      this._validateSelectedIndex();
+      validateValueArray(this.value);
+      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
@@ -174,24 +167,6 @@ export class MobileMultiChoice extends KucBase {
         ${item.label === undefined ? item.value : item.label}
       </option>
     `;
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValues() {
-    if (!Array.isArray(this.value)) {
-      throw new Error("'value' property is not array");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (!Array.isArray(this.selectedIndex)) {
-      throw new Error("'selectedIndex' property is not array");
-    }
   }
 
   render() {
