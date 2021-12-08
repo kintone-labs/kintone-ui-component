@@ -1,8 +1,8 @@
-name: check yamory weekly on v0 and v1
+name: excute yamory when pushing to v1
 
 on: 
-  schedule:
-    - cron:  '0 16 * * 0'
+  push:
+    branches: [master]
     
 jobs:
   check_master:
@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-          ref: master
     - name: run Yamory
       run: |
         ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
@@ -19,19 +17,4 @@ jobs:
       env:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_master
-        YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
-        
-  check_v0_dev:
-    name: excute yamory_v0_dev
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-          ref: v0_dev
-    - name: run Yamory
-      run: |
-        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
-      env:
-        CI: true
-        PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
         YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
