@@ -1,7 +1,7 @@
 import { html, svg } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent, generateGUID } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 type DialogProps = {
@@ -21,9 +21,11 @@ export class Dialog extends KucBase {
   )
   private _focusableElements!: HTMLElement[];
   private _triggeredElement: Element | null = null;
+  private _GUID: string;
 
   constructor(props?: DialogProps) {
     super();
+    this._GUID = generateGUID();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -59,10 +61,12 @@ export class Dialog extends KucBase {
       <div
         class="kuc-dialog__dialog"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
+        aria-labelledby="${this._GUID}-header"
+        aria-modal="true"
         @keydown="${this._handleKeyDownDialog}"
       >
-        <div class="kuc-dialog__dialog__header">
+        <div class="kuc-dialog__dialog__header" id="${this._GUID}-header">
           <span class="kuc-dialog__dialog__header__title">${this.title}</span>
           <button
             class="kuc-dialog__dialog__header__close-button"
