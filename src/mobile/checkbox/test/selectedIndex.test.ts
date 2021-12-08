@@ -8,7 +8,7 @@ const initItems = [
 ];
 
 describe("MobileCheckbox", () => {
-  describe("value", () => {
+  describe("selectedIndex", () => {
     it("should be none checked items when not assinged on constructor", async () => {
       const container = new MobileCheckbox({ items: initItems });
       const el = await fixture(container);
@@ -25,7 +25,7 @@ describe("MobileCheckbox", () => {
     it("should be checked items when assinged on constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        selectedIndex: [1]
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -41,9 +41,9 @@ describe("MobileCheckbox", () => {
     it("should be changed value when updated by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        selectedIndex: [1]
       });
-      container.value = [initItems[2].value];
+      container.selectedIndex = [2];
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -57,41 +57,44 @@ describe("MobileCheckbox", () => {
     });
 
     it("should be throw error when set null on constructor", async () => {
-      // @ts-expect-error
-      const container = new MobileCheckbox({ items: initItems, value: null });
+      const container = new MobileCheckbox({
+        items: initItems,
+        // @ts-expect-error
+        selectedIndex: null
+      });
       try {
         await fixture(container);
       } catch (error) {
-        let errorMessage = "'value' property is not array";
+        let errorMessage = "'selectedIndex' property is not array";
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.equal("'value' property is not array");
+        expect(errorMessage).to.equal("'selectedIndex' property is not array");
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
+      // Implement checking if source code does not throw error in validateSelectedIndexArray function
     });
 
     it("should be throw error when set null by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[0].value]
+        selectedIndex: [0]
       });
       try {
         // @ts-expect-error
-        container.value = null;
+        container.selectedIndex = null;
         await fixture(container);
       } catch (error) {
-        let errorMessage = "'value' property is not array";
+        let errorMessage = "'selectedIndex' property is not array";
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.equal("'value' property is not array");
+        expect(errorMessage).to.equal("'selectedIndex' property is not array");
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
+      // Implement checking if source code does not throw error in validateSelectedIndexArray function
     });
   });
 });

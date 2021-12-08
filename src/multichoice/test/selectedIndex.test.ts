@@ -8,7 +8,7 @@ const initItems = [
 ];
 
 describe("MultiChoice", () => {
-  describe("value", () => {
+  describe("selectedIndex", () => {
     it("should be empty array when not assigned on constructor", async () => {
       const container = new MultiChoice({ items: initItems });
       const el = await fixture(container);
@@ -34,7 +34,7 @@ describe("MultiChoice", () => {
     it("should be selected item when assigned on constructor", async () => {
       const container = new MultiChoice({
         items: initItems,
-        value: [initItems[1].value]
+        selectedIndex: [1]
       });
       const el = await fixture(container);
 
@@ -59,9 +59,9 @@ describe("MultiChoice", () => {
     it("should be selected item by setter", async () => {
       const container = new MultiChoice({
         items: initItems,
-        value: [initItems[0].value]
+        selectedIndex: [0]
       });
-      container.value = [initItems[1].value];
+      container.selectedIndex = [1];
       const el = await fixture(container);
 
       expect(container.value).to.deep.equal([initItems[1].value]);
@@ -82,39 +82,22 @@ describe("MultiChoice", () => {
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
-    it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
-      const container = new MultiChoice({ items: initItems, value: null });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
-    });
-
     it("should be throw error when set null by setter", async () => {
       const container = new MultiChoice({ items: initItems });
       // @ts-expect-error
-      container.value = null;
+      container.selectedIndex = null;
       try {
         await fixture(container);
       } catch (error) {
-        let errorMessage = "'value' property is not array";
+        let errorMessage = "'selectedIndex' property is not array";
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.equal("'value' property is not array");
+        expect(errorMessage).to.equal("'selectedIndex' property is not array");
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
+      // Implement checking if source code does not throw error in validateSelectedIndexArray function
     });
   });
 });
