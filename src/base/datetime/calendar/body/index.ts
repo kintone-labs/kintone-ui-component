@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
@@ -9,16 +9,17 @@ import {
   getDisplayingDates,
   padStart,
   WeekDate,
-  getLocale,
-  getCurrentMonth,
-  getCurrentYear
+  getLocale
 } from "../../utils/";
 
 export class BaseDateTimeCalendarBody extends KucBase {
-  @property({ type: Number }) month = getCurrentMonth();
-  @property({ type: Number }) year = getCurrentYear();
+  @property({ type: Number }) month = 1;
+  @property({ type: Number }) year = 2021;
   @property({ type: String }) language = "en";
   @property({ type: String, reflect: true }) value = "";
+
+  @state() _month = 1;
+  @state() _year = 2021;
 
   @query(
     '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
@@ -49,6 +50,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
     changedProperties.forEach((_oldValue, propName) => {
       propName === "language" && (this._locale = getLocale(this.language));
     });
+    if (changedProperties.has("month")) this._month = this.month;
+    if (changedProperties.has("year")) this._year = this.year;
+    if (changedProperties.has("value")) {
+      const { month, year } = this._separateDatevalue();
+      this._month = parseInt(month, 10);
+      this._year = parseInt(year, 10);
+    }
     super.update(changedProperties);
   }
 
@@ -150,22 +158,28 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    const date = new Date(this.value || this._getValueItemFocused());
+    let value = this.value;
+    const { day } = this._separateDatevalue();
+    value = `${this._year}-${this._month}-${day}`;
+    const date = new Date(value || this._getValueItemFocused());
     if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
     const nextDate = this._getDateString(date);
-    const nextMonth = date.getMonth() + 1;
-    const nextYear = date.getFullYear();
-
-    if (nextMonth !== this.month) this.month = nextMonth;
-    if (nextYear !== this.year) this.year = nextYear;
-
-    const oldValue = this.value;
+    const oldValue = value;
     this.value = nextDate;
 
     const detail: CustomEventDetail = { oldValue: oldValue, value: nextDate };
     dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
+  }
+
+  private _separateDatevalue() {
+    const dates = this.value.split("-");
+    return {
+      day: dates[2],
+      month: dates[1],
+      year: dates[0]
+    };
   }
 
   private _getSelectedValue() {
@@ -183,7 +197,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateClass(dateParts: string[], isThisMonth: boolean) {
-    if (isThisMonth) return "";
+    if (isThisMonth) {
+      const isToday = this._isToday(dateParts);
+      if (isToday)
+        return " kuc-base-datetime-calendar-body__table__date__button--today";
+
+      return "";
+    }
     const isToday = this._isToday(dateParts);
     if (isToday)
       return " kuc-base-datetime-calendar-body__table__date__button--today";
@@ -203,13 +223,16 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const year = parseInt(dates[0], 10);
     let dateFocused = new Date().getDate();
 
+    const currentDay = this.value.split("-")[2];
+    if (!currentDay) return false;
+
     if (this.value) dateFocused = new Date(this.value).getDate();
-    if (dateFocused === day && month === this.month) return true;
-    const lastDayOfMonth = new Date(year, this.month, 0).getDate();
+    if (dateFocused === day && month === this._month) return true;
+    const lastDayOfMonth = new Date(year, this._month, 0).getDate();
     if (
       dateFocused > lastDayOfMonth &&
       lastDayOfMonth === day &&
-      month === this.month
+      month === this._month
     )
       return true;
     return false;
@@ -236,8 +259,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getDateItemsTemplate() {
-    const displayingDates = getDisplayingDates(this.year, this.month - 1);
-    const today = this._getDateString();
+    const displayingDates = getDisplayingDates(this._year, this._month - 1);
+    // const today = this._getDateString();
     return html`
       <tbody>
         ${displayingDates.map(weeks => {
@@ -246,7 +269,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
               ${weeks.map((weekDate: WeekDate) => {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
-                const isThisMonth = parseInt(dateParts[1], 10) === this.month;
+                const isThisMonth = parseInt(dateParts[1], 10) === this._month;
                 return html`
                   <td
                     role="gridcell"
@@ -259,8 +282,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                   >
                     <button
                       aria-current="${this.value === weekDate.attr}"
-                      tabindex="${(weekDate.attr === today ||
-                        this.value === weekDate.attr ||
+                      tabindex="${(this.value === weekDate.attr ||
                         isSameDate) &&
                       isThisMonth
                         ? "0"
@@ -382,8 +404,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
           background: #888888;
           border: none;
         }
-        .kuc-base-datetime-calendar-body__table__date
-          .kuc-base-datetime-calendar-body__table__date__button--today:hover {
+        .kuc-base-datetime-calendar-body__table__date__button--today:hover {
           color: #333333;
         }
         .kuc-base-datetime-calendar-body__table__date

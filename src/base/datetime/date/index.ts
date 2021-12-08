@@ -185,9 +185,8 @@ export class BaseDate extends KucBase {
         oldValue: this.value,
         error: this._locale.INVALID_FORMAT
       };
-      this._calendarValue = "";
+      this._calendarValue = this.value?.slice(0, 7);
       this._inputValue = newValue;
-      this.value = newValue;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
     }

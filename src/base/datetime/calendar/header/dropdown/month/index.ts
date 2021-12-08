@@ -6,15 +6,11 @@ import {
   CustomEventDetail
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
-import {
-  getToggleIconSvgTemplate,
-  getLocale,
-  getCurrentMonth
-} from "../../../../utils";
+import { getToggleIconSvgTemplate, getLocale } from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
   @property({ type: String }) language = "en";
-  @property({ type: Number }) month = getCurrentMonth();
+  @property({ type: Number }) month = 1;
 
   @state()
   private _listBoxVisible = false;
@@ -61,7 +57,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     `;
   }
 
-  closeListBox() {
+  public closeListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
   }

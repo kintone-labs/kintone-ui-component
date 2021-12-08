@@ -1,14 +1,17 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
-import { getTodayStringByLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps, validateDateValue } from "../base/validator";
+import {
+  validateProps,
+  validateDateValue,
+  isValidDate
+} from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
@@ -32,7 +35,7 @@ export class DatePicker extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value? = getTodayStringByLocale();
+  @property({ type: String }) value? = "";
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -56,6 +59,9 @@ export class DatePicker extends KucBase {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.value = dateValueConverter(this.value);
+      if (!isValidDate(new Date(this.value))) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
     }
     super.update(changedProperties);
   }

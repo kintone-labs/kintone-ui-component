@@ -1,6 +1,9 @@
 import { html, PropertyValues } from "lit";
 import { state, property, query } from "lit/decorators.js";
 import { KucBase } from "../../kuc-base";
+import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
+import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
+import { BaseDateTimeListBox } from "../listbox";
 import "./header";
 import "./body";
 import "./footer";
@@ -12,13 +15,28 @@ export class BaseDateTimeCalendar extends KucBase {
   @query(".kuc-base-datetime-calendar__group")
   private _baseCalendarGroupEl!: HTMLDivElement;
 
+  @query(".kuc-base-datetime-header-month")
+  private _monthEl!: BaseDateTimeHeaderMonth;
+
+  @query(".kuc-base-datetime-header-year")
+  private _yearEl!: BaseDateTimeHeaderYear;
+
+  @query(".kuc-base-datetime-header-month__listbox")
+  private _listBoxMonthEl!: BaseDateTimeListBox;
+
+  @query(".kuc-base-datetime-header-year__listbox")
+  private _listBoxYearEl!: BaseDateTimeListBox;
+
   @state() _month = 1;
   @state() _year = 2021;
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-base-datetime-calendar__group">
+      <div
+        class="kuc-base-datetime-calendar__group"
+        @click="${this._handleClickCalendarGroup}"
+      >
         <kuc-base-datetime-calendar-header
           .year="${this._year}"
           .month="${this._month}"
@@ -43,6 +61,12 @@ export class BaseDateTimeCalendar extends KucBase {
     if (changedProperties.has("value")) this._updateValue();
     this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
+  }
+
+  private _handleClickCalendarGroup(event: Event) {
+    event.stopPropagation();
+    if (this._listBoxMonthEl) this._monthEl.closeListBox();
+    if (this._listBoxYearEl) this._yearEl.closeListBox();
   }
 
   private _calculateBodyCalendarPosition() {

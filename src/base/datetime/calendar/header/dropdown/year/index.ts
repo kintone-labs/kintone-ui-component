@@ -6,10 +6,10 @@ import {
   dispatchCustomEvent
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
-import { getToggleIconSvgTemplate, getCurrentYear } from "../../../../utils";
+import { getToggleIconSvgTemplate } from "../../../../utils";
 
 export class BaseDateTimeHeaderYear extends KucBase {
-  @property({ type: Number }) year = getCurrentYear();
+  @property({ type: Number }) year = 1;
   @property({ type: String }) postfix = "";
 
   @state()
@@ -55,7 +55,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
-  closeListBox() {
+  public closeListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
   }
