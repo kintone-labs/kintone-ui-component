@@ -108,7 +108,6 @@ export class BaseDateTimeListBox extends KucBase {
       case "Escape":
         dispatchCustomEvent(this, "kuc:listbox-click", {});
         break;
-      case " ":
       case "Enter": {
         const highlightValue = this._highlightItemEl.getAttribute("value");
         const detail: CustomEventDetail = { value: highlightValue || "" };
