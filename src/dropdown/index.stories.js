@@ -20,6 +20,7 @@ storiesOf("desktop/dropdown", module)
         }
       ],
       value: "-----",
+      selectedIndex: 0,
       label: "フルーツ一覧",
       requiredIcon: true,
       disabled: false,

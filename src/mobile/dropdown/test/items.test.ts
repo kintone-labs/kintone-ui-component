@@ -21,8 +21,8 @@ const dupplicatedItems = [
   { label: "Apple", value: "orange" }
 ];
 
-const expectedLabels = ["", "-----", "Orange", "Apple"];
-const expectedValues = ["", "-----", "orange", "apple"];
+const expectedLabels = ["-----", "Orange", "Apple"];
+const expectedValues = ["-----", "orange", "apple"];
 
 describe("MobileDropdown", () => {
   describe("items", () => {
@@ -30,7 +30,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown();
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(1);
+      expect(itemsEl.length).to.be.equal(0);
     });
 
     it("exists on element when initializing with props option", async () => {
@@ -39,7 +39,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(4);
+      expect(itemsEl.length).to.be.equal(3);
 
       for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
@@ -59,7 +59,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(4);
+      expect(itemsEl.length).to.be.equal(3);
 
       for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
@@ -77,7 +77,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(4);
+      expect(itemsEl.length).to.be.equal(3);
 
       for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
@@ -94,7 +94,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(2);
+      expect(itemsEl.length).to.be.equal(1);
 
       for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
@@ -109,7 +109,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl.length).to.be.equal(2);
 
       for (let i = 1; i < itemsEl.length; i++) {
         const itemEl = itemsEl[i] as HTMLElement;
@@ -135,7 +135,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when initializing value is duplicated", async () => {
@@ -153,7 +153,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when when changing by setter to null", async () => {
@@ -172,7 +172,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when changing by setter to duplicated items vaule", async () => {
@@ -192,7 +192,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });
