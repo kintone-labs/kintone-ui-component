@@ -190,6 +190,7 @@ export class BaseDate extends KucBase {
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
     }
+    this._calendarValue = this.value;
     this._dispathDateChangeCustomEvent(
       formatInputValueToValue(this.language, newValue)
     );
