@@ -105,8 +105,10 @@ export class BaseDateTimeListBox extends KucBase {
         this._focusHighlightItemEl();
         break;
       case "Tab":
-      case "Escape":
         dispatchCustomEvent(this, "kuc:listbox-click", {});
+        break;
+      case "Escape":
+        dispatchCustomEvent(this, "kuc:listbox-reset", {});
         break;
       case " ":
       case "Enter": {
