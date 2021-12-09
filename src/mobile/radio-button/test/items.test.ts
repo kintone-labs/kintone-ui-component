@@ -196,11 +196,21 @@ describe("MobileRadioButton", () => {
     });
 
     it("should be throw error when assigned null by setter", async () => {
-      expect(() => {
-        const container = new MobileRadioButton();
+      const container = new MobileRadioButton();
+      try {
         // @ts-expect-error
         container.items = null;
-      }).to.throw(Error, "'items' property is not array");
+        await fixture(container);
+      } catch (error) {
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });
