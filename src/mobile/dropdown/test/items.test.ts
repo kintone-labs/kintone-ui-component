@@ -135,7 +135,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when initializing value is duplicated", async () => {
@@ -153,7 +153,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when when changing by setter to null", async () => {
@@ -172,7 +172,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("show error when changing by setter to duplicated items vaule", async () => {
@@ -192,7 +192,7 @@ describe("MobileDropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });
