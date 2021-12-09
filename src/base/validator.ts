@@ -45,7 +45,8 @@ export function isValidDate(date: string) {
     return true;
 
   return false;
-  
+}
+
 export function validateItems(value: Item[]) {
   if (!Array.isArray(value)) {
     throw new Error("'items' property is not array");
