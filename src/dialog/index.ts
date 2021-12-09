@@ -34,6 +34,7 @@ export class Dialog extends KucBase {
   open() {
     const body = document.getElementsByTagName("body")[0];
     body.appendChild(this);
+    body.classList.add("kuc--has-dialog");
     this.performUpdate();
 
     this.setAttribute("opened", "");
@@ -42,6 +43,8 @@ export class Dialog extends KucBase {
   }
 
   close() {
+    const body = document.getElementsByTagName("body")[0];
+    body.classList.remove("kuc--has-dialog");
     this.removeAttribute("opened");
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
@@ -228,6 +231,10 @@ export class Dialog extends KucBase {
           background-color: #000000;
           opacity: 0.6;
           z-index: 9999;
+        }
+
+        .kuc--has-dialog {
+          overflow: hidden;
         }
       </style>
     `;
