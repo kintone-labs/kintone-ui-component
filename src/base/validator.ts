@@ -31,6 +31,22 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
+export function isValidDate(date: string) {
+  const [year, month, day] = date.split("-");
+  const dateObj = new Date(date);
+  const newYear = dateObj.getFullYear();
+  const newMonth = dateObj.getMonth();
+  const newDay = dateObj.getDate();
+  if (
+    newYear === Number(year) &&
+    newMonth === Number(month) - 1 &&
+    newDay === Number(day)
+  )
+    return true;
+
+  return false;
+}
+
 export function validateItems(value: Item[]) {
   if (!Array.isArray(value)) {
     throw new Error("'items' property is not array");
