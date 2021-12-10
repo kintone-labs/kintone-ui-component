@@ -22,7 +22,7 @@ jobs:
       - name: Build document
         run: npm run build
         working-directory: docs/document/website
-      - uses: jsmrcaga/action-netlify-deploy@master
+      - uses: jsmrcaga/action-netlify-deploy@v1.7.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCUMENT_ID }}
