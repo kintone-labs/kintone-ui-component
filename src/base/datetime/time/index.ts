@@ -556,11 +556,7 @@ export class BaseTime extends KucBase {
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleBlurListBox}"
             @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
-<<<<<<< HEAD
             @kuc:listbox-escape="${this._handleListBoxEscape}"
-=======
-            @kuc:listbox-reset="${this._handleResetValue}"
->>>>>>> v1.3.0_SSR-1806_TimePicker
           ></kuc-base-datetime-listbox>
         `
       : "";
