@@ -3,6 +3,9 @@ import {render, cleanup} from '@testing-library/react';
 import DateTime from '../index';
 import React from 'react';
 
+const messages = {
+  INVALID_ARGUMENTS: 'Error: invalid function arguments'
+};
 // TODO: Remove unreachable else path line 77,78 (unnecessary if) Locale.ts
 // TODO: Remove unreachable else path line 51-53 (unnecessary case) Locale.ts
 describe('Unit test DateTime react', () => {
@@ -93,5 +96,15 @@ describe('Unit test DateTime react', () => {
     expect(container.getElementsByClassName('date-container').length).toEqual(1);
     expect(container.getElementsByClassName('time-container')).toBeTruthy();
     expect(container.getElementsByClassName('time-container').length).toEqual(1);
+  });
+  test('throw error when set invalid value', ()=>{
+    try {
+      // @ts-ignore
+      const {container} = render(<DateTime value="kintone" isDisabled="false" type="date" />);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(messages.INVALID_ARGUMENTS);
+    }
+
   });
 });

@@ -43,7 +43,7 @@ describe('Unit test DateTime setValue', () => {
   });
 
   test('Today is set when setValue is called with null', () => {
-    const datetime = new DateTime({value: undefined});
+    const datetime = new DateTime({value: new Date()});
     datetime.render();
     datetime.setValue(null);
     expect(datetime.getValue()).toEqual(null);

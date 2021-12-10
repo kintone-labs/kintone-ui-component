@@ -57,26 +57,31 @@ describe('Unit test Dropdown setValue and getValue', () => {
     expect(dropdown.getValue()).toBe(expectedValues[1]);
   });
 
-  test('throw error without value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      // @ts-ignore
-      dropdown.setValue(null);
-    }).toThrowError();
-  });
-
-  test('throw error with nonexistent value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      dropdown.setValue(expectedValues[1]);
-    }).toThrowError();
-  });
-
-  test('throw error with number value', () => {
-    expect(() => {
-      const dropdown = new Dropdown();
-      // @ts-ignore
-      dropdown.setValue(1);
-    }).toThrowError();
+  test('The value will be set as it is and no item selected with invalid option.value not in item list', () => {
+    const dropdown = new Dropdown({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0]
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1]
+        }
+      ],
+      value: expectedValues[1]
+    });
+    dropdown.render();
+    dropdown.setValue(expectedValues[2]);
+    expect(dropdown.getValue()).toBe(expectedValues[2]);
+    const container = dropdown.render();
+    const itemsEl = container.querySelector('.kuc-list-outer')!.children;
+    if (!container.children || itemsEl.length !== 2) {
+      expect(false);
+    }
+    for (let i = 0; i < itemsEl.length; i++) {
+      const itemEl = itemsEl[i];
+      expect(itemEl.classList.contains('kuc-list-item-selected')).toBe(false);
+    }
   });
 });

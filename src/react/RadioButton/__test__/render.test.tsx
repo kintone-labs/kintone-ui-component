@@ -180,6 +180,41 @@ describe('Unit test RadioButton react', () => {
     }
   });
 
+  test('The value will be set as it is and no item is checked with invalid option.value', () => {
+    const expectedItems = [
+      {
+        label: expectedLabels[0],
+        value: expectedValues[0],
+      },
+      {
+        label: expectedLabels[1],
+        value: expectedValues[1],
+      },
+    ];
+    const value = expectedValues[2];
+    const {container} =
+      render(
+        <RadioButton
+          name="Fruit"
+          items={expectedItems}
+          value={value}
+        />);
+    if (container.firstElementChild) {
+      const childEl = container.firstElementChild;
+      const items = childEl.children;
+      for (let index = 0; index < 2; index++) {
+        const item: Element = items[index];
+        if (!item.children || item.children.length !== 2) {
+          expect(false);
+        }
+        const inputEl = item.children[0] as HTMLInputElement;
+        expect(inputEl.checked).toBeFalsy();
+      }
+    } else {
+      expect(false);
+    }
+  });
+
   test('throw error with invalid option.items', () => {
     expect(() => {
       // @ts-ignore
@@ -203,37 +238,5 @@ describe('Unit test RadioButton react', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid prop type of option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1],
-        }
-      ];
-      // @ts-ignore
-      render(<RadioButton name="Fruit" items={expectedItems} value={[expectedValues[0]]} />);
-    }).toThrowError();
-  });
-
-  test('throw error with invalid prop value of option.value', () => {
-    expect(() => {
-      const expectedItems = [
-        {
-          label: expectedLabels[0],
-          value: expectedValues[0],
-        },
-        {
-          label: expectedLabels[1],
-          value: expectedValues[1],
-        }
-      ];
-      render(<RadioButton name="Fruit" items={expectedItems} value={expectedValues[2]} />);
-    }).toThrowError();
-  });
 
 });

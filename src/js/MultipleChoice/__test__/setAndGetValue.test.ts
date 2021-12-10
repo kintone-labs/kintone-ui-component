@@ -67,11 +67,20 @@ describe('Unit test MultipleChoice setItems and getItems', () => {
     }).toThrowError();
   });
 
-  test('Throw error with invalid value', () => {
-    expect(() => {
-      const multipleChoice = new MultipleChoice();
-      multipleChoice.setValue([expectedValues[0]]);
-    }).toThrowError();
+  test('The value will be set as it is with invalid option.value', () => {
+    const multipleChoice = new MultipleChoice({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+          isDisabled: false
+        }
+      ],
+      value: [expectedValues[0]]
+    });
+    multipleChoice.render();
+    multipleChoice.setValue([expectedValues[1]]);
+    expect(multipleChoice.getValue()).toEqual([expectedValues[1]]);
   });
 
   test('Throw error with duplicate value', () => {

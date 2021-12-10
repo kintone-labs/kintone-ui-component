@@ -60,10 +60,6 @@ const MultipleChoice = (props: MultipleChoiceProps) => {
     throw new Error(Message.common.CHECKED_ITEM_LIST_DUPLICATE_VALUE);
   }
 
-  if (props.items && !AbstractMultiSelection._hasValidValue(props.items, props.value)) {
-    throw new Error(Message.common.INVALID_ARGUMENT);
-  }
-
   const className = [
     'kuc-multiple-list kuc-list-outer ',
     props.isDisabled ? 'kuc-multiple-list-disable' : ''

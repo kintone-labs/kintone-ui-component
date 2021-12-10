@@ -137,21 +137,32 @@ describe('Unit test RadioButton render', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid option.value', () => {
-    expect(() => {
-      // @ts-ignore
-      const radioButton = new RadioButton({
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0],
-            isDisabled: false
-          }
-        ],
-        value: expectedValues[1]
-      });
-      radioButton.render();
-    }).toThrowError();
+  test('The value will be set as it is and no item is checked with invalid option.value', () => {
+    const radioButton = new RadioButton({
+      name: 'fruit',
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1],
+        }
+      ],
+      value: expectedValues[2]
+    });
+    const container = radioButton.render();
+    const items = container.children;
+    for (let index = 0; index < 2; index++) {
+      const item: Element = items[index];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = (item.children[0] as HTMLInputElement);
+      expect(inputEl.checked).toBeFalsy();
+    }
+    expect(radioButton.getValue()).toBe(expectedValues[2]);
   });
 
   test('throw error without name', () => {
