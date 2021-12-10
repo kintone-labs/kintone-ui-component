@@ -40,7 +40,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     super.connectedCallback();
     setTimeout(() => {
       document.addEventListener("click", this._handleClickDocument);
-    }, 10);
+    }, 1);
   }
 
   disconnectedCallback() {

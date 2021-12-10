@@ -89,7 +89,7 @@ export class BaseDate extends KucBase {
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
                 ._handleClickCalendarClickDate}"
-              @kuc:calendar-body-escape="${this._handleCalendarBodyEscape}"
+              @kuc:calendar-body-escape="${this._handleCalendarEscape}"
               @kuc:calendar-footer-click-none="${this
                 ._handleClickCalendarFooterButtonNone}"
               @kuc:calendar-footer-click-today="${this
@@ -223,7 +223,7 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
-  private _handleCalendarBodyEscape() {
+  private _handleCalendarEscape() {
     const newValue = this._valueForReset;
     this._closeCalendar();
     this._dateInput.focus();
