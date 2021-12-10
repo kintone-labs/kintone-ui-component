@@ -79,15 +79,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     super.update(changedProperties);
   }
 
-  private _handleClickDocument(event: Event) {
-    const target = event.target as HTMLElement;
-    if (
-      target &&
-      target.className.indexOf(
-        "kuc-base-datetime-calendar-body__table__header"
-      ) > -1
-    )
-      return;
+  private _handleClickDocument() {
     dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
   }
 
@@ -133,6 +125,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
         dispatchCustomEvent(this, "kuc:calendar-body-escape", {});
         break;
       }
+      case " ":
       case "Enter": {
         doPreventEvent = true;
         const value = this._getSelectedValue();

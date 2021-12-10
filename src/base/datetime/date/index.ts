@@ -216,8 +216,10 @@ export class BaseDate extends KucBase {
   private _handleClickCalendarClickDate(event: CustomEvent) {
     this._closeCalendar();
     event.detail.oldValue = this.value;
-    this.value = event.detail.value;
     this._dateInput.focus();
+    if (event.detail.oldValue === event.detail.value) return;
+
+    this.value = event.detail.value;
     dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
