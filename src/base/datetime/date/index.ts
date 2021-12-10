@@ -34,6 +34,7 @@ export class BaseDate extends KucBase {
   private _locale = getLocale("en");
   private _calendarValue?: string = "";
   private _inputValue?: string = "";
+  private _valueReset?: string = "";
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
@@ -87,6 +88,7 @@ export class BaseDate extends KucBase {
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
                 ._handleClickCalendarClickDate}"
+              @kuc:calendar-body-escape="${this._handleResetValue}"
               @kuc:calendar-footer-click-none="${this
                 ._handleClickCalendarFooterButtonNone}"
               @kuc:calendar-footer-click-today="${this
@@ -158,8 +160,8 @@ export class BaseDate extends KucBase {
     `;
   }
   private _handleClickInput(event: Event) {
-    event.stopPropagation();
     if (!this._dateTimeCalendarVisible) {
+      this._valueReset = this.value;
       this._openCalendar();
     } else {
       this._closeCalendar();
@@ -218,6 +220,20 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
+  private _handleResetValue() {
+    const newValue = this._valueReset;
+    this._closeCalendar();
+    this._dateInput.focus();
+    if (newValue === this.value) return;
+
+    const detail = {
+      oldValue: this.value,
+      value: newValue
+    };
+    this.value = newValue;
+    dispatchCustomEvent(this, "kuc:base-date-change", detail);
+  }
+
   private _handleClickCalendarFooterButtonNone() {
     this._closeCalendar();
     this._dateInput.focus();
@@ -239,6 +255,7 @@ export class BaseDate extends KucBase {
   }
 
   private _openCalendarByKeyCode() {
+    this._valueReset = this.value;
     this._openCalendar();
     this._toggleEl.blur();
   }

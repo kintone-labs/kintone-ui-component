@@ -38,7 +38,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener("click", this._handleClickDocument);
+    setTimeout(() => {
+      document.addEventListener("click", this._handleClickDocument);
+    }, 10);
   }
 
   disconnectedCallback() {
@@ -125,6 +127,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
       case "ArrowRight": {
         doPreventEvent = true;
         this._moveToDate(1);
+        break;
+      }
+      case "Escape": {
+        dispatchCustomEvent(this, "kuc:calendar-body-escape", {});
         break;
       }
       case "Enter": {
