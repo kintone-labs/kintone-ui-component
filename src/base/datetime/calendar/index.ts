@@ -1,6 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { state, property, query } from "lit/decorators.js";
-import { KucBase } from "../../kuc-base";
+import { KucBase, dispatchCustomEvent } from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import { BaseDateTimeListBox } from "../listbox";
@@ -37,6 +37,7 @@ export class BaseDateTimeCalendar extends KucBase {
       <div
         class="kuc-base-datetime-calendar__group"
         @click="${this._handleClickCalendarGroup}"
+        @keydown="${this._handleKeyDownCalendarGroup}"
       >
         <kuc-base-datetime-calendar-header
           .year="${this._year}"
@@ -62,6 +63,11 @@ export class BaseDateTimeCalendar extends KucBase {
     if (changedProperties.has("value")) this._updateValue();
     this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
+  }
+
+  private _handleKeyDownCalendarGroup(event: KeyboardEvent) {
+    if (event.key !== "Escape") return;
+    dispatchCustomEvent(this, "kuc:calendar-body-escape", {});
   }
 
   private _handleClickCalendarGroup(event: Event) {

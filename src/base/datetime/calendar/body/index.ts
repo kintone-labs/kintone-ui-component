@@ -259,7 +259,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateItemsTemplate() {
     const displayingDates = getDisplayingDates(this._year, this._month - 1);
-    // const today = this._getDateString();
     return html`
       <tbody>
         ${displayingDates.map(weeks => {
