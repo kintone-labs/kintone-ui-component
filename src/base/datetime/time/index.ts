@@ -254,6 +254,13 @@ export class BaseTime extends KucBase {
     this._actionUpdateInputValue(times);
   }
 
+  private _handleResetValue() {
+    this._closeListBox();
+    this._hoursEl.select();
+    this.value = this._valueReset;
+    this._actionUpdateInputValue(this.value);
+  }
+
   private _handleFocusInput(event: Event) {
     this._inputFocusEl = event.target as HTMLInputElement;
     this._inputGroupEl.classList.add("kuc-base-time__group--focus");
@@ -549,7 +556,11 @@ export class BaseTime extends KucBase {
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleBlurListBox}"
             @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
+<<<<<<< HEAD
             @kuc:listbox-escape="${this._handleListBoxEscape}"
+=======
+            @kuc:listbox-reset="${this._handleResetValue}"
+>>>>>>> v1.3.0_SSR-1806_TimePicker
           ></kuc-base-datetime-listbox>
         `
       : "";
