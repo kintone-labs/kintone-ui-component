@@ -111,7 +111,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const btnMonthToggleEl = el.querySelector(
         ".kuc-base-datetime-header-month__toggle"
-      ) as HTMLButtonElement;
+      ) as HTMLSpanElement;
 
       btnMonthToggleEl.click();
       await elementUpdated(container);
@@ -121,7 +121,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       )[0];
       const liEl = itemsEl.children[0] as HTMLLIElement;
 
-      liEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+      );
       await elementUpdated(container);
 
       const listBoxElHide = el.querySelector(

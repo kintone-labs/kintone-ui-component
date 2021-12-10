@@ -57,18 +57,41 @@ describe("MobileCheckbox", () => {
     });
 
     it("should be throw error when set null on constructor", async () => {
-      expect(() => {
-        // @ts-expect-error
-        const container = new MobileCheckbox({ items: initItems, value: null });
-      }).to.throw(Error, "'value' property is not array");
+      // @ts-expect-error
+      const container = new MobileCheckbox({ items: initItems, value: null });
+      try {
+        await fixture(container);
+      } catch (error) {
+        let errorMessage = "'value' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value' property is not array");
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in validateValueArray function
     });
 
     it("should be throw error when set null by setter", async () => {
-      expect(() => {
-        const container = new MobileCheckbox({ items: initItems });
+      const container = new MobileCheckbox({
+        items: initItems,
+        value: [initItems[0].value]
+      });
+      try {
         // @ts-expect-error
         container.value = null;
-      }).to.throw(Error, "'value' property is not array");
+        await fixture(container);
+      } catch (error) {
+        let errorMessage = "'value' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'value' property is not array");
+      }
+
+      // TODO:
+      // Implement checking if source code does not throw error in validateValueArray function
     });
   });
 });

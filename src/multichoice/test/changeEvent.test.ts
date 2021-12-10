@@ -31,5 +31,27 @@ describe("MultiChoice", () => {
       expect(triggeredEvent.detail.oldValue).to.deep.equal([]);
       expect(triggeredEvent.detail.value).to.deep.equal([initItems[2].value]);
     });
+
+    it("should not triggered when assinging disabled is true", async () => {
+      let triggeredEvent: any = null;
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[1].value],
+        disabled: true
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      itemsEl[1].dispatchEvent(new Event("mousedown"));
+      await elementUpdated(container);
+      itemsEl[2].dispatchEvent(new Event("mousedown"));
+
+      expect(triggeredEvent).to.equal(null);
+    });
   });
 });

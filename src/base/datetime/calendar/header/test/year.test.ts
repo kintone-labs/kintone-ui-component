@@ -109,7 +109,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       const btnYearToggleEl = el.querySelector(
         ".kuc-base-datetime-header-year__toggle"
-      ) as HTMLButtonElement;
+      ) as HTMLSpanElement;
 
       btnYearToggleEl.click();
       await elementUpdated(container);
@@ -119,7 +119,9 @@ describe("BaseDateTimeCalendarHeader", () => {
       )[0];
       const liEl = itemsEl.children[0] as HTMLLIElement;
 
-      liEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      liEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+      );
       await elementUpdated(container);
 
       const listBoxElHide = el.querySelector(

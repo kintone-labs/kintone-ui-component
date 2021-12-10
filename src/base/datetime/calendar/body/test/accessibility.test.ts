@@ -202,25 +202,6 @@ describe("BaseDateTimeCalendarBody", () => {
       expect(container.value).to.equal(initValue.value);
     });
 
-    it("should be highlight next day when pressing 'ArrowRight' key but the value is empty", async () => {
-      const container = new BaseDateTimeCalendarBody();
-      container.month = initValue.month;
-      container.year = initValue.year;
-      container.value = initValue.value;
-
-      const el = await fixture(container);
-      const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
-      ) as HTMLButtonElement;
-
-      container.value = "";
-      selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
-      );
-      await elementUpdated(el);
-      expect(container.value).to.equal(expectValue.nextDay);
-    });
-
     it('should be highlight next year when triggered "ArrowRight" keyboard event', async () => {
       const container = new BaseDateTimeCalendarBody();
       container.month = 12;
