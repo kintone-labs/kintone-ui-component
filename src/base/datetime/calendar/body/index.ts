@@ -121,10 +121,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         this._moveToDate(1);
         break;
       }
-      case "Escape": {
-        dispatchCustomEvent(this, "kuc:calendar-body-escape", {});
-        break;
-      }
       case " ":
       case "Enter": {
         doPreventEvent = true;

@@ -89,7 +89,7 @@ export class BaseDate extends KucBase {
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
                 ._handleClickCalendarClickDate}"
-              @kuc:calendar-body-escape="${this._handleCalendarEscape}"
+              @kuc:calendar-escape="${this._handleCalendarEscape}"
               @kuc:calendar-footer-click-none="${this
                 ._handleClickCalendarFooterButtonNone}"
               @kuc:calendar-footer-click-today="${this

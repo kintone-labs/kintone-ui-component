@@ -67,7 +67,7 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _handleKeyDownCalendarGroup(event: KeyboardEvent) {
     if (event.key !== "Escape") return;
-    dispatchCustomEvent(this, "kuc:calendar-body-escape", {});
+    dispatchCustomEvent(this, "kuc:calendar-escape", {});
   }
 
   private _handleClickCalendarGroup(event: Event) {
