@@ -121,6 +121,8 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _handleMouseDownListBox(event: MouseEvent) {
+    if (event.target === event.currentTarget) return;
+
     event.preventDefault();
     event.stopPropagation();
     const itemEl = event.target as HTMLLIElement;
