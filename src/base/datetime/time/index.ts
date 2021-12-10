@@ -56,7 +56,7 @@ export class BaseTime extends KucBase {
   @state()
   private _suffix = "";
 
-  private _valueReset = "";
+  private _valueForReset = "";
 
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
@@ -213,7 +213,7 @@ export class BaseTime extends KucBase {
       ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1;
     if (!isSupportedKey || this._listBoxVisible) return false;
 
-    this._valueReset = this.value;
+    this._valueForReset = this.value;
     this._doFocusListBox = true;
     this._listBoxVisible = true;
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
@@ -223,7 +223,7 @@ export class BaseTime extends KucBase {
   private _handleListBoxEscape() {
     this._closeListBox();
     this._hoursEl.select();
-    this.value = this._valueReset;
+    this.value = this._valueForReset;
     this._actionUpdateInputValue(this.value);
   }
 
