@@ -56,6 +56,8 @@ export class BaseTime extends KucBase {
   @state()
   private _suffix = "";
 
+  private _valueForReset = "";
+
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
 
@@ -211,10 +213,18 @@ export class BaseTime extends KucBase {
       ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1;
     if (!isSupportedKey || this._listBoxVisible) return false;
 
+    this._valueForReset = this.value;
     this._doFocusListBox = true;
     this._listBoxVisible = true;
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
     return true;
+  }
+
+  private _handleListBoxEscape() {
+    this._closeListBox();
+    this._hoursEl.select();
+    this.value = this._valueForReset;
+    this._actionUpdateInputValue(this.value);
   }
 
   private _handleDefaultKeyButton(keyCode: string) {
@@ -242,6 +252,13 @@ export class BaseTime extends KucBase {
     const listBoxValue = event.detail.value;
     const times = formatInputValueToTimeValue(listBoxValue);
     this._actionUpdateInputValue(times);
+  }
+
+  private _handleResetValue() {
+    this._closeListBox();
+    this._hoursEl.select();
+    this.value = this._valueForReset;
+    this._actionUpdateInputValue(this.value);
   }
 
   private _handleFocusInput(event: Event) {
@@ -539,6 +556,7 @@ export class BaseTime extends KucBase {
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleBlurListBox}"
             @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
+            @kuc:listbox-escape="${this._handleListBoxEscape}"
           ></kuc-base-datetime-listbox>
         `
       : "";
