@@ -241,6 +241,7 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
     this._dateInput.focus();
     this._inputValue = "";
+    this._calendarValue = this.value?.slice(0, 7);
     this._dispathDateChangeCustomEvent(undefined);
   }
 
