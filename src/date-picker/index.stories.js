@@ -4,30 +4,10 @@ import { html } from "lit-html";
 export default {
   title: "desktop/date-picker",
   argTypes: {
-    className: {
-      name: "className",
-      control: {
-        type: "text"
-      }
-    },
-    error: {
-      name: "error",
-      control: {
-        type: "text"
-      }
-    },
-    id: {
-      name: "id",
-      control: {
-        type: "text"
-      }
-    },
-    label: {
-      name: "label",
-      control: {
-        type: "text"
-      }
-    },
+    className: { name: "className" },
+    error: { name: "error" },
+    id: { name: "id" },
+    label: { name: "label" },
     language: {
       name: "language",
       control: {
@@ -35,20 +15,9 @@ export default {
         options: ["auto", "en", "ja", "zh"]
       }
     },
-    requiredIcon: {
-      name: "requiredIcon",
-      control: { type: "boolean" }
-    },
-    value: {
-      name: "value",
-      control: {
-        type: "text"
-      }
-    },
-    visible: {
-      name: "visible",
-      control: { type: "boolean" }
-    }
+    requiredIcon: { name: "requiredIcon" },
+    value: { name: "value" },
+    visible: { name: "visible" }
   },
   parameters: {
     actions: {
