@@ -108,7 +108,7 @@ export class BaseDateTimeListBox extends KucBase {
         dispatchCustomEvent(this, "kuc:listbox-click", {});
         break;
       case "Escape":
-        dispatchCustomEvent(this, "kuc:listbox-reset", {});
+        dispatchCustomEvent(this, "kuc:listbox-escape", {});
         break;
       case " ":
       case "Enter": {
