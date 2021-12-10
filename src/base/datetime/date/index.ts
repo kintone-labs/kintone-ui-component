@@ -89,11 +89,11 @@ export class BaseDate extends KucBase {
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
                 ._handleClickCalendarClickDate}"
-              @kuc:calendar-escape="${this._handleCalendarEscape}"
               @kuc:calendar-footer-click-none="${this
                 ._handleClickCalendarFooterButtonNone}"
               @kuc:calendar-footer-click-today="${this
                 ._handleClickCalendarFooterButtonToday}"
+              @kuc:calendar-escape="${this._handleCalendarEscape}"
               @kuc:calendar-body-blur="${this._handleCalendarBlurBody}"
             >
             </kuc-base-datetime-calendar>
@@ -104,11 +104,6 @@ export class BaseDate extends KucBase {
 
   updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
-  }
-
-  private _handleCalendarBlurBody(event: Event) {
-    event.preventDefault();
-    this._dateTimeCalendarVisible = false;
   }
 
   private _getStyleTagTemplate() {
@@ -223,6 +218,21 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", event.detail);
   }
 
+  private _handleClickCalendarFooterButtonNone() {
+    this._closeCalendar();
+    this._dateInput.focus();
+    this._inputValue = "";
+    this._calendarValue = this.value?.slice(0, 7);
+    this._dispathDateChangeCustomEvent(undefined);
+  }
+
+  private _handleClickCalendarFooterButtonToday() {
+    this._closeCalendar();
+    const today = getTodayStringByLocale();
+    this._dateInput.focus();
+    this._dispathDateChangeCustomEvent(today);
+  }
+
   private _handleCalendarEscape() {
     const newValue = this._valueForReset;
     this._closeCalendar();
@@ -237,19 +247,9 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 
-  private _handleClickCalendarFooterButtonNone() {
-    this._closeCalendar();
-    this._dateInput.focus();
-    this._inputValue = "";
-    this._calendarValue = this.value?.slice(0, 7);
-    this._dispathDateChangeCustomEvent(undefined);
-  }
-
-  private _handleClickCalendarFooterButtonToday() {
-    this._closeCalendar();
-    const today = getTodayStringByLocale();
-    this._dateInput.focus();
-    this._dispathDateChangeCustomEvent(today);
+  private _handleCalendarBlurBody(event: Event) {
+    event.preventDefault();
+    this._dateTimeCalendarVisible = false;
   }
 
   private _dispathDateChangeCustomEvent(newValue?: string) {
