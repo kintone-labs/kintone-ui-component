@@ -3,7 +3,22 @@ import { html } from "lit-html";
 
 export default {
   title: "desktop/date-picker",
-  argTypes: {},
+  argTypes: {
+    className: { name: "className" },
+    error: { name: "error" },
+    id: { name: "id" },
+    label: { name: "label" },
+    language: {
+      name: "language",
+      control: {
+        type: "select",
+        options: ["auto", "en", "ja", "zh"]
+      }
+    },
+    requiredIcon: { name: "requiredIcon" },
+    value: { name: "value" },
+    visible: { name: "visible" }
+  },
   parameters: {
     actions: {
       handles: ["change"]
@@ -31,14 +46,50 @@ const Template = args => {
   `;
 };
 
-export const Base = Template.bind({});
-Base.args = {
+export const BaseLanguageEN = Template.bind({});
+BaseLanguageEN.args = {
   className: "date-picker-class",
+  error: "",
   id: "date-picker-id",
   label: "Date Picker Label",
+  language: "en",
   requiredIcon: false,
-  language: "auto",
   value: "2021-03-31",
-  visible: true,
-  error: ""
+  visible: true
+};
+
+export const BaseLanguageJA = Template.bind({});
+BaseLanguageJA.args = {
+  className: "date-picker-class",
+  error: "",
+  id: "date-picker-id",
+  label: "Date Picker Label",
+  language: "ja",
+  requiredIcon: false,
+  value: "2021-03-31",
+  visible: true
+};
+
+export const BaseLanguageZH = Template.bind({});
+BaseLanguageZH.args = {
+  className: "date-picker-class",
+  error: "",
+  id: "date-picker-id",
+  label: "Date Picker Label",
+  language: "zh",
+  requiredIcon: false,
+  value: "2021-03-31",
+  visible: true
+};
+
+export const BaseError = Template.bind({});
+BaseError.args = {
+  className: "date-picker-class",
+  error: "Date picker error",
+  id: "date-picker-id",
+  label: "Date Picker Label",
+  requiredIcon: true,
+  language: "en",
+  value: "2021-03-31",
+  visible: true
 };
