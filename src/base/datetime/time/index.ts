@@ -257,7 +257,7 @@ export class BaseTime extends KucBase {
   private _handleResetValue() {
     this._closeListBox();
     this._hoursEl.select();
-    this.value = this._valueReset;
+    this.value = this._valueForReset;
     this._actionUpdateInputValue(this.value);
   }
 
