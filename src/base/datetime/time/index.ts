@@ -56,7 +56,6 @@ export class BaseTime extends KucBase {
   @state()
   private _suffix = "";
 
-  @state()
   private _valueReset = "";
 
   @state()
@@ -221,7 +220,7 @@ export class BaseTime extends KucBase {
     return true;
   }
 
-  private _handleResetValue() {
+  private _handleListBoxEscape() {
     this._closeListBox();
     this._hoursEl.select();
     this.value = this._valueReset;
@@ -550,7 +549,7 @@ export class BaseTime extends KucBase {
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleBlurListBox}"
             @kuc:listbox-focus-change="${this._handleListBoxFocusChange}"
-            @kuc:listbox-escape="${this._handleResetValue}"
+            @kuc:listbox-escape="${this._handleListBoxEscape}"
           ></kuc-base-datetime-listbox>
         `
       : "";
