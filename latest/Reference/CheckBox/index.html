@@ -957,7 +957,7 @@
 <td>options.value</td>
 <td>Array<String></td>
 <td>No</td>
-<td>List of checked item.</td>
+<td>List of checked item. <br> If the 'options.value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.</td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -1828,7 +1828,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <td>value</td>
 <td>Array&lt;String&gt;</td>
 <td>Yes</td>
-<td>The array contains checked value in list.<br> If the 'value[]' is nonexistent value, the error will be displayed</td>
+<td>The array contains checked value in list.<br> If the 'value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.</td>
 </tr>
 </tbody>
 </table>
