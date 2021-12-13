@@ -1,14 +1,15 @@
 ---
-id: mobile-multichoice
-title: MobileMultiChoice
-sidebar_label: MobileMultiChoice
+id: version-1.3.0-multichoice
+title: MultiChoice
+sidebar_label: MultiChoice
+original_id: multichoice
 ---
 
 ## Overview
 
-The MobileMultiChoice component allows the user to select multiple values from multiple options.
+The MultiChoice component allows the user to select multiple values from multiple options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-multichoice--document" title="mobile multichoice image" height="130px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-multichoice--document" title="multichoice image" height="130px"></iframe>
 
 ---
 
@@ -58,7 +59,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-MobileMultiChoice(options)<br>
+MultiChoice(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -73,8 +74,8 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.mobile.app.record.getSpaceElement('space');
-const mobileMultiChoice = new Kuc.MobileMultiChoice({
+const space = kintone.app.record.getSpaceElement('space');
+const multiChoice = new Kuc.MultiChoice({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -95,9 +96,9 @@ const mobileMultiChoice = new Kuc.MobileMultiChoice({
   visible: true,
   disabled: false
 });
-space.appendChild(mobileMultiChoice);
+space.appendChild(multiChoice);
 
-mobileMultiChoice.addEventListener('change', event => {
+multiChoice.addEventListener('change', event => {
   console.log(event);
 });
 ```

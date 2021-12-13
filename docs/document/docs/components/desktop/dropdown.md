@@ -24,16 +24,16 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
-| value *1 | string | ""  | Selected value | No option will be selected if the valid `value` or `selectedIndex` is unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in Item.value will be selected and `selectedIndex` will be the index number |
-| selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated Item.value will be selected if there is duplicated Item.value in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated Item.value and `selectedIndex` value maps with duplicated Item.value specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of selectedIndex is not a number |
+| value *1 | string | ""  | Selected value | No option will be selected if the valid `value` or `selectedIndex` is unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number |
+| selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not a number |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
-| Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of Item.value is displayed on the UI |
-| Item.value | string | null | Value of each option | Can set duplicated value in Item.value |
+| Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
+| Item.value | string | null | Value of each option | Can set duplicated value in `Item.value` |
 
-> *1: You can set duplicated value in Item.value. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
+> *1: You can set duplicated value in `Item.value`. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
 > Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`
 >
 > - If setting `value` and not setting `selectedIndex` as follows:
@@ -97,4 +97,3 @@ dropdown.addEventListener('change', event => {
   console.log(event);
 });
 ```
-

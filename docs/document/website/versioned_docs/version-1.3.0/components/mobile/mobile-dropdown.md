@@ -1,7 +1,8 @@
 ---
-id: mobile-dropdown
+id: version-1.3.0-mobile-dropdown
 title: MobileDropdown
 sidebar_label: MobileDropdown
+original_id: mobile-dropdown
 ---
 
 ## Overview
