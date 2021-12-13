@@ -583,9 +583,9 @@ export class BaseTime extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        :lang(ja) .kuc-base-time__group__hours,
-        :lang(ja) .kuc-base-time__group__minutes {
-          width: 18px !important;
+        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__hours,
+        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__minutes {
+          width: 18px;
         }
         .kuc-base-time__group {
           display: inline-flex;
@@ -603,10 +603,10 @@ export class BaseTime extends KucBase {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           background-color: #ffffff;
         }
-        .kuc-base-time__group__hours {
-          border: 0px !important;
-          padding: 0px !important;
-          width: 16px !important;
+        .kuc-base-time__group input.kuc-base-time__group__hours {
+          border: 0px;
+          padding: 0px;
+          width: 16px;
           font-size: 14px;
           outline: none;
           background-color: transparent;
@@ -614,30 +614,36 @@ export class BaseTime extends KucBase {
           caret-color: transparent;
           user-select: none;
         }
-        .kuc-base-time__group__minutes {
-          border: 0px !important;
-          padding: 0px !important;
-          width: 16px !important;
+        .kuc-base-time__group input.kuc-base-time__group__minutes {
+          border: 0px;
+          padding: 0px;
+          width: 16px;
           font-size: 14px;
           outline: none;
           background-color: transparent;
           color: #333333;
           caret-color: transparent;
           user-select: none;
+        }
+        .kuc-base-time__group input.kuc-base-time__group__hours:focus {
+          border: 0px;
+        }
+        .kuc-base-time__group input.kuc-base-time__group__minutes:focus {
+          border: 0px;
         }
         .kuc-base-time__group__colon {
           width: 4px;
           text-align: center;
         }
-        .kuc-base-time__group__suffix {
-          border: 0px !important;
-          width: 24px !important;
+        .kuc-base-time__group input.kuc-base-time__group__suffix {
+          border: 0px;
+          width: 24px;
           text-align: right;
           font-size: 14px;
           outline: none;
           appearance: none;
           margin-left: 1px;
-          padding: 0px !important;
+          padding: 0px;
           background-color: transparent;
           color: #333333;
           caret-color: transparent;
