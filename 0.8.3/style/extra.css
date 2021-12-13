@@ -1,0 +1,106 @@
+.tab-container {
+    border: none!important;
+    padding: 0!important;
+    border: 1px solid #B3E5FC!important;
+    box-shadow: none!important;
+}
+
+.tab-container p {
+    margin: 0;
+    width: 0;
+    height: 0;
+}
+
+.tab-container summary {
+    margin: 0!important;
+    color: #ffffff;
+    background-color: #0277BD!important;
+    padding: 8px 12px!important;
+}
+
+.tab-container summary::before {
+    display: none;
+    color: #ffffff!important;
+}
+
+.tab-container summary::after {
+    color: #ffffff!important;
+}
+
+
+.tab-container .tab-nav {
+    background:#fff;
+}
+
+.tab-container .tab-nav strong {
+    display: inline-block;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #039BE5;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tab-container .tab-nav strong.active {
+    color: #0277BD;
+    border-bottom: 2px solid #0277BD;
+}
+
+.tab-container .tab-session {
+    margin: 0!important;
+}
+
+.tab-container .tab-session pre {
+    margin: 0;
+    border-top: 1px solid #E1F5FE;
+    background-color: #fff;
+    display: none;
+}
+
+.tab-container .tab-session pre.active {
+    display: block;
+}
+
+.tab-container .tab-session code {
+    margin: 0;
+}
+
+.tab-container .tab-nav h1::before {
+    margin: 0;
+    padding: 0;
+}
+
+.md-typeset h2 {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.md-typeset table:not([class]) {
+    border: 1px solid #B3E5FC;
+    box-shadow: none;
+}
+
+.md-typeset table:not([class]) th {
+    background-color: #0091EA;
+    border-color: #E1F5FE;
+}
+
+.md-typeset table:not([class]) tr,
+.md-typeset table:not([class]) td {
+    border-color: #E1F5FE;
+}
+
+.md-typeset .admonition {
+    border: 1px solid #FFE0B2;
+    box-shadow: none;
+
+}
+
+.md-typeset .admonition.warning {
+    border-left: 1px solid #FFE0B2;
+}
+
+.md-typeset .admonition.warning>.admonition-title {
+    background-color: #FFF4E5;
+    color: #FFF4E5;
+}
