@@ -127,8 +127,8 @@
             id="current_vesion"
             style="text-decoration: underline;"
             href="../../versions"
-            data-version="0.8.3"
-          >v0.8.3</a>
+            data-version="0.9.0"
+          >v0.9.0</a>
         </div>
       </div>
 
@@ -961,7 +961,7 @@
 <td>options.value</td>
 <td>Array<String></td>
 <td>No</td>
-<td>List of checked item.<br> If the 'options.value[]' is nonexistent value, the error will be displayed</td>
+<td>List of checked item.<br> If the 'options.value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.</td>
 </tr>
 <tr>
 <td>options.isDisabled</td>
@@ -1845,7 +1845,7 @@ Reactdom.render(&lt;Plugin /&gt;, document.getElementById(&quot;root&quot;));
 <td>value</td>
 <td>Array&lt;String&gt;</td>
 <td>yes</td>
-<td>The value of an item.<br> If the 'value[]' is nonexistent value, the error will be displayed</td>
+<td>The value of an item.<br> If the 'value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.</td>
 </tr>
 </tbody>
 </table>
