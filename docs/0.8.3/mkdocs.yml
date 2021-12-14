@@ -5,7 +5,7 @@ edit_uri: ''
 
 theme:
   name: 'material'
-  custom_dir: '../template/latest/custom_theme'
+  custom_dir: '../template/previous/custom_theme'
   favicon: favicon.ico
   palette:
     primary: 'Light Blue'
