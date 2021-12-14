@@ -55,7 +55,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
-  closeListBox() {
+  public closeListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
   }
@@ -69,6 +69,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
             class="kuc-base-datetime-header-year__listbox"
             @kuc:listbox-click="${this._handleChangeListBox}"
             @kuc:listbox-blur="${this._handleFocusOutListBox}"
+            @kuc:listbox-escape="${this._handleListBoxEscape}"
             aria-hidden="${!this._listBoxVisible}"
           >
           </kuc-base-datetime-listbox>
@@ -79,6 +80,10 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _handleFocusOutListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
+  }
+
+  private _handleListBoxEscape() {
+    this._handleFocusOutListBox();
   }
 
   private _getStyleTagTemplate() {
