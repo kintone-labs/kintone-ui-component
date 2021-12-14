@@ -22,7 +22,7 @@
 |options.items[x].value|String|Conditional|String value of item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error message will be displayed|
 |options.items[x].label|String|No|	String label of item|
 |options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value: 'false'.|
-|options.value|Array<String>|No|List of checked item.<br> If the 'options.value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.|
+|options.value|Array<String>|No|List of checked item.<br> If the 'options.value[]' is nonexistent value, the error will be displayed|
 |options.isDisabled|Boolean|No|The multiple choices will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The multiple choices will be visible. <br> Default value: 'true'|
 
@@ -799,7 +799,7 @@ Set the checked value of multiple choice.
 
 |Name	|Type|	Required |	Description|
 |---|---|---|---|
-|value|	Array&lt;String&gt;|	yes|The value of an item.<br> If the 'value[]' has nonexistent value, the valid value will be checked. <br> If the 'value[]' has no valid value, no item will be checked.|
+|value|	Array&lt;String&gt;|	yes|The value of an item.<br> If the 'value[]' is nonexistent value, the error will be displayed|
 
 **Returns**
 
