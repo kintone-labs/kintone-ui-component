@@ -102,7 +102,6 @@ export class BaseTime extends KucBase {
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
-          @click="${this._handleClickInput}"
           ?disabled="${this.disabled}"
           value="${this._hours}"
         />
@@ -116,7 +115,6 @@ export class BaseTime extends KucBase {
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
-          @click="${this._handleClickInput}"
           ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
@@ -145,12 +143,27 @@ export class BaseTime extends KucBase {
   }
 
   private _handleClickInputGroup(event: Event) {
-    event.stopPropagation();
-    this._hoursEl.click();
+    if (this.disabled) return;
+
+    if (this.value === "") {
+      this._toggleEl.focus();
+      this._openListBox();
+      return;
+    }
+
+    const input = event.target as HTMLInputElement;
+    this._openListBox();
+    if (input.tagName.toUpperCase() === "INPUT") {
+      input.select();
+      return;
+    }
+    this._hoursEl.select();
   }
 
   private _handleBlurListBox(event: Event) {
     event.preventDefault();
+    if (this._inputFocusEl) return;
+
     this._listBoxVisible = false;
   }
 
@@ -176,6 +189,8 @@ export class BaseTime extends KucBase {
   }
 
   private _getValueLabel(times: Time) {
+    if (!times.hours || !times.minutes) return "";
+
     const newLabel = `${times.hours}:${times.minutes}`;
     if (!times.suffix) return newLabel;
 
@@ -191,27 +206,40 @@ export class BaseTime extends KucBase {
   }
 
   private _handleKeyDownButton(event: KeyboardEvent) {
-    if (this._handleTabKey(event)) return;
+    switch (event.key) {
+      case "Tab":
+      case "Escape":
+        if (!this._listBoxVisible) return;
 
-    event.preventDefault();
-    event.stopPropagation();
-    if (this._openListBoxByKey(event.key)) return;
-
-    this._handleDefaultKeyButton(event.key);
+        this._closeListBox();
+        break;
+      case "Enter":
+      case " ":
+      case "ArrowUp":
+      case "ArrowDown":
+        event.preventDefault();
+        event.stopPropagation();
+        this._openListBoxByKey();
+        break;
+      default:
+        event.preventDefault();
+        event.stopPropagation();
+        this._handleDefaultKeyButton(event.key);
+        break;
+    }
   }
 
   private _handleBlurButton() {
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
-  private _handleFocusButton() {
+  private _handleFocusButton(event: Event) {
+    event.stopPropagation();
     this._inputGroupEl.classList.add("kuc-base-time__group--focus");
   }
 
-  private _openListBoxByKey(keyCode: string) {
-    const isSupportedKey =
-      ["Enter", " ", "ArrowUp", "ArrowDown"].indexOf(keyCode) > -1;
-    if (!isSupportedKey || this._listBoxVisible) return false;
+  private _openListBoxByKey() {
+    if (this._listBoxVisible) return false;
 
     this._valueForReset = this.value;
     this._doFocusListBox = true;
@@ -278,18 +306,6 @@ export class BaseTime extends KucBase {
 
     this._closeListBox();
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
-  }
-
-  private _handleClickInput(event: Event) {
-    event.stopPropagation();
-    if (this.value === "") {
-      this._toggleEl.focus();
-      this._openListBox();
-      return;
-    }
-    const input = event.target as HTMLInputElement;
-    input.select();
-    this._openListBox();
   }
 
   private _handleTabKey(event: KeyboardEvent) {
@@ -372,8 +388,11 @@ export class BaseTime extends KucBase {
         this._suffix === TIME_SUFFIX.AM ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
       return this._formatKeyDownValue({ suffix: newSuffix });
     }
-    if (key !== "a" && key !== "p") return this._formatKeyDownValue();
-    const newSuffix = key === "a" ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
+    const supportedKey = ["a", "A", "p", "P"];
+    if (supportedKey.indexOf(key) === -1) return this._formatKeyDownValue();
+
+    const newSuffix =
+      key === "a" || key === "A" ? TIME_SUFFIX.AM : TIME_SUFFIX.PM;
     if (this.value === "") {
       this._hoursEl.select();
     }
@@ -534,7 +553,6 @@ export class BaseTime extends KucBase {
             aria-label="${this._suffix || "suffix"}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
-            @click="${this._handleClickInput}"
             @keydown="${this._handleKeyDownInput}"
             ?disabled="${this.disabled}"
             value="${this._suffix}"
@@ -565,6 +583,10 @@ export class BaseTime extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
+        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__hours,
+        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__minutes {
+          width: 18px;
+        }
         .kuc-base-time__group {
           display: inline-flex;
           position: relative;
@@ -581,7 +603,7 @@ export class BaseTime extends KucBase {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           background-color: #ffffff;
         }
-        .kuc-base-time__group__hours {
+        .kuc-base-time__group input.kuc-base-time__group__hours {
           border: 0px;
           padding: 0px;
           width: 16px;
@@ -592,7 +614,7 @@ export class BaseTime extends KucBase {
           caret-color: transparent;
           user-select: none;
         }
-        .kuc-base-time__group__minutes {
+        .kuc-base-time__group input.kuc-base-time__group__minutes {
           border: 0px;
           padding: 0px;
           width: 16px;
@@ -602,12 +624,18 @@ export class BaseTime extends KucBase {
           color: #333333;
           caret-color: transparent;
           user-select: none;
+        }
+        .kuc-base-time__group input.kuc-base-time__group__hours:focus {
+          border: 0px;
+        }
+        .kuc-base-time__group input.kuc-base-time__group__minutes:focus {
+          border: 0px;
         }
         .kuc-base-time__group__colon {
           width: 4px;
           text-align: center;
         }
-        .kuc-base-time__group__suffix {
+        .kuc-base-time__group input.kuc-base-time__group__suffix {
           border: 0px;
           width: 24px;
           text-align: right;
@@ -645,6 +673,7 @@ export class BaseTime extends KucBase {
         .kuc-base-time__group--disabled input {
           cursor: not-allowed;
           color: #888888;
+          -webkit-text-fill-color: #888888;
         }
       </style>
     `;
