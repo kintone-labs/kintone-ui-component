@@ -64,6 +64,7 @@ export class BaseDate extends KucBase {
         .value="${this._inputValue}"
         aria-describedby="${this._GUID}-error"
         aria-invalid="${this.inputAriaInvalid}"
+        aria-required="${this.required}"
         ?disabled="${this.disabled}"
         ?required="${this.required}"
         @click="${this._handleClickInput}"
@@ -105,9 +106,6 @@ export class BaseDate extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("required")) {
-      this._setAriaRequired();
-    }
     super.updated(changedProperties);
   }
 
@@ -159,14 +157,6 @@ export class BaseDate extends KucBase {
         }
       </style>
     `;
-  }
-
-  private _setAriaRequired() {
-    if (this.required) {
-      this._dateInput.setAttribute("aria-required", "true");
-      return;
-    }
-    this._dateInput.removeAttribute("aria-required");
   }
 
   private _handleClickInput() {
