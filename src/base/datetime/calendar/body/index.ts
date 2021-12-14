@@ -159,7 +159,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     let value = this.value;
     const selectedValue = this._getSelectedValue();
     const { day } = this._separateDatevalue(selectedValue);
-    value = `${this._year}-${this._month}-${day}`;
+    value = `${this._year}-${padStart(this._month)}-${day}`;
 
     const date = new Date(value || this._getValueItemFocused());
     if (isNaN(date.getTime())) return;

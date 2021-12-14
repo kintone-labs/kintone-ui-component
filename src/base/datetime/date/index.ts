@@ -69,6 +69,7 @@ export class BaseDate extends KucBase {
         ?required="${this.required}"
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
+        @keydown="${this._handleKeyDownInput}"
       />
       <button
         aria-haspopup="menu"
@@ -203,6 +204,11 @@ export class BaseDate extends KucBase {
     this._dispathDateChangeCustomEvent(
       formatInputValueToValue(this.language, newValue)
     );
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    if (event.key !== "Escape") return;
+    this._closeCalendar();
   }
 
   private _closeCalendar() {
