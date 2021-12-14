@@ -8,7 +8,6 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
-import { getTodayStringByLocale } from "../base/datetime/utils";
 
 import "../base/datetime/date";
 import "../base/datetime/time";
@@ -32,11 +31,7 @@ export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
-<<<<<<< HEAD
-  @property({ type: String }) value? = getTodayStringByLocale();
-=======
   @property({ type: String }) value? = "";
->>>>>>> 580e674b20c315ab110d1a3ccd44a47ff0266e0f
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
