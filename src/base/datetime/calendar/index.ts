@@ -93,6 +93,18 @@ export class BaseDateTimeCalendar extends KucBase {
     if (!baseDatetimeCalendarEl) return;
     baseDatetimeCalendarEl.style.top = dateTop + "px";
     baseDatetimeCalendarEl.style.left = dateInputEl.offsetLeft + "px";
+
+    if (!baseDatetimeCalendarEl || !this.parentElement) return;
+
+    const distanceInputToBottom =
+      window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
+    const listBoxHeight = this._baseCalendarGroupEl.getBoundingClientRect()
+      .height;
+    if (distanceInputToBottom >= listBoxHeight) return;
+    this.parentElement.style.position = "relative";
+    baseDatetimeCalendarEl.style.bottom = 30 + "px";
+    baseDatetimeCalendarEl.style.left = "0px";
+    baseDatetimeCalendarEl.style.top = "auto";
   }
 
   private _getStyleTagTemplate() {
