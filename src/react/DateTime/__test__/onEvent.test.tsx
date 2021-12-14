@@ -36,7 +36,7 @@ describe('Unit test DateTime react', () => {
     fireEvent.click(getByText('26'));
     expect(onChange).toBeCalledTimes(1);
   });
-  test('should show Date picker when the DateTime input is focus', async (done) => {
+  test('should show Date picker when the DateTime input is focus', async () => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -44,7 +44,6 @@ describe('Unit test DateTime react', () => {
         dateFormat="dd/MM/YYYY"
       />
     );
-
     const datetimeInput = container.getElementsByClassName('kuc-input-text text-input')[0];
     const piker = container.getElementsByClassName('date-picker-container')[0];
     expect(piker).toHaveStyle('display: none;');
@@ -56,7 +55,6 @@ describe('Unit test DateTime react', () => {
 
     fireEvent.keyDown(datetimeInput, {key: 'Tab', code: 9});
     expect(piker).toHaveStyle('display: none;');
-    done();
   });
   test('should show Time picker when the Time input is focus', () => {
     const onChange = (value: Date) => {};
@@ -78,7 +76,7 @@ describe('Unit test DateTime react', () => {
     expect(piker).toHaveStyle('display: flex;');
   });
 
-  test('onKeyDown dateTextInput DateTime', async (done) => {
+  test('onKeyDown dateTextInput DateTime', async () => {
     const {container} = render(
       <DateTime
         value={new Date()}
@@ -94,12 +92,10 @@ describe('Unit test DateTime react', () => {
     await waitFor(() => {
       expect(piker).toHaveStyle('display: block;');
     });
-    done();
     fireEvent.keyDown(node, {key: 'Tab', code: 9});
     await waitFor(() => {
       expect(piker).toHaveStyle('display: none;');
     });
-    done();
   });
 
   test('onEvent date-picker-container DateTime', () => {
@@ -209,7 +205,7 @@ describe('Unit test DateTime react', () => {
   });
 
   test('should selected range successfully inside the Time input when pressing Arrow Right/Left button', () => {
-    const mockFn = spyOn(HTMLInputElement.prototype, 'setSelectionRange');
+    const mockFn = jest.spyOn(HTMLInputElement.prototype, 'setSelectionRange');
 
     const {container} = render(
       <DateTime
