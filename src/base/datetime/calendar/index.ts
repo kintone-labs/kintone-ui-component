@@ -126,7 +126,7 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _updateValue() {
     if (this.value === "") {
-      this.value = getTodayStringByLocale().slice(0, 7);
+      this.value = getTodayStringByLocale().slice(0, 7) + "-01";
     }
     const { year, month } = this._separateValue(this.value);
     this._year = year;

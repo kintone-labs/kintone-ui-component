@@ -21,6 +21,7 @@ export class BaseDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
+  @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
@@ -64,6 +65,7 @@ export class BaseDate extends KucBase {
         aria-describedby="${this._GUID}-error"
         aria-invalid="${this.inputAriaInvalid}"
         ?disabled="${this.disabled}"
+        ?required="${this.required}"
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
       />
@@ -103,6 +105,9 @@ export class BaseDate extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("required")) {
+      this._setAriaRequired();
+    }
     super.updated(changedProperties);
   }
 
@@ -155,7 +160,16 @@ export class BaseDate extends KucBase {
       </style>
     `;
   }
-  private _handleClickInput(event: Event) {
+
+  private _setAriaRequired() {
+    if (this.required) {
+      this._dateInput.setAttribute("aria-required", "true");
+      return;
+    }
+    this._dateInput.removeAttribute("aria-required");
+  }
+
+  private _handleClickInput() {
     if (!this._dateTimeCalendarVisible) {
       this._valueForReset = this.value;
       this._openCalendar();
@@ -168,9 +182,12 @@ export class BaseDate extends KucBase {
     if (this.value) {
       this._inputValue = formatValueToInputValue(this.language, this.value);
       this._calendarValue = this.value;
-    } else {
-      this._inputValue = "";
+      return;
     }
+    this._inputValue = "";
+    this._calendarValue = this._calendarValue
+      ? this._calendarValue.slice(0, 7) + "-01"
+      : this.value;
   }
 
   private _handleChangeInput(event: Event) {
@@ -183,7 +200,11 @@ export class BaseDate extends KucBase {
         oldValue: this.value
       };
       if (newValue !== "") detail.error = this._locale.INVALID_FORMAT;
-      this._calendarValue = this.value?.slice(0, 7);
+
+      this._calendarValue = detail.error
+        ? this.value?.slice(0, 7)
+        : this._calendarValue?.slice(0, 7) + "-01";
+
       this._inputValue = newValue;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
