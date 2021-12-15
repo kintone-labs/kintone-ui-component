@@ -156,6 +156,23 @@ describe('Unit test MultipleChoice render', () => {
     expect(labelEl.textContent).toBe(expectedLabels[0]);
   });
 
+  test('The value will be set as it is with invalid option.value not in item list', () => {
+    const multipleChoice =
+      new MultipleChoice({
+        items: [
+          {
+            label: expectedLabels[0],
+            value: expectedValues[0],
+            isDisabled: false
+          }
+        ],
+        // In case of specify value not in item list.
+        value: [expectedValues[1]]
+      });
+    multipleChoice.render();
+    expect(multipleChoice.getValue()).toEqual([expectedValues[1]]);
+  });
+
   test('Throw error with invalid option.items', () => {
     expect(() => {
       new MultipleChoice({
@@ -202,21 +219,6 @@ describe('Unit test MultipleChoice render', () => {
     }).toThrowError();
   });
 
-  test('Throw error with invalid option.value not in item list', () => {
-    expect(() => {
-      new MultipleChoice({
-        items: [
-          {
-            label: expectedLabels[0],
-            value: expectedValues[0],
-            isDisabled: false
-          }
-        ],
-        // In case of specify value not in item list.
-        value: [expectedValues[1]]
-      });
-    }).toThrowError();
-  });
 
   test('Throw error with duplicate option.value', () => {
     expect(() => {

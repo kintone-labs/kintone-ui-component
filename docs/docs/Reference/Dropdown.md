@@ -23,7 +23,7 @@
 |options.items[x].value|String|Conditional|The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed|
 |options.items[x].label|String|No|The label of an item.|
 |options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
-|options.value|String|No|Default selected value. <br> If the 'options.value' is nonexistent value, the error will be displayed|
+|options.value|String|No|Default selected value. <br> If the 'options.value' is nonexistent value, it will be set blank on UI, and no item will be selected in dropdown list.|
 |options.isDisabled|Boolean|No|The dropdown will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The dropdown will be visible. <br> Default value: 'true'|
 
@@ -650,7 +650,7 @@ Set the selected value for dropdown.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|value|String|	Yes|The value of an Item in dropdown. <br> If the 'value' is nonexistent value, the error will be displayed|
+|value|String|	Yes|The value of an Item in dropdown. <br> If the 'value' is nonexistent value, it will be set blank on UI, and no item will be selected in dropdown list.|
 
 **Returns**
 

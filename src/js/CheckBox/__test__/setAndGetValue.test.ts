@@ -68,11 +68,20 @@ describe('Unit test CheckBox setValue and getValue', () => {
     }).toThrowError();
   });
 
-  test('throw error with invalid value', () => {
-    expect(() => {
-      const checkBox = new CheckBox();
-      checkBox.setValue([expectedValues[0]]);
-    }).toThrowError();
+  test('The value will be set as it is with invalid option.value', () => {
+    const checkBox = new CheckBox({
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+          isDisabled: false
+        }
+      ],
+      value: [expectedValues[0]]
+    });
+    checkBox.render();
+    checkBox.setValue([expectedValues[1]]);
+    expect(checkBox.getValue()).toEqual([expectedValues[1]]);
   });
 
   test('throw error with duplicate value', () => {

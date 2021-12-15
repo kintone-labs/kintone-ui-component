@@ -38,6 +38,9 @@ const DateTime = ({
   }
   const validatedValue = useMemo(() => {
     if (!value) return new Date();
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      throw new Error(Message.common.INVALID_ARGUMENT);
+    }
     return value;
   }, [value]);
   const [defaultValue, setDefaultValue] = useState(validatedValue);

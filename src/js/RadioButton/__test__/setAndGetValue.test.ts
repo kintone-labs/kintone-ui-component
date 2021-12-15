@@ -61,20 +61,32 @@ describe('Unit test RadioButton setValue and getValue', () => {
     }
   });
 
-  test('throw error without value', () => {
-    expect(() => {
-      const radioButton = new RadioButton();
-      // @ts-ignore
-      radioButton.setValue(null);
-      // 必須項目をnullで渡してもエラーが発生しない
-    }).toThrowError();
-  });
-
-  test('throw error with invalid value', () => {
-    expect(() => {
-      const radioButton = new RadioButton();
-      radioButton.setValue(expectedValues[0]);
-    }).toThrowError();
+  test('The value will be set as it is and no item is checked with invalid option.value', () => {
+    const radioButton = new RadioButton({
+      name: 'fruit',
+      items: [
+        {
+          label: expectedLabels[0],
+          value: expectedValues[0],
+        },
+        {
+          label: expectedLabels[1],
+          value: expectedValues[1],
+        }
+      ]
+    });
+    const container = radioButton.render();
+    radioButton.setValue(expectedValues[2]);
+    const items = container.children;
+    for (let index = 0; index < 2; index++) {
+      const item: Element = items[index];
+      if (!item.children || item.children.length !== 2) {
+        expect(false);
+      }
+      const inputEl = (item.children[0] as HTMLInputElement);
+      expect(inputEl.checked).toBeFalsy();
+    }
+    expect(radioButton.getValue()).toBe(expectedValues[2]);
   });
 
 });
