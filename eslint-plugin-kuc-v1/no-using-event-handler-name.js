@@ -6,18 +6,18 @@ module.exports = {
         if (superClass !== "KucBase") return;
 
         const clickHandlePattern = '\\s@click="((?!_handleClick).)*"';
-        const changeHandlePattern = '\\s@changek="((?!_handleChange).)*"';
-        const focusHandlePattern = '\\s@focusk="((?!_handleFocus).)*"';
-        const blurHandlePattern = '\\s@blurk="((?!_handleBlur).)*"';
-        const inputHandlePattern = '\\s@inputk="((?!_handleInput).)*"';
-        const keydownHandlePattern = '\\s@keydownk="((?!_handleKeyDown).)*"';
-        const mouseupHandlePattern = '\\s@mouseupk="((?!_handleMouseUp).)*"';
+        const changeHandlePattern = '\\s@change="((?!_handleChange).)*"';
+        const focusHandlePattern = '\\s@focus="((?!_handleFocus).)*"';
+        const blurHandlePattern = '\\s@blur="((?!_handleBlur).)*"';
+        const inputHandlePattern = '\\s@input="((?!_handleInput).)*"';
+        const keydownHandlePattern = '\\s@keydown="((?!_handleKeyDown).)*"';
+        const mouseupHandlePattern = '\\s@mouseup="((?!_handleMouseUp).)*"';
         const mousedownHandlePattern =
-          '\\s@mousedownk="((?!_handleMouseDown).)*"';
+          '\\s@mousedown="((?!_handleMouseDown).)*"';
         const mouseoverHandlePattern =
-          '\\s@mouseoverk="((?!_handleMouseOver).)*"';
+          '\\s@mouseover="((?!_handleMouseOver).)*"';
         const mouseleaveHandlePattern =
-          '\\s@mouseleavek="((?!_handleMouseLeave).)*"';
+          '\\s@mouseleave="((?!_handleMouseLeave).)*"';
 
         const clickHandleRegex = new RegExp(clickHandlePattern);
         const changeHandleRegex = new RegExp(changeHandlePattern);
