@@ -160,7 +160,8 @@ export class BaseDate extends KucBase {
     `;
   }
 
-  private _handleClickInput() {
+  private _handleClickInput(event: Event) {
+    event.stopPropagation();
     if (!this._dateTimeCalendarVisible) {
       this._valueForReset = this.value;
       this._openCalendar();
@@ -175,10 +176,11 @@ export class BaseDate extends KucBase {
       this._calendarValue = this.value;
       return;
     }
+    const today = getTodayStringByLocale();
     this._inputValue = "";
     this._calendarValue = this._calendarValue
       ? this._calendarValue.slice(0, 7) + "-01"
-      : this.value;
+      : today.slice(0, 7);
   }
 
   private _handleChangeInput(event: Event) {
@@ -190,12 +192,14 @@ export class BaseDate extends KucBase {
         value: undefined,
         oldValue: this.value
       };
-      if (newValue !== "") detail.error = this._locale.INVALID_FORMAT;
-
-      this._calendarValue = detail.error
-        ? this.value?.slice(0, 7)
-        : this._calendarValue?.slice(0, 7) + "-01";
-
+      let temp = this._calendarValue || "";
+      if (newValue === "") {
+        temp = temp.slice(0, 7) + "-01";
+      } else {
+        detail.error = this._locale.INVALID_FORMAT;
+        temp = temp.slice(0, 7);
+      }
+      this._calendarValue = temp;
       this._inputValue = newValue;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
@@ -239,7 +243,14 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
     this._dateInput.focus();
     this._inputValue = "";
-    this._calendarValue = this.value?.slice(0, 7);
+    const today = getTodayStringByLocale();
+    let temp = this.value ? this.value.slice(0, 7) + "-01" : "";
+    if (!temp) {
+      temp = this._calendarValue
+        ? this._calendarValue.slice(0, 7) + "-01"
+        : today.slice(0, 7) + "-01";
+    }
+    this._calendarValue = temp;
     this._dispathDateChangeCustomEvent(undefined);
   }
 

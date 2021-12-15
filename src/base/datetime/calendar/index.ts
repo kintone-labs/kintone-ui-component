@@ -31,6 +31,11 @@ export class BaseDateTimeCalendar extends KucBase {
   @state() _month = 1;
   @state() _year = 2021;
 
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) this._updateValue();
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -60,7 +65,6 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) this._updateValue();
     this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
   }
