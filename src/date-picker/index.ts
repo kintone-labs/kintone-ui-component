@@ -88,6 +88,7 @@ export class DatePicker extends KucBase {
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
           .value="${this.value}"
+          .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >

@@ -21,6 +21,7 @@ export class BaseDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;
+  @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
@@ -63,9 +64,12 @@ export class BaseDate extends KucBase {
         .value="${this._inputValue}"
         aria-describedby="${this._GUID}-error"
         aria-invalid="${this.inputAriaInvalid}"
+        aria-required="${this.required}"
         ?disabled="${this.disabled}"
+        ?required="${this.required}"
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
+        @keydown="${this._handleKeyDownInput}"
       />
       <button
         aria-haspopup="menu"
@@ -155,7 +159,9 @@ export class BaseDate extends KucBase {
       </style>
     `;
   }
+
   private _handleClickInput(event: Event) {
+    event.stopPropagation();
     if (!this._dateTimeCalendarVisible) {
       this._valueForReset = this.value;
       this._openCalendar();
@@ -168,9 +174,13 @@ export class BaseDate extends KucBase {
     if (this.value) {
       this._inputValue = formatValueToInputValue(this.language, this.value);
       this._calendarValue = this.value;
-    } else {
-      this._inputValue = "";
+      return;
     }
+    const today = getTodayStringByLocale();
+    this._inputValue = "";
+    this._calendarValue = this._calendarValue
+      ? this._calendarValue.slice(0, 7) + "-01"
+      : today.slice(0, 7);
   }
 
   private _handleChangeInput(event: Event) {
@@ -182,8 +192,14 @@ export class BaseDate extends KucBase {
         value: undefined,
         oldValue: this.value
       };
-      if (newValue !== "") detail.error = this._locale.INVALID_FORMAT;
-      this._calendarValue = this.value?.slice(0, 7);
+      let temp = this._calendarValue || "";
+      if (newValue === "") {
+        temp = temp.slice(0, 7) + "-01";
+      } else {
+        detail.error = this._locale.INVALID_FORMAT;
+        temp = temp.slice(0, 7);
+      }
+      this._calendarValue = temp;
       this._inputValue = newValue;
       dispatchCustomEvent(this, "kuc:base-date-change", detail);
       return;
@@ -192,6 +208,11 @@ export class BaseDate extends KucBase {
     this._dispathDateChangeCustomEvent(
       formatInputValueToValue(this.language, newValue)
     );
+  }
+
+  private _handleKeyDownInput(event: KeyboardEvent) {
+    if (event.key !== "Escape") return;
+    this._closeCalendar();
   }
 
   private _closeCalendar() {
@@ -222,7 +243,14 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
     this._dateInput.focus();
     this._inputValue = "";
-    this._calendarValue = this.value?.slice(0, 7);
+    const today = getTodayStringByLocale();
+    let temp = this.value ? this.value.slice(0, 7) + "-01" : "";
+    if (!temp) {
+      temp = this._calendarValue
+        ? this._calendarValue.slice(0, 7) + "-01"
+        : today.slice(0, 7) + "-01";
+    }
+    this._calendarValue = temp;
     this._dispathDateChangeCustomEvent(undefined);
   }
 
