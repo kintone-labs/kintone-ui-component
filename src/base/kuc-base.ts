@@ -2,10 +2,10 @@ import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
 
 type CustomEventDetail = {
-  value?: string | string[];
-  oldValue?: string | string[];
-  error?: string;
   data?: string | null;
+  oldValue?: string | string[];
+  value?: string | string[];
+  error?: string;
 };
 
 export abstract class KucBase extends LitElement {

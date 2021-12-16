@@ -14,7 +14,7 @@ import {
   validateItems
 } from "../../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type RadioButtonProps = {
   className?: string;
   error?: string;
@@ -31,8 +31,8 @@ type RadioButtonProps = {
 
 export class MobileRadioButton extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Number }) selectedIndex = -1;

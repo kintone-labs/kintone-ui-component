@@ -33,8 +33,8 @@ type ValueMapping = {
 
 export class MultiChoice extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -46,8 +46,8 @@ export class MultiChoice extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;

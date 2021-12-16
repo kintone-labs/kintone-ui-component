@@ -38,8 +38,8 @@ type ValueMapping = {
 
 export class MobileMultiChoice extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -51,8 +51,8 @@ export class MobileMultiChoice extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @state()
   private _valueMapping: ValueMapping = {};

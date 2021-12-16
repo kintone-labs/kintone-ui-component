@@ -19,8 +19,8 @@ export class BaseDate extends KucBase {
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
-  @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) disabled = false;
+  @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
@@ -85,7 +85,7 @@ export class BaseDate extends KucBase {
       ${this._dateTimeCalendarVisible
         ? html`
             <kuc-base-datetime-calendar
-              class="kuc-base-date-calendar"
+              class="kuc-base-date__calendar"
               .language="${this.language}"
               .value="${this._calendarValue}"
               ?hidden="${!this._dateTimeCalendarVisible}"
@@ -140,7 +140,7 @@ export class BaseDate extends KucBase {
           box-shadow: none;
           cursor: not-allowed;
         }
-        .kuc-base-date-calendar {
+        .kuc-base-date__calendar {
           position: absolute;
           z-index: 2000;
           background-color: #ffffff;

@@ -14,24 +14,25 @@ import "../base/datetime/time";
 
 type TimePickerProps = {
   className?: string;
-  id?: string;
   error?: string;
+  id?: string;
   label?: string;
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
-  visible?: boolean;
   requiredIcon?: boolean;
+  visible?: boolean;
 };
 
 export class TimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
+  @property({ type: Boolean }) requiredIcon = false;
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -39,7 +40,6 @@ export class TimePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-  @property({ type: Boolean }) requiredIcon = false;
 
   @query(".kuc-time-picker__group__label")
   private _labelEl!: HTMLFieldSetElement;

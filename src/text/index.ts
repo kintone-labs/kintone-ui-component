@@ -26,8 +26,8 @@ type TextProps = {
 
 export class Text extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
   @property({ type: String }) prefix = "";
