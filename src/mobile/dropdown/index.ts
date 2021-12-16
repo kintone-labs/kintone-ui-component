@@ -14,7 +14,7 @@ import {
   validateSelectedIndexNumber
 } from "../../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type MobileDropdownProps = {
   className?: string;
   error?: string;
@@ -30,8 +30,8 @@ type MobileDropdownProps = {
 
 export class MobileDropdown extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
   @property({ type: Number }) selectedIndex = -1;

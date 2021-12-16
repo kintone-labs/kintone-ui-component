@@ -26,7 +26,7 @@ describe("MobileNotification", () => {
       await elementUpdated(container);
 
       const closeBtnEl = container.querySelector(
-        ".kuc-mobile-notification__notification__closeButton"
+        ".kuc-mobile-notification__notification__close-button"
       ) as HTMLButtonElement;
       closeBtnEl.click();
       await elementUpdated(container);
