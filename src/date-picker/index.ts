@@ -29,8 +29,8 @@ type DatePickerProps = {
 
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -88,6 +88,7 @@ export class DatePicker extends KucBase {
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
           .value="${this.value}"
+          .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >

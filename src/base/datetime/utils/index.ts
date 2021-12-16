@@ -8,8 +8,8 @@ import {
 } from "../resource/constant";
 
 export type WeekDate = {
-  text: string;
   attr: string;
+  text: string;
 };
 
 export const getDisplayingDates = (year: number, month: number) => {

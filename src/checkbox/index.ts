@@ -9,7 +9,7 @@ import {
   validateSelectedIndexArray
 } from "../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type CheckboxProps = {
   className?: string;
   error?: string;
@@ -31,8 +31,8 @@ type ValueMapping = {
 
 export class Checkbox extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
   @property({ type: String }) label = "";
@@ -47,8 +47,8 @@ export class Checkbox extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @queryAll(".kuc-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];

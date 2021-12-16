@@ -37,9 +37,9 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   })
   year = 2021;
   private _locale = getLocale("en");
-  @query(".kuc-base-datetime-header-month")
+  @query(".kuc-base-datetime-calendar-header__month")
   private _baseDateTimeHeaderMonthEl!: any;
-  @query(".kuc-base-datetime-header-year")
+  @query(".kuc-base-datetime-calendar-header__year")
   private _baseDateTimeHeaderYearEl!: any;
 
   update(changedProperties: PropertyValues) {
@@ -130,7 +130,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           display: flex;
           justify-content: center;
         }
-        .kuc-base-datetime-header-month {
+        .kuc-base-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
         }
       </style>
@@ -140,7 +140,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getYearTemplate() {
     return html`
       <kuc-base-datetime-header-year
-        class="kuc-base-datetime-header-year"
+        class="kuc-base-datetime-calendar-header__year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
@@ -153,7 +153,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthTemplate() {
     return html`
       <kuc-base-datetime-header-month
-        class="kuc-base-datetime-header-month"
+        class="kuc-base-datetime-calendar-header__month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"

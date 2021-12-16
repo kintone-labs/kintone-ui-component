@@ -26,6 +26,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
   )
   private _selectedItem!: HTMLButtonElement;
 
+  @query(".kuc-base-datetime-calendar-body__table__date--selected")
+  private _highlightItem!: HTMLTableCellElement;
+
   @query('.kuc-base-datetime-calendar-body__table__date__button[tabindex="0"]')
   private _focusedItem!: HTMLButtonElement;
 
@@ -154,8 +157,10 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _moveToDate(days: number) {
     let value = this.value;
-    const { day } = this._separateDatevalue();
-    value = `${this._year}-${this._month}-${day}`;
+    const selectedValue = this._getSelectedValue();
+    const { day } = this._separateDatevalue(selectedValue);
+    value = `${this._year}-${padStart(this._month)}-${day}`;
+
     const date = new Date(value || this._getValueItemFocused());
     if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
@@ -168,8 +173,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
     dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
   }
 
-  private _separateDatevalue() {
-    const dates = this.value.split("-");
+  private _separateDatevalue(value = this.value) {
+    const dates = value.split("-");
     return {
       day: dates[2],
       month: dates[1],
@@ -178,9 +183,13 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _getSelectedValue() {
-    if (this._selectedItem) {
-      return this._selectedItem.getAttribute("data-date") || "";
+    if (this._highlightItem) {
+      const button = this._highlightItem.children[0] as HTMLButtonElement;
+      return button.dataset.date || "";
     }
+    if (this._selectedItem)
+      return this._selectedItem.getAttribute("data-date") || "";
+
     return "";
   }
 

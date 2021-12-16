@@ -31,6 +31,11 @@ export class BaseDateTimeCalendar extends KucBase {
   @state() _month = 1;
   @state() _year = 2021;
 
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("value")) this._updateValue();
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -60,7 +65,6 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) this._updateValue();
     this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
   }
@@ -93,6 +97,18 @@ export class BaseDateTimeCalendar extends KucBase {
     if (!baseDatetimeCalendarEl) return;
     baseDatetimeCalendarEl.style.top = dateTop + "px";
     baseDatetimeCalendarEl.style.left = dateInputEl.offsetLeft + "px";
+
+    if (!baseDatetimeCalendarEl || !this.parentElement) return;
+
+    const distanceInputToBottom =
+      window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
+    const listBoxHeight = this._baseCalendarGroupEl.getBoundingClientRect()
+      .height;
+    if (distanceInputToBottom >= listBoxHeight) return;
+    this.parentElement.style.position = "relative";
+    baseDatetimeCalendarEl.style.bottom = 30 + "px";
+    baseDatetimeCalendarEl.style.left = "0px";
+    baseDatetimeCalendarEl.style.top = "auto";
   }
 
   private _getStyleTagTemplate() {
@@ -126,7 +142,7 @@ export class BaseDateTimeCalendar extends KucBase {
 
   private _updateValue() {
     if (this.value === "") {
-      this.value = getTodayStringByLocale().slice(0, 7);
+      this.value = getTodayStringByLocale().slice(0, 7) + "-01";
     }
     const { year, month } = this._separateValue(this.value);
     this._year = year;
