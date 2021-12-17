@@ -47,6 +47,49 @@ const Template = args => {
     ></kuc-datetime-picker>
   `;
 };
+
+export const Base = Template.bind({});
+Base.args = {
+  className: "datetime-class",
+  error: "DateTimePicker error",
+  id: "datetime-id",
+  label: "Date and Time label",
+  language: "en",
+  value: "2021-02-28",
+  disabled: false,
+  hour12: true,
+  requiredIcon: true,
+  visible: true
+};
+
+export const BaseHour12 = Template.bind({});
+BaseHour12.args = {
+  className: "datetime-class",
+  error: "",
+  id: "datetime-id",
+  label: "Date and Time label",
+  language: "en",
+  value: "2021-02-28",
+  disabled: false,
+  hour12: true,
+  requiredIcon: false,
+  visible: true
+};
+
+export const BaseHour24 = Template.bind({});
+BaseHour24.args = {
+  className: "datetime-class",
+  error: "",
+  id: "datetime-id",
+  label: "Date and Time label",
+  language: "en",
+  value: "2021-02-28",
+  disabled: false,
+  hour12: false,
+  requiredIcon: false,
+  visible: true
+};
+
 export const BaseLanguageEN = Template.bind({});
 BaseLanguageEN.args = {
   className: "datetime-class",
@@ -89,8 +132,8 @@ BaseLanguageZH.args = {
   visible: true
 };
 
-export const BaseError12hour = Template.bind({});
-BaseError12hour.args = {
+export const BaseError = Template.bind({});
+BaseError.args = {
   className: "datetime-class",
   error: "Datetime error",
   id: "datetime-id",
@@ -98,7 +141,7 @@ BaseError12hour.args = {
   language: "en",
   value: "2021-02-28",
   disabled: false,
-  hour12: true,
-  requiredIcon: true,
+  hour12: false,
+  requiredIcon: false,
   visible: true
 };
