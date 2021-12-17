@@ -158,7 +158,6 @@ export class DatePicker extends KucBase {
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
-          position: absolute;
         }
         .kuc-date-picker__group__label__required-icon[hidden] {
           display: none;
