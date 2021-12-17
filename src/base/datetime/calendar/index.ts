@@ -16,10 +16,10 @@ export class BaseDateTimeCalendar extends KucBase {
   @query(".kuc-base-datetime-calendar__group")
   private _baseCalendarGroupEl!: HTMLDivElement;
 
-  @query(".kuc-base-datetime-header-month")
+  @query(".kuc-base-datetime-calendar-header__month")
   private _monthEl!: BaseDateTimeHeaderMonth;
 
-  @query(".kuc-base-datetime-header-year")
+  @query(".kuc-base-datetime-calendar-header__year")
   private _yearEl!: BaseDateTimeHeaderYear;
 
   @query(".kuc-base-datetime-header-month__listbox")

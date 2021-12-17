@@ -268,7 +268,7 @@ export class BaseTime extends KucBase {
     event.preventDefault();
     event.stopPropagation();
     this._closeListBox();
-    this._handleBlurButton();
+    this._inputFocusEl = this._hoursEl;
     this._hoursEl.select();
     if (!event.detail.value) return;
 
