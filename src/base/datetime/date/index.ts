@@ -32,6 +32,9 @@ export class BaseDate extends KucBase {
   @query(".kuc-base-datetime-calendar-header__group__button--previous-month")
   private _previousMonth!: HTMLButtonElement;
 
+  @query(".kuc-base-datetime-calendar-footer__group__button--none")
+  private _footerNoneBtn!: HTMLButtonElement;
+
   private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
@@ -92,6 +95,8 @@ export class BaseDate extends KucBase {
               .language="${this.language}"
               .value="${this._calendarValue}"
               ?hidden="${!this._dateTimeCalendarVisible}"
+              @kuc:calendar-header-previous-shifttab="${this
+                ._handleShiftTabCalendarPrevMonth}"
               @kuc:calendar-body-change-date="${this
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
@@ -226,6 +231,10 @@ export class BaseDate extends KucBase {
 
   private _openCalendar() {
     this._dateTimeCalendarVisible = true;
+  }
+
+  private _handleShiftTabCalendarPrevMonth() {
+    this._footerNoneBtn.focus();
   }
 
   private _handleClickCalendarChangeDate(event: CustomEvent) {
