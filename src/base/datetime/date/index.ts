@@ -21,8 +21,8 @@ export class BaseDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;
-  @property({ type: Boolean }) required = false;
   @property({ type: Boolean }) inputAriaLabel = false;
+  @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
