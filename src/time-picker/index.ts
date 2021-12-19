@@ -167,19 +167,19 @@ export class TimePicker extends KucBase {
           margin: 0px;
         }
         .kuc-time-picker__group__label {
-          position: relative;
           padding: 4px 0px 8px 0px;
+          display: inline-block;
           white-space: nowrap;
         }
         .kuc-time-picker__group__label[hidden] {
           display: none;
         }
         .kuc-time-picker__group__label__required-icon {
-          position: absolute;
-          right: -12px;
-          color: #e74c3c;
-          top: 2px;
           font-size: 20px;
+          vertical-align: -3px;
+          color: #e74c3c;
+          margin-left: 4px;
+          line-height: 1;
         }
         .kuc-time-picker__group__label__required-icon[hidden] {
           display: none;
