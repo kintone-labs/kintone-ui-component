@@ -41,6 +41,9 @@ export class BaseDateTimeCalendar extends KucBase {
       ${this._getStyleTagTemplate()}
       <div
         class="kuc-base-datetime-calendar__group"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Calender"
         @click="${this._handleClickCalendarGroup}"
         @keydown="${this._handleKeyDownCalendarGroup}"
       >

@@ -22,6 +22,7 @@ export class BaseDate extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) required = false;
+  @property({ type: Boolean }) inputAriaLabel = false;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
@@ -78,7 +79,7 @@ export class BaseDate extends KucBase {
         @keydown="${this._handleKeyDownInput}"
       />
       <button
-        aria-haspopup="menu"
+        aria-haspopup="dialog"
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
         @keydown="${this._handleKeyDownButton}"
@@ -117,6 +118,9 @@ export class BaseDate extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("inputAriaLabel") && this.inputAriaLabel) {
+      this._dateInput.setAttribute("aria-label", "date");
+    }
     super.updated(changedProperties);
   }
 

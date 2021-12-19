@@ -101,6 +101,7 @@ export class DateTimePicker extends KucBase {
             .value="${this._dateValue}"
             .language="${this._getLanguage()}"
             .disabled="${this.disabled}"
+            inputAriaLabel="true"
             @kuc:base-date-change="${this._handleDateChange}"
           ></kuc-base-date
           ><kuc-base-time
