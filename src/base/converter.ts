@@ -15,10 +15,11 @@ export const dateValueConverter = (date: string | undefined) => {
   let dateParts: string[] = [];
   if (date.indexOf("-") > 0) dateParts = date.split("-");
   if (dateParts.length < 2) return `${date}-01-01`;
+
   if (dateParts.length === 2)
-    return `${dateParts[0]}-${padStart(dateParts[1])}-01`;
+    return `${padStart(dateParts[0], 4)}-${padStart(dateParts[1])}-01`;
   if (dateParts.length > 2)
-    return `${dateParts[0]}-${padStart(dateParts[1])}-${padStart(
+    return `${padStart(dateParts[0], 4)}-${padStart(dateParts[1])}-${padStart(
       dateParts[2]
     )}`;
   return "";

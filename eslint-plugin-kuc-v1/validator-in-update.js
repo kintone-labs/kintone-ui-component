@@ -9,8 +9,10 @@ module.exports = {
         if (nodeBody.type !== "ClassBody") return;
 
         const sourceCode = context.getSourceCode();
-        const baseValidatorRegex = new RegExp('\\./base/validator"');
-        if (!baseValidatorRegex.test(sourceCode.getText(node.parent.parent))) return ;
+        const baseValidatorPattern = '\\./base/validator"';
+        const baseValidatorRegex = new RegExp(baseValidatorPattern);
+        if (!baseValidatorRegex.test(sourceCode.getText(node.parent.parent)))
+          return;
 
         const pattern = "validate[a-zA-z]+\\(";
         const regex = new RegExp(pattern);
@@ -24,10 +26,9 @@ module.exports = {
           ) {
             const functionSourceCode = sourceCode.getText(body.value);
             if (
-              (body.key.name === "update" && !regex.test(functionSourceCode)) ||
-              (body.kind !== "constructor" &&
-                body.key.name !== "update" &&
-                regex.test(functionSourceCode))
+              body.kind !== "constructor" &&
+              body.key.name !== "update" &&
+              regex.test(functionSourceCode)
             ) {
               context.report({
                 node: body,

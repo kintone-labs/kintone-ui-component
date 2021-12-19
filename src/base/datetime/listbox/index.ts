@@ -39,7 +39,9 @@ export class BaseDateTimeListBox extends KucBase {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener("click", this._handleClickDocument);
+    setTimeout(() => {
+      document.addEventListener("click", this._handleClickDocument);
+    }, 1);
   }
 
   disconnectedCallback() {
@@ -105,9 +107,12 @@ export class BaseDateTimeListBox extends KucBase {
         this._focusHighlightItemEl();
         break;
       case "Tab":
-      case "Escape":
         dispatchCustomEvent(this, "kuc:listbox-click", {});
         break;
+      case "Escape":
+        dispatchCustomEvent(this, "kuc:listbox-escape", {});
+        break;
+      case " ":
       case "Enter": {
         const highlightValue = this._highlightItemEl.getAttribute("value");
         const detail: CustomEventDetail = { value: highlightValue || "" };
@@ -120,6 +125,8 @@ export class BaseDateTimeListBox extends KucBase {
   private _handleMouseDownListBox(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
+    if (event.target === event.currentTarget) return;
+
     const itemEl = event.target as HTMLLIElement;
 
     const value = itemEl.getAttribute("value") || "";

@@ -2,7 +2,12 @@ import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, query, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueArray,
+  validateSelectedIndexArray
+} from "../base/validator";
 
 type Item = {
   label?: string;
@@ -28,8 +33,8 @@ type ValueMapping = {
 
 export class MultiChoice extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -41,8 +46,8 @@ export class MultiChoice extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @query(".kuc-multi-choice__group__menu")
   private _menuEl!: HTMLDivElement;
@@ -62,13 +67,13 @@ export class MultiChoice extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValues();
-      this._validateSelectedIndex();
+      validateValueArray(this.value);
+      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
@@ -323,24 +328,6 @@ export class MultiChoice extends KucBase {
         ${item.label === undefined ? item.value : item.label}
       </div>
     `;
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValues() {
-    if (!Array.isArray(this.value)) {
-      throw new Error("'value' property is not array");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (!Array.isArray(this.selectedIndex)) {
-      throw new Error("'selectedIndex' property is not array");
-    }
   }
 
   private _getStyleTagTemplate() {

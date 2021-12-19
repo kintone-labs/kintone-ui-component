@@ -8,8 +8,8 @@ import {
 } from "../resource/constant";
 
 export type WeekDate = {
-  text: string;
   attr: string;
+  text: string;
 };
 
 export const getDisplayingDates = (year: number, month: number) => {
@@ -184,11 +184,11 @@ export const isValidDateFormat = (language: string, dateString?: string) => {
       parseInt(dateString.split(splitStr)[isEnLanguage ? 1 : 2], 10);
     if (notExistedDate) return false;
 
-    const enRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(\d{1,4})$/;
+    const enRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(\d{4})$/;
     if (language === "en") {
       return dateString.match(enRegex) !== null;
     }
-    const jaRegex = /^(\d{1,4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
+    const jaRegex = /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
     return dateString.match(jaRegex) !== null;
   }
   return false;

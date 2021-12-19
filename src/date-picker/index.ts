@@ -1,14 +1,17 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
-import { getTodayStringByLocale } from "../base/datetime/utils";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase
 } from "../base/kuc-base";
-import { validateProps, validateDateValue } from "../base/validator";
+import {
+  validateProps,
+  validateDateValue,
+  isValidDate
+} from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
@@ -26,13 +29,13 @@ type DatePickerProps = {
 
 export class DatePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value? = getTodayStringByLocale();
+  @property({ type: String }) value? = "";
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -56,6 +59,9 @@ export class DatePicker extends KucBase {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.value = dateValueConverter(this.value);
+      if (this.value !== "" && !isValidDate(this.value)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
     }
     super.update(changedProperties);
   }
@@ -82,6 +88,7 @@ export class DatePicker extends KucBase {
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
           .value="${this.value}"
+          .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
         >
@@ -184,16 +191,17 @@ export class DatePicker extends KucBase {
     event.stopPropagation();
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
-      oldValue: this.value,
+      oldValue: this.value === "" ? undefined : this.value,
       value: ""
     };
     this.error = "";
     if (event.detail.error) {
       this.error = event.detail.error;
+      eventDetail.value = undefined;
     } else {
       this.value = event.detail.value;
+      eventDetail.value = this.value;
     }
-    eventDetail.value = this.value;
     this._disptchChangeEvent(eventDetail);
   }
 

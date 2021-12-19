@@ -12,6 +12,11 @@ module.exports = {
     "kuc-v1/validator-in-update": "error",
     "kuc-v1/double-quote-attribute-value": "error",
     "kuc-v1/inherit-from-KucBase": "error",
-    "kuc-v1/super-update": "error"
+    "kuc-v1/super-update": "error",
+    "kuc-v1/no-prefix-of-private-function": "error",
+    "kuc-v1/no-using-bem-method-for-classname": "error",
+    "kuc-v1/no-using-event-handler-name": "error",
+    "kuc-v1/private-custom-event": "error",
+    "kuc-v1/no-sorting-in-alphabetical-order": "error"
   }
 };

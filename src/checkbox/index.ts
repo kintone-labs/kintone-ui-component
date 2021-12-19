@@ -2,9 +2,14 @@ import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueArray,
+  validateSelectedIndexArray
+} from "../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type CheckboxProps = {
   className?: string;
   error?: string;
@@ -26,8 +31,8 @@ type ValueMapping = {
 
 export class Checkbox extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) itemLayout: "horizontal" | "vertical" =
     "horizontal";
   @property({ type: String }) label = "";
@@ -42,8 +47,8 @@ export class Checkbox extends KucBase {
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
-  @property({ type: Array }) value: string[] = [];
   @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @queryAll(".kuc-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
@@ -190,13 +195,13 @@ export class Checkbox extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValues();
-      this._validateSelectedIndex();
+      validateValueArray(this.value);
+      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
@@ -291,24 +296,6 @@ export class Checkbox extends KucBase {
     this.selectedIndex = Object.keys(this._valueMapping).map(key =>
       parseInt(key, 10)
     );
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValues() {
-    if (!Array.isArray(this.value)) {
-      throw new Error("'value' property is not array");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (!Array.isArray(this.selectedIndex)) {
-      throw new Error("'selectedIndex' property is not array");
-    }
   }
 
   private _getStyleTagTemplate() {

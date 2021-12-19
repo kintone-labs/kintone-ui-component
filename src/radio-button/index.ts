@@ -7,10 +7,15 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueString,
+  validateSelectedIndexNumber
+} from "../base/validator";
 import { getWidthElmByContext } from "../base/context";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type RadioButtonProps = {
   className?: string;
   error?: string;
@@ -28,8 +33,8 @@ type RadioButtonProps = {
 
 export class RadioButton extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) itemLayout = "horizontal";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
@@ -168,13 +173,13 @@ export class RadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._validateValue();
-      this._validateSelectedIndex();
+      validateValueString(this.value);
+      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
@@ -253,24 +258,6 @@ export class RadioButton extends KucBase {
     let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     if (menuWidth > errorWidth) errorWidth = menuWidth;
     this._errorEl.style.width = errorWidth + "px";
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-  }
-
-  private _validateValue() {
-    if (typeof this.value !== "string") {
-      throw new Error("'value' property is not string");
-    }
-  }
-
-  private _validateSelectedIndex() {
-    if (typeof this.selectedIndex !== "number") {
-      throw new Error("'selectedIndex' property is not number");
-    }
   }
 
   private _getStyleTagTemplate() {

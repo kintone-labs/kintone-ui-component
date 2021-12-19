@@ -7,9 +7,14 @@ import {
   CustomEventDetail
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueArray,
+  validateSelectedIndexArray
+} from "../../base/validator";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type MobileCheckboxProps = {
   className?: string;
   error?: string;
@@ -29,8 +34,8 @@ type ValueMapping = {
 
 export class MobileCheckbox extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
@@ -42,36 +47,9 @@ export class MobileCheckbox extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-  @property({
-    type: Array,
-    hasChanged(newVal: Item[], _oldVal) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'items' property is not array");
-      }
-      return true;
-    }
-  })
-  items: Item[] = [];
-  @property({
-    type: Array,
-    hasChanged(newVal: string[], _oldVal) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'value' property is not array");
-      }
-      return true;
-    }
-  })
-  value: string[] = [];
-  @property({
-    type: Array,
-    hasChanged(newVal: number[], _oldVal) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'selectedIndex' property is not array");
-      }
-      return true;
-    }
-  })
-  selectedIndex: number[] = [];
+  @property({ type: Array }) items: Item[] = [];
+  @property({ type: Array }) selectedIndex: number[] = [];
+  @property({ type: Array }) value: string[] = [];
 
   @queryAll(".kuc-mobile-checkbox__group__select-menu__item__input")
   private _inputEls!: HTMLInputElement[];
@@ -192,10 +170,13 @@ export class MobileCheckbox extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
+    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
+      validateValueArray(this.value);
+      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
