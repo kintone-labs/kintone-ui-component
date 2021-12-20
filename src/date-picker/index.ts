@@ -147,7 +147,6 @@ export class DatePicker extends KucBase {
           display: inline-block;
           padding: 4px 0px 8px 0px;
           white-space: nowrap;
-          position: relative;
         }
         .kuc-date-picker__group__label[hidden] {
           display: none;
