@@ -49,5 +49,6 @@ export const Document = Template.bind({});
 Document.args = {
   value: "2022-01-01T00:00",
   language: "en",
-  hour12: false
+  hour12: false,
+  visible: true
 };

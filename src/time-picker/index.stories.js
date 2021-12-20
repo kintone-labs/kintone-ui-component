@@ -70,5 +70,6 @@ export const Document = Template.bind({});
 Document.args = {
   value: "00:00",
   language: "en",
-  hour12: false
+  hour12: false,
+  visible: true
 };

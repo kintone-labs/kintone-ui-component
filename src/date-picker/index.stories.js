@@ -98,5 +98,6 @@ BaseError.args = {
 export const Document = Template.bind({});
 Document.args = {
   value: "2022-01-01",
-  language: "en"
+  language: "en",
+  visible: true
 };
