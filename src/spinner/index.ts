@@ -40,14 +40,14 @@ export class Spinner extends KucBase {
   }
 
   open() {
-    if (this._body.classList.contains("kuc-stop-scrolling") === false) {
-      this._body.classList.add("kuc-stop-scrolling");
+    if (this._body.classList.contains("kuc--has-spinner") === false) {
+      this._body.classList.add("kuc--has-spinner");
     }
     this._body.appendChild(this);
   }
 
   close() {
-    this._body.classList.remove("kuc-stop-scrolling");
+    this._body.classList.remove("kuc--has-spinner");
     this.parentNode && this.parentNode.removeChild(this);
   }
 
@@ -136,7 +136,7 @@ export class Spinner extends KucBase {
           opacity: 0.6;
           z-index: 9999;
         }
-        .kuc-stop-scrolling {
+        .kuc--has-spinner {
           overflow: hidden;
         }
         @keyframes rotate-loading {
