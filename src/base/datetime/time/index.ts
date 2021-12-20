@@ -209,6 +209,7 @@ export class BaseTime extends KucBase {
     switch (event.key) {
       case "Tab":
       case "Escape":
+        if (event.key === "Escape") event.preventDefault();
         if (!this._listBoxVisible) return;
 
         this._closeListBox();
@@ -250,9 +251,13 @@ export class BaseTime extends KucBase {
 
   private _handleListBoxEscape() {
     this._closeListBox();
-    this._hoursEl.select();
     this.value = this._valueForReset;
     this._actionUpdateInputValue(this.value);
+    if (this.value === "") {
+      this._toggleEl.focus();
+      return;
+    }
+    this._hoursEl.select();
   }
 
   private _handleDefaultKeyButton(keyCode: string) {
@@ -268,7 +273,7 @@ export class BaseTime extends KucBase {
     event.preventDefault();
     event.stopPropagation();
     this._closeListBox();
-    this._handleBlurButton();
+    this._inputFocusEl = this._hoursEl;
     this._hoursEl.select();
     if (!event.detail.value) return;
 
