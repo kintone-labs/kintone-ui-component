@@ -7,6 +7,7 @@ type SpinnerProps = {
 };
 
 export class Spinner extends KucBase {
+  private _body: Element = document.getElementsByTagName("BODY")[0];
   @property({ type: String }) text = "";
 
   constructor(props?: SpinnerProps) {
@@ -39,11 +40,14 @@ export class Spinner extends KucBase {
   }
 
   open() {
-    const body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(this);
+    if (this._body.classList.contains("kuc-stop-scrolling") === false) {
+      this._body.classList.add("kuc-stop-scrolling");
+    }
+    this._body.appendChild(this);
   }
 
   close() {
+    this._body.classList.remove("kuc-stop-scrolling");
     this.parentNode && this.parentNode.removeChild(this);
   }
 
@@ -122,7 +126,7 @@ export class Spinner extends KucBase {
           margin: -1px;
         }
         .kuc-spinner__mask {
-          position: absolute;
+          position: fixed;
           top: 0;
           right: 0;
           display: block;
@@ -131,6 +135,9 @@ export class Spinner extends KucBase {
           background-color: #666666;
           opacity: 0.6;
           z-index: 9999;
+        }
+        .kuc-stop-scrolling {
+          overflow: hidden;
         }
         @keyframes rotate-loading {
           0% {
