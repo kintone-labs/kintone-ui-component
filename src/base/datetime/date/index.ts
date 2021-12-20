@@ -21,7 +21,7 @@ export class BaseDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;
-  @property({ type: Boolean }) inputAriaLabel = false;
+  @property({ type: String }) inputAriaLabel = "";
   @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
@@ -119,7 +119,7 @@ export class BaseDate extends KucBase {
 
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has("inputAriaLabel") && this.inputAriaLabel) {
-      this._dateInput.setAttribute("aria-label", "date");
+      this._dateInput.setAttribute("aria-label", this.inputAriaLabel);
     }
     super.updated(changedProperties);
   }
