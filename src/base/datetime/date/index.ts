@@ -16,12 +16,12 @@ import {
 export { BaseDateTimeCalendar };
 
 export class BaseDate extends KucBase {
+  @property({ type: String }) inputAriaLabel = "";
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;
-  @property({ type: String }) inputAriaLabel = "";
   @property({ type: Boolean }) required = false;
 
   @query(".kuc-base-date__input")
