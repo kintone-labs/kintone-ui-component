@@ -16,6 +16,7 @@ import {
 export { BaseDateTimeCalendar };
 
 export class BaseDate extends KucBase {
+  @property({ type: String }) inputAriaLabel = "";
   @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
@@ -28,6 +29,12 @@ export class BaseDate extends KucBase {
 
   @query(".kuc-base-date__assistive-text")
   private _toggleEl!: HTMLButtonElement;
+
+  @query(".kuc-base-datetime-calendar-header__group__button--previous-month")
+  private _previousMonth!: HTMLButtonElement;
+
+  @query(".kuc-base-datetime-calendar-footer__group__button--none")
+  private _footerNoneBtn!: HTMLButtonElement;
 
   private _GUID: string | undefined;
   @state()
@@ -72,7 +79,7 @@ export class BaseDate extends KucBase {
         @keydown="${this._handleKeyDownInput}"
       />
       <button
-        aria-haspopup="menu"
+        aria-haspopup="dialog"
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
         @keydown="${this._handleKeyDownButton}"
@@ -89,12 +96,16 @@ export class BaseDate extends KucBase {
               .language="${this.language}"
               .value="${this._calendarValue}"
               ?hidden="${!this._dateTimeCalendarVisible}"
+              @kuc:calendar-header-previous-shifttab="${this
+                ._handleShiftTabCalendarPrevMonth}"
               @kuc:calendar-body-change-date="${this
                 ._handleClickCalendarChangeDate}"
               @kuc:calendar-body-click-date="${this
                 ._handleClickCalendarClickDate}"
               @kuc:calendar-footer-click-none="${this
                 ._handleClickCalendarFooterButtonNone}"
+              @kuc:calendar-footer-tab-none="${this
+                ._handleTabCalendarFooterButtonNone}"
               @kuc:calendar-footer-click-today="${this
                 ._handleClickCalendarFooterButtonToday}"
               @kuc:calendar-escape="${this._handleCalendarEscape}"
@@ -107,6 +118,9 @@ export class BaseDate extends KucBase {
   }
 
   updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("inputAriaLabel") && this.inputAriaLabel) {
+      this._dateInput.setAttribute("aria-label", this.inputAriaLabel);
+    }
     super.updated(changedProperties);
   }
 
@@ -223,6 +237,10 @@ export class BaseDate extends KucBase {
     this._dateTimeCalendarVisible = true;
   }
 
+  private _handleShiftTabCalendarPrevMonth() {
+    this._footerNoneBtn.focus();
+  }
+
   private _handleClickCalendarChangeDate(event: CustomEvent) {
     event.detail.oldValue = this.value;
     this.value = event.detail.value;
@@ -252,6 +270,10 @@ export class BaseDate extends KucBase {
     }
     this._calendarValue = temp;
     this._dispathDateChangeCustomEvent(undefined);
+  }
+
+  private _handleTabCalendarFooterButtonNone() {
+    this._previousMonth.focus();
   }
 
   private _handleClickCalendarFooterButtonToday() {

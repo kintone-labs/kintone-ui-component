@@ -58,6 +58,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           type="button"
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button--previous-month"
           @click="${this._handleClickCalendarPrevMonthBtn}"
+          @keydown="${this._handleKeyDownCalendarPrevMonthBtn}"
         >
           ${getLeftArrowIconSvgTemplate()}
         </button>
@@ -205,6 +206,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       this.month -= 1;
     }
     this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleKeyDownCalendarPrevMonthBtn(event: KeyboardEvent) {
+    if (!event.shiftKey || event.key !== "Tab") return;
+
+    event.preventDefault();
+    dispatchCustomEvent(this, "kuc:calendar-header-previous-shifttab");
   }
 
   private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
