@@ -287,15 +287,9 @@ export class BaseTime extends KucBase {
     this._actionUpdateInputValue(times);
   }
 
-  private _handleResetValue() {
-    this._closeListBox();
-    this._hoursEl.select();
-    this.value = this._valueForReset;
-    this._actionUpdateInputValue(this.value);
-  }
-
   private _handleFocusInput(event: Event) {
     this._inputFocusEl = event.target as HTMLInputElement;
+    this._inputFocusEl.select();
     this._inputGroupEl.classList.add("kuc-base-time__group--focus");
   }
 

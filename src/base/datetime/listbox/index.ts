@@ -215,16 +215,7 @@ export class BaseDateTimeListBox extends KucBase {
       this._highlightFirstItem();
       return;
     }
-    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
-    if (itemcheckedEL && this._firstHighlight) {
-      this._itemSelectedEl = itemcheckedEL;
-    }
-
-    let nextItemEl = this._highlightItemEl.nextElementSibling as HTMLLIElement;
-    if (this._itemSelectedEl && this._itemSelectedEl.nextElementSibling) {
-      nextItemEl = this._itemSelectedEl.nextElementSibling as HTMLLIElement;
-    }
-
+    const nextItemEl = this._getNextItemEl();
     if (nextItemEl) {
       this._setHighlightItemEl(nextItemEl);
       this._firstHighlight = false;
@@ -235,21 +226,28 @@ export class BaseDateTimeListBox extends KucBase {
     this._highlightFirstItem();
   }
 
+  private _getNextItemEl() {
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+    let nextItemEl = this._highlightItemEl.nextElementSibling as HTMLLIElement;
+
+    if (!this._itemSelectedEl) return nextItemEl;
+
+    if (this._itemSelectedEl.nextElementSibling) {
+      nextItemEl = this._itemSelectedEl.nextElementSibling as HTMLLIElement;
+      return nextItemEl;
+    }
+    return this._firstItemEl;
+  }
+
   private _highlightPrevItemEl() {
     if (this._highlightItemEl === null || this._iconChecked === null) {
       this._highlightLastItem();
       return;
     }
-    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
-    if (itemcheckedEL && this._firstHighlight) {
-      this._itemSelectedEl = itemcheckedEL;
-    }
-
-    let prevItemEl = this._highlightItemEl
-      .previousElementSibling as HTMLLIElement;
-    if (this._itemSelectedEl && this._itemSelectedEl.previousElementSibling) {
-      prevItemEl = this._itemSelectedEl.previousElementSibling as HTMLLIElement;
-    }
+    const prevItemEl = this._getPreviousItemEl();
     if (prevItemEl) {
       this._setHighlightItemEl(prevItemEl);
       this._firstHighlight = false;
@@ -257,6 +255,24 @@ export class BaseDateTimeListBox extends KucBase {
       return;
     }
     this._highlightLastItem();
+  }
+
+  private _getPreviousItemEl() {
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+
+    let prevItemEl = this._highlightItemEl
+      .previousElementSibling as HTMLLIElement;
+
+    if (!this._itemSelectedEl) return prevItemEl;
+
+    if (this._itemSelectedEl.previousElementSibling) {
+      prevItemEl = this._itemSelectedEl.previousElementSibling as HTMLLIElement;
+      return prevItemEl;
+    }
+    return this._lastItemEl;
   }
 
   private _removeHighlight() {
@@ -300,13 +316,16 @@ export class BaseDateTimeListBox extends KucBase {
   private _getHighlightItemByValue() {
     const listLiEl = Array.from(this._listBoxEl.children);
     const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
-    const liEl = listLiEl.find(
+    let liEl = listLiEl.find(
       element =>
         new Date(
           Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
         ) >= itemTimeObj
     ) as HTMLLIElement;
-    if (!this.doFocus || !liEl) return liEl;
+    if (!liEl) {
+      liEl = listLiEl[listLiEl.length - 1] as HTMLLIElement;
+    }
+    if (!this.doFocus) return liEl;
 
     this._setHighlightItemEl(liEl);
     this._focusHighlightItemEl();
