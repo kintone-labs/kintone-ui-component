@@ -325,7 +325,7 @@ export class BaseDateTimeListBox extends KucBase {
     if (!liEl) {
       liEl = listLiEl[listLiEl.length - 1] as HTMLLIElement;
     }
-    if (!this.doFocus) return liEl;
+    if (!this.doFocus || !liEl) return liEl;
 
     this._setHighlightItemEl(liEl);
     this._focusHighlightItemEl();
