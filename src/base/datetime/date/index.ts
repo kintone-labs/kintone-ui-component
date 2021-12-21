@@ -77,7 +77,7 @@ export class BaseDate extends KucBase {
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
         @keydown="${this._handleKeyDownInput}"
-        @input="${this._handleUpdateInputValue}"
+        @input="${this._handleInputValue}"
       />
       <button
         aria-haspopup="dialog"
@@ -175,7 +175,7 @@ export class BaseDate extends KucBase {
     `;
   }
 
-  private _handleUpdateInputValue(event: Event) {
+  private _handleInputValue(event: Event) {
     const newValue = (event.target as HTMLInputElement).value;
     this._inputValue = newValue || "";
   }
@@ -211,8 +211,6 @@ export class BaseDate extends KucBase {
 
     let temp = this._calendarValue.slice(0, 7);
     if (value === "") temp = this._calendarValue.slice(0, 7) + "-01";
-
-    if (temp.length > 7) return formatInputValueToValue(this.language, temp);
 
     return temp;
   }
@@ -281,6 +279,8 @@ export class BaseDate extends KucBase {
         : today.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
+    if (this.value === "") return;
+
     this._dispathDateChangeCustomEvent(undefined);
   }
 
