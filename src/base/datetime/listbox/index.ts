@@ -32,6 +32,9 @@ export class BaseDateTimeListBox extends KucBase {
   @query(".kuc-base-datetime-listbox__listbox--highlight")
   private _highlightItemEl!: HTMLLIElement;
 
+  @query(".kuc-base-datetime-listbox__listbox__item__icon")
+  private _iconChecked!: HTMLElement;
+
   @state()
   private _actionKeyboard = false;
 
@@ -197,12 +200,12 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _highlightNextItemEl() {
-    if (this._highlightItemEl === null) {
+    const itemSelectedEL = this._iconChecked.parentElement;
+    if (itemSelectedEL === null) {
       this._highlightFirstItem();
       return;
     }
-    const nextItemEl = this._highlightItemEl
-      .nextElementSibling as HTMLLIElement;
+    const nextItemEl = itemSelectedEL.nextElementSibling as HTMLLIElement;
     if (nextItemEl) {
       this._setHighlightItemEl(nextItemEl);
       return;
@@ -211,12 +214,12 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _highlightPrevItemEl() {
-    if (this._highlightItemEl === null) {
+    const itemSelectedEL = this._iconChecked.parentElement;
+    if (itemSelectedEL === null) {
       this._highlightLastItem();
       return;
     }
-    const prevItemEl = this._highlightItemEl
-      .previousElementSibling as HTMLLIElement;
+    const prevItemEl = itemSelectedEL.previousElementSibling as HTMLLIElement;
     if (prevItemEl) {
       this._setHighlightItemEl(prevItemEl);
       return;
