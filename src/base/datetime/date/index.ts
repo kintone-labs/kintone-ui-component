@@ -128,7 +128,7 @@ export class BaseDate extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-date__input {
+        .kuc-date-picker__group input.kuc-base-date__input {
           width: 100px;
           height: 40px;
           padding: 0px;
@@ -139,17 +139,17 @@ export class BaseDate extends KucBase {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
         }
 
-        .kuc-base-date__input:focus {
+        .kuc-date-picker__group input.kuc-base-date__input:focus {
           outline: none;
           border: 1px solid #3498db;
         }
-        .kuc-base-date__input--focus {
+        .kuc-date-picker__group input.kuc-base-date__input--focus {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           border: 1px solid #3498db;
           background-color: #ffffff;
           color: #333333;
         }
-        .kuc-base-date__input:disabled {
+        .kuc-date-picker__group input.kuc-base-date__input:disabled {
           color: #888888;
           background-color: #d4d7d7;
           box-shadow: none;
@@ -279,7 +279,6 @@ export class BaseDate extends KucBase {
         : today.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
-    if (this.value === "") return;
 
     this._dispathDateChangeCustomEvent(undefined);
   }
