@@ -1,5 +1,5 @@
 import { html, svg } from "lit";
-import { property, query, queryAll } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
@@ -31,6 +31,9 @@ export class BaseDateTimeListBox extends KucBase {
 
   @query(".kuc-base-datetime-listbox__listbox--highlight")
   private _highlightItemEl!: HTMLLIElement;
+
+  @state()
+  private _actionKeyboard = false;
 
   constructor() {
     super();
@@ -88,21 +91,25 @@ export class BaseDateTimeListBox extends KucBase {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
+        this._actionKeyboard = true;
         this._highlightPrevItemEl();
         this._focusHighlightItemEl();
         this._scrollToView();
         break;
       case "Down":
       case "ArrowDown":
+        this._actionKeyboard = true;
         this._highlightNextItemEl();
         this._focusHighlightItemEl();
         this._scrollToView();
         break;
       case "Home":
+        this._actionKeyboard = true;
         this._highlightFirstItem();
         this._focusHighlightItemEl();
         break;
       case "End":
+        this._actionKeyboard = true;
         this._highlightLastItem();
         this._focusHighlightItemEl();
         break;
@@ -135,6 +142,10 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _handleMouseOverItem(event: MouseEvent) {
+    if (this._actionKeyboard) {
+      this._actionKeyboard = false;
+      return;
+    }
     const itemEl = event.target as HTMLLIElement;
     this._setHighlightItemEl(itemEl);
     if (!this.doFocus) return;
