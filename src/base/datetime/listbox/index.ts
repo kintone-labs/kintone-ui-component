@@ -38,6 +38,12 @@ export class BaseDateTimeListBox extends KucBase {
   @state()
   private _actionKeyboard = false;
 
+  @state()
+  private _firstHighlight = true;
+
+  @state()
+  private _itemSelectedEl!: HTMLLIElement;
+
   constructor() {
     super();
     this._handleClickDocument = this._handleClickDocument.bind(this);
@@ -74,10 +80,13 @@ export class BaseDateTimeListBox extends KucBase {
     `;
   }
 
-  updated(_changedProperties: any) {
-    this._highlightSelectedItem();
+  updated(changedProperties: any) {
+    if (changedProperties.has("value")) {
+      this._highlightSelectedItem();
+    }
     this._setListBoxPosition();
     this._scrollToView();
+    super.updated(changedProperties);
   }
 
   private _handleClickDocument() {
@@ -138,7 +147,6 @@ export class BaseDateTimeListBox extends KucBase {
     if (event.target === event.currentTarget) return;
 
     const itemEl = event.target as HTMLLIElement;
-
     const value = itemEl.getAttribute("value") || "";
     const detail: CustomEventDetail = { value: value };
     dispatchCustomEvent(this, "kuc:listbox-click", detail);
@@ -187,41 +195,65 @@ export class BaseDateTimeListBox extends KucBase {
     )[0];
     if (!itemSelected) return;
 
+    this._itemSelectedEl = itemSelected;
     this._setHighlightItemEl(itemSelected);
     this._focusHighlightItemEl();
   }
 
   private _highlightFirstItem() {
+    this._itemSelectedEl = this._firstItemEl;
     this._setHighlightItemEl(this._firstItemEl);
   }
 
   private _highlightLastItem() {
+    this._itemSelectedEl = this._lastItemEl;
     this._setHighlightItemEl(this._lastItemEl);
   }
 
   private _highlightNextItemEl() {
-    const itemSelectedEL = this._iconChecked.parentElement;
-    if (itemSelectedEL === null) {
+    if (this._highlightItemEl === null || this._iconChecked === null) {
       this._highlightFirstItem();
       return;
     }
-    const nextItemEl = itemSelectedEL.nextElementSibling as HTMLLIElement;
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+
+    let nextItemEl = this._highlightItemEl.nextElementSibling as HTMLLIElement;
+    if (this._itemSelectedEl && this._itemSelectedEl.nextElementSibling) {
+      nextItemEl = this._itemSelectedEl.nextElementSibling as HTMLLIElement;
+    }
+
     if (nextItemEl) {
       this._setHighlightItemEl(nextItemEl);
+      this._firstHighlight = false;
+      this._itemSelectedEl = nextItemEl;
+
       return;
     }
     this._highlightFirstItem();
   }
 
   private _highlightPrevItemEl() {
-    const itemSelectedEL = this._iconChecked.parentElement;
-    if (itemSelectedEL === null) {
+    if (this._highlightItemEl === null || this._iconChecked === null) {
       this._highlightLastItem();
       return;
     }
-    const prevItemEl = itemSelectedEL.previousElementSibling as HTMLLIElement;
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+
+    let prevItemEl = this._highlightItemEl
+      .previousElementSibling as HTMLLIElement;
+    if (this._itemSelectedEl && this._itemSelectedEl.previousElementSibling) {
+      prevItemEl = this._itemSelectedEl.previousElementSibling as HTMLLIElement;
+    }
     if (prevItemEl) {
       this._setHighlightItemEl(prevItemEl);
+      this._firstHighlight = false;
+      this._itemSelectedEl = prevItemEl;
       return;
     }
     this._highlightLastItem();
