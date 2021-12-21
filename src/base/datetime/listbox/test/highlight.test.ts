@@ -31,6 +31,7 @@ describe("BaseDateTimeListBox", () => {
         { value: "2", label: "MARCH" }
       ];
       const container = new BaseDateTimeListBox();
+      container.value = "0";
       container.items = initItems;
 
       const el = await fixture(container);
@@ -64,6 +65,7 @@ describe("BaseDateTimeListBox", () => {
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;
+      container.value = "0";
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(

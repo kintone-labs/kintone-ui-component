@@ -7,7 +7,7 @@ import {
 } from "../../../kuc-base";
 import "../../calendar/header/dropdown/year";
 import "../../calendar/header/dropdown/month";
-import "../../listbox";
+import { BaseDateTimeListBox } from "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
   getRightArrowIconSvgTemplate,
@@ -39,8 +39,15 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _locale = getLocale("en");
   @query(".kuc-base-datetime-calendar-header__month")
   private _baseDateTimeHeaderMonthEl!: any;
+
   @query(".kuc-base-datetime-calendar-header__year")
   private _baseDateTimeHeaderYearEl!: any;
+
+  @query(".kuc-base-datetime-header-month__listbox")
+  private _listBoxMonthEl!: BaseDateTimeListBox;
+
+  @query(".kuc-base-datetime-header-year__listbox")
+  private _listBoxYearEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -189,10 +196,14 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   }
 
   private _handleYearDropdownClick() {
+    if (!this._listBoxMonthEl) return;
+
     this._baseDateTimeHeaderMonthEl.closeListBox();
   }
 
   private _handleMonthDropdownClick() {
+    if (!this._listBoxYearEl) return;
+
     this._baseDateTimeHeaderYearEl.closeListBox();
   }
 
