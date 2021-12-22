@@ -104,7 +104,7 @@ export class Notification extends KucBase {
         ><!--
         -->${this.text}</pre>
         <button
-          class="kuc-notification__notification__closeButton"
+          class="kuc-notification__notification__close-button"
           type="button"
           aria-label="close"
           @click="${this._handleClickCloseButton}"
@@ -188,7 +188,7 @@ export class Notification extends KucBase {
           word-break: break-word;
           white-space: pre-wrap;
         }
-        .kuc-notification__notification__closeButton {
+        .kuc-notification__notification__close-button {
           position: absolute;
           top: 5px;
           right: 0px;

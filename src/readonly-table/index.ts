@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
@@ -25,32 +25,8 @@ export class ReadOnlyTable extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
-  @property({
-    type: Array,
-    hasChanged(newVal: Column[]) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'columns' property is invalid");
-      }
-      return true;
-    }
-  })
-  columns: Column[] = [];
-  @property({
-    type: Array,
-    hasChanged(newVal: string[][]) {
-      if (!Array.isArray(newVal)) {
-        throw new Error("'data' property is invalid");
-      }
-      newVal &&
-        newVal.forEach(data => {
-          if (!Array.isArray(data)) {
-            throw new Error("'data' property is invalid");
-          }
-        });
-      return true;
-    }
-  })
-  data: string[][] = [];
+  @property({ type: Array }) columns: Column[] = [];
+  @property({ type: Array }) data: string[][] = [];
 
   constructor(props?: ReadOnlyTableProps) {
     super();
@@ -72,6 +48,13 @@ export class ReadOnlyTable extends KucBase {
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("columns")) this._validateColumns(this.columns);
+    if (changedProperties.has("data")) this._validateData(this.data);
+
+    super.update(changedProperties);
   }
 
   private _getColumnsTemplate(column: Column) {
@@ -134,6 +117,24 @@ export class ReadOnlyTable extends KucBase {
         </tbody>
       </table>
     `;
+  }
+
+  private _validateColumns(columns: Column[]) {
+    if (!Array.isArray(columns)) {
+      throw new Error("'columns' property is invalid");
+    }
+  }
+
+  private _validateData(data: string[][]) {
+    if (!Array.isArray(data)) {
+      throw new Error("'data' property is invalid");
+    }
+    data &&
+      data.forEach(val => {
+        if (!Array.isArray(val)) {
+          throw new Error("'data' property is invalid");
+        }
+      });
   }
 
   private _getStyleTagTemplate() {

@@ -8,19 +8,19 @@ describe("BaseDateTimeCalendar", () => {
       container.value = "2021-08-22";
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        ".kuc-base-datetime-calendar-body__table__date__button[aria-selected=true]"
+        ".kuc-base-datetime-calendar-body__table__date__button[aria-current=true]"
       ) as HTMLButtonElement;
       expect(selectedEl.getAttribute("data-date")).to.equal("2021-08-22");
     });
 
-    it("should be null when updating value prop with empty string", async () => {
+    it("should be first day when updating value prop with empty string", async () => {
       const container = new BaseDateTimeCalendar();
       container.value = "";
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        ".kuc-base-datetime-calendar-body__table__date__button[aria-selected=true]"
+        ".kuc-base-datetime-calendar-body__table__date__button[aria-current=true]"
       ) as HTMLButtonElement;
-      expect(selectedEl).to.equal(null);
+      expect(selectedEl.dataset.date?.slice(8)).to.equal("01");
     });
   });
 });

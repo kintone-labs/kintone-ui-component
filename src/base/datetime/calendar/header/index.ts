@@ -1,41 +1,53 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
-import "../../calendar/header/dropdown/month";
 import "../../calendar/header/dropdown/year";
-import "../../listbox";
+import "../../calendar/header/dropdown/month";
+import { BaseDateTimeListBox } from "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
   getRightArrowIconSvgTemplate,
   getLocale
 } from "../../utils/";
 
-function isValidDate(d: Date) {
-  return d instanceof Date && !isNaN(d.getTime());
+function isValidMonth(month: number) {
+  return month > 0 && month < 13;
 }
-
+function isValidYear(year: number) {
+  return year >= 0 && year < 10000;
+}
 export class BaseDateTimeCalendarHeader extends KucBase {
   @property({ type: String }) language = "en";
   @property({
     type: Number,
     hasChanged(newVal: number) {
-      return isValidDate(new Date(`2021-${newVal}-1`));
+      return isValidMonth(newVal);
     }
   })
   month = 1;
   @property({
     type: Number,
     hasChanged(newVal: number) {
-      return isValidDate(new Date(`${newVal}-1-1`));
+      return isValidYear(newVal);
     }
   })
   year = 2021;
-
   private _locale = getLocale("en");
+  @query(".kuc-base-datetime-calendar-header__month")
+  private _baseDateTimeHeaderMonthEl!: any;
+
+  @query(".kuc-base-datetime-calendar-header__year")
+  private _baseDateTimeHeaderYearEl!: any;
+
+  @query(".kuc-base-datetime-header-month__listbox")
+  private _listBoxMonthEl!: BaseDateTimeListBox;
+
+  @query(".kuc-base-datetime-header-year__listbox")
+  private _listBoxYearEl!: BaseDateTimeListBox;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -53,12 +65,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           type="button"
           class="kuc-base-datetime-calendar-header__group__button kuc-base-datetime-calendar-header__group__button--previous-month"
           @click="${this._handleClickCalendarPrevMonthBtn}"
+          @keydown="${this._handleKeyDownCalendarPrevMonthBtn}"
         >
           ${getLeftArrowIconSvgTemplate()}
         </button>
-        <span class="kuc-base-datetime-calendar-header__group__center"
-          >${this._getYearMonthTemplate()}</span
-        >
+        <div class="kuc-base-datetime-calendar-header__group__center">
+          ${this._getYearMonthTemplate()}
+        </div>
         <button
           aria-label="next month"
           type="button"
@@ -125,7 +138,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
           display: flex;
           justify-content: center;
         }
-        .kuc-base-datetime-header-month {
+        .kuc-base-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
         }
       </style>
@@ -135,9 +148,11 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getYearTemplate() {
     return html`
       <kuc-base-datetime-header-year
+        class="kuc-base-datetime-calendar-header__year"
         .postfix="${this._locale.YEAR_SELECT_POSTFIX}"
         .year="${this.year}"
         @kuc:year-dropdown-change="${this._handleYearDropdownChange}"
+        @kuc:year-dropdown-click="${this._handleYearDropdownClick}"
       >
       </kuc-base-datetime-header-year>
     `;
@@ -146,9 +161,11 @@ export class BaseDateTimeCalendarHeader extends KucBase {
   private _getMonthTemplate() {
     return html`
       <kuc-base-datetime-header-month
+        class="kuc-base-datetime-calendar-header__month"
         .month="${this.month}"
         .language="${this.language}"
         @kuc:month-dropdown-change="${this._handleMonthDropdownChange}"
+        @kuc:month-dropdown-click="${this._handleMonthDropdownClick}"
       >
       </kuc-base-datetime-header-month>
     `;
@@ -178,6 +195,18 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     this._dispatchCalendarHeaderChangeEvent();
   }
 
+  private _handleYearDropdownClick() {
+    if (!this._listBoxMonthEl) return;
+
+    this._baseDateTimeHeaderMonthEl.closeListBox();
+  }
+
+  private _handleMonthDropdownClick() {
+    if (!this._listBoxYearEl) return;
+
+    this._baseDateTimeHeaderYearEl.closeListBox();
+  }
+
   private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     const monthSelected = this.month;
@@ -188,6 +217,13 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       this.month -= 1;
     }
     this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleKeyDownCalendarPrevMonthBtn(event: KeyboardEvent) {
+    if (!event.shiftKey || event.key !== "Tab") return;
+
+    event.preventDefault();
+    dispatchCustomEvent(this, "kuc:calendar-header-previous-shifttab");
   }
 
   private _handleClickCalendarNextMonthBtn(event: MouseEvent) {

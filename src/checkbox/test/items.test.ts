@@ -157,25 +157,7 @@ describe("Checkbox", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      const container = new Checkbox({ items: dupplicatedItems });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' is duplicated! You can specify unique one."
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("should be throw error when assigned null by setter", async () => {
@@ -193,28 +175,9 @@ describe("Checkbox", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      const container = new Checkbox();
-      container.items = dupplicatedItems;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage =
-          "'items[1].value' is duplicated! You can specify unique one.";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' is duplicated! You can specify unique one."
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
     it('should set item value "" when asigned item value undefined on constuctor', async () => {
       const container = new Checkbox({
         items: initItemsWithoutValue

@@ -9,6 +9,11 @@ const validatorInUpdate = require("./validator-in-update");
 const doubleQuoteAttributeValue = require("./double-quote-attribute-value");
 const inheritFromKucBase = require("./inherit-from-KucBase");
 const superUpdate = require("./super-update");
+const noPrefixOfPrivateFunction = require("./no-prefix-of-private-function");
+const noUsingBemMethodForClassname = require("./no-using-bem-method-for-classname");
+const noUsingEventHandlerName = require("./no-using-event-handler-name");
+const privateCustomEvent = require("./private-custom-event");
+const noSortingInAlphabeticalOrder = require("./no-sorting-in-alphabetical-order");
 
 module.exports = {
   rules: {
@@ -22,6 +27,11 @@ module.exports = {
     "validator-in-update": validatorInUpdate,
     "double-quote-attribute-value": doubleQuoteAttributeValue,
     "inherit-from-KucBase": inheritFromKucBase,
-    "super-update": superUpdate
+    "super-update": superUpdate,
+    "no-prefix-of-private-function": noPrefixOfPrivateFunction,
+    "no-using-bem-method-for-classname": noUsingBemMethodForClassname,
+    "no-using-event-handler-name": noUsingEventHandlerName,
+    "private-custom-event": privateCustomEvent,
+    "no-sorting-in-alphabetical-order": noSortingInAlphabeticalOrder
   }
 };

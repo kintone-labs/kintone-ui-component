@@ -26,12 +26,22 @@ export class BaseDateTimeCalendarFooter extends KucBase {
     dispatchCustomEvent(this, "kuc:calendar-footer-click-today");
   }
 
+  private _handleKeyDownCalendarFooterButtonNone(event: KeyboardEvent) {
+    if (event.key !== "Tab") return;
+
+    if (event.shiftKey) return;
+
+    event.preventDefault();
+    dispatchCustomEvent(this, "kuc:calendar-footer-tab-none");
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-base-datetime-calendar-footer__group">
         <button
           type="button"
+          tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--today"
           @click="${this._handleClickCalendarFooterButtonToday}"
         >
@@ -40,8 +50,10 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         <span class="kuc-base-datetime-calendar-footer__group__center"></span>
         <button
           type="button"
+          tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
           @click="${this._handleClickCalendarFooterButtonNone}"
+          @keydown="${this._handleKeyDownCalendarFooterButtonNone}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
@@ -80,7 +92,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         }
         .kuc-base-datetime-calendar-footer__group__button {
           background: transparent;
-          border: none;
+          border: 1px solid transparent;
           color: #3498db;
           cursor: pointer;
           font-size: 13px;
@@ -88,6 +100,10 @@ export class BaseDateTimeCalendarFooter extends KucBase {
         }
         .kuc-base-datetime-calendar-footer__group__button:hover {
           color: #217dbb;
+        }
+        .kuc-base-datetime-calendar-footer__group__button:focus {
+          border: 1px solid #3498db;
+          outline: none;
         }
         .kuc-base-datetime-calendar-footer__group__center {
           width: 100%;
