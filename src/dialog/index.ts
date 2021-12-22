@@ -1,8 +1,8 @@
-import { html, svg } from "lit";
+import { html, svg, PropertyValues } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { KucBase, dispatchCustomEvent, generateGUID } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+import { dialogPropsConverter } from "../base/converter";
 
 type DialogProps = {
   title?: string;
@@ -29,6 +29,16 @@ export class Dialog extends KucBase {
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("content")) {
+      this.content = dialogPropsConverter(this.content);
+    }
+    if (changedProperties.has("footer")) {
+      this.footer = dialogPropsConverter(this.footer);
+    }
+    super.update(changedProperties);
   }
 
   open() {
@@ -80,16 +90,8 @@ export class Dialog extends KucBase {
             ${this._getCloseButtonSvgTemplate()}
           </button>
         </div>
-        <div class="kuc-dialog__dialog__content">
-          ${this.content instanceof HTMLElement
-            ? this.content
-            : unsafeHTML(this.content)}
-        </div>
-        <div class="kuc-dialog__dialog__footer">
-          ${this.footer instanceof HTMLElement
-            ? this.footer
-            : unsafeHTML(this.footer)}
-        </div>
+        <div class="kuc-dialog__dialog__content"></div>
+        <div class="kuc-dialog__dialog__footer"></div>
       </div>
       <span
         class="kuc-dialog__last-dummy"
@@ -178,7 +180,7 @@ export class Dialog extends KucBase {
           font-size: 20px;
           background-color: #ffffff;
 
-          position: absolute;
+          position: fixed;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -222,7 +224,7 @@ export class Dialog extends KucBase {
         }
 
         .kuc-dialog__mask {
-          position: absolute;
+          position: fixed;
           top: 0;
           right: 0;
           display: block;
