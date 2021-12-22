@@ -13,6 +13,7 @@ export const visiblePropConverter = {
 
 export const dialogPropsConverter = (element: string | HTMLElement) => {
   return element instanceof HTMLElement ? element : unsafeHTML(element);
+};
 
 export const dateValueConverter = (date: string | undefined) => {
   if (date === undefined || date === "") return "";
