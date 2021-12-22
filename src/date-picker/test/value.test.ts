@@ -1,5 +1,6 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { DatePicker } from "../index";
+import { getTodayStringByLocale } from "../../base/datetime/utils";
 
 describe("DatePicker", () => {
   describe("value", () => {
@@ -59,6 +60,25 @@ describe("DatePicker", () => {
         }
         expect(errorMessage).to.be.equal("Format is not valid.");
       }
+    });
+
+    it("should be today value when press today button on calendar", async () => {
+      const container = new DatePicker({ value: "2021-12-12", language: "ja" });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const todayBtnEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      todayBtnEl.click();
+      await elementUpdated(el);
+      const todayStr = getTodayStringByLocale();
+      expect(inputDateEl.value).to.be.equal(todayStr);
     });
   });
 });
