@@ -2,7 +2,9 @@ import { html, svg, PropertyValues } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent, generateGUID } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
-import { dialogPropsConverter } from "../base/converter";
+import { unsafeHTMLConverter } from "../base/converter";
+import { DirectiveResult } from "lit/directive.js";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
 type DialogProps = {
   title?: string;
@@ -23,6 +25,11 @@ export class Dialog extends KucBase {
   private _triggeredElement: Element | null = null;
   private _GUID: string;
 
+  private _content: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+    "";
+  private _footer: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+    "";
+
   constructor(props?: DialogProps) {
     super();
     this._GUID = generateGUID();
@@ -33,10 +40,10 @@ export class Dialog extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("content")) {
-      this.content = dialogPropsConverter(this.content);
+      this._content = unsafeHTMLConverter(this.content);
     }
     if (changedProperties.has("footer")) {
-      this.footer = dialogPropsConverter(this.footer);
+      this._footer = unsafeHTMLConverter(this.footer);
     }
     super.update(changedProperties);
   }
@@ -90,8 +97,8 @@ export class Dialog extends KucBase {
             ${this._getCloseButtonSvgTemplate()}
           </button>
         </div>
-        <div class="kuc-dialog__dialog__content"></div>
-        <div class="kuc-dialog__dialog__footer"></div>
+        <div class="kuc-dialog__dialog__content">${this._content}</div>
+        <div class="kuc-dialog__dialog__footer">${this._footer}</div>
       </div>
       <span
         class="kuc-dialog__last-dummy"
