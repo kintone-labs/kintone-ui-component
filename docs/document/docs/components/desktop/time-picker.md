@@ -24,7 +24,7 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| value | string | ""  | Text to be displayed | Format is HH:MM<br>The below time can be used (will convert to HH:MM internally): 5:30/05:3/5:3<br>Will result an error if setting invalid format or value  |
+| value | string | ""  | Text to be displayed | Format is HH:MM<br>The below time can be used (it will be converted to HH:MM internally): 5:30/05:3/5:3<br>If the hour and/or time has only 1 character, 0 will be added to the beginning<br>Will result an error if setting invalid format or value  |
 | disabled | boolean | false | Enable/Disable the component | |
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
 | requiredIcon | boolean | false | Show/Hide the required icon | |

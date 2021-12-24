@@ -24,8 +24,8 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| language | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh" |
-| value | string | ""  | Text to be displayed | Format is YYYY-MM-DDTHH:MM:SS<br>The below date and time can be used (will convert to YYYY-MM-DDTHH:MM:SS internally): 2021/2021T01/2021-06/2021-12-12/2021-12-12T01/2021-12-12T01:01<br>If the date and/or month is ignored, it will be supplemented with 01<br>If the hour, minute, and/or second is ignored, it will be supplimented with 00<br>Will result an error if setting invalid format or value |
+| language | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"ja", the language setting will be "en") |
+| value | string | ""  | Text to be displayed | Format is YYYY-MM-DDTHH:MM:SS<br>The below date and time can be used (it will be converted to YYYY-MM-DDTHH:MM:SS internally): 2021/2021T01/2021-06/2021-12-12/2021-12-12T01/2021-12-12T01:01<br>If the date and/or month is ignored, it will be supplemented with 01<br>If the hour, minute, and/or second is ignored, it will be supplimented with 00<br>Will result an error if setting invalid format or value |
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
