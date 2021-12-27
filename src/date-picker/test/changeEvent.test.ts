@@ -1,8 +1,43 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { DatePicker } from "../index";
+import { padStart } from "../../base/datetime/utils";
 
 describe("TimePicker", () => {
   describe("change event", () => {
+    it("should be focus to the second day of month when value is empty and click ArrowRight on date in calendar", async () => {
+      let triggeredEvent: any = null;
+      const container = new DatePicker();
+      container.addEventListener("change", event => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const selectedElRight = el.querySelector(
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+      ) as HTMLButtonElement;
+
+      selectedElRight.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowRight" })
+      );
+      await elementUpdated(container);
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = padStart(today.getMonth() + 1);
+      const secondDayOfThisMonth = year + "-" + month + "-02";
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.value).to.equal(secondDayOfThisMonth);
+    });
+
     it("should be triggered when ArrowRight/ArrowLeft on date in calendar", async () => {
       let triggeredEvent: any = null;
       const container = new DatePicker({ value: "2021-12-20" });
