@@ -8,11 +8,7 @@ type CustomEventDetail = {
   error?: string;
 };
 
-export abstract class KucBase extends LitElement {
-  public createRenderRoot() {
-    return this;
-  }
-}
+export abstract class KucBase extends LitElement { }
 
 export const dispatchCustomEvent = (
   el: HTMLElement,
