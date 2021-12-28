@@ -37,17 +37,20 @@ export class BaseDateTimeCalendarBody extends KucBase {
   constructor() {
     super();
     this._handleClickDocument = this._handleClickDocument.bind(this);
+    this._handleKeyDownDocument = this._handleKeyDownDocument.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     setTimeout(() => {
       document.addEventListener("click", this._handleClickDocument);
+      document.addEventListener("keydown", this._handleKeyDownDocument);
     }, 1);
   }
 
   disconnectedCallback() {
     document.removeEventListener("click", this._handleClickDocument);
+    document.removeEventListener("keydown", this._handleKeyDownDocument);
     super.disconnectedCallback();
   }
 
@@ -84,6 +87,14 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _handleClickDocument() {
     dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+  }
+
+  private _handleKeyDownDocument(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+    }
   }
 
   private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
