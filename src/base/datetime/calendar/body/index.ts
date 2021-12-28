@@ -58,7 +58,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (changedProperties.has("month")) this._month = this.month;
     if (changedProperties.has("year")) this._year = this.year;
     if (changedProperties.has("value")) {
-      const { month, year } = this._separateDatevalue();
+      const { month, year } = this._separateDateValue();
       this._month = parseInt(month, 10);
       this._year = parseInt(year, 10);
     }
@@ -158,7 +158,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   private _moveToDate(days: number) {
     let value = this.value;
     const selectedValue = this._getSelectedValue();
-    const { day } = this._separateDatevalue(selectedValue);
+    const { day } = this._separateDateValue(selectedValue);
     value = `${this._year}-${padStart(this._month)}-${day}`;
 
     const date = new Date(value || this._getValueItemFocused());
@@ -173,7 +173,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
   }
 
-  private _separateDatevalue(value = this.value) {
+  private _separateDateValue(value = this.value) {
     const dates = value.split("-");
     return {
       day: dates[2],

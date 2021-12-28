@@ -1,4 +1,5 @@
 import { expect } from "@open-wc/testing";
+import { padStart } from "../../utils";
 import {
   generateTimeOptions,
   formatTimeValueToInputValue,
@@ -90,15 +91,27 @@ describe("BaseDateTimeUtils", () => {
 
   describe("getTodayStringByLocale", () => {
     it("should be return zh time format when using zh parameter", async () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = padStart(today.getMonth() + 1);
+      const day = padStart(today.getDate());
+      const todayValue = year + "-" + month + "-" + day;
+
       const resp = getTodayStringByLocale("zh");
-      expect(resp).to.be.equal("2021-12-27");
+      expect(resp).to.be.equal(todayValue);
     });
   });
 
   describe("getTodayStringByLocale", () => {
     it("should be return en time format when using en parameter", async () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = padStart(today.getMonth() + 1);
+      const day = padStart(today.getDate());
+      const todayValue = month + "/" + day + "/" + year;
+
       const resp = getTodayStringByLocale("en");
-      expect(resp).to.be.equal("12/27/2021");
+      expect(resp).to.be.equal(todayValue);
     });
   });
 
