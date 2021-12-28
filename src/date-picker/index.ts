@@ -137,10 +137,11 @@ export class DatePicker extends KucBase {
           display: none;
         }
         .kuc-date-picker__group {
+          display: flex;
+          flex-direction: column;
           border: none;
           padding: 0px;
           height: auto;
-          display: inline-block;
           margin: 0px;
         }
         .kuc-date-picker__group__label {
