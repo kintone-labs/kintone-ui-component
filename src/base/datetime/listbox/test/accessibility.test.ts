@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { BaseDateTimeListBox } from "../index";
 
 describe("BaseDateTimeListBox", () => {
@@ -23,6 +23,32 @@ describe("BaseDateTimeListBox", () => {
           "kuc-base-datetime-listbox__listbox--highlight"
         )
       ).to.equal(true);
+    });
+
+    it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
+      let triggeredEvent: any = null;
+      const initItems = [
+        { value: "0", label: "JANUARY" },
+        { value: "1", label: "FEBRUARY" },
+        { value: "2", label: "MARCH" }
+      ];
+      const container = new BaseDateTimeListBox();
+      container.addEventListener("kuc:listbox-click", event => {
+        triggeredEvent = event;
+      });
+      container.items = initItems;
+
+      const el = await fixture(container);
+      const listboxItem = el.querySelector(
+        ".kuc-base-datetime-listbox__listbox__item"
+      ) as HTMLLIElement;
+
+      listboxItem.focus();
+
+      listboxItem.dispatchEvent(new KeyboardEvent("keydown", { key: " " }));
+      await elementUpdated(container);
+      await elementUpdated(el);
+      expect(triggeredEvent.type).to.equal("kuc:listbox-click");
     });
   });
 });

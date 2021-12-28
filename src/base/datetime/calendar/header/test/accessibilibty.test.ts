@@ -163,5 +163,155 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLSpanElement;
       expect(listBoxElHide.getAttribute("aria-hidden")).to.equal("false");
     });
+
+    it("should do nothing when mouseup on button month toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+
+      btnMonthToggleEl.click();
+      btnMonthToggleEl.dispatchEvent(new MouseEvent("mouseup"));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-month__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide.getAttribute("aria-hidden")).to.equal("false");
+    });
+
+    it("should do nothing when mouseup on button year toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+
+      btnYearToggleEl.click();
+      btnYearToggleEl.dispatchEvent(new MouseEvent("mouseup"));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-year__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide.getAttribute("aria-hidden")).to.equal("false");
+    });
+
+    it("should do nothing when mousedown on button month toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+
+      btnMonthToggleEl.click();
+      btnMonthToggleEl.dispatchEvent(new MouseEvent("mousedown"));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-month__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide.getAttribute("aria-hidden")).to.equal("false");
+    });
+
+    it("should do nothing when mousedown on button year toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+
+      btnYearToggleEl.click();
+      btnYearToggleEl.dispatchEvent(new MouseEvent("mousedown"));
+      await elementUpdated(container);
+
+      const listBoxElHide = el.querySelector(
+        ".kuc-base-datetime-header-year__listbox"
+      ) as HTMLSpanElement;
+      expect(listBoxElHide.getAttribute("aria-hidden")).to.equal("false");
+    });
+
+    it("should do nothing when pressing Tab key on button month toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+
+      btnMonthToggleEl.focus();
+      btnMonthToggleEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Tab" })
+      );
+      await elementUpdated(container);
+      expect(btnMonthToggleEl.getAttribute("aria-expanded")).to.equal("false");
+    });
+
+    it("should do nothing when pressing Tab key on button year toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+
+      btnYearToggleEl.focus();
+      btnYearToggleEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Tab" })
+      );
+      await elementUpdated(container);
+      expect(btnYearToggleEl.getAttribute("aria-expanded")).to.equal("false");
+    });
+
+    it("should do nothing when pressing not handled key on button month toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnMonthToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-month__toggle"
+      ) as HTMLButtonElement;
+
+      btnMonthToggleEl.focus();
+      btnMonthToggleEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "a" })
+      );
+      await elementUpdated(container);
+      expect(btnMonthToggleEl.getAttribute("aria-expanded")).to.equal("false");
+    });
+
+    it("should do nothing when pressing not handled key on button year toggle", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      const el = await fixture(container);
+
+      const btnYearToggleEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle"
+      ) as HTMLButtonElement;
+
+      btnYearToggleEl.focus();
+      btnYearToggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "a" }));
+      await elementUpdated(container);
+      expect(btnYearToggleEl.getAttribute("aria-expanded")).to.equal("false");
+    });
   });
 });
