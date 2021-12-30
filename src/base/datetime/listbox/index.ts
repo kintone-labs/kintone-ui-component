@@ -1,5 +1,5 @@
 import { html, svg } from "lit";
-import { property, query, queryAll } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
@@ -31,6 +31,18 @@ export class BaseDateTimeListBox extends KucBase {
 
   @query(".kuc-base-datetime-listbox__listbox--highlight")
   private _highlightItemEl!: HTMLLIElement;
+
+  @query(".kuc-base-datetime-listbox__listbox__item__icon")
+  private _iconChecked!: HTMLElement;
+
+  @state()
+  private _actionKeyboard = false;
+
+  @state()
+  private _firstHighlight = true;
+
+  @state()
+  private _itemSelectedEl!: HTMLLIElement;
 
   constructor() {
     super();
@@ -68,10 +80,13 @@ export class BaseDateTimeListBox extends KucBase {
     `;
   }
 
-  updated(_changedProperties: any) {
-    this._highlightSelectedItem();
+  updated(changedProperties: any) {
+    if (changedProperties.has("value")) {
+      this._highlightSelectedItem();
+    }
     this._setListBoxPosition();
     this._scrollToView();
+    super.updated(changedProperties);
   }
 
   private _handleClickDocument() {
@@ -88,21 +103,25 @@ export class BaseDateTimeListBox extends KucBase {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
+        this._actionKeyboard = true;
         this._highlightPrevItemEl();
         this._focusHighlightItemEl();
         this._scrollToView();
         break;
       case "Down":
       case "ArrowDown":
+        this._actionKeyboard = true;
         this._highlightNextItemEl();
         this._focusHighlightItemEl();
         this._scrollToView();
         break;
       case "Home":
+        this._actionKeyboard = true;
         this._highlightFirstItem();
         this._focusHighlightItemEl();
         break;
       case "End":
+        this._actionKeyboard = true;
         this._highlightLastItem();
         this._focusHighlightItemEl();
         break;
@@ -128,13 +147,16 @@ export class BaseDateTimeListBox extends KucBase {
     if (event.target === event.currentTarget) return;
 
     const itemEl = event.target as HTMLLIElement;
-
     const value = itemEl.getAttribute("value") || "";
     const detail: CustomEventDetail = { value: value };
     dispatchCustomEvent(this, "kuc:listbox-click", detail);
   }
 
   private _handleMouseOverItem(event: MouseEvent) {
+    if (this._actionKeyboard) {
+      this._actionKeyboard = false;
+      return;
+    }
     const itemEl = event.target as HTMLLIElement;
     this._setHighlightItemEl(itemEl);
     if (!this.doFocus) return;
@@ -173,44 +195,84 @@ export class BaseDateTimeListBox extends KucBase {
     )[0];
     if (!itemSelected) return;
 
+    this._itemSelectedEl = itemSelected;
     this._setHighlightItemEl(itemSelected);
     this._focusHighlightItemEl();
   }
 
   private _highlightFirstItem() {
+    this._itemSelectedEl = this._firstItemEl;
     this._setHighlightItemEl(this._firstItemEl);
   }
 
   private _highlightLastItem() {
+    this._itemSelectedEl = this._lastItemEl;
     this._setHighlightItemEl(this._lastItemEl);
   }
 
   private _highlightNextItemEl() {
-    if (this._highlightItemEl === null) {
+    if (this._highlightItemEl === null || this._iconChecked === null) {
       this._highlightFirstItem();
       return;
     }
-    const nextItemEl = this._highlightItemEl
-      .nextElementSibling as HTMLLIElement;
+    const nextItemEl = this._getNextItemEl();
     if (nextItemEl) {
       this._setHighlightItemEl(nextItemEl);
+      this._firstHighlight = false;
+      this._itemSelectedEl = nextItemEl;
+
       return;
     }
     this._highlightFirstItem();
   }
 
+  private _getNextItemEl() {
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+    let nextItemEl = this._highlightItemEl.nextElementSibling as HTMLLIElement;
+
+    if (!this._itemSelectedEl) return nextItemEl;
+
+    if (this._itemSelectedEl.nextElementSibling) {
+      nextItemEl = this._itemSelectedEl.nextElementSibling as HTMLLIElement;
+      return nextItemEl;
+    }
+    return this._firstItemEl;
+  }
+
   private _highlightPrevItemEl() {
-    if (this._highlightItemEl === null) {
+    if (this._highlightItemEl === null || this._iconChecked === null) {
       this._highlightLastItem();
       return;
     }
-    const prevItemEl = this._highlightItemEl
-      .previousElementSibling as HTMLLIElement;
+    const prevItemEl = this._getPreviousItemEl();
     if (prevItemEl) {
       this._setHighlightItemEl(prevItemEl);
+      this._firstHighlight = false;
+      this._itemSelectedEl = prevItemEl;
       return;
     }
     this._highlightLastItem();
+  }
+
+  private _getPreviousItemEl() {
+    const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
+    if (itemcheckedEL && this._firstHighlight) {
+      this._itemSelectedEl = itemcheckedEL;
+    }
+
+    let prevItemEl = this._highlightItemEl
+      .previousElementSibling as HTMLLIElement;
+
+    if (!this._itemSelectedEl) return prevItemEl;
+
+    if (this._itemSelectedEl.previousElementSibling) {
+      prevItemEl = this._itemSelectedEl.previousElementSibling as HTMLLIElement;
+      return prevItemEl;
+    }
+    return this._lastItemEl;
   }
 
   private _removeHighlight() {
@@ -254,12 +316,15 @@ export class BaseDateTimeListBox extends KucBase {
   private _getHighlightItemByValue() {
     const listLiEl = Array.from(this._listBoxEl.children);
     const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
-    const liEl = listLiEl.find(
+    let liEl = listLiEl.find(
       element =>
         new Date(
           Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
         ) >= itemTimeObj
     ) as HTMLLIElement;
+    if (!liEl) {
+      liEl = listLiEl[listLiEl.length - 1] as HTMLLIElement;
+    }
     if (!this.doFocus || !liEl) return liEl;
 
     this._setHighlightItemEl(liEl);

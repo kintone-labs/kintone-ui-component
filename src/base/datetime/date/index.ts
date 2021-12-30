@@ -77,6 +77,7 @@ export class BaseDate extends KucBase {
         @click="${this._handleClickInput}"
         @change="${this._handleChangeInput}"
         @keydown="${this._handleKeyDownInput}"
+        @input="${this._handleInputValue}"
       />
       <button
         aria-haspopup="dialog"
@@ -127,7 +128,7 @@ export class BaseDate extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        .kuc-base-date__input {
+        input.kuc-base-date__input {
           width: 100px;
           height: 40px;
           padding: 0px;
@@ -138,17 +139,17 @@ export class BaseDate extends KucBase {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
         }
 
-        .kuc-base-date__input:focus {
+        input.kuc-base-date__input:focus {
           outline: none;
           border: 1px solid #3498db;
         }
-        .kuc-base-date__input--focus {
+        input.kuc-base-date__input--focus {
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
           border: 1px solid #3498db;
           background-color: #ffffff;
           color: #333333;
         }
-        .kuc-base-date__input:disabled {
+        input.kuc-base-date__input:disabled {
           color: #888888;
           background-color: #d4d7d7;
           box-shadow: none;
@@ -174,14 +175,19 @@ export class BaseDate extends KucBase {
     `;
   }
 
-  private _handleClickInput(event: Event) {
-    event.stopPropagation();
+  private _handleInputValue(event: Event) {
+    const newValue = (event.target as HTMLInputElement).value;
+    this._inputValue = newValue || "";
+  }
+
+  private _handleClickInput() {
     if (!this._dateTimeCalendarVisible) {
       this._valueForReset = this.value;
+      this._calendarValue = this._getNewCalendarValue(this._inputValue || "");
       this._openCalendar();
-    } else {
-      this._closeCalendar();
+      return;
     }
+    this._closeCalendar();
   }
 
   private _updateValueProp() {
@@ -197,31 +203,35 @@ export class BaseDate extends KucBase {
       : today.slice(0, 7);
   }
 
+  private _getNewCalendarValue(value: string) {
+    if (isValidDateFormat(this.language, value))
+      return formatInputValueToValue(this.language, value);
+
+    if (!this._calendarValue) return "";
+
+    let temp = this._calendarValue.slice(0, 7);
+    if (value === "") temp = this._calendarValue.slice(0, 7) + "-01";
+
+    return temp;
+  }
+
   private _handleChangeInput(event: Event) {
     event.stopPropagation();
-    this._closeCalendar();
-    const newValue = (event.target as HTMLInputElement).value;
-    if (!isValidDateFormat(this.language, newValue)) {
-      const detail: CustomEventDetail = {
-        value: undefined,
-        oldValue: this.value
-      };
-      let temp = this._calendarValue || "";
-      if (newValue === "") {
-        temp = temp.slice(0, 7) + "-01";
-      } else {
-        detail.error = this._locale.INVALID_FORMAT;
-        temp = temp.slice(0, 7);
-      }
-      this._calendarValue = temp;
-      this._inputValue = newValue;
-      dispatchCustomEvent(this, "kuc:base-date-change", detail);
+    const newValue = (event?.target as HTMLInputElement).value;
+    this._calendarValue = this._getNewCalendarValue(newValue);
+    if (this._calendarValue.length > 7) {
+      this._dispathDateChangeCustomEvent(
+        formatInputValueToValue(this.language, newValue)
+      );
       return;
     }
-    this._calendarValue = this.value;
-    this._dispathDateChangeCustomEvent(
-      formatInputValueToValue(this.language, newValue)
-    );
+    const detail: CustomEventDetail = {
+      value: undefined,
+      oldValue: this.value,
+      error: this._locale.INVALID_FORMAT
+    };
+    this._inputValue = newValue;
+    dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 
   private _handleKeyDownInput(event: KeyboardEvent) {
@@ -269,6 +279,7 @@ export class BaseDate extends KucBase {
         : today.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
+
     this._dispathDateChangeCustomEvent(undefined);
   }
 

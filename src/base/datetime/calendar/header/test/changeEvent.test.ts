@@ -45,6 +45,58 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(triggeredEvent.detail.value).to.equal("2020-12");
     });
 
+    it("should be triggered when press shifttab key on the previous month button", async () => {
+      let triggeredEvent: any = null;
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.setAttribute("month", "6");
+      container.setAttribute("year", "2021");
+      container.addEventListener(
+        "kuc:calendar-header-previous-shifttab",
+        (event: any) => {
+          triggeredEvent = event;
+        }
+      );
+
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-base-datetime-calendar-header__group__button--previous-month"
+      ) as HTMLButtonElement;
+
+      buttonEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+      );
+      expect(triggeredEvent.type).to.equal(
+        "kuc:calendar-header-previous-shifttab"
+      );
+    });
+
+    it("should not be triggered when press shift + a key on the previous month button", async () => {
+      let triggeredEvent: any = null;
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.setAttribute("month", "6");
+      container.setAttribute("year", "2021");
+      container.addEventListener(
+        "kuc:calendar-header-previous-shifttab",
+        (event: any) => {
+          triggeredEvent = event;
+        }
+      );
+
+      const el = await fixture(container);
+      const buttonEl = el.querySelector(
+        ".kuc-base-datetime-calendar-header__group__button--previous-month"
+      ) as HTMLButtonElement;
+
+      buttonEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "a", shiftKey: true })
+      );
+      expect(triggeredEvent).to.equal(null);
+    });
+
     it("should be triggered when click the next month button", async () => {
       let triggeredEvent: any = null;
       const container = document.createElement(

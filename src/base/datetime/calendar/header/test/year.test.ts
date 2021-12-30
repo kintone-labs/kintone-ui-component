@@ -40,6 +40,34 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(yearSelectEl.innerText).to.equal("2022");
     });
 
+    it("should be 99 when assigning 99 by setter", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.setAttribute("year", "99");
+      const el = await fixture(container);
+
+      const yearSelectEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle__label"
+      ) as HTMLSpanElement;
+
+      expect(yearSelectEl.innerText).to.equal("99");
+    });
+
+    it("should be 99999 when assigning 99999 by setter", async () => {
+      const container = document.createElement(
+        "kuc-base-datetime-calendar-header"
+      );
+      container.setAttribute("year", "99999");
+      const el = await fixture(container);
+
+      const yearSelectEl = el.querySelector(
+        ".kuc-base-datetime-header-year__toggle__label"
+      ) as HTMLSpanElement;
+
+      expect(yearSelectEl.innerText).to.equal("99999");
+    });
+
     it("should be 2021 when assigning invalid value by setter", async () => {
       const container = document.createElement(
         "kuc-base-datetime-calendar-header"
