@@ -12,7 +12,11 @@ import {
   timeValueConverter
 } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
-import { validateProps, validateDateTimeValue } from "../base/validator";
+import {
+  validateProps,
+  validateDateTimeValue,
+  isValidDate
+} from "../base/validator";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -71,12 +75,20 @@ export class DateTimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value") && this.value) {
-      const dateTime = this._getDateTimeValue(this.value);
-      if (!validateDateTimeValue(dateTime.date, dateTime.time)) {
+    if (changedProperties.has("value")) {
+      if (typeof this.value !== "string") {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-      this._dateValue = dateValueConverter(dateTime.date);
+      const dateTime = this._getDateTimeValue(this.value);
+      const dateValue = dateValueConverter(dateTime.date);
+      if (
+        dateValue !== "" &&
+        (!validateDateTimeValue(dateTime.date, dateTime.time) ||
+          !isValidDate(dateValue))
+      ) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this._dateValue = dateValue;
       this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
     }
     super.update(changedProperties);
@@ -186,6 +198,8 @@ export class DateTimePicker extends KucBase {
   }
 
   private _getDateTimeValue(value: string) {
+    if (value === "" || value === undefined) return { date: "", time: "" };
+
     const dateTime = value.split("T");
     const date = dateTime[0];
     const time = dateTime[1];
