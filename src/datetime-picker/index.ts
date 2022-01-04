@@ -67,7 +67,7 @@ export class DateTimePicker extends KucBase {
   private _timeValue = "";
 
   @state()
-  private _errorLabel = "";
+  private _errorText = "";
 
   private _GUID: string;
 
@@ -139,9 +139,9 @@ export class DateTimePicker extends KucBase {
           class="kuc-datetime-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden="${!this._errorLabel}"
+          ?hidden="${!this._errorText}"
         >
-          ${this._errorLabel}
+          ${this._errorText}
         </div>
       </fieldset>
     `;
@@ -149,11 +149,11 @@ export class DateTimePicker extends KucBase {
 
   updated() {
     this._updateErrorWidth();
-    this._updateErrorLabel();
+    this._updateErrorText();
   }
 
-  private _updateErrorLabel() {
-    this._errorLabel = this._errorLabel || this.error;
+  private _updateErrorText() {
+    this._errorText = this._errorText || this.error;
   }
 
   private _updateErrorWidth() {
@@ -171,10 +171,10 @@ export class DateTimePicker extends KucBase {
     event.preventDefault();
     let newValue = this._dateValue;
     if (event.detail.error) {
-      this._errorLabel = event.detail.error;
+      this._errorText = event.detail.error;
     } else {
       newValue = event.detail.value;
-      this._errorLabel = "";
+      this._errorText = "";
     }
     this._updateDateTimeValue(newValue, "date");
   }
@@ -195,7 +195,7 @@ export class DateTimePicker extends KucBase {
     }
     const newDateTime = this._getDateTimeString();
     const detail = {
-      value: this._errorLabel || newDateTime === "" ? undefined : newDateTime,
+      value: this._errorText || newDateTime === "" ? undefined : newDateTime,
       oldValue: oldDateTime,
       changedPart: type
     };
