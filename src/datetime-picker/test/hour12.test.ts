@@ -2,7 +2,7 @@ import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { DateTimePicker } from "../index";
 
 describe("DatePicker", () => {
-  describe("error", () => {
+  describe("hour12", () => {
     it("should be changed hour when change time format to 12 hours", async () => {
       const container = new DateTimePicker({ value: "2021-12-22T14:30:00" });
       container.hour12 = true;
