@@ -17,6 +17,7 @@ import {
   validateDateTimeValue,
   isValidDate
 } from "../base/validator";
+import { getTodayStringByLocale } from "../base/datetime/utils";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -64,6 +65,9 @@ export class DateTimePicker extends KucBase {
 
   @state()
   private _timeValue = "";
+
+  @state()
+  private _errorLabel = "";
 
   private _GUID: string;
 
@@ -135,9 +139,9 @@ export class DateTimePicker extends KucBase {
           class="kuc-datetime-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden="${!this.error}"
+          ?hidden="${!this._errorLabel}"
         >
-          ${this.error}
+          ${this._errorLabel}
         </div>
       </fieldset>
     `;
@@ -145,6 +149,11 @@ export class DateTimePicker extends KucBase {
 
   updated() {
     this._updateErrorWidth();
+    this._updateErrorLabel();
+  }
+
+  private _updateErrorLabel() {
+    this._errorLabel = this._errorLabel || this.error;
   }
 
   private _updateErrorWidth() {
@@ -160,12 +169,12 @@ export class DateTimePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this.error = "";
     let newValue = this._dateValue;
     if (event.detail.error) {
-      this.error = event.detail.error;
+      this._errorLabel = event.detail.error;
     } else {
       newValue = event.detail.value;
+      this._errorLabel = "";
     }
     this._updateDateTimeValue(newValue, "date");
   }
@@ -178,23 +187,32 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateDateTimeValue(newValue: string, type: string) {
-    const oldDateTime = `${this._dateValue}T${this._timeValue}:00`;
+    const oldDateTime = this._getDateTimeString();
     if (type === "date") {
       this._dateValue = newValue || "";
     } else {
       this._timeValue = newValue;
     }
-    let newDateTime = `${this._dateValue}`;
-
-    if (this._timeValue && newDateTime) newDateTime += `T${this._timeValue}:00`;
-
-    if (newDateTime) this.value = newDateTime;
-
-    const detail: CustomEventDetail = {
-      value: this.error || newDateTime === "" ? undefined : newDateTime,
-      oldValue: oldDateTime
+    const newDateTime = this._getDateTimeString();
+    const detail = {
+      value: this._errorLabel || newDateTime === "" ? undefined : newDateTime,
+      oldValue: oldDateTime,
+      changedPart: type
     };
     dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _getDateTimeString() {
+    if (this._dateValue) {
+      if (this._timeValue) return `${this._dateValue}T${this._timeValue}:00`;
+
+      return `${this._dateValue}T00:00:00`;
+    }
+
+    const todayString = getTodayStringByLocale();
+    if (this._timeValue) return `${todayString}T${this._timeValue}:00`;
+
+    return undefined;
   }
 
   private _getDateTimeValue(value: string) {
@@ -284,6 +302,7 @@ export class DateTimePicker extends KucBase {
         }
         .kuc-datetime-picker__group__inputs {
           display: flex;
+          max-width: 185px;
         }
         .kuc-datetime-picker__group__error {
           line-height: 1.5;
