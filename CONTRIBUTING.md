@@ -291,14 +291,7 @@ The format of the PR title is as follows
 ```sh
 [PR Type] (Task Number) PR Title
 ```
-<style>
-table th:first-of-type {
-    width: 15%;
-}
-table th:nth-of-type(2) {
-    width: 30%;
-}
-</style>
+
 PR types are as follows  
 | Type |	Example |
 | :---- | :---- |
