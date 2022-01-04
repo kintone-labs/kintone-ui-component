@@ -8,14 +8,22 @@ Pull requests are also welcome when you find trivial bugs or typos.
 
 We use English for all commit messages, code comments, issues, pull requests.
 
-### Build
-
+### Setup
+This repository is a monorepo using npm.
 ```sh
 % cd kintone-ui-component
 % npm ci
 ```
 
+### Build
+The project should be Setup before Build.
+```sh
+% cd kintone-ui-component
+% npm run build:umd_prod
+```
+
 ### Development
+The project should be Setup before Development.
 
 ```sh
 % cd kintone-ui-component
@@ -23,14 +31,14 @@ We use English for all commit messages, code comments, issues, pull requests.
 ```
 
 ### Unit Test
-
+Unit test confirm DOM is correct and that if necessary throw error.  
 ```sh
 % cd kintone-ui-component
 % npm run test
 ```
 
 ### Storybook
-
+Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically, without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live.  
 ```sh
 % cd kintone-ui-component
 % npm run storybook
@@ -303,7 +311,10 @@ PR types are as follows
 | Refactor | [Refactor] Refactored a certain function |
 
 #### 3.Issue Naming Rule
+The format of the issue title is as follows  
+```sh
 [Issue Type] Issue Title  
+```
 |Type| Example|
 |:----|:----|
 |Bug report| [Bug report] Found a bug about XXX |
