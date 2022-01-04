@@ -7,7 +7,7 @@ type ButtonProps = {
   className?: string;
   id?: string;
   text?: string;
-  type?: "normal" | "submit" | "alert";
+  type?: "normal" | "submit" | "alert" | "alert-test";
   disabled?: boolean;
   visible?: boolean;
 };
