@@ -65,6 +65,47 @@ describe("DateTimePicker", () => {
       }
     });
 
+    it("should throw error when set invalid value", async () => {
+      const container = new DateTimePicker({ value: "2021-02-28T" });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Format is not valid.");
+      }
+    });
+
+    it("should throw error when set invalid value", async () => {
+      const container = new DateTimePicker({ value: "2021-02-28T09:30" });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Format is not valid.");
+      }
+    });
+
+    it("should throw error when set value is not a string", async () => {
+      const container = new DateTimePicker({ value: undefined });
+      // @ts-expect-error
+      container.value = {};
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Format is not valid.");
+      }
+    });
+
     it("should be today value when press today button on calendar", async () => {
       const container = new DateTimePicker({
         value: "2021-02-28T09:30:00",
