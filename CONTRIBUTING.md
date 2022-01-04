@@ -307,7 +307,7 @@ PR types are as follows
 |Type| Example|
 |:----|:----|
 |Bug report| [Bug report] Found a bug about XXX |
-|Feature request|[Feature request] Suggest an idea abot XXX|
+|Feature request|[Feature request] Suggest an idea about XXX|
 
 
 
