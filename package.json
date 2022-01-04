@@ -63,7 +63,7 @@
     "@types/dompurify": "^2.0.3",
     "@types/uuid": "^8.3.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
-    "core-js": "^3.6.5",
+    "core-js": "^3.20.2",
     "dompurify": "^2.2.6",
     "lit": "^2.0.0",
     "regenerator-runtime": "^0.13.5",
