@@ -40,7 +40,7 @@ describe("DateTimePicker", () => {
       expect(inputMinuteEl.value).to.be.equal("00");
     });
 
-    it('should be "12/13/2021" when changed to "2021-12-12" by setter', async () => {
+    it('should be "12/13/2021" when assigned "2021-12-13" by setter', async () => {
       const container = new DateTimePicker({ value: "2021-12-12" });
       container.value = "2021-12-13";
       const el = await fixture(container);
