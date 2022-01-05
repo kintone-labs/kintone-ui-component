@@ -1,3 +1,5 @@
+[![npm version][npm-image]][npm-url]
+
 <p align="center">
   <img src="./images/logo.png" alt="kuc-logo" align="center" height="100" style="margin: 30px; 0;">
 </p>
@@ -124,3 +126,6 @@ If you have a question, feature request, please register [GitHub issue](https://
 
 ## License
 [MIT LICENSE](./LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/kintone-ui-component.svg
+[npm-url]: https://npmjs.org/package/kintone-ui-component
