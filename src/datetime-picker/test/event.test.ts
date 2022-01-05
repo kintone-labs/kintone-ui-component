@@ -14,7 +14,7 @@ describe("DateTimePicker", () => {
       ) as BaseDate;
       baseDateEl.dispatchEvent(
         new CustomEvent("kuc:base-date-change", {
-          detail: { value: "2022-01-01", oldValue: undefined },
+          detail: { value: "2022-01-01", oldValue: undefined }
         })
       );
       await elementUpdated(el);
