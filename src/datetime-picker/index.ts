@@ -67,6 +67,9 @@ export class DateTimePicker extends KucBase {
   private _timeValue = "";
 
   @state()
+  private _errorFormat = "";
+
+  @state()
   private _errorText = "";
 
   private _GUID: string;
@@ -153,7 +156,7 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateErrorText() {
-    this._errorText = this._errorText || this.error;
+    this._errorText = this._errorFormat || this.error;
   }
 
   private _updateErrorWidth() {
@@ -171,10 +174,10 @@ export class DateTimePicker extends KucBase {
     event.preventDefault();
     let newValue = this._dateValue;
     if (event.detail.error) {
-      this._errorText = event.detail.error;
+      this._errorFormat = event.detail.error;
     } else {
       newValue = event.detail.value;
-      this._errorText = "";
+      this._errorFormat = "";
     }
     this._updateDateTimeValue(newValue, "date");
   }
