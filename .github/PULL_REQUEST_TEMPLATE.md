@@ -16,7 +16,6 @@
 
 ## Checklist
 
-- [ ] Read [README.md](https://github.com/kintone-labs/kintone-ui-component/master/README.md)
 - [ ] Read [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/master/CONTRIBUTING.md)
 - [ ] Updated documentation if it is required.
 - [ ] Added tests if it is required.
