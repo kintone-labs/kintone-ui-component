@@ -37,19 +37,13 @@ export class BaseLabel extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <label
-        class="kuc-base-label__label"
-        for="${this._GUID}-label"
-        ?hidden="${!this.value}"
-      >
-        <span class="kuc-base-label__label__text">${this.value}</span
-        ><!--
+      <span class="kuc-base-label__label__text">${this.value}</span
+      ><!--
             --><span
-          class="kuc-base-label__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
-      </label>
+        class="kuc-base-label__label__required-icon"
+        ?hidden="${!this.requiredIcon}"
+        >*</span
+      >
     `;
   }
 
@@ -80,14 +74,6 @@ export class BaseLabel extends KucBase {
           vertical-align: top;
         }
         kuc-base-label[hidden] {
-          display: none;
-        }
-        .kuc-base-label__label {
-          display: inline-block;
-          padding: 4px 0px 8px 0px;
-          white-space: nowrap;
-        }
-        .kuc-base-label__label[hidden] {
           display: none;
         }
         .kuc-base-label__label__required-icon {

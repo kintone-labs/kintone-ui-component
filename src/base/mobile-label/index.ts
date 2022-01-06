@@ -36,19 +36,13 @@ export class MobileBaseLabel extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <label
-        class="kuc-mobile-base-label__label"
-        for="${this._GUID}-label"
-        ?hidden="${!this.value}"
-      >
-        <span class="kuc-mobile-base-label__label__text">${this.value}</span
-        ><!--
+      <span class="kuc-mobile-base-label__label__text">${this.value}</span
+      ><!--
         --><span
-          class="kuc-mobile-base-label__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
-      </label>
+        class="kuc-mobile-base-label__label__required-icon"
+        ?hidden="${!this.requiredIcon}"
+        >*</span
+      >
     `;
   }
 
@@ -69,18 +63,6 @@ export class MobileBaseLabel extends KucBase {
             Verdana, sans-serif;
         }
         kuc-mobile-base-label[hidden] {
-          display: none;
-        }
-        .kuc-mobile-base-label__label {
-          display: inline-block;
-          font-size: 86%;
-          font-weight: bold;
-          line-height: 1.5;
-          padding: 0;
-          margin: 0 0 4px 0;
-          white-space: nowrap;
-        }
-        .kuc-mobile-base-label__label[hidden] {
           display: none;
         }
         .kuc-mobile-base-label__label__text {
