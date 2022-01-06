@@ -25,10 +25,10 @@ export class BaseLabel extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <span class="kuc-base-label__label__text">${this.value}</span
+      <span class="kuc-base-label__text">${this.value}</span
       ><!--
             --><span
-        class="kuc-base-label__label__required-icon"
+        class="kuc-base-label__required-icon"
         ?hidden="${!this.requiredIcon}"
         >*</span
       >
@@ -64,14 +64,14 @@ export class BaseLabel extends KucBase {
         kuc-base-label[hidden] {
           display: none;
         }
-        .kuc-base-label__label__required-icon {
+        .kuc-base-label__required-icon {
           font-size: 20px;
           vertical-align: -3px;
           color: #e74c3c;
           margin-left: 4px;
           line-height: 1;
         }
-        .kuc-base-label__label__required-icon[hidden] {
+        .kuc-base-label__required-icon[hidden] {
           display: none;
         }
       </style>

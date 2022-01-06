@@ -25,10 +25,10 @@ export class MobileBaseLabel extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <span class="kuc-mobile-base-label__label__text">${this.value}</span
+      <span class="kuc-mobile-base-label__text">${this.value}</span
       ><!--
         --><span
-        class="kuc-mobile-base-label__label__required-icon"
+        class="kuc-mobile-base-label__required-icon"
         ?hidden="${!this.requiredIcon}"
         >*</span
       >
@@ -54,17 +54,17 @@ export class MobileBaseLabel extends KucBase {
         kuc-mobile-base-label[hidden] {
           display: none;
         }
-        .kuc-mobile-base-label__label__text {
+        .kuc-mobile-base-label__text {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           white-space: normal;
         }
-        .kuc-mobile-base-label__label__required-icon {
+        .kuc-mobile-base-label__required-icon {
           position: relative;
           left: 3px;
           color: #d01212;
         }
-        .kuc-mobile-base-label__label__required-icon[hidden] {
+        .kuc-mobile-base-label__required-icon[hidden] {
           display: none;
         }
       </style>
