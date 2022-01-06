@@ -1,16 +1,29 @@
-import { MobileBaseLabel } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import "./index.ts";
+import { html } from "lit-html";
 
-storiesOf("mobile/base/label", module)
-  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const mobileBaseLabel = new MobileBaseLabel({
-      value: "Text label",
-      requiredIcon: true
-    });
+export default {
+  title: "mobile/base/label",
+  argTypes: {},
+  parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro"
+    }
+  }
+};
 
-    root.appendChild(mobileBaseLabel);
+const Template = args => {
+  return html`
+    <kuc-mobile-base-label
+      .guid="${args.guid}"
+      .text="${args.text}"
+      .requiredIcon="${args.requiredIcon}"
+    ></kuc-mobile-base-label>
+  `;
+};
 
-    return root;
-  });
+export const Base = Template.bind({});
+Base.args = {
+  guid: "guid",
+  text: "Text label",
+  requiredIcon: true
+};

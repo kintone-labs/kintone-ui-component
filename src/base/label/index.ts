@@ -1,31 +1,21 @@
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { KucBase } from "../kuc-base";
-import { validateProps } from "../validator";
-
-type TextProps = {
-  className?: string;
-  requiredIcon?: boolean;
-  id?: string;
-  value?: string;
-};
 
 export class BaseLabel extends KucBase {
-  @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) guid = "";
+  @property({ type: String }) text = "";
 
-  constructor(props?: TextProps) {
-    super();
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
-  }
+  private _GUID = "";
+
+  @query(".kuc-base-label__text")
+  private _textEl!: HTMLSpanElement;
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <span class="kuc-base-label__text">${this.value}</span
+      <span class="kuc-base-label__text">${this.text}</span
       ><!--
             --><span
         class="kuc-base-label__required-icon"
@@ -33,6 +23,22 @@ export class BaseLabel extends KucBase {
         >*</span
       >
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("guid")) {
+      this._setIdTextLabel();
+    }
+    super.update(changedProperties);
+  }
+
+  private _setIdTextLabel() {
+    if (this.guid) {
+      this._GUID = this.guid;
+      this._textEl.setAttribute("id", `${this._GUID}-group`);
+      return;
+    }
+    this._textEl.removeAttribute("id");
   }
 
   private _getStyleTagTemplate() {

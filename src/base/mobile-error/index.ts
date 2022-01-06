@@ -1,28 +1,12 @@
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
-import { validateProps } from "../../base/validator";
-
-type MobileTextProps = {
-  className?: string;
-  guid?: string;
-  id?: string;
-  value?: string;
-};
 
 export class MobileBaseError extends KucBase {
-  @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) guid = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) text = "";
 
   private _GUID = "";
-
-  constructor(props?: MobileTextProps) {
-    super();
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
-  }
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("guid")) {
@@ -38,9 +22,9 @@ export class MobileBaseError extends KucBase {
         class="kuc-mobile-base-error__error"
         id="${this._GUID}-error"
         role="alert"
-        ?hidden="${!this.value}"
+        ?hidden="${!this.text}"
       >
-        ${this.value}
+        ${this.text}
       </div>
     `;
   }

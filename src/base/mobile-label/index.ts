@@ -1,31 +1,21 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
-import { validateProps } from "../../base/validator";
-
-type MobileTextProps = {
-  className?: string;
-  id?: string;
-  value?: string;
-  requiredIcon?: boolean;
-};
 
 export class MobileBaseLabel extends KucBase {
-  @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
-  @property({ type: String }) value = "";
   @property({ type: Boolean }) requiredIcon = false;
+  @property({ type: String }) guid = "";
+  @property({ type: String }) text = "";
 
-  constructor(props?: MobileTextProps) {
-    super();
-    const validProps = validateProps(props);
-    Object.assign(this, validProps);
-  }
+  private _GUID = "";
+
+  @query(".kuc-mobile-base-label__text")
+  private _textEl!: HTMLSpanElement;
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <span class="kuc-mobile-base-label__text">${this.value}</span
+      <span class="kuc-mobile-base-label__text">${this.text}</span
       ><!--
         --><span
         class="kuc-mobile-base-label__required-icon"
@@ -33,6 +23,22 @@ export class MobileBaseLabel extends KucBase {
         >*</span
       >
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("guid")) {
+      this._setIdTextLabel();
+    }
+    super.update(changedProperties);
+  }
+
+  private _setIdTextLabel() {
+    if (this.guid) {
+      this._GUID = this.guid;
+      this._textEl.setAttribute("id", `${this._GUID}-group`);
+      return;
+    }
+    this._textEl.removeAttribute("id");
   }
 
   private _getStyleTagTemplate() {

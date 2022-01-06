@@ -1,15 +1,27 @@
-import { MobileBaseError } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import "./index.ts";
+import { html } from "lit-html";
 
-storiesOf("mobile/base/error", module)
-  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const mobileBaseError = new MobileBaseError({
-      value: "Error occured!"
-    });
+export default {
+  title: "mobile/base/error",
+  argTypes: {},
+  parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro"
+    }
+  }
+};
 
-    root.appendChild(mobileBaseError);
+const Template = args => {
+  return html`
+    <kuc-mobile-base-error
+      .guid="${args.guid}"
+      .text="${args.text}"
+    ></kuc-mobile-base-error>
+  `;
+};
 
-    return root;
-  });
+export const Base = Template.bind({});
+Base.args = {
+  guid: "guid",
+  text: "error occured!"
+};

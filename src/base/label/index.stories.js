@@ -3,24 +3,13 @@ import { html } from "lit-html";
 
 export default {
   title: "base/label",
-  argTypes: {
-    className: { name: "className" },
-    id: { name: "id" },
-    value: { name: "value" },
-    requiredIcon: { name: "requiredIcon" }
-  },
-  parameters: {
-    actions: {
-      handles: ["change"]
-    }
-  }
+  argTypes: {}
 };
 const Template = args => {
   return html`
     <kuc-base-label
-      .className="${args.className}"
-      .id="${args.id}"
-      .value="${args.value}"
+      .guid="${args.guid}"
+      .text="${args.text}"
       .requiredIcon="${args.requiredIcon}"
     ></kuc-base-label>
   `;
@@ -28,8 +17,7 @@ const Template = args => {
 
 export const Base = Template.bind({});
 Base.args = {
-  className: "baselabel-class",
-  id: "baselabel-id",
-  value: "Text label",
+  guid: "guid",
+  text: "Text label",
   requiredIcon: true
 };
