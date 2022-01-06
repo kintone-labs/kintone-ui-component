@@ -5,7 +5,6 @@ import { validateProps } from "../../base/validator";
 
 type MobileTextProps = {
   className?: string;
-  guid?: string;
   id?: string;
   value?: string;
   requiredIcon?: boolean;
@@ -13,24 +12,14 @@ type MobileTextProps = {
 
 export class MobileBaseLabel extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String }) guid = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) requiredIcon = false;
-
-  private _GUID = "";
 
   constructor(props?: MobileTextProps) {
     super();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-  }
-
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("guid")) {
-      this._GUID = this.guid;
-    }
-    super.update(changedProperties);
   }
 
   render() {

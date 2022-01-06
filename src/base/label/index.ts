@@ -6,7 +6,6 @@ import { validateProps } from "../validator";
 type TextProps = {
   className?: string;
   requiredIcon?: boolean;
-  guid?: string;
   id?: string;
   value?: string;
 };
@@ -14,24 +13,13 @@ type TextProps = {
 export class BaseLabel extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: Boolean }) requiredIcon = false;
-  @property({ type: String }) guid = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) value = "";
-
-  @state()
-  private _GUID = "";
 
   constructor(props?: TextProps) {
     super();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-  }
-
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("guid")) {
-      this._GUID = this.guid;
-    }
-    super.update(changedProperties);
   }
 
   render() {
