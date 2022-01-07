@@ -37,17 +37,20 @@ export class BaseDateTimeCalendarBody extends KucBase {
   constructor() {
     super();
     this._handleClickDocument = this._handleClickDocument.bind(this);
+    this._handleKeyDownDocument = this._handleKeyDownDocument.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     setTimeout(() => {
       document.addEventListener("click", this._handleClickDocument);
+      document.addEventListener("keydown", this._handleKeyDownDocument);
     }, 1);
   }
 
   disconnectedCallback() {
     document.removeEventListener("click", this._handleClickDocument);
+    document.removeEventListener("keydown", this._handleKeyDownDocument);
     super.disconnectedCallback();
   }
 
@@ -58,7 +61,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (changedProperties.has("month")) this._month = this.month;
     if (changedProperties.has("year")) this._year = this.year;
     if (changedProperties.has("value")) {
-      const { month, year } = this._separateDatevalue();
+      const { month, year } = this._separateDateValue();
       this._month = parseInt(month, 10);
       this._year = parseInt(year, 10);
     }
@@ -84,6 +87,14 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _handleClickDocument() {
     dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+  }
+
+  private _handleKeyDownDocument(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+    }
   }
 
   private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
@@ -158,7 +169,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   private _moveToDate(days: number) {
     let value = this.value;
     const selectedValue = this._getSelectedValue();
-    const { day } = this._separateDatevalue(selectedValue);
+    const { day } = this._separateDateValue(selectedValue);
     value = `${this._year}-${padStart(this._month)}-${day}`;
 
     const date = new Date(value || this._getValueItemFocused());
@@ -173,7 +184,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     dispatchCustomEvent(this, "kuc:calendar-body-change-date", detail);
   }
 
-  private _separateDatevalue(value = this.value) {
+  private _separateDateValue(value = this.value) {
     const dates = value.split("-");
     return {
       day: dates[2],

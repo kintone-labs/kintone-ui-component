@@ -187,6 +187,27 @@ describe("BaseDateTimeCalendarBody", () => {
       expect(container.value).to.equal(expectValue.nextDay);
     });
 
+    it('should changed value when pressing "Space" key', async () => {
+      const container = new BaseDateTimeCalendarBody();
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = initValue.value;
+
+      const el = await fixture(container);
+      const selectedEl = el.querySelector(
+        '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+      ) as HTMLButtonElement;
+
+      selectedEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowRight" })
+      );
+      await elementUpdated(el);
+
+      selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: " " }));
+      await elementUpdated(el);
+      expect(container.value).to.equal(expectValue.nextDay);
+    });
+
     it("should do nothing when pressing not handled key", async () => {
       const container = new BaseDateTimeCalendarBody();
       container.month = initValue.month;
@@ -217,6 +238,22 @@ describe("BaseDateTimeCalendarBody", () => {
       );
       await elementUpdated(el);
       expect(container.value).to.equal("2022-01-01");
+    });
+
+    it("should be highlight the first day of month when click the first day of calendar and pressing Enter key", async () => {
+      const container = new BaseDateTimeCalendarBody();
+      container.month = initValue.month;
+      container.year = initValue.year;
+      container.value = "2021-08";
+
+      const el = await fixture(container);
+      const selectedEl = el.querySelector(
+        ".kuc-base-datetime-calendar-body__table__date__button"
+      ) as HTMLButtonElement;
+      selectedEl.click();
+      selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+      await elementUpdated(el);
+      expect(container.value).to.equal("2021-08-01");
     });
   });
 });

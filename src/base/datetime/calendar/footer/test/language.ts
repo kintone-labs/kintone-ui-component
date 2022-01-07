@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { BaseDateTimeCalendarFooter } from "../index";
 
 describe("BaseDateTimeCalendarFooter", () => {

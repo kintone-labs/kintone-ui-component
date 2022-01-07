@@ -26,6 +26,15 @@ export class BaseDateTimeCalendarFooter extends KucBase {
     dispatchCustomEvent(this, "kuc:calendar-footer-click-today");
   }
 
+  private _handleKeyDownCalendarFooterButtonNone(event: KeyboardEvent) {
+    if (event.key !== "Tab") return;
+
+    if (event.shiftKey) return;
+
+    event.preventDefault();
+    dispatchCustomEvent(this, "kuc:calendar-footer-tab-none");
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -44,6 +53,7 @@ export class BaseDateTimeCalendarFooter extends KucBase {
           tabindex="0"
           class="kuc-base-datetime-calendar-footer__group__button kuc-base-datetime-calendar-footer__group__button--none"
           @click="${this._handleClickCalendarFooterButtonNone}"
+          @keydown="${this._handleKeyDownCalendarFooterButtonNone}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
