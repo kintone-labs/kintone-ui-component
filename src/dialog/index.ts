@@ -204,12 +204,12 @@ export class Dialog extends KucBase {
 
           display: flex;
           justify-content: space-between;
-          align-items: center;
         }
 
         .kuc-dialog__dialog__header__title {
           font-size: 24px;
           padding: 0 24px;
+          align-self: center;
         }
 
         .kuc-dialog__dialog__header__close-button {
@@ -218,6 +218,11 @@ export class Dialog extends KucBase {
           border: none;
           background-color: #ffffff;
           margin-right: 12px;
+          margin-top: 8px;
+        }
+
+        .kuc-dialog__dialog__header__close-button:focus-visible {
+          outline: -webkit-focus-ring-color auto 1px;
         }
 
         .kuc-dialog__dialog__header__close-button-svg {
@@ -248,6 +253,12 @@ export class Dialog extends KucBase {
 
         .kuc--has-dialog {
           overflow: hidden;
+        }
+
+        .kuc--has-dialog .kuc-dialog__dialog {
+          overflow-x: hidden;
+          overflow-y: auto;
+          max-height: 80vh;
         }
       </style>
     `;
