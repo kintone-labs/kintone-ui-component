@@ -1,5 +1,5 @@
-import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { html } from "lit";
+import { property } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
 
 export class MobileBaseLabel extends KucBase {
@@ -7,14 +7,10 @@ export class MobileBaseLabel extends KucBase {
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
 
-  @query(".kuc-mobile-base-label__text")
-  private _textEl!: HTMLSpanElement;
-
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
-      <span class="kuc-mobile-base-label__text">${this.text}</span
-      ><!--
+      ${this._getStyleTagTemplate()} ${this._getTextTemplate()}
+      <!--
         --><span
         class="kuc-mobile-base-label__required-icon"
         ?hidden="${!this.requiredIcon}"
@@ -23,19 +19,18 @@ export class MobileBaseLabel extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("guid")) {
-      this._setIdTextLabel();
-    }
-    super.update(changedProperties);
-  }
-
-  private _setIdTextLabel() {
-    if (this.guid) {
-      this._textEl.setAttribute("id", `${this.guid}-group`);
-      return;
-    }
-    this._textEl.removeAttribute("id");
+  private _getTextTemplate() {
+    return html`
+      ${this.guid && this.guid !== ""
+        ? html`
+            <span class="kuc-base-label__text" .id="${this.guid}-group"
+              >${this.text}</span
+            >
+          `
+        : html`
+            <span class="kuc-base-label__text">${this.text}</span>
+          `}
+    `;
   }
 
   private _getStyleTagTemplate() {

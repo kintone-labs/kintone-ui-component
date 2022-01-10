@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "mobile/base/error",
+  title: "base/error/mobile",
   argTypes: {},
   parameters: {
     viewport: {

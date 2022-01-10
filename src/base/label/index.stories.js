@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/label",
+  title: "base/label/desktop",
   argTypes: {}
 };
 const Template = args => {
