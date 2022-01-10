@@ -7,8 +7,6 @@ export class BaseLabel extends KucBase {
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
 
-  private _GUID = "";
-
   @query(".kuc-base-label__text")
   private _textEl!: HTMLSpanElement;
 
@@ -34,8 +32,7 @@ export class BaseLabel extends KucBase {
 
   private _setIdTextLabel() {
     if (this.guid) {
-      this._GUID = this.guid;
-      this._textEl.setAttribute("id", `${this._GUID}-group`);
+      this._textEl.setAttribute("id", `${this.guid}-group`);
       return;
     }
     this._textEl.removeAttribute("id");
