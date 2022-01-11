@@ -9,9 +9,8 @@ export class MobileBaseLabel extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()} ${this._getTextTemplate()}
-      <!--
-        --><span
+      ${this._getStyleTagTemplate()}${this._getTextTemplate()}
+      <span
         class="kuc-mobile-base-label__required-icon"
         ?hidden="${!this.requiredIcon}"
         >*</span
