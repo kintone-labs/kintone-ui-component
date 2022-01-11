@@ -89,7 +89,7 @@ export class DateTimePicker extends KucBase {
           <span class="kuc-datetime-picker__group__label__text"
             >${this.label}</span
           ><!--
-      --><span
+          --><span
             class="kuc-datetime-picker__group__label__required-icon"
             ?hidden="${!this.requiredIcon}"
             >*</span
