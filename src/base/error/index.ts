@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../kuc-base";
 
@@ -6,21 +6,12 @@ export class BaseError extends KucBase {
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
 
-  private _GUID = "";
-
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("guid")) {
-      this._GUID = this.guid;
-    }
-    super.update(changedProperties);
-  }
-
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div
         class="kuc-base-error__error"
-        id="${this._GUID}-error"
+        .id="${this.guid}-error"
         role="alert"
         ?hidden="${!this.text}"
       >
