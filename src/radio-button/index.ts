@@ -14,6 +14,7 @@ import {
   validateSelectedIndexNumber
 } from "../base/validator";
 import { getWidthElmByContext } from "../base/context";
+import { BaseLabel } from "../base/label";
 
 type Item = { label?: string; value?: string };
 type RadioButtonProps = {
@@ -195,16 +196,11 @@ export class RadioButton extends KucBase {
         aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span
-            id="${this._GUID}-group"
-            class="kuc-radio-button__group__label__text"
-            >${this.label}</span
-          ><!--
-            --><span
-            class="kuc-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .guid="${this._GUID}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-radio-button__group__select-menu"
@@ -226,7 +222,9 @@ export class RadioButton extends KucBase {
     `;
   }
 
-  updated() {
+  async updated() {
+    const baseLabel = this.querySelector("kuc-base-label") as BaseLabel;
+    await baseLabel.updateComplete;
     this._updateErrorWidth();
   }
 

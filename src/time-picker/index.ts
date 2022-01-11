@@ -10,6 +10,7 @@ import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 import { validateProps, validateTimeValue } from "../base/validator";
+import { BaseLabel } from "../base/label";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -74,13 +75,10 @@ export class TimePicker extends KucBase {
         aria-describedby="${this._GUID}-error"
       >
         <legend class="kuc-time-picker__group__label">
-          <span class="kuc-time-picker__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-time-picker__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </legend>
         <kuc-base-time
           class="kuc-time-picker__group__input"
@@ -102,7 +100,9 @@ export class TimePicker extends KucBase {
     `;
   }
 
-  updated() {
+  async updated() {
+    const baseLabel = this.querySelector("kuc-base-label") as BaseLabel;
+    await baseLabel.updateComplete;
     this._updateErrorWidth();
   }
 

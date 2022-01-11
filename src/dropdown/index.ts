@@ -13,6 +13,7 @@ import {
   validateValueString,
   validateSelectedIndexNumber
 } from "../base/validator";
+import { BaseLabel } from "../base/label";
 
 type Item = {
   label?: string;
@@ -156,13 +157,10 @@ export class Dropdown extends KucBase {
           id="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-dropdown__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-dropdown__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <button
           class="kuc-dropdown__group__toggle"
@@ -210,7 +208,9 @@ export class Dropdown extends KucBase {
     `;
   }
 
-  updated() {
+  async updated() {
+    const baseLabel = this.querySelector("kuc-base-label") as BaseLabel;
+    await baseLabel.updateComplete;
     this._updateContainerWidth();
   }
 

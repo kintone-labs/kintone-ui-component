@@ -86,13 +86,10 @@ export class Text extends KucBase {
           for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-text__group__label__text">${this.label}</span
-          ><!--
-            --><span
-            class="kuc-text__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </label>
         <div class="kuc-text__group__input-form">
           <div class="kuc-text__group__input-form__prefix-outer">
