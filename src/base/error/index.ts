@@ -56,6 +56,7 @@ export class BaseError extends KucBase {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-base-error {
+          width: 100%;
           font-size: 14px;
           display: inline-table;
           vertical-align: top;
