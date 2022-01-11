@@ -85,13 +85,10 @@ export class MobileText extends KucBase {
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-text__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-mobile-text__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
+        <kuc-base-mobile-label
+          .text="${this.label}"
+          .requiredIcon="${this.requiredIcon}"
+        ></kuc-base-mobile-label>
       </label>
       <div class="kuc-mobile-text__input-form">
         <span
@@ -120,14 +117,8 @@ export class MobileText extends KucBase {
           >${this.suffix}</span
         >
       </div>
-      <div
-        class="kuc-mobile-text__error"
-        id="${this._GUID}-error"
-        role="alert"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
-      </div>
+      <kuc-base-mobile-error .text="${this.error}" .guid="${this._GUID}">
+      </kuc-base-mobile-error>
     `;
   }
 

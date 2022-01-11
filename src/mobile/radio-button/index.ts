@@ -166,15 +166,10 @@ export class MobileRadioButton extends KucBase {
           class="kuc-mobile-radio-button__group__label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-mobile-radio-button__group__label__text"
-            ><!--
-            -->${this.label}</span
-          ><!--
-            --><span
-            class="kuc-mobile-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-mobile-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-mobile-label>
         </div>
         <div
           class="kuc-mobile-radio-button__group__select-menu"
@@ -183,15 +178,12 @@ export class MobileRadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-mobile-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-mobile-error
+          ariaLive="assertive"
+          .text="${this.error}"
+          .guid="${this._GUID}"
         >
-          ${this.error}
-        </div>
+        </kuc-base-mobile-error>
       </div>
     `;
   }

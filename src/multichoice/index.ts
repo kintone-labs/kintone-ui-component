@@ -109,15 +109,12 @@ export class MultiChoice extends KucBase {
             this._getMenuItemTemplate(item, number)
           )}
         </div>
-        <div
-          class="kuc-multi-choice__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-error
+          ariaLive="assertive"
+          .text="${this.error}"
+          .guid="${this._GUID}"
         >
-          ${this.error}
-        </div>
+        </kuc-base-error>
       </div>
     `;
   }

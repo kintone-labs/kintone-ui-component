@@ -55,7 +55,7 @@ export class RadioButton extends KucBase {
   @query(".kuc-radio-button__group__label")
   private _labelEl!: HTMLDivElement;
 
-  @query(".kuc-radio-button__group__error")
+  @query(".kuc-base-error__error")
   private _errorEl!: HTMLDivElement;
 
   @query(".kuc-radio-button__group__select-menu")
@@ -209,15 +209,12 @@ export class RadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-error
+          ariaLive="assertive"
+          .text="${this.error}"
+          .guid="${this._GUID}"
         >
-          ${this.error}
-        </div>
+        </kuc-base-error>
       </div>
     `;
   }

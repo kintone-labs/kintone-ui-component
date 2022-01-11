@@ -195,15 +195,12 @@ export class Dropdown extends KucBase {
             this._getItemTemplate(item, number)
           )}
         </ul>
-        <div
-          class="kuc-dropdown__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-error
+          ariaLive="assertive"
+          .text="${this.error}"
+          .guid="${this._GUID}"
         >
-          ${this.error}
-        </div>
+        </kuc-base-error>
       </div>
     `;
   }

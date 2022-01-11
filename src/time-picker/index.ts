@@ -45,7 +45,7 @@ export class TimePicker extends KucBase {
   @query(".kuc-time-picker__group__label")
   private _labelEl!: HTMLFieldSetElement;
 
-  @query(".kuc-time-picker__group__error")
+  @query(".kuc-base-error__error")
   private _errorEl!: HTMLDivElement;
 
   private _GUID: string;
@@ -88,14 +88,8 @@ export class TimePicker extends KucBase {
           @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>
-        <div
-          class="kuc-time-picker__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error .text="${this.error}" .guid="${this._GUID}">
+        </kuc-base-error>
       </fieldset>
     `;
   }

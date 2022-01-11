@@ -127,13 +127,10 @@ export class MobileDropdown extends KucBase {
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-dropdown__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-mobile-dropdown__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
+        <kuc-base-mobile-label
+          .text="${this.label}"
+          .requiredIcon="${this.requiredIcon}"
+        ></kuc-base-mobile-label>
       </label>
       <div class="kuc-mobile-dropdown__input-form">
         <div
@@ -155,15 +152,12 @@ export class MobileDropdown extends KucBase {
           </select>
         </div>
       </div>
-      <div
-        class="kuc-mobile-dropdown__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
+      <kuc-base-mobile-error
+        ariaLive="assertive"
+        .text="${this.error}"
+        .guid="${this._GUID}"
       >
-        ${this.error}
-      </div>
+      </kuc-base-mobile-error>
     `;
   }
 

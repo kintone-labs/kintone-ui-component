@@ -124,14 +124,8 @@ export class Text extends KucBase {
             >
           </div>
         </div>
-        <div
-          class="kuc-text__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error .text="${this.error}" .guid="${this._GUID}">
+        </kuc-base-error>
       </div>
     `;
   }

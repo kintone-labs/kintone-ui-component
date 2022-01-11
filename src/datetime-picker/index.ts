@@ -86,10 +86,14 @@ export class DateTimePicker extends KucBase {
           class="kuc-datetime-picker__group__label"
           ?hidden="${!this.label}"
         >
-          <kuc-base-label
-            .text="${this.label}"
-            .requiredIcon="${this.requiredIcon}"
-          ></kuc-base-label>
+          <span class="kuc-datetime-picker__group__label__text"
+            >${this.label}</span
+          ><!--
+      --><span
+            class="kuc-datetime-picker__group__label__required-icon"
+            ?hidden="${!this.requiredIcon}"
+            >*</span
+          >
         </legend>
         <div class="kuc-datetime-picker__group__inputs">
           <kuc-base-date
