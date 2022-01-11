@@ -19,17 +19,15 @@ export class BaseLabel extends KucBase {
   }
 
   private _getTextTemplate() {
-    return html`
-      ${this.guid && this.guid !== ""
-        ? html`
-            <span class="kuc-base-label__text" .id="${this.guid}-group"
-              >${this.text}</span
-            >
-          `
-        : html`
-            <span class="kuc-base-label__text">${this.text}</span>
-          `}
-    `;
+    return this.guid && this.guid !== ""
+      ? html`
+          <span class="kuc-base-label__text" .id="${this.guid}-group"
+            >${this.text}</span
+          >
+        `
+      : html`
+          <span class="kuc-base-label__text">${this.text}</span>
+        `;
   }
 
   private _getStyleTagTemplate() {
