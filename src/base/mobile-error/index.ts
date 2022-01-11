@@ -3,20 +3,35 @@ import { property } from "lit/decorators.js";
 import { KucBase } from "../../base/kuc-base";
 
 export class BaseMobileError extends KucBase {
+  @property({ type: String }) ariaLive = "";
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
 
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-base-mobile-error__error"
-        .id="${this.guid}-error"
-        role="alert"
-        ?hidden="${!this.text}"
-      >
-        ${this.text}
-      </div>
+      ${this.ariaLive && this.ariaLive !== ""
+        ? html`
+            <div
+              class="kuc-base-mobile-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              aria-live="${this.ariaLive}"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `
+        : html`
+            <div
+              class="kuc-base-mobile-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `}
     `;
   }
 
