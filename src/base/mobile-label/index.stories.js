@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/label/mobile",
+  title: "base/mobile-label",
   argTypes: {},
   parameters: {
     viewport: {
@@ -13,11 +13,11 @@ export default {
 
 const Template = args => {
   return html`
-    <kuc-mobile-base-label
+    <kuc-base-mobile-label
       .guid="${args.guid}"
       .text="${args.text}"
       .requiredIcon="${args.requiredIcon}"
-    ></kuc-mobile-base-label>
+    ></kuc-base-mobile-label>
   `;
 };
 
