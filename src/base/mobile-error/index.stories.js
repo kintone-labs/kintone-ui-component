@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/error/mobile",
+  title: "base/mobile-error",
   argTypes: {},
   parameters: {
     viewport: {
@@ -13,10 +13,10 @@ export default {
 
 const Template = args => {
   return html`
-    <kuc-mobile-base-error
+    <kuc-base-mobile-error
       .guid="${args.guid}"
       .text="${args.text}"
-    ></kuc-mobile-base-error>
+    ></kuc-base-mobile-error>
   `;
 };
 
