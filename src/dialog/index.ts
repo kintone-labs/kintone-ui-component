@@ -82,12 +82,18 @@ export class Dialog extends KucBase {
         class="kuc-dialog__dialog"
         role="dialog"
         tabindex="-1"
-        aria-labelledby="${this._GUID}-header"
+        aria-labelledby="${this._GUID}-title"
         aria-modal="true"
         @keydown="${this._handleKeyDownDialog}"
       >
-        <div class="kuc-dialog__dialog__header" id="${this._GUID}-header">
-          <span class="kuc-dialog__dialog__header__title">${this.title}</span>
+        <div class="kuc-dialog__dialog__header">
+          <h2>
+            <span
+              class="kuc-dialog__dialog__header__title"
+              id="${this._GUID}-title"
+              >${this.title}</span
+            >
+          </h2>
           <button
             class="kuc-dialog__dialog__header__close-button"
             type="button"
@@ -190,7 +196,6 @@ export class Dialog extends KucBase {
           min-width: 320px;
           font-size: 20px;
           background-color: #ffffff;
-
           position: fixed;
           top: 50%;
           left: 50%;
@@ -201,7 +206,6 @@ export class Dialog extends KucBase {
         .kuc-dialog__dialog__header {
           min-height: 64px;
           border-bottom: 1px solid #e3e7e8;
-
           display: flex;
           justify-content: space-between;
         }
