@@ -616,6 +616,10 @@ for example:
 #### 1.Branch Naming Rule
 From v1.1.0 branch, you can create many other child branches to implement source code for functions/features and/or unit tests and/or user guides.
 
+The format of the Branch Name is as follows  
+```sh
+[Version No]_Title
+```
 For example
 ```sh
 origin/master/v1.1.0
@@ -623,7 +627,7 @@ origin/master/v1.1.0
   |__origin/master/v1.1.0_Button_unit_test
   |__origin/master/v1.1.0_Button_docs
   |__origin/master/v1.1.0_Notification_docs  
-  |__origin/master/v1.1.0_SSR-xxx
+  |__origin/master/v1.1.0_Text_src
 ```
 
 #### 2.Pull Request Naming Rule
@@ -631,7 +635,7 @@ If you finish the implementation of the child branches, you should merge from th
 
 The format of the PR title is as follows  
 ```sh
-[PR Type] (Task Number) PR Title
+[PR Type] PR Title
 ```
 
 PR types are as follows  
