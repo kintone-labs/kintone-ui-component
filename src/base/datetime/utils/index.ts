@@ -261,6 +261,27 @@ export const generateHourOptions = (hour12 = false) => {
   return generateHour240ptions();
 };
 
+export const generateHour12Options = (ampm: string) => {
+  const hour12Options = [];
+  hour12Options.push({ value: `${ampm} 12`, label: `${ampm} 12` });
+  for (let i = 1; i <= 11; i++) {
+    hour12Options.push({
+      value: `${ampm} ${padStart(i)}`,
+      label: `${ampm} ${padStart(i)}`
+    });
+  }
+  return hour12Options;
+};
+
+export const generateHour240ptions = () => {
+  const hour12Options = [];
+  hour12Options.push({ value: "00", label: `00` });
+  for (let i = 1; i <= 23; i++) {
+    hour12Options.push({ value: padStart(i), label: `${padStart(i)}` });
+  }
+  return hour12Options;
+};
+
 export const getToggleIconSvgTemplate = () => {
   return svg`
     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
