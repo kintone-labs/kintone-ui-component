@@ -1,14 +1,15 @@
 ---
-id: radio-button
-title: RadioButton
-sidebar_label: RadioButton
+id: version-1.3.0-mobile-dropdown
+title: MobileDropdown
+sidebar_label: MobileDropdown
+original_id: mobile-dropdown
 ---
 
 ## Overview
 
-The RadioButton component allows the user to select one out of several options.
+The MobileDropdown component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-radio-button--document" title="radio-button image" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-dropdown--document" title="mobile dropdown image" height="140px"></iframe>
 
 ---
 
@@ -18,20 +19,18 @@ The RadioButton component allows the user to select one out of several options.
 
 Here is a list of properties that can be used for modifying the component:
 
-| Name  | Type | Default | Description | Remark |
+| Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
-| itemLayout | string | "horizontal"  | Orientation for displaying the options | Available options:<br>"horizontal" : Horizontal<br>"vertical" : Vertical |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value *1 | string | ""  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number |
 | selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not a number |
-| BorderVisible | Boolean | False | Show/Hide the border | |
-| disabled | boolean | false | Enable/Disable the component | |
+| disabled | boolean | false | Enable/Disable the component from selecting | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<Item\> | []  | List of options to select from | Will result an error if the value of items is not an array |
+| items | Array\<Item\> | []  | List of options to display | Will result an error if the value of `items` is not an array |
 | Item.label | string | null | Text for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Can set duplicated value in `Item.value` |
 
@@ -47,6 +46,7 @@ Here is a list of properties that can be used for modifying the component:
 >   - selectedIndex = 99: No item will be selected.
 
 ### Event
+
 Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
@@ -55,7 +55,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-RadioButton(options)<br>
+MobileDropdown(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -65,13 +65,14 @@ Here is a list of available constructors:
 | options | object | {} | Object that includes component properties |  |
 
 ---
+
 ## Sample Code
 
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.app.record.getSpaceElement('space');
-const radioButton = new Kuc.RadioButton({
+const space = kintone.mobile.app.record.getSpaceElement('space');
+const mobileDropdown = new Kuc.MobileDropdown({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -86,16 +87,15 @@ const radioButton = new Kuc.RadioButton({
   ],
   value: 'Orange',
   selectedIndex: 0,
-  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
   disabled: false
 });
-space.appendChild(radioButton);
+space.appendChild(mobileDropdown);
 
-radioButton.addEventListener('change', event => {
+mobileDropdown.addEventListener('change', event => {
   console.log(event);
 });
 ```

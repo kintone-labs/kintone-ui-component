@@ -1,14 +1,15 @@
 ---
-id: checkbox
-title: Checkbox
-sidebar_label: Checkbox
+id: version-1.3.0-mobile-checkbox
+title: MobileCheckbox
+sidebar_label: MobileCheckbox
+original_id: mobile-checkbox
 ---
 
 ## Overview
 
-The Checkbox component displays a checkbox element for multiple selections.
+The MobileCheckbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-checkbox--document" title="checkbox image" height="80px"></iframe>
+<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-checkbox--document" title="mobile checkbox image" height="150px"></iframe>
 
 ---
 
@@ -23,10 +24,9 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
-| itemLayout | string | "horizontal"  | Orientation for displaying the options | Available options:<br>"horizontal" : Horizontal<br>"vertical" : Vertical |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | borderVisible | boolean | true | Show/Hide the border | |
-| disabled | boolean | false | Enable/Disable the component | |
+| disabled | boolean | false | Enable/Disable the component from selecting | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of `items` is not an array |
@@ -58,18 +58,18 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values when used in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
 
 ### Constructor
 
-Checkbox(options)<br>
+MobileCheckbox(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | {} | Object that includes component properties |  |
 
 ---
 
@@ -78,8 +78,8 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.app.record.getSpaceElement('space');
-const checkbox = new Kuc.Checkbox({
+const space = kintone.mobile.app.record.getSpaceElement('space');
+const mobileCheckbox = new Kuc.MobileCheckbox({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -94,7 +94,6 @@ const checkbox = new Kuc.Checkbox({
   ],
   value: ['Orange'],
   selectedIndex: [0],
-  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
@@ -102,9 +101,9 @@ const checkbox = new Kuc.Checkbox({
   disabled: false,
   borderVisible: true
 });
-space.appendChild(checkbox);
+space.appendChild(mobileCheckbox);
 
-checkbox.addEventListener('change', event => {
+mobileCheckbox.addEventListener('change', event => {
   console.log(event);
 });
 ```
