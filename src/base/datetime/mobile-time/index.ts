@@ -31,6 +31,12 @@ export class BaseMobileTime extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
 
+  /**
+   * Please consider name again and change @state to @property when publishing the function.
+   */
+  @state()
+  private _timeStep = 1;
+
   @state()
   private _hours = "";
 
@@ -44,7 +50,7 @@ export class BaseMobileTime extends KucBase {
   private _hourOptions!: Item[];
 
   @state()
-  private _minuteOptions = generateMinuteOptions();
+  private _minuteOptions!: Item[];
 
   @query(".kuc-base-mobile-time__group__hours")
   private _hoursEl!: HTMLSelectElement;
@@ -62,24 +68,10 @@ export class BaseMobileTime extends KucBase {
     if (changedProperties.has("hour12")) {
       this._hourOptions = generateHourOptions(this.hour12);
     }
-    super.update(changedProperties);
-  }
-
-  private _updateInputValue() {
-    const times = formatTimeValueToInputValue(this.value, this.hour12);
-    this._hours = times.hours;
-    this._minutes = times.minutes;
-    this._suffix = times.suffix || "";
-    this._setValueToInput(times);
-  }
-
-  private _setValueToInput(times: Time) {
-    this._minutesEl.value = times.minutes;
-    if (times.suffix) {
-      this._hoursEl.value = times.suffix + " " + times.hours;
-      return;
+    if (changedProperties.has("_timeStep")) {
+      this._minuteOptions = generateMinuteOptions(this._timeStep);
     }
-    this._hoursEl.value = times.hours;
+    super.update(changedProperties);
   }
 
   render() {
@@ -114,6 +106,23 @@ export class BaseMobileTime extends KucBase {
     super.update(changedProperties);
   }
 
+  private _updateInputValue() {
+    const times = formatTimeValueToInputValue(this.value, this.hour12);
+    this._hours = times.hours;
+    this._minutes = times.minutes;
+    this._suffix = times.suffix || "";
+    this._setValueToInput(times);
+  }
+
+  private _setValueToInput(times: Time) {
+    this._minutesEl.value = times.minutes;
+    if (times.suffix) {
+      this._hoursEl.value = times.suffix + " " + times.hours;
+      return;
+    }
+    this._hoursEl.value = times.hours;
+  }
+
   private _handleChangeMinutes(event: Event) {
     const oldTime = this._getTimeValueString();
 
@@ -121,6 +130,7 @@ export class BaseMobileTime extends KucBase {
     const minutes = target.value;
     this._minutes = minutes;
     const newTime = this._getTimeValueString();
+    this.value = newTime;
     this._dispatchEventTimeChange(newTime, oldTime);
   }
 
@@ -136,6 +146,7 @@ export class BaseMobileTime extends KucBase {
       this._suffix = "";
     }
     const newTime = this._getTimeValueString();
+    this.value = newTime;
     this._dispatchEventTimeChange(newTime, oldTime);
   }
 

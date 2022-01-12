@@ -243,9 +243,9 @@ export const getLocale = (language: string) => {
   }
 };
 
-export const generateMinuteOptions = () => {
+export const generateMinuteOptions = (timeStep: number = 1) => {
   const minuteOptions = [];
-  for (let i = 0; i <= 59; i++) {
+  for (let i = 0; i <= 59; i += timeStep) {
     minuteOptions.push({ value: padStart(i), label: padStart(i) });
   }
   return minuteOptions;
