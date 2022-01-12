@@ -198,7 +198,7 @@ export class DateTimePicker extends KucBase {
     }
     const newDateTime = this._getDateTimeString();
     const detail = {
-      value: this._errorText || newDateTime === "" ? undefined : newDateTime,
+      value: this._errorFormat || newDateTime === "" ? undefined : newDateTime,
       oldValue: oldDateTime === "" ? undefined : oldDateTime,
       changedPart: type
     };
