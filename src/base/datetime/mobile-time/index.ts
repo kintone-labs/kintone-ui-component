@@ -52,9 +52,6 @@ export class BaseMobileTime extends KucBase {
   @query(".kuc-base-mobile-time__group__minutes")
   private _minutesEl!: HTMLInputElement;
 
-  @query(".kuc-base-mobile-time__group__colon")
-  private _suffixEl!: HTMLSpanElement;
-
   constructor(props?: BaseMobileTimeProps) {
     super();
     const validProps = validateProps(props);
@@ -114,14 +111,6 @@ export class BaseMobileTime extends KucBase {
     if (changedProperties.has("value")) {
       this._updateInputValue();
     }
-    if (changedProperties.has("disabled")) {
-      if (this.disabled) {
-        this._suffixEl.style.color = "#808080";
-      } else {
-        this._suffixEl.style.color = "#000000";
-      }
-    }
-
     super.update(changedProperties);
   }
 
@@ -237,6 +226,13 @@ export class BaseMobileTime extends KucBase {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
+        }
+        .kuc-base-mobile-time__group__colon {
+          color: #000000;
+        }
+        .kuc-base-mobile-time__group__hours:disabled
+          + .kuc-base-mobile-time__group__colon {
+          color: #808080;
         }
         .kuc-base-mobile-time__group__hours:focus {
           outline: none;
