@@ -199,23 +199,16 @@ export class DateTimePicker extends KucBase {
     const newDateTime = this._getDateTimeString();
     const detail = {
       value: this._errorText || newDateTime === "" ? undefined : newDateTime,
-      oldValue: oldDateTime,
+      oldValue: oldDateTime === "" ? undefined : oldDateTime,
       changedPart: type
     };
     dispatchCustomEvent(this, "change", detail);
   }
 
   private _getDateTimeString() {
-    if (this._dateValue) {
-      if (this._timeValue) return `${this._dateValue}T${this._timeValue}:00`;
+    if (!this._dateValue || !this._timeValue) return "";
 
-      return `${this._dateValue}T00:00:00`;
-    }
-
-    const todayString = getTodayStringByLocale();
-    if (this._timeValue) return `${todayString}T${this._timeValue}:00`;
-
-    return undefined;
+    return `${this._dateValue}T${this._timeValue}:00`;
   }
 
   private _getDateTimeValue(value: string) {
