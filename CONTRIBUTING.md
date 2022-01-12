@@ -9,7 +9,7 @@ Pull requests are also welcome when you find trivial bugs or typos.
 We use English for all commit messages, code comments, issues, pull requests.
 
 ### Setup
-This repository is a monorepo using npm.
+This repository is a Siggle-repo Monolith using npm.
 ```sh
 % cd kintone-ui-component
 % npm ci
