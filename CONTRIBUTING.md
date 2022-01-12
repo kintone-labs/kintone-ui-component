@@ -46,202 +46,536 @@ Storybook Controls gives you a graphical UI to interact with a component's argum
 
 ### Docusaurus
 Docusaurus now has version 2, but it is still alpha (Build optimized websites quickly, focus on your content | Docusaurus ).  
-So We will use version 1 (https://v1.docusaurus.io/).  
+So We will use version 1 (https://v1.docusaurus.io/).    
+Please install docusaurus before  proceeding to the next step .  
+
+The docs folder structure includes translation configurations:
+```sh
+The content is written in 2 languages: English, Japanese and default is English.
+
+Folder docs : use article in English (only for backup).
+
+Folder website/translated_docs/ja is used in Japanese .
+
+Folder website/versioned_docs/ is used in English.  
+```
 #### Directory Structure
 ```sh
-{project-name}/
-     ┣ docs/document/
-     ┃    ┠ assets (contains such as the images used in document)
-     ┃    ┃    ┠ result.png
-     ┃    ┃    ┗ …
-     ┃    ┃    
-     ┃    ┠ components (contains the references of components)
-     ┃    ┃    ┠ Button.md
-     ┃    ┃    ┠ Checkbox.md
-     ┃    ┃    ┗ …
-     ┃    ┃    
-     ┃    ┠ getting-started (contains the Quick Start page)
-     ┃    ┃    ┗ quick-start.md
-     ┃    ┃    
-     ┃    ┗ guides (contains the article tips for customizations)
-     ┃           ┗ customization.md
-     ┃
-     ┣ website
-     ┃    ┠ releases  (contains release notes)
-     ┃    ┃    ┠ {title name}.md
-     ┃    ┃    ┗ …
-     ┃    ┃    
-     ┃    ┠ core
-     ┃    ┃    ┠ Footer.js  (footer component settings)
-     ┃    ┃    ┗ RemarkablePlugin.js (kuc component displaying functions)
-     ┃    ┃
-     ┃    ┠ i18n（Language settings）
-     ┃    ┃    ┠ en.json
-     ┃    ┃    ┗ ja.json
-     ┃    ┃
-     ┃    ┠ pages/en（top-level page）
-     ┃    ┃    ┠ help.js (React components of Help page)
-     ┃    ┃    ┠ index.js (React components of Top page)
-     ┃    ┃    ┗ versions.js (React components of version managing page）
-     ┃    ┃
-     ┃    ┠ static (contains the static files used for files of website directory)
-     ┃    ┃    ┠ css
-     ┃    ┃    ┃    ┠ code-block-button.css (CSS of Copy button in code)
-     ┃    ┃    ┃    ┗ custom.css (CSS settings of pages)
-     ┃    ┃    ┃    
-     ┃    ┃    ┠ img
-     ┃    ┃    ┃    ┗ …
-     ┃    ┃    ┃    
-     ┃    ┃    ┗ js
-     ┃    ┃           ┠ code-block-button.js (Copy button’s JS code)
-     ┃    ┃           ┗ extra.js
-     ┃    ┃
-     ┃    ┠ translated_docs/ja (Translation Results)
-     ┃    ┃    ┠ components
-     ┃    ┃    ┠ getting-started
-     ┃    ┃    ┠ overview
-     ┃    ┃    ┠ version-{version number}
-     ┃    ┃    ┗ …
-     ┃    ┃
-     ┃    ┠ versioned_docs/version-{version number} (contains documents for each versions)
-     ┃    ┃    ┠ components
-     ┃    ┃    ┠ getting-started
-     ┃    ┃    ┗ overview
-     ┃    ┃
-     ┃    ┠ versioned_sidebars (sidebar’s link of each versions)
-     ┃    ┃    ┗ version-{version number}-sidebars.json
-     ┃    ┃
-     ┃    ┠ README.md
-     ┃    ┠ language.js (Enable/Disable Language settings)
-     ┃    ┠ package-lock.json
-     ┃    ┠ package.json (Managing packages)
-     ┃    ┠ sidebars.json (sidebar’s link)
-     ┃    ┠ siteConfig.js (docusaurus’s settings)
-     ┃    ┗ versions.json (version list)
-     ┃
-     ┣ .eslintrc.js (ESLint setting)
-     ┣ .gitignore (The gitignore list by git commit )
-     ┗ crowdin.yaml (Translation setting)
+/root/docs/document/
+  |__ docs
+  |    |__ assets
+  |    |__ components
+  |    |__ getting-started
+  |    |__ guides
+  |    |__ releases
+  |    |      |__ release-notes.md // latest version
+  |    |      |__ release-notes-v1.0.0.md
+  |    |      |__ release-notes-v1.0.1.md
+  |    |      |__ ...
+  |__ website
+  |    |__ pages
+  |    |    |__ en
+  |    |        |__ index.js
+  |    |        |__ version.js 
+  |    |__ translated_docs/ja
+  |    |         |__ version-1.0.0
+  |    |         |__ version-1.0.1
+  |    |         |__ version-1.0.2
+  |    |         |__ version-....
+  |    |__ versioned_docs
+  |    |         |__ version-1.0.0
+  |    |         |__ version-1.0.1
+  |    |         |__ version-1.0.2
+  |    |         |__ version-....
+  |    |__ versioned_sidebars
+  |    |         |__ version-1.0.0-sidebars.json
+  |    |         |__ version-1....-sidebars.json
+  |    |__ sidebars.json
+  |    |__ siteConfig.js
+  |    |__ versions.json
+  package.json
+  README.md 
 ```
-#### Set up environment
-##### 1.Please clone from GitHub repository at [here](https://github.com/kintone-labs/kintone-ui-component) to local
+#### Add new versions
+Each time a new version is added, Let’s modify website/versions.json file
 ```sh
-% git clone git@github.com:kintone-labs/kintone-ui-component.git
-```
-##### 2.Move to the branch for corresponding
-*Create a new branch according to this naming rule: kuc-doc-{ correspond content }-dev if there is no branch yet.
-```sh
-% git checkout -b <branch name>
-```
-##### 3.After moving to website/directory, run npm install to install the necessary packages
-```sh
-% cd wesite/
-% npm install
-```
-##### 4.Check the display on localhost 
-```sh
-% npm run start
-```
+[
+  ...
+  "1.x.x"
+  "1.0.3",
+  "1.0.2",
+  "1.0.1",
+  "1.0.0"
+]
 
-#### Adding Contents
-
-##### Adding docs page
-If you want to add a reference page for a component, follow this guide to add.
-###### 1.Create a new markdown file in the docs/ directory
-Ex) docs/components/Button.md
-```sh
----
-id: button
-title: Button
----
-
-My new content here..
 ```
-###### 2.Specify id of the newly added page in website/sidebars.json
+#### Enabling multi language option
+To enable the language displayed in the page, create language.js in website folder in our repository (website/languages.js)  
 ```sh
-// Add button to the Getting Started category of docs
+const languages = [
+  {
+    enabled: true,
+    name: "English",
+    tag: "en"
+  },
+  {
+    enabled: true,
+    name: "日本語",
+    tag: "ja"
+  }
+];
+module.exports = languages;
+
+```
+Enable configuration “languages“ properties at website/siteConfig.js  
+```sh
+const siteConfig = {
+  headerLinks: [
+    { languages: true }
+  ]
+}
+```
+#### Sidebar
+
+You configure the contents of the sidebar, in the website/sidebars.json file
+Please add all version "release-notes" at here for backup  
+```sh
 {
   "docs": {
-    "components": [
-      "attachment",
-      "button" // new doc here
+    "Getting Started": ["getting-started/quick-start"],
+    "Components": [
+      ...
     ],
-    ...
+    "Guides": [
+      ...
+    ]
   },
-  ...
+  "release-notes": {
+    "Releases": [
+      "releases/release-notes", // latest version
+      ...
+      "releases/release-notes-v1.0.3",
+      "releases/release-notes-v1.0.2",
+      "releases/release-notes-v1.0.1",
+      "releases/release-notes-v1.0.0"
+    ]
+  }
 }
 ```
-##### Adding website/blog page
-If you want to add blog articles, follow this guide to add.  
-###### 1.Verify that there is a Link  to Blog in headerLinks of website/siteConfig.js
+If you want to change the documentation for a past version, you can store the files at **website/versioned_sidebars**
 ```sh
-headerLinks: [
-    ...
-    { blog: true, label: 'Releases' },
-    ...
+// This is a example for sidebar version 1.0.4
+// website/versioned_sidebars/version-1.0.4-sidebars.json
+{
+  "version-1.0.4-docs": {
+    "Getting Started": [
+      "version-1.0.4-getting-started/quick-start"
+    ],
+    "Components": [
+      {
+        "type": "subcategory",
+        "label": "Desktop",
+        "ids": [
+          "version-1.0.4-components/desktop/button",
+          ...
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Mobile",
+        "ids": [
+          "version-1.0.4-components/mobile/mobile-button",
+          ...
+        ]
+      }
+    ],
+    "Guides": [
+      "version-1.0.4-guides/comparison-v0-v1",
+      "version-1.0.4-guides/search-box-customization"
+    ]
+  },
+  "version-1.0.4-release-notes": {
+    "Releases": [
+      "version-1.0.4-releases/release-notes",
+      "version-1.0.4-releases/release-notes-v1.0.3",
+      "version-1.0.4-releases/release-notes-v1.0.2",
+      "version-1.0.4-releases/release-notes-v1.0.1",
+      "version-1.0.4-releases/release-notes-v1.0.0"
+    ]
+  }
+}
+```
+#### Translating on pages
+Translating pages in docusaurus should be placed in website/pages/en directory.  
+```sh
+|__ website
+  |    |__ pages
+  |    |    |__ en
+  |    |         |__ index.js
+  |    |         |__ version.js
+```
+#### Translating our existing docs
+
+##### 1. Document japan translation
+You have to create **ja** folder in **website/translated_docs** directory and create folder name starting with “**version-1.x.x**“  
+
+```sh
+|__ website
+  |    |__ translated_docs
+  |    |    |__ ja
+  |    |    |    |__ version-1.0.0
+  |    |    |    |         |__ components
+  |    |    |    |         |      |__ desktop
+  |    |    |    |         |            |__ button.md (1)
+  |    |    |    |         |__ getting-started
+  |    |    |    |         |__ guides
+  |    |    |    |         |__ releases
+  |    |    |    |                |__ release-notes.md
+  |    |    |    |                |__ release-notes-v1.0.0.md
+  |    |    |    |                |__ ....
+  |    |    |    |__ version-1.0.1
+  |    |    |    |         |__ components
+  |    |    |    |         |      |__ desktop
+  |    |    |    |         |            |__ button.md (2)
+  |    |    |    |         |__ getting-started
+  |    |    |    |         |__ guides
+  |    |    |    |         |__ releases
+  |    |    |    |                |__ release-notes.md
+  |    |    |    |__ version-...
+  |    |    |    |         |__ components
+  |    |    |    |         |__ getting-started
+  |    |    |    |         |__ guides
+  |    |    |    |         |__ releases
+  |    |    |    |                |__ release-notes.md
+```
+##### 2.Document english translation
+You have to create folder name starting with “**version-1.x.x**“ in **website/versioned_docs** directory  
+```sh
+|__ website
+  |    |__ versioned_docs
+  |    |        |__ version-1.0.0
+  |    |        |         |__ components
+  |    |        |         |      |__ desktop
+  |    |        |         |            |__ button.md (1)
+  |    |        |         |__ getting-started
+  |    |        |         |__ guides
+  |    |        |         |__ releases
+  |    |        |         |      |__ release-notes.md
+  |    |        |         |      |__ release-notes-v1.0.0.md
+  |    |        |         |      |__ ....
+  |    |        |__ version-1.0.1
+  |    |        |         |__ components
+  |    |        |         |      |__ desktop
+  |    |        |         |            |__ button.md (2)
+  |    |        |         |__ getting-started
+  |    |        |         |__ releases
+  |    |        |                |__ release-notes.md
+  |    |        |__ version-...  
+```
+The markdown header for each versioned doc is "version-1.x.x-id"  
+The file button.md(1) has content  
+```sh
+---
+id: version-1.0.0-button
+title: Button
+sidebar_label: Button
+original_id: button
+---
+## Description button version 1.0.0
+```
+
+The file button.md(2) has content  
+```sh
+---
+id: version-1.0.1-button
+title: Button
+sidebar_label: Button
+original_id: button
+---
+## Description button version 1.0.1
+```
+
+#### How to deploy a new application version
+There is the example for deploy a new application version (ex: 1.0.4)  
+
+##### Step 1: Update versions.json file
+```sh
+[
+  "1.0.4",
+  "1.0.3",
+  "1.0.2",
+  "1.0.1",
+  "1.0.0"
 ]
 ```
-###### 2.Create a new file in website/blog with this naming rule: YYYY-MM-DD-{Releases title}.md
-Ex) website/blog/2017-12-14-introducing-docusaurus.md
+##### Step 2: Translating release notes
+At the folder **docs/releases**  (for backup)  
+Let’s rename file **release-notes.md** to **release-notes-v1.0.3.md** and update id of file from id:   
+release-notes to id: release-notes-v1.0.3
+```sh
+|__ releases
+|      |__ release-notes.md
+|      |__ release-notes-v1.0.0.md
+|      |__ release-notes-v1.0.1.md
+|      |__ release-notes-v1.0.2.md
+|      |__ release-notes-v1.0.3.md
+```
+
+Create a file name is **release-notes.md** (this is latest version), The content uses English language in article  
 ```sh
 ---
-author: Mikei
-authorURL: https://twitter.com/mikei
-authorFBID: 503283835
-title: New Blog Post
+id: release-notes
+title: v1.0.4 Release Notes
+sidebar_label: v1.0.4 Release Notes
 ---
 
-My new content here...
+### Release note version 1.0.4
 ```
-##### Adding items for Top navigation bar
-###### 1.Specify external links, custom pages, documents that you want to add in the headerLinks of website/siteConfig.js
+
+At the folder **website/translated_docs/ja**  
+
+The folder **version-1.0.0/releases** includes all version and uses Japanese language  
+```sh
+|__ releases
+|      |__ release-notes.md
+|      |__ release-notes-v1.0.0.md
+|      |__ release-notes-v1.0.1.md
+|      |__ release-notes-v1.0.2.md
+|      |__ release-notes-v1.0.3.md
+|      |__ release-notes-v1.0.4.md
+```
+Create a file name is release-notes-v1.0.4.md  
+```sh
+---
+id: version-1.0.0-release-notes-v1.0.4
+title: v1.0.4 Release Notes
+sidebar_label: v1.0.4 Release Notes
+original_id: release-notes-v1.0.4
+---
+## 概要
+```
+
+The folder **version-1.0.4/releases** include 1 file is **release-notes.md**  
+```sh
+// version-1.0.4/releases/release-notes.md
+---
+id: version-1.0.4-release-notes
+title: v1.0.4 Release Notes
+sidebar_label: v1.0.4 Release Notes
+original_id: release-notes
+---
+## 概要
+```
+At the folder **versioned_docs**  
+The folder **version-1.0.0/releases** include all version and uses English language
+```sh
+|__ releases
+|      |__ release-notes.md
+|      |__ release-notes-v1.0.0.md
+|      |__ release-notes-v1.0.1.md
+|      |__ release-notes-v1.0.2.md
+|      |__ release-notes-v1.0.3.md
+|      |__ release-notes-v1.0.4.md
+```
+The folder **version-1.0.4/releases** include 1 file is **release-notes.md**
+```sh
+// version-1.0.4/releases/release-notes.md
+---
+id: version-1.0.4-release-notes
+title: v1.0.4 Release Notes
+sidebar_label: v1.0.4 Release Notes
+original_id: release-notes
+---
+
+### Release note version 1.0.4
+### Article English language
+```
+
+##### Step 3: Updating sidebar
+Update sidebars.json  
 ```sh
 {
-  headerLinks: [
-    ...
-    /* you can add docs */
-    { doc: 'my-examples', label: 'Examples' },
-    /* you can add custom pages */
-    { page: 'help', label: 'Help' },
-    /* you can add external links */
-    { href: 'https://github.com/facebook/docusaurus', label: 'GitHub' },
-    ...
-  ],
-  ...
+  "docs": {
+    "Getting Started": ["getting-started/quick-start"],
+    "Components": [...],
+    "Guides": [...]
+  },
+  "release-notes": {
+    "Releases": [
+      "releases/release-notes",
+      "releases/release-notes-v1.0.3",
+      "releases/release-notes-v1.0.2",
+      "releases/release-notes-v1.0.1",
+      "releases/release-notes-v1.0.0"
+    ]
+  }
 }
 ```
-##### Adding custom page
-docusaurus uses React components to build a page.  
-components are saved as JS files in website/pages/en  
-###### 1.Create a page in website/pages/en
-###### 2.Specify this page in the headerLinks of website/siteConfig.js If you want to link it to the top navigation bar.
+Create file “version-1.0.4-sidebars.json“  
 ```sh
 {
-  headerLinks: [
-    ...
-    { page: 'my-new-custom-page', label: 'My New Custom Page' },
-    ...
-  ],
-  ...
+  "version-1.0.4-docs": {
+    "Getting Started": [
+      "version-1.0.4-getting-started/quick-start"
+    ],
+    "Components": [
+      {
+        "type": "subcategory",
+        "label": "Desktop",
+        "ids": [
+          "version-1.0.4-components/desktop/dialog"
+          ...
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Mobile",
+        "ids": [...]
+      }
+    ],
+    "Guides": [...]
+  },
+  "version-1.0.4-release-notes": {
+    "Releases": [
+      "version-1.0.4-releases/release-notes",
+      "version-1.0.4-releases/release-notes-v1.0.3",
+      "version-1.0.4-releases/release-notes-v1.0.2",
+      "version-1.0.4-releases/release-notes-v1.0.1",
+      "version-1.0.4-releases/release-notes-v1.0.0"
+    ]
+  }
 }
 ```
-#### Build
-##### 1.Move to  website/directory, run npm run build to build
-```sh
-cd website/
-npm run build
-```
-##### 2. Verify that a build/directory is created and it contains the .html of other pages and all the documents in the website/ directory
+##### In case something needs to be updated
+If version 1.0.4 change only 1 file is quick-start.md , you just need to update quick-start.md  
 
-#### Versioning
-##### 1.After moving to the website/ directory, specify the version’s number to generate the document of this corresponding version.
-```sh
-cd website/
-npm run version <version number>
-```
-##### 2.Verify that website/versioned_docs/version-{version number} and website/versioned_sidebars/version-{version number}-sidebars.jsonare created.
-##### 3.Verify the specified version is added in website/versions.json
+- If **version 1.0.4** there is Quick Start article update
+  - Create folder getting-started under translated_docs/ja/version-1.0.4
+    - Create file "quick-start.md" inside getting-started folder
+    - Update id file to: id: version-1.0.4-quick-start
+    - ```sh
+      |__ website
+      |    |__ translated_docs
+      |    |    |__ ja
+      |    |    |    |__ version-1.0.4
+      |    |    |    |         |__ getting-started
+      |    |    |    |         |         |__ quick-start.md
+      ```
+    - ```sh
+      ---
+      id: version-1.0.4-quick-start
+      title: Quick Start
+      sidebar_label: Quick Start
+      original_id: quick-start
+      ---
+      ## Quick Start for Japan version 1.0.4
+      ```
+  - Create folder **getting-started** under **versioned_docs/version-1.0.4**
+    - Create file "quick-start.md" inside getting-started folder
+    - Update id file to: id: version-1.0.4-quick-start
+    - ```sh
+      |__ website
+      |    |__ versioned_docs
+      |    |        |__ version-1.0.4
+      |    |        |         |__ getting-started
+      |    |        |         |         |__ quick-start.md
+      ```
+    - ```sh
+      ---
+      id: version-1.0.4-quick-start
+      title: Quick Start
+      sidebar_label: Quick Start
+      original_id: quick-start
+      ---
+      ## Quick Start for English version 1.0.4
 
+      ```
+- If version **1.0.4** has a new component (ex: dialog), and you wanna update sidebar
+  - Update file sidebars.json
+  - ```sh
+    {
+      "docs": {
+        "Getting Started": ["getting-started/quick-start"],
+        "Components": [
+          {
+            "type": "subcategory",
+            "label": "Desktop",
+            "ids": [
+              "components/desktop/dialog",
+              ...
+            ]
+          },
+          {
+            "type": "subcategory",
+            "label": "Mobile",
+            "ids": [
+              ...
+            ]
+          }
+        ],
+        "Guides": [
+          ...
+        ]
+      },
+      "release-notes": {
+        "Releases": [
+          "releases/release-notes",
+          "releases/release-notes-v1.0.3",
+          "releases/release-notes-v1.0.2",
+          "releases/release-notes-v1.0.1",
+          "releases/release-notes-v1.0.0"
+        ]
+      }
+    }
+    ```
+  - Create or update file “version-1.0.4-sidebars.json“
+  - ```sh
+    {
+      "version-1.0.4-docs": {
+        "Getting Started": [
+          "version-1.0.4-getting-started/quick-start"
+        ],
+        "Components": [
+          {
+            "type": "subcategory",
+            "label": "Desktop",
+            "ids": [
+              "version-1.0.4-components/desktop/dialog",
+              ...
+            ]
+          },
+          {
+            "type": "subcategory",
+            "label": "Mobile",
+            "ids": [...]
+          }
+        ],
+        "Guides": [...]
+      },
+      "version-1.0.4-release-notes": {
+        "Releases": []
+      }
+    }
+    ```
+
+#### Testing on local
+If you wan to test build before deploying to a production
+
+```sh
+npm start
+```
+
+#### Deployment
+Make sure you configure in website/siteConfig.js is right
+```sh
+const siteConfig = {
+  url: "https://kintone-ui-component.netlify.app",
+  baseUrl: "/",
+  projectName: "kintone-ui-component",
+  organizationName: "kintone-labs",
+}
+```
+Deploying on Netlify: [Netlify: Develop & deploy the best web experiences in record time](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)  
 
 ### Script Execution
 
