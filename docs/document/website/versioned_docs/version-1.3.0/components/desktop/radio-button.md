@@ -85,7 +85,7 @@ const radioButton = new Kuc.RadioButton({
       value: 'Apple'
     }
   ],
-  value : 'Orange',
+  value: 'Orange',
   selectedIndex: 0,
   itemLayout: 'horizontal',
   error: 'Error occurred!',

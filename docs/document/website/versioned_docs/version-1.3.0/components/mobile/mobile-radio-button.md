@@ -84,7 +84,7 @@ const mobileRadioButton = new Kuc.MobileRadioButton({
       value: 'Apple'
     }
   ],
-  value : 'Orange',
+  value: 'Orange',
   selectedIndex: 0,
   error: 'Error occurred!',
   className: 'options-class',
