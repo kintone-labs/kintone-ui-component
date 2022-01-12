@@ -243,6 +243,24 @@ export const getLocale = (language: string) => {
   }
 };
 
+export const generateMinuteOptions = () => {
+  const minuteOptions = [];
+  for (let i = 0; i <= 59; i++) {
+    minuteOptions.push({ value: padStart(i), label: padStart(i) });
+  }
+  return minuteOptions;
+};
+
+export const generateHourOptions = (hour12 = false) => {
+  if (hour12) {
+    const hourOptions = generateHour12Options("AM").concat(
+      generateHour12Options("PM")
+    );
+    return hourOptions;
+  }
+  return generateHour240ptions();
+};
+
 export const getToggleIconSvgTemplate = () => {
   return svg`
     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
