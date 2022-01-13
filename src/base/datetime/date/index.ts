@@ -134,6 +134,7 @@ export class BaseDate extends KucBase {
           padding: 0px;
           text-align: center;
           border: 1px solid #e3e7e8;
+          color: #333333;
           box-sizing: border-box;
           font-size: 14px;
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
