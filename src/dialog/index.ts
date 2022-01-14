@@ -87,12 +87,11 @@ export class Dialog extends KucBase {
         @keydown="${this._handleKeyDownDialog}"
       >
         <div class="kuc-dialog__dialog__header">
-          <h2>
-            <span
-              class="kuc-dialog__dialog__header__title"
-              id="${this._GUID}-title"
-              >${this.title}</span
-            >
+          <h2
+            class="kuc-dialog__dialog__header__title"
+            id="${this._GUID}-title"
+          >
+            ${this.title}
           </h2>
           <button
             class="kuc-dialog__dialog__header__close-button"
@@ -214,6 +213,7 @@ export class Dialog extends KucBase {
           font-size: 24px;
           padding: 0 24px;
           align-self: center;
+          font-weight: 400;
         }
 
         .kuc-dialog__dialog__header__close-button {
