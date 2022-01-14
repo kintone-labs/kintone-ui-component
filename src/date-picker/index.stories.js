@@ -26,23 +26,33 @@ export default {
   }
 };
 
+const data = [];
+
+for (let i = 0; i < 50; i++) {
+  data.push(i);
+}
+
 const Template = args => {
   const handleDateChange = event => {
     console.log(event);
   };
   return html`
-    <kuc-date-picker
-      .disabled="${args.disabled}"
-      .language="${args.language}"
-      .value="${args.value}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .className="${args.className}"
-      .error="${args.error}"
-      @change="${handleDateChange}"
-    ></kuc-date-picker>
+    ${data.map(
+      item => html`
+        <kuc-date-picker
+          .disabled="${args.disabled}"
+          .language="${args.language}"
+          .value="${args.value}"
+          .id="${args.id}"
+          .label="${args.label}"
+          .requiredIcon="${args.requiredIcon}"
+          .visible="${args.visible}"
+          .className="${args.className}"
+          .error="${args.error}"
+          @change="${handleDateChange}"
+        ></kuc-date-picker>
+      `
+    )}
   `;
 };
 
