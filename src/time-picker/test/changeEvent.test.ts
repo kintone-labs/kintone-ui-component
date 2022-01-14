@@ -1,4 +1,3 @@
-import { types } from "@babel/core";
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { TimePicker } from "../index";
 
