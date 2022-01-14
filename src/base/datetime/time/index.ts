@@ -102,6 +102,7 @@ export class BaseTime extends KucBase {
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
+          @paste="${this._handlePasteInput}"
           ?disabled="${this.disabled}"
           value="${this._hours}"
         />
@@ -115,6 +116,7 @@ export class BaseTime extends KucBase {
           @focus="${this._handleFocusInput}"
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
+          @paste="${this._handlePasteInput}"
           ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
@@ -317,6 +319,10 @@ export class BaseTime extends KucBase {
     if (this._handleTabKey(event)) return;
 
     this._handleSupportedKey(event);
+  }
+
+  private _handlePasteInput(event: ClipboardEvent) {
+    event.preventDefault();
   }
 
   private _handleSupportedKey(event: KeyboardEvent) {
@@ -553,6 +559,7 @@ export class BaseTime extends KucBase {
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
             @keydown="${this._handleKeyDownInput}"
+            @paste="${this._handlePasteInput}"
             ?disabled="${this.disabled}"
             value="${this._suffix}"
           />
