@@ -270,6 +270,59 @@ export const getLeftArrowIconSvgTemplate = () => {
     </svg>`;
 };
 
+export function setListBoxPosition(_this: HTMLElement, position: string) {
+  const ulEl = _this.querySelector(
+    ".kuc-base-datetime-listbox__listbox"
+  ) as HTMLUListElement;
+  const distance = calculateDistanceInput(_this);
+  if (!_this.parentElement || !ulEl || !distance) return;
+
+  const { inputToBottom, inputToTop } = distance;
+  const listBoxHeight =
+    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH" ? 360 : 300;
+  const paddingListBox = 18;
+  const parentHeight = _this.parentElement.getBoundingClientRect().height;
+
+  ulEl.style.maxHeight = listBoxHeight + "px";
+  _this.parentElement.style.position = "relative";
+  if (inputToBottom >= listBoxHeight) {
+    ulEl.style.height = listBoxHeight + "px";
+    if (position === "bottom") {
+      ulEl.style.top = parentHeight + "px";
+      return;
+    }
+    ulEl.style.bottom = parentHeight + "px";
+    return;
+  }
+
+  if (position === "bottom") {
+    ulEl.style.top = parentHeight + "px";
+    ulEl.style.height = inputToBottom - paddingListBox + "px";
+    return;
+  }
+  ulEl.style.height = inputToTop - paddingListBox + "px";
+  ulEl.style.top = "auto";
+  ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
+}
+
+export const calculateDistanceInput = (_this: HTMLElement) => {
+  if (!_this.parentElement) return false;
+
+  const inputToBottom =
+    window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
+  const inputToTop = _this.parentElement.getBoundingClientRect().top;
+  const inputToRight =
+    document.body.clientWidth - _this.parentElement.offsetLeft;
+  const inputToLeft = _this.parentElement.getBoundingClientRect().left;
+
+  return {
+    inputToBottom,
+    inputToTop,
+    inputToRight,
+    inputToLeft
+  };
+};
+
 export const getRightArrowIconSvgTemplate = () => {
   return svg`
     <svg

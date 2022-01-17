@@ -324,7 +324,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   private _focusDateButtonEl() {
     const buttonEl = this._focusedItem as HTMLButtonElement;
     if (!buttonEl) return;
-    buttonEl.focus();
+    buttonEl.focus({ preventScroll: true });
   }
 
   private _getStyleTagTemplate() {
