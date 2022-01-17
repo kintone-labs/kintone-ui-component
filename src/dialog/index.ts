@@ -223,6 +223,7 @@ export class Dialog extends KucBase {
           background-color: #ffffff;
           margin-right: 12px;
           margin-top: 11px;
+          cursor: pointer;
         }
 
         .kuc-dialog__dialog__header__close-button:focus-visible {
