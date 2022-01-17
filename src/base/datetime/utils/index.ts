@@ -258,7 +258,7 @@ export const generateHourOptions = (hour12 = false) => {
     );
     return hourOptions;
   }
-  return generateHour240ptions();
+  return generateHour24Options();
 };
 
 export const generateHour12Options = (ampm: string) => {
@@ -273,7 +273,7 @@ export const generateHour12Options = (ampm: string) => {
   return hour12Options;
 };
 
-export const generateHour240ptions = () => {
+export const generateHour24Options = () => {
   const hour12Options = [];
   hour12Options.push({ value: "00", label: `00` });
   for (let i = 1; i <= 23; i++) {
