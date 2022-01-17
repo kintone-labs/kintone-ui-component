@@ -116,7 +116,7 @@ export class BaseDateTimeCalendar extends KucBase {
       window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
     const inputToTop = this.parentElement.getBoundingClientRect().top;
     const inputToRight =
-      document.body.clientWidth - (this.parentElement.offsetLeft + 100);
+      document.body.clientWidth - this.parentElement.offsetLeft;
     const inputToLeft = this.parentElement.getBoundingClientRect().left;
     const calendarHeight = this._baseCalendarGroupEl.getBoundingClientRect()
       .height;
