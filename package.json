@@ -60,11 +60,9 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "@types/dompurify": "^2.0.3",
     "@types/uuid": "^8.3.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "core-js": "^3.20.2",
-    "dompurify": "^2.2.6",
     "lit": "^2.0.0",
     "regenerator-runtime": "^0.13.5",
     "uuid": "^8.3.0"

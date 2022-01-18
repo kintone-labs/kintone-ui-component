@@ -1,9 +1,10 @@
-import { html, svg } from "lit";
+import { html, svg, PropertyValues } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import DOMPurify from "dompurify";
-import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
+import { KucBase, dispatchCustomEvent, generateGUID } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+import { unsafeHTMLConverter } from "../base/converter";
+import { DirectiveResult } from "lit/directive.js";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
 type DialogProps = {
   title?: string;
@@ -22,17 +23,35 @@ export class Dialog extends KucBase {
   )
   private _focusableElements!: HTMLElement[];
   private _triggeredElement: Element | null = null;
+  private _GUID: string;
+
+  private _content: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+    "";
+  private _footer: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+    "";
 
   constructor(props?: DialogProps) {
     super();
+    this._GUID = generateGUID();
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
 
+  update(changedProperties: PropertyValues) {
+    if (changedProperties.has("content")) {
+      this._content = unsafeHTMLConverter(this.content);
+    }
+    if (changedProperties.has("footer")) {
+      this._footer = unsafeHTMLConverter(this.footer);
+    }
+    super.update(changedProperties);
+  }
+
   open() {
     const body = document.getElementsByTagName("body")[0];
     body.appendChild(this);
+    body.classList.add("kuc--has-dialog");
     this.performUpdate();
 
     this.setAttribute("opened", "");
@@ -41,6 +60,8 @@ export class Dialog extends KucBase {
   }
 
   close() {
+    const body = document.getElementsByTagName("body")[0];
+    body.classList.remove("kuc--has-dialog");
     this.removeAttribute("opened");
     if (this._triggeredElement instanceof HTMLElement) {
       this._triggeredElement.focus();
@@ -50,9 +71,6 @@ export class Dialog extends KucBase {
   }
 
   render() {
-    const cleanContent = DOMPurify.sanitize(this.content);
-    const cleanFooter = DOMPurify.sanitize(this.footer);
-
     return html`
       ${this._getStyleTagTemplate()}
       <span
@@ -63,11 +81,18 @@ export class Dialog extends KucBase {
       <div
         class="kuc-dialog__dialog"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
+        aria-labelledby="${this._GUID}-title"
+        aria-modal="true"
         @keydown="${this._handleKeyDownDialog}"
       >
         <div class="kuc-dialog__dialog__header">
-          <span class="kuc-dialog__dialog__header__title">${this.title}</span>
+          <h2
+            class="kuc-dialog__dialog__header__title"
+            id="${this._GUID}-title"
+          >
+            ${this.title}
+          </h2>
           <button
             class="kuc-dialog__dialog__header__close-button"
             type="button"
@@ -77,12 +102,8 @@ export class Dialog extends KucBase {
             ${this._getCloseButtonSvgTemplate()}
           </button>
         </div>
-        <div class="kuc-dialog__dialog__content">
-          ${unsafeHTML(cleanContent)}
-        </div>
-        <div class="kuc-dialog__dialog__footer">
-          ${unsafeHTML(cleanFooter)}
-        </div>
+        <div class="kuc-dialog__dialog__content">${this._content}</div>
+        <div class="kuc-dialog__dialog__footer">${this._footer}</div>
       </div>
       <span
         class="kuc-dialog__last-dummy"
@@ -171,11 +192,10 @@ export class Dialog extends KucBase {
         }
 
         .kuc-dialog__dialog {
-          min-width: 600px;
+          min-width: 320px;
           font-size: 20px;
           background-color: #ffffff;
-
-          position: absolute;
+          position: fixed;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -185,15 +205,15 @@ export class Dialog extends KucBase {
         .kuc-dialog__dialog__header {
           min-height: 64px;
           border-bottom: 1px solid #e3e7e8;
-
           display: flex;
           justify-content: space-between;
-          align-items: center;
         }
 
         .kuc-dialog__dialog__header__title {
           font-size: 24px;
           padding: 0 24px;
+          align-self: center;
+          font-weight: 400;
         }
 
         .kuc-dialog__dialog__header__close-button {
@@ -202,6 +222,28 @@ export class Dialog extends KucBase {
           border: none;
           background-color: #ffffff;
           margin-right: 12px;
+          margin-top: 11px;
+          cursor: pointer;
+        }
+
+        .kuc-dialog__dialog__header__close-button:focus-visible {
+          outline: -webkit-focus-ring-color auto 1px;
+        }
+
+        /* Firefox */
+        @-moz-document url-prefix() {
+          .kuc-dialog__dialog__header__close-button:focus-visible {
+            outline: 1px dotted;
+          }
+        }
+
+        /* Safari */
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+          _::-webkit-full-page-media,
+          _:future,
+          :root .kuc-dialog__dialog__header__close-button:focus {
+            outline: 5px auto -webkit-focus-ring-color;
+          }
         }
 
         .kuc-dialog__dialog__header__close-button-svg {
@@ -219,7 +261,7 @@ export class Dialog extends KucBase {
         }
 
         .kuc-dialog__mask {
-          position: absolute;
+          position: fixed;
           top: 0;
           right: 0;
           display: block;
@@ -228,6 +270,16 @@ export class Dialog extends KucBase {
           background-color: #000000;
           opacity: 0.6;
           z-index: 9999;
+        }
+
+        .kuc--has-dialog {
+          overflow: hidden;
+        }
+
+        .kuc--has-dialog .kuc-dialog__dialog {
+          overflow-x: hidden;
+          overflow-y: auto;
+          max-height: 80vh;
         }
       </style>
     `;
