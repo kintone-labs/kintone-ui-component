@@ -29,18 +29,18 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   constructor() {
     super();
-    this._handleDocumentScroll = this._handleDocumentScroll.bind(this);
+    this._handleScrollDocument = this._handleScrollDocument.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     setTimeout(() => {
-      document.addEventListener("scroll", this._handleDocumentScroll);
+      document.addEventListener("scroll", this._handleScrollDocument);
     }, 1);
   }
 
   disconnectedCallback() {
-    document.removeEventListener("scroll", this._handleDocumentScroll);
+    document.removeEventListener("scroll", this._handleScrollDocument);
     super.disconnectedCallback();
   }
 
@@ -81,15 +81,13 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   async updated(changedProperties: PropertyValues) {
     await this.updateComplete;
-    if (changedProperties.has("_listBoxVisible")) {
-      if (this._listBoxVisible) {
-        this._handleDocumentScroll();
-      }
+    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
+      this._handleScrollDocument();
     }
     super.update(changedProperties);
   }
 
-  private _handleDocumentScroll() {
+  private _handleScrollDocument() {
     const distance = calculateDistanceInput(this);
     if (!distance) return;
 

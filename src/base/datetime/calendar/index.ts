@@ -87,30 +87,34 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _calculateBodyCalendarPosition() {
-    const distance = this._calculateDistanceInput();
-    if (!distance) return;
-
     const {
       inputToBottom,
       inputToTop,
       inputToRight,
       inputToLeft,
       calendarHeight
-    } = distance;
+    } = this._calculateDistanceInput();
 
-    if (inputToBottom < calendarHeight) {
-      if (inputToTop < 0 || inputToBottom > inputToTop) {
-        this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
-        return;
-      }
-      this._calculateCalendarPosition(inputToRight, inputToLeft, "top");
+    if (inputToBottom >= calendarHeight) {
+      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
       return;
     }
-    this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
+    if (inputToTop < 0 || inputToBottom > inputToTop) {
+      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
+      return;
+    }
+    this._calculateCalendarPosition(inputToRight, inputToLeft, "top");
   }
 
   private _calculateDistanceInput() {
-    if (!this.parentElement) return false;
+    if (!this.parentElement)
+      return {
+        inputToBottom: 0,
+        inputToTop: 0,
+        inputToRight: 0,
+        inputToLeft: 0,
+        calendarHeight: 0
+      };
 
     const inputToBottom =
       window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
@@ -137,12 +141,14 @@ export class BaseDateTimeCalendar extends KucBase {
   ) {
     if (!this.parentElement) return;
 
-    const inputWidth = 336;
-    if (inputToRight < inputWidth && inputToRight < inputToLeft) {
+    const calendarWidth = 336;
+    const inputHeight = 40;
+    const inputWidth = 100;
+    if (inputToRight < calendarWidth && inputToRight < inputToLeft) {
       const parentWidth = this.parentElement.getBoundingClientRect().width;
-      const top = type === "bottom" ? 40 : "auto";
-      const bottom = type === "bottom" ? "auto" : 40;
-      const right = parentWidth > 100 ? parentWidth - 100 : 0;
+      const top = type === "bottom" ? inputHeight : "auto";
+      const bottom = type === "bottom" ? "auto" : inputHeight;
+      const right = parentWidth > inputWidth ? parentWidth - inputWidth : 0;
 
       this._setCalendarPosition({
         top,
@@ -151,8 +157,8 @@ export class BaseDateTimeCalendar extends KucBase {
       });
       return;
     }
-    const top = type === "bottom" ? 40 : "auto";
-    const bottom = type === "bottom" ? "auto" : 40;
+    const top = type === "bottom" ? inputHeight : "auto";
+    const bottom = type === "bottom" ? "auto" : inputHeight;
     const left = 0;
     this._setCalendarPosition({
       bottom,

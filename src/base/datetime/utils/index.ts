@@ -278,8 +278,12 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
   if (!_this.parentElement || !ulEl || !distance) return;
 
   const { inputToBottom, inputToTop } = distance;
+  const listBoxMonthHeight = 360;
+  const listBoxYearHeight = 300;
   const listBoxHeight =
-    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH" ? 360 : 300;
+    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH"
+      ? listBoxMonthHeight
+      : listBoxYearHeight;
   const paddingListBox = 18;
   const parentHeight = _this.parentElement.getBoundingClientRect().height;
 
