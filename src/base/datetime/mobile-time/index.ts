@@ -77,9 +77,14 @@ export class BaseMobileTime extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <fieldset class="kuc-base-mobile-time__group">
+      <fieldset
+        class="kuc-base-mobile-time__group${this.disabled
+          ? " kuc-base-mobile-time__group--disabled"
+          : ""}"
+      >
         <select
           class="kuc-base-mobile-time__group__hours"
+          aria-label="Hour"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeHours}"
         >
@@ -89,6 +94,7 @@ export class BaseMobileTime extends KucBase {
         <span class="kuc-base-mobile-time__group__colon">:</span>
         <select
           class="kuc-base-mobile-time__group__minutes"
+          aria-label="Minute"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeMinutes}"
         >
@@ -237,13 +243,28 @@ export class BaseMobileTime extends KucBase {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
+          background-color: transparent;
         }
         .kuc-base-mobile-time__group__colon {
           color: #000000;
         }
         .kuc-base-mobile-time__group__hours:disabled
           + .kuc-base-mobile-time__group__colon {
-          color: #808080;
+          color: #999999;
+          -webkit-text-fill-color: #999999;
+          opacity: 1;
+        }
+        .kuc-base-mobile-time__group--disabled {
+          color: #999999;
+          -webkit-text-fill-color: #999999;
+          background-color: #d5d7d9;
+          opacity: 1;
+        }
+        .kuc-base-mobile-time__group__hours:disabled,
+        .kuc-base-mobile-time__group__minutes:disabled {
+          color: #999999;
+          -webkit-text-fill-color: #999999;
+          opacity: 1;
         }
         .kuc-base-mobile-time__group__hours:focus {
           outline: none;
