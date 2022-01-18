@@ -8,13 +8,17 @@
         "ids": [
           "components/desktop/button",
           "components/desktop/checkbox",
+          "components/desktop/date-picker",
+          "components/desktop/datetime-picker",
+          "components/desktop/dialog",
           "components/desktop/dropdown",
           "components/desktop/multichoice",
           "components/desktop/notification",
           "components/desktop/radio-button",
           "components/desktop/spinner",
           "components/desktop/text",
-          "components/desktop/textarea"
+          "components/desktop/textarea",
+          "components/desktop/time-picker"
         ]
       },
       {

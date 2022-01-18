@@ -145,3 +145,12 @@ BaseError.args = {
   requiredIcon: false,
   visible: true
 };
+
+// UI For document site. Do not change or delete below.
+export const Document = Template.bind({});
+Document.args = {
+  value: "2022-01-01T00:00",
+  language: "en",
+  hour12: false,
+  visible: true
+};
