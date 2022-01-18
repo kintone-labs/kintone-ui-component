@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, state, query } from "lit/decorators.js";
 import {
   generateGUID,
   KucBase,
@@ -11,7 +11,13 @@ import {
   dateValueConverter,
   timeValueConverter
 } from "../base/converter";
-import { validateProps, validateDateTimeValue } from "../base/validator";
+import { getWidthElmByContext } from "../base/context";
+import {
+  validateProps,
+  validateDateTimeValue,
+  isValidDate
+} from "../base/validator";
+import { getTodayStringByLocale } from "../base/datetime/utils";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -23,7 +29,7 @@ type DateTimePickerProps = {
   id?: string;
   label?: string;
   language?: "ja" | "en" | "zh" | "auto";
-  value: string;
+  value?: string;
   disabled?: boolean;
   hour12?: boolean;
   requiredIcon?: boolean;
@@ -48,11 +54,23 @@ export class DateTimePicker extends KucBase {
   })
   visible = true;
 
+  @query(".kuc-datetime-picker__group__label")
+  private _labelEl!: HTMLFieldSetElement;
+
+  @query(".kuc-datetime-picker__group__error")
+  private _errorEl!: HTMLDivElement;
+
   @state()
   private _dateValue = "";
 
   @state()
   private _timeValue = "";
+
+  @state()
+  private _errorFormat = "";
+
+  @state()
+  private _errorText = "";
 
   private _GUID: string;
 
@@ -65,12 +83,20 @@ export class DateTimePicker extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      const dateTime = this._getDateTimeValue(this.value);
-      if (!validateDateTimeValue(dateTime.date, dateTime.time)) {
+      if (typeof this.value !== "string") {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-      this._dateValue = dateValueConverter(dateTime.date);
-      this._timeValue = timeValueConverter(dateTime.time);
+      const dateTime = this._getDateTimeValue(this.value);
+      const dateValue = dateValueConverter(dateTime.date);
+      if (
+        dateValue !== "" &&
+        (!validateDateTimeValue(dateTime.date, dateTime.time) ||
+          !isValidDate(dateValue))
+      ) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this._dateValue = dateValue;
+      this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
     }
     super.update(changedProperties);
   }
@@ -116,23 +142,42 @@ export class DateTimePicker extends KucBase {
           class="kuc-datetime-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden="${!this.error}"
+          ?hidden="${!this._errorText}"
         >
-          ${this.error}
+          ${this._errorText}
         </div>
       </fieldset>
     `;
   }
 
+  updated() {
+    this._updateErrorWidth();
+    this._updateErrorText();
+  }
+
+  private _updateErrorText() {
+    this._errorText = this._errorFormat || this.error;
+  }
+
+  private _updateErrorWidth() {
+    const labelWidth = getWidthElmByContext(this._labelEl);
+    const inputGroupWitdh = 185;
+    if (labelWidth > inputGroupWitdh) {
+      this._errorEl.style.width = labelWidth + "px";
+      return;
+    }
+    this._errorEl.style.width = inputGroupWitdh + "px";
+  }
+
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this.error = "";
     let newValue = this._dateValue;
     if (event.detail.error) {
-      this.error = event.detail.error;
+      this._errorFormat = event.detail.error;
     } else {
       newValue = event.detail.value;
+      this._errorFormat = "";
     }
     this._updateDateTimeValue(newValue, "date");
   }
@@ -145,26 +190,30 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateDateTimeValue(newValue: string, type: string) {
-    const oldDateTime = `${this._dateValue}T${this._timeValue}:00`;
+    const oldDateTime = this._getDateTimeString();
     if (type === "date") {
       this._dateValue = newValue || "";
     } else {
       this._timeValue = newValue;
     }
-    let newDateTime = `${this._dateValue}`;
-
-    if (this._timeValue && newDateTime) newDateTime += `T${this._timeValue}:00`;
-
-    if (newDateTime) this.value = newDateTime;
-
-    const detail: CustomEventDetail = {
-      value: this.error || newDateTime === "" ? undefined : newDateTime,
-      oldValue: oldDateTime
+    const newDateTime = this._getDateTimeString();
+    const detail = {
+      value: this._errorFormat || newDateTime === "" ? undefined : newDateTime,
+      oldValue: oldDateTime === "" ? undefined : oldDateTime,
+      changedPart: type
     };
     dispatchCustomEvent(this, "change", detail);
   }
 
+  private _getDateTimeString() {
+    if (!this._dateValue || !this._timeValue) return "";
+
+    return `${this._dateValue}T${this._timeValue}:00`;
+  }
+
   private _getDateTimeValue(value: string) {
+    if (value === "" || value === undefined) return { date: "", time: "" };
+
     const dateTime = value.split("T");
     const date = dateTime[0];
     const time = dateTime[1];
@@ -173,8 +222,11 @@ export class DateTimePicker extends KucBase {
 
     if (!time) return { date, time: "00:00" };
 
-    const [hours, minutes] = time.split(":");
-    return { date, time: `${hours}:${minutes || "00"}` };
+    const [hours, minutes, seconds] = time.split(":");
+    const tempTime = `${hours}:${minutes || "00"}`;
+    if (!seconds) return { date, time: tempTime };
+
+    return { date, time: `${tempTime}:${seconds}` };
   }
 
   private _getLanguage() {
@@ -208,6 +260,7 @@ export class DateTimePicker extends KucBase {
             Hei, "Heiti SC", sans-serif;
         }
         kuc-datetime-picker {
+          font-size: 14px;
           display: inline-table;
           vertical-align: top;
         }
@@ -245,15 +298,15 @@ export class DateTimePicker extends KucBase {
         }
         .kuc-datetime-picker__group__inputs {
           display: flex;
+          max-width: 185px;
         }
         .kuc-datetime-picker__group__error {
-          box-sizing: border-box;
-          margin: 8px 0px;
-          padding: 4px 18px;
           line-height: 1.5;
-          font-size: 14px;
+          padding: 4px 18px;
+          box-sizing: border-box;
           background-color: #e74c3c;
           color: #ffffff;
+          margin: 8px 0px;
           word-break: break-all;
           white-space: normal;
         }

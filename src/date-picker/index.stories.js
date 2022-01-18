@@ -93,3 +93,11 @@ BaseError.args = {
   value: "2021-03-31",
   visible: true
 };
+
+// UI For document site. Do not change or delete below.
+export const Document = Template.bind({});
+Document.args = {
+  value: "2022-01-01",
+  language: "en",
+  visible: true
+};

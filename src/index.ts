@@ -9,6 +9,7 @@ export * from "./text";
 export * from "./textarea";
 export * from "./dialog";
 export * from "./date-picker";
+export * from "./datetime-picker";
 export * from "./time-picker";
 
 export * from "./mobile/button";
