@@ -97,7 +97,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       >
         <select
           class="kuc-base-mobile-datetime-calendar-header__group__center__month__select"
-          @change="${this._handleMonthDropdownChange}"
+          @change="${this._handleChangeMonthDropdown}"
         >
           ${this._getOptionsMonthTemplate()}
         </select>
@@ -129,7 +129,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       >
         <select
           class="kuc-base-mobile-datetime-calendar-header__group__center__year__select"
-          @change="${this._handleYearDropdownChange}"
+          @change="${this._handleChangeYearDropdown}"
         >
           ${this._getOptionsYearTemplate()}
         </select>
@@ -184,7 +184,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         `;
   }
 
-  private _handleMonthDropdownChange(event: CustomEvent) {
+  private _handleChangeMonthDropdown(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
     const target = event.target as HTMLOptionElement;
@@ -192,7 +192,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     this._dispatchCalendarHeaderChangeEvent();
   }
 
-  private _handleYearDropdownChange(event: CustomEvent) {
+  private _handleChangeYearDropdown(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
     const target = event.target as HTMLOptionElement;

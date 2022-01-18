@@ -69,7 +69,6 @@ const Template = ({ language, value }) => {
     _hideCalendar();
   };
 
-
   const _handleClickMobileCalendarFooterButtonClose = _ => {
     _hideCalendar();
   };
