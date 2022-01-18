@@ -11,6 +11,7 @@ describe("Dialog", () => {
       expect(parrentEl.nodeName).to.equal("BODY");
 
       expect(container.hasAttribute("opened")).to.equal(true);
+      expect(parrentEl.classList.contains("kuc--has-dialog")).to.equal(true);
     });
   });
 });
