@@ -4,7 +4,7 @@ import { KucBase, dispatchCustomEvent } from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import { BaseDateTimeListBox } from "../listbox";
-import { getTodayStringByLocale } from "../utils";
+import { getTodayStringByLocale, calculateDistanceInput } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
@@ -91,9 +91,10 @@ export class BaseDateTimeCalendar extends KucBase {
       inputToBottom,
       inputToTop,
       inputToRight,
-      inputToLeft,
-      calendarHeight
-    } = this._calculateDistanceInput();
+      inputToLeft
+    } = calculateDistanceInput(this);
+    const calendarHeight = this._baseCalendarGroupEl.getBoundingClientRect()
+      .height;
 
     if (inputToBottom >= calendarHeight) {
       this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
@@ -104,34 +105,6 @@ export class BaseDateTimeCalendar extends KucBase {
       return;
     }
     this._calculateCalendarPosition(inputToRight, inputToLeft, "top");
-  }
-
-  private _calculateDistanceInput() {
-    if (!this.parentElement)
-      return {
-        inputToBottom: 0,
-        inputToTop: 0,
-        inputToRight: 0,
-        inputToLeft: 0,
-        calendarHeight: 0
-      };
-
-    const inputToBottom =
-      window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
-    const inputToTop = this.parentElement.getBoundingClientRect().top;
-    const inputToRight =
-      document.body.clientWidth - this.parentElement.offsetLeft;
-    const inputToLeft = this.parentElement.getBoundingClientRect().left;
-    const calendarHeight = this._baseCalendarGroupEl.getBoundingClientRect()
-      .height;
-
-    return {
-      inputToBottom,
-      inputToTop,
-      inputToRight,
-      inputToLeft,
-      calendarHeight
-    };
   }
 
   private _calculateCalendarPosition(

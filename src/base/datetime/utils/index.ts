@@ -310,7 +310,13 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
 }
 
 export const calculateDistanceInput = (_this: HTMLElement) => {
-  if (!_this.parentElement) return false;
+  if (!_this.parentElement)
+    return {
+      inputToBottom: 0,
+      inputToTop: 0,
+      inputToRight: 0,
+      inputToLeft: 0
+    };
 
   const inputToBottom =
     window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;

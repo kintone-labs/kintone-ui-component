@@ -89,8 +89,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _handleScrollDocument() {
     const distance = calculateDistanceInput(this);
-    if (!distance) return;
-
     if (distance.inputToBottom >= distance.inputToTop) {
       setListBoxPosition(this, "bottom");
       return;
