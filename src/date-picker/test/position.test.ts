@@ -3,7 +3,7 @@ import "../index";
 
 describe("DatePicker", () => {
   describe("position", () => {
-    it("should be dislayed calendar to left when right not enough width and long label", async () => {
+    it("should be displayed calendar to left when there is not enough width on the right and long label", async () => {
       const container = document.createElement("kuc-date-picker");
       container.setAttribute("value", "2021-10-20");
       container.setAttribute("label", "long label long label long label");
@@ -29,7 +29,7 @@ describe("DatePicker", () => {
       expect(computedStyle.top).to.equal("40px");
     });
 
-    it("should be dislayed calendar to top when bottom not enough height", async () => {
+    it("should be displayed calendar to top when there is not enough height on the bottom", async () => {
       const container = document.createElement("kuc-base-date");
       container.setAttribute("value", "2021-10-20");
 
@@ -54,7 +54,7 @@ describe("DatePicker", () => {
       expect(computedStyle.bottom).to.equal("40px");
     });
 
-    it("should be dislayed calendar to left when right not enough width", async () => {
+    it("should be displayed calendar to left when there is not enough width on the right", async () => {
       const container = document.createElement("kuc-base-date");
       container.setAttribute("value", "2021-10-20");
 
@@ -79,7 +79,7 @@ describe("DatePicker", () => {
       expect(computedStyle.bottom).to.equal("40px");
     });
 
-    it("should be dislayed calendar to right when left not enough width", async () => {
+    it("should be displayed calendar to right when there is not enough width on the left", async () => {
       const container = document.createElement("kuc-base-date");
       container.setAttribute("value", "2021-10-20");
 

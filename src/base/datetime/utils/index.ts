@@ -317,13 +317,14 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToRight: 0,
       inputToLeft: 0
     };
-
+  const inputDateWidth = 100;
   const inputToBottom =
     window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
   const inputToTop = _this.parentElement.getBoundingClientRect().top;
   const inputToRight =
-    document.body.clientWidth - _this.parentElement.offsetLeft;
-  const inputToLeft = _this.parentElement.getBoundingClientRect().left;
+    window.innerWidth - _this.parentElement.getBoundingClientRect().left;
+  const inputToLeft =
+    _this.parentElement.getBoundingClientRect().left + inputDateWidth;
 
   return {
     inputToBottom,
