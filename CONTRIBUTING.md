@@ -4,7 +4,8 @@
 
 Contributions are always welcome!
 We are welcome~ PR, [issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose), etc~.  
-Here is how to develop and explanation for the command option we provide~. (for each v1 and v0)
+Here is how to develop and explanation for the command option we provide~.  
+For each v1(branch:master) and v0(branch:v0_dev)
 
 ## For v1
 
@@ -33,6 +34,7 @@ git clone git@github.com:kintone-labs/kintone-ui-component.git
 ```
 
 ##### 2.Check out to branch for dev, if you’ve not created branch yet, please create a new branch for developing 
+The branch naming rule should refer to [Branch](#Branch).
 ```sh
 git branch <branch name>
 git checkout <branch name>
@@ -44,17 +46,23 @@ cd kintone-ui-component
 npm ci
 ```
 #### Develop
-##### Implement your functions/features
-##### Start storybook to confirm
+##### 1. Implement your functions/features
+##### 2  Eslint check
+```sh
+npm run es-lint
+```
+##### 3. Start storybook to confirm your functions/features
 ```sh
 npm run storybook
 ```
+##### 4. Commit and Create Pull-Request([pull-request naming rule](#Pull-Request))
+
 #### Build
 ```sh
 npm run build:umd_pro
 ```
-#### [Develop document with Docusaurus](https://github.com/kintone-labs/kintone-ui-component/blob/master/docs/document/README.md)
-
+#### Develop document with Docusaurus
+[reference](https://github.com/kintone-labs/kintone-ui-component/blob/master/docs/document/README.md)
 
 ## For v0
 
@@ -90,13 +98,16 @@ cd kintone-ui-component
 npm ci
 ```
 #### Develop
-##### Implement your functions/features
+##### 1. Implement your functions/features
+##### 2. Eslint check
+##### 3. Commit and Create Pull-Request([pull-request naming rule](#Pull-Request))
 
 #### Build
 ```sh
 npm run build:umd
 ```
-#### [Develop document with MKDocs](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/docs/README.md)
+#### Develop document with MKDocs
+[reference](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/docs/README.md)  
 
 ## Note for Naming Rule
 
@@ -124,7 +135,7 @@ origin/v0_dev/v0.8.3
   |__origin/v0_dev/v0.8.3_Notification_docs  
   |__origin/v0_dev/v0.8.3_Text_src
 ```
-### Pull Request
+### Pull-Request
 
 If you finish the implementation of the child branches, you should merge from the parent branch before creating a pull request against it.  
 
