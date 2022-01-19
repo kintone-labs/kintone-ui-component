@@ -1,5 +1,5 @@
 ---
-id: version-1.2.0-dialog
+id: version-1.3.0-dialog
 title: Dialog
 sidebar_label: Dialog
 original_id: dialog
@@ -22,8 +22,10 @@ Here is a list of properties that can be used for modifying the component:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | ""  | Header Title | |
-| content | string \|   HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the content property is automatically sanitized internally to prevent XSS attacks.
-| footer | string \| HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output.<br>The value of the Footer property is automatically sanitized internally to prevent XSS attacks |
+| content *1 | string &#124; HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output<br>The value of the content property is not sanitized |
+| footer *1 | string &#124; HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output<br>The value of the footer property is not sanitized |
+
+> *1: Do sanitize yourself to prevent XSS attacks.
 
 ### Event
 

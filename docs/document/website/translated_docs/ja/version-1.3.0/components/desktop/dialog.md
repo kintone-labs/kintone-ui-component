@@ -1,5 +1,5 @@
 ---
-id: version-1.0.0-dialog
+id: version-1.3.0-dialog
 title: Dialog
 sidebar_label: Dialog
 original_id: dialog
@@ -22,8 +22,10 @@ Dialog は、ダイアログボックスを表示します。
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | "" | Header のタイトル ||
-| content | string \| HTMLElement | "" | Content 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>content プロパティの値は、XSS 攻撃を防ぐために内部で自動的に sanitize されます。 |
-| footer | string \| HTMLElement | "" | Footer 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>footer プロパティの値は、XSS 攻撃を防ぐために内部で自動的に sanitize されます |
+| content *1 | string &#124; HTMLElement | "" | Content 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力される<br>content プロパティの値は、sanitize されない |
+| footer *1 | string &#124; HTMLElement | "" | Footer 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>footer プロパティの値は、sanitize されない |
+
+> *1: XSS攻撃を防ぐために、開発者自身で sanitize を行ってください。
 
 ### Event
 
@@ -41,7 +43,7 @@ Dialog(options)<br>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+| options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ### Method
 
