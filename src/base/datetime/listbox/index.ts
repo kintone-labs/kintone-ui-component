@@ -287,7 +287,7 @@ export class BaseDateTimeListBox extends KucBase {
     const liEl = this._highlightItemEl as HTMLLIElement;
     if (!liEl) return;
 
-    liEl.focus();
+    liEl.focus({ preventScroll: true });
     if (dispatch === false) return;
 
     this._dispatchListBoxFocusChange();

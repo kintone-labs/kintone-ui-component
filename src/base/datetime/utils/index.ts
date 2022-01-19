@@ -270,6 +270,70 @@ export const getLeftArrowIconSvgTemplate = () => {
     </svg>`;
 };
 
+export function setListBoxPosition(_this: HTMLElement, position: string) {
+  const ulEl = _this.querySelector(
+    ".kuc-base-datetime-listbox__listbox"
+  ) as HTMLUListElement;
+  const distance = calculateDistanceInput(_this);
+  if (!_this.parentElement || !ulEl || !distance) return;
+
+  const { inputToBottom, inputToTop } = distance;
+  const listBoxMonthHeight = 360;
+  const listBoxYearHeight = 300;
+  const listBoxHeight =
+    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH"
+      ? listBoxMonthHeight
+      : listBoxYearHeight;
+  const paddingListBox = 18;
+  const parentHeight = _this.parentElement.getBoundingClientRect().height;
+
+  ulEl.style.maxHeight = listBoxHeight + "px";
+  _this.parentElement.style.position = "relative";
+  if (inputToBottom >= listBoxHeight) {
+    ulEl.style.height = listBoxHeight + "px";
+    if (position === "bottom") {
+      ulEl.style.top = parentHeight + "px";
+      return;
+    }
+    ulEl.style.bottom = parentHeight + "px";
+    return;
+  }
+
+  if (position === "bottom") {
+    ulEl.style.top = parentHeight + "px";
+    ulEl.style.height = inputToBottom - paddingListBox + "px";
+    return;
+  }
+  ulEl.style.height = inputToTop - paddingListBox + "px";
+  ulEl.style.top = "auto";
+  ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
+}
+
+export const calculateDistanceInput = (_this: HTMLElement) => {
+  if (!_this.parentElement)
+    return {
+      inputToBottom: 0,
+      inputToTop: 0,
+      inputToRight: 0,
+      inputToLeft: 0
+    };
+  const inputDateWidth = 100;
+  const inputToBottom =
+    window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
+  const inputToTop = _this.parentElement.getBoundingClientRect().top;
+  const inputToRight =
+    window.innerWidth - _this.parentElement.getBoundingClientRect().left;
+  const inputToLeft =
+    _this.parentElement.getBoundingClientRect().left + inputDateWidth;
+
+  return {
+    inputToBottom,
+    inputToTop,
+    inputToRight,
+    inputToLeft
+  };
+};
+
 export const getRightArrowIconSvgTemplate = () => {
   return svg`
     <svg
