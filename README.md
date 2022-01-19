@@ -118,7 +118,7 @@ For more details, please refer to the articles below.
 
 > About the React version provided in v0, we haven't supported it in v1 now.
 
-## Contributing
+## [Contributing](./CONTRIBUTING)
 We welcome contributions to kintone UI Component.<br />
 If you have a question, feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
 
