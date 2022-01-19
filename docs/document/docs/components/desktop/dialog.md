@@ -44,6 +44,7 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+---
 ### Method
 
 Here is a list of available methods:

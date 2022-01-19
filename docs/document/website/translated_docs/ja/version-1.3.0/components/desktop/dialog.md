@@ -21,7 +21,7 @@ Dialog は、ダイアログボックスを表示します。
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| title | string | "" | Header のタイトル ||
+| title | string | "" | Header のタイトル | |
 | content *1 | string &#124; HTMLElement | "" | Content 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力される<br>content プロパティの値は、sanitize されない |
 | footer *1 | string &#124; HTMLElement | "" | Footer 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>footer プロパティの値は、sanitize されない |
 
@@ -43,8 +43,9 @@ Dialog(options)<br>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
+---
 ### Method
 
 使用できるメソッドの一覧です。
