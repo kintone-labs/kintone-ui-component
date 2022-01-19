@@ -1,10 +1,12 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
-import { BaseMobileTime } from "../index";
+import "../index";
 
 describe("BaseMobileTime", () => {
   describe("hour12", () => {
     it("should be using 12-hour clock when not assigning", async () => {
-      const container = new BaseMobileTime({ value: "13:15" });
+      const container = document.createElement("kuc-base-mobile-time");
+      container.setAttribute("value", "13:15");
+
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
@@ -18,7 +20,10 @@ describe("BaseMobileTime", () => {
     });
 
     it("should be using 12-hour clock when assigned true by setter", async () => {
-      const container = new BaseMobileTime({ value: "13:15", hour12: true });
+      const container = document.createElement("kuc-base-mobile-time");
+      container.setAttribute("value", "13:15");
+      container.setAttribute("hour12", "true");
+
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
@@ -29,12 +34,20 @@ describe("BaseMobileTime", () => {
 
       expect(selectHourEl.value).to.be.equal("PM 01");
       expect(selectMinuteEl.value).to.be.equal("15");
+
+      container.setAttribute("value", "08:15");
+      await elementUpdated(el);
+      expect(selectHourEl.value).to.be.equal("AM 08");
+      expect(selectMinuteEl.value).to.be.equal("15");
     });
 
     it("should be using 24-hour clock when change to false", async () => {
-      const container = new BaseMobileTime({ value: "13:15", hour12: true });
-      container.hour12 = false;
+      const container = document.createElement("kuc-base-mobile-time");
+      container.setAttribute("value", "13:15");
+      container.setAttribute("hour12", "true");
+
       const el = await fixture(container);
+      container.removeAttribute("hour12");
       await elementUpdated(el);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
