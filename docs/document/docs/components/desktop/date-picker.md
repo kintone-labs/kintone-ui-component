@@ -8,7 +8,14 @@ sidebar_label: DatePicker
 
 The DatePicker component allows the user to display a input area and date selection calendar.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-date-picker--document" title="date picker image" height="80px"></iframe>
+<div id='sample-container' style='text-align:center'></div>
+<script>
+  const container = document.getElementById('sample-container');
+  const datePicker = new Kuc.DatePicker({
+    value: '2021-11-11'
+  });
+  container.appendChild(datePicker);
+</script>
 
 ---
 

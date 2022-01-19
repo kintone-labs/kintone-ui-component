@@ -57,6 +57,7 @@ const siteConfig = {
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     "/js/code-block-button.js",
+    "https://unpkg.com/kintone-ui-component/umd/kuc.min.js"
   ],
   // For Algolia DocSearch
   algolia: {

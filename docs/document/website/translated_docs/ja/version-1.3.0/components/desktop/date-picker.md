@@ -9,7 +9,15 @@ original_id: date-picker
 
 DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-date-picker--document" title="date picker image" height="80px"></iframe>
+<div id='sample-container' style='text-align:center'></div>
+<script>
+  const container = document.getElementById('sample-container');
+  const datePicker = new Kuc.DatePicker({
+    value: '2021-11-11',
+    language: 'ja'
+  });
+  container.appendChild(datePicker);
+</script>
 
 ---
 

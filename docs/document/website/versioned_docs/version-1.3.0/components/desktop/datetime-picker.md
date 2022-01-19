@@ -9,7 +9,14 @@ original_id: datetime-picker
 
 The DateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-datetime-picker--document" title="datetime picker image" height="80px"></iframe>
+<div id='sample-container' style='text-align:center'></div>
+<script>
+  const container = document.getElementById('sample-container');
+  const dateTimePicker = new Kuc.DateTimePicker({
+    value: '2021-11-11T11:30:00'
+  });
+  container.appendChild(dateTimePicker);
+</script>
 
 ---
 
