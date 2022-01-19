@@ -22,10 +22,10 @@ Dialog は、ダイアログボックスを表示します。
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | "" | Header のタイトル | |
-| content *1 | string &#124; HTMLElement | "" | Content 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力される<br>content プロパティの値は、sanitize されない |
-| footer *1 | string &#124; HTMLElement | "" | Footer 内部の DOM | HTML が記載された string が代入された場合、自動で HTML に変換して出力されます<br>footer プロパティの値は、sanitize されない |
+| content *1 | string/HTMLElement | "" | Content の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま出力される |
+| footer *1 | string/HTMLElement | "" | Footer の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま出力される |
 
-> *1: XSS攻撃を防ぐために、開発者自身で sanitize を行ってください。
+> *1: kintone UI Component はこのプロパティ値をサニタイズしません。ユーザー入力を受け付けるような実装でこのオプションを使用する場合は、開発者自身で XSS 対策をしてください。
 
 ### Event
 

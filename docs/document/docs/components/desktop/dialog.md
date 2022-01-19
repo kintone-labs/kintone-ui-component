@@ -21,10 +21,10 @@ Here is a list of properties that can be used for modifying the component:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | title | string | ""  | Header Title | |
-| content *1 | string &#124; HTMLElement | ""  | DOM inside content | When a string with HTML is assigned, it is automatically converted to HTML and output<br>The value of the content property is not sanitized |
-| footer *1 | string &#124; HTMLElement | ""  | DOM inside footer | When a string with HTML is assigned, it is automatically converted to HTML and output<br>The value of the footer property is not sanitized |
+| content *1 | string/HTMLElement | ""  | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| footer *1 | string/HTMLElement | ""  | DOM inside footer | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 
-> *1: Do sanitize yourself to prevent XSS attacks.
+> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
 
 ### Event
 
