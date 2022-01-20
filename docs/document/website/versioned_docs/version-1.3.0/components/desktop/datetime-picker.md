@@ -9,14 +9,8 @@ original_id: datetime-picker
 
 The DateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div id='sample-container' style='text-align:center'></div>
-<script>
-  const container = document.getElementById('sample-container');
-  const dateTimePicker = new Kuc.DateTimePicker({
-    value: '2021-11-11T11:30:00'
-  });
-  container.appendChild(dateTimePicker);
-</script>
+<div id='sample-container' style='margin:auto; width:185px;'></div>
+<script src='/js/samples/datetime-picker.js'></script>
 
 ---
 

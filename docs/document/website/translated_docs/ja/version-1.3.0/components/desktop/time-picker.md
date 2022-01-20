@@ -9,14 +9,8 @@ original_id: time-picker
 
 TimePicker は入力エリアと時間選択用のリストを表示します。
 
-<div id='sample-container' style='text-align:center'></div>
-<script>
-  const container = document.getElementById('sample-container');
-  const timePicker = new Kuc.TimePicker({
-    value: '11:30'
-  });
-  container.appendChild(timePicker);
-</script>
+<div id='sample-container' style='margin:auto; width:85px;'></div>
+<script src='/js/samples/time-picker.js'></script>
 
 ---
 

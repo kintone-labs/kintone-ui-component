@@ -9,15 +9,8 @@ original_id: date-picker
 
 DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-<div id='sample-container' style='text-align:center'></div>
-<script>
-  const container = document.getElementById('sample-container');
-  const datePicker = new Kuc.DatePicker({
-    value: '2021-11-11',
-    language: 'ja'
-  });
-  container.appendChild(datePicker);
-</script>
+<div id='sample-container' style='margin:auto; width:100px;'></div>
+<script src='/js/samples/date-picker.js'></script>
 
 ---
 

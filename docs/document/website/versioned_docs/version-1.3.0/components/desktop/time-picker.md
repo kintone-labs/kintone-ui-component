@@ -9,14 +9,8 @@ original_id: time-picker
 
 The TimePicker component allows the user to display a input area and time selection listbox.
 
-<div id='sample-container' style='text-align:center'></div>
-<script>
-  const container = document.getElementById('sample-container');
-  const timePicker = new Kuc.TimePicker({
-    value: '11:30'
-  });
-  container.appendChild(timePicker);
-</script>
+<div id='sample-container' style='margin:auto; width:85px;'></div>
+<script src='/js/samples/time-picker.js'></script>
 
 ---
 

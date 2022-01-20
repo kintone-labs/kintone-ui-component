@@ -9,14 +9,8 @@ original_id: date-picker
 
 The DatePicker component allows the user to display a input area and date selection calendar.
 
-<div id='sample-container' style='text-align:center'></div>
-<script>
-  const container = document.getElementById('sample-container');
-  const datePicker = new Kuc.DatePicker({
-    value: '2021-11-11'
-  });
-  container.appendChild(datePicker);
-</script>
+<div id='sample-container' style='margin:auto; width:100px;'></div>
+<script src='/js/samples/date-picker.js'></script>
 
 ---
 
