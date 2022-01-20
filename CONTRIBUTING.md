@@ -55,7 +55,7 @@ npm run es-lint
 ```sh
 npm run storybook
 ```
-##### 4. Commit and Create Pull-Request(Naming Rule refer [here]](#Pull-Request))
+##### 4. Commit and Create Pull-Request(Naming Rule refer [here](#Pull-Request))
 
 #### Build
 ```sh
