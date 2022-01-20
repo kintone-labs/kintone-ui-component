@@ -34,7 +34,7 @@ git clone git@github.com:kintone-labs/kintone-ui-component.git
 ```
 
 ##### 2.Check out to branch for dev, if you’ve not created branch yet, please create a new branch for developing 
-The branch naming rule should refer to [Branch](#Branch).
+The branch naming rule should refer [here](#Branch).
 ```sh
 git branch <branch name>
 git checkout <branch name>
@@ -55,7 +55,7 @@ npm run es-lint
 ```sh
 npm run storybook
 ```
-##### 4. Commit and Create Pull-Request([pull-request naming rule](#Pull-Request))
+##### 4. Commit and Create Pull-Request(Naming Rule refer [here]](#Pull-Request))
 
 #### Build
 ```sh
@@ -86,6 +86,7 @@ git clone git@github.com:kintone-labs/kintone-ui-component.git
 ```
 
 ##### 2.Check out to branch for dev, if you’ve not created branch yet, please create a new branch(base on v0) for developing 
+The branch naming rule should refer [here](#Branch).  
 ```sh
 git checkout <branch v0_dev>
 git branch <branch name>
@@ -100,7 +101,7 @@ npm ci
 #### Develop
 ##### 1. Implement your functions/features
 ##### 2. Eslint check
-##### 3. Commit and Create Pull-Request([pull-request naming rule](#Pull-Request))
+##### 3. Commit and Create Pull-Request(Naming Rule refer [here](#Pull-Request))
 
 #### Build
 ```sh
