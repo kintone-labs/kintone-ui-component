@@ -57,8 +57,8 @@ export class BaseMobileDateTimeCalendar extends KucBase {
         .kuc-base-mobile-datetime-calendar__group {
           display: inline-block;
           box-sizing: border-box;
-          width: 336px;
-          padding: 32px 32px 24px;
+          width: 290px;
+          padding: 0 10px;
           background: #ffffff;
           box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
           text-align: center;

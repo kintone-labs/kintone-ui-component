@@ -246,6 +246,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         }
         .kuc-base-mobile-datetime-calendar-header__group {
           display: flex;
+          justify-content: space-between;
           align-items: center;
           box-sizing: border-box;
           border-bottom: 1px solid #e3e7e8;
@@ -285,6 +286,9 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           text-align: center;
           display: flex;
           justify-content: center;
+        }
+        .kuc-base-mobile-datetime-calendar-header__group__center__month {
+          padding-left: 13px;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month,
         .kuc-base-mobile-datetime-calendar-header__group__center__year {

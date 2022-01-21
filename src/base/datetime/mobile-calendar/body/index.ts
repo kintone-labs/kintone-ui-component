@@ -238,10 +238,18 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", sans-serif;
         }
+        .kuc-base-mobile-datetime-calendar-body__table {
+          width: 100%;
+        }
         .kuc-base-mobile-datetime-calendar-body__table,
         .kuc-base-mobile-datetime-calendar-body__table tr {
           border-collapse: separate;
           border-spacing: 0;
+        }
+        .kuc-base-mobile-datetime-calendar-body__table__date {
+          max-width: 40px;
+          width: 40px;
+          height: 40px;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date,
         .kuc-base-mobile-datetime-calendar-body__table__date--selected {
@@ -254,8 +262,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           border-spacing: 1px;
           cursor: pointer;
           box-sizing: border-box;
-          width: 40px;
-          height: 40px;
           border: 1px solid #ffffff;
           text-align: center;
           vertical-align: middle;
@@ -267,18 +273,11 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           .kuc-base-mobile-datetime-calendar-body__table__date__button,
         .kuc-base-mobile-datetime-calendar-body__table__header {
           box-sizing: border-box;
-          width: 40px;
           height: 40px;
-          border: 1px solid #ffffff;
-          text-align: center;
-          vertical-align: middle;
-          border-spacing: 1px;
-          cursor: pointer;
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
-          color: #333333;
           font-weight: 400;
           font-size: 12px;
           padding: 0;
