@@ -39,7 +39,9 @@ storiesOf("desktop/dialog", module)
   .add("Document", () => {
     const root = document.createElement("div");
     const dialog = new Dialog({
-      content: "<div>This is Content</div>"
+      title: "Title",
+      content: "<div>This is Content</div>",
+      footer: "Footer"
     });
     dialog.open();
     return root;
