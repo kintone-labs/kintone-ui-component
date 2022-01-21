@@ -150,6 +150,10 @@ export class BaseDate extends KucBase {
           background-color: #ffffff;
           color: #333333;
         }
+        .kuc-datetime-picker__group__inputs--date
+          input.kuc-base-date__input--focus {
+          border-color: #3498db;
+        }
         input.kuc-base-date__input:disabled {
           color: #888888;
           background-color: #d4d7d7;
