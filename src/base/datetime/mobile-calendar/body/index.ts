@@ -250,14 +250,38 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           border: 1px solid #ffffff;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date
+          .kuc-base-mobile-datetime-calendar-body__table__date__button {
+          border-spacing: 1px;
+          cursor: pointer;
+          box-sizing: border-box;
+          width: 40px;
+          height: 40px;
+          border: 1px solid #ffffff;
+          text-align: center;
+          vertical-align: middle;
+          color: #333333;
+        }
+        .kuc-base-mobile-datetime-calendar-body__table__date
           .kuc-base-mobile-datetime-calendar-body__table__date__button,
         .kuc-base-mobile-datetime-calendar-body__table__date--selected
           .kuc-base-mobile-datetime-calendar-body__table__date__button,
         .kuc-base-mobile-datetime-calendar-body__table__header {
+          box-sizing: border-box;
+          width: 40px;
+          height: 40px;
+          border: 1px solid #ffffff;
           text-align: center;
-          font-size: 10px;
-          font-weight: 400;
+          vertical-align: middle;
+          border-spacing: 1px;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
           color: #333333;
+          font-weight: 400;
+          font-size: 12px;
+          padding: 0;
         }
         th.kuc-base-mobile-datetime-calendar-body__table__header {
           font-weight: 700;
@@ -268,14 +292,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           .kuc-base-mobile-datetime-calendar-body__table__date__button,
         .kuc-base-mobile-datetime-calendar-body__table__header {
           box-sizing: border-box;
-          padding: 8px 0;
-          width: 36px;
-          height: 31px;
           border: 1px solid #ffffff;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__header:nth-child(1),
-        .kuc-base-mobile-datetime-calendar-body__table__header:nth-child(7) {
-          color: #d4d7d7;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date--selected
           .kuc-base-mobile-datetime-calendar-body__table__date__button,
@@ -289,7 +306,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           color: #000000;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date--selected {
-          border: 1px solid #3498db;
+          border: 1px solid #206694;
           box-sizing: border-box;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date--selected

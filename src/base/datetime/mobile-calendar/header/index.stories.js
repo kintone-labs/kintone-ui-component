@@ -12,6 +12,9 @@ export default {
     }
   },
   parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro"
+    },
     actions: {
       handles: ["kuc:mobile-calendar-header-change"]
     }

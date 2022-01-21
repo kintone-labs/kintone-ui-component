@@ -96,22 +96,18 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
           padding: 0;
           height: 27px;
           white-space: nowrap;
-          width: 272px;
         }
         .kuc-base-mobile-datetime-calendar-footer__group__button {
           background: transparent;
           border: 1px solid transparent;
-          color: #3498db;
+          color: #206694;
+          height: 40px;
           cursor: pointer;
-          font-size: 13px;
+          font-size: 14px;
           outline: none;
-        }
-        .kuc-base-mobile-datetime-calendar-footer__group__button:hover {
-          color: #217dbb;
-        }
-        .kuc-base-mobile-datetime-calendar-footer__group__button:focus {
-          border: 1px solid #3498db;
-          outline: none;
+          padding: 0;
+          margin: 0;
+          font-weight: 700;
         }
         .kuc-base-mobile-datetime-calendar-footer__group__center {
           width: 100%;

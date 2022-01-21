@@ -101,10 +101,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         >
           ${this._getOptionsMonthTemplate()}
         </select>
-        <span
-          class="kuc-base-mobile-datetime-calendar-header__group__center__month__icon"
-          >▼
-        </span>
       </div>
     `;
   }
@@ -133,10 +129,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         >
           ${this._getOptionsYearTemplate()}
         </select>
-        <span
-          class="kuc-base-mobile-datetime-calendar-header__group__center__year__icon"
-          >▼
-        </span>
       </div>
     `;
   }
@@ -259,18 +251,27 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           border-bottom: 1px solid #e3e7e8;
           padding: 0;
           white-space: nowrap;
-          width: 266px;
-          height: 44px;
+          height: 41px;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button {
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          outline: none;
-          width: 38px;
-          height: 32px;
+          background-color: inherit;
+          border: 0;
+          padding: 0;
           margin: 0;
-          text-align: center;
+          width: 40px;
+          height: 40px;
+          overflow: hidden;
+          text-indent: 100%;
+          white-space: nowrap;
+          word-wrap: normal;
+        }
+        .kuc-base-mobile-datetime-calendar-header__group__button--previous-month {
+          background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_left.svg)
+            no-repeat center center #ffffff;
+        }
+        .kuc-base-mobile-datetime-calendar-header__group__button--next-month {
+          background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_right.svg)
+            no-repeat center center #ffffff;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button:focus {
           border: 1px solid #3498db;
@@ -291,14 +292,16 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month__select,
         .kuc-base-mobile-datetime-calendar-header__group__center__year__select {
-          padding: 8px 8px 8px 10px;
           font-size: 14px;
+          font-weight: 700;
+          padding: 0 22.4px 0 0;
+          line-height: 40px;
           border: none;
-          width: 70px;
-          border-radius: 5.6px;
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
+          background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/downward-triangle-icon-black.svg)
+            no-repeat center right 0.6em #ffffff;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month__select:focus,
         .kuc-base-mobile-datetime-calendar-header__group__center__year__select:focus {
@@ -307,20 +310,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
         }
-        .kuc-base-mobile-datetime-calendar-header__group__center__month__icon,
-        .kuc-base-mobile-datetime-calendar-header__group__center__year__icon {
-          position: absolute;
-          font-size: 12px;
-          top: 10px;
-          right: 5px;
-          width: 24px;
-          height: 32px;
-          cursor: default;
-          pointer-events: none;
-        }
-        .kuc-base-mobile-datetime-calendar-header__group__center__year__icon {
-          right: 0px;
-        }
+        .kuc-base-mobile-datetime-calendar-header__group__center__month__icon;
       </style>
     `;
   }
