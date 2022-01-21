@@ -9,7 +9,8 @@ original_id: time-picker
 
 TimePicker は入力エリアと時間選択用のリストを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-time-picker--document" title="time picker image" height="80px"></iframe>
+<div id='sample-container' style='margin:auto; width:85px;'></div>
+<script src='/js/samples/time-picker.js'></script>
 
 ---
 

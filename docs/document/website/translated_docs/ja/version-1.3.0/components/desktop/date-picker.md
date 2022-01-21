@@ -9,7 +9,8 @@ original_id: date-picker
 
 DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-date-picker--document" title="date picker image" height="80px"></iframe>
+<div id='sample-container' style='margin:auto; width:100px;'></div>
+<script src='/js/samples/date-picker.js'></script>
 
 ---
 

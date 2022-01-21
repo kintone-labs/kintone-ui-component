@@ -9,7 +9,8 @@ original_id: time-picker
 
 The TimePicker component allows the user to display a input area and time selection listbox.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-time-picker--document" title="time picker image" height="80px"></iframe>
+<div id='sample-container' style='margin:auto; width:85px;'></div>
+<script src='/js/samples/time-picker.js'></script>
 
 ---
 

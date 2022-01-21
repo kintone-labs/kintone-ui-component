@@ -5,12 +5,6 @@ sidebar_label: Dropdown
 original_id: dropdown
 ---
 
----
-id: dropdown
-title: Dropdown
-sidebar_label: Dropdown
----
-
 ## Overview
 
 The Dropdown component allows the user to select one out of several options.

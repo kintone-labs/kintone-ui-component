@@ -9,7 +9,8 @@ original_id: datetime-picker
 
 DateTimePicker は日付と時間それぞれの入力エリアと選択肢を表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-datetime-picker--document" title="datetime picker image" height="80px"></iframe>
+<div id='sample-container' style='margin:auto; width:185px;'></div>
+<script src='/js/samples/datetime-picker.js'></script>
 
 ---
 

@@ -104,6 +104,9 @@ a:hover {
 }
 
 /* css for doc page */
+td[class^="kuc"] {
+    background-color: #ffffff;
+}
 .kuc-preview {
     background-color: #F5F5F5;
     padding: 20px 40px;

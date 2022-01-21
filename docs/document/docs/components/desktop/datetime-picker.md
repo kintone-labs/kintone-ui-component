@@ -8,7 +8,8 @@ sidebar_label: DateTimePicker
 
 The DateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-datetime-picker--document" title="datetime picker image" height="80px"></iframe>
+<div id='sample-container' style='margin:auto; width:185px;'></div>
+<script src='/js/samples/datetime-picker.js'></script>
 
 ---
 
