@@ -107,6 +107,13 @@ a:hover {
 td[class^="kuc"] {
     background-color: #ffffff;
 }
+.sample-container {
+    display: flex;
+    justify-content: space-around;
+}
+.sample-container .kuc-datetime-picker__group__error {
+    max-width: 185px;
+}
 .kuc-preview {
     background-color: #F5F5F5;
     padding: 20px 40px;
