@@ -175,6 +175,7 @@ export class DateTimePicker extends KucBase {
     let newValue = this._dateValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
+      this.error = "";
     } else {
       newValue = event.detail.value;
       this._errorFormat = "";
