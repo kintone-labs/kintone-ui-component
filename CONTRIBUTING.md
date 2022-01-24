@@ -2,9 +2,11 @@
 
 ## For Contributors
 
-Contributions are always welcome!
-We are welcome~ PR, [issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose), etc~.  
-Here is how to develop and explanation for the command option we provide~.  
+Contributions are always welcome! If you have discovered a bug or have a feature request, [please create an issue on GitHub](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose). Pull requests are also welcome when you find trivial bugs or typos. 
+
+We use English for all commit messages, code comments, issues, pull requests.
+
+Here is how to develop and the explanation of the command options we provided.  
 For each v1(branch:master) and v0(branch:v0_dev)
 
 ## For v1
