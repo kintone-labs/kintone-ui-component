@@ -30,7 +30,7 @@ original_id: release-notes
 - ESM のビルド設定を修正
 
 ### セキュリティアップデート
-- 依存ライブラリの更新：webpack, json-schema, and core-js
+- 依存ライブラリの更新：libraries: webpack, json-schema, karma, nanoid, node-fetch, log4js, core-js
 
 ### ドキュメント
 - DatePicker, TimePicker, DateTimePicker, Dialog コンポーネントページの追加

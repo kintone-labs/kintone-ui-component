@@ -29,7 +29,7 @@ New components, features, maintenances, document updates, and security updates h
 - Fixed build setting for ESM.
 
 ### Security Updates
-- Updated dependent libraries: webpack, json-schema, and core-js.
+- Updated dependent libraries: webpack, json-schema, karma, nanoid, node-fetch, log4js, and core-js.
 
 ### Document
 - Added DatePicker, TimePicker, DateTimePicker, and Dialog pages.
