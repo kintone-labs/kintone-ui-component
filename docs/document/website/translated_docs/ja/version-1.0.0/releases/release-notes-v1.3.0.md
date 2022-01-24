@@ -21,7 +21,7 @@ original_id: release-notes-v1.3.0
 
 ### メンテナンス
 - Spinner コンポーネントを開いている時、コンポーネント外の操作を無効化するように改善
-- LitElement と lit-html から Lit 2.0 利用に変更
+- LitElement と lit-html の利用を Lit 2.0 利用に変更
 - 開発中バージョンの情報を取得できる機能の追加
 - 脆弱性チェックのため Yamory の導入
 - コーディングルールチェックのため ESLint Custom Rule の開発と Sider の仕組みの削除
