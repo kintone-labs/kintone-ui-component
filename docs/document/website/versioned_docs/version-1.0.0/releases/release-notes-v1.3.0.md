@@ -16,7 +16,7 @@ New components, features, maintenances, document updates, and security updates h
 - Added Dialog component.
 
 ### New Features
-- Updated to accept duplicated value in `value` and `Item.value` properties on choice components (MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, and MobileRadioButton).<br>
+- Updated to accept duplicated value in `value` and `Item.value` properties and newly added `selectedIndex` property on choice components (MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, and MobileRadioButton).<br>
   *Please check the detail on each component's document page.
 
 ### Maintenance

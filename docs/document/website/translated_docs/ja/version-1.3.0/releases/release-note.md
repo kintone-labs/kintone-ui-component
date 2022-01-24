@@ -7,47 +7,47 @@ original_id: release-notes
 
 ## 概要
 
-Here are the [kintone UI Component v1.3.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.0) Release Notes.<br>
-New components, features, maintenances, document updates, and security updates have been made.
+[kintone UI Component v1.3.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.0) のリリースノートです。<br>
+新コンポーネントや機能開発, メンテナンス対応, ドキュメントのアップデート, セキュリティアップデートを行いました。
 
 ## アップデート内容
 ### 新コンポーネント
-- Added Date/Time series components (DatePicker, TimePicker, and DateTimePicker).
-- Added Dialog component.
+- Date/Time シリーズコンポーネントの追加（DatePicker, TimePicker, DateTimePicker）
+- Dialog コンポーネントの追加
 
 ### 新機能
-- Updated to accept duplicated value in `value` and `Item.value` properties on choice components (MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, and MobileRadioButton).<br>
-  *Please check the detail on each component's document page.
+- 選択肢系コンポーネントの `value` と `Item.value` プロパティにて重複する値を許容、`selectedIndex` プロパティを追加（MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, MobileRadioButton）<br>
+  ※ 詳細は各コンポーネントのページをご確認ください。
 
 ### メンテナンス
-- Improved Spinner component to disable any controls outside of it when opening.
-- Updated to use from LitElement and lit-html to Lit 2.0.
-- Added the function to get the information of developing version.
-- Installed Yamory for checking package vulnerability.
-- Developed ESLint Custom Rules for checking our coding rule and deleted Sider system.
-- Installed storybook controls and actions feature.
-- Updated LICENSE file.
-- Fixed build setting for ESM.
+- Spinner コンポーネントを開いている時、コンポーネント外の操作を無効化するように改善
+- LitElement と lit-html から Lit 2.0 利用に変更
+- 開発中バージョンの情報を取得できる機能の追加
+- 脆弱性チェックのため Yamory の導入
+- コーディングルールチェックのため ESLint Custom Rule の開発と Sider の仕組みの削除
+- Storybook controls と actions 機能の導入
+- LICENSE ファイルの更新
+- ESM のビルド設定を修正
 
 ### セキュリティアップデート
-- Updated dependent libraries: webpack, json-schema, and core-js.
+- 依存ライブラリの更新：webpack, json-schema, and core-js
 
 ### ドキュメント
-- Added DatePicker, TimePicker, DateTimePicker, and Dialog pages.
-- Updated `value` and `selectedIndex` properties' specification to follow the logic change described above on choice components' pages.
-- Added `Bulk update customization` article.
+- DatePicker, TimePicker, DateTimePicker, Dialog コンポーネントページの追加
+- 選択肢系コンポーネントページにて `value` と `selectedIndex` プロパティの仕様を更新（上記のロジック変更に従う）
+- Bulk update customization 記事の追加
 
 ## トピック
 
 ### 新コンポーネントリリース
-We added several new components together this time!<br>
-About Date/Time series components, we considered it will be useful to provide each separately for property setting and leaning cost reasons.
+今回複数の新しいコンポーネントをリリースしました！<br>
+Date/Time シリーズコンポーネントについては、プロパティ設定のしやすさと学習コストを考えて 3つのコンポーネントに分けて提供しています。<br>
 
-About Dialog, we set the default size small, so you can utilize it on both desktop and mobile screens.
+Dialog については、デフォルトのサイズを小さくしたので、Desktop と Mobile 画面のどちらでもご活用いただけるかと思います。
 
 ### 重複する値の許容
-For choice components, we updated the specification to accept duplicated value in `value` and `Item.value` properties. (We used to throw error if it is duplicated.)<br>
-And for that, we newly added the `selectedIndex` property to distinguish which duplicated value item will be selected.<br>
-You can utilize the feature for example when you want to categorize by value and switch the display.
+選択肢系コンポーネントにおいて、`value` と `Item.value` プロパティに重複した値を設定できるように仕様を変更しました。（元々は重複した値がある場合、エラーを投げる実装になっていました。）<br>
+この対応のために、どの項目を選択するか指定できるように新規に `selectedIndex` というプロパティを追加しました。<br>
+例えば `value` ごとにカテゴライズして表示を切り替えたい時などにご活用いただけます。
 
-If you have any feedback or ideas, please feel free to post on GitHub issue!
+またフィードバックや新しいアイデアがありましたら、GitHub issue にてご連絡ください！
