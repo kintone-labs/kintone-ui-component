@@ -273,18 +273,19 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__group__button--next-month {
           background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_right.svg)
             no-repeat center center #ffffff;
-        }
-        .kuc-base-mobile-datetime-calendar-header__group__button:focus {
-          border: 1px solid #3498db;
-          outline: none;
+          cursor: pointer;
+          -webkit-appearance: button;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button-icon {
           vertical-align: middle;
         }
+        .kuc-base-mobile-datetime-calendar-header__group__button:focus {
+          outline: none;
+        }
         .kuc-base-mobile-datetime-calendar-header__group__center {
-          width: 190px;
           text-align: center;
           display: flex;
+          flex: 1;
           justify-content: center;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month {

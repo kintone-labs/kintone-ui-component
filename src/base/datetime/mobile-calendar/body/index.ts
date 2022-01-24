@@ -113,15 +113,16 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
   private _getDateClass(dateParts: string[], isThisMonth: boolean) {
     if (isThisMonth) {
       const isToday = this._isToday(dateParts);
+      console.log(isToday, "isToday");
       if (isToday)
-        return " kuc-base-mobile-datetime-calendar-body__table__date__button--today";
+        return " kuc-base-mobile-datetime-calendar-body__table__date--today";
 
       return "";
     }
     const isToday = this._isToday(dateParts);
     if (isToday)
-      return " kuc-base-mobile-datetime-calendar-body__table__date__button--today";
-    return " kuc-base-mobile-datetime-calendar-body__table__date__button--other-month";
+      return " kuc-base-mobile-datetime-calendar-body__table__date--today";
+    return " kuc-base-mobile-datetime-calendar-body__table__date--other-month";
   }
 
   private _isSameDayOfMoment(dates: string[]) {
@@ -179,29 +180,18 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
+                    aria-current="${this.value === weekDate.attr}"
+                    tabindex="-1"
                     class="kuc-base-mobile-datetime-calendar-body__table__date${(this
                       .value === weekDate.attr ||
                       isSameDate) &&
                     isThisMonth
                       ? "--selected"
-                      : ""}"
+                      : ""}${this._getDateClass(dateParts, isThisMonth)}"
+                    data-date="${weekDate.attr}"
+                    @click="${this._handleClickDateBtn}"
                   >
-                    <button
-                      aria-current="${this.value === weekDate.attr}"
-                      tabindex="${(this.value === weekDate.attr ||
-                        isSameDate) &&
-                      isThisMonth
-                        ? "0"
-                        : "-1"}"
-                      class="kuc-base-mobile-datetime-calendar-body__table__date__button${this._getDateClass(
-                        dateParts,
-                        isThisMonth
-                      )}"
-                      data-date="${weekDate.attr}"
-                      @click="${this._handleClickDateBtn}"
-                    >
-                      ${dateParts[2] || ""}
-                    </button>
+                    ${dateParts[2] || ""}
                   </td>
                 `;
               })}
@@ -221,118 +211,114 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-base-mobile-datetime-calendar-body,
-        kuc-base-mobile-datetime-calendar-body *,
-        :lang(en) kuc-base-mobile-datetime-calendar-body,
-        :lang(en) kuc-base-mobile-datetime-calendar-body * {
-          font-family: "HelveticaNeueW02-45Ligh", Arial,
-            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+          kuc-base-mobile-datetime-calendar-body,
+          kuc-base-mobile-datetime-calendar-body *,
+          :lang(en) kuc-base-mobile-datetime-calendar-body,
+          :lang(en) kuc-base-mobile-datetime-calendar-body * {
+            font-family: "HelveticaNeueW02-45Ligh", Arial,
+              "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+          }
+          :lang(ja) kuc-base-mobile-datetime-calendar-body,
+          :lang(ja) kuc-base-mobile-datetime-calendar-body * {
+            font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
+              sans-serif;
+          }
+          :lang(zh) kuc-base-mobile-datetime-calendar-body,
+          :lang(zh) kuc-base-mobile-datetime-calendar-body * {
+            font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
+              Hei, "Heiti SC", sans-serif;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table,
+          .kuc-base-mobile-datetime-calendar-body__table tr {
+            border-collapse: separate;
+            border-spacing: 0;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected {
+            border-spacing: 1px;
+            padding: 0px;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date {
+            max-width: 40px;
+            border-spacing: 1px;
+            cursor: pointer;
+            box-sizing: border-box;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ffffff;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            color: #333333;
+            font-size: 14px;
+            font-weight: 400;
         }
-        :lang(ja) kuc-base-mobile-datetime-calendar-body,
-        :lang(ja) kuc-base-mobile-datetime-calendar-body * {
-          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
-            sans-serif;
-        }
-        :lang(zh) kuc-base-mobile-datetime-calendar-body,
-        :lang(zh) kuc-base-mobile-datetime-calendar-body * {
-          font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
-            Hei, "Heiti SC", sans-serif;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table {
-          width: 100%;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table,
-        .kuc-base-mobile-datetime-calendar-body__table tr {
-          border-collapse: separate;
-          border-spacing: 0;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date {
-          max-width: 40px;
-          width: 40px;
-          height: 40px;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date,
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected {
-          border-spacing: 1px;
-          padding: 0px;
-          border: 1px solid #ffffff;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button {
-          border-spacing: 1px;
-          cursor: pointer;
-          box-sizing: border-box;
-          border: 1px solid #ffffff;
-          text-align: center;
-          vertical-align: middle;
-          color: #333333;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button,
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected
-          .kuc-base-mobile-datetime-calendar-body__table__date__button,
-        .kuc-base-mobile-datetime-calendar-body__table__header {
-          box-sizing: border-box;
-          height: 40px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          font-weight: 400;
-          font-size: 12px;
-          padding: 0;
-        }
-        th.kuc-base-mobile-datetime-calendar-body__table__header {
-          font-weight: 700;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected
-          .kuc-base-mobile-datetime-calendar-body__table__date__button,
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button,
-        .kuc-base-mobile-datetime-calendar-body__table__header {
-          box-sizing: border-box;
-          border: 1px solid #ffffff;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected
-          .kuc-base-mobile-datetime-calendar-body__table__date__button,
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button {
-          background: none;
-          cursor: pointer;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button:hover {
-          color: #000000;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected {
-          border: 1px solid #206694;
-          box-sizing: border-box;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected
-          .kuc-base-mobile-datetime-calendar-body__table__date__button {
-          outline: none;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button:focus-visible {
-          outline: none;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date--selected
-          .kuc-base-mobile-datetime-calendar-body__table__date__button--today,
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button--today {
-          color: #ffffff;
-          background: #888888;
-          border: none;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date__button--today:hover {
-          color: #333333;
-        }
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button--other-month,
-        .kuc-base-mobile-datetime-calendar-body__table__date
-          .kuc-base-mobile-datetime-calendar-body__table__date__button--other-month:hover {
-          color: #d4d7d7;
-        }
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date
+            .kuc-base-mobile-datetime-calendar-body__table__date__button {
+            border-spacing: 1px;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-align: center;
+            vertical-align: middle;
+            color: #333333;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date,
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected,
+          .kuc-base-mobile-datetime-calendar-body__table__header {
+            box-sizing: border-box;
+            height: 40px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-weight: 400;
+            font-size: 14px;
+            color: #333333;
+            padding: 0;
+          }
+          th.kuc-base-mobile-datetime-calendar-body__table__header {
+            font-weight: 700;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected
+            .kuc-base-mobile-datetime-calendar-body__table__date__button,
+          .kuc-base-mobile-datetime-calendar-body__table__date
+            .kuc-base-mobile-datetime-calendar-body__table__date__button,
+          .kuc-base-mobile-datetime-calendar-body__table__header {
+            box-sizing: border-box;
+            border: 1px solid #ffffff;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected
+            .kuc-base-mobile-datetime-calendar-body__table__date__button,
+          .kuc-base-mobile-datetime-calendar-body__table__date
+            .kuc-base-mobile-datetime-calendar-body__table__date__button {
+            background: none;
+            cursor: pointer;
+            max-width: 40px;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected {
+            border: 1px solid #206694;
+            box-sizing: border-box;
+            text-align: center;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected
+            .kuc-base-mobile-datetime-calendar-body__table__date__button {
+            outline: none;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date
+            .kuc-base-mobile-datetime-calendar-body__table__date__button:focus-visible {
+            outline: none;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--today {
+            color: #333333;
+            background: #d8d8d8;
+            border: none;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--other-month {
+            color: #a5a5a5;
+          }
+          .kuc-base-mobile-datetime-calendar-body__table__date--selected:focus {
+            outline: none;
+          }
       </style>
     `;
   }

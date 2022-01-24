@@ -55,14 +55,16 @@ export class BaseMobileDateTimeCalendar extends KucBase {
     return html`
       <style>
         .kuc-base-mobile-datetime-calendar__group {
+          position: absolute;
+          z-index: 2000;
           display: inline-block;
           box-sizing: border-box;
           width: 290px;
           padding: 0 10px;
           background: #ffffff;
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
           text-align: center;
           font-size: 13px;
+          border: 1px solid #d8d8d8;
         }
       </style>
     `;

@@ -94,7 +94,6 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
           align-items: flex-end;
           box-sizing: border-box;
           padding: 0;
-          height: 27px;
           white-space: nowrap;
         }
         .kuc-base-mobile-datetime-calendar-footer__group__button {
