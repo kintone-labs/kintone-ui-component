@@ -45,7 +45,7 @@ DateTimePicker は日付と時間それぞれの入力エリアと選択肢を�
 
 ### Constructor
 
-DatePicker(options)<br>
+DateTimePicker(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
