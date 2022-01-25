@@ -57,6 +57,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <button
           aria-label="previous month"
           type="button"
+          tabindex="-1"
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--previous-month"
           @click="${this._handleClickMobileCalendarPrevMonthBtn}"
         >
@@ -68,6 +69,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <button
           aria-label="next month"
           type="button"
+          tabindex="-1"
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--next-month"
           @click="${this._handleClickMobileCalendarNextMonthBtn}"
         >
