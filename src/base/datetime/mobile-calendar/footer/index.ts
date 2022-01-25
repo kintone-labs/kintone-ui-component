@@ -40,7 +40,7 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--today"
           @click="${this._handleClickMobileCalendarFooterButtonToday}"
         >
-          ${this._locale.MOBILE_CALENDAR_FOOTER_TEXT.today}
+          ${this._locale.CALENDAR_FOOTER_TEXT.today}
         </button>
         <span
           class="kuc-base-mobile-datetime-calendar-footer__group__center"
@@ -50,7 +50,7 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--none"
           @click="${this._handleClickMobileCalendarFooterButtonNone}"
         >
-          ${this._locale.MOBILE_CALENDAR_FOOTER_TEXT.none}
+          ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
         <span
           class="kuc-base-mobile-datetime-calendar-footer__group__center"
@@ -60,7 +60,7 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--close"
           @click="${this._handleClickMobileCalendarFooterButtonClose}"
         >
-          ${this._locale.MOBILE_CALENDAR_FOOTER_TEXT.close}
+          ${this._locale.CALENDAR_FOOTER_TEXT.close}
         </button>
       </div>
     `;

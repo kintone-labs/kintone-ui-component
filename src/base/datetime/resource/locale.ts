@@ -24,7 +24,7 @@ export const en = {
     { text: "SAT", abbr: "Saturday" }
   ],
   INVALID_FORMAT: "Format is not valid.",
-  CALENDAR_FOOTER_TEXT: { none: "None", today: "Today" },
+  CALENDAR_FOOTER_TEXT: { none: "None", today: "Today", close: "Close" },
   MOBILE_MONTH_SELECT: [
     "Jan",
     "Feb",
@@ -39,7 +39,6 @@ export const en = {
     "Nov",
     "Dec"
   ],
-  MOBILE_YEAR_SELECT_POSTFIX: "",
   MOBILE_WEEK_DAYS: [
     { text: "Sun", abbr: "Sunday" },
     { text: "Mon", abbr: "Monday" },
@@ -48,9 +47,7 @@ export const en = {
     { text: "Thu", abbr: "Thursday" },
     { text: "Fri", abbr: "Friday" },
     { text: "Sat", abbr: "Saturday" }
-  ],
-  MOBILE_INVALID_FORMAT: "Format is not valid.",
-  MOBILE_CALENDAR_FOOTER_TEXT: { none: "None", today: "Today", close: "Close" }
+  ]
 };
 
 export const ja = {
@@ -79,7 +76,7 @@ export const ja = {
     { text: "土", abbr: "土" }
   ],
   INVALID_FORMAT: "日付の形式が不正です。",
-  CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日" },
+  CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日", close: "閉じる" },
   MOBILE_MONTH_SELECT: [
     "1月",
     "2月",
@@ -94,7 +91,6 @@ export const ja = {
     "11月",
     "12月"
   ],
-  MOBILE_YEAR_SELECT_POSTFIX: "年",
   MOBILE_WEEK_DAYS: [
     { text: "日", abbr: "日" },
     { text: "月", abbr: "月" },
@@ -103,13 +99,7 @@ export const ja = {
     { text: "木", abbr: "木" },
     { text: "金", abbr: "金" },
     { text: "土", abbr: "土" }
-  ],
-  MOBILE_INVALID_FORMAT: "日付の形式が不正です。",
-  MOBILE_CALENDAR_FOOTER_TEXT: {
-    none: "選択を解除",
-    today: "今日",
-    close: "閉じる"
-  }
+  ]
 };
 
 export const zh = {
@@ -138,7 +128,7 @@ export const zh = {
     { text: "周六", abbr: "周六" }
   ],
   INVALID_FORMAT: "日期格式不正确。",
-  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天" },
+  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" },
   MOBILE_MONTH_SELECT: [
     "1月",
     "2月",
@@ -153,7 +143,6 @@ export const zh = {
     "11月",
     "12月"
   ],
-  MOBILE_YEAR_SELECT_POSTFIX: "年",
   MOBILE_WEEK_DAYS: [
     { text: "周日", abbr: "周日" },
     { text: "周一", abbr: "周一" },
@@ -162,7 +151,5 @@ export const zh = {
     { text: "周四", abbr: "周四" },
     { text: "周五", abbr: "周五" },
     { text: "周六", abbr: "周六" }
-  ],
-  MOBILE_INVALID_FORMAT: "日期格式不正确。",
-  MOBILE_CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" }
+  ]
 };

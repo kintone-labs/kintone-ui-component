@@ -151,7 +151,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     return this._getMobileYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this._locale.MOBILE_YEAR_SELECT_POSTFIX}`
+        label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
       };
       return item;
     });
