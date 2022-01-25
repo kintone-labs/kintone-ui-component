@@ -1,8 +1,7 @@
 ---
-id: version-1.0.0-release-notes-v1.3.0
+id: release-notes-v1.3.0
 title: v1.3.0 Release Notes
 sidebar_label: v1.3.0 Release Notes
-original_id: release-notes-v1.3.0
 ---
 
 ## Overview
@@ -51,5 +50,3 @@ And for that, we newly added the `selectedIndex` property to distinguish which d
 You can utilize the feature for example when you want to categorize by value and switch the display.
 
 If you have any feedback or ideas, please feel free to post on GitHub issue!
-
-
