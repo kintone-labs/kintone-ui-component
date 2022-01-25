@@ -269,6 +269,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__group__button--previous-month {
           background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_left.svg)
             no-repeat center center #ffffff;
+          cursor: pointer;
+          -webkit-appearance: button;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button--next-month {
           background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_right.svg)
