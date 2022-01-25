@@ -45,7 +45,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-DatePicker(options)<br>
+DateTimePicker(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
