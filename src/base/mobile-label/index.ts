@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
-import { KucBase } from "../../base/kuc-base";
+import { KucBase } from "../kuc-base";
 
 export class BaseMobileLabel extends KucBase {
   @property({ type: Boolean }) requiredIcon = false;
