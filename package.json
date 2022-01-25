@@ -51,7 +51,7 @@
     "deepmerge": "^4.2.2",
     "eslint": "^7.18.0",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
-    "karma": "^6.3.2",
+    "karma": "^6.3.11",
     "karma-coverage": "^2.0.3",
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
