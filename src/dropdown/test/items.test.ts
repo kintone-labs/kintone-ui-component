@@ -150,25 +150,7 @@ describe("Dropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      const container = new Dropdown({ items: dupplicatedItems });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("should be throw error when assigned null by setter", async () => {
@@ -186,40 +168,7 @@ describe("Dropdown", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      const container = new Dropdown();
-      container.items = dupplicatedItems;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
-    });
-    it('should set item value "" when assigned item value undefined on constructor', async () => {
-      const container = new Dropdown({ items: initItemsWithoutValue });
-      const el = await fixture(container);
-      const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
-      );
-
-      expect(itemsEl.length).to.equal(2);
-
-      expect(itemsEl[1].getAttribute("value")).to.equal("");
-      expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutValue[1].label
-      );
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });

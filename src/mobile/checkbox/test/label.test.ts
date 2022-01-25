@@ -18,7 +18,7 @@ describe("MobileCheckbox", () => {
       expect(labelTextEl.textContent).to.equal("");
     });
 
-    it("should be display \"options-label\" when assigned \"options-label\" in constructor", async () => {
+    it('should be display "options-label" when assigned "options-label" in constructor', async () => {
       const container = new MobileCheckbox({ label: "options-label" });
       const el = await fixture(container);
 
@@ -33,7 +33,7 @@ describe("MobileCheckbox", () => {
       expect(labelTextEl.textContent).to.equal("options-label");
     });
 
-    it("should be display \"replace-label\" when changed to \"replace-label\" by setter", async () => {
+    it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new MobileCheckbox({
         label: "options-label"
       });

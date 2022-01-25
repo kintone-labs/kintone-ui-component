@@ -1,4 +1,5 @@
-import { html, property } from "lit-element";
+import { html } from "lit";
+import { property } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -25,8 +26,8 @@ type MobileTextProps = {
 
 export class MobileText extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
   @property({ type: String }) prefix = "";

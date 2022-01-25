@@ -1,4 +1,5 @@
-import { html, property } from "lit-element";
+import { html } from "lit";
+import { property } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -22,8 +23,8 @@ type MobileTextAreaProps = {
 
 export class MobileTextArea extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) placeholder = "";
   @property({ type: String }) value = "";
@@ -166,7 +167,7 @@ export class MobileTextArea extends KucBase {
           padding: 0.4em;
           border: 1px solid #b3b3b3;
           outline: 0;
-          box-shadow: 0 1px 0 #fff, inset 0 2px 3px #dadada;
+          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
           border-radius: 0.4em;
           box-sizing: border-box;
         }
@@ -174,7 +175,7 @@ export class MobileTextArea extends KucBase {
           border: 1px solid #cf4a38;
         }
         .kuc-mobile-textarea__form__textarea:disabled {
-          color: #999;
+          color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
         }

@@ -51,6 +51,35 @@ describe("MultiChoice", () => {
       ).to.equal(false);
     });
 
+    it("should not highlight/not highlight when mouseover/mouseleave the item and assinging disabled is true", async () => {
+      const container = new MultiChoice({
+        items: initItems,
+        value: [initItems[1].value],
+        disabled: true
+      });
+
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
+      menuEl.click();
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      const highlightEl = el.querySelector(
+        ".kuc-multi-choice__group__menu__highlight"
+      );
+      itemsEl[2].dispatchEvent(new Event("mouseover"));
+      expect(highlightEl).to.equal(null);
+
+      itemsEl[1].dispatchEvent(new Event("mouseover"));
+      expect(highlightEl).to.equal(null);
+
+      itemsEl[1].dispatchEvent(new Event("mouseleave"));
+      expect(highlightEl).to.equal(null);
+    });
+
     it("should not changed highlight when triggered mousedown", async () => {
       const container = new MultiChoice({
         items: initItems,

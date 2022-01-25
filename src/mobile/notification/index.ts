@@ -1,4 +1,5 @@
-import { html, svg, property, state } from "lit-element";
+import { html, svg } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
 type MobileNotificationProps = {
@@ -74,7 +75,7 @@ export class MobileNotification extends KucBase {
           role="${this._isOpened ? "alert" : ""}"
         ><!---->${this.text}</pre>
         <button
-          class="kuc-mobile-notification__notification__closeButton"
+          class="kuc-mobile-notification__notification__close-button"
           type="button"
           aria-label="close"
           @click="${this._handleClickCloseButton}"
@@ -135,7 +136,7 @@ export class MobileNotification extends KucBase {
           font-weight: 700;
           line-height: 14px;
           text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-          color: #333;
+          color: #333333;
           text-align: center;
           vertical-align: top;
         }
@@ -152,7 +153,7 @@ export class MobileNotification extends KucBase {
           white-space: pre-wrap;
         }
 
-        .kuc-mobile-notification__notification__closeButton {
+        .kuc-mobile-notification__notification__close-button {
           position: absolute;
           right: 0;
           top: 0;

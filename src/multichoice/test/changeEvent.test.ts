@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { MultiChoice } from "../index";
 
 const initItems = [
@@ -23,26 +23,16 @@ describe("MultiChoice", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-multi-choice__group__menu__item"
       );
+      itemsEl[1].dispatchEvent(new Event("mousedown"));
+      await elementUpdated(container);
       itemsEl[2].dispatchEvent(new Event("mousedown"));
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.oldValue).to.deep.equal([
-        initItems[1].value
-      ]);
-      expect(triggeredEvent.detail.value).to.deep.equal([
-        initItems[1].value,
-        initItems[2].value
-      ]);
-      itemsEl[1].dispatchEvent(new Event("mousedown"));
-      expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.oldValue).to.deep.equal([
-        initItems[1].value,
-        initItems[2].value
-      ]);
+      expect(triggeredEvent.detail.oldValue).to.deep.equal([]);
       expect(triggeredEvent.detail.value).to.deep.equal([initItems[2].value]);
     });
 
-    it("should be triggered when input element triggered change event and prop disabled is true", async () => {
+    it("should not triggered when assinging disabled is true", async () => {
       let triggeredEvent: any = null;
       const container = new MultiChoice({
         items: initItems,
@@ -57,11 +47,11 @@ describe("MultiChoice", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-multi-choice__group__menu__item"
       );
-      itemsEl[2].dispatchEvent(new Event("mouseover"));
+      itemsEl[1].dispatchEvent(new Event("mousedown"));
+      await elementUpdated(container);
       itemsEl[2].dispatchEvent(new Event("mousedown"));
+
       expect(triggeredEvent).to.equal(null);
-      itemsEl[2].dispatchEvent(new Event("mouseup"));
-      itemsEl[2].dispatchEvent(new Event("mouseleave"));
     });
   });
 });

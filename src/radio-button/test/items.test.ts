@@ -214,7 +214,7 @@ describe("MobileRadioButton", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("should be throw error when assigned dupplicated items on constructor", async () => {
@@ -233,7 +233,7 @@ describe("MobileRadioButton", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("should be throw error when assigned null by setter", async () => {
@@ -251,7 +251,7 @@ describe("MobileRadioButton", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
 
     it("should be throw error when assigned dupplicated items by setter", async () => {
@@ -271,7 +271,7 @@ describe("MobileRadioButton", () => {
       }
 
       // TODO:
-      // Implement checking if source code does not throw error in _validateItems function
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });

@@ -1,4 +1,5 @@
-import { html, svg, property, state } from "lit-element";
+import { html, svg } from "lit";
+import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
@@ -103,7 +104,7 @@ export class Notification extends KucBase {
         ><!--
         -->${this.text}</pre>
         <button
-          class="kuc-notification__notification__closeButton"
+          class="kuc-notification__notification__close-button"
           type="button"
           aria-label="close"
           @click="${this._handleClickCloseButton}"
@@ -187,7 +188,7 @@ export class Notification extends KucBase {
           word-break: break-word;
           white-space: pre-wrap;
         }
-        .kuc-notification__notification__closeButton {
+        .kuc-notification__notification__close-button {
           position: absolute;
           top: 5px;
           right: 0px;

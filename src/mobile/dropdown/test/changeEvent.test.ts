@@ -15,7 +15,7 @@ describe("MobileDropdown", () => {
         value: initItems[0].value
       });
 
-      container.addEventListener("onchange", (event: any) => {
+      container.addEventListener("change", (event: any) => {
         expect(event.detail.value).to.have.equals(initItems[2].value);
         expect(event.detail.oldValue).to.have.equals(initItems[0].value);
       });
@@ -24,11 +24,14 @@ describe("MobileDropdown", () => {
       const itemsEl = el.querySelector(
         ".kuc-mobile-dropdown__input-form__select__input"
       ) as HTMLSelectElement;
-      itemsEl.dispatchEvent(new Event("change"));
+      itemsEl.dispatchEvent(new Event("change", { bubbles: true }));
+      itemsEl.selectedIndex = 2;
+      itemsEl.dispatchEvent(new Event("change", { bubbles: true }));
 
       if (itemsEl.childElementCount > 0) {
-        const event = new CustomEvent("onchange", {
-          detail: { oldValue: initItems[0].value, value: initItems[2].value }
+        const event = new CustomEvent("change", {
+          detail: { oldValue: initItems[0].value, value: initItems[2].value },
+          bubbles: true
         });
         container.dispatchEvent(event);
       }

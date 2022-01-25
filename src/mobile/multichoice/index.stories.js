@@ -32,6 +32,7 @@ storiesOf("mobile/multichoice", module)
         }
       ],
       value: ["item-1", "item-3"],
+      selectedIndex: [0, 2],
       error: "Error occurred!",
       className: "sample-class",
       id: "sample-id",

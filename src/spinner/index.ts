@@ -1,4 +1,5 @@
-import { html, svg, property } from "lit-element";
+import { html, svg } from "lit";
+import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 type SpinnerProps = {
@@ -6,6 +7,7 @@ type SpinnerProps = {
 };
 
 export class Spinner extends KucBase {
+  private _body: Element = document.getElementsByTagName("BODY")[0];
   @property({ type: String }) text = "";
 
   constructor(props?: SpinnerProps) {
@@ -38,11 +40,14 @@ export class Spinner extends KucBase {
   }
 
   open() {
-    const body = document.getElementsByTagName("BODY")[0];
-    body.appendChild(this);
+    if (this._body.classList.contains("kuc--has-spinner") === false) {
+      this._body.classList.add("kuc--has-spinner");
+    }
+    this._body.appendChild(this);
   }
 
   close() {
+    this._body.classList.remove("kuc--has-spinner");
     this.parentNode && this.parentNode.removeChild(this);
   }
 
@@ -52,9 +57,9 @@ export class Spinner extends KucBase {
       <div class="kuc-spinner__spinner" aria-live="assertive" role="alert">
         ${this._getSpinnerSvgTemplate()}
         <div
-          class="${!this.text
-            ? "kuc-spinner__spinner__text visually-hidden"
-            : "kuc-spinner__spinner__text"}"
+          class="kuc-spinner__spinner__text${!this.text
+            ? " visually-hidden"
+            : ""}"
         >
           ${!this.text ? "now loading…" : this.text}
         </div>
@@ -121,7 +126,7 @@ export class Spinner extends KucBase {
           margin: -1px;
         }
         .kuc-spinner__mask {
-          position: absolute;
+          position: fixed;
           top: 0;
           right: 0;
           display: block;
@@ -130,6 +135,9 @@ export class Spinner extends KucBase {
           background-color: #666666;
           opacity: 0.6;
           z-index: 9999;
+        }
+        .kuc--has-spinner {
+          overflow: hidden;
         }
         @keyframes rotate-loading {
           0% {

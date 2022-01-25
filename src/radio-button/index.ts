@@ -1,11 +1,5 @@
-import {
-  html,
-  property,
-  PropertyValues,
-  svg,
-  query,
-  queryAll
-} from "lit-element";
+import { html, PropertyValues, svg } from "lit";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -13,10 +7,15 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  validateProps,
+  validateItems,
+  validateValueString,
+  validateSelectedIndexNumber
+} from "../base/validator";
 import { getWidthElmByContext } from "../base/context";
 
-type Item = { value?: string; label?: string };
+type Item = { label?: string; value?: string };
 type RadioButtonProps = {
   className?: string;
   error?: string;
@@ -24,6 +23,7 @@ type RadioButtonProps = {
   itemLayout?: string;
   label?: string;
   value?: string;
+  selectedIndex?: number;
   borderVisible?: boolean;
   disabled?: boolean;
   requiredIcon?: boolean;
@@ -33,11 +33,12 @@ type RadioButtonProps = {
 
 export class RadioButton extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
-  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) error = "";
+  @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) itemLayout = "horizontal";
   @property({ type: String }) label = "";
   @property({ type: String }) value = "";
+  @property({ type: Number }) selectedIndex = -1;
   @property({ type: Boolean }) borderVisible = true;
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -72,8 +73,13 @@ export class RadioButton extends KucBase {
     event.stopPropagation();
     const inputEl = event.target as HTMLInputElement;
     const value = inputEl.value;
-    const detail: CustomEventDetail = { value: value, oldValue: this.value };
+    const index = inputEl.dataset.index || "0";
+
+    const indexNumber = parseInt(index, 10);
+    if (this.value === value && this.selectedIndex === indexNumber) return;
+    const detail: CustomEventDetail = { oldValue: this.value, value: value };
     this.value = value;
+    this.selectedIndex = indexNumber;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -93,30 +99,36 @@ export class RadioButton extends KucBase {
     return svg`
     <svg
       class="kuc-radio-button__group__select-menu__item__label__icon"
-      width='21'
-      height='21'
-      viewBox='0 0 21 21'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        cx='10.5'
-        cy='10.5'
-        r='10'
-        fill='white'
-        stroke='#e3e7e8' stroke-width='1'/>
+        cx="10.5"
+        cy="10.5"
+        r="10"
+        fill="white"
+        stroke="#e3e7e8" stroke-width="1"/>
       ${
         checked
-          ? svg`<circle cx='10.5' cy='10.5' r='6.5' fill='${
+          ? svg`<circle cx="10.5" cy="10.5" r="6.5" fill="${
               disabled ? "#e3e7e8" : "#3498db"
-            }'/>`
+            }"/>`
           : ""
       }
     </svg>
   `;
   }
 
+  private _isCheckedItem(item: Item, index: number) {
+    if (!this.value) return this.selectedIndex === index;
+    return item.value === this.value && this.selectedIndex === index;
+  }
+
   private _getItemTemplate(item: Item, index: number) {
+    const isCheckedItem = this._isCheckedItem(item, index);
     return html`
       <div
         class="kuc-radio-button__group__select-menu__item"
@@ -124,8 +136,9 @@ export class RadioButton extends KucBase {
       >
         <input
           type="radio"
-          aria-checked="${this.value === item.value}"
+          aria-checked="${isCheckedItem}"
           aria-describedby="${this._GUID}-error"
+          data-index="${index}"
           id="${this._GUID}-item-${index}"
           class="kuc-radio-button__group__select-menu__item__input"
           name="${this._GUID}-group"
@@ -142,7 +155,7 @@ export class RadioButton extends KucBase {
           for="${this._GUID}-item-${index}"
           >${this._getRadioIconSvgTemplate(
             this.disabled,
-            item.value !== undefined ? this.value === item.value : false
+            isCheckedItem
           )}${item.label === undefined ? item.value : item.label}
         </label>
       </div>
@@ -160,7 +173,16 @@ export class RadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) this._validateItems();
+    if (changedProperties.has("items")) validateItems(this.items);
+    if (
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      validateValueString(this.value);
+      validateSelectedIndexNumber(this.selectedIndex);
+      this.selectedIndex = this._getSelectedIndex();
+      this.value = this._getValue() || "";
+    }
     super.update(changedProperties);
   }
 
@@ -208,6 +230,26 @@ export class RadioButton extends KucBase {
     this._updateErrorWidth();
   }
 
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue() {
+    const item = this.items[this.selectedIndex];
+    if (!item) return "";
+    return item.value;
+  }
+
   private _updateErrorWidth() {
     const MIN_WIDTH = 239;
     const labelWidth = getWidthElmByContext(this._labelEl);
@@ -216,20 +258,6 @@ export class RadioButton extends KucBase {
     let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     if (menuWidth > errorWidth) errorWidth = menuWidth;
     this._errorEl.style.width = errorWidth + "px";
-  }
-
-  private _validateItems() {
-    if (!Array.isArray(this.items)) {
-      throw new Error("'items' property is not array");
-    }
-    const itemsValue = this.items.map(item => item.value);
-    itemsValue.forEach((value, index, self) => {
-      if (value !== undefined && self.indexOf(value) !== index) {
-        throw new Error(
-          `'items[${index}].value' is duplicated! You can specify unique one.`
-        );
-      }
-    });
   }
 
   private _getStyleTagTemplate() {

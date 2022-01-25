@@ -195,38 +195,22 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned null on constructor", async () => {
-      expect(() => {
-        // @ts-expect-error
-        const container = new MobileRadioButton({ items: null });
-      }).to.throw(Error, "'items' property is not array");
-    });
-
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      expect(() => {
-        const container = new MobileRadioButton({ items: dupplicatedItems });
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
-    });
-
     it("should be throw error when assigned null by setter", async () => {
-      expect(() => {
-        const container = new MobileRadioButton();
+      const container = new MobileRadioButton();
+      try {
         // @ts-expect-error
         container.items = null;
-      }).to.throw(Error, "'items' property is not array");
-    });
+        await fixture(container);
+      } catch (error) {
+        let errorMessage = "'items' property is not array";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'items' property is not array");
+      }
 
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      expect(() => {
-        const container = new MobileRadioButton();
-        container.items = dupplicatedItems;
-      }).to.throw(
-        Error,
-        "'items[1].value' is duplicated! You can specify unique one."
-      );
+      // TODO:
+      // Implement checking if source code does not throw error in validateItems function
     });
   });
 });
