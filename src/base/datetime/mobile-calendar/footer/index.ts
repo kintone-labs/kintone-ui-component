@@ -37,7 +37,6 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
       <div class="kuc-base-mobile-datetime-calendar-footer__group">
         <button
           type="button"
-          tabindex="0"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--today"
           @click="${this._handleClickMobileCalendarFooterButtonToday}"
         >
@@ -48,7 +47,6 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
         ></span>
         <button
           type="button"
-          tabindex="0"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--none"
           @click="${this._handleClickMobileCalendarFooterButtonNone}"
         >
@@ -59,7 +57,6 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
         ></span>
         <button
           type="button"
-          tabindex="0"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--close"
           @click="${this._handleClickMobileCalendarFooterButtonClose}"
         >

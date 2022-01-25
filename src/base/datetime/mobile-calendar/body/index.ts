@@ -168,6 +168,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
 
   private _getDateItemsTemplate() {
     const displayingDates = getDisplayingDates(this._year, this._month - 1);
+    const monthString = this._locale.MOBILE_MONTH_SELECT[this._month - 1];
     return html`
       <tbody>
         ${displayingDates.map(weeks => {
@@ -180,7 +181,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
-                    aria-current="${this.value === weekDate.attr}"
                     tabindex="-1"
                     class="kuc-base-mobile-datetime-calendar-body__table__date${(this
                       .value === weekDate.attr ||
@@ -189,6 +189,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"
+                    aria-label="${dateParts[2]} ${monthString}"
                     @click="${this._handleClickDateBtn}"
                   >
                     ${dateParts[2] || ""}
