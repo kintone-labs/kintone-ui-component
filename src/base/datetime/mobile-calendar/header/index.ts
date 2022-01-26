@@ -6,11 +6,7 @@ import {
   CustomEventDetail
 } from "../../../kuc-base";
 import { Item } from "../../listbox";
-import {
-  getLeftArrowIconSvgTemplate,
-  getRightArrowIconSvgTemplate,
-  getLocale
-} from "../../utils/";
+import { getLocale } from "../../utils/";
 
 function isValidMonth(month: number) {
   return month > 0 && month < 13;
@@ -20,7 +16,6 @@ function isValidYear(year: number) {
 }
 export class BaseMobileDateTimeCalendarHeader extends KucBase {
   @property({ type: String }) language = "en";
-  @property({ type: String }) postfix = "";
   @property({
     type: Number,
     hasChanged(newVal: number) {
@@ -35,6 +30,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     }
   })
   year = 2021;
+
   @state()
   private _monthOptions!: Item[];
   @state()
@@ -57,11 +53,10 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <button
           aria-label="previous month"
           type="button"
-          tabindex="-1"
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--previous-month"
-          @click="${this._handleClickMobileCalendarPrevMonthBtn}"
+          @click="${this._handleClickCalendarPrevMonthBtn}"
         >
-          ${getLeftArrowIconSvgTemplate()}
+          «
         </button>
         <div class="kuc-base-mobile-datetime-calendar-header__group__center">
           ${this._getYearMonthTemplate()}
@@ -69,11 +64,10 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <button
           aria-label="next month"
           type="button"
-          tabindex="-1"
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--next-month"
-          @click="${this._handleClickMobileCalendarNextMonthBtn}"
+          @click="${this._handleClickCalendarNextMonthBtn}"
         >
-          ${getRightArrowIconSvgTemplate()}
+          »
         </button>
       </div>
     `;
@@ -148,7 +142,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   }
 
   private _generateYearOptions() {
-    return this._getMobileYearOptions().map((year: number) => {
+    return this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
         label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
@@ -157,7 +151,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     });
   }
 
-  private _getMobileYearOptions = () => {
+  private _getYearOptions = () => {
     const year = new Date().getFullYear();
     const options = [];
     let i = year < 100 ? 0 : year - 100;
@@ -194,7 +188,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     this._dispatchCalendarHeaderChangeEvent();
   }
 
-  private _handleClickMobileCalendarPrevMonthBtn(event: MouseEvent) {
+  private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     const monthSelected = this.month;
     if (monthSelected === 1) {
@@ -206,7 +200,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     this._dispatchCalendarHeaderChangeEvent();
   }
 
-  private _handleClickMobileCalendarNextMonthBtn(event: MouseEvent) {
+  private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     const monthSelected = this.month;
     if (monthSelected === 12) {
@@ -254,7 +248,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           border-bottom: 1px solid #e3e7e8;
           padding: 0;
           white-space: nowrap;
-          height: 41px;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button {
           background-color: inherit;
@@ -319,7 +312,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
         }
-        .kuc-base-mobile-datetime-calendar-header__group__center__month__icon;
       </style>
     `;
   }

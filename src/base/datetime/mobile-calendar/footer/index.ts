@@ -16,17 +16,17 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
     super.update(changedProperties);
   }
 
-  private _handleClickMobileCalendarFooterButtonClose(event: MouseEvent) {
+  private _handleClickCalendarFooterButtonClose(event: MouseEvent) {
     event.stopPropagation();
     dispatchCustomEvent(this, "kuc:mobile-calendar-footer-click-close");
   }
 
-  private _handleClickMobileCalendarFooterButtonNone(event: MouseEvent) {
+  private _handleClickCalendarFooterButtonNone(event: MouseEvent) {
     event.stopPropagation();
     dispatchCustomEvent(this, "kuc:mobile-calendar-footer-click-none");
   }
 
-  private _handleClickMobileCalendarFooterButtonToday(event: MouseEvent) {
+  private _handleClickCalendarFooterButtonToday(event: MouseEvent) {
     event.stopPropagation();
     dispatchCustomEvent(this, "kuc:mobile-calendar-footer-click-today");
   }
@@ -38,27 +38,21 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
         <button
           type="button"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--today"
-          @click="${this._handleClickMobileCalendarFooterButtonToday}"
+          @click="${this._handleClickCalendarFooterButtonToday}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.today}
         </button>
-        <span
-          class="kuc-base-mobile-datetime-calendar-footer__group__center"
-        ></span>
         <button
           type="button"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--none"
-          @click="${this._handleClickMobileCalendarFooterButtonNone}"
+          @click="${this._handleClickCalendarFooterButtonNone}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.none}
         </button>
-        <span
-          class="kuc-base-mobile-datetime-calendar-footer__group__center"
-        ></span>
         <button
           type="button"
           class="kuc-base-mobile-datetime-calendar-footer__group__button kuc-base-mobile-datetime-calendar-footer__group__button--close"
-          @click="${this._handleClickMobileCalendarFooterButtonClose}"
+          @click="${this._handleClickCalendarFooterButtonClose}"
         >
           ${this._locale.CALENDAR_FOOTER_TEXT.close}
         </button>
@@ -88,7 +82,7 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
         }
         .kuc-base-mobile-datetime-calendar-footer__group {
           display: flex;
-          align-items: flex-end;
+          justify-content: space-between;
           box-sizing: border-box;
           padding: 0;
           white-space: nowrap;
