@@ -86,8 +86,16 @@ const Template = ({ language, value }) => {
         top: 24px;
         left: 0px;
       }
+      input:focus {
+        outline: none;
+      }
     </style>
-    <input type="text" value="${value}" @focus="${_handleFocusInput}" />
+    <input
+      type="text"
+      value="${value}"
+      readonly
+      @focus="${_handleFocusInput}"
+    />
     <kuc-base-mobile-datetime-calendar
       .language="${language}"
       .value="${value}"
