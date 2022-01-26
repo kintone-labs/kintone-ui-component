@@ -62,7 +62,20 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--previous-month"
           @click="${this._handleClickCalendarPrevMonthBtn}"
         >
-          «
+          <svg
+            width="16"
+            height="14"
+            viewBox="0 0 16 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M8.70788 11.9567C9.0984 12.3472 9.0984 12.9804 8.70788 13.3709C8.31735 13.7614 7.68419 13.7614 7.29366 13.3709L2.34392 8.42118L0.929703 7.00696L2.34392 5.59275L7.29366 0.643003C7.68419 0.25248 8.31735 0.25248 8.70788 0.643003C9.0984 1.03353 9.0984 1.66669 8.70788 2.05722L4.68709 6.07801L14.0718 6.07801C14.6241 6.07801 15.0718 6.52572 15.0718 7.07801C15.0718 7.63029 14.6241 8.07801 14.0718 8.07801L4.82917 8.07801L8.70788 11.9567Z"
+              fill="#206694"
+            />
+          </svg>
         </button>
         <div class="kuc-base-mobile-datetime-calendar-header__group__center">
           ${this._getYearMonthTemplate()}
@@ -73,7 +86,20 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           class="kuc-base-mobile-datetime-calendar-header__group__button kuc-base-mobile-datetime-calendar-header__group__button--next-month"
           @click="${this._handleClickCalendarNextMonthBtn}"
         >
-          »
+          <svg
+            width="16"
+            height="14"
+            viewBox="0 0 16 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.29396 2.0572C6.90344 1.66668 6.90344 1.03351 7.29396 0.642991C7.68449 0.252466 8.31765 0.252467 8.70817 0.642991L13.6579 5.59274L15.0721 7.00695L13.6579 8.42117L8.70817 13.3709C8.31765 13.7614 7.68448 13.7614 7.29396 13.3709C6.90344 12.9804 6.90344 12.3472 7.29396 11.9567L11.3148 7.93591L1.93 7.93591C1.37772 7.93591 0.93 7.48819 0.93 6.93591C0.93 6.38362 1.37772 5.93591 1.93 5.93591L11.1727 5.93591L7.29396 2.0572Z"
+              fill="#206694"
+            />
+          </svg>
         </button>
       </div>
     `;
@@ -265,26 +291,19 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           white-space: nowrap;
         }
         .kuc-base-mobile-datetime-calendar-header__group__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           background-color: inherit;
           border: 0;
-          padding: 0;
           margin: 0;
+          padding: 0;
           width: 40px;
           height: 40px;
           overflow: hidden;
           text-indent: 100%;
           white-space: nowrap;
           word-wrap: normal;
-        }
-        .kuc-base-mobile-datetime-calendar-header__group__button--previous-month {
-          background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_left.svg)
-            no-repeat center center #ffffff;
-          cursor: pointer;
-          -webkit-appearance: button;
-        }
-        .kuc-base-mobile-datetime-calendar-header__group__button--next-month {
-          background: url(https://static-y.kintone.com/contents/k/image/gaia/mobile/v2/arrow_right.svg)
-            no-repeat center center #ffffff;
           cursor: pointer;
           -webkit-appearance: button;
         }
