@@ -31,7 +31,7 @@ PR types are as follows
 
 ## Checklist
 
-- [ ] Read [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/master/CONTRIBUTING.md)
+- [ ] Read CONTRIBUTING.md([for v1](https://github.com/kintone-labs/kintone-ui-component/master/CONTRIBUTING.md),[for v0](https://github.com/kintone-labs/kintone-ui-component/v0_dev/CONTRIBUTING.md))
 - [ ] Updated documentation if it is required.
 - [ ] Added tests if it is required.
 - [ ] Passed lint and test command.
