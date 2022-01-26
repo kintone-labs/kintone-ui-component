@@ -16,31 +16,10 @@ With the release of v1, we will continue to mainly fix bugs and update libraries
 ## Document
 [kintone UI Component](https://kintone-labs.github.io/kintone-ui-component)
 
-## How to build
+## Contributing
 
-### Requirement
-```
-* Node.js
-* Git
-```
-
-```
-$ git clone https://github.com/kintone-labs/kintone-ui-component.git
-$ cd kintone-ui-component
-$ npm install
-$ npm run build
-```
-#### Output
-```
-./dist/kintone-ui-component.min.js
-./dist/kintone-ui-component.min.css
-./dist/react/kintone-ui-component.min.js
-./dist/react/kintone-ui-component.min.css
-./esm/constant
-./esm/css
-./esm/react
-./esm/js
-```
+We welcome [contributions](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md) to kintone UI Component.  
+If you have a question, feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).  
 
 ## License
 MIT License
