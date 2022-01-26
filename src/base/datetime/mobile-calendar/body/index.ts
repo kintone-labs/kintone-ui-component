@@ -113,7 +113,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
   private _getDateClass(dateParts: string[], isThisMonth: boolean) {
     if (isThisMonth) {
       const isToday = this._isToday(dateParts);
-      console.log(isToday, "isToday");
       if (isToday)
         return " kuc-base-mobile-datetime-calendar-body__table__date--today";
 
@@ -150,7 +149,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     return html`
       <thead>
         <tr>
-          ${this._locale.MOBILE_WEEK_DAYS.map(wday => {
+          ${this._locale.WEEK_DAYS.map(wday => {
             return html`
               <th
                 class="kuc-base-mobile-datetime-calendar-body__table__header"
@@ -168,7 +167,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
 
   private _getDateItemsTemplate() {
     const displayingDates = getDisplayingDates(this._year, this._month - 1);
-    const monthString = this._locale.MOBILE_MONTH_SELECT[this._month - 1];
+    const monthString = this._locale.MONTH_SELECT[this._month - 1];
     return html`
       <tbody>
         ${displayingDates.map(weeks => {
@@ -273,7 +272,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
             -ms-user-select: none;
             user-select: none;
             font-weight: 400;
-            font-size: 14px;
+            font-size: 12px;
             color: #333333;
             padding: 0;
           }

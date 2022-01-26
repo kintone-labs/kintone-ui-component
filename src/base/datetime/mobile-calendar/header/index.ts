@@ -1,11 +1,12 @@
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, state, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
 import { Item } from "../../listbox";
+import { getWidthElmByContext } from "../../../context";
 import { getLocale } from "../../utils/";
 
 function isValidMonth(month: number) {
@@ -36,6 +37,11 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   @state()
   private _yearOptions!: Item[];
   private _locale = getLocale("en");
+
+  @query(
+    ".kuc-base-mobile-datetime-calendar-header__group__center__month__select"
+  )
+  private _selectMonthEl!: HTMLSelectElement;
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -130,15 +136,13 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   }
 
   private _generateMonthOptions() {
-    return this._locale.MOBILE_MONTH_SELECT.map(
-      (month: string, index: number) => {
-        const item: Item = {
-          value: `${index + 1}`,
-          label: `${month}`
-        };
-        return item;
-      }
-    );
+    return this._locale.MONTH_SELECT.map((month: string, index: number) => {
+      const item: Item = {
+        value: `${index + 1}`,
+        label: `${month}`
+      };
+      return item;
+    });
   }
 
   private _generateYearOptions() {
@@ -175,15 +179,26 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   private _handleChangeMonthDropdown(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    const target = event.target as HTMLOptionElement;
+    const target = event.target as HTMLSelectElement;
+    this._setSelectMonthWidth();
     this.month = parseInt(target.value, 10);
     this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _setSelectMonthWidth() {
+    const optionText = this._selectMonthEl.options[
+      this._selectMonthEl.selectedIndex
+    ].text;
+    const spanContext = document.createElement("span");
+    spanContext.innerText = optionText;
+    const optionWidth = getWidthElmByContext(spanContext);
+    this._selectMonthEl.style.width = optionWidth + 28.4 + "px";
   }
 
   private _handleChangeYearDropdown(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    const target = event.target as HTMLOptionElement;
+    const target = event.target as HTMLSelectElement;
     this.year = parseInt(target.value, 10);
     this._dispatchCalendarHeaderChangeEvent();
   }
