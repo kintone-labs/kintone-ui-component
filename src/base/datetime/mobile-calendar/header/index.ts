@@ -79,6 +79,112 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     `;
   }
 
+  updated(changedProperties: PropertyValues) {
+    if (changedProperties.has("month")) {
+      this._setSelectMonthWidth(this.month);
+    }
+    super.update(changedProperties);
+  }
+
+  private _setSelectMonthWidth(month: number) {
+    const optionText = this._monthOptions[month - 1].label;
+    if (!optionText) return;
+
+    const spanContext = document.createElement("span");
+    spanContext.innerText = optionText;
+    const optionWidth = getWidthElmByContext(spanContext);
+    this._selectMonthEl.selectedIndex = this.month - 1;
+    this._selectMonthEl.style.width = optionWidth + 28.5 + "px";
+  }
+
+  private _generateMonthOptions() {
+    return this._locale.MONTH_SELECT.map((month: string, index: number) => {
+      const item: Item = {
+        value: `${index + 1}`,
+        label: `${month}`
+      };
+      return item;
+    });
+  }
+
+  private _generateYearOptions() {
+    return this._getYearOptions().map((year: number) => {
+      const item: Item = {
+        value: `${year}`,
+        label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
+      };
+      return item;
+    });
+  }
+
+  private _getYearOptions = () => {
+    const year = new Date().getFullYear();
+    const options = [];
+    let i = year < 100 ? 0 : year - 100;
+    const maxYear = year >= 9999 - 100 ? 9999 : year + 100;
+    for (i; i <= maxYear; i++) {
+      options.push(i);
+    }
+    return options;
+  };
+
+  private _getYearMonthTemplate() {
+    return this.language === "zh" || this.language === "ja"
+      ? html`
+          ${this._getYearTemplate()}${this._getMonthTemplate()}
+        `
+      : html`
+          ${this._getMonthTemplate()}${this._getYearTemplate()}
+        `;
+  }
+
+  private _handleChangeMonthDropdown(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    const target = event.target as HTMLSelectElement;
+    this.month = parseInt(target.value, 10);
+    this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleChangeYearDropdown(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    const target = event.target as HTMLSelectElement;
+    this.year = parseInt(target.value, 10);
+    this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
+    event.stopPropagation();
+    const monthSelected = this.month;
+    if (monthSelected === 1) {
+      this.month = 12;
+      this.year--;
+    } else {
+      this.month -= 1;
+    }
+    this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
+    event.stopPropagation();
+    const monthSelected = this.month;
+    if (monthSelected === 12) {
+      this.month = 1;
+      this.year++;
+    } else {
+      this.month += 1;
+    }
+    this._dispatchCalendarHeaderChangeEvent();
+  }
+
+  private _dispatchCalendarHeaderChangeEvent() {
+    const year = this.year;
+    const month = this.month;
+    const detail: CustomEventDetail = { value: `${year}-${month}` };
+    dispatchCustomEvent(this, "kuc:mobile-calendar-header-change", detail);
+  }
+
   private _getOptionsMonthTemplate() {
     return this._monthOptions.map(
       month =>
@@ -190,105 +296,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         fill="#206694"
       />
     </svg>`;
-  }
-
-  private _generateMonthOptions() {
-    return this._locale.MONTH_SELECT.map((month: string, index: number) => {
-      const item: Item = {
-        value: `${index + 1}`,
-        label: `${month}`
-      };
-      return item;
-    });
-  }
-
-  private _generateYearOptions() {
-    return this._getYearOptions().map((year: number) => {
-      const item: Item = {
-        value: `${year}`,
-        label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
-      };
-      return item;
-    });
-  }
-
-  private _getYearOptions = () => {
-    const year = new Date().getFullYear();
-    const options = [];
-    let i = year < 100 ? 0 : year - 100;
-    const maxYear = year >= 9999 - 100 ? 9999 : year + 100;
-    for (i; i <= maxYear; i++) {
-      options.push(i);
-    }
-    return options;
-  };
-
-  private _getYearMonthTemplate() {
-    return this.language === "zh" || this.language === "ja"
-      ? html`
-          ${this._getYearTemplate()}${this._getMonthTemplate()}
-        `
-      : html`
-          ${this._getMonthTemplate()}${this._getYearTemplate()}
-        `;
-  }
-
-  private _handleChangeMonthDropdown(event: CustomEvent) {
-    event.stopPropagation();
-    event.preventDefault();
-    const target = event.target as HTMLSelectElement;
-    this._setSelectMonthWidth(target.selectedIndex + 1);
-    this.month = parseInt(target.value, 10);
-    this._dispatchCalendarHeaderChangeEvent();
-  }
-
-  private _setSelectMonthWidth(index: number) {
-    const optionText = this._selectMonthEl.options[index - 1].text;
-    const spanContext = document.createElement("span");
-    spanContext.innerText = optionText;
-    const optionWidth = getWidthElmByContext(spanContext);
-    this._selectMonthEl.style.width = optionWidth + 17 + "px";
-  }
-
-  private _handleChangeYearDropdown(event: CustomEvent) {
-    event.stopPropagation();
-    event.preventDefault();
-    const target = event.target as HTMLSelectElement;
-    this.year = parseInt(target.value, 10);
-    this._dispatchCalendarHeaderChangeEvent();
-  }
-
-  private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
-    event.stopPropagation();
-    const monthSelected = this.month;
-    if (monthSelected === 1) {
-      this.month = 12;
-      this.year--;
-    } else {
-      this.month -= 1;
-    }
-    this._setSelectMonthWidth(this.month);
-    this._dispatchCalendarHeaderChangeEvent();
-  }
-
-  private _handleClickCalendarNextMonthBtn(event: MouseEvent) {
-    event.stopPropagation();
-    const monthSelected = this.month;
-    if (monthSelected === 12) {
-      this.month = 1;
-      this.year++;
-    } else {
-      this.month += 1;
-    }
-    this._setSelectMonthWidth(this.month);
-    this._dispatchCalendarHeaderChangeEvent();
-  }
-
-  private _dispatchCalendarHeaderChangeEvent() {
-    const year = this.year;
-    const month = this.month;
-    const detail: CustomEventDetail = { value: `${year}-${month}` };
-    dispatchCustomEvent(this, "kuc:mobile-calendar-header-change", detail);
   }
 
   private _getStyleTagTemplate() {
