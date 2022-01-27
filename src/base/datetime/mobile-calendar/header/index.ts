@@ -92,6 +92,19 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     );
   }
 
+  private _getOptionsYearTemplate() {
+    return this._yearOptions.map(
+      year =>
+        html`
+          <option
+            ?selected="${parseInt(year.value || "2021", 10) === this.year}"
+            value="${year.value || ""}"
+            >${year.label}</option
+          >
+        `
+    );
+  }
+
   private _getMonthTemplate() {
     return html`
       <div
@@ -106,19 +119,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         ${this._getArrowDownIconSvgTemplate()}
       </div>
     `;
-  }
-
-  private _getOptionsYearTemplate() {
-    return this._yearOptions.map(
-      year =>
-        html`
-          <option
-            ?selected="${parseInt(year.value || "2021", 10) === this.year}"
-            value="${year.value || ""}"
-            >${year.label}</option
-          >
-        `
-    );
   }
 
   private _getYearTemplate() {
@@ -140,7 +140,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   private _getArrowDownIconSvgTemplate() {
     return svg`
     <svg
-    class="kuc-base-mobile-datetime-calendar-header__group__center__year__icon"
+    class="kuc-base-mobile-datetime-calendar-header__group__center__down--icon"
     width="11"
     height="6"
     viewBox="0 0 11 6"
@@ -364,12 +364,13 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__group__center__year__select {
           font-size: 14px;
           font-weight: 700;
-          padding: 0 3px 0 0;
+          padding: 0 22.4px 0 0;
           line-height: 40px;
           border: none;
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
+          background: transparent;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month__select:focus,
         .kuc-base-mobile-datetime-calendar-header__group__center__year__select:focus {
@@ -378,8 +379,11 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         .kuc-base-mobile-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
         }
-        .kuc-base-mobile-datetime-calendar-header__group__center__year__icon {
+        .kuc-base-mobile-datetime-calendar-header__group__center__down--icon {
           padding-right: 8px;
+          position: absolute;
+          right: 0;
+          z-index: -100;
         }
       </style>
     `;
