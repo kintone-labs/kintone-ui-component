@@ -61,7 +61,8 @@ const siteConfig = {
   ],
   // For Algolia DocSearch
   algolia: {
-    apiKey: "df2e0c3351b9e7e24fd66f2e79e615d0",
+    appId: "ETPAGY3L8I",
+    apiKey: "f0ba69d7d57a6bf274f3991502d2a4d4",
     indexName: "kintone",
     algoliaOptions: {
       facetFilters: ["language:LANGUAGE", "version:VERSION"],
