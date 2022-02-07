@@ -6,7 +6,7 @@ storiesOf("desktop/dialog", module)
     const root = document.createElement("div");
     const dialog = new Dialog({
       title: "Title",
-      content: `<div><p style="margin: 0;">Content</p><div>`,
+      content: `<div><p style="margin: 0;">Content</p></div>`,
       footer: ""
     });
     dialog.addEventListener("close", event => {
