@@ -10,7 +10,15 @@ assignees: ''
 If possible, please write the issue and pull-request in English.
 But it's not an absolute rule. Japanese is ok.
 
-<!-- Thank you for reporting a bug! -->
+<!-- Thank you for reporting a bug! 
+Here is the naming rule of the issue title.
+```sh
+[Issue Type] Title  
+```
+|Type| Example|
+|:----|:----|
+|BugReport| [BugReport] Found a bug about XXX |
+-->
 
 ## Version
 

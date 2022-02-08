@@ -10,7 +10,15 @@ assignees: ''
 If possible, please write the issue and pull-request in English.
 But it's not an absolute rule. Japanese is ok.
 
-<!-- Thank you for sending a feature request! -->
+<!-- Thank you for sending a feature request! 
+Here is the naming rule of the issue title.
+```sh
+[Issue Type] Title  
+```
+|Type| Example|
+|:----|:----|
+|FeatureRequest|[FeatureRequest] Suggest an idea about XXX|
+-->
 
 ## Component
 
