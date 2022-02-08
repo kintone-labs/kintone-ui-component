@@ -42,7 +42,7 @@ git branch <branch name>
 git checkout <branch name>
 ```
 ### Setup
-This repository is a Singgle-repo using npm.
+This repository is a Singgle Repo using npm.
 ```sh
 cd kintone-ui-component
 npm ci
@@ -100,7 +100,7 @@ The format of the Pull Request Title is as follows:
 [Pull Request Type] Title
 ```
 
-Pull Request types are as follows  
+Pull Request types are as follows:  
 | Type | Example |
 | :---- | :---- |
 | Bugfix | [BugFix] Fix a bug |
@@ -112,7 +112,7 @@ Pull Request types are as follows
 
 ### Issue
 
-The format of the Issue Title is as follows:s  
+The format of the Issue Title is as follows:  
 ```sh
 [Issue Type] Title  
 ```

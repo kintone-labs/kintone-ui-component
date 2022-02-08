@@ -117,9 +117,9 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
-## ご要望
-kintone UI Component に関する質問や要望などありましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録ください。  
-新規の機能開発や既存機能への改善開発については、[Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md)に参考して投稿ください。  
+## コントリビュートガイド
+kintone UI Component へのコントリビュートについて、詳しくは[Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md)。
+kintone UI Component に関する質問や要望などありましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録ください。
 
 ## ライセンス
 [MIT LICENSE](./LICENSE)

@@ -11,13 +11,8 @@ If possible, please write the issue and pull-request in English.
 But it's not an absolute rule. Japanese is ok.
 
 <!-- Thank you for reporting a bug! 
-Here is the naming rule of the issue title.
-```sh
-[Issue Type] Title  
-```
-|Type| Example|
-|:----|:----|
-|BugReport| [BugReport] Found a bug about XXX |
+Here is the naming rule of the issue title: 
+https://github.com/kintone-labs/kintone-ui-component/blob/SSR-1580/CONTRIBUTING.md#issue
 -->
 
 ## Version

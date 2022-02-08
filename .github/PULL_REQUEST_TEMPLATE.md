@@ -1,21 +1,6 @@
 <!-- Thank you for sending a pull request! 
-
-Here is the naming rule of the pull request title.
-
-```sh
-[PR Type] PR Title
-```
-
-PR types are as follows  
-| Type |	Example |
-| :---- | :---- |
-| Bugfix |	[BugFix] Fix a bug |
-| HotFix |	[HotFix] Urgently fix something |
-| CS | [CS] Fix Coding Style |
-| Feature | [Feature] Wrote a new feature |
-| Update | [Update] Changed a doc file |
-| Refactor | [Refactor] Refactored a certain function |
-
+Here is the naming rule of the pull request title:
+https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md#pull-request
 -->
 
 ## Why
