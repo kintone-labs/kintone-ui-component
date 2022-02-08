@@ -119,6 +119,7 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 
 ## コントリビュートガイド
 kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。  
+kintone UI Component に関する質問や要望などありましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録ください。  
 
 ## ライセンス
 [MIT LICENSE](./LICENSE)
