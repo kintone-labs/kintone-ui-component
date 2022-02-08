@@ -41,7 +41,7 @@ git branch <branch name>
 git checkout <branch name>
 ```
 ### Setup
-This repository is a Siggle Repo using npm.
+This repository is a Single Repo using npm.
 ```sh
 cd kintone-ui-component
 npm ci
