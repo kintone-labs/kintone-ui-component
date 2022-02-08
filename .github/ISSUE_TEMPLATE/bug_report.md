@@ -12,7 +12,7 @@ But it's not an absolute rule. Japanese is ok.
 
 <!-- Thank you for reporting a bug! 
 Here is the naming rule of the issue title: 
-https://github.com/kintone-labs/kintone-ui-component/blob/SSR-1580/CONTRIBUTING.md#issue
+https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md#issue
 -->
 
 ## Version

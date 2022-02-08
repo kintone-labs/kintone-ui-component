@@ -42,7 +42,7 @@ git branch <branch name>
 git checkout <branch name>
 ```
 ### Setup
-This repository is a Singgle Repo using npm.
+This repository is a Single Repo using npm.
 ```sh
 cd kintone-ui-component
 npm ci
