@@ -36,12 +36,12 @@ git clone git@github.com:kintone-labs/kintone-ui-component.git
 #### 2. CheckOut branch for development
 Please refer to [Branch naming rule](#Branch) and create a new branch(base on [branch:v0_dev](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev/)) for development from the next version branch. 
 ```sh
-git checkout <branch v0_dev>
+git checkout v0_dev
 git branch <branch name>
 git checkout <branch name>
 ```
 ### Setup
-This repository is a Siggle-repo using npm.
+This repository is a Siggle Repo using npm.
 ```sh
 cd kintone-ui-component
 npm ci
@@ -109,7 +109,7 @@ Pull Request types are as follows:
 
 ### Issue
 
-The format of the Issue Title is as follows  
+The format of the Issue Title is as follows:  
 ```sh
 [Issue Type] Title  
 ```
