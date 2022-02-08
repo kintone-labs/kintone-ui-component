@@ -16,9 +16,11 @@ With the release of v1, we will continue to mainly fix bugs and update libraries
 ## Document
 [kintone UI Component](https://kintone-labs.github.io/kintone-ui-component)
 
-## Contributing
+## Contributing Guide
 
-We welcome [contributions](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md) to kintone UI Component.  
+We welcome contributions to kintone UI Component.  
+For the details, please check [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md).  
+
 If you have a question, feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).  
 
 ## License
