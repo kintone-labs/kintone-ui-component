@@ -34,7 +34,7 @@ export class BaseMobileLabel extends KucBase {
     return html`
       <style>
         kuc-base-mobile-label {
-          display: flex;
+          display: inline-table;
           font-size: 13px;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
             "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
