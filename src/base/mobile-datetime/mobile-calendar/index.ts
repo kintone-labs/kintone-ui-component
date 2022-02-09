@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { state, property } from "lit/decorators.js";
 import { KucBase } from "../../kuc-base";
-import { getTodayStringByLocale } from "../utils";
+import { getTodayStringByLocale } from "../../datetime/utils";
 import "./header";
 import "./body";
 import "./footer";

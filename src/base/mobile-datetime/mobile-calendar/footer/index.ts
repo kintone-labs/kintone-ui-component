@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../../../kuc-base";
-import { getLocale } from "../../utils";
+import { getLocale } from "../../../datetime/utils";
 
 export class BaseMobileDateTimeCalendarFooter extends KucBase {
   @property({ type: String }) language = "en";

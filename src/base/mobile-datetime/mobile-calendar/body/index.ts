@@ -5,7 +5,11 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../../kuc-base";
-import { getDisplayingDates, WeekDate, getLocale } from "../../utils/";
+import {
+  getDisplayingDates,
+  WeekDate,
+  getLocale
+} from "../../../datetime/utils";
 
 export class BaseMobileDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 1;
@@ -311,7 +315,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           .kuc-base-mobile-datetime-calendar-body__table__date--today {
             color: #333333;
             background: #d8d8d8;
-            border: none;
           }
           .kuc-base-mobile-datetime-calendar-body__table__date--other-month {
             color: #a5a5a5;
