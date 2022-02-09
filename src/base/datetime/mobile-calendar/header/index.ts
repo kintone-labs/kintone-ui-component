@@ -43,6 +43,11 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   )
   private _selectMonthEl!: HTMLSelectElement;
 
+  @query(
+    ".kuc-base-mobile-datetime-calendar-header__group__center__year__select"
+  )
+  private _selectYearEl!: HTMLSelectElement;
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
       this._locale = getLocale(this.language);
@@ -83,6 +88,9 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     if (changedProperties.has("month")) {
       this._setSelectMonthWidth(this.month);
     }
+    if (changedProperties.has("year")) {
+      this._selectYearEl.selectedIndex = 100;
+    }
     super.update(changedProperties);
   }
 
@@ -118,10 +126,12 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   }
 
   private _getYearOptions = () => {
-    const year = new Date().getFullYear();
     const options = [];
-    let i = year < 100 ? 0 : year - 100;
-    const maxYear = year >= 9999 - 100 ? 9999 : year + 100;
+    if (!Number.isInteger(this.year)) {
+      this.year = new Date().getFullYear();
+    }
+    let i = this.year < 100 ? 0 : this.year - 100;
+    const maxYear = this.year >= 9999 - 100 ? 9999 : this.year + 100;
     for (i; i <= maxYear; i++) {
       options.push(i);
     }
