@@ -367,7 +367,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           flex: 1;
           justify-content: center;
         }
-        .kuc-base-mobile-datetime-calendar-header__group__center__month {
+        .kuc-base-mobile-datetime-calendar-header__group__center
+          > :first-child {
           padding-left: 13px;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month,
