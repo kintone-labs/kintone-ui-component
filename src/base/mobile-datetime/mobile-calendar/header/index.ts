@@ -102,7 +102,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     spanContext.innerText = optionText;
     const optionWidth = getWidthElmByContext(spanContext);
     this._selectMonthEl.selectedIndex = this.month - 1;
-    this._selectMonthEl.style.width = optionWidth + 28.5 + "px";
+    this._selectMonthEl.style.width = optionWidth + 35 + "px";
   }
 
   private _generateMonthOptions() {
@@ -312,22 +312,16 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     return html`
       <style>
         kuc-base-mobile-datetime-calendar-header,
-        kuc-base-mobile-datetime-calendar-header *,
-        :lang(en) kuc-base-mobile-datetime-calendar-header,
-        :lang(en) kuc-base-mobile-datetime-calendar-header * {
-          font-family: "HelveticaNeueW02-45Ligh", Arial,
-            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-        }
-        :lang(ja) kuc-base-mobile-datetime-calendar-header,
-        :lang(ja) kuc-base-mobile-datetime-calendar-header * {
-          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
-            sans-serif;
-          font-weight: 700;
+        kuc-base-mobile-datetime-calendar-header * {
+          font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
+            "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
+            "Lucida Sans Unicode", Arial, Verdana, sans-serif;
         }
         :lang(zh) kuc-base-mobile-datetime-calendar-header,
         :lang(zh) kuc-base-mobile-datetime-calendar-header * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
-            Hei, "Heiti SC", sans-serif;
+            Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
+            Verdana, sans-serif;
         }
         .kuc-base-mobile-datetime-calendar-header__group {
           display: flex;

@@ -64,21 +64,17 @@ export class BaseMobileDateTimeCalendarFooter extends KucBase {
     return html`
       <style>
         kuc-base-mobile-datetime-calendar-footer,
-        kuc-base-mobile-datetime-calendar-footer *,
-        :lang(en) kuc-base-mobile-datetime-calendar-footer,
-        :lang(en) kuc-base-mobile-datetime-calendar-footer * {
-          font-family: "HelveticaNeueW02-45Ligh", Arial,
-            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        kuc-base-mobile-datetime-calendar-footer * {
+          font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
+            "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
+            "Lucida Sans Unicode", Arial, Verdana, sans-serif;
         }
-        :lang(ja) kuc-base-mobile-datetime-calendar-footer,
-        :lang(ja) kuc-base-mobile-datetime-calendar-footer * {
-          font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
-            sans-serif;
-        }
+
         :lang(zh) kuc-base-mobile-datetime-calendar-footer,
         :lang(zh) kuc-base-mobile-datetime-calendar-footer * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
-            Hei, "Heiti SC", sans-serif;
+            Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
+            Verdana, sans-serif;
         }
         .kuc-base-mobile-datetime-calendar-footer__group {
           display: flex;
