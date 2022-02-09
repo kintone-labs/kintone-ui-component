@@ -125,7 +125,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     });
   }
 
-  private _getYearOptions = () => {
+  private _getYearOptions() {
     const options = [];
     if (!Number.isInteger(this.year)) {
       this.year = new Date().getFullYear();
@@ -136,7 +136,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       options.push(i);
     }
     return options;
-  };
+  }
 
   private _getYearMonthTemplate() {
     return this.language === "zh" || this.language === "ja"
