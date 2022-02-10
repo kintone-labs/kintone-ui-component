@@ -24,7 +24,7 @@ describe("BaseLabel", () => {
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
-      expect(computedStyle.display).to.equal("block");
+      expect(computedStyle.display).to.equal("inline");
     });
 
     it("should be display inline when changed to true by setter", async () => {
@@ -39,7 +39,7 @@ describe("BaseLabel", () => {
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
-      expect(computedStyle.display).to.equal("block");
+      expect(computedStyle.display).to.equal("inline");
     });
 
     it("should be display none when changed to false by setter", async () => {
