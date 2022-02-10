@@ -228,7 +228,7 @@ export class BaseDateTimeListBox extends KucBase {
 
   private _getNextItemEl() {
     const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
-    if (itemcheckedEL && this._firstHighlight) {
+    if (!this._itemSelectedEl && itemcheckedEL && this._firstHighlight) {
       this._itemSelectedEl = itemcheckedEL;
     }
     let nextItemEl = this._highlightItemEl.nextElementSibling as HTMLLIElement;
@@ -259,7 +259,7 @@ export class BaseDateTimeListBox extends KucBase {
 
   private _getPreviousItemEl() {
     const itemcheckedEL = this._iconChecked.parentElement as HTMLLIElement;
-    if (itemcheckedEL && this._firstHighlight) {
+    if (!this._itemSelectedEl && itemcheckedEL && this._firstHighlight) {
       this._itemSelectedEl = itemcheckedEL;
     }
 

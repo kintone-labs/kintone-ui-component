@@ -36,6 +36,7 @@ describe("TimePicker", () => {
       const listboxEl = el.querySelector(
         ".kuc-base-datetime-listbox__listbox"
       ) as HTMLUListElement;
+      listboxEl.click();
       listboxEl.dispatchEvent(
         new CustomEvent("kuc:listbox-blur", { bubbles: true })
       );
