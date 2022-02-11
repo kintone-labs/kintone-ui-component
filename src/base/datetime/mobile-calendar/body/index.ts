@@ -272,6 +272,9 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
               color: #333333;
               padding: 0;
             }
+            .kuc-base-mobile-datetime-calendar-body__table__date {
+              font-size: 14px;
+            }
             th.kuc-base-mobile-datetime-calendar-body__table__header {
               font-weight: 700;
             }

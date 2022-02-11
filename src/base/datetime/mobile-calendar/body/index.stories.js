@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/mobile-datetime/calendar/body",
+  title: "base/datetime/mobile-calendar/body",
   argTypes: {
     month: {
       name: "month",
