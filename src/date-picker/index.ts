@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, state, query } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
 import {
   CustomEventDetail,
@@ -49,6 +49,9 @@ export class DatePicker extends KucBase {
 
   @state()
   private _errorText = "";
+
+  @query(".kuc-date-picker__group")
+  private _groupEl!: HTMLDivElement;
 
   private _GUID: string;
 
@@ -113,6 +116,14 @@ export class DatePicker extends KucBase {
 
   updated() {
     this._updateErrorText();
+    const isSpaceMenuHeader = this.parentElement?.classList.contains(
+      "kintone-app-headermenu-space"
+    );
+    if (isSpaceMenuHeader) {
+      this._groupEl.style.lineHeight = "1.5";
+    } else {
+      this._groupEl.style.lineHeight = "inherit";
+    }
   }
 
   private _updateErrorText() {
