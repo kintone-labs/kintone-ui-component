@@ -89,7 +89,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       this._setSelectMonthWidth(this.month);
     }
     if (changedProperties.has("year")) {
-      this._selectYearEl.selectedIndex = 100;
+      this._setYearSelectedIndex();
     }
     super.update(changedProperties);
   }
@@ -103,6 +103,14 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     const optionWidth = getWidthElmByContext(spanContext);
     this._selectMonthEl.selectedIndex = this.month - 1;
     this._selectMonthEl.style.width = optionWidth + 35 + "px";
+  }
+
+  private _setYearSelectedIndex() {
+    if (this.year < 100) {
+      this._selectYearEl.selectedIndex = this.year;
+      return;
+    }
+    this._selectYearEl.selectedIndex = 100;
   }
 
   private _generateMonthOptions() {
@@ -132,6 +140,9 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     }
     let i = this.year < 100 ? 0 : this.year - 100;
     const maxYear = this.year >= 9999 - 100 ? 9999 : this.year + 100;
+    if (i >= maxYear) {
+      i = maxYear - 100;
+    }
     for (i; i <= maxYear; i++) {
       options.push(i);
     }
@@ -200,8 +211,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       month =>
         html`
           <option
-            ?selected="${parseInt(month.value || "1", 10) === this.month}"
-            value="${month.value || ""}"
+            ?selected="${parseInt(month.value!, 10) === this.month}"
+            value="${month.value!}"
             >${month.label}</option
           >
         `
@@ -213,8 +224,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       year =>
         html`
           <option
-            ?selected="${parseInt(year.value || "2021", 10) === this.year}"
-            value="${year.value || ""}"
+            ?selected="${parseInt(year.value!, 10) === this.year}"
+            value="${year.value!}"
             >${year.label}</option
           >
         `
