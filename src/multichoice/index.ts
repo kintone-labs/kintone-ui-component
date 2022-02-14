@@ -356,6 +356,7 @@ export class MultiChoice extends KucBase {
           color: #333333;
           width: 180px;
           min-width: 180px;
+          line-height: 1.5;
         }
         kuc-multi-choice[hidden] {
           display: none;

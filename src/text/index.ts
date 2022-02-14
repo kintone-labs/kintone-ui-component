@@ -166,6 +166,7 @@ export class Text extends KucBase {
           vertical-align: top;
           min-width: 193px;
           width: 193px;
+          line-height: 1.5;
         }
         kuc-text[hidden] {
           display: none;

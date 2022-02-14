@@ -458,6 +458,7 @@ export class Dropdown extends KucBase {
           vertical-align: top;
           width: 180px;
           min-width: 180px;
+          line-height: 1.5;
         }
         kuc-dropdown[hidden] {
           display: none;
