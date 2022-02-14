@@ -289,7 +289,7 @@ export class MultiChoice extends KucBase {
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
-            fill="${disabled ? "#d8d8d8" : "#3498db"}"
+            fill="${disabled ? "#888888" : "#3498db"}"
           />
         </svg>`
           : ""
