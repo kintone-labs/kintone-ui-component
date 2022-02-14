@@ -16,11 +16,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
   @state() _month = 1;
   @state() _year = 2021;
 
-  @query(
-    '.kuc-base-mobile-datetime-calendar-body__table__date__button[tabindex="0"]'
-  )
-  private _focusedItem!: HTMLButtonElement;
-
   private _locale = getLocale("en");
 
   constructor() {
@@ -64,13 +59,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) {
-      this._focusDateButtonEl();
-    }
-    super.update(changedProperties);
-  }
-
   private _handleClickDocument() {
     dispatchCustomEvent(this, "kuc:mobile-calendar-body-blur", {});
   }
@@ -82,7 +70,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     const itemEl = event.target as HTMLButtonElement;
     itemEl.setAttribute("aria-current", "true");
 
-    const value = itemEl.getAttribute("data-date") || "";
+    const value = itemEl.getAttribute("data-date")!;
     this._dispatchClickEvent(value);
   }
 
@@ -118,9 +106,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
 
       return "";
     }
-    const isToday = this._isToday(dateParts);
-    if (isToday)
-      return " kuc-base-mobile-datetime-calendar-body__table__date--today";
     return " kuc-base-mobile-datetime-calendar-body__table__date--other-month";
   }
 
@@ -200,12 +185,6 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
         })}
       </tbody>
     `;
-  }
-
-  private _focusDateButtonEl() {
-    const buttonEl = this._focusedItem as HTMLButtonElement;
-    if (!buttonEl) return;
-    buttonEl.focus();
   }
 
   private _getStyleTagTemplate() {

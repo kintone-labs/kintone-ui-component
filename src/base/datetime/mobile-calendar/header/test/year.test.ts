@@ -32,7 +32,31 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
     });
 
     it("should be 99 when assigning 99 by setter", async () => {
-      // TODO: Implement when set year 99
+      const container = document.createElement(
+        "kuc-base-mobile-datetime-calendar-header"
+      );
+      container.setAttribute("year", "99");
+      const el = await fixture(container);
+
+      const yearToggle = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-header__group__center__year__select"
+      ) as HTMLSelectElement;
+
+      expect(yearToggle.value).to.equal("99");
+    });
+
+    it("should be 9999 when assigning 99999 by setter", async () => {
+      const container = document.createElement(
+        "kuc-base-mobile-datetime-calendar-header"
+      );
+      container.setAttribute("year", "99999");
+      const el = await fixture(container);
+
+      const yearToggle = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-header__group__center__year__select"
+      ) as HTMLSelectElement;
+
+      expect(yearToggle.value).to.equal("9999");
     });
 
     it("should be 2021 when assigning invalid value by setter", async () => {

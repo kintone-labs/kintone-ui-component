@@ -14,8 +14,12 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       const buttonNoneEl = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
       ) as HTMLButtonElement;
+      const buttonCloseEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+      ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("Today");
       expect(buttonNoneEl.innerText).to.equal("None");
+      expect(buttonCloseEl.innerText).to.equal("Close");
     });
 
     it("should be '今日' and '選択を解除' when assigning language prop with 'ja'", async () => {
@@ -30,8 +34,12 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       const buttonNoneEl = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
       ) as HTMLButtonElement;
+      const buttonCloseEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+      ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今日");
       expect(buttonNoneEl.innerText).to.equal("選択を解除");
+      expect(buttonCloseEl.innerText).to.equal("閉じる");
     });
 
     it("should be '今天' and '清空' when assigning language prop with 'zh'", async () => {
@@ -46,8 +54,12 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       const buttonNoneEl = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
       ) as HTMLButtonElement;
+      const buttonCloseEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+      ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");
+      expect(buttonCloseEl.innerText).to.equal("关闭");
     });
   });
 });
