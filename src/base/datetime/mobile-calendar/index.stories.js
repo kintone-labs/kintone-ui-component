@@ -2,7 +2,7 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "base/datetime/mobile-calendar/calendar",
+  title: "base/datetime/mobile-calendar",
   argTypes: {
     language: {
       name: "language",
