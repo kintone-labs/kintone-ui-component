@@ -46,24 +46,20 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 2. `index.js` ファイルを作成します。
 
 ```js
-(() => {
-  'use strict';
+kintone.events.on('app.record.index.show', event => {
+  const header = kintone.app.getHeaderMenuSpaceElement();
 
-  kintone.events.on('app.record.index.show', event => {
-    const header = kintone.app.getHeaderMenuSpaceElement();
-
-    const button = new Kuc.Button({
-      text: 'Submit',
-      type: 'submit'
-    });
-    button.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    header.appendChild(button);
-    return event;
+  const button = new Kuc.Button({
+    text: 'Submit',
+    type: 'submit'
   });
-})();
+  button.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  header.appendChild(button);
+  return event;
+});
 ```
 
 3. `index.js` を kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
@@ -107,24 +103,20 @@ npm install webpack
 ```js
 import { Button } from 'kintone-ui-component/lib/button';
 
-(() => {
-  'use strict';
+kintone.events.on('app.record.index.show', event => {
+  const header = kintone.app.getHeaderMenuSpaceElement();
 
-  kintone.events.on('app.record.index.show', event => {
-    const header = kintone.app.getHeaderMenuSpaceElement();
-
-    const button = new Button({
-      text: 'Submit',
-      type: 'submit'
-    });
-    button.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    header.appendChild(button);
-    return event;
+  const button = new Button({
+    text: 'Submit',
+    type: 'submit'
   });
-})();
+  button.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  header.appendChild(button);
+  return event;
+});
 ```
 3. プロジェクトのルート配下に以下の `webpack.config.js` ファイルを作成します。
 
