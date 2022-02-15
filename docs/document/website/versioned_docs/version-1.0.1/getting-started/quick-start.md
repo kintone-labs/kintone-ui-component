@@ -46,24 +46,20 @@ In this article, we will show you how to install and implement using each approa
 2. Create a `index.js` file.
 
 ```js
-(() => {
-  'use strict';
+kintone.events.on('app.record.index.show', event => {
+  const header = kintone.app.getHeaderMenuSpaceElement();
 
-  kintone.events.on('app.record.index.show', event => {
-    const header = kintone.app.getHeaderMenuSpaceElement();
-
-    const button = new Kuc.Button({
-      text: 'Submit',
-      type: 'submit'
-    });
-    button.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    header.appendChild(button);
-    return event;
+  const button = new Kuc.Button({
+    text: 'Submit',
+    type: 'submit'
   });
-})();
+  button.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  header.appendChild(button);
+  return event;
+});
 ```
 
 3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
@@ -107,24 +103,20 @@ npm install webpack
 ```js
 import { Button } from 'kintone-ui-component/lib/button';
 
-(() => {
-  'use strict';
+kintone.events.on('app.record.index.show', event => {
+  const header = kintone.app.getHeaderMenuSpaceElement();
 
-  kintone.events.on('app.record.index.show', event => {
-    const header = kintone.app.getHeaderMenuSpaceElement();
-
-    const button = new Button({
-      text: 'Submit',
-      type: 'submit'
-    });
-    button.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    header.appendChild(button);
-    return event;
+  const button = new Button({
+    text: 'Submit',
+    type: 'submit'
   });
-})();
+  button.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  header.appendChild(button);
+  return event;
+});
 ```
 3. Add the following `webpack.config.js` file into the root:
 
