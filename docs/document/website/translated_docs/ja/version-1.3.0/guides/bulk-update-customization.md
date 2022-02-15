@@ -40,14 +40,11 @@ kintone UI Component の UMD ファイルをアプリに読み込んだ上で、
 ***bulkUpdate.js***
 
 ```javascript
-(() => {
-  'use strict';
-  kintone.events.on('app.record.index.show', (event) => {
+kintone.events.on('app.record.index.show', (event) => {
 
-    // Write the process here
+  // Write the process here
 
-  });
-})();
+});
 ```
 ---
 ### 一覧画面にボタンを設置

@@ -40,14 +40,11 @@ A Dialog component is scheduled to be provided in a future version update. In th
 ***bulkUpdate.js***
 
 ```javascript
-(() => {
-  'use strict';
-  kintone.events.on('app.record.index.show', (event) => {
+kintone.events.on('app.record.index.show', (event) => {
 
-    // Write the process here
+  // Write the process here
 
-  });
-})();
+});
 ```
 ---
 ### Place the button in Record List page
