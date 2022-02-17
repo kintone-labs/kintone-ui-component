@@ -146,6 +146,7 @@ export class DatePicker extends KucBase {
           vertical-align: top;
           max-width: 100px;
           width: 100px;
+          line-height: 1.5;
         }
         kuc-date-picker[hidden] {
           display: none;
