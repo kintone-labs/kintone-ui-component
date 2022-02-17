@@ -32,8 +32,8 @@ DatePicker は入力エリアと日付選択用のカレンダーを表示しま
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 
-> *1: 表示される日付のフォーマットは、言語設定によって以下のように自動的に切り替わる。<br>
-> - "en" の場合: DD/MM/YYYY
+> *1: 表示される日付のフォーマットは、language プロパティの設定に応じて以下のように自動的に切り替わる。
+> - "en" の場合: MM/DD/YYYY
 > - "ja", "zh" の場合: YYYY-MM-DD
 
 ### Event

@@ -32,8 +32,8 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 
-> *1: The format of the displayed date is automatically switched depending on the language setting as follows.<br>
-> - "en": DD/MM/YYYY
+> *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+> - "en": MM/DD/YYYY
 > - "ja", "zh": YYYY-MM-DD
 
 ### Event

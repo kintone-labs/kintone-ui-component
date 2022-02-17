@@ -42,8 +42,8 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change<br>event.detail.changedPart : "date" or "time" which has been changed |
 
-> *1: The format of the displayed date is automatically switched depending on the language setting as follows.<br>
-> - "en": DD/MM/YYYY
+> *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+> - "en": MM/DD/YYYY
 > - "ja", "zh": YYYY-MM-DD
 
 ### Constructor
