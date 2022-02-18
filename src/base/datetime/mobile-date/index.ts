@@ -89,10 +89,8 @@ export class BaseMobileDate extends KucBase {
     if (isValidDateFormat(this.language, value))
       return formatInputValueToValue(this.language, value);
 
-    if (!this._calendarValue) return "";
-
-    let temp = this._calendarValue.slice(0, 7);
-    if (value === "") temp = this._calendarValue.slice(0, 7) + "-01";
+    let temp = this._calendarValue!.slice(0, 7);
+    if (value === "") temp = this._calendarValue!.slice(0, 7) + "-01";
 
     return temp;
   }
@@ -117,12 +115,9 @@ export class BaseMobileDate extends KucBase {
   private _handleClickCalendarFooterButtonNone() {
     this._closeCalendar();
     this._inputValue = "";
-    const today = getTodayStringByLocale();
     let temp = this.value ? this.value.slice(0, 7) + "-01" : "";
     if (!temp) {
-      temp = this._calendarValue
-        ? this._calendarValue.slice(0, 7) + "-01"
-        : today.slice(0, 7) + "-01";
+      temp = this._calendarValue!.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
     this._dispathDateChangeCustomEvent(undefined);
