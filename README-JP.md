@@ -121,7 +121,7 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
 ## コントリビューションガイドライン
-kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
+kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
 ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録してください。
 
 ## ロードマップ

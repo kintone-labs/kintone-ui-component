@@ -27,7 +27,7 @@ It supports you to develop kintone customization and kintone plugin.<br />
 - [Browser Support](#browser-support)
 - [v0 Usage](#v0-usage)
 - [Migration Guide](#migration-guide)
-- [Contributing Guide](#contributing-guide)
+- [Contributing Guideline](#contributing-guideline)
 - [Roadmap](#roadmap)
 - [License](#license)
 
@@ -121,9 +121,9 @@ For more details, please refer to the articles below.
 
 > About the React version provided in v0, we haven't supported it in v1 now.
 
-## Contributing Guide
+## Contributing Guideline
 We welcome contributions to kintone UI Component.<br>
-For the details, please check [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md).<br>
+For the details, please check [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md).<br>
 
 If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
 

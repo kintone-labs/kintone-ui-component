@@ -1,13 +1,13 @@
-# Contributing Guide
+# Contributing Guideline
 
-Contributions are always welcome!  
-If you discover a bug or have a feature request, please [create an issue on GitHub](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).  
+Contributions are always welcome!<br>
+If you discover a bug or have a feature request, please [create an issue on GitHub](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
 
-Pull requests are also welcome when you find a trivial bug or typo. 
+Pull requests are also welcome when you find a trivial bug or typo.<br>
 
-We use English for all commit messages, code comments, issues, pull requests.  
+We use English for all commit messages, code comments, issues, pull requests.<br>
 
-Please follow [Note for Naming Rule](#note-for-naming-rule) when creating an issue or a pull request.  
+Please follow [Note for Naming Rule](#note-for-naming-rule) when creating an issue or a pull request.<br>
 
 
 Here is the guide on the command options and how to develop the package.
@@ -58,7 +58,7 @@ npm run es-lint
 npm run storybook
 ```
 #### 4. Commit and Create Pull Request
-Please refer to [Pull Request naming rule](#Pull-Request).  
+Please refer to [Pull Request naming rule](#Pull-Request).
 
 ### Build
 ```sh
@@ -78,7 +78,7 @@ Please refer to [Document with Docusaurus](https://github.com/kintone-labs/kinto
 
 You can create several other child branches to implement source code for functions/features and/or unit tests and/or user guides.
 
-The format of the Branch Name is as follows:  
+The format of the Branch Name is as follows:
 ```sh
 {Version Number}_Title
 ```
@@ -88,19 +88,19 @@ origin/master/v1.1.0
   |__origin/master/v1.1.0_Button_src
   |__origin/master/v1.1.0_Button_unit_test
   |__origin/master/v1.1.0_Button_docs
-  |__origin/master/v1.1.0_Notification_docs  
+  |__origin/master/v1.1.0_Notification_docs
   |__origin/master/v1.1.0_Text_src
 ```
 ### Pull Request
 
-If you finish the implementation under the child branches, you should merge from the parent branch before creating a pull request against it.  
+If you finish the implementation under the child branches, you should merge from the parent branch before creating a pull request against it.<br>
 
-The format of the Pull Request Title is as follows:  
+The format of the Pull Request Title is as follows:
 ```sh
 [Pull Request Type] Title
 ```
 
-Pull Request types are as follows:  
+Pull Request types are as follows:
 | Type | Example |
 | :---- | :---- |
 | Bugfix | [BugFix] Fix a bug |
@@ -112,9 +112,9 @@ Pull Request types are as follows:
 
 ### Issue
 
-The format of the Issue Title is as follows:  
+The format of the Issue Title is as follows:
 ```sh
-[Issue Type] Title  
+[Issue Type] Title
 ```
 |Type| Example|
 |:----|:----|
