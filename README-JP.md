@@ -1,3 +1,5 @@
+[![npm version][npm-image]][npm-url]
+
 <p align="center">
   <img src="./images/logo.png" alt="kuc-logo" align="center" height="100" style="margin: 30px; 0;">
 </p>
@@ -25,7 +27,8 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 - [ブラウザサポート](#ブラウザサポート)
 - [v0の使い方](#v0の使い方)
 - [移行ガイド](#移行ガイド)
-- [ご要望](#ご要望)
+- [コントリビューションガイドライン](#コントリビューションガイドライン)
+- [ロードマップ](#ロードマップ)
 - [ライセンス](#ライセンス)
 
 ## インストール
@@ -106,7 +109,7 @@ kintone UI Component v0 を使用する場合は、こちらのリンクをご�
 - [GitHub リポジトリ](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev)
 - [ドキュメントサイト](https://kintone-labs.github.io/kintone-ui-component/latest)
 
-> kintone UI Component v1 リリースに伴い、v0 については主に不具合改修とライブラリアップデートを継続します。<br />
+> kintone UI Component v1 リリースに伴い、v0 については主に不具合改修とライブラリアップデートを継続します。<br>
 > 新規の機能開発は現在予定しておりません。
 
 ## 移行ガイド
@@ -117,9 +120,16 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
-## コントリビュートガイド
-kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。  
-kintone UI Component に関する質問や要望などありましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録ください。  
+## コントリビューションガイドライン
+kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guide](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
+ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録してください。
+
+## ロードマップ
+開発ロードマップを公開しています。<br>
+詳細は[こちら](https://github.com/kintone-labs/kintone-ui-component/issues/936)をご確認ください。
 
 ## ライセンス
 [MIT LICENSE](./LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/kintone-ui-component.svg
+[npm-url]: https://npmjs.org/package/kintone-ui-component
