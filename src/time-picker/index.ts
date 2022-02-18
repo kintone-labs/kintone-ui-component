@@ -22,6 +22,7 @@ type TimePickerProps = {
   hour12?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
+  timeStep?: number;
 };
 
 export class TimePicker extends KucBase {
@@ -40,6 +41,7 @@ export class TimePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+  @property({ type: Number }) timeStep = 30;
 
   @query(".kuc-time-picker__group__label")
   private _labelEl!: HTMLFieldSetElement;
@@ -87,6 +89,7 @@ export class TimePicker extends KucBase {
           .value="${this.value}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
+          .timeStep="${this.timeStep}"
           @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>

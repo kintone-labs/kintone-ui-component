@@ -31,12 +31,13 @@ export class BaseTime extends KucBase {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
+  @property({ type: Number }) timeStep = 30;
 
   /**
    * Please consider name again and change @state to @property when publishing the function.
    */
-  @state()
-  private _timeStep = 30;
+  // @state()
+  // private _timeStep = 30;
 
   @state()
   private _listBoxVisible = false;
@@ -80,7 +81,11 @@ export class BaseTime extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("hour12")) {
-      this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
+      this._listBoxItems = generateTimeOptions(this.hour12, this.timeStep);
+      this._updateInputValue();
+    }
+    if (changedProperties.has("timeStep")) {
+      this._listBoxItems = generateTimeOptions(this.hour12, this.timeStep);
       this._updateInputValue();
     }
     if (changedProperties.has("value")) {

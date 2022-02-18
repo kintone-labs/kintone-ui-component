@@ -33,10 +33,7 @@ export const getDisplayingDates = (year: number, month: number) => {
   return displayingDates;
 };
 
-export const generateTimeOptions = (
-  isHour12: boolean,
-  timeStep: number = 30
-) => {
+export const generateTimeOptions = (isHour12: boolean, timeStep: number) => {
   const timeOptions = [];
   const limitLoop = (MAX_MINUTES / timeStep) * MAX_HOURS24;
   for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
