@@ -55,6 +55,9 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group")
   private _groupEl!: HTMLDivElement;
 
+  @query(".kuc-dropdown__group__select-menu")
+  private _menuEl!: HTMLUListElement;
+
   @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
 
@@ -212,6 +215,9 @@ export class Dropdown extends KucBase {
 
   updated() {
     this._updateContainerWidth();
+    if (this._selectorVisible) {
+      this._setMenuPosition();
+    }
   }
 
   private _handleMouseDownDropdownItem(event: MouseEvent) {
@@ -431,6 +437,33 @@ export class Dropdown extends KucBase {
     this._groupEl.style.width = labelWidth + "px";
   }
 
+  private _setMenuPosition() {
+    this._menuEl.style.height = "auto";
+    this._menuEl.style.bottom = "auto";
+    this._menuEl.style.overflowY = "";
+
+    const menuHeight = this._menuEl.getBoundingClientRect().height;
+
+    const distanceToggleButtonToBottom =
+      document.body.clientHeight -
+      this._buttonEl.getBoundingClientRect().bottom;
+    if (distanceToggleButtonToBottom >= menuHeight) return;
+
+    const distanceToggleButtonToTop = this._buttonEl.getBoundingClientRect()
+      .top;
+    if (distanceToggleButtonToBottom < distanceToggleButtonToTop) {
+      // Above
+      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight}px`;
+      if (distanceToggleButtonToTop >= menuHeight) return;
+      this._menuEl.style.height = `${distanceToggleButtonToTop}px`;
+      this._menuEl.style.overflowY = "scroll";
+    } else {
+      // Below
+      this._menuEl.style.height = `${distanceToggleButtonToBottom}px`;
+      this._menuEl.style.overflowY = "scroll";
+    }
+  }
+
   private _getStyleTagTemplate() {
     return html`
       <style>
@@ -547,6 +580,7 @@ export class Dropdown extends KucBase {
           background-color: #ffffff;
           z-index: 2000;
           list-style: none;
+          box-sizing: border-box;
         }
         .kuc-dropdown__group__select-menu[hidden] {
           display: none;
