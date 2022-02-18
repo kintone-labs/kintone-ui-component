@@ -217,6 +217,7 @@ export class Dropdown extends KucBase {
     this._updateContainerWidth();
     if (this._selectorVisible) {
       this._setMenuPosition();
+      this._scrollToView();
     }
   }
 
@@ -386,6 +387,7 @@ export class Dropdown extends KucBase {
   private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
     this._actionHighlightMenuItem(selectedItemEl);
     this._actionSetActiveDescendant(selectedItemEl.id);
+    this._scrollToView();
   }
 
   private _actionHighlightMenuItem(item: HTMLLIElement) {
@@ -461,6 +463,23 @@ export class Dropdown extends KucBase {
       // Below
       this._menuEl.style.height = `${distanceToggleButtonToBottom}px`;
       this._menuEl.style.overflowY = "scroll";
+    }
+  }
+
+  private _scrollToView() {
+    if (!this._highlightItemEl || !this._menuEl) return;
+
+    const menuElClientRect = this._menuEl.getBoundingClientRect();
+    const highlightItemClientRect = this._highlightItemEl.getBoundingClientRect();
+
+    if (highlightItemClientRect.top < menuElClientRect.top) {
+      this._menuEl.scrollTop -=
+        menuElClientRect.top - highlightItemClientRect.top;
+    }
+
+    if (menuElClientRect.bottom < highlightItemClientRect.bottom) {
+      this._menuEl.scrollTop +=
+        highlightItemClientRect.bottom - menuElClientRect.bottom;
     }
   }
 
