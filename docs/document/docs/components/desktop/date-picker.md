@@ -8,8 +8,10 @@ sidebar_label: DatePicker
 
 The DatePicker component allows the user to display a input area and date selection calendar.
 
-<div id='sample-container' style='margin:auto; width:100px;'></div>
-<script src='/js/samples/date-picker.js'></script>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/date-picker.js"></script>
 
 ---
 
