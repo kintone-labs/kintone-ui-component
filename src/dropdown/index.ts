@@ -442,16 +442,28 @@ export class Dropdown extends KucBase {
     this._groupEl.style.width = labelWidth + "px";
   }
 
+  private _getScrollBarHeight() {
+    const scrollDiv = document.createElement("div");
+    scrollDiv.style.cssText =
+      "overflow-x: scroll; position: absolute; top: -9999px;";
+    document.body.appendChild(scrollDiv);
+    const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
+    document.body.removeChild(scrollDiv);
+    return scrollbarHeight;
+  }
+
   private _setMenuPosition() {
     this._menuEl.style.height = "auto";
     this._menuEl.style.bottom = "auto";
     this._menuEl.style.overflowY = "";
 
     const menuHeight = this._menuEl.getBoundingClientRect().height;
-
     const distanceToggleButtonToBottom =
-      document.body.clientHeight -
-      this._buttonEl.getBoundingClientRect().bottom;
+      window.innerHeight -
+      this._buttonEl.getBoundingClientRect().bottom -
+      (document.body.scrollWidth > window.innerWidth
+        ? this._getScrollBarHeight()
+        : 0);
     if (distanceToggleButtonToBottom >= menuHeight) return;
 
     const distanceToggleButtonToTop = this._buttonEl.getBoundingClientRect()

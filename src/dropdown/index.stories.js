@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/web-components";
 storiesOf("desktop/dropdown", module)
   .add("Base", () => {
     const root = document.createElement("div");
-    root.style.height = "200px";
     const dropdown = new Dropdown({
       items: [
         {
@@ -35,7 +34,6 @@ storiesOf("desktop/dropdown", module)
   })
   .add("Base2", () => {
     const root = document.createElement("div");
-    root.style.height = "200px";
     const dropdown = new Dropdown();
     dropdown.value = "Orange";
     dropdown.items = [
