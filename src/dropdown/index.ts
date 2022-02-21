@@ -216,6 +216,14 @@ export class Dropdown extends KucBase {
     `;
   }
 
+  firstUpdated() {
+    window.addEventListener("resize", () => {
+      if (this._selectorVisible) {
+        this._setMenuPosition();
+      }
+    });
+  }
+
   updated() {
     this._updateContainerWidth();
     if (this._selectorVisible) {
@@ -442,47 +450,86 @@ export class Dropdown extends KucBase {
     this._groupEl.style.width = labelWidth + "px";
   }
 
-  private _getScrollBarHeight() {
+  private _getScrollbarWidthHeight() {
     const scrollDiv = document.createElement("div");
     scrollDiv.style.cssText =
-      "overflow-x: scroll; position: absolute; top: -9999px;";
+      "overflow: scroll; position: absolute; top: -9999px;";
     document.body.appendChild(scrollDiv);
+    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
     const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
     document.body.removeChild(scrollDiv);
-    return scrollbarHeight;
+    return { scrollbarWidth, scrollbarHeight };
   }
 
-  private _setMenuPosition() {
+  private _getDistanceToggleButton() {
+    const { scrollbarWidth, scrollbarHeight } = this._getScrollbarWidthHeight();
+
+    const isWindowRightScrollbarShow =
+      document.body.scrollHeight > window.innerHeight;
+    const isWindowBottomScrollbarShow =
+      document.body.scrollWidth > window.innerWidth;
+
+    const toTop = this._buttonEl.getBoundingClientRect().top;
+    const toBottom =
+      window.innerHeight -
+      this._buttonEl.getBoundingClientRect().bottom -
+      (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
+    const toLeft = this._buttonEl.getBoundingClientRect().left;
+    const toRight =
+      window.innerWidth -
+      this._buttonEl.getBoundingClientRect().left -
+      (isWindowRightScrollbarShow ? scrollbarWidth : 0);
+
+    return { toTop, toBottom, toLeft, toRight };
+  }
+
+  private _setMenuPositionAboveOrBelow() {
     this._menuEl.style.height = "auto";
     this._menuEl.style.bottom = "auto";
     this._menuEl.style.overflowY = "";
 
     const menuHeight = this._menuEl.getBoundingClientRect().height;
-    const distanceToggleButtonToBottom =
-      window.innerHeight -
-      this._buttonEl.getBoundingClientRect().bottom -
-      (document.body.scrollWidth > window.innerWidth
-        ? this._getScrollBarHeight()
-        : 0);
-    if (distanceToggleButtonToBottom >= menuHeight) return;
+    const distanceToggleButton = this._getDistanceToggleButton();
+    if (distanceToggleButton.toBottom >= menuHeight) return;
 
-    const distanceToggleButtonToTop = this._buttonEl.getBoundingClientRect()
-      .top;
-    if (distanceToggleButtonToBottom < distanceToggleButtonToTop) {
+    if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
       // Above
       const errorHeight = this._errorEl.offsetHeight
         ? this._errorEl.offsetHeight + 16
         : 0;
       this._menuEl.style.bottom = `${this._buttonEl.offsetHeight +
         errorHeight}px`;
-      if (distanceToggleButtonToTop >= menuHeight) return;
-      this._menuEl.style.height = `${distanceToggleButtonToTop}px`;
+      if (distanceToggleButton.toTop >= menuHeight) return;
+      this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
       this._menuEl.style.overflowY = "scroll";
     } else {
       // Below
-      this._menuEl.style.height = `${distanceToggleButtonToBottom}px`;
+      this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
       this._menuEl.style.overflowY = "scroll";
     }
+  }
+
+  private _setMenuPositionLeftOrRight() {
+    this._menuEl.style.right = "auto";
+
+    const menuWidth = this._menuEl.getBoundingClientRect().width;
+    const distanceToggleButton = this._getDistanceToggleButton();
+    if (
+      // Right
+      distanceToggleButton.toRight >= menuWidth ||
+      distanceToggleButton.toLeft < menuWidth ||
+      distanceToggleButton.toRight < 0
+    )
+      return;
+
+    // Left
+    const right = this._buttonEl.offsetWidth - distanceToggleButton.toRight;
+    this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
+  }
+
+  private _setMenuPosition() {
+    this._setMenuPositionAboveOrBelow();
+    this._setMenuPositionLeftOrRight();
   }
 
   private _scrollToView() {
