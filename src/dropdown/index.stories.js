@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/web-components";
 storiesOf("desktop/dropdown", module)
   .add("Base", () => {
     const root = document.createElement("div");
+    root.style.height = "200px";
     const dropdown = new Dropdown({
       items: [
         {
@@ -34,6 +35,7 @@ storiesOf("desktop/dropdown", module)
   })
   .add("Base2", () => {
     const root = document.createElement("div");
+    root.style.height = "200px";
     const dropdown = new Dropdown();
     dropdown.value = "Orange";
     dropdown.items = [
@@ -53,6 +55,38 @@ storiesOf("desktop/dropdown", module)
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
     dropdown.error = "エラーです";
+    root.appendChild(dropdown);
+    return root;
+  })
+  .add("Base3", () => {
+    const root = document.createElement("div");
+    const dropdown = new Dropdown();
+    dropdown.value = "Orange";
+    dropdown.items = [
+      {
+        label: "-----",
+        value: "-----"
+      },
+      {
+        label: "orange",
+        value: "Orange"
+      },
+      {
+        label: "apple",
+        value: "Apple"
+      },
+      {
+        label: "banana",
+        value: "Banana"
+      }
+    ];
+    dropdown.label = "フルーツ一覧";
+    dropdown.requiredIcon = true;
+    dropdown.error = "エラーです";
+
+    const div = document.createElement("div");
+    div.style.height = "50px";
+    root.appendChild(div);
     root.appendChild(dropdown);
     return root;
   })

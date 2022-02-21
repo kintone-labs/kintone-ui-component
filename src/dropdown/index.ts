@@ -79,6 +79,9 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__select-menu__highlight")
   private _highlightItemEl!: HTMLLIElement;
 
+  @query(".kuc-dropdown__group__error")
+  private _errorEl!: HTMLDivElement;
+
   private _GUID: string;
 
   constructor(props?: DropdownProps) {
@@ -455,7 +458,11 @@ export class Dropdown extends KucBase {
       .top;
     if (distanceToggleButtonToBottom < distanceToggleButtonToTop) {
       // Above
-      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight}px`;
+      const errorHeight = this._errorEl.offsetHeight
+        ? this._errorEl.offsetHeight + 16
+        : 0;
+      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight +
+        errorHeight}px`;
       if (distanceToggleButtonToTop >= menuHeight) return;
       this._menuEl.style.height = `${distanceToggleButtonToTop}px`;
       this._menuEl.style.overflowY = "scroll";
@@ -522,6 +529,7 @@ export class Dropdown extends KucBase {
           display: inline-block;
           width: 100%;
           margin: 0px;
+          position: relative;
         }
         .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
