@@ -4,13 +4,14 @@ import { Dropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Pear", value: "pear" }
 ];
 
 describe("Dropdown", () => {
   describe("menuPosition", () => {
     it("Show menu below default", async () => {
-      document.body.style.height = "200px";
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value
@@ -30,9 +31,10 @@ describe("Dropdown", () => {
     });
 
     it("Show scroll bar when menu display is incomplete below", async () => {
-      document.body.style.height = "100px";
+      await fixture('<div style="height: 200px" />');
+
       const container = new Dropdown({
-        items: initItems,
+        items: [...initItems, ...initItems, ...initItems],
         value: initItems[0].value
       });
       const el = await fixture(container);
@@ -50,12 +52,12 @@ describe("Dropdown", () => {
     });
 
     it("Show menu above when it cannot be completely displayed below", async () => {
-      document.body.style.height = "200px";
-      await fixture('<div style="height: 150px" />');
+      await fixture('<div style="height: 500px" />');
 
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
+        error: "Error"
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -67,16 +69,20 @@ describe("Dropdown", () => {
       const menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu"
       ) as HTMLDivElement;
-      expect(menuEl.style.bottom).to.equal(`${toggle.offsetHeight}px`);
+      const errorEl = el.querySelector(
+        ".kuc-dropdown__group__error"
+      ) as HTMLDivElement;
+      expect(menuEl.style.bottom).to.equal(
+        `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`
+      );
       expect(menuEl.style.height).to.equal("auto");
     });
 
     it("Show scroll bar when menu display is incomplete above", async () => {
-      document.body.style.height = "200px";
-      await fixture('<div style="height: 100px" />');
+      await fixture('<div style="height: 300px" />');
 
       const container = new Dropdown({
-        items: initItems,
+        items: [...initItems, ...initItems, ...initItems],
         value: initItems[0].value
       });
       const el = await fixture(container);
