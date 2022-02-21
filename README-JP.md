@@ -18,7 +18,6 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 
 
 ## 目次
-- [目次](#目次)
 - [インストール](#インストール)
   - [UMD](#umd)
   - [CDN](#cdn)

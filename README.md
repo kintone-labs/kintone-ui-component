@@ -18,7 +18,6 @@ It supports you to develop kintone customization and kintone plugin.<br />
 
 
 ## Table of contents
-- [Table of contents](#table-of-contents)
 - [Installation](#installation)
   - [UMD](#umd)
   - [CDN](#cdn)
