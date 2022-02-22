@@ -9,7 +9,7 @@ export default {
       defaultViewport: "iPhone11Pro"
     },
     actions: {
-      handles: ["kuc:base-mobile-time-change"]
+      handles: ["change"]
     }
   }
 };

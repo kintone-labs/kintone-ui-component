@@ -86,12 +86,11 @@ export class MobileDatePicker extends KucBase {
         <kuc-mobile-base-date
           class="kuc-mobile-date-picker__group__base__date"
           .inputId="${this._GUID}"
-          .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
           .value="${this.value}"
           .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
-          @kuc:base-date-change="${this._handleDateChange}"
+          @kuc:mobile-base-date-change="${this._handleDateChange}"
         >
         </kuc-mobile-base-date>
         <kuc-base-mobile-error .text="${this.error}"> </kuc-base-mobile-error>
