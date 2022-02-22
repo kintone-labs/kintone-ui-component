@@ -83,9 +83,12 @@ storiesOf("desktop/dropdown", module)
     dropdown.error = "エラーです";
 
     const div = document.createElement("div");
-    div.style.height = "50px";
+    div.style.height = "100px";
     root.appendChild(div);
     root.appendChild(dropdown);
+    const div2 = document.createElement("div");
+    div2.style.height = "100px";
+    root.appendChild(div2);
     return root;
   })
   // UI For document site. Do not change or delete below.

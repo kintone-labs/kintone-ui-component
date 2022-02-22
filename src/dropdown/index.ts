@@ -82,6 +82,8 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__error")
   private _errorEl!: HTMLDivElement;
 
+  private _timeoutID!: number | null;
+
   private _GUID: string;
 
   constructor(props?: DropdownProps) {
@@ -218,9 +220,11 @@ export class Dropdown extends KucBase {
 
   firstUpdated() {
     window.addEventListener("resize", () => {
-      if (this._selectorVisible) {
-        this._setMenuPosition();
-      }
+      this._actionResizeScrollWindow();
+    });
+
+    window.addEventListener("scroll", () => {
+      this._actionResizeScrollWindow();
     });
   }
 
@@ -547,6 +551,14 @@ export class Dropdown extends KucBase {
       this._menuEl.scrollTop +=
         highlightItemClientRect.bottom - menuElClientRect.bottom;
     }
+  }
+
+  private _actionResizeScrollWindow() {
+    if (this._timeoutID || !this._selectorVisible) return;
+    this._timeoutID = window.setTimeout(() => {
+      this._timeoutID = null;
+      this._setMenuPosition();
+    }, 50);
   }
 
   private _getStyleTagTemplate() {
