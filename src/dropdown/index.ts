@@ -184,7 +184,6 @@ export class Dropdown extends KucBase {
           @mouseup="${this._handleMouseUpDropdownToggle}"
           @mousedown="${this._handleMouseDownDropdownToggle}"
           @click="${this._handleClickDropdownToggle}"
-          @blur="${this._handleBlurDropdownToggle}"
           @keydown="${this._handleKeyDownDropdownToggle}"
         >
           <span class="kuc-dropdown__group__toggle__selected-item-label"
@@ -226,6 +225,10 @@ export class Dropdown extends KucBase {
     window.addEventListener("scroll", () => {
       this._actionResizeScrollWindow();
     });
+
+    document.addEventListener("click", () => {
+      this._handleClickDocument();
+    });
   }
 
   updated() {
@@ -260,11 +263,12 @@ export class Dropdown extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownToggle() {
+  private _handleClickDropdownToggle(event: Event) {
+    event.stopPropagation();
     this._actionToggleMenu();
   }
 
-  private _handleBlurDropdownToggle() {
+  private _handleClickDocument() {
     this._actionHideMenu();
   }
 

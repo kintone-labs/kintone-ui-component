@@ -34,7 +34,7 @@ describe("Dropdown", () => {
       expect(menuEl).has.attribute("hidden");
     });
 
-    it("should hide menu element when blur toggle button", async () => {
+    it("should hide menu element when clicking document", async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value
@@ -51,7 +51,7 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
-      toggle.dispatchEvent(new Event("blur"));
+      document.body.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu"
