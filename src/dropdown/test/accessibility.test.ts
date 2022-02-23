@@ -378,5 +378,24 @@ describe("Dropdown", () => {
 
       expect(container.value).to.equal(initItems[1].value);
     });
+
+    it('should hide menu when pressing "Tab" key', async () => {
+      const container = new Dropdown({ items: initItems });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLUListElement;
+
+      toggleEl.click();
+      await elementUpdated(el);
+      expect(menuEl.hidden).to.equal(false);
+
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+      await elementUpdated(el);
+      expect(menuEl.hidden).to.equal(true);
+    });
   });
 });
