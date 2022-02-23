@@ -264,6 +264,7 @@ export class DateTimePicker extends KucBase {
           font-size: 14px;
           display: inline-table;
           vertical-align: top;
+          line-height: 1.5;
         }
         kuc-datetime-picker[hidden] {
           display: none;

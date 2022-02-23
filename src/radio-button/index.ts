@@ -286,6 +286,7 @@ export class RadioButton extends KucBase {
           display: inline-table;
           min-width: 239px;
           vertical-align: top;
+          line-height: 1.5;
         }
 
         kuc-radio-button[hidden] {

@@ -14,32 +14,28 @@ const translate = require("../../server/translate.js").translate;
 const textContent = {
   codeExample: `
 \`\`\`javascript
-(() => {
-  'use strict';
+kintone.events.on('app.record.index.show', event => {
+  const header = kintone.app.getHeaderMenuSpaceElement();
 
-  kintone.events.on('app.record.index.show', event => {
-    const header = kintone.app.getHeaderMenuSpaceElement();
-
-    const buttonSubmit = new Kuc.Button({
-      text: 'Submit',
-      type: 'submit'
-    });
-    buttonSubmit.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    const buttonAlert = new Kuc.Button({
-      text: 'Alert',
-      type: 'alert'
-    });
-    buttonAlert.addEventListener('click', event => {
-      console.log(event);
-    });
-
-    header.appendChild(buttonSubmit);
-    header.appendChild(buttonAlert);
+  const buttonSubmit = new Kuc.Button({
+    text: 'Submit',
+    type: 'submit'
   });
-})();
+  buttonSubmit.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  const buttonAlert = new Kuc.Button({
+    text: 'Alert',
+    type: 'alert'
+  });
+  buttonAlert.addEventListener('click', event => {
+    console.log(event);
+  });
+
+  header.appendChild(buttonSubmit);
+  header.appendChild(buttonAlert);
+});
 
 \`\`\`
   `,

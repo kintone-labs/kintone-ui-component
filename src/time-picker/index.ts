@@ -151,6 +151,7 @@ export class TimePicker extends KucBase {
           color: #333333;
           display: inline-block;
           vertical-align: top;
+          line-height: 1.5;
         }
         .kuc-time-picker__group__input {
           position: relative;

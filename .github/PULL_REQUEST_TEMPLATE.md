@@ -1,4 +1,5 @@
-<!-- Thank you for sending a pull request! 
+<!--
+Thank you for sending a pull request!
 Here is the naming rule of the pull request title:
 https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md#pull-request
 -->

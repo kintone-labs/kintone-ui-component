@@ -12,7 +12,8 @@ export const createContextElm = (elm: HTMLElement) => {
 
 export const getWidthElmByContext = (elm: HTMLElement) => {
   const context = createContextElm(elm);
-  const clonedElm = elm.cloneNode(true);
+  const clonedElm = elm.cloneNode(true) as HTMLElement;
+  if (clonedElm.hasAttribute("hidden")) return 0;
   context.appendChild(clonedElm);
   document.body.appendChild(context);
 

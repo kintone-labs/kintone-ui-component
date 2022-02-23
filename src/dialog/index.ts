@@ -251,13 +251,13 @@ export class Dialog extends KucBase {
         }
 
         .kuc-dialog__dialog__content {
-          min-height: 48px;
           border-bottom: #e3e7e8 solid 1px;
           background-color: #f7f9fa;
+          padding: 24px;
         }
 
         .kuc-dialog__dialog__footer {
-          min-height: 48px;
+          padding: 24px;
         }
 
         .kuc-dialog__mask {
