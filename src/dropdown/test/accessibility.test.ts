@@ -51,12 +51,14 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
-      document.body.click();
-      await elementUpdated(container);
-      menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
-      ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      setTimeout(async () => {
+        document.body.click();
+        await elementUpdated(container);
+        menuEl = el.querySelector(
+          ".kuc-dropdown__group__select-menu",
+        ) as HTMLDivElement;
+        expect(menuEl).has.attribute("hidden");
+      }, 10);
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {

@@ -90,6 +90,7 @@ export class Dropdown extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._handleClickDocument = this._handleClickDocument.bind(this);
     Object.assign(this, validProps);
   }
 
@@ -225,10 +226,6 @@ export class Dropdown extends KucBase {
     window.addEventListener("scroll", () => {
       this._actionResizeScrollWindow();
     });
-
-    document.addEventListener("click", () => {
-      this._handleClickDocument();
-    });
   }
 
   updated() {
@@ -236,6 +233,13 @@ export class Dropdown extends KucBase {
     if (this._selectorVisible) {
       this._setMenuPosition();
       this._scrollToView();
+      setTimeout(() => {
+        document.addEventListener("click", this._handleClickDocument, true);
+      }, 1);
+    } else {
+      setTimeout(() => {
+        document.removeEventListener("click", this._handleClickDocument, true);
+      }, 1);
     }
   }
 
@@ -268,7 +272,13 @@ export class Dropdown extends KucBase {
     this._actionToggleMenu();
   }
 
-  private _handleClickDocument() {
+  private _handleClickDocument(event: MouseEvent) {
+    if (
+      event.target === this._buttonEl ||
+      this._buttonEl.contains(event.target as HTMLElement)
+    ) {
+      event.stopPropagation();
+    }
     this._actionHideMenu();
   }
 
