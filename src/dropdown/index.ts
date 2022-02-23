@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { getWidthElmByContext } from "../base/context";
 import {
   validateProps,
   validateItems,
@@ -406,27 +407,10 @@ export class Dropdown extends KucBase {
     this._buttonEl.removeAttribute("aria-activedescendant");
   }
 
-  private _getLabelWidth() {
-    const context = document.createElement("div");
-    context.style.height = "0px";
-    context.style.overflow = "hidden";
-    context.style.display = "inline-block";
-    context.style.fontSize = "14px";
-
-    const clonedLabel = this._labelEl.cloneNode(true);
-    context.appendChild(clonedLabel);
-    document.body.appendChild(context);
-
-    const width = context.getBoundingClientRect().width;
-    document.body.removeChild(context);
-
-    return width;
-  }
-
   private _updateContainerWidth() {
     const MIN_WIDTH = 180;
     let labelWidth = this._labelEl.getBoundingClientRect().width;
-    if (labelWidth === 0) labelWidth = this._getLabelWidth();
+    if (labelWidth === 0) labelWidth = getWidthElmByContext(this._labelEl);
     labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     this._groupEl.style.width = labelWidth + "px";
   }
