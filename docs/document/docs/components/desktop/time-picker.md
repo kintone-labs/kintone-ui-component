@@ -8,8 +8,10 @@ sidebar_label: TimePicker
 
 The TimePicker component allows the user to display a input area and time selection listbox.
 
-<div id='sample-container' style='margin:auto; width:85px;'></div>
-<script src='/js/samples/time-picker.js'></script>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/time-picker.js"></script>
 
 ---
 

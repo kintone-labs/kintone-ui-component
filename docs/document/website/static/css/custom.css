@@ -114,6 +114,12 @@ td[class^="kuc"] {
 .sample-container .kuc-datetime-picker__group__error {
     max-width: 185px;
 }
+.sample-container .kuc-time-picker__group__error {
+    max-width: 185px;
+}
+.sample-container .kuc-dropdown__group {
+    max-width: 180px;
+}
 .kuc-preview {
     background-color: #F5F5F5;
     padding: 20px 40px;

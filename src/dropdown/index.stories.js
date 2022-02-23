@@ -106,23 +106,4 @@ storiesOf("desktop/dropdown", module)
     });
     root.appendChild(dropdown2);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const dropdown = new Dropdown({
-      value: "Orange",
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
-    root.appendChild(dropdown);
-    return root;
   });
