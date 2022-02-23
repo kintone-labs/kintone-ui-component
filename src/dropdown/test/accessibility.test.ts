@@ -55,7 +55,7 @@ describe("Dropdown", () => {
         document.body.click();
         await elementUpdated(container);
         menuEl = el.querySelector(
-          ".kuc-dropdown__group__select-menu",
+          ".kuc-dropdown__group__select-menu"
         ) as HTMLDivElement;
         expect(menuEl).has.attribute("hidden");
       }, 10);
