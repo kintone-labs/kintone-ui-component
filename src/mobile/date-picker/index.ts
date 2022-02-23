@@ -98,6 +98,38 @@ export class MobileDatePicker extends KucBase {
     `;
   }
 
+  private _getLanguage() {
+    const langs = ["en", "ja", "zh"];
+    if (langs.indexOf(this.language) !== -1) return this.language;
+
+    if (langs.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
+  }
+
+  private _handleDateChange(event: CustomEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+    const eventDetail: CustomEventDetail = {
+      oldValue: this.value === "" ? undefined : this.value,
+      value: ""
+    };
+    this.error = "";
+    if (event.detail.error) {
+      this.error = event.detail.error;
+      eventDetail.value = undefined;
+    } else {
+      this.value = event.detail.value;
+      eventDetail.value = this.value;
+    }
+    this._disptchChangeEvent(eventDetail);
+  }
+
+  private _disptchChangeEvent(eventDetail: CustomEventDetail) {
+    dispatchCustomEvent(this, "change", eventDetail);
+  }
+
   private _getStyleTagTemplate() {
     return html`
       <style>
@@ -109,7 +141,6 @@ export class MobileDatePicker extends KucBase {
             "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
             "Lucida Sans Unicode", Arial, Verdana, sans-serif;
         }
-
         :lang(zh) kuc-mobile-date-picker,
         :lang(zh) kuc-mobile-date-picker * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
@@ -149,16 +180,6 @@ export class MobileDatePicker extends KucBase {
         .kuc-mobile-date-picker__group__label[hidden] {
           display: none;
         }
-        .kuc-mobile-date-picker__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-mobile-date-picker__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-mobile-date-picker__group input.kuc-base-date__input {
           width: 100px;
           height: 40px;
@@ -186,49 +207,8 @@ export class MobileDatePicker extends KucBase {
           box-shadow: none;
           cursor: not-allowed;
         }
-        .kuc-mobile-date-picker__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
       </style>
     `;
-  }
-  private _getLanguage() {
-    const langs = ["en", "ja", "zh"];
-    if (langs.indexOf(this.language) !== -1) return this.language;
-
-    if (langs.indexOf(document.documentElement.lang) !== -1)
-      return document.documentElement.lang;
-
-    return "en";
-  }
-
-  private _handleDateChange(event: CustomEvent) {
-    event.stopPropagation();
-    event.preventDefault();
-    const eventDetail: CustomEventDetail = {
-      oldValue: this.value === "" ? undefined : this.value,
-      value: ""
-    };
-    this.error = "";
-    if (event.detail.error) {
-      this.error = event.detail.error;
-      eventDetail.value = undefined;
-    } else {
-      this.value = event.detail.value;
-      eventDetail.value = this.value;
-    }
-    this._disptchChangeEvent(eventDetail);
-  }
-
-  private _disptchChangeEvent(eventDetail: CustomEventDetail) {
-    dispatchCustomEvent(this, "change", eventDetail);
   }
 }
 if (!window.customElements.get("kuc-mobile-date-picker")) {
