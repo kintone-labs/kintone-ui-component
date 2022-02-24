@@ -16,7 +16,7 @@ Maintenances, document updates, and security updates have been made.
 - Changed checkmark color of selected item when disabled on MultiChoice component.
   - We did this to make it easier to see it.
 - Improved displayed position and added scroll behavior of Dropdown menu part.
-- Fixed the line-hight issue when setting on app's HeaderMenuSpaceElement on desktop components.
+- Fixed the line-height issue when setting on app's HeaderMenuSpaceElement on desktop components.
 
 ### Security Updates
 - Updated dependent libraries: karma, engine.io, follow-redirects.
