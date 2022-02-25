@@ -85,7 +85,6 @@ export class MobileDatePicker extends KucBase {
         </label>
         <kuc-mobile-base-date
           class="kuc-mobile-date-picker__group__base__date"
-          .inputId="${this._GUID}"
           .disabled="${this.disabled}"
           .value="${this.value}"
           .required="${this.requiredIcon}"
