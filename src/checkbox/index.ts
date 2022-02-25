@@ -325,6 +325,7 @@ export class Checkbox extends KucBase {
           vertical-align: top;
           width: 239px;
           min-width: 239px;
+          line-height: 1.5;
         }
         kuc-checkbox[hidden] {
           display: none;

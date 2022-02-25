@@ -4,7 +4,7 @@ import { KucBase, dispatchCustomEvent } from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import { BaseDateTimeListBox } from "../listbox";
-import { getTodayStringByLocale } from "../utils";
+import { getTodayStringByLocale, calculateDistanceInput } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
@@ -67,7 +67,8 @@ export class BaseDateTimeCalendar extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
+  async updated(changedProperties: PropertyValues) {
+    await this.updateComplete;
     this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
   }
@@ -86,34 +87,80 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _calculateBodyCalendarPosition() {
-    const baseDateTimeEl = this._baseCalendarGroupEl.parentElement
-      ?.parentElement;
-    if (!baseDateTimeEl) return;
-
-    const dateInputEl = baseDateTimeEl.querySelector(
-      ".kuc-base-date__input"
-    ) as HTMLInputElement;
-    if (!dateInputEl) return;
-
-    const dateInputTop = dateInputEl.offsetTop;
-    const dateTop = dateInputTop + dateInputEl.offsetHeight;
-
-    const baseDatetimeCalendarEl = this._baseCalendarGroupEl.parentElement;
-    if (!baseDatetimeCalendarEl) return;
-    baseDatetimeCalendarEl.style.top = dateTop + "px";
-    baseDatetimeCalendarEl.style.left = dateInputEl.offsetLeft + "px";
-
-    if (!baseDatetimeCalendarEl || !this.parentElement) return;
-
-    const distanceInputToBottom =
-      window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
-    const listBoxHeight = this._baseCalendarGroupEl.getBoundingClientRect()
+    const {
+      inputToBottom,
+      inputToTop,
+      inputToRight,
+      inputToLeft
+    } = calculateDistanceInput(this);
+    const calendarHeight = this._baseCalendarGroupEl.getBoundingClientRect()
       .height;
-    if (distanceInputToBottom >= listBoxHeight) return;
+
+    if (inputToBottom >= calendarHeight) {
+      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
+      return;
+    }
+    if (inputToTop < 0 || inputToBottom > inputToTop) {
+      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
+      return;
+    }
+    this._calculateCalendarPosition(inputToRight, inputToLeft, "top");
+  }
+
+  private _calculateCalendarPosition(
+    inputToRight: number,
+    inputToLeft: number,
+    type: string
+  ) {
+    if (!this.parentElement) return;
+
+    const calendarWidth = 336;
+    const inputHeight = 40;
+    const inputWidth = 100;
+    if (inputToRight < calendarWidth && inputToRight < inputToLeft) {
+      const parentWidth = this.parentElement.getBoundingClientRect().width;
+      const top = type === "bottom" ? inputHeight : "auto";
+      const bottom = type === "bottom" ? "auto" : inputHeight;
+      const right = parentWidth > inputWidth ? parentWidth - inputWidth : 0;
+
+      this._setCalendarPosition({
+        top,
+        bottom,
+        right
+      });
+      return;
+    }
+    const top = type === "bottom" ? inputHeight : "auto";
+    const bottom = type === "bottom" ? "auto" : inputHeight;
+    const left = 0;
+    this._setCalendarPosition({
+      bottom,
+      top,
+      left
+    });
+  }
+
+  private _setCalendarPosition({
+    top = "auto",
+    left = "auto",
+    right = "auto",
+    bottom = "auto"
+  }: {
+    top?: number | string;
+    left?: number | string;
+    right?: number | string;
+    bottom?: number | string;
+  }) {
+    const baseDatetimeCalendarEl = this._baseCalendarGroupEl.parentElement;
+    if (!this.parentElement || !baseDatetimeCalendarEl) return;
+
     this.parentElement.style.position = "relative";
-    baseDatetimeCalendarEl.style.bottom = 30 + "px";
-    baseDatetimeCalendarEl.style.left = "0px";
-    baseDatetimeCalendarEl.style.top = "auto";
+    baseDatetimeCalendarEl.style.bottom =
+      bottom === "auto" ? bottom : bottom + "px";
+    baseDatetimeCalendarEl.style.top = top === "auto" ? top : top + "px";
+    baseDatetimeCalendarEl.style.left = left === "auto" ? left : left + "px";
+    baseDatetimeCalendarEl.style.right =
+      right === "auto" ? right : right + "px";
   }
 
   private _getStyleTagTemplate() {

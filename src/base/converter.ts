@@ -1,3 +1,4 @@
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { padStart } from "./datetime/utils";
 
 export const visiblePropConverter = {
@@ -7,6 +8,10 @@ export const visiblePropConverter = {
   toAttribute(value: boolean) {
     return value ? null : "";
   }
+};
+
+export const unsafeHTMLConverter = (element: string | HTMLElement) => {
+  return element instanceof HTMLElement ? element : unsafeHTML(element);
 };
 
 export const dateValueConverter = (date: string | undefined) => {

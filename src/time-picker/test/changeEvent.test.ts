@@ -82,5 +82,26 @@ describe("TimePicker", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.value).to.equal("00:00");
     });
+
+    it("should be not change value when paste new value to input", async () => {
+      const container = new TimePicker();
+      const el = await fixture(container);
+      const hourInputEl = el.querySelector(
+        ".kuc-base-time__group__hours"
+      ) as HTMLInputElement;
+
+      const event = Object.assign(
+        new Event("paste", { bubbles: true, cancelable: true }),
+        {
+          clipboardData: {
+            getData: () => "4321",
+            types: ["text/html"]
+          }
+        }
+      );
+      hourInputEl.dispatchEvent(event);
+      await elementUpdated(el);
+      expect(hourInputEl.value).to.equal("");
+    });
   });
 });

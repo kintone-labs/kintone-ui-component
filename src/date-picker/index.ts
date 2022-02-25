@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
 import {
   CustomEventDetail,
@@ -43,6 +43,12 @@ export class DatePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
+  @state()
+  private _errorFormat = "";
+
+  @state()
+  private _errorText = "";
 
   private _GUID: string;
 
@@ -97,12 +103,20 @@ export class DatePicker extends KucBase {
           class="kuc-date-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden="${!this.error}"
+          ?hidden="${!this._errorText}"
         >
-          ${this.error}
+          ${this._errorText}
         </div>
       </div>
     `;
+  }
+
+  updated() {
+    this._updateErrorText();
+  }
+
+  private _updateErrorText() {
+    this._errorText = this._errorFormat || this.error;
   }
 
   private _getStyleTagTemplate() {
@@ -132,6 +146,7 @@ export class DatePicker extends KucBase {
           vertical-align: top;
           max-width: 100px;
           width: 100px;
+          line-height: 1.5;
         }
         kuc-date-picker[hidden] {
           display: none;
@@ -219,13 +234,14 @@ export class DatePicker extends KucBase {
       oldValue: this.value === "" ? undefined : this.value,
       value: ""
     };
-    this.error = "";
     if (event.detail.error) {
-      this.error = event.detail.error;
+      this._errorFormat = event.detail.error;
+      this.error = "";
       eventDetail.value = undefined;
     } else {
       this.value = event.detail.value;
       eventDetail.value = this.value;
+      this._errorFormat = "";
     }
     this._disptchChangeEvent(eventDetail);
   }

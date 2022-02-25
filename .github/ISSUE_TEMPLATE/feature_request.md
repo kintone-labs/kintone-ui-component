@@ -10,7 +10,11 @@ assignees: ''
 If possible, please write the issue and pull-request in English.
 But it's not an absolute rule. Japanese is ok.
 
-<!-- Thank you for sending a feature request! -->
+<!--
+Thank you for sending a feature request!
+Here is the naming rule of the issue title:
+https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md#issue
+-->
 
 ## Component
 

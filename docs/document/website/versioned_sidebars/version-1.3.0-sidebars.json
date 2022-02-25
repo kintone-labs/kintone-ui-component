@@ -10,13 +10,17 @@
         "ids": [
           "version-1.3.0-components/desktop/button",
           "version-1.3.0-components/desktop/checkbox",
+          "version-1.3.0-components/desktop/date-picker",
+          "version-1.3.0-components/desktop/datetime-picker",
+          "version-1.3.0-components/desktop/dialog",
           "version-1.3.0-components/desktop/dropdown",
           "version-1.3.0-components/desktop/multichoice",
           "version-1.3.0-components/desktop/notification",
           "version-1.3.0-components/desktop/radio-button",
           "version-1.3.0-components/desktop/spinner",
           "version-1.3.0-components/desktop/text",
-          "version-1.3.0-components/desktop/textarea"
+          "version-1.3.0-components/desktop/textarea",
+          "version-1.3.0-components/desktop/time-picker"
         ]
       },
       {

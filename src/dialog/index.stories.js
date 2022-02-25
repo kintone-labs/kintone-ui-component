@@ -6,7 +6,7 @@ storiesOf("desktop/dialog", module)
     const root = document.createElement("div");
     const dialog = new Dialog({
       title: "Title",
-      content: `<div><p style="margin: 0;">Content</p><div>`,
+      content: `<div><p style="margin: 0;">Content</p></div>`,
       footer: ""
     });
     dialog.addEventListener("close", event => {
@@ -39,7 +39,9 @@ storiesOf("desktop/dialog", module)
   .add("Document", () => {
     const root = document.createElement("div");
     const dialog = new Dialog({
-      content: "<div>This is Content</div>"
+      title: "Title",
+      content: "<div>This is Content</div>",
+      footer: "Footer"
     });
     dialog.open();
     return root;
