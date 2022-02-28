@@ -110,6 +110,7 @@ export class MobileTimePicker extends KucBase {
         kuc-mobile-time-picker {
           display: inline-block;
           vertical-align: top;
+          width: 100%;
         }
         kuc-mobile-time-picker[hidden] {
           display: none;
