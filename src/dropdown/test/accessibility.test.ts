@@ -34,7 +34,7 @@ describe("Dropdown", () => {
       expect(menuEl).has.attribute("hidden");
     });
 
-    it("should hide menu element when blur toggle button", async () => {
+    it("should hide menu element when clicking document", async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value
@@ -51,12 +51,14 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
-      toggle.dispatchEvent(new Event("blur"));
-      await elementUpdated(container);
-      menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
-      ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      setTimeout(async () => {
+        document.body.click();
+        await elementUpdated(container);
+        menuEl = el.querySelector(
+          ".kuc-dropdown__group__select-menu"
+        ) as HTMLDivElement;
+        expect(menuEl).has.attribute("hidden");
+      }, 10);
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
@@ -375,6 +377,25 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       expect(container.value).to.equal(initItems[1].value);
+    });
+
+    it('should hide menu when pressing "Tab" key', async () => {
+      const container = new Dropdown({ items: initItems });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLUListElement;
+
+      toggleEl.click();
+      await elementUpdated(el);
+      expect(menuEl.hidden).to.equal(false);
+
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
+      await elementUpdated(el);
+      expect(menuEl.hidden).to.equal(true);
     });
   });
 });

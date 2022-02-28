@@ -26,6 +26,7 @@ export class BaseMobileDateTimeCalendar extends KucBase {
         role="dialog"
         aria-modal="true"
         aria-label="Calender"
+        @click="${this._handleClickCalendarGroup}"
       >
         <kuc-base-mobile-datetime-calendar-header
           .year="${this._year}"
@@ -68,6 +69,10 @@ export class BaseMobileDateTimeCalendar extends KucBase {
         }
       </style>
     `;
+  }
+
+  private _handleClickCalendarGroup(event: Event) {
+    event.stopPropagation();
   }
 
   private _handleCalendarHeaderChange(event: CustomEvent) {

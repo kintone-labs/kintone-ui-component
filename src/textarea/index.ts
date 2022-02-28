@@ -202,6 +202,7 @@ export class TextArea extends KucBase {
           display: inline-table;
           vertical-align: top;
           width: 299px;
+          line-height: 1.5;
         }
         kuc-textarea[hidden] {
           display: none;

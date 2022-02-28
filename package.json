@@ -1,6 +1,6 @@
 {
   "name": "kintone-ui-component",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
@@ -51,7 +51,7 @@
     "deepmerge": "^4.2.2",
     "eslint": "^7.18.0",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
-    "karma": "^6.3.2",
+    "karma": "^6.3.16",
     "karma-coverage": "^2.0.3",
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
@@ -60,11 +60,9 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "@types/dompurify": "^2.0.3",
     "@types/uuid": "^8.3.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "core-js": "^3.20.2",
-    "dompurify": "^2.2.6",
     "lit": "^2.0.0",
     "regenerator-runtime": "^0.13.5",
     "uuid": "^8.3.0"

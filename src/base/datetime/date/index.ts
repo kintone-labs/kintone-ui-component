@@ -134,6 +134,7 @@ export class BaseDate extends KucBase {
           padding: 0px;
           text-align: center;
           border: 1px solid #e3e7e8;
+          color: #333333;
           box-sizing: border-box;
           font-size: 14px;
           box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
@@ -148,6 +149,10 @@ export class BaseDate extends KucBase {
           border: 1px solid #3498db;
           background-color: #ffffff;
           color: #333333;
+        }
+        .kuc-datetime-picker__group__inputs--date
+          input.kuc-base-date__input--focus {
+          border-color: #3498db;
         }
         input.kuc-base-date__input:disabled {
           color: #888888;
