@@ -41,7 +41,7 @@ export class MobileTimePicker extends KucBase {
   visible = true;
   private _GUID: string;
 
-  constructor(props: MobileTimePickerProps) {
+  constructor(props?: MobileTimePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);

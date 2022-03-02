@@ -130,6 +130,8 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _handleChangeMinutes(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     const oldTime = this._getTimeValueString();
 
     const target = event.target as HTMLOptionElement;
@@ -141,6 +143,8 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _handleChangeHours(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     const oldTime = this._getTimeValueString();
     const target = event.target as HTMLOptionElement;
     const values = target.value.split(" ");
