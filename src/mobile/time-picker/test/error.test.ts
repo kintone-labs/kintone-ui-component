@@ -1,5 +1,5 @@
 import { expect, fixture } from "@open-wc/testing";
-import { MobileTimePicker } from "..";
+import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
   describe("error", () => {

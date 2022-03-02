@@ -1,11 +1,10 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
-import "../index";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
   describe("hour12", () => {
     it("should be using 12-hour clock when not assigning", async () => {
-      const container = new MobileTimePicker({value: "13:15"});
+      const container = new MobileTimePicker({ value: "13:15" });
 
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
@@ -20,7 +19,7 @@ describe("MobileTimePicker", () => {
     });
 
     it("should be using 12-hour clock when assigned true by setter", async () => {
-      const container = new MobileTimePicker({value: "13:15", hour12: true});
+      const container = new MobileTimePicker({ value: "13:15", hour12: true });
 
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
@@ -40,10 +39,9 @@ describe("MobileTimePicker", () => {
     });
 
     it("should be using 24-hour clock when change to false", async () => {
-      const container = new MobileTimePicker({value: "13:15", hour12: true});
+      const container = new MobileTimePicker({ value: "13:15", hour12: true });
       container.hour12 = false;
       const el = await fixture(container);
-      
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
       ) as HTMLInputElement;

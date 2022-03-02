@@ -1,5 +1,4 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
-import "../index";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
@@ -19,7 +18,7 @@ describe("MobileTimePicker", () => {
     });
 
     it("should be added into input element when assigned true", async () => {
-      const container = new MobileTimePicker({disabled: true});
+      const container = new MobileTimePicker({ disabled: true });
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
@@ -49,7 +48,7 @@ describe("MobileTimePicker", () => {
     });
 
     it("should be not added into input element when changed to false by setter", async () => {
-      const container = new MobileTimePicker({disabled: true});
+      const container = new MobileTimePicker({ disabled: true });
       container.disabled = false;
       const el = await fixture(container);
       const selectHourEl = el.querySelector(

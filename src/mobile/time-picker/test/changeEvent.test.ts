@@ -1,12 +1,11 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
-import "../index";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
   describe("change event", () => {
     it("should be triggered when selected on hour 24", async () => {
       let triggeredEvent: any = null;
-      const container = new MobileTimePicker({value: "12:30"});
+      const container = new MobileTimePicker({ value: "12:30" });
       container.addEventListener("change", event => {
         triggeredEvent = event;
       });
@@ -17,9 +16,7 @@ describe("MobileTimePicker", () => {
       selectHourEl.value = "01";
       expect(selectHourEl.value).to.equal("01");
       await elementUpdated(container);
-      selectHourEl.dispatchEvent(
-        new Event("change", { bubbles: true })
-      );
+      selectHourEl.dispatchEvent(new Event("change", { bubbles: true }));
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
@@ -28,7 +25,7 @@ describe("MobileTimePicker", () => {
 
     it("should be triggered when selected on hour 12", async () => {
       let triggeredEvent: any = null;
-      const container = new MobileTimePicker({value: "12:30", hour12: true});
+      const container = new MobileTimePicker({ value: "12:30", hour12: true });
       container.addEventListener("change", event => {
         triggeredEvent = event;
       });
@@ -40,9 +37,7 @@ describe("MobileTimePicker", () => {
 
       selectHourEl.value = "PM 03";
       await elementUpdated(container);
-      selectHourEl.dispatchEvent(
-        new Event("change", { bubbles: true })
-      );
+      selectHourEl.dispatchEvent(new Event("change", { bubbles: true }));
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
@@ -51,7 +46,7 @@ describe("MobileTimePicker", () => {
 
     it("should be triggered when selected on item in minute", async () => {
       let triggeredEvent: any = null;
-      const container = new MobileTimePicker({value: "12:30"});
+      const container = new MobileTimePicker({ value: "12:30" });
       container.addEventListener("change", event => {
         triggeredEvent = event;
       });
@@ -63,9 +58,7 @@ describe("MobileTimePicker", () => {
 
       selectMinuteEl.value = "35";
       await elementUpdated(container);
-      selectMinuteEl.dispatchEvent(
-        new Event("change", { bubbles: true })
-      );
+      selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
