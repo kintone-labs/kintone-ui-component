@@ -9,7 +9,10 @@ original_id: dropdown
 
 The Dropdown component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-dropdown--document" title="dropdown image" height="140px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/dropdown.js"></script>
 
 ---
 

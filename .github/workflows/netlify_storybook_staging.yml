@@ -28,12 +28,10 @@ jobs:
       - name: Build storybook
         run: npm run build:storybook
         working-directory: ./
-      - uses: jsmrcaga/action-netlify-deploy@master
-        with:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STORYBOOK_ID }}
-          deploy_alias: 'staging'
-          build_directory: './docs/storybook'
+      - name: Install Netlify
+        run: npm i netlify-cli@9 --save-dev
+      - name: Deploy
+        run: netlify deploy --dir=./docs/storybook --alias=staging --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_STORYBOOK_ID }}
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
         with:

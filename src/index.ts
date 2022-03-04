@@ -7,6 +7,7 @@ export * from "./radio-button";
 export * from "./spinner";
 export * from "./text";
 export * from "./textarea";
+export * from "./dialog";
 export * from "./date-picker";
 export * from "./datetime-picker";
 export * from "./time-picker";

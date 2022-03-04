@@ -175,6 +175,7 @@ export class DateTimePicker extends KucBase {
     let newValue = this._dateValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
+      this.error = "";
     } else {
       newValue = event.detail.value;
       this._errorFormat = "";
@@ -198,24 +199,17 @@ export class DateTimePicker extends KucBase {
     }
     const newDateTime = this._getDateTimeString();
     const detail = {
-      value: this._errorText || newDateTime === "" ? undefined : newDateTime,
-      oldValue: oldDateTime,
+      value: this._errorFormat || newDateTime === "" ? undefined : newDateTime,
+      oldValue: oldDateTime === "" ? undefined : oldDateTime,
       changedPart: type
     };
     dispatchCustomEvent(this, "change", detail);
   }
 
   private _getDateTimeString() {
-    if (this._dateValue) {
-      if (this._timeValue) return `${this._dateValue}T${this._timeValue}:00`;
+    if (!this._dateValue || !this._timeValue) return "";
 
-      return `${this._dateValue}T00:00:00`;
-    }
-
-    const todayString = getTodayStringByLocale();
-    if (this._timeValue) return `${todayString}T${this._timeValue}:00`;
-
-    return undefined;
+    return `${this._dateValue}T${this._timeValue}:00`;
   }
 
   private _getDateTimeValue(value: string) {
@@ -270,6 +264,7 @@ export class DateTimePicker extends KucBase {
           font-size: 14px;
           display: inline-table;
           vertical-align: top;
+          line-height: 1.5;
         }
         kuc-datetime-picker[hidden] {
           display: none;

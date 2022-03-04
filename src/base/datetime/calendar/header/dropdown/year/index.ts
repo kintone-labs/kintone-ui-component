@@ -6,7 +6,11 @@ import {
   dispatchCustomEvent
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
-import { getToggleIconSvgTemplate } from "../../../../utils";
+import {
+  getToggleIconSvgTemplate,
+  setListBoxPosition,
+  calculateDistanceInput
+} from "../../../../utils";
 
 export class BaseDateTimeHeaderYear extends KucBase {
   @property({ type: Number }) year = 2021;
@@ -19,6 +23,23 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
+
+  constructor() {
+    super();
+    this._handleScrollDocument = this._handleScrollDocument.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    setTimeout(() => {
+      document.addEventListener("scroll", this._handleScrollDocument);
+    }, 1);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("scroll", this._handleScrollDocument);
+    super.disconnectedCallback();
+  }
 
   update(changedProperties: PropertyValues) {
     this._listBoxItems = this._getYearOptions().map((year: number) => {
@@ -55,9 +76,26 @@ export class BaseDateTimeHeaderYear extends KucBase {
     `;
   }
 
+  async updated(changedProperties: PropertyValues) {
+    await this.updateComplete;
+    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
+      this._handleScrollDocument();
+    }
+    super.update(changedProperties);
+  }
+
   public closeListBox() {
     this._listBoxVisible = false;
     this._toggleEl.focus();
+  }
+
+  private _handleScrollDocument() {
+    const distance = calculateDistanceInput(this);
+    if (distance.inputToBottom >= distance.inputToTop) {
+      setListBoxPosition(this, "bottom");
+      return;
+    }
+    setListBoxPosition(this, "top");
   }
 
   private _getListBoxTemplate() {
