@@ -15,23 +15,17 @@ import {
 export { BaseMobileDateTimeCalendar };
 
 export class BaseMobileDate extends KucBase {
-  @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
-  @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) required = false;
 
-  private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
   private _calendarValue?: string = "";
   private _inputValue?: string = "";
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("inputId")) {
-      this._GUID = this.inputId;
-    }
     if (changedProperties.has("value") || changedProperties.has("language")) {
       this._updateValueProp();
     }
@@ -49,13 +43,9 @@ export class BaseMobileDate extends KucBase {
         <input
           class="kuc-mobile-base-date__group__input"
           type="text"
-          id="${this._GUID}-label"
           readonly="readonly"
           .value="${this._inputValue}"
           aria-label="Date"
-          aria-describedby="${this._GUID}-error"
-          aria-invalid="${this.inputAriaInvalid}"
-          aria-required="${this.required}"
           ?disabled="${this.disabled}"
           ?required="${this.required}"
           @click="${this._handleClickOpenCalendar}"
