@@ -46,6 +46,7 @@ export class BaseMobileDate extends KucBase {
           readonly="readonly"
           .value="${this._inputValue}"
           aria-label="Date"
+          aria-required="${this.required}"
           ?disabled="${this.disabled}"
           ?required="${this.required}"
           @click="${this._handleClickOpenCalendar}"
