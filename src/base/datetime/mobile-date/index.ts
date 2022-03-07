@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { state, property } from "lit/decorators.js";
+import { state, property, query } from "lit/decorators.js";
 import { BaseMobileDateTimeCalendar } from "../mobile-calendar";
 import {
   CustomEventDetail,
@@ -19,6 +19,9 @@ export class BaseMobileDate extends KucBase {
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) required = false;
+
+  @query(".kuc-mobile-base-date__group__button")
+  private _btnToggleEl!: HTMLButtonElement;
 
   @state()
   private _dateTimeCalendarVisible = false;
@@ -51,7 +54,9 @@ export class BaseMobileDate extends KucBase {
           @click="${this._handleClickOpenCalendar}"
         />
         <button
+          type="button"
           class="kuc-mobile-base-date__group__button"
+          aria-label="Calendar"
           @click="${this._handleClickOpenCalendar}"
           ?disabled="${this.disabled}"
         >
@@ -110,6 +115,7 @@ export class BaseMobileDate extends KucBase {
 
     this.value = event.detail.value;
     dispatchCustomEvent(this, "kuc:mobile-base-date-change", event.detail);
+    this._btnToggleEl.focus();
   }
 
   private _handleClickCalendarFooterButtonNone() {
@@ -131,6 +137,7 @@ export class BaseMobileDate extends KucBase {
 
   private _handleClickCalendarFooterButtonClose() {
     this._closeCalendar();
+    this._btnToggleEl.focus();
   }
 
   private _handleCalendarBlurBody(event: Event) {
@@ -142,6 +149,7 @@ export class BaseMobileDate extends KucBase {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:mobile-base-date-change", detail);
+    this._btnToggleEl.focus();
   }
 
   private _getCalendarTemplate() {
