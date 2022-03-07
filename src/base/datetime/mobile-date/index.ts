@@ -56,7 +56,7 @@ export class BaseMobileDate extends KucBase {
         <button
           type="button"
           class="kuc-mobile-base-date__group__button"
-          aria-label="Calendar"
+          aria-label="calendar"
           @click="${this._handleClickOpenCalendar}"
           ?disabled="${this.disabled}"
         >
