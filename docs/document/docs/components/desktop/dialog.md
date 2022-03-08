@@ -8,7 +8,10 @@ sidebar_label: Dialog
 
 The Dialog component displays a dialog box.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-dialog--document" title="dialog image" width="700px" height="300px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/dialog.js"></script>
 
 ---
 

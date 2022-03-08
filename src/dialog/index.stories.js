@@ -34,15 +34,4 @@ storiesOf("desktop/dialog", module)
     return `
       <kuc-dialog opened></kuc-dialog>
     `;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const dialog = new Dialog({
-      title: "Title",
-      content: "<div>This is Content</div>",
-      footer: "Footer"
-    });
-    dialog.open();
-    return root;
   });
