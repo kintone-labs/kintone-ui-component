@@ -243,7 +243,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         >
           ${this._getOptionsMonthTemplate()}
         </select>
-        ${this._getArrowDownIconSvgTemplate()}
       </div>
     `;
   }
@@ -259,28 +258,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         >
           ${this._getOptionsYearTemplate()}
         </select>
-        ${this._getArrowDownIconSvgTemplate()}
       </div>
     `;
-  }
-
-  private _getArrowDownIconSvgTemplate() {
-    return svg`
-    <svg
-    class="kuc-base-mobile-datetime-calendar-header__group__center__down--icon"
-    width="11"
-    height="6"
-    viewBox="0 0 11 6"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M5.5061 6L0 0L11 0L5.5061 6Z"
-      fill="#4b4b4b"
-    />
-  </svg>`;
   }
 
   private _getLeftArrowIconSvgTemplate() {
@@ -393,7 +372,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
-          background: transparent;
+          background: url("data:image/svg+xml,%3Csvg%0A%20%20%20%20width%3D%2211%22%0A%20%20%20%20height%3D%226%22%0A%20%20%20%20viewBox%3D%220%200%2011%206%22%0A%20%20%20%20fill%3D%22none%22%0A%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%3E%0A%20%20%20%20%3Cpath%0A%20%20%20%20%20%20fill-rule%3D%22evenodd%22%0A%20%20%20%20%20%20clip-rule%3D%22evenodd%22%0A%20%20%20%20%20%20d%3D%22M5.5061%206L0%200L11%200L5.5061%206Z%22%0A%20%20%20%20%20%20fill%3D%22%234b4b4b%22%0A%20%20%20%20%2F%3E%0A%20%20%3C%2Fsvg%3E")
+            no-repeat center right 0.6em #ffffff;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center__month__select:focus,
         .kuc-base-mobile-datetime-calendar-header__group__center__year__select:focus {
@@ -401,12 +381,6 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         }
         .kuc-base-mobile-datetime-calendar-header__month {
           margin: 0 4px 0 4px;
-        }
-        .kuc-base-mobile-datetime-calendar-header__group__center__down--icon {
-          padding-right: 8px;
-          position: absolute;
-          right: 0;
-          z-index: -100;
         }
       </style>
     `;

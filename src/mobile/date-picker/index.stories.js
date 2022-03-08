@@ -3,7 +3,15 @@ import { html } from "lit-html";
 
 export default {
   title: "mobile/date-picker",
-  argTypes: {},
+  argTypes: {
+    language: {
+      name: "language",
+      control: {
+        type: "select",
+        options: ["auto", "en", "ja", "zh"]
+      }
+    }
+  },
   parameters: {
     viewport: {
       defaultViewport: "iPhone11Pro"

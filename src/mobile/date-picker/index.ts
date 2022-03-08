@@ -137,7 +137,6 @@ export class MobileDatePicker extends KucBase {
       <style>
         kuc-mobile-date-picker,
         kuc-mobile-date-picker * {
-          font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
             "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
@@ -174,8 +173,10 @@ export class MobileDatePicker extends KucBase {
           line-height: 1.5;
           padding: 0px;
           white-space: nowrap;
+          margin: 0 0 4px 0;
         }
         .kuc-mobile-date-picker__group__base__date {
+          width: 130px;
           margin-right: 0.5em;
           margin-left: 0.5em;
         }
