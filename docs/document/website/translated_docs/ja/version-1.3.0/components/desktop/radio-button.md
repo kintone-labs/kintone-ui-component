@@ -9,7 +9,10 @@ original_id: radio-button
 
 RadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-radio-button--document" title="radio-button image" height="80px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/radio-button.js"></script>
 
 ---
 
