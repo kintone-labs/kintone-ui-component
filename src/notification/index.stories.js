@@ -46,32 +46,4 @@ storiesOf("desktop/notification", module)
     });
     root.appendChild(button);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("DocumentInfo", () => {
-    const root = document.createElement("div");
-    const notification = new Notification({
-      text: "Info!",
-      type: "info"
-    });
-    notification.open();
-    return root;
-  })
-  .add("DocumentSuccess", () => {
-    const root = document.createElement("div");
-    const notification = new Notification({
-      text: "Success!",
-      type: "success"
-    });
-    notification.open();
-    return root;
-  })
-  .add("DocumentError", () => {
-    const root = document.createElement("div");
-    const notification = new Notification({
-      text: "Error!",
-      type: "error"
-    });
-    notification.open();
-    return root;
   });
