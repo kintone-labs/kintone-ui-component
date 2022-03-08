@@ -2,39 +2,39 @@ import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../index";
 
 describe("BaseMobileDate", () => {
-  describe("inputId", () => {
-    it("should '-label' when not assigned ", async () => {
+  describe("inputAriaInvalid", () => {
+    it("should false when not assigned ", async () => {
       const container = document.createElement("kuc-mobile-base-date");
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.id).to.equal("-label");
+      expect(inputEl.getAttribute("aria-invalid")).to.equal("false");
     });
 
-    it("should 'sample-id-lable' when assigned ", async () => {
+    it("should true when assigned ", async () => {
       const container = document.createElement("kuc-mobile-base-date");
-      container.setAttribute("inputId", "sample-id");
+      container.setAttribute("inputAriaInvalid", "true");
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.id).to.equal("sample-id-label");
+      expect(inputEl.getAttribute("aria-invalid")).to.equal("true");
     });
 
-    it("should 'replace-lable' when changed by setter ", async () => {
+    it("should false when changed by setter ", async () => {
       const container = document.createElement("kuc-mobile-base-date");
-      container.setAttribute("inputId", "sample-id");
+      container.setAttribute("inputAriaInvalid", "true");
       const el = await fixture(container);
-      container.setAttribute("inputId", "replace");
+      container.removeAttribute("inputAriaInvalid");
       await elementUpdated(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.id).to.equal("replace-label");
+      expect(inputEl.getAttribute("aria-invalid")).to.equal("false");
     });
   });
 });
