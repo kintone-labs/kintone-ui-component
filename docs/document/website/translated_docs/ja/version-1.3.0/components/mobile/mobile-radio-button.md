@@ -9,7 +9,10 @@ original_id: mobile-radio-button
 
 MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-radio-button--document" title="mobile radiobutton image" height="140px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/mobile-radio-button.js"></script>
 
 ---
 

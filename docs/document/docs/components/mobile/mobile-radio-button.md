@@ -8,7 +8,10 @@ sidebar_label: MobileRadioButton
 
 The MobileRadioButton component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-radio-button--document" title="mobile radiobutton image" height="140px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/mobile-radio-button.js"></script>
 
 ---
 
