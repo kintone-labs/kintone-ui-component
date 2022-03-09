@@ -9,7 +9,10 @@ original_id: mobile-notification
 
 MobileNotification は、ポップアップの通知を表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-notification--document" title="mobile notification image" height="70px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/mobile-notification.js"></script>
 
 ---
 
