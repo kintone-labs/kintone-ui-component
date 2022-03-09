@@ -6,5 +6,6 @@ document.addEventListener("kuc:loaded", function() {
     footer: "Footer"
   });
   dialog.open();
+  dialog.addEventListener("click", () => dialog.close());
   container.appendChild(dialog);
 });

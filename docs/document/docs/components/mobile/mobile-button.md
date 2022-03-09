@@ -8,7 +8,10 @@ sidebar_label: MobileButton
 
 The MobileButton component allows the user to create and displays buttons.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-button--document" title="mobile button image" width="300px" height="80px"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
+</div>
+<script src="/js/samples/mobile-button.js"></script>
 
 ---
 
