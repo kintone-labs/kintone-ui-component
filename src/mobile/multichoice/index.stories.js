@@ -95,23 +95,4 @@ storiesOf("mobile/multichoice", module)
 
     root.appendChild(multiChoice);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const multiChoice = new MobileMultiChoice({
-      value: ["Orange"],
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
-    root.appendChild(multiChoice);
-    return root;
   });
