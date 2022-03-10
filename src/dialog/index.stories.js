@@ -53,6 +53,7 @@ storiesOf("desktop/dialog", module)
     button10.addEventListener("click", event => {
       dialog10.open();
     });
+    root.appendChild(button10);
 
     const dialog11 = new Dialog({
       ...props,
@@ -64,6 +65,7 @@ storiesOf("desktop/dialog", module)
     button11.addEventListener("click", event => {
       dialog11.open();
     });
+    root.appendChild(button11);
 
     const dialog12 = new Dialog({
       ...props,
@@ -75,6 +77,7 @@ storiesOf("desktop/dialog", module)
     button12.addEventListener("click", event => {
       dialog12.open();
     });
+    root.appendChild(button12);
 
     const dialog13 = new Dialog({
       ...props,
@@ -86,6 +89,7 @@ storiesOf("desktop/dialog", module)
     button13.addEventListener("click", event => {
       dialog13.open();
     });
+    root.appendChild(button13);
 
     const dialog14 = new Dialog({
       ...props,
@@ -97,14 +101,12 @@ storiesOf("desktop/dialog", module)
     button14.addEventListener("click", event => {
       dialog14.open();
     });
-
-    root.appendChild(button10);
-    root.appendChild(button11);
-    root.appendChild(button12);
-    root.appendChild(button13);
     root.appendChild(button14);
 
-    const dialog = new Dialog(props);
+    const dialog = new Dialog({
+      ...props,
+      content: "No icon content"
+    });
     const button = document.createElement("button");
     button.textContent = "No icon";
     button.style.margin = "5px";
