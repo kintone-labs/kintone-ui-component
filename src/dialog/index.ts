@@ -114,7 +114,9 @@ export class Dialog extends KucBase {
           <div class="kuc-dialog__dialog__content__icon">
             ${this._getIconTemplate()}
           </div>
-          <div>${this._content}</div>
+          <div class="kuc-dialog__dialog__content__content">
+            ${this._content}
+          </div>
         </div>
         <div class="kuc-dialog__dialog__footer">${this._footer}</div>
       </div>
@@ -180,6 +182,7 @@ export class Dialog extends KucBase {
       case "info":
         return svg`
           <svg
+            class="kuc-dialog__dialog__content__icon-info"
             width="18"
             height="18"
             viewBox="0 0 18 18"
@@ -200,7 +203,8 @@ export class Dialog extends KucBase {
         `;
       case "success":
         return svg`
-          <svg 
+          <svg
+            class="kuc-dialog__dialog__content__icon-success"
             width="18"
             height="18"
             viewBox="0 0 18 18"
@@ -220,6 +224,7 @@ export class Dialog extends KucBase {
       case "error":
         return svg`
           <svg
+            class="kuc-dialog__dialog__content__icon-error"
             width="18"
             height="18"
             viewBox="0 0 18 18"
@@ -241,6 +246,7 @@ export class Dialog extends KucBase {
       case "warning":
         return svg`
           <svg
+            class="kuc-dialog__dialog__content__icon-warning"
             width="18"
             height="18"
             viewBox="0 0 18 18"
@@ -268,6 +274,7 @@ export class Dialog extends KucBase {
       case "question":
         return svg`
           <svg
+            class="kuc-dialog__dialog__content__icon-question"
             width="18"
             height="18"
             viewBox="0 0 18 18"
@@ -394,7 +401,11 @@ export class Dialog extends KucBase {
           display: flex;
         }
 
-        .kuc-dialog__dialog__content__icon svg {
+        .kuc-dialog__dialog__content__icon-info,
+        .kuc-dialog__dialog__content__icon-success,
+        .kuc-dialog__dialog__content__icon-error,
+        .kuc-dialog__dialog__content__icon-warning,
+        .kuc-dialog__dialog__content__icon-question {
           margin-right: 16px;
           width: 24px;
           height: 24px;
