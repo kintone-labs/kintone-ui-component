@@ -227,7 +227,7 @@ export class MobileRadioButton extends KucBase {
     return html`
       <style>
         kuc-mobile-radio-button,
-        kuc-mobile-radio-button * {
+        kuc-mobile-radio-button {
           font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",

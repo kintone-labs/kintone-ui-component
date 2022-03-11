@@ -222,7 +222,7 @@ export class MobileMultiChoice extends KucBase {
     return html`
       <style>
         kuc-mobile-multi-choice,
-        kuc-mobile-multi-choice * {
+        kuc-mobile-multi-choice {
           font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",

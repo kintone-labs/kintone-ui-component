@@ -178,7 +178,7 @@ export class MobileDropdown extends KucBase {
     return html`
       <style>
         kuc-mobile-dropdown,
-        kuc-mobile-dropdown * {
+        kuc-mobile-dropdown {
           font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
