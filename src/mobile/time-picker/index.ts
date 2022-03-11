@@ -77,7 +77,7 @@ export class MobileTimePicker extends KucBase {
           style="dislpay:inlineblock"
         ></kuc-base-mobile-time>
         </div>
-        <kuc-base-mobile-error .uuid="${this._GUID}" .text="${this.error}"
+        <kuc-base-mobile-error .guid="${this._GUID}" .text="${this.error}"
         ariaLive="assertive" ></kuc-base-mobile-error>
       </div>
     `;
