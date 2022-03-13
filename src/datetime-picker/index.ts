@@ -1,11 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, state, query } from "lit/decorators.js";
-import {
-  generateGUID,
-  KucBase,
-  CustomEventDetail,
-  dispatchCustomEvent
-} from "../base/kuc-base";
+import { generateGUID, KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import {
   visiblePropConverter,
   dateValueConverter,
@@ -17,7 +12,6 @@ import {
   validateDateTimeValue,
   isValidDate
 } from "../base/validator";
-import { getTodayStringByLocale } from "../base/datetime/utils";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -89,9 +83,10 @@ export class DateTimePicker extends KucBase {
       const dateTime = this._getDateTimeValue(this.value);
       const dateValue = dateValueConverter(dateTime.date);
       if (
-        dateValue !== "" &&
-        (!validateDateTimeValue(dateTime.date, dateTime.time) ||
-          !isValidDate(dateValue))
+        dateTime.error ||
+        (dateValue !== "" &&
+          (!validateDateTimeValue(dateTime.date, dateTime.time) ||
+            !isValidDate(dateValue)))
       ) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
@@ -153,6 +148,13 @@ export class DateTimePicker extends KucBase {
   updated() {
     this._updateErrorWidth();
     this._updateErrorText();
+    this._updateValue();
+  }
+
+  private _updateValue() {
+    if (!this._dateValue || !this._timeValue) return;
+
+    this.value = this._getDateTimeString();
   }
 
   private _updateErrorText() {
@@ -198,9 +200,6 @@ export class DateTimePicker extends KucBase {
       this._timeValue = newValue;
     }
     const newDateTime = this._getDateTimeString();
-    if (newDateTime) {
-      this.value = newDateTime;
-    }
     const _value =
       this._errorFormat || newDateTime === "" ? undefined : newDateTime;
     const _oldValue = oldDateTime === "" ? undefined : oldDateTime;
@@ -214,6 +213,11 @@ export class DateTimePicker extends KucBase {
 
   private _getDateTimeString() {
     if (!this._dateValue || !this._timeValue) return "";
+
+    const splitValue = this.value.split(":");
+    if (splitValue.length === 3) {
+      return `${this._dateValue}T${this._timeValue}:${splitValue[2]}`;
+    }
 
     return `${this._dateValue}T${this._timeValue}:00`;
   }
@@ -230,6 +234,10 @@ export class DateTimePicker extends KucBase {
     if (!time) return { date, time: "00:00" };
 
     const [hours, minutes, seconds] = time.split(":");
+    if (hours === "" || minutes === "" || seconds === "") {
+      return { date, time: time, error: true };
+    }
+
     const tempTime = `${hours}:${minutes || "00"}`;
     if (!seconds) return { date, time: tempTime };
 
