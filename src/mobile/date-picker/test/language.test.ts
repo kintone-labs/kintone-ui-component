@@ -3,10 +3,10 @@ import { MobileDatePicker } from "../index";
 
 describe("MobileDatePicker", () => {
   describe("language", () => {
-    it("should be using browser language when not assigned in constructor", async () => {
+    it("should be 'en' when not assigned in constructor", async () => {
       const container = new MobileDatePicker({ value: "2021-12-22" });
       const el = await fixture(container);
-      document.documentElement.setAttribute("lang", "en");
+      document.documentElement.setAttribute("lang", "fr");
       const inputDateEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
