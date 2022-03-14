@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
@@ -22,6 +22,8 @@ describe("MobileTimePicker", () => {
 
       const el = await fixture(container);
       container.id = "replace-id";
+      await elementUpdated(el);
+
       expect(el.id).to.equal("replace-id");
     });
   });

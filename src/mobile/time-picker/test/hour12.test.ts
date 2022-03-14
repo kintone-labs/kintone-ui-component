@@ -32,7 +32,7 @@ describe("MobileTimePicker", () => {
       expect(selectHourEl.value).to.be.equal("PM 01");
       expect(selectMinuteEl.value).to.be.equal("15");
 
-      container.setAttribute("value", "08:15");
+      container.value = "08:15";
       await elementUpdated(el);
       expect(selectHourEl.value).to.be.equal("AM 08");
       expect(selectMinuteEl.value).to.be.equal("15");
@@ -40,8 +40,9 @@ describe("MobileTimePicker", () => {
 
     it("should be using 24-hour clock when change to false", async () => {
       const container = new MobileTimePicker({ value: "13:15", hour12: true });
-      container.hour12 = false;
       const el = await fixture(container);
+      container.hour12 = false;
+      await elementUpdated(el);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
       ) as HTMLInputElement;

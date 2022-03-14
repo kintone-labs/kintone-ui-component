@@ -34,9 +34,8 @@ describe("MobileTimePicker", () => {
     it('should be "13:15" when changed to "13:15" in constructor', async () => {
       const container = new MobileTimePicker({ value: "11:15" });
       const el = await fixture(container);
-      container.setAttribute("value", "13:15");
+      container.value = "13:15";
       await elementUpdated(container);
-      el.setAttribute("value", "13:15");
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
       ) as HTMLSelectElement;

@@ -24,8 +24,9 @@ describe("MobileTimePicker", () => {
 
     it('should be "error-message" when setting by setter', async () => {
       const container = new MobileTimePicker();
-      container.error = "error-message";
       const el = await fixture(container);
+      container.error = "error-message";
+      await elementUpdated(container);
       const errorEl = el.querySelector(
         ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;

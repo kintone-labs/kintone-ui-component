@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileTimePicker } from "..";
 
 describe("MobileTimePicker", () => {
@@ -17,9 +17,10 @@ describe("MobileTimePicker", () => {
       const container = new MobileTimePicker({
         label: "options-label"
       });
-      container.label = "replace-label";
 
       const el = await fixture(container);
+      container.label = "replace-label";
+      await elementUpdated(el);
       const labelTextEl = el.querySelector(
         ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;

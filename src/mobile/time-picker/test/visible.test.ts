@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
@@ -25,9 +25,10 @@ describe("MobileTimePicker", () => {
 
     it("should be display inline-block when changed to true by setter", async () => {
       const container = new MobileTimePicker({ visible: false });
-      container.visible = true;
 
       const el = await fixture(container);
+      container.visible = true;
+      await elementUpdated(el);
       expect(el.hasAttribute("hidden")).to.equal(false);
 
       const computedStyle = window.getComputedStyle(el);
@@ -36,9 +37,10 @@ describe("MobileTimePicker", () => {
 
     it("should be display none when changed to false by setter", async () => {
       const container = new MobileTimePicker({ visible: true });
-      container.visible = false;
 
       const el = await fixture(container);
+      container.visible = false;
+      await elementUpdated(el);
       expect(el.hasAttribute("hidden")).to.equal(true);
 
       const computedStyle = window.getComputedStyle(el);

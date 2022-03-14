@@ -34,7 +34,7 @@ describe("MobileTimePicker", () => {
     it("should be added into input element when changed to true", async () => {
       const container = new MobileTimePicker();
       const el = await fixture(container);
-      container.setAttribute("disabled", "true");
+      container.disabled = true;
       await elementUpdated(el);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
@@ -49,8 +49,9 @@ describe("MobileTimePicker", () => {
 
     it("should be not added into input element when changed to false by setter", async () => {
       const container = new MobileTimePicker({ disabled: true });
-      container.disabled = false;
       const el = await fixture(container);
+      container.disabled = false;
+      await elementUpdated(el);
       const selectHourEl = el.querySelector(
         ".kuc-base-mobile-time__group__hours"
       ) as HTMLInputElement;
