@@ -10,7 +10,9 @@ original_id: dialog
 Dialog は、ダイアログボックスを表示します。
 
 <div class='sample-container'>
-  <div id='sample-container__components'></div>
+  <div id='sample-container__components'>
+    <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/dialog.js"></script>
 
