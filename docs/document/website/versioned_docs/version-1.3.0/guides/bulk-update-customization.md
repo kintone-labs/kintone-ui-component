@@ -40,14 +40,11 @@ A Dialog component is scheduled to be provided in a future version update. In th
 ***bulkUpdate.js***
 
 ```javascript
-(() => {
-  'use strict';
-  kintone.events.on('app.record.index.show', (event) => {
+kintone.events.on('app.record.index.show', (event) => {
 
-    // Write the process here
+  // Write the process here
 
-  });
-})();
+});
 ```
 ---
 ### Place the button in Record List page
@@ -200,5 +197,5 @@ The Notification component displays an error message when an error occurs during
 });
 ```
 
-> This article was reviewed using Kintone and Google Chrome as of December 2021.<br>
+> This article was reviewed using Kintone and Google Chrome as of January 2022.<br>
 > The version of Kintone UI Component used in this customization is v1.3.0.

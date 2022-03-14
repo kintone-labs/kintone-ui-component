@@ -7,6 +7,7 @@ import {
   CustomEventDetail
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
+import { getWidthElmByContext } from "../base/context";
 import {
   validateProps,
   validateItems,
@@ -55,6 +56,9 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group")
   private _groupEl!: HTMLDivElement;
 
+  @query(".kuc-dropdown__group__select-menu")
+  private _menuEl!: HTMLUListElement;
+
   @queryAll(".kuc-dropdown__group__select-menu__item")
   private _itemsEl!: HTMLLIElement[];
 
@@ -76,12 +80,18 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__select-menu__highlight")
   private _highlightItemEl!: HTMLLIElement;
 
+  @query(".kuc-dropdown__group__error")
+  private _errorEl!: HTMLDivElement;
+
+  private _timeoutID!: number | null;
+
   private _GUID: string;
 
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._handleClickDocument = this._handleClickDocument.bind(this);
     Object.assign(this, validProps);
   }
 
@@ -176,7 +186,6 @@ export class Dropdown extends KucBase {
           @mouseup="${this._handleMouseUpDropdownToggle}"
           @mousedown="${this._handleMouseDownDropdownToggle}"
           @click="${this._handleClickDropdownToggle}"
-          @blur="${this._handleBlurDropdownToggle}"
           @keydown="${this._handleKeyDownDropdownToggle}"
         >
           <span class="kuc-dropdown__group__toggle__selected-item-label"
@@ -192,6 +201,7 @@ export class Dropdown extends KucBase {
           aria-hidden="${!this._selectorVisible}"
           ?hidden="${!this._selectorVisible}"
           @mouseleave="${this._handleMouseLeaveMenu}"
+          @mousedown="${this._handleMouseDownMenu}"
         >
           ${this.items.map((item, number) =>
             this._getItemTemplate(item, number)
@@ -210,8 +220,29 @@ export class Dropdown extends KucBase {
     `;
   }
 
+  firstUpdated() {
+    window.addEventListener("resize", () => {
+      this._actionResizeScrollWindow();
+    });
+
+    window.addEventListener("scroll", () => {
+      this._actionResizeScrollWindow();
+    });
+  }
+
   updated() {
     this._updateContainerWidth();
+    if (this._selectorVisible) {
+      this._setMenuPosition();
+      this._scrollToView();
+      setTimeout(() => {
+        document.addEventListener("click", this._handleClickDocument, true);
+      }, 1);
+    } else {
+      setTimeout(() => {
+        document.removeEventListener("click", this._handleClickDocument, true);
+      }, 1);
+    }
   }
 
   private _handleMouseDownDropdownItem(event: MouseEvent) {
@@ -230,6 +261,10 @@ export class Dropdown extends KucBase {
     this._actionClearAllHighlightMenuItem();
   }
 
+  private _handleMouseDownMenu(event: MouseEvent) {
+    event.preventDefault();
+  }
+
   private _handleMouseDownDropdownToggle(event: MouseEvent) {
     event.preventDefault();
   }
@@ -238,11 +273,18 @@ export class Dropdown extends KucBase {
     event.preventDefault();
   }
 
-  private _handleClickDropdownToggle() {
+  private _handleClickDropdownToggle(event: Event) {
+    event.stopPropagation();
     this._actionToggleMenu();
   }
 
-  private _handleBlurDropdownToggle() {
+  private _handleClickDocument(event: MouseEvent) {
+    if (
+      event.target === this._buttonEl ||
+      this._buttonEl.contains(event.target as HTMLElement)
+    ) {
+      event.stopPropagation();
+    }
     this._actionHideMenu();
   }
 
@@ -258,6 +300,11 @@ export class Dropdown extends KucBase {
         this._actionHighlightPrevMenuItem();
         break;
       }
+      case "Tab":
+        if (this._selectorVisible) {
+          this._actionHideMenu();
+        }
+        break;
       case "Down": // IE/Edge specific value
       case "ArrowDown": {
         event.preventDefault();
@@ -380,6 +427,7 @@ export class Dropdown extends KucBase {
   private _setHighlightAndActiveDescendantMenu(selectedItemEl: HTMLLIElement) {
     this._actionHighlightMenuItem(selectedItemEl);
     this._actionSetActiveDescendant(selectedItemEl.id);
+    this._scrollToView();
   }
 
   private _actionHighlightMenuItem(item: HTMLLIElement) {
@@ -406,29 +454,119 @@ export class Dropdown extends KucBase {
     this._buttonEl.removeAttribute("aria-activedescendant");
   }
 
-  private _getLabelWidth() {
-    const context = document.createElement("div");
-    context.style.height = "0px";
-    context.style.overflow = "hidden";
-    context.style.display = "inline-block";
-    context.style.fontSize = "14px";
-
-    const clonedLabel = this._labelEl.cloneNode(true);
-    context.appendChild(clonedLabel);
-    document.body.appendChild(context);
-
-    const width = context.getBoundingClientRect().width;
-    document.body.removeChild(context);
-
-    return width;
-  }
-
   private _updateContainerWidth() {
     const MIN_WIDTH = 180;
     let labelWidth = this._labelEl.getBoundingClientRect().width;
-    if (labelWidth === 0) labelWidth = this._getLabelWidth();
+    if (labelWidth === 0) labelWidth = getWidthElmByContext(this._labelEl);
     labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
     this._groupEl.style.width = labelWidth + "px";
+  }
+
+  private _getScrollbarWidthHeight() {
+    const scrollDiv = document.createElement("div");
+    scrollDiv.style.cssText =
+      "overflow: scroll; position: absolute; top: -9999px;";
+    document.body.appendChild(scrollDiv);
+    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
+    document.body.removeChild(scrollDiv);
+    return { scrollbarWidth, scrollbarHeight };
+  }
+
+  private _getDistanceToggleButton() {
+    const { scrollbarWidth, scrollbarHeight } = this._getScrollbarWidthHeight();
+
+    const isWindowRightScrollbarShow =
+      document.body.scrollHeight > window.innerHeight;
+    const isWindowBottomScrollbarShow =
+      document.body.scrollWidth > window.innerWidth;
+
+    const toTop = this._buttonEl.getBoundingClientRect().top;
+    const toBottom =
+      window.innerHeight -
+      this._buttonEl.getBoundingClientRect().bottom -
+      (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
+    const toLeft = this._buttonEl.getBoundingClientRect().left;
+    const toRight =
+      window.innerWidth -
+      this._buttonEl.getBoundingClientRect().left -
+      (isWindowRightScrollbarShow ? scrollbarWidth : 0);
+
+    return { toTop, toBottom, toLeft, toRight };
+  }
+
+  private _setMenuPositionAboveOrBelow() {
+    this._menuEl.style.height = "auto";
+    this._menuEl.style.bottom = "auto";
+    this._menuEl.style.overflowY = "";
+
+    const menuHeight = this._menuEl.getBoundingClientRect().height;
+    const distanceToggleButton = this._getDistanceToggleButton();
+    if (distanceToggleButton.toBottom >= menuHeight) return;
+
+    if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
+      // Above
+      const errorHeight = this._errorEl.offsetHeight
+        ? this._errorEl.offsetHeight + 16
+        : 0;
+      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight +
+        errorHeight}px`;
+      if (distanceToggleButton.toTop >= menuHeight) return;
+      this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
+      this._menuEl.style.overflowY = "scroll";
+    } else {
+      // Below
+      this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
+      this._menuEl.style.overflowY = "scroll";
+    }
+  }
+
+  private _setMenuPositionLeftOrRight() {
+    this._menuEl.style.right = "auto";
+
+    const menuWidth = this._menuEl.getBoundingClientRect().width;
+    const distanceToggleButton = this._getDistanceToggleButton();
+    if (
+      // Right
+      distanceToggleButton.toRight >= menuWidth ||
+      distanceToggleButton.toLeft < menuWidth ||
+      distanceToggleButton.toRight < 0
+    )
+      return;
+
+    // Left
+    const right = this._buttonEl.offsetWidth - distanceToggleButton.toRight;
+    this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
+  }
+
+  private _setMenuPosition() {
+    this._setMenuPositionAboveOrBelow();
+    this._setMenuPositionLeftOrRight();
+  }
+
+  private _scrollToView() {
+    if (!this._highlightItemEl || !this._menuEl) return;
+
+    const menuElClientRect = this._menuEl.getBoundingClientRect();
+    const highlightItemClientRect = this._highlightItemEl.getBoundingClientRect();
+
+    if (highlightItemClientRect.top < menuElClientRect.top) {
+      this._menuEl.scrollTop -=
+        menuElClientRect.top - highlightItemClientRect.top;
+    }
+
+    if (menuElClientRect.bottom < highlightItemClientRect.bottom) {
+      this._menuEl.scrollTop +=
+        highlightItemClientRect.bottom - menuElClientRect.bottom;
+    }
+  }
+
+  private _actionResizeScrollWindow() {
+    if (this._timeoutID || !this._selectorVisible) return;
+    this._timeoutID = window.setTimeout(() => {
+      this._timeoutID = null;
+      this._setMenuPosition();
+    }, 50);
   }
 
   private _getStyleTagTemplate() {
@@ -458,6 +596,7 @@ export class Dropdown extends KucBase {
           vertical-align: top;
           width: 180px;
           min-width: 180px;
+          line-height: 1.5;
         }
         kuc-dropdown[hidden] {
           display: none;
@@ -469,6 +608,7 @@ export class Dropdown extends KucBase {
           display: inline-block;
           width: 100%;
           margin: 0px;
+          position: relative;
         }
         .kuc-dropdown__group__label {
           padding: 4px 0px 8px 0px;
@@ -546,6 +686,7 @@ export class Dropdown extends KucBase {
           background-color: #ffffff;
           z-index: 2000;
           list-style: none;
+          box-sizing: border-box;
         }
         .kuc-dropdown__group__select-menu[hidden] {
           display: none;

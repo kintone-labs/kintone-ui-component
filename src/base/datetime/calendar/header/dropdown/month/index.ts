@@ -6,7 +6,12 @@ import {
   CustomEventDetail
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
-import { getToggleIconSvgTemplate, getLocale } from "../../../../utils";
+import {
+  getToggleIconSvgTemplate,
+  getLocale,
+  setListBoxPosition,
+  calculateDistanceInput
+} from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
   @property({ type: String }) language = "en";
@@ -21,6 +26,23 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   @query(".kuc-base-datetime-header-month__toggle")
   private _toggleEl!: HTMLButtonElement;
+
+  constructor() {
+    super();
+    this._handleScrollDocument = this._handleScrollDocument.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    setTimeout(() => {
+      document.addEventListener("scroll", this._handleScrollDocument);
+    }, 1);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("scroll", this._handleScrollDocument);
+    super.disconnectedCallback();
+  }
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("language")) {
@@ -55,6 +77,23 @@ export class BaseDateTimeHeaderMonth extends KucBase {
       </button>
       ${this._getListBoxTemplate()}
     `;
+  }
+
+  async updated(changedProperties: PropertyValues) {
+    await this.updateComplete;
+    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
+      this._handleScrollDocument();
+    }
+    super.update(changedProperties);
+  }
+
+  private _handleScrollDocument() {
+    const distance = calculateDistanceInput(this);
+    if (distance.inputToBottom >= distance.inputToTop) {
+      setListBoxPosition(this, "bottom");
+      return;
+    }
+    setListBoxPosition(this, "top");
   }
 
   public closeListBox() {
