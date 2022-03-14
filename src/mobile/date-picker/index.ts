@@ -117,19 +117,14 @@ export class MobileDatePicker extends KucBase {
       oldValue: this.value === "" ? undefined : this.value,
       value: ""
     };
-    if (event.detail.error) {
-      this.error = event.detail.error;
-      eventDetail.value = undefined;
-    } else {
-      const theSameValue =
-        event.detail.value === this.value ||
-        (event.detail.value === undefined && this.value === "");
-      if (!theSameValue) {
-        this.error = "";
-      }
-      this.value = event.detail.value;
-      eventDetail.value = this.value;
+    const theSameValue =
+      event.detail.value === this.value ||
+      (event.detail.value === undefined && this.value === "");
+    if (!theSameValue) {
+      this.error = "";
     }
+    this.value = event.detail.value;
+    eventDetail.value = this.value;
     this._disptchChangeEvent(eventDetail);
   }
 
