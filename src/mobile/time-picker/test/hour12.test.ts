@@ -3,7 +3,7 @@ import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
   describe("hour12", () => {
-    it("should be using 12-hour clock when not assigning", async () => {
+    it("should be using 24-hour clock when not assigning", async () => {
       const container = new MobileTimePicker({ value: "13:15" });
 
       const el = await fixture(container);

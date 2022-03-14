@@ -24,6 +24,7 @@ const Template = args =>
       .hour12="${args.hour12}"
       .requiredIcon="${args.requiredIcon}"
       .visible="${args.visible}"
+      .language="${args.language}"
     ></kuc-mobile-time-picker>
   `;
 
@@ -37,7 +38,8 @@ BaseHour24.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
+  language: "auto"
 };
 
 export const BaseHour12 = Template.bind({});
@@ -50,7 +52,8 @@ BaseHour12.args = {
   disabled: false,
   hour12: true,
   requiredIcon: false,
-  visible: true
+  visible: true,
+  language: "auto"
 };
 
 export const BaseError = Template.bind({});
@@ -63,5 +66,6 @@ BaseError.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
+  language: "auto"
 };

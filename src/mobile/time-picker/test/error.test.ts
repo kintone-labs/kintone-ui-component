@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileTimePicker } from "../index";
 
 describe("MobileTimePicker", () => {
@@ -35,13 +35,33 @@ describe("MobileTimePicker", () => {
 
     it('should be replaced by "replace-error" when changing by setter', async () => {
       const container = new MobileTimePicker({ error: "error-message" });
-      container.error = "replace-error";
       const el = await fixture(container);
+      container.error = "replace-error";
+      await elementUpdated(container);
       const errorEl = el.querySelector(
         ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");
+    });
+    it('should be replaced by "Format is not valid." when select a invalid value and should be empty when select a valid value', async () => {
+      const container = new MobileTimePicker({
+        error: "error-message",
+        language: "en"
+      });
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-base-mobile-error__error"
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      const selectMinuteEl = el.querySelector(
+        ".kuc-base-mobile-time__group__minutes"
+      ) as HTMLSelectElement;
+      selectMinuteEl.value = "35";
+      await elementUpdated(container);
+      selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
+      await elementUpdated(container);
+      expect(errorEl.innerText).to.equal("Format is not valid.");
     });
   });
 });

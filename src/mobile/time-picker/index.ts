@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { timeValueConverter, visiblePropConverter } from "../../base/converter";
 import { FORMAT_IS_NOT_VALID } from "../../base/datetime/resource/constant";
 import {
@@ -17,6 +17,7 @@ type MobileTimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
+  language?: "ja" | "en" | "zh" | "auto";
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
@@ -28,7 +29,8 @@ export class MobileTimePicker extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) language = "auto";
+  @property({ type: String }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -40,7 +42,8 @@ export class MobileTimePicker extends KucBase {
   })
   visible = true;
   private _GUID: string;
-
+  @state()
+  private _inputValue!: string;
   constructor(props?: MobileTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -48,7 +51,7 @@ export class MobileTimePicker extends KucBase {
     Object.assign(this, validProps);
   }
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) {
+    if (changedProperties.has("value") && this.value) {
       if (!validateTimeValue(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
@@ -59,28 +62,37 @@ export class MobileTimePicker extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-mobile-time-picker__group"
-        aria-describedby="${this._GUID}-error"
-      >
+      <div class="kuc-mobile-time-picker__group">
         <kuc-base-mobile-label
           .guid="${this._GUID}"
           .text="${this.label}"
           .requiredIcon="${this.requiredIcon}"
         ></kuc-base-mobile-label>
         <div class="kuc-base-mobile-time__wrapper">
-        <kuc-base-mobile-time
-          .value="${this.value}"
-          .disabled="${this.disabled}"
-          .hour12="${this.hour12}"
-          @kuc:base-mobile-time-change="${this._handleTimeChange}"
-          style="dislpay:inlineblock"
-        ></kuc-base-mobile-time>
+          <kuc-base-mobile-time
+            .value="${this._inputValue}"
+            .disabled="${this.disabled}"
+            .hour12="${this.hour12}"
+            .GUID="${this._GUID}"
+            .language="${this._getLanguage()}"
+            @kuc:base-mobile-time-change="${this._handleTimeChange}"
+          ></kuc-base-mobile-time>
         </div>
-        <kuc-base-mobile-error .guid="${this._GUID}" .text="${this.error}"
-        ariaLive="assertive" ></kuc-base-mobile-error>
+        <kuc-base-mobile-error
+          .guid="${this._GUID}"
+          .text="${this.error}"
+          ariaLive="assertive"
+        ></kuc-base-mobile-error>
       </div>
     `;
+  }
+  updated(changedProperties: PropertyValues) {
+    this._updateInputValue();
+    super.update(changedProperties);
+  }
+  private _updateInputValue() {
+    if (this.value === undefined) return;
+    this._inputValue = this.value;
   }
   private _handleTimeChange(event: CustomEvent) {
     event.preventDefault();
@@ -89,7 +101,27 @@ export class MobileTimePicker extends KucBase {
       value: event.detail.value,
       oldValue: event.detail.oldValue
     };
+    if (event.detail.error) {
+      this.error = event.detail.error;
+      this.value = undefined;
+      detail.value = undefined;
+      dispatchCustomEvent(this, "change", detail);
+      return;
+    }
+    if (this.value === undefined) {
+      this.error = "";
+    }
+    this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
+  }
+  private _getLanguage() {
+    const langs = ["en", "ja", "zh"];
+    if (langs.indexOf(this.language) !== -1) return this.language;
+
+    if (langs.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
   }
   private _getStyleTagTemplate() {
     return html`
