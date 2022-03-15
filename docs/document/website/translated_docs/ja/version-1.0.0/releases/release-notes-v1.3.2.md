@@ -12,5 +12,5 @@ original_id: release-notes-v1.3.2
 
 ## アップデート内容
 ### 不具合修正
-- DateTimePicker コンポーネントで、変更された値を `value` プロパティで取得できるように修正
+- DateTimePicker と TimePicker コンポーネントで、変更された値を `value` プロパティで取得できるように修正
 - Mobile コンポーネントのラベルのフォントサイズを修正
