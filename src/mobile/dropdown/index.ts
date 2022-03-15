@@ -177,7 +177,6 @@ export class MobileDropdown extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-dropdown,
         kuc-mobile-dropdown {
           font-size: 13px;
           color: #333333;

@@ -221,7 +221,6 @@ export class MobileMultiChoice extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-multi-choice,
         kuc-mobile-multi-choice {
           font-size: 13px;
           color: #333333;

@@ -275,7 +275,6 @@ export class MobileCheckbox extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-checkbox,
         kuc-mobile-checkbox {
           font-size: 13px;
           color: #333333;

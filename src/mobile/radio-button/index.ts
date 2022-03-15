@@ -226,7 +226,6 @@ export class MobileRadioButton extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-radio-button,
         kuc-mobile-radio-button {
           font-size: 13px;
           color: #333333;
