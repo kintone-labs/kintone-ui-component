@@ -117,6 +117,7 @@ td[class^="kuc"] {
 }
 .sample-container.display-block-mobile{
     display: block;
+    margin-left: 200px;
 }
 .sample-container .mobile {
     max-width: 375px;
