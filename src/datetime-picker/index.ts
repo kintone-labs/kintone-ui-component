@@ -224,15 +224,16 @@ export class DateTimePicker extends KucBase {
   }
 
   private _getDateTimeValue(value: string) {
-    if (value === "" || value === undefined) return { date: "", time: "" };
+    if (value === "" || value === undefined)
+      return { date: "", time: "", error: false };
 
     const dateTime = value.split("T");
     const date = dateTime[0];
     const time = dateTime[1];
     if (value.indexOf("T") === value.length - 1 || dateTime.length > 2)
-      return { date, time: "" };
+      return { date, time: "", error: false };
 
-    if (!time) return { date, time: "00:00" };
+    if (!time) return { date, time: "00:00", error: false };
 
     const [hours, minutes, seconds] = time.split(":");
     if (hours === "" || minutes === "" || seconds === "") {
@@ -240,9 +241,9 @@ export class DateTimePicker extends KucBase {
     }
 
     const tempTime = `${hours}:${minutes || "00"}`;
-    if (!seconds) return { date, time: tempTime };
+    if (!seconds) return { date, time: tempTime, error: false };
 
-    return { date, time: `${tempTime}:${seconds}` };
+    return { date, time: `${tempTime}:${seconds}`, error: false };
   }
 
   private _getLanguage() {
