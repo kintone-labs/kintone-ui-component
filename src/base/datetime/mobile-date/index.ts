@@ -264,6 +264,7 @@ export class BaseMobileDate extends KucBase {
         }
         input.kuc-mobile-base-date__group__input {
           width: 100%;
+          font-size: 99%;
           -webkit-flex-grow: 1;
           flex-grow: 1;
           border: none;

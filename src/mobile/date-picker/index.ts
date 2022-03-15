@@ -149,7 +149,7 @@ export class MobileDatePicker extends KucBase {
             Verdana, sans-serif;
         }
         kuc-mobile-date-picker {
-          font-size: 14px;
+          font-size: 13px;
           color: #333333;
           display: inline-table;
           vertical-align: top;
