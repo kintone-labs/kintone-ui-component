@@ -76,7 +76,7 @@ export class DateTimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) {
+    if (changedProperties.has("value") && this.value) {
       if (typeof this.value !== "string") {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
@@ -202,6 +202,7 @@ export class DateTimePicker extends KucBase {
     const newDateTime = this._getDateTimeString();
     const _value =
       this._errorFormat || newDateTime === "" ? undefined : newDateTime;
+    this.value = _value === undefined ? "" : _value;
     const _oldValue = oldDateTime === "" ? undefined : oldDateTime;
     const detail = {
       value: _value,
