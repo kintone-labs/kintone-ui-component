@@ -275,7 +275,8 @@ export class MobileCheckbox extends KucBase {
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-mobile-checkbox {
+        kuc-mobile-checkbox,
+        kuc-mobile-checkbox * {
           font-size: 13px;
           color: #333333;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
@@ -328,6 +329,7 @@ export class MobileCheckbox extends KucBase {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           white-space: normal;
+          font-size: inherit;
         }
 
         .kuc-mobile-checkbox__group__label__required-icon {
