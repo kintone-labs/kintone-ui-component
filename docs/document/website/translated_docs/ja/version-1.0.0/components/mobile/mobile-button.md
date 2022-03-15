@@ -10,7 +10,7 @@ original_id: mobile-button
 MobileButton は、ボタンを表示します。
 
 <div class='sample-container'>
-  <div id='sample-container__components'></div>
+  <div id='sample-container__components' class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-button.js"></script>
 

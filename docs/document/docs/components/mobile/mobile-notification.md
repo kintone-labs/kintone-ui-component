@@ -9,7 +9,7 @@ sidebar_label: MobileNotification
 The MobileNotification component allows the user to display pop-up notifications.
 
 <div class='sample-container'>
-  <div id='sample-container__components'></div>
+  <div id='sample-container__components' class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-notification.js"></script>
 

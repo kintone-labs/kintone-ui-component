@@ -115,9 +115,11 @@ td[class^="kuc"] {
     display: block;
     margin-left: 200px;
 }
-.sample-container.block-mobile{
+.sample-container.display-block-mobile{
     display: block;
-    margin-left: 20px;
+}
+.sample-container .mobile {
+    max-width: 375px;
 }
 .sample-container .kuc-datetime-picker__group__error {
     max-width: 185px;
@@ -148,9 +150,6 @@ td[class^="kuc"] {
 }
 .sample-container kuc-mobile-text {
     min-width: 250px;
-}
-.sample-container kuc-mobile-textarea {
-    min-width: 750px;
 }
 .sandbox-button {
     position: absolute;

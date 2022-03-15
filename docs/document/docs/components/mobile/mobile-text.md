@@ -9,7 +9,7 @@ sidebar_label: MobileText
 The MobileText component allows the user to display a single line text element.
 
 <div class='sample-container'>
-  <div id='sample-container__components'></div>
+  <div id='sample-container__components' class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-text.js"></script>
 
