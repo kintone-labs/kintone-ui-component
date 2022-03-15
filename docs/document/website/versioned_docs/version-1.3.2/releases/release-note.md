@@ -12,5 +12,5 @@ Bug fix have been made.
 
 ## Update details
 ### Bug Fixes
-- Fixed DateTimePicker to be able to get the changed value with `value` property.
+- Fixed DateTimePicker and TimePicker to be able to get the changed value with `value` property.
 - Fixed label's font size on mobile components.
