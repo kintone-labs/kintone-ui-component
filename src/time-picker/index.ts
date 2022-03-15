@@ -123,6 +123,7 @@ export class TimePicker extends KucBase {
       value: event.detail.value,
       oldValue: event.detail.oldValue
     };
+    this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
 
