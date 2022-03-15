@@ -17,7 +17,7 @@ describe("MobileTimePicker", () => {
       expect(selectMinuteEl.value).to.be.equal("");
     });
 
-    it('should be "13:15" when assigned "13:15" by setter', async () => {
+    it('should be "13:15" when assigned "13:15" in constructor', async () => {
       const container = new MobileTimePicker({ value: "13:15" });
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
@@ -31,7 +31,7 @@ describe("MobileTimePicker", () => {
       expect(selectMinuteEl.value).to.be.equal("15");
     });
 
-    it('should be "13:15" when changed to "13:15" in constructor', async () => {
+    it('should be "13:15" when changed to "13:15" by setter', async () => {
       const container = new MobileTimePicker({ value: "11:15" });
       const el = await fixture(container);
       container.value = "13:15";

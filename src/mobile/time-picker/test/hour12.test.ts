@@ -18,7 +18,7 @@ describe("MobileTimePicker", () => {
       expect(selectMinuteEl.value).to.be.equal("15");
     });
 
-    it("should be using 12-hour clock when assigned true by setter", async () => {
+    it("should be using 12-hour clock when assigned true in constructor", async () => {
       const container = new MobileTimePicker({ value: "13:15", hour12: true });
 
       const el = await fixture(container);

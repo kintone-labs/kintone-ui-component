@@ -73,7 +73,7 @@ export class MobileTimePicker extends KucBase {
             .value="${this._inputValue}"
             .disabled="${this.disabled}"
             .hour12="${this.hour12}"
-            .GUID="${this._GUID}"
+            .guid="${this._GUID}"
             .language="${this._getLanguage()}"
             @kuc:base-mobile-time-change="${this._handleTimeChange}"
           ></kuc-base-mobile-time>
@@ -110,6 +110,7 @@ export class MobileTimePicker extends KucBase {
     }
     if (this.value === undefined) {
       this.error = "";
+      detail.oldValue = undefined;
     }
     this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);

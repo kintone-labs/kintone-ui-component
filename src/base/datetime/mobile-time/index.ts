@@ -16,7 +16,7 @@ import {
 import { Item } from "../../datetime/listbox";
 
 type BaseMobileTimeProps = {
-  GUID?: string;
+  guid?: string;
   language?: string;
   value?: string;
   disabled?: boolean;
@@ -31,7 +31,7 @@ type Time = {
 
 // eslint-disable-next-line kuc-v1/no-using-generate-guid-function
 export class BaseMobileTime extends KucBase {
-  @property({ type: String }) GUID = "";
+  @property({ type: String }) guid = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
@@ -96,7 +96,7 @@ export class BaseMobileTime extends KucBase {
         <select
           class="kuc-base-mobile-time__group__hours"
           aria-label="Hour"
-          aria-describedby="${this.GUID}-error"
+          aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeHours}"
         >
@@ -107,7 +107,7 @@ export class BaseMobileTime extends KucBase {
         <select
           class="kuc-base-mobile-time__group__minutes"
           aria-label="Minute"
-          aria-describedby="${this.GUID}-error"
+          aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeMinutes}"
         >
