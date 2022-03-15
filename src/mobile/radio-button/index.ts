@@ -272,6 +272,7 @@ export class MobileRadioButton extends KucBase {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           white-space: normal;
+          font-size: inherit;
         }
 
         .kuc-mobile-radio-button__group__label[hidden] {
