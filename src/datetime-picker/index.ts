@@ -76,7 +76,7 @@ export class DateTimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value") && this.value) {
+    if (changedProperties.has("value")) {
       if (typeof this.value !== "string") {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
@@ -214,6 +214,8 @@ export class DateTimePicker extends KucBase {
 
   private _getDateTimeString() {
     if (!this._dateValue || !this._timeValue) return "";
+
+    if (!this.value) return `${this._dateValue}T${this._timeValue}:00`;
 
     const splitValue = this.value.split(":");
     if (splitValue.length === 3) {
