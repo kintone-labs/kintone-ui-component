@@ -77,6 +77,7 @@ export class MobileTimePicker extends KucBase {
             .hour12="${this.hour12}"
             .guid="${this._GUID}"
             .language="${this._getLanguage()}"
+            .isRequired="${this.requiredIcon}"
             @kuc:base-mobile-time-change="${this._handleTimeChange}"
           ></kuc-base-mobile-time>
         </div>

@@ -21,6 +21,7 @@ type BaseMobileTimeProps = {
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
+  isRequired?: boolean;
 };
 
 type Time = {
@@ -36,6 +37,7 @@ export class BaseMobileTime extends KucBase {
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
+  @property({ type: Boolean }) isRequired = false;
   /**
    * Please consider name again and change @state to @property when publishing the function.
    */
@@ -240,7 +242,7 @@ export class BaseMobileTime extends KucBase {
         .kuc-base-mobile-time__group {
           padding: 0;
           margin: 0;
-          border: 1px solid #a5a5a5;
+          border: 1px solid ${this.isRequired ? "red" : "#a5a5a5"};
           border-radius: 5.2px;
           box-sizing: border-box;
           background-color: #ffffff;
