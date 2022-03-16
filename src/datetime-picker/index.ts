@@ -66,6 +66,9 @@ export class DateTimePicker extends KucBase {
   @state()
   private _errorText = "";
 
+  @state()
+  private _tempTime = "";
+
   private _GUID: string;
 
   constructor(props?: DateTimePickerProps) {
@@ -152,6 +155,7 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateValue() {
+    this._timeValue = this._timeValue || this._tempTime;
     if (!this._dateValue || !this._timeValue) return;
 
     this.value = this._getDateTimeString();
@@ -196,6 +200,7 @@ export class DateTimePicker extends KucBase {
     const oldDateTime = this._getDateTimeString();
     if (type === "date") {
       this._dateValue = newValue || "";
+      this._tempTime = this._timeValue;
     } else {
       this._timeValue = newValue;
     }
