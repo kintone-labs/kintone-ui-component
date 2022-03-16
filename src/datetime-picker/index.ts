@@ -36,7 +36,16 @@ export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value = "";
+  @property({
+    type: String,
+    hasChanged(newVal: string, oldVal: string) {
+      if (newVal === "" && newVal === oldVal) {
+        return true;
+      }
+      return newVal !== oldVal;
+    }
+  })
+  value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -69,6 +78,9 @@ export class DateTimePicker extends KucBase {
   @state()
   private _tempTime = "";
 
+  @state()
+  private _tempDate = "";
+
   private _GUID: string;
 
   constructor(props?: DateTimePickerProps) {
@@ -93,8 +105,10 @@ export class DateTimePicker extends KucBase {
       ) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-      this._dateValue = dateValue;
-      this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
+      this._dateValue = dateValue || this._tempDate;
+      this._timeValue = this._dateValue
+        ? timeValueConverter(dateTime.time.slice(0, 5))
+        : this._tempTime;
     }
     super.update(changedProperties);
   }
@@ -155,7 +169,7 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateValue() {
-    this._timeValue = this._timeValue || this._tempTime;
+    this._tempTime = this._tempDate = "";
     if (!this._dateValue || !this._timeValue) return;
 
     this.value = this._getDateTimeString();
@@ -197,12 +211,14 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateDateTimeValue(newValue: string, type: string) {
+    this._tempTime = this._timeValue;
     const oldDateTime = this._getDateTimeString();
     if (type === "date") {
       this._dateValue = newValue || "";
-      this._tempTime = this._timeValue;
+      this._tempDate = newValue;
     } else {
       this._timeValue = newValue;
+      this._tempTime = newValue;
     }
     const newDateTime = this._getDateTimeString();
     const _value =
