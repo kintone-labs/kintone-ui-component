@@ -13,7 +13,7 @@ describe("BaseMobileDate", () => {
       expect(inputEl.id).to.equal("-label");
     });
 
-    it("should 'sample-id-lable' when assigned ", async () => {
+    it("should 'sample-id-label' when assigned ", async () => {
       const container = document.createElement("kuc-mobile-base-date");
       container.setAttribute("inputId", "sample-id");
       const el = await fixture(container);
