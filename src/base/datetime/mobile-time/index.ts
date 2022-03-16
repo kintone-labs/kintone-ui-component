@@ -5,19 +5,23 @@ import {
   CustomEventDetail,
   dispatchCustomEvent
 } from "../../kuc-base";
-import { validateProps } from "../../validator";
+import { validateProps, validateTimeValue } from "../../validator";
 import {
   generateMinuteOptions,
   generateHourOptions,
-  formatTimeValueToInputValue,
-  formatInputValueToTimeValue
+  formatInputValueToTimeValue,
+  formatTimeValueToInputValueForMobile,
+  getLocale
 } from "../../datetime/utils";
 import { Item } from "../../datetime/listbox";
 
 type BaseMobileTimeProps = {
+  guid?: string;
+  language?: string;
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
+  required?: boolean;
 };
 
 type Time = {
@@ -26,11 +30,14 @@ type Time = {
   suffix?: string;
 };
 
+// eslint-disable-next-line kuc-v1/no-using-generate-guid-function
 export class BaseMobileTime extends KucBase {
+  @property({ type: String }) guid = "";
+  @property({ type: String, reflect: true }) language = "en";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
-
+  @property({ type: Boolean }) required = false;
   /**
    * Please consider name again and change @state to @property when publishing the function.
    */
@@ -58,6 +65,8 @@ export class BaseMobileTime extends KucBase {
   @query(".kuc-base-mobile-time__group__minutes")
   private _minutesEl!: HTMLInputElement;
 
+  private _locale = getLocale("en");
+
   constructor(props?: BaseMobileTimeProps) {
     super();
     const validProps = validateProps(props);
@@ -65,6 +74,9 @@ export class BaseMobileTime extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
+    }
     if (changedProperties.has("hour12")) {
       this._hourOptions = generateHourOptions(this.hour12);
     }
@@ -80,11 +92,13 @@ export class BaseMobileTime extends KucBase {
       <fieldset
         class="kuc-base-mobile-time__group${this.disabled
           ? " kuc-base-mobile-time__group--disabled"
-          : ""}"
+          : ""}${this.required ? " kuc-base-mobile-time__group--required" : ""}"
+        aria-label="label-text"
       >
         <select
           class="kuc-base-mobile-time__group__hours"
           aria-label="Hour"
+          aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeHours}"
         >
@@ -95,6 +109,7 @@ export class BaseMobileTime extends KucBase {
         <select
           class="kuc-base-mobile-time__group__minutes"
           aria-label="Minute"
+          aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeMinutes}"
         >
@@ -113,7 +128,7 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _updateInputValue() {
-    const times = formatTimeValueToInputValue(this.value, this.hour12);
+    const times = formatTimeValueToInputValueForMobile(this.value, this.hour12);
     this._hours = times.hours;
     this._minutes = times.minutes;
     this._suffix = times.suffix || "";
@@ -130,6 +145,8 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _handleChangeMinutes(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     const oldTime = this._getTimeValueString();
 
     const target = event.target as HTMLOptionElement;
@@ -141,6 +158,8 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _handleChangeHours(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     const oldTime = this._getTimeValueString();
     const target = event.target as HTMLOptionElement;
     const values = target.value.split(" ");
@@ -166,10 +185,15 @@ export class BaseMobileTime extends KucBase {
   }
 
   private _dispatchEventTimeChange(value: string, oldValue: string) {
+    const tempValue = value === ":" ? "" : value;
     const detail: CustomEventDetail = {
-      value: value,
+      value: tempValue,
       oldValue: oldValue
     };
+    detail.error = validateTimeValue(tempValue)
+      ? ""
+      : this._locale.INVALID_FORMAT;
+
     dispatchCustomEvent(this, "kuc:base-mobile-time-change", detail);
   }
 
@@ -226,6 +250,9 @@ export class BaseMobileTime extends KucBase {
           display: flex;
           -webkit-align-items: center;
           align-items: center;
+        }
+        .kuc-base-mobile-time__group--required {
+          border-color: #cf4a38;
         }
         .kuc-base-mobile-time__group__hours {
           padding: 8px 8px 8px 10px;
