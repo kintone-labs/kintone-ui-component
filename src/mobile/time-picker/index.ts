@@ -64,11 +64,11 @@ export class MobileTimePicker extends KucBase {
       ${this._getStyleTagTemplate()}
       <div class="kuc-mobile-time-picker__group">
         <label class="kuc-mobile-time-picker__group__label">
-        <kuc-base-mobile-label
-          .guid="${this._GUID}"
-          .text="${this.label}"
-          .requiredIcon="${this.requiredIcon}"
-        ></kuc-base-mobile-label>
+          <kuc-base-mobile-label
+            .guid="${this._GUID}"
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-mobile-label>
         </label>
         <div class="kuc-base-mobile-time__group__wrapper">
           <kuc-base-mobile-time
@@ -161,7 +161,7 @@ export class MobileTimePicker extends KucBase {
           padding: 0px;
           margin: 0 0 4px 0;
           white-space: nowrap;
-      }
+        }
         .kuc-base-mobile-time__group__wrapper {
           padding-left: 0.5em;
           max-width: 80px;
