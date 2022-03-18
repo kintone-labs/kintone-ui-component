@@ -13,6 +13,7 @@ import {
   getTodayStringByLocale,
   isValidDateFormat
 } from "../utils";
+import { isValidDate } from "../../validator";
 export { BaseDateTimeCalendar };
 
 export class BaseDate extends KucBase {
@@ -197,15 +198,26 @@ export class BaseDate extends KucBase {
 
   private _updateValueProp() {
     if (this.value) {
+      const temp = this._setCalendarValueWhenInvalidValue();
       this._inputValue = formatValueToInputValue(this.language, this.value);
-      this._calendarValue = this.value;
+      this._calendarValue = temp || this.value;
+
       return;
     }
+
     const today = getTodayStringByLocale();
     this._inputValue = "";
     this._calendarValue = this._calendarValue
       ? this._calendarValue.slice(0, 7) + "-01"
       : today.slice(0, 7);
+  }
+
+  private _setCalendarValueWhenInvalidValue() {
+    if (this.value && !isValidDate(this.value)) {
+      const today = getTodayStringByLocale();
+      return this._calendarValue || today.slice(0, 7);
+    }
+    return "";
   }
 
   private _getNewCalendarValue(value: string) {
@@ -277,7 +289,7 @@ export class BaseDate extends KucBase {
     this._dateInput.focus();
     this._inputValue = "";
     const today = getTodayStringByLocale();
-    let temp = this.value ? this.value.slice(0, 7) + "-01" : "";
+    let temp = this._setCalendarValueWhenInvalidValue();
     if (!temp) {
       temp = this._calendarValue
         ? this._calendarValue.slice(0, 7) + "-01"
@@ -320,7 +332,7 @@ export class BaseDate extends KucBase {
 
   private _dispathDateChangeCustomEvent(newValue?: string) {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
-    this.value = newValue;
+    this.value = newValue === undefined ? "" : newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 

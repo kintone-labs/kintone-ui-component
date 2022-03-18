@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, state, query } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
 import {
   CustomEventDetail,
@@ -50,7 +50,15 @@ export class DatePicker extends KucBase {
   @state()
   private _errorText = "";
 
+  @state()
+  private _inputValue? = "";
+
+  private _tempValue = "";
+
   private _GUID: string;
+
+  @query(".kuc-base-date__input")
+  private _dateInput!: HTMLInputElement;
 
   constructor(props?: DatePickerProps) {
     super();
@@ -61,11 +69,20 @@ export class DatePicker extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (!validateDateValue(this.value)) {
+      if (this._tempValue || this.value || this.value === "") {
+        this._inputValue = this._tempValue || this.value;
+      }
+      if (
+        (!this._tempValue && typeof this.value !== "string") ||
+        !validateDateValue(this.value)
+      ) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-      this.value = dateValueConverter(this.value);
-      if (this.value !== "" && !isValidDate(this.value)) {
+      if (!this._tempValue) {
+        this.value = dateValueConverter(this.value);
+        this._errorFormat = "";
+      }
+      if (this.value !== "" && this.value && !isValidDate(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
     }
@@ -93,7 +110,7 @@ export class DatePicker extends KucBase {
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
@@ -113,6 +130,7 @@ export class DatePicker extends KucBase {
 
   updated() {
     this._updateErrorText();
+    this._tempValue = "";
   }
 
   private _updateErrorText() {
@@ -235,11 +253,13 @@ export class DatePicker extends KucBase {
       value: ""
     };
     if (event.detail.error) {
+      this._tempValue = this._dateInput.value;
       this._errorFormat = event.detail.error;
       this.error = "";
       eventDetail.value = undefined;
+      this.value = undefined;
     } else {
-      this.value = event.detail.value;
+      this.value = event.detail.value === undefined ? "" : event.detail.value;
       eventDetail.value = this.value;
       this._errorFormat = "";
     }
