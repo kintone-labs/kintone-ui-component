@@ -249,7 +249,7 @@ export class DatePicker extends KucBase {
     event.stopPropagation();
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
-      oldValue: this.value === "" ? undefined : this.value,
+      oldValue: this.value,
       value: ""
     };
     if (event.detail.error) {
