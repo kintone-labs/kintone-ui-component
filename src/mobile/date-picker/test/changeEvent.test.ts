@@ -1,8 +1,7 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileDatePicker } from "../index";
-import { padStart } from "../../../base/datetime/utils";
 
-describe("TimePicker", () => {
+describe("MobileDatePicker", () => {
   describe("change event", () => {
     it("should be triggered when mousedown on date in calendar", async () => {
       let triggeredEvent: any = null;
@@ -62,7 +61,7 @@ describe("TimePicker", () => {
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.value).to.equal("");
 
       inputDateEl.click();
       await elementUpdated(container);
@@ -75,7 +74,7 @@ describe("TimePicker", () => {
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.value).to.equal("");
     });
   });
 });
