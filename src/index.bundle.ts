@@ -25,6 +25,7 @@ export * from "./mobile/text";
 export * from "./mobile/textarea";
 export * from "./mobile/notification";
 export * from "./mobile/date-picker";
+export * from "./mobile/time-picker";
 
 export * from "./version";
 export * from "./dev-info";

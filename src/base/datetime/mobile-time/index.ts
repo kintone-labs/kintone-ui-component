@@ -186,13 +186,14 @@ export class BaseMobileTime extends KucBase {
 
   private _dispatchEventTimeChange(value: string, oldValue: string) {
     const tempValue = value === ":" ? "" : value;
+    const tempOldValue = oldValue === ":" ? "" : oldValue;
     const detail: CustomEventDetail = {
       value: tempValue,
-      oldValue: oldValue
+      oldValue: tempOldValue
     };
     detail.error = validateTimeValue(tempValue)
       ? ""
-      : this._locale.INVALID_FORMAT;
+      : this._locale.INVALID_TIME_FORMAT;
 
     dispatchCustomEvent(this, "kuc:base-mobile-time-change", detail);
   }

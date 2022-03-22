@@ -2,7 +2,22 @@ import { html } from "lit-html";
 import "./index.ts";
 export default {
   title: "mobile/time-picker",
-  argTypes: {},
+  argTypes: {
+    className: { name: "className" },
+    error: { name: "error" },
+    id: { name: "id" },
+    label: { name: "label" },
+    language: {
+      name: "language",
+      control: {
+        type: "select",
+        options: ["auto", "en", "ja", "zh"]
+      }
+    },
+    requiredIcon: { name: "requiredIcon" },
+    value: { name: "value" },
+    visible: { name: "visible" }
+  },
   parameters: {
     viewport: {
       defaultViewport: "iPhone11Pro"

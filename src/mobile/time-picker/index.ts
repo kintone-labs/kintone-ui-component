@@ -24,6 +24,7 @@ type MobileTimePickerProps = {
   requiredIcon?: boolean;
   visible?: boolean;
 };
+
 export class MobileTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) error = "";
@@ -44,12 +45,14 @@ export class MobileTimePicker extends KucBase {
   private _GUID: string;
   @state()
   private _inputValue!: string;
+
   constructor(props?: MobileTimePickerProps) {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value") && this.value) {
       if (!validateTimeValue(this.value)) {
@@ -59,11 +62,13 @@ export class MobileTimePicker extends KucBase {
     }
     super.update(changedProperties);
   }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-mobile-time-picker__group">
-        <label class="kuc-mobile-time-picker__group__label">
+        <label class="kuc-mobile-time-picker__group__label"
+        ?hidden="${!this.label}">
           <kuc-base-mobile-label
             .guid="${this._GUID}"
             .text="${this.label}"
@@ -89,20 +94,23 @@ export class MobileTimePicker extends KucBase {
       </div>
     `;
   }
+
   updated(changedProperties: PropertyValues) {
     this._updateInputValue();
     super.update(changedProperties);
   }
+
   private _updateInputValue() {
     if (this.value === undefined) return;
     this._inputValue = this.value;
   }
+
   private _handleTimeChange(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: event.detail.oldValue
+      oldValue: this.value
     };
     if (event.detail.error) {
       this.error = event.detail.error;
@@ -111,13 +119,11 @@ export class MobileTimePicker extends KucBase {
       dispatchCustomEvent(this, "change", detail);
       return;
     }
-    if (this.value === undefined) {
-      this.error = "";
-      detail.oldValue = undefined;
-    }
+    this.error = "";
     this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
+
   private _getLanguage() {
     const langs = ["en", "ja", "zh"];
     if (langs.indexOf(this.language) !== -1) return this.language;
@@ -127,12 +133,12 @@ export class MobileTimePicker extends KucBase {
 
     return "en";
   }
+
   private _getStyleTagTemplate() {
     return html`
       <style>
         kuc-mobile-time-picker,
         kuc-mobile-time-picker * {
-          font-size: 13px;
           font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
             "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
             "Lucida Sans Unicode", Arial, Verdana, sans-serif;
@@ -144,6 +150,7 @@ export class MobileTimePicker extends KucBase {
             Verdana, sans-serif;
         }
         kuc-mobile-time-picker {
+          font-size: 13px;
           display: inline-block;
           vertical-align: top;
           width: 100%;
@@ -152,7 +159,7 @@ export class MobileTimePicker extends KucBase {
           display: none;
         }
         .kuc-mobile-time-picker__group {
-          padding: 0.5em 0.5em 1em;
+         
         }
         .kuc-mobile-time-picker__group__label {
           display: inline-block;
@@ -163,6 +170,9 @@ export class MobileTimePicker extends KucBase {
           margin: 0 0 4px 0;
           white-space: nowrap;
         }
+        .kuc-mobile-time-picker__group__label[hidden] {
+          display: none;
+        }
         .kuc-base-mobile-time__group__wrapper {
           padding-left: 0.5em;
           max-width: 80px;
@@ -172,6 +182,7 @@ export class MobileTimePicker extends KucBase {
     `;
   }
 }
+
 if (!window.customElements.get("kuc-mobile-time-picker")) {
   window.customElements.define("kuc-mobile-time-picker", MobileTimePicker);
 }
