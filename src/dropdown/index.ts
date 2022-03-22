@@ -333,6 +333,7 @@ export class Dropdown extends KucBase {
       }
       case "Escape": {
         event.preventDefault();
+        event.stopPropagation();
         this._actionHideMenu();
         break;
       }
