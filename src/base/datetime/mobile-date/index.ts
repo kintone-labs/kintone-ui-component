@@ -167,7 +167,7 @@ export class BaseMobileDate extends KucBase {
       temp = this._calendarValue!.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
-    this._dispathDateChangeCustomEvent(undefined);
+    this._dispathDateChangeCustomEvent("");
   }
 
   private _handleClickCalendarFooterButtonToday() {
@@ -219,8 +219,8 @@ export class BaseMobileDate extends KucBase {
   private _getCalendarIconTemplate() {
     return html`
       <svg
-        width="28"
-        height="28"
+        width="24"
+        height="24"
         viewBox="0 0 28 28"
         class="kuc-mobile-base-date__group__button--icon"
         fill="none"
@@ -263,6 +263,7 @@ export class BaseMobileDate extends KucBase {
           border-color: #cf4a38;
         }
         input.kuc-mobile-base-date__group__input {
+          color: #000000;
           width: 100%;
           font-size: 99%;
           -webkit-flex-grow: 1;

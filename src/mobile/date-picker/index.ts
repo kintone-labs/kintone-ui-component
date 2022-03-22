@@ -114,7 +114,7 @@ export class MobileDatePicker extends KucBase {
     event.stopPropagation();
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
-      oldValue: this.value === "" ? undefined : this.value,
+      oldValue: this.value,
       value: ""
     };
     const theSameValue =

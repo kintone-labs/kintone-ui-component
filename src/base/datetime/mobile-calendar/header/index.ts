@@ -330,6 +330,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           border: 0;
           margin: 0;
           padding: 0;
+          min-width: 40px;
           width: 40px;
           height: 40px;
           overflow: hidden;
@@ -350,6 +351,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
           display: flex;
           flex: 1;
           justify-content: center;
+          min-width: 186px;
         }
         .kuc-base-mobile-datetime-calendar-header__group__center
           > :first-child {
