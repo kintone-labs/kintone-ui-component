@@ -37,7 +37,7 @@ export class MobileDateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value = "";
+  @property({ type: String }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -63,6 +63,9 @@ export class MobileDateTimePicker extends KucBase {
   @state()
   private _errorText = "";
 
+  private _tempTime = "";
+  private _tempDate = "";
+
   constructor(props?: MobileDateTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -70,27 +73,54 @@ export class MobileDateTimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (!this.value) {
+      if (!this._tempTime) return true;
+
+      this.updateComplete.then(() => {
+        this._tempTime = "";
+        this._updateErrorText();
+      });
+      return false;
+    }
+
+    return true;
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (typeof this.value !== "string") {
-        throw new Error(FORMAT_IS_NOT_VALID);
+      console.log("update");
+      const isUndefined =
+        this.value === "" || this.value === undefined || this.value === null;
+      if (isUndefined) {
+        this._dateValue = "";
+        this._timeValue = "";
+        this.value = undefined;
+      } else {
+        if (
+          this.value !== null &&
+          this.value !== undefined &&
+          typeof this.value !== "string"
+        ) {
+          throw new Error(FORMAT_IS_NOT_VALID);
+        }
+        const dateTime = this._getDateTimeValue(this.value);
+        const dateValue = dateValueConverter(dateTime.date);
+        if (
+          dateValue !== "" &&
+          (!validateDateTimeValue(dateTime.date, dateTime.time) ||
+            !isValidDate(dateValue))
+        ) {
+          throw new Error(FORMAT_IS_NOT_VALID);
+        }
+        this._dateValue = dateValue;
+        this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
       }
-      const dateTime = this._getDateTimeValue(this.value);
-      const dateValue = dateValueConverter(dateTime.date);
-      if (
-        dateValue !== "" &&
-        (!validateDateTimeValue(dateTime.date, dateTime.time) ||
-          !isValidDate(dateValue))
-      ) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this._dateValue = dateValue;
-      this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
     }
     super.update(changedProperties);
   }
 
-  private _getDateTimeValue(value: string) {
+  private _getDateTimeValue(value: string | undefined) {
     if (value === "" || value === undefined) return { date: "", time: "" };
 
     const dateTime = value.split("T");
@@ -148,10 +178,19 @@ export class MobileDateTimePicker extends KucBase {
             @kuc:base-mobile-time-change="${this._handleTimeChange}"
           ></kuc-base-mobile-time>
         </div>
-        <kuc-base-mobile-error .guid="${this._GUID}" .text="${this.error}">
+        <kuc-base-mobile-error .guid="${this._GUID}" .text="${this._errorText}">
         </kuc-base-mobile-error>
       </fieldset>
     `;
+  }
+
+  updated() {
+    this._updateErrorText();
+  }
+
+  private _updateErrorText() {
+    this._errorText = this._errorFormat || this.error;
+    console.log(this._errorText, " this._errorText");
   }
 
   private _getLanguage() {
@@ -181,7 +220,14 @@ export class MobileDateTimePicker extends KucBase {
   private _handleTimeChange(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    const newValue = event.detail.value;
+    let newValue = this._timeValue;
+    if (event.detail.error) {
+      this._errorFormat = event.detail.error;
+      this.error = "";
+    } else {
+      this._errorFormat = "";
+      newValue = event.detail.value;
+    }
     this._updateDateTimeValue(newValue, "time");
   }
 
@@ -192,9 +238,16 @@ export class MobileDateTimePicker extends KucBase {
     } else {
       this._timeValue = newValue;
     }
+    if (this._dateValue === "") {
+      this._tempTime = this._timeValue;
+    }
     const newDateTime = this._getDateTimeString();
+    const _newValue =
+      this._errorFormat || newDateTime === "" ? undefined : newDateTime;
+    this.value = _newValue;
+    console.log(_newValue, "_newValue");
     const detail = {
-      value: this._errorFormat || newDateTime === "" ? undefined : newDateTime,
+      value: _newValue,
       oldValue: oldDateTime === "" ? undefined : oldDateTime,
       changedPart: type
     };
