@@ -190,7 +190,6 @@ export class MobileDateTimePicker extends KucBase {
 
   private _updateErrorText() {
     this._errorText = this._errorFormat || this.error;
-    console.log(this._errorText, " this._errorText");
   }
 
   private _getLanguage() {
@@ -223,6 +222,7 @@ export class MobileDateTimePicker extends KucBase {
     let newValue = this._timeValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
+      newValue = event.detail.value;
       this.error = "";
     } else {
       this._errorFormat = "";
@@ -245,7 +245,6 @@ export class MobileDateTimePicker extends KucBase {
     const _newValue =
       this._errorFormat || newDateTime === "" ? undefined : newDateTime;
     this.value = _newValue;
-    console.log(_newValue, "_newValue");
     const detail = {
       value: _newValue,
       oldValue: oldDateTime === "" ? undefined : oldDateTime,
