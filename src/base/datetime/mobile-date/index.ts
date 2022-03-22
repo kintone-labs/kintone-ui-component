@@ -263,6 +263,7 @@ export class BaseMobileDate extends KucBase {
           border-color: #cf4a38;
         }
         input.kuc-mobile-base-date__group__input {
+          color: #000000;
           width: 100%;
           font-size: 99%;
           -webkit-flex-grow: 1;
