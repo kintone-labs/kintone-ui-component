@@ -67,8 +67,10 @@ export class MobileTimePicker extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-mobile-time-picker__group">
-        <label class="kuc-mobile-time-picker__group__label"
-        ?hidden="${!this.label}">
+        <label
+          class="kuc-mobile-time-picker__group__label"
+          ?hidden="${!this.label}"
+        >
           <kuc-base-mobile-label
             .guid="${this._GUID}"
             .text="${this.label}"
@@ -159,7 +161,6 @@ export class MobileTimePicker extends KucBase {
           display: none;
         }
         .kuc-mobile-time-picker__group {
-         
         }
         .kuc-mobile-time-picker__group__label {
           display: inline-block;
