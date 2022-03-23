@@ -160,8 +160,6 @@ export class MobileTimePicker extends KucBase {
         kuc-mobile-time-picker[hidden] {
           display: none;
         }
-        .kuc-mobile-time-picker__group {
-        }
         .kuc-mobile-time-picker__group__label {
           display: inline-block;
           font-size: 86%;
