@@ -107,9 +107,9 @@ export class TimePicker extends KucBase {
       (!isFirstTimeEarlier(this._inputValue, this.max) ||
         !isFirstTimeEarlier(this.min, this._inputValue))
     ) {
-      throw new Error(FORMAT_IS_NOT_VALID);
-      // this.value = undefined;
-      // this._errorInvalid = this._locale.INVALID_TIME;
+      // throw new Error(FORMAT_IS_NOT_VALID);
+      this.value = undefined;
+      this._errorInvalid = this._locale.INVALID_TIME;
     }
 
     if (changedProperties.has("language")) {
