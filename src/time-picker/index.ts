@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -8,8 +8,12 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
-import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import {
+  FORMAT_IS_NOT_VALID,
+  MIN_NOT_BE_GREATER_MAX
+} from "../base/datetime/resource/constant";
 import { validateProps, validateTimeValue } from "../base/validator";
+import { isFirstTimeEarlier, getLocale } from "../base/datetime/utils";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -17,6 +21,9 @@ type TimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
+  language?: string;
+  max?: string;
+  min?: string;
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
@@ -30,7 +37,10 @@ export class TimePicker extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) language = "auto";
+  @property({ type: String }) max = "";
+  @property({ type: String }) min = "";
+  @property({ type: String }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -49,6 +59,17 @@ export class TimePicker extends KucBase {
   @query(".kuc-time-picker__group__error")
   private _errorEl!: HTMLDivElement;
 
+  @state()
+  private _inputValue = "";
+
+  @state()
+  private _errorInvalid = "";
+
+  @state()
+  private _errorText = "";
+
+  private _locale = getLocale("en");
+
   private _GUID: string;
 
   constructor(props?: TimePickerProps) {
@@ -59,11 +80,40 @@ export class TimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value")) {
+    if (changedProperties.has("max") || changedProperties.has("min")) {
+      if (!validateTimeValue(this.max) || !validateTimeValue(this.min)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this.max = timeValueConverter(this.max);
+      this.min = timeValueConverter(this.min);
+
+      if (!isFirstTimeEarlier(this.min, this.max)) {
+        throw new Error(MIN_NOT_BE_GREATER_MAX);
+      }
+    }
+
+    if (changedProperties.has("value") && this.value !== undefined) {
       if (!validateTimeValue(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-      this.value = timeValueConverter(this.value);
+
+      this._inputValue = timeValueConverter(this.value);
+    }
+
+    if (
+      (changedProperties.has("max") ||
+        changedProperties.has("min") ||
+        (changedProperties.has("value") && this.value !== undefined)) &&
+      (!isFirstTimeEarlier(this._inputValue, this.max) ||
+        !isFirstTimeEarlier(this.min, this._inputValue))
+    ) {
+      throw new Error(FORMAT_IS_NOT_VALID);
+      // this.value = undefined;
+      // this._errorInvalid = this._locale.INVALID_TIME;
+    }
+
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
   }
@@ -86,10 +136,12 @@ export class TimePicker extends KucBase {
         </legend>
         <kuc-base-time
           class="kuc-time-picker__group__input"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
           .timeStep="${this.timeStep}"
+          .max="${this.max}"
+          .min="${this.min}"
           @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>
@@ -97,9 +149,9 @@ export class TimePicker extends KucBase {
           class="kuc-time-picker__group__error"
           id="${this._GUID}-error"
           role="alert"
-          ?hidden="${!this.error}"
+          ?hidden="${!this._errorText}"
         >
-          ${this.error}
+          ${this._errorText}
         </div>
       </fieldset>
     `;
@@ -107,6 +159,11 @@ export class TimePicker extends KucBase {
 
   updated() {
     this._updateErrorWidth();
+    this._updateErrorText();
+  }
+
+  private _updateErrorText() {
+    this._errorText = this._errorInvalid || this.error;
   }
 
   private _updateErrorWidth() {
@@ -124,9 +181,34 @@ export class TimePicker extends KucBase {
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: event.detail.oldValue
+      oldValue: this.value === undefined ? this.value : event.detail.oldValue
     };
+
+    this._inputValue = event.detail.value;
+    if (
+      !isFirstTimeEarlier(this._inputValue, this.max) ||
+      !isFirstTimeEarlier(this.min, this._inputValue)
+    ) {
+      detail.value = undefined;
+      this.value = undefined;
+      this._errorInvalid = this._locale.INVALID_TIME;
+      this.error = "";
+    } else {
+      this.value = this._inputValue;
+      this._errorInvalid = "";
+    }
+
     dispatchCustomEvent(this, "change", detail);
+  }
+
+  private _getLanguage() {
+    const languages = ["en", "ja", "zh"];
+    if (languages.indexOf(this.language) !== -1) return this.language;
+
+    if (languages.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
   }
 
   private _getStyleTagTemplate() {

@@ -2,6 +2,7 @@ import { expect } from "@open-wc/testing";
 import { padStart } from "../../utils";
 import {
   generateTimeOptions,
+  convertTimeValueToMinutes,
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   formatInputValueToValue,
@@ -15,15 +16,36 @@ import {
 describe("BaseDateTimeUtils", () => {
   describe("generateTimeOptions", () => {
     it("should be return 24 option when using generateTimeOptions with 12 hour format and timeStep is 60", async () => {
-      const timeOptions = generateTimeOptions(true, 60);
+      const timeOptions = generateTimeOptions(true, 60, "23:59", "00:00");
       expect(timeOptions.length).to.be.equal(24);
     });
   });
 
   describe("generateTimeOptions", () => {
     it("should be return 48 option when using generateTimeOptions with 24 hour format timeStep is 30", async () => {
-      const timeOptions = generateTimeOptions(false, 30);
+      const timeOptions = generateTimeOptions(false, 30, "23:59", "00:00");
       expect(timeOptions.length).to.be.equal(48);
+    });
+  });
+
+  describe("generateTimeOptions", () => {
+    it("should be return 11 option when using generateTimeOptions with 24 hour format, timeStep is 60, max is 18:00, min is 08:00", async () => {
+      const timeOptions = generateTimeOptions(false, 60, "18:00", "08:00");
+      expect(timeOptions.length).to.be.equal(11);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 0 when formattedTime is ""', async () => {
+      const minutes = convertTimeValueToMinutes("");
+      expect(minutes).to.be.equal(0);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 100 when formattedTime is "01:40"', async () => {
+      const minutes = convertTimeValueToMinutes("01:40");
+      expect(minutes).to.be.equal(100);
     });
   });
 

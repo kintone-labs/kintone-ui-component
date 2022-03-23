@@ -7,3 +7,5 @@ export const TIME_SUFFIX = {
 };
 
 export const FORMAT_IS_NOT_VALID = "Format is not valid.";
+export const MIN_NOT_BE_GREATER_MAX =
+  'The "min" value must not be greater than the "max" value.';
