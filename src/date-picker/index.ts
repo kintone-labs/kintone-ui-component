@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues } from "lit";
 import { property, state, query } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
@@ -50,10 +51,9 @@ export class DatePicker extends KucBase {
   @state()
   private _errorText = "";
 
-  @state()
   private _inputValue? = "";
-
-  private _tempValue = "";
+  private _invalidValue = "";
+  private _valueConverted = "";
 
   private _GUID: string;
 
@@ -67,23 +67,47 @@ export class DatePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (this.value === undefined || this.value === null || this.value === "")
+      return true;
+
+    if (typeof this.value !== "string" || !validateDateValue(this.value)) {
+      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._valueConverted = dateValueConverter(this.value);
+    if (this._valueConverted && !isValidDate(this._valueConverted)) {
+      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      return false;
+    }
+    return true;
+  }
+
+  private _throwErrorWhenUpdateCompleted(message: string) {
+    this.updateComplete.then(() => {
+      throw new Error(message);
+    });
+  }
+
+  willUpdate(_changedProperties: Map<string | number | symbol, unknown>): void {
+    if (this.value === undefined && this._errorFormat) {
+      this.value = undefined;
+      return;
+    }
+    const convertToEmpty =
+      this.value === undefined || this.value === null || this.value === "";
+    if (convertToEmpty) this.value = "";
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (this._tempValue || this.value || this.value === "") {
-        this._inputValue = this._tempValue || this.value;
-      }
-      if (
-        (!this._tempValue && typeof this.value !== "string") ||
-        !validateDateValue(this.value)
-      ) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      if (!this._tempValue) {
-        this.value = dateValueConverter(this.value);
+      if (this.value === undefined) {
+        this._inputValue = this._invalidValue;
+      } else {
+        this.value = this.value === "" ? this.value : this._valueConverted;
+        this._inputValue = this.value;
         this._errorFormat = "";
-      }
-      if (this.value !== "" && this.value && !isValidDate(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
       }
     }
     super.update(changedProperties);
@@ -130,7 +154,7 @@ export class DatePicker extends KucBase {
 
   updated() {
     this._updateErrorText();
-    this._tempValue = "";
+    this._invalidValue = "";
   }
 
   private _updateErrorText() {
@@ -253,15 +277,15 @@ export class DatePicker extends KucBase {
       value: ""
     };
     if (event.detail.error) {
-      this._tempValue = this._dateInput.value;
+      this.value = undefined;
+      this._invalidValue = this._dateInput.value;
       this._errorFormat = event.detail.error;
       this.error = "";
       eventDetail.value = undefined;
-      this.value = undefined;
     } else {
-      this.value = event.detail.value === undefined ? "" : event.detail.value;
-      eventDetail.value = this.value;
+      this.value = event.detail.value;
       this._errorFormat = "";
+      eventDetail.value = this.value === undefined ? "" : this.value;
     }
     this._disptchChangeEvent(eventDetail);
   }
