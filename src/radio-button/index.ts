@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
@@ -11,8 +12,10 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
+import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
 
 type Item = { label?: string; value?: string };
@@ -67,6 +70,33 @@ export class RadioButton extends KucBase {
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
+  }
+
+  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
   }
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
@@ -173,13 +203,11 @@ export class RadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
