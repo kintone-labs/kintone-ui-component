@@ -13,8 +13,10 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
+import { ERROR } from "../base/constant";
 
 type Item = {
   label?: string;
@@ -91,6 +93,7 @@ export class Dropdown extends KucBase {
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
+    console.log("construcotr");
     const validProps = validateProps(props);
     this._handleClickDocument = this._handleClickDocument.bind(this);
     Object.assign(this, validProps);
@@ -122,55 +125,28 @@ export class Dropdown extends KucBase {
     `;
   }
 
-  private _validateItems(value: Item[]) {
-    if (!Array.isArray(value)) {
-      return false;
-    }
-    return true;
-  }
-
-  private _validateValueString(value: string) {
-    if (typeof value !== "string") {
-      return false;
-    }
-    return true;
-  }
-
-  private _validateSelectedIndexNumber(selectedIndex: number) {
-    if (typeof selectedIndex !== "number") {
-      return false;
-    }
-    return true;
-  }
-
   protected shouldUpdate(changedProperties: PropertyValues): boolean {
     if (changedProperties.has("items")) {
-      if (!this._validateItems(this.items)) {
-        this._throwErrorAfterUpdateComplete("'items' property is not array");
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR.ITEMS.IS_NOT_ARRAY);
         return false;
       }
     }
+
     if (changedProperties.has("value")) {
-      if (!this._validateValueString(this.value)) {
-        this._throwErrorAfterUpdateComplete("'value' property is not string");
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR.VALUE.IS_NOT_STRING);
         return false;
       }
     }
+
     if (changedProperties.has("value")) {
-      if (!this._validateSelectedIndexNumber(this.selectedIndex)) {
-        this._throwErrorAfterUpdateComplete(
-          "'selectedIndex' property is not number"
-        );
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(this, ERROR.SELECTEDINDEX.IS_NOT_NUMBER);
         return false;
       }
     }
     return true;
-  }
-
-  private _throwErrorAfterUpdateComplete(message: string) {
-    this.updateComplete.then(() => {
-      throw new Error(message);
-    });
   }
 
   update(changedProperties: PropertyValues) {
