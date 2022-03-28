@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, state, queryAll, query } from "lit/decorators.js";
 import {
@@ -121,16 +122,63 @@ export class Dropdown extends KucBase {
     `;
   }
 
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) {
-      validateItems(this.items);
+  private _validateItems(value: Item[]) {
+    if (!Array.isArray(value)) {
+      return false;
     }
+    return true;
+  }
+
+  private _validateValueString(value: string) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    return true;
+  }
+
+  private _validateSelectedIndexNumber(selectedIndex: number) {
+    if (typeof selectedIndex !== "number") {
+      return false;
+    }
+    return true;
+  }
+
+  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!this._validateItems(this.items)) {
+        this._throwErrorAfterUpdateComplete("'items' property is not array");
+        return false;
+      }
+    }
+    if (changedProperties.has("value")) {
+      if (!this._validateValueString(this.value)) {
+        this._throwErrorAfterUpdateComplete("'value' property is not string");
+        return false;
+      }
+    }
+    if (changedProperties.has("value")) {
+      if (!this._validateSelectedIndexNumber(this.selectedIndex)) {
+        this._throwErrorAfterUpdateComplete(
+          "'selectedIndex' property is not number"
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private _throwErrorAfterUpdateComplete(message: string) {
+    this.updateComplete.then(() => {
+      throw new Error(message);
+    });
+  }
+
+  update(changedProperties: PropertyValues) {
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
