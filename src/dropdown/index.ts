@@ -139,7 +139,7 @@ export class Dropdown extends KucBase {
       }
     }
 
-    if (changedProperties.has("value")) {
+    if (changedProperties.has("selectedIndex")) {
       if (!validateSelectedIndexNumber(this.selectedIndex)) {
         throwErrorAfterUpdateComplete(
           this,
