@@ -1,4 +1,3 @@
-/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, state, queryAll, query } from "lit/decorators.js";
 import {

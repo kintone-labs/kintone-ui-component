@@ -1,4 +1,3 @@
-/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, query, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
