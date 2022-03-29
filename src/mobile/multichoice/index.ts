@@ -11,8 +11,10 @@ import {
   validateProps,
   validateItems,
   validateValueArray,
-  validateSelectedIndexArray
+  validateSelectedIndexArray,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
+import { ERROR_MESSAGE } from "../../base/constant";
 
 type Item = {
   label?: string;
@@ -88,14 +90,39 @@ export class MobileMultiChoice extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueArray(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexArray(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueArray(this.value);
-      validateSelectedIndexArray(this.selectedIndex);
       this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
