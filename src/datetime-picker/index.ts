@@ -193,7 +193,6 @@ export class DateTimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    console.log(this.value, "update");
     if (changedProperties.has("value")) {
       if (this.value === undefined) {
         this._setUndefinedValue();
@@ -205,10 +204,8 @@ export class DateTimePicker extends KucBase {
   }
 
   private _setUndefinedValue() {
-    if (this._checkInputTimeByUI) {
-      // this._timeValue = this._previousTimeValue;
-      return;
-    }
+    if (this._checkInputTimeByUI) return;
+
     if (this._errorFormat) {
       if (this._checkInputDateByUI) {
         this._dateValue = this._dateInput.value;
@@ -336,7 +333,6 @@ export class DateTimePicker extends KucBase {
     this._previousDateValue = this._dateValue;
     const newDateTime = this._getDateTimeString();
     const _value = this._errorFormat ? undefined : newDateTime;
-    console.log(_value, "this.value change ");
     this.value = _value;
     const detail = {
       value: _value,
