@@ -72,7 +72,7 @@ export class MobileDropdown extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
-  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+  shouldUpdate(changedProperties: PropertyValues): boolean {
     if (changedProperties.has("items")) {
       if (!validateItems(this.items)) {
         throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);

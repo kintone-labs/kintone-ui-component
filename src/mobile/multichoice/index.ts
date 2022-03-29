@@ -73,7 +73,7 @@ export class MobileMultiChoice extends KucBase {
     event.stopPropagation();
     const selectEl = event.target as HTMLSelectElement;
 
-    const oldValue = [...this.value];
+    const oldValue = !this.value ? this.value : [...this.value];
     const newValue = Array.from(
       selectEl.selectedOptions,
       option => option.value
@@ -90,7 +90,7 @@ export class MobileMultiChoice extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
-  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+  shouldUpdate(changedProperties: PropertyValues): boolean {
     if (changedProperties.has("items")) {
       if (!validateItems(this.items)) {
         throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);

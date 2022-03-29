@@ -71,7 +71,7 @@ export class RadioButton extends KucBase {
     Object.assign(this, validProps);
   }
 
-  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+  shouldUpdate(changedProperties: PropertyValues): boolean {
     if (changedProperties.has("items")) {
       if (!validateItems(this.items)) {
         throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
