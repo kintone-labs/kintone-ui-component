@@ -11,8 +11,10 @@ import {
   validateProps,
   validateValueString,
   validateItems,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
+import { ERROR_MESSAGE } from "../../base/constant";
 
 type Item = { label?: string; value?: string };
 type MobileDropdownProps = {
@@ -70,15 +72,39 @@ export class MobileDropdown extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
