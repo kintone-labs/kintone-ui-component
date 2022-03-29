@@ -179,8 +179,6 @@ export class MobileRadioButton extends KucBase {
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
       this.value = this._getValue() || "";
     }
