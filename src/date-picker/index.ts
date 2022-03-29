@@ -283,9 +283,9 @@ export class DatePicker extends KucBase {
       this.error = "";
       eventDetail.value = undefined;
     } else {
-      this.value = event.detail.value;
       this._errorFormat = "";
-      eventDetail.value = this.value === undefined ? "" : this.value;
+      this.value = event.detail.value === undefined ? "" : event.detail.value;
+      eventDetail.value = this.value;
     }
     this._disptchChangeEvent(eventDetail);
   }
