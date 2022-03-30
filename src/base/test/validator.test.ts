@@ -2,6 +2,8 @@ import { expect } from "@open-wc/testing";
 import {
   validateProps,
   validateTimeValue,
+  validateMaxMinTimeValue,
+  validateTimeStep,
   validateItems,
   validateValueArray,
   validateValueString,
@@ -41,6 +43,22 @@ describe("Base", () => {
 
     it("should be return false when using validateTimeValue with parameter invalid", async () => {
       expect(validateTimeValue("29:30")).to.equal(false);
+    });
+
+    it("should be return true when using validateMaxMinTimeValue with parameter valid", async () => {
+      expect(validateMaxMinTimeValue("19:30", "10:00", "11:00")).to.equal(true);
+    });
+
+    it("should be return false when using validateMaxMinTimeValue with parameter invalid", async () => {
+      expect(validateMaxMinTimeValue("19:30", "10:00", "9:00")).to.equal(false);
+    });
+
+    it("should be return true when using validateTimeStep with parameter valid", async () => {
+      expect(validateTimeStep(60, "20:00", "10:00")).to.equal(true);
+    });
+
+    it("should be return false when using validateTimeStep with parameter invalid", async () => {
+      expect(validateTimeStep(360, "10:00", "9:00")).to.equal(false);
     });
 
     it("should be throw error when item is not array", async () => {

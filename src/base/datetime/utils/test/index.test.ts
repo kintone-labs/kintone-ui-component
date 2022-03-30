@@ -3,6 +3,7 @@ import { padStart } from "../../utils";
 import {
   generateTimeOptions,
   convertTimeValueToMinutes,
+  isFirstTimeEarlier,
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   formatInputValueToValue,
@@ -36,16 +37,34 @@ describe("BaseDateTimeUtils", () => {
   });
 
   describe("convertTimeValueToMinutes", () => {
-    it('should be return 0 when formattedTime is ""', async () => {
+    it('should be return 0 when value is ""', async () => {
       const minutes = convertTimeValueToMinutes("");
       expect(minutes).to.be.equal(0);
     });
   });
 
   describe("convertTimeValueToMinutes", () => {
-    it('should be return 100 when formattedTime is "01:40"', async () => {
+    it('should be return 100 when value is "01:40"', async () => {
       const minutes = convertTimeValueToMinutes("01:40");
       expect(minutes).to.be.equal(100);
+    });
+  });
+
+  describe("isFirstTimeEarlier", () => {
+    it("should be return true when first time is earlier", async () => {
+      expect(isFirstTimeEarlier("01:40", "12:20")).to.equal(true);
+    });
+  });
+
+  describe("isFirstTimeEarlier", () => {
+    it("should be return true when two times are equal", async () => {
+      expect(isFirstTimeEarlier("12:20", "12:20")).to.equal(true);
+    });
+  });
+
+  describe("isFirstTimeEarlier", () => {
+    it("should be return false when second time is earlier", async () => {
+      expect(isFirstTimeEarlier("12:20", "10:20")).to.equal(false);
     });
   });
 

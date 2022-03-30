@@ -55,7 +55,7 @@ export const ja = {
   ],
   INVALID_FORMAT: "日付の形式が不正です。",
   CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日", close: "閉じる" },
-  INVALID_TIME: "Time is out of valid range."
+  INVALID_TIME: "時刻が有効な範囲外です。"
 };
 
 export const zh = {

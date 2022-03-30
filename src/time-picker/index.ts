@@ -10,10 +10,14 @@ import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
   FORMAT_IS_NOT_VALID,
-  MIN_NOT_BE_GREATER_MAX
+  MAX_MIN_VALUE_IS_NOT_VALID
 } from "../base/datetime/resource/constant";
-import { validateProps, validateTimeValue } from "../base/validator";
-import { isFirstTimeEarlier, getLocale } from "../base/datetime/utils";
+import {
+  validateProps,
+  validateTimeValue,
+  validateMaxMinTimeValue,
+  validateTimeStep
+} from "../base/validator";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -21,7 +25,6 @@ type TimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
-  language?: string;
   max?: string;
   min?: string;
   value?: string;
@@ -30,6 +33,7 @@ type TimePickerProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   timeStep?: number;
+  language?: "ja" | "en" | "zh" | "auto";
 };
 
 export class TimePicker extends KucBase {
@@ -60,15 +64,12 @@ export class TimePicker extends KucBase {
   private _errorEl!: HTMLDivElement;
 
   @state()
-  private _inputValue = "";
-
-  @state()
-  private _errorInvalid = "";
-
-  @state()
   private _errorText = "";
 
-  private _locale = getLocale("en");
+  private _inputValue = "";
+  private _errorInvalid = "";
+  private _inputMax = "";
+  private _inputMin = "";
 
   private _GUID: string;
 
@@ -80,41 +81,47 @@ export class TimePicker extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("max") || changedProperties.has("min")) {
-      if (!validateTimeValue(this.max) || !validateTimeValue(this.min)) {
+    if (changedProperties.has("max")) {
+      if (!validateTimeValue(this.max)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
       this.max = timeValueConverter(this.max);
-      this.min = timeValueConverter(this.min);
+      this._inputMax = this.max === "" ? "23:59" : this.max;
+    }
 
-      if (!isFirstTimeEarlier(this.min, this.max)) {
-        throw new Error(MIN_NOT_BE_GREATER_MAX);
+    if (changedProperties.has("min")) {
+      if (!validateTimeValue(this.min)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
       }
+      this.min = timeValueConverter(this.min);
+      this._inputMin = this.min === "" ? "00:00" : this.min;
     }
 
     if (changedProperties.has("value") && this.value !== undefined) {
       if (!validateTimeValue(this.value)) {
         throw new Error(FORMAT_IS_NOT_VALID);
       }
-
-      this._inputValue = timeValueConverter(this.value);
+      this.value = timeValueConverter(this.value);
+      this._inputValue = this.value;
+      this._errorInvalid = "";
     }
 
     if (
       (changedProperties.has("max") ||
         changedProperties.has("min") ||
         (changedProperties.has("value") && this.value !== undefined)) &&
-      (!isFirstTimeEarlier(this._inputValue, this.max) ||
-        !isFirstTimeEarlier(this.min, this._inputValue))
+      !validateMaxMinTimeValue(this._inputMax, this._inputMin, this._inputValue)
     ) {
-      // throw new Error(FORMAT_IS_NOT_VALID);
-      this.value = undefined;
-      this._errorInvalid = this._locale.INVALID_TIME;
+      throw new Error(MAX_MIN_VALUE_IS_NOT_VALID);
     }
 
-    if (changedProperties.has("language")) {
-      this._locale = getLocale(this.language);
+    if (changedProperties.has("timeStep")) {
+      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
+        throw new Error(FORMAT_IS_NOT_VALID);
+      }
+      this.timeStep = Math.round(this.timeStep);
     }
+
     super.update(changedProperties);
   }
 
@@ -140,8 +147,9 @@ export class TimePicker extends KucBase {
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
           .timeStep="${this.timeStep}"
-          .max="${this.max}"
-          .min="${this.min}"
+          .max="${this._inputMax}"
+          .min="${this._inputMin}"
+          .language="${this._getLanguage()}"
           @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>
@@ -181,20 +189,16 @@ export class TimePicker extends KucBase {
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: this.value === undefined ? this.value : event.detail.oldValue
+      oldValue: this.value
     };
 
-    this._inputValue = event.detail.value;
-    if (
-      !isFirstTimeEarlier(this._inputValue, this.max) ||
-      !isFirstTimeEarlier(this.min, this._inputValue)
-    ) {
+    if (event.detail.error) {
       detail.value = undefined;
       this.value = undefined;
-      this._errorInvalid = this._locale.INVALID_TIME;
+      this._errorInvalid = event.detail.error;
       this.error = "";
     } else {
-      this.value = this._inputValue;
+      this.value = event.detail.value;
       this._errorInvalid = "";
     }
 

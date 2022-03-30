@@ -3,7 +3,15 @@ import "./index.ts";
 
 export default {
   title: "base/datetime/time",
-  argTypes: {},
+  argTypes: {
+    language: {
+      name: "language",
+      control: {
+        type: "select",
+        options: ["en", "ja", "zh"]
+      }
+    }
+  },
   parameters: {
     actions: {
       handles: ["kuc:base-time-change"]
@@ -11,7 +19,7 @@ export default {
   }
 };
 
-const Template = ({ disabled, hour12, value, timeStep, max, min }) =>
+const Template = ({ disabled, hour12, value, timeStep, max, min, language }) =>
   html`
     <kuc-base-time
       .disabled="${disabled}"
@@ -20,6 +28,7 @@ const Template = ({ disabled, hour12, value, timeStep, max, min }) =>
       .timeStep="${timeStep}"
       .max="${max}"
       .min="${min}"
+      .language="${language}"
     ></kuc-base-time>
   `;
 
@@ -30,5 +39,6 @@ Base.args = {
   value: "08:15",
   timeStep: 30,
   max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  language: "en"
 };

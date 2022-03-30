@@ -15,7 +15,9 @@ import {
   padStart,
   generateTimeOptions,
   formatTimeValueToInputValue,
-  formatInputValueToTimeValue
+  formatInputValueToTimeValue,
+  getLocale,
+  isFirstTimeEarlier
 } from "../utils";
 
 import { BaseDateTimeListBox, Item } from "../listbox";
@@ -28,6 +30,7 @@ type Time = {
 };
 
 export class BaseTime extends KucBase {
+  @property({ type: String, reflect: true }) language = "en";
   @property({ type: String }) max = "";
   @property({ type: String }) min = "";
   @property({ type: String }) value = "";
@@ -59,6 +62,8 @@ export class BaseTime extends KucBase {
   private _inputFocusEl!: HTMLInputElement | null;
 
   private _listBoxItems: Item[] | undefined;
+
+  private _locale = getLocale("en");
 
   @query(".kuc-base-time__group__hours")
   private _hoursEl!: HTMLInputElement;
@@ -92,6 +97,9 @@ export class BaseTime extends KucBase {
     }
     if (changedProperties.has("value")) {
       this._updateInputValue();
+    }
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
   }
@@ -516,6 +524,14 @@ export class BaseTime extends KucBase {
       value: value,
       oldValue: oldValue
     };
+
+    if (
+      !isFirstTimeEarlier(this.min, value) ||
+      !isFirstTimeEarlier(value, this.max)
+    ) {
+      detail.error = this._locale.INVALID_TIME;
+    }
+
     dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 

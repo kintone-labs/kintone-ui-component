@@ -85,6 +85,6 @@ BaseError.args = {
   visible: true,
   language: "en",
   timeStep: 30,
-  max: "12:59",
+  max: "23:59",
   min: "00:00"
 };
