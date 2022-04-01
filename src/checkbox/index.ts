@@ -62,8 +62,18 @@ export class Checkbox extends KucBase {
   constructor(props?: CheckboxProps) {
     super();
     this._GUID = generateGUID();
-    const validProps = validateProps(props);
+    const validProps: any = validateProps(props);
+    if (!validProps.value && validProps.selectedIndex) {
+      this._setValueOnConstructor(validProps);
+    }
     Object.assign(this, validProps);
+  }
+
+  private _setValueOnConstructor(validProps: any) {
+    const _items = validProps.items;
+    const _selectedIndex = validProps.selectedIndex;
+    this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
+    this.value = Object.values(this._valueMapping);
   }
 
   shouldUpdate(changedProperties: PropertyValues): boolean {
@@ -94,10 +104,22 @@ export class Checkbox extends KucBase {
   }
 
   willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("selectedIndex")) {
+      this._valueMapping = this._getValueMapping(
+        [],
+        this.items,
+        this.selectedIndex
+      );
+    }
     if (changedProperties.has("value")) {
       if (this.value.length === 0) {
         this.selectedIndex = [];
       }
+      this._valueMapping = this._getValueMapping(
+        this.value,
+        this.items,
+        this.selectedIndex
+      );
     }
   }
 
@@ -107,7 +129,6 @@ export class Checkbox extends KucBase {
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
     super.update(changedProperties);
@@ -289,22 +310,27 @@ export class Checkbox extends KucBase {
     });
   }
 
-  private _getValueMapping() {
-    const itemsValue = this.items.map(item => item.value || "");
+  private _getValueMapping(
+    value: string[],
+    items: Item[],
+    selectedIndex: number[]
+  ) {
+    const itemsValue = items.map(item => item.value || "");
     const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
-    if (this.value.length === 0) {
-      const value = this._getValidValue(itemsMapping);
-      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+    if (value.length === 0) {
+      const _value = this._getValidValue(itemsMapping, selectedIndex);
+      selectedIndex.forEach((key, i) => (result[key] = _value[i]));
       return result;
     }
+
     const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
-    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    validSelectedIndex.forEach((key, i) => (result[key] = value[i]));
     return result;
   }
 
-  private _getValidValue(itemsMapping: ValueMapping) {
-    return this.selectedIndex
+  private _getValidValue(itemsMapping: ValueMapping, selectedIndex: number[]) {
+    return selectedIndex
       .filter(item => itemsMapping[item])
       .map(item => itemsMapping[item]);
   }

@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
 const initItems = [
@@ -43,9 +43,10 @@ describe("Checkbox", () => {
         items: initItems,
         selectedIndex: [1]
       });
-      container.selectedIndex = [2];
-
       const el = await fixture(container);
+      container.selectedIndex = [2];
+      await elementUpdated(el);
+
       const inputsEl = el.querySelectorAll(
         ".kuc-checkbox__group__select-menu__item__input"
       );
