@@ -11,7 +11,8 @@ import { getWidthElmByContext } from "../base/context";
 import {
   validateProps,
   validateDateTimeValue,
-  isValidDate
+  isValidDate,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
 
@@ -98,7 +99,7 @@ export class DateTimePicker extends KucBase {
     if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string") {
-      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
 
@@ -108,7 +109,7 @@ export class DateTimePicker extends KucBase {
       validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
       isValidDate(this._dateConverted);
     if (!isValidValue) {
-      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
 
@@ -116,32 +117,21 @@ export class DateTimePicker extends KucBase {
   }
 
   willUpdate(_changedProperties: PropertyValues): void {
-    if (this._changeDateByUI) {
-      this._updateValueWhenDateChange();
+    const changeByUI = this._changeDateByUI || this._changeTimeByUI;
+    if (changeByUI) {
+      this._updateValueChangeByUI();
       return;
     }
-    if (this._changeTimeByUI) {
-      this._updateValueWhenTimeChange();
-      return;
-    }
+
     this._updateValueWhenSetter();
   }
 
-  private _updateValueWhenDateChange() {
+  private _updateValueChangeByUI() {
     const validFormat = this._validateDateTimeFormat();
-    if (validFormat) {
-      this._errorText = "";
-      return;
-    }
-    this.value = undefined;
-    this._errorText = this._errorFormat;
-  }
+    this.value = !validFormat ? undefined : this.value;
+    if (this._changeTimeByUI) return;
 
-  private _updateValueWhenTimeChange() {
-    const validFormat = this._validateDateTimeFormat();
-    if (validFormat) return;
-
-    this.value = undefined;
+    this._errorText = validFormat ? this.error : this._errorFormat;
   }
 
   private _validateDateTimeFormat() {
@@ -172,12 +162,6 @@ export class DateTimePicker extends KucBase {
         : this._previousTimeValue;
   }
 
-  private _throwErrorWhenUpdateCompleted(message: string) {
-    this.updateComplete.then(() => {
-      throw new Error(message);
-    });
-  }
-
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
       if (this.value === undefined) {
@@ -191,7 +175,6 @@ export class DateTimePicker extends KucBase {
   }
 
   private _setUndefinedValue() {
-    console.log("_setUndefinedValue");
     if (this._changeTimeByUI) return;
 
     if (this._errorFormat) {

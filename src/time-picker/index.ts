@@ -9,7 +9,11 @@ import {
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
-import { validateProps, validateTimeValue } from "../base/validator";
+import {
+  validateProps,
+  validateTimeValue,
+  throwErrorAfterUpdateComplete
+} from "../base/validator";
 import "../base/datetime/time";
 
 type TimePickerProps = {
@@ -61,7 +65,7 @@ export class TimePicker extends KucBase {
     if (this.value === undefined || this.value === "") return true;
 
     if (!validateTimeValue(this.value)) {
-      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
 
@@ -80,12 +84,6 @@ export class TimePicker extends KucBase {
       this._inputValue = isEmpty ? "" : this.value;
     }
     super.update(changedProperties);
-  }
-
-  private _throwErrorWhenUpdateCompleted(message: string) {
-    this.updateComplete.then(() => {
-      throw new Error(message);
-    });
   }
 
   render() {

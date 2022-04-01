@@ -10,7 +10,8 @@ import {
 import {
   validateProps,
   validateDateValue,
-  isValidDate
+  isValidDate,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
@@ -70,22 +71,16 @@ export class DatePicker extends KucBase {
     if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string" || !validateDateValue(this.value)) {
-      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
 
     this._valueConverted = dateValueConverter(this.value);
     if (this._valueConverted && !isValidDate(this._valueConverted)) {
-      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
     return true;
-  }
-
-  private _throwErrorWhenUpdateCompleted(message: string) {
-    this.updateComplete.then(() => {
-      throw new Error(message);
-    });
   }
 
   update(changedProperties: PropertyValues) {
