@@ -93,6 +93,26 @@ export class Checkbox extends KucBase {
     return true;
   }
 
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value.length === 0) {
+        this.selectedIndex = [];
+      }
+    }
+  }
+
+  update(changedProperties: PropertyValues) {
+    if (
+      changedProperties.has("items") ||
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._valueMapping = this._getValueMapping();
+      this._setValueAndSelectedIndex();
+    }
+    super.update(changedProperties);
+  }
+
   private _getNewValueMapping(value: string, selectedIndex: string) {
     const selectedIndexNumber = parseInt(selectedIndex, 10);
     const keys = Object.keys(this._valueMapping);
@@ -221,18 +241,6 @@ export class Checkbox extends KucBase {
         </label>
       </div>
     `;
-  }
-
-  update(changedProperties: PropertyValues) {
-    if (
-      changedProperties.has("items") ||
-      changedProperties.has("value") ||
-      changedProperties.has("selectedIndex")
-    ) {
-      this._valueMapping = this._getValueMapping();
-      this._setValueAndSelectedIndex();
-    }
-    super.update(changedProperties);
   }
 
   render() {
