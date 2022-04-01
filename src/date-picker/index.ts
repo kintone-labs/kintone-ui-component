@@ -68,8 +68,7 @@ export class DatePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-    if (this.value === undefined || this.value === null || this.value === "")
-      return true;
+    if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string" || !validateDateValue(this.value)) {
       this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
@@ -88,16 +87,6 @@ export class DatePicker extends KucBase {
     this.updateComplete.then(() => {
       throw new Error(message);
     });
-  }
-
-  willUpdate(_changedProperties: Map<string | number | symbol, unknown>): void {
-    if (this.value === undefined && this._errorFormat) {
-      this.value = undefined;
-      return;
-    }
-    const convertToEmpty =
-      this.value === undefined || this.value === null || this.value === "";
-    if (convertToEmpty) this.value = "";
   }
 
   update(changedProperties: PropertyValues) {

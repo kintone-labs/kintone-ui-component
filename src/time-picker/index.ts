@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
@@ -48,6 +49,7 @@ export class TimePicker extends KucBase {
   private _errorEl!: HTMLDivElement;
 
   private _GUID: string;
+  private _inputValue = "";
 
   constructor(props?: TimePickerProps) {
     super();
@@ -56,14 +58,35 @@ export class TimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (this.value === undefined || this.value === "") return true;
+
+    if (!validateTimeValue(this.value)) {
+      this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    return true;
+  }
+
+  willUpdate(_changedProperties: PropertyValues): void {
+    if (this.value === undefined || this.value === "") return;
+
+    this.value = timeValueConverter(this.value);
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (!validateTimeValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this.value = timeValueConverter(this.value);
+      const isEmpty = this.value === undefined || this.value === "";
+      this._inputValue = isEmpty ? "" : this.value;
     }
     super.update(changedProperties);
+  }
+
+  private _throwErrorWhenUpdateCompleted(message: string) {
+    this.updateComplete.then(() => {
+      throw new Error(message);
+    });
   }
 
   render() {
@@ -84,7 +107,7 @@ export class TimePicker extends KucBase {
         </legend>
         <kuc-base-time
           class="kuc-time-picker__group__input"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
           @kuc:base-time-change="${this._handleTimeChange}"
@@ -121,7 +144,7 @@ export class TimePicker extends KucBase {
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: event.detail.oldValue
+      oldValue: this.value
     };
     this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);

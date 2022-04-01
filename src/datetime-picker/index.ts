@@ -34,7 +34,6 @@ type DateTimePickerProps = {
 type DateAndTime = {
   date: string;
   time: string;
-  error: boolean;
 };
 
 export class DateTimePicker extends KucBase {
@@ -80,14 +79,13 @@ export class DateTimePicker extends KucBase {
   private _previousDateValue = "";
 
   private _errorFormat = "";
-
   private _errorText = "";
 
   private _GUID: string;
   private _dateAndTime!: DateAndTime;
-  private _tempDateValue: string = "";
-  private _checkInputDateByUI = false;
-  private _checkInputTimeByUI = false;
+  private _dateConverted: string = "";
+  private _changeDateByUI = false;
+  private _changeTimeByUI = false;
 
   constructor(props?: DateTimePickerProps) {
     super();
@@ -97,8 +95,7 @@ export class DateTimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-    if (this.value === undefined || this.value === null || this.value === "")
-      return true;
+    if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string") {
       this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
@@ -106,10 +103,10 @@ export class DateTimePicker extends KucBase {
     }
 
     this._dateAndTime = this._getDateTimeValue(this.value);
-    this._tempDateValue = dateValueConverter(this._dateAndTime.date);
+    this._dateConverted = dateValueConverter(this._dateAndTime.date);
     const isValidValue =
       validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
-      isValidDate(this._tempDateValue);
+      isValidDate(this._dateConverted);
     if (!isValidValue) {
       this._throwErrorWhenUpdateCompleted(FORMAT_IS_NOT_VALID);
       return false;
@@ -118,12 +115,12 @@ export class DateTimePicker extends KucBase {
     return true;
   }
 
-  willUpdate(_changedProperties: Map<string | number | symbol, unknown>): void {
-    if (this._checkInputDateByUI) {
+  willUpdate(_changedProperties: PropertyValues): void {
+    if (this._changeDateByUI) {
       this._updateValueWhenDateChange();
       return;
     }
-    if (this._checkInputTimeByUI) {
+    if (this._changeTimeByUI) {
       this._updateValueWhenTimeChange();
       return;
     }
@@ -131,51 +128,40 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateValueWhenDateChange() {
-    const invalidFormat = this._checkFormatInvalid();
-    if (invalidFormat) {
-      this.value = undefined;
-      if (!this._checkInputDateByUI) {
-        this._errorText = this.error;
-        return;
-      }
+    const validFormat = this._validateDateTimeFormat();
+    if (validFormat) {
+      this._errorText = "";
+      return;
     }
-    this._errorText = this._errorFormat || this.error;
+    this.value = undefined;
+    this._errorText = this._errorFormat;
   }
 
   private _updateValueWhenTimeChange() {
-    const invalidFormat = this._checkFormatInvalid();
-    if (invalidFormat) {
-      this.value = undefined;
-    }
+    const validFormat = this._validateDateTimeFormat();
+    if (validFormat) return;
+
+    this.value = undefined;
+  }
+
+  private _validateDateTimeFormat() {
+    const isMissingDatePart = Boolean(this._timeValue) && !this._dateValue;
+    const isMissingTimePart = Boolean(this._dateValue) && !this._timeValue;
+    const validFormat =
+      !this._errorFormat && !isMissingDatePart && !isMissingTimePart;
+    return validFormat;
   }
 
   private _updateValueWhenSetter() {
     this._errorText = this.error;
-    const isConvertToEmpty =
-      this.value === undefined || this.value === null || this.value === "";
-    if (isConvertToEmpty) {
-      this.value = "";
+    if (this.value === "" || this.value === undefined) {
       this._previousTimeValue = "";
       this._errorFormat = "";
-      this._removeDateInput();
       return;
     }
-    this._setDateTimeValueSeparate(this._dateAndTime, this._tempDateValue);
+
+    this._setDateTimeValueSeparate(this._dateAndTime, this._dateConverted);
     this.value = this._getDateTimeString();
-  }
-
-  private _checkFormatInvalid() {
-    const isMissingDatePart = Boolean(this._timeValue) && !this._dateValue;
-    const isMissingTimePart = isValidDate(this._dateValue) && !this._timeValue;
-    const invalidFormat =
-      this._errorFormat || isMissingDatePart || isMissingTimePart;
-    return this.value === undefined && invalidFormat;
-  }
-
-  private _removeDateInput() {
-    if (!this._dateInput) return;
-
-    this._dateInput.value = "";
   }
 
   private _setDateTimeValueSeparate(dateTime: DateAndTime, dateValue: string) {
@@ -196,7 +182,8 @@ export class DateTimePicker extends KucBase {
     if (changedProperties.has("value")) {
       if (this.value === undefined) {
         this._setUndefinedValue();
-      } else if (this.value === "") {
+      }
+      if (this.value === "") {
         this._setEmptyValue();
       }
     }
@@ -204,10 +191,11 @@ export class DateTimePicker extends KucBase {
   }
 
   private _setUndefinedValue() {
-    if (this._checkInputTimeByUI) return;
+    console.log("_setUndefinedValue");
+    if (this._changeTimeByUI) return;
 
     if (this._errorFormat) {
-      if (this._checkInputDateByUI) {
+      if (this._changeDateByUI) {
         this._dateValue = this._dateInput.value;
         return;
       }
@@ -278,14 +266,14 @@ export class DateTimePicker extends KucBase {
 
   updated() {
     this._updateErrorWidth();
-    this._resetPreviousValue();
+    this._resetState();
   }
 
-  private _resetPreviousValue() {
+  private _resetState() {
     this._previousTimeValue = "";
     this._previousDateValue = "";
-    this._checkInputDateByUI = false;
-    this._checkInputTimeByUI = false;
+    this._changeDateByUI = false;
+    this._changeTimeByUI = false;
   }
 
   private _updateErrorWidth() {
@@ -301,7 +289,7 @@ export class DateTimePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this._checkInputDateByUI = true;
+    this._changeDateByUI = true;
     let newValue = this._dateValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
@@ -316,7 +304,7 @@ export class DateTimePicker extends KucBase {
   private _handleTimeChange(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this._checkInputTimeByUI = true;
+    this._changeTimeByUI = true;
     const newValue = event.detail.value;
     this._updateDateTimeValue(newValue, "time");
   }
@@ -357,26 +345,25 @@ export class DateTimePicker extends KucBase {
   }
 
   private _getDateTimeValue(value: string | undefined) {
-    if (value === "" || value === undefined)
-      return { date: "", time: "", error: false };
+    if (value === "" || value === undefined) return { date: "", time: "" };
 
     const dateTime = value.split("T");
     const date = dateTime[0];
     const time = dateTime[1];
     if (value.indexOf("T") === value.length - 1 || dateTime.length > 2)
-      return { date, time: "", error: false };
+      return { date, time: "" };
 
-    if (!time) return { date, time: "00:00", error: false };
+    if (!time) return { date, time: "00:00" };
 
     const [hours, minutes, seconds] = time.split(":");
     if (hours === "" || minutes === "" || seconds === "") {
-      return { date, time: time, error: true };
+      return { date, time: time };
     }
 
     const tempTime = `${hours}:${minutes || "00"}`;
-    if (!seconds) return { date, time: tempTime, error: false };
+    if (!seconds) return { date, time: tempTime };
 
-    return { date, time: `${tempTime}:${seconds}`, error: false };
+    return { date, time: `${tempTime}:${seconds}` };
   }
 
   private _getLanguage() {
