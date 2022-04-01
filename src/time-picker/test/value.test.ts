@@ -59,5 +59,18 @@ describe("TimePicker", () => {
         expect(errorMessage).to.be.equal("Format is not valid.");
       }
     });
+
+    it("should throw error when it is less than min", async () => {
+      const container = new TimePicker({ value: "10:00", min: "12:00" });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Time is out of valid range.");
+      }
+    });
   });
 });

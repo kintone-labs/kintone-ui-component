@@ -36,19 +36,11 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
-export function validateMaxMinTimeValue(
-  max: string,
-  min: string,
-  time: string
-) {
-  if (!isFirstTimeEarlier(min, max)) {
-    return false;
-  }
+export function validateMaxMinValue(max: string, min: string) {
+  return isFirstTimeEarlier(min, max);
+}
 
-  if (time === "") {
-    return true;
-  }
-
+export function validateTimeInMaxMin(max: string, min: string, time: string) {
   return isFirstTimeEarlier(min, time) && isFirstTimeEarlier(time, max);
 }
 

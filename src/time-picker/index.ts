@@ -10,12 +10,14 @@ import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
   FORMAT_IS_NOT_VALID,
-  MAX_MIN_VALUE_IS_NOT_VALID
+  MAX_MIN_IS_NOT_VALID,
+  TIME_IS_OUT_OF_RANGE
 } from "../base/datetime/resource/constant";
 import {
   validateProps,
   validateTimeValue,
-  validateMaxMinTimeValue,
+  validateMaxMinValue,
+  validateTimeInMaxMin,
   validateTimeStep
 } from "../base/validator";
 import "../base/datetime/time";
@@ -97,22 +99,42 @@ export class TimePicker extends KucBase {
       this._inputMin = this.min === "" ? "00:00" : this.min;
     }
 
-    if (changedProperties.has("value") && this.value !== undefined) {
-      if (!validateTimeValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
+    if (changedProperties.has("value")) {
+      if (this.value === undefined) {
+        if (this._errorInvalid === "") {
+          this._inputValue = "";
+        }
+      } else {
+        if (!validateTimeValue(this.value)) {
+          throw new Error(FORMAT_IS_NOT_VALID);
+        }
+        this.value = timeValueConverter(this.value);
+        this._inputValue = this.value;
       }
-      this.value = timeValueConverter(this.value);
-      this._inputValue = this.value;
-      this._errorInvalid = "";
     }
 
     if (
-      (changedProperties.has("max") ||
-        changedProperties.has("min") ||
-        (changedProperties.has("value") && this.value !== undefined)) &&
-      !validateMaxMinTimeValue(this._inputMax, this._inputMin, this._inputValue)
+      changedProperties.has("max") ||
+      changedProperties.has("min") ||
+      changedProperties.has("value")
     ) {
-      throw new Error(MAX_MIN_VALUE_IS_NOT_VALID);
+      if (!validateMaxMinValue(this._inputMax, this._inputMin)) {
+        throw new Error(MAX_MIN_IS_NOT_VALID);
+      }
+
+      if (this.value !== undefined) {
+        if (
+          this.value !== "" &&
+          !validateTimeInMaxMin(
+            this._inputMax,
+            this._inputMin,
+            this._inputValue
+          )
+        ) {
+          throw new Error(TIME_IS_OUT_OF_RANGE);
+        }
+        this._errorInvalid = "";
+      }
     }
 
     if (changedProperties.has("timeStep")) {
@@ -202,6 +224,7 @@ export class TimePicker extends KucBase {
       this._errorInvalid = "";
     }
 
+    this._inputValue = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
 
