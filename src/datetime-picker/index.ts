@@ -302,7 +302,9 @@ export class DateTimePicker extends KucBase {
     }
     this._previousTimeValue = this._timeValue;
     this._previousDateValue = this._dateValue;
-    const newDateTime = this._getDateTimeString();
+    const newDateTime = this._errorFormat
+      ? undefined
+      : this._getDateTimeString();
     const _value = this._errorFormat ? undefined : newDateTime;
     this.value = _value;
     const detail = {
@@ -314,8 +316,7 @@ export class DateTimePicker extends KucBase {
   }
 
   private _getDateTimeString() {
-    if (this._errorFormat || !this._dateValue || !this._timeValue)
-      return undefined;
+    if (!this._dateValue || !this._timeValue) return undefined;
 
     if (!this.value) return `${this._dateValue}T${this._timeValue}:00`;
 
