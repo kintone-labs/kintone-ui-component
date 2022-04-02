@@ -104,20 +104,19 @@ export class Checkbox extends KucBase {
   }
 
   willUpdate(changedProperties: PropertyValues): void {
+    const _items = this.items;
+    const _value = this.value;
+    const _selectedIndex = this.selectedIndex;
     if (changedProperties.has("selectedIndex")) {
-      this._valueMapping = this._getValueMapping(
-        [],
-        this.items,
-        this.selectedIndex
-      );
+      this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
     }
     if (changedProperties.has("value")) {
       if (this.value.length === 0) {
         this.selectedIndex = [];
       }
       this._valueMapping = this._getValueMapping(
-        this.value,
-        this.items,
+        _value,
+        _items,
         this.selectedIndex
       );
     }
