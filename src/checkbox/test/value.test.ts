@@ -67,7 +67,6 @@ describe("Checkbox", () => {
       if (error instanceof Error) {
         errorMessage = error.message;
       }
-      console.log(errorMessage, "errorMessage");
       expect(errorMessage).to.equal("'value' property is not array");
     }
 
