@@ -1,6 +1,5 @@
-/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, state, query } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../base/converter";
 import {
   CustomEventDetail,
@@ -11,7 +10,8 @@ import {
 import {
   validateProps,
   validateDateValue,
-  isValidDate
+  isValidDate,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
@@ -51,7 +51,14 @@ export class DatePicker extends KucBase {
   @state()
   private _errorText = "";
 
+  private _inputValue? = "";
+  private _invalidValue = "";
+  private _valueConverted = "";
+
   private _GUID: string;
+
+  @query(".kuc-base-date__input")
+  private _dateInput!: HTMLInputElement;
 
   constructor(props?: DatePickerProps) {
     super();
@@ -60,14 +67,30 @@ export class DatePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (this.value === undefined || this.value === "") return true;
+
+    if (typeof this.value !== "string" || !validateDateValue(this.value)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._valueConverted = dateValueConverter(this.value);
+    if (this._valueConverted && !isValidDate(this._valueConverted)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+    return true;
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (!validateDateValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this.value = dateValueConverter(this.value);
-      if (this.value !== "" && !isValidDate(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
+      if (this.value === undefined) {
+        this._inputValue = this._invalidValue;
+      } else {
+        this.value = this.value === "" ? this.value : this._valueConverted;
+        this._inputValue = this.value;
+        this._errorFormat = "";
       }
     }
     super.update(changedProperties);
@@ -94,7 +117,7 @@ export class DatePicker extends KucBase {
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .disabled="${this.disabled}"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .required="${this.requiredIcon}"
           .language="${this._getLanguage()}"
           @kuc:base-date-change="${this._handleDateChange}"
@@ -114,6 +137,7 @@ export class DatePicker extends KucBase {
 
   updated() {
     this._updateErrorText();
+    this._invalidValue = "";
   }
 
   private _updateErrorText() {
@@ -232,17 +256,19 @@ export class DatePicker extends KucBase {
     event.stopPropagation();
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
-      oldValue: this.value === "" ? undefined : this.value,
+      oldValue: this.value,
       value: ""
     };
     if (event.detail.error) {
+      this.value = undefined;
+      this._invalidValue = this._dateInput.value;
       this._errorFormat = event.detail.error;
       this.error = "";
       eventDetail.value = undefined;
     } else {
-      this.value = event.detail.value;
-      eventDetail.value = this.value;
       this._errorFormat = "";
+      this.value = event.detail.value === undefined ? "" : event.detail.value;
+      eventDetail.value = this.value;
     }
     this._disptchChangeEvent(eventDetail);
   }
