@@ -33,7 +33,7 @@ export class TimePicker extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -52,7 +52,7 @@ export class TimePicker extends KucBase {
   private _errorEl!: HTMLDivElement;
 
   private _GUID: string;
-  private _inputValue = "";
+  private _inputValue? = "";
 
   constructor(props?: TimePickerProps) {
     super();
