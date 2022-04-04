@@ -198,9 +198,9 @@ export class BaseDate extends KucBase {
 
   private _updateValueProp() {
     if (this.value) {
-      const temp = this._setCalendarValueWhenInvalidValue();
+      const tempValue = this._setCalendarValueWhenInvalidValue();
       this._inputValue = formatValueToInputValue(this.language, this.value);
-      this._calendarValue = temp || this.value;
+      this._calendarValue = tempValue || this.value;
 
       return;
     }

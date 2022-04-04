@@ -128,7 +128,7 @@ export class DateTimePicker extends KucBase {
 
   private _updateValueChangeByUI() {
     const validFormat = this._validateDateTimeFormat();
-    this.value = !validFormat ? undefined : this.value;
+    this.value = validFormat ? this.value : undefined;
     if (this._changeTimeByUI) return;
 
     this._errorText = validFormat ? this.error : this._errorFormat;
