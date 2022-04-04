@@ -92,9 +92,34 @@ export class Dropdown extends KucBase {
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
-    const validProps = validateProps(props);
+    const validProps: DropdownProps = validateProps(props);
     this._handleClickDocument = this._handleClickDocument.bind(this);
+    if (!validProps.value && validProps.selectedIndex) {
+      validProps.value = this._getValidValue(validProps);
+    }
+    if (validProps.value && !validProps.selectedIndex) {
+      validProps.selectedIndex = this._getValidSelectedIndex(validProps);
+    }
     Object.assign(this, validProps);
+  }
+
+  private _getValidValue(validProps: DropdownProps) {
+    const _selectedIndex = validProps.selectedIndex!;
+    const itemSelected = this.items[_selectedIndex];
+    return itemSelected ? itemSelected.value! : "";
+  }
+
+  private _getValidSelectedIndex(validProps: DropdownProps) {
+    let tempSeletedIndex = -1;
+    const _value = validProps.value;
+    const _items = validProps.items || [];
+    for (let i = 0; i < _items.length; i++) {
+      if (_items[i].value === _value) {
+        tempSeletedIndex = i;
+        break;
+      }
+    }
+    return tempSeletedIndex;
   }
 
   private _getSelectedLabel() {
@@ -153,33 +178,21 @@ export class Dropdown extends KucBase {
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("items") ||
-      changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value = this._getValidValue({
+        selectedIndex: this.selectedIndex
+      });
+      this.selectedIndex = this.value === "" ? -1 : this.selectedIndex;
+    }
+    if (changedProperties.has("items") || changedProperties.has("value")) {
+      this.selectedIndex = this._getValidSelectedIndex({
+        items: this.items,
+        value: this.value
+      });
+      this.value = this.selectedIndex === -1 ? "" : this.value;
     }
     super.update(changedProperties);
-  }
-
-  private _getSelectedIndex() {
-    if (!this.value) {
-      if (this.items[this.selectedIndex]) return this.selectedIndex;
-      return -1;
-    }
-
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
-    if (firstIndex === -1) return -1;
-    const selectedIndex = this.items.findIndex(
-      (item, index) => item.value === this.value && index === this.selectedIndex
-    );
-    return selectedIndex > -1 ? selectedIndex : firstIndex;
-  }
-
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
-    if (!item) return "";
-    return item.value;
   }
 
   render() {
