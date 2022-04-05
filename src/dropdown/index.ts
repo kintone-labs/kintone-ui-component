@@ -94,25 +94,46 @@ export class Dropdown extends KucBase {
     this._GUID = generateGUID();
     const validProps: DropdownProps = validateProps(props);
     this._handleClickDocument = this._handleClickDocument.bind(this);
-    if (!validProps.value && validProps.selectedIndex) {
-      validProps.value = this._getValidValue(validProps);
+
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (hasValue && hasSelectedIndex) {
+      validProps.value = this._getValidValue1(validProps);
+      validProps.selectedIndex = this._getValidSelectedIndex2(validProps);
     }
-    if (validProps.value && !validProps.selectedIndex) {
-      validProps.selectedIndex = this._getValidSelectedIndex(validProps);
+    if (!hasValue && hasSelectedIndex) {
+      validProps.value = this._getValidValue1(validProps);
+    }
+    if (hasValue && !hasSelectedIndex) {
+      validProps.selectedIndex = this._getValidSelectedIndex2(validProps);
     }
     Object.assign(this, validProps);
   }
 
-  private _getValidValue(validProps: DropdownProps) {
-    const _selectedIndex = validProps.selectedIndex!;
-    const itemSelected = this.items[_selectedIndex];
-    return itemSelected ? itemSelected.value! : "";
+  private _getValidValue1(validProps: DropdownProps) {
+    const _items = validProps.items || [];
+    const itemsSelected = _items.filter(
+      item => item.value === validProps.value
+    );
+    return itemsSelected.length > 0 ? validProps.value : "";
   }
 
-  private _getValidSelectedIndex(validProps: DropdownProps) {
+  private _getValidSelectedIndex2(validProps: DropdownProps) {
+    if (
+      "selectedIndex" in validProps &&
+      typeof validProps.selectedIndex !== "number"
+    ) {
+      return validProps.selectedIndex;
+    }
+
     let tempSeletedIndex = -1;
     const _value = validProps.value;
     const _items = validProps.items || [];
+    const _selectedIndex = validProps.selectedIndex || -1;
+    const itemSelected = _items[_selectedIndex];
+    if (itemSelected && itemSelected.value === _value) {
+      return _selectedIndex;
+    }
     for (let i = 0; i < _items.length; i++) {
       if (_items[i].value === _value) {
         tempSeletedIndex = i;
@@ -120,6 +141,12 @@ export class Dropdown extends KucBase {
       }
     }
     return tempSeletedIndex;
+  }
+
+  private _getValidValue(validProps: DropdownProps) {
+    const _selectedIndex = validProps.selectedIndex!;
+    const itemSelected = this.items[_selectedIndex];
+    return itemSelected ? itemSelected.value! : "";
   }
 
   private _getSelectedLabel() {
@@ -183,13 +210,18 @@ export class Dropdown extends KucBase {
       this.value = this._getValidValue({
         selectedIndex: this.selectedIndex
       });
-      this.selectedIndex = this.value === "" ? -1 : this.selectedIndex;
+      const hasEmptyValue =
+        this.items.filter(item => item.value === "").length > 0;
+      if (this.value === "" && !hasEmptyValue) {
+        this.selectedIndex = -1;
+      }
     }
     if (changedProperties.has("items") || changedProperties.has("value")) {
-      this.selectedIndex = this._getValidSelectedIndex({
+      this.selectedIndex = this._getValidSelectedIndex2({
         items: this.items,
-        value: this.value
-      });
+        value: this.value,
+        selectedIndex: this.selectedIndex
+      })!;
       this.value = this.selectedIndex === -1 ? "" : this.value;
     }
     super.update(changedProperties);

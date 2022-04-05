@@ -63,9 +63,18 @@ export class MultiChoice extends KucBase {
   constructor(props?: MultiChoiceProps) {
     super();
     this._GUID = generateGUID();
-
-    const validProps = validateProps(props);
+    const validProps: MultiChoiceProps = validateProps(props);
+    if (!validProps.value && validProps.selectedIndex) {
+      this._setValueOnConstructor(validProps);
+    }
     Object.assign(this, validProps);
+  }
+
+  private _setValueOnConstructor(validProps: any) {
+    const _items = validProps.items;
+    const _selectedIndex = validProps.selectedIndex;
+    this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
+    this.value = Object.values(this._valueMapping);
   }
 
   shouldUpdate(changedProperties: PropertyValues): boolean {
@@ -95,13 +104,31 @@ export class MultiChoice extends KucBase {
     return true;
   }
 
+  willUpdate(changedProperties: PropertyValues): void {
+    const _items = this.items;
+    const _value = this.value;
+    const _selectedIndex = this.selectedIndex;
+    if (changedProperties.has("selectedIndex")) {
+      this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
+    }
+    if (changedProperties.has("value")) {
+      if (this.value.length === 0) {
+        this.selectedIndex = [];
+      }
+      this._valueMapping = this._getValueMapping(
+        _value,
+        _items,
+        this.selectedIndex
+      );
+    }
+  }
+
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this._valueMapping = this._getValueMapping();
       this._setValueAndSelectedIndex();
     }
 
@@ -152,22 +179,26 @@ export class MultiChoice extends KucBase {
     `;
   }
 
-  private _getValueMapping() {
-    const itemsValue = this.items.map(item => item.value || "");
+  private _getValueMapping(
+    value: string[],
+    items: Item[],
+    selectedIndex: number[]
+  ) {
+    const itemsValue = items.map(item => item.value || "");
     const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
-    if (this.value.length === 0) {
-      const value = this._getValidValue(itemsMapping);
-      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+    if (value.length === 0) {
+      const _value = this._getValidValue(itemsMapping, selectedIndex);
+      selectedIndex.forEach((key, i) => (result[key] = _value[i]));
       return result;
     }
     const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
-    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    validSelectedIndex.forEach((key, i) => (result[key] = value[i]));
     return result;
   }
 
-  private _getValidValue(itemsMapping: ValueMapping) {
-    return this.selectedIndex
+  private _getValidValue(itemsMapping: ValueMapping, selectedIndex: number[]) {
+    return selectedIndex
       .filter(item => itemsMapping[item])
       .map(item => itemsMapping[item]);
   }
