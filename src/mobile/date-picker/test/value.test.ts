@@ -127,5 +127,21 @@ describe("MobileDatePicker", () => {
       expect(inputDateEl.value).to.be.equal("");
       expect(container.value).to.be.equal("");
     });
+
+    it("should be empty value and input emtpy on UI when set `` by setter", async () => {
+      const container = new MobileDatePicker({
+        value: "2021-12-12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = "";
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
   });
 });
