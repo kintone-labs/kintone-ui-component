@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-update */
 import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import {
@@ -18,7 +19,8 @@ import {
   validateTimeValue,
   validateMaxMinValue,
   validateTimeInMaxMin,
-  validateTimeStep
+  validateTimeStep,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
 import "../base/datetime/time";
 
@@ -73,6 +75,8 @@ export class TimePicker extends KucBase {
   private _inputMax = "";
   private _inputMin = "";
 
+  private _valueConverted = "";
+
   private _GUID: string;
 
   constructor(props?: TimePickerProps) {
@@ -82,66 +86,81 @@ export class TimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
-  update(changedProperties: PropertyValues) {
-    if (changedProperties.has("max")) {
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (_changedProperties.has("max")) {
       if (!validateTimeValue(this.max)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
       }
       this.max = timeValueConverter(this.max);
       this._inputMax = this.max === "" ? "23:59" : this.max;
     }
 
-    if (changedProperties.has("min")) {
+    if (_changedProperties.has("min")) {
       if (!validateTimeValue(this.min)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
       }
       this.min = timeValueConverter(this.min);
       this._inputMin = this.min === "" ? "00:00" : this.min;
     }
 
+    if (
+      (_changedProperties.has("max") || _changedProperties.has("min")) &&
+      !validateMaxMinValue(this._inputMax, this._inputMin)
+    ) {
+      throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+      return false;
+    }
+
+    if (_changedProperties.has("timeStep")) {
+      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
+      }
+    }
+
+    if (this.value === undefined || this.value === "") return true;
+
+    if (!validateTimeValue(this.value)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._valueConverted = timeValueConverter(this.value);
+    if (
+      !validateTimeInMaxMin(
+        this._inputMax,
+        this._inputMin,
+        this._valueConverted
+      )
+    ) {
+      throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_RANGE);
+      return false;
+    }
+
+    return true;
+  }
+
+  update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
       if (this.value === undefined) {
         if (this._errorInvalid === "") {
           this._inputValue = "";
         }
       } else {
-        if (!validateTimeValue(this.value)) {
-          throw new Error(FORMAT_IS_NOT_VALID);
-        }
-        this.value = timeValueConverter(this.value);
+        this.value = this.value === "" ? this.value : this._valueConverted;
         this._inputValue = this.value;
       }
     }
 
     if (
-      changedProperties.has("max") ||
-      changedProperties.has("min") ||
-      changedProperties.has("value")
+      (changedProperties.has("max") ||
+        changedProperties.has("min") ||
+        changedProperties.has("value")) &&
+      this.value !== undefined
     ) {
-      if (!validateMaxMinValue(this._inputMax, this._inputMin)) {
-        throw new Error(MAX_MIN_IS_NOT_VALID);
-      }
-
-      if (this.value !== undefined) {
-        if (
-          this.value !== "" &&
-          !validateTimeInMaxMin(
-            this._inputMax,
-            this._inputMin,
-            this._inputValue
-          )
-        ) {
-          throw new Error(TIME_IS_OUT_OF_RANGE);
-        }
-        this._errorInvalid = "";
-      }
-    }
-
-    if (changedProperties.has("timeStep")) {
-      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this.timeStep = Math.round(this.timeStep);
+      this._errorInvalid = "";
     }
 
     super.update(changedProperties);
