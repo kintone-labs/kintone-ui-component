@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";

@@ -11,7 +11,7 @@ describe("BaseMobileDate", () => {
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.hasAttribute("required")).to.equal(false);
+      expect(inputEl.getAttribute("aria-required")).to.equal("false");
     });
 
     it("should set required when assigned ", async () => {
@@ -24,7 +24,7 @@ describe("BaseMobileDate", () => {
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.hasAttribute("required")).to.equal(true);
+      expect(inputEl.getAttribute("aria-required")).to.equal("true");
     });
 
     it("should be set required when changed to true by setter ", async () => {
@@ -37,7 +37,7 @@ describe("BaseMobileDate", () => {
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.hasAttribute("required")).to.equal(true);
+      expect(inputEl.getAttribute("aria-required")).to.equal("true");
     });
 
     it("should remove required when changed to false by setter ", async () => {
@@ -51,7 +51,7 @@ describe("BaseMobileDate", () => {
         ".kuc-mobile-base-date__group__input"
       ) as HTMLInputElement;
 
-      expect(inputEl.hasAttribute("required")).to.equal(false);
+      expect(inputEl.getAttribute("aria-required")).to.equal("false");
     });
   });
 });

@@ -74,7 +74,7 @@ describe("BaseMobileDate", () => {
 
       expect(inputEl.value).to.equal("");
       expect(triggeredEvent.type).to.equal("kuc:mobile-base-date-change");
-      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.value).to.equal("");
     });
 
     it("should triggered when pressing none button on calendar", async () => {
