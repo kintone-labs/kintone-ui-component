@@ -69,13 +69,12 @@ export class Checkbox extends KucBase {
   }
 
   private _setInitialValue(validProps: CheckboxProps) {
-    const _valueMapping = this._getValueMapping(validProps);
     const hasValue = "value" in validProps;
     const hasSelectedIndex = "selectedIndex" in validProps;
     const _selectedIndex = validProps.selectedIndex || [];
     if (!hasValue && hasSelectedIndex) {
-      if (!validateSelectedIndexArray(this.selectedIndex)) return;
-
+      if (!validateSelectedIndexArray(_selectedIndex)) return;
+      const _valueMapping = this._getValueMapping(validProps);
       this.value = this._getValidValue(_valueMapping, _selectedIndex);
     }
   }
