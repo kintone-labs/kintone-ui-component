@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
 import { KucBase, generateGUID, dispatchCustomEvent } from "../base/kuc-base";
@@ -62,18 +63,21 @@ export class Checkbox extends KucBase {
   constructor(props?: CheckboxProps) {
     super();
     this._GUID = generateGUID();
-    const validProps: any = validateProps(props);
-    if (!validProps.value && validProps.selectedIndex) {
-      this._setValueOnConstructor(validProps);
-    }
+    const validProps = validateProps(props);
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
   }
 
-  private _setValueOnConstructor(validProps: any) {
-    const _items = validProps.items;
-    const _selectedIndex = validProps.selectedIndex;
-    this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
-    this.value = Object.values(this._valueMapping);
+  private _setInitialValue(validProps: CheckboxProps) {
+    const _valueMapping = this._getValueMapping(validProps);
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    const _selectedIndex = validProps.selectedIndex || [];
+    if (!hasValue && hasSelectedIndex) {
+      if (!validateSelectedIndexArray(this.selectedIndex)) return;
+
+      this.value = this._getValidValue(_valueMapping, _selectedIndex);
+    }
   }
 
   shouldUpdate(changedProperties: PropertyValues): boolean {
@@ -104,33 +108,11 @@ export class Checkbox extends KucBase {
   }
 
   willUpdate(changedProperties: PropertyValues): void {
-    const _items = this.items;
-    const _value = this.value;
-    const _selectedIndex = this.selectedIndex;
-    if (changedProperties.has("selectedIndex")) {
-      this._valueMapping = this._getValueMapping([], _items, _selectedIndex);
-    }
     if (changedProperties.has("value")) {
-      if (this.value.length === 0) {
-        this.selectedIndex = [];
-      }
-      this._valueMapping = this._getValueMapping(
-        _value,
-        _items,
-        this.selectedIndex
-      );
-    }
-  }
+      if (this.value.length > 0) return;
 
-  update(changedProperties: PropertyValues) {
-    if (
-      changedProperties.has("items") ||
-      changedProperties.has("value") ||
-      changedProperties.has("selectedIndex")
-    ) {
-      this._setValueAndSelectedIndex();
+      this.selectedIndex = [];
     }
-    super.update(changedProperties);
   }
 
   private _getNewValueMapping(value: string, selectedIndex: string) {
@@ -263,6 +245,22 @@ export class Checkbox extends KucBase {
     `;
   }
 
+  update(changedProperties: PropertyValues) {
+    if (
+      changedProperties.has("items") ||
+      changedProperties.has("value") ||
+      changedProperties.has("selectedIndex")
+    ) {
+      this._valueMapping = this._getValueMapping({
+        items: this.items,
+        value: this.value,
+        selectedIndex: this.selectedIndex
+      });
+      this._setValueAndSelectedIndex();
+    }
+    super.update(changedProperties);
+  }
+
   render() {
     return html`
       ${this._getStyleTagTemplate()}
@@ -309,27 +307,26 @@ export class Checkbox extends KucBase {
     });
   }
 
-  private _getValueMapping(
-    value: string[],
-    items: Item[],
-    selectedIndex: number[]
-  ) {
-    const itemsValue = items.map(item => item.value || "");
+  private _getValueMapping(validProps: CheckboxProps) {
+    const _items = validProps.items || [];
+    const _value = validProps.value || [];
+    const _selectedIndex = validProps.selectedIndex || [];
+
+    const itemsValue = _items.map(item => item.value || "");
     const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
-    if (value.length === 0) {
-      const _value = this._getValidValue(itemsMapping, selectedIndex);
-      selectedIndex.forEach((key, i) => (result[key] = _value[i]));
+    if (_value.length === 0) {
+      const value = this._getValidValue(itemsMapping, _selectedIndex);
+      _selectedIndex.forEach((key, i) => (result[key] = value[i]));
       return result;
     }
-
     const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
-    validSelectedIndex.forEach((key, i) => (result[key] = value[i]));
+    validSelectedIndex.forEach((key, i) => (result[key] = _value[i]));
     return result;
   }
 
-  private _getValidValue(itemsMapping: ValueMapping, selectedIndex: number[]) {
-    return selectedIndex
+  private _getValidValue(itemsMapping: ValueMapping, _selectedIndex: number[]) {
+    return _selectedIndex
       .filter(item => itemsMapping[item])
       .map(item => itemsMapping[item]);
   }
