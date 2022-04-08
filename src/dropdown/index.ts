@@ -92,61 +92,18 @@ export class Dropdown extends KucBase {
   constructor(props?: DropdownProps) {
     super();
     this._GUID = generateGUID();
-    const validProps: DropdownProps = validateProps(props);
+    const validProps = validateProps(props);
     this._handleClickDocument = this._handleClickDocument.bind(this);
-
-    const hasValue = "value" in validProps;
-    const hasSelectedIndex = "selectedIndex" in validProps;
-    if (hasValue && hasSelectedIndex) {
-      validProps.value = this._getValidValue1(validProps);
-      validProps.selectedIndex = this._getValidSelectedIndex2(validProps);
-    }
-    if (!hasValue && hasSelectedIndex) {
-      validProps.value = this._getValidValue1(validProps);
-    }
-    if (hasValue && !hasSelectedIndex) {
-      validProps.selectedIndex = this._getValidSelectedIndex2(validProps);
-    }
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
   }
 
-  private _getValidValue1(validProps: DropdownProps) {
-    const _items = validProps.items || [];
-    const itemsSelected = _items.filter(
-      item => item.value === validProps.value
-    );
-    return itemsSelected.length > 0 ? validProps.value : "";
-  }
-
-  private _getValidSelectedIndex2(validProps: DropdownProps) {
-    if (
-      "selectedIndex" in validProps &&
-      typeof validProps.selectedIndex !== "number"
-    ) {
-      return validProps.selectedIndex;
+  private _setInitialValue(validProps: DropdownProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
     }
-
-    let tempSeletedIndex = -1;
-    const _value = validProps.value;
-    const _items = validProps.items || [];
-    const _selectedIndex = validProps.selectedIndex || -1;
-    const itemSelected = _items[_selectedIndex];
-    if (itemSelected && itemSelected.value === _value) {
-      return _selectedIndex;
-    }
-    for (let i = 0; i < _items.length; i++) {
-      if (_items[i].value === _value) {
-        tempSeletedIndex = i;
-        break;
-      }
-    }
-    return tempSeletedIndex;
-  }
-
-  private _getValidValue(validProps: DropdownProps) {
-    const _selectedIndex = validProps.selectedIndex!;
-    const itemSelected = this.items[_selectedIndex];
-    return itemSelected ? itemSelected.value! : "";
   }
 
   private _getSelectedLabel() {
@@ -202,29 +159,53 @@ export class Dropdown extends KucBase {
     return true;
   }
 
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
+  }
+
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("items") ||
+      changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      this.value = this._getValidValue({
-        selectedIndex: this.selectedIndex
-      });
-      const hasEmptyValue =
-        this.items.filter(item => item.value === "").length > 0;
-      if (this.value === "" && !hasEmptyValue) {
-        this.selectedIndex = -1;
-      }
-    }
-    if (changedProperties.has("items") || changedProperties.has("value")) {
-      this.selectedIndex = this._getValidSelectedIndex2({
-        items: this.items,
-        value: this.value,
-        selectedIndex: this.selectedIndex
-      })!;
-      this.value = this.selectedIndex === -1 ? "" : this.value;
+      this.selectedIndex = this._getSelectedIndex();
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
+  }
+
+  private _getSelectedIndex() {
+    if (!this.value) {
+      if (this.items[this.selectedIndex]) return this.selectedIndex;
+      return -1;
+    }
+
+    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    if (firstIndex === -1) return -1;
+    const selectedIndex = this.items.findIndex(
+      (item, index) => item.value === this.value && index === this.selectedIndex
+    );
+    return selectedIndex > -1 ? selectedIndex : firstIndex;
+  }
+
+  private _getValue(validProps: DropdownProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
+    if (!item) return "";
+    return item.value;
   }
 
   render() {

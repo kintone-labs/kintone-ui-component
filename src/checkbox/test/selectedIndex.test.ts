@@ -37,25 +37,6 @@ describe("Checkbox", () => {
       expect((inputsEl[1] as HTMLInputElement).checked).to.equal(true);
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(false);
     });
-
-    it("should be changed value when updated by setter", async () => {
-      const container = new Checkbox({
-        items: initItems,
-        selectedIndex: [1]
-      });
-      const el = await fixture(container);
-      container.selectedIndex = [2];
-      await elementUpdated(el);
-
-      const inputsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
-      );
-
-      expect(inputsEl.length).to.equal(3);
-      expect((inputsEl[0] as HTMLInputElement).checked).to.equal(false);
-      expect((inputsEl[1] as HTMLInputElement).checked).to.equal(false);
-      expect((inputsEl[2] as HTMLInputElement).checked).to.equal(true);
-    });
   });
 
   it("should be throw error when set null on constructor", async () => {
