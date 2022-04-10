@@ -136,5 +136,62 @@ describe("DateTimePicker", () => {
       expect(inputHourEl.value).to.be.equal("09");
       expect(inputMinuteEl.value).to.be.equal("30");
     });
+
+    it("should be empty value and UI when set '' on constructor", async () => {
+      const container = new DateTimePicker({ value: "", language: "ja" });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be empty value and UI when set '' by setter", async () => {
+      const container = new DateTimePicker({
+        value: "2022-12-12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = "";
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be empty value and UI when set undefined on constructor", async () => {
+      const container = new DateTimePicker({
+        value: undefined,
+        language: "ja"
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be undefined value and empty on UI when set undefined on setter", async () => {
+      const container = new DateTimePicker({
+        value: "2022-12-12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = undefined;
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal(undefined);
+    });
   });
 });

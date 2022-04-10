@@ -20,6 +20,7 @@ export * from "./mobile/radio-button";
 export * from "./mobile/text";
 export * from "./mobile/textarea";
 export * from "./mobile/notification";
+export * from "./mobile/date-picker";
 
 export * from "./version";
 export * from "./dev-info";
