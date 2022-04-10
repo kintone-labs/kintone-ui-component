@@ -83,5 +83,65 @@ describe("MobileDatePicker", () => {
       const todayStr = getTodayStringByLocale();
       expect(inputDateEl.value).to.be.equal(todayStr);
     });
+
+    it("should be undefined value and input emtpy on UI when set undefined by setter", async () => {
+      const container = new MobileDatePicker({
+        value: "2021-12-12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = undefined;
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal(undefined);
+    });
+
+    it("should be empty value and input emtpy on UI when set undefined on constructor", async () => {
+      const container = new MobileDatePicker({
+        value: undefined,
+        language: "ja"
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be empty value and input emtpy on UI when set `` on constructor", async () => {
+      const container = new MobileDatePicker({
+        value: "",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be empty value and input emtpy on UI when set `` by setter", async () => {
+      const container = new MobileDatePicker({
+        value: "2021-12-12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = "";
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputDateEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
   });
 });

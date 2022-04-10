@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { visiblePropConverter, dateValueConverter } from "../../base/converter";
 import {
   CustomEventDetail,
@@ -10,7 +10,8 @@ import {
 import {
   validateProps,
   validateDateValue,
-  isValidDate
+  isValidDate,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
 import "../../base/datetime/mobile-date";
 import "../../base/mobile-label";
@@ -48,6 +49,10 @@ export class MobileDatePicker extends KucBase {
   visible = true;
 
   private _GUID: string;
+  private _dateConverted: string = "";
+
+  @state()
+  private _inputValue: string = "";
 
   constructor(props?: MobileDatePickerProps) {
     super();
@@ -56,15 +61,35 @@ export class MobileDatePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(
+    _changedProperties: Map<string | number | symbol, unknown>
+  ): boolean {
+    if (this.value === undefined || this.value === "") return true;
+
+    if (!validateDateValue(this.value)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._dateConverted = dateValueConverter(this.value);
+    if (this._dateConverted !== "" && !isValidDate(this._dateConverted)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+    return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== undefined && this.value !== "") {
+        this.value = this._dateConverted;
+      }
+    }
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (!validateDateValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this.value = dateValueConverter(this.value);
-      if (this.value !== "" && !isValidDate(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
+      this._updateInputValue();
     }
     super.update(changedProperties);
   }
@@ -86,7 +111,7 @@ export class MobileDatePicker extends KucBase {
         <kuc-mobile-base-date
           class="kuc-mobile-date-picker__group__base__date"
           .disabled="${this.disabled}"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .inputId="${this._GUID}"
           .inputAriaInvalid="${this.error !== ""}"
           .required="${this.requiredIcon}"
@@ -98,6 +123,14 @@ export class MobileDatePicker extends KucBase {
         </kuc-base-mobile-error>
       </div>
     `;
+  }
+
+  private _updateInputValue() {
+    if (this.value === undefined || this.value === "") {
+      this._inputValue = "";
+      return;
+    }
+    this._inputValue = this.value;
   }
 
   private _getLanguage() {

@@ -9,7 +9,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.childElementCount).to.equal(0);
       expect(contentEl.textContent?.trim()).to.equal("");
@@ -21,7 +21,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.textContent?.trim()).to.equal("content");
     });
@@ -35,7 +35,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
@@ -49,7 +49,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
@@ -64,7 +64,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.textContent?.trim()).to.equal("content");
     });
@@ -80,7 +80,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
@@ -96,7 +96,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
         "kuc-element-class"
@@ -110,7 +110,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const contentEl = container.querySelector(
-        ".kuc-dialog__dialog__content"
+        ".kuc-dialog__dialog__content__content"
       ) as HTMLDivElement;
       expect(contentEl.textContent!.trim()).to.equal("replaced content");
     });
