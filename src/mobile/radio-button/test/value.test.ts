@@ -122,5 +122,28 @@ describe("MobileRadioButton", () => {
       const circlesEl2 = itemsEl[2].querySelectorAll("circle");
       expect(circlesEl2.length).to.equal(1);
     });
+
+    it("should be empty when assigned '' on constructor", async () => {
+      const container = new MobileRadioButton({
+        items: initItems,
+        value: ""
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item"
+      );
+
+      expect(container.value).to.equal("");
+      expect(itemsEl.length).to.equal(3);
+
+      const circlesEl0 = itemsEl[0].querySelectorAll("circle");
+      expect(circlesEl0.length).to.equal(1);
+
+      const circlesEl1 = itemsEl[1].querySelectorAll("circle");
+      expect(circlesEl1.length).to.equal(1);
+
+      const circlesEl2 = itemsEl[2].querySelectorAll("circle");
+      expect(circlesEl2.length).to.equal(1);
+    });
   });
 });
