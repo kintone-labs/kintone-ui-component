@@ -14,7 +14,8 @@ import {
 import {
   validateProps,
   validateDateTimeValue,
-  isValidDate
+  isValidDate,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
 
 import { FORMAT_IS_NOT_VALID } from "../../base/datetime/resource/constant";
@@ -31,13 +32,27 @@ type MobileDateTimePickerProps = {
   value?: string;
 };
 
+type DateAndTime = {
+  date: string;
+  time: string;
+};
+
 export class MobileDateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value? = "";
+  @property({
+    type: String,
+    hasChanged(newVal: string, oldVal: string) {
+      if ((newVal === "" || newVal === undefined) && newVal === oldVal) {
+        return true;
+      }
+      return newVal !== oldVal;
+    }
+  })
+  value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -50,6 +65,12 @@ export class MobileDateTimePicker extends KucBase {
   visible = true;
 
   private _GUID: string;
+  private _dateAndTime!: DateAndTime;
+  private _dateConverted: string = "";
+  private _changeDateByUI = false;
+  private _changeTimeByUI = false;
+  private _previousTimeValue = "";
+  private _previousDateValue = "";
 
   @state()
   private _dateValue = "";
@@ -63,9 +84,6 @@ export class MobileDateTimePicker extends KucBase {
   @state()
   private _errorText = "";
 
-  private _tempTime = "";
-  private _tempDate = "";
-
   constructor(props?: MobileDateTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -74,50 +92,100 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-    if (!this.value) {
-      if (!this._tempTime) return true;
+    if (this.value === undefined || this.value === "") return true;
 
-      this.updateComplete.then(() => {
-        this._tempTime = "";
-        this._updateErrorText();
-      });
+    if (typeof this.value !== "string") {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._dateAndTime = this._getDateTimeValue(this.value);
+    this._dateConverted = dateValueConverter(this._dateAndTime.date);
+    const isValidValue =
+      validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
+      isValidDate(this._dateConverted);
+    if (!isValidValue) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
       return false;
     }
 
     return true;
   }
 
+  willUpdate(_changedProperties: PropertyValues): void {
+    const changeByUI = this._changeDateByUI || this._changeTimeByUI;
+    if (changeByUI) {
+      this._updateValueAndErrorWhenUIChange();
+      return;
+    }
+    this._updateValueWhenSetter();
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      console.log("update");
-      const isUndefined =
-        this.value === "" || this.value === undefined || this.value === null;
-      if (isUndefined) {
-        this._dateValue = "";
-        this._timeValue = "";
-        this.value = undefined;
-      } else {
-        if (
-          this.value !== null &&
-          this.value !== undefined &&
-          typeof this.value !== "string"
-        ) {
-          throw new Error(FORMAT_IS_NOT_VALID);
-        }
-        const dateTime = this._getDateTimeValue(this.value);
-        const dateValue = dateValueConverter(dateTime.date);
-        if (
-          dateValue !== "" &&
-          (!validateDateTimeValue(dateTime.date, dateTime.time) ||
-            !isValidDate(dateValue))
-        ) {
-          throw new Error(FORMAT_IS_NOT_VALID);
-        }
-        this._dateValue = dateValue;
-        this._timeValue = timeValueConverter(dateTime.time.slice(0, 5));
+      if (this.value === undefined) {
+        this._setUndefinedValue();
+      }
+      if (this.value === "") {
+        this._setEmptyValue();
       }
     }
     super.update(changedProperties);
+  }
+
+  private _updateValueWhenSetter() {
+    this._errorText = this.error;
+    if (this.value === "" || this.value === undefined) {
+      this._previousTimeValue = "";
+      this._errorFormat = "";
+      return;
+    }
+    this._setDateTimeValueSeparate(this._dateAndTime, this._dateConverted);
+    this.value = this._getDateTimeString();
+  }
+
+  private _setDateTimeValueSeparate(dateTime: DateAndTime, dateValue: string) {
+    this._dateValue = dateValue;
+    this._timeValue =
+      this._dateValue && isValidDate(dateValue)
+        ? timeValueConverter(dateTime.time.slice(0, 5))
+        : this._previousTimeValue;
+  }
+
+  private _updateValueAndErrorWhenUIChange() {
+    const validFormat = this._checkDateTimeFormat();
+    this.value = validFormat ? this.value : undefined;
+    this._errorText = validFormat ? this.error : this._errorFormat;
+  }
+
+  private _checkDateTimeFormat() {
+    const isMissingDatePart = Boolean(this._timeValue) && !this._dateValue;
+    const isMissingTimePart = Boolean(this._dateValue) && !this._timeValue;
+    const validFormat =
+      !this._errorFormat && !isMissingDatePart && !isMissingTimePart;
+    return validFormat;
+  }
+
+  private _setUndefinedValue() {
+    if (this._changeTimeByUI) return;
+
+    if (this._errorFormat) {
+      if (this._changeDateByUI) return;
+
+      this._dateValue = "";
+      this._timeValue = "";
+      return;
+    }
+    this._dateValue = this._previousDateValue;
+    this._timeValue = this._previousTimeValue;
+  }
+
+  private _setEmptyValue() {
+    this._dateValue = "";
+    this._timeValue = "";
+    this._previousTimeValue = "";
+    this._previousDateValue = "";
+    this._errorFormat = "";
   }
 
   private _getDateTimeValue(value: string | undefined) {
@@ -186,6 +254,14 @@ export class MobileDateTimePicker extends KucBase {
 
   updated() {
     this._updateErrorText();
+    this._resetState();
+  }
+
+  private _resetState() {
+    this._previousTimeValue = "";
+    this._previousDateValue = "";
+    this._changeDateByUI = false;
+    this._changeTimeByUI = false;
   }
 
   private _updateErrorText() {
@@ -205,6 +281,7 @@ export class MobileDateTimePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
+    this._changeDateByUI = true;
     let newValue = this._dateValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
@@ -219,6 +296,7 @@ export class MobileDateTimePicker extends KucBase {
   private _handleTimeChange(event: CustomEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this._changeTimeByUI = true;
     let newValue = this._timeValue;
     if (event.detail.error) {
       this._errorFormat = event.detail.error;
@@ -232,29 +310,39 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   private _updateDateTimeValue(newValue: string, type: string) {
-    const oldDateTime = this._getDateTimeString();
+    const oldDateTime = this.value;
     if (type === "date") {
       this._dateValue = newValue || "";
     } else {
       this._timeValue = newValue;
     }
-    if (this._dateValue === "") {
-      this._tempTime = this._timeValue;
-    }
-    const newDateTime = this._getDateTimeString();
+    this._previousTimeValue = this._timeValue;
+    this._previousDateValue = this._dateValue;
+    const newDateTime = this._errorFormat
+      ? undefined
+      : this._getDateTimeString();
+    const _value = this._errorFormat ? undefined : newDateTime;
+    this.value = _value;
     const _newValue =
       this._errorFormat || newDateTime === "" ? undefined : newDateTime;
     this.value = _newValue;
     const detail = {
-      value: _newValue,
-      oldValue: oldDateTime === "" ? undefined : oldDateTime,
+      value: _value,
+      oldValue: oldDateTime,
       changedPart: type
     };
     dispatchCustomEvent(this, "change", detail);
   }
 
   private _getDateTimeString() {
-    if (!this._dateValue || !this._timeValue) return "";
+    if (!this._dateValue || !this._timeValue) return undefined;
+
+    if (!this.value) return `${this._dateValue}T${this._timeValue}:00`;
+
+    const splitValue = this.value.split(":");
+    if (splitValue.length === 3) {
+      return `${this._dateValue}T${this._timeValue}:${splitValue[2]}`;
+    }
 
     return `${this._dateValue}T${this._timeValue}:00`;
   }
