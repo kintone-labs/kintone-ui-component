@@ -288,7 +288,6 @@ export class MobileDateTimePicker extends KucBase {
       this.error = "";
     } else {
       newValue = event.detail.value;
-      this._errorFormat = "";
     }
     this._updateDateTimeValue(newValue, "date");
   }
