@@ -12,9 +12,17 @@ import {
   validateProps,
   validateDateTimeValue,
   isValidDate,
+  validateTimeValue,
+  validateMaxMinValue,
+  validateTimeInMaxMin,
+  validateTimeStep,
   throwErrorAfterUpdateComplete
 } from "../base/validator";
-import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import {
+  FORMAT_IS_NOT_VALID,
+  MAX_MIN_IS_NOT_VALID,
+  TIME_IS_OUT_OF_RANGE
+} from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
 import "../base/datetime/time";
@@ -25,11 +33,14 @@ type DateTimePickerProps = {
   id?: string;
   label?: string;
   language?: "ja" | "en" | "zh" | "auto";
+  max?: string;
+  min?: string;
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
+  timeStep?: number;
 };
 
 type DateAndTime = {
@@ -43,6 +54,8 @@ export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
+  @property({ type: String }) max = "";
+  @property({ type: String }) min = "";
   @property({
     type: String,
     hasChanged(newVal: string, oldVal: string) {
@@ -63,6 +76,7 @@ export class DateTimePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+  @property({ type: Number }) timeStep = 30;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
@@ -88,6 +102,11 @@ export class DateTimePicker extends KucBase {
   private _changeDateByUI = false;
   private _changeTimeByUI = false;
 
+  private _inputMax = "";
+  private _inputMin = "";
+  private _timeConverted: string = "";
+  private _errorInvalidTime = "";
+
   constructor(props?: DateTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -96,6 +115,39 @@ export class DateTimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (_changedProperties.has("max")) {
+      if (!validateTimeValue(this.max)) {
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
+      }
+      this.max = timeValueConverter(this.max);
+      this._inputMax = this.max === "" ? "23:59" : this.max;
+    }
+
+    if (_changedProperties.has("min")) {
+      if (!validateTimeValue(this.min)) {
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
+      }
+      this.min = timeValueConverter(this.min);
+      this._inputMin = this.min === "" ? "00:00" : this.min;
+    }
+
+    if (
+      (_changedProperties.has("max") || _changedProperties.has("min")) &&
+      !validateMaxMinValue(this._inputMax, this._inputMin)
+    ) {
+      throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+      return false;
+    }
+
+    if (_changedProperties.has("timeStep")) {
+      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
+      }
+    }
+
     if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string") {
@@ -110,6 +162,16 @@ export class DateTimePicker extends KucBase {
       isValidDate(this._dateConverted);
     if (!isValidValue) {
       throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._timeConverted = timeValueConverter(
+      this._dateAndTime.time.slice(0, 5)
+    );
+    if (
+      !validateTimeInMaxMin(this._inputMax, this._inputMin, this._timeConverted)
+    ) {
+      throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_RANGE);
       return false;
     }
 
@@ -129,16 +191,20 @@ export class DateTimePicker extends KucBase {
   private _updateValueChangeByUI() {
     const validFormat = this._validateDateTimeFormat();
     this.value = validFormat ? this.value : undefined;
-    if (this._changeTimeByUI) return;
 
-    this._errorText = validFormat ? this.error : this._errorFormat;
+    this._errorText = validFormat
+      ? this.error
+      : this._errorFormat || this._errorInvalidTime;
   }
 
   private _validateDateTimeFormat() {
     const isMissingDatePart = Boolean(this._timeValue) && !this._dateValue;
     const isMissingTimePart = Boolean(this._dateValue) && !this._timeValue;
     const validFormat =
-      !this._errorFormat && !isMissingDatePart && !isMissingTimePart;
+      !this._errorFormat &&
+      !this._errorInvalidTime &&
+      !isMissingDatePart &&
+      !isMissingTimePart;
     return validFormat;
   }
 
@@ -147,6 +213,7 @@ export class DateTimePicker extends KucBase {
     if (this.value === "" || this.value === undefined) {
       this._previousTimeValue = "";
       this._errorFormat = "";
+      this._errorInvalidTime = "";
       return;
     }
 
@@ -171,6 +238,16 @@ export class DateTimePicker extends KucBase {
         this._setEmptyValue();
       }
     }
+
+    if (
+      (changedProperties.has("max") ||
+        changedProperties.has("min") ||
+        changedProperties.has("value")) &&
+      this.value !== undefined
+    ) {
+      this._errorInvalidTime = "";
+    }
+
     super.update(changedProperties);
   }
 
@@ -196,6 +273,7 @@ export class DateTimePicker extends KucBase {
     this._previousTimeValue = "";
     this._previousDateValue = "";
     this._errorFormat = "";
+    this._errorInvalidTime = "";
   }
 
   render() {
@@ -232,6 +310,10 @@ export class DateTimePicker extends KucBase {
             .value="${this._timeValue}"
             .hour12="${this.hour12}"
             .disabled="${this.disabled}"
+            .timeStep="${this.timeStep}"
+            .max="${this._inputMax}"
+            .min="${this._inputMin}"
+            .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
           ></kuc-base-time>
         </div>
@@ -289,6 +371,14 @@ export class DateTimePicker extends KucBase {
     event.stopPropagation();
     this._changeTimeByUI = true;
     const newValue = event.detail.value;
+
+    if (event.detail.error) {
+      this._errorInvalidTime = event.detail.error;
+      this.error = "";
+    } else {
+      this._errorInvalidTime = "";
+    }
+
     this._updateDateTimeValue(newValue, "time");
   }
 
@@ -302,10 +392,12 @@ export class DateTimePicker extends KucBase {
     }
     this._previousTimeValue = this._timeValue;
     this._previousDateValue = this._dateValue;
-    const newDateTime = this._errorFormat
-      ? undefined
-      : this._getDateTimeString();
-    const _value = this._errorFormat ? undefined : newDateTime;
+    const newDateTime =
+      this._errorFormat || this._errorInvalidTime
+        ? undefined
+        : this._getDateTimeString();
+    const _value =
+      this._errorFormat || this._errorInvalidTime ? undefined : newDateTime;
     this.value = _value;
     const detail = {
       value: _value,
