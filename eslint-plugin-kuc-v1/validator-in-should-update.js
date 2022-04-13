@@ -28,6 +28,7 @@ module.exports = {
             if (
               body.kind !== "constructor" &&
               body.key.name !== "shouldUpdate" &&
+              body.key.name !== "_setInitialValue" &&
               regex.test(functionSourceCode)
             ) {
               context.report({
