@@ -2,7 +2,7 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { DatePicker } from "../index";
 import { padStart } from "../../base/datetime/utils";
 
-describe("TimePicker", () => {
+describe("DatePicker", () => {
   describe("change event", () => {
     it("should be focus to the second day of month when value is empty and click ArrowRight on date in calendar", async () => {
       let triggeredEvent: any = null;
@@ -206,7 +206,7 @@ describe("TimePicker", () => {
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.value).to.equal("");
 
       inputDateEl.click();
       await elementUpdated(container);
@@ -219,7 +219,7 @@ describe("TimePicker", () => {
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.value).to.equal("");
     });
 
     it("should be 2021-12-13 when change input value", async () => {

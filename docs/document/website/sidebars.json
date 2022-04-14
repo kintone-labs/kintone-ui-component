@@ -50,6 +50,7 @@
   "release-notes": {
     "Releases": [
       "releases/release-notes",
+      "releases/release-notes-v1.3.1",
       "releases/release-notes-v1.3.0",
       "releases/release-notes-v1.2.0",
       "releases/release-notes-v1.1.1",

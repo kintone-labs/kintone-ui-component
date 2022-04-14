@@ -27,17 +27,21 @@ module.exports = {
             const functionSourceCode = sourceCode.getText(body.value);
             if (
               body.kind !== "constructor" &&
-              body.key.name !== "update" &&
+              body.key.name !== "shouldUpdate" &&
+              body.key.name !== "_setInitialValue" &&
               regex.test(functionSourceCode)
             ) {
               context.report({
                 node: body,
-                message: `Please call validator function inside update() lifecycle
-                ex: update(changedProperties: PropertyValues) {
+                message: `Please call validator function inside shouldUpdate() lifecycle
+                ex: shouldUpdate(changedProperties: PropertyValues):boolean {
                       if (changedProperties.has("items")) {
-                        validateItems(this.items);
+                        if (!validateItems(this.items)) {
+                          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+                          return false;
+                        }
                       }
-                      super.update(changedProperties);
+                      return true;
                     }`
               });
             }

@@ -1,22 +1,26 @@
 import { expect, fixture } from "@open-wc/testing";
-import { MultiChoice } from "../index";
+import { Dropdown } from "../index";
 
 const initItems = [
-  { label: "Item 1", value: "item-1" },
-  { label: "Item 2", value: "item-2" },
-  { label: "Item 3", value: "item-3" }
+  { label: "-----", value: "-----" },
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple" }
 ];
 
-describe("MultiChoice", () => {
+describe("Dropdown", () => {
   describe("selectedIndex", () => {
-    it("should be empty array when not assigned on constructor", async () => {
-      const container = new MultiChoice({ items: initItems });
+    it("should be none checked items when not assinged on constructor", async () => {
+      const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
-
-      expect(container.value).to.deep.equal([]);
+      const selectedItemLabel = el.querySelector(
+        ".kuc-dropdown__group__toggle__selected-item-label"
+      );
+      expect(selectedItemLabel?.textContent).to.equal("");
+      expect(container.selectedIndex).to.be.equal(-1);
+      expect(container.value).to.be.equal("");
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-dropdown__group__select-menu__item"
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -31,17 +35,19 @@ describe("MultiChoice", () => {
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
-    it("should be selected item when assigned on constructor", async () => {
-      const container = new MultiChoice({
-        items: initItems,
-        selectedIndex: [1]
-      });
+    it("should be checked items when assinged on constructor", async () => {
+      const container = new Dropdown({ items: initItems, selectedIndex: 1 });
       const el = await fixture(container);
+      expect(container.selectedIndex).to.be.equal(1);
+      expect(container.value).to.be.equal(initItems[1].value);
 
-      expect(container.value).to.deep.equal([initItems[1].value]);
+      const selectedItemLabel = el.querySelector(
+        ".kuc-dropdown__group__toggle__selected-item-label"
+      );
+      expect(selectedItemLabel?.textContent).to.equal(initItems[1].label);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-dropdown__group__select-menu__item"
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -54,24 +60,6 @@ describe("MultiChoice", () => {
       const svgsEl2 = itemsEl[2].querySelectorAll("svg");
       expect(svgsEl2.length).to.equal(0);
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
-    });
-
-    it("should be throw error when set null by setter", async () => {
-      const container = new MultiChoice({ items: initItems });
-      // @ts-expect-error
-      container.selectedIndex = null;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateSelectedIndexArray function
     });
   });
 });
