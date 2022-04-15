@@ -235,7 +235,6 @@ export class DateTimePicker extends KucBase {
           ></kuc-base-time>
         </div>
         <kuc-base-error
-          ariaLive="assertive"
           .text="${this._errorText}"
           .guid="${this._GUID}"
         ></kuc-base-error>
