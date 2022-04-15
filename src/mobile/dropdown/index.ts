@@ -11,8 +11,10 @@ import {
   validateProps,
   validateValueString,
   validateItems,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
+import { ERROR_MESSAGE } from "../../base/constant";
 
 type Item = { label?: string; value?: string };
 type MobileDropdownProps = {
@@ -55,7 +57,16 @@ export class MobileDropdown extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: MobileDropdownProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
+    }
   }
 
   private _handleChangeInput(event: Event) {
@@ -70,17 +81,53 @@ export class MobileDropdown extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
   }
@@ -99,8 +146,13 @@ export class MobileDropdown extends KucBase {
     return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
+  private _getValue(validProps: MobileDropdownProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
     if (!item) return "";
     return item.value;
   }
@@ -220,6 +272,7 @@ export class MobileDropdown extends KucBase {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           white-space: normal;
+          font-size: inherit;
         }
 
         .kuc-mobile-dropdown__label__required-icon {
