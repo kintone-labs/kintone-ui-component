@@ -111,7 +111,6 @@ export class TimePicker extends KucBase {
         >
         </kuc-base-time>
         <kuc-base-error
-          ariaLive="assertive"
           .text="${this.error}"
           .guid="${this._GUID}"
         ></kuc-base-error>
