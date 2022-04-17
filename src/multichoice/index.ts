@@ -10,6 +10,9 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = {
   label?: string;
@@ -142,13 +145,10 @@ export class MultiChoice extends KucBase {
           id="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-multi-choice__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-multi-choice__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-multi-choice__group__menu"
@@ -164,15 +164,11 @@ export class MultiChoice extends KucBase {
             this._getMenuItemTemplate(item, number)
           )}
         </div>
-        <div
-          class="kuc-multi-choice__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -431,29 +427,6 @@ export class MultiChoice extends KucBase {
           white-space: nowrap;
         }
         .kuc-multi-choice__group__label[hidden] {
-          display: none;
-        }
-        .kuc-multi-choice__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-multi-choice__group__label__required-icon[hidden] {
-          display: none;
-        }
-        .kuc-multi-choice__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-multi-choice__group__error[hidden] {
           display: none;
         }
         .kuc-multi-choice__group__menu {
