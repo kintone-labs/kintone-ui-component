@@ -7,17 +7,6 @@ describe("Dropdown", () => {
       const container = new Dropdown();
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-DROPDOWN");
-      expect(el).dom.to.equalSnapshot({
-        ignoreAttributes: [
-          "aria-describedby",
-          "aria-labelledby",
-          "id",
-          "aria-live",
-          "type",
-          "style",
-          "role"
-        ]
-      });
     });
   });
 
