@@ -13,7 +13,7 @@ describe("Checkbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelCheckboxEl = el.querySelector(
-        ".kuc-checkbox__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelCheckboxEl.textContent).to.equal("");
     });
@@ -28,7 +28,7 @@ describe("Checkbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelCheckboxEl = el.querySelector(
-        ".kuc-checkbox__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelCheckboxEl.textContent).to.equal("options-label");
     });
@@ -44,7 +44,7 @@ describe("Checkbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelCheckboxEl = el.querySelector(
-        ".kuc-checkbox__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelCheckboxEl.textContent).to.equal("replace-label");
     });

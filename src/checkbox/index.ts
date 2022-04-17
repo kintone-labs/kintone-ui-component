@@ -10,6 +10,9 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = { label?: string; value?: string };
 type CheckboxProps = {
@@ -268,16 +271,11 @@ export class Checkbox extends KucBase {
         aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
-          <span
-            id="${this._GUID}-group"
-            class="kuc-checkbox__group__label__text"
-            >${this.label}</span
-          ><!--
-          --><span
-            class="kuc-checkbox__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .guid="${this._GUID}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-checkbox__group__select-menu"
@@ -286,15 +284,11 @@ export class Checkbox extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-checkbox__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -404,16 +398,6 @@ export class Checkbox extends KucBase {
         .kuc-checkbox__group__label[hidden] {
           display: none;
         }
-        .kuc-checkbox__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-checkbox__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-checkbox__group__select-menu[borderVisible] {
           border-color: #e3e7e8;
           border-width: 1px;
@@ -470,19 +454,6 @@ export class Checkbox extends KucBase {
           display: inline-block;
           vertical-align: middle;
           white-space: nowrap;
-        }
-        .kuc-checkbox__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-checkbox__group__error[hidden] {
-          display: none;
         }
       </style>
     `;
