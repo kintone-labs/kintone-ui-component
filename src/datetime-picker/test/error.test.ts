@@ -7,7 +7,7 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -27,7 +27,7 @@ describe("DateTimePicker", () => {
       container.error = "error-message";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -38,7 +38,7 @@ describe("DateTimePicker", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");
@@ -51,7 +51,7 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       const labelEl = el.querySelector(
         ".kuc-datetime-picker__group__label"
@@ -74,7 +74,7 @@ describe("DateTimePicker", () => {
       dateInputEl.dispatchEvent(new Event("change"));
       await elementUpdated(container);
       const errorEl = el.querySelector(
-        ".kuc-datetime-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
 
       expect(errorEl.innerText).to.equal("Format is not valid.");
