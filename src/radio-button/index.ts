@@ -68,7 +68,17 @@ export class RadioButton extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
+
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: RadioButtonProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
+    }
   }
 
   shouldUpdate(changedProperties: PropertyValues): boolean {
@@ -96,6 +106,14 @@ export class RadioButton extends KucBase {
       }
     }
     return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
   }
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
@@ -208,7 +226,11 @@ export class RadioButton extends KucBase {
       changedProperties.has("selectedIndex")
     ) {
       this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
   }
@@ -271,8 +293,13 @@ export class RadioButton extends KucBase {
     return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
+  private _getValue(validProps: RadioButtonProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
     if (!item) return "";
     return item.value;
   }
