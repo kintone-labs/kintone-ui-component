@@ -277,7 +277,8 @@ export class Dropdown extends KucBase {
     });
   }
 
-  updated() {
+  async updated() {
+    await this.updateComplete;
     this._updateContainerWidth();
     if (this._selectorVisible) {
       this._setMenuPosition();
