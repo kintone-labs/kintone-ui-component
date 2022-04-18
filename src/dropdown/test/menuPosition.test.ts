@@ -70,7 +70,7 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu"
       ) as HTMLDivElement;
       const errorEl = el.querySelector(
-        ".kuc-dropdown__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal(
         `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`
