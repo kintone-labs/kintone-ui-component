@@ -425,7 +425,7 @@ dialogCancelButton.addEventListener("click", event => {
 デスクトップ画面の実装コードを解説します。<br>
 以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
 DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
-比較しやすいように本日日付も yyyy-mm-dd 形式で取得しているのがポイントです。<br>
+比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しているのがポイントです。<br>
 今回は luxon.js という外部の日付ライブラリを利用しています。
 
 ***desktop.js***
