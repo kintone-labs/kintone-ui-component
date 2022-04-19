@@ -59,7 +59,6 @@ describe("MobileTimePicker", () => {
         ".kuc-base-mobile-time__group__minutes"
       ) as HTMLSelectElement;
       selectMinuteEl.value = "35";
-      await elementUpdated(container);
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
       await elementUpdated(container);
       expect(errorEl.innerText).to.equal("Format is not valid.");

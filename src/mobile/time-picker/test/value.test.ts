@@ -47,7 +47,7 @@ describe("MobileTimePicker", () => {
       expect(selectMinuteEl.value).to.be.equal("15");
     });
 
-    it("should be empty value and UI when set undefined on constructor", async () => {
+    it("should be empty value and UI when set undefined in constructor", async () => {
       const container = new MobileTimePicker({ value: undefined });
       const el = await fixture(container);
       const selectHourEl = el.querySelector(

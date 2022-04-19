@@ -16,7 +16,6 @@ import {
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
-import { getLocale } from "../../base/datetime/utils";
 type MobileTimePickerProps = {
   className?: string;
   error?: string;
@@ -56,9 +55,17 @@ export class MobileTimePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
   private _GUID: string;
+
   @state()
   private _inputValue: string = "";
+
+  @state()
+  private _errorFormat = "";
+
+  @state()
+  private _errorText = "";
 
   private _isSelectError = false;
 
@@ -93,13 +100,11 @@ export class MobileTimePicker extends KucBase {
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value") && !this._isSelectError) {
-      if (this.value === undefined || this.value === "") {
+      if (this.value === undefined) {
         this._inputValue = "";
-        if (this._isInvalidFormatError(this.error)) {
-          this.error = "";
-        }
       } else {
         this._inputValue = this.value || "";
+        this._errorFormat = "";
       }
     }
     super.update(changedProperties);
@@ -132,7 +137,7 @@ export class MobileTimePicker extends KucBase {
         </div>
         <kuc-base-mobile-error
           .guid="${this._GUID}"
-          .text="${this.error}"
+          .text="${this._errorFormat || this.error}"
           ariaLive="assertive"
         ></kuc-base-mobile-error>
       </div>
@@ -140,7 +145,9 @@ export class MobileTimePicker extends KucBase {
   }
 
   updated() {
+    // this._errorText = this._errorFormat || this.error;
     this._isSelectError = false;
+    console.log(`this.value = ${this.value}`);
   }
 
   private _handleTimeChange(event: CustomEvent) {
@@ -153,14 +160,15 @@ export class MobileTimePicker extends KucBase {
     this._inputValue = event.detail.value;
     if (event.detail.error) {
       this._isSelectError = true;
-      this.error = event.detail.error;
+      this._errorFormat = event.detail.error;
       this.value = undefined;
       detail.value = undefined;
+      this.error = "";
       dispatchCustomEvent(this, "change", detail);
       return;
     }
     this._isSelectError = false;
-    this.error = "";
+    this._errorFormat = "";
     this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
@@ -173,11 +181,6 @@ export class MobileTimePicker extends KucBase {
       return document.documentElement.lang;
 
     return "en";
-  }
-
-  private _isInvalidFormatError(error: string) {
-    const locale = getLocale(this._getLanguage());
-    return error === locale.INVALID_TIME_FORMAT;
   }
 
   private _getStyleTagTemplate() {
