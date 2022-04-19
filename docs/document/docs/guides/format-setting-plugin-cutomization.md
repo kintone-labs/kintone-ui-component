@@ -420,7 +420,7 @@ dialogCancelButton.addEventListener("click", event => {
 }
 ```
 
-## JavaScript/CSS カスタマイズ ②デスクトップ画面
+## JavaScript/CSS カスタマイズ（アプリ画面）
 
 デスクトップ画面の実装コードを解説します。<br>
 以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
