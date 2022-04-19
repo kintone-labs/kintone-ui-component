@@ -6,7 +6,7 @@ sidebar_label: Format setting plugin
 
 ## 概要
 
-kintone のアプリ画面だけでなく、プラグインの設定画面でも kintone UI Component を使うことで活用の幅を広げます。<br>
+kintone のアプリ画面だけでなく、プラグインの設定画面でも kintone UI Component を使うことで活用の幅を広げることができます。<br>
 今回は簡易的な条件書式プラグインの作成を例に、プラグイン設定画面での kintone UI Component の使い方を説明します。
 
 ### 使用するコンポーネント
