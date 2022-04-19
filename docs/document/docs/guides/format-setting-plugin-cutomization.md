@@ -1,12 +1,12 @@
 ---
-id: format-setting-plugin-customization
-title: Format setting plugin customization
-sidebar_label: Format setting plugin customization
+id: format-setting-plugin
+title: Format setting plugin
+sidebar_label: Format setting plugin
 ---
 
 ## 概要
 
-kintone のアプリ画面だけでなく、プラグインの設定画面でも kintone UI Component を使うことで活用の幅を広げます。<br>
+kintone のアプリ画面だけでなく、プラグインの設定画面でも kintone UI Component を使うことで活用の幅を広げることができます。<br>
 今回は簡易的な条件書式プラグインの作成を例に、プラグイン設定画面での kintone UI Component の使い方を説明します。
 
 ### 使用するコンポーネント
@@ -18,7 +18,7 @@ kintone のアプリ画面だけでなく、プラグインの設定画面でも
 
 ## 完成イメージ
 
-以下が、画面の完成イメージです。
+以下が、実装シナリオと画面の完成イメージです。
 
 ![Format Setting Plugin]
 
@@ -138,7 +138,7 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 </section>
 ```
 
-## JavaScript/CSS カスタマイズ ①設定画面
+## JavaScript/CSS カスタマイズ（設定画面）
 
 設定画面の実装コードを解説します。<br>
 以下の様な JavaScript ファイル（config.js）を js フォルダに配置します。<br>
@@ -233,7 +233,7 @@ const dialog = new Kuc.Dialog({
 
 MultiChoice コンポーネントの選択肢として表示するフィールド名を取得するため、
 以下のような関数を呼び出しています。<br>
-items プロパティのデータ構造が、label と　value をキーとするオブジェクトからなる配列なので<br>
+items プロパティのデータ構造が、label と value をキーとするオブジェクトからなる配列なので<br>
 関数で返却する値も、それに対応する形にしているのがポイントです。<br>
 非同期処理になっているため、呼び出し方にはご注意ください。
 
@@ -325,7 +325,7 @@ buttonSpaceEl.appendChild(saveButton);
 
 保存ボタンを押した時に、必須項目のチェックをしています。<br>
 ひとつでも未入力の項目があるとエラーラベルを表示します。<br>
-そうでない場合は、確認ダイアログを表示します。
+設定項目に問題がない場合は、確認ダイアログを表示します。
 
 ```javascript
 // When the Save button is clicked
@@ -420,12 +420,12 @@ dialogCancelButton.addEventListener("click", event => {
 }
 ```
 
-## JavaScript/CSS カスタマイズ ②デスクトップ画面
+## JavaScript/CSS カスタマイズ（アプリ画面）
 
 デスクトップ画面の実装コードを解説します。<br>
 以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
 DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
-比較しやすいように本日日付も yyyy-mm-dd 形式で取得しているのがポイントです。<br>
+比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しているのがポイントです。<br>
 今回は luxon.js という外部の日付ライブラリを利用しています。
 
 ***desktop.js***
@@ -462,5 +462,5 @@ DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
 })(kintone.$PLUGIN_ID);
 ```
 
-> 本記事は、 2022 年 4 月時点の kintone と Google Chrome で確認したものになります。<br>
+> 本記事は、 2022 年 5 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v1.4.0 です。
