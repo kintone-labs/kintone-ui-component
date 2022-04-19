@@ -137,7 +137,7 @@ export class MobileTimePicker extends KucBase {
         </div>
         <kuc-base-mobile-error
           .guid="${this._GUID}"
-          .text="${this._errorFormat || this.error}"
+          .text="${this._errorText}"
           ariaLive="assertive"
         ></kuc-base-mobile-error>
       </div>
@@ -145,9 +145,8 @@ export class MobileTimePicker extends KucBase {
   }
 
   updated() {
-    // this._errorText = this._errorFormat || this.error;
+    this._errorText = this._errorFormat || this.error;
     this._isSelectError = false;
-    console.log(`this.value = ${this.value}`);
   }
 
   private _handleTimeChange(event: CustomEvent) {
