@@ -8,4 +8,4 @@ export const TIME_SUFFIX = {
 
 export const FORMAT_IS_NOT_VALID = "Format is not valid.";
 export const MAX_MIN_IS_NOT_VALID = '"min" must not be greater than "max".';
-export const TIME_IS_OUT_OF_RANGE = "Time is out of valid range.";
+export const TIME_IS_OUT_OF_VALID_RANGE = "Time is out of valid range.";

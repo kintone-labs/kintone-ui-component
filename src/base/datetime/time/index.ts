@@ -90,8 +90,8 @@ export class BaseTime extends KucBase {
       this._listBoxItems = generateTimeOptions(
         this.hour12,
         this.timeStep,
-        this.max,
-        this.min
+        this.min,
+        this.max
       );
       this._updateInputValue();
     }
@@ -529,7 +529,7 @@ export class BaseTime extends KucBase {
       !isFirstTimeEarlier(this.min, value) ||
       !isFirstTimeEarlier(value, this.max)
     ) {
-      detail.error = this._locale.INVALID_TIME;
+      detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
     }
 
     dispatchCustomEvent(this, "kuc:base-time-change", detail);
