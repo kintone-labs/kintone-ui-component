@@ -6,8 +6,8 @@ describe("TimePicker", () => {
     it("should be using browser language when not assigned in constructor", async () => {
       const container = new TimePicker({
         value: "10:00",
-        max: "10:00",
-        min: "9:00"
+        min: "9:00",
+        max: "10:00"
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -31,8 +31,8 @@ describe("TimePicker", () => {
     it("should be format ja language when assigned in constructor", async () => {
       const container = new TimePicker({
         value: "10:00",
-        max: "10:00",
         min: "9:00",
+        max: "10:00",
         language: "ja"
       });
       const el = await fixture(container);
@@ -57,8 +57,8 @@ describe("TimePicker", () => {
     it("should be change to zh language when assigned by setter", async () => {
       const container = new TimePicker({
         value: "10:00",
-        max: "10:00",
         min: "9:00",
+        max: "10:00",
         language: "ja"
       });
       container.language = "zh";

@@ -17,21 +17,21 @@ import {
 describe("BaseDateTimeUtils", () => {
   describe("generateTimeOptions", () => {
     it("should be return 24 option when using generateTimeOptions with 12 hour format and timeStep is 60", async () => {
-      const timeOptions = generateTimeOptions(true, 60, "23:59", "00:00");
+      const timeOptions = generateTimeOptions(true, 60, "00:00", "23:59");
       expect(timeOptions.length).to.be.equal(24);
     });
   });
 
   describe("generateTimeOptions", () => {
     it("should be return 48 option when using generateTimeOptions with 24 hour format timeStep is 30", async () => {
-      const timeOptions = generateTimeOptions(false, 30, "23:59", "00:00");
+      const timeOptions = generateTimeOptions(false, 30, "00:00", "23:59");
       expect(timeOptions.length).to.be.equal(48);
     });
   });
 
   describe("generateTimeOptions", () => {
     it("should be return 11 option when using generateTimeOptions with 24 hour format, timeStep is 60, max is 18:00, min is 08:00", async () => {
-      const timeOptions = generateTimeOptions(false, 60, "18:00", "08:00");
+      const timeOptions = generateTimeOptions(false, 60, "08:00", "18:00");
       expect(timeOptions.length).to.be.equal(11);
     });
   });
@@ -47,6 +47,20 @@ describe("BaseDateTimeUtils", () => {
     it('should be return 100 when value is "01:40"', async () => {
       const minutes = convertTimeValueToMinutes("01:40");
       expect(minutes).to.be.equal(100);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 59 when value is "-01:140"', async () => {
+      const minutes = convertTimeValueToMinutes("-01:140");
+      expect(minutes).to.be.equal(59);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 1380 when value is "31:-40"', async () => {
+      const minutes = convertTimeValueToMinutes("31:-40");
+      expect(minutes).to.be.equal(1380);
     });
   });
 

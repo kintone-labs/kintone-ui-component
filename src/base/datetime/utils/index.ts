@@ -36,8 +36,8 @@ export const getDisplayingDates = (year: number, month: number) => {
 export const generateTimeOptions = (
   isHour12: boolean,
   timeStep: number,
-  max: string,
-  min: string
+  min: string,
+  max: string
 ) => {
   const timeOptions = [];
   const newTimeStep = Math.round(timeStep);
@@ -77,10 +77,22 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
 
 export const convertTimeValueToMinutes = (value: string) => {
   const times = value.split(":");
-  const hours = parseInt(times[0], 10);
-  const minutes = parseInt(times[1], 10);
+  let hours = parseInt(times[0], 10);
+  let minutes = parseInt(times[1], 10);
   if (isNaN(hours) || isNaN(minutes)) {
     return 0;
+  }
+
+  if (hours < 0) {
+    hours = 0;
+  } else if (hours >= MAX_HOURS24) {
+    hours = MAX_HOURS24 - 1;
+  }
+
+  if (minutes < 0) {
+    minutes = 0;
+  } else if (minutes >= MAX_MINUTES) {
+    minutes = MAX_MINUTES - 1;
   }
 
   return hours * MAX_MINUTES + minutes;

@@ -32,8 +32,8 @@ const Template = args =>
       .requiredIcon="${args.requiredIcon}"
       .visible="${args.visible}"
       .timeStep="${args.timeStep}"
-      .max="${args.max}"
       .min="${args.min}"
+      .max="${args.max}"
       .language="${args.language}"
     ></kuc-time-picker>
   `;
@@ -51,8 +51,8 @@ BaseHour24.args = {
   visible: true,
   language: "en",
   timeStep: 60,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
 
 export const BaseHour12 = Template.bind({});
@@ -68,8 +68,8 @@ BaseHour12.args = {
   visible: true,
   language: "en",
   timeStep: 30,
-  max: "20:00",
-  min: "08:00"
+  min: "08:00",
+  max: "20:00"
 };
 
 export const BaseError = Template.bind({});
@@ -85,6 +85,6 @@ BaseError.args = {
   visible: true,
   language: "en",
   timeStep: 30,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
