@@ -21,7 +21,7 @@ import {
 import {
   FORMAT_IS_NOT_VALID,
   MAX_MIN_IS_NOT_VALID,
-  TIME_IS_OUT_OF_RANGE
+  TIME_IS_OUT_OF_VALID_RANGE
 } from "../base/datetime/resource/constant";
 
 import "../base/datetime/date";
@@ -171,7 +171,7 @@ export class DateTimePicker extends KucBase {
     if (
       !validateTimeInMaxMin(this._inputMax, this._inputMin, this._timeConverted)
     ) {
-      throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_RANGE);
+      throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;
     }
 
@@ -311,8 +311,8 @@ export class DateTimePicker extends KucBase {
             .hour12="${this.hour12}"
             .disabled="${this.disabled}"
             .timeStep="${this.timeStep}"
-            .max="${this._inputMax}"
             .min="${this._inputMin}"
+            .max="${this._inputMax}"
             .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
           ></kuc-base-time>

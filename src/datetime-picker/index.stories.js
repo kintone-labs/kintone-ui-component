@@ -21,8 +21,8 @@ export default {
     hour12: { name: "hour12" },
     visible: { name: "visible" },
     timeStep: { name: "timeStep" },
-    max: { name: "max" },
-    min: { name: "min" }
+    min: { name: "min" },
+    max: { name: "max" }
   },
   parameters: {
     actions: {
@@ -47,8 +47,8 @@ const Template = args => {
       .requiredIcon="${args.requiredIcon}"
       .visible="${args.visible}"
       .timeStep="${args.timeStep}"
-      .max="${args.max}"
       .min="${args.min}"
+      .max="${args.max}"
       @change="${handleDateChange}"
     ></kuc-datetime-picker>
   `;
@@ -67,8 +67,8 @@ Base.args = {
   requiredIcon: true,
   visible: true,
   timeStep: 60,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
 
 export const BaseHour12 = Template.bind({});
@@ -84,8 +84,8 @@ BaseHour12.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 30,
-  max: "20:00",
-  min: "00:00"
+  min: "00:00",
+  max: "20:00"
 };
 
 export const BaseHour24 = Template.bind({});
@@ -101,8 +101,8 @@ BaseHour24.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 30,
-  max: "20:00",
-  min: "00:00"
+  min: "00:00",
+  max: "20:00"
 };
 
 export const BaseLanguageEN = Template.bind({});
@@ -118,8 +118,8 @@ BaseLanguageEN.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 60,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
 
 export const BaseLanguageJA = Template.bind({});
@@ -135,8 +135,8 @@ BaseLanguageJA.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 60,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
 
 export const BaseLanguageZH = Template.bind({});
@@ -152,8 +152,8 @@ BaseLanguageZH.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 60,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
 
 export const BaseError = Template.bind({});
@@ -169,6 +169,6 @@ BaseError.args = {
   requiredIcon: false,
   visible: true,
   timeStep: 30,
-  max: "23:59",
-  min: "00:00"
+  min: "00:00",
+  max: "23:59"
 };
