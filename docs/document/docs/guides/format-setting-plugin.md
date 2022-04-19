@@ -20,28 +20,17 @@ kintone のアプリ画面だけでなく、プラグインの設定画面でも
 
 以下が、実装シナリオと画面の完成イメージです。
 
-![Format Setting Plugin]
+![App image](assets/payment_management_app.png)
+入金を管理するアプリです。<br>
 
-Reference Date: 基準日付を設定します
-Condition: 基準日付に対する条件を設定します
-Fields：フィールド設定します（複数選択可）<br>
-今回は、以下のタイプのフィールドのみ指定可能にしています
-・文字列（1行）
-・数値
-・計算
-・ラジオボタン
-・ドロップダウン
-・レコード番号
-・文字列（複数行）
-・チェックボックス
-・複数選択
-・日付
-・日時
-・作成日時
-・更新日時
+![Plugin setting](assets/plugin_setting.png)
+![Confirmation](assets/dialog.png)
+プラグイン設定画面です。<br>
+設定した条件（本日の日付が基準日付より前、または基準日付より後）を満たすと、
+設定したフィールドの色がレコード詳細画面で赤色に変わります。<br>
 
-設定した条件（本日日付が基準日付より前、または基準日付より後）を満たすと、
-設定したフィールドの色がレコード詳細画面で赤色に変わります。
+例として、会社の決算日をプラグイン設定画面で設定し、
+本日の日付が決算日以前のレコードの特定フィールドを赤くするようなカスタマイズを、プラグイン化してみます。
 
 ## 事前準備
 
@@ -142,7 +131,6 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 
 設定画面の実装コードを解説します。<br>
 以下の様な JavaScript ファイル（config.js）を js フォルダに配置します。<br>
-今回は非同期処理構文に async/await を利用するため、即時関数の先頭に async を付けています。
 
 ***config.js***
 
@@ -157,7 +145,11 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 ### 各種コンポーネントの作成
 ---
 
-各種コンポーネントを作成します。
+各種コンポーネントを作成します。<br>
+フィールドとしては、以下を配置します。<br>
+Reference Date: 基準日付を設定します
+Condition: 基準日付に対する条件を設定します
+Fields：フィールド設定します（複数選択可）
 
 ```javascript
 // Create DatePicker component
@@ -185,7 +177,7 @@ const dropdown = new Kuc.Dropdown({
       value: "after"
     }
   ],
-  selectedIndex: 0
+  value: "-----"
 });
 
 // Get field info to display in MultiChoice component
@@ -371,7 +363,7 @@ cancelButton.addEventListener("click", event => {
 
 意図しない設定の保存を避けるため、保存ボタンクリックの後に確認ダイアログを挟みます。<br>
 
-![Confirmation](assets/confirmation.png)
+![Confirmation](assets/dialog.png)
 
 OK ボタンを押すと、プラグインに設定値として持たせたい情報をオブジェクトに格納し、プラグインに保存します。
 
@@ -397,8 +389,6 @@ dialogCancelButton.addEventListener("click", event => {
 ```
 
 以下は設定画面の CSS の一例です。<br>
-ドロップダウンコンポーネントの width を変更するために kuc-dropdown__group__toggle という内部のクラスを利用しています。<br>
-内部で当たっているスタイルの方が優先される場合もあるので、今回は対象クラスの親のクラスも指定することで優先度を上げています。
 
 ***config.css***
 ```css
@@ -424,8 +414,9 @@ dialogCancelButton.addEventListener("click", event => {
 
 デスクトップ画面の実装コードを解説します。<br>
 以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
+プラグイン設定画面のコンポーネントから値を引き継いで、アプリのカスタマイズで利用しているのがポイントです。<br>
 DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
-比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しているのがポイントです。<br>
+比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しています。<br>
 今回は luxon.js という外部の日付ライブラリを利用しています。
 
 ***desktop.js***
@@ -461,6 +452,12 @@ DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
   });
 })(kintone.$PLUGIN_ID);
 ```
+
+## おわりに
+
+今回は、簡易的なプラグインの実装例をご紹介しました。<br>
+カスタマイズ次第で、より細かい条件分けができるようになったり
+一覧画面にも条件書式設定を適用できるようになりますので、実際の運用に合わせてお試しください。<br>
 
 > 本記事は、 2022 年 5 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v1.4.0 です。
