@@ -6,10 +6,8 @@ storiesOf("mobile/text", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const mobileText = new MobileText({
-      label: "label label label label label label label label label label label label",
       value: "Orange",
-      requiredIcon: false,
-      error: "error error error error error error error error error error error error"
+      requiredIcon: true
     });
     mobileText.addEventListener("focus", event => {
       console.log(event.detail);
