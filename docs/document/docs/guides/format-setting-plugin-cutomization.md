@@ -462,5 +462,5 @@ DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
 })(kintone.$PLUGIN_ID);
 ```
 
-> 本記事は、 2022 年 4 月時点の kintone と Google Chrome で確認したものになります。<br>
+> 本記事は、 2022 年 5 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v1.4.0 です。
