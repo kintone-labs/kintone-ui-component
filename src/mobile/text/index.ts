@@ -156,19 +156,6 @@ export class MobileText extends KucBase {
         .kuc-mobile-text__label[hidden] {
           display: none;
         }
-        .kuc-mobile-text__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-        }
-        .kuc-mobile-text__label__required-icon {
-          position: relative;
-          left: 3px;
-          color: #d01212;
-        }
-        .kuc-mobile-text__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-mobile-text__input-form {
           padding-left: 0.5em;
           padding-right: 0.5em;
@@ -211,19 +198,6 @@ export class MobileText extends KucBase {
           color: #888888;
         }
         .kuc-mobile-text__input-form__suffix[hidden] {
-          display: none;
-        }
-        .kuc-mobile-text__error {
-          line-height: 1.5;
-          color: #000000;
-          background-color: #fdffc9;
-          border: 1px solid #e5db68;
-          border-radius: 0.4em;
-          padding: 0.4em 1em;
-          margin-top: 0.3em;
-          margin-left: 0.5em;
-        }
-        .kuc-mobile-text__error[hidden] {
           display: none;
         }
       </style>
