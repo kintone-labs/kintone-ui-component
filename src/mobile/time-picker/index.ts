@@ -64,9 +64,6 @@ export class MobileTimePicker extends KucBase {
   @state()
   private _errorFormat = "";
 
-  @state()
-  private _errorText = "";
-
   private _isSelectError = false;
 
   private _isFirstTimeInit = true;
@@ -137,7 +134,7 @@ export class MobileTimePicker extends KucBase {
         </div>
         <kuc-base-mobile-error
           .guid="${this._GUID}"
-          .text="${this._errorText}"
+          .text="${this._errorFormat || this.error}"
           ariaLive="assertive"
         ></kuc-base-mobile-error>
       </div>
@@ -145,7 +142,6 @@ export class MobileTimePicker extends KucBase {
   }
 
   updated() {
-    this._errorText = this._errorFormat || this.error;
     this._isSelectError = false;
   }
 
