@@ -325,7 +325,7 @@ buttonSpaceEl.appendChild(saveButton);
 
 保存ボタンを押した時に、必須項目のチェックをしています。<br>
 ひとつでも未入力の項目があるとエラーラベルを表示します。<br>
-そうでない場合は、確認ダイアログを表示します。
+設定項目に問題がない場合は、確認ダイアログを表示します。
 
 ```javascript
 // When the Save button is clicked
