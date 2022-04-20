@@ -130,7 +130,6 @@ export class MobileTextArea extends KucBase {
           padding: 0;
           margin: 0 0 4px 0;
           display: inline-block;
-          font-size: 86%;
           font-weight: bold;
           line-height: 1.5;
           white-space: nowrap;
