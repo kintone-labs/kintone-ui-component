@@ -128,7 +128,7 @@ If you have a question or feature request, please register [GitHub issue](https:
 
 ## Roadmap
 We published our development roadmap.<br>
-For more details, please refer to [here](https://github.com/kintone-labs/kintone-ui-component/issues/936).
+For more details, please refer to [here](https://github.com/kintone-labs/kintone-ui-component/discussions/987).
 
 ## License
 [MIT LICENSE](./LICENSE)
