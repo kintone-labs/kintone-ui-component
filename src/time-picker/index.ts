@@ -16,12 +16,11 @@ import {
 import {
   validateProps,
   validateTimeValue,
-  validateMaxMinValue,
-  validateTimeInMaxMin,
   validateTimeStep,
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import "../base/datetime/time";
+import { timeCompare } from "../base/datetime/utils";
 
 type TimePickerProps = {
   className?: string;
@@ -106,7 +105,7 @@ export class TimePicker extends KucBase {
 
     if (
       (_changedProperties.has("max") || _changedProperties.has("min")) &&
-      !validateMaxMinValue(this._inputMax, this._inputMin)
+      timeCompare(this._inputMax, this._inputMin) < 0
     ) {
       throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
       return false;
@@ -128,11 +127,8 @@ export class TimePicker extends KucBase {
 
     this._valueConverted = timeValueConverter(this.value);
     if (
-      !validateTimeInMaxMin(
-        this._inputMax,
-        this._inputMin,
-        this._valueConverted
-      )
+      timeCompare(this._valueConverted, this._inputMin) < 0 ||
+      timeCompare(this._inputMax, this._valueConverted) < 0
     ) {
       throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;

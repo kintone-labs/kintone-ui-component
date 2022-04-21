@@ -525,10 +525,7 @@ export class BaseTime extends KucBase {
       oldValue: oldValue
     };
 
-    if (
-      timeCompare(value, this.min) === -1 ||
-      timeCompare(this.max, value) === -1
-    ) {
+    if (timeCompare(value, this.min) < 0 || timeCompare(this.max, value) < 0) {
       detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
     }
 
