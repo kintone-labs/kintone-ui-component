@@ -66,8 +66,6 @@ export class MobileTimePicker extends KucBase {
 
   private _isSelectError = false;
 
-  private _isFirstTimeInit = true;
-
   constructor(props?: MobileTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -76,12 +74,6 @@ export class MobileTimePicker extends KucBase {
   }
 
   protected shouldUpdate(changedProperties: PropertyValues): boolean {
-    if (this._isFirstTimeInit) {
-      if (this.value === undefined) {
-        this.value = "";
-      }
-      this._isFirstTimeInit = false;
-    }
     if (this.value === undefined || this.value === "") return true;
     if (!validateTimeValue(this.value)) {
       throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
@@ -101,8 +93,8 @@ export class MobileTimePicker extends KucBase {
         this._inputValue = "";
       } else {
         this._inputValue = this.value || "";
-        this._errorFormat = "";
       }
+      this._errorFormat = "";
     }
     super.update(changedProperties);
   }
@@ -161,6 +153,10 @@ export class MobileTimePicker extends KucBase {
       this.error = "";
       dispatchCustomEvent(this, "change", detail);
       return;
+    }
+    const theSameValue = event.detail.value === this.value;
+    if (!theSameValue) {
+      this.error = "";
     }
     this._isSelectError = false;
     this._errorFormat = "";
