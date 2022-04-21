@@ -98,11 +98,12 @@ export const convertTimeValueToMinutes = (value: string) => {
   return hours * MAX_MINUTES + minutes;
 };
 
-export const isFirstTimeEarlier = (firstTime: string, secondTime: string) => {
-  return (
-    convertTimeValueToMinutes(firstTime) <=
-    convertTimeValueToMinutes(secondTime)
-  );
+export const timeCompare = (startTime: string, endTime: string) => {
+  const startTimeMinutes = convertTimeValueToMinutes(startTime);
+  const endTimeMinutes = convertTimeValueToMinutes(endTime);
+  if (startTimeMinutes > endTimeMinutes) return 1;
+  if (startTimeMinutes === endTimeMinutes) return 0;
+  return -1;
 };
 
 export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {

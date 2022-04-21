@@ -1,7 +1,4 @@
-import {
-  isFirstTimeEarlier,
-  convertTimeValueToMinutes
-} from "./datetime/utils";
+import { convertTimeValueToMinutes } from "./datetime/utils";
 
 type Item = { label?: string; value?: string };
 
@@ -34,14 +31,6 @@ export function validateTimeValue(value: string) {
   if (value === "" || regexHour24.test(value)) return true;
 
   return false;
-}
-
-export function validateMaxMinValue(max: string, min: string) {
-  return isFirstTimeEarlier(min, max);
-}
-
-export function validateTimeInMaxMin(max: string, min: string, time: string) {
-  return isFirstTimeEarlier(min, time) && isFirstTimeEarlier(time, max);
 }
 
 export function validateTimeStep(timeStep: number, max: string, min: string) {

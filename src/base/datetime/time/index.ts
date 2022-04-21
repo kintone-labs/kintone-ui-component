@@ -17,7 +17,7 @@ import {
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   getLocale,
-  isFirstTimeEarlier
+  timeCompare
 } from "../utils";
 
 import { BaseDateTimeListBox, Item } from "../listbox";
@@ -525,10 +525,7 @@ export class BaseTime extends KucBase {
       oldValue: oldValue
     };
 
-    if (
-      !isFirstTimeEarlier(this.min, value) ||
-      !isFirstTimeEarlier(value, this.max)
-    ) {
+    if (timeCompare(value, this.min) < 0 || timeCompare(this.max, value) < 0) {
       detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
     }
 

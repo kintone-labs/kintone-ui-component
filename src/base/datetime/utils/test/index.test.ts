@@ -3,7 +3,7 @@ import { padStart } from "../../utils";
 import {
   generateTimeOptions,
   convertTimeValueToMinutes,
-  isFirstTimeEarlier,
+  timeCompare,
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   formatInputValueToValue,
@@ -64,21 +64,21 @@ describe("BaseDateTimeUtils", () => {
     });
   });
 
-  describe("isFirstTimeEarlier", () => {
-    it("should be return true when first time is earlier", async () => {
-      expect(isFirstTimeEarlier("01:40", "12:20")).to.equal(true);
+  describe("timeCompare", () => {
+    it("should be return -1 when first time is earlier", async () => {
+      expect(timeCompare("01:40", "12:20")).to.be.equal(-1);
     });
   });
 
-  describe("isFirstTimeEarlier", () => {
-    it("should be return true when two times are equal", async () => {
-      expect(isFirstTimeEarlier("12:20", "12:20")).to.equal(true);
+  describe("timeCompare", () => {
+    it("should be return 0 when two times are equal", async () => {
+      expect(timeCompare("12:20", "12:20")).to.be.equal(0);
     });
   });
 
-  describe("isFirstTimeEarlier", () => {
-    it("should be return false when second time is earlier", async () => {
-      expect(isFirstTimeEarlier("12:20", "10:20")).to.equal(false);
+  describe("timeCompare", () => {
+    it("should be return 1 when first time is later", async () => {
+      expect(timeCompare("12:20", "10:20")).to.be.equal(1);
     });
   });
 
