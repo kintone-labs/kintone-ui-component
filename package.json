@@ -26,9 +26,9 @@
     "ui component"
   ],
   "scripts": {
-    "build:umd_dev": "webpack --mode development",
-    "build:umd_prod": "webpack --mode production",
-    "build:esm": "tsc -p tsconfig.esm.json && webpack --config webpack.esm.config.js",
+    "build:umd_dev": "node ./scripts/webpack-umd.js development",
+    "build:umd_prod": "node ./scripts/webpack-umd.js production",
+    "build:esm": "tsc -p tsconfig.esm.json && node ./scripts/webpack-esm.js",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
