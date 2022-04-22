@@ -13,16 +13,17 @@ import {
   validateDateTimeValue,
   isValidDate,
   validateTimeValue,
-  validateMaxMinValue,
-  validateTimeInMaxMin,
   validateTimeStep,
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import {
   FORMAT_IS_NOT_VALID,
   MAX_MIN_IS_NOT_VALID,
-  TIME_IS_OUT_OF_VALID_RANGE
+  TIME_IS_OUT_OF_VALID_RANGE,
+  MIN_TIME,
+  MAX_TIME
 } from "../base/datetime/resource/constant";
+import { timeCompare } from "../base/datetime/utils";
 
 import "../base/datetime/date";
 import "../base/datetime/time";
@@ -121,7 +122,7 @@ export class DateTimePicker extends KucBase {
         return false;
       }
       this.max = timeValueConverter(this.max);
-      this._inputMax = this.max === "" ? "23:59" : this.max;
+      this._inputMax = this.max === "" ? MAX_TIME : this.max;
     }
 
     if (_changedProperties.has("min")) {
@@ -130,12 +131,12 @@ export class DateTimePicker extends KucBase {
         return false;
       }
       this.min = timeValueConverter(this.min);
-      this._inputMin = this.min === "" ? "00:00" : this.min;
+      this._inputMin = this.min === "" ? MIN_TIME : this.min;
     }
 
     if (
       (_changedProperties.has("max") || _changedProperties.has("min")) &&
-      !validateMaxMinValue(this._inputMax, this._inputMin)
+      timeCompare(this._inputMax, this._inputMin) < 0
     ) {
       throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
       return false;
@@ -169,7 +170,8 @@ export class DateTimePicker extends KucBase {
       this._dateAndTime.time.slice(0, 5)
     );
     if (
-      !validateTimeInMaxMin(this._inputMax, this._inputMin, this._timeConverted)
+      timeCompare(this._timeConverted, this._inputMin) < 0 ||
+      timeCompare(this._inputMax, this._timeConverted) < 0
     ) {
       throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;
@@ -429,7 +431,7 @@ export class DateTimePicker extends KucBase {
     if (value.indexOf("T") === value.length - 1 || dateTime.length > 2)
       return { date, time: "" };
 
-    if (!time) return { date, time: "00:00" };
+    if (!time) return { date, time: MIN_TIME };
 
     const [hours, minutes, seconds] = time.split(":");
     if (hours === "" || minutes === "" || seconds === "") {
