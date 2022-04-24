@@ -11,7 +11,9 @@ import { getWidthElmByContext } from "../base/context";
 import {
   FORMAT_IS_NOT_VALID,
   MAX_MIN_IS_NOT_VALID,
-  TIME_IS_OUT_OF_VALID_RANGE
+  TIME_IS_OUT_OF_VALID_RANGE,
+  MIN_TIME,
+  MAX_TIME
 } from "../base/datetime/resource/constant";
 import {
   validateProps,
@@ -91,7 +93,7 @@ export class TimePicker extends KucBase {
         return false;
       }
       this.max = timeValueConverter(this.max);
-      this._inputMax = this.max === "" ? "23:59" : this.max;
+      this._inputMax = this.max === "" ? MAX_TIME : this.max;
     }
 
     if (_changedProperties.has("min")) {
@@ -100,7 +102,7 @@ export class TimePicker extends KucBase {
         return false;
       }
       this.min = timeValueConverter(this.min);
-      this._inputMin = this.min === "" ? "00:00" : this.min;
+      this._inputMin = this.min === "" ? MIN_TIME : this.min;
     }
 
     if (
