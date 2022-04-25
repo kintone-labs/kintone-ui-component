@@ -1,12 +1,13 @@
 (function() {
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const docVersion = window.location.pathname.match(/\d+\.\d+\.\d+/);
     const urlVersion = docVersion ? `@${docVersion[0]}` : "";
-    const kucLink = `https://unpkg.com/kintone-ui-component${urlVersion}/umd/kuc.min.js`;
+    // const kucLink = `https://unpkg.com/kintone-ui-component${urlVersion}/umd/kuc.min.js`;
+    const kucLink = `https://127.0.0.1:8000/kuc.min.js`;
 
-    const kucScript = document.createElement('script');
+    const kucScript = document.createElement("script");
     kucScript.onload = function() {
-      const loadedEvent = new Event('kuc:loaded');
+      const loadedEvent = new Event("kuc:loaded");
       document.dispatchEvent(loadedEvent);
     };
 
