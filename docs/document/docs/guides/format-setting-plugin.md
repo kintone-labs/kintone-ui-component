@@ -389,28 +389,6 @@ dialogCancelButton.addEventListener("click", event => {
 });
 ```
 
-以下は設定画面の CSS の一例です。<br>
-
-***config.css***
-```css
-@charset "UTF-8";
-.kuc-dropdown__group > .kuc-dropdown__group__toggle {
-  width: 200px;
-}
-
-#kuc_cancel_button {
-  margin-right: 16px;
-}
-
-#kuc_dialog_footer {
-  text-align: center;
-}
-
-#kuc_dialog_cancel_button {
-  margin-right: 16px;
-}
-```
-
 ## JavaScript/CSS カスタマイズ（アプリ画面）
 
 デスクトップ画面の実装コードを解説します。<br>
