@@ -15,6 +15,8 @@ jobs:
           ref: master
     - name: run Yamory
       run: |
+        ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
+        ls -1 -d docs/document/website/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" 
       env:
@@ -32,6 +34,14 @@ jobs:
     - name: run Yamory
       run: |
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
+      env:
+        CI: true
+        PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
+        YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
+    - name: run Yamory_docs
+      working-directory: docs/document
+      run: |
+        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pip)"
       env:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
