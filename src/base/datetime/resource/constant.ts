@@ -7,7 +7,8 @@ export const TIME_SUFFIX = {
 };
 
 export const FORMAT_IS_NOT_VALID = "Format is not valid.";
-export const MAX_MIN_IS_NOT_VALID = '"min" must not be greater than "max".';
+export const MAX_MIN_IS_NOT_VALID =
+  '"max" must be greater than or equal to "min".';
 export const TIME_IS_OUT_OF_VALID_RANGE = "Time is out of valid range.";
 
 export const MIN_TIME = "00:00";

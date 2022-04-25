@@ -85,7 +85,7 @@ describe("TimePicker", () => {
           errorMessage = error.message;
         }
         expect(errorMessage).to.be.equal(
-          '"min" must not be greater than "max".'
+          '"max" must be greater than or equal to "min".'
         );
       }
     });
