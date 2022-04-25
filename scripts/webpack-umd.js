@@ -5,7 +5,7 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 configuration.mode= process.argv[2];
-const classNamePattern = /(kuc(-[a-z]+)+__)|(kuc(-[a-z]+)+\\)|(kuc(-[a-z]+)+\>)|(kuc(-[a-z]+)+\")|(kuc(-[a-z]+)+\[)|(kuc(-[a-z]+)+\s)|(kuc(-[a-z]+)+,)/g
+const classNamePattern = /(kuc(-[a-z]+)+__)|(kuc(-[a-z]+)+\\)|(kuc(-[a-z]+)+\>)|(kuc(-[a-z]+)+\")|(kuc(-[a-z]+)+\[)|(kuc(-[a-z]+)+\s)|(kuc(-[a-z]+)+,)|(kuc(-[a-z]+)+;)/g
 const suffixs = ['\\','\>','__','\"','=',',',';',' ','['];
 const classNameVersion = `-${packageJSON.version.replaceAll('.','-')}`;
 const getChangedValue = (str, version)=>{
