@@ -9,10 +9,7 @@ original_id: mobile-date-picker
 
 The MobileDatePicker component allows the user to display a input area and date selection calendar.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
-</div>
-<script src="/js/samples/mobile-date-picker.js"></script>
+<iframe src="http://localhost:56571/iframe.html?id=mobile-date-picker--base" title="checkbox image" height="448px" width="350px"></iframe>
 
 ---
 
