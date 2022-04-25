@@ -1,7 +1,7 @@
 ---
 id: format-setting-plugin
-title: Format setting plugin
-sidebar_label: Format setting plugin
+title: Format setting plug-in
+sidebar_label: Format setting plug-in
 ---
 
 ## 概要
