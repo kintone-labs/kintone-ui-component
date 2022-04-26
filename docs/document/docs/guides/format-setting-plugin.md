@@ -93,7 +93,7 @@ src/
 }
 ```
 
-今回はプラグイン設定画面のカスタマイズで kintone UI Component を使用するので、config オブジェクトの中に UMD ファイルのパスをを記載します。<br>
+今回はプラグイン設定画面のカスタマイズで kintone UI Component を使用するので、config オブジェクトの中に UMD ファイルのパスを記載します。<br>
 UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-start.md) をご覧ください。
 
 
