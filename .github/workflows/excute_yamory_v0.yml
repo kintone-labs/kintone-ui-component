@@ -1,11 +1,11 @@
-name: excute yamory when pushing to v0
+name: execute yamory when pushing to v0
 on:
   push:
     branches: [v0_dev]
 
 jobs:
   check_v0_dev:
-    name: excute yamory_v0_dev
+    name: execute yamory on v0_dev branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
