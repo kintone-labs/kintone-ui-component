@@ -9,7 +9,9 @@ original_id: mobile-date-picker
 
 The MobileDatePicker component allows the user to display a input area and date selection calendar.
 
-<iframe src="http://localhost:56571/iframe.html?id=mobile-date-picker--base" title="checkbox image" height="448px" width="350px"></iframe>
+<div id="sample-container__components" class="sample-container__mobile-date-picker">
+    <iframe id="iframe" src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-date-picker--base" class="iframe-mobile-date-picker" title="checkbox image" height="448px" width="465px"></iframe>
+</div>
 
 ---
 
@@ -62,7 +64,7 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const space = kintone.app.record.getSpaceElement("space");
+const space = kintone.mobile.app.record.getSpaceElement("space");
 const mobileDatePicker = new Kuc.MobileDatePicker({
   label: "Date",
   requiredIcon: true,

@@ -120,10 +120,13 @@ td[class^="kuc"] {
 .sample-container .kuc-dropdown__group {
   max-width: 180px;
 }
-.sample-container .group-mobile-date-picker td,
-div,
-th {
-  vertical-align: middle;
+.sample-container__mobile-date-picker {
+  height: 85px;
+}
+#sample-container__components .iframe-mobile-date-picker {
+  position: absolute;
+  left: 50%;
+  margin-left: -65px;
 }
 .kuc-preview {
   background-color: #f5f5f5;
