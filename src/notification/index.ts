@@ -2,13 +2,7 @@ import { html, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
-
-type NotificationProps = {
-  className?: string;
-  text?: string;
-  type?: "info" | "danger" | "success";
-  duration?: number;
-};
+import { NotificationProps } from "./type";
 
 let exportNotification;
 (() => {

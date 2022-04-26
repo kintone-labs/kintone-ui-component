@@ -5,8 +5,7 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 const componentDirectories = ['button', 'notification'];
-
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)\s|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
+const classNamePattern = /(kuc(-[a-z]+)+__)|(kuc(-[a-z]+)+\\)|(kuc(-[a-z]+)+\>)|(kuc(-[a-z]+)+\")|(kuc(-[a-z]+)+\[)|(kuc(-[a-z]+)+\s)|(kuc(-[a-z]+)+,)|(kuc(-[a-z]+)+;)/g
 const suffixs = ['\\','\>','__','\"','=',',',';',' ','\n'];
 const classNameVersion = `-${packageJSON.version.replaceAll('.','-')}`;
 
