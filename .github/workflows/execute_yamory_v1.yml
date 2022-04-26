@@ -1,4 +1,4 @@
-name: excute yamory when pushing to v1
+name: execute yamory when pushing to v1
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
     
 jobs:
   check_master:
-    name: excute yamory_master
+    name: execute yamory on master branch 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
