@@ -1,4 +1,5 @@
 {
+  "name": "document",
   "scripts": {
     "lint-md": "remark .",
     "es-lint": "node_modules/.bin/eslint website --ext .js"
