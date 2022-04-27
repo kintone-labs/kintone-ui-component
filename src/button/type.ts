@@ -1,6 +1,6 @@
 import { KucBase } from "../base/kuc-base";
 
-declare type ButtonProps = {
+export declare type ButtonProps = {
   className?: string;
   id?: string;
   text?: string;
@@ -9,7 +9,7 @@ declare type ButtonProps = {
   visible?: boolean;
 };
 // eslint-disable-next-line kuc-v1/no-describe-style-tag-inside-html
-declare class Button extends KucBase {
+export declare class Button extends KucBase {
   className: string;
   id: string;
   text: string;
@@ -22,4 +22,3 @@ declare class Button extends KucBase {
   render(): import("lit").TemplateResult<1>;
   private _getStyleTagTemplate;
 }
-export { Button };
