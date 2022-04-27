@@ -212,8 +212,7 @@ export class MobileTimePicker extends KucBase {
         }
         .kuc-base-mobile-time__group__wrapper {
           padding-left: 0.5em;
-          max-width: 80px;
-          word-wrap: break-word;
+          max-width: 10px;
         }
       </style>
     `;
