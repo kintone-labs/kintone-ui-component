@@ -3,20 +3,13 @@ import { property } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { ButtonProps } from "./type";
 let exportButton;
 (() => {
   exportButton = window.customElements.get("kuc-button");
   if (exportButton) {
     return;
   }
-  type ButtonProps = {
-    className?: string;
-    id?: string;
-    text?: string;
-    type?: "normal" | "submit" | "alert";
-    disabled?: boolean;
-    visible?: boolean;
-  };
 
   class KucButton extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
