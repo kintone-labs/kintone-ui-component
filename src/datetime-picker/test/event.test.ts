@@ -11,7 +11,7 @@ describe("DateTimePicker", () => {
       const el = await fixture(container);
       const baseDateEl = el.querySelector(
         ".kuc-datetime-picker__group__inputs--date"
-      ) as BaseDate;
+      ) as HTMLInputElement;
       baseDateEl.dispatchEvent(
         new CustomEvent("kuc:base-date-change", {
           detail: { value: "2022-01-01", oldValue: undefined }

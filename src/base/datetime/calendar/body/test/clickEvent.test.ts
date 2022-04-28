@@ -20,9 +20,12 @@ describe("BaseDateTimeCalendarBody", () => {
       container.year = InitValue.year;
       container.value = InitValue.value;
 
-      container.addEventListener("kuc:calendar-body-click-date", event => {
-        triggeredEvent = event;
-      });
+      container.addEventListener(
+        "kuc:calendar-body-click-date",
+        (event: any) => {
+          triggeredEvent = event;
+        }
+      );
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(

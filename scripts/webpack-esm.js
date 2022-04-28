@@ -4,7 +4,18 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button", "date-picker"];
+const componentDirectories = [
+  "button",
+  "date-picker",
+  "base/datetime/date",
+  "base/datetime/listbox",
+  "base/datetime/calendar",
+  "base/datetime/calendar/body",
+  "base/datetime/calendar/header",
+  "base/datetime/calendar/footer",
+  "base/datetime/calendar/header/dropdown/month",
+  "base/datetime/calendar/header/dropdown/year"
+];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)\s|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", " ", "\n"];
@@ -33,14 +44,6 @@ const replaceAllByPattern = (data, pattern, version) => {
   });
   return tempData;
 };
-const moveTypeFile = (sourcePath, targetPath) => {
-  if (fs.existsSync(targetPath)) {
-    fs.unlinkSync(targetPath);
-  }
-  if (fs.existsSync(sourcePath)) {
-    fs.copyFileSync(sourcePath, targetPath);
-  }
-};
 
 const renameTypeFile = (oldFile, newFile) => {
   if (fs.existsSync(oldFile)) {
@@ -48,17 +51,20 @@ const renameTypeFile = (oldFile, newFile) => {
   }
 };
 
+const deleteFile = file => {
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+  }
+};
+
 const addTypeFiles = sourcePaths => {
   try {
     sourcePaths.forEach(sourcePath => {
-      moveTypeFile(
-        path.resolve(__dirname, `../src/${sourcePath}/type.d.ts`),
-        path.resolve(__dirname, `../lib/${sourcePath}/index.d.ts`)
-      );
       renameTypeFile(
         path.resolve(__dirname, `../lib/${sourcePath}/type.d.ts`),
         path.resolve(__dirname, `../lib/${sourcePath}/index.d.ts`)
       );
+      deleteFile(path.resolve(__dirname, `../lib/${sourcePath}/type.js`));
     });
   } catch (error) {
     console.log(error);

@@ -6,9 +6,12 @@ describe("BaseDateTimeCalendarFooter", () => {
     it("should do nothing when pressing not handled key", async () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendarFooter();
-      container.addEventListener("kuc:calendar-footer-click-none", event => {
-        triggeredEvent = event.type;
-      });
+      container.addEventListener(
+        "kuc:calendar-footer-click-none",
+        (event: any) => {
+          triggeredEvent = event.type;
+        }
+      );
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
@@ -23,9 +26,12 @@ describe("BaseDateTimeCalendarFooter", () => {
     it("should do nothing when pressing Shift key", async () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendarFooter();
-      container.addEventListener("kuc:calendar-footer-click-none", event => {
-        triggeredEvent = event.type;
-      });
+      container.addEventListener(
+        "kuc:calendar-footer-click-none",
+        (event: any) => {
+          triggeredEvent = event.type;
+        }
+      );
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(

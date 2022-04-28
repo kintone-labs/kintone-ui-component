@@ -33,7 +33,7 @@ describe("BaseDateTimeListBox", () => {
         { value: "2", label: "MARCH" }
       ];
       const container = new BaseDateTimeListBox();
-      container.addEventListener("kuc:listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", (event: any) => {
         triggeredEvent = event;
       });
       container.items = initItems;
@@ -59,7 +59,7 @@ describe("BaseDateTimeListBox", () => {
         { value: "2", label: "MARCH" }
       ];
       const container = new BaseDateTimeListBox();
-      container.addEventListener("kuc:listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", (event: any) => {
         triggeredEvent = event;
       });
       container.items = initItems;
@@ -88,7 +88,7 @@ describe("BaseDateTimeListBox", () => {
         { value: "2", label: "MARCH" }
       ];
       const container = new BaseDateTimeListBox();
-      container.addEventListener("kuc:listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", (event: any) => {
         triggeredEvent = event;
       });
       container.items = initItems;
