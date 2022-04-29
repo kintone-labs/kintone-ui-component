@@ -1,6 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { state, property, query } from "lit/decorators.js";
-import { BaseDateTimeCalendar } from "../calendar/type";
+import { BaseDateTimeCalendar } from "../calendar";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
