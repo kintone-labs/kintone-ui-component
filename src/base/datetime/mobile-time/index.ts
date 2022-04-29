@@ -265,7 +265,7 @@ export class BaseMobileTime extends KucBase {
         }
         .kuc-base-mobile-time__group__hours,
         .kuc-base-mobile-time__group__minutes {
-          font-size: 14px;
+          font-size: 99%;
           border: none;
           border-radius: 5.6px;
           -webkit-appearance: none;
