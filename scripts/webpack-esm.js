@@ -75,11 +75,21 @@ const main = async () => {
           .readFileSync(path.resolve(__dirname, `../lib/${item}/index.js`))
           .toString();
         data = replaceAllByPattern(data, classNamePattern, classNameVersion);
-        console.log(data);
         fs.writeFileSync(
           path.resolve(__dirname, `../lib/${item}/index.js`),
           data
         );
+
+        const cssFilePath = path.resolve(__dirname, `../src/${item}/index.css`)
+        const isExist = fs.existsSync(cssFilePath);
+        if(isExist) {
+          let cssContent = fs.readFileSync(cssFilePath).toString();
+          cssContent = replaceAllByPattern(cssContent, classNamePattern, classNameVersion);
+          fs.writeFileSync(
+            path.resolve(__dirname, `../lib/${item}/index.css`),
+            cssContent
+          );
+        }
       });
       addTypeFiles(componentDirectories);
     }
