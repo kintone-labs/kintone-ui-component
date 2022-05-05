@@ -113,7 +113,6 @@ describe("MobileCheckbox", () => {
       await elementUpdated(el);
 
       expect(inputsEl.length).to.equal(3);
-      console.log("inputsEl", inputsEl);
       expect((inputsEl[0] as HTMLInputElement).checked).to.equal(false);
       expect((inputsEl[1] as HTMLInputElement).checked).to.equal(false);
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(false);
