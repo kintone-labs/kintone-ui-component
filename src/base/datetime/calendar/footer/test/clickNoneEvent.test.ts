@@ -6,9 +6,12 @@ describe("BaseDateTimeCalendarFooter", () => {
     it("should be triggered kuc:calendar-footer-click-none event", async () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendarFooter();
-      container.addEventListener("kuc:calendar-footer-click-none", event => {
-        triggeredEvent = event.type;
-      });
+      container.addEventListener(
+        "kuc:calendar-footer-click-none",
+        (event: any) => {
+          triggeredEvent = event.type;
+        }
+      );
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(

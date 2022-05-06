@@ -4,7 +4,18 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button"];
+const componentDirectories = [
+  "button",
+  "date-picker",
+  "base/datetime/date",
+  "base/datetime/listbox",
+  "base/datetime/calendar",
+  "base/datetime/calendar/header",
+  "base/datetime/calendar/header/dropdown/month",
+  "base/datetime/calendar/header/dropdown/year",
+  "base/datetime/calendar/body",
+  "base/datetime/calendar/footer"
+];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)\s|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", " ", "\n"];
@@ -12,7 +23,7 @@ const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
 const getChangedValue = (str, version) => {
   let changedValue = str;
-  suffixs.forEach((suffix) => {
+  suffixs.forEach(suffix => {
     if (changedValue.indexOf(suffix) !== -1) {
       changedValue = changedValue.replace(suffix, version + suffix);
       return true;
@@ -24,7 +35,7 @@ const getChangedValue = (str, version) => {
 const replaceAllByPattern = (data, pattern, version) => {
   let tempData = data;
   const matchedValues = Array.from(new Set(data.match(pattern)));
-  matchedValues.forEach((matchedValue) => {
+  matchedValues.forEach(matchedValue => {
     // ignore the base file "base/kuc-base"
     const tempChangedValue =
       matchedValue === 'kuc-base"'
@@ -44,15 +55,15 @@ const renameTypeFile = (oldFile, newFile) => {
   }
 };
 
-const deleteFile = (file) => {
+const deleteFile = file => {
   if (fs.existsSync(file)) {
     fs.unlinkSync(file);
   }
 };
 
-const addTypeFiles = (sourcePaths) => {
+const addTypeFiles = sourcePaths => {
   try {
-    sourcePaths.forEach((sourcePath) => {
+    sourcePaths.forEach(sourcePath => {
       renameTypeFile(
         path.resolve(__dirname, `../lib/${sourcePath}/type.d.ts`),
         path.resolve(__dirname, `../lib/${sourcePath}/index.d.ts`)
@@ -80,13 +91,17 @@ const main = async () => {
           data
         );
 
-        const cssFilePath = path.resolve(__dirname, `../src/${item}/index.css`)
+        const cssFilePath = path.resolve(__dirname, `../src/${item}/style.ts`);
         const isExist = fs.existsSync(cssFilePath);
-        if(isExist) {
+        if (isExist) {
           let cssContent = fs.readFileSync(cssFilePath).toString();
-          cssContent = replaceAllByPattern(cssContent, classNamePattern, classNameVersion);
+          cssContent = replaceAllByPattern(
+            cssContent,
+            classNamePattern,
+            classNameVersion
+          );
           fs.writeFileSync(
-            path.resolve(__dirname, `../lib/${item}/index.css`),
+            path.resolve(__dirname, `../lib/${item}/style.js`),
             cssContent
           );
         }

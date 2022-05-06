@@ -18,12 +18,12 @@ describe("BaseDateTimeCalendarHeader", () => {
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-header-year__toggle__label"
       ) as HTMLSpanElement;
-      const optionMonthEl = el.querySelector(
+      const optionYearEl = el.querySelector(
         ".kuc-base-datetime-header-year__listbox"
       ) as HTMLUListElement;
 
       expect(yearSelectEl.innerText).to.equal("2021");
-      expect(optionMonthEl.children[1].children.length).to.equal(201);
+      expect(optionYearEl.children[0].children.length).to.equal(201);
     });
 
     it("should be 2022 when assigning 2022 by setter", async () => {
