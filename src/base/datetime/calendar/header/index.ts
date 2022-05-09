@@ -7,7 +7,7 @@ import {
 } from "../../../kuc-base";
 import "../../calendar/header/dropdown/year";
 import "../../calendar/header/dropdown/month";
-import { BaseDateTimeListBox } from "../../listbox";
+import { BaseDateTimeListBox } from "../../listbox/type";
 import {
   getLeftArrowIconSvgTemplate,
   getRightArrowIconSvgTemplate,

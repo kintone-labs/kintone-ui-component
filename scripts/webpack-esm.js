@@ -4,7 +4,12 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button"];
+const componentDirectories = [
+  "button",
+  "time-picker",
+  "base/datetime/time",
+  "base/datetime/listbox"
+];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)\s|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", " ", "\n"];

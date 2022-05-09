@@ -13,7 +13,7 @@ describe("BaseDateTimeListBox", () => {
 
       const container = new BaseDateTimeListBox();
       container.items = initItems;
-      container.addEventListener("kuc:listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", (event: any) => {
         triggeredEvent = event;
       });
 
@@ -39,7 +39,7 @@ describe("BaseDateTimeListBox", () => {
 
       const container = new BaseDateTimeListBox();
       container.items = initItems;
-      container.addEventListener("kuc:listbox-click", event => {
+      container.addEventListener("kuc:listbox-click", (event: any) => {
         triggeredEvent = event;
       });
 
