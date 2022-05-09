@@ -94,8 +94,6 @@ const main = async () => {
             path.resolve(__dirname, `../lib/${item}/style.js`),
             cssContent
           );
-        } else {
-          console.log("k coooooooo");
         }
       });
       addTypeFiles(componentDirectories);
