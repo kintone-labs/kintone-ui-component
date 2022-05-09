@@ -1,10 +1,14 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
-import { KucBase, dispatchCustomEvent } from "../base/kuc-base";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  createStyleOnHeader
+} from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import { ButtonProps } from "./type";
-import "./index.css";
+import { BUTTON_CSS } from "./style";
 
 let exportButton;
 (() => {
@@ -64,6 +68,7 @@ let exportButton;
     }
   }
   window.customElements.define("kuc-button", KucButton);
+  createStyleOnHeader(BUTTON_CSS);
   exportButton = KucButton;
 })();
 const Button = exportButton as any;
