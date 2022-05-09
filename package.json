@@ -31,8 +31,8 @@
     "build:esm": "tsc -p tsconfig.esm.json && node ./scripts/webpack-esm.js",
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
-    "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && node ./scripts/unit_test.js && karma start --coverage",
-    "es-lint": "node_modules/.bin/eslint \"src/**/**{.ts,.js}\""
+    "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && karma start --coverage",
+    "es-lint": "node_modules/.bin/eslint \"src/**\""
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
