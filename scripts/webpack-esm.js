@@ -58,6 +58,7 @@ const addTypeFiles = sourcePaths => {
         path.resolve(__dirname, `../lib/${sourcePath}/index.d.ts`)
       );
       deleteFile(path.resolve(__dirname, `../lib/${sourcePath}/type.js`));
+      deleteFile(path.resolve(__dirname, `../lib/${sourcePath}/style.d.ts`));
     });
   } catch (error) {
     console.log(error);
@@ -93,6 +94,8 @@ const main = async () => {
             path.resolve(__dirname, `../lib/${item}/style.js`),
             cssContent
           );
+        } else {
+          console.log("k coooooooo");
         }
       });
       addTypeFiles(componentDirectories);
