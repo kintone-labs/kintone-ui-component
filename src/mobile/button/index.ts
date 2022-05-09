@@ -12,7 +12,7 @@ import { MOBILE_BUTTON_CSS } from "./style";
 
 let exportMobileButton;
 (() => {
-  exportMobileButton = window.customElements.get("kuc-button");
+  exportMobileButton = window.customElements.get("kuc-mobile-button");
   if (exportMobileButton) {
     return;
   }
