@@ -12,5 +12,9 @@ original_id: release-notes
 
 ## アップデート内容
 ### 不具合修正
-- DateTimePicker と TimePicker コンポーネントで、変更された値を `value` プロパティで取得できるように修正
+- DateTimePicker, DatePicker, TimePicker コンポーネントで、変更された値を `value` プロパティと change イベントオブジェクトで取得できるように修正
+- DatePicker と DateTimePicker コンポーネントで、UI 上で入力をクリアするときに `value` が空文字となるように修正
 - Mobile コンポーネントのラベルのフォントサイズを修正
+- Dropdown コンポーネントで、Escape キーを押した時にリストを閉じることができるように修正
+- 選択肢系コンポーネントと date/time シリーズコンポーネントで、無効な値から有効な値に変更した後にエラーが表示されないように修正
+- 選択肢系コンポーネントで、セッターによって空文字または空配列を `value` プロパティに設定するときに UI に反映できるように修正

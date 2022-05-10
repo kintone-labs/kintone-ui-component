@@ -26,7 +26,7 @@ MobileRadioButton は、複数選択肢の中から一つの値を選択する�
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | value | string | "" | 選択されている値 | value が未指定の場合、何も選択されない |
-| borderVisible | boolean | false | コンポーネントの境界線表示/非表示設定 ||
+| borderVisible | boolean | true | コンポーネントの境界線表示/非表示設定 ||
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
@@ -77,7 +77,8 @@ const mobileRadioButton = new Kuc.MobileRadioButton({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
 space.appendChild(mobileRadioButton);
 

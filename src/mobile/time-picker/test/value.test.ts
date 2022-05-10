@@ -47,6 +47,38 @@ describe("MobileTimePicker", () => {
       expect(selectMinuteEl.value).to.be.equal("15");
     });
 
+    it("should be empty value and UI when set undefined in constructor", async () => {
+      const container = new MobileTimePicker({ value: undefined });
+      const el = await fixture(container);
+      const selectHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
+      const selectMinuteEl = el.querySelector(
+        ".kuc-base-mobile-time__group__minutes"
+      ) as HTMLSelectElement;
+
+      expect(selectHourEl.value).to.be.equal("");
+      expect(selectMinuteEl.value).to.be.equal("");
+      expect(container.value).to.be.equal("");
+    });
+
+    it("should be undefined value and empty on UI when assigned undefined by setter", async () => {
+      const container = new MobileTimePicker({ value: "13:15" });
+      const el = await fixture(container);
+      container.value = undefined;
+      await elementUpdated(container);
+      const selectHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
+      const selectMinuteEl = el.querySelector(
+        ".kuc-base-mobile-time__group__minutes"
+      ) as HTMLSelectElement;
+
+      expect(selectHourEl.value).to.be.equal("");
+      expect(selectMinuteEl.value).to.be.equal("");
+      expect(container.value).to.be.equal(undefined);
+    });
+
     it("should throw error when set invalid value", async () => {
       const container = new MobileTimePicker({ value: "12:234" });
       try {

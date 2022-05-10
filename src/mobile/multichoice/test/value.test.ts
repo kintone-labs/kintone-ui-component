@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { MobileMultiChoice } from "../index";
 
 describe("MobileMultiChoice", () => {
@@ -60,6 +60,26 @@ describe("MobileMultiChoice", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl.length).to.be.equal(3);
+      expect(itemsEl[0].getAttribute("selected")).to.be.equal(null);
+      expect(itemsEl[1].getAttribute("selected")).to.be.equal(null);
+      expect(itemsEl[2].getAttribute("selected")).to.be.equal(null);
+    });
+
+    it("should be emtpy array when set [] by setter", async () => {
+      const container = new MobileMultiChoice({
+        label: "Orange",
+        requiredIcon: false,
+        items: initItems,
+        value: [initItems[1].value]
+      });
+      const el = await fixture(container);
+      container.value = [];
+      await elementUpdated(el);
+      expect(container.value).to.deep.equal([]);
+
+      const itemsEl = el.getElementsByTagName("option");
+
       expect(itemsEl.length).to.be.equal(3);
       expect(itemsEl[0].getAttribute("selected")).to.be.equal(null);
       expect(itemsEl[1].getAttribute("selected")).to.be.equal(null);

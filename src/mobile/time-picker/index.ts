@@ -8,7 +8,11 @@ import {
   generateGUID,
   KucBase
 } from "../../base/kuc-base";
-import { validateProps, validateTimeValue } from "../../base/validator";
+import {
+  throwErrorAfterUpdateComplete,
+  validateProps,
+  validateTimeValue
+} from "../../base/validator";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
@@ -31,7 +35,16 @@ export class MobileTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
-  @property({ type: String }) value? = "";
+  @property({
+    type: String,
+    hasChanged(newVal: string, oldVal: string) {
+      if ((newVal === "" || newVal === undefined) && newVal === oldVal) {
+        return true;
+      }
+      return newVal !== oldVal;
+    }
+  })
+  value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -42,9 +55,16 @@ export class MobileTimePicker extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+
   private _GUID: string;
+
   @state()
-  private _inputValue!: string;
+  private _inputValue: string = "";
+
+  @state()
+  private _errorFormat = "";
+
+  private _isSelectError = false;
 
   constructor(props?: MobileTimePickerProps) {
     super();
@@ -53,12 +73,28 @@ export class MobileTimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (this.value === undefined || this.value === "") return true;
+    if (!validateTimeValue(this.value)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+    return true;
+  }
+
+  willUpdate(): void {
+    if (this.value === undefined || this.value === "") return;
+    this.value = timeValueConverter(this.value);
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("value") && this.value) {
-      if (!validateTimeValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
+    if (changedProperties.has("value") && !this._isSelectError) {
+      if (this.value === undefined) {
+        this._inputValue = "";
+      } else {
+        this._inputValue = this.value || "";
       }
-      this.value = timeValueConverter(this.value);
+      this._errorFormat = "";
     }
     super.update(changedProperties);
   }
@@ -90,21 +126,15 @@ export class MobileTimePicker extends KucBase {
         </div>
         <kuc-base-mobile-error
           .guid="${this._GUID}"
-          .text="${this.error}"
+          .text="${this._errorFormat || this.error}"
           ariaLive="assertive"
         ></kuc-base-mobile-error>
       </div>
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    this._updateInputValue();
-    super.update(changedProperties);
-  }
-
-  private _updateInputValue() {
-    if (this.value === undefined) return;
-    this._inputValue = this.value;
+  updated() {
+    this._isSelectError = false;
   }
 
   private _handleTimeChange(event: CustomEvent) {
@@ -114,14 +144,22 @@ export class MobileTimePicker extends KucBase {
       value: event.detail.value,
       oldValue: this.value
     };
+    this._inputValue = event.detail.value;
     if (event.detail.error) {
-      this.error = event.detail.error;
+      this._isSelectError = true;
+      this._errorFormat = event.detail.error;
       this.value = undefined;
       detail.value = undefined;
+      this.error = "";
       dispatchCustomEvent(this, "change", detail);
       return;
     }
-    this.error = "";
+    const theSameValue = event.detail.value === this.value;
+    if (!theSameValue) {
+      this.error = "";
+    }
+    this._isSelectError = false;
+    this._errorFormat = "";
     this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
@@ -160,8 +198,6 @@ export class MobileTimePicker extends KucBase {
         kuc-mobile-time-picker[hidden] {
           display: none;
         }
-        .kuc-mobile-time-picker__group {
-        }
         .kuc-mobile-time-picker__group__label {
           display: inline-block;
           font-size: 86%;
@@ -176,8 +212,7 @@ export class MobileTimePicker extends KucBase {
         }
         .kuc-base-mobile-time__group__wrapper {
           padding-left: 0.5em;
-          max-width: 80px;
-          word-wrap: break-word;
+          max-width: 10px;
         }
       </style>
     `;

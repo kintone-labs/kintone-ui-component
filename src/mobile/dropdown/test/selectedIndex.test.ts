@@ -47,12 +47,42 @@ describe("MobileDropdown", () => {
         items: initItems,
         selectedIndex: 1
       });
+      container.value = "apple";
       container.selectedIndex = 2;
       const el = await fixture(container);
       const itemsEl = el.querySelector(
         ".kuc-mobile-dropdown__input-form__select__input"
       ) as HTMLSelectElement;
       expect(itemsEl.selectedIndex).to.be.equal(2);
+    });
+
+    it("should be none checked items when not assinged on constructor", async () => {
+      const container = new MobileDropdown({ items: initItems });
+      const el = await fixture(container);
+      expect(container.selectedIndex).to.be.equal(-1);
+      expect(container.value).to.be.equal("");
+
+      const inputsEl = el.getElementsByTagName("option");
+      expect(inputsEl.length).to.equal(3);
+      expect((inputsEl[0] as HTMLOptionElement).selected).to.equal(false);
+      expect((inputsEl[1] as HTMLOptionElement).selected).to.equal(false);
+      expect((inputsEl[2] as HTMLOptionElement).selected).to.equal(false);
+    });
+
+    it("should be checked items when assinged on constructor", async () => {
+      const container = new MobileDropdown({
+        items: initItems,
+        selectedIndex: 1
+      });
+      const el = await fixture(container);
+      expect(container.selectedIndex).to.be.equal(1);
+      expect(container.value).to.be.equal(initItems[1].value);
+
+      const inputsEl = el.getElementsByTagName("option");
+      expect(inputsEl.length).to.equal(3);
+      expect((inputsEl[0] as HTMLOptionElement).selected).to.equal(false);
+      expect((inputsEl[1] as HTMLOptionElement).selected).to.equal(true);
+      expect((inputsEl[2] as HTMLOptionElement).selected).to.equal(false);
     });
   });
 });

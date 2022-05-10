@@ -27,7 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value *1 | string | ""  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number |
 | selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not a number |
-| BorderVisible | Boolean | False | Show/Hide the border | |
+| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
@@ -91,7 +91,8 @@ const radioButton = new Kuc.RadioButton({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
 space.appendChild(radioButton);
 

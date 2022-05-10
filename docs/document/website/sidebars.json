@@ -27,6 +27,7 @@
         "ids": [
           "components/mobile/mobile-button",
           "components/mobile/mobile-checkbox",
+          "components/mobile/mobile-date-picker",
           "components/mobile/mobile-dropdown",
           "components/mobile/mobile-multichoice",
           "components/mobile/mobile-notification",
@@ -36,9 +37,7 @@
         ]
       }
     ],
-    "Utilities": [
-      "utilities/version"
-    ],
+    "Utilities": ["utilities/version"],
     "Guides": [
       "guides/comparison-v0-v1",
       "guides/search-box-customization",
@@ -50,6 +49,7 @@
   "release-notes": {
     "Releases": [
       "releases/release-notes",
+      "releases/release-notes-v1.3.2",
       "releases/release-notes-v1.3.1",
       "releases/release-notes-v1.3.0",
       "releases/release-notes-v1.2.0",
