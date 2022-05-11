@@ -39,6 +39,7 @@ export function validateTimeStep(timeStep: number, max: string, min: string) {
   const minMinutes = convertTimeValueToMinutes(min);
 
   return (
+    typeof timeStep === "number" &&
     !isNaN(_tempTimeStep) &&
     _tempTimeStep > 0 &&
     _tempTimeStep <= maxMinutes - minMinutes
