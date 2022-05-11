@@ -6,12 +6,8 @@ import {
   CustomEventDetail,
   createStyleOnHeader
 } from "../../kuc-base";
+import { ListBoxItem } from "./type";
 import { LISTBOX_CSS } from "./style";
-
-export type Item = {
-  label?: string;
-  value?: string;
-};
 
 let exportBaseDateTimeListBox;
 (() => {
@@ -24,7 +20,7 @@ let exportBaseDateTimeListBox;
 
   class KucBaseDateTimeListBox extends KucBase {
     @property({ type: String }) value: string = "";
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: ListBoxItem[] = [];
     @property({ type: Number }) maxHeight = 300;
     @property({ type: Boolean }) doFocus = true;
 
@@ -344,7 +340,7 @@ let exportBaseDateTimeListBox;
       return liEl;
     }
 
-    private _getListBoxItemTemplate(item: Item) {
+    private _getListBoxItemTemplate(item: ListBoxItem) {
       const isSelected = this.value === item.value && this.doFocus;
       return html`
         <li
