@@ -1,6 +1,6 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
-export declare type Item = {
+export declare type RadioButtonItem = {
   label?: string;
   value?: string;
 };
@@ -16,7 +16,7 @@ export declare type RadioButtonProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  items?: Item[];
+  items?: RadioButtonItem[];
 };
 export declare class RadioButton extends KucBase {
   className: string;
@@ -30,7 +30,7 @@ export declare class RadioButton extends KucBase {
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  items: Item[];
+  items: RadioButtonItem[];
   constructor(props?: RadioButtonProps);
   shouldUpdate(changedProperties: PropertyValues): boolean;
   willUpdate(changedProperties: PropertyValues): void;

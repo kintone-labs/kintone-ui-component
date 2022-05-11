@@ -17,7 +17,7 @@ import {
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
-import { RadioButtonProps, Item } from "./type";
+import { RadioButtonProps, RadioButtonItem } from "./type";
 import { RADIOBUTTON_CSS } from "./style";
 
 let exportRadioButton;
@@ -46,7 +46,7 @@ let exportRadioButton;
       converter: visiblePropConverter
     })
     visible = true;
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: RadioButtonItem[] = [];
 
     @query(".kuc-radio-button__group__label")
     private _labelEl!: HTMLDivElement;
@@ -167,12 +167,12 @@ let exportRadioButton;
     `;
     }
 
-    private _isCheckedItem(item: Item, index: number) {
+    private _isCheckedItem(item: RadioButtonItem, index: number) {
       if (!this.value) return this.selectedIndex === index;
       return item.value === this.value && this.selectedIndex === index;
     }
 
-    private _getItemTemplate(item: Item, index: number) {
+    private _getItemTemplate(item: RadioButtonItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <div
@@ -207,7 +207,11 @@ let exportRadioButton;
       `;
     }
 
-    private _getTabIndex(index: number, currentItem: Item, items: Item[]) {
+    private _getTabIndex(
+      index: number,
+      currentItem: RadioButtonItem,
+      items: RadioButtonItem[]
+    ) {
       if (
         index === 0 &&
         items.filter(item => item.value === this.value).length === 0
