@@ -15,7 +15,7 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckboxProps, Item } from "./type";
+import { CheckboxProps, CheckboxItem } from "./type";
 import { CHECKBOX_CSS } from "./style";
 
 type ValueMapping = {
@@ -47,7 +47,7 @@ let exportCheckbox;
       converter: visiblePropConverter
     })
     visible = true;
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: CheckboxItem[] = [];
     @property({ type: Array }) selectedIndex: number[] = [];
     @property({ type: Array }) value: string[] = [];
 
@@ -199,7 +199,7 @@ let exportCheckbox;
       return "#d8d8d8";
     }
 
-    private _isCheckedItem(item: Item, index: number) {
+    private _isCheckedItem(item: CheckboxItem, index: number) {
       const values = Object.values(this._valueMapping);
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
@@ -209,7 +209,7 @@ let exportCheckbox;
       return result.length > 0;
     }
 
-    private _getItemTemplate(item: Item, index: number) {
+    private _getItemTemplate(item: CheckboxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <div
