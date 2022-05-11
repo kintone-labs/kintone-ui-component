@@ -1,7 +1,7 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
-export declare type Item = {
+export declare type MultiChoiceItem = {
   label?: string;
   value?: string;
 };
@@ -15,7 +15,7 @@ export declare type MultiChoiceProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  items?: Item[];
+  items?: MultiChoiceItem[];
 };
 export declare class MultiChoice extends KucBase {
   className: string;
@@ -25,7 +25,7 @@ export declare class MultiChoice extends KucBase {
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  items: Item[];
+  items: MultiChoiceItem[];
   selectedIndex: number[];
   value: string[];
   constructor(props?: MultiChoiceProps);

@@ -15,7 +15,7 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { MultiChoiceProps, Item } from "./type";
+import { MultiChoiceProps, MultiChoiceItem } from "./type";
 import { MULTICHOICE_CSS } from "./style";
 
 type ValueMapping = {
@@ -44,7 +44,7 @@ let exportMultiChoice;
       converter: visiblePropConverter
     })
     visible = true;
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: MultiChoiceItem[] = [];
     @property({ type: Array }) selectedIndex: number[] = [];
     @property({ type: Array }) value: string[] = [];
 
@@ -360,7 +360,7 @@ let exportMultiChoice;
         }`;
     }
 
-    private _isCheckedItem(item: Item, index: number) {
+    private _isCheckedItem(item: MultiChoiceItem, index: number) {
       const values = Object.values(this._valueMapping);
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
@@ -370,7 +370,7 @@ let exportMultiChoice;
       return result.length > 0;
     }
 
-    private _getMenuItemTemplate(item: Item, index: number) {
+    private _getMenuItemTemplate(item: MultiChoiceItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <div
