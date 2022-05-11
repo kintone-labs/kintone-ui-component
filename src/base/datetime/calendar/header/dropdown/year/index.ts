@@ -6,7 +6,7 @@ import {
   dispatchCustomEvent,
   createStyleOnHeader
 } from "../../../../../kuc-base";
-import { Item } from "../../../../listbox";
+import { ListBoxItem } from "../../../../listbox/type";
 import {
   getToggleIconSvgTemplate,
   setListBoxPosition,
@@ -30,7 +30,7 @@ let exportBaseDateTimeHeaderYear;
     @state()
     private _listBoxVisible = false;
 
-    private _listBoxItems: Item[] | undefined;
+    private _listBoxItems: ListBoxItem[] | undefined;
 
     @query(".kuc-base-datetime-header-year__toggle")
     private _toggleEl!: HTMLButtonElement;
@@ -54,7 +54,7 @@ let exportBaseDateTimeHeaderYear;
 
     update(changedProperties: PropertyValues) {
       this._listBoxItems = this._getYearOptions().map((year: number) => {
-        const item: Item = {
+        const item: ListBoxItem = {
           value: `${year}`,
           label: `${year}${this.postfix}`
         };

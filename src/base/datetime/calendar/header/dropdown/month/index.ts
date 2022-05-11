@@ -6,7 +6,7 @@ import {
   CustomEventDetail,
   createStyleOnHeader
 } from "../../../../../kuc-base";
-import { Item } from "../../../../listbox";
+import { ListBoxItem } from "../../../../listbox/type";
 import {
   getToggleIconSvgTemplate,
   getLocale,
@@ -32,7 +32,7 @@ let exportBaseDateTimeHeaderMonth;
     private _listBoxVisible = false;
     private _locale = getLocale("en");
     private _monthLabel = "";
-    private _listBoxItems: Item[] | undefined;
+    private _listBoxItems: ListBoxItem[] | undefined;
     private _maxHeight = 1000;
 
     @query(".kuc-base-datetime-header-month__toggle")
@@ -193,7 +193,7 @@ let exportBaseDateTimeHeaderMonth;
 
     private _getListBoxItems() {
       return this._locale.MONTH_SELECT.map((month: string, index: number) => {
-        const item: Item = {
+        const item: ListBoxItem = {
           value: `${index + 1}`,
           label: `${month}`
         };
