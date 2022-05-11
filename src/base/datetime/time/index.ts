@@ -17,8 +17,9 @@ import {
   formatTimeValueToInputValue,
   formatInputValueToTimeValue
 } from "../utils";
+import { ListBoxItem } from "../listbox/type";
 
-import { BaseDateTimeListBox, Item } from "../listbox";
+import { BaseDateTimeListBox } from "../listbox";
 export { BaseDateTimeListBox };
 
 type Time = {
@@ -61,7 +62,7 @@ export class BaseTime extends KucBase {
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
 
-  private _listBoxItems: Item[] | undefined;
+  private _listBoxItems: ListBoxItem[] | undefined;
 
   @query(".kuc-base-time__group__hours")
   private _hoursEl!: HTMLInputElement;
