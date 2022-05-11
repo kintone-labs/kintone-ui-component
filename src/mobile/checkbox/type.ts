@@ -1,6 +1,9 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
 
+export declare type MobileCheckboxItem = { label?: string; value?: string };
+export declare type MobileCheckboxValueMapping = { [key: number]: string };
+
 export declare type MobileCheckboxProps = {
   className?: string;
   error?: string;
@@ -10,18 +13,9 @@ export declare type MobileCheckboxProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  items?: Item[];
+  items?: MobileCheckboxItem[];
   value?: string[];
   selectedIndex?: number[];
-};
-
-export declare type Item = {
-  label?: string;
-  value?: string;
-};
-
-export declare type ValueMapping = {
-  [key: number]: string;
 };
 
 // eslint-disable-next-line kuc-v1/no-describe-style-tag-inside-html
@@ -34,7 +28,7 @@ export declare class MobileCheckbox extends KucBase {
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  items: Item[];
+  items: MobileCheckboxItem[];
   selectedIndex: number[];
   value: string[];
   constructor(props?: MobileCheckboxProps);

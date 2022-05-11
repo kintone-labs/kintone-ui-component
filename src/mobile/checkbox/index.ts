@@ -14,7 +14,11 @@ import {
   validateSelectedIndexArray,
   throwErrorAfterUpdateComplete
 } from "../../base/validator";
-import { MobileCheckboxProps, Item, ValueMapping } from "./type";
+import {
+  MobileCheckboxProps,
+  MobileCheckboxItem,
+  MobileCheckboxValueMapping
+} from "./type";
 import { MOBILE_CHECKBOX_CSS } from "./style";
 import { ERROR_MESSAGE } from "../../base/constant";
 
@@ -40,7 +44,7 @@ let exportMobileCheckbox;
       converter: visiblePropConverter
     })
     visible = true;
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: MobileCheckboxItem[] = [];
     @property({ type: Array }) selectedIndex: number[] = [];
     @property({ type: Array }) value: string[] = [];
 
@@ -49,7 +53,7 @@ let exportMobileCheckbox;
     private _GUID: string;
 
     @state()
-    private _valueMapping: ValueMapping = {};
+    private _valueMapping: MobileCheckboxValueMapping = {};
 
     constructor(props?: MobileCheckboxProps) {
       super();
@@ -133,7 +137,7 @@ let exportMobileCheckbox;
       return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAiCAQAAACOh/P6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElN RQfkCQcFIRBGJW6QAAACvklEQVRIx6XWQZKbRhSA4Z8GBhACenwC5wZUypXKMlRlmUVcXrtKHMEn meQEUmWfmnHZe65ATpDcIA3MMGKEhBdgGRAaWZqnjarp94H6PTWtNWg0tPEX54fARNzwT72qed8b Ny6weqFzhbO0Fg1rHlf9Ky+CdSw5X3q/O+x4WAro0S+ADSw5T4LQw6LBRFt+5rc9LV7CeokMA1xs bOYE+MvPixfCBpb0ExkGzDDR0bFG9EVwywahzwwDAWiIPf1pcSHcZ/U90NIuHrObv+UF8DTb0hoG utKjd+qgKzSA/R9mirWlN8lCw5Yn9RT9kh4shc6VtJdXUp9ENQzs18fZmkrdR2/Sr4/QC+e1dWuG m3AdVaqeYJ3QS3zp4xxhi+jHdD//215xF84TV17xRJEWI7pl/SSQ8wl2x5a1uu+xvaW4C/3kWl4T IJGhn1jSGLCz0E+k9HC6Bhuyj2nxg0r7o92cj13aDBsXn6BHt6yXSOlhY3QFHrJ59L/KOIA/9tJ0 dGYdbUsD0WOtSbZMs0ipnMcxfDtKE+jMCJBh8K8b2rgn2DzKVM6aYbkNcG496Q7SBOAAQhpJ/cG8 8eT8BFsx7iIBRmSmBmKQJtBx8HklXy2vL2BBwK//raNNumM3umBg4xFwrGTPsV3xflZ5VKbbEa2h Y2Jhoh+w9Ql2324/HaEFYrRIsGNDedd2wjEWxNctZ5o+jB0bylX2VqniGXawCX0PvWPDwyqLFcVB gx2FITtBt2weKwoqts/+sgGcd3Q9SX9j70+yI7giR6ksKu82B/SQPVWJEVxTUaBU9rZcDelz2YNX U03TfuIGd2F29z2fnTgJbaloaCAGd2Gitewf+YfsDHbyiLWlar/EMFvobCjjfJXxcAZ75Oy26+gm 3mIuqrhYZTyexR49FLZ0wyY2/qzSkpKns1jQmrOmf398ARuVc7WA4gOtAAAAJXRFWHRkYXRlOmNy ZWF0ZQAyMDIwLTA5LTA3VDA1OjMzOjE2KzAwOjAw76ZY7wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAy MC0wOS0wN1QwNTozMzoxNiswMDowMJ774FMAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh ZHlxyWU8AAAAAElFTkSuQmCC";
     }
 
-    private _isCheckedItem(item: Item, index: number) {
+    private _isCheckedItem(item: MobileCheckboxItem, index: number) {
       const values = Object.values(this._valueMapping);
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
@@ -143,7 +147,7 @@ let exportMobileCheckbox;
       return result.length > 0;
     }
 
-    private _getItemTemplate(item: Item, index: number) {
+    private _getItemTemplate(item: MobileCheckboxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <label
@@ -285,7 +289,7 @@ let exportMobileCheckbox;
 
       const itemsValue = _items.map(item => item.value || "");
       const itemsMapping = Object.assign({}, itemsValue);
-      const result: ValueMapping = {};
+      const result: MobileCheckboxValueMapping = {};
       if (_value.length === 0) {
         const value = this._getValidValue(itemsMapping, _selectedIndex);
         _selectedIndex.forEach((key, i) => (result[key] = value[i]));
@@ -297,7 +301,7 @@ let exportMobileCheckbox;
     }
 
     private _getValidValue(
-      itemsMapping: ValueMapping,
+      itemsMapping: MobileCheckboxValueMapping,
       _selectedIndex: number[]
     ) {
       return _selectedIndex
@@ -305,7 +309,7 @@ let exportMobileCheckbox;
         .map(item => itemsMapping[item]);
     }
 
-    private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    private _getValidSelectedIndex(itemsMapping: MobileCheckboxValueMapping) {
       const validSelectedIndex: number[] = [];
       for (let i = 0; i < this.value.length; i++) {
         const selectedIndex = this.selectedIndex[i];
