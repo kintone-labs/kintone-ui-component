@@ -1,11 +1,11 @@
 import { KucBase } from "../../kuc-base";
-export declare type Item = {
+export declare type ListBoxItem = {
   label?: string;
   value?: string;
 };
 export declare class BaseDateTimeListBox extends KucBase {
   value: string;
-  items: Item[];
+  items: ListBoxItem[];
   maxHeight: number;
   doFocus: boolean;
   constructor();
