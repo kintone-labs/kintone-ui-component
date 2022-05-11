@@ -17,7 +17,7 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { DropdownProps, Item } from "./type";
+import { DropdownProps, DropdownItem } from "./type";
 import { DROPDOWN_CSS } from "./style";
 
 let exportDropdown;
@@ -44,7 +44,7 @@ let exportDropdown;
       converter: visiblePropConverter
     })
     visible = true;
-    @property({ type: Array }) items: Item[] = [];
+    @property({ type: Array }) items: DropdownItem[] = [];
 
     @state()
     private _selectorVisible = false;
@@ -632,12 +632,12 @@ let exportDropdown;
       }, 50);
     }
 
-    private _isCheckedItem(item: Item, index: number) {
+    private _isCheckedItem(item: DropdownItem, index: number) {
       if (!this.value) return this.selectedIndex === index;
       return item.value === this.value && this.selectedIndex === index;
     }
 
-    private _getItemTemplate(item: Item, index: number) {
+    private _getItemTemplate(item: DropdownItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <li

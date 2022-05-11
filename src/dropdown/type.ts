@@ -1,6 +1,6 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
-export declare type Item = {
+export declare type DropdownItem = {
   label?: string;
   value?: string;
 };
@@ -14,7 +14,7 @@ export declare type DropdownProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  items?: Item[];
+  items?: DropdownItem[];
 };
 export declare class Dropdown extends KucBase {
   className: string;
@@ -26,7 +26,7 @@ export declare class Dropdown extends KucBase {
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  items: Item[];
+  items: DropdownItem[];
   constructor(props?: DropdownProps);
   shouldUpdate(changedProperties: PropertyValues): boolean;
   willUpdate(changedProperties: PropertyValues): void;
