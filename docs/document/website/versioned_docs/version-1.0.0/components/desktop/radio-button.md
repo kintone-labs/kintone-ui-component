@@ -27,7 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | itemLayout | string | "horizontal"  | Orientation for displaying the options | Available options:<br>"horizontal" : Horizontal<br>"vertical" : Vertical |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value | string | ""  | Selected value | No option will be selected if the value is unspecified |
-| BorderVisible | Boolean | False | Show/Hide the border | |
+| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
@@ -79,7 +79,8 @@ const radioButton = new Kuc.RadioButton({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
 space.appendChild(radioButton);
 
