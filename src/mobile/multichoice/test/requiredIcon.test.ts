@@ -7,7 +7,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({});
       const el = await fixture(container);
       const requiredEl = el.querySelector(
-        ".kuc-mobile-multi-choice__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({ requiredIcon: true });
       const el = await fixture(container);
       const requiredEl = el.querySelector(
-        ".kuc-mobile-multi-choice__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredEl).not.has.attribute("hidden");
     });
@@ -25,7 +25,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({ requiredIcon: false });
       const el = await fixture(container);
       const requiredEl = el.querySelector(
-        ".kuc-mobile-multi-choice__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredEl).has.attribute("hidden");
     });
@@ -35,7 +35,7 @@ describe("MobileMultiChoice", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredEl = el.querySelector(
-        ".kuc-mobile-multi-choice__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredEl).not.has.attribute("hidden");
     });
@@ -45,7 +45,7 @@ describe("MobileMultiChoice", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredEl = el.querySelector(
-        ".kuc-mobile-multi-choice__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredEl).has.attribute("hidden");
     });
