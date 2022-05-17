@@ -251,7 +251,7 @@ export class BaseMobileTime extends KucBase {
           display: flex;
           -webkit-align-items: center;
           align-items: center;
-          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
         }
         .kuc-base-mobile-time__group--required {
           border-color: #cf4a38;

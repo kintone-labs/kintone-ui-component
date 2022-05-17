@@ -252,7 +252,7 @@ export class BaseMobileDate extends KucBase {
           border: 1px solid #b3b3b3;
           background-color: #ffffff;
           padding: 5.148px;
-          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
         }
         .kuc-mobile-base-date__group--required {
           border-color: #cf4a38;
