@@ -16,7 +16,7 @@ jobs:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
         YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
-     - name: run Yamory_docs
+    - name: run Yamory_docs
       working-directory: docs
       run: |
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pip)"
