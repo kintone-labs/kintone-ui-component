@@ -213,16 +213,15 @@ export class MobileDateTimePicker extends KucBase {
         class="kuc-mobile-datetime-picker__group"
         aria-describedby="${this._GUID}-error"
       >
-        <label
+        <legend
           class="kuc-mobile-datetime-picker__group__label"
-          for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
           <kuc-base-mobile-label
             .requiredIcon="${this.requiredIcon}"
             .text="${this.label}"
           ></kuc-base-mobile-label>
-        </label>
+        </legend>
         <div class="kuc-mobile-datetime-picker__group__input">
           <kuc-mobile-base-date
             class="kuc-mobile-datetime-picker__group__input--date"
@@ -374,6 +373,7 @@ export class MobileDateTimePicker extends KucBase {
         }
         .kuc-mobile-datetime-picker__group {
           border: 0;
+          padding: 0;
         }
         .kuc-mobile-datetime-picker__group__label {
           display: inline-block;
