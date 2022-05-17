@@ -243,7 +243,7 @@ export class BaseMobileTime extends KucBase {
         .kuc-base-mobile-time__group {
           padding: 0;
           margin: 0;
-          border: 1px solid #a5a5a5;
+          border: 1px solid #b3b3b3;
           border-radius: 5.2px;
           box-sizing: border-box;
           background-color: #ffffff;
@@ -251,15 +251,16 @@ export class BaseMobileTime extends KucBase {
           display: flex;
           -webkit-align-items: center;
           align-items: center;
+          box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
         }
         .kuc-base-mobile-time__group--required {
           border-color: #cf4a38;
         }
         .kuc-base-mobile-time__group__hours {
-          padding: 8px 8px 8px 10px;
+          padding: 5.148px 7.722px;
         }
         .kuc-base-mobile-time__group__minutes {
-          padding: 8px 10px 8px 8px;
+          padding: 5.148px 7.722px;
           -webkit-flex-grow: 1;
           flex-grow: 1;
         }
@@ -267,7 +268,7 @@ export class BaseMobileTime extends KucBase {
         .kuc-base-mobile-time__group__minutes {
           font-size: 99%;
           border: none;
-          border-radius: 5.6px;
+          border-radius: 5.148px;
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;

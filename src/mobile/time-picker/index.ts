@@ -200,7 +200,6 @@ export class MobileTimePicker extends KucBase {
         }
         .kuc-mobile-time-picker__group__label {
           display: inline-block;
-          font-size: 86%;
           font-weight: bold;
           line-height: 1.5;
           padding: 0px;
