@@ -8,6 +8,9 @@ import {
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { BaseMobileError } from "../../base/mobile-error";
+export { BaseMobileLabel, BaseMobileError };
 
 type MobileTextAreaProps = {
   className?: string;
@@ -79,13 +82,10 @@ export class MobileTextArea extends KucBase {
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-textarea__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-mobile-textarea__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
+        <kuc-base-mobile-label
+          .requiredIcon="${this.requiredIcon}"
+          .text="${this.label}"
+        ></kuc-base-mobile-label>
       </label>
       <div class="kuc-mobile-textarea__form">
         <textarea
@@ -102,14 +102,8 @@ export class MobileTextArea extends KucBase {
           @input="${this._handleInputTextArea}"
         /></textarea>
       </div>
-      <div
-        class="kuc-mobile-textarea__error"
-        id="${this._GUID}-error"
-        role="alert"
-        ?hidden="${!this.error}"
-      >
-        ${this.error}
-      </div>
+      <kuc-base-mobile-error .guid="${this._GUID}" .text="${this.error}">
+      </kuc-base-mobile-error>
     `;
   }
 
@@ -136,25 +130,11 @@ export class MobileTextArea extends KucBase {
           padding: 0;
           margin: 0 0 4px 0;
           display: inline-block;
-          font-size: 86%;
           font-weight: bold;
           line-height: 1.5;
           white-space: nowrap;
         }
         .kuc-mobile-textarea__label[hidden] {
-          display: none;
-        }
-        .kuc-mobile-textarea__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-        }
-        .kuc-mobile-textarea__label__required-icon {
-          position: relative;
-          left: 3px;
-          color: #d01212;
-        }
-        .kuc-mobile-textarea__label__required-icon[hidden] {
           display: none;
         }
         .kuc-mobile-textarea__form {
@@ -178,19 +158,6 @@ export class MobileTextArea extends KucBase {
           color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
-        }
-        .kuc-mobile-textarea__error {
-          line-height: 1.5;
-          color: #000000;
-          background-color: #fdffc9;
-          border: 1px solid #e5db68;
-          border-radius: 0.4em;
-          padding: 0.4em 1em;
-          margin-top: 0.3em;
-          margin-left: 0.5em;
-        }
-        .kuc-mobile-textarea__error[hidden] {
-          display: none;
         }
       </style>
     `;

@@ -7,7 +7,7 @@ describe("Dropdown", () => {
       const container = new Dropdown();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-dropdown__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -18,7 +18,7 @@ describe("Dropdown", () => {
       const container = new Dropdown({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-dropdown__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -30,7 +30,7 @@ describe("Dropdown", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-dropdown__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -42,7 +42,7 @@ describe("Dropdown", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-dropdown__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
