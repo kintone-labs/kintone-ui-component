@@ -218,14 +218,7 @@ export class BaseMobileDate extends KucBase {
 
   private _getCalendarIconTemplate() {
     return html`
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 28 28"
-        class="kuc-mobile-base-date__group__button--icon"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -253,11 +246,13 @@ export class BaseMobileDate extends KucBase {
         }
         .kuc-mobile-base-date__group {
           display: flex;
+          align-items: center;
           position: relative;
-          padding: 0 8px;
-          border-radius: 4px;
-          border: 1px solid #a5a5a5;
+          border-radius: 5.148px;
+          border: 1px solid #b3b3b3;
           background-color: #ffffff;
+          padding: 5.148px;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
         }
         .kuc-mobile-base-date__group--required {
           border-color: #cf4a38;
@@ -266,11 +261,10 @@ export class BaseMobileDate extends KucBase {
           color: #000000;
           width: 100%;
           font-size: 99%;
+          padding: 0px;
           -webkit-flex-grow: 1;
           flex-grow: 1;
           border: none;
-          padding: 8px 0;
-          line-height: 1.5;
           font-weight: 400;
           appearance: none;
           outline: 0;
@@ -289,9 +283,10 @@ export class BaseMobileDate extends KucBase {
           z-index: 1000;
         }
         .kuc-mobile-base-date__group__button {
+          position: absolute;
           display: flex;
-          align-items: center;
-          background-color: inherit;
+          right: 10px;
+          background-color: transparent;
           border: 0;
           padding: 0;
         }

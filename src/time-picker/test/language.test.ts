@@ -22,7 +22,7 @@ describe("TimePicker", () => {
       await elementUpdated(el);
 
       const errorEl = el.querySelector(
-        ".kuc-time-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
 
       expect(errorEl.innerText).to.equal("Time is out of valid range.");
@@ -48,7 +48,7 @@ describe("TimePicker", () => {
       await elementUpdated(el);
 
       const errorEl = el.querySelector(
-        ".kuc-time-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
 
       expect(errorEl.innerText).to.equal("時刻が有効な範囲外です。");
@@ -75,7 +75,7 @@ describe("TimePicker", () => {
       await elementUpdated(el);
 
       const errorEl = el.querySelector(
-        ".kuc-time-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
 
       expect(errorEl.innerText).to.equal("时间超出有效范围。");

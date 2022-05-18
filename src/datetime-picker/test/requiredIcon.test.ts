@@ -7,7 +7,7 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-datetime-picker__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -16,7 +16,7 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-datetime-picker__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -26,7 +26,7 @@ describe("DateTimePicker", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-datetime-picker__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -36,7 +36,7 @@ describe("DateTimePicker", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-datetime-picker__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });
