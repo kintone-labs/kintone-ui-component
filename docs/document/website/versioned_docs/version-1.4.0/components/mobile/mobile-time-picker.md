@@ -9,9 +9,10 @@ original_id: mobile-time-picker
 
 The MobileTimePicker component allows the user to display a input area and time selection listbox.
 
-<div id="sample-container__components" class="sample-container__mobile-time-picker">
-    <iframe id="iframe" src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-time-picker--base" class="iframe-mobile-time-picker" title="mobile time picker"></iframe>
+<div class='sample-container'>
+  <div id='sample-container__components'></div>
 </div>
+<script src="/js/samples/mobile-time-picker.js"></script>
 
 ---
 
@@ -27,7 +28,7 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"ja", the language setting will be "en") |
+| language | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"ja", the language setting will be "en") |
 | value | string | ""  | Text to be displayed | Format is HH:MM<br>The below time can be used (it will be converted to HH:MM internally):<li>5:30</li><li>05:3</li><li>5:3</li>If the hour and/or time has only 1 character, 0 will be added to the beginning<br>Will result an error if setting invalid format or value  |
 | disabled | boolean | false | Enable/Disable the component | |
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
@@ -63,11 +64,11 @@ const space = kintone.mobile.app.record.getSpaceElement('space');
 const mobileTimePicker = new Kuc.MobileTimePicker({
   label: 'Time',
   requiredIcon: true,
+  language: 'auto',
   hour12: false,
   value: '11:30',
   error: 'Error occurred!',
   className: 'options-class',
-  language: 'auto',
   id: 'options-id',
   visible: true,
   disabled: false
