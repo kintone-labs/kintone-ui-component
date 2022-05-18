@@ -90,30 +90,30 @@ export class TimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-    if (_changedProperties.has("max")) {
+    if (_changedProperties.has("max") || _changedProperties.has("min")) {
+      let _inputMinTemp = this._inputMin;
+      let _inputMaxTemp = this._inputMax;
+
       if (!validateTimeValue(this.max)) {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
       this.max = timeValueConverter(this.max);
-      this._inputMax = this.max === "" ? MAX_TIME : this.max;
-    }
+      _inputMaxTemp = this.max === "" ? MAX_TIME : this.max;
 
-    if (_changedProperties.has("min")) {
       if (!validateTimeValue(this.min)) {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
       this.min = timeValueConverter(this.min);
-      this._inputMin = this.min === "" ? MIN_TIME : this.min;
-    }
+      _inputMinTemp = this.min === "" ? MIN_TIME : this.min;
 
-    if (
-      (_changedProperties.has("max") || _changedProperties.has("min")) &&
-      timeCompare(this._inputMax, this._inputMin) < 0
-    ) {
-      throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
-      return false;
+      if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
+        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        return false;
+      }
+      this._inputMin = _inputMinTemp;
+      this._inputMax = _inputMaxTemp;
     }
 
     if (_changedProperties.has("timeStep")) {
@@ -133,8 +133,9 @@ export class TimePicker extends KucBase {
 
     this._valueConverted = timeValueConverter(this.value);
     if (
-      timeCompare(this._valueConverted, this._inputMin) < 0 ||
-      timeCompare(this._inputMax, this._valueConverted) < 0
+      _changedProperties.has("value") &&
+      (timeCompare(this._valueConverted, this._inputMin) < 0 ||
+        timeCompare(this._inputMax, this._valueConverted) < 0)
     ) {
       throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;
