@@ -396,7 +396,7 @@ export class MobileDateTimePicker extends KucBase {
           margin-right: 10px;
         }
         .kuc-mobile-datetime-picker__group__input--time {
-          max-width: 80px;
+          max-width: 10px;
         }
       </style>
     `;
