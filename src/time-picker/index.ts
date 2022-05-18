@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query, state } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
@@ -76,6 +76,7 @@ export class TimePicker extends KucBase {
   private _errorInvalid = "";
   private _inputMax = "";
   private _inputMin = "";
+  private _inputTimeStep = 30;
 
   private _valueConverted = "";
 
@@ -120,6 +121,7 @@ export class TimePicker extends KucBase {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
+      this._inputTimeStep = this.timeStep;
     }
 
     if (this.value === undefined || this.value === "") return true;
@@ -185,7 +187,7 @@ export class TimePicker extends KucBase {
           .value="${this._inputValue}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
-          .timeStep="${this.timeStep}"
+          .timeStep="${this._inputTimeStep}"
           .min="${this._inputMin}"
           .max="${this._inputMax}"
           .language="${this._getLanguage()}"
