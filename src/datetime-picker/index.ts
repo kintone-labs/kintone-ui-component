@@ -1,6 +1,6 @@
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property, state, query } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { generateGUID, KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import {
   visiblePropConverter,
@@ -110,6 +110,7 @@ export class DateTimePicker extends KucBase {
   private _inputMin = "";
   private _timeConverted: string = "";
   private _errorInvalidTime = "";
+  private _inputTimeStep = 30;
 
   constructor(props?: DateTimePickerProps) {
     super();
@@ -119,30 +120,30 @@ export class DateTimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-    if (_changedProperties.has("max")) {
+    if (_changedProperties.has("max") || _changedProperties.has("min")) {
+      let _inputMinTemp = this._inputMin;
+      let _inputMaxTemp = this._inputMax;
+
       if (!validateTimeValue(this.max)) {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
       this.max = timeValueConverter(this.max);
-      this._inputMax = this.max === "" ? MAX_TIME : this.max;
-    }
+      _inputMaxTemp = this.max === "" ? MAX_TIME : this.max;
 
-    if (_changedProperties.has("min")) {
       if (!validateTimeValue(this.min)) {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
       this.min = timeValueConverter(this.min);
-      this._inputMin = this.min === "" ? MIN_TIME : this.min;
-    }
+      _inputMinTemp = this.min === "" ? MIN_TIME : this.min;
 
-    if (
-      (_changedProperties.has("max") || _changedProperties.has("min")) &&
-      timeCompare(this._inputMax, this._inputMin) < 0
-    ) {
-      throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
-      return false;
+      if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
+        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        return false;
+      }
+      this._inputMin = _inputMinTemp;
+      this._inputMax = _inputMaxTemp;
     }
 
     if (_changedProperties.has("timeStep")) {
@@ -150,6 +151,7 @@ export class DateTimePicker extends KucBase {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
       }
+      this._inputTimeStep = this.timeStep;
     }
 
     if (this.value === undefined || this.value === "") return true;
@@ -173,8 +175,9 @@ export class DateTimePicker extends KucBase {
       this._dateAndTime.time.slice(0, 5)
     );
     if (
-      timeCompare(this._timeConverted, this._inputMin) < 0 ||
-      timeCompare(this._inputMax, this._timeConverted) < 0
+      _changedProperties.has("value") &&
+      (timeCompare(this._timeConverted, this._inputMin) < 0 ||
+        timeCompare(this._inputMax, this._timeConverted) < 0)
     ) {
       throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;
@@ -311,7 +314,7 @@ export class DateTimePicker extends KucBase {
             .value="${this._timeValue}"
             .hour12="${this.hour12}"
             .disabled="${this.disabled}"
-            .timeStep="${this.timeStep}"
+            .timeStep="${this._inputTimeStep}"
             .min="${this._inputMin}"
             .max="${this._inputMax}"
             .language="${this._getLanguage()}"
