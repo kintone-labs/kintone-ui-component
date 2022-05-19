@@ -128,14 +128,6 @@ td[class^="kuc"] {
   left: 50%;
   margin-left: -65px;
 }
-.sample-container__mobile-time-picker {
-  height: 85px;
-}
-#sample-container__components .iframe-mobile-time-picker {
-  position: absolute;
-  left: 50%;
-  margin-left: -130px;
-}
 .kuc-preview {
   background-color: #f5f5f5;
   padding: 20px 40px;
