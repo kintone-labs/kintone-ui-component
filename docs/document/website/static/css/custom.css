@@ -120,7 +120,6 @@ td[class^="kuc"] {
 .sample-container .kuc-dropdown__group {
   max-width: 180px;
 }
-/* css for doc page: mobileDatePicker */
 .sample-container .kuc-base-mobile-datetime-calendar-header__group__center__month {
   max-width: 100%;
 }
