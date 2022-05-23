@@ -271,10 +271,12 @@ export class BaseMobileDate extends KucBase {
           background: inherit;
         }
         .kuc-mobile-base-date__group--disabled {
-          color: #999999;
-          -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
+        }
+        .kuc-mobile-base-date__group--disabled input {
+          color: #999999;
+          -webkit-text-fill-color: #999999;
         }
         .kuc-base-mobile-date__calendar {
           position: absolute;

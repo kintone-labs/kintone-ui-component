@@ -320,9 +320,9 @@ export class MobileDateTimePicker extends KucBase {
       : this._getDateTimeString();
     const _value = this._errorFormat ? undefined : newDateTime;
     this.value = _value;
-    const _newValue =
-      this._errorFormat || newDateTime === "" ? undefined : newDateTime;
+    const _newValue = this._errorFormat ? undefined : newDateTime;
     this.value = _newValue;
+    this.error = "";
     const detail = {
       value: _value,
       oldValue: oldDateTime,
@@ -332,6 +332,8 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   private _getDateTimeString() {
+    if (this._dateValue === "" && this._timeValue === "") return "";
+
     if (!this._dateValue || !this._timeValue) return undefined;
 
     if (!this.value) return `${this._dateValue}T${this._timeValue}:00`;
