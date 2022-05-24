@@ -9,8 +9,8 @@ original_id: checkbox
 
 Checkbox は、複数選択のチェックボックスを表示します。
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="checkbox">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/checkbox.js"></script>
 
