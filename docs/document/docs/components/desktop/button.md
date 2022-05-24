@@ -8,7 +8,7 @@ sidebar_label: Button
 
 The Button component allows the user to create and display buttons.
 
-<div class="sample-containe" id="button">
+<div class="sample-container" id="button">
   <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/button.js"></script>
