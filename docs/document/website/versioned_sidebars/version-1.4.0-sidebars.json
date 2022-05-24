@@ -33,7 +33,8 @@
           "version-1.4.0-components/mobile/mobile-notification",
           "version-1.4.0-components/mobile/mobile-radio-button",
           "version-1.4.0-components/mobile/mobile-text",
-          "version-1.4.0-components/mobile/mobile-textarea"
+          "version-1.4.0-components/mobile/mobile-textarea",
+          "version-1.4.0-components/mobile/mobile-time-picker"
         ]
       }
     ],

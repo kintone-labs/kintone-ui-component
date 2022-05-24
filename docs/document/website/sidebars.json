@@ -33,7 +33,8 @@
           "components/mobile/mobile-notification",
           "components/mobile/mobile-radio-button",
           "components/mobile/mobile-text",
-          "components/mobile/mobile-textarea"
+          "components/mobile/mobile-textarea",
+          "components/mobile/mobile-time-picker"
         ]
       }
     ],
