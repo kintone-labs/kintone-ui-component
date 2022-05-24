@@ -9,8 +9,8 @@ original_id: textarea
 
 The TextArea component allows the user to display multiple lines of text element.
 
-<div class='sample-container block'>
-  <div id='sample-container__components'></div>
+<div class="sample-container block" id="textarea">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/textarea.js"></script>
 
