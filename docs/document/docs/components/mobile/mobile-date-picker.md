@@ -8,9 +8,10 @@ sidebar_label: MobileDatePicker
 
 The MobileDatePicker component allows the user to display a input area and date selection calendar.
 
-<div id="sample-container__components" class="sample-container__mobile-date-picker">
-    <iframe id="iframe" src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-date-picker--base" class="iframe-mobile-date-picker" title="checkbox image" height="448px" width="465px"></iframe>
+<div class="sample-container" id="mobile-date-picker">
+  <div id="sample-container__components"></div>
 </div>
+<script src="/js/samples/mobile-date-picker.js"></script>
 
 ---
 
