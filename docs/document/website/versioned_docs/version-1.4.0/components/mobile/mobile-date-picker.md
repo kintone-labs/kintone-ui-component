@@ -43,8 +43,8 @@ Here is a list of properties that can be used for modifying the component:
 
 Here is a list of events that can be specified:
 
-| Name   | Type     | Description                                   | Remark                                                                                                                                                                                                      |
-| :----- | :------- | :-------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name | Type | Description | Remark |
+| :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
 
 ### Constructor
@@ -54,9 +54,9 @@ Here is a list of available constructors:
 
 #### Parameter
 
-| Name    | Type   | Default | Description                               | Remark |
-| :------ | :----- | :------ | :---------------------------------------- | :----- |
-| options | object | {}      | Object that includes component properties |        |
+| Name | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| options  | object | {} | Object that includes component properties |  |
 
 ---
 
