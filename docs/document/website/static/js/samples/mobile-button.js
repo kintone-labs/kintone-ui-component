@@ -5,7 +5,6 @@ document.addEventListener("kuc:loaded", function() {
     type: "normal",
     className: "kuc_normal_button"
   });
-  mobileButtonNormal.style.margin = "0px 5px 0px 0px";
 
   const mobileButtonSubmit = new Kuc.MobileButton({
     text: "Submit",
