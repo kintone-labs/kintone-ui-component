@@ -120,16 +120,13 @@ td[class^="kuc"] {
 .sample-container .kuc-dropdown__group {
   max-width: 180px;
 }
-#mobile-date-picker .kuc-base-mobile-datetime-calendar-header__group__center__month {
-  max-width: 100%;
-}
-#mobile-date-picker .kuc-base-mobile-datetime-calendar-body__table {
+#mobile-date-picker table {
   margin: 0;
 }
-#mobile-date-picker .kuc-base-mobile-datetime-calendar-body__table__date--selected {
+#mobile-date-picker td[class$="date--selected"] {
   vertical-align: middle;
 }
-#mobile-date-picker .kuc-base-mobile-datetime-calendar-header__group__center__month__select, .kuc-base-mobile-datetime-calendar-header__group__center__year__select {
+#mobile-date-picker select {
   text-align: center;
   max-width: 116px;
 }
