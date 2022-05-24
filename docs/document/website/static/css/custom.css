@@ -139,6 +139,9 @@ td[class^="kuc"] {
   left: 50%;
   margin-left: -65px;
 }
+#button .kuc_normal_button, #button .kuc_submit_button {
+  margin: 0px 5px 0px 0px;
+}
 #mobile-time-picker {
   margin-left: -43px;
 }

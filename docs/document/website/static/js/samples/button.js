@@ -3,16 +3,14 @@ document.addEventListener("kuc:loaded", function() {
   const buttonNormal = new Kuc.Button({
     text: "Normal",
     type: "normal",
-    className: "kuc_submit_button"
+    className: "kuc_normal_button"
   });
-  buttonNormal.style.margin = "0px 5px 0px 0px";
 
   const buttonSubmit = new Kuc.Button({
     text: "Submit",
     type: "submit",
     className: "kuc_submit_button"
   });
-  buttonSubmit.style.margin = "0px 5px 0px 0px";
 
   const buttonAlert = new Kuc.Button({
     text: "Alert",
