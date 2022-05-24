@@ -8,8 +8,8 @@ sidebar_label: Text
 
 The Text component allows the user to display a single line text element.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="text">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/text.js"></script>
 
