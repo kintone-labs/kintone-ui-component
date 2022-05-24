@@ -9,8 +9,8 @@ original_id: mobile-radio-button
 
 MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<div class='sample-container'>
-  <div id='sample-container__components' class="mobile"></div>
+<div class="sample-container" id="mobile-radio-button">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-radio-button.js"></script>
 
