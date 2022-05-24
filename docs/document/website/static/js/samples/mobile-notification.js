@@ -1,6 +1,6 @@
 document.addEventListener("kuc:loaded", function() {
-  const container = document.querySelector('#sample-container__components');
-  const contentWindow = container.querySelector('#iframe').contentWindow;
+  const container = document.querySelector("#sample-container__components");
+  const contentWindow = container.querySelector("#iframe").contentWindow;
   const ifrDocument = contentWindow.document;
 
   const mobileNotification = new Kuc.MobileNotification({

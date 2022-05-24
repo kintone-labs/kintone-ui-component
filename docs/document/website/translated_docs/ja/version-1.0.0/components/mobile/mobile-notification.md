@@ -9,8 +9,8 @@ original_id: mobile-notification
 
 MobileNotification は、ポップアップの通知を表示します。
 
-<div class='sample-container'>
-  <div id='sample-container__components' class="mobile">
+<div class="sample-container" id="mobile-notification">
+  <div id="sample-container__components" class="mobile">
     <iframe id="iframe" title="mobile notification image" width="300px" height="70px"></iframe>
   </div>
 </div>
