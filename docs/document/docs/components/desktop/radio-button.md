@@ -8,8 +8,8 @@ sidebar_label: RadioButton
 
 The RadioButton component allows the user to select one out of several options.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="radio-button">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/radio-button.js"></script>
 

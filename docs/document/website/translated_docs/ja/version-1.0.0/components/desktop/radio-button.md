@@ -9,8 +9,8 @@ original_id: radio-button
 
 RadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="radio-button">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/radio-button.js"></script>
 
