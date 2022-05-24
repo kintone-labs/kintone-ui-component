@@ -120,29 +120,18 @@ td[class^="kuc"] {
 .sample-container .kuc-dropdown__group {
   max-width: 180px;
 }
-.sample-container .kuc-base-mobile-datetime-calendar-header__group__center__month {
+#mobile-date-picker .kuc-base-mobile-datetime-calendar-header__group__center__month {
   max-width: 100%;
 }
-
-.sample-container .kuc-base-mobile-datetime-calendar-body__table {
+#mobile-date-picker .kuc-base-mobile-datetime-calendar-body__table {
   margin: 0;
 }
-
-.sample-container .kuc-base-mobile-datetime-calendar-body__table__date--selected {
+#mobile-date-picker .kuc-base-mobile-datetime-calendar-body__table__date--selected {
   vertical-align: middle;
 }
-
-.sample-container .kuc-base-mobile-datetime-calendar-header__group__center__month__select, .kuc-base-mobile-datetime-calendar-header__group__center__year__select {
+#mobile-date-picker .kuc-base-mobile-datetime-calendar-header__group__center__month__select, .kuc-base-mobile-datetime-calendar-header__group__center__year__select {
+  text-align: center;
   max-width: 116px;
-}
-
-.sample-container__mobile-date-picker {
-  height: 85px;
-}
-#sample-container__components .iframe-mobile-date-picker {
-  position: absolute;
-  left: 50%;
-  margin-left: -65px;
 }
 #mobile-time-picker {
   margin-left: -43px;
