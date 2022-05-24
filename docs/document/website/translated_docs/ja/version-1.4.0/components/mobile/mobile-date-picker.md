@@ -20,7 +20,7 @@ MobileDatePicker は入力エリアと日付選択用のカレンダーを表示
 
 ### Property
 
-Here is a list of properties that can be used for modifying the component:
+使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
