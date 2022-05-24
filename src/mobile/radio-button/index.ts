@@ -11,8 +11,13 @@ import {
   validateProps,
   validateValueString,
   validateSelectedIndexNumber,
-  validateItems
+  validateItems,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
+import { ERROR_MESSAGE } from "../../base/constant";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { BaseMobileError } from "../../base/mobile-error";
+export { BaseMobileLabel, BaseMobileError };
 
 type Item = { label?: string; value?: string };
 type RadioButtonProps = {
@@ -57,7 +62,24 @@ export class MobileRadioButton extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: RadioButtonProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
+    }
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
   }
 
   private _handleChangeInput(event: Event) {
@@ -144,16 +166,45 @@ export class MobileRadioButton extends KucBase {
     `;
   }
 
+  shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
   }
@@ -166,15 +217,10 @@ export class MobileRadioButton extends KucBase {
           class="kuc-mobile-radio-button__group__label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-mobile-radio-button__group__label__text"
-            ><!--
-            -->${this.label}</span
-          ><!--
-            --><span
-            class="kuc-mobile-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-mobile-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-mobile-label>
         </div>
         <div
           class="kuc-mobile-radio-button__group__select-menu"
@@ -183,15 +229,12 @@ export class MobileRadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-mobile-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-mobile-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
         >
-          ${this.error}
-        </div>
+        </kuc-base-mobile-error>
       </div>
     `;
   }
@@ -217,8 +260,13 @@ export class MobileRadioButton extends KucBase {
     return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
+  private _getValue(validProps: RadioButtonProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
     if (!item) return "";
     return item.value;
   }
@@ -268,23 +316,7 @@ export class MobileRadioButton extends KucBase {
           white-space: nowrap;
         }
 
-        .kuc-mobile-radio-button__group__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-        }
-
         .kuc-mobile-radio-button__group__label[hidden] {
-          display: none;
-        }
-
-        .kuc-mobile-radio-button__group__label__required-icon {
-          position: relative;
-          left: 3px;
-          color: #d01212;
-        }
-
-        .kuc-mobile-radio-button__group__label__required-icon[hidden] {
           display: none;
         }
 
@@ -360,21 +392,6 @@ export class MobileRadioButton extends KucBase {
           transform: translateY(-50%);
           height: 100%;
           padding: 0px;
-        }
-
-        .kuc-mobile-radio-button__group__error {
-          line-height: 1.5;
-          color: #000000;
-          border: 1px solid #e5db68;
-          background-color: #fdffc9;
-          margin-top: 0.3em;
-          padding: 0.4em 1em;
-          border-radius: 0.4em;
-          margin-left: 0.5em;
-        }
-
-        .kuc-mobile-radio-button__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

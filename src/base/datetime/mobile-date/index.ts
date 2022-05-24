@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { state, property } from "lit/decorators.js";
+import { state, property, query } from "lit/decorators.js";
 import { BaseMobileDateTimeCalendar } from "../mobile-calendar";
 import {
   CustomEventDetail,
@@ -10,22 +10,38 @@ import {
   formatInputValueToValue,
   formatValueToInputValue,
   getTodayStringByLocale,
-  isValidDateFormat
+  isValidDateFormat,
+  calculateDistanceInput
 } from "../utils";
 export { BaseMobileDateTimeCalendar };
 
 export class BaseMobileDate extends KucBase {
+  @property({ type: String }) inputId = "";
   @property({ type: String, reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
+  @property({ type: Boolean }) inputAriaInvalid = false;
   @property({ type: Boolean }) required = false;
 
+  @query(".kuc-mobile-base-date__group__button")
+  private _btnToggleEl!: HTMLButtonElement;
+
+  @query(".kuc-mobile-base-date__group__input")
+  private _inputEl!: HTMLInputElement;
+
+  @query(".kuc-base-mobile-date__calendar")
+  private _calendarEl!: HTMLElement;
+
+  private _GUID: string | undefined;
   @state()
   private _dateTimeCalendarVisible = false;
   private _calendarValue?: string = "";
   private _inputValue?: string = "";
 
   update(changedProperties: PropertyValues) {
+    if (changedProperties.has("inputId")) {
+      this._GUID = this.inputId;
+    }
     if (changedProperties.has("value") || changedProperties.has("language")) {
       this._updateValueProp();
     }
@@ -35,23 +51,24 @@ export class BaseMobileDate extends KucBase {
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div
-        class="kuc-mobile-base-date__group${this.disabled
-          ? " kuc-mobile-base-date__group--disabled"
-          : ""}"
-      >
+      <div class="kuc-mobile-base-date__group${this._getGroupClass()}">
         <input
           class="kuc-mobile-base-date__group__input"
           type="text"
+          id="${this._GUID}-label"
           readonly="readonly"
           .value="${this._inputValue}"
           aria-label="Date"
+          aria-describedby="${this._GUID}-error"
+          aria-invalid="${this.inputAriaInvalid}"
+          aria-required="${this.required}"
           ?disabled="${this.disabled}"
-          ?required="${this.required}"
           @click="${this._handleClickOpenCalendar}"
         />
         <button
+          type="button"
           class="kuc-mobile-base-date__group__button"
+          aria-label="calendar"
           @click="${this._handleClickOpenCalendar}"
           ?disabled="${this.disabled}"
         >
@@ -60,6 +77,35 @@ export class BaseMobileDate extends KucBase {
         ${this._getCalendarTemplate()}
       </div>
     `;
+  }
+
+  updated(changedProperties: PropertyValues) {
+    if (this._dateTimeCalendarVisible) {
+      this._setCalendarPosition();
+    }
+    super.updated(changedProperties);
+  }
+
+  private _setCalendarPosition() {
+    const borderWidth = 2;
+    const { inputToBottom, inputToTop } = calculateDistanceInput(this);
+    const inputHeight = this._inputEl.getBoundingClientRect().height;
+
+    if (inputToBottom >= inputToTop) return;
+
+    this._calendarEl.style.bottom = inputHeight + borderWidth + "px";
+    this._calendarEl.style.top = "auto";
+  }
+
+  private _getGroupClass() {
+    let groupClass = "";
+    if (this.disabled) {
+      groupClass += " kuc-mobile-base-date__group--disabled";
+    }
+    if (this.required) {
+      groupClass += " kuc-mobile-base-date__group--required";
+    }
+    return groupClass;
   }
 
   private _handleClickOpenCalendar(event: Event) {
@@ -110,6 +156,7 @@ export class BaseMobileDate extends KucBase {
 
     this.value = event.detail.value;
     dispatchCustomEvent(this, "kuc:mobile-base-date-change", event.detail);
+    this._btnToggleEl.focus();
   }
 
   private _handleClickCalendarFooterButtonNone() {
@@ -120,7 +167,7 @@ export class BaseMobileDate extends KucBase {
       temp = this._calendarValue!.slice(0, 7) + "-01";
     }
     this._calendarValue = temp;
-    this._dispathDateChangeCustomEvent(undefined);
+    this._dispathDateChangeCustomEvent("");
   }
 
   private _handleClickCalendarFooterButtonToday() {
@@ -131,6 +178,7 @@ export class BaseMobileDate extends KucBase {
 
   private _handleClickCalendarFooterButtonClose() {
     this._closeCalendar();
+    this._btnToggleEl.focus();
   }
 
   private _handleCalendarBlurBody(event: Event) {
@@ -142,6 +190,7 @@ export class BaseMobileDate extends KucBase {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:mobile-base-date-change", detail);
+    this._btnToggleEl.focus();
   }
 
   private _getCalendarTemplate() {
@@ -169,14 +218,7 @@ export class BaseMobileDate extends KucBase {
 
   private _getCalendarIconTemplate() {
     return html`
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 28 28"
-        class="kuc-mobile-base-date__group__button--icon"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -204,21 +246,25 @@ export class BaseMobileDate extends KucBase {
         }
         .kuc-mobile-base-date__group {
           display: flex;
+          align-items: center;
           position: relative;
-          margin-top: 8px;
-          padding: 0 8px;
-          border-radius: 4px;
-          border: 1px solid #a5a5a5;
+          border-radius: 5.148px;
+          border: 1px solid #b3b3b3;
           background-color: #ffffff;
+          padding: 5.148px;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
+        }
+        .kuc-mobile-base-date__group--required {
+          border-color: #cf4a38;
         }
         input.kuc-mobile-base-date__group__input {
-          width: 100px;
+          color: #000000;
+          width: 100%;
+          font-size: 99%;
+          padding: 0px;
           -webkit-flex-grow: 1;
           flex-grow: 1;
           border: none;
-          padding: 8px 0;
-          line-height: 1.5;
-          font-size: 14px;
           font-weight: 400;
           appearance: none;
           outline: 0;
@@ -234,9 +280,13 @@ export class BaseMobileDate extends KucBase {
           position: absolute;
           left: 0;
           top: 39px;
+          z-index: 1000;
         }
         .kuc-mobile-base-date__group__button {
-          background-color: inherit;
+          position: absolute;
+          display: flex;
+          right: 10px;
+          background-color: transparent;
           border: 0;
           padding: 0;
         }

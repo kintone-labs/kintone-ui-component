@@ -6,8 +6,13 @@ import {
   validateProps,
   validateItems,
   validateValueArray,
-  validateSelectedIndexArray
+  validateSelectedIndexArray,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
+import { ERROR_MESSAGE } from "../base/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = { label?: string; value?: string };
 type CheckboxProps = {
@@ -61,7 +66,54 @@ export class Checkbox extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: CheckboxProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    const _selectedIndex = validProps.selectedIndex || [];
+    if (!hasValue && hasSelectedIndex) {
+      if (!validateSelectedIndexArray(_selectedIndex)) return;
+      const _valueMapping = this._getValueMapping(validProps);
+      this.value = this._getValidValue(_valueMapping, _selectedIndex);
+    }
+  }
+
+  shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueArray(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexArray(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value.length > 0) return;
+
+      this.selectedIndex = [];
+    }
   }
 
   private _getNewValueMapping(value: string, selectedIndex: string) {
@@ -82,7 +134,7 @@ export class Checkbox extends KucBase {
     const selectedIndex = inputEl.dataset.index || "0";
     const value = inputEl.value;
 
-    const oldValue = [...this.value];
+    const oldValue = !this.value ? this.value : [...this.value];
     const newValueMapping = this._getNewValueMapping(value, selectedIndex);
     const itemsValue = this.items.map(item => item.value);
     const newValue = Object.values(newValueMapping).filter(
@@ -195,14 +247,16 @@ export class Checkbox extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueArray(this.value);
-      validateSelectedIndexArray(this.selectedIndex);
-      this._valueMapping = this._getValueMapping();
+      this._valueMapping = this._getValueMapping({
+        items: this.items,
+        value: this.value,
+        selectedIndex: this.selectedIndex
+      });
       this._setValueAndSelectedIndex();
     }
     super.update(changedProperties);
@@ -217,16 +271,11 @@ export class Checkbox extends KucBase {
         aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-checkbox__group__label" ?hidden="${!this.label}">
-          <span
-            id="${this._GUID}-group"
-            class="kuc-checkbox__group__label__text"
-            >${this.label}</span
-          ><!--
-          --><span
-            class="kuc-checkbox__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .guid="${this._GUID}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-checkbox__group__select-menu"
@@ -235,15 +284,11 @@ export class Checkbox extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-checkbox__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -254,22 +299,26 @@ export class Checkbox extends KucBase {
     });
   }
 
-  private _getValueMapping() {
-    const itemsValue = this.items.map(item => item.value || "");
+  private _getValueMapping(validProps: CheckboxProps) {
+    const _items = validProps.items || [];
+    const _value = validProps.value || [];
+    const _selectedIndex = validProps.selectedIndex || [];
+
+    const itemsValue = _items.map(item => item.value || "");
     const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
-    if (this.value.length === 0) {
-      const value = this._getValidValue(itemsMapping);
-      this.selectedIndex.forEach((key, i) => (result[key] = value[i]));
+    if (_value.length === 0) {
+      const value = this._getValidValue(itemsMapping, _selectedIndex);
+      _selectedIndex.forEach((key, i) => (result[key] = value[i]));
       return result;
     }
     const validSelectedIndex = this._getValidSelectedIndex(itemsMapping);
-    validSelectedIndex.forEach((key, i) => (result[key] = this.value[i]));
+    validSelectedIndex.forEach((key, i) => (result[key] = _value[i]));
     return result;
   }
 
-  private _getValidValue(itemsMapping: ValueMapping) {
-    return this.selectedIndex
+  private _getValidValue(itemsMapping: ValueMapping, _selectedIndex: number[]) {
+    return _selectedIndex
       .filter(item => itemsMapping[item])
       .map(item => itemsMapping[item]);
   }
@@ -349,16 +398,6 @@ export class Checkbox extends KucBase {
         .kuc-checkbox__group__label[hidden] {
           display: none;
         }
-        .kuc-checkbox__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-checkbox__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-checkbox__group__select-menu[borderVisible] {
           border-color: #e3e7e8;
           border-width: 1px;
@@ -415,19 +454,6 @@ export class Checkbox extends KucBase {
           display: inline-block;
           vertical-align: middle;
           white-space: nowrap;
-        }
-        .kuc-checkbox__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-checkbox__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

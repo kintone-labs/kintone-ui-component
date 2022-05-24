@@ -9,8 +9,15 @@ import {
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
-import { validateProps, validateTimeValue } from "../base/validator";
+import {
+  validateProps,
+  validateTimeValue,
+  throwErrorAfterUpdateComplete
+} from "../base/validator";
 import "../base/datetime/time";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type TimePickerProps = {
   className?: string;
@@ -29,7 +36,7 @@ export class TimePicker extends KucBase {
   @property({ type: String }) error = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
-  @property({ type: String }) value = "";
+  @property({ type: String }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Boolean }) requiredIcon = false;
@@ -41,13 +48,14 @@ export class TimePicker extends KucBase {
   })
   visible = true;
 
-  @query(".kuc-time-picker__group__label")
-  private _labelEl!: HTMLFieldSetElement;
+  @query("kuc-base-label")
+  private _baseLabelEl!: BaseLabel;
 
-  @query(".kuc-time-picker__group__error")
-  private _errorEl!: HTMLDivElement;
+  @query("kuc-base-error")
+  private _baseErrorEl!: BaseError;
 
   private _GUID: string;
+  private _inputValue? = "";
 
   constructor(props?: TimePickerProps) {
     super();
@@ -56,12 +64,27 @@ export class TimePicker extends KucBase {
     Object.assign(this, validProps);
   }
 
+  protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (this.value === undefined || this.value === "") return true;
+
+    if (!validateTimeValue(this.value)) {
+      throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    return true;
+  }
+
+  willUpdate(_changedProperties: PropertyValues): void {
+    if (this.value === undefined || this.value === "") return;
+
+    this.value = timeValueConverter(this.value);
+  }
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      if (!validateTimeValue(this.value)) {
-        throw new Error(FORMAT_IS_NOT_VALID);
-      }
-      this.value = timeValueConverter(this.value);
+      const isEmpty = this.value === undefined || this.value === "";
+      this._inputValue = isEmpty ? "" : this.value;
     }
     super.update(changedProperties);
   }
@@ -73,47 +96,42 @@ export class TimePicker extends KucBase {
         class="kuc-time-picker__group"
         aria-describedby="${this._GUID}-error"
       >
-        <legend class="kuc-time-picker__group__label">
-          <span class="kuc-time-picker__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-time-picker__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+        <legend class="kuc-time-picker__group__label" ?hidden="${!this.label}">
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </legend>
         <kuc-base-time
           class="kuc-time-picker__group__input"
-          .value="${this.value}"
+          .value="${this._inputValue}"
           .hour12="${this.hour12}"
           .disabled="${this.disabled}"
           @kuc:base-time-change="${this._handleTimeChange}"
         >
         </kuc-base-time>
-        <div
-          class="kuc-time-picker__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+        ></kuc-base-error>
       </fieldset>
     `;
   }
 
   updated() {
-    this._updateErrorWidth();
+    this._baseLabelEl.updateComplete.then(_ => {
+      this._updateErrorWidth();
+    });
   }
 
   private _updateErrorWidth() {
-    const labelWidth = getWidthElmByContext(this._labelEl);
+    const labelWidth = getWidthElmByContext(this._baseLabelEl);
     const inputGroupWitdh = 85;
     if (labelWidth > inputGroupWitdh) {
-      this._errorEl.style.width = labelWidth + "px";
+      this._baseErrorEl.style.width = labelWidth + "px";
       return;
     }
-    this._errorEl.style.width = inputGroupWitdh + "px";
+    this._baseErrorEl.style.width = inputGroupWitdh + "px";
   }
 
   private _handleTimeChange(event: CustomEvent) {
@@ -121,8 +139,9 @@ export class TimePicker extends KucBase {
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: event.detail.oldValue
+      oldValue: this.value
     };
+    this.value = event.detail.value;
     dispatchCustomEvent(this, "change", detail);
   }
 
@@ -173,29 +192,6 @@ export class TimePicker extends KucBase {
           white-space: nowrap;
         }
         .kuc-time-picker__group__label[hidden] {
-          display: none;
-        }
-        .kuc-time-picker__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-time-picker__group__label__required-icon[hidden] {
-          display: none;
-        }
-        .kuc-time-picker__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-time-picker__group__error[hidden] {
           display: none;
         }
       </style>

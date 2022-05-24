@@ -85,10 +85,38 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
   };
 };
 
-export const convertTime24To12 = (hours: number, minutes: number) => {
-  const suffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+export const formatTimeValueToInputValueForMobile = (
+  value: string,
+  hour12: boolean
+) => {
+  const timeResult = { hours: "", minutes: "", suffix: "" };
+  const times = value.split(":");
+  const hours = parseInt(times[0], 10);
+  const minutes = parseInt(times[1], 10);
+  const newHours = hours % MAX_HOURS24;
+  if (!isNaN(newHours)) {
+    timeResult.hours = padStart(
+      hour12 ? convertHour24To12(newHours) : newHours
+    );
+    timeResult.suffix = hour12 ? convertSuffix24To12(newHours) : "";
+  }
+  if (!isNaN(minutes)) {
+    timeResult.minutes = padStart(minutes);
+  }
+  return timeResult;
+};
+
+export const convertHour24To12 = (hours: number) => {
   let newHours = hours % MAX_HOURS12;
   newHours = newHours === 0 ? MAX_HOURS12 : newHours;
+  return newHours;
+};
+export const convertSuffix24To12 = (hours: number) => {
+  return hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+};
+export const convertTime24To12 = (hours: number, minutes: number) => {
+  const suffix = convertSuffix24To12(hours);
+  const newHours = convertHour24To12(hours);
   return {
     hours: padStart(newHours),
     minutes: padStart(minutes),

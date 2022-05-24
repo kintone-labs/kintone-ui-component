@@ -8,6 +8,9 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type TextProps = {
   className?: string;
@@ -86,13 +89,10 @@ export class Text extends KucBase {
           for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-text__group__label__text">${this.label}</span
-          ><!--
-            --><span
-            class="kuc-text__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </label>
         <div class="kuc-text__group__input-form">
           <div class="kuc-text__group__input-form__prefix-outer">
@@ -127,14 +127,10 @@ export class Text extends KucBase {
             >
           </div>
         </div>
-        <div
-          class="kuc-text__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -186,16 +182,6 @@ export class Text extends KucBase {
         .kuc-text__group__label[hidden] {
           display: none;
         }
-        .kuc-text__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-text__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-text__group__input-form {
           display: table;
           width: 100%;
@@ -242,19 +228,6 @@ export class Text extends KucBase {
         .kuc-text__group__input-form__suffix-outer__suffix {
           padding-left: 4px;
           white-space: nowrap;
-        }
-        .kuc-text__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-text__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

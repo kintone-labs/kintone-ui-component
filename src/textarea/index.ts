@@ -8,6 +8,9 @@ import {
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type TextAreaProps = {
   className?: string;
@@ -113,13 +116,10 @@ export class TextArea extends KucBase {
           ?hidden="${!this.label}"
           for="${this._GUID}-label"
         >
-          <span class="kuc-textarea__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-textarea__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </label>
         <textarea
           id="${this._GUID}-label"
@@ -142,14 +142,10 @@ export class TextArea extends KucBase {
         >
           ${this._getResizerButtonSvgTemplate()}
         </div>
-        <div
-          class="kuc-textarea__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -223,16 +219,6 @@ export class TextArea extends KucBase {
         .kuc-textarea__group__label[hidden] {
           display: none;
         }
-        .kuc-textarea__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-textarea__group__label__required-icon[hidden] {
-          display: none;
-        }
         textarea.kuc-textarea__group__textarea {
           display: block;
           border: 1px solid #e3e7e8;
@@ -268,19 +254,6 @@ export class TextArea extends KucBase {
           cursor: se-resize;
           float: right;
           margin: -16px 0px;
-        }
-        .kuc-textarea__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-textarea__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

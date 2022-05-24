@@ -32,23 +32,6 @@ describe("MobileMultiChoice", () => {
         .that.include(1);
     });
 
-    it("exists on element when changing by setter", async () => {
-      const container = new MobileMultiChoice({
-        label: "Fruit",
-        requiredIcon: false,
-        items: initItems,
-        selectedIndex: [0]
-      });
-      container.selectedIndex = [1];
-      const el = await fixture(container);
-      const itemsEl = el.getElementsByTagName("option");
-      expect(itemsEl.length).to.be.equal(3);
-      expect(container.selectedIndex)
-        .to.be.an("array")
-        .to.have.lengthOf(1)
-        .that.include(1);
-    });
-
     it("is not selected when initializing with props option is empty array", async () => {
       const container = new MobileMultiChoice({
         label: "Orange",

@@ -11,9 +11,14 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../base/validator";
+import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = { label?: string; value?: string };
 type RadioButtonProps = {
@@ -54,7 +59,7 @@ export class RadioButton extends KucBase {
   @query(".kuc-radio-button__group__label")
   private _labelEl!: HTMLDivElement;
 
-  @query(".kuc-radio-button__group__error")
+  @query(".kuc-base-error__error")
   private _errorEl!: HTMLDivElement;
 
   @query(".kuc-radio-button__group__select-menu")
@@ -66,7 +71,52 @@ export class RadioButton extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
+
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: RadioButtonProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
+    }
+  }
+
+  shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
   }
 
   private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
@@ -173,15 +223,17 @@ export class RadioButton extends KucBase {
   }
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
+      changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
   }
@@ -195,16 +247,11 @@ export class RadioButton extends KucBase {
         aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span
-            id="${this._GUID}-group"
-            class="kuc-radio-button__group__label__text"
-            >${this.label}</span
-          ><!--
-            --><span
-            class="kuc-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .guid="${this._GUID}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-radio-button__group__select-menu"
@@ -213,20 +260,17 @@ export class RadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
 
-  updated() {
+  async updated() {
+    await this.updateComplete;
     this._updateErrorWidth();
   }
 
@@ -244,8 +288,13 @@ export class RadioButton extends KucBase {
     return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
+  private _getValue(validProps: RadioButtonProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
     if (!item) return "";
     return item.value;
   }
@@ -309,18 +358,6 @@ export class RadioButton extends KucBase {
         }
 
         .kuc-radio-button__group__label[hidden] {
-          display: none;
-        }
-
-        .kuc-radio-button__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-
-        .kuc-radio-button__group__label__required-icon[hidden] {
           display: none;
         }
 
@@ -397,21 +434,6 @@ export class RadioButton extends KucBase {
           display: inline-block;
           vertical-align: middle;
           white-space: nowrap;
-        }
-
-        .kuc-radio-button__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0;
-          word-break: break-all;
-          white-space: normal;
-        }
-
-        .kuc-radio-button__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

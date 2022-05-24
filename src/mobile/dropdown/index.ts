@@ -11,8 +11,13 @@ import {
   validateProps,
   validateValueString,
   validateItems,
-  validateSelectedIndexNumber
+  validateSelectedIndexNumber,
+  throwErrorAfterUpdateComplete
 } from "../../base/validator";
+import { ERROR_MESSAGE } from "../../base/constant";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { BaseMobileError } from "../../base/mobile-error";
+export { BaseMobileLabel, BaseMobileError };
 
 type Item = { label?: string; value?: string };
 type MobileDropdownProps = {
@@ -55,7 +60,16 @@ export class MobileDropdown extends KucBase {
     super();
     this._GUID = generateGUID();
     const validProps = validateProps(props);
+    this._setInitialValue(validProps);
     Object.assign(this, validProps);
+  }
+
+  private _setInitialValue(validProps: MobileDropdownProps) {
+    const hasValue = "value" in validProps;
+    const hasSelectedIndex = "selectedIndex" in validProps;
+    if (!hasValue && hasSelectedIndex) {
+      this.value = this._getValue(validProps) || "";
+    }
   }
 
   private _handleChangeInput(event: Event) {
@@ -70,17 +84,53 @@ export class MobileDropdown extends KucBase {
     dispatchCustomEvent(this, "change", detail);
   }
 
+  shouldUpdate(changedProperties: PropertyValues): boolean {
+    if (changedProperties.has("items")) {
+      if (!validateItems(this.items)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("value")) {
+      if (!validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+    }
+
+    if (changedProperties.has("selectedIndex")) {
+      if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
+  willUpdate(changedProperties: PropertyValues): void {
+    if (changedProperties.has("value")) {
+      if (this.value !== "") return;
+
+      this.selectedIndex = -1;
+    }
+  }
+
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("items")) validateItems(this.items);
     if (
       changedProperties.has("items") ||
       changedProperties.has("value") ||
       changedProperties.has("selectedIndex")
     ) {
-      validateValueString(this.value);
-      validateSelectedIndexNumber(this.selectedIndex);
       this.selectedIndex = this._getSelectedIndex();
-      this.value = this._getValue() || "";
+      this.value =
+        this._getValue({
+          items: this.items,
+          selectedIndex: this.selectedIndex
+        }) || "";
     }
     super.update(changedProperties);
   }
@@ -99,8 +149,13 @@ export class MobileDropdown extends KucBase {
     return selectedIndex > -1 ? selectedIndex : firstIndex;
   }
 
-  private _getValue() {
-    const item = this.items[this.selectedIndex];
+  private _getValue(validProps: MobileDropdownProps) {
+    const _items = validProps.items || [];
+    const _selectedIndex =
+      validProps.selectedIndex === 0 || validProps.selectedIndex
+        ? validProps.selectedIndex
+        : -1;
+    const item = _items[_selectedIndex];
     if (!item) return "";
     return item.value;
   }
@@ -127,13 +182,10 @@ export class MobileDropdown extends KucBase {
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-dropdown__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-mobile-dropdown__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
+        <kuc-base-mobile-label
+          .text="${this.label}"
+          .requiredIcon="${this.requiredIcon}"
+        ></kuc-base-mobile-label>
       </label>
       <div class="kuc-mobile-dropdown__input-form">
         <div
@@ -155,15 +207,12 @@ export class MobileDropdown extends KucBase {
           </select>
         </div>
       </div>
-      <div
-        class="kuc-mobile-dropdown__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
+      <kuc-base-mobile-error
+        .text="${this.error}"
+        .guid="${this._GUID}"
+        ariaLive="assertive"
       >
-        ${this.error}
-      </div>
+      </kuc-base-mobile-error>
     `;
   }
 
@@ -216,22 +265,6 @@ export class MobileDropdown extends KucBase {
           display: none;
         }
 
-        .kuc-mobile-dropdown__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-        }
-
-        .kuc-mobile-dropdown__label__required-icon {
-          color: #d01212;
-          left: 3px;
-          position: relative;
-        }
-
-        .kuc-mobile-dropdown__label__required-icon[hidden] {
-          display: none;
-        }
-
         .kuc-mobile-dropdown__input-form {
           word-wrap: break-word;
           min-height: 1em;
@@ -259,17 +292,6 @@ export class MobileDropdown extends KucBase {
           -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
-        }
-
-        .kuc-mobile-dropdown__error {
-          line-height: 1.5;
-          color: #000000;
-          background-color: #fdffc9;
-          border: 1px solid #e5db68;
-          border-radius: 0.4em;
-          padding: 0.4em 1em;
-          margin-top: 0.3em;
-          margin-left: 0.5em;
         }
       </style>
     `;

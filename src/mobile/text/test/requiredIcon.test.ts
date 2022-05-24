@@ -7,7 +7,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-mobile-text__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -18,7 +18,7 @@ describe("MobileText", () => {
       const container = new MobileText({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-mobile-text__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -30,7 +30,7 @@ describe("MobileText", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-mobile-text__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -42,7 +42,7 @@ describe("MobileText", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-mobile-text__label__required-icon"
+        ".kuc-base-mobile-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);

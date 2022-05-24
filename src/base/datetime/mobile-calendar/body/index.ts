@@ -276,6 +276,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
           border: 1px solid #206694;
           box-sizing: border-box;
           text-align: center;
+          font-size: 14px;
         }
         .kuc-base-mobile-datetime-calendar-body__table__date--selected
           .kuc-base-mobile-datetime-calendar-body__table__date__button {
