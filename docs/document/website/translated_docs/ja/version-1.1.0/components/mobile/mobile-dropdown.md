@@ -9,8 +9,8 @@ original_id: mobile-dropdown
 
 MobileDropdown は複数選択肢の中から一つの値を選択することができます。
 
-<div class='sample-container'>
-  <div id='sample-container__components' class="mobile"></div>
+<div class="sample-container" id="mobile-dropdown">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-dropdown.js"></script>
 
