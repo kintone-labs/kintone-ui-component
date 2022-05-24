@@ -1,7 +1,7 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
   const mobileRadioButton = new Kuc.MobileRadioButton({
-    className: "kuc-mobile-radio-button",
+    className: "cus-mobile-radio-button",
     value: "Orange",
     items: [
       {

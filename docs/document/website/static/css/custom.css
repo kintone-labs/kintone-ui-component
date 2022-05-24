@@ -155,20 +155,20 @@ td[class^="kuc"] {
   padding: 20px 40px;
   margin-top: 10px;
 }
-#checkbox .kuc-checkbox div[class$="__select-menu__item"],
-#radio-button .kuc-radio-button div[class$="__select-menu__item"] {
+#checkbox .cus-checkbox div[class$="__select-menu__item"],
+#radio-button .cus-radio-button div[class$="__select-menu__item"] {
     height: auto;
 }
-#mobile-checkbox .kuc-mobile-checkbox {
+#mobile-checkbox .cus-mobile-checkbox {
     min-width: 235px;
 }
-#mobile-checkbox .kuc-mobile-checkbox div[class$="__select-menu__item"] {
+#mobile-checkbox .cus-mobile-checkbox div[class$="__select-menu__item"] {
     height: 40px;
 }
-#mobile-radio-button .kuc-mobile-radio-button div[class$="__select-menu__item"] {
+#mobile-radio-button .cus-mobile-radio-button div[class$="__select-menu__item"] {
     min-width: 253px;
 }
-#mobile-text .kuc-mobile-text {
+#mobile-text .cus-mobile-text {
     min-width: 250px;
 }
 .sandbox-button {
