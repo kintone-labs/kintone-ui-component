@@ -8,8 +8,8 @@ sidebar_label: MobileMultiChoice
 
 The MobileMultiChoice component allows the user to select multiple values from multiple options.
 
-<div class='sample-container'>
-  <div id='sample-container__components' class="mobile"></div>
+<div class="sample-container" id="mobile-multichoice">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
 <script src="/js/samples/mobile-multichoice.js"></script>
 
