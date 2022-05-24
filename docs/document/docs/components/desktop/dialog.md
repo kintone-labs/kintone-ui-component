@@ -8,8 +8,8 @@ sidebar_label: Dialog
 
 The Dialog component displays a dialog box.
 
-<div class='sample-container'>
-  <div id='sample-container__components'>
+<div class="sample-container" id="dialog">
+  <div id="sample-container__components">
     <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
   </div>
 </div>
