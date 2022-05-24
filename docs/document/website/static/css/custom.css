@@ -122,13 +122,13 @@ td[class^="kuc"] {
 .sample-container .mobile {
     max-width: 375px;
 }
-.sample-container .kuc-datetime-picker__group__error {
+#datetime-picker div[class$="group__error"] {
   max-width: 185px;
 }
-.sample-container .kuc-time-picker__group__error {
+#time-picker div[class$="group__error"] {
   max-width: 185px;
 }
-.sample-container .kuc-dropdown__group {
+#dropdown div[class$="__group"] {
   max-width: 180px;
 }
 #mobile-date-picker table {
@@ -155,20 +155,20 @@ td[class^="kuc"] {
   padding: 20px 40px;
   margin-top: 10px;
 }
-.sample-container kuc-checkbox .kuc-checkbox__group__select-menu__item,
-.sample-container kuc-radio-button .kuc-radio-button__group__select-menu__item {
+#checkbox .kuc-checkbox div[class$="__select-menu__item"],
+#radio-button .kuc-radio-button div[class$="__select-menu__item"] {
     height: auto;
 }
-.sample-container kuc-mobile-checkbox {
+#mobile-checkbox .kuc-mobile-checkbox {
     min-width: 235px;
 }
-.sample-container kuc-mobile-checkbox .kuc-mobile-checkbox__group__select-menu__item {
+#mobile-checkbox .kuc-mobile-checkbox div[class$="__select-menu__item"] {
     height: 40px;
 }
-.sample-container kuc-mobile-radio-button .kuc-mobile-radio-button__group__select-menu__item {
+#mobile-radio-button .kuc-mobile-radio-button div[class$="__select-menu__item"] {
     min-width: 253px;
 }
-.sample-container kuc-mobile-text {
+#mobile-text .kuc-mobile-text {
     min-width: 250px;
 }
 .sandbox-button {

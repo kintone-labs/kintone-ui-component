@@ -1,6 +1,7 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
   const checkbox = new Kuc.Checkbox({
+    className: "kuc-checkbox",
     value: ["Orange"],
     items: [
       {

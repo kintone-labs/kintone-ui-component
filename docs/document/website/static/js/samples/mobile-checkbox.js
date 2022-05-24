@@ -1,6 +1,7 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
   const mobileCheckbox = new Kuc.MobileCheckbox({
+    className: "kuc-mobile-checkbox",
     value: ["Orange"],
     items: [
       {
