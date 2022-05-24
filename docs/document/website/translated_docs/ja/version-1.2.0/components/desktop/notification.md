@@ -9,8 +9,8 @@ original_id: notification
 
 Notification は、ポップアップの通知を表示します。
 
-<div class='sample-container'>
-  <div id='sample-container__components'>
+<div class="sample-container" id="notification">
+  <div id="sample-container__components">
     <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
   </div>
 </div>
