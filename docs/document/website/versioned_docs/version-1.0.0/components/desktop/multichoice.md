@@ -9,8 +9,8 @@ original_id: multichoice
 
 The MultiChoice component allows the user to select multiple values from multiple options.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id= "multichoice">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/multichoice.js"></script>
 

@@ -9,8 +9,8 @@ original_id: multichoice
 
 MultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id= "multichoice">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/multichoice.js"></script>
 
