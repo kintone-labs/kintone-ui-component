@@ -122,8 +122,10 @@ td[class^="kuc"] {
 .sample-container .mobile {
     max-width: 375px;
 }
-#datetime-picker kuc-base-error {
+#datetime-picker div[class$="__group__inputs"],
+#datetime-picker div[class$="-error__error"] {
   max-width: 185px;
+  margin: 0 auto;
 }
 #time-picker div[class$="group__error"] {
   max-width: 185px;
