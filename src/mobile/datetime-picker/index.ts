@@ -113,6 +113,7 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   willUpdate(_changedProperties: PropertyValues): void {
+    this._updateErrorText();
     const changeByUI = this._changeDateByUI || this._changeTimeByUI;
     if (changeByUI) {
       this._updateValueAndErrorWhenUIChange();
@@ -134,10 +135,9 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   private _updateValueWhenSetter() {
-    this._errorText = this.error;
+    this._errorFormat = "";
     if (this.value === "" || this.value === undefined) {
       this._previousTimeValue = "";
-      this._errorFormat = "";
       return;
     }
     this._setDateTimeValueSeparate(this._dateAndTime, this._dateConverted);
@@ -252,7 +252,6 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   updated() {
-    this._updateErrorText();
     this._resetState();
   }
 
