@@ -279,6 +279,8 @@ export class MobileDateTimePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
+    if (event.detail.value === this._dateValue) return;
+
     this._changeDateByUI = true;
     let newValue = this._dateValue;
     if (event.detail.error) {
