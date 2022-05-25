@@ -55,6 +55,20 @@ describe("TimePicker", () => {
       expect(itemsEl[1].getAttribute("value")).to.equal("01:00");
     });
 
+    it("should throw error when assigned value is not number", async () => {
+      // @ts-expect-error
+      const container = new TimePicker({ timeStep: "" });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'timeStep' property is not number");
+      }
+    });
+
     it("should throw error when set invalid value", async () => {
       const container = new TimePicker({ timeStep: -1 });
       try {

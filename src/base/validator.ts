@@ -33,13 +33,19 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
+export function validateTimeStepNumber(timeStep: number) {
+  if (typeof timeStep !== "number") {
+    return false;
+  }
+  return true;
+}
+
 export function validateTimeStep(timeStep: number, max: string, min: string) {
   const _tempTimeStep = Math.round(timeStep);
   const maxMinutes = convertTimeValueToMinutes(max);
   const minMinutes = convertTimeValueToMinutes(min);
 
   return (
-    typeof timeStep === "number" &&
     !isNaN(_tempTimeStep) &&
     _tempTimeStep > 0 &&
     _tempTimeStep <= maxMinutes - minMinutes

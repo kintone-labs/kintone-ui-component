@@ -12,12 +12,14 @@ import {
   FORMAT_IS_NOT_VALID,
   MAX_MIN_IS_NOT_VALID,
   TIME_IS_OUT_OF_VALID_RANGE,
+  TIMESTEP_IS_NOT_NUMBER,
   MIN_TIME,
   MAX_TIME
 } from "../base/datetime/resource/constant";
 import {
   validateProps,
   validateTimeValue,
+  validateTimeStepNumber,
   validateTimeStep,
   throwErrorAfterUpdateComplete
 } from "../base/validator";
@@ -94,19 +96,25 @@ export class TimePicker extends KucBase {
       let _inputMinTemp = this._inputMin;
       let _inputMaxTemp = this._inputMax;
 
-      if (!validateTimeValue(this.max)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
-        return false;
+      if (this.max === undefined || this.max === "") {
+        _inputMaxTemp = MAX_TIME;
+      } else {
+        if (!validateTimeValue(this.max)) {
+          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          return false;
+        }
+        _inputMaxTemp = this.max = timeValueConverter(this.max);
       }
-      this.max = timeValueConverter(this.max);
-      _inputMaxTemp = this.max === "" ? MAX_TIME : this.max;
 
-      if (!validateTimeValue(this.min)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
-        return false;
+      if (this.min === undefined || this.min === "") {
+        _inputMinTemp = MIN_TIME;
+      } else {
+        if (!validateTimeValue(this.min)) {
+          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          return false;
+        }
+        _inputMinTemp = this.min = timeValueConverter(this.min);
       }
-      this.min = timeValueConverter(this.min);
-      _inputMinTemp = this.min === "" ? MIN_TIME : this.min;
 
       if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
         throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
@@ -117,6 +125,11 @@ export class TimePicker extends KucBase {
     }
 
     if (_changedProperties.has("timeStep")) {
+      if (!validateTimeStepNumber(this.timeStep)) {
+        throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+        return false;
+      }
+
       if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
         throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
         return false;
