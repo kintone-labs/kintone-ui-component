@@ -122,7 +122,7 @@ td[class^="kuc"] {
 .sample-container .mobile {
     max-width: 375px;
 }
-#datetime-picker div[class$="group__error"] {
+#datetime-picker kuc-base-error {
   max-width: 185px;
 }
 #time-picker div[class$="group__error"] {
@@ -162,7 +162,7 @@ td[class^="kuc"] {
 #mobile-checkbox .cus-mobile-checkbox {
     min-width: 235px;
 }
-#mobile-checkbox .cus-mobile-checkbox div[class$="__select-menu__item"] {
+#mobile-checkbox .cus-mobile-checkbox label[class$="__select-menu__item"] {
     height: 40px;
 }
 #mobile-radio-button .cus-mobile-radio-button div[class$="__select-menu__item"] {
