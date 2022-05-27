@@ -32,7 +32,7 @@ A confirmation dialog is displayed when saving the settings.
 
 ![App image](assets/payment_management_app.png)
 This is an app that manages deposits.<br>
-The background color changes according to the conditions set on the plug-in settings page.
+The background color of the field changes according to the conditions set on the plug-in settings page.
 
 ## What you will need to have ready
 
