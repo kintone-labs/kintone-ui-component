@@ -9,8 +9,8 @@ original_id: datetime-picker
 
 The DateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="datetime-picker">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/datetime-picker.js"></script>
 
