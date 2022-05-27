@@ -147,9 +147,9 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 
 各種コンポーネントを作成します。<br>
 フィールドとしては、以下を配置します。<br>
-Reference Date: 基準日付を設定します
-Condition: 基準日付に対する条件を設定します
-Fields：フィールド設定します（複数選択可）
+Reference Date: 基準日付を設定します<br>
+Condition: 基準日付に対する条件を設定します<br>
+Fields：フィールド設定します（複数選択可）<br>
 
 ```javascript
 // Create DatePicker component
