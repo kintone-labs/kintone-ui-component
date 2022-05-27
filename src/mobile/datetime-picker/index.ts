@@ -185,7 +185,6 @@ export class MobileDateTimePicker extends KucBase {
     this._timeValue = "";
     this._previousTimeValue = "";
     this._previousDateValue = "";
-    this._errorFormat = "";
   }
 
   private _getDateTimeValue(value: string | undefined) {
