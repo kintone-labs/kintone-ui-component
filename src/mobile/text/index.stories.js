@@ -23,11 +23,4 @@ storiesOf("mobile/text", module)
     root.appendChild(mobileText);
 
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileText = new MobileText({});
-    root.appendChild(mobileText);
-    return root;
   });

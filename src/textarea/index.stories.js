@@ -47,11 +47,4 @@ storiesOf("desktop/textarea", module)
     });
     root.appendChild(textarea);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const textarea = new TextArea({});
-    root.appendChild(textarea);
-    return root;
   });

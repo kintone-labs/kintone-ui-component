@@ -9,7 +9,10 @@ original_id: radio-button
 
 The RadioButton component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-radio-button--document" title="radio-button image" height="80px"></iframe>
+<div class="sample-container" id="radio-button">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/radio-button.js"></script>
 
 ---
 

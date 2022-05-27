@@ -142,23 +142,4 @@ storiesOf("desktop/radio-button", module)
     });
     root.appendChild(radioButton);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const radioButton = new RadioButton({
-      value: "Orange",
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
-    root.appendChild(radioButton);
-    return root;
   });

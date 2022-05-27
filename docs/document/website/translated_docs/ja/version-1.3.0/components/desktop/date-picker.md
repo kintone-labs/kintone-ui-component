@@ -9,8 +9,8 @@ original_id: date-picker
 
 DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="date-picker">
+  <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/date-picker.js"></script>
 
