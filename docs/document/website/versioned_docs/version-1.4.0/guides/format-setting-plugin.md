@@ -148,8 +148,8 @@ Place the JavaScript file (config.js) described below in the js folder.<br>
 
 Create various components.<br>
 Place the following as fields.<br>
-Reference Date: Sets the reference date.
-Condition: Sets the condition for the reference date
+Reference Date: Sets the reference date.<br>
+Condition: Sets the condition for the reference date<br>
 Fields: Set fields (Multiple selectable)
 
 ```javascript
