@@ -27,7 +27,6 @@ describe("MobileDateTimePicker", () => {
       ) as HTMLButtonElement;
 
       const nextEl = selectedElUp?.nextElementSibling as HTMLTableCellElement;
-      console.log(nextEl, "nextEl");
       const buttonEl = nextEl as HTMLElement;
       buttonEl.click();
       await elementUpdated(container);
@@ -46,45 +45,57 @@ describe("MobileDateTimePicker", () => {
       expect(container.value).to.equal("2021-12-21T00:00:00");
     });
 
-    // it("should be triggered when click none button on calendar", async () => {
-    //   let triggeredEvent: any = null;
-    //   const container = new MobileDateTimePicker({
-    //     value: "2021-12-20",
-    //     language: "en"
-    //   });
-    //   container.addEventListener("change", event => {
-    //     triggeredEvent = event;
-    //   });
-    //   const el = await fixture(container);
-    //   const inputDateEl = el.querySelector(
-    //     ".kuc-mobile-base-date__group__input"
-    //   ) as HTMLInputElement;
+    it("should be triggered when click none button on calendar", async () => {
+      let triggeredEvent: any = null;
+      const container = new MobileDateTimePicker({
+        value: "2021-12-20",
+        language: "en"
+      });
+      container.addEventListener("change", event => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
 
-    //   inputDateEl.click();
-    //   await elementUpdated(container);
-    //   await elementUpdated(el);
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
 
-    //   const noneBtnEl = el.querySelector(
-    //     ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
-    //   ) as HTMLButtonElement;
-    //   noneBtnEl.click();
-    //   await elementUpdated(container);
+      const noneBtnEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+      ) as HTMLButtonElement;
+      noneBtnEl.click();
+      await elementUpdated(container);
 
-    //   expect(triggeredEvent.type).to.equal("change");
-    //   expect(triggeredEvent.detail.value).to.equal("");
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.value).to.equal(undefined);
+      expect(triggeredEvent.detail.changedPart).to.equal("date");
+    });
 
-    //   inputDateEl.click();
-    //   await elementUpdated(container);
-    //   await elementUpdated(el);
+    it("should be triggered when change hour on time part", async () => {
+      let triggeredEvent: any = null;
+      const container = new MobileDateTimePicker({
+        value: "2021-12-20",
+        language: "en"
+      });
+      container.addEventListener("change", event => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const selectHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
 
-    //   const noneBtnElEmpty = el.querySelector(
-    //     ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
-    //   ) as HTMLButtonElement;
-    //   noneBtnElEmpty.click();
-    //   await elementUpdated(container);
+      selectHourEl.value = "01";
+      selectHourEl.dispatchEvent(new Event("change"));
+      await elementUpdated(container);
+      await elementUpdated(el);
 
-    //   expect(triggeredEvent.type).to.equal("change");
-    //   expect(triggeredEvent.detail.value).to.equal("");
-    // });
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.value).to.equal("2021-12-20T01:00:00");
+      expect(triggeredEvent.detail.changedPart).to.equal("time");
+    });
   });
 });
