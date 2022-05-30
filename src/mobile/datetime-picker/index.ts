@@ -113,12 +113,13 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   willUpdate(_changedProperties: PropertyValues): void {
-    this._updateErrorText();
     const changeByUI = this._changeDateByUI || this._changeTimeByUI;
     if (changeByUI) {
       this._updateValueAndErrorWhenUIChange();
       return;
     }
+    this._errorFormat = "";
+    this._updateErrorText();
     this._updateValueWhenSetter();
   }
 
