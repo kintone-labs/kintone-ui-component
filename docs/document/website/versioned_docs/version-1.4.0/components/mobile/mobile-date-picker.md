@@ -12,7 +12,7 @@ The MobileDatePicker component allows the user to display a input area and date 
 <div class="sample-container" id="mobile-date-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile-date-picker.js"></script>
+<script src="/js/samples/mobile/mobile-date-picker.js"></script>
 
 ---
 
