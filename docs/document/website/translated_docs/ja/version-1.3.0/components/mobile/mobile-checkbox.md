@@ -12,7 +12,7 @@ MobileCheckbox は、複数選択のチェックボックスを表示します�
 <div class="sample-container" id="mobile-checkbox">
   <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/mobile-checkbox.js"></script>
+<script src="/js/samples/mobile/mobile-checkbox.js"></script>
 
 ---
 

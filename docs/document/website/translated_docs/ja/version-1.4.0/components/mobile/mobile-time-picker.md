@@ -12,7 +12,7 @@ MobileTimePicker は入力エリアと時間選択用のリストを表示しま
 <div class="sample-container" id="mobile-time-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile-time-picker.js"></script>
+<script src="/js/samples/mobile/mobile-time-picker.js"></script>
 
 ---
 

@@ -12,7 +12,7 @@ DatePicker は入力エリアと日付選択用のカレンダーを表示しま
 <div class="sample-container" id="date-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/date-picker.js"></script>
+<script src="/js/samples/desktop/date-picker.js"></script>
 
 ---
 
