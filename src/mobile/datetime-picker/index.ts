@@ -118,6 +118,8 @@ export class MobileDateTimePicker extends KucBase {
       this._updateValueAndErrorWhenUIChange();
       return;
     }
+    this._errorFormat = "";
+    this._updateErrorText();
     this._updateValueWhenSetter();
   }
 
@@ -134,10 +136,9 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   private _updateValueWhenSetter() {
-    this._errorText = this.error;
+    this._errorFormat = "";
     if (this.value === "" || this.value === undefined) {
       this._previousTimeValue = "";
-      this._errorFormat = "";
       return;
     }
     this._setDateTimeValueSeparate(this._dateAndTime, this._dateConverted);
@@ -185,7 +186,6 @@ export class MobileDateTimePicker extends KucBase {
     this._timeValue = "";
     this._previousTimeValue = "";
     this._previousDateValue = "";
-    this._errorFormat = "";
   }
 
   private _getDateTimeValue(value: string | undefined) {
@@ -252,7 +252,6 @@ export class MobileDateTimePicker extends KucBase {
   }
 
   updated() {
-    this._updateErrorText();
     this._resetState();
   }
 
@@ -280,6 +279,8 @@ export class MobileDateTimePicker extends KucBase {
   private _handleDateChange(event: CustomEvent) {
     event.stopPropagation();
     event.preventDefault();
+    if (event.detail.value === this._dateValue) return;
+
     this._changeDateByUI = true;
     let newValue = this._dateValue;
     if (event.detail.error) {
