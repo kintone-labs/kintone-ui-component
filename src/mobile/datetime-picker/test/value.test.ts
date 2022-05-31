@@ -1,5 +1,6 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../../../base/datetime/mobile-time";
+import "../../../base/datetime/mobile-date";
 import { MobileDateTimePicker } from "../index";
 import { getTodayStringByLocale } from "../../../base/datetime/utils";
 
@@ -88,27 +89,32 @@ describe("MobileDateTimePicker", () => {
     });
 
     it("should throw error when set invalid value", done => {
-      window.addEventListener("unhandledrejection", event => {
+      const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
         done();
-      });
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileDateTimePicker();
-      fixture(container);
-      // @ts-ignore
       container.value = "12,12";
+      fixture(container);
     });
 
     it("should throw error when set null", done => {
-      window.addEventListener("unhandledrejection", event => {
+      const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
         done();
-      });
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileDateTimePicker();
-      fixture(container);
       // @ts-ignore
       container.value = null;
+      fixture(container);
     });
 
     it("should be today value when pressing today button on calendar", async () => {
@@ -233,6 +239,107 @@ describe("MobileDateTimePicker", () => {
       expect(inputHourEl.value).to.be.equal("");
       expect(inputMinuteEl.value).to.be.equal("");
       expect(container.value).to.be.equal("");
+    });
+
+    it("should be undefined when select empty on hour", async () => {
+      const container = new MobileDateTimePicker({
+        value: "2021-12-12T01",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      container.value = "";
+      await elementUpdated(el);
+      const inputHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
+      const baseTimeEl = el.querySelector(
+        ".kuc-mobile-datetime-picker__group__input--time"
+      ) as HTMLElement;
+      inputHourEl.value = "";
+      baseTimeEl.dispatchEvent(
+        new CustomEvent("kuc:base-mobile-time-change", {
+          detail: {
+            value: ":00",
+            oldValue: "00:00",
+            error: "Format is not valid."
+          }
+        })
+      );
+      await elementUpdated(el);
+      expect(container.value).to.be.equal(undefined);
+    });
+
+    it("should be undefined when select today while missing time hour", async () => {
+      const container = new MobileDateTimePicker({
+        value: getTodayStringByLocale(),
+        language: "ja"
+      });
+      console.log(getTodayStringByLocale(), "getTodayStringByLocale()");
+      const el = await fixture(container);
+      container.value = "";
+      await elementUpdated(el);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+      const inputHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
+      const baseTimeEl = el.querySelector(
+        ".kuc-mobile-datetime-picker__group__input--time"
+      ) as HTMLElement;
+      inputHourEl.value = "";
+      baseTimeEl.dispatchEvent(
+        new CustomEvent("kuc:base-mobile-time-change", {
+          detail: {
+            value: ":00",
+            oldValue: "00:00",
+            error: "Format is not valid."
+          }
+        })
+      );
+      await elementUpdated(el);
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+      const todayBtnEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      todayBtnEl.dispatchEvent(new Event("click"));
+      await elementUpdated(el);
+
+      expect(container.value).to.be.equal(undefined);
+    });
+
+    it("should be today value when pressing today button on calendar", async () => {
+      const container = new MobileDateTimePicker({
+        value: "2021-12-12T12:12:12",
+        language: "ja"
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+      const inputHourEl = el.querySelector(
+        ".kuc-base-mobile-time__group__hours"
+      ) as HTMLSelectElement;
+      const inputMinuteEl = el.querySelector(
+        ".kuc-base-mobile-time__group__minutes"
+      ) as HTMLSelectElement;
+
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const todayBtnEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      todayBtnEl.click();
+      await elementUpdated(el);
+      const todayStr = getTodayStringByLocale();
+      expect(inputDateEl.value).to.be.equal(todayStr);
+      expect(inputHourEl.value).to.be.equal("12");
+      expect(inputMinuteEl.value).to.be.equal("12");
+      expect(container.value).to.be.equal(`${todayStr}T12:12:12`);
     });
   });
 });

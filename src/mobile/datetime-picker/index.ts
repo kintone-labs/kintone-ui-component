@@ -26,6 +26,7 @@ type MobileDateTimePickerProps = {
   id?: string;
   label?: string;
   disabled?: boolean;
+  hour12?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
   language?: "ja" | "en" | "zh" | "auto";

@@ -2,6 +2,7 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import "../../../base/datetime/mobile-date";
 import "../../../base/datetime/mobile-time";
 import { MobileDateTimePicker } from "../index";
+import { getTodayStringByLocale } from "../../../base/datetime/utils";
 
 describe("MobileDateTimePicker", () => {
   describe("change event", () => {
@@ -96,6 +97,32 @@ describe("MobileDateTimePicker", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.value).to.equal("2021-12-20T01:00:00");
       expect(triggeredEvent.detail.changedPart).to.equal("time");
+    });
+
+    it("should not triggered when pressing the same day", async () => {
+      let triggeredEvent: any = null;
+      const container = new MobileDateTimePicker({
+        value: getTodayStringByLocale(),
+        language: "ja"
+      });
+      container.addEventListener("change", event => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+      inputDateEl.click();
+      await elementUpdated(el);
+      await elementUpdated(container);
+
+      const todayBtnEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      todayBtnEl.click();
+      await elementUpdated(el);
+
+      expect(triggeredEvent).to.equal(null);
     });
   });
 });
