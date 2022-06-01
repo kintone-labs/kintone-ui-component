@@ -2,7 +2,7 @@ import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import "../../../base/datetime/mobile-time";
 import { MobileDateTimePicker } from "../index";
 
-describe("DatePicker", () => {
+describe("MobileDateTimePicker", () => {
   describe("hour12", () => {
     it("should be using time format hour 24 when not assigned on constructor", async () => {
       const container = new MobileDateTimePicker({

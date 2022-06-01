@@ -1,4 +1,4 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import "../../../base/mobile-error";
 import "../../../base/mobile-label";
 import { MobileDateTimePicker } from "../index";
