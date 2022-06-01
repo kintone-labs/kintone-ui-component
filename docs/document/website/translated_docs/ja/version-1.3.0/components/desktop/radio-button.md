@@ -12,7 +12,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 <div class="sample-container" id="radio-button">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/radio-button.js"></script>
+<script src="/js/samples/desktop/radio-button.js"></script>
 
 ---
 

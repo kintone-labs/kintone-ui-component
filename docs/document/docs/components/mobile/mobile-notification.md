@@ -13,7 +13,7 @@ The MobileNotification component allows the user to display pop-up notifications
     <iframe id="iframe" title="mobile notification image" width="300px" height="70px"></iframe>
   </div>
 </div>
-<script src="/js/samples/mobile-notification.js"></script>
+<script src="/js/samples/mobile/mobile-notification.js"></script>
 
 ---
 
@@ -88,4 +88,3 @@ mobileNotification.addEventListener('close', event => {
 mobileNotification.open();
 mobileNotification.close();
 ```
-

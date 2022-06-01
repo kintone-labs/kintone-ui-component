@@ -14,7 +14,7 @@ Notification は、ポップアップの通知を表示します。
     <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
   </div>
 </div>
-<script src="/js/samples/notification.js"></script>
+<script src="/js/samples/desktop/notification.js"></script>
 
 ---
 
