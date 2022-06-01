@@ -12,7 +12,7 @@ The MobileTimePicker component allows the user to display a input area and time 
 <div class="sample-container" id="mobile-time-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile-time-picker.js"></script>
+<script src="/js/samples/mobile/mobile-time-picker.js"></script>
 
 ---
 

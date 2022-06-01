@@ -12,7 +12,7 @@ MultiChoice は、複数選択肢の中から複数の値を選択すること�
 <div class="sample-container" id= "multichoice">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/multichoice.js"></script>
+<script src="/js/samples/desktop/multichoice.js"></script>
 
 ---
 
