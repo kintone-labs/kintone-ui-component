@@ -193,5 +193,21 @@ describe("DateTimePicker", () => {
       expect(inputDateEl.value).to.be.equal("");
       expect(container.value).to.be.equal(undefined);
     });
+
+    it("should throw error when it is less than min", async () => {
+      const container = new DateTimePicker({
+        value: "2022-12-12T10:00",
+        min: "12:00"
+      });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Time is out of valid range.");
+      }
+    });
   });
 });
