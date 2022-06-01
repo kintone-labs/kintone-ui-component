@@ -274,7 +274,6 @@ describe("MobileDateTimePicker", () => {
         value: getTodayStringByLocale(),
         language: "ja"
       });
-      console.log(getTodayStringByLocale(), "getTodayStringByLocale()");
       const el = await fixture(container);
       container.value = "";
       await elementUpdated(el);
