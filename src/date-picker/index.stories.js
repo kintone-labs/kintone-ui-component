@@ -26,17 +26,7 @@ export default {
 };
 
 const ConstructorTemplate = args => {
-  const datePicker = new DatePicker({
-    disabled: args.disabled,
-    language: args.language,
-    value: args.value,
-    id: args.id,
-    label: args.label,
-    requiredIcon: args.requiredIcon,
-    visible: args.visible,
-    className: args.className,
-    error: args.error
-  });
+  const datePicker = new DatePicker({ ...args });
 
   datePicker.addEventListener("change", event => {
     console.log(event);
@@ -58,17 +48,7 @@ BaseConstructor.args = {
 
 const SetTemplate = args => {
   const wrapperEl = document.createElement("div");
-
-  const datePicker = new DatePicker({});
-  datePicker.disabled = args.disabled;
-  datePicker.language = args.language;
-  datePicker.value = args.value;
-  datePicker.id = args.id;
-  datePicker.label = args.label;
-  datePicker.requiredIcon = args.requiredIcon;
-  datePicker.visible = args.visible;
-  datePicker.className = args.className;
-  datePicker.error = args.error;
+  const datePicker = new DatePicker({ ...args });
   datePicker.addEventListener("change", event => {
     console.log(event);
   });
