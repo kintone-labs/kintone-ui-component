@@ -11,7 +11,7 @@ The MobileDateTimePicker component allows the user to display a input area of ti
 <div class="sample-container" id="datetime-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile-datetime-picker.js"></script>
+<script src="/js/samples/mobile/mobile-datetime-picker.js"></script>
 
 ---
 
