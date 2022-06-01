@@ -13,7 +13,7 @@ The Dialog component displays a dialog box.
     <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
   </div>
 </div>
-<script src="/js/samples/dialog.js"></script>
+<script src="/js/samples/desktop/dialog.js"></script>
 
 ---
 

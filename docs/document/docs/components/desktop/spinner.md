@@ -13,7 +13,7 @@ The Spinner component allows the user to display a rolling spinner.
     <iframe id="iframe" title="spinner image" width="300px" height="200px"></iframe>
   </div>
 </div>
-<script src="/js/samples/spinner.js"></script>
+<script src="/js/samples/desktop/spinner.js"></script>
 
 ---
 

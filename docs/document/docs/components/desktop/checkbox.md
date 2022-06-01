@@ -11,7 +11,7 @@ The Checkbox component displays a checkbox element for multiple selections.
 <div class="sample-container" id="checkbox">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/checkbox.js"></script>
+<script src="/js/samples/desktop/checkbox.js"></script>
 
 ---
 
