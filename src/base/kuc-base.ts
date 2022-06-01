@@ -1,11 +1,16 @@
 import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
 
-type CustomEventDetail = {
+export type CustomEventDetail = {
   data?: string | null;
   oldValue?: string | string[];
   value?: string | string[];
   error?: string;
+};
+
+export type Item = {
+  label?: string;
+  value?: string;
 };
 
 export abstract class KucBase extends LitElement {
@@ -33,5 +38,4 @@ export const createStyleOnHeader = (styleText: string) => {
   document.head.appendChild(styleTag);
 };
 
-export { CustomEventDetail };
 export const generateGUID = () => uuid();
