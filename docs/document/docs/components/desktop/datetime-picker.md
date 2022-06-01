@@ -33,6 +33,9 @@ Here is a list of properties that can be used for modifying the component:
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
+| timeStep | number | 30 | Setting of time interval | unit: minute (positive integer)<br>Round off to the nearest whole number.<br>Will result an error if setting invalid format or value. |
+| min | string | "" | In the time listbox, it is displayed from the time set as "min", and it is not displayed before that. | Format is HH:MM<br>The below time can be used (it will be converted to HH:MM internally):<li>5:30</li><li>05:3</li><li>5:3</li>If the hour and/or time has only 1 character, 0 will be added to the beginning.<br>Will result an error if setting invalid format or value. |
+| max | string | "" | In the time listbox, it is displayed up to the time set as "max", and it is not displayed after that. | Format is HH:MM<br>The below time can be used (it will be converted to HH:MM internally):<li>5:30</li><li>05:3</li><li>5:3</li>If the hour and/or time has only 1 character, 0 will be added to the beginning.<br>Will result an error if setting invalid format or value. |
 
 ### Event
 
@@ -73,7 +76,10 @@ const dateTimePicker = new Kuc.DateTimePicker({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  timeStep: 30,
+  max: '23:59',
+  min: '00:00'
 });
 space.appendChild(dateTimePicker);
 
