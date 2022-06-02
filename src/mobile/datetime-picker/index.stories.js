@@ -2,40 +2,32 @@ import "./index.ts";
 import { html } from "lit-html";
 
 export default {
-  title: "desktop/datetime-picker",
+  title: "mobile/datetime-picker",
   argTypes: {
-    className: { name: "className" },
-    error: { name: "error" },
-    id: { name: "id" },
-    label: { name: "label" },
     language: {
       name: "language",
       control: {
         type: "select",
         options: ["auto", "en", "ja", "zh"]
       }
-    },
-    value: { name: "value" },
-    requiredIcon: { name: "requiredIcon" },
-    disabled: { name: "disabled" },
-    hour12: { name: "hour12" },
-    visible: { name: "visible" },
-    timeStep: { name: "timeStep" },
-    min: { name: "min" },
-    max: { name: "max" }
+    }
   },
   parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro"
+    },
     actions: {
       handles: ["change"]
     }
   }
 };
+
 const Template = args => {
   const handleDateChange = event => {
     console.log(event);
   };
   return html`
-    <kuc-datetime-picker
+    <kuc-mobile-datetime-picker
       .className="${args.className}"
       .error="${args.error}"
       .id="${args.id}"
@@ -46,11 +38,8 @@ const Template = args => {
       .hour12="${args.hour12}"
       .requiredIcon="${args.requiredIcon}"
       .visible="${args.visible}"
-      .timeStep="${args.timeStep}"
-      .min="${args.min}"
-      .max="${args.max}"
       @change="${handleDateChange}"
-    ></kuc-datetime-picker>
+    ></kuc-mobile-datetime-picker>
   `;
 };
 
@@ -65,10 +54,7 @@ Base.args = {
   disabled: false,
   hour12: true,
   requiredIcon: true,
-  visible: true,
-  timeStep: 60,
-  min: "00:00",
-  max: "23:59"
+  visible: true
 };
 
 export const BaseHour12 = Template.bind({});
@@ -82,10 +68,7 @@ BaseHour12.args = {
   disabled: false,
   hour12: true,
   requiredIcon: false,
-  visible: true,
-  timeStep: 30,
-  min: "00:00",
-  max: "20:00"
+  visible: true
 };
 
 export const BaseHour24 = Template.bind({});
@@ -99,10 +82,7 @@ BaseHour24.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true,
-  timeStep: 30,
-  min: "00:00",
-  max: "20:00"
+  visible: true
 };
 
 export const BaseLanguageEN = Template.bind({});
@@ -116,10 +96,7 @@ BaseLanguageEN.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true,
-  timeStep: 60,
-  min: "00:00",
-  max: "23:59"
+  visible: true
 };
 
 export const BaseLanguageJA = Template.bind({});
@@ -133,10 +110,7 @@ BaseLanguageJA.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true,
-  timeStep: 60,
-  min: "00:00",
-  max: "23:59"
+  visible: true
 };
 
 export const BaseLanguageZH = Template.bind({});
@@ -150,10 +124,7 @@ BaseLanguageZH.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true,
-  timeStep: 60,
-  min: "00:00",
-  max: "23:59"
+  visible: true
 };
 
 export const BaseError = Template.bind({});
@@ -167,8 +138,5 @@ BaseError.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true,
-  timeStep: 30,
-  min: "00:00",
-  max: "23:59"
+  visible: true
 };

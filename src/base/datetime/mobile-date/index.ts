@@ -249,32 +249,36 @@ export class BaseMobileDate extends KucBase {
           align-items: center;
           position: relative;
           border-radius: 5.148px;
-          border: 1px solid #b3b3b3;
           background-color: #ffffff;
-          padding: 5.148px;
-          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
         }
-        .kuc-mobile-base-date__group--required {
+        .kuc-mobile-base-date__group__input[aria-required="true"] {
           border-color: #cf4a38;
         }
         input.kuc-mobile-base-date__group__input {
           color: #000000;
           width: 100%;
+          height: 31.28px;
           font-size: 99%;
-          padding: 0px;
           -webkit-flex-grow: 1;
           flex-grow: 1;
-          border: none;
+          padding: 5.148px;
+          border-radius: 5.148px;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
+          border: 1px solid #b3b3b3;
           font-weight: 400;
+          -webkit-appearance: none;
           appearance: none;
           outline: 0;
-          background: inherit;
+          background: transparent;
+          box-sizing: border-box;
         }
         .kuc-mobile-base-date__group--disabled {
-          color: #999999;
-          -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
+        }
+        .kuc-mobile-base-date__group--disabled input {
+          color: #999999;
+          -webkit-text-fill-color: #999999;
         }
         .kuc-base-mobile-date__calendar {
           position: absolute;
@@ -289,6 +293,8 @@ export class BaseMobileDate extends KucBase {
           background-color: transparent;
           border: 0;
           padding: 0;
+          height: 100%;
+          align-items: center;
         }
       </style>
     `;

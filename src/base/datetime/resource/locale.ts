@@ -25,7 +25,8 @@ export const en = {
   ],
   INVALID_FORMAT: "Format is not valid.",
   INVALID_TIME_FORMAT: "Format is not valid.",
-  CALENDAR_FOOTER_TEXT: { none: "None", today: "Today", close: "Close" }
+  CALENDAR_FOOTER_TEXT: { none: "None", today: "Today", close: "Close" },
+  TIME_IS_OUT_OF_VALID_RANGE: "Time is out of valid range."
 };
 
 export const ja = {
@@ -55,7 +56,8 @@ export const ja = {
   ],
   INVALID_FORMAT: "日付の形式が不正です。",
   INVALID_TIME_FORMAT: "時刻の形式が不正です。",
-  CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日", close: "閉じる" }
+  CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日", close: "閉じる" },
+  TIME_IS_OUT_OF_VALID_RANGE: "時刻が有効な範囲外です。"
 };
 
 export const zh = {
@@ -85,5 +87,6 @@ export const zh = {
   ],
   INVALID_FORMAT: "日期格式不正确。",
   INVALID_TIME_FORMAT: "时间格式不正确。",
-  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" }
+  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" },
+  TIME_IS_OUT_OF_VALID_RANGE: "时间超出有效范围。"
 };

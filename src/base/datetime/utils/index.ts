@@ -35,14 +35,26 @@ export const getDisplayingDates = (year: number, month: number) => {
 
 export const generateTimeOptions = (
   isHour12: boolean,
-  timeStep: number = 30
+  timeStep: number,
+  min: string,
+  max: string
 ) => {
   const timeOptions = [];
-  const limitLoop = (MAX_MINUTES / timeStep) * MAX_HOURS24;
-  for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
-    const timeOption = generateTimeOption(i, isHour12);
-    timeOptions.push(timeOption);
+  const newTimeStep = Math.round(timeStep);
+  const maxMinutes = convertTimeValueToMinutes(max);
+  const minMinutes = convertTimeValueToMinutes(min);
+
+  if (newTimeStep > 0) {
+    const limitLoop = Math.floor((maxMinutes - minMinutes) / newTimeStep) + 1;
+    for (let i = 0; i < limitLoop; i++) {
+      const timeOption = generateTimeOption(
+        minMinutes + i * newTimeStep,
+        isHour12
+      );
+      timeOptions.push(timeOption);
+    }
   }
+
   return timeOptions;
 };
 
@@ -61,6 +73,37 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
     value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
   };
   return timeOption;
+};
+
+export const convertTimeValueToMinutes = (value: string) => {
+  const times = value.split(":");
+  let hours = parseInt(times[0], 10);
+  let minutes = parseInt(times[1], 10);
+  if (isNaN(hours) || isNaN(minutes)) {
+    return 0;
+  }
+
+  if (hours < 0) {
+    hours = 0;
+  } else if (hours >= MAX_HOURS24) {
+    hours = MAX_HOURS24 - 1;
+  }
+
+  if (minutes < 0) {
+    minutes = 0;
+  } else if (minutes >= MAX_MINUTES) {
+    minutes = MAX_MINUTES - 1;
+  }
+
+  return hours * MAX_MINUTES + minutes;
+};
+
+export const timeCompare = (startTime: string, endTime: string) => {
+  const startTimeMinutes = convertTimeValueToMinutes(startTime);
+  const endTimeMinutes = convertTimeValueToMinutes(endTime);
+  if (startTimeMinutes > endTimeMinutes) return 1;
+  if (startTimeMinutes === endTimeMinutes) return 0;
+  return -1;
 };
 
 export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {

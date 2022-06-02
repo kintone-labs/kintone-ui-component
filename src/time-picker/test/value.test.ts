@@ -17,7 +17,7 @@ describe("TimePicker", () => {
       expect(inputMinuteEl.value).to.be.equal("");
     });
 
-    it('should be "13:15" when assigned "13:15" by setter', async () => {
+    it('should be "13:15" when assigned "13:15" on constructor', async () => {
       const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -60,6 +60,19 @@ describe("TimePicker", () => {
       }
     });
 
+    it("should throw error when it is less than min", async () => {
+      const container = new TimePicker({ value: "10:00", min: "12:00" });
+      try {
+        const el = await fixture(container);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.be.equal("Time is out of valid range.");
+      }
+    });
+
     it("should be empty value and UI when set '' on constructor", async () => {
       const container = new TimePicker({ value: "" });
       const el = await fixture(container);
@@ -77,9 +90,7 @@ describe("TimePicker", () => {
     });
 
     it("should be empty value and UI when set '' by setter", async () => {
-      const container = new TimePicker({
-        value: "2022-12-12"
-      });
+      const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       container.value = "";
       await elementUpdated(el);
@@ -96,9 +107,7 @@ describe("TimePicker", () => {
     });
 
     it("should be empty value and UI when set undefined on constructor", async () => {
-      const container = new TimePicker({
-        value: undefined
-      });
+      const container = new TimePicker({ value: undefined });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
         ".kuc-base-time__group__hours"
@@ -113,9 +122,7 @@ describe("TimePicker", () => {
     });
 
     it("should be undefined value and empty on UI when set undefined on setter", async () => {
-      const container = new TimePicker({
-        value: "2022-12-12"
-      });
+      const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       container.value = undefined;
       await elementUpdated(el);
