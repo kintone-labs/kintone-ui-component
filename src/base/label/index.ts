@@ -1,46 +1,39 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { createStyleOnHeader, KucBase } from "../kuc-base";
-import { BASELABEL_CSS } from "./style";
+import { BASE_LABEL } from "./style";
 
-let exportBaseLabel;
-(() => {
-  exportBaseLabel = window.customElements.get("kuc-base-label");
-  if (exportBaseLabel) {
-    return;
-  }
-  class KucBaseLabel extends KucBase {
-    @property({ type: Boolean }) requiredIcon = false;
-    @property({ type: String }) guid = "";
-    @property({ type: String }) text = "";
+class BaseLabel extends KucBase {
+  @property({ type: Boolean }) requiredIcon = false;
+  @property({ type: String }) guid = "";
+  @property({ type: String }) text = "";
 
-    render() {
-      return html`
-        ${this._getTextTemplate()}
-        <span
-          class="kuc-base-label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
-      `;
-    }
-
-    private _getTextTemplate() {
-      return this.guid && this.guid !== ""
-        ? html`
-            <span class="kuc-base-label__text" .id="${this.guid}-group"
-              >${this.text}</span
-            >
-          `
-        : html`
-            <span class="kuc-base-label__text">${this.text}</span>
-          `;
-    }
+  render() {
+    return html`
+      ${this._getTextTemplate()}
+      <span
+        class="kuc-base-label__required-icon"
+        ?hidden="${!this.requiredIcon}"
+        >*</span
+      >
+    `;
   }
 
-  window.customElements.define("kuc-base-label", KucBaseLabel);
-  createStyleOnHeader(BASELABEL_CSS);
-  exportBaseLabel = KucBaseLabel;
-})();
-const BaseLabel = exportBaseLabel as any;
+  private _getTextTemplate() {
+    return this.guid && this.guid !== ""
+      ? html`
+          <span class="kuc-base-label__text" .id="${this.guid}-group"
+            >${this.text}</span
+          >
+        `
+      : html`
+          <span class="kuc-base-label__text">${this.text}</span>
+        `;
+  }
+}
+if (!window.customElements.get("kuc-base-label")) {
+  window.customElements.define("kuc-base-label", BaseLabel);
+}
+
+createStyleOnHeader(BASE_LABEL);
 export { BaseLabel };
