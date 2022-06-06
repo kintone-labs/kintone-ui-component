@@ -6,8 +6,8 @@ const packageJSON = require("../package.json");
 const fs = require("fs");
 const componentDirectories = ["button"];
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)\s|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
-const suffixs = ["\\", ">", "__", '"', "=", ",", ";", " ", "\n"];
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
+const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
 const getChangedValue = (str, version) => {
@@ -31,11 +31,15 @@ const replaceAllByPattern = (data, pattern, version) => {
         ? matchedValue
         : getChangedValue(matchedValue, version);
     tempData = tempData.replace(
-      new RegExp(matchedValue, "g"),
+      new RegExp(escapeRegExp(matchedValue), "g"),
       tempChangedValue
     );
   });
   return tempData;
+};
+
+const escapeRegExp = (string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
 const renameTypeFile = (oldFile, newFile) => {
