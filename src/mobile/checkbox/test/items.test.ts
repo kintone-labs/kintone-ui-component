@@ -202,7 +202,6 @@ describe("MobileCheckbox", () => {
     });
 
     it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
       const container = new MobileCheckbox({ items: null });
       try {
         await fixture(container);
@@ -220,7 +219,6 @@ describe("MobileCheckbox", () => {
 
     it("should be throw error when assigned null by setter", async () => {
       const container = new MobileCheckbox();
-      // @ts-expect-error
       container.items = null;
       try {
         await fixture(container);
