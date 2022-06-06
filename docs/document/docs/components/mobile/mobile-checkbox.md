@@ -8,7 +8,10 @@ sidebar_label: MobileCheckbox
 
 The MobileCheckbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-checkbox--document" title="mobile checkbox image" height="150px"></iframe>
+<div class="sample-container" id="mobile-checkbox">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-checkbox.js"></script>
 
 ---
 

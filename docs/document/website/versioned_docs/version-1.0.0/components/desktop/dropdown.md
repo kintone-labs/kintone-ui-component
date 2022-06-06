@@ -9,10 +9,10 @@ original_id: dropdown
 
 The Dropdown component allows the user to select one out of several options.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="dropdown">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/dropdown.js"></script>
+<script src="/js/samples/desktop/dropdown.js"></script>
 
 ---
 

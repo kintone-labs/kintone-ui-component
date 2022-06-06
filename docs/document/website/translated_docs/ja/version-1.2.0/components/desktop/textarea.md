@@ -9,7 +9,10 @@ original_id: textarea
 
 TextArea は、複数行のテキストを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
+<div class="sample-container block" id="textarea">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/textarea.js"></script>
 
 ---
 

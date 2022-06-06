@@ -31,11 +31,4 @@ storiesOf("mobile/textarea", module)
     root.appendChild(mobileTextArea);
 
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileTextarea = new MobileTextArea({});
-    root.appendChild(mobileTextarea);
-    return root;
   });

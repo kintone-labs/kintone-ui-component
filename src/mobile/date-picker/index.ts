@@ -201,7 +201,6 @@ export class MobileDatePicker extends KucBase {
         }
         .kuc-mobile-date-picker__group__label {
           display: inline-block;
-          font-size: 86%;
           font-weight: bold;
           line-height: 1.5;
           padding: 0px;

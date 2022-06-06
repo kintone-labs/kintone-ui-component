@@ -138,23 +138,4 @@ storiesOf("desktop/checkbox", module)
     });
     root.appendChild(checkbox);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      value: ["Orange"],
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
-    root.appendChild(checkbox);
-    return root;
   });

@@ -140,23 +140,4 @@ storiesOf("mobile/radio-button", module)
     });
     root.appendChild(radioButton);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileRadioButton = new MobileRadioButton({
-      value: "Orange",
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
-    root.appendChild(mobileRadioButton);
-    return root;
   });

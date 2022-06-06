@@ -52,12 +52,4 @@ storiesOf("mobile/notification", module)
     root.appendChild(button);
 
     return root;
-  })
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileNotification = new MobileNotification({
-      text: "Error!"
-    });
-    mobileNotification.open();
-    return root;
   });

@@ -9,11 +9,12 @@ original_id: notification
 
 Notification は、ポップアップの通知を表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documentinfo" title="notification info image" height="70px"></iframe>
-
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documentsuccess" title="notification success image" height="70px"></iframe>
-
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-notification--documenterror" title="notification error image" height="70px"></iframe>
+<div class="sample-container" id="notification">
+  <div id="sample-container__components">
+    <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
+  </div>
+</div>
+<script src="/js/samples/desktop/notification.js"></script>
 
 ---
 

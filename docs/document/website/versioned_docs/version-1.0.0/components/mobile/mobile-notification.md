@@ -9,7 +9,12 @@ original_id: mobile-notification
 
 The MobileNotification component allows the user to display pop-up notifications.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-notification--document" title="mobile notification image" height="70px"></iframe>
+<div class="sample-container" id="mobile-notification">
+  <div id="sample-container__components" class="mobile">
+    <iframe id="iframe" title="mobile notification image" width="300px" height="70px"></iframe>
+  </div>
+</div>
+<script src="/js/samples/mobile/mobile-notification.js"></script>
 
 ---
 

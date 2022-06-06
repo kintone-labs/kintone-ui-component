@@ -218,14 +218,7 @@ export class BaseMobileDate extends KucBase {
 
   private _getCalendarIconTemplate() {
     return html`
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 28 28"
-        class="kuc-mobile-base-date__group__button--icon"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -253,34 +246,39 @@ export class BaseMobileDate extends KucBase {
         }
         .kuc-mobile-base-date__group {
           display: flex;
+          align-items: center;
           position: relative;
-          padding: 0 8px;
-          border-radius: 4px;
-          border: 1px solid #a5a5a5;
+          border-radius: 5.148px;
           background-color: #ffffff;
         }
-        .kuc-mobile-base-date__group--required {
+        .kuc-mobile-base-date__group__input[aria-required="true"] {
           border-color: #cf4a38;
         }
         input.kuc-mobile-base-date__group__input {
           color: #000000;
           width: 100%;
+          height: 31.28px;
           font-size: 99%;
           -webkit-flex-grow: 1;
           flex-grow: 1;
-          border: none;
-          padding: 8px 0;
-          line-height: 1.5;
+          padding: 5.148px;
+          border-radius: 5.148px;
+          box-shadow: 0px 1px 0px #ffffff, inset 0px 2px 3px #dadada;
+          border: 1px solid #b3b3b3;
           font-weight: 400;
+          -webkit-appearance: none;
           appearance: none;
           outline: 0;
-          background: inherit;
+          background: transparent;
+          box-sizing: border-box;
         }
         .kuc-mobile-base-date__group--disabled {
-          color: #999999;
-          -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
+        }
+        .kuc-mobile-base-date__group--disabled input {
+          color: #999999;
+          -webkit-text-fill-color: #999999;
         }
         .kuc-base-mobile-date__calendar {
           position: absolute;
@@ -289,11 +287,14 @@ export class BaseMobileDate extends KucBase {
           z-index: 1000;
         }
         .kuc-mobile-base-date__group__button {
+          position: absolute;
           display: flex;
-          align-items: center;
-          background-color: inherit;
+          right: 10px;
+          background-color: transparent;
           border: 0;
           padding: 0;
+          height: 100%;
+          align-items: center;
         }
       </style>
     `;

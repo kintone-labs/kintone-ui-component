@@ -52,6 +52,7 @@ export class BaseMobileLabel extends KucBase {
           text-shadow: 0 1px 0 #ffffff;
           color: #888888;
           white-space: normal;
+          font-size: 86%;
         }
         .kuc-base-mobile-label__required-icon {
           position: relative;
