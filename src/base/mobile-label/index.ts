@@ -3,7 +3,7 @@ import { property } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../kuc-base";
 import { BASE_MOBILE_LABEL_CSS } from "./style";
 
-class BaseMobileLabel extends KucBase {
+export class BaseMobileLabel extends KucBase {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
@@ -35,5 +35,3 @@ if (!window.customElements.get("kuc-base-mobile-label")) {
   createStyleOnHeader(BASE_MOBILE_LABEL_CSS);
   window.customElements.define("kuc-base-mobile-label", BaseMobileLabel);
 }
-
-export { BaseMobileLabel };

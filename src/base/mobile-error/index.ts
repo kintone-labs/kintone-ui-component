@@ -3,7 +3,7 @@ import { property } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../kuc-base";
 import { BASE_MOBILE_ERROR_CSS } from "./style";
 
-class BaseMobileError extends KucBase {
+export class BaseMobileError extends KucBase {
   @property({ type: String }) ariaLive = "";
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
@@ -39,5 +39,3 @@ if (!window.customElements.get("kuc-base-mobile-error")) {
   createStyleOnHeader(BASE_MOBILE_ERROR_CSS);
   window.customElements.define("kuc-base-mobile-error", BaseMobileError);
 }
-
-export { BaseMobileError };
