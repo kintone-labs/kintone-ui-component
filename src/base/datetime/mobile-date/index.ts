@@ -232,7 +232,6 @@ export class BaseMobileDate extends KucBase {
 }
 
 if (!window.customElements.get("kuc-mobile-base-date")) {
-  console.log("define base date");
   createStyleOnHeader(MOBILE_BASE_DATE_CSS);
   window.customElements.define("kuc-mobile-base-date", BaseMobileDate);
 }
