@@ -8,7 +8,7 @@ sidebar_label: MobileDateTimePicker
 
 The MobileDateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div class="sample-container" id="datetime-picker">
+<div class="sample-container" id="mobile-datetime-picker">
   <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/mobile/mobile-datetime-picker.js"></script>
