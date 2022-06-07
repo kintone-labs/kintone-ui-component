@@ -36,7 +36,6 @@ export declare class Checkbox extends KucBase {
   value: string[];
   shouldUpdate(changedProperties: PropertyValues): boolean;
   willUpdate(changedProperties: PropertyValues): void;
-  // eslint-disable-next-line kuc-v1/super-update
   update(changedProperties: PropertyValues): void;
   render(): import("lit").TemplateResult<1>;
   updated(): void;

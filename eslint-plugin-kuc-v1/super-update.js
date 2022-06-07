@@ -2,6 +2,10 @@ module.exports = {
   create: function(context) {
     return {
       ClassDeclaration: function(node) {
+        const physicalFilename = context.getPhysicalFilename();
+        const ignorePath = "^.*(type.ts).*$";
+        const regexPath = new RegExp(ignorePath, "i");
+        if (regexPath.test(physicalFilename)) return;
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
 
