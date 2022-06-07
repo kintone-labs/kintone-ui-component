@@ -1,4 +1,4 @@
-export const BASE_MOBILE_LABEL = `
+export const BASE_MOBILE_LABEL_CSS = `
   kuc-base-mobile-label {
     display: inline-table;
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",

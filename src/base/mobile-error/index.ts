@@ -1,49 +1,43 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../kuc-base";
-import { BASE_MOBILE_ERROR } from "./style";
+import { BASE_MOBILE_ERROR_CSS } from "./style";
 
-let exportBaseMobileError;
-(() => {
-  exportBaseMobileError = window.customElements.get("kuc-base-mobile-error");
-  if (exportBaseMobileError) {
-    return;
-  }
-  class KucBaseMobileError extends KucBase {
-    @property({ type: String }) ariaLive = "";
-    @property({ type: String }) guid = "";
-    @property({ type: String }) text = "";
+class BaseMobileError extends KucBase {
+  @property({ type: String }) ariaLive = "";
+  @property({ type: String }) guid = "";
+  @property({ type: String }) text = "";
 
-    render() {
-      return html`
-        ${this.ariaLive && this.ariaLive !== ""
-          ? html`
-              <div
-                class="kuc-base-mobile-error__error"
-                .id="${this.guid}-error"
-                role="alert"
-                aria-live="${this.ariaLive}"
-                ?hidden="${!this.text}"
-              >
-                ${this.text}
-              </div>
-            `
-          : html`
-              <div
-                class="kuc-base-mobile-error__error"
-                .id="${this.guid}-error"
-                role="alert"
-                ?hidden="${!this.text}"
-              >
-                ${this.text}
-              </div>
-            `}
-      `;
-    }
+  render() {
+    return html`
+      ${this.ariaLive && this.ariaLive !== ""
+        ? html`
+            <div
+              class="kuc-base-mobile-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              aria-live="${this.ariaLive}"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `
+        : html`
+            <div
+              class="kuc-base-mobile-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `}
+    `;
   }
-  window.customElements.define("kuc-base-mobile-error", KucBaseMobileError);
-  createStyleOnHeader(BASE_MOBILE_ERROR);
-  exportBaseMobileError = KucBaseMobileError;
-})();
-const BaseMobileError = exportBaseMobileError as any;
+}
+if (!window.customElements.get("kuc-base-mobile-error")) {
+  createStyleOnHeader(BASE_MOBILE_ERROR_CSS);
+  window.customElements.define("kuc-base-mobile-error", BaseMobileError);
+}
+
 export { BaseMobileError };

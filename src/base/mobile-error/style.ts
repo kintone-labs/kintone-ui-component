@@ -1,4 +1,4 @@
-export const BASE_MOBILE_ERROR = `
+export const BASE_MOBILE_ERROR_CSS = `
   kuc-base-mobile-error {
     display: block;
     font-size: 13px;
