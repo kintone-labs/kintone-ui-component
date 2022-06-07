@@ -6,8 +6,9 @@ td[class^="kuc"] {
   max-width: 185px;
   margin: 0 auto;
 }
-#time-picker div[class$="group__error"] {
+#time-picker .kuc-time-picker__group__input {
   max-width: 185px;
+  margin: 0 auto;
 }
 #dropdown div[class$="__group"] {
   max-width: 180px;
