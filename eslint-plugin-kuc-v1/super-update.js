@@ -6,6 +6,7 @@ module.exports = {
         const ignorePath = "^.*(type.ts).*$";
         const regexPath = new RegExp(ignorePath, "i");
         if (regexPath.test(physicalFilename)) return;
+
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
 
