@@ -1,4 +1,4 @@
-export const BASE_ERROR = `
+export const BASE_ERROR_CSS = `
   kuc-base-error,
   kuc-base-error *,
   :lang(en) kuc-base-error,

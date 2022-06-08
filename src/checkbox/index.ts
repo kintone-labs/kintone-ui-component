@@ -16,7 +16,7 @@ import {
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { CheckBoxItem, CheckboxProps, ValueMapping } from "./type";
-import { CHECK_BOX } from "./style";
+import { CHECKBOX_CSS } from "./style";
 import { BaseError } from "../base/error";
 import { BaseLabel } from "../base/label";
 export { BaseError, BaseLabel };
@@ -347,7 +347,7 @@ let exportCheckbox;
   }
 
   window.customElements.define("kuc-checkbox", KucCheckbox);
-  createStyleOnHeader(CHECK_BOX);
+  createStyleOnHeader(CHECKBOX_CSS);
   exportCheckbox = KucCheckbox;
 })();
 const Checkbox = exportCheckbox as any;

@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { createStyleOnHeader, KucBase } from "../kuc-base";
-import { BASE_ERROR } from "./style";
+import { BASE_ERROR_CSS } from "./style";
 class BaseError extends KucBase {
   @property({ type: String }) ariaLive = "";
   @property({ type: String }) guid = "";
@@ -38,6 +38,6 @@ class BaseError extends KucBase {
 if (!window.customElements.get("kuc-base-error")) {
   window.customElements.define("kuc-base-error", BaseError);
 }
-createStyleOnHeader(BASE_ERROR);
+createStyleOnHeader(BASE_ERROR_CSS);
 
 export { BaseError };

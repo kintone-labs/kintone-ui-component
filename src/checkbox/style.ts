@@ -1,4 +1,4 @@
-export const CHECK_BOX = `
+export const CHECKBOX_CSS = `
   kuc-checkbox,
   kuc-checkbox *,
   :lang(en) kuc-checkbox,

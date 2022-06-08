@@ -1,4 +1,4 @@
-export const BASE_LABEL = `
+export const BASE_LABEL_CSS = `
   kuc-base-label,
   kuc-base-label *,
   :lang(en) kuc-base-label,
