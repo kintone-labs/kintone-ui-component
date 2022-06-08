@@ -13,13 +13,13 @@ td[class^="kuc"] {
 #dropdown div[class$="__group"] {
   max-width: 180px;
 }
-#mobile-date-picker table {
+#mobile-date-picker table, #mobile-datetime-picker table {
   margin: 0;
 }
-#mobile-date-picker td[class$="date--selected"] {
+#mobile-date-picker td[class$="date--selected"], #mobile-datetime-picker td[class$="date--selected"] {
   vertical-align: middle;
 }
-#mobile-date-picker select {
+#mobile-date-picker select, #mobile-datetime-picker select {
   text-align: center;
   max-width: 116px;
 }
