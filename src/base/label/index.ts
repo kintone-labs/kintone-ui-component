@@ -3,7 +3,7 @@ import { property } from "lit/decorators.js";
 import { createStyleOnHeader, KucBase } from "../kuc-base";
 import { BASE_LABEL_CSS } from "./style";
 
-class BaseLabel extends KucBase {
+export class BaseLabel extends KucBase {
   @property({ type: Boolean }) requiredIcon = false;
   @property({ type: String }) guid = "";
   @property({ type: String }) text = "";
@@ -32,8 +32,6 @@ class BaseLabel extends KucBase {
   }
 }
 if (!window.customElements.get("kuc-base-label")) {
+  createStyleOnHeader(BASE_LABEL_CSS);
   window.customElements.define("kuc-base-label", BaseLabel);
 }
-
-createStyleOnHeader(BASE_LABEL_CSS);
-export { BaseLabel };
