@@ -8,7 +8,6 @@ export declare type ButtonProps = {
   disabled?: boolean;
   visible?: boolean;
 };
-// eslint-disable-next-line kuc-v1/no-describe-style-tag-inside-html
 export declare class Button extends KucBase {
   className: string;
   id: string;
