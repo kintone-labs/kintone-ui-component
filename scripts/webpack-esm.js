@@ -4,7 +4,7 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button", "mobile/checkbox","base/mobile-label", "base/mobile-error"];
+const componentDirectories = ["button", "mobile/checkbox","base/mobile-label", "base/mobile-error", "checkbox", "base/error", "base/label"];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
