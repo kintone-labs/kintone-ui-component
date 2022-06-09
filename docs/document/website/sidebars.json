@@ -28,6 +28,7 @@
           "components/mobile/mobile-button",
           "components/mobile/mobile-checkbox",
           "components/mobile/mobile-date-picker",
+          "components/mobile/mobile-datetime-picker",
           "components/mobile/mobile-dropdown",
           "components/mobile/mobile-multichoice",
           "components/mobile/mobile-notification",
