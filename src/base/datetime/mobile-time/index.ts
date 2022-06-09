@@ -13,7 +13,11 @@ import {
   formatTimeValueToInputValueForMobile,
   getLocale
 } from "../../datetime/utils";
-import { Item } from "../../datetime/listbox";
+
+export type MobileSelectItem = {
+  label?: string;
+  value?: string;
+};
 
 type BaseMobileTimeProps = {
   guid?: string;
@@ -54,10 +58,10 @@ export class BaseMobileTime extends KucBase {
   private _suffix = "";
 
   @state()
-  private _hourOptions!: Item[];
+  private _hourOptions!: MobileSelectItem[];
 
   @state()
-  private _minuteOptions!: Item[];
+  private _minuteOptions!: MobileSelectItem[];
 
   @query(".kuc-base-mobile-time__group__hours")
   private _hoursEl!: HTMLSelectElement;
