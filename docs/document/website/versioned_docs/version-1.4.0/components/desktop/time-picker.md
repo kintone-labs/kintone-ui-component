@@ -36,7 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| timeStep | number | 30 | Setting of time interval | Unit is minute (positive integer)<br>Round off to the nearest whole number<br>Will result an error if it is not a number or it is greater than the difference between `max` and `min` properties |
+| timeStep | number | 30 | Setting of time interval in the time listbox | Unit is minute (positive integer)<br>Round off to the nearest whole number when the decimal point is set<br>Will result an error if it is not a number or greater than the difference between `max` and `min` |
 
 ### Event
 
