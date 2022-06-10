@@ -1,5 +1,6 @@
 import { KucBase } from "../../base/kuc-base";
-declare type MobileNotificationProps = {
+
+export declare type MobileNotificationProps = {
   className?: string;
   text?: string;
   duration?: number;
