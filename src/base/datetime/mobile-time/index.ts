@@ -14,7 +14,7 @@ import {
   getLocale
 } from "../../datetime/utils";
 
-export type BaseMobileSelectItem = {
+type BaseMobileTimeSelectItem = {
   label?: string;
   value?: string;
 };
@@ -58,10 +58,10 @@ export class BaseMobileTime extends KucBase {
   private _suffix = "";
 
   @state()
-  private _hourOptions!: BaseMobileSelectItem[];
+  private _hourOptions!: BaseMobileTimeSelectItem[];
 
   @state()
-  private _minuteOptions!: BaseMobileSelectItem[];
+  private _minuteOptions!: BaseMobileTimeSelectItem[];
 
   @query(".kuc-base-mobile-time__group__hours")
   private _hoursEl!: HTMLSelectElement;
