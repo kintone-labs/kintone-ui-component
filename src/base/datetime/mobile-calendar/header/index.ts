@@ -5,7 +5,7 @@ import {
   dispatchCustomEvent,
   CustomEventDetail
 } from "../../../kuc-base";
-import { Item } from "../../../datetime/listbox";
+import { BaseDateTimeListBoxItem } from "../../../datetime/listbox";
 import { getWidthElmByContext } from "../../../context";
 import { getLocale } from "../../../datetime/utils";
 
@@ -33,9 +33,9 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   year = 2021;
 
   @state()
-  private _monthOptions!: Item[];
+  private _monthOptions!: BaseDateTimeListBoxItem[];
   @state()
-  private _yearOptions!: Item[];
+  private _yearOptions!: BaseDateTimeListBoxItem[];
   private _locale = getLocale("en");
 
   @query(
@@ -115,7 +115,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 
   private _generateMonthOptions() {
     return this._locale.MONTH_SELECT.map((month: string, index: number) => {
-      const item: Item = {
+      const item: BaseDateTimeListBoxItem = {
         value: `${index + 1}`,
         label: `${month}`
       };
@@ -125,7 +125,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 
   private _generateYearOptions() {
     return this._getYearOptions().map((year: number) => {
-      const item: Item = {
+      const item: BaseDateTimeListBoxItem = {
         value: `${year}`,
         label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
       };

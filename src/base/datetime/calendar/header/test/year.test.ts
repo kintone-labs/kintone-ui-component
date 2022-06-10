@@ -23,7 +23,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLUListElement;
 
       expect(yearSelectEl.innerText).to.equal("2021");
-      expect(optionMonthEl.children[1].children.length).to.equal(201);
+      expect(optionMonthEl.children[0].children.length).to.equal(201);
     });
 
     it("should be 2022 when assigning 2022 by setter", async () => {
