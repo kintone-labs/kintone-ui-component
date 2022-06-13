@@ -1,5 +1,5 @@
 import { KucBase } from "../base/kuc-base";
-declare type SpinnerProps = {
+export declare type SpinnerProps = {
   text?: string;
 };
 
