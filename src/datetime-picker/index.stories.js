@@ -24,6 +24,9 @@ export default {
   parameters: {
     actions: {
       handles: ["change"]
+    },
+    getValue: {
+      get: true
     }
   }
 };
