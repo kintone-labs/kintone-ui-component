@@ -19,6 +19,7 @@ const componentDirectories = [
   "button",
   "checkbox",
   "date-picker",
+  "spinner",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
