@@ -4,7 +4,6 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-
 const componentDirectories = [
   "base/error",
   "base/label",
@@ -19,6 +18,7 @@ const componentDirectories = [
   "base/datetime/calendar/header/dropdown/year",
   "button",
   "checkbox",
+  "dialog",
   "date-picker",
   "notification",
   "spinner",
