@@ -20,7 +20,7 @@ import {
   timeCompare
 } from "../utils";
 
-import { BaseDateTimeListBox, Item } from "../listbox";
+import { BaseDateTimeListBox, BaseDateTimeListBoxItem } from "../listbox";
 export { BaseDateTimeListBox };
 
 type Time = {
@@ -61,7 +61,7 @@ export class BaseTime extends KucBase {
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
 
-  private _listBoxItems: Item[] | undefined;
+  private _listBoxItems: BaseDateTimeListBoxItem[] | undefined;
 
   private _locale = getLocale("en");
 
