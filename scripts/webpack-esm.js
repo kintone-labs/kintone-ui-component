@@ -25,7 +25,8 @@ const componentDirectories = [
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
-  "mobile/checkbox"
+  "mobile/checkbox",
+  "mobile/notification"
 ];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
