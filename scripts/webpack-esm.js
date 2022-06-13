@@ -22,6 +22,7 @@ const componentDirectories = [
   "date-picker",
   "notification",
   "spinner",
+  "text",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
