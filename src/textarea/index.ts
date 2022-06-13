@@ -7,13 +7,14 @@ import {
   CustomEventDetail,
   createStyleOnHeader
 } from "../base/kuc-base";
-import { TEXTAREA_CSS } from "./style";
-import { TextAreaProps } from "./type";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
 export { BaseError, BaseLabel };
+
+import { TEXTAREA_CSS } from "./style";
+import { TextAreaProps } from "./type";
 
 let exportTextarea;
 (() => {
