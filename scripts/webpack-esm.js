@@ -16,7 +16,7 @@ const componentDirectories = [
   "base/datetime/calendar/header",
   "base/datetime/calendar/header/dropdown/month",
   "base/datetime/calendar/header/dropdown/year",
-  "base/dateime/time",
+  "base/datetime/time",
   "button",
   "checkbox",
   "dialog",
