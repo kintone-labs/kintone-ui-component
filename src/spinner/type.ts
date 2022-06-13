@@ -4,7 +4,6 @@ declare type SpinnerProps = {
 };
 
 export declare class Spinner extends KucBase {
-  private _body;
   text: string;
   constructor(props?: SpinnerProps);
   open(): void;
