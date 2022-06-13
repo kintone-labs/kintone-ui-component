@@ -7,13 +7,14 @@ import {
   CustomEventDetail,
   createStyleOnHeader
 } from "../../base/kuc-base";
-import { MOBILE_TEXTAREA_CSS } from "./style";
-import { MobileTextAreaProps } from "./type";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
 export { BaseMobileLabel, BaseMobileError };
+
+import { MOBILE_TEXTAREA_CSS } from "./style";
+import { MobileTextAreaProps } from "./type";
 
 let exportMobileTextArea;
 (() => {
