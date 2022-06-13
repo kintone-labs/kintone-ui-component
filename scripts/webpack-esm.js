@@ -4,6 +4,7 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
+
 const componentDirectories = [
   "base/error",
   "base/label",
@@ -19,6 +20,7 @@ const componentDirectories = [
   "button",
   "checkbox",
   "date-picker",
+  "notification",
   "spinner",
   "base/mobile-label",
   "base/mobile-error",
