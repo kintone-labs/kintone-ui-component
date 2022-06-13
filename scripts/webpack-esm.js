@@ -4,7 +4,27 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button", "mobile/checkbox","base/mobile-label", "base/mobile-error", "checkbox", "base/error", "base/label", "spinner"];
+const componentDirectories = [
+  "base/error",
+  "base/label",
+  "base/datetime/listbox",
+  "base/datetime/date",
+  "base/datetime/calendar",
+  "base/datetime/calendar",
+  "base/datetime/calendar/body",
+  "base/datetime/calendar/footer",
+  "base/datetime/calendar/header",
+  "base/datetime/calendar/header/dropdown/month",
+  "base/datetime/calendar/header/dropdown/year",
+  "button",
+  "checkbox",
+  "date-picker",
+  "spinner",
+  "base/mobile-label",
+  "base/mobile-error",
+  "mobile/button",
+  "mobile/checkbox"
+];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
