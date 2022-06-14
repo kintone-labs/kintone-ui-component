@@ -4,7 +4,22 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button", "mobile/checkbox","base/mobile-label", "base/mobile-error", "checkbox", "base/error", "base/label"];
+const componentDirectories = [
+  "button",
+  "mobile/checkbox",
+  "mobile/datetime-picker",
+  "base/mobile-label",
+  "base/datetime/mobile-time",
+  "base/datetime/mobile-date",
+  "base/datetime/mobile-calendar",
+  "base/datetime/mobile-calendar/body",
+  "base/datetime/mobile-calendar/header",
+  "base/datetime/mobile-calendar/footer",
+  "base/mobile-error",
+  "checkbox",
+  "base/error",
+  "base/label"
+];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
@@ -38,7 +53,7 @@ const replaceAllByPattern = (data, pattern, version) => {
   return tempData;
 };
 
-const escapeRegExp = (string) => {
+const escapeRegExp = string => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
