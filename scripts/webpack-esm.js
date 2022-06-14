@@ -22,6 +22,7 @@ const componentDirectories = [
   "dialog",
   "date-picker",
   "datetime-picker",
+  "multichoice",
   "notification",
   "spinner",
   "text",
