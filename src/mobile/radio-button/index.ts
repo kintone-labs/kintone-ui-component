@@ -17,7 +17,7 @@ import {
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_RADIO_BUTTON_CSS } from "./style";
-import { MobileRadioButtonItem, RadioButtonProps } from "./type";
+import { MobileRadioButtonItem, MobileRadioButtonProps } from "./type";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
 export { BaseMobileLabel, BaseMobileError };
@@ -56,7 +56,7 @@ let exportMobileRadioButton;
 
     private _GUID: string;
 
-    constructor(props?: RadioButtonProps) {
+    constructor(props?: MobileRadioButtonProps) {
       super();
       this._GUID = generateGUID();
       const validProps = validateProps(props);
@@ -64,7 +64,7 @@ let exportMobileRadioButton;
       Object.assign(this, validProps);
     }
 
-    private _setInitialValue(validProps: RadioButtonProps) {
+    private _setInitialValue(validProps: MobileRadioButtonProps) {
       const hasValue = "value" in validProps;
       const hasSelectedIndex = "selectedIndex" in validProps;
       if (!hasValue && hasSelectedIndex) {
@@ -265,7 +265,7 @@ let exportMobileRadioButton;
       return selectedIndex > -1 ? selectedIndex : firstIndex;
     }
 
-    private _getValue(validProps: RadioButtonProps) {
+    private _getValue(validProps: MobileRadioButtonProps) {
       const _items = validProps.items || [];
       const _selectedIndex =
         validProps.selectedIndex === 0 || validProps.selectedIndex

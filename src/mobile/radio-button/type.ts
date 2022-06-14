@@ -1,13 +1,11 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
-export { BaseMobileLabel, BaseMobileError };
+
 export declare type MobileRadioButtonItem = {
   label?: string;
   value?: string;
 };
-export declare type RadioButtonProps = {
+export declare type MobileRadioButtonProps = {
   className?: string;
   error?: string;
   id?: string;
@@ -32,7 +30,7 @@ export declare class MobileRadioButton extends KucBase {
   requiredIcon: boolean;
   visible: boolean;
   items: MobileRadioButtonItem[];
-  constructor(props?: RadioButtonProps);
+  constructor(props?: MobileRadioButtonProps);
   willUpdate(changedProperties: PropertyValues): void;
   shouldUpdate(changedProperties: PropertyValues): boolean;
   update(changedProperties: PropertyValues): void;
