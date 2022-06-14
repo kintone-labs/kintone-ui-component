@@ -32,6 +32,7 @@ const componentDirectories = [
   "mobile/checkbox",
   "mobile/dropdown",
   "mobile/notification",
+  "mobile/radio-button",
   "mobile/text"
 ];
 
