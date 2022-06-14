@@ -1,6 +1,4 @@
 import { KucBase } from "../base/kuc-base";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
 
 export declare type TextAreaProps = {
   className?: string;

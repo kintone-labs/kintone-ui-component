@@ -25,13 +25,15 @@ const componentDirectories = [
   "notification",
   "spinner",
   "text",
+  "textarea",
   "time-picker",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
   "mobile/checkbox",
   "mobile/notification",
-  "mobile/text"
+  "mobile/text",
+  "mobile/textarea"
 ];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
