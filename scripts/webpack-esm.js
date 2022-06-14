@@ -4,9 +4,38 @@ const path = require("path");
 const packageJSON = require("../package.json");
 
 const fs = require("fs");
-const componentDirectories = ["button", "mobile/checkbox","mobile/radio-button","base/mobile-label", "base/mobile-error", "checkbox", "base/error", "base/label"];
+const componentDirectories = [
+  "base/error",
+  "base/label",
+  "base/datetime/listbox",
+  "base/datetime/date",
+  "base/datetime/calendar",
+  "base/datetime/calendar",
+  "base/datetime/calendar/body",
+  "base/datetime/calendar/footer",
+  "base/datetime/calendar/header",
+  "base/datetime/calendar/header/dropdown/month",
+  "base/datetime/calendar/header/dropdown/year",
+  "base/datetime/time",
+  "button",
+  "checkbox",
+  "dialog",
+  "date-picker",
+  "datetime-picker",
+  "notification",
+  "spinner",
+  "text",
+  "time-picker",
+  "base/mobile-label",
+  "base/mobile-error",
+  "mobile/button",
+  "mobile/checkbox",
+  "mobile/notification",
+  "mobile/radio-button",
+  "mobile/text"
+];
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"/g;
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
