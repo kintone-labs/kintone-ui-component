@@ -1,8 +1,6 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
-export { BaseMobileLabel, BaseMobileError };
+
 export declare type MobileDropdownItem = {
   label?: string;
   value?: string;
