@@ -24,6 +24,7 @@ const componentDirectories = [
   "datetime-picker",
   "notification",
   "spinner",
+  "time-picker",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
