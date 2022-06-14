@@ -2,10 +2,8 @@ import { html, svg } from "lit";
 import { property } from "lit/decorators.js";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+import { SpinnerProps } from "./type";
 import { SPINNER_CSS } from "./style";
-type SpinnerProps = {
-  text?: string;
-};
 
 let exportSpinner;
 

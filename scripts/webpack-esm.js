@@ -16,18 +16,21 @@ const componentDirectories = [
   "base/datetime/calendar/header",
   "base/datetime/calendar/header/dropdown/month",
   "base/datetime/calendar/header/dropdown/year",
+  "base/datetime/time",
   "button",
   "checkbox",
   "dialog",
   "date-picker",
+  "datetime-picker",
   "notification",
   "spinner",
-  "text",
+  "time-picker",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
   "mobile/checkbox",
-  "mobile/notification"
+  "mobile/notification",
+  "mobile/text"
 ];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
