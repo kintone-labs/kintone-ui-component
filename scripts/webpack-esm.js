@@ -30,6 +30,7 @@ const componentDirectories = [
   "base/mobile-error",
   "mobile/button",
   "mobile/checkbox",
+  "mobile/dropdown",
   "mobile/notification",
   "mobile/text"
 ];
