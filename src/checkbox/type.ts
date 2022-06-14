@@ -34,6 +34,7 @@ export declare class Checkbox extends KucBase {
   items: CheckBoxItem[];
   selectedIndex: number[];
   value: string[];
+  constructor(props?: CheckboxProps);
   shouldUpdate(changedProperties: PropertyValues): boolean;
   willUpdate(changedProperties: PropertyValues): void;
   update(changedProperties: PropertyValues): void;
