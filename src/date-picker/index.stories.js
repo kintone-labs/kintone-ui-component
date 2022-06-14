@@ -68,12 +68,6 @@ const SetTemplate = args => {
     console.log(event);
   });
 
-  // const buttonSetValue = document.createElement("button");
-  // buttonSetValue.innerText = "Set value";
-  // buttonSetValue.addEventListener("click", () => {
-  //   datePicker.value = "1997-01-01";
-  // });
-
   const buttonGetValue = document.createElement("button");
   buttonGetValue.innerText = "Get value";
   buttonGetValue.id = "getter";
