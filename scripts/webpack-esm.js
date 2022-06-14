@@ -26,6 +26,7 @@ const componentDirectories = [
   "notification",
   "spinner",
   "text",
+  "textarea",
   "time-picker",
   "base/mobile-label",
   "base/mobile-error",
