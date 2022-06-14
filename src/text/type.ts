@@ -1,30 +1,31 @@
 import { KucBase } from "../base/kuc-base";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
-
-export declare type TextAreaProps = {
+export declare type TextProps = {
   className?: string;
   error?: string;
   id?: string;
   label?: string;
   placeholder?: string;
+  prefix?: string;
+  suffix?: string;
+  textAlign?: "left" | "right";
   value?: string;
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
 };
-
-export declare class TextArea extends KucBase {
+export declare class Text extends KucBase {
   className: string;
   error: string;
   id: string;
   label: string;
   placeholder: string;
+  prefix: string;
+  suffix: string;
+  textAlign: string;
   value: string;
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  constructor(props?: TextAreaProps);
+  constructor(props?: TextProps);
   render(): import("lit").TemplateResult<1>;
-  firstUpdated(): void;
 }
