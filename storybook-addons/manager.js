@@ -13,11 +13,9 @@ const ButtonGetValue = () => {
   const isShowGet = value && value.get ? true : false;
   const iframeStorybookEl = document.getElementById("storybook-preview-iframe");
   const _handleClick = () => {
-    console.log(iframeStorybookEl.contentDocument, "value.id");
     const btnGetValue = iframeStorybookEl.contentDocument.getElementById(
       value.id
     );
-    console.log(btnGetValue, "btnGetValue");
     btnGetValue.click();
   };
   return isShowGet ? <button onClick={_handleClick}>Get value</button> : "";
