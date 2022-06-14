@@ -22,16 +22,20 @@ const componentDirectories = [
   "dialog",
   "date-picker",
   "datetime-picker",
+  "multichoice",
   "notification",
   "spinner",
   "text",
+  "textarea",
   "time-picker",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
   "mobile/checkbox",
+  "mobile/dropdown",
   "mobile/notification",
-  "mobile/text",
+  "mobile/radio-button",
+  "mobile/text"
   "mobile/textarea"
 ];
 

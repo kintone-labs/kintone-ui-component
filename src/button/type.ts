@@ -8,6 +8,7 @@ export declare type ButtonProps = {
   disabled?: boolean;
   visible?: boolean;
 };
+
 export declare class Button extends KucBase {
   className: string;
   id: string;
@@ -16,8 +17,5 @@ export declare class Button extends KucBase {
   disabled: boolean;
   visible: boolean;
   constructor(props?: ButtonProps);
-  private _handleClickButton;
-  private _getButtonColorType;
   render(): import("lit").TemplateResult<1>;
-  private _getStyleTagTemplate;
 }
