@@ -33,7 +33,6 @@ const componentDirectories = [
   "mobile/checkbox",
   "mobile/notification",
   "mobile/text",
-  "mobile/textarea"
 ];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
