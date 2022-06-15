@@ -15,11 +15,15 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckBoxItem, CheckboxProps, ValueMapping } from "./type";
+import { CheckBoxItem, CheckboxProps } from "./type";
 import { CHECKBOX_CSS } from "./style";
 import { BaseError } from "../base/error";
 import { BaseLabel } from "../base/label";
 export { BaseError, BaseLabel };
+
+type ValueMapping = {
+  [key: number]: string;
+};
 
 let exportCheckbox;
 (() => {
