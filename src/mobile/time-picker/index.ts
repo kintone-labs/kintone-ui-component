@@ -14,7 +14,7 @@ import {
   validateProps,
   validateTimeValue
 } from "../../base/validator";
-import { MOBILE_TIME_PICKER } from "./style";
+import { MOBILE_TIME_PICKER_CSS } from "./style";
 import { MobileTimePickerProps } from "./type";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
@@ -174,7 +174,7 @@ let exportMobileTimePicker;
   }
 
   window.customElements.define("kuc-mobile-time-picker", KucMobileTimePicker);
-  createStyleOnHeader(MOBILE_TIME_PICKER);
+  createStyleOnHeader(MOBILE_TIME_PICKER_CSS);
   exportMobileTimePicker = KucMobileTimePicker;
 })();
 const MobileTimePicker = exportMobileTimePicker as any;

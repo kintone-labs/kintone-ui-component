@@ -14,7 +14,7 @@ import {
   formatTimeValueToInputValueForMobile,
   getLocale
 } from "../../datetime/utils";
-import { BASE_MOBILE_TIME } from "./style";
+import { BASE_MOBILE_TIME_CSS } from "./style";
 
 type BaseMobileTimeSelectItem = {
   label?: string;
@@ -222,6 +222,6 @@ export class BaseMobileTime extends KucBase {
   }
 }
 if (!window.customElements.get("kuc-base-mobile-time")) {
-  createStyleOnHeader(BASE_MOBILE_TIME);
+  createStyleOnHeader(BASE_MOBILE_TIME_CSS);
   window.customElements.define("kuc-base-mobile-time", BaseMobileTime);
 }

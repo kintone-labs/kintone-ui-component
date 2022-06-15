@@ -1,4 +1,4 @@
-export const MOBILE_TIME_PICKER = `
+export const MOBILE_TIME_PICKER_CSS = `
     kuc-mobile-time-picker,
     kuc-mobile-time-picker * {
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
