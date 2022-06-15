@@ -1,8 +1,6 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
-import "../../base/datetime/mobile-date";
-import "../../base/mobile-label";
-import "../../base/mobile-error";
+
 export declare type MobileDatePickerProps = {
   className?: string;
   error?: string;
