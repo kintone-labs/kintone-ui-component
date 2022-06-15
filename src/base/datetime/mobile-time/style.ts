@@ -1,4 +1,4 @@
-export const BASE_MOBILE_TIME = `
+export const BASE_MOBILE_TIME_CSS = `
     kuc-base-mobile-time,
     kuc-base-mobile-time * {
         font-size: 13px;

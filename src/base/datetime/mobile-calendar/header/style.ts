@@ -1,4 +1,4 @@
-export const BASE_MOBILE_CALENDAR_FOOTER_CSS = `
+export const BASE_MOBILE_CALENDAR_HEADER_CSS = `
 kuc-base-mobile-datetime-calendar-header,
 kuc-base-mobile-datetime-calendar-header * {
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",

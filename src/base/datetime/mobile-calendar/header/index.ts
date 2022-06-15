@@ -8,7 +8,7 @@ import {
 } from "../../../kuc-base";
 import { getWidthElmByContext } from "../../../context";
 import { getLocale } from "../../../datetime/utils";
-import { BASE_MOBILE_CALENDAR_FOOTER_CSS } from "./style";
+import { BASE_MOBILE_CALENDAR_HEADER_CSS } from "./style";
 
 type BaseMobileDateSelectItem = {
   label?: string;
@@ -305,7 +305,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-mobile-datetime-calendar-header")) {
-  createStyleOnHeader(BASE_MOBILE_CALENDAR_FOOTER_CSS);
+  createStyleOnHeader(BASE_MOBILE_CALENDAR_HEADER_CSS);
   window.customElements.define(
     "kuc-base-mobile-datetime-calendar-header",
     BaseMobileDateTimeCalendarHeader
