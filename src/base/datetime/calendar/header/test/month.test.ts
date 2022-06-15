@@ -23,7 +23,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLUListElement;
 
       expect(monthSelectEl.innerText).to.equal("JANUARY");
-      expect(optionMonthEl.children[1].children.length).to.equal(12);
+      expect(optionMonthEl.children[0].children.length).to.equal(12);
     });
 
     it("should be 5 when assigning 5 by setter", async () => {
