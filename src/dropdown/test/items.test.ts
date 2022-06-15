@@ -137,7 +137,6 @@ describe("Dropdown", () => {
     });
 
     it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
       const container = new Dropdown({ items: null });
       try {
         await fixture(container);
@@ -155,7 +154,6 @@ describe("Dropdown", () => {
 
     it("should be throw error when assigned null by setter", async () => {
       const container = new Dropdown();
-      // @ts-expect-error
       container.items = null;
       try {
         await fixture(container);
