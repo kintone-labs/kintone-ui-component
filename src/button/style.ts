@@ -25,6 +25,8 @@ export const BUTTON_CSS = `
   .kuc-button__button {
     font-size: 16px;
     min-width: 163px;
+    width: var(--kuc-button-width, "auto");
+    height: var(--kuc-button-height, "auto");
     height: 48px;
     padding: 0px 16px;
     user-select: none;
@@ -34,44 +36,44 @@ export const BUTTON_CSS = `
   }
   .kuc-button__button--normal {
     border: 1px solid #e3e7e8;
-    background-color: #f7f9fa;
+    background-color: var(--kuc-button-background-color, #f7f9fa);
     box-shadow: 1px 1px 1px #ffffff inset;
-    color: #3498db;
+    color: var(--kuc-button-text-color, #3498db);
   }
   .kuc-button__button--normal:hover,
   .kuc-button__button--normal:focus,
   .kuc-button__button--normal:active {
-    background-color: #c8d6dd;
+    background-color: var(--kuc-button-background-hover, #c8d6dd);
     box-shadow: none;
     cursor: pointer;
   }
   .kuc-button__button--submit {
     border: 1px solid #e3e7e8;
-    background-color: #3498db;
-    color: #ffffff;
+    background-color: var(--kuc-button-background-color, #3498db);
+    color: var(--kuc-button-text-color, #ffffff);
   }
   .kuc-button__button--submit:hover,
   .kuc-button__button--submit:focus,
   .kuc-button__button--submit:active {
-    background-color: #1d6fa5;
+    background-color: var(--kuc-button-background-hover, #1d6fa5);
     cursor: pointer;
   }
   .kuc-button__button--alert {
     border: 0 none;
-    background-color: #e74c3c;
+    background-color: var(--kuc-button-background-color, #e74c3c);
     box-shadow: 1px 1px 1px #ffffff inset;
-    color: #ffffff;
+    color: var(--kuc-button-text-color, #ffffff);
   }
   .kuc-button__button--alert:hover,
   .kuc-button__button--alert:focus,
   .kuc-button__button--alert:active {
-    background-color: #bf2718;
+    background-color: var(--kuc-button-background-hover, #bf2718);
     box-shadow: none;
     cursor: pointer;
   }
   .kuc-button__button:disabled {
     border: 1px solid #e3e7e8;
-    background-color: #d4d7d7;
+    background-color: var(--kuc-button-background-color, #d4d7d7);
     box-shadow: none;
     color: #888888;
     cursor: default;
