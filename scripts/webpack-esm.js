@@ -32,6 +32,7 @@ const componentDirectories = [
   "datetime-picker",
   "multichoice",
   "notification",
+  "radio-button",
   "spinner",
   "text",
   "textarea",
