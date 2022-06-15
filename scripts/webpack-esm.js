@@ -5,6 +5,8 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 const componentDirectories = [
+  "mobile/time-picker",
+  "base/datetime/mobile-time"
   "mobile/date-picker",
   "base/datetime/mobile-date",
   "base/datetime/mobile-calendar",
