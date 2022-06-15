@@ -170,7 +170,6 @@ describe("MobileCheckbox", () => {
     });
 
     it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
       const container = new MultiChoice({ items: null });
       try {
         await fixture(container);
@@ -207,7 +206,6 @@ describe("MobileCheckbox", () => {
     it("should be throw error when assigned null by setter", async () => {
       const container = new MultiChoice();
       try {
-        // @ts-expect-error
         container.items = null;
         await fixture(container);
       } catch (error) {
