@@ -15,11 +15,15 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { MultiChoiceItem, MultiChoiceProps, ValueMapping } from "./type";
+import { MultiChoiceItem, MultiChoiceProps } from "./type";
 import { MULTICHOICE_CSS } from "./style";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
 export { BaseError, BaseLabel };
+
+type ValueMapping = {
+  [key: number]: string;
+};
 
 let exportMultiChoice;
 (() => {

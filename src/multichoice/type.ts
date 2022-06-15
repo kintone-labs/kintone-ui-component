@@ -19,10 +19,6 @@ export declare type MultiChoiceProps = {
   items?: MultiChoiceItem[];
 };
 
-export declare type ValueMapping = {
-  [key: number]: string;
-};
-
 export declare class MultiChoice extends KucBase {
   className: string;
   error: string;
