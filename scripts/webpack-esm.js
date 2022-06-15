@@ -33,6 +33,7 @@ const componentDirectories = [
   "dropdown",
   "multichoice",
   "notification",
+  "radio-button",
   "spinner",
   "text",
   "textarea",
