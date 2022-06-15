@@ -5,6 +5,12 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 const componentDirectories = [
+  "mobile/date-picker",
+  "base/datetime/mobile-date",
+  "base/datetime/mobile-calendar",
+  "base/datetime/mobile-calendar/body",
+  "base/datetime/mobile-calendar/header",
+  "base/datetime/mobile-calendar/footer",
   "base/error",
   "base/label",
   "base/datetime/listbox",
@@ -71,7 +77,7 @@ const replaceAllByPattern = (data, pattern, version) => {
   return tempData;
 };
 
-const escapeRegExp = (string) => {
+const escapeRegExp = string => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
