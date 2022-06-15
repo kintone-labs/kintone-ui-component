@@ -5,9 +5,10 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 const componentDirectories = [
+  "mobile/datetime-picker",
   "mobile/time-picker",
-  "base/datetime/mobile-time"
   "mobile/date-picker",
+  "base/datetime/mobile-time",
   "base/datetime/mobile-date",
   "base/datetime/mobile-calendar",
   "base/datetime/mobile-calendar/body",
@@ -16,15 +17,14 @@ const componentDirectories = [
   "base/error",
   "base/label",
   "base/datetime/listbox",
+  "base/datetime/time",
   "base/datetime/date",
-  "base/datetime/calendar",
   "base/datetime/calendar",
   "base/datetime/calendar/body",
   "base/datetime/calendar/footer",
   "base/datetime/calendar/header",
   "base/datetime/calendar/header/dropdown/month",
   "base/datetime/calendar/header/dropdown/year",
-  "base/datetime/time",
   "button",
   "checkbox",
   "dialog",
