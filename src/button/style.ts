@@ -23,7 +23,7 @@ export const BUTTON_CSS = `
     display: none;
   }
   .kuc-button__button {
-    font-size: 16px;
+    font-size: var(--kuc-button-font-size, 16px);
     min-width: 163px;
     width: var(--kuc-button-width, "auto");
     height: var(--kuc-button-height, "auto");
@@ -43,7 +43,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--normal:hover,
   .kuc-button__button--normal:focus,
   .kuc-button__button--normal:active {
-    background-color: var(--kuc-button-background-hover, #c8d6dd);
+    background-color: var(--kuc-button-background-active, #c8d6dd);
     box-shadow: none;
     cursor: pointer;
   }
@@ -55,7 +55,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--submit:hover,
   .kuc-button__button--submit:focus,
   .kuc-button__button--submit:active {
-    background-color: var(--kuc-button-background-hover, #1d6fa5);
+    background-color: var(--kuc-button-background-active, #1d6fa5);
     cursor: pointer;
   }
   .kuc-button__button--alert {
@@ -67,7 +67,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--alert:hover,
   .kuc-button__button--alert:focus,
   .kuc-button__button--alert:active {
-    background-color: var(--kuc-button-background-hover, #bf2718);
+    background-color: var(--kuc-button-background-active, #bf2718);
     box-shadow: none;
     cursor: pointer;
   }
