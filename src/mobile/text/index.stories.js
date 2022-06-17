@@ -7,7 +7,9 @@ storiesOf("mobile/text", module)
     const root = document.createElement("div");
     const mobileText = new MobileText({
       value: "Orange",
-      requiredIcon: true
+      requiredIcon: true,
+      label: "Text",
+      error: "Error occured!"
     });
     mobileText.addEventListener("focus", event => {
       console.log(event.detail);
@@ -20,12 +22,5 @@ storiesOf("mobile/text", module)
     });
     root.appendChild(mobileText);
 
-    return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileText = new MobileText({});
-    root.appendChild(mobileText);
     return root;
   });

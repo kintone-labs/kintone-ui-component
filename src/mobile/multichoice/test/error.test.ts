@@ -7,7 +7,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({});
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-multi-choice__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-multi-choice__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -29,7 +29,7 @@ describe("MobileMultiChoice", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-multi-choice__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");

@@ -79,11 +79,4 @@ storiesOf("desktop/text", module)
     });
     root.appendChild(text);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const text = new Text({});
-    root.appendChild(text);
-    return root;
   });

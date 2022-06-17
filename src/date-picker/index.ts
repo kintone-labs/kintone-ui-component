@@ -15,6 +15,9 @@ import {
 } from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type DatePickerProps = {
   className?: string;
@@ -105,13 +108,10 @@ export class DatePicker extends KucBase {
           for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-date-picker__group__label__text">${this.label}</span
-          ><!--
---><span
-            class="kuc-date-picker__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </label>
         <kuc-base-date
           .inputId="${this._GUID}"
@@ -123,14 +123,10 @@ export class DatePicker extends KucBase {
           @kuc:base-date-change="${this._handleDateChange}"
         >
         </kuc-base-date>
-        <div
-          class="kuc-date-picker__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this._errorText}"
-        >
-          ${this._errorText}
-        </div>
+        <kuc-base-error
+          .text="${this._errorText}"
+          .guid="${this._GUID}"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -192,16 +188,6 @@ export class DatePicker extends KucBase {
         .kuc-date-picker__group__label[hidden] {
           display: none;
         }
-        .kuc-date-picker__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-date-picker__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-date-picker__group input.kuc-base-date__input {
           width: 100px;
           height: 40px;
@@ -228,16 +214,6 @@ export class DatePicker extends KucBase {
           background-color: #d4d7d7;
           box-shadow: none;
           cursor: not-allowed;
-        }
-        .kuc-date-picker__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
         }
       </style>
     `;

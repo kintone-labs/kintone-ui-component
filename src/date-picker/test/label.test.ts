@@ -13,7 +13,7 @@ describe("DatePicker", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".kuc-date-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -28,7 +28,7 @@ describe("DatePicker", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-date-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -46,7 +46,7 @@ describe("DatePicker", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-date-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

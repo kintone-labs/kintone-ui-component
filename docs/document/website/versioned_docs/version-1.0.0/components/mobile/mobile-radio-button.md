@@ -9,7 +9,10 @@ original_id: mobile-radio-button
 
 The MobileRadioButton component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-radio-button--document" title="mobile radiobutton image" height="140px"></iframe>
+<div class="sample-container" id="mobile-radio-button">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-radio-button.js"></script>
 
 ---
 
@@ -26,7 +29,7 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value | string | ""  | Selected value | No option will be selected if the value is unspecified |
-| borderVisible | boolean | false | Show/Hide the border | |
+| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
@@ -77,7 +80,8 @@ const mobileRadioButton = new Kuc.MobileRadioButton({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
 space.appendChild(mobileRadioButton);
 

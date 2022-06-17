@@ -8,7 +8,10 @@ sidebar_label: Button
 
 The Button component allows the user to create and display buttons.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-button--document" title="button image" width="550px" height="80px"></iframe>
+<div class="sample-container" id="button">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/button.js"></script>
 
 ---
 

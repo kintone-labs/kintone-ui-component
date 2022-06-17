@@ -1,0 +1,56 @@
+td[class^="kuc"] {
+  background-color: #ffffff;
+}
+#datetime-picker div[class$="__group__inputs"],
+#datetime-picker div[class$="-error__error"] {
+  max-width: 185px;
+  margin: 0 auto;
+}
+#time-picker .kuc-time-picker__group__input {
+  max-width: 185px;
+  margin: 0 auto;
+}
+#dropdown div[class$="__group"] {
+  max-width: 180px;
+}
+#mobile-date-picker table, #mobile-datetime-picker table {
+  margin: 0;
+}
+#mobile-date-picker td[class$="date--selected"], #mobile-datetime-picker td[class$="date--selected"] {
+  vertical-align: middle;
+}
+#mobile-date-picker select, #mobile-datetime-picker select {
+  text-align: center;
+  max-width: 116px;
+}
+#button .kuc_normal_button,
+#button .kuc_submit_button {
+  margin: 0px 5px 0px 0px;
+}
+#mobile-button .kuc_normal_button {
+  margin: 0px 5px 0px 0px;
+}
+#mobile-time-picker {
+  margin-left: -43px;
+}
+.kuc-preview {
+  background-color: #f5f5f5;
+  padding: 20px 40px;
+  margin-top: 10px;
+}
+#checkbox .cus-checkbox div[class$="__select-menu__item"],
+#radio-button .cus-radio-button div[class$="__select-menu__item"] {
+    height: auto;
+}
+#mobile-checkbox .cus-mobile-checkbox {
+    min-width: 235px;
+}
+#mobile-checkbox .cus-mobile-checkbox label[class$="__select-menu__item"] {
+    height: 40px;
+}
+#mobile-radio-button .cus-mobile-radio-button div[class$="__select-menu__item"] {
+    min-width: 253px;
+}
+#mobile-text .cus-mobile-text {
+    min-width: 250px;
+}

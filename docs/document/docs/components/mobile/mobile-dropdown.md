@@ -8,7 +8,10 @@ sidebar_label: MobileDropdown
 
 The MobileDropdown component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-dropdown--document" title="mobile dropdown image" height="140px"></iframe>
+<div class="sample-container" id="mobile-dropdown">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-dropdown.js"></script>
 
 ---
 

@@ -1,3 +1,5 @@
+import { convertTimeValueToMinutes } from "./datetime/utils";
+
 type Item = { label?: string; value?: string };
 
 export function validateProps<Type>(props: Type) {
@@ -29,6 +31,25 @@ export function validateTimeValue(value: string) {
   if (value === "" || regexHour24.test(value)) return true;
 
   return false;
+}
+
+export function validateTimeStepNumber(timeStep: number) {
+  if (typeof timeStep !== "number") {
+    return false;
+  }
+  return true;
+}
+
+export function validateTimeStep(timeStep: number, max: string, min: string) {
+  const _tempTimeStep = Math.round(timeStep);
+  const maxMinutes = convertTimeValueToMinutes(max);
+  const minMinutes = convertTimeValueToMinutes(min);
+
+  return (
+    !isNaN(_tempTimeStep) &&
+    _tempTimeStep > 0 &&
+    _tempTimeStep <= maxMinutes - minMinutes
+  );
 }
 
 export function isValidDate(date: string) {

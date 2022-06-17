@@ -2,6 +2,8 @@ import { expect } from "@open-wc/testing";
 import {
   validateProps,
   validateTimeValue,
+  validateTimeStepNumber,
+  validateTimeStep,
   validateItems,
   validateValueArray,
   validateValueString,
@@ -41,6 +43,27 @@ describe("Base", () => {
 
     it("should be return false when using validateTimeValue with parameter invalid", async () => {
       expect(validateTimeValue("29:30")).to.equal(false);
+    });
+
+    it("should be return true when using validateTimeStep with parameter valid", async () => {
+      expect(validateTimeStep(60, "20:00", "10:00")).to.equal(true);
+    });
+
+    it("should be return false when using validateTimeStep with parameter invalid", async () => {
+      expect(validateTimeStep(360, "10:00", "9:00")).to.equal(false);
+    });
+
+    it("should be throw error when timeStep is not number", async () => {
+      try {
+        // @ts-expect-error
+        validateTimeStepNumber(null);
+      } catch (error) {
+        let errorMessage = "";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        expect(errorMessage).to.equal("'timeStep' property is not number");
+      }
     });
 
     it("should be throw error when item is not array", async () => {

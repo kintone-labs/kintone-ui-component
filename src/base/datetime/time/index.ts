@@ -15,7 +15,9 @@ import {
   padStart,
   generateTimeOptions,
   formatTimeValueToInputValue,
-  formatInputValueToTimeValue
+  formatInputValueToTimeValue,
+  getLocale,
+  timeCompare
 } from "../utils";
 
 import { BaseDateTimeListBox, Item } from "../listbox";
@@ -28,15 +30,13 @@ type Time = {
 };
 
 export class BaseTime extends KucBase {
+  @property({ type: String, reflect: true }) language = "en";
+  @property({ type: String }) max = "";
+  @property({ type: String }) min = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
-
-  /**
-   * Please consider name again and change @state to @property when publishing the function.
-   */
-  @state()
-  private _timeStep = 30;
+  @property({ type: Number }) timeStep = 30;
 
   @state()
   private _listBoxVisible = false;
@@ -63,6 +63,8 @@ export class BaseTime extends KucBase {
 
   private _listBoxItems: Item[] | undefined;
 
+  private _locale = getLocale("en");
+
   @query(".kuc-base-time__group__hours")
   private _hoursEl!: HTMLInputElement;
 
@@ -79,12 +81,25 @@ export class BaseTime extends KucBase {
   private _inputGroupEl!: HTMLInputElement;
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("hour12")) {
-      this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
+    if (
+      changedProperties.has("hour12") ||
+      changedProperties.has("timeStep") ||
+      changedProperties.has("max") ||
+      changedProperties.has("min")
+    ) {
+      this._listBoxItems = generateTimeOptions(
+        this.hour12,
+        this.timeStep,
+        this.min,
+        this.max
+      );
       this._updateInputValue();
     }
     if (changedProperties.has("value")) {
       this._updateInputValue();
+    }
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
   }
@@ -509,6 +524,11 @@ export class BaseTime extends KucBase {
       value: value,
       oldValue: oldValue
     };
+
+    if (timeCompare(value, this.min) < 0 || timeCompare(this.max, value) < 0) {
+      detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
+    }
+
     dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 

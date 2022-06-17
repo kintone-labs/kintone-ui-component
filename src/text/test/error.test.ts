@@ -7,7 +7,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-text__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("Text", () => {
       const container = new Text({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-text__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -27,7 +27,7 @@ describe("Text", () => {
       container.error = "error-message";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-text__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -38,7 +38,7 @@ describe("Text", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-text__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");

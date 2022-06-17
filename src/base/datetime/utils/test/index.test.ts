@@ -2,6 +2,8 @@ import { expect } from "@open-wc/testing";
 import { padStart } from "../../utils";
 import {
   generateTimeOptions,
+  convertTimeValueToMinutes,
+  timeCompare,
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   formatInputValueToValue,
@@ -15,15 +17,68 @@ import {
 describe("BaseDateTimeUtils", () => {
   describe("generateTimeOptions", () => {
     it("should be return 24 option when using generateTimeOptions with 12 hour format and timeStep is 60", async () => {
-      const timeOptions = generateTimeOptions(true, 60);
+      const timeOptions = generateTimeOptions(true, 60, "00:00", "23:59");
       expect(timeOptions.length).to.be.equal(24);
     });
   });
 
   describe("generateTimeOptions", () => {
     it("should be return 48 option when using generateTimeOptions with 24 hour format timeStep is 30", async () => {
-      const timeOptions = generateTimeOptions(false, 30);
+      const timeOptions = generateTimeOptions(false, 30, "00:00", "23:59");
       expect(timeOptions.length).to.be.equal(48);
+    });
+  });
+
+  describe("generateTimeOptions", () => {
+    it("should be return 11 option when using generateTimeOptions with 24 hour format, timeStep is 60, max is 18:00, min is 08:00", async () => {
+      const timeOptions = generateTimeOptions(false, 60, "08:00", "18:00");
+      expect(timeOptions.length).to.be.equal(11);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 0 when value is ""', async () => {
+      const minutes = convertTimeValueToMinutes("");
+      expect(minutes).to.be.equal(0);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 100 when value is "01:40"', async () => {
+      const minutes = convertTimeValueToMinutes("01:40");
+      expect(minutes).to.be.equal(100);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 59 when value is "-01:140"', async () => {
+      const minutes = convertTimeValueToMinutes("-01:140");
+      expect(minutes).to.be.equal(59);
+    });
+  });
+
+  describe("convertTimeValueToMinutes", () => {
+    it('should be return 1380 when value is "31:-40"', async () => {
+      const minutes = convertTimeValueToMinutes("31:-40");
+      expect(minutes).to.be.equal(1380);
+    });
+  });
+
+  describe("timeCompare", () => {
+    it("should be return -1 when first time is earlier", async () => {
+      expect(timeCompare("01:40", "12:20")).to.be.equal(-1);
+    });
+  });
+
+  describe("timeCompare", () => {
+    it("should be return 0 when two times are equal", async () => {
+      expect(timeCompare("12:20", "12:20")).to.be.equal(0);
+    });
+  });
+
+  describe("timeCompare", () => {
+    it("should be return 1 when first time is later", async () => {
+      expect(timeCompare("12:20", "10:20")).to.be.equal(1);
     });
   });
 

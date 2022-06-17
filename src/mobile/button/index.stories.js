@@ -55,23 +55,4 @@ storiesOf("mobile/button", module)
     root.appendChild(submitButton);
     root.appendChild(disableSubmitButton);
     return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileButtonNormal = new MobileButton({
-      text: "Normal",
-      type: "normal",
-      className: "kuc_normal_button"
-    });
-    mobileButtonNormal.style.margin = "0px 5px 0px 0px";
-
-    const mobileButtonSubmit = new MobileButton({
-      text: "Submit",
-      type: "submit",
-      className: "kuc_submit_button"
-    });
-    root.appendChild(mobileButtonNormal);
-    root.appendChild(mobileButtonSubmit);
-    return root;
   });
