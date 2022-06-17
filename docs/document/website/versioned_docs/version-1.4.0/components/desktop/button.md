@@ -54,12 +54,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
-> A new version is available. Please consider installing the latest KUC package.
+> A new version is available. Please consider installing the [latest KUC version](../../getting-started/quick-start.md#use-the-umd).
 
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs["1.4.0"];
+
 const header = kintone.app.getHeaderMenuSpaceElement();
+
 const button = new Kuc.Button({
     text: 'Submit',
     type: 'submit',
@@ -68,6 +71,7 @@ const button = new Kuc.Button({
     visible: true,
     disabled: false
 });
+
 header.appendChild(button);
 
 button.addEventListener('click', event => {

@@ -36,11 +36,12 @@ In this article, we will show you how to install and implement using each approa
 > (Additional components will be added in order.)
 
 ### Use the UMD
-> With the release of v1.4.0, we recommend users upgrade to the latest version.<br> 
-> From v1.4.0,  please use `Kucs["1.x.x"]` instead of `Kuc` and "1.x.x" is the version you want to use.<br>
+> **The latest version v1.4.0 is available! We recommend users upgrade to this new version.**<br> 
 
-> Because of the possible version conflict when a user uses more than one `kuc.min.js` file, the changes above are needed.
-> For more details, refer to the [Version Conflict Issue and Solution](#) article.
+> **From v1.4.0**,  please use **`Kucs["1.x.x"]`** instead of **`Kuc`** and `"1.x.x"` is your specified version.<br>
+> This change is due to possible version conflicts when users use more than one `kuc.min.js` file.
+
+> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article.
 
 1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
@@ -75,10 +76,10 @@ kintone.events.on('app.record.index.show', event => {
 
 ### Use the CDN
 
-> For developers using KUC through the CDN, the CDN will deliver the latest version of KUC (v1.4.0), and an error will occur in your apps/plugins. 
-> To quickly resolve this, refer to the [Use the UMD](#use-the-umd) section.
+> For users using KUC through the CDN, you will always be using the latest version (v1.4.0), and **an error will occur in your app**.
+> To quickly resolve this, refer to the [Use UMD](#use-the-umd) section.
 
-> For more details, refer to the [Version Conflict Issue and Solution](#) article.
+> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article.
 
 1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br>
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
@@ -101,7 +102,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 ### Use the npm package
 
 > From v1.4.0 and on, rendered KUC components' tags will include the version number.<br>
-> For more details, refer to the [Version Conflict Issue and Solution](#) article.
+> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article. <br>
 
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
