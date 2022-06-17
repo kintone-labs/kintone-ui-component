@@ -1,4 +1,5 @@
 {
+  "name": "website",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
