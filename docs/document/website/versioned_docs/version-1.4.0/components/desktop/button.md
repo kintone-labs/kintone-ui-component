@@ -1,5 +1,5 @@
 ---
-id: version-1.0.0-button
+id: version-1.4.0-button
 title: Button
 sidebar_label: Button
 original_id: button
@@ -53,6 +53,8 @@ Here is a list of available constructors:
 ---
 
 ## Sample Code
+
+> A new version is available. Please consider installing the latest KUC package.
 
 Here is a sample code when all parameters are specified:
 
