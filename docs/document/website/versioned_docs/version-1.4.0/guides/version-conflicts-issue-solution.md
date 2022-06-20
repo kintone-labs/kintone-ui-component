@@ -13,13 +13,13 @@ Version conflicts have been a problem for KUC users before the release of v1.4.0
 It is common when an app uses two or more versions of the same library.
 The problem of version conflicts occurs when those different versions try to define the same custom HTML tag.<br>
 
-When a library registers a custom HTML tag, and later another library tries to define the same tag again, the app will not work correctly. It is because CustomElementRegistry is a global window object.<br>
+When a library registers a custom HTML tag, and later another library tries to define the same tag again, the app will not work correctly. It is because `CustomElementRegistry` is a global window object.<br>
 
 In summary, if a custom HTML tag is already registered, defining it again will cause a problem.
 
 ![Different versions of the same library try to define the same custom HTML tag](assets/version-conflict-diagram.jpeg)
 
-In our case, the app will not work as expected when users import more than one kuc.min.js file of the same version, and the error will also occur when users import multiple kuc.min.js files of different versions in an app.
+In our case, the app will not work as expected when users import more than one `kuc.min.js` file of the same version, and the error will also occur when users import multiple `kuc.min.js` files of different versions in an app.
 
 ## The Solution
 
@@ -39,9 +39,9 @@ In addition, we also check to see whether a custom HTML tag has been registered 
 
 We recommend that you should upgrade kintone UI Component to the latest version for your projects.<br>
 
-From v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
 
-When using a version before v1.4.0, please use Kuc as a global variable but note that it may be conflicting when adding two or more `kuc.min.js` files on kintone app plug-in or customization.
+When using a version before v1.4.0, please use `Kuc` as a global variable but note that it may be conflicting when adding two or more `kuc.min.js` files on kintone app plug-in or customization.
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
