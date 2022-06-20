@@ -75,7 +75,7 @@ kintone.events.on('app.record.index.show', event => {
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
-> Following the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) guide, please use `Kucs['1.x.x']` instead of `Kuc`. <br>
+> Following the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) guide, please use `Kucs['1.x.x']` instead of `Kuc`.
 > See the sample code at [Use UMD](#use-the-umd) section.
 
 1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br>
