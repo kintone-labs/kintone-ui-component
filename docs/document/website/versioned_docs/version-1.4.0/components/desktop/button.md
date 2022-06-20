@@ -54,7 +54,7 @@ Here is a list of available constructors:
 
 ## Sample Code
 
-> A new version is available. Please consider installing the [latest KUC version](../../getting-started/quick-start.md#use-the-umd).
+> Please check the [package installation method first](../../getting-started/quick-start.md#installation).
 
 Here is a sample code when all parameters are specified:
 
