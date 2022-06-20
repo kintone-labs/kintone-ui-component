@@ -99,7 +99,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 ### Use the npm package
 
 > From v1.4.0 and on, rendered KUC components' tags will include the version number.<br>
-> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution#the-solution) article. <br>
+> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution#using-npm) article. <br>
 
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
