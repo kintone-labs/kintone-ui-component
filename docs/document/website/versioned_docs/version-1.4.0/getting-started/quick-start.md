@@ -36,12 +36,12 @@ In this article, we will show you how to install and implement using each approa
 > (Additional components will be added in order.)
 
 ### Use the UMD
-> **The latest version v1.4.0 is available! We recommend users upgrade to this new version.**<br> 
+> We recommend that you should upgrade Kintone UI Component to the latest version for your projects. <br>
 
-> **From v1.4.0**,  please use **`Kucs["1.x.x"]`** instead of **`Kuc`** and `"1.x.x"` is your specified version.<br>
-> This change is due to possible version conflicts when users use more than one `kuc.min.js` file.
+> From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+> When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone app plug-in or customization.
 
-> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article.
+> Please read this [Version Conflict Issue and Solution](../guides/version-conflicts-issue-solution.md) article for more information!
 
 1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
@@ -52,7 +52,7 @@ In this article, we will show you how to install and implement using each approa
 2. Create a `index.js` file.
 
 ```js
-const Kuc = Kucs["1.4.0"];
+const Kuc = Kucs["1.x.x"];
 
 kintone.events.on('app.record.index.show', event => {
   const header = kintone.app.getHeaderMenuSpaceElement();
