@@ -1,18 +1,18 @@
 ---
-id: version-1.3.0-datetime-picker
-title: DateTimePicker
-sidebar_label: DateTimePicker
-original_id: datetime-picker
+id: version-1.4.0-mobile-datetime-picker
+title: MobileDateTimePicker
+sidebar_label: MobileDateTimePicker
+original_id: mobile-datetime-picker
 ---
 
 ## Overview
 
-The DateTimePicker component allows the user to display a input area of time & date and each selection part.
+The MobileDateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div class="sample-container" id="datetime-picker">
+<div class="sample-container" id="mobile-datetime-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/desktop/datetime-picker.js"></script>
+<script src="/js/samples/mobile/mobile-datetime-picker.js"></script>
 
 ---
 
@@ -49,7 +49,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-DateTimePicker(options)<br>
+MobileDateTimePicker(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -64,7 +64,7 @@ Here is a sample code when all parameters are specified:
 
 ```javascript
 const space = kintone.app.record.getSpaceElement('space');
-const dateTimePicker = new Kuc.DateTimePicker({
+const mobileDateTimePicker = new Kuc.MobileDateTimePicker({
   label: 'DateTime',
   requiredIcon: true,
   language: 'auto',
@@ -76,9 +76,9 @@ const dateTimePicker = new Kuc.DateTimePicker({
   visible: true,
   disabled: false
 });
-space.appendChild(dateTimePicker);
+space.appendChild(mobileDateTimePicker);
 
-dateTimePicker.addEventListener('change', event => {
+mobileDateTimePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```
