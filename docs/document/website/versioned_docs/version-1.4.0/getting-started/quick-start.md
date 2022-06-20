@@ -41,7 +41,7 @@ In this article, we will show you how to install and implement using each approa
 > From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
 > When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone app plug-in or customization.
 
-> Please read this [Version Conflict Issue and Solution](../guides/version-conflicts-issue-solution.md) article for more information!
+> Please read this [Version Conflict Issue and Solution](../guides/version-conflicts-issue-solution) article for more information!
 
 1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
@@ -75,11 +75,8 @@ kintone.events.on('app.record.index.show', event => {
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
-
-> For users using KUC through the CDN, you will always be using the latest version (v1.4.0), and **an error will occur in your app**.
-> To quickly resolve this, refer to the [Use UMD](#use-the-umd) section.
-
-> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article.
+> Following the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) guide, please use `Kucs['1.x.x']` instead of `Kuc`. <br>
+> See the sample code at [Use UMD](#use-the-umd) section for details.
 
 1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br>
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.

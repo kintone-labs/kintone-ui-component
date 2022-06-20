@@ -11,6 +11,8 @@
     "crowdin-download": "crowdin --config ../crowdin.yaml download -b master"
   },
   "devDependencies": {
-    "docusaurus": "^1.14.5"
+    "cli-highlight": "^2.1.11",
+    "docusaurus": "^1.14.5",
+    "highlight.js": "^11.5.1"
   }
 }
