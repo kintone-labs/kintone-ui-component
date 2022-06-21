@@ -8,7 +8,7 @@ original_id: version-conflicts-issue-solution
 
 Version conflicts have been a problem for Kintone UI Component users before the release of v1.4.0. This guide will help users understand the version conflicts issue and how to adapt and upgrade the Kintone UI Component package to the latest version starting from v1.4.0.
 
-## The Problem of Versioning
+## Problems of Versioning
 
 It is common when an app uses two or more versions of the same library.
 The problem of version conflicts occurs when those different versions try to define the same custom HTML tag.<br>
