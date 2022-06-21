@@ -52,7 +52,8 @@ document.body.appendChild(button);
 
 ### Using CDN
 
-Users using KUC through the CDN will always have the latest version; therefore, after the release of v1.4.0, some of your apps and plug-ins will not work correctly. <br>
+Users using Kintone UI Component through the CDN will always have the latest version.<br>
+Therefore, after the release of v1.4.0, some of your apps and plug-ins will not work correctly. <br>
 
 As explained in the [Using UMD](#using-umd) section, you now need to change from `Kuc` to `Kucs['1.x.x']`.
 
