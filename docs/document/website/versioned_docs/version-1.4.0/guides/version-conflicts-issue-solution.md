@@ -58,4 +58,4 @@ As explained in the [Using UMD](#using-umd) section, you now need to change from
 
 ### Using npm
 
-Users using the KUC package through npm do not need to take any action but note the changes in how the components' tags and class names render. See [The Solution](#the-solution) section.
+Users using the Kintone UI Component package through npm do not need to take any action but note the changes in how the components' tags and class names render. See the [Solution](#solution) section.
