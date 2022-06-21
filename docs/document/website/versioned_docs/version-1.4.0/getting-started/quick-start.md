@@ -98,7 +98,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 ### Use the npm package
 
 > From v1.4.0, rendered components' tags and class names will include the version number.<br>
-> Please read this [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article for more information! <br>
+> Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information! <br>
 
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
