@@ -39,6 +39,7 @@ In this article, we will show you how to install and implement using each approa
 > We recommend that you should upgrade Kintone UI Component to the latest version for your projects. <br>
 
 > From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+>The rendered components' tags and class names will include the version number.<br>
 > When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone app plug-in or customization.
 
 > Please read this [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article for more information!
