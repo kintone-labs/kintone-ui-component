@@ -1,12 +1,12 @@
 ---
 id: version-1.4.0-version-conflicts-issue-solution
-title: Version Conflicts Issue and Solution
-sidebar_label: Version Conflicts Issue and Solution
+title: Version conflicts issue and solution
+sidebar_label: Version conflicts issue and solution
 original_id: version-conflicts-issue-solution
 ---
 ## Overview
 
-Version conflicts have been a problem for KUC users before the release of v1.4.0. This guide will help users understand the version conflicts issue and how to adapt and upgrade KUC to the latest version starting from v1.4.0.
+Version conflicts have been a problem for Kintone UI Component users before the release of v1.4.0. This guide will help users understand the version conflicts issue and how to adapt and upgrade the Kintone UI Component package to the latest version starting from v1.4.0.
 
 ## The Problem of Versioning
 
@@ -21,7 +21,7 @@ In summary, if a custom HTML tag is already registered, defining it again will c
 
 In our case, the app will not work as expected when users import more than one `kuc.min.js` file of the same version, and the error will also occur when users import multiple `kuc.min.js` files of different versions in an app.
 
-## The Solution
+## Solution
 
 Because we cannot register the same custom HTML tag more than once, from v1.4.0, custom HTML tags will include a version number at the end. This change also applies to class names to avoid conflicting CSS styles. 
 
@@ -37,7 +37,7 @@ In addition, we also check to see whether a custom HTML tag has been registered 
 
 ### Using UMD
 
-We recommend that you should upgrade kintone UI Component to the latest version for your projects.<br>
+We recommend that you should upgrade Kintone UI Component to the latest version for your projects.<br>
 
 From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
 
@@ -52,10 +52,11 @@ document.body.appendChild(button);
 
 ### Using CDN
 
-Users using KUC through the CDN will always have the latest version; therefore, after the release of v1.4.0, some of your apps and plug-ins will not work correctly. <br>
+Users using Kintone UI Component through the CDN will always have the latest version.<br>
+Therefore, after the release of v1.4.0, some of your apps and plug-ins will not work correctly. <br>
 
 As explained in the [Using UMD](#using-umd) section, you now need to change from `Kuc` to `Kucs['1.x.x']`.
 
 ### Using npm
 
-Users using the KUC package through npm do not need to take any action but note the changes in how the components' tags and class names render. See [The Solution](#the-solution) section.
+Users using the Kintone UI Component package through npm do not need to take any action but note the changes in how the components' tags and class names render. See the [Solution](#solution) section.

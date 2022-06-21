@@ -38,6 +38,7 @@ In this article, we will show you how to install and implement using each approa
 ### Use the UMD
 > We recommend that you should upgrade Kintone UI Component to the latest version for your projects. <br>
 > From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+>The rendered components' tags and class names will include the version number.<br>
 > When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone app plug-in or customization.
 > Please read this [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article for more information!
 
@@ -96,8 +97,8 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 ### Use the npm package
 
-> From v1.4.0 and on, rendered KUC components' tags will include the version number.<br>
-> For more details, refer to the [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution#using-npm) article. <br>
+> From v1.4.0, rendered components' tags and class names will include the version number.<br>
+> Please read this [Version Conflicts Issue and Solution](../guides/version-conflicts-issue-solution) article for more information! <br>
 
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
