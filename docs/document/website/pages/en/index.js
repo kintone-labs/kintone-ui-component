@@ -15,6 +15,8 @@ const textContent = {
   codeExample: `
 \`\`\`javascript
 kintone.events.on('app.record.index.show', event => {
+  const Kuc = Kucs['1.x.x'];
+
   const header = kintone.app.getHeaderMenuSpaceElement();
 
   const buttonSubmit = new Kuc.Button({
