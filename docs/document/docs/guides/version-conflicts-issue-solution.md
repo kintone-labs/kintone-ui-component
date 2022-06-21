@@ -1,5 +1,5 @@
 ---
-id: version-1.4.0-version-conflicts-issue-solution
+id: version-conflicts-issue-solution
 title: Version conflicts issue and solution
 sidebar_label: Version conflicts issue and solution
 ---
