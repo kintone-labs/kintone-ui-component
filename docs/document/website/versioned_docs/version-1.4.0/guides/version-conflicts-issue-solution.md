@@ -21,7 +21,7 @@ In summary, if a custom HTML tag is already registered, defining it again will c
 
 In our case, the app will not work as expected when users import more than one `kuc.min.js` file of the same version, and the error will also occur when users import multiple `kuc.min.js` files of different versions in an app.
 
-## The Solution
+## Solution
 
 Because we cannot register the same custom HTML tag more than once, from v1.4.0, custom HTML tags will include a version number at the end. This change also applies to class names to avoid conflicting CSS styles. 
 
