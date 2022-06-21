@@ -37,7 +37,7 @@ In addition, we also check to see whether a custom HTML tag has been registered 
 
 ### Using UMD
 
-We recommend that you should upgrade kintone UI Component to the latest version for your projects.<br>
+We recommend that you should upgrade Kintone UI Component to the latest version for your projects.<br>
 
 From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
 
