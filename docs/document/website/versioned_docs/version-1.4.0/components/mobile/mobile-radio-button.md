@@ -1,7 +1,8 @@
 ---
-id: mobile-radio-button
+id: version-1.4.0-mobile-radio-button
 title: MobileRadioButton
 sidebar_label: MobileRadioButton
+original_id: mobile-radio-button
 ---
 
 ## Overview
