@@ -1,7 +1,8 @@
 ---
-id: mobile-checkbox
+id: version-1.4.0-mobile-checkbox
 title: MobileCheckbox
 sidebar_label: MobileCheckbox
+original_id: mobile-checkbox
 ---
 
 ## Overview
