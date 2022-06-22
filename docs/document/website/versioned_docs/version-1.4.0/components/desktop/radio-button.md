@@ -1,7 +1,8 @@
 ---
-id: radio-button
+id: version-1.4.0-radio-button
 title: RadioButton
 sidebar_label: RadioButton
+original_id: radio-button
 ---
 
 ## Overview
