@@ -1,5 +1,5 @@
 function managerEntries(entry = []) {
-  return [...entry, require.resolve("./manager")]; //👈 Addon implementation
+  return [...entry, require.resolve("./manager")];
 }
 
 module.exports = { managerEntries };
