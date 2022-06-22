@@ -1,7 +1,15 @@
 import React from "react";
 import { addons, types } from "@storybook/addons";
-import { Icons, IconButton } from "@storybook/components";
 import { useArgs } from "@storybook/api";
+
+const buttonStyles = {
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  color: '#767676',
+  fontSize: '13px',
+  fontWeight: 'bold'
+}
 
 export const GetButton = () => {
   const [args] = useArgs();
@@ -12,18 +20,13 @@ export const GetButton = () => {
       console.log(`"${key}" value: ${component[key]}`);
     });
   }
-  return <Icons text="text" onClick={_handleClick} icon="play" />;
+  return <button style={buttonStyles} onClick={_handleClick} >Get Props</button>;
 };
 
 addons.register("get-prop-value", api => {
   addons.add("get-prop-value/panel", {
     type: types.TOOL,
     title: "Get Prop Value",
-    render: ({ active }) => (
-      <IconButton active={active} title="get value properties">
-        Get value
-        <GetButton />
-      </IconButton>
-    )
+    render: ({ active }) => <GetButton />
   });
 });
