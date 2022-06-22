@@ -1,7 +1,8 @@
 ---
-id: button
+id: version-1.0.0-button
 title: Button
 sidebar_label: Button
+original_id: button
 ---
 
 ## Overview
@@ -52,13 +53,10 @@ Here is a list of available constructors:
 ---
 
 ## Sample Code
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 
 Here is a sample code when all parameters are specified:
 
 ```javascript
-const Kuc = Kucs['1.x.x'];
-
 const header = kintone.app.getHeaderMenuSpaceElement();
 const button = new Kuc.Button({
     text: 'Submit',
