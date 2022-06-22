@@ -57,7 +57,6 @@ Here is a sample code when all parameters are specified:
 
 ```javascript
 const header = kintone.app.getHeaderMenuSpaceElement();
-
 const button = new Kuc.Button({
     text: 'Submit',
     type: 'submit',
