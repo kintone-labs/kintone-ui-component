@@ -60,6 +60,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const header = kintone.app.getHeaderMenuSpaceElement();
+
 const button = new Kuc.Button({
     text: 'Submit',
     type: 'submit',
