@@ -1,7 +1,8 @@
 ---
-id: mobile-textarea
+id: version-1.4.0-mobile-textarea
 title: MobileTextArea
 sidebar_label: MobileTextArea
+original_id: mobile-textarea
 ---
 
 ## Overview
