@@ -59,10 +59,15 @@ TimePicker(options)<br>
 ---
 ## Sample Code
 
+>[導入と実装方法](../../getting-started/quick-start.md#installation) をご確認ください。
+
 全てのパラメータを指定した場合のサンプルコードです。
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const timePicker = new Kuc.TimePicker({
   label: 'Time',
   requiredIcon: true,
