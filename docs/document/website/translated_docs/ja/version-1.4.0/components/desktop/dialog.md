@@ -77,9 +77,13 @@ none
 ---
 ## Sample Code
 
+>[導入と実装方法](../../getting-started/quick-start.md#installation) をご確認ください。
+
 全てのパラメータを指定した場合のサンプルコードです。
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const dialog = new Kuc.Dialog({
   title:  'Title',
   content: '<div>This is Content</div>',
