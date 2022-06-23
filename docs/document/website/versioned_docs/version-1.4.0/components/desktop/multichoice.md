@@ -1,17 +1,18 @@
 ---
-id: mobile-multichoice
-title: MobileMultiChoice
-sidebar_label: MobileMultiChoice
+id: version-1.4.0-multichoice
+title: MultiChoice
+sidebar_label: MultiChoice
+original_id: multichoice
 ---
 
 ## Overview
 
-The MobileMultiChoice component allows the user to select multiple values from multiple options.
+The MultiChoice component allows the user to select multiple values from multiple options.
 
-<div class="sample-container" id="mobile-multichoice">
-  <div id="sample-container__components" class="mobile"></div>
+<div class="sample-container" id= "multichoice">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile/mobile-multichoice.js"></script>
+<script src="/js/samples/desktop/multichoice.js"></script>
 
 ---
 
@@ -62,7 +63,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-MobileMultiChoice(options)<br>
+MultiChoice(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -81,9 +82,9 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.mobile.app.record.getSpaceElement('space');
+const space = kintone.app.record.getSpaceElement('space');
 
-const mobileMultiChoice = new Kuc.MobileMultiChoice({
+const multiChoice = new Kuc.MultiChoice({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -104,9 +105,9 @@ const mobileMultiChoice = new Kuc.MobileMultiChoice({
   visible: true,
   disabled: false
 });
-space.appendChild(mobileMultiChoice);
+space.appendChild(multiChoice);
 
-mobileMultiChoice.addEventListener('change', event => {
+multiChoice.addEventListener('change', event => {
   console.log(event);
 });
 ```

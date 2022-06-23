@@ -1,18 +1,18 @@
 ---
-id: text
-title: Text
-sidebar_label: Text
+id: version-1.4.0-date-picker
+title: DatePicker
+sidebar_label: DatePicker
+original_id: date-picker
 ---
 
 ## Overview
 
-The Text component allows the user to display a single line text element.
+The DatePicker component allows the user to display a input area and date selection calendar.
 
-<div class="sample-container" id="text">
+<div class="sample-container" id="date-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/desktop/text.js"></script>
-
+<script src="/js/samples/desktop/date-picker.js"></script>
 
 ---
 
@@ -28,14 +28,15 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| placeholder | string | ""  | Placeholder text for entry example | |
-| prefix | string | ""  | Text to be displayed before the input text | |
-| suffix | string | ""  | Text to be displayed after the input text | |
-| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Aligned to the left<br>"right" : Aligned to the right |
-| value | string | ""  | Text to be displayed | |
+| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"ja", the language setting will be "en") |
+| value | string | ""  | Text to be displayed | Format is YYYY-MM-DD<br>The below date can be used (it will be converted to YYYY-MM-DD internally):<li>2021</li><li>2021-1</li><li>2021-01</li><li>2021-1-9</li><li>21-01-01</li>If the year is less than 4 characters, 0 will be added to the beginning<br>If the date and/or month is ignored, it will be supplemented with 01<br>If the date and/or month has only 1 character, 0 will be added to the beginning<br>Will result an error if setting invalid format or value |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
+
+> *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+> - "en": MM/DD/YYYY
+> - "ja", "zh": YYYY-MM-DD
 
 ### Event
 
@@ -44,12 +45,10 @@ Here is a list of events that can be specified:
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
-| focus | function | Event handler when the component is focused | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
-| input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.data : Value of inserted characters<br>event.detail.value : Value of target element<br><br>*Notes on the value of "event.detail.data"<br>It is inserted characters when inserting text<br>It will be "null" when inserting by "Paste" or "Drag and Drop" or pressing "Enter", "Delete", or "Backspace" |
 
 ### Constructor
 
-Text(options)<br>
+DatePicker(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -69,31 +68,20 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const text = new Kuc.Text({
-  label: 'Fruit',
+const datePicker = new Kuc.DatePicker({
+  label: 'Date',
   requiredIcon: true,
-  value: 'Apple',
-  placeholder: 'Apple',
-  prefix: '$',
-  suffix: 'yen',
-  textAlign: 'left',
+  language: 'auto',
+  value: '2021-11-11',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
   disabled: false
 });
-space.appendChild(text);
+space.appendChild(datePicker);
 
-text.addEventListener('change', event => {
-  console.log(event);
-});
-
-text.addEventListener('focus', event => {
-  console.log(event);
-});
-
-text.addEventListener('input', event => {
+datePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```

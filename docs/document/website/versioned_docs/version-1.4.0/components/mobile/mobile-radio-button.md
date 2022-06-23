@@ -1,17 +1,18 @@
 ---
-id: mobile-dropdown
-title: MobileDropdown
-sidebar_label: MobileDropdown
+id: version-1.4.0-mobile-radio-button
+title: MobileRadioButton
+sidebar_label: MobileRadioButton
+original_id: mobile-radio-button
 ---
 
 ## Overview
 
-The MobileDropdown component allows the user to select one out of several options.
+The MobileRadioButton component allows the user to select one out of several options.
 
-<div class="sample-container" id="mobile-dropdown">
+<div class="sample-container" id="mobile-radio-button">
   <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/mobile/mobile-dropdown.js"></script>
+<script src="/js/samples/mobile/mobile-radio-button.js"></script>
 
 ---
 
@@ -21,7 +22,7 @@ The MobileDropdown component allows the user to select one out of several option
 
 Here is a list of properties that can be used for modifying the component:
 
-| Name   | Type | Default | Description | Remark |
+| Name  | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
@@ -29,7 +30,8 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value *1 | string | ""  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number |
 | selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not a number |
-| disabled | boolean | false | Enable/Disable the component from selecting | |
+| borderVisible | boolean | true | Show/Hide the border | |
+| disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of `items` is not an array |
@@ -48,7 +50,6 @@ Here is a list of properties that can be used for modifying the component:
 >   - selectedIndex = 99: No item will be selected.
 
 ### Event
-
 Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
@@ -57,7 +58,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-MobileDropdown(options)<br>
+MobileRadioButton(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -67,7 +68,6 @@ Here is a list of available constructors:
 | options | object | {} | Object that includes component properties |  |
 
 ---
-
 ## Sample Code
 
 > Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
@@ -79,7 +79,7 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.mobile.app.record.getSpaceElement('space');
 
-const mobileDropdown = new Kuc.MobileDropdown({
+const mobileRadioButton = new Kuc.MobileRadioButton({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -98,11 +98,12 @@ const mobileDropdown = new Kuc.MobileDropdown({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
-space.appendChild(mobileDropdown);
+space.appendChild(mobileRadioButton);
 
-mobileDropdown.addEventListener('change', event => {
+mobileRadioButton.addEventListener('change', event => {
   console.log(event);
 });
 ```
