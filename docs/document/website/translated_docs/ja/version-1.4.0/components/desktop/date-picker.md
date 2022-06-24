@@ -1,18 +1,18 @@
 ---
-id: version-1.4.0-mobile-time-picker
-title: MobileTimePicker
-sidebar_label: MobileTimePicker
-original_id: mobile-time-picker
+id: version-1.4.0-date-picker
+title: DatePicker
+sidebar_label: DatePicker
+original_id: date-picker
 ---
 
 ## Overview
 
-MobileTimePicker は入力エリアと時間選択用のリストを表示します。
+DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-<div class="sample-container" id="mobile-time-picker">
+<div class="sample-container" id="date-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile/mobile-time-picker.js"></script>
+<script src="/js/samples/desktop/date-picker.js"></script>
 
 ---
 
@@ -28,12 +28,15 @@ MobileTimePicker は入力エリアと時間選択用のリストを表示しま
 | error | string | ""  | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| language | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh"<br>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"ja" 以外の場合は、言語設定が "en" になる） |
-| value | string | ""  | 表示するテキスト | フォーマットは HH:MM<br>以下の時間も指定できる（内部的に HH:MM に変換される）:<li>5:30</li><li>05:3</li><li>5:3</li>時間や分が 1文字の場合、0 が先頭に補完される<br>不正なフォーマットや値を指定した場合、エラーを出力する |
+| language *1 | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh"<br>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"ja" 以外の場合は、言語設定が "en" になる） |
+| value | string | ""  | 表示するテキスト | フォーマットは YYYY-MM-DD<br>以下の日付も指定できる（内部的に YYYY-MM-DD に変換される）:<li>2021</li><li>2021-1</li><li>2021-01</li><li>2021-1-9</li><li>21-01-01</li>年が 4文字以下の場合、0 が先頭に補完される<br>日や月の記載がない場合、01 で補完される<br>日や月が 1文字の場合、0 が先頭に補完される<br>不正なフォーマットや値を指定した場合、エラーを出力する |
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
-| hour12 | boolean | false | 時刻表記の設定 (12時間表記/24時間表記) デフォルトは 24時間表記 | 指定できるオプション:<br>true: 12時間表記<br>false: 24時間表記 |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
+
+> *1: 表示される日付のフォーマットは、language プロパティの設定に応じて以下のように自動的に切り替わる。
+> - "en" の場合: MM/DD/YYYY
+> - "ja", "zh" の場合: YYYY-MM-DD
 
 ### Event
 
@@ -45,7 +48,7 @@ MobileTimePicker は入力エリアと時間選択用のリストを表示しま
 
 ### Constructor
 
-MobileTimePicker(options)<br>
+DatePicker(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -54,7 +57,6 @@ MobileTimePicker(options)<br>
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ---
-
 ## Sample Code
 
 >[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
@@ -64,23 +66,22 @@ MobileTimePicker(options)<br>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.mobile.app.record.getSpaceElement('space');
+const space = kintone.app.record.getSpaceElement('space');
 
-const mobileTimePicker = new Kuc.MobileTimePicker({
-  label: 'Time',
+const datePicker = new Kuc.DatePicker({
+  label: 'Date',
   requiredIcon: true,
   language: 'auto',
-  hour12: false,
-  value: '11:30',
+  value: '2021-11-11',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
   disabled: false
 });
-space.appendChild(mobileTimePicker);
+space.appendChild(datePicker);
 
-mobileTimePicker.addEventListener('change', event => {
+datePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```
