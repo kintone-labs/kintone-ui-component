@@ -57,7 +57,7 @@ TextArea(options)<br>
 ---
 ## Sample Code
 
->[導入と実装方法](../../getting-started/quick-start.md#installation) をご確認ください。
+>[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
 
 全てのパラメータを指定した場合のサンプルコードです。
 
