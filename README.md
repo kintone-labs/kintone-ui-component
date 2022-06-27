@@ -16,6 +16,10 @@ It supports you to develop kintone customization and kintone plugin.<br />
   English | <a href="./README-JP.md">日本語</a>
 </p>
 
+> Here is a note for contributors:<br>
+> Now we cannot install dependencies successfully with "npm ci" on Node LTS v16.15.1 or later version.<br>
+> This is due to the check of package-lock.json get stricter after npm v8.5.5, so please use before Node v16.15.1 for now.<br>
+> We will fix this issue in near future.
 
 ## Table of contents
 - [Installation](#installation)
