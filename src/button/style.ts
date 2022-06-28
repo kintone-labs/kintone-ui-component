@@ -26,8 +26,7 @@ export const BUTTON_CSS = `
     font-size: var(--kuc-button-font-size, 16px);
     min-width: 163px;
     width: var(--kuc-button-width, "auto");
-    height: var(--kuc-button-height, "auto");
-    height: 48px;
+    height: var(--kuc-button-height, 48px);
     padding: 0px 16px;
     user-select: none;
   }
@@ -43,9 +42,17 @@ export const BUTTON_CSS = `
   .kuc-button__button--normal:hover,
   .kuc-button__button--normal:focus,
   .kuc-button__button--normal:active {
-    background-color: var(--kuc-button-background-active, #c8d6dd);
     box-shadow: none;
     cursor: pointer;
+  }
+  .kuc-button__button--normal:hover {
+    background-color: var(--kuc-button-background-hover, #c8d6dd);
+  }
+  .kuc-button__button--normal:focus {
+    background-color: var(--kuc-button-background-focus, #c8d6dd);
+  }
+  .kuc-button__button--normal:active {
+    background-color: var(--kuc-button-background-active, #c8d6dd);
   }
   .kuc-button__button--submit {
     border: 1px solid #e3e7e8;
@@ -55,8 +62,16 @@ export const BUTTON_CSS = `
   .kuc-button__button--submit:hover,
   .kuc-button__button--submit:focus,
   .kuc-button__button--submit:active {
-    background-color: var(--kuc-button-background-active, #1d6fa5);
     cursor: pointer;
+  }
+  .kuc-button__button--submit:hover {
+    background-color: var(--kuc-button-background-hover, #1d6fa5);
+  }
+  .kuc-button__button--submit:focus {
+    background-color: var(--kuc-button-background-focus, #1d6fa5);
+  }
+  .kuc-button__button--submit:active {
+    background-color: var(--kuc-button-background-active, #1d6fa5);
   }
   .kuc-button__button--alert {
     border: 0 none;
@@ -67,9 +82,17 @@ export const BUTTON_CSS = `
   .kuc-button__button--alert:hover,
   .kuc-button__button--alert:focus,
   .kuc-button__button--alert:active {
-    background-color: var(--kuc-button-background-active, #bf2718);
     box-shadow: none;
     cursor: pointer;
+  }
+  .kuc-button__button--alert:hover {
+    background-color: var(--kuc-button-background-hover, #bf2718);
+  }
+  .kuc-button__button--alert:focus {
+    background-color: var(--kuc-button-background-focus, #bf2718);
+  }
+  .kuc-button__button--alert:active {
+    background-color: var(--kuc-button-background-active, #bf2718);
   }
   .kuc-button__button:disabled {
     border: 1px solid #e3e7e8;
