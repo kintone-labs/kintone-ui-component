@@ -2,7 +2,6 @@ import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
 
 export declare type MobileCheckboxItem = { label?: string; value?: string };
-export declare type MobileCheckboxValueMapping = { [key: number]: string };
 
 export declare type MobileCheckboxProps = {
   className?: string;

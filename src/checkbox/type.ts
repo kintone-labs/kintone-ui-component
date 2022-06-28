@@ -17,10 +17,6 @@ export declare type CheckboxProps = {
   selectedIndex?: number[];
 };
 
-export declare type ValueMapping = {
-  [key: number]: string;
-};
-
 export declare class Checkbox extends KucBase {
   className: string;
   error: string;

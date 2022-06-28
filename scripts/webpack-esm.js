@@ -5,33 +5,49 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 const componentDirectories = [
+  "mobile/datetime-picker",
+  "mobile/time-picker",
+  "mobile/date-picker",
+  "base/datetime/mobile-time",
+  "base/datetime/mobile-date",
+  "base/datetime/mobile-calendar",
+  "base/datetime/mobile-calendar/body",
+  "base/datetime/mobile-calendar/header",
+  "base/datetime/mobile-calendar/footer",
   "base/error",
   "base/label",
   "base/datetime/listbox",
+  "base/datetime/time",
   "base/datetime/date",
-  "base/datetime/calendar",
   "base/datetime/calendar",
   "base/datetime/calendar/body",
   "base/datetime/calendar/footer",
   "base/datetime/calendar/header",
   "base/datetime/calendar/header/dropdown/month",
   "base/datetime/calendar/header/dropdown/year",
-  "base/datetime/time",
   "button",
   "checkbox",
-  "dialog",
   "date-picker",
   "datetime-picker",
+  "dialog",
+  "dropdown",
+  "multichoice",
   "notification",
+  "radio-button",
   "spinner",
   "text",
+  "textarea",
   "time-picker",
   "base/mobile-label",
   "base/mobile-error",
   "mobile/button",
   "mobile/checkbox",
+  "mobile/dropdown",
+  "mobile/multichoice",
   "mobile/notification",
-  "mobile/text"
+  "mobile/radio-button",
+  "mobile/text",
+  "mobile/textarea"
 ];
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
@@ -66,7 +82,7 @@ const replaceAllByPattern = (data, pattern, version) => {
   return tempData;
 };
 
-const escapeRegExp = (string) => {
+const escapeRegExp = string => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 

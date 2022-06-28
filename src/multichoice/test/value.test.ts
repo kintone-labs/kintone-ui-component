@@ -131,7 +131,6 @@ describe("MultiChoice", () => {
     });
 
     it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
       const container = new MultiChoice({ items: initItems, value: null });
       try {
         await fixture(container);
@@ -149,7 +148,6 @@ describe("MultiChoice", () => {
 
     it("should be throw error when set null by setter", async () => {
       const container = new MultiChoice({ items: initItems });
-      // @ts-expect-error
       container.value = null;
       try {
         await fixture(container);

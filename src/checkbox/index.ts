@@ -15,11 +15,15 @@ import {
   throwErrorAfterUpdateComplete
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckBoxItem, CheckboxProps, ValueMapping } from "./type";
+import { CheckBoxItem, CheckboxProps } from "./type";
 import { CHECKBOX_CSS } from "./style";
 import { BaseError } from "../base/error";
 import { BaseLabel } from "../base/label";
 export { BaseError, BaseLabel };
+
+type CheckBoxValueMapping = {
+  [key: number]: string;
+};
 
 let exportCheckbox;
 (() => {
@@ -54,7 +58,7 @@ let exportCheckbox;
     private _GUID: string;
 
     @state()
-    private _valueMapping: ValueMapping = {};
+    private _valueMapping: CheckBoxValueMapping = {};
 
     constructor(props?: CheckboxProps) {
       super();
@@ -301,7 +305,7 @@ let exportCheckbox;
 
       const itemsValue = _items.map(item => item.value || "");
       const itemsMapping = Object.assign({}, itemsValue);
-      const result: ValueMapping = {};
+      const result: CheckBoxValueMapping = {};
       if (_value.length === 0) {
         const value = this._getValidValue(itemsMapping, _selectedIndex);
         _selectedIndex.forEach((key, i) => (result[key] = value[i]));
@@ -313,7 +317,7 @@ let exportCheckbox;
     }
 
     private _getValidValue(
-      itemsMapping: ValueMapping,
+      itemsMapping: CheckBoxValueMapping,
       _selectedIndex: number[]
     ) {
       return _selectedIndex
@@ -321,7 +325,7 @@ let exportCheckbox;
         .map(item => itemsMapping[item]);
     }
 
-    private _getValidSelectedIndex(itemsMapping: ValueMapping) {
+    private _getValidSelectedIndex(itemsMapping: CheckBoxValueMapping) {
       const validSelectedIndex: number[] = [];
       for (let i = 0; i < this.value.length; i++) {
         const selectedIndex = this.selectedIndex[i];

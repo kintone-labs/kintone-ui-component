@@ -17,13 +17,11 @@ import {
 import { ERROR_MESSAGE } from "../../base/constant";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
-import {
-  MobileCheckboxProps,
-  MobileCheckboxItem,
-  MobileCheckboxValueMapping
-} from "./type";
+import { MobileCheckboxProps, MobileCheckboxItem } from "./type";
 import { MOBILE_CHECKBOX_CSS } from "./style";
 export { BaseMobileLabel, BaseMobileError };
+
+type MobileCheckboxValueMapping = { [key: number]: string };
 
 let exportMobileCheckbox;
 (() => {
