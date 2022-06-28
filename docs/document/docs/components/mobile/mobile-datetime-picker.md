@@ -1,18 +1,17 @@
 ---
-id: version-1.3.0-datetime-picker
-title: DateTimePicker
-sidebar_label: DateTimePicker
-original_id: datetime-picker
+id: mobile-datetime-picker
+title: MobileDateTimePicker
+sidebar_label: MobileDateTimePicker
 ---
 
 ## Overview
 
-The DateTimePicker component allows the user to display a input area of time & date and each selection part.
+The MobileDateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div class="sample-container" id="datetime-picker">
+<div class="sample-container" id="mobile-datetime-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/desktop/datetime-picker.js"></script>
+<script src="/js/samples/mobile/mobile-datetime-picker.js"></script>
 
 ---
 
@@ -35,10 +34,6 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 
-> *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
-> - "en": MM/DD/YYYY
-> - "ja", "zh": YYYY-MM-DD
-
 ### Event
 
 Here is a list of events that can be specified:
@@ -47,9 +42,13 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change<br>event.detail.changedPart : "date" or "time" which has been changed |
 
+> *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+> - "en": MM/DD/YYYY
+> - "ja", "zh": YYYY-MM-DD
+
 ### Constructor
 
-DateTimePicker(options)<br>
+MobileDateTimePicker(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -64,7 +63,7 @@ Here is a sample code when all parameters are specified:
 
 ```javascript
 const space = kintone.app.record.getSpaceElement('space');
-const dateTimePicker = new Kuc.DateTimePicker({
+const mobileDateTimePicker = new Kuc.MobileDateTimePicker({
   label: 'DateTime',
   requiredIcon: true,
   language: 'auto',
@@ -76,9 +75,9 @@ const dateTimePicker = new Kuc.DateTimePicker({
   visible: true,
   disabled: false
 });
-space.appendChild(dateTimePicker);
+space.appendChild(mobileDateTimePicker);
 
-dateTimePicker.addEventListener('change', event => {
+mobileDateTimePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```
