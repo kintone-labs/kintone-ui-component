@@ -11,7 +11,7 @@ describe("MobileDateTimePicker", () => {
 
     it('should be equal "options-class" string when initializing className with "options-class" value', async () => {
       const container = new MobileDateTimePicker({
-        className: "options-class"
+        className: "options-class",
       });
       const el = await fixture(container);
       expect(el.classList.length).to.be.equal(1);
@@ -20,7 +20,7 @@ describe("MobileDateTimePicker", () => {
 
     it('should be replace by "replace-class" when changing by setter', async () => {
       const container = new MobileDateTimePicker({
-        className: "options-class"
+        className: "options-class",
       });
       container.className = "replace-class";
       const el = await fixture(container);

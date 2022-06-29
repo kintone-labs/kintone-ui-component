@@ -8,14 +8,14 @@ export default {
     language: {
       name: "language",
       options: ["en", "ja", "zh"],
-      control: { type: "select" }
-    }
+      control: { type: "select" },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:calendar-header-change"]
-    }
-  }
+      handles: ["kuc:calendar-header-change"],
+    },
+  },
 };
 
 const Template = ({ language, month, year }) =>
@@ -31,5 +31,5 @@ export const Base = Template.bind({});
 Base.args = {
   language: "en",
   month: 9,
-  year: 2021
+  year: 2021,
 };

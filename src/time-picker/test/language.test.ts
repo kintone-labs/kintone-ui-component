@@ -7,7 +7,7 @@ describe("TimePicker", () => {
       const container = new TimePicker({
         value: "10:00",
         min: "9:00",
-        max: "10:00"
+        max: "10:00",
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -33,7 +33,7 @@ describe("TimePicker", () => {
         value: "10:00",
         min: "9:00",
         max: "10:00",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -59,7 +59,7 @@ describe("TimePicker", () => {
         value: "10:00",
         min: "9:00",
         max: "10:00",
-        language: "ja"
+        language: "ja",
       });
       container.language = "zh";
       const el = await fixture(container);

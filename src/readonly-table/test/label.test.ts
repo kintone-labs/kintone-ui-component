@@ -35,7 +35,7 @@ describe("ReadOnlyTable", () => {
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new ReadOnlyTable({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
 

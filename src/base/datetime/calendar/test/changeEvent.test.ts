@@ -7,7 +7,7 @@ describe("BaseDateTimeCalendar", () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendar();
       container.value = "2021-08-22";
-      container.addEventListener("kuc:calendar-header-change", event => {
+      container.addEventListener("kuc:calendar-header-change", (event) => {
         triggeredEvent = event;
       });
 
@@ -26,7 +26,7 @@ describe("BaseDateTimeCalendar", () => {
       let triggeredEvent: any = null;
       const container = new BaseDateTimeCalendar();
       container.value = "2021-08-22";
-      container.addEventListener("kuc:calendar-body-change-date", event => {
+      container.addEventListener("kuc:calendar-body-change-date", (event) => {
         triggeredEvent = event;
       });
 

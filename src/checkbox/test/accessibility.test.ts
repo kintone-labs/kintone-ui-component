@@ -2,14 +2,14 @@ import {
   triggerFocusFor,
   triggerBlurFor,
   expect,
-  fixture
+  fixture,
 } from "@open-wc/testing";
 import { Checkbox } from "../index";
 
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("Checkbox", () => {
@@ -17,7 +17,7 @@ describe("Checkbox", () => {
     it("can be focused and blured", async () => {
       const container = new Checkbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
 
       const el: HTMLElement = await fixture(container);

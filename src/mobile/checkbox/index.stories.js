@@ -9,12 +9,12 @@ storiesOf("mobile/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
       value: ["sample1"],
       className: "sample-class",
@@ -24,9 +24,9 @@ storiesOf("mobile/checkbox", module)
       borderVisible: true,
       label: "フルーツ",
       requiredIcon: true,
-      error: "エラーです"
+      error: "エラーです",
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(["detail.oldValue", event.detail.oldValue]);
       console.log(["detail.value", event.detail.value]);
     });
@@ -39,25 +39,25 @@ storiesOf("mobile/checkbox", module)
       items: [
         {
           label: "Orange",
-          value: "Orange"
+          value: "Orange",
         },
         {
           label: "Orange2",
-          value: "Orange2"
+          value: "Orange2",
         },
         {
           label: "Apple",
-          value: "Apple"
-        }
+          value: "Apple",
+        },
       ],
       value: ["Orange"],
       className: "sample-class",
       id: "sample-id",
       visible: true,
       disabled: true,
-      borderVisible: true
+      borderVisible: true,
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(checkbox);
@@ -69,12 +69,12 @@ storiesOf("mobile/checkbox", module)
       items: [
         {
           label: "Orange",
-          value: "Orange"
+          value: "Orange",
         },
         {
           label: "Apple",
-          value: "Apple"
-        }
+          value: "Apple",
+        },
       ],
       value: ["Orange"],
       className: "sample-class",
@@ -83,9 +83,9 @@ storiesOf("mobile/checkbox", module)
       disabled: false,
       borderVisible: false,
       label: "",
-      error: ""
+      error: "",
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(checkbox);
@@ -98,14 +98,14 @@ storiesOf("mobile/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
-      value: ["", undefined]
+      value: ["", undefined],
     });
     root.appendChild(checkbox);
     return root;
@@ -116,12 +116,12 @@ storiesOf("mobile/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
       value: ["sample1"],
       className: "sample-class",
@@ -131,7 +131,7 @@ storiesOf("mobile/checkbox", module)
       borderVisible: true,
       label: "Fruit",
       // requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
     root.appendChild(checkbox);
     return root;

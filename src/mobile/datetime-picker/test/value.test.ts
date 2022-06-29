@@ -46,7 +46,7 @@ describe("MobileDateTimePicker", () => {
 
     it('should be "12/12/2021T12:12:12" when assigning on constructor', async () => {
       const container = new MobileDateTimePicker({
-        value: "2021-12-12T12:12:12"
+        value: "2021-12-12T12:12:12",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -67,7 +67,7 @@ describe("MobileDateTimePicker", () => {
 
     it('should be "2021-12-13T11:11:00" when changed to "2021-12-13T11:11:00" by setter', async () => {
       const container = new MobileDateTimePicker({
-        value: "2021-12-12T11:11:00"
+        value: "2021-12-12T11:11:00",
       });
       const el = await fixture(container);
       container.value = "2021-12-13T11:11:00";
@@ -88,7 +88,7 @@ describe("MobileDateTimePicker", () => {
       expect(container.value).to.be.equal("2021-12-13T11:11:00");
     });
 
-    it("should throw error when set invalid value", done => {
+    it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -102,7 +102,7 @@ describe("MobileDateTimePicker", () => {
       fixture(container);
     });
 
-    it("should throw error when set null", done => {
+    it("should throw error when set null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -120,7 +120,7 @@ describe("MobileDateTimePicker", () => {
     it("should be today value when pressing today button on calendar", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-12T12:12:12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -152,7 +152,7 @@ describe("MobileDateTimePicker", () => {
     it("should be undefined value and input emtpy on UI when set undefined by setter", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = undefined;
@@ -176,7 +176,7 @@ describe("MobileDateTimePicker", () => {
     it("should be empty value and input emtpy on UI when assigning undefined on constructor", async () => {
       const container = new MobileDateTimePicker({
         value: undefined,
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -198,7 +198,7 @@ describe("MobileDateTimePicker", () => {
     it("should be empty value and input emtpy on UI when set `` on constructor", async () => {
       const container = new MobileDateTimePicker({
         value: "",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -220,7 +220,7 @@ describe("MobileDateTimePicker", () => {
     it("should be empty value and input emtpy on UI when set `` by setter", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = "";
@@ -244,7 +244,7 @@ describe("MobileDateTimePicker", () => {
     it("should be undefined when select empty on hour", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-12T01",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = "";
@@ -261,8 +261,8 @@ describe("MobileDateTimePicker", () => {
           detail: {
             value: ":00",
             oldValue: "00:00",
-            error: "Format is not valid."
-          }
+            error: "Format is not valid.",
+          },
         })
       );
       await elementUpdated(el);
@@ -272,7 +272,7 @@ describe("MobileDateTimePicker", () => {
     it("should be undefined when select today while missing time hour", async () => {
       const container = new MobileDateTimePicker({
         value: getTodayStringByLocale(),
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = "";
@@ -292,8 +292,8 @@ describe("MobileDateTimePicker", () => {
           detail: {
             value: ":00",
             oldValue: "00:00",
-            error: "Format is not valid."
-          }
+            error: "Format is not valid.",
+          },
         })
       );
       await elementUpdated(el);
@@ -312,7 +312,7 @@ describe("MobileDateTimePicker", () => {
     it("should be today value when pressing today button on calendar", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-12T12:12:12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(

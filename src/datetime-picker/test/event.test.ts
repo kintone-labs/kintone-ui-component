@@ -6,7 +6,7 @@ describe("DateTimePicker", () => {
   describe("event", () => {
     it("should be new value when dispatch base-date-change event", async () => {
       const container = new DateTimePicker({
-        value: ""
+        value: "",
       });
       const el = await fixture(container);
       const baseDateEl = el.querySelector(
@@ -14,7 +14,7 @@ describe("DateTimePicker", () => {
       ) as BaseDate;
       baseDateEl.dispatchEvent(
         new CustomEvent("kuc:base-date-change", {
-          detail: { value: "2022-01-01", oldValue: undefined }
+          detail: { value: "2022-01-01", oldValue: undefined },
         })
       );
       await elementUpdated(el);

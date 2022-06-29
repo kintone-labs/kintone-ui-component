@@ -9,10 +9,10 @@ storiesOf("mobile/button", module)
       className: "sample-class",
       id: "sample-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
-    normalButton.addEventListener("click", event => {
+    normalButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -21,10 +21,10 @@ storiesOf("mobile/button", module)
       text: "Normal",
       id: "sample-id",
       visible: true,
-      disabled: true
+      disabled: true,
     });
 
-    disableNormalButton.addEventListener("click", event => {
+    disableNormalButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -32,10 +32,10 @@ storiesOf("mobile/button", module)
       text: "Submit",
       type: "submit",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
-    submitButton.addEventListener("click", event => {
+    submitButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -43,10 +43,10 @@ storiesOf("mobile/button", module)
       text: "Submit",
       type: "submit",
       visible: true,
-      disabled: true
+      disabled: true,
     });
 
-    disableSubmitButton.addEventListener("click", event => {
+    disableSubmitButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 

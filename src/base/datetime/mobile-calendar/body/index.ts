@@ -3,7 +3,7 @@ import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
-  dispatchCustomEvent
+  dispatchCustomEvent,
 } from "../../../kuc-base";
 import { getDisplayingDates, WeekDate, getLocale } from "../../utils";
 
@@ -94,7 +94,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     return {
       day: dates[2],
       month: dates[1],
-      year: dates[0]
+      year: dates[0],
     };
   }
 
@@ -134,7 +134,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     return html`
       <thead>
         <tr>
-          ${this._locale.WEEK_DAYS.map(wday => {
+          ${this._locale.WEEK_DAYS.map((wday) => {
             return html`
               <th
                 class="kuc-base-mobile-datetime-calendar-body__table__header"
@@ -155,7 +155,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     const monthString = this._locale.MONTH_SELECT[this._month - 1];
     return html`
       <tbody>
-        ${displayingDates.map(weeks => {
+        ${displayingDates.map((weeks) => {
           return html`
             <tr>
               ${weeks.map((weekDate: WeekDate) => {

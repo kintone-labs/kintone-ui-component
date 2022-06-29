@@ -10,7 +10,7 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       );
       container.addEventListener(
         "kuc:mobile-calendar-footer-click-none",
-        event => {
+        (event) => {
           triggeredEvent = event.type;
         }
       );
@@ -33,7 +33,7 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       );
       container.addEventListener(
         "kuc:mobile-calendar-footer-click-today",
-        event => {
+        (event) => {
           triggeredEvent = event.type;
         }
       );
@@ -56,7 +56,7 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       );
       container.addEventListener(
         "kuc:mobile-calendar-footer-click-close",
-        event => {
+        (event) => {
           triggeredEvent = event.type;
         }
       );

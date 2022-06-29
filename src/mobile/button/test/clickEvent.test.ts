@@ -23,7 +23,7 @@ describe("MobileButton", () => {
     it("should be not triggered click event when disabled", async () => {
       const container = new MobileButton({
         disabled: true,
-        text: "no event"
+        text: "no event",
       });
       container.addEventListener("click", (event: MouseEvent) => {
         container.text = event.type;

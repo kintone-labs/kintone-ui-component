@@ -7,7 +7,7 @@ describe("BaseMobileTime", () => {
       let triggeredEvent: any = null;
       const container = document.createElement("kuc-base-mobile-time");
       container.setAttribute("value", "12:30");
-      container.addEventListener("kuc:base-mobile-time-change", event => {
+      container.addEventListener("kuc:base-mobile-time-change", (event) => {
         triggeredEvent = event;
       });
 
@@ -30,7 +30,7 @@ describe("BaseMobileTime", () => {
       const container = document.createElement("kuc-base-mobile-time");
       container.setAttribute("value", "12:30");
       container.setAttribute("hour12", "true");
-      container.addEventListener("kuc:base-mobile-time-change", event => {
+      container.addEventListener("kuc:base-mobile-time-change", (event) => {
         triggeredEvent = event;
       });
 
@@ -52,7 +52,7 @@ describe("BaseMobileTime", () => {
       let triggeredEvent: any = null;
       const container = document.createElement("kuc-base-mobile-time");
       container.setAttribute("value", "12:30");
-      container.addEventListener("kuc:base-mobile-time-change", event => {
+      container.addEventListener("kuc:base-mobile-time-change", (event) => {
         triggeredEvent = event;
       });
 

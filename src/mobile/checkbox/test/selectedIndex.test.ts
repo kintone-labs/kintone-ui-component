@@ -4,7 +4,7 @@ import { MobileCheckbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileCheckbox", () => {
@@ -25,7 +25,7 @@ describe("MobileCheckbox", () => {
     it("should be checked items when assinged on constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        selectedIndex: [1]
+        selectedIndex: [1],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -42,7 +42,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({
         items: initItems,
         // @ts-expect-error
-        selectedIndex: null
+        selectedIndex: null,
       });
       try {
         await fixture(container);
@@ -61,7 +61,7 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        selectedIndex: [0]
+        selectedIndex: [0],
       });
       try {
         // @ts-expect-error

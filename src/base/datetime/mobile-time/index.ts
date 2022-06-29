@@ -3,7 +3,7 @@ import { property, state, query } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
-  dispatchCustomEvent
+  dispatchCustomEvent,
 } from "../../kuc-base";
 import { validateProps, validateTimeValue } from "../../validator";
 import {
@@ -11,7 +11,7 @@ import {
   generateHourOptions,
   formatInputValueToTimeValue,
   formatTimeValueToInputValueForMobile,
-  getLocale
+  getLocale,
 } from "../../datetime/utils";
 import { Item } from "../../datetime/listbox";
 
@@ -189,7 +189,7 @@ export class BaseMobileTime extends KucBase {
     const tempOldValue = oldValue === ":" ? "" : oldValue;
     const detail: CustomEventDetail = {
       value: tempValue,
-      oldValue: tempOldValue
+      oldValue: tempOldValue,
     };
     detail.error = validateTimeValue(tempValue)
       ? ""
@@ -200,19 +200,13 @@ export class BaseMobileTime extends KucBase {
 
   private _getOptionsMinuteTemplate() {
     return this._minuteOptions.map(
-      min =>
-        html`
-          <option value="${min.value}">${min.label}</option>
-        `
+      (min) => html` <option value="${min.value}">${min.label}</option> `
     );
   }
 
   private _getOptionsHourTemplate() {
     return this._hourOptions.map(
-      hour =>
-        html`
-          <option value="${hour.value}">${hour.label}</option>
-        `
+      (hour) => html` <option value="${hour.value}">${hour.label}</option> `
     );
   }
 

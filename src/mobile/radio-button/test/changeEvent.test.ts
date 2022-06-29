@@ -4,7 +4,7 @@ import { MobileRadioButton } from "../index";
 const initItems = [
   { label: "Item 1", value: "item-1" },
   { label: "Item 2", value: "item-2" },
-  { label: "Item 3", value: "item-3" }
+  { label: "Item 3", value: "item-3" },
 ];
 
 describe("MobileRadioButton", () => {
@@ -13,7 +13,7 @@ describe("MobileRadioButton", () => {
       let triggeredEvent: any = null;
       const container = new MobileRadioButton({
         items: initItems,
-        value: initItems[1].value
+        value: initItems[1].value,
       });
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;
@@ -34,7 +34,7 @@ describe("MobileRadioButton", () => {
       let triggeredEvent: any = null;
       const container = new MobileRadioButton({
         items: initItems,
-        value: initItems[1].value
+        value: initItems[1].value,
       });
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;

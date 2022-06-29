@@ -5,13 +5,13 @@ import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
-  KucBase
+  KucBase,
 } from "../../base/kuc-base";
 import {
   validateProps,
   validateDateValue,
   isValidDate,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import "../../base/datetime/mobile-date";
 import "../../base/mobile-label";
@@ -44,7 +44,7 @@ export class MobileDatePicker extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -148,7 +148,7 @@ export class MobileDatePicker extends KucBase {
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
       oldValue: this.value,
-      value: ""
+      value: "",
     };
     const theSameValue =
       event.detail.value === this.value ||

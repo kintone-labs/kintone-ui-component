@@ -10,9 +10,9 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
-      container.addEventListener("change", event => {
+      container.addEventListener("change", (event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
@@ -50,9 +50,9 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
-      container.addEventListener("change", event => {
+      container.addEventListener("change", (event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
@@ -79,9 +79,9 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
-      container.addEventListener("change", event => {
+      container.addEventListener("change", (event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
@@ -103,9 +103,9 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: getTodayStringByLocale(),
-        language: "ja"
+        language: "ja",
       });
-      container.addEventListener("change", event => {
+      container.addEventListener("change", (event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);

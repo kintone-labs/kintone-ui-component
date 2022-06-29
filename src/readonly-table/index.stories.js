@@ -12,26 +12,26 @@ storiesOf("desktop/readonly-table", module)
       columns: [
         {
           header: {
-            text: "1st column"
-          }
-        },
-        {
-          header: {
-            text: "2nd column"
+            text: "1st column",
           },
-          visible: false
         },
         {
           header: {
-            text: "3rd column"
-          }
-        }
+            text: "2nd column",
+          },
+          visible: false,
+        },
+        {
+          header: {
+            text: "3rd column",
+          },
+        },
       ],
       data: [
         ["", "Orange", "sample data 1"],
         ["", "Lemon", "sample data 2"],
-        ["", "Banana", "sample data 3"]
-      ]
+        ["", "Banana", "sample data 3"],
+      ],
     });
     root.appendChild(readOnlyTable);
     return root;
@@ -42,21 +42,21 @@ storiesOf("desktop/readonly-table", module)
       columns: [
         {
           header: {
-            text: "1st column"
-          }
-        },
-        {
-          header: {
-            text: "2nd column"
+            text: "1st column",
           },
-          visible: false
         },
         {
           header: {
-            text: "3rd column"
-          }
-        }
-      ]
+            text: "2nd column",
+          },
+          visible: false,
+        },
+        {
+          header: {
+            text: "3rd column",
+          },
+        },
+      ],
     });
     readOnlyTable.data = [1, ["sample value 2", "bbb", "test"]];
     root.appendChild(readOnlyTable);
@@ -69,18 +69,18 @@ storiesOf("desktop/readonly-table", module)
       columns: [
         {
           header: {
-            text: "Fruit"
+            text: "Fruit",
           },
-          visible: true
+          visible: true,
         },
         {
           header: {
-            text: "Producing area"
+            text: "Producing area",
           },
-          visible: true
-        }
+          visible: true,
+        },
       ],
-      data: [["Orange", "Ehime"]]
+      data: [["Orange", "Ehime"]],
     });
     root.appendChild(readOnlyTable);
     return root;
