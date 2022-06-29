@@ -12,7 +12,7 @@
   "exclude": [
     "node_modules",
     "lib",
-    "./src/readonly-table/",
+   // "./src/readonly-table/",
     "./src/index.bundle.ts",
     "./src/**/test/",
     "./src/**/**/test/"

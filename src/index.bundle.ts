@@ -15,6 +15,7 @@ export * from "./dialog";
 export * from "./date-picker";
 export * from "./datetime-picker";
 export * from "./time-picker";
+export * from "./readonly-table";
 
 export * from "./mobile/button";
 export * from "./mobile/checkbox";
