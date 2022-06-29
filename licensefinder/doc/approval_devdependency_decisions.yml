@@ -31,67 +31,78 @@
     :versions: []
     :when: 2021-10-11 06:23:25.098597000 Z
 - - :approve
-  - "bindings"
+  - bindings
   - :who: 
     :why: 
-    :versions: [1.5.0]
+    :versions:
+    - 1.5.0
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "component-bind"
+  - component-bind
   - :who: 
     :why: 
-    :versions: [1.0.0]
+    :versions:
+    - 1.0.0
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "component-inherit"
+  - component-inherit
   - :who: 
     :why: 
-    :versions: [0.0.3]
+    :versions:
+    - 0.0.3
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "eslint-plugin-kuc-v1"
+  - eslint-plugin-kuc-v1
   - :who: 
     :why: 
-    :versions: [1.0.0]
+    :versions:
+    - 1.0.0
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "file-uri-to-path"
+  - file-uri-to-path
   - :who: 
     :why: 
-    :versions: [1.0.0]
+    :versions:
+    - 1.0.0
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "fsevents"
+  - fsevents
   - :who: 
     :why: 
-    :versions: [1.2.13,2.3.2]
+    :versions:
+    - 1.2.13
+    - 2.3.2
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "indexof"
+  - indexof
   - :who: 
     :why: 
-    :versions: [0.0.1]
+    :versions:
+    - 0.0.1
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "intersection-observer"
+  - intersection-observer
   - :who: 
     :why: 
-    :versions: [0.7.0]
+    :versions:
+    - 0.7.0
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "json-schema"
+  - json-schema
   - :who: 
     :why: 
-    :versions: [0.2.3]
+    :versions:
+    - 0.2.3
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "nan"
+  - nan
   - :who: 
     :why: 
-    :versions: [2.14.2]
+    :versions:
+    - 2.14.2
     :when: 2021-10-11 05:23:24.889757000 Z
 - - :approve
-  - "sinon"
+  - sinon
   - :who: 
     :why: 
     :versions: []
@@ -100,299 +111,390 @@
   - "@types/json5"
   - :who: 
     :why: 
-    :versions: [0.0.29]
+    :versions:
+    - 0.0.29
     :when: 2021-11-16 05:25:43.058971900 Z
 - - :approve
   - "@typescript-eslint/parser"
   - :who: 
     :why: 
-    :versions: [4.31.2]
+    :versions:
+    - 4.31.2
     :when: 2021-11-16 05:25:50.675731500 Z
 - - :approve
   - acorn-import-assertions
   - :who: 
     :why: 
-    :versions: [1.7.6]
+    :versions:
+    - 1.7.6
     :when: 2021-11-16 05:25:58.378839000 Z
 - - :approve
   - ast-types-flow
   - :who: 
     :why: 
-    :versions: [0.0.7]
+    :versions:
+    - 0.0.7
     :when: 2021-11-16 05:26:05.923362700 Z
 - - :approve
   - babel-plugin-bundled-import-meta
   - :who: 
     :why: 
-    :versions: [0.3.2]
+    :versions:
+    - 0.3.2
     :when: 2021-11-16 05:26:14.229825100 Z
 - - :approve
   - backo2
   - :who: 
     :why: 
-    :versions: [1.0.2]
+    :versions:
+    - 1.0.2
     :when: 2021-11-16 05:26:21.823312700 Z
 - - :approve
   - bcrypt-pbkdf
   - :who: 
     :why: 
-    :versions: [1.0.2]
+    :versions:
+    - 1.0.2
     :when: 2021-11-16 05:26:29.296821800 Z
 - - :approve
   - boolbase
   - :who: 
     :why: 
-    :versions: [1.0.0]
+    :versions:
+    - 1.0.0
     :when: 2021-11-16 05:26:36.923645800 Z
 - - :approve
   - cache-content-type
   - :who: 
     :why: 
-    :versions: [1.0.1]
+    :versions:
+    - 1.0.1
     :when: 2021-11-16 05:26:44.409223300 Z
 - - :approve
   - caniuse-lite
   - :who: 
     :why: 
-    :versions: [1.0.30001260]
+    :versions:
+    - 1.0.30001260
     :when: 2021-11-16 05:26:52.351095900 Z
 - - :approve
   - css-select
   - :who: 
     :why: 
-    :versions: [4.1.3]
+    :versions:
+    - 4.1.3
     :when: 2021-11-16 05:26:59.936096400 Z
 - - :approve
   - css-what
   - :who: 
     :why: 
-    :versions: [5.0.1]
+    :versions:
+    - 5.0.1
     :when: 2021-11-16 05:27:07.536445200 Z
 - - :approve
   - diff
   - :who: 
     :why: 
-    :versions: [3.5.0]
+    :versions:
+    - 3.5.0
     :when: 2021-11-16 05:27:15.281434200 Z
 - - :approve
   - dom-serialize
   - :who: 
     :why: 
-    :versions: [2.2.1]
+    :versions:
+    - 2.2.1
     :when: 2021-11-16 05:27:23.284020200 Z
 - - :approve
   - domelementtype
   - :who: 
     :why: 
-    :versions: [2.2.0]
+    :versions:
+    - 2.2.0
     :when: 2021-11-16 05:27:30.933106900 Z
 - - :approve
   - domhandler
   - :who: 
     :why: 
-    :versions: [4.2.2]
+    :versions:
+    - 4.2.2
     :when: 2021-11-16 05:27:38.731993000 Z
 - - :approve
   - domutils
   - :who: 
     :why: 
-    :versions: [2.8.0]
+    :versions:
+    - 2.8.0
     :when: 2021-11-16 05:27:46.466460100 Z
 - - :approve
   - entities
   - :who: 
     :why: 
-    :versions: [2.2.0]
+    :versions:
+    - 2.2.0
     :when: 2021-11-16 05:27:54.480320400 Z
 - - :approve
   - es-module-shims
   - :who: 
     :why: 
-    :versions: [0.4.7]
+    :versions:
+    - 0.4.7
     :when: 2021-11-16 05:28:02.031476500 Z
 - - :approve
   - eslint-scope
   - :who: 
     :why: 
-    :versions: [5.1.1]
+    :versions:
+    - 5.1.1
     :when: 2021-11-16 05:28:09.560818100 Z
 - - :approve
   - esprima
   - :who: 
     :why: 
-    :versions: [4.0.1]
+    :versions:
+    - 4.0.1
     :when: 2021-11-16 05:28:17.172179700 Z
 - - :approve
   - esrecurse
   - :who: 
     :why: 
-    :versions: [4.3.0]
+    :versions:
+    - 4.3.0
     :when: 2021-11-16 05:28:24.691150200 Z
 - - :approve
   - estraverse
   - :who: 
     :why: 
-    :versions: [4.3.0,5.2.0]
+    :versions:
+    - 4.3.0
+    - 5.2.0
     :when: 2021-11-16 05:28:32.237517200 Z
 - - :approve
   - estree-walker
   - :who: 
     :why: 
-    :versions: [1.0.1]
+    :versions:
+    - 1.0.1
     :when: 2021-11-16 05:28:48.757372200 Z
 - - :approve
   - esutils
   - :who: 
     :why: 
-    :versions: [2.0.3]
+    :versions:
+    - 2.0.3
     :when: 2021-11-16 05:28:56.536256600 Z
 - - :approve
   - fast-diff
   - :who: 
     :why: 
-    :versions: [1.2.0]
+    :versions:
+    - 1.2.0
     :when: 2021-11-16 05:29:04.127102500 Z
 - - :approve
   - fs-monkey
   - :who: 
     :why: 
-    :versions: [1.0.3]
+    :versions:
+    - 1.0.3
     :when: 2021-11-16 05:29:11.637541000 Z
 - - :approve
   - has-cors
   - :who: 
     :why: 
-    :versions: [1.1.0]
+    :versions:
+    - 1.1.0
     :when: 2021-11-16 05:29:19.187717500 Z
 - - :approve
   - jsbn
   - :who: 
     :why: 
-    :versions: [0.1.1]
+    :versions:
+    - 0.1.1
     :when: 2021-11-16 05:29:26.754488900 Z
 - - :approve
   - koa-compose
   - :who: 
     :why: 
-    :versions: [4.1.0]
+    :versions:
+    - 4.1.0
     :when: 2021-11-16 05:29:34.414181000 Z
 - - :approve
   - koa-etag
   - :who: 
     :why: 
-    :versions: [3.0.0]
+    :versions:
+    - 3.0.0
     :when: 2021-11-16 05:29:41.809801500 Z
 - - :approve
   - language-subtag-registry
   - :who: 
     :why: 
-    :versions: [0.3.21]
+    :versions:
+    - 0.3.21
     :when: 2021-11-16 05:29:49.416566500 Z
 - - :approve
   - language-tags
   - :who: 
     :why: 
-    :versions: [1.0.5]
+    :versions:
+    - 1.0.5
     :when: 2021-11-16 05:29:56.934441800 Z
 - - :approve
   - log4js
   - :who: 
     :why: 
-    :versions: [4.5.1,6.3.0]
+    :versions:
+    - 4.5.1
+    - 6.3.0
     :when: 2021-11-16 05:30:04.621674700 Z
 - - :approve
   - memfs
   - :who: 
     :why: 
-    :versions: [3.3.0]
+    :versions:
+    - 3.3.0
     :when: 2021-11-16 05:30:19.968291500 Z
 - - :approve
   - natural-compare
   - :who: 
     :why: 
-    :versions: [1.4.0]
+    :versions:
+    - 1.4.0
     :when: 2021-11-16 05:30:27.718941900 Z
 - - :approve
   - nth-check
   - :who: 
     :why: 
-    :versions: [2.0.1]
+    :versions:
+    - 2.0.1
     :when: 2021-11-16 05:30:36.307781200 Z
 - - :approve
   - polyfills-loader
   - :who: 
     :why: 
-    :versions: [1.7.6]
+    :versions:
+    - 1.7.6
     :when: 2021-11-16 05:30:44.262289900 Z
 - - :approve
   - qs
   - :who: 
     :why: 
-    :versions: [6.5.2,6.7.0]
+    :versions:
+    - 6.5.2
+    - 6.7.0
     :when: 2021-11-16 05:30:52.028378400 Z
 - - :approve
   - remark-parse
   - :who: 
     :why: 
-    :versions: [4.0.0]
+    :versions:
+    - 4.0.0
     :when: 2021-11-16 05:31:08.064919300 Z
 - - :approve
   - shady-css-scoped-element
   - :who: 
     :why: 
-    :versions: [0.0.2]
+    :versions:
+    - 0.0.2
     :when: 2021-11-16 05:31:15.497925000 Z
 - - :approve
   - source-map
   - :who: 
     :why: 
-    :versions: [0.5.7,0.6.1,0.7.3]
+    :versions:
+    - 0.5.7
+    - 0.6.1
+    - 0.7.3
     :when: 2021-11-16 05:31:22.998166700 Z
 - - :approve
   - source-map-js
   - :who: 
     :why: 
-    :versions: [0.6.2]
+    :versions:
+    - 0.6.2
     :when: 2021-11-16 05:31:45.698829700 Z
 - - :approve
   - spdx-exceptions
   - :who: 
     :why: 
-    :versions: [2.3.0]
+    :versions:
+    - 2.3.0
     :when: 2021-11-16 05:31:53.281158000 Z
 - - :approve
   - spdx-license-ids
   - :who: 
     :why: 
-    :versions: [3.0.10]
+    :versions:
+    - 3.0.10
     :when: 2021-11-16 05:32:00.781552100 Z
 - - :approve
   - telejson
   - :who: 
     :why: 
-    :versions: [5.3.3]
+    :versions:
+    - 5.3.3
     :when: 2021-11-16 05:32:08.295121000 Z
 - - :approve
   - terser
   - :who: 
     :why: 
-    :versions: [5.9.0]
+    :versions:
+    - 5.9.0
     :when: 2021-11-16 05:32:15.828683600 Z
 - - :approve
   - tr46
   - :who: 
     :why: 
-    :versions: [0.0.3]
+    :versions:
+    - 0.0.3
     :when: 2021-11-16 05:32:23.411538900 Z
 - - :approve
   - tweetnacl
   - :who: 
     :why: 
-    :versions: [0.14.5]
+    :versions:
+    - 0.14.5
     :when: 2021-11-16 05:32:30.904491200 Z
 - - :approve
   - uri-js
   - :who: 
     :why: 
-    :versions: [4.4.1]
+    :versions:
+    - 4.4.1
     :when: 2021-11-16 05:32:38.440008100 Z
+- - :approve
+  - chokidar2
+  - :who: 
+    :why: 
+    :versions:
+    - 2.0.0
+    :when: 2022-06-27 08:24:40.917737500 Z
+- - :approve
+  - cookie-signature
+  - :who: 
+    :why: 
+    :versions:
+    - 1.0.6
+    :when: 2022-06-27 08:35:42.756383300 Z
+- - :approve
+  - growl
+  - :who: 
+    :why: 
+    :versions:
+    - 1.10.5
+    :when: 2022-06-27 08:45:07.967984900 Z
+- - :approve
+  - only
+  - :who: 
+    :why: 
+    :versions:
+    - 0.0.2
+    :when: 2022-06-27 08:46:10.376540400 Z
+- - :approve
+  - trim
+  - :who: 
+    :why: 
+    :versions:
+    - 0.0.1
+    - 1.0.1
+    :when: 2022-06-27 08:46:54.390932700 Z

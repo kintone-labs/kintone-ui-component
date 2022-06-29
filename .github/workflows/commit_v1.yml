@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
