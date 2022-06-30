@@ -6,12 +6,12 @@ describe("MobileMultiChoice", () => {
     const initItems = [
       { label: "Banana", value: "banana" },
       { label: "Orange", value: "orange" },
-      { label: "Apple", value: "apple" }
+      { label: "Apple", value: "apple" },
     ];
 
     it("should see that on screen when initializing without props option", async () => {
       const container = new MobileMultiChoice({
-        items: initItems
+        items: initItems,
       });
       const el = await fixture(container);
       expect(el).not.has.attribute("hidden");
@@ -20,7 +20,7 @@ describe("MobileMultiChoice", () => {
     it("should not see that on screen when initializing visible value is false", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        visible: false
+        visible: false,
       });
       const el = await fixture(container);
       expect(el).has.attribute("hidden");
@@ -29,7 +29,7 @@ describe("MobileMultiChoice", () => {
     it("should see that on screen when changing by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        visible: false
+        visible: false,
       });
       container.visible = true;
       const el = await fixture(container);
@@ -39,7 +39,7 @@ describe("MobileMultiChoice", () => {
     it("should not see that on screen when changing by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        visible: true
+        visible: true,
       });
       container.visible = false;
       const el = await fixture(container);

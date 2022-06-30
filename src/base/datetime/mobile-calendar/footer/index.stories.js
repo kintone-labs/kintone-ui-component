@@ -7,21 +7,21 @@ export default {
     language: {
       name: "language",
       options: ["en", "ja", "zh"],
-      control: { type: "select" }
-    }
+      control: { type: "select" },
+    },
   },
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
+      defaultViewport: "iPhone11Pro",
     },
     actions: {
       handles: [
         "kuc:mobile-calendar-footer-click-today",
         "kuc:mobile-calendar-footer-click-none",
-        "kuc:mobile-calendar-footer-click-close"
-      ]
-    }
-  }
+        "kuc:mobile-calendar-footer-click-close",
+      ],
+    },
+  },
 };
 
 const Template = ({ language }) => {
@@ -34,5 +34,5 @@ const Template = ({ language }) => {
 
 export const base = Template.bind({});
 base.args = {
-  language: "en"
+  language: "en",
 };

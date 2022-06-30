@@ -3,19 +3,19 @@ import { property, state } from "lit/decorators.js";
 import {
   visiblePropConverter,
   dateValueConverter,
-  timeValueConverter
+  timeValueConverter,
 } from "../../base/converter";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
-  KucBase
+  KucBase,
 } from "../../base/kuc-base";
 import {
   validateProps,
   validateDateTimeValue,
   isValidDate,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 
 import { FORMAT_IS_NOT_VALID } from "../../base/datetime/resource/constant";
@@ -51,7 +51,7 @@ export class MobileDateTimePicker extends KucBase {
         return true;
       }
       return newVal !== oldVal;
-    }
+    },
   })
   value? = "";
   @property({ type: Boolean }) disabled = false;
@@ -61,7 +61,7 @@ export class MobileDateTimePicker extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -328,7 +328,7 @@ export class MobileDateTimePicker extends KucBase {
     const detail = {
       value: _value,
       oldValue: oldDateTime,
-      changedPart: type
+      changedPart: type,
     };
     dispatchCustomEvent(this, "change", detail);
   }

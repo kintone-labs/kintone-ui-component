@@ -15,7 +15,7 @@ describe("MobileTimePicker", () => {
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new MobileTimePicker({
-        label: "options-label"
+        label: "options-label",
       });
 
       const el = await fixture(container);

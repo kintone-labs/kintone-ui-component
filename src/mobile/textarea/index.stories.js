@@ -14,18 +14,18 @@ storiesOf("mobile/textarea", module)
       className: "options-class",
       id: "options-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
-    mobileTextArea.addEventListener("change", function(event) {
+    mobileTextArea.addEventListener("change", function (event) {
       console.log(event.detail);
     });
 
-    mobileTextArea.addEventListener("focus", function(event) {
+    mobileTextArea.addEventListener("focus", function (event) {
       console.log(event.detail);
     });
 
-    mobileTextArea.addEventListener("input", function(event) {
+    mobileTextArea.addEventListener("input", function (event) {
       console.log(event.detail);
     });
     root.appendChild(mobileTextArea);

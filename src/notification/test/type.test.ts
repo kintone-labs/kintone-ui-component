@@ -22,7 +22,7 @@ describe("Notification", () => {
 
         it("should be danger when assigning by setter", async () => {
           const container = new Notification({
-            type: "info"
+            type: "info",
           });
           container.type = "danger";
           const el = await fixture(container);
@@ -40,7 +40,7 @@ describe("Notification", () => {
 
         it("should be info when assigning info by setter", async () => {
           const container = new Notification({
-            type: "danger"
+            type: "danger",
           });
           container.type = "info";
           const el = await fixture(container);
@@ -58,7 +58,7 @@ describe("Notification", () => {
 
         it("should be success when assigning success by setter", async () => {
           const container = new Notification({
-            type: "danger"
+            type: "danger",
           });
           container.type = "success";
           const el = await fixture(container);

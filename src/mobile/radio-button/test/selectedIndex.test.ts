@@ -4,7 +4,7 @@ import { MobileRadioButton } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileDropdown", () => {
@@ -39,7 +39,7 @@ describe("MobileDropdown", () => {
     it("should be selected item when assigned on constructor", async () => {
       const container = new MobileRadioButton({
         items: initItems,
-        selectedIndex: 1
+        selectedIndex: 1,
       });
 
       const el = await fixture(container);

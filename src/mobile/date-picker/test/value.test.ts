@@ -65,7 +65,7 @@ describe("MobileDatePicker", () => {
     it("should be today value when press today button on calendar", async () => {
       const container = new MobileDatePicker({
         value: "2021-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -87,7 +87,7 @@ describe("MobileDatePicker", () => {
     it("should be undefined value and input emtpy on UI when set undefined by setter", async () => {
       const container = new MobileDatePicker({
         value: "2021-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = undefined;
@@ -103,7 +103,7 @@ describe("MobileDatePicker", () => {
     it("should be empty value and input emtpy on UI when set undefined on constructor", async () => {
       const container = new MobileDatePicker({
         value: undefined,
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -117,7 +117,7 @@ describe("MobileDatePicker", () => {
     it("should be empty value and input emtpy on UI when set `` on constructor", async () => {
       const container = new MobileDatePicker({
         value: "",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -131,7 +131,7 @@ describe("MobileDatePicker", () => {
     it("should be empty value and input emtpy on UI when set `` by setter", async () => {
       const container = new MobileDatePicker({
         value: "2021-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = "";

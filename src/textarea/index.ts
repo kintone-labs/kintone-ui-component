@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -26,7 +26,7 @@ type TextAreaProps = {
 
 const TextAreaLayout = {
   MIN_WIDTH: 299,
-  MIN_HEIGHT: 125
+  MIN_HEIGHT: 125,
 };
 
 export class TextArea extends KucBase {
@@ -42,7 +42,7 @@ export class TextArea extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -78,7 +78,7 @@ export class TextArea extends KucBase {
     const targetEl = event.target as HTMLTextAreaElement;
     const detail: CustomEventDetail = {
       value: targetEl.value,
-      data: event.data
+      data: event.data,
     };
     dispatchCustomEvent(this, "input", detail);
   }
@@ -166,10 +166,10 @@ export class TextArea extends KucBase {
   }
 
   firstUpdated() {
-    document.addEventListener("mousemove", event =>
+    document.addEventListener("mousemove", (event) =>
       this._handleMouseMoveDocument(event)
     );
-    document.addEventListener("mouseup", _ => this._handleMouseUpDocument());
+    document.addEventListener("mouseup", (_) => this._handleMouseUpDocument());
   }
 
   private _getStyleTagTemplate() {

@@ -6,12 +6,12 @@ import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
-  KucBase
+  KucBase,
 } from "../../base/kuc-base";
 import {
   throwErrorAfterUpdateComplete,
   validateProps,
-  validateTimeValue
+  validateTimeValue,
 } from "../../base/validator";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
@@ -42,7 +42,7 @@ export class MobileTimePicker extends KucBase {
         return true;
       }
       return newVal !== oldVal;
-    }
+    },
   })
   value? = "";
   @property({ type: Boolean }) disabled = false;
@@ -52,7 +52,7 @@ export class MobileTimePicker extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -142,7 +142,7 @@ export class MobileTimePicker extends KucBase {
     event.stopPropagation();
     const detail: CustomEventDetail = {
       value: event.detail.value,
-      oldValue: this.value
+      oldValue: this.value,
     };
     this._inputValue = event.detail.value;
     if (event.detail.error) {

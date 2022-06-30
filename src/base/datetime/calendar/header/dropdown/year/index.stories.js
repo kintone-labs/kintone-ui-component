@@ -7,14 +7,14 @@ export default {
   argTypes: {
     postfix: {
       options: ["", "年"],
-      control: { type: "radio" }
-    }
+      control: { type: "radio" },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:year-dropdown-change"]
-    }
-  }
+      handles: ["kuc:year-dropdown-change"],
+    },
+  },
 };
 
 const Template = ({ postfix, year }) =>
@@ -28,5 +28,5 @@ const Template = ({ postfix, year }) =>
 export const Base = Template.bind({});
 Base.args = {
   postfix: "",
-  year: 2021
+  year: 2021,
 };

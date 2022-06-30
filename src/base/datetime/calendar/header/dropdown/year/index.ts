@@ -3,13 +3,13 @@ import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
-  dispatchCustomEvent
+  dispatchCustomEvent,
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   setListBoxPosition,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../../../../utils";
 
 export class BaseDateTimeHeaderYear extends KucBase {
@@ -45,7 +45,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     this._listBoxItems = this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this.postfix}`
+        label: `${year}${this.postfix}`,
       };
       return item;
     });
@@ -174,7 +174,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     }
     dispatchCustomEvent(this, "kuc:year-dropdown-click", {
       value: this._listBoxVisible.toString(),
-      oldValue: (!this._listBoxVisible).toString()
+      oldValue: (!this._listBoxVisible).toString(),
     });
   }
 

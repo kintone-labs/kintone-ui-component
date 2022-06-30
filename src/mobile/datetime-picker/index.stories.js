@@ -8,22 +8,22 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
-    }
+        options: ["auto", "en", "ja", "zh"],
+      },
+    },
   },
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
+      defaultViewport: "iPhone11Pro",
     },
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
 
-const Template = args => {
-  const handleDateChange = event => {
+const Template = (args) => {
+  const handleDateChange = (event) => {
     console.log(event);
   };
   return html`
@@ -54,7 +54,7 @@ Base.args = {
   disabled: false,
   hour12: true,
   requiredIcon: true,
-  visible: true
+  visible: true,
 };
 
 export const BaseHour12 = Template.bind({});
@@ -68,7 +68,7 @@ BaseHour12.args = {
   disabled: false,
   hour12: true,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };
 
 export const BaseHour24 = Template.bind({});
@@ -82,7 +82,7 @@ BaseHour24.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };
 
 export const BaseLanguageEN = Template.bind({});
@@ -96,7 +96,7 @@ BaseLanguageEN.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };
 
 export const BaseLanguageJA = Template.bind({});
@@ -110,7 +110,7 @@ BaseLanguageJA.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };
 
 export const BaseLanguageZH = Template.bind({});
@@ -124,7 +124,7 @@ BaseLanguageZH.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };
 
 export const BaseError = Template.bind({});
@@ -138,5 +138,5 @@ BaseError.args = {
   disabled: false,
   hour12: false,
   requiredIcon: false,
-  visible: true
+  visible: true,
 };

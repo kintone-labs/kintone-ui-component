@@ -3,14 +3,14 @@ import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../../../../../kuc-base";
 import { Item } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   getLocale,
   setListBoxPosition,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../../../../utils";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
@@ -170,7 +170,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     }
     dispatchCustomEvent(this, "kuc:month-dropdown-click", {
       value: this._listBoxVisible.toString(),
-      oldValue: (!this._listBoxVisible).toString()
+      oldValue: (!this._listBoxVisible).toString(),
     });
   }
 
@@ -217,7 +217,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     return this._locale.MONTH_SELECT.map((month: string, index: number) => {
       const item: Item = {
         value: `${index + 1}`,
-        label: `${month}`
+        label: `${month}`,
       };
       return item;
     });

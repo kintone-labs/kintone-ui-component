@@ -4,7 +4,7 @@ import { Dropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("Dropdown", () => {
@@ -12,7 +12,7 @@ describe("Dropdown", () => {
     it("should show/hide menu element when clicking toggle button", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -37,7 +37,7 @@ describe("Dropdown", () => {
     it("should hide menu element when clicking document", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -64,7 +64,7 @@ describe("Dropdown", () => {
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -106,7 +106,7 @@ describe("Dropdown", () => {
     it("should do nothing when mouseup/mousedown toggle", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -197,7 +197,7 @@ describe("Dropdown", () => {
     it('should be highlight prev item when triggered "ArrowUp" keyboard event', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -219,7 +219,7 @@ describe("Dropdown", () => {
     it('should be highlight prev item when triggered "Up" keyboard event for IE', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -241,7 +241,7 @@ describe("Dropdown", () => {
     it('should be highlight next item when triggered "ArrowDown" keyboard event', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -265,7 +265,7 @@ describe("Dropdown", () => {
     it('should be highlight next item when triggered "Down" keyboard event for IE', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -287,7 +287,7 @@ describe("Dropdown", () => {
     it('should highlight first item when pressing "Home" key', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[2].value
+        value: initItems[2].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -312,7 +312,7 @@ describe("Dropdown", () => {
     it('should highlight last item when pressing "End" key', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -337,7 +337,7 @@ describe("Dropdown", () => {
     it("should do nothing when pressing not handled key", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
@@ -359,7 +359,7 @@ describe("Dropdown", () => {
     it('should changed value when pressing "Enter" key', async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(

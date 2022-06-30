@@ -23,7 +23,7 @@ describe("MobileDropdown", () => {
 
     it('should be replace by "replace-label" when changing by setter', async () => {
       const container = new MobileDropdown({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
       const el = await fixture(container);

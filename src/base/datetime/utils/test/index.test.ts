@@ -11,7 +11,7 @@ import {
   getTodayStringByLocale,
   isValidDateFormat,
   convertTime24To12,
-  convertTime12To24
+  convertTime12To24,
 } from "../";
 
 describe("BaseDateTimeUtils", () => {

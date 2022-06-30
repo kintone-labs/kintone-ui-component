@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
@@ -13,7 +13,7 @@ import {
   validateItems,
   validateValueString,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { BaseLabel } from "../base/label";
@@ -50,7 +50,7 @@ export class Dropdown extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -180,7 +180,7 @@ export class Dropdown extends KucBase {
       this.value =
         this._getValue({
           items: this.items,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         }) || "";
     }
     super.update(changedProperties);
@@ -192,7 +192,9 @@ export class Dropdown extends KucBase {
       return -1;
     }
 
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    const firstIndex = this.items.findIndex(
+      (item) => item.value === this.value
+    );
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
@@ -560,8 +562,9 @@ export class Dropdown extends KucBase {
       const errorHeight = this._errorEl.offsetHeight
         ? this._errorEl.offsetHeight + 16
         : 0;
-      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight +
-        errorHeight}px`;
+      this._menuEl.style.bottom = `${
+        this._buttonEl.offsetHeight + errorHeight
+      }px`;
       if (distanceToggleButton.toTop >= menuHeight) return;
       this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
       this._menuEl.style.overflowY = "scroll";
@@ -599,7 +602,8 @@ export class Dropdown extends KucBase {
     if (!this._highlightItemEl || !this._menuEl) return;
 
     const menuElClientRect = this._menuEl.getBoundingClientRect();
-    const highlightItemClientRect = this._highlightItemEl.getBoundingClientRect();
+    const highlightItemClientRect =
+      this._highlightItemEl.getBoundingClientRect();
 
     if (highlightItemClientRect.top < menuElClientRect.top) {
       this._menuEl.scrollTop -=

@@ -8,11 +8,11 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       const InitValue = {
         month: 8,
         year: 2021,
-        value: "2021-08-22"
+        value: "2021-08-22",
       };
       const ItemForTest = {
         index: 17,
-        value: "2021-08-18"
+        value: "2021-08-18",
       };
 
       const container = document.createElement(
@@ -24,7 +24,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
 
       container.addEventListener(
         "kuc:mobile-calendar-body-click-date",
-        event => {
+        (event) => {
           triggeredEvent = event;
         }
       );

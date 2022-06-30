@@ -6,22 +6,22 @@ storiesOf("desktop/notification", module)
     const root = document.createElement("div");
     const notification = new Notification({
       text: "不正です!!",
-      type: "info"
+      type: "info",
     });
-    notification.addEventListener("close", event => {
+    notification.addEventListener("close", (event) => {
       console.log(event);
     });
 
     const button = document.createElement("button");
     button.textContent = "open";
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       notification.open();
     });
     root.appendChild(button);
 
     const button2 = document.createElement("button");
     button2.textContent = "close";
-    button2.addEventListener("click", function() {
+    button2.addEventListener("click", function () {
       notification.close();
     });
     root.appendChild(button2);
@@ -33,15 +33,15 @@ storiesOf("desktop/notification", module)
     const notification = new Notification({
       text: "Duration 3 seconds",
       type: "info",
-      duration: 3000
+      duration: 3000,
     });
-    notification.addEventListener("close", event => {
+    notification.addEventListener("close", (event) => {
       console.log(event);
     });
 
     const button = document.createElement("button");
     button.textContent = "open";
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       notification.open();
     });
     root.appendChild(button);

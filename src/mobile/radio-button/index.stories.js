@@ -9,16 +9,16 @@ storiesOf("mobile/radio-button", module)
       items: [
         {
           label: "Item 1",
-          value: "item-1"
+          value: "item-1",
         },
         {
           label: "Item 2",
-          value: "item-2"
+          value: "item-2",
         },
         {
           label: "Item 3",
-          value: "item-3"
-        }
+          value: "item-3",
+        },
       ],
       value: "item-2",
       className: "sample-class",
@@ -28,9 +28,9 @@ storiesOf("mobile/radio-button", module)
       borderVisible: true,
       label: "Radio button",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
-    radioButton.addEventListener("change", function(event) {
+    radioButton.addEventListener("change", function (event) {
       console.log(event.detail);
     });
     root.appendChild(radioButton);
@@ -42,16 +42,16 @@ storiesOf("mobile/radio-button", module)
       items: [
         {
           label: "Item 1",
-          value: "item-1"
+          value: "item-1",
         },
         {
           label: "Item 2",
-          value: "item-2"
+          value: "item-2",
         },
         {
           label: "Item 3",
-          value: "item-3"
-        }
+          value: "item-3",
+        },
       ],
       value: "item-2",
       className: "sample-class",
@@ -61,9 +61,9 @@ storiesOf("mobile/radio-button", module)
       borderVisible: true,
       label: "Radio button",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
-    radioButton.addEventListener("change", function(event) {
+    radioButton.addEventListener("change", function (event) {
       console.log(event.detail);
     });
     root.appendChild(radioButton);
@@ -75,16 +75,16 @@ storiesOf("mobile/radio-button", module)
       items: [
         {
           label: "Item 1",
-          value: "item-1"
+          value: "item-1",
         },
         {
           label: "Item 2",
-          value: "item-2"
+          value: "item-2",
         },
         {
           label: "Item 3",
-          value: "item-3"
-        }
+          value: "item-3",
+        },
       ],
       value: "",
       className: "sample-class",
@@ -94,9 +94,9 @@ storiesOf("mobile/radio-button", module)
       borderVisible: true,
       label: "Radio button",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
-    radioButton.addEventListener("change", function(event) {
+    radioButton.addEventListener("change", function (event) {
       console.log(event.detail);
     });
     root.appendChild(radioButton);
@@ -109,20 +109,20 @@ storiesOf("mobile/radio-button", module)
       items: [
         {
           label: "Item 1",
-          value: "item-1"
+          value: "item-1",
         },
         {
           label: "Item 2",
-          value: "item-2"
+          value: "item-2",
         },
         {
           label: "Item 3",
-          value: "item-3"
+          value: "item-3",
         },
         {
           label: "Item 3",
-          value: "item-3"
-        }
+          value: "item-3",
+        },
       ],
       value: "item-2",
       className: "sample-class",
@@ -133,9 +133,9 @@ storiesOf("mobile/radio-button", module)
       itemLayout: "",
       label: "Radio Button",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
-    radioButton.addEventListener("change", function(event) {
+    radioButton.addEventListener("change", function (event) {
       console.log(event.detail);
     });
     root.appendChild(radioButton);

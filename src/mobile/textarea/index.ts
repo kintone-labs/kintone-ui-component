@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
@@ -37,7 +37,7 @@ export class MobileTextArea extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -69,7 +69,7 @@ export class MobileTextArea extends KucBase {
     const targetEl = event.target as HTMLTextAreaElement;
     const detail: CustomEventDetail = {
       value: targetEl.value,
-      data: event.data
+      data: event.data,
     };
     dispatchCustomEvent(this, "input", detail);
   }

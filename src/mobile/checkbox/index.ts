@@ -3,7 +3,7 @@ import { property, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   generateGUID,
-  dispatchCustomEvent
+  dispatchCustomEvent,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -11,7 +11,7 @@ import {
   validateItems,
   validateValueArray,
   validateSelectedIndexArray,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { BaseMobileLabel } from "../../base/mobile-label";
@@ -48,7 +48,7 @@ export class MobileCheckbox extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -101,9 +101,9 @@ export class MobileCheckbox extends KucBase {
 
     const oldValue = !this.value ? this.value : [...this.value];
     const newValueMapping = this._getNewValueMapping(value, selectedIndex);
-    const itemsValue = this.items.map(item => item.value);
+    const itemsValue = this.items.map((item) => item.value);
     const newValue = Object.values(newValueMapping).filter(
-      item => itemsValue.indexOf(item) > -1
+      (item) => itemsValue.indexOf(item) > -1
     );
     if (newValue === oldValue) return;
 
@@ -114,7 +114,7 @@ export class MobileCheckbox extends KucBase {
     this.selectedIndex = newSelectedIndex;
     dispatchCustomEvent(this, "change", {
       oldValue,
-      value: newValue
+      value: newValue,
     });
   }
 
@@ -229,7 +229,7 @@ export class MobileCheckbox extends KucBase {
       this._valueMapping = this._getValueMapping({
         items: this.items,
         value: this.value,
-        selectedIndex: this.selectedIndex
+        selectedIndex: this.selectedIndex,
       });
       this._setValueAndSelectedIndex();
     }
@@ -276,7 +276,7 @@ export class MobileCheckbox extends KucBase {
 
   private _setValueAndSelectedIndex() {
     this.value = Object.values(this._valueMapping);
-    this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+    this.selectedIndex = Object.keys(this._valueMapping).map((key) =>
       parseInt(key, 10)
     );
   }
@@ -286,7 +286,7 @@ export class MobileCheckbox extends KucBase {
     const _value = validProps.value || [];
     const _selectedIndex = validProps.selectedIndex || [];
 
-    const itemsValue = _items.map(item => item.value || "");
+    const itemsValue = _items.map((item) => item.value || "");
     const itemsMapping = Object.assign({}, itemsValue);
     const result: ValueMapping = {};
     if (_value.length === 0) {
@@ -301,8 +301,8 @@ export class MobileCheckbox extends KucBase {
 
   private _getValidValue(itemsMapping: ValueMapping, _selectedIndex: number[]) {
     return _selectedIndex
-      .filter(item => itemsMapping[item])
-      .map(item => itemsMapping[item]);
+      .filter((item) => itemsMapping[item])
+      .map((item) => itemsMapping[item]);
   }
 
   private _getValidSelectedIndex(itemsMapping: ValueMapping) {
@@ -314,7 +314,7 @@ export class MobileCheckbox extends KucBase {
         continue;
       }
       const firstIndex = this.items.findIndex(
-        item => item.value === this.value[i]
+        (item) => item.value === this.value[i]
       );
       validSelectedIndex.push(firstIndex);
     }
