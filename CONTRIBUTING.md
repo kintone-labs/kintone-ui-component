@@ -5,6 +5,8 @@ If you discover a bug or have a feature request, please [create an issue on GitH
 
 Pull requests are also welcome when you find a trivial bug or typo.<br>
 
+We use [Discussions feature of GitHub](https://github.com/kintone-labs/kintone-ui-component/discussions) as our community page.<br>
+
 We use English for all commit messages, code comments, issues, pull requests.<br>
 
 Please follow [Note for Naming Rule](#note-for-naming-rule) when creating an issue or a pull request.<br>
