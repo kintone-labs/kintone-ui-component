@@ -24,9 +24,9 @@ export const BUTTON_CSS = `
   }
   .kuc-button__button {
     font-size: var(--kuc-button-font-size, 16px);
-    min-width: 163px;
     width: var(--kuc-button-width, "auto");
     height: var(--kuc-button-height, 48px);
+    min-width: 163px;
     padding: 0px 16px;
     user-select: none;
   }
@@ -34,10 +34,10 @@ export const BUTTON_CSS = `
     outline: none;
   }
   .kuc-button__button--normal {
-    border: 1px solid #e3e7e8;
     background-color: var(--kuc-button-background-color, #f7f9fa);
-    box-shadow: 1px 1px 1px #ffffff inset;
     color: var(--kuc-button-text-color, #3498db);
+    border: 1px solid #e3e7e8;
+    box-shadow: 1px 1px 1px #ffffff inset;
   }
   .kuc-button__button--normal:hover,
   .kuc-button__button--normal:focus,
@@ -55,9 +55,9 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-active, #c8d6dd);
   }
   .kuc-button__button--submit {
-    border: 1px solid #e3e7e8;
     background-color: var(--kuc-button-background-color, #3498db);
     color: var(--kuc-button-text-color, #ffffff);
+    border: 1px solid #e3e7e8;
   }
   .kuc-button__button--submit:hover,
   .kuc-button__button--submit:focus,
@@ -74,10 +74,10 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-active, #1d6fa5);
   }
   .kuc-button__button--alert {
-    border: 0 none;
     background-color: var(--kuc-button-background-color, #e74c3c);
-    box-shadow: 1px 1px 1px #ffffff inset;
     color: var(--kuc-button-text-color, #ffffff);
+    border: 0 none;
+    box-shadow: 1px 1px 1px #ffffff inset;
   }
   .kuc-button__button--alert:hover,
   .kuc-button__button--alert:focus,
@@ -95,8 +95,8 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-active, #bf2718);
   }
   .kuc-button__button:disabled {
-    border: 1px solid #e3e7e8;
     background-color: var(--kuc-button-background-color, #d4d7d7);
+    border: 1px solid #e3e7e8;
     box-shadow: none;
     color: #888888;
     cursor: default;
