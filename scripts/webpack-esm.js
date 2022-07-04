@@ -50,7 +50,7 @@ const componentDirectories = [
   "mobile/textarea"
 ];
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|((--)?kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
@@ -67,7 +67,7 @@ const getChangedValue = (str, version) => {
 
 const replaceAllByPattern = (data, pattern, version) => {
   let tempData = data;
-  const matchedValues = Array.from(new Set(data.match(pattern)));
+  const matchedValues = Array.from(new Set(data.match(pattern))).filter(value => value[0] != "-");
   matchedValues.forEach(matchedValue => {
     // ignore the base file "base/kuc-base"
     const tempChangedValue =
