@@ -1,14 +1,39 @@
 import { Table } from "./index.ts";
+import { Dropdown } from "../dropdown";
+import { Checkbox } from "../checkbox";
 import { storiesOf } from "@storybook/web-components";
 
 storiesOf("desktop/table", module)
   .add("Base", () => {
-    const customCell = () => {
-      const inputEl = document.createElement("input");
-      inputEl.className = "custom_input";
-      inputEl.value = "hello";
-      return inputEl;
+    const customCell = (cellData) => {
+      const element = document.createElement("div");
+      if (typeof cellData === "string") {
+        const elementInput1 = document.createElement("input");
+        elementInput1.value = cellData;
+        element.appendChild(elementInput1);
+      }
+      if (cellData instanceof Array) {
+        for (let i = 0; i < cellData.length; i++) {
+          const inputEl = document.createElement("input");
+          inputEl.value = cellData[i];
+          element.appendChild(inputEl);
+        }
+      }
+      return element;
     };
+    const KucText = document.createElement("input");
+    KucText.value = "kuc input";
+
+    const customCell2 = document.createElement("select");
+    const option = document.createElement("option");
+    option.value = "1";
+    option.text = "1";
+    const option2 = document.createElement("option");
+    option2.value = "1";
+    option2.text = "2";
+    customCell2.appendChild(option);
+    customCell2.appendChild(option2);
+
     const root = document.createElement("div");
     const readOnlyTable = new Table({
       className: "sample-class",
@@ -17,24 +42,35 @@ storiesOf("desktop/table", module)
       label: "Table component",
       columns: [
         {
-          headerName: "1st column"
+          headerName: "1st column",
+          cell: customCell2,
         },
         {
-          headerName: "2nd column"
+          headerName: "2nd column",
+          cell: new Dropdown({
+            className: "sample-class-2nd",
+            id: "2",
+            items: [
+              {
+                label: "-----",
+                value: "-----",
+              },
+              {
+                label: "Orange",
+                value: "orange",
+              },
+              {
+                label: "Apple",
+                value: "Banana",
+              },
+            ],
+          }),
         },
-        {
-          headerName: "3rd column"
-        },
-        {
-          headerName: "custom column",
-          cell: customCell
-        }
       ],
       data: [
-        ["", "Orange", "sample data 1", ["1"]],
-        ["", "Lemon", "sample data 2", ["2"]],
-        ["", "Banana", "sample data 3", ["3"]]
-      ]
+        ["", "Orange"],
+        ["", "Lemon"],
+      ],
     });
     root.appendChild(readOnlyTable);
     return root;
@@ -45,21 +81,21 @@ storiesOf("desktop/table", module)
       columns: [
         {
           header: {
-            text: "1st column"
-          }
-        },
-        {
-          header: {
-            text: "2nd column"
+            text: "1st column",
           },
-          visible: false
         },
         {
           header: {
-            text: "3rd column"
-          }
-        }
-      ]
+            text: "2nd column",
+          },
+          visible: false,
+        },
+        {
+          header: {
+            text: "3rd column",
+          },
+        },
+      ],
     });
     readOnlyTable.data = [1, ["sample value 2", "bbb", "test"]];
     root.appendChild(readOnlyTable);
@@ -72,19 +108,19 @@ storiesOf("desktop/table", module)
       columns: [
         {
           header: {
-            text: "Fruit"
+            text: "Fruit",
           },
-          visible: true
+          visible: true,
         },
         {
           header: {
-            text: "Producing area"
+            text: "Producing area",
           },
-          visible: true
-        }
+          visible: true,
+        },
       ],
       data: [["Orange", "Ehime"]],
-      label: "Table component"
+      label: "Table component",
     });
     root.appendChild(readOnlyTable);
     return root;

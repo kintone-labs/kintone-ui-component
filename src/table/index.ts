@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -9,8 +9,9 @@ import { validateProps } from "../base/validator";
 type Column = {
   headerName?: string;
   visible?: boolean;
-  cell: () => HTMLElement | HTMLAnchorElement;
+  cell: HTMLElement | CustomCell;
 };
+type CustomCell = (cellData: string | string[]) => HTMLElement;
 type TableProps = {
   className?: string;
   id?: string;
@@ -30,7 +31,7 @@ export class Table extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -46,7 +47,7 @@ export class Table extends KucBase {
       throw new Error("'data' property is invalid");
     }
     props.data &&
-      props.data.forEach(data => {
+      props.data.forEach((data) => {
         if (!Array.isArray(data)) {
           throw new Error("'data' property is invalid");
         }
@@ -66,7 +67,7 @@ export class Table extends KucBase {
   private _getBodyTemplate(data: string[], index: number) {
     return html`
       <tr class="kuc-table__table__body__row">
-        ${data.map((dataContent: string, dataNumber: number) => {
+        ${data.map((dataContent: string | string[], dataNumber: number) => {
           let isHidden = false;
           if (
             this.columns[dataNumber] &&
@@ -74,31 +75,24 @@ export class Table extends KucBase {
           ) {
             isHidden = true;
           }
-          let renderCell;
-          if (
-            this.columns[dataNumber].cell &&
-            typeof this.columns[dataNumber].cell === "function"
-          ) {
-            renderCell = this.columns[dataNumber].cell();
-          } else {
-            renderCell = dataContent;
-          }
-          if (typeof renderCell === "string") {
+          if (typeof this.columns[dataNumber].cell === "function") {
+            const customCell = this.columns[dataNumber].cell as CustomCell;
             return html`
               <td
                 class="kuc-table__table__body__row__cell-data"
                 ?hidden="${isHidden}"
               >
-                ${renderCell}
+                ${customCell(dataContent)}
               </td>
             `;
           }
+          const cellHtmlEl = (this.columns[dataNumber].cell as HTMLElement).cloneNode(true);
           return html`
             <td
-              class="kuc-table__table__body__row__cell-data"
+              class="kuc-table__table__body__row__cell-data td--${dataNumber}"
               ?hidden="${isHidden}"
             >
-              ${renderCell}
+             ${cellHtmlEl}
             </td>
           `;
         })}
@@ -120,7 +114,7 @@ export class Table extends KucBase {
   private _getTableHeaderTemplate() {
     return html`
       <tr>
-        ${this.columns.map(column => this._getColumnsTemplate(column))}
+        ${this.columns.map((column) => this._getColumnsTemplate(column))}
       </tr>
     `;
   }
@@ -137,9 +131,9 @@ export class Table extends KucBase {
           ${this._getTableHeaderTemplate()}
         </thead>
         <tbody class="kuc-table__table__body">
-          ${currentData.map((data: any, index: number) =>
-            this._getBodyTemplate(data, index)
-          )}
+          ${currentData.map((data: any, index: number) => {
+            return this._getBodyTemplate(data, index);
+          })}
         </tbody>
       </table>
     `;
@@ -156,7 +150,7 @@ export class Table extends KucBase {
       throw new Error("'data' property is invalid");
     }
     data &&
-      data.forEach(val => {
+      data.forEach((val) => {
         if (!Array.isArray(val)) {
           throw new Error("'data' property is invalid");
         }
@@ -169,7 +163,7 @@ export class Table extends KucBase {
       .map((_data: string[]) => {
         return _data;
       })
-      .filter(_data => _data.length);
+      .filter((_data) => _data.length);
     return displayData;
   }
 
