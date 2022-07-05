@@ -1,38 +1,43 @@
 import { Table } from "./index.ts";
 import { Dropdown } from "../dropdown";
 import { Checkbox } from "../checkbox";
+import { html, PropertyValues } from "lit";
 import { storiesOf } from "@storybook/web-components";
 
 storiesOf("desktop/table", module)
   .add("Base", () => {
-    const customCell = (cellData) => {
-      const element = document.createElement("div");
-      if (typeof cellData === "string") {
-        const elementInput1 = document.createElement("input");
-        elementInput1.value = cellData;
-        element.appendChild(elementInput1);
-      }
-      if (cellData instanceof Array) {
-        for (let i = 0; i < cellData.length; i++) {
-          const inputEl = document.createElement("input");
-          inputEl.value = cellData[i];
-          element.appendChild(inputEl);
-        }
-      }
+    const renderAge = (cellData) => {
+      const element = document.createElement("h3");
+      element.innerText = `Custom cell: The age is ${cellData}`;
       return element;
     };
-    const KucText = document.createElement("input");
-    KucText.value = "kuc input";
 
-    const customCell2 = document.createElement("select");
-    const option = document.createElement("option");
-    option.value = "1";
-    option.text = "1";
-    const option2 = document.createElement("option");
-    option2.value = "1";
-    option2.text = "2";
-    customCell2.appendChild(option);
-    customCell2.appendChild(option2);
+    const renderName = (cellData) => {
+      const dropdown = new Dropdown({
+        items: [
+          {
+            label: "-----",
+            value: "-----",
+          },
+          {
+            label: "Vo Duc Hau",
+            value: "voduchau",
+          },
+          {
+            label: "Apple",
+            value: "apple",
+          },
+        ],
+        value: cellData,
+        selectedIndex: 0,
+        label: "フルーツ一覧",
+        requiredIcon: true,
+        disabled: false,
+        error: "エラーです",
+      });
+
+      return dropdown;
+    };
 
     const root = document.createElement("div");
     const readOnlyTable = new Table({
@@ -42,34 +47,35 @@ storiesOf("desktop/table", module)
       label: "Table component",
       columns: [
         {
-          headerName: "1st column",
-          cell: customCell2,
+          headerName: "Name",
+          dataIndex: "name",
+          render: renderName,
         },
         {
-          headerName: "2nd column",
-          cell: new Dropdown({
-            className: "sample-class-2nd",
-            id: "2",
-            items: [
-              {
-                label: "-----",
-                value: "-----",
-              },
-              {
-                label: "Orange",
-                value: "orange",
-              },
-              {
-                label: "Apple",
-                value: "Banana",
-              },
-            ],
-          }),
+          headerName: "Address",
+          dataIndex: "address",
+        },
+        {
+          headerName: "Age",
+          dataIndex: "age",
+          render: renderAge,
         },
       ],
       data: [
-        ["", "Orange"],
-        ["", "Lemon"],
+        {
+          key: "1",
+          name: "John Brown",
+          age: 32,
+          address: "New York No. 1 Lake Park",
+          tags: ["nice", "developer"],
+        },
+        {
+          key: "2",
+          name: "voduchau",
+          age: 20,
+          address: "New York No. 1 Lake Park",
+          tags: ["nice", "developer"],
+        },
       ],
     });
     root.appendChild(readOnlyTable);

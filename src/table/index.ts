@@ -8,8 +8,10 @@ import { validateProps } from "../base/validator";
 
 type Column = {
   headerName?: string;
+  dataIndex: string;
   visible?: boolean;
   cell: HTMLElement | CustomCell;
+  render: CustomCell;
 };
 type CustomCell = (cellData: string | string[]) => HTMLElement;
 type TableProps = {
@@ -26,7 +28,7 @@ export class Table extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: Array }) columns: Column[] = [];
-  @property({ type: Array }) data: string[][] = [];
+  @property({ type: Array }) data: object[] = [];
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -40,19 +42,6 @@ export class Table extends KucBase {
     if (!props) {
       return;
     }
-    if (!Array.isArray(props.columns) && props.columns !== undefined) {
-      throw new Error("'columns' property is invalid");
-    }
-    if (!Array.isArray(props.data) && props.data !== undefined) {
-      throw new Error("'data' property is invalid");
-    }
-    props.data &&
-      props.data.forEach((data) => {
-        if (!Array.isArray(data)) {
-          throw new Error("'data' property is invalid");
-        }
-      });
-
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
@@ -64,37 +53,13 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
-  private _getBodyTemplate(data: string[], index: number) {
+  private _getBodyTemplate(data: any) {
     return html`
       <tr class="kuc-table__table__body__row">
-        ${data.map((dataContent: string | string[], dataNumber: number) => {
-          let isHidden = false;
-          if (
-            this.columns[dataNumber] &&
-            this.columns[dataNumber].visible === false
-          ) {
-            isHidden = true;
-          }
-          if (typeof this.columns[dataNumber].cell === "function") {
-            const customCell = this.columns[dataNumber].cell as CustomCell;
-            return html`
-              <td
-                class="kuc-table__table__body__row__cell-data"
-                ?hidden="${isHidden}"
-              >
-                ${customCell(dataContent)}
-              </td>
-            `;
-          }
-          const cellHtmlEl = (this.columns[dataNumber].cell as HTMLElement).cloneNode(true);
-          return html`
-            <td
-              class="kuc-table__table__body__row__cell-data td--${dataNumber}"
-              ?hidden="${isHidden}"
-            >
-             ${cellHtmlEl}
-            </td>
-          `;
+        ${this.columns.map((col) => {
+          const rendered = data[col.dataIndex];
+          const dataRender = col.render && typeof col.render === "function" ? col.render(rendered) : rendered;
+          return html` <td class="kuc-table__table__body__row__cell-data">${dataRender}</td> `;
         })}
       </tr>
     `;
@@ -132,7 +97,7 @@ export class Table extends KucBase {
         </thead>
         <tbody class="kuc-table__table__body">
           ${currentData.map((data: any, index: number) => {
-            return this._getBodyTemplate(data, index);
+            return this._getBodyTemplate(data);
           })}
         </tbody>
       </table>
@@ -145,25 +110,16 @@ export class Table extends KucBase {
     }
   }
 
-  private _validateData(data: string[][]) {
+  private _validateData(data: object[]) {
     if (!Array.isArray(data)) {
-      throw new Error("'data' property is invalid");
+      console.log(data, "data");
+      throw new Error("'data' property is invalid123");
     }
-    data &&
-      data.forEach((val) => {
-        if (!Array.isArray(val)) {
-          throw new Error("'data' property is invalid");
-        }
-      });
   }
 
   // Formatting the data displayed on the current page
-  private _createDisplayData(data: string[][]) {
-    const displayData = data
-      .map((_data: string[]) => {
-        return _data;
-      })
-      .filter((_data) => _data.length);
+  private _createDisplayData(data: object[]) {
+    const displayData = data;
     return displayData;
   }
 
