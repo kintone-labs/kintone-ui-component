@@ -8,8 +8,8 @@ storiesOf("desktop/readonly-table", module)
       className: "sample-class",
       id: "sample-id",
       visible: true,
-      label: "フルーツ",
-      rowsPerPage: 1,
+      label: "My ReadOnlyTable",
+      rowsPerPage: 3,
       pagination: true,
       columns: [
         {
@@ -25,7 +25,14 @@ storiesOf("desktop/readonly-table", module)
       data: [
         ["", "Orange", "sample data 1"],
         ["", "Lemon", "sample data 2"],
-        ["", "Banana", "sample data 3"]
+        ["", "Banana", "sample data 3"],
+        ["", "Grape", "sample data 4"],
+        ["", "Avocado", "sample data 5"],
+        ["", "Plum", "sample data 6"],
+        ["", "Peach", "sample data 7"],
+        ["", "Pineapple", "sample data 8"],
+        ["", "Watermelon", "sample data 9"],
+        ["", "Strawberry", "sample data 10"]
       ]
     });
     root.appendChild(readOnlyTable);

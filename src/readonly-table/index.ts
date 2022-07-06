@@ -3,9 +3,10 @@
 import { html, svg, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
-import { dateValueConverter, visiblePropConverter } from "../base/converter";
+import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
+export { BaseLabel };
 
 type Column = { headerName?: string; visible?: boolean };
 type ReadOnlyTableProps = {
