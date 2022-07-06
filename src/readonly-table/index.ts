@@ -5,7 +5,7 @@ import { property, query } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { dateValueConverter, visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
-import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
+import { BaseLabel } from "../base/label";
 
 type Column = { headerName?: string; visible?: boolean };
 type ReadOnlyTableProps = {
@@ -131,9 +131,7 @@ export class ReadOnlyTable extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
-        <span class="kuc-readonly-table__table__label__text"
-          >${this.label}</span
-        >
+        <kuc-base-label .text="${this.label}"></kuc-base-label>
       </div>
       <table class="kuc-readonly-table__table" aria-label="${this.label}">
         <thead class="kuc-readonly-table__table__header">
