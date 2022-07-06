@@ -342,13 +342,13 @@ export class ReadOnlyTable extends KucBase {
           height: 40px;
           box-sizing: border-box;
           text-align: left;
-          min-width: 193px;
+          wit
         }
         .kuc-readonly-table__table__header__cell[hidden] {
           display: none;
         }
         .kuc-readonly-table__table__header__cell__label {
-          padding: 4px 8px;
+          padding: 4px 20px 4px 8px;
           font-weight: 400;
           font-size: 12px;
         }

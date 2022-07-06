@@ -23,16 +23,16 @@ storiesOf("desktop/readonly-table", module)
         }
       ],
       data: [
-        ["", "Orange", "sample data 1"],
-        ["", "Lemon", "sample data 2"],
-        ["", "Banana", "sample data 3"],
-        ["", "Grape", "sample data 4"],
-        ["", "Avocado", "sample data 5"],
-        ["", "Plum", "sample data 6"],
-        ["", "Peach", "sample data 7"],
-        ["", "Pineapple", "sample data 8"],
-        ["", "Watermelon", "sample data 9"],
-        ["", "Strawberry", "sample data 10"]
+        ["1", "Orange", "sample data 1"],
+        ["2", "Lemon", "sample data 2"],
+        ["3", "Banana", "sample datdadssssssssadasdasda 3"],
+        ["4", "Grape", "sample data 4"],
+        ["5", "Avocado", "sample data 5"],
+        ["6", "Plum", "sample data 6"],
+        ["7", "Peach", "sample data 7"],
+        ["8", "Pineapple", "sample data 8"],
+        ["9", "Watermelon", "sample data 9"],
+        ["10", "Strawberry", "sample data 10"]
       ]
     });
     root.appendChild(readOnlyTable);
