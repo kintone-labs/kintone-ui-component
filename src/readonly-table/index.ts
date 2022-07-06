@@ -220,11 +220,11 @@ export class ReadOnlyTable extends KucBase {
     const firstRow = (currentPage - 1) * steps + 1;
     const lastRow = currentPage * steps;
     const displayData = data
-      .map((data, row: number) => {
+      .map((element, row: number) => {
         if (row < firstRow - 1 || row > lastRow - 1) return [];
-        return data;
+        return element;
       })
-      .filter(data => data.length);
+      .filter(element => element.length);
     return displayData;
   }
 
