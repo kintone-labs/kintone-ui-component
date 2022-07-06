@@ -52,23 +52,39 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
+  private getDefaultRowData(data: any) {
+    const defaultRowData = {} as any;
+    for (const key in data) {
+      if (typeof data[key] === "string") {
+        defaultRowData[key] = "";
+        continue;
+      }
+      if (Array.isArray(data[key])) {
+        defaultRowData[key] = [];
+        continue;
+      }
+      defaultRowData[key] = "";
+    }
+    console.log(defaultRowData,'defaultRowData')
+    return defaultRowData;
+  }
+
   private _getBodyTemplate(data: any, index: number) {
     const handleChange = (e: CustomEvent) => {
       e.detail.rowIndex = index;
       e.detail.data = this.data;
     };
 
+    const cloneData = [...this.data];
     const handleAddRow = (e: Event) => {
-      console.log('asddd')
       const newIndex = index + 1;
-      this.data.splice(newIndex, 0, {
-        key: "2",
-        name: "neww",
-        age: 20,
-        address: "New York No. 1 Lake Park",
-        tags: ["nice", "developer"],
-      });
-      console.log(this.data,'data')
+      const defaultRowData = this.getDefaultRowData(this.data[index]);
+      cloneData.splice(newIndex, 0, defaultRowData);
+      this.data = [...cloneData];
+    };
+    const handleRemoveRow = () => {
+      cloneData.splice(index, 1);
+      this.data = [...cloneData];
     };
     return html`
       <tr class="kuc-table__table__body__row" @change="${handleChange}">
@@ -91,6 +107,7 @@ export class Table extends KucBase {
           ></button
           ><button
             type="button"
+            @click="${handleRemoveRow}"
             class="kuc-table__table__body__row__action-remove"
             title="Delete this row"
           ></button>
