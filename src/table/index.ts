@@ -57,6 +57,19 @@ export class Table extends KucBase {
       e.detail.rowIndex = index;
       e.detail.data = this.data;
     };
+
+    const handleAddRow = (e: Event) => {
+      console.log('asddd')
+      const newIndex = index + 1;
+      this.data.splice(newIndex, 0, {
+        key: "2",
+        name: "neww",
+        age: 20,
+        address: "New York No. 1 Lake Park",
+        tags: ["nice", "developer"],
+      });
+      console.log(this.data,'data')
+    };
     return html`
       <tr class="kuc-table__table__body__row" @change="${handleChange}">
         ${this.columns.map((col) => {
@@ -72,6 +85,7 @@ export class Table extends KucBase {
         <td class="kuc-table__table__body__row__action">
           <button
             type="button"
+            @click="${handleAddRow}"
             class="kuc-table__table__body__row__action-add"
             title="Add row"
           ></button
