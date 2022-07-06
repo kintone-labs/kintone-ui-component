@@ -260,7 +260,7 @@ export class ReadOnlyTable extends KucBase {
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-          fill="${isFocusPrev ? "#3498db" : "#888888"}"
+          fill="#888888"
         />
       </svg>
     `;
@@ -278,7 +278,7 @@ export class ReadOnlyTable extends KucBase {
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-        fill="${isFocusNext ? "#3498db" : "#888888"}"
+        fill="#888888"
       />
     </svg>
     `;

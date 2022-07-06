@@ -9,7 +9,7 @@ storiesOf("desktop/readonly-table", module)
       id: "sample-id",
       visible: true,
       label: "フルーツ",
-      rowsPerPage: 2,
+      rowsPerPage: 1,
       pagination: true,
       columns: [
         {
