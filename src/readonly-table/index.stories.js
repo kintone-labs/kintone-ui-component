@@ -9,22 +9,17 @@ storiesOf("desktop/readonly-table", module)
       id: "sample-id",
       visible: true,
       label: "フルーツ",
+      rowsPerPage: 2,
+      pagination: true,
       columns: [
         {
-          header: {
-            text: "1st column"
-          }
+          headerName: "First column"
         },
         {
-          header: {
-            text: "2nd column"
-          },
-          visible: false
+          headerName: "Second column"
         },
         {
-          header: {
-            text: "3rd column"
-          }
+          headerName: "Third column"
         }
       ],
       data: [
