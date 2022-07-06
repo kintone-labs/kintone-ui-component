@@ -142,8 +142,6 @@ export class ReadOnlyTable extends KucBase {
           title="previous"
           class="kuc-readonly-table__pager__pagenation-prev"
           type="button"
-          @mouseover="${this._handleFocusButton("isNextButton")}"
-          @mouseleave="${this._handleBlurButton("isNextButton")}"
           @click="${this._handleClickPreviusButton}"
         >
           ${this._getPrevButtonSvgTemplate()}
@@ -152,8 +150,6 @@ export class ReadOnlyTable extends KucBase {
           title="next"
           class="kuc-readonly-table__pager__pagenation-next"
           type="button"
-          @mouseover="${this._handleFocusButton}"
-          @mouseleave="${this._handleBlurButton}"
           @click="${this._handleClickNextButton}"
         >
           ${this._getNextButtonSvgTemplate()}
@@ -204,16 +200,6 @@ export class ReadOnlyTable extends KucBase {
     return currentPage < this.data.length / this.rowsPerPage;
   }
 
-  private _handleFocusButton(isNextButton: string) {
-    // This Logic does not work, so needs fix
-    isNextButton ? (isFocusNext = true) : (isFocusPrev = true);
-  }
-
-  private _handleBlurButton(isNextButton: string) {
-    // This Logic does not work, so needs fix
-    isNextButton ? (isFocusNext = false) : (isFocusPrev = false);
-  }
-
   // Formatting the data displayed on the current page
   private _createDisplayData(data: string[][], page: number, steps: number) {
     if (!this.pagenation) return data;
@@ -229,6 +215,7 @@ export class ReadOnlyTable extends KucBase {
   }
 
   updated() {
+    isFocusNext = isFocusPrev = false;
     if (!this._toggleDisplayPreviusButton()) {
       this._prevButtonEl.classList.add("pager-disable");
     } else {
@@ -240,6 +227,25 @@ export class ReadOnlyTable extends KucBase {
     } else {
       this._nextButtonEl.classList.remove("pager-disable");
     }
+
+    // Focus effect when using TAB key
+    // this._nextButtonEl.addEventListener("focus", () => {
+    //   isFocusNext = true;
+    //   this.requestUpdate();
+    // });
+    // this._nextButtonEl.addEventListener("blur", () => {
+    //   isFocusNext = false;
+    //   this.requestUpdate();
+    // });
+
+    // this._prevButtonEl.addEventListener("focus", () => {
+    //   isFocusPrev = true;
+    //   this.requestUpdate();
+    // });
+    // this._prevButtonEl.addEventListener("blur", () => {
+    //   isFocusPrev = false;
+    //   this.requestUpdate();
+    // });
   }
 
   private _getPrevButtonSvgTemplate() {
@@ -351,6 +357,12 @@ export class ReadOnlyTable extends KucBase {
         .kuc-readonly-table__table__body__row__cell-data[hidden] {
           display: none;
         }
+        .kuc-readonly-table__pager {
+          margin-top: 10px;
+        }
+        .kuc-readonly-table__pager button {
+          cursor: pointer;
+        }
         .kuc-readonly-table__pager__pagenation-prev {
           border: none;
           background-color: transparent;
@@ -360,6 +372,12 @@ export class ReadOnlyTable extends KucBase {
           border: none;
           background-color: transparent;
           visibility: visible;
+        }
+        .kuc-readonly-table__pager__pagenation-next:hover svg path,
+        .kuc-readonly-table__pager__pagenation-prev:hover svg path,
+        .kuc-readonly-table__pager__pagenation-next:focus svg path,
+        .kuc-readonly-table__pager__pagenation-prev:focus svg path {
+          fill: #3498db;
         }
         .pager-disable {
           visibility: hidden;
