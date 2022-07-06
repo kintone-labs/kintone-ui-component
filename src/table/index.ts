@@ -58,8 +58,11 @@ export class Table extends KucBase {
       <tr class="kuc-table__table__body__row">
         ${this.columns.map((col) => {
           const rendered = data[col.dataIndex];
-          const dataRender = col.render && typeof col.render === "function" ? col.render(rendered) : rendered;
-          return html` <td class="kuc-table__table__body__row__cell-data">${dataRender}</td> `;
+          const isCustomRender = col.render && typeof col.render === "function";
+          const dataRender = isCustomRender ? col.render(rendered) : rendered;
+          return html` <td class="kuc-table__table__body__row__cell-data">
+            ${dataRender}
+          </td>`;
         })}
       </tr>
     `;
