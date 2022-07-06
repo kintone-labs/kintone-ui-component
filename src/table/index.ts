@@ -10,10 +10,9 @@ type Column = {
   headerName?: string;
   dataIndex: string;
   visible?: boolean;
-  cell: HTMLElement | CustomCell;
-  render: CustomCell;
+  render: Render;
 };
-type CustomCell = (cellData: string | string[]) => HTMLElement;
+type Render = (dataCell: any, dataRow: object) => HTMLElement;
 type TableProps = {
   className?: string;
   id?: string;
@@ -53,17 +52,35 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
-  private _getBodyTemplate(data: any) {
+  private _getBodyTemplate(data: any, index: number) {
+    const handleChange = (e: CustomEvent) => {
+      e.detail.rowIndex = index;
+      e.detail.data = this.data;
+    };
     return html`
-      <tr class="kuc-table__table__body__row">
+      <tr class="kuc-table__table__body__row" @change="${handleChange}">
         ${this.columns.map((col) => {
           const rendered = data[col.dataIndex];
           const isCustomRender = col.render && typeof col.render === "function";
-          const dataRender = isCustomRender ? col.render(rendered) : rendered;
+          const dataRender = isCustomRender
+            ? col.render(rendered, data)
+            : rendered;
           return html` <td class="kuc-table__table__body__row__cell-data">
             ${dataRender}
           </td>`;
         })}
+        <td class="kuc-table__table__body__row__action">
+          <button
+            type="button"
+            class="kuc-table__table__body__row__action-add"
+            title="Add row"
+          ></button
+          ><button
+            type="button"
+            class="kuc-table__table__body__row__action-remove"
+            title="Delete this row"
+          ></button>
+        </td>
       </tr>
     `;
   }
@@ -100,7 +117,7 @@ export class Table extends KucBase {
         </thead>
         <tbody class="kuc-table__table__body">
           ${currentData.map((data: any, index: number) => {
-            return this._getBodyTemplate(data);
+            return this._getBodyTemplate(data, index);
           })}
         </tbody>
       </table>
@@ -161,6 +178,7 @@ export class Table extends KucBase {
           border-width: 0px 1px;
           border-color: #3498db;
           border-style: solid;
+          border-right: 0;
         }
         .kuc-readonly-table__label {
           display: inline-block;
@@ -207,6 +225,25 @@ export class Table extends KucBase {
         }
         .pager-disable {
           visibility: hidden;
+        }
+        .kuc-table__table__body__row__action-add {
+          margin-left: 12px;
+          background: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/add-active.png)
+            no-repeat center center;
+          border: 1px solid transparent;
+        }
+        .kuc-table__table__body__row__action-remove {
+          margin-left: 4px;
+          background: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/delete.png)
+            no-repeat center center;
+          border: 1px solid transparent;
+        }
+        .kuc-table__table__body__row__action-add,
+        .kuc-table__table__body__row__action-remove {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
         }
       </style>
     `;

@@ -6,9 +6,9 @@ import { storiesOf } from "@storybook/web-components";
 
 storiesOf("desktop/table", module)
   .add("Base", () => {
-    const renderAge = (cellData) => {
+    const renderAge = (dataCell, dataRow) => {
       const element = document.createElement("h3");
-      element.innerText = `Custom cell: The age is ${cellData}`;
+      element.innerText = `Custom cell: The age is ${dataCell}`;
       return element;
     };
 
@@ -77,6 +77,9 @@ storiesOf("desktop/table", module)
           tags: ["nice", "developer"],
         },
       ],
+    });
+    readOnlyTable.addEventListener("change", (event) => {
+      console.log(event.detail, "change from outside");
     });
     root.appendChild(readOnlyTable);
     return root;
