@@ -5,6 +5,7 @@ import { property, query } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { dateValueConverter, visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
 type Column = { headerName?: string; visible?: boolean };
 type ReadOnlyTableProps = {
@@ -19,8 +20,8 @@ type ReadOnlyTableProps = {
 };
 
 let currentPage: number = 1;
-let isFocusPrev = false;
-let isFocusNext = false;
+// let isFocusPrev = false;
+// let isFocusNext = false;
 export class ReadOnlyTable extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -28,7 +29,7 @@ export class ReadOnlyTable extends KucBase {
   @property({ type: Array }) columns: Column[] = [];
   @property({ type: Array }) data: string[][] = [];
   @property({ type: Boolean }) pagination = true;
-  @property({ type: Number }) rowsPerPage = 10;
+  @property({ type: Number }) rowsPerPage = 5;
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -47,18 +48,31 @@ export class ReadOnlyTable extends KucBase {
     if (!props) {
       return;
     }
+
     if (!Array.isArray(props.columns) && props.columns !== undefined) {
       throw new Error("'columns' property is invalid");
     }
+
     if (!Array.isArray(props.data) && props.data !== undefined) {
       throw new Error("'data' property is invalid");
     }
-    props.data &&
+
+    if (props.data) {
       props.data.forEach(data => {
         if (!Array.isArray(data)) {
           throw new Error("'data' property is invalid");
         }
       });
+    }
+
+    if (props.rowsPerPage) {
+      if (props.rowsPerPage < 0) {
+        props.rowsPerPage = 5;
+      }
+      props.rowsPerPage = Math.round(props.rowsPerPage);
+    } else {
+      props.rowsPerPage = 5;
+    }
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -85,7 +99,7 @@ export class ReadOnlyTable extends KucBase {
   }
 
   private _getDataTemplate(data: string[], number: number) {
-    // Do not process if the number of data rows per page exceeds steps
+    // Do not process if the number of data rows per page exceeds steps // REDUNDANT
     // if (this.pagination && number >= steps) return html``;
     return html`
       <tr
@@ -182,7 +196,7 @@ export class ReadOnlyTable extends KucBase {
 
   private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
     // Do not process on the last page
-    if (currentPage >= this.data.length / this.rowsPerPage) return;
+    // if (currentPage >= this.data.length / this.rowsPerPage) return; REDUNDANT
     currentPage += 1;
     this.render();
     this.requestUpdate();
@@ -211,7 +225,6 @@ export class ReadOnlyTable extends KucBase {
   }
 
   updated() {
-    isFocusNext = isFocusPrev = false;
     if (!this._toggleDisplayPreviusButton()) {
       this._prevButtonEl.classList.add("pager-disable");
     } else {
