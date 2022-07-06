@@ -13,7 +13,7 @@ type ReadOnlyTableProps = {
   label?: string;
   columns?: Column[];
   data?: string[][];
-  pagenation?: boolean;
+  pagination?: boolean;
   rowsPerPage?: number;
   visible?: boolean;
 };
@@ -27,7 +27,7 @@ export class ReadOnlyTable extends KucBase {
   @property({ type: String }) label = "";
   @property({ type: Array }) columns: Column[] = [];
   @property({ type: Array }) data: string[][] = [];
-  @property({ type: Boolean }) pagenation = true;
+  @property({ type: Boolean }) pagination = true;
   @property({ type: Number }) rowsPerPage = 10;
   @property({
     type: Boolean,
@@ -84,9 +84,9 @@ export class ReadOnlyTable extends KucBase {
     `;
   }
 
-  private _getDataTemplate(data: string[], number: number, steps: number) {
+  private _getDataTemplate(data: string[], number: number) {
     // Do not process if the number of data rows per page exceeds steps
-    if (this.pagenation && number >= steps) return html``;
+    // if (this.pagination && number >= steps) return html``;
     return html`
       <tr
         class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${number}"
@@ -113,11 +113,7 @@ export class ReadOnlyTable extends KucBase {
   }
 
   render() {
-    const currentData = this._createDisplayData(
-      this.data,
-      currentPage,
-      this.rowsPerPage
-    );
+    const currentData = this._createDisplayData(this.data, this.rowsPerPage);
     return html`
       ${this._getStyleTagTemplate()}
       <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
@@ -132,12 +128,12 @@ export class ReadOnlyTable extends KucBase {
           </tr>
         </thead>
         <tbody class="kuc-readonly-table__table__body">
-          ${currentData.map((data: string[], number: number) =>
-            this._getDataTemplate(data, number, this.rowsPerPage)
-          )}
+          ${currentData.map((data: string[], number: number) => {
+            return this._getDataTemplate(data, number);
+          })}
         </tbody>
       </table>
-      <div class="kuc-readonly-table__pager" ?hidden="${!this.pagenation}">
+      <div class="kuc-readonly-table__pager" ?hidden="${!this.pagination}">
         <button
           title="previous"
           class="kuc-readonly-table__pager__pagenation-prev"
@@ -201,8 +197,8 @@ export class ReadOnlyTable extends KucBase {
   }
 
   // Formatting the data displayed on the current page
-  private _createDisplayData(data: string[][], page: number, steps: number) {
-    if (!this.pagenation) return data;
+  private _createDisplayData(data: string[][], steps: number) {
+    if (!this.pagination) return data;
     const firstRow = (currentPage - 1) * steps + 1;
     const lastRow = currentPage * steps;
     const displayData = data
