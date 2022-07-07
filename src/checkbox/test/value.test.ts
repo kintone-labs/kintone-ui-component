@@ -4,7 +4,7 @@ import { Checkbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("Checkbox", () => {
@@ -25,7 +25,7 @@ describe("Checkbox", () => {
     it("should be checked items when assinged on constructor", async () => {
       const container = new Checkbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -41,7 +41,7 @@ describe("Checkbox", () => {
     it("should be changed value when updated by setter", async () => {
       const container = new Checkbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       container.value = [initItems[2].value];
 
@@ -77,7 +77,7 @@ describe("Checkbox", () => {
   it("should be throw error when set null by setter", async () => {
     const container = new Checkbox({
       items: initItems,
-      value: [initItems[0].value]
+      value: [initItems[0].value],
     });
     try {
       // @ts-expect-error

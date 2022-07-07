@@ -25,9 +25,7 @@ export class BaseMobileLabel extends KucBase {
             >${this.text}</span
           >
         `
-      : html`
-          <span class="kuc-base-mobile-label__text">${this.text}</span>
-        `;
+      : html` <span class="kuc-base-mobile-label__text">${this.text}</span> `;
   }
 
   private _getStyleTagTemplate() {

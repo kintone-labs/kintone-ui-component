@@ -4,14 +4,14 @@ import { BaseMobileDateTimeCalendar } from "../mobile-calendar";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
-  KucBase
+  KucBase,
 } from "../../kuc-base";
 import {
   formatInputValueToValue,
   formatValueToInputValue,
   getTodayStringByLocale,
   isValidDateFormat,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../utils";
 export { BaseMobileDateTimeCalendar };
 

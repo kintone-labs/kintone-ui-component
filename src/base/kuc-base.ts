@@ -22,7 +22,7 @@ export const dispatchCustomEvent = (
   const event = new CustomEvent(eventName, {
     detail,
     bubbles: true,
-    composed: true
+    composed: true,
   });
   return el.dispatchEvent(event);
 };

@@ -25,9 +25,7 @@ export class BaseLabel extends KucBase {
             >${this.text}</span
           >
         `
-      : html`
-          <span class="kuc-base-label__text">${this.text}</span>
-        `;
+      : html` <span class="kuc-base-label__text">${this.text}</span> `;
   }
 
   private _getStyleTagTemplate() {

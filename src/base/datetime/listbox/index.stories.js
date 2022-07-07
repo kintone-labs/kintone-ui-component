@@ -8,22 +8,22 @@ export default {
       name: "value",
       control: {
         type: "select",
-        options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-      }
+        options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+      },
     },
     items: {
       name: "items",
       control: {
         type: "object",
-        options: []
-      }
-    }
+        options: [],
+      },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:listbox-click"]
-    }
-  }
+      handles: ["kuc:listbox-click"],
+    },
+  },
 };
 
 const Template = ({ value, items }) => {
@@ -32,7 +32,7 @@ const Template = ({ value, items }) => {
     _listBoxEl.hidden = !_listBoxEl.hidden;
   };
 
-  const _handleKeydownBtn = event => {
+  const _handleKeydownBtn = (event) => {
     event.preventDefault();
     const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
     switch (event.key) {
@@ -61,11 +61,11 @@ const Template = ({ value, items }) => {
     }
   };
 
-  const _handleClickCalendarListBox = event => {
+  const _handleClickCalendarListBox = (event) => {
     _changeValue(event.detail.value);
   };
 
-  const _changeValue = newValue => {
+  const _changeValue = (newValue) => {
     const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
     _listBoxEl.setAttribute("value", newValue);
 
@@ -101,6 +101,6 @@ base.args = {
     { value: "8", label: "SEPTEMBER" },
     { value: "9", label: "OCTOBER" },
     { value: "10", label: "NOVEMBER" },
-    { value: "11", label: "DECEMBER" }
-  ]
+    { value: "11", label: "DECEMBER" },
+  ],
 };

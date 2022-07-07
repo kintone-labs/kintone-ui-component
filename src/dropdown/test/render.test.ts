@@ -16,14 +16,14 @@ describe("Dropdown", () => {
       requiredIcon: false,
       items: [
         { label: "orange", value: "Orange" },
-        { label: "apple", value: "Apple" }
+        { label: "apple", value: "Apple" },
       ],
       value: "Orange",
       error: "Error occurred!",
       className: "options-class",
       id: "options-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
     const el = await fixture(container);

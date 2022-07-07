@@ -35,7 +35,7 @@ describe("MobileRadioButton", () => {
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new MobileRadioButton({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
 

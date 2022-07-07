@@ -6,12 +6,12 @@ export default {
   argTypes: {},
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
-    }
-  }
+      defaultViewport: "iPhone11Pro",
+    },
+  },
 };
 
-const Template = args => {
+const Template = (args) => {
   return html`
     <kuc-base-mobile-label
       .guid="${args.guid}"
@@ -25,5 +25,5 @@ export const Base = Template.bind({});
 Base.args = {
   guid: "guid",
   text: "Text label",
-  requiredIcon: true
+  requiredIcon: true,
 };

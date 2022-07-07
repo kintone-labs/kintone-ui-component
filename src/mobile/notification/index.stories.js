@@ -6,13 +6,13 @@ storiesOf("mobile/notification", module)
   .add("Base", () => {
     const root = document.createElement("div");
     const notification = new MobileNotification();
-    notification.addEventListener("close", event => {
+    notification.addEventListener("close", (event) => {
       console.log(event);
     });
 
     const button = document.createElement("button");
     button.textContent = "open";
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       notification.open();
     });
     root.appendChild(button);
@@ -22,12 +22,12 @@ storiesOf("mobile/notification", module)
   .add("Base1", () => {
     const root = document.createElement("div");
     const notification = new MobileNotification({
-      text: "不正です!!"
+      text: "不正です!!",
     });
 
     const button = document.createElement("button");
     button.textContent = "open";
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       notification.open();
     });
     root.appendChild(button);
@@ -38,15 +38,15 @@ storiesOf("mobile/notification", module)
     const root = document.createElement("div");
     const notification = new MobileNotification({
       text: "Duration 3 seconds",
-      duration: 3000
+      duration: 3000,
     });
-    notification.addEventListener("close", event => {
+    notification.addEventListener("close", (event) => {
       console.log(event);
     });
 
     const button = document.createElement("button");
     button.textContent = "open";
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       notification.open();
     });
     root.appendChild(button);

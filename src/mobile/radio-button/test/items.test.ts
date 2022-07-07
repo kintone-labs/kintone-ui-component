@@ -4,18 +4,18 @@ import { MobileRadioButton } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 const initItemsWithoutLabel = [
   { value: "-----" },
   { value: "orange" },
-  { value: "apple" }
+  { value: "apple" },
 ];
 const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "-----", value: "-----" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
@@ -126,7 +126,7 @@ describe("MobileRadioButton", () => {
 
     it('should set item value "" when asigned item value undefined on constuctor', async () => {
       const container = new MobileRadioButton({
-        items: initItemsWithoutValue
+        items: initItemsWithoutValue,
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(

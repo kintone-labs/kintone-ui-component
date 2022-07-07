@@ -3,12 +3,12 @@ import { ReadOnlyTable } from "../index";
 
 const data = [
   ["Orange", "Ehime"],
-  ["Apple", "Aomori"]
+  ["Apple", "Aomori"],
 ];
 
 const replacedData = [
   ["Orange", "Ehime"],
-  ["Banana", "Tokyo"]
+  ["Banana", "Tokyo"],
 ];
 
 describe("ReadOnlyTable", () => {

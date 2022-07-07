@@ -12,8 +12,8 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
+        options: ["auto", "en", "ja", "zh"],
+      },
     },
     value: { name: "value" },
     requiredIcon: { name: "requiredIcon" },
@@ -22,16 +22,16 @@ export default {
     visible: { name: "visible" },
     timeStep: { name: "timeStep" },
     min: { name: "min" },
-    max: { name: "max" }
+    max: { name: "max" },
   },
   parameters: {
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
-const Template = args => {
-  const handleDateChange = event => {
+const Template = (args) => {
+  const handleDateChange = (event) => {
     console.log(event);
   };
   return html`
@@ -68,7 +68,7 @@ Base.args = {
   visible: true,
   timeStep: 60,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };
 
 export const BaseHour12 = Template.bind({});
@@ -85,7 +85,7 @@ BaseHour12.args = {
   visible: true,
   timeStep: 30,
   min: "00:00",
-  max: "20:00"
+  max: "20:00",
 };
 
 export const BaseHour24 = Template.bind({});
@@ -102,7 +102,7 @@ BaseHour24.args = {
   visible: true,
   timeStep: 30,
   min: "00:00",
-  max: "20:00"
+  max: "20:00",
 };
 
 export const BaseLanguageEN = Template.bind({});
@@ -119,7 +119,7 @@ BaseLanguageEN.args = {
   visible: true,
   timeStep: 60,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };
 
 export const BaseLanguageJA = Template.bind({});
@@ -136,7 +136,7 @@ BaseLanguageJA.args = {
   visible: true,
   timeStep: 60,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };
 
 export const BaseLanguageZH = Template.bind({});
@@ -153,7 +153,7 @@ BaseLanguageZH.args = {
   visible: true,
   timeStep: 60,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };
 
 export const BaseError = Template.bind({});
@@ -170,5 +170,5 @@ BaseError.args = {
   visible: true,
   timeStep: 30,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };

@@ -1,4 +1,4 @@
-name: excute yamory weekly on v0 and v1
+name: execute yamory weekly on v0 and v1
 
 on: 
   schedule:
@@ -7,7 +7,7 @@ on:
     
 jobs:
   check_v1:
-    name: excute yamory_master
+    name: execute yamory on master branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,6 +15,8 @@ jobs:
           ref: master
     - name: run Yamory
       run: |
+        ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
+        ls -1 -d docs/document/website/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" 
       env:
@@ -23,7 +25,7 @@ jobs:
         YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
         
   check_v0:
-    name: excute yamory_v0_dev
+    name: execute yamory on v0_dev branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -32,6 +34,14 @@ jobs:
     - name: run Yamory
       run: |
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
+      env:
+        CI: true
+        PROJECT_GROUP_KEY: kintone-ui-component_v0_dev
+        YAMORY_API_KEY: ${{ secrets.YAMORY_API_KEY }}
+    - name: run Yamory_docs
+      working-directory: docs
+      run: |
+        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pip)"
       env:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_v0_dev

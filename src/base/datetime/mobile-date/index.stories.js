@@ -8,21 +8,21 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["en", "ja", "zh"]
-      }
-    }
+        options: ["en", "ja", "zh"],
+      },
+    },
   },
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
+      defaultViewport: "iPhone11Pro",
     },
     actions: {
-      handles: ["kuc:mobile-base-date-change"]
-    }
-  }
+      handles: ["kuc:mobile-base-date-change"],
+    },
+  },
 };
 
-const Template = args => {
+const Template = (args) => {
   return html`
     <kuc-mobile-base-date
       .value="${args.value}"
@@ -38,5 +38,5 @@ Base.args = {
   value: "2022-02-14",
   disabled: false,
   required: false,
-  language: "en"
+  language: "en",
 };

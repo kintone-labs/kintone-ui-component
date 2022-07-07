@@ -4,7 +4,7 @@ import { MobileDropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileDropdown", () => {
@@ -21,7 +21,7 @@ describe("MobileDropdown", () => {
     it("exists on element when initializing disabled value is true", async () => {
       const container = new MobileDropdown({
         items: initItems,
-        disabled: true
+        disabled: true,
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
@@ -35,7 +35,7 @@ describe("MobileDropdown", () => {
         label: "Fruit",
         requiredIcon: false,
         items: initItems,
-        disabled: false
+        disabled: false,
       });
       container.disabled = true;
       const el = await fixture(container);
@@ -50,7 +50,7 @@ describe("MobileDropdown", () => {
         label: "Fruit",
         requiredIcon: false,
         items: initItems,
-        disabled: true
+        disabled: true,
       });
       container.disabled = false;
       const el = await fixture(container);

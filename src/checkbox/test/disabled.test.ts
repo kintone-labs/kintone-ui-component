@@ -4,7 +4,7 @@ import { Checkbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 const initValues = ["apple"];
@@ -27,7 +27,7 @@ describe("Checkbox", () => {
       const container = new Checkbox({
         items: initItems,
         value: initValues,
-        disabled: true
+        disabled: true,
       });
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
@@ -44,7 +44,7 @@ describe("Checkbox", () => {
     const container = new Checkbox({
       items: initItems,
       value: initValues,
-      disabled: false
+      disabled: false,
     });
     container.disabled = true;
 
@@ -62,7 +62,7 @@ describe("Checkbox", () => {
     const container = new Checkbox({
       items: initItems,
       value: initValues,
-      disabled: true
+      disabled: true,
     });
     container.disabled = false;
 
