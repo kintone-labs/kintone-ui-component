@@ -13,19 +13,20 @@ storiesOf("desktop/readonly-table", module)
       pagination: true,
       columns: [
         {
-          headerName: "First column"
+          headerName: "First column",
+          width: "100px"
         },
         {
           headerName: "Second column"
         },
         {
-          headerName: "Third column"
+          headerName: "Third columdasdasddsdasdasdn"
         }
       ],
       data: [
         ["1", "Orange", "sample data 1"],
         ["2", "Lemon", "sample data 2"],
-        ["3", "Banana", "sample datdadssssssssadasdasda 3"],
+        ["3", "Banana", "sample dadasdadasdasdasadsta 3"],
         ["4", "Grape", "sample data 4"],
         ["5", "Avocado", "sample data 5"],
         ["6", "Plum", "sample data 6"],

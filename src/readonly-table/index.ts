@@ -8,7 +8,7 @@ import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
 export { BaseLabel };
 
-type Column = { headerName?: string; visible?: boolean };
+type Column = { headerName?: string; visible?: boolean; width?: string };
 type ReadOnlyTableProps = {
   className?: string;
   id?: string;
@@ -87,8 +87,13 @@ export class ReadOnlyTable extends KucBase {
   }
 
   private _getColumnsTemplate(column: Column) {
+    if (!column.width) {
+      column.width = "auto";
+    }
+
     return html`
       <th
+        style="width: ${column.width}"
         class="kuc-readonly-table__table__header__cell"
         ?hidden="${column.visible === false}"
       >
@@ -322,6 +327,8 @@ export class ReadOnlyTable extends KucBase {
         }
         .kuc-readonly-table__table {
           border-collapse: collapse;
+          table-layout: fixed;
+          width: 100%;
         }
         .kuc-readonly-table__table__header {
           border-width: 0px 1px;
@@ -331,7 +338,7 @@ export class ReadOnlyTable extends KucBase {
         .kuc-readonly-table__label {
           display: inline-block;
           white-space: nowrap;
-          padding: 4px 0px 8px 0px;
+          padding: 4px 8px;
         }
         .kuc-readonly-table__label[hidden] {
           display: none;
@@ -342,13 +349,12 @@ export class ReadOnlyTable extends KucBase {
           height: 40px;
           box-sizing: border-box;
           text-align: left;
-          wit
         }
         .kuc-readonly-table__table__header__cell[hidden] {
           display: none;
         }
         .kuc-readonly-table__table__header__cell__label {
-          padding: 4px 20px 4px 8px;
+          padding: 4px 8px;
           font-weight: 400;
           font-size: 12px;
         }
@@ -364,6 +370,12 @@ export class ReadOnlyTable extends KucBase {
         }
         .kuc-readonly-table__table__body__row__cell-data[hidden] {
           display: none;
+        }
+        .kuc-readonly-table__table__header__cell,
+        .kuc-readonly-table__table__body__row__cell-data {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         .kuc-readonly-table__pager {
           margin-top: 10px;
