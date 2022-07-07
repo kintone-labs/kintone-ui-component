@@ -12,7 +12,7 @@ Dropdown は複数選択肢の中から一つの値を選択することがで�
 <div class="sample-container" id="dropdown">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/dropdown.js"></script>
+<script src="/js/samples/desktop/dropdown.js"></script>
 
 ---
 

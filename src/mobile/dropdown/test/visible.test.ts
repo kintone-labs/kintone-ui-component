@@ -6,12 +6,12 @@ describe("MobileDropdown", () => {
     const initItems = [
       { label: "-----", value: "-----" },
       { label: "Orange", value: "orange" },
-      { label: "Apple", value: "apple" }
+      { label: "Apple", value: "apple" },
     ];
 
     it("should see that on screen when initializing without props option", async () => {
       const container = new MobileDropdown({
-        items: initItems
+        items: initItems,
       });
       const el = await fixture(container);
       expect(el).not.has.attribute("hidden");
@@ -20,7 +20,7 @@ describe("MobileDropdown", () => {
     it("should not see that on screen when initializing disabled value is false", async () => {
       const container = new MobileDropdown({
         items: initItems,
-        visible: false
+        visible: false,
       });
       const el = await fixture(container);
       expect(el).has.attribute("hidden");
@@ -31,7 +31,7 @@ describe("MobileDropdown", () => {
         label: "Fruit",
         requiredIcon: false,
         items: initItems,
-        visible: false
+        visible: false,
       });
       container.visible = true;
       const el = await fixture(container);
@@ -44,7 +44,7 @@ describe("MobileDropdown", () => {
         requiredIcon: false,
         items: initItems,
         visible: true,
-        className: "visible_test"
+        className: "visible_test",
       });
       container.visible = false;
       const el = await fixture(container);

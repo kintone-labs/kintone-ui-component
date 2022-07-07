@@ -12,7 +12,7 @@ The MobileDropdown component allows the user to select one out of several option
 <div class="sample-container" id="mobile-dropdown">
   <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/mobile-dropdown.js"></script>
+<script src="/js/samples/mobile/mobile-dropdown.js"></script>
 
 ---
 

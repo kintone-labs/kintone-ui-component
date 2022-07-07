@@ -4,23 +4,23 @@ import { MultiChoice } from "../index";
 const initItems = [
   { label: "Item 1", value: "item-1" },
   { label: "Item 2", value: "item-2" },
-  { label: "Item 3", value: "item-3" }
+  { label: "Item 3", value: "item-3" },
 ];
 
 const initItemsWithoutLabel = [
   { value: "item-1" },
   { value: "item-2" },
-  { value: "item-3" }
+  { value: "item-3" },
 ];
 const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "Item 2", value: "item-2" },
-  { label: "Item 3", value: "item-3" }
+  { label: "Item 3", value: "item-3" },
 ];
 
 const dupplicatedItems = [
   { label: "Item 1", value: "item-1" },
-  { label: "Item 2", value: "item-1" }
+  { label: "Item 2", value: "item-1" },
 ];
 
 describe("MobileCheckbox", () => {
@@ -98,7 +98,7 @@ describe("MobileCheckbox", () => {
     });
     it('should set item value "" when asigned item value undefined on constuctor', async () => {
       const container = new MultiChoice({
-        items: initItemsWithoutValue
+        items: initItemsWithoutValue,
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(

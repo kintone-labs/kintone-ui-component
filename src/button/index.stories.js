@@ -7,18 +7,18 @@ storiesOf("desktop/button", module).add("Base", () => {
     className: "sample-class",
     id: "sample-id",
     visible: true,
-    disabled: false
+    disabled: false,
   });
-  normalButton.addEventListener("click", event => {
+  normalButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
   const submitButton = new Button({
     text: "Submit",
     type: "submit",
     visible: true,
-    disabled: false
+    disabled: false,
   });
-  submitButton.addEventListener("click", event => {
+  submitButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
 
@@ -26,9 +26,9 @@ storiesOf("desktop/button", module).add("Base", () => {
     text: "Alert",
     type: "alert",
     visible: true,
-    disabled: false
+    disabled: false,
   });
-  alertButton.addEventListener("click", event => {
+  alertButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
 
@@ -36,9 +36,9 @@ storiesOf("desktop/button", module).add("Base", () => {
     text: "Submit",
     type: "submit",
     visible: true,
-    disabled: true
+    disabled: true,
   });
-  disabledButton.addEventListener("click", event => {
+  disabledButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
   root.appendChild(normalButton);

@@ -24,7 +24,7 @@ describe("MobileMultiChoice", () => {
 
     it('should be replace by "replace-error" when changing by setter', async () => {
       const container = new MobileMultiChoice({
-        error: "error-message"
+        error: "error-message",
       });
       container.error = "replace-error";
       const el = await fixture(container);

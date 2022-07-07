@@ -12,7 +12,7 @@ Button は、ボタンを表示します。
 <div class="sample-container" id="button">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/button.js"></script>
+<script src="/js/samples/desktop/button.js"></script>
 
 ---
 

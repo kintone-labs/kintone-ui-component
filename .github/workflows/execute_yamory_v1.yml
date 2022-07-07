@@ -1,4 +1,4 @@
-name: excute yamory when pushing to v1
+name: execute yamory when pushing to v1
 
 on: 
   push:
@@ -6,12 +6,14 @@ on:
     
 jobs:
   check_master:
-    name: excute yamory_master
+    name: execute yamory on master branch 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: run Yamory
       run: |
+        ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
+        ls -1 -d docs/document/website/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" 
       env:

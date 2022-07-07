@@ -7,17 +7,17 @@ export default {
     language: {
       name: "language",
       options: ["en", "ja", "zh"],
-      control: { type: "select" }
-    }
+      control: { type: "select" },
+    },
   },
   parameters: {
     actions: {
       handles: [
         "kuc:calendar-footer-click-today",
-        "kuc:calendar-footer-click-none"
-      ]
-    }
-  }
+        "kuc:calendar-footer-click-none",
+      ],
+    },
+  },
 };
 
 const Template = ({ language }) => {
@@ -30,5 +30,5 @@ const Template = ({ language }) => {
 
 export const base = Template.bind({});
 base.args = {
-  language: "en"
+  language: "en",
 };

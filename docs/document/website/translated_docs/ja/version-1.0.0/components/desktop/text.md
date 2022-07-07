@@ -12,7 +12,7 @@ Text は、単一行のテキストを表示します。
 <div class="sample-container" id="text">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/text.js"></script>
+<script src="/js/samples/desktop/text.js"></script>
 
 ---
 

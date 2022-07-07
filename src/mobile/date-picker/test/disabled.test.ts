@@ -12,7 +12,7 @@ describe("MobileDatePicker", () => {
 
     it("exists on element when initializing disabled value is true", async () => {
       const container = new MobileDatePicker({
-        disabled: true
+        disabled: true,
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(".kuc-mobile-base-date__group__input");
@@ -21,7 +21,7 @@ describe("MobileDatePicker", () => {
 
     it("exists on element when changing by setter", async () => {
       const container = new MobileDatePicker({
-        disabled: false
+        disabled: false,
       });
       container.disabled = true;
       const el = await fixture(container);
@@ -31,7 +31,7 @@ describe("MobileDatePicker", () => {
 
     it("does not exists on element when changing by setter", async () => {
       const container = new MobileDatePicker({
-        disabled: true
+        disabled: true,
       });
       container.disabled = false;
       const el = await fixture(container);

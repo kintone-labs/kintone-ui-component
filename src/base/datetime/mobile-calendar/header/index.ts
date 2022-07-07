@@ -3,7 +3,7 @@ import { property, state, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../../../kuc-base";
 import { Item } from "../../../datetime/listbox";
 import { getWidthElmByContext } from "../../../context";
@@ -21,14 +21,14 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     type: Number,
     hasChanged(newVal: number) {
       return isValidMonth(newVal);
-    }
+    },
   })
   month = 1;
   @property({
     type: Number,
     hasChanged(newVal: number) {
       return isValidYear(newVal);
-    }
+    },
   })
   year = 2021;
 
@@ -117,7 +117,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     return this._locale.MONTH_SELECT.map((month: string, index: number) => {
       const item: Item = {
         value: `${index + 1}`,
-        label: `${month}`
+        label: `${month}`,
       };
       return item;
     });
@@ -127,7 +127,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     return this._getYearOptions().map((year: number) => {
       const item: Item = {
         value: `${year}`,
-        label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`
+        label: `${year}${this._locale.YEAR_SELECT_POSTFIX}`,
       };
       return item;
     });
@@ -151,12 +151,8 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 
   private _getYearMonthTemplate() {
     return this.language === "zh" || this.language === "ja"
-      ? html`
-          ${this._getYearTemplate()}${this._getMonthTemplate()}
-        `
-      : html`
-          ${this._getMonthTemplate()}${this._getYearTemplate()}
-        `;
+      ? html` ${this._getYearTemplate()}${this._getMonthTemplate()} `
+      : html` ${this._getMonthTemplate()}${this._getYearTemplate()} `;
   }
 
   private _handleChangeMonthDropdown(event: CustomEvent) {
@@ -208,26 +204,28 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 
   private _getOptionsMonthTemplate() {
     return this._monthOptions.map(
-      month =>
+      (month) =>
         html`
           <option
             ?selected="${parseInt(month.value!, 10) === this.month}"
             value="${month.value!}"
-            >${month.label}</option
           >
+            ${month.label}
+          </option>
         `
     );
   }
 
   private _getOptionsYearTemplate() {
     return this._yearOptions.map(
-      year =>
+      (year) =>
         html`
           <option
             ?selected="${parseInt(year.value!, 10) === this.year}"
             value="${year.value!}"
-            >${year.label}</option
           >
+            ${year.label}
+          </option>
         `
     );
   }

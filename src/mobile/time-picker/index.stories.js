@@ -11,23 +11,23 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
+        options: ["auto", "en", "ja", "zh"],
+      },
     },
     requiredIcon: { name: "requiredIcon" },
     value: { name: "value" },
-    visible: { name: "visible" }
+    visible: { name: "visible" },
   },
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
+      defaultViewport: "iPhone11Pro",
     },
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
-const Template = args =>
+const Template = (args) =>
   html`
     <kuc-mobile-time-picker
       .className="${args.className}"
@@ -54,7 +54,7 @@ BaseHour24.args = {
   hour12: false,
   requiredIcon: false,
   visible: true,
-  language: "auto"
+  language: "auto",
 };
 
 export const BaseHour12 = Template.bind({});
@@ -68,7 +68,7 @@ BaseHour12.args = {
   hour12: true,
   requiredIcon: false,
   visible: true,
-  language: "auto"
+  language: "auto",
 };
 
 export const BaseError = Template.bind({});
@@ -82,5 +82,5 @@ BaseError.args = {
   hour12: false,
   requiredIcon: false,
   visible: true,
-  language: "auto"
+  language: "auto",
 };

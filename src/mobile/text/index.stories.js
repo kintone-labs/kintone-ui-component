@@ -9,15 +9,15 @@ storiesOf("mobile/text", module)
       value: "Orange",
       requiredIcon: true,
       label: "Text",
-      error: "Error occured!"
+      error: "Error occured!",
     });
-    mobileText.addEventListener("focus", event => {
+    mobileText.addEventListener("focus", (event) => {
       console.log(event.detail);
     });
-    mobileText.addEventListener("change", event => {
+    mobileText.addEventListener("change", (event) => {
       console.log(event.detail);
     });
-    mobileText.addEventListener("input", event => {
+    mobileText.addEventListener("input", (event) => {
       console.log(event.detail);
     });
     root.appendChild(mobileText);

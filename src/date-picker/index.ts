@@ -5,13 +5,13 @@ import {
   CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
-  KucBase
+  KucBase,
 } from "../base/kuc-base";
 import {
   validateProps,
   validateDateValue,
   isValidDate,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import "../base/datetime/date";
 import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
@@ -44,7 +44,7 @@ export class DatePicker extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
 
@@ -233,7 +233,7 @@ export class DatePicker extends KucBase {
     event.preventDefault();
     const eventDetail: CustomEventDetail = {
       oldValue: this.value,
-      value: ""
+      value: "",
     };
     if (event.detail.error) {
       this.value = undefined;

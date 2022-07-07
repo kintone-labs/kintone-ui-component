@@ -12,7 +12,7 @@ TextArea は、複数行のテキストを表示します。
 <div class="sample-container block" id="textarea">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/textarea.js"></script>
+<script src="/js/samples/desktop/textarea.js"></script>
 
 ---
 

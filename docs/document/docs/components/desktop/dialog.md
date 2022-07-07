@@ -13,7 +13,7 @@ The Dialog component displays a dialog box.
     <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
   </div>
 </div>
-<script src="/js/samples/dialog.js"></script>
+<script src="/js/samples/desktop/dialog.js"></script>
 
 ---
 
@@ -25,6 +25,7 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| icon | string | "" | The icon displayed in upper left of content area | Available options:<li>"info" : ![info](assets/icon-info.png)</li><li>"success" : ![success](assets/icon-success.png)</li><li>"error" : ![error](assets/icon-error.png)</li><li>"warning" : ![warning](assets/icon-warning.png)</li><li>"question" : ![question](assets/icon-question.png)</li><li>"" : No icon</li> |
 | title | string | ""  | Header Title | |
 | content *1 | string/HTMLElement | ""  | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | footer *1 | string/HTMLElement | ""  | DOM inside footer | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
@@ -81,7 +82,8 @@ Here is a sample code when all parameters are specified:
 const dialog = new Kuc.Dialog({
   title:  'Title',
   content: '<div>This is Content</div>',
-  footer: 'Footer'
+  footer: 'Footer',
+  icon: 'info'
 });
 
 dialog.addEventListener('close', event => {

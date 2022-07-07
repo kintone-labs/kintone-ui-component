@@ -12,7 +12,7 @@ The MultiChoice component allows the user to select multiple values from multipl
 <div class="sample-container" id= "multichoice">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/multichoice.js"></script>
+<script src="/js/samples/desktop/multichoice.js"></script>
 
 ---
 

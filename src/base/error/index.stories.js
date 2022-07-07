@@ -3,9 +3,9 @@ import { html } from "lit-html";
 
 export default {
   title: "base/error",
-  argTypes: {}
+  argTypes: {},
 };
-const Template = args => {
+const Template = (args) => {
   return html`
     <kuc-base-error
       .ariaLive="${args.ariaLive}"
@@ -19,5 +19,5 @@ export const Base = Template.bind({});
 Base.args = {
   ariaLive: "",
   guid: "baseerror-id",
-  value: "Error occured!"
+  value: "Error occured!",
 };

@@ -12,7 +12,7 @@ MobileDatePicker は入力エリアと日付選択用のカレンダーを表示
 <div class="sample-container" id="mobile-date-picker">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/mobile-date-picker.js"></script>
+<script src="/js/samples/mobile/mobile-date-picker.js"></script>
 
 ---
 
