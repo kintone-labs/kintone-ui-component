@@ -11,58 +11,36 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
+        options: ["auto", "en", "ja", "zh"],
+      },
     },
     requiredIcon: { name: "requiredIcon" },
     value: { name: "value" },
-    visible: { name: "visible" }
+    visible: { name: "visible" },
   },
   parameters: {
     actions: {
-      handles: ["change"]
+      handles: ["change"],
     },
-  }
+  },
 };
 
-const ConstructorTemplate = args => {
+const template = (args) => {
   const datePicker = new DatePicker({ ...args });
-  datePicker.addEventListener("change", event => {
+  datePicker.addEventListener("change", (event) => {
     console.log(event);
   });
-
   return datePicker;
 };
 
-export const BaseConstructor = ConstructorTemplate.bind({});
-BaseConstructor.args = {
+export const Base = template.bind({});
+Base.args = {
   className: "date-picker-class",
-  error: "",
+  error: "Error occured",
   id: "date-picker-id",
   label: "Date Picker Label",
   language: "en",
   requiredIcon: false,
-  value: "2021-03-31",
-  visible: true
-};
-
-const SetTemplate = args => {
-  const datePicker = new DatePicker({ ...args });
-  datePicker.addEventListener("change", event => {
-    console.log(event);
-  });
-
-  return datePicker;
-};
-
-export const BaseSetter = SetTemplate.bind({});
-BaseSetter.args = {
-  className: "date-picker-class",
-  error: "",
-  id: "date-picker-id",
-  label: "Date Picker Label",
-  language: "en",
-  requiredIcon: false,
-  value: "2021-03-31",
-  visible: true
+  value: "2021-03-12",
+  visible: true,
 };
