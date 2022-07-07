@@ -1,13 +1,11 @@
 import { Table } from "./index.ts";
 import { Dropdown } from "../dropdown";
-import { Checkbox } from "../checkbox";
-import { html, PropertyValues } from "lit";
 import { storiesOf } from "@storybook/web-components";
 
 storiesOf("desktop/table", module).add("Base", () => {
   const renderAge = (dataCell, dataRow) => {
     const element = document.createElement("h3");
-    element.innerText = `Custom cell: The age is ${dataCell}`;
+    element.innerText = `Custom the age is ${dataCell}`;
     return element;
   };
 
@@ -29,10 +27,6 @@ storiesOf("desktop/table", module).add("Base", () => {
       ],
       value: cellData,
       selectedIndex: 0,
-      label: "フルーツ一覧",
-      requiredIcon: true,
-      disabled: false,
-      error: "エラーです",
     });
 
     return dropdown;
