@@ -11,6 +11,7 @@ storiesOf("desktop/readonly-table", module)
       label: "My ReadOnlyTable",
       rowsPerPage: 3,
       pagination: true,
+      paginationPosition: "left",
       columns: [
         {
           headerName: "First column",

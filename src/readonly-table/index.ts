@@ -17,6 +17,7 @@ type ReadOnlyTableProps = {
   data?: string[][];
   pagination?: boolean;
   rowsPerPage?: number;
+  paginationPosition?: "left" | "right";
   visible?: boolean;
 };
 
@@ -31,6 +32,7 @@ export class ReadOnlyTable extends KucBase {
   @property({ type: Array }) data: string[][] = [];
   @property({ type: Boolean }) pagination = true;
   @property({ type: Number }) rowsPerPage = 5;
+  @property({ type: String }) paginationPosition = "left";
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -69,10 +71,19 @@ export class ReadOnlyTable extends KucBase {
     if (props.rowsPerPage) {
       if (props.rowsPerPage < 0) {
         props.rowsPerPage = 5;
+        console.error("'rows' value is invalid");
       }
       props.rowsPerPage = Math.round(props.rowsPerPage);
     } else {
       props.rowsPerPage = 5;
+    }
+
+    if (
+      props.paginationPosition !== "left" &&
+      props.paginationPosition !== "right"
+    ) {
+      props.paginationPosition = "left";
+      console.error("'paginationPosition' value is invalid");
     }
 
     const validProps = validateProps(props);
@@ -93,8 +104,8 @@ export class ReadOnlyTable extends KucBase {
 
     return html`
       <th
-        style="width: ${column.width}"
         class="kuc-readonly-table__table__header__cell"
+        style="width: ${column.width}"
         ?hidden="${column.visible === false}"
       >
         <span class="kuc-readonly-table__table__header__cell__label">
@@ -104,18 +115,18 @@ export class ReadOnlyTable extends KucBase {
     `;
   }
 
-  private _getDataTemplate(data: string[], number: number) {
+  private _getDataTemplate(data: string[], currentIndex: number) {
     // Do not process if the number of data rows per page exceeds steps // REDUNDANT
     // if (this.pagination && number >= steps) return html``;
     return html`
       <tr
-        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${number}"
+        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
       >
-        ${data.map((dataContent: string, dataNumber: number) => {
+        ${data.map((dataContent: string, dataIndex: number) => {
           let isHidden = false;
           if (
-            this.columns[dataNumber] &&
-            this.columns[dataNumber].visible === false
+            this.columns[dataIndex] &&
+            this.columns[dataIndex].visible === false
           ) {
             isHidden = true;
           }
@@ -146,12 +157,16 @@ export class ReadOnlyTable extends KucBase {
           </tr>
         </thead>
         <tbody class="kuc-readonly-table__table__body">
-          ${currentData.map((data: string[], number: number) => {
-            return this._getDataTemplate(data, number);
+          ${currentData.map((data: string[], currentIndex: number) => {
+            return this._getDataTemplate(data, currentIndex);
           })}
         </tbody>
       </table>
-      <div class="kuc-readonly-table__pager" ?hidden="${!this.pagination}">
+      <div
+        class="kuc-readonly-table__pager"
+        style="float: ${this.paginationPosition}"
+        ?hidden="${!this.pagination}"
+      >
         <button
           title="previous"
           class="kuc-readonly-table__pager__pagenation-prev"
