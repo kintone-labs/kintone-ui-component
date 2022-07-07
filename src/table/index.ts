@@ -65,7 +65,6 @@ export class Table extends KucBase {
       }
       defaultRowData[key] = "";
     }
-    console.log(defaultRowData,'defaultRowData')
     return defaultRowData;
   }
 
@@ -75,17 +74,6 @@ export class Table extends KucBase {
       e.detail.data = this.data;
     };
 
-    const cloneData = [...this.data];
-    const handleAddRow = (e: Event) => {
-      const newIndex = index + 1;
-      const defaultRowData = this.getDefaultRowData(this.data[index]);
-      cloneData.splice(newIndex, 0, defaultRowData);
-      this.data = [...cloneData];
-    };
-    const handleRemoveRow = () => {
-      cloneData.splice(index, 1);
-      this.data = [...cloneData];
-    };
     return html`
       <tr class="kuc-table__table__body__row" @change="${handleChange}">
         ${this.columns.map((col) => {
@@ -98,21 +86,40 @@ export class Table extends KucBase {
             ${dataRender}
           </td>`;
         })}
-        <td class="kuc-table__table__body__row__action">
-          <button
-            type="button"
-            @click="${handleAddRow}"
-            class="kuc-table__table__body__row__action-add"
-            title="Add row"
-          ></button
-          ><button
-            type="button"
-            @click="${handleRemoveRow}"
-            class="kuc-table__table__body__row__action-remove"
-            title="Delete this row"
-          ></button>
-        </td>
+        ${this._getActionsTemplate(index)}
       </tr>
+    `;
+  }
+
+  private _getActionsTemplate(index: number) {
+    const cloneData = [...this.data];
+    const handleAddRow = (e: Event) => {
+      const newIndex = index + 1;
+      const defaultRowData = this.getDefaultRowData(this.data[index]);
+      cloneData.splice(newIndex, 0, defaultRowData);
+      this.data = [...cloneData];
+    };
+    const handleRemoveRow = () => {
+      cloneData.splice(index, 1);
+      this.data = [...cloneData];
+    };
+    return html`
+      <td class="kuc-table__table__body__row__action">
+        <button
+          type="button"
+          @click="${handleAddRow}"
+          class="kuc-table__table__body__row__action-add"
+          title="Add row"
+        ></button>
+        ${this.data.length === 1
+          ? null
+          : html`<button
+              type="button"
+              @click="${handleRemoveRow}"
+              class="kuc-table__table__body__row__action-remove"
+              title="Delete this row"
+            ></button>`}
+      </td>
     `;
   }
 
