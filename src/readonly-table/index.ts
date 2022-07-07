@@ -147,10 +147,10 @@ export class ReadOnlyTable extends KucBase {
     const currentData = this._createDisplayData(this.data, this.rowsPerPage);
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
-        <kuc-base-label .text="${this.label}"></kuc-base-label>
-      </div>
       <table class="kuc-readonly-table__table" aria-label="${this.label}">
+        <caption class="kuc-readonly-table__label">
+          <kuc-base-label .text="${this.label}"></kuc-base-label>
+        </caption>
         <thead class="kuc-readonly-table__table__header">
           <tr>
             ${this.columns.map(column => this._getColumnsTemplate(column))}
@@ -351,9 +351,10 @@ export class ReadOnlyTable extends KucBase {
           border-style: solid;
         }
         .kuc-readonly-table__label {
-          display: inline-block;
+          // display: inline-block;
+          text-align: left;
           white-space: nowrap;
-          padding: 4px 8px;
+          padding: 4px 0px;
         }
         .kuc-readonly-table__label[hidden] {
           display: none;
