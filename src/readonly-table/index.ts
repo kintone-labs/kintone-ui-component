@@ -22,8 +22,6 @@ type ReadOnlyTableProps = {
 };
 
 let currentPage: number = 1;
-// let isFocusPrev = false;
-// let isFocusNext = false;
 export class ReadOnlyTable extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -116,8 +114,6 @@ export class ReadOnlyTable extends KucBase {
   }
 
   private _getDataTemplate(data: string[], currentIndex: number) {
-    // Do not process if the number of data rows per page exceeds steps // REDUNDANT
-    // if (this.pagination && number >= steps) return html``;
     return html`
       <tr
         class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
@@ -214,8 +210,6 @@ export class ReadOnlyTable extends KucBase {
   }
 
   private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
-    // Do not process on the last page
-    // if (currentPage >= this.data.length / this.rowsPerPage) return; REDUNDANT
     currentPage += 1;
     this.render();
     this.requestUpdate();
@@ -255,25 +249,6 @@ export class ReadOnlyTable extends KucBase {
     } else {
       this._nextButtonEl.classList.remove("pager-disable");
     }
-
-    // Focus effect when using TAB key
-    // this._nextButtonEl.addEventListener("focus", () => {
-    //   isFocusNext = true;
-    //   this.requestUpdate();
-    // });
-    // this._nextButtonEl.addEventListener("blur", () => {
-    //   isFocusNext = false;
-    //   this.requestUpdate();
-    // });
-
-    // this._prevButtonEl.addEventListener("focus", () => {
-    //   isFocusPrev = true;
-    //   this.requestUpdate();
-    // });
-    // this._prevButtonEl.addEventListener("blur", () => {
-    //   isFocusPrev = false;
-    //   this.requestUpdate();
-    // });
   }
 
   private _getPrevButtonSvgTemplate() {
@@ -351,7 +326,6 @@ export class ReadOnlyTable extends KucBase {
           border-style: solid;
         }
         .kuc-readonly-table__label {
-          // display: inline-block;
           text-align: left;
           white-space: nowrap;
           padding: 4px 0px;
