@@ -18,6 +18,6 @@ module.exports = {
     "kuc-v1/no-using-bem-method-for-classname": "error",
     "kuc-v1/no-using-event-handler-name": "error",
     "kuc-v1/private-custom-event": "error",
-    "kuc-v1/no-sorting-in-alphabetical-order": "error"
+    // "kuc-v1/no-sorting-in-alphabetical-order": "error"
   }
 };

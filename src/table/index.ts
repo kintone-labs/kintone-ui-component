@@ -52,7 +52,7 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
-  private getDefaultRowData(data: any) {
+  private _getDefaultRowData(data: any) {
     const defaultRowData = {} as any;
     for (const key in data) {
       if (typeof data[key] === "string") {
@@ -95,7 +95,7 @@ export class Table extends KucBase {
     const cloneData = [...this.data];
     const handleAddRow = (e: Event) => {
       const newIndex = index + 1;
-      const defaultRowData = this.getDefaultRowData(this.data[index]);
+      const defaultRowData = this._getDefaultRowData(this.data[index]);
       cloneData.splice(newIndex, 0, defaultRowData);
       this.data = [...cloneData];
     };
