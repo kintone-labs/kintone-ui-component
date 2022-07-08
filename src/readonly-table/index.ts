@@ -85,7 +85,7 @@ export class ReadOnlyTable extends KucBase {
     return html`
       ${this._getStyleTagTemplate()}
       <table class="kuc-readonly-table__table" aria-label="${this.label}">
-        <caption class="kuc-readonly-table__label">
+        <caption class="kuc-readonly-table__table__label">
           <kuc-base-label .text="${this.label}"></kuc-base-label>
         </caption>
         <thead class="kuc-readonly-table__table__header">
@@ -327,12 +327,12 @@ export class ReadOnlyTable extends KucBase {
           border-color: #3498db;
           border-style: solid;
         }
-        .kuc-readonly-table__label {
+        .kuc-readonly-table__table__label {
           text-align: left;
           white-space: nowrap;
           padding: 4px 0px;
         }
-        .kuc-readonly-table__label[hidden] {
+        .kuc-readonly-table__table__label[hidden] {
           display: none;
         }
         .kuc-readonly-table__table__header__cell {
