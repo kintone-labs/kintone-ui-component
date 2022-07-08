@@ -8,25 +8,25 @@ storiesOf("desktop/dropdown", module)
       items: [
         {
           label: "-----",
-          value: "-----"
+          value: "-----",
         },
         {
           label: "Orange",
-          value: "orange"
+          value: "orange",
         },
         {
           label: "Apple",
-          value: "apple"
-        }
+          value: "apple",
+        },
       ],
       value: "-----",
       selectedIndex: 0,
       label: "フルーツ一覧",
       requiredIcon: true,
       disabled: false,
-      error: "エラーです"
+      error: "エラーです",
     });
-    dropdown.addEventListener("change", event => {
+    dropdown.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(dropdown);
@@ -39,16 +39,16 @@ storiesOf("desktop/dropdown", module)
     dropdown.items = [
       {
         label: "-----",
-        value: "-----"
+        value: "-----",
       },
       {
         label: "orange",
-        value: "Orange"
+        value: "Orange",
       },
       {
         label: "apple",
-        value: "Apple"
-      }
+        value: "Apple",
+      },
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
@@ -63,20 +63,20 @@ storiesOf("desktop/dropdown", module)
     dropdown.items = [
       {
         label: "-----",
-        value: "-----"
+        value: "-----",
       },
       {
         label: "orange",
-        value: "Orange"
+        value: "Orange",
       },
       {
         label: "apple",
-        value: "Apple"
+        value: "Apple",
       },
       {
         label: "banana",
-        value: "Banana"
-      }
+        value: "Banana",
+      },
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
@@ -95,14 +95,14 @@ storiesOf("desktop/dropdown", module)
         {
           label:
             "Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1",
-          value: "Sample 1"
+          value: "Sample 1",
         },
         {
           label: "Sample 2",
-          value: "Sample 2"
-        }
+          value: "Sample 2",
+        },
       ],
-      error: "Error"
+      error: "Error",
     });
     root.appendChild(dropdown2);
     return root;

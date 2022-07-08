@@ -4,7 +4,7 @@ import { Dropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("Dropdown", () => {
@@ -12,7 +12,7 @@ describe("Dropdown", () => {
     let triggeredEvent: any = null;
     const container = new Dropdown({
       items: initItems,
-      value: initItems[1].value
+      value: initItems[1].value,
     });
 
     container.addEventListener("change", (event: any) => {
@@ -39,7 +39,7 @@ describe("Dropdown", () => {
     let triggeredEvent: any = null;
     const container = new Dropdown({
       items: initItems,
-      value: initItems[1].value
+      value: initItems[1].value,
     });
 
     container.addEventListener("change", (event: any) => {

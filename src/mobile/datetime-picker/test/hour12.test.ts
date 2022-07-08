@@ -6,7 +6,7 @@ describe("MobileDateTimePicker", () => {
   describe("hour12", () => {
     it("should be using time format hour 24 when not assigned on constructor", async () => {
       const container = new MobileDateTimePicker({
-        value: "2021-12-22T14:30:00"
+        value: "2021-12-22T14:30:00",
       });
       const el = await fixture(container);
       await elementUpdated(container);
@@ -19,7 +19,7 @@ describe("MobileDateTimePicker", () => {
     it("should be using time format hour 12 when assigned on constructor", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-22T14:30:00",
-        hour12: true
+        hour12: true,
       });
       const el = await fixture(container);
       await elementUpdated(container);
@@ -33,7 +33,7 @@ describe("MobileDateTimePicker", () => {
     it("should be using time format hour 12 when changed by setter", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-22T14:30:00",
-        hour12: false
+        hour12: false,
       });
       const el = await fixture(container);
       container.hour12 = true;

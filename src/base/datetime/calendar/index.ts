@@ -91,14 +91,10 @@ export class BaseDateTimeCalendar extends KucBase {
   }
 
   private _calculateBodyCalendarPosition() {
-    const {
-      inputToBottom,
-      inputToTop,
-      inputToRight,
-      inputToLeft
-    } = calculateDistanceInput(this);
-    const calendarHeight = this._baseCalendarGroupEl.getBoundingClientRect()
-      .height;
+    const { inputToBottom, inputToTop, inputToRight, inputToLeft } =
+      calculateDistanceInput(this);
+    const calendarHeight =
+      this._baseCalendarGroupEl.getBoundingClientRect().height;
 
     if (inputToBottom >= calendarHeight) {
       this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
@@ -130,7 +126,7 @@ export class BaseDateTimeCalendar extends KucBase {
       this._setCalendarPosition({
         top,
         bottom,
-        right
+        right,
       });
       return;
     }
@@ -140,7 +136,7 @@ export class BaseDateTimeCalendar extends KucBase {
     this._setCalendarPosition({
       bottom,
       top,
-      left
+      left,
     });
   }
 
@@ -148,7 +144,7 @@ export class BaseDateTimeCalendar extends KucBase {
     top = "auto",
     left = "auto",
     right = "auto",
-    bottom = "auto"
+    bottom = "auto",
   }: {
     top?: number | string;
     left?: number | string;
@@ -192,7 +188,7 @@ export class BaseDateTimeCalendar extends KucBase {
     const dateParts = value.split("-");
     return {
       year: parseInt(dateParts[0], 10),
-      month: parseInt(dateParts[1], 10)
+      month: parseInt(dateParts[1], 10),
     };
   }
 }

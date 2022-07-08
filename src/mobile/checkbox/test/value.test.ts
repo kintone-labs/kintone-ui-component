@@ -4,7 +4,7 @@ import { MobileCheckbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileCheckbox", () => {
@@ -25,7 +25,7 @@ describe("MobileCheckbox", () => {
     it("should be checked items when assinged on constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -41,7 +41,7 @@ describe("MobileCheckbox", () => {
     it("should be changed value when updated by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       container.value = [initItems[2].value];
 
@@ -75,7 +75,7 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[0].value]
+        value: [initItems[0].value],
       });
       try {
         container.value = null;
@@ -95,7 +95,7 @@ describe("MobileCheckbox", () => {
     it("should be none checked items when set [] by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: ["orange"]
+        value: ["orange"],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(

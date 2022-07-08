@@ -16,7 +16,7 @@ describe("DateTimePicker", () => {
     it("should be format ja language when assigned in constructor", async () => {
       const container = new DateTimePicker({
         value: "2021-12-22T09:30:00",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -28,7 +28,7 @@ describe("DateTimePicker", () => {
     it("should be change to zh language when assigned by setter", async () => {
       const container = new DateTimePicker({
         value: "2021-12-22T09:30:00",
-        language: "en"
+        language: "en",
       });
       container.language = "zh";
       const el = await fixture(container);

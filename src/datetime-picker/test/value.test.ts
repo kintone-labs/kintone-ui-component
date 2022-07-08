@@ -108,7 +108,7 @@ describe("DateTimePicker", () => {
     it("should be today value when press today button on calendar", async () => {
       const container = new DateTimePicker({
         value: "2021-02-28T09:30:00",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -150,7 +150,7 @@ describe("DateTimePicker", () => {
     it("should be empty value and UI when set '' by setter", async () => {
       const container = new DateTimePicker({
         value: "2022-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = "";
@@ -166,7 +166,7 @@ describe("DateTimePicker", () => {
     it("should be empty value and UI when set undefined on constructor", async () => {
       const container = new DateTimePicker({
         value: undefined,
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -180,7 +180,7 @@ describe("DateTimePicker", () => {
     it("should be undefined value and empty on UI when set undefined on setter", async () => {
       const container = new DateTimePicker({
         value: "2022-12-12",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       container.value = undefined;
@@ -196,7 +196,7 @@ describe("DateTimePicker", () => {
     it("should throw error when it is less than min", async () => {
       const container = new DateTimePicker({
         value: "2022-12-12T10:00",
-        min: "12:00"
+        min: "12:00",
       });
       try {
         const el = await fixture(container);

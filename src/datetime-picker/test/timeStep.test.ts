@@ -85,7 +85,7 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({
         timeStep: 130,
         min: "10:00",
-        max: "12:00"
+        max: "12:00",
       });
       try {
         const el = await fixture(container);

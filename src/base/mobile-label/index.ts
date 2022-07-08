@@ -26,9 +26,7 @@ export class BaseMobileLabel extends KucBase {
             >${this.text}</span
           >
         `
-      : html`
-          <span class="kuc-base-mobile-label__text">${this.text}</span>
-        `;
+      : html` <span class="kuc-base-mobile-label__text">${this.text}</span> `;
   }
 }
 if (!window.customElements.get("kuc-base-mobile-label")) {

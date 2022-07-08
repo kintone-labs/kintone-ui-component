@@ -6,7 +6,7 @@ describe("DateTimePicker", () => {
     it("should do not open listbox when press click time group on disable mode", async () => {
       const container = new DateTimePicker({
         value: "2021-12-22T09:30:00",
-        disabled: true
+        disabled: true,
       });
       const el = await fixture(container);
       const timeGroupEl = el.querySelector(
@@ -24,7 +24,7 @@ describe("DateTimePicker", () => {
     it("should be opened listbox when input focus and blur listbox", async () => {
       const container = new DateTimePicker({
         value: "2021-12-22T14:30:00",
-        hour12: true
+        hour12: true,
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -93,7 +93,7 @@ describe("DateTimePicker", () => {
     it("should be closed listbox when pressing Escape key", async () => {
       const container = new DateTimePicker({
         value: "2021-12-22T09:30:00",
-        hour12: true
+        hour12: true,
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
@@ -116,7 +116,7 @@ describe("DateTimePicker", () => {
 
     it("should be changed minutes equal 00 when value is empty and pressing 3 key at minutes input", async () => {
       const container = new DateTimePicker({
-        hour12: false
+        hour12: false,
       });
       const el = await fixture(container);
       const inputMinuteEl = el.querySelector(
@@ -130,7 +130,7 @@ describe("DateTimePicker", () => {
 
     it("should change to PM when pressing P key", async () => {
       const container = new DateTimePicker({
-        hour12: true
+        hour12: true,
       });
       const el = await fixture(container);
       const suffixEl = el.querySelector(

@@ -16,6 +16,8 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
   <a href="./README.md">English</a> | 日本語
 </p>
 
+> コントリビューターの方向けのお知らせです。<br>
+> npm v8.5.5 以降で package-lock.json のチェックが厳格化されたため、現時点では Node v16.15.1 以前を利用して "npm ci" で依存ライブラリのインストールをしてください。
 
 ## 目次
 - [インストール](#インストール)
@@ -121,11 +123,12 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 
 ## コントリビューションガイドライン
 kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
-ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録してください。
+ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録してください。<br>
+またコミュニティとして [GitHub の Discussions 機能](https://github.com/kintone-labs/kintone-ui-component/discussions)を利用しています。
 
 ## ロードマップ
 開発ロードマップを公開しています。<br>
-詳細は[こちら](https://github.com/kintone-labs/kintone-ui-component/issues/936)をご確認ください。
+詳細は[こちら](https://github.com/kintone-labs/kintone-ui-component/discussions/987)をご確認ください。
 
 ## ライセンス
 [MIT LICENSE](./LICENSE)

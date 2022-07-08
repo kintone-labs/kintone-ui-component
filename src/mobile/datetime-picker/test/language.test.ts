@@ -6,7 +6,7 @@ describe("MobileDateTimePicker", () => {
   describe("language", () => {
     it("should be using browser language when not assigned in constructor", async () => {
       const container = new MobileDateTimePicker({
-        value: "2021-12-22T09:30:00"
+        value: "2021-12-22T09:30:00",
       });
       const el = await fixture(container);
       document.documentElement.setAttribute("lang", "en");
@@ -19,7 +19,7 @@ describe("MobileDateTimePicker", () => {
     it("should be format ja language when assigned in constructor", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-22T09:30:00",
-        language: "ja"
+        language: "ja",
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
@@ -31,7 +31,7 @@ describe("MobileDateTimePicker", () => {
     it("should be change to zh language when assigned by setter", async () => {
       const container = new MobileDateTimePicker({
         value: "2021-12-22T09:30:00",
-        language: "en"
+        language: "en",
       });
       container.language = "zh";
       const el = await fixture(container);

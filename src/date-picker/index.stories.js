@@ -12,22 +12,22 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
+        options: ["auto", "en", "ja", "zh"],
+      },
     },
     requiredIcon: { name: "requiredIcon" },
     value: { name: "value" },
-    visible: { name: "visible" }
+    visible: { name: "visible" },
   },
   parameters: {
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
 
-const Template = args => {
-  const handleDateChange = event => {
+const Template = (args) => {
+  const handleDateChange = (event) => {
     console.log(event);
   };
   return html`
@@ -55,7 +55,7 @@ BaseLanguageEN.args = {
   language: "en",
   requiredIcon: false,
   value: "2021-03-31",
-  visible: true
+  visible: true,
 };
 
 export const BaseLanguageJA = Template.bind({});
@@ -67,7 +67,7 @@ BaseLanguageJA.args = {
   language: "ja",
   requiredIcon: false,
   value: "2021-03-31",
-  visible: true
+  visible: true,
 };
 
 export const BaseLanguageZH = Template.bind({});
@@ -79,7 +79,7 @@ BaseLanguageZH.args = {
   language: "zh",
   requiredIcon: false,
   value: "2021-03-31",
-  visible: true
+  visible: true,
 };
 
 export const BaseError = Template.bind({});
@@ -91,5 +91,5 @@ BaseError.args = {
   requiredIcon: true,
   language: "en",
   value: "2021-03-31",
-  visible: true
+  visible: true,
 };

@@ -8,22 +8,22 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
-    }
+        options: ["auto", "en", "ja", "zh"],
+      },
+    },
   },
   parameters: {
     viewport: {
-      defaultViewport: "iPhone11Pro"
+      defaultViewport: "iPhone11Pro",
     },
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
 
-const Template = args => {
-  const handleDateChange = event => {
+const Template = (args) => {
+  const handleDateChange = (event) => {
     console.log(event);
   };
   return html`
@@ -51,5 +51,5 @@ Base.args = {
   language: "en",
   requiredIcon: false,
   value: "2021-03-31",
-  visible: true
+  visible: true,
 };

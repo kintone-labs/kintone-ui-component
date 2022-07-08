@@ -11,7 +11,7 @@ export const en = {
     "SEPTEMBER",
     "OCTOBER",
     "NOVEMBER",
-    "DECEMBER"
+    "DECEMBER",
   ],
   YEAR_SELECT_POSTFIX: "",
   WEEK_DAYS: [
@@ -21,12 +21,12 @@ export const en = {
     { text: "WED", abbr: "Wednesday" },
     { text: "THU", abbr: "Thursday" },
     { text: "FRI", abbr: "Friday" },
-    { text: "SAT", abbr: "Saturday" }
+    { text: "SAT", abbr: "Saturday" },
   ],
   INVALID_FORMAT: "Format is not valid.",
   INVALID_TIME_FORMAT: "Format is not valid.",
   CALENDAR_FOOTER_TEXT: { none: "None", today: "Today", close: "Close" },
-  TIME_IS_OUT_OF_VALID_RANGE: "Time is out of valid range."
+  TIME_IS_OUT_OF_VALID_RANGE: "Time is out of valid range.",
 };
 
 export const ja = {
@@ -42,7 +42,7 @@ export const ja = {
     "9月",
     "10月",
     "11月",
-    "12月"
+    "12月",
   ],
   YEAR_SELECT_POSTFIX: "年",
   WEEK_DAYS: [
@@ -52,12 +52,12 @@ export const ja = {
     { text: "水", abbr: "水" },
     { text: "木", abbr: "木" },
     { text: "金", abbr: "金" },
-    { text: "土", abbr: "土" }
+    { text: "土", abbr: "土" },
   ],
   INVALID_FORMAT: "日付の形式が不正です。",
   INVALID_TIME_FORMAT: "時刻の形式が不正です。",
   CALENDAR_FOOTER_TEXT: { none: "選択を解除", today: "今日", close: "閉じる" },
-  TIME_IS_OUT_OF_VALID_RANGE: "時刻が有効な範囲外です。"
+  TIME_IS_OUT_OF_VALID_RANGE: "時刻が有効な範囲外です。",
 };
 
 export const zh = {
@@ -73,7 +73,7 @@ export const zh = {
     "9月",
     "10月",
     "11月",
-    "12月"
+    "12月",
   ],
   YEAR_SELECT_POSTFIX: "年",
   WEEK_DAYS: [
@@ -83,10 +83,10 @@ export const zh = {
     { text: "周三", abbr: "周三" },
     { text: "周四", abbr: "周四" },
     { text: "周五", abbr: "周五" },
-    { text: "周六", abbr: "周六" }
+    { text: "周六", abbr: "周六" },
   ],
   INVALID_FORMAT: "日期格式不正确。",
   INVALID_TIME_FORMAT: "时间格式不正确。",
   CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" },
-  TIME_IS_OUT_OF_VALID_RANGE: "时间超出有效范围。"
+  TIME_IS_OUT_OF_VALID_RANGE: "时间超出有效范围。",
 };

@@ -5,14 +5,14 @@ import {
   createStyleOnHeader,
   CustomEventDetail,
   dispatchCustomEvent,
-  KucBase
+  KucBase,
 } from "../../kuc-base";
 import {
   formatInputValueToValue,
   formatValueToInputValue,
   getLocale,
   getTodayStringByLocale,
-  isValidDateFormat
+  isValidDateFormat,
 } from "../utils";
 import { isValidDate } from "../../validator";
 import { BASE_DATE_CSS } from "./style";
@@ -191,7 +191,7 @@ export class BaseDate extends KucBase {
     const detail: CustomEventDetail = {
       value: undefined,
       oldValue: this.value,
-      error: this._locale.INVALID_FORMAT
+      error: this._locale.INVALID_FORMAT,
     };
     this._inputValue = newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
@@ -265,7 +265,7 @@ export class BaseDate extends KucBase {
 
     const detail = {
       oldValue: this.value,
-      value: newValue
+      value: newValue,
     };
     this.value = newValue;
     dispatchCustomEvent(this, "kuc:base-date-change", detail);

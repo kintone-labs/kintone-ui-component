@@ -30,7 +30,7 @@ describe("TimePicker", () => {
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new TimePicker({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
 

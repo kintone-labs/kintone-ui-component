@@ -17,7 +17,7 @@ describe("Text", () => {
       inputEl.value = "OrangeApple";
       inputEl.dispatchEvent(
         new InputEvent("input", {
-          data: "Apple"
+          data: "Apple",
         })
       );
 
