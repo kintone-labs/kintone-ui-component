@@ -3,7 +3,7 @@ import { property, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 import { NOTIFICATION_CSS } from "./style";

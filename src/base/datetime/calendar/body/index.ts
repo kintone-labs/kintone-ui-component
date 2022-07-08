@@ -4,13 +4,13 @@ import {
   KucBase,
   CustomEventDetail,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../../kuc-base";
 import {
   getDisplayingDates,
   padStart,
   WeekDate,
-  getLocale
+  getLocale,
 } from "../../utils/";
 import { CALENDAR_BODY_CSS } from "./style";
 
@@ -190,7 +190,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return {
       day: dates[2],
       month: dates[1],
-      year: dates[0]
+      year: dates[0],
     };
   }
 
@@ -258,7 +258,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     return html`
       <thead>
         <tr>
-          ${this._locale.WEEK_DAYS.map(wday => {
+          ${this._locale.WEEK_DAYS.map((wday) => {
             return html`
               <th
                 class="kuc-base-datetime-calendar-body__table__header"
@@ -278,7 +278,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const displayingDates = getDisplayingDates(this._year, this._month - 1);
     return html`
       <tbody>
-        ${displayingDates.map(weeks => {
+        ${displayingDates.map((weeks) => {
           return html`
             <tr>
               ${weeks.map((weekDate: WeekDate) => {

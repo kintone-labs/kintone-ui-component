@@ -3,7 +3,7 @@ import { property, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../../kuc-base";
 import { getLocale } from "../../../datetime/utils";
 import { BASE_MOBILE_CALENDAR_FOOTER_CSS } from "./style";

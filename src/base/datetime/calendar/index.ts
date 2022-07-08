@@ -3,7 +3,7 @@ import { state, property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";

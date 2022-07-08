@@ -156,7 +156,7 @@ describe("DatePicker", () => {
       let triggeredEvent: any = null;
       const container = new DatePicker({
         value: "2021-12-20",
-        language: "auto"
+        language: "auto",
       });
       document.documentElement.setAttribute("lang", "en");
       container.addEventListener("change", (event: Event) => {

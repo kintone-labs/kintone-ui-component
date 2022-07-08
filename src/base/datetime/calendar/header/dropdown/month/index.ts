@@ -4,14 +4,14 @@ import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   getLocale,
   setListBoxPosition,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../../../../utils";
 import { CALENDAR_HEADER_MONTH_CSS } from "./style";
 
@@ -139,7 +139,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     }
     dispatchCustomEvent(this, "kuc:month-dropdown-click", {
       value: this._listBoxVisible.toString(),
-      oldValue: (!this._listBoxVisible).toString()
+      oldValue: (!this._listBoxVisible).toString(),
     });
   }
 
@@ -186,7 +186,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     return this._locale.MONTH_SELECT.map((month: string, index: number) => {
       const item: BaseDateTimeListBoxItem = {
         value: `${index + 1}`,
-        label: `${month}`
+        label: `${month}`,
       };
       return item;
     });

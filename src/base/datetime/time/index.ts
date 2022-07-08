@@ -4,13 +4,13 @@ import {
   KucBase,
   CustomEventDetail,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../kuc-base";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SUFFIX
+  TIME_SUFFIX,
 } from "../resource/constant";
 import {
   padStart,
@@ -18,7 +18,7 @@ import {
   formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   getLocale,
-  timeCompare
+  timeCompare,
 } from "../utils";
 
 import { BaseDateTimeListBox, BaseDateTimeListBoxItem } from "../listbox";
@@ -523,7 +523,7 @@ export class BaseTime extends KucBase {
   private _dispatchEventTimeChange(value: string, oldValue: string) {
     const detail: CustomEventDetail = {
       value: value,
-      oldValue: oldValue
+      oldValue: oldValue,
     };
 
     if (timeCompare(value, this.min) < 0 || timeCompare(this.max, value) < 0) {
@@ -563,9 +563,7 @@ export class BaseTime extends KucBase {
 
   private _getColonTemplate() {
     return this._hours
-      ? html`
-          <span class="kuc-base-time__group__colon">:</span>
-        `
+      ? html` <span class="kuc-base-time__group__colon">:</span> `
       : "";
   }
 

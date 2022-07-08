@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -13,7 +13,7 @@ import {
   validateValueString,
   validateSelectedIndexNumber,
   validateItems,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_RADIO_BUTTON_CSS } from "./style";
@@ -46,7 +46,7 @@ let exportMobileRadioButton;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Array }) items: MobileRadioButtonItem[] = [];
@@ -204,7 +204,7 @@ let exportMobileRadioButton;
         this.value =
           this._getValue({
             items: this.items,
-            selectedIndex: this.selectedIndex
+            selectedIndex: this.selectedIndex,
           }) || "";
       }
       super.update(changedProperties);
@@ -255,7 +255,7 @@ let exportMobileRadioButton;
       }
 
       const firstIndex = this.items.findIndex(
-        item => item.value === this.value
+        (item) => item.value === this.value
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(

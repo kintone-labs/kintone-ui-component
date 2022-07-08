@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -25,7 +25,7 @@ let exportTextarea;
 
   const TextAreaLayout = {
     MIN_WIDTH: 299,
-    MIN_HEIGHT: 125
+    MIN_HEIGHT: 125,
   };
 
   class KucTextArea extends KucBase {
@@ -42,7 +42,7 @@ let exportTextarea;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 
@@ -78,7 +78,7 @@ let exportTextarea;
       const targetEl = event.target as HTMLTextAreaElement;
       const detail: CustomEventDetail = {
         value: targetEl.value,
-        data: event.data
+        data: event.data,
       };
       dispatchCustomEvent(this, "input", detail);
     }
@@ -123,10 +123,12 @@ let exportTextarea;
     }
 
     firstUpdated() {
-      document.addEventListener("mousemove", event =>
+      document.addEventListener("mousemove", (event) =>
         this._handleMouseMoveDocument(event)
       );
-      document.addEventListener("mouseup", _ => this._handleMouseUpDocument());
+      document.addEventListener("mouseup", (_) =>
+        this._handleMouseUpDocument()
+      );
     }
 
     render() {

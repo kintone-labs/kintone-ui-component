@@ -7,12 +7,12 @@ import {
   dispatchCustomEvent,
   generateGUID,
   KucBase,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import {
   throwErrorAfterUpdateComplete,
   validateProps,
-  validateTimeValue
+  validateTimeValue,
 } from "../../base/validator";
 import { MOBILE_TIME_PICKER_CSS } from "./style";
 import { MobileTimePickerProps } from "./type";
@@ -41,7 +41,7 @@ let exportMobileTimePicker;
           return true;
         }
         return newVal !== oldVal;
-      }
+      },
     })
     value? = "";
     @property({ type: Boolean }) disabled = false;
@@ -51,7 +51,7 @@ let exportMobileTimePicker;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 
@@ -140,7 +140,7 @@ let exportMobileTimePicker;
       event.stopPropagation();
       const detail: CustomEventDetail = {
         value: event.detail.value,
-        oldValue: this.value
+        oldValue: this.value,
       };
       this._inputValue = event.detail.value;
       if (event.detail.error) {

@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -13,7 +13,7 @@ import {
   validateItems,
   validateValueString,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
@@ -46,7 +46,7 @@ let exportRadioButton;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Array }) items: RadioButtonItem[] = [];
@@ -217,7 +217,7 @@ let exportRadioButton;
     ) {
       if (
         index === 0 &&
-        items.filter(item => item.value === this.value).length === 0
+        items.filter((item) => item.value === this.value).length === 0
       )
         return "0";
       if (currentItem.value === this.value) return "0";
@@ -234,7 +234,7 @@ let exportRadioButton;
         this.value =
           this._getValue({
             items: this.items,
-            selectedIndex: this.selectedIndex
+            selectedIndex: this.selectedIndex,
           }) || "";
       }
       super.update(changedProperties);
@@ -284,7 +284,7 @@ let exportRadioButton;
       }
 
       const firstIndex = this.items.findIndex(
-        item => item.value === this.value
+        (item) => item.value === this.value
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(

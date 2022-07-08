@@ -3,7 +3,7 @@ import { property } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
@@ -28,7 +28,7 @@ let exportMobileButton;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 

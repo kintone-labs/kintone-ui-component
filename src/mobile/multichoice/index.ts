@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -13,7 +13,7 @@ import {
   validateItems,
   validateValueArray,
   validateSelectedIndexArray,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MobileMultiChoiceItem, MobileMultiChoiceProps } from "./type";
@@ -47,7 +47,7 @@ let exportMobileMultiChoice;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Array }) items: MobileMultiChoiceItem[] = [];
@@ -87,15 +87,15 @@ let exportMobileMultiChoice;
       const oldValue = !this.value ? this.value : [...this.value];
       const newValue = Array.from(
         selectEl.selectedOptions,
-        option => option.value
+        (option) => option.value
       );
       const newSelectedIndex = Array.from(
         selectEl.selectedOptions,
-        option => option.dataset.index
+        (option) => option.dataset.index
       );
       const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
       this.value = newValue;
-      this.selectedIndex = newSelectedIndex.map(item =>
+      this.selectedIndex = newSelectedIndex.map((item) =>
         item ? parseInt(item, 10) : 0
       );
       dispatchCustomEvent(this, "change", detail);
@@ -145,7 +145,7 @@ let exportMobileMultiChoice;
         this._valueMapping = this._getValueMapping({
           items: this.items,
           value: this.value,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         });
         this._setValueAndSelectedIndex();
       }
@@ -157,7 +157,7 @@ let exportMobileMultiChoice;
       const _value = validProps.value || [];
       const _selectedIndex = validProps.selectedIndex || [];
 
-      const itemsValue = _items.map(item => item.value || "");
+      const itemsValue = _items.map((item) => item.value || "");
       const itemsMapping = Object.assign({}, itemsValue);
       const result: ValueMapping = {};
       if (_value.length === 0) {
@@ -175,8 +175,8 @@ let exportMobileMultiChoice;
       _selectedIndex: number[]
     ) {
       return _selectedIndex
-        .filter(item => itemsMapping[item])
-        .map(item => itemsMapping[item]);
+        .filter((item) => itemsMapping[item])
+        .map((item) => itemsMapping[item]);
     }
 
     private _getValidSelectedIndex(itemsMapping: ValueMapping) {
@@ -188,7 +188,7 @@ let exportMobileMultiChoice;
           continue;
         }
         const firstIndex = this.items.findIndex(
-          item => item.value === this.value[i]
+          (item) => item.value === this.value[i]
         );
         validSelectedIndex.push(firstIndex);
       }
@@ -198,7 +198,7 @@ let exportMobileMultiChoice;
 
     private _setValueAndSelectedIndex() {
       this.value = Object.values(this._valueMapping);
-      this.selectedIndex = Object.keys(this._valueMapping).map(key =>
+      this.selectedIndex = Object.keys(this._valueMapping).map((key) =>
         parseInt(key, 10)
       );
     }

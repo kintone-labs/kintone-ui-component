@@ -5,7 +5,7 @@ import {
   generateGUID,
   CustomEventDetail,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
@@ -15,14 +15,14 @@ import {
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
   MIN_TIME,
-  MAX_TIME
+  MAX_TIME,
 } from "../base/datetime/resource/constant";
 import {
   validateProps,
   validateTimeValue,
   validateTimeStepNumber,
   validateTimeStep,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import "../base/datetime/time";
 import { timeCompare } from "../base/datetime/utils";
@@ -55,7 +55,7 @@ let exportTimePicker;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Number }) timeStep = 30;
@@ -213,7 +213,7 @@ let exportTimePicker;
     }
 
     updated() {
-      this._baseLabelEl.updateComplete.then(_ => {
+      this._baseLabelEl.updateComplete.then((_) => {
         this._updateErrorWidth();
       });
     }
@@ -233,7 +233,7 @@ let exportTimePicker;
       event.stopPropagation();
       const detail: CustomEventDetail = {
         value: event.detail.value,
-        oldValue: this.value
+        oldValue: this.value,
       };
 
       if (event.detail.error) {

@@ -5,14 +5,14 @@ import {
   CustomEventDetail,
   dispatchCustomEvent,
   KucBase,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../kuc-base";
 import {
   formatInputValueToValue,
   formatValueToInputValue,
   getTodayStringByLocale,
   isValidDateFormat,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../utils";
 import { BASE_MOBILE_DATE_CSS } from "./style";
 export { BaseMobileDateTimeCalendar };

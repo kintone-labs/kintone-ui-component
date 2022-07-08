@@ -4,7 +4,7 @@ import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../kuc-base";
 import { BASE_DATETIME_LISTBOX_CSS } from "./style";
 
@@ -76,7 +76,7 @@ export class BaseDateTimeListBox extends KucBase {
         @mousedown="${this._handleMouseDownListBox}"
         @click="${this._handleClickListBox}"
       >
-        ${this.items.map(item => this._getListBoxItemTemplate(item))}
+        ${this.items.map((item) => this._getListBoxItemTemplate(item))}
       </ul>
     `;
   }
@@ -192,7 +192,7 @@ export class BaseDateTimeListBox extends KucBase {
 
     const itemsEl = Array.from(this._itemsEl);
     const itemSelected = itemsEl.filter(
-      item => item.getAttribute("aria-selected") === "true"
+      (item) => item.getAttribute("aria-selected") === "true"
     )[0];
     if (!itemSelected) return;
 
@@ -318,7 +318,7 @@ export class BaseDateTimeListBox extends KucBase {
     const listLiEl = Array.from(this._listBoxEl.children);
     const itemTimeObj = new Date(Date.parse(`2021/01/01 ${this.value}`));
     let liEl = listLiEl.find(
-      element =>
+      (element) =>
         new Date(
           Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
         ) >= itemTimeObj

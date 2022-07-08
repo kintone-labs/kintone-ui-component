@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
@@ -37,7 +37,7 @@ let exportMobileTextArea;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 
@@ -69,7 +69,7 @@ let exportMobileTextArea;
       const targetEl = event.target as HTMLTextAreaElement;
       const detail: CustomEventDetail = {
         value: targetEl.value,
-        data: event.data
+        data: event.data,
       };
       dispatchCustomEvent(this, "input", detail);
     }

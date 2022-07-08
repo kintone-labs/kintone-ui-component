@@ -4,7 +4,7 @@ import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../../kuc-base";
 import "../../calendar/header/dropdown/year";
 import "../../calendar/header/dropdown/month";
@@ -12,7 +12,7 @@ import { BaseDateTimeListBox } from "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
   getRightArrowIconSvgTemplate,
-  getLocale
+  getLocale,
 } from "../../utils/";
 import { CALENDAR_HEADER_CSS } from "./style";
 
@@ -28,14 +28,14 @@ export class BaseDateTimeCalendarHeader extends KucBase {
     type: Number,
     hasChanged(newVal: number) {
       return isValidMonth(newVal);
-    }
+    },
   })
   month = 1;
   @property({
     type: Number,
     hasChanged(newVal: number) {
       return isValidYear(newVal);
-    }
+    },
   })
   year = 2021;
   private _locale = getLocale("en");
@@ -113,12 +113,8 @@ export class BaseDateTimeCalendarHeader extends KucBase {
 
   private _getYearMonthTemplate() {
     return this.language === "zh" || this.language === "ja"
-      ? html`
-          ${this._getYearTemplate()}${this._getMonthTemplate()}
-        `
-      : html`
-          ${this._getMonthTemplate()}${this._getYearTemplate()}
-        `;
+      ? html` ${this._getYearTemplate()}${this._getMonthTemplate()} `
+      : html` ${this._getMonthTemplate()}${this._getYearTemplate()} `;
   }
 
   private _handleMonthDropdownChange(event: CustomEvent) {
