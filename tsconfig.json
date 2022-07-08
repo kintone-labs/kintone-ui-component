@@ -5,7 +5,6 @@
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "isolatedModules":false
+    "experimentalDecorators": true
   }
 }
