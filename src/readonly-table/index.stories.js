@@ -9,9 +9,9 @@ storiesOf("desktop/readonly-table", module)
       id: "sample-id",
       visible: true,
       label: "My ReadOnlyTable",
-      rowsPerPage: 3,
+      rowsPerPage: -5,
       pagination: true,
-      paginationPosition: "left",
+      paginationPosition: "middle",
       columns: [
         {
           headerName: "First column",

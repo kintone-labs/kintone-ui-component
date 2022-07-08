@@ -46,42 +46,21 @@ export class ReadOnlyTable extends KucBase {
 
   constructor(props?: ReadOnlyTableProps) {
     super();
-    if (!props) {
+    if (props && props.columns && props.data) {
+      this._validateColumns(props.columns);
+      this._validateData(props.data);
+    } else {
       return;
     }
 
-    if (!Array.isArray(props.columns) && props.columns !== undefined) {
-      throw new Error("'columns' property is invalid");
+    if (props.rowsPerPage || props.rowsPerPage === 0) {
+      props.rowsPerPage = this._validateRowsPerPage(props.rowsPerPage);
     }
 
-    if (!Array.isArray(props.data) && props.data !== undefined) {
-      throw new Error("'data' property is invalid");
-    }
-
-    if (props.data) {
-      props.data.forEach(data => {
-        if (!Array.isArray(data)) {
-          throw new Error("'data' property is invalid");
-        }
-      });
-    }
-
-    if (props.rowsPerPage) {
-      if (props.rowsPerPage < 0) {
-        props.rowsPerPage = 5;
-        console.error("'rows' value is invalid");
-      }
-      props.rowsPerPage = Math.round(props.rowsPerPage);
-    } else {
-      props.rowsPerPage = 5;
-    }
-
-    if (
-      props.paginationPosition !== "left" &&
-      props.paginationPosition !== "right"
-    ) {
-      props.paginationPosition = "left";
-      console.error("'paginationPosition' value is invalid");
+    if (props.paginationPosition) {
+      props.paginationPosition = this._validatePagination(
+        props.paginationPosition
+      );
     }
 
     const validProps = validateProps(props);
@@ -199,6 +178,26 @@ export class ReadOnlyTable extends KucBase {
           throw new Error("'data' property is invalid");
         }
       });
+  }
+
+  private _validateRowsPerPage(numRows: number) {
+    if (numRows < 0 || numRows === 0 || !Number.isInteger(numRows)) {
+      console.error(
+        "'rowsPerPage' must be a positive integer! Set to 5 by default."
+      );
+      return 5;
+    }
+    return Math.round(numRows);
+  }
+
+  private _validatePagination(option: string) {
+    if (option !== "left" && option !== "right") {
+      console.error(
+        "'paginationPosition' must be either 'left' or 'right'. Set to 'left' by default"
+      );
+      return "left";
+    }
+    return option;
   }
 
   private _handleClickPreviusButton(event: MouseEvent | KeyboardEvent) {
