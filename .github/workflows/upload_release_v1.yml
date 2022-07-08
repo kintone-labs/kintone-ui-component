@@ -1,4 +1,4 @@
-name: Upload v1 release 
+name: Upload v1 release
 
 on:
   repository_dispatch:
@@ -13,6 +13,10 @@ jobs:
     #   if: github.event.client_payload.status != 'success'
     #   run: exit 1
     - uses: actions/checkout@v2
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
     - name: Cache dependencies
       uses: actions/cache@v2
       with:

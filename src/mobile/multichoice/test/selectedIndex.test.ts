@@ -6,7 +6,7 @@ describe("MobileMultiChoice", () => {
     const initItems = [
       { label: "-----", value: "-----" },
       { label: "Orange", value: "orange" },
-      { label: "Apple", value: "apple" }
+      { label: "Apple", value: "apple" },
     ];
 
     it("should be empty when initializing without props option", async () => {
@@ -21,7 +21,7 @@ describe("MobileMultiChoice", () => {
     it("exists on element when initializing with props option", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        selectedIndex: [1]
+        selectedIndex: [1],
       });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -37,7 +37,7 @@ describe("MobileMultiChoice", () => {
         label: "Orange",
         requiredIcon: false,
         items: initItems,
-        selectedIndex: []
+        selectedIndex: [],
       });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
@@ -52,10 +52,7 @@ describe("MobileMultiChoice", () => {
       await fixture(container);
       container.selectedIndex = [2];
       const getval = container.selectedIndex;
-      expect(getval)
-        .to.be.an("array")
-        .to.have.lengthOf(1)
-        .that.include(2);
+      expect(getval).to.be.an("array").to.have.lengthOf(1).that.include(2);
     });
   });
 });

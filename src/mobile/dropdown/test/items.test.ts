@@ -4,21 +4,21 @@ import { MobileDropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 const initItemsWithoutLabel = [
   { value: "-----" },
   { value: "orange" },
-  { value: "apple" }
+  { value: "apple" },
 ];
 const initItemsWithoutValue = [{ label: "-----" }];
 const replacedItems = [
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 const dupplicatedItems = [
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "orange" }
+  { label: "Apple", value: "orange" },
 ];
 
 const expectedLabels = ["-----", "Orange", "Apple"];

@@ -4,7 +4,7 @@ import { MobileDropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileDropdown", () => {
@@ -12,7 +12,7 @@ describe("MobileDropdown", () => {
     it("should be triggered when changing the value", async () => {
       const container = new MobileDropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
 
       container.addEventListener("change", (event: any) => {
@@ -31,7 +31,7 @@ describe("MobileDropdown", () => {
       if (itemsEl.childElementCount > 0) {
         const event = new CustomEvent("change", {
           detail: { oldValue: initItems[0].value, value: initItems[2].value },
-          bubbles: true
+          bubbles: true,
         });
         container.dispatchEvent(event);
       }

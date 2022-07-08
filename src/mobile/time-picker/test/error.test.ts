@@ -48,7 +48,7 @@ describe("MobileTimePicker", () => {
     it('should be replaced by "Format is not valid." when select a invalid value and should be empty when select a valid value', async () => {
       const container = new MobileTimePicker({
         error: "error-message",
-        language: "en"
+        language: "en",
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(

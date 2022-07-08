@@ -7,7 +7,7 @@ describe("MobileDatePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDatePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
@@ -40,7 +40,7 @@ describe("MobileDatePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDatePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;

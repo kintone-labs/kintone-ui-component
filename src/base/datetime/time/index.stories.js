@@ -8,15 +8,15 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["en", "ja", "zh"]
-      }
-    }
+        options: ["en", "ja", "zh"],
+      },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:base-time-change"]
-    }
-  }
+      handles: ["kuc:base-time-change"],
+    },
+  },
 };
 
 const Template = ({ disabled, hour12, value, timeStep, min, max, language }) =>
@@ -40,5 +40,5 @@ Base.args = {
   timeStep: 30,
   min: "00:00",
   max: "23:59",
-  language: "en"
+  language: "en",
 };

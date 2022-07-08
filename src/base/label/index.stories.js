@@ -3,9 +3,9 @@ import { html } from "lit-html";
 
 export default {
   title: "base/label",
-  argTypes: {}
+  argTypes: {},
 };
-const Template = args => {
+const Template = (args) => {
   return html`
     <kuc-base-label
       .guid="${args.guid}"
@@ -19,5 +19,5 @@ export const Base = Template.bind({});
 Base.args = {
   guid: "guid",
   text: "Text label",
-  requiredIcon: true
+  requiredIcon: true,
 };

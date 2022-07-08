@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../kuc-base";
 
 describe("KucBase", () => {
@@ -35,7 +35,7 @@ describe("KucBase", () => {
       });
       const detail: CustomEventDetail = {
         value: "Apple",
-        oldValue: "Orange"
+        oldValue: "Orange",
       };
       dispatchCustomEvent(container, "change", detail);
 
@@ -48,9 +48,7 @@ describe("KucBase", () => {
 
 class KucTest extends KucBase {
   render() {
-    return html`
-      <div class="kuc-test__test"></div>
-    `;
+    return html` <div class="kuc-test__test"></div> `;
   }
 }
 if (!window.customElements.get("kuc-test")) {

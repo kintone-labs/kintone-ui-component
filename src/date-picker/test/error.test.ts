@@ -47,7 +47,7 @@ describe("DatePicker", () => {
     it("should have width equal label when label longer than input width", async () => {
       const container = new DatePicker({
         error: "error-message",
-        label: "long label long label long label long label"
+        label: "long label long label long label long label",
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(

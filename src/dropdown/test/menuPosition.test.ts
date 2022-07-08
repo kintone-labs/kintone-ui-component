@@ -6,7 +6,7 @@ const initItems = [
   { label: "Orange", value: "orange" },
   { label: "Apple", value: "apple" },
   { label: "Banana", value: "banana" },
-  { label: "Pear", value: "pear" }
+  { label: "Pear", value: "pear" },
 ];
 
 describe("Dropdown", () => {
@@ -14,7 +14,7 @@ describe("Dropdown", () => {
     it("Show menu below default", async () => {
       const container = new Dropdown({
         items: initItems,
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -35,7 +35,7 @@ describe("Dropdown", () => {
 
       const container = new Dropdown({
         items: [...initItems, ...initItems, ...initItems],
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -57,7 +57,7 @@ describe("Dropdown", () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value,
-        error: "Error"
+        error: "Error",
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
@@ -83,7 +83,7 @@ describe("Dropdown", () => {
 
       const container = new Dropdown({
         items: [...initItems, ...initItems, ...initItems],
-        value: initItems[0].value
+        value: initItems[0].value,
       });
       const el = await fixture(container);
       document.body.appendChild(el);

@@ -4,19 +4,19 @@ import { ReadOnlyTable } from "../index";
 const columns = [
   { header: { text: "Fruit" }, visible: true },
   { header: { text: "Producing Area" }, visible: true },
-  { header: { text: "Price" }, visible: false }
+  { header: { text: "Price" }, visible: false },
 ];
 
 const columnsWithoutHeader = [
   { visible: true },
   { visible: true },
-  { visible: false }
+  { visible: false },
 ];
 
 const columnsWithoutVisible = [
   { header: { text: "Fruit" } },
   { header: { text: "Producing Area" } },
-  { header: { text: "Price" } }
+  { header: { text: "Price" } },
 ];
 
 describe("ReadOnlyTable", () => {
@@ -131,12 +131,12 @@ describe("ReadOnlyTable", () => {
 
     it("should be updated header when changed columns by setter", async () => {
       const container = new ReadOnlyTable({
-        columns: [{ header: { text: "Price" }, visible: false }]
+        columns: [{ header: { text: "Price" }, visible: false }],
       });
 
       const newColumns = [
         { header: { text: "Fruit" }, visible: true },
-        { header: { text: "Producing Area" }, visible: true }
+        { header: { text: "Producing Area" }, visible: true },
       ];
       container.columns = newColumns;
 

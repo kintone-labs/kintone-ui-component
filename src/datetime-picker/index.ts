@@ -5,12 +5,12 @@ import {
   generateGUID,
   KucBase,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import {
   visiblePropConverter,
   dateValueConverter,
-  timeValueConverter
+  timeValueConverter,
 } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
@@ -20,7 +20,7 @@ import {
   validateTimeValue,
   validateTimeStepNumber,
   validateTimeStep,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import {
   FORMAT_IS_NOT_VALID,
@@ -28,7 +28,7 @@ import {
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
   MIN_TIME,
-  MAX_TIME
+  MAX_TIME,
 } from "../base/datetime/resource/constant";
 import { timeCompare } from "../base/datetime/utils";
 
@@ -62,7 +62,7 @@ let exportDateTimePicker;
           return true;
         }
         return newVal !== oldVal;
-      }
+      },
     })
     value? = "";
     @property({ type: Boolean }) disabled = false;
@@ -72,7 +72,7 @@ let exportDateTimePicker;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Number }) timeStep = 30;
@@ -339,7 +339,7 @@ let exportDateTimePicker;
 
     updated() {
       this._resetState();
-      this._baseLabelEl.updateComplete.then(_ => {
+      this._baseLabelEl.updateComplete.then((_) => {
         this._updateErrorWidth();
       });
     }
@@ -412,7 +412,7 @@ let exportDateTimePicker;
       const detail = {
         value: _value,
         oldValue: oldDateTime,
-        changedPart: type
+        changedPart: type,
       };
       dispatchCustomEvent(this, "change", detail);
     }

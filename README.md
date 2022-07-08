@@ -16,6 +16,8 @@ It supports you to develop kintone customization and kintone plugin.<br />
   English | <a href="./README-JP.md">日本語</a>
 </p>
 
+> Here is a note for contributors:<br>
+> Due to the package-lock.json verification get stricter from npm v8.5.5, please use an earlier version of Node v16.15.1 to install dependencies with "npm ci" for now.
 
 ## Table of contents
 - [Installation](#installation)
@@ -124,11 +126,12 @@ For more details, please refer to the articles below.
 We welcome contributions to kintone UI Component.<br>
 For the details, please check [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md).<br>
 
-If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
+And we use [Discussions feature of GitHub](https://github.com/kintone-labs/kintone-ui-component/discussions) as our community page.
 
 ## Roadmap
 We published our development roadmap.<br>
-For more details, please refer to [here](https://github.com/kintone-labs/kintone-ui-component/issues/936).
+For more details, please refer to [here](https://github.com/kintone-labs/kintone-ui-component/discussions/987).
 
 ## License
 [MIT LICENSE](./LICENSE)

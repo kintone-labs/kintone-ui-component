@@ -8,12 +8,12 @@ storiesOf("desktop/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
       value: ["sample1"],
       className: "sample-class",
@@ -24,9 +24,9 @@ storiesOf("desktop/checkbox", module)
       itemLayout: "vertical",
       label: "フルーツ",
       requiredIcon: true,
-      error: "エラーです"
+      error: "エラーです",
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(["detail.oldValue", event.detail.oldValue]);
       console.log(["detail.value", event.detail.value]);
     });
@@ -39,16 +39,16 @@ storiesOf("desktop/checkbox", module)
       items: [
         {
           label: "Orange",
-          value: "Orange"
+          value: "Orange",
         },
         {
           label: "Orange2",
-          value: "Orange2"
+          value: "Orange2",
         },
         {
           label: "Apple",
-          value: "Apple"
-        }
+          value: "Apple",
+        },
       ],
       value: ["Orange"],
       className: "sample-class",
@@ -56,9 +56,9 @@ storiesOf("desktop/checkbox", module)
       visible: true,
       disabled: false,
       borderVisible: true,
-      itemLayout: "horizontal"
+      itemLayout: "horizontal",
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(checkbox);
@@ -70,12 +70,12 @@ storiesOf("desktop/checkbox", module)
       items: [
         {
           label: "Orange",
-          value: "Orange"
+          value: "Orange",
         },
         {
           label: "Apple",
-          value: "Apple"
-        }
+          value: "Apple",
+        },
       ],
       value: ["Orange"],
       className: "sample-class",
@@ -85,9 +85,9 @@ storiesOf("desktop/checkbox", module)
       borderVisible: false,
       itemLayout: "horizontal",
       label: "",
-      error: ""
+      error: "",
     });
-    checkbox.addEventListener("change", event => {
+    checkbox.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(checkbox);
@@ -99,14 +99,14 @@ storiesOf("desktop/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
-      value: ["", undefined]
+      value: ["", undefined],
     });
     // checkbox.value = ["", undefined];
     root.appendChild(checkbox);
@@ -118,12 +118,12 @@ storiesOf("desktop/checkbox", module)
       items: [
         {
           label: "sample1",
-          value: "sample1"
+          value: "sample1",
         },
         {
           label: "sample2",
-          value: "sample2"
-        }
+          value: "sample2",
+        },
       ],
       value: ["sample1"],
       className: "sample-class",
@@ -134,7 +134,7 @@ storiesOf("desktop/checkbox", module)
       itemLayout: "vertical",
       label: "Fruit",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
     root.appendChild(checkbox);
     return root;

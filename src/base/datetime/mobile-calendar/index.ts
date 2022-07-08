@@ -75,7 +75,7 @@ export class BaseMobileDateTimeCalendar extends KucBase {
     const dateParts = value.split("-");
     return {
       year: parseInt(dateParts[0], 10),
-      month: parseInt(dateParts[1], 10)
+      month: parseInt(dateParts[1], 10),
     };
   }
 }

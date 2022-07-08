@@ -18,7 +18,7 @@ describe("MobileDatePicker", () => {
 
     it('should be replace by "replace-class" when changing by setter', async () => {
       const container = new MobileDatePicker({
-        className: "options-class"
+        className: "options-class",
       });
       container.className = "replace-class";
       const el = await fixture(container);

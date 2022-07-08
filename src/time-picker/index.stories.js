@@ -8,18 +8,18 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"]
-      }
-    }
+        options: ["auto", "en", "ja", "zh"],
+      },
+    },
   },
   parameters: {
     actions: {
-      handles: ["change"]
-    }
-  }
+      handles: ["change"],
+    },
+  },
 };
 
-const Template = args =>
+const Template = (args) =>
   html`
     <kuc-time-picker
       .className="${args.className}"
@@ -52,7 +52,7 @@ BaseHour24.args = {
   language: "en",
   timeStep: 60,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };
 
 export const BaseHour12 = Template.bind({});
@@ -69,7 +69,7 @@ BaseHour12.args = {
   language: "en",
   timeStep: 30,
   min: "08:00",
-  max: "20:00"
+  max: "20:00",
 };
 
 export const BaseError = Template.bind({});
@@ -86,5 +86,5 @@ BaseError.args = {
   language: "en",
   timeStep: 30,
   min: "00:00",
-  max: "23:59"
+  max: "23:59",
 };

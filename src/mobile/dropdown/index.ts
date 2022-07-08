@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -13,7 +13,7 @@ import {
   validateValueString,
   validateItems,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_DROPDOWN_CSS } from "./style";
@@ -43,7 +43,7 @@ let exportMobileDropdown;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
     @property({ type: Array }) items: MobileDropdownItem[] = [];
@@ -129,7 +129,7 @@ let exportMobileDropdown;
         this.value =
           this._getValue({
             items: this.items,
-            selectedIndex: this.selectedIndex
+            selectedIndex: this.selectedIndex,
           }) || "";
       }
       super.update(changedProperties);
@@ -142,7 +142,7 @@ let exportMobileDropdown;
       }
 
       const firstIndex = this.items.findIndex(
-        item => item.value === this.value
+        (item) => item.value === this.value
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(

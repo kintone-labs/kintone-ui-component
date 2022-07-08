@@ -5,7 +5,7 @@ import {
   generateGUID,
   dispatchCustomEvent,
   CustomEventDetail,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -38,7 +38,7 @@ let exportText;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 
@@ -70,7 +70,7 @@ let exportText;
       const targetEl = event.target as HTMLInputElement;
       const detail: CustomEventDetail = {
         value: targetEl.value,
-        data: event.data
+        data: event.data,
       };
       dispatchCustomEvent(this, "input", detail);
     }

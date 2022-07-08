@@ -9,7 +9,7 @@ import {
   validateValueString,
   validateSelectedIndexArray,
   validateSelectedIndexNumber,
-  validateDateTimeValue
+  validateDateTimeValue,
 } from "../validator";
 
 describe("Base", () => {
@@ -25,7 +25,7 @@ describe("Base", () => {
     it("should remove undefined property", async () => {
       expect(validateProps({ a: 1, b: 2, c: undefined })).to.deep.equal({
         a: 1,
-        b: 2
+        b: 2,
       });
     });
 
@@ -33,7 +33,7 @@ describe("Base", () => {
       expect(validateProps({ a: 1, b: 2, c: 3 })).to.deep.equal({
         a: 1,
         b: 2,
-        c: 3
+        c: 3,
       });
     });
 

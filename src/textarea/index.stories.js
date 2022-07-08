@@ -12,15 +12,15 @@ storiesOf("desktop/textarea", module)
       className: "options-class",
       id: "options-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
-    textarea.addEventListener("change", event => {
+    textarea.addEventListener("change", (event) => {
       console.log(event.detail);
     });
-    textarea.addEventListener("focus", event => {
+    textarea.addEventListener("focus", (event) => {
       console.log(event.detail);
     });
-    textarea.addEventListener("input", event => {
+    textarea.addEventListener("input", (event) => {
       console.log(event.detail);
     });
     root.appendChild(textarea);
@@ -35,7 +35,7 @@ storiesOf("desktop/textarea", module)
   .add("Base3", () => {
     const root = document.createElement("div");
     const textarea = new TextArea({
-      placeholder: "placeholder"
+      placeholder: "placeholder",
     });
     root.appendChild(textarea);
     return root;
@@ -43,7 +43,7 @@ storiesOf("desktop/textarea", module)
   .add("Base4", () => {
     const root = document.createElement("div");
     const textarea = new TextArea({
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
     root.appendChild(textarea);
     return root;

@@ -3,19 +3,19 @@ import { property, state } from "lit/decorators.js";
 import {
   visiblePropConverter,
   dateValueConverter,
-  timeValueConverter
+  timeValueConverter,
 } from "../../base/converter";
 import {
   dispatchCustomEvent,
   generateGUID,
   KucBase,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../base/kuc-base";
 import {
   validateProps,
   validateDateTimeValue,
   isValidDate,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import { MobileDateTimePickerProps } from "./type";
@@ -49,7 +49,7 @@ let exportMobileDateTimePicker;
           return true;
         }
         return newVal !== oldVal;
-      }
+      },
     })
     value? = "";
     @property({ type: Boolean }) disabled = false;
@@ -59,7 +59,7 @@ let exportMobileDateTimePicker;
       type: Boolean,
       attribute: "hidden",
       reflect: true,
-      converter: visiblePropConverter
+      converter: visiblePropConverter,
     })
     visible = true;
 
@@ -331,7 +331,7 @@ let exportMobileDateTimePicker;
       const detail = {
         value: _value,
         oldValue: oldDateTime,
-        changedPart: type
+        changedPart: type,
       };
       dispatchCustomEvent(this, "change", detail);
     }

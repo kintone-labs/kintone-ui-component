@@ -4,13 +4,13 @@ import {
   KucBase,
   CustomEventDetail,
   dispatchCustomEvent,
-  createStyleOnHeader
+  createStyleOnHeader,
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   setListBoxPosition,
-  calculateDistanceInput
+  calculateDistanceInput,
 } from "../../../../utils";
 import { CALENDAR_HEADER_YEAR_CSS } from "./style";
 
@@ -47,7 +47,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     this._listBoxItems = this._getYearOptions().map((year: number) => {
       const item: BaseDateTimeListBoxItem = {
         value: `${year}`,
-        label: `${year}${this.postfix}`
+        label: `${year}${this.postfix}`,
       };
       return item;
     });
@@ -143,7 +143,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     }
     dispatchCustomEvent(this, "kuc:year-dropdown-click", {
       value: this._listBoxVisible.toString(),
-      oldValue: (!this._listBoxVisible).toString()
+      oldValue: (!this._listBoxVisible).toString(),
     });
   }
 

@@ -10,7 +10,7 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
@@ -50,7 +50,7 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
@@ -79,7 +79,7 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: "2021-12-20",
-        language: "en"
+        language: "en",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
@@ -103,7 +103,7 @@ describe("MobileDateTimePicker", () => {
       let triggeredEvent: any = null;
       const container = new MobileDateTimePicker({
         value: getTodayStringByLocale(),
-        language: "ja"
+        language: "ja",
       });
       container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;

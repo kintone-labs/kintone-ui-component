@@ -4,7 +4,7 @@ import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SUFFIX
+  TIME_SUFFIX,
 } from "../resource/constant";
 
 export type WeekDate = {
@@ -70,7 +70,7 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
   if (minutes < 10) minutes = "0" + minutes;
   const timeOption = {
     label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
-    value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
+    value: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
   };
   return timeOption;
 };
@@ -115,7 +115,7 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
     return {
       hours: "",
       minutes: "",
-      suffix: ""
+      suffix: "",
     };
   }
   if (hour12) {
@@ -124,7 +124,7 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
   return {
     hours: padStart(newHours),
     minutes: padStart(minutes),
-    suffix: ""
+    suffix: "",
   };
 };
 
@@ -163,7 +163,7 @@ export const convertTime24To12 = (hours: number, minutes: number) => {
   return {
     hours: padStart(newHours),
     minutes: padStart(minutes),
-    suffix: suffix
+    suffix: suffix,
   };
 };
 
@@ -191,8 +191,9 @@ const getDateObj = (date: Date) => {
   const month = padStart(tmpDate.getMonth() + 1);
   const day = padStart(tmpDate.getDate());
 
-  const text = `${tmpDate.getFullYear()}-${tmpDate.getMonth() +
-    1}-${tmpDate.getDate()}`;
+  const text = `${tmpDate.getFullYear()}-${
+    tmpDate.getMonth() + 1
+  }-${tmpDate.getDate()}`;
   const attr = `${year}-${month}-${day}`;
   return { text, attr };
 };
@@ -297,7 +298,7 @@ const getDateRanges = (year: number, month: number) => {
 
   return {
     start: startDayOfFirstWeek,
-    end: endDayOfEndWeek
+    end: endDayOfEndWeek,
   };
 };
 
@@ -338,7 +339,7 @@ export const generateHour12Options = (ampm: string) => {
   for (let i = 1; i <= 11; i++) {
     hour12Options.push({
       value: `${ampm} ${padStart(i)}`,
-      label: `${ampm} ${padStart(i)}`
+      label: `${ampm} ${padStart(i)}`,
     });
   }
   return hour12Options;
@@ -425,7 +426,7 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToBottom: 0,
       inputToTop: 0,
       inputToRight: 0,
-      inputToLeft: 0
+      inputToLeft: 0,
     };
   const inputDateWidth = 100;
   const inputToBottom =
@@ -440,7 +441,7 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
     inputToBottom,
     inputToTop,
     inputToRight,
-    inputToLeft
+    inputToLeft,
   };
 };
 

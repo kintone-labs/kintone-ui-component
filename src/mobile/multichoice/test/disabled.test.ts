@@ -6,12 +6,12 @@ describe("MobileMultiChoice", () => {
     const initItems = [
       { label: "-----", value: "-----" },
       { label: "Orange", value: "orange" },
-      { label: "Apple", value: "apple" }
+      { label: "Apple", value: "apple" },
     ];
 
     it("does not add into input element when initializing without props option", async () => {
       const container = new MobileMultiChoice({
-        items: initItems
+        items: initItems,
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
@@ -23,7 +23,7 @@ describe("MobileMultiChoice", () => {
     it("added into input element when initializing disabled value is true", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        disabled: true
+        disabled: true,
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
@@ -35,7 +35,7 @@ describe("MobileMultiChoice", () => {
     it("added into input element when changing from false to true by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        disabled: false
+        disabled: false,
       });
       container.disabled = true;
       const el = await fixture(container);
@@ -48,7 +48,7 @@ describe("MobileMultiChoice", () => {
     it("removing from input element when changing from true to false by setter", async () => {
       const container = new MobileMultiChoice({
         items: initItems,
-        disabled: true
+        disabled: true,
       });
       container.disabled = false;
       const el = await fixture(container);
