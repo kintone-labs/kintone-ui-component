@@ -8,10 +8,10 @@ sidebar_label: DateTimePicker
 
 The DateTimePicker component allows the user to display a input area of time & date and each selection part.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="datetime-picker">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/datetime-picker.js"></script>
+<script src="/js/samples/desktop/datetime-picker.js"></script>
 
 ---
 
@@ -28,11 +28,14 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"ja", the language setting will be "en") |
-| value | string | ""  | Text to be displayed | Format is YYYY-MM-DDTHH:MM:SS<br>The below date and time can be used (it will be converted to YYYY-MM-DDTHH:MM:SS internally):<li>2021</li><li>2021T01</li><li>2021-06</li><li>2021-12-12</li><li>2021-12-12T01</li><li>2021-12-12T01:01</li>If the date and/or month is ignored, it will be supplemented with 01<br>If the hour, minute, and/or second is ignored, it will be supplimented with 00<br>Will result an error if setting invalid format or value |
+| max | string | "" | Setting of the time listbox ending point | Format is HH:MM<br>In the time listbox, it is displayed up to the time set to `max`, and it is not displayed after that<br>The below time can be used (it will be converted to HH:MM internally):<li>5:30</li><li>05:3</li><li>5:3</li>If the hour and/or time has only 1 character, 0 will be added to the beginning<br>Will result an error if setting invalid format or value, or `min` time is greater than `max` time |
+| min | string | "" | Setting of the time listbox starting point | Format is HH:MM<br>In the time listbox, it is displayed from the time set to `min`, and it is not displayed before that<br>The below time can be used (it will be converted to HH:MM internally):<li>5:30</li><li>05:3</li><li>5:3</li>If the hour and/or time has only 1 character, 0 will be added to the beginning<br>Will result an error if setting invalid format or value, or `min` time is greater than `max` time |
+| value | string | "" | Text to be displayed | Format is YYYY-MM-DDTHH:MM:SS<br>The below date and time can be used (it will be converted to YYYY-MM-DDTHH:MM:SS internally):<li>2021</li><li>2021T01</li><li>2021-06</li><li>2021-12-12</li><li>2021-12-12T01</li><li>2021-12-12T01:01</li>If the date and/or month is ignored, it will be supplemented with 01<br>If the hour, minute, and/or second is ignored, it will be supplemented with 00<br>Will result an error if setting invalid format or value, or it is out of valid range set by `min` and `max` properties |
 | disabled | boolean | false | Enable/Disable the component | |
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br>true: 12-hour clock<br>false: 24-hour clock |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
+| timeStep | number | 30 | Setting of time interval in the time listbox | Unit is minute (positive integer)<br>Round off to the nearest whole number when the decimal point is set<br>Will result an error if it is not a number or greater than the difference between `max` and `min` |
 
 ### Event
 
@@ -73,7 +76,10 @@ const dateTimePicker = new Kuc.DateTimePicker({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  timeStep: 30,
+  max: '23:59',
+  min: '00:00'
 });
 space.appendChild(dateTimePicker);
 

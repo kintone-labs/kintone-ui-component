@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -12,9 +12,12 @@ import {
   validateValueString,
   validateSelectedIndexNumber,
   validateItems,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { BaseMobileError } from "../../base/mobile-error";
+export { BaseMobileLabel, BaseMobileError };
 
 type Item = { label?: string; value?: string };
 type RadioButtonProps = {
@@ -45,7 +48,7 @@ export class MobileRadioButton extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -200,7 +203,7 @@ export class MobileRadioButton extends KucBase {
       this.value =
         this._getValue({
           items: this.items,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         }) || "";
     }
     super.update(changedProperties);
@@ -214,15 +217,10 @@ export class MobileRadioButton extends KucBase {
           class="kuc-mobile-radio-button__group__label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-mobile-radio-button__group__label__text"
-            ><!--
-            -->${this.label}</span
-          ><!--
-            --><span
-            class="kuc-mobile-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-mobile-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-mobile-label>
         </div>
         <div
           class="kuc-mobile-radio-button__group__select-menu"
@@ -231,15 +229,12 @@ export class MobileRadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-mobile-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
+        <kuc-base-mobile-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
         >
-          ${this.error}
-        </div>
+        </kuc-base-mobile-error>
       </div>
     `;
   }
@@ -257,7 +252,9 @@ export class MobileRadioButton extends KucBase {
       return -1;
     }
 
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    const firstIndex = this.items.findIndex(
+      (item) => item.value === this.value
+    );
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
@@ -321,24 +318,7 @@ export class MobileRadioButton extends KucBase {
           white-space: nowrap;
         }
 
-        .kuc-mobile-radio-button__group__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-          font-size: inherit;
-        }
-
         .kuc-mobile-radio-button__group__label[hidden] {
-          display: none;
-        }
-
-        .kuc-mobile-radio-button__group__label__required-icon {
-          position: relative;
-          left: 3px;
-          color: #d01212;
-        }
-
-        .kuc-mobile-radio-button__group__label__required-icon[hidden] {
           display: none;
         }
 
@@ -414,21 +394,6 @@ export class MobileRadioButton extends KucBase {
           transform: translateY(-50%);
           height: 100%;
           padding: 0px;
-        }
-
-        .kuc-mobile-radio-button__group__error {
-          line-height: 1.5;
-          color: #000000;
-          border: 1px solid #e5db68;
-          background-color: #fdffc9;
-          margin-top: 0.3em;
-          padding: 0.4em 1em;
-          border-radius: 0.4em;
-          margin-left: 0.5em;
-        }
-
-        .kuc-mobile-radio-button__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

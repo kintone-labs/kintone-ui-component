@@ -8,7 +8,10 @@ sidebar_label: MobileText
 
 The MobileText component allows the user to display a single line text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-text--document" title="mobile text image" height="60px"></iframe>
+<div class="sample-container" id="mobile-text">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-text.js"></script>
 
 ---
 
@@ -88,4 +91,3 @@ mobileText.addEventListener('input', event => {
   console.log(event);
 });
 ```
-

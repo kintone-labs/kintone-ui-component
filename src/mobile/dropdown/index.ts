@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -12,9 +12,12 @@ import {
   validateValueString,
   validateItems,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { BaseMobileError } from "../../base/mobile-error";
+export { BaseMobileLabel, BaseMobileError };
 
 type Item = { label?: string; value?: string };
 type MobileDropdownProps = {
@@ -43,7 +46,7 @@ export class MobileDropdown extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -126,7 +129,7 @@ export class MobileDropdown extends KucBase {
       this.value =
         this._getValue({
           items: this.items,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         }) || "";
     }
     super.update(changedProperties);
@@ -138,7 +141,9 @@ export class MobileDropdown extends KucBase {
       return -1;
     }
 
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    const firstIndex = this.items.findIndex(
+      (item) => item.value === this.value
+    );
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
@@ -179,13 +184,10 @@ export class MobileDropdown extends KucBase {
         for="${this._GUID}-label"
         ?hidden="${!this.label}"
       >
-        <span class="kuc-mobile-dropdown__label__text">${this.label}</span
-        ><!--
-        --><span
-          class="kuc-mobile-dropdown__label__required-icon"
-          ?hidden="${!this.requiredIcon}"
-          >*</span
-        >
+        <kuc-base-mobile-label
+          .text="${this.label}"
+          .requiredIcon="${this.requiredIcon}"
+        ></kuc-base-mobile-label>
       </label>
       <div class="kuc-mobile-dropdown__input-form">
         <div
@@ -207,15 +209,12 @@ export class MobileDropdown extends KucBase {
           </select>
         </div>
       </div>
-      <div
-        class="kuc-mobile-dropdown__error"
-        id="${this._GUID}-error"
-        role="alert"
-        aria-live="assertive"
-        ?hidden="${!this.error}"
+      <kuc-base-mobile-error
+        .text="${this.error}"
+        .guid="${this._GUID}"
+        ariaLive="assertive"
       >
-        ${this.error}
-      </div>
+      </kuc-base-mobile-error>
     `;
   }
 
@@ -268,23 +267,6 @@ export class MobileDropdown extends KucBase {
           display: none;
         }
 
-        .kuc-mobile-dropdown__label__text {
-          text-shadow: 0 1px 0 #ffffff;
-          color: #888888;
-          white-space: normal;
-          font-size: inherit;
-        }
-
-        .kuc-mobile-dropdown__label__required-icon {
-          color: #d01212;
-          left: 3px;
-          position: relative;
-        }
-
-        .kuc-mobile-dropdown__label__required-icon[hidden] {
-          display: none;
-        }
-
         .kuc-mobile-dropdown__input-form {
           word-wrap: break-word;
           min-height: 1em;
@@ -312,17 +294,6 @@ export class MobileDropdown extends KucBase {
           -webkit-text-fill-color: #999999;
           background-color: #d5d7d9;
           opacity: 1;
-        }
-
-        .kuc-mobile-dropdown__error {
-          line-height: 1.5;
-          color: #000000;
-          background-color: #fdffc9;
-          border: 1px solid #e5db68;
-          border-radius: 0.4em;
-          padding: 0.4em 1em;
-          margin-top: 0.3em;
-          margin-left: 0.5em;
         }
       </style>
     `;

@@ -7,7 +7,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-text__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -18,7 +18,7 @@ describe("Text", () => {
       const container = new Text({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-text__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -30,7 +30,7 @@ describe("Text", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-text__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -42,7 +42,7 @@ describe("Text", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-text__group__label__required-icon"
+        ".kuc-base-label__required-icon"
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);

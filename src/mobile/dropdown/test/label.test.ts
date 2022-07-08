@@ -7,7 +7,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({});
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-mobile-dropdown__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelEl.innerText).to.have.equal("");
     });
@@ -16,19 +16,19 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({ label: "options-label" });
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-mobile-dropdown__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelEl.innerText).to.have.equal("options-label");
     });
 
     it('should be replace by "replace-label" when changing by setter', async () => {
       const container = new MobileDropdown({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-mobile-dropdown__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelEl.textContent).to.have.equal("replace-label");
     });

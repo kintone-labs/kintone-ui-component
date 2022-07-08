@@ -7,7 +7,7 @@ describe("BaseDateTimeListBox", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" }
+        { value: "2", label: "MARCH" },
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;
@@ -28,7 +28,7 @@ describe("BaseDateTimeListBox", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" }
+        { value: "2", label: "MARCH" },
       ];
       const container = new BaseDateTimeListBox();
       container.value = "0";
@@ -61,7 +61,7 @@ describe("BaseDateTimeListBox", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" }
+        { value: "2", label: "MARCH" },
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;
@@ -94,7 +94,7 @@ describe("BaseDateTimeListBox", () => {
       const initItems = [
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
-        { value: "2", label: "MARCH" }
+        { value: "2", label: "MARCH" },
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;
@@ -139,7 +139,7 @@ describe("BaseDateTimeListBox", () => {
       const initItems = [
         { label: "2021" },
         { label: "2022" },
-        { label: "2023" }
+        { label: "2023" },
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;
@@ -157,7 +157,7 @@ describe("BaseDateTimeListBox", () => {
         { value: "0", label: "JANUARY" },
         { value: "1", label: "FEBRUARY" },
         { value: "2", label: "MARCH" },
-        { value: "3", label: "APRIL" }
+        { value: "3", label: "APRIL" },
       ];
       const container = new BaseDateTimeListBox();
       container.items = initItems;

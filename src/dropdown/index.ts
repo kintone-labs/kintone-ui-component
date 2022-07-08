@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
@@ -13,9 +13,12 @@ import {
   validateItems,
   validateValueString,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = {
   label?: string;
@@ -47,7 +50,7 @@ export class Dropdown extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -82,7 +85,7 @@ export class Dropdown extends KucBase {
   @query(".kuc-dropdown__group__select-menu__highlight")
   private _highlightItemEl!: HTMLLIElement;
 
-  @query(".kuc-dropdown__group__error")
+  @query(".kuc-base-error__error")
   private _errorEl!: HTMLDivElement;
 
   private _timeoutID!: number | null;
@@ -177,7 +180,7 @@ export class Dropdown extends KucBase {
       this.value =
         this._getValue({
           items: this.items,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         }) || "";
     }
     super.update(changedProperties);
@@ -189,7 +192,9 @@ export class Dropdown extends KucBase {
       return -1;
     }
 
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    const firstIndex = this.items.findIndex(
+      (item) => item.value === this.value
+    );
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
@@ -217,13 +222,10 @@ export class Dropdown extends KucBase {
           id="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-dropdown__group__label__text">${this.label}</span
-          ><!--
-          --><span
-            class="kuc-dropdown__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <button
           class="kuc-dropdown__group__toggle"
@@ -258,15 +260,11 @@ export class Dropdown extends KucBase {
             this._getItemTemplate(item, number)
           )}
         </ul>
-        <div
-          class="kuc-dropdown__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
@@ -281,7 +279,8 @@ export class Dropdown extends KucBase {
     });
   }
 
-  updated() {
+  async updated() {
+    await this.updateComplete;
     this._updateContainerWidth();
     if (this._selectorVisible) {
       this._setMenuPosition();
@@ -563,8 +562,9 @@ export class Dropdown extends KucBase {
       const errorHeight = this._errorEl.offsetHeight
         ? this._errorEl.offsetHeight + 16
         : 0;
-      this._menuEl.style.bottom = `${this._buttonEl.offsetHeight +
-        errorHeight}px`;
+      this._menuEl.style.bottom = `${
+        this._buttonEl.offsetHeight + errorHeight
+      }px`;
       if (distanceToggleButton.toTop >= menuHeight) return;
       this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
       this._menuEl.style.overflowY = "scroll";
@@ -602,7 +602,8 @@ export class Dropdown extends KucBase {
     if (!this._highlightItemEl || !this._menuEl) return;
 
     const menuElClientRect = this._menuEl.getBoundingClientRect();
-    const highlightItemClientRect = this._highlightItemEl.getBoundingClientRect();
+    const highlightItemClientRect =
+      this._highlightItemEl.getBoundingClientRect();
 
     if (highlightItemClientRect.top < menuElClientRect.top) {
       this._menuEl.scrollTop -=
@@ -672,16 +673,6 @@ export class Dropdown extends KucBase {
         .kuc-dropdown__group__label[hidden] {
           display: none;
         }
-        .kuc-dropdown__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-        .kuc-dropdown__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-dropdown__group__toggle {
           height: 40px;
           box-sizing: border-box;
@@ -717,19 +708,6 @@ export class Dropdown extends KucBase {
           flex: none;
           width: 38px;
           height: 38px;
-        }
-        .kuc-dropdown__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-dropdown__group__error[hidden] {
-          display: none;
         }
         .kuc-dropdown__group__select-menu {
           position: absolute;

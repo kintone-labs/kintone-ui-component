@@ -7,12 +7,12 @@ export default {
     language: {
       name: "language",
       options: ["en", "ja", "zh"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     value: {
       name: "value",
-      control: { type: "text" }
-    }
+      control: { type: "text" },
+    },
   },
   parameters: {
     actions: {
@@ -20,19 +20,19 @@ export default {
         "kuc:calendar-body-change-date",
         "kuc:calendar-body-click-date",
         "kuc:calendar-footer-click-none",
-        "kuc:calendar-footer-click-today"
-      ]
-    }
-  }
+        "kuc:calendar-footer-click-today",
+      ],
+    },
+  },
 };
 
 const Template = ({ language, value }) => {
-  const _setValue = val => {
+  const _setValue = (val) => {
     const _inputEl = document.querySelector("input");
     _inputEl.value = val;
   };
 
-  const _showCalendar = _ => {
+  const _showCalendar = (_) => {
     const _calendarEl = document.querySelector("kuc-base-datetime-calendar");
     _calendarEl.hidden = false;
 
@@ -40,30 +40,30 @@ const Template = ({ language, value }) => {
     _calendarEl.value = _inputEl.value;
   };
 
-  const _hideCalendar = _ => {
+  const _hideCalendar = (_) => {
     const _calendarEl = document.querySelector("kuc-base-datetime-calendar");
     _calendarEl.hidden = true;
   };
 
-  const _handleFocusInput = _ => {
+  const _handleFocusInput = (_) => {
     _showCalendar();
   };
 
-  const _handleClickCalendarBodyChangeDate = event => {
+  const _handleClickCalendarBodyChangeDate = (event) => {
     _setValue(event.detail.value);
   };
 
-  const _handleClickCalendarBodyClickDate = event => {
+  const _handleClickCalendarBodyClickDate = (event) => {
     _setValue(event.detail.value);
     _hideCalendar();
   };
 
-  const _handleClickCalendarFooterButtonNone = _ => {
+  const _handleClickCalendarFooterButtonNone = (_) => {
     _setValue("");
     _hideCalendar();
   };
 
-  const _handleClickCalendarFooterButtonToday = _ => {
+  const _handleClickCalendarFooterButtonToday = (_) => {
     const date = new Date();
     _setValue(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
     _hideCalendar();
@@ -95,5 +95,5 @@ const Template = ({ language, value }) => {
 export const base = Template.bind({});
 base.args = {
   language: "en",
-  value: "2021-09-22"
+  value: "2021-09-22",
 };

@@ -4,7 +4,7 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail
+  CustomEventDetail,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -12,10 +12,13 @@ import {
   validateItems,
   validateValueString,
   validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type Item = { label?: string; value?: string };
 type RadioButtonProps = {
@@ -48,7 +51,7 @@ export class RadioButton extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @property({ type: Array }) items: Item[] = [];
@@ -56,7 +59,7 @@ export class RadioButton extends KucBase {
   @query(".kuc-radio-button__group__label")
   private _labelEl!: HTMLDivElement;
 
-  @query(".kuc-radio-button__group__error")
+  @query(".kuc-base-error__error")
   private _errorEl!: HTMLDivElement;
 
   @query(".kuc-radio-button__group__select-menu")
@@ -212,7 +215,7 @@ export class RadioButton extends KucBase {
   private _getTabIndex(index: number, currentItem: Item, items: Item[]) {
     if (
       index === 0 &&
-      items.filter(item => item.value === this.value).length === 0
+      items.filter((item) => item.value === this.value).length === 0
     )
       return "0";
     if (currentItem.value === this.value) return "0";
@@ -229,7 +232,7 @@ export class RadioButton extends KucBase {
       this.value =
         this._getValue({
           items: this.items,
-          selectedIndex: this.selectedIndex
+          selectedIndex: this.selectedIndex,
         }) || "";
     }
     super.update(changedProperties);
@@ -244,16 +247,11 @@ export class RadioButton extends KucBase {
         aria-labelledby="${this._GUID}-group"
       >
         <div class="kuc-radio-button__group__label" ?hidden="${!this.label}">
-          <span
-            id="${this._GUID}-group"
-            class="kuc-radio-button__group__label__text"
-            >${this.label}</span
-          ><!--
-            --><span
-            class="kuc-radio-button__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .guid="${this._GUID}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </div>
         <div
           class="kuc-radio-button__group__select-menu"
@@ -262,20 +260,17 @@ export class RadioButton extends KucBase {
         >
           ${this.items.map((item, index) => this._getItemTemplate(item, index))}
         </div>
-        <div
-          class="kuc-radio-button__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          aria-live="assertive"
-          ?hidden="${!this.error}"
-        >
-          ${this.error}
-        </div>
+        <kuc-base-error
+          .text="${this.error}"
+          .guid="${this._GUID}"
+          ariaLive="assertive"
+        ></kuc-base-error>
       </div>
     `;
   }
 
-  updated() {
+  async updated() {
+    await this.updateComplete;
     this._updateErrorWidth();
   }
 
@@ -285,7 +280,9 @@ export class RadioButton extends KucBase {
       return -1;
     }
 
-    const firstIndex = this.items.findIndex(item => item.value === this.value);
+    const firstIndex = this.items.findIndex(
+      (item) => item.value === this.value
+    );
     if (firstIndex === -1) return -1;
     const selectedIndex = this.items.findIndex(
       (item, index) => item.value === this.value && index === this.selectedIndex
@@ -366,18 +363,6 @@ export class RadioButton extends KucBase {
           display: none;
         }
 
-        .kuc-radio-button__group__label__required-icon {
-          font-size: 20px;
-          vertical-align: -3px;
-          color: #e74c3c;
-          margin-left: 4px;
-          line-height: 1;
-        }
-
-        .kuc-radio-button__group__label__required-icon[hidden] {
-          display: none;
-        }
-
         .kuc-radio-button__group__select-menu {
           display: block;
           min-width: 239px;
@@ -451,21 +436,6 @@ export class RadioButton extends KucBase {
           display: inline-block;
           vertical-align: middle;
           white-space: nowrap;
-        }
-
-        .kuc-radio-button__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0;
-          word-break: break-all;
-          white-space: normal;
-        }
-
-        .kuc-radio-button__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

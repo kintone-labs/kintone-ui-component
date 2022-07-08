@@ -9,10 +9,10 @@ storiesOf("mobile/button", module)
       className: "sample-class",
       id: "sample-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
-    normalButton.addEventListener("click", event => {
+    normalButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -21,10 +21,10 @@ storiesOf("mobile/button", module)
       text: "Normal",
       id: "sample-id",
       visible: true,
-      disabled: true
+      disabled: true,
     });
 
-    disableNormalButton.addEventListener("click", event => {
+    disableNormalButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -32,10 +32,10 @@ storiesOf("mobile/button", module)
       text: "Submit",
       type: "submit",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
-    submitButton.addEventListener("click", event => {
+    submitButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -43,10 +43,10 @@ storiesOf("mobile/button", module)
       text: "Submit",
       type: "submit",
       visible: true,
-      disabled: true
+      disabled: true,
     });
 
-    disableSubmitButton.addEventListener("click", event => {
+    disableSubmitButton.addEventListener("click", (event) => {
       console.log(["clickEvent", event]);
     });
 
@@ -54,24 +54,5 @@ storiesOf("mobile/button", module)
     root.appendChild(disableNormalButton);
     root.appendChild(submitButton);
     root.appendChild(disableSubmitButton);
-    return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const mobileButtonNormal = new MobileButton({
-      text: "Normal",
-      type: "normal",
-      className: "kuc_normal_button"
-    });
-    mobileButtonNormal.style.margin = "0px 5px 0px 0px";
-
-    const mobileButtonSubmit = new MobileButton({
-      text: "Submit",
-      type: "submit",
-      className: "kuc_submit_button"
-    });
-    root.appendChild(mobileButtonNormal);
-    root.appendChild(mobileButtonSubmit);
     return root;
   });

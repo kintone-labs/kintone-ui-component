@@ -9,24 +9,24 @@ storiesOf("mobile/dropdown", module)
       items: [
         {
           label: "-----",
-          value: "-----"
+          value: "-----",
         },
         {
           label: "Orange",
-          value: "orange"
+          value: "orange",
         },
         {
           label: "Apple",
-          value: "apple"
-        }
+          value: "apple",
+        },
       ],
       value: "apple",
       label: "フルーツ一覧",
       requiredIcon: true,
       error: "エラーです",
-      visible: true
+      visible: true,
     });
-    dropdown.addEventListener("change", event => {
+    dropdown.addEventListener("change", (event) => {
       console.log(event);
     });
     root.appendChild(dropdown);
@@ -39,16 +39,16 @@ storiesOf("mobile/dropdown", module)
     dropdown.items = [
       {
         label: "-----",
-        value: "-----"
+        value: "-----",
       },
       {
         label: "Orange",
-        value: "orange"
+        value: "orange",
       },
       {
         label: "Apple",
-        value: "apple"
-      }
+        value: "apple",
+      },
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
@@ -64,16 +64,16 @@ storiesOf("mobile/dropdown", module)
     dropdown.items = [
       {
         label: "-----",
-        value: "-----"
+        value: "-----",
       },
       {
         label: "Orange",
-        value: "orange"
+        value: "orange",
       },
       {
         label: "Apple",
-        value: "opple"
-      }
+        value: "opple",
+      },
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
@@ -103,36 +103,17 @@ storiesOf("mobile/dropdown", module)
     dropdown.items = [
       {
         label: "Orange",
-        value: "orange"
+        value: "orange",
       },
       {
         label: "Orange",
-        value: "orange"
-      }
+        value: "orange",
+      },
     ];
     dropdown.label = "フルーツ一覧";
     dropdown.requiredIcon = true;
     dropdown.error = "エラーです";
     dropdown.disabled = true;
-    root.appendChild(dropdown);
-    return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const dropdown = new MobileDropdown({
-      value: "Orange",
-      items: [
-        {
-          label: "orange",
-          value: "Orange"
-        },
-        {
-          label: "apple",
-          value: "Apple"
-        }
-      ]
-    });
     root.appendChild(dropdown);
     return root;
   });

@@ -4,7 +4,7 @@ import { MobileCheckbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 const initValue = ["orange"];
 
@@ -13,7 +13,7 @@ describe("MobileCheckbox", () => {
     it("should not be added into input elements when not assigned in constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: initValue
+        value: initValue,
       });
 
       const el = await fixture(container);
@@ -35,7 +35,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({
         items: initItems,
         value: initValue,
-        disabled: true
+        disabled: true,
       });
 
       const el = await fixture(container);
@@ -57,7 +57,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({
         items: initItems,
         value: initValue,
-        disabled: false
+        disabled: false,
       });
       container.disabled = true;
 
@@ -80,7 +80,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({
         items: initItems,
         value: initValue,
-        disabled: true
+        disabled: true,
       });
       container.disabled = false;
 

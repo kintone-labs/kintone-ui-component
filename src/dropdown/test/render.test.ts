@@ -7,17 +7,6 @@ describe("Dropdown", () => {
       const container = new Dropdown();
       const el = await fixture(container);
       expect(el.tagName).to.equal("KUC-DROPDOWN");
-      expect(el).dom.to.equalSnapshot({
-        ignoreAttributes: [
-          "aria-describedby",
-          "aria-labelledby",
-          "id",
-          "aria-live",
-          "type",
-          "style",
-          "role"
-        ]
-      });
     });
   });
 
@@ -27,14 +16,14 @@ describe("Dropdown", () => {
       requiredIcon: false,
       items: [
         { label: "orange", value: "Orange" },
-        { label: "apple", value: "Apple" }
+        { label: "apple", value: "Apple" },
       ],
       value: "Orange",
       error: "Error occurred!",
       className: "options-class",
       id: "options-id",
       visible: true,
-      disabled: false
+      disabled: false,
     });
 
     const el = await fixture(container);

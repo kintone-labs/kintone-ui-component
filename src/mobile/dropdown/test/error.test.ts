@@ -7,7 +7,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({});
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-dropdown__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-dropdown__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -24,12 +24,12 @@ describe("MobileDropdown", () => {
 
     it('should be replace by "replace-error" when changing by setter', async () => {
       const container = new MobileDropdown({
-        error: "error-message"
+        error: "error-message",
       });
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-dropdown__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");

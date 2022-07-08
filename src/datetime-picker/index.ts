@@ -1,23 +1,37 @@
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property, state, query } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { generateGUID, KucBase, dispatchCustomEvent } from "../base/kuc-base";
 import {
   visiblePropConverter,
   dateValueConverter,
-  timeValueConverter
+  timeValueConverter,
 } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
   validateProps,
   validateDateTimeValue,
   isValidDate,
-  throwErrorAfterUpdateComplete
+  validateTimeValue,
+  validateTimeStepNumber,
+  validateTimeStep,
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
-import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import {
+  FORMAT_IS_NOT_VALID,
+  MAX_MIN_IS_NOT_VALID,
+  TIME_IS_OUT_OF_VALID_RANGE,
+  TIMESTEP_IS_NOT_NUMBER,
+  MIN_TIME,
+  MAX_TIME,
+} from "../base/datetime/resource/constant";
+import { timeCompare } from "../base/datetime/utils";
 
 import "../base/datetime/date";
 import "../base/datetime/time";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+export { BaseError, BaseLabel };
 
 type DateTimePickerProps = {
   className?: string;
@@ -25,11 +39,14 @@ type DateTimePickerProps = {
   id?: string;
   label?: string;
   language?: "ja" | "en" | "zh" | "auto";
+  max?: string;
+  min?: string;
   value?: string;
   disabled?: boolean;
   hour12?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
+  timeStep?: number;
 };
 
 type DateAndTime = {
@@ -43,6 +60,8 @@ export class DateTimePicker extends KucBase {
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
   @property({ type: String }) language = "auto";
+  @property({ type: String }) max = "";
+  @property({ type: String }) min = "";
   @property({
     type: String,
     hasChanged(newVal: string, oldVal: string) {
@@ -50,7 +69,7 @@ export class DateTimePicker extends KucBase {
         return true;
       }
       return newVal !== oldVal;
-    }
+    },
   })
   value? = "";
   @property({ type: Boolean }) disabled = false;
@@ -60,18 +79,19 @@ export class DateTimePicker extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
+  @property({ type: Number }) timeStep = 30;
 
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
 
-  @query(".kuc-datetime-picker__group__error")
-  private _errorEl!: HTMLDivElement;
+  @query("kuc-base-label")
+  private _baseLabelEl!: BaseLabel;
 
-  @query(".kuc-datetime-picker__group__label")
-  private _labelEl!: HTMLFieldSetElement;
+  @query("kuc-base-error")
+  private _baseErrorEl!: BaseError;
 
   private _dateValue = "";
   private _timeValue = "";
@@ -88,6 +108,12 @@ export class DateTimePicker extends KucBase {
   private _changeDateByUI = false;
   private _changeTimeByUI = false;
 
+  private _inputMax = "";
+  private _inputMin = "";
+  private _timeConverted: string = "";
+  private _errorInvalidTime = "";
+  private _inputTimeStep = 30;
+
   constructor(props?: DateTimePickerProps) {
     super();
     this._GUID = generateGUID();
@@ -96,6 +122,51 @@ export class DateTimePicker extends KucBase {
   }
 
   protected shouldUpdate(_changedProperties: PropertyValues): boolean {
+    if (_changedProperties.has("max") || _changedProperties.has("min")) {
+      let _inputMinTemp = this._inputMin;
+      let _inputMaxTemp = this._inputMax;
+
+      if (this.max === undefined || this.max === "") {
+        _inputMaxTemp = MAX_TIME;
+      } else {
+        if (!validateTimeValue(this.max)) {
+          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          return false;
+        }
+        _inputMaxTemp = this.max = timeValueConverter(this.max);
+      }
+
+      if (this.min === undefined || this.min === "") {
+        _inputMinTemp = MIN_TIME;
+      } else {
+        if (!validateTimeValue(this.min)) {
+          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          return false;
+        }
+        _inputMinTemp = this.min = timeValueConverter(this.min);
+      }
+
+      if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
+        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        return false;
+      }
+      this._inputMin = _inputMinTemp;
+      this._inputMax = _inputMaxTemp;
+    }
+
+    if (_changedProperties.has("timeStep")) {
+      if (!validateTimeStepNumber(this.timeStep)) {
+        throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+        return false;
+      }
+
+      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
+        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        return false;
+      }
+      this._inputTimeStep = this.timeStep;
+    }
+
     if (this.value === undefined || this.value === "") return true;
 
     if (typeof this.value !== "string") {
@@ -110,6 +181,18 @@ export class DateTimePicker extends KucBase {
       isValidDate(this._dateConverted);
     if (!isValidValue) {
       throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+      return false;
+    }
+
+    this._timeConverted = timeValueConverter(
+      this._dateAndTime.time.slice(0, 5)
+    );
+    if (
+      _changedProperties.has("value") &&
+      (timeCompare(this._timeConverted, this._inputMin) < 0 ||
+        timeCompare(this._inputMax, this._timeConverted) < 0)
+    ) {
+      throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
       return false;
     }
 
@@ -129,16 +212,20 @@ export class DateTimePicker extends KucBase {
   private _updateValueChangeByUI() {
     const validFormat = this._validateDateTimeFormat();
     this.value = validFormat ? this.value : undefined;
-    if (this._changeTimeByUI) return;
 
-    this._errorText = validFormat ? this.error : this._errorFormat;
+    this._errorText = validFormat
+      ? this.error
+      : this._errorFormat || this._errorInvalidTime;
   }
 
   private _validateDateTimeFormat() {
     const isMissingDatePart = Boolean(this._timeValue) && !this._dateValue;
     const isMissingTimePart = Boolean(this._dateValue) && !this._timeValue;
     const validFormat =
-      !this._errorFormat && !isMissingDatePart && !isMissingTimePart;
+      !this._errorFormat &&
+      !this._errorInvalidTime &&
+      !isMissingDatePart &&
+      !isMissingTimePart;
     return validFormat;
   }
 
@@ -147,6 +234,7 @@ export class DateTimePicker extends KucBase {
     if (this.value === "" || this.value === undefined) {
       this._previousTimeValue = "";
       this._errorFormat = "";
+      this._errorInvalidTime = "";
       return;
     }
 
@@ -171,6 +259,16 @@ export class DateTimePicker extends KucBase {
         this._setEmptyValue();
       }
     }
+
+    if (
+      (changedProperties.has("max") ||
+        changedProperties.has("min") ||
+        changedProperties.has("value")) &&
+      this.value !== undefined
+    ) {
+      this._errorInvalidTime = "";
+    }
+
     super.update(changedProperties);
   }
 
@@ -196,6 +294,7 @@ export class DateTimePicker extends KucBase {
     this._previousTimeValue = "";
     this._previousDateValue = "";
     this._errorFormat = "";
+    this._errorInvalidTime = "";
   }
 
   render() {
@@ -209,14 +308,10 @@ export class DateTimePicker extends KucBase {
           class="kuc-datetime-picker__group__label"
           ?hidden="${!this.label}"
         >
-          <span class="kuc-datetime-picker__group__label__text"
-            >${this.label}</span
-          ><!--
-          --><span
-            class="kuc-datetime-picker__group__label__required-icon"
-            ?hidden="${!this.requiredIcon}"
-            >*</span
-          >
+          <kuc-base-label
+            .text="${this.label}"
+            .requiredIcon="${this.requiredIcon}"
+          ></kuc-base-label>
         </legend>
         <div class="kuc-datetime-picker__group__inputs">
           <kuc-base-date
@@ -232,24 +327,26 @@ export class DateTimePicker extends KucBase {
             .value="${this._timeValue}"
             .hour12="${this.hour12}"
             .disabled="${this.disabled}"
+            .timeStep="${this._inputTimeStep}"
+            .min="${this._inputMin}"
+            .max="${this._inputMax}"
+            .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
           ></kuc-base-time>
         </div>
-        <div
-          class="kuc-datetime-picker__group__error"
-          id="${this._GUID}-error"
-          role="alert"
-          ?hidden="${!this._errorText}"
-        >
-          ${this._errorText}
-        </div>
+        <kuc-base-error
+          .text="${this._errorText}"
+          .guid="${this._GUID}"
+        ></kuc-base-error>
       </fieldset>
     `;
   }
 
   updated() {
-    this._updateErrorWidth();
     this._resetState();
+    this._baseLabelEl.updateComplete.then((_) => {
+      this._updateErrorWidth();
+    });
   }
 
   private _resetState() {
@@ -260,13 +357,13 @@ export class DateTimePicker extends KucBase {
   }
 
   private _updateErrorWidth() {
-    const labelWidth = getWidthElmByContext(this._labelEl);
+    const labelWidth = getWidthElmByContext(this._baseLabelEl);
     const inputGroupWitdh = 185;
     if (labelWidth > inputGroupWitdh) {
-      this._errorEl.style.width = labelWidth + "px";
+      this._baseErrorEl.style.width = labelWidth + "px";
       return;
     }
-    this._errorEl.style.width = inputGroupWitdh + "px";
+    this._baseErrorEl.style.width = inputGroupWitdh + "px";
   }
 
   private _handleDateChange(event: CustomEvent) {
@@ -289,6 +386,14 @@ export class DateTimePicker extends KucBase {
     event.stopPropagation();
     this._changeTimeByUI = true;
     const newValue = event.detail.value;
+
+    if (event.detail.error) {
+      this._errorInvalidTime = event.detail.error;
+      this.error = "";
+    } else {
+      this._errorInvalidTime = "";
+    }
+
     this._updateDateTimeValue(newValue, "time");
   }
 
@@ -302,15 +407,17 @@ export class DateTimePicker extends KucBase {
     }
     this._previousTimeValue = this._timeValue;
     this._previousDateValue = this._dateValue;
-    const newDateTime = this._errorFormat
-      ? undefined
-      : this._getDateTimeString();
-    const _value = this._errorFormat ? undefined : newDateTime;
+    const newDateTime =
+      this._errorFormat || this._errorInvalidTime
+        ? undefined
+        : this._getDateTimeString();
+    const _value =
+      this._errorFormat || this._errorInvalidTime ? undefined : newDateTime;
     this.value = _value;
     const detail = {
       value: _value,
       oldValue: oldDateTime,
-      changedPart: type
+      changedPart: type,
     };
     dispatchCustomEvent(this, "change", detail);
   }
@@ -337,7 +444,7 @@ export class DateTimePicker extends KucBase {
     if (value.indexOf("T") === value.length - 1 || dateTime.length > 2)
       return { date, time: "" };
 
-    if (!time) return { date, time: "00:00" };
+    if (!time) return { date, time: MIN_TIME };
 
     const [hours, minutes, seconds] = time.split(":");
     if (hours === "" || minutes === "" || seconds === "") {
@@ -404,36 +511,9 @@ export class DateTimePicker extends KucBase {
         .kuc-datetime-picker__group__label[hidden] {
           display: none;
         }
-        .kuc-datetime-picker__group__label__text {
-          color: #333333;
-          font-size: 14px;
-        }
-        .kuc-datetime-picker__group__label__required-icon {
-          margin-left: 4px;
-          line-height: 1;
-          vertical-align: -3px;
-          color: #e74c3c;
-          font-size: 20px;
-        }
-        .kuc-datetime-picker__group__label__required-icon[hidden] {
-          display: none;
-        }
         .kuc-datetime-picker__group__inputs {
           display: flex;
           max-width: 185px;
-        }
-        .kuc-datetime-picker__group__error {
-          line-height: 1.5;
-          padding: 4px 18px;
-          box-sizing: border-box;
-          background-color: #e74c3c;
-          color: #ffffff;
-          margin: 8px 0px;
-          word-break: break-all;
-          white-space: normal;
-        }
-        .kuc-datetime-picker__group__error[hidden] {
-          display: none;
         }
       </style>
     `;

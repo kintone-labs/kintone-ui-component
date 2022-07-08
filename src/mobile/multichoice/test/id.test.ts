@@ -17,7 +17,7 @@ describe("MobileMultiChoice", () => {
 
     it('should be replace by "replace-id" when changing by setter', async () => {
       const container = new MobileMultiChoice({
-        id: "options-id"
+        id: "options-id",
       });
       container.id = "replace-id";
       const el = await fixture(container);

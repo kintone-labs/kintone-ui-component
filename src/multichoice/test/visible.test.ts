@@ -4,7 +4,7 @@ import { MultiChoice } from "../index";
 const initItems = [
   { label: "Item 1", value: "item-1" },
   { label: "Item 2", value: "item-2" },
-  { label: "Item 4", value: "item-3" }
+  { label: "Item 4", value: "item-3" },
 ];
 
 describe("MultiChoice", () => {

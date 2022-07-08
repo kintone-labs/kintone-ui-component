@@ -7,7 +7,7 @@ describe("DatePicker", () => {
       const container = new DatePicker();
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-date-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("DatePicker", () => {
       const container = new DatePicker({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-date-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -27,7 +27,7 @@ describe("DatePicker", () => {
       container.error = "error-message";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-date-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -38,7 +38,7 @@ describe("DatePicker", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-date-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");
@@ -47,11 +47,11 @@ describe("DatePicker", () => {
     it("should have width equal label when label longer than input width", async () => {
       const container = new DatePicker({
         error: "error-message",
-        label: "long label long label long label long label"
+        label: "long label long label long label long label",
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-date-picker__group__error"
+        ".kuc-base-error__error"
       ) as HTMLDivElement;
       const labelEl = el.querySelector(
         ".kuc-date-picker__group__label"
