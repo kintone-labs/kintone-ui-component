@@ -9,7 +9,7 @@ storiesOf("desktop/readonly-table", module)
       id: "sample-id",
       visible: true,
       label: "My ReadOnlyTable",
-      rowsPerPage: -5,
+      rowsPerPage: 3,
       pagination: true,
       paginationPosition: "middle",
       columns: [

@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, svg, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -21,7 +21,6 @@ type ReadOnlyTableProps = {
   visible?: boolean;
 };
 
-let currentPage: number = 1;
 export class ReadOnlyTable extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -38,6 +37,8 @@ export class ReadOnlyTable extends KucBase {
     converter: visiblePropConverter
   })
   visible = true;
+  @state()
+  private _pagePosition: number = 1;
 
   @query(".kuc-readonly-table__pager__pagenation-prev")
   private _prevButtonEl!: HTMLButtonElement;
@@ -202,31 +203,31 @@ export class ReadOnlyTable extends KucBase {
 
   private _handleClickPreviusButton(event: MouseEvent | KeyboardEvent) {
     // Do not process on the first page
-    if (currentPage === 1) return;
-    currentPage -= 1;
-    this.render();
-    this.requestUpdate();
+    if (this._pagePosition === 1) return;
+    this._pagePosition -= 1;
+    // this.render();
+    // this.requestUpdate();
   }
 
   private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
-    currentPage += 1;
+    this._pagePosition += 1;
     this.render();
     this.requestUpdate();
   }
 
   private _toggleDisplayPreviusButton() {
-    return currentPage > 1;
+    return this._pagePosition > 1;
   }
 
   private _toggleDisplayNextButton() {
-    return currentPage < this.data.length / this.rowsPerPage;
+    return this._pagePosition < this.data.length / this.rowsPerPage;
   }
 
   // Formatting the data displayed on the current page
   private _createDisplayData(data: string[][], steps: number) {
     if (!this.pagination) return data;
-    const firstRow = (currentPage - 1) * steps + 1;
-    const lastRow = currentPage * steps;
+    const firstRow = (this._pagePosition - 1) * steps + 1;
+    const lastRow = this._pagePosition * steps;
     const displayData = data
       .map((element, row: number) => {
         if (row < firstRow - 1 || row > lastRow - 1) return [];
