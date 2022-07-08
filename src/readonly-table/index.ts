@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, svg, PropertyValues } from "lit";
@@ -75,52 +76,12 @@ export class ReadOnlyTable extends KucBase {
     super.update(changedProperties);
   }
 
-  private _getColumnsTemplate(column: Column) {
-    if (!column.width) {
-      column.width = "auto";
-    }
-
-    return html`
-      <th
-        class="kuc-readonly-table__table__header__cell"
-        style="width: ${column.width}"
-        ?hidden="${column.visible === false}"
-      >
-        <span class="kuc-readonly-table__table__header__cell__label">
-          ${column.headerName}</span
-        >
-      </th>
-    `;
-  }
-
-  private _getDataTemplate(data: string[], currentIndex: number) {
-    return html`
-      <tr
-        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
-      >
-        ${data.map((dataContent: string, dataIndex: number) => {
-          let isHidden = false;
-          if (
-            this.columns[dataIndex] &&
-            this.columns[dataIndex].visible === false
-          ) {
-            isHidden = true;
-          }
-          return html`
-            <td
-              class="kuc-readonly-table__table__body__row__cell-data"
-              ?hidden="${isHidden}"
-            >
-              ${dataContent}
-            </td>
-          `;
-        })}
-      </tr>
-    `;
-  }
-
   render() {
-    const currentData = this._createDisplayData(this.data, this.rowsPerPage);
+    const currentPageData = this._createDisplayData(
+      this.data,
+      this._pagePosition,
+      this.rowsPerPage
+    );
     return html`
       ${this._getStyleTagTemplate()}
       <table class="kuc-readonly-table__table" aria-label="${this.label}">
@@ -133,7 +94,7 @@ export class ReadOnlyTable extends KucBase {
           </tr>
         </thead>
         <tbody class="kuc-readonly-table__table__body">
-          ${currentData.map((data: string[], currentIndex: number) => {
+          ${currentPageData.map((data: string[], currentIndex: number) => {
             return this._getDataTemplate(data, currentIndex);
           })}
         </tbody>
@@ -163,6 +124,20 @@ export class ReadOnlyTable extends KucBase {
     `;
   }
 
+  updated() {
+    if (!this._toggleDisplayPreviusButton()) {
+      this._prevButtonEl.classList.add("pager-disable");
+    } else {
+      this._prevButtonEl.classList.remove("pager-disable");
+    }
+
+    if (!this._toggleDisplayNextButton()) {
+      this._nextButtonEl.classList.add("pager-disable");
+    } else {
+      this._nextButtonEl.classList.remove("pager-disable");
+    }
+  }
+
   private _validateColumns(columns: Column[]) {
     if (!Array.isArray(columns)) {
       throw new Error("'columns' property is invalid");
@@ -184,7 +159,7 @@ export class ReadOnlyTable extends KucBase {
   private _validateRowsPerPage(numRows: number) {
     if (numRows < 0 || numRows === 0 || !Number.isInteger(numRows)) {
       console.error(
-        "'rowsPerPage' must be a positive integer! Set to 5 by default."
+        "'rowsPerPage' property must be a positive integer! Set to 5 by default."
       );
       return 5;
     }
@@ -201,18 +176,73 @@ export class ReadOnlyTable extends KucBase {
     return option;
   }
 
+  private _getColumnsTemplate(column: Column) {
+    if (!column.width) {
+      column.width = "auto";
+    }
+
+    return html`
+      <th
+        class="kuc-readonly-table__table__header__cell"
+        style="width: ${column.width}"
+        ?hidden="${column.visible === false}"
+      >
+        <span class="kuc-readonly-table__table__header__cell__label">
+          ${column.headerName}</span
+        >
+      </th>
+    `;
+  }
+
+  // Formatting the data displayed on the current page
+  private _createDisplayData(
+    data: string[][],
+    pagePosition: number,
+    steps: number
+  ) {
+    if (!this.pagination) return data;
+    const firstRow = (pagePosition - 1) * steps + 1;
+    const lastRow = pagePosition * steps;
+    const displayData = data.filter(
+      (element, index: number) =>
+        element.length && index >= firstRow - 1 && index <= lastRow - 1
+    );
+    return displayData;
+  }
+
+  private _getDataTemplate(data: string[], currentIndex: number) {
+    return html`
+      <tr
+        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
+      >
+        ${data.map((dataContent: string, dataIndex: number) => {
+          let isHidden = false;
+          if (
+            this.columns[dataIndex] &&
+            this.columns[dataIndex].visible === false
+          ) {
+            isHidden = true;
+          }
+          return html`
+            <td
+              class="kuc-readonly-table__table__body__row__cell-data"
+              ?hidden="${isHidden}"
+            >
+              ${dataContent}
+            </td>
+          `;
+        })}
+      </tr>
+    `;
+  }
+
   private _handleClickPreviusButton(event: MouseEvent | KeyboardEvent) {
-    // Do not process on the first page
     if (this._pagePosition === 1) return;
     this._pagePosition -= 1;
-    // this.render();
-    // this.requestUpdate();
   }
 
   private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
     this._pagePosition += 1;
-    this.render();
-    this.requestUpdate();
   }
 
   private _toggleDisplayPreviusButton() {
@@ -221,34 +251,6 @@ export class ReadOnlyTable extends KucBase {
 
   private _toggleDisplayNextButton() {
     return this._pagePosition < this.data.length / this.rowsPerPage;
-  }
-
-  // Formatting the data displayed on the current page
-  private _createDisplayData(data: string[][], steps: number) {
-    if (!this.pagination) return data;
-    const firstRow = (this._pagePosition - 1) * steps + 1;
-    const lastRow = this._pagePosition * steps;
-    const displayData = data
-      .map((element, row: number) => {
-        if (row < firstRow - 1 || row > lastRow - 1) return [];
-        return element;
-      })
-      .filter(element => element.length);
-    return displayData;
-  }
-
-  updated() {
-    if (!this._toggleDisplayPreviusButton()) {
-      this._prevButtonEl.classList.add("pager-disable");
-    } else {
-      this._prevButtonEl.classList.remove("pager-disable");
-    }
-
-    if (!this._toggleDisplayNextButton()) {
-      this._nextButtonEl.classList.add("pager-disable");
-    } else {
-      this._nextButtonEl.classList.remove("pager-disable");
-    }
   }
 
   private _getPrevButtonSvgTemplate() {

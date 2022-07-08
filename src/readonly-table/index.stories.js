@@ -34,7 +34,9 @@ storiesOf("desktop/readonly-table", module)
         ["7", "Peach", "sample data 7"],
         ["8", "Pineapple", "sample data 8"],
         ["9", "Watermelon", "sample data 9"],
-        ["10", "Strawberry", "sample data 10"]
+        ["10", "Strawberry", "sample data 10"],
+        [],
+        []
       ]
     });
     root.appendChild(readOnlyTable);
