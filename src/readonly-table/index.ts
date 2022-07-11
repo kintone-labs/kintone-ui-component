@@ -1,51 +1,69 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
-import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { html, svg, PropertyValues } from "lit";
+import { property, query, state } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { BaseLabel } from "../base/label";
+export { BaseLabel };
 
-type Column = { header?: { text?: string }; visible?: boolean };
+type Column = { headerName?: string; visible?: boolean; width?: string };
 type ReadOnlyTableProps = {
   className?: string;
   id?: string;
   label?: string;
-  visible?: boolean;
   columns?: Column[];
   data?: string[][];
+  pagination?: boolean;
+  rowsPerPage?: number;
+  paginationPosition?: "left" | "right";
+  visible?: boolean;
 };
 
 export class ReadOnlyTable extends KucBase {
   @property({ type: String, reflect: true, attribute: "class" }) className = "";
   @property({ type: String, reflect: true, attribute: "id" }) id = "";
   @property({ type: String }) label = "";
+  @property({ type: Array }) columns: Column[] = [];
+  @property({ type: Array }) data: string[][] = [];
+  @property({ type: Boolean }) pagination = true;
+  @property({ type: Number }) rowsPerPage = 5;
+  @property({ type: String }) paginationPosition = "left";
   @property({
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter,
+    converter: visiblePropConverter
   })
   visible = true;
-  @property({ type: Array }) columns: Column[] = [];
-  @property({ type: Array }) data: string[][] = [];
+  @state()
+  private _pagePosition: number = 1;
+
+  @query(".kuc-readonly-table__pager__pagenation-prev")
+  private _prevButtonEl!: HTMLButtonElement;
+  @query(".kuc-readonly-table__pager__pagenation-next")
+  private _nextButtonEl!: HTMLButtonElement;
 
   constructor(props?: ReadOnlyTableProps) {
     super();
-    if (!props) {
+    if (props && props.columns && props.data) {
+      this._validateColumns(props.columns);
+      this._validateData(props.data);
+    } else {
       return;
     }
-    if (!Array.isArray(props.columns) && props.columns !== undefined) {
-      throw new Error("'columns' property is invalid");
+
+    if (props.rowsPerPage || props.rowsPerPage === 0) {
+      props.rowsPerPage = this._validateRowsPerPage(props.rowsPerPage);
     }
-    if (!Array.isArray(props.data) && props.data !== undefined) {
-      throw new Error("'data' property is invalid");
+
+    if (props.paginationPosition) {
+      props.paginationPosition = this._validatePagination(
+        props.paginationPosition
+      );
     }
-    props.data &&
-      props.data.forEach((data) => {
-        if (!Array.isArray(data)) {
-          throw new Error("'data' property is invalid");
-        }
-      });
 
     const validProps = validateProps(props);
     Object.assign(this, validProps);
@@ -58,29 +76,150 @@ export class ReadOnlyTable extends KucBase {
     super.update(changedProperties);
   }
 
+  render() {
+    const currentPageData = this._createDisplayData(
+      this.data,
+      this._pagePosition,
+      this.rowsPerPage
+    );
+    return html`
+      ${this._getStyleTagTemplate()}
+      <table class="kuc-readonly-table__table" aria-label="${this.label}">
+        <caption class="kuc-readonly-table__table__label">
+          <kuc-base-label .text="${this.label}"></kuc-base-label>
+        </caption>
+        <thead class="kuc-readonly-table__table__header">
+          <tr>
+            ${this.columns.map(column => this._getColumnsTemplate(column))}
+          </tr>
+        </thead>
+        <tbody class="kuc-readonly-table__table__body">
+          ${currentPageData.map((data: string[], currentIndex: number) => {
+            return this._getDataTemplate(data, currentIndex);
+          })}
+        </tbody>
+      </table>
+      <div
+        class="kuc-readonly-table__pager"
+        style="float: ${this.paginationPosition}"
+        ?hidden="${!this.pagination}"
+      >
+        <button
+          title="previous"
+          class="kuc-readonly-table__pager__pagenation-prev"
+          type="button"
+          @click="${this._handleClickPreviusButton}"
+        >
+          ${this._getPrevButtonSvgTemplate()}
+        </button>
+        <button
+          title="next"
+          class="kuc-readonly-table__pager__pagenation-next"
+          type="button"
+          @click="${this._handleClickNextButton}"
+        >
+          ${this._getNextButtonSvgTemplate()}
+        </button>
+      </div>
+    `;
+  }
+
+  updated() {
+    if (!this._toggleDisplayPreviusButton()) {
+      this._prevButtonEl.classList.add("pager-disable");
+    } else {
+      this._prevButtonEl.classList.remove("pager-disable");
+    }
+
+    if (!this._toggleDisplayNextButton()) {
+      this._nextButtonEl.classList.add("pager-disable");
+    } else {
+      this._nextButtonEl.classList.remove("pager-disable");
+    }
+  }
+
+  private _validateColumns(columns: Column[]) {
+    if (!Array.isArray(columns)) {
+      throw new Error("'columns' property is invalid");
+    }
+  }
+
+  private _validateData(data: string[][]) {
+    if (!Array.isArray(data)) {
+      throw new Error("'data' property is invalid");
+    }
+    data &&
+      data.forEach(val => {
+        if (!Array.isArray(val)) {
+          throw new Error("'data' property is invalid");
+        }
+      });
+  }
+
+  private _validateRowsPerPage(numRows: number) {
+    if (numRows < 0 || numRows === 0 || !Number.isInteger(numRows)) {
+      console.error(
+        "'rowsPerPage' property must be a positive integer! Set to 5 by default."
+      );
+      return 5;
+    }
+    return Math.round(numRows);
+  }
+
+  private _validatePagination(option: string) {
+    if (option !== "left" && option !== "right") {
+      console.error(
+        "'paginationPosition' must be either 'left' or 'right'. Set to 'left' by default"
+      );
+      return "left";
+    }
+    return option;
+  }
+
   private _getColumnsTemplate(column: Column) {
+    if (!column.width) {
+      column.width = "auto";
+    }
+
     return html`
       <th
         class="kuc-readonly-table__table__header__cell"
+        style="width: ${column.width}"
         ?hidden="${column.visible === false}"
       >
         <span class="kuc-readonly-table__table__header__cell__label">
-          ${column.header && column.header.text}</span
+          ${column.headerName}</span
         >
       </th>
     `;
   }
 
-  private _getDataTemplate(data: string[], number: number) {
+  // Formatting the data displayed on the current page
+  private _createDisplayData(
+    data: string[][],
+    pagePosition: number,
+    steps: number
+  ) {
+    if (!this.pagination) return data;
+    const firstRow = (pagePosition - 1) * steps + 1;
+    const lastRow = pagePosition * steps;
+    const displayData = data.filter(
+      (element, index: number) =>
+        element.length && index >= firstRow - 1 && index <= lastRow - 1
+    );
+    return displayData;
+  }
+
+  private _getDataTemplate(data: string[], currentIndex: number) {
     return html`
       <tr
-        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${number}"
+        class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
       >
-        ${data.map((dataContent: string, dataNumber: number) => {
+        ${data.map((dataContent: string, dataIndex: number) => {
           let isHidden = false;
           if (
-            this.columns[dataNumber] &&
-            this.columns[dataNumber].visible === false
+            this.columns[dataIndex] &&
+            this.columns[dataIndex].visible === false
           ) {
             isHidden = true;
           }
@@ -97,45 +236,57 @@ export class ReadOnlyTable extends KucBase {
     `;
   }
 
-  render() {
-    return html`
-      ${this._getStyleTagTemplate()}
-      <div class="kuc-readonly-table__label" ?hidden="${!this.label}">
-        <span class="kuc-readonly-table__table__label__text"
-          >${this.label}</span
-        >
-      </div>
-      <table class="kuc-readonly-table__table" aria-label="${this.label}">
-        <thead class="kuc-readonly-table__table__header">
-          <tr>
-            ${this.columns.map((column) => this._getColumnsTemplate(column))}
-          </tr>
-        </thead>
-        <tbody class="kuc-readonly-table__table__body">
-          ${this.data.map((data: string[], number: number) =>
-            this._getDataTemplate(data, number)
-          )}
-        </tbody>
-      </table>
+  private _handleClickPreviusButton(event: MouseEvent | KeyboardEvent) {
+    if (this._pagePosition === 1) return;
+    this._pagePosition -= 1;
+  }
+
+  private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
+    this._pagePosition += 1;
+  }
+
+  private _toggleDisplayPreviusButton() {
+    return this._pagePosition > 1;
+  }
+
+  private _toggleDisplayNextButton() {
+    return this._pagePosition < this.data.length / this.rowsPerPage;
+  }
+
+  private _getPrevButtonSvgTemplate() {
+    return svg`
+      <svg
+        width="9"
+        height="15"
+        viewBox="0 0 9 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
+          fill="#888888"
+        />
+      </svg>
     `;
   }
 
-  private _validateColumns(columns: Column[]) {
-    if (!Array.isArray(columns)) {
-      throw new Error("'columns' property is invalid");
-    }
-  }
-
-  private _validateData(data: string[][]) {
-    if (!Array.isArray(data)) {
-      throw new Error("'data' property is invalid");
-    }
-    data &&
-      data.forEach((val) => {
-        if (!Array.isArray(val)) {
-          throw new Error("'data' property is invalid");
-        }
-      });
+  private _getNextButtonSvgTemplate() {
+    return svg`
+    <svg
+      width="9"
+      height="15"
+      viewBox="0 0 9 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
+        fill="#888888"
+      />
+    </svg>
+    `;
   }
 
   private _getStyleTagTemplate() {
@@ -168,18 +319,20 @@ export class ReadOnlyTable extends KucBase {
         }
         .kuc-readonly-table__table {
           border-collapse: collapse;
+          table-layout: fixed;
+          width: 100%;
         }
         .kuc-readonly-table__table__header {
           border-width: 0px 1px;
           border-color: #3498db;
           border-style: solid;
         }
-        .kuc-readonly-table__label {
-          display: inline-block;
+        .kuc-readonly-table__table__label {
+          text-align: left;
           white-space: nowrap;
-          padding: 4px 0px 8px 0px;
+          padding: 4px 0px;
         }
-        .kuc-readonly-table__label[hidden] {
+        .kuc-readonly-table__table__label[hidden] {
           display: none;
         }
         .kuc-readonly-table__table__header__cell {
@@ -188,7 +341,6 @@ export class ReadOnlyTable extends KucBase {
           height: 40px;
           box-sizing: border-box;
           text-align: left;
-          min-width: 193px;
         }
         .kuc-readonly-table__table__header__cell[hidden] {
           display: none;
@@ -210,6 +362,37 @@ export class ReadOnlyTable extends KucBase {
         }
         .kuc-readonly-table__table__body__row__cell-data[hidden] {
           display: none;
+        }
+        .kuc-readonly-table__table__header__cell,
+        .kuc-readonly-table__table__body__row__cell-data {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .kuc-readonly-table__pager {
+          margin-top: 10px;
+        }
+        .kuc-readonly-table__pager button {
+          cursor: pointer;
+        }
+        .kuc-readonly-table__pager__pagenation-prev {
+          border: none;
+          background-color: transparent;
+          visibility: visible;
+        }
+        .kuc-readonly-table__pager__pagenation-next {
+          border: none;
+          background-color: transparent;
+          visibility: visible;
+        }
+        .kuc-readonly-table__pager__pagenation-next:hover svg path,
+        .kuc-readonly-table__pager__pagenation-prev:hover svg path,
+        .kuc-readonly-table__pager__pagenation-next:focus svg path,
+        .kuc-readonly-table__pager__pagenation-prev:focus svg path {
+          fill: #3498db;
+        }
+        .pager-disable {
+          visibility: hidden;
         }
       </style>
     `;
