@@ -15,14 +15,14 @@ storiesOf("desktop/readonly-table", module)
       columns: [
         {
           headerName: "First column",
-          width: "100px"
+          width: "100px",
         },
         {
-          headerName: "Second column"
+          headerName: "Second column",
         },
         {
-          headerName: "Third column third column third column"
-        }
+          headerName: "Third column third column third column",
+        },
       ],
       data: [
         ["1", "Orange", "sample data 1"],
@@ -36,8 +36,8 @@ storiesOf("desktop/readonly-table", module)
         ["9", "Watermelon", "sample data 9"],
         ["10", "Strawberry", "sample data 10"],
         [],
-        []
-      ]
+        [],
+      ],
     });
     root.appendChild(readOnlyTable);
     return root;
@@ -45,26 +45,29 @@ storiesOf("desktop/readonly-table", module)
   .add("Base2", () => {
     const root = document.createElement("div");
     const readOnlyTable = new ReadOnlyTable({
+      className: "sample-class",
+      id: "sample-id",
+      visible: true,
+      label: "My ReadOnlyTable",
+      rowsPerPage: 3,
       columns: [
         {
-          header: {
-            text: "1st column"
-          }
+          headerName: "First column",
+          width: "100px",
         },
         {
-          header: {
-            text: "2nd column"
-          },
-          visible: false
+          headerName: "Second column",
         },
         {
-          header: {
-            text: "3rd column"
-          }
-        }
-      ]
+          headerName: "Third column third column third column",
+        },
+      ],
     });
-    readOnlyTable.data = [1, ["sample value 2", "bbb", "test"]];
+    readOnlyTable.data = [
+      ["sample value 2", "bbb", "test"],
+      ["sample value 2", "bbb", "test"],
+      ["sample value 2", "bbb", "test"],
+    ];
     root.appendChild(readOnlyTable);
     return root;
   })
@@ -75,18 +78,18 @@ storiesOf("desktop/readonly-table", module)
       columns: [
         {
           header: {
-            text: "Fruit"
+            text: "Fruit",
           },
-          visible: true
+          visible: true,
         },
         {
           header: {
-            text: "Producing area"
+            text: "Producing area",
           },
-          visible: true
-        }
+          visible: true,
+        },
       ],
-      data: [["Orange", "Ehime"]]
+      data: [["Orange", "Ehime"]],
     });
     root.appendChild(readOnlyTable);
     return root;

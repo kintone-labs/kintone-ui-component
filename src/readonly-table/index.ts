@@ -35,7 +35,7 @@ export class ReadOnlyTable extends KucBase {
     type: Boolean,
     attribute: "hidden",
     reflect: true,
-    converter: visiblePropConverter
+    converter: visiblePropConverter,
   })
   visible = true;
   @state()
@@ -90,7 +90,7 @@ export class ReadOnlyTable extends KucBase {
         </caption>
         <thead class="kuc-readonly-table__table__header">
           <tr>
-            ${this.columns.map(column => this._getColumnsTemplate(column))}
+            ${this.columns.map((column) => this._getColumnsTemplate(column))}
           </tr>
         </thead>
         <tbody class="kuc-readonly-table__table__body">
@@ -149,7 +149,7 @@ export class ReadOnlyTable extends KucBase {
       throw new Error("'data' property is invalid");
     }
     data &&
-      data.forEach(val => {
+      data.forEach((val) => {
         if (!Array.isArray(val)) {
           throw new Error("'data' property is invalid");
         }
