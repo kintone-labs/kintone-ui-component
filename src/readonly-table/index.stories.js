@@ -21,13 +21,13 @@ storiesOf("desktop/readonly-table", module)
           headerName: "Second column"
         },
         {
-          headerName: "Third columdasdasddsdasdasdn"
+          headerName: "Third column third column third column"
         }
       ],
       data: [
         ["1", "Orange", "sample data 1"],
         ["2", "Lemon", "sample data 2"],
-        ["3", "Banana", "sample dadasdadasdasdasadsta 3"],
+        ["3", "Banana", "very very very long sample data 3"],
         ["4", "Grape", "sample data 4"],
         ["5", "Avocado", "sample data 5"],
         ["6", "Plum", "sample data 6"],
