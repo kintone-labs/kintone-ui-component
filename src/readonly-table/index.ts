@@ -18,7 +18,6 @@ type ReadOnlyTableProps = {
   data?: string[][];
   pagination?: boolean;
   rowsPerPage?: number;
-  paginationPosition?: "left" | "right";
   visible?: boolean;
 };
 
@@ -30,7 +29,6 @@ export class ReadOnlyTable extends KucBase {
   @property({ type: Array }) data: string[][] = [];
   @property({ type: Boolean }) pagination = true;
   @property({ type: Number }) rowsPerPage = 5;
-  @property({ type: String }) paginationPosition = "left";
   @property({
     type: Boolean,
     attribute: "hidden",
@@ -57,12 +55,6 @@ export class ReadOnlyTable extends KucBase {
 
     if (props.rowsPerPage || props.rowsPerPage === 0) {
       props.rowsPerPage = this._validateRowsPerPage(props.rowsPerPage);
-    }
-
-    if (props.paginationPosition) {
-      props.paginationPosition = this._validatePagination(
-        props.paginationPosition
-      );
     }
 
     const validProps = validateProps(props);
@@ -99,11 +91,7 @@ export class ReadOnlyTable extends KucBase {
           })}
         </tbody>
       </table>
-      <div
-        class="kuc-readonly-table__pager"
-        style="float: ${this.paginationPosition}"
-        ?hidden="${!this.pagination}"
-      >
+      <div class="kuc-readonly-table__pager" ?hidden="${!this.pagination}">
         <button
           title="previous"
           class="kuc-readonly-table__pager__pagenation-prev"
@@ -164,16 +152,6 @@ export class ReadOnlyTable extends KucBase {
       return 5;
     }
     return Math.round(numRows);
-  }
-
-  private _validatePagination(option: string) {
-    if (option !== "left" && option !== "right") {
-      console.error(
-        "'paginationPosition' must be either 'left' or 'right'. Set to 'left' by default"
-      );
-      return "left";
-    }
-    return option;
   }
 
   private _getColumnsTemplate(column: Column) {
