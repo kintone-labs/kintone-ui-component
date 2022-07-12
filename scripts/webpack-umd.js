@@ -51,6 +51,7 @@ const main = async () => {
         .readFileSync(path.resolve(__dirname, "../umd/kuc.min.js"))
         .toString();
       data = replaceAllByPattern(data, classNamePattern, classNameVersion);
+      data += `(_=>{window.Kuc=window.Kucs["${packageJSON.version}"];})();`;
       fs.writeFileSync(path.resolve(__dirname, "../umd/kuc.min.js"), data);
     }
   });
