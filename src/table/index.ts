@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
@@ -10,7 +10,7 @@ type Column = {
   headerName?: string;
   dataIndex: string;
   visible?: boolean;
-  render: Render;
+  render?: Render;
 };
 type Render = (dataCell: any, dataRow: object) => HTMLElement;
 type TableProps = {
@@ -36,6 +36,9 @@ export class Table extends KucBase {
   })
   visible = true;
 
+  @query(".kuc-table__table")
+  private _tableEl!: HTMLTableElement;
+
   constructor(props?: TableProps) {
     super();
     if (!props) {
@@ -52,21 +55,21 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
-  private _getDefaultRowData(data: any) {
-    const defaultRowData = {} as any;
-    for (const key in data) {
-      if (typeof data[key] === "string") {
-        defaultRowData[key] = "";
-        continue;
-      }
-      if (Array.isArray(data[key])) {
-        defaultRowData[key] = [];
-        continue;
-      }
-      defaultRowData[key] = "";
-    }
-    return defaultRowData;
-  }
+  // private _getDefaultRowData(data: any) {
+  //   const defaultRowData = {} as any;
+  //   for (const key in data) {
+  //     if (typeof data[key] === "string") {
+  //       defaultRowData[key] = "";
+  //       continue;
+  //     }
+  //     if (Array.isArray(data[key])) {
+  //       defaultRowData[key] = [];
+  //       continue;
+  //     }
+  //     defaultRowData[key] = "";
+  //   }
+  //   return defaultRowData;
+  // }
 
   private _getBodyTemplate(data: any, index: number) {
     const handleChange = (e: CustomEvent) => {
@@ -78,9 +81,9 @@ export class Table extends KucBase {
       <tr class="kuc-table__table__body__row" @change="${handleChange}">
         ${this.columns.map((col) => {
           const rendered = data[col.dataIndex];
-          const isCustomRender = col.render && typeof col.render === "function";
+          const isCustomRender = col.render;
           const dataRender = isCustomRender
-            ? col.render(rendered, data)
+            ? isCustomRender(rendered, data)
             : rendered;
           return html` <td class="kuc-table__table__body__row__cell-data">
             ${dataRender}
@@ -92,16 +95,27 @@ export class Table extends KucBase {
   }
 
   private _getActionsTemplate(index: number) {
-    const cloneData = [...this.data];
     const handleAddRow = (e: Event) => {
-      const newIndex = index + 1;
-      const defaultRowData = this._getDefaultRowData(this.data[index]);
-      cloneData.splice(newIndex, 0, defaultRowData);
-      this.data = [...cloneData];
+      const buttonEl = e.target as HTMLButtonElement;
+      const trEl = buttonEl.parentElement?.parentElement as HTMLTableRowElement;
+      const nextEl = trEl.rowIndex + 1;
+      const newRow = this._tableEl.insertRow(nextEl) as HTMLTableRowElement;
+
+      for (let i = 0; i < this.columns.length; i++) {
+        const cell = newRow.insertCell(i);
+        const dataIndex = this.columns[i].dataIndex;
+        const dataRender = this.columns[i].render;
+        if (this.data[index] && dataRender) {
+          cell.appendChild(
+            dataRender((this.data[index] as any)[dataIndex], this.data[index])
+          );
+          continue;
+        }
+        cell.innerText = (this.data[index] as any)[dataIndex];
+      }
     };
     const handleRemoveRow = () => {
-      cloneData.splice(index, 1);
-      this.data = [...cloneData];
+      console.log("remove row");
     };
     return html`
       <td class="kuc-table__table__body__row__action">
@@ -146,7 +160,7 @@ export class Table extends KucBase {
     const currentData = this._createDisplayData(this.data);
     return html`
       ${this._getStyleTagTemplate()}
-      <table class="kuc-table__table" aria-label="${this.label}">
+      <table class="kuc-table__table">
         <caption>
           ${this.label}
         </caption>
