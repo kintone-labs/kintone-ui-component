@@ -9,7 +9,7 @@ import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
 export { BaseLabel };
 
-type Column = { headerName?: string; visible?: boolean; width?: string };
+type Column = { headerName?: string; visible?: boolean; maxWidth?: string };
 type ReadOnlyTableProps = {
   className?: string;
   id?: string;
@@ -155,14 +155,14 @@ export class ReadOnlyTable extends KucBase {
   }
 
   private _getColumnsTemplate(column: Column) {
-    if (!column.width) {
-      column.width = "auto";
+    if (!column.maxWidth) {
+      column.maxWidth = "none";
     }
 
     return html`
       <th
         class="kuc-readonly-table__table__header__cell"
-        style="width: ${column.width}"
+        style="max-width: ${column.maxWidth}"
         ?hidden="${column.visible === false}"
       >
         <span class="kuc-readonly-table__table__header__cell__label">
@@ -204,6 +204,7 @@ export class ReadOnlyTable extends KucBase {
           return html`
             <td
               class="kuc-readonly-table__table__body__row__cell-data"
+              style="max-width: ${this.columns[dataIndex].maxWidth}"
               ?hidden="${isHidden}"
             >
               ${dataContent}
@@ -299,6 +300,7 @@ export class ReadOnlyTable extends KucBase {
           border-collapse: collapse;
           table-layout: fixed;
           width: 100%;
+          display: inline-block;
         }
         .kuc-readonly-table__table__header {
           border-width: 0px 1px;
@@ -330,13 +332,14 @@ export class ReadOnlyTable extends KucBase {
         }
         .kuc-readonly-table__table__body__row-0
           > .kuc-readonly-table__table__body__row__cell-data {
-          border-width: 0 1px 1px 1px;
+          // border-width: 0 1px 1px 1px;
         }
         .kuc-readonly-table__table__body__row__cell-data {
           border-color: #e3e7e8;
           border-style: solid;
           border-width: 1px;
           padding: 4px 8px;
+          box-sizing: border-box;
         }
         .kuc-readonly-table__table__body__row__cell-data[hidden] {
           display: none;

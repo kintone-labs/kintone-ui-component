@@ -13,20 +13,29 @@ storiesOf("desktop/readonly-table", module)
       pagination: true,
       columns: [
         {
-          headerName: "First column",
-          width: "100px",
+          headerName: "First hello hello hello column",
+          maxWidth: "100px",
         },
         {
-          headerName: "Second column",
+          headerName: "Second sdasdasdsad column",
+          maxWidth: "100px",
         },
         {
           headerName: "Third column third column third column",
         },
       ],
       data: [
-        ["1", "Orange", "sample data 1"],
-        ["2", "Lemon", "sample data 2"],
-        ["3", "Banana", "very very very long sample data 3"],
+        ["1111111111111111111", "Orange", "sample data 1"],
+        [
+          "2",
+          "A very very very very very very long fruit name",
+          "sample data 2",
+        ],
+        [
+          "3",
+          "Banana",
+          "a very very very very very very very long sample data 3",
+        ],
         ["4", "Grape", "sample data 4"],
         ["5", "Avocado", "sample data 5"],
         ["6", "Plum", "sample data 6"],
