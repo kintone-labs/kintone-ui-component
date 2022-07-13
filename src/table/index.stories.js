@@ -1,73 +1,126 @@
-import { Table } from "./index.ts";
+import "./index.ts";
 import { Dropdown } from "../dropdown";
-import { storiesOf } from "@storybook/web-components";
+import { Checkbox } from "../checkbox";
+import { Text } from "../text";
 
-storiesOf("desktop/table", module).add("Base", () => {
-  const renderAge = (dataCell, dataRow) => {
-    const element = document.createElement("h3");
-    element.innerText = `Custom the age is ${dataCell}`;
-    return element;
+import { html } from "lit-html";
+
+export default {
+  title: "desktop/table",
+  argTypes: {
+    className: { name: "className" },
+    id: { name: "id" },
+    label: { name: "label" },
+    data: { name: "data" },
+    columns: { name: "columns" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    actions: {
+      handles: ["change"],
+    },
+  },
+};
+
+const Template = (args) => {
+  const handleDateChange = (event) => {
+    console.log(event);
   };
+  return html`
+    <kuc-table
+      .id="${args.id}"
+      .label="${args.label}"
+      .visible="${args.visible}"
+      .className="${args.className}"
+      .data="${args.data}"
+      .columns="${args.columns}"
+      @change="${handleDateChange}"
+    ></kuc-table>
+  `;
+};
 
-  const renderName = (cellData) => {
-    const dropdown = new Dropdown({
-      items: [
-        {
-          label: "-----",
-          value: "-----",
-        },
-        {
-          label: "Vo Duc Hau",
-          value: "voduchau",
-        },
-        {
-          label: "Apple",
-          value: "apple",
-        },
-      ],
-      value: cellData,
-      selectedIndex: 0,
-    });
+const renderAge = (dataCell, dataRow) => {
+  const text = new Text({ value: dataCell });
+  return text;
+};
 
-    return dropdown;
-  };
-
-  const root = document.createElement("div");
-  const readOnlyTable = new Table({
-    label: "Table component",
-    columns: [
+const renderName = (cellData) => {
+  const dropdown = new Dropdown({
+    items: [
       {
-        headerName: "Name",
-        dataIndex: "name",
-        render: renderName,
+        label: "a",
+        value: "a",
       },
       {
-        headerName: "Address",
-        dataIndex: "address",
+        label: "Vo Duc Hau",
+        value: "voduchau",
       },
       {
-        headerName: "Age",
-        dataIndex: "age",
-        render: renderAge,
+        label: "b",
+        value: "b",
       },
     ],
-    data: [
-      {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park",
-        tags: ["nice", "developer"],
-      },
-      {
-        key: "2",
-        name: "voduchau",
-        age: 20,
-        address: "New York No. 1 Lake Park",
-        tags: ["nice", "developer"],
-      },
-    ],
+    value: cellData,
+    selectedIndex: 0,
   });
-  root.appendChild(readOnlyTable);
-  return root;
-});
+
+  return dropdown;
+};
+
+const renderAddress = (cellData) => {
+  const checkbox = new Checkbox({
+    items: [
+      {
+        label: "VietNam",
+        value: "vn",
+      },
+      {
+        label: "Japan",
+        value: "ja",
+      },
+    ],
+    value: cellData,
+  });
+
+  return checkbox;
+};
+
+export const Base = Template.bind({});
+Base.args = {
+  label: "Table component",
+  visible: true,
+  columns: [
+    {
+      headerName: "Name",
+      dataIndex: "name",
+      requiredIcon: true,
+      render: renderName,
+    },
+    {
+      headerName: "Address",
+      dataIndex: "address",
+      render: renderAddress,
+    },
+    {
+      headerName: "Age",
+      dataIndex: "age",
+      render: renderAge,
+    },
+  ],
+  data: [
+    {
+      key: "1",
+      name: "a",
+      age: 32,
+      address: ["vn"],
+      tags: ["nice", "developer"],
+    },
+    {
+      key: "2",
+      name: "voduchau",
+      age: 20,
+      address: ["vn", "ja"],
+      tags: ["nice", "developer"],
+    },
+  ],
+};

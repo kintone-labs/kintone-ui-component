@@ -1,14 +1,19 @@
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
-import { KucBase } from "../base/kuc-base";
+import { property } from "lit/decorators.js";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  CustomEventDetail,
+} from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 
 type Column = {
   headerName?: string;
   dataIndex: string;
+  requiredIcon?: boolean;
   visible?: boolean;
   render?: Render;
 };
@@ -36,9 +41,6 @@ export class Table extends KucBase {
   })
   visible = true;
 
-  @query(".kuc-table__table")
-  private _tableEl!: HTMLTableElement;
-
   constructor(props?: TableProps) {
     super();
     if (!props) {
@@ -55,37 +57,61 @@ export class Table extends KucBase {
     super.update(changedProperties);
   }
 
-  // private _getDefaultRowData(data: any) {
-  //   const defaultRowData = {} as any;
-  //   for (const key in data) {
-  //     if (typeof data[key] === "string") {
-  //       defaultRowData[key] = "";
-  //       continue;
-  //     }
-  //     if (Array.isArray(data[key])) {
-  //       defaultRowData[key] = [];
-  //       continue;
-  //     }
-  //     defaultRowData[key] = "";
-  //   }
-  //   return defaultRowData;
-  // }
+  private _getDefaultRowData(data: any) {
+    const defaultRowData = {} as any;
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (typeof data[key] === "string") {
+          defaultRowData[key] = "";
+          continue;
+        }
+        if (Array.isArray(data[key])) {
+          defaultRowData[key] = [];
+          continue;
+        }
+        defaultRowData[key] = "";
+      }
+    }
+    return defaultRowData;
+  }
+
+  private _deepCloneObject(data: any) {
+    return JSON.parse(JSON.stringify(data)) as object[];
+  }
 
   private _getBodyTemplate(data: any, index: number) {
-    const handleChange = (e: CustomEvent) => {
-      e.detail.rowIndex = index;
-      e.detail.data = this.data;
+    const handleCellChange = (event: CustomEvent, dataIndex: string) => {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      const _cloneData = this._deepCloneObject(this.data);
+      (_cloneData[index] as any)[dataIndex] = event.detail.value;
+      this.data = this._deepCloneObject(_cloneData);
+
+      const detail: CustomEventDetail = {
+        data: {
+          allData: this._deepCloneObject(_cloneData),
+          rowData: this._deepCloneObject(this.data[index]),
+          rowIndex: index,
+          columnsName: dataIndex,
+        },
+        type: "changeCell",
+      };
+      dispatchCustomEvent(this, "change", detail);
     };
 
     return html`
-      <tr class="kuc-table__table__body__row" @change="${handleChange}">
+      <tr class="kuc-table__table__body__row">
         ${this.columns.map((col) => {
           const rendered = data[col.dataIndex];
           const isCustomRender = col.render;
           const dataRender = isCustomRender
             ? isCustomRender(rendered, data)
             : rendered;
-          return html` <td class="kuc-table__table__body__row__cell-data">
+          return html` <td
+            class="kuc-table__table__body__row__cell-data"
+            @change="${(event: CustomEvent) =>
+              handleCellChange(event, col.dataIndex)}"
+          >
             ${dataRender}
           </td>`;
         })}
@@ -95,27 +121,24 @@ export class Table extends KucBase {
   }
 
   private _getActionsTemplate(index: number) {
-    const handleAddRow = (e: Event) => {
-      const buttonEl = e.target as HTMLButtonElement;
-      const trEl = buttonEl.parentElement?.parentElement as HTMLTableRowElement;
-      const nextEl = trEl.rowIndex + 1;
-      const newRow = this._tableEl.insertRow(nextEl) as HTMLTableRowElement;
+    const _temp = JSON.parse(JSON.stringify(this.data)) as object[];
+    const handleAddRow = () => {
+      const defaultRow = this._getDefaultRowData(this.data[0]);
+      _temp.splice(index + 1, 0, defaultRow);
+      this.data = [..._temp];
 
-      for (let i = 0; i < this.columns.length; i++) {
-        const cell = newRow.insertCell(i);
-        const dataIndex = this.columns[i].dataIndex;
-        const dataRender = this.columns[i].render;
-        if (this.data[index] && dataRender) {
-          cell.appendChild(
-            dataRender((this.data[index] as any)[dataIndex], this.data[index])
-          );
-          continue;
-        }
-        cell.innerText = (this.data[index] as any)[dataIndex];
-      }
+      const detail: CustomEventDetail = {
+        data: {
+          allData: this._deepCloneObject(this.data),
+          rowIndex: index + 1,
+        },
+        type: "changeRow",
+      };
+      dispatchCustomEvent(this, "change", detail);
     };
     const handleRemoveRow = () => {
-      console.log("remove row");
+      _temp.splice(index, 1);
+      this.data = [..._temp];
     };
     return html`
       <td class="kuc-table__table__body__row__action">
@@ -143,7 +166,13 @@ export class Table extends KucBase {
         class="kuc-table__table__header__cell"
         ?hidden="${column.visible === false}"
       >
-        ${column.headerName}
+        ${column.headerName || ""}
+        <span
+          class="kuc-base-label__required-icon"
+          ?hidden="${!column.requiredIcon}"
+        >
+        *
+        </span
       </th>
     `;
   }
@@ -157,7 +186,6 @@ export class Table extends KucBase {
   }
 
   render() {
-    const currentData = this._createDisplayData(this.data);
     return html`
       ${this._getStyleTagTemplate()}
       <table class="kuc-table__table">
@@ -168,7 +196,7 @@ export class Table extends KucBase {
           ${this._getTableHeaderTemplate()}
         </thead>
         <tbody class="kuc-table__table__body">
-          ${currentData.map((data: any, index: number) => {
+          ${this.data.map((data: any, index: number) => {
             return this._getBodyTemplate(data, index);
           })}
         </tbody>
@@ -184,44 +212,40 @@ export class Table extends KucBase {
 
   private _validateData(data: object[]) {
     if (!Array.isArray(data)) {
-      console.log(data, "data");
-      throw new Error("'data' property is invalid123");
+      throw new Error("'data' property is invalid");
     }
-  }
-
-  // Formatting the data displayed on the current page
-  private _createDisplayData(data: object[]) {
-    const displayData = data;
-    return displayData;
   }
 
   private _getStyleTagTemplate() {
     return html`
       <style>
-        kuc-readonly-table,
-        kuc-readonly-table *,
-        :lang(en) kuc-readonly-table,
-        :lang(en) kuc-readonly-table * {
+        kuc-table,
+        kuc-table *,
+        :lang(en) kuc-table,
+        :lang(en) kuc-table * {
           font-family: "HelveticaNeueW02-45Ligh", Arial,
             "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
         }
-        :lang(ja) kuc-readonly-table,
-        :lang(ja) kuc-readonly-table * {
+        :lang(ja) kuc-table,
+        :lang(ja) kuc-table * {
           font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
             sans-serif;
         }
-        :lang(zh) kuc-readonly-table,
-        :lang(zh) kuc-readonly-table * {
+        :lang(zh) kuc-table,
+        :lang(zh) kuc-table * {
           font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
             Hei, "Heiti SC", sans-serif;
         }
-        kuc-readonly-table {
+        kuc-table {
           font-size: 14px;
           color: #333333;
           display: block;
         }
-        kuc-readonly-table[hidden] {
+        kuc-table[hidden] {
           display: none;
+        }
+        kuc-table kuc-* {
+          line-height: 1;
         }
         .kuc-table__table {
           border-collapse: collapse;
@@ -231,14 +255,6 @@ export class Table extends KucBase {
           border-color: #3498db;
           border-style: solid;
           border-right: 0;
-        }
-        .kuc-readonly-table__label {
-          display: inline-block;
-          white-space: nowrap;
-          padding: 4px 0px 8px 0px;
-        }
-        .kuc-readonly-table__label[hidden] {
-          display: none;
         }
         .kuc-table__table__header__cell {
           background-color: #3498db;
@@ -264,19 +280,6 @@ export class Table extends KucBase {
         }
         .kuc-table__table__body__row__cell-data[hidden] {
           display: none;
-        }
-        .kuc-readonly-table__pager__pagenation-prev {
-          border: none;
-          background-color: transparent;
-          visibility: visible;
-        }
-        .kuc-readonly-table__pager__pagenation-next {
-          border: none;
-          background-color: transparent;
-          visibility: visible;
-        }
-        .pager-disable {
-          visibility: hidden;
         }
         .kuc-table__table__body__row__action-add {
           margin-left: 12px;

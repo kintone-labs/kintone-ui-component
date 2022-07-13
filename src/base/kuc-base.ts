@@ -2,7 +2,8 @@ import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
 
 type CustomEventDetail = {
-  data?: string | null;
+  data?: any;
+  type?: string;
   oldValue?: string | string[];
   value?: string | string[];
   error?: string;
