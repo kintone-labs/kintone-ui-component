@@ -50,12 +50,11 @@ In this article, we will show you how to install and implement using each approa
 
 2. Create a `index.js` file.
 
+>If you only have one `kuc.min.js` file in your system,
+>or you are okay with using the `kuc.min.js` file loaded last, 
+>you can remove the "`const Kuc = Kucs['1. x.x']`" line.
+
 ```js
-/*
-  If you only have one kuc.min.js file in your system,
-  or you are okay with using the kuc.min.js file loaded last, 
-  please ignore the const Kuc = Kucs["1. x.x"] line.
-*/
 const Kuc = Kucs["1.x.x"];
 
 kintone.events.on('app.record.index.show', event => {
