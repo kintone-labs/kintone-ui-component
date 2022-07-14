@@ -16,9 +16,8 @@ export const GetButton = () => {
   function _handleClick() {
     const iframe = document.getElementById("storybook-preview-iframe");
     const component = iframe.contentWindow.document.getElementById(args.id);
-    Object.keys(args).forEach(key => {
-      console.log(`"${key}" value: ${component[key]}`);
-    });
+    const componentName = component.nodeName.replace("KUC-","");
+    console.log(`${componentName}'s props value:`, args);
   }
   return <button style={buttonStyles} onClick={_handleClick} >Get Props</button>;
 };
