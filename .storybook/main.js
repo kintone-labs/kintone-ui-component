@@ -9,7 +9,7 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-controls',
     '@storybook/addon-actions',
-    "../storybook-addons/preset.js"
+    "./addons/preset.js"
   ],
   webpackFinal: (config) => {
     return {
