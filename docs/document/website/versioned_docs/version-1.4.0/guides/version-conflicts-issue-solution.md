@@ -67,10 +67,13 @@ Users using the Kintone UI Component package through npm do not need to take any
 
 Below are the common version conflicts errors that might occur:
 #### 1. When importing multiple KUC packages and files (both ESM and UMD) of the same version or different versions:
-![Illegal constructor error when importing multiple kuc.min.js files](assets/UMD_multi_files.jpg)
-<center>An `Illegal constructor` error will show</center>
+
+In the example below, we load a v1.2.0 `kuc.min.js` file in the Kintone system and a v1.3.0 `kuc.min.js` file in our app. An `Illegal constructor` error will show when we try to create a new KUC Button component.
+
+![Illegal constructor error when importing multiple kuc.min.js files](assets/UMD_multi_files.jpeg)
 
 #### 2. When importing multiple KUC packages (ESM) and using custom HTML tags directly:
+
 For example, we have two scripts as follow:
 - One script uses v1.2.0 and specifies the text color of Dropdown to be green.
 - One script uses v1.3.1 and specifies the text color of Dropdown to be red
