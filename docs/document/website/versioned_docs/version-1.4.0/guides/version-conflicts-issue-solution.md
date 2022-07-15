@@ -92,6 +92,8 @@ After the release of v1.4.0, loading multiple KUC packages (ESM) of the same ver
 
 However, please note that when loading multiple `kuc.min.js` files (UMD), only **the last loaded** one is used if you use `Kuc` instead of the recommended `Kucs` object. Please note that it may not be the version you wanted.
 
+When there are both versions before and on/after v1.4.0, you need to be careful.<br>
+
 The following example import orders will not cause version conflicts errors:
 - v1.4.0 > v1.3.2 > v1.4.1: `window.Kuc.version` returns 1.4.1 and no errors
 - v1.4.0 > v1.4.1 > v1.4.0: `window.Kuc.version` returns 1.4.0 and no errors
