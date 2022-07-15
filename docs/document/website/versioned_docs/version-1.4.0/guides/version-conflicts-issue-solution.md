@@ -52,9 +52,15 @@ document.body.appendChild(button);
 
 ### Using CDN
 
-Users using Kintone UI Component through the CDN will always have the latest version.<br>
-Therefore, after the release of v1.4.0, some of your apps and plug-ins will not work correctly. <br>
-
+Users using Kintone UI Component through the CDN using the below link will always have the latest version.<br>
+Therefore, after the release of v1.4.0, some of your apps and plug-ins might not work correctly. <br>
+```sh
+https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+```
+If you want to use a particular `Kuc` version, please specify the version number after the project name.
+```sh
+https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+```
 As explained in the [Using UMD](#using-umd) section, you may still use `Kuc` as a global variable but be aware of the possible version conflicts errors that may occur.
 
 ### Using npm
