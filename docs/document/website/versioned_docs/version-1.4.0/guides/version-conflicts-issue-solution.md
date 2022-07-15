@@ -6,7 +6,7 @@ original_id: version-conflicts-issue-solution
 ---
 ## Overview
 
-Version conflicts have been a problem for Kintone UI Component users before the release of v1.4.0. This guide will help users understand the version conflicts issue and how to adapt and upgrade the Kintone UI Component package to the latest version starting from v1.4.0.
+Version conflicts have been a problem for Kintone UI Component (KUC) users before the release of v1.4.0. This guide will help users understand the version conflicts issue and how to adapt and upgrade the Kintone UI Component package to the latest version starting from v1.4.0.
 
 ## Problems of versioning
 
