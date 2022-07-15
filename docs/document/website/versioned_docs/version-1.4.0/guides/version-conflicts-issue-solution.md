@@ -39,7 +39,7 @@ In addition, we also check to see whether a custom HTML tag has been registered 
 
 We recommend that you should upgrade Kintone UI Component to the latest version for your projects.<br>
 
-From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`). The rendered components' tags and class names will automatically include the version number.<br>
 
 > You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
 >If you only have one `kuc.min.js` file in your system, or you are okay with using the `kuc.min.js` file loaded last, you can remove the "`const Kuc = Kucs['1.x.x']`" line.
