@@ -84,13 +84,9 @@ For example, we have two scripts as follow:
 - One script uses v1.2.0 and specifies the text color of Dropdown to be green.
 - One script uses v1.3.1 and specifies the text color of Dropdown to be red
 
-In the first case, we have the v1.2.0 script loaded first and v1.3.1 loaded last. We can see that the text color of Dropdown in the v1.3.1 script is overridden by v1.2.0 script.
+Here, we have the v1.2.0 script loaded first and v1.3.1 loaded last. We can see that the text color of Dropdown in the v1.3.1 script is overridden by v1.2.0 script.
 
 ![Custom element is overridden by the first loaded file](assets/ESM_multi_files_1.png)
-
-Now, if the order of import is switched, and the v1.3.1 is loaded first. We can see the text color of Dropdown in the v1.2.0 script is overridden by v1.3.1 script.
-
-![Custom element is overridden by the first loaded file](assets/ESM_multi_files_2.png)
 
 ### For users using version v1.4.0 and above
 
