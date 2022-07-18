@@ -1,13 +1,17 @@
-import { html, PropertyValues } from "lit";
+import { html, PropertyValueMap, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { KucBase, dispatchCustomEvent, generateGUID } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
+import { en, ja, zh } from "../base/locale";
+
+type FileItem = File | { name: string; size: string; [key: string]: any };
+
 type AttachmentProps = {
   className?: string;
   disabled?: boolean;
   error?: string;
-  fileList?: Array<File | { name: string; size: string; [key: string]: any }>;
+  files?: FileItem[];
   id?: string;
   label?: string;
   language?: "ja" | "en" | "zh" | "auto";
@@ -20,9 +24,9 @@ export class Attachment extends KucBase {
   @property({ type: Boolean }) disabled = false;
   @property({ type: String }) error = "";
   @property({
-    type: Array<File | { name: string; size: string; [key: string]: any }>,
+    type: Array<FileItem>,
   })
-  fileList = [];
+  files = [];
   @property({ type: String, reflect: true, attribute: "id" })
   id = "";
   @property({ type: String }) label = "";
@@ -42,6 +46,8 @@ export class Attachment extends KucBase {
   private _ONE_MB = 1048576;
   private _ONE_KB = 1024;
   private _dragEnterCounter = 0;
+  private _locale = this._getLocale();
+
   @query(".kuc-attachment__group__files")
   private _groupFilesEl!: HTMLDivElement;
   @query(".kuc-attachment__group__files__droppable-text")
@@ -52,28 +58,33 @@ export class Attachment extends KucBase {
     this._GUID = generateGUID();
     const validProps = validateProps(props);
     Object.assign(this, validProps);
-    console.log(this.fileList);
   }
-  shouldUpdate(changedProperties: PropertyValues) {
-    console.log("shouldUpdate");
-    console.log(this.fileList);
 
-    return true;
-  }
-  willUpdate(changedProperties: PropertyValues) {
-    console.log("willUpdate");
-    super.willUpdate(changedProperties);
+  protected willUpdate(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    console.log(_changedProperties);
+
+    super.willUpdate(_changedProperties);
   }
   update(changedProperties: PropertyValues) {
-    console.log("update");
     console.log(changedProperties);
-
+    console.log(this.files);
+    if (changedProperties.has("language")) {
+      this._locale = this._getLocale();
+    }
     super.update(changedProperties);
+  }
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    console.log(_changedProperties);
   }
   render() {
     return html`
       ${this._getStyleTagTemplate()}
-      <div class="kuc-attachment__group">
+      <div class="kuc-attachment__group" 
+        aria-describedby="${this._GUID}-error">
         <div
           class="kuc-attachment__group__label"
           for="${this._GUID}-label"
@@ -95,17 +106,22 @@ export class Attachment extends KucBase {
             @drop="${this._onDragDrop}"
             ?hidden="${!this._isDraging}"
           >
-          <div class="kuc-attachment__group__files__droppable-text">Drop files here.</div>
+          <div class="kuc-attachment__group__files__droppable-text">${
+            this._locale.ATTACHMENT_DRAG_DROP_ZONE
+          }</div>
           </div>
           <div
             class="kuc-attachment__group__files__display-field"
             ?hidden="${this._isDraging}"
           >
-          ${this.fileList.map((item, number) =>
+          ${this.files.map((item, number) =>
             this._getAttachmentItemTemplete(item, number)
           )}
-            <a tabindex="1" class="kuc-attachment__group__files__upload-button">
-              <span class="kuc-attachment__group__files__upload-button-text">Browser</span>
+            <a tabindex="1" class="kuc-attachment__group__files__upload-button"
+            role="button" aria-controls="filename">
+              <span class="kuc-attachment__group__files__upload-button-text">${
+                this._locale.ATTACHMENT_BROWSER
+              }</span>
               <div class="kuc-attachment__group__files__input-container">
                 <input type="file" multiple="true" @change="${
                   this._handleSelectFiles
@@ -115,6 +131,7 @@ export class Attachment extends KucBase {
           </div>
         </div>
         <kuc-base-error
+          ?hidden="${!this.error}"
           .text="${this.error}"
           .guid="${this._GUID}"
         ></kuc-base-error>
@@ -122,13 +139,7 @@ export class Attachment extends KucBase {
     `;
   }
 
-  private _getAttachmentItemTemplete(
-    item: File | { name: string; size: string; [key: string]: any },
-    index: number
-  ) {
-    const fileSize =
-      typeof item.size === "string" ? parseInt(item.size, 10) : item.size;
-
+  private _getAttachmentItemTemplete(item: FileItem, index: number) {
     return html`
       <div class="kuc-attachment__group__file-item">
         <div
@@ -145,28 +156,52 @@ export class Attachment extends KucBase {
           ></button>
         </div>
         <div class="kuc-attachment__group__file-size">
-          ${typeof fileSize === "number"
-            ? this._formatFileSize(fileSize)
-            : "Nan size"}
+          ${this._getFileSize(item.size)}
         </div>
       </div>
     `;
   }
-  private _handleClickFileRemove(event: any) {
-    const index = event.target.getAttribute("data-file-index");
-    if (index !== -1 && this.fileList) {
-      const tempFiles = [...this.fileList];
-      const changedFiles = tempFiles.splice(index, 1);
-      const detail = {
-        oldValue: this.fileList,
-        value: tempFiles,
-        action: "remove",
-        changedFiles: changedFiles,
-      };
-      dispatchCustomEvent(this, "change", detail);
-      this.fileList = tempFiles;
+
+  private _getLanguage() {
+    const langs = ["en", "ja", "zh"];
+    if (langs.indexOf(this.language) !== -1) return this.language;
+
+    if (langs.indexOf(document.documentElement.lang) !== -1)
+      return document.documentElement.lang;
+
+    return "en";
+  }
+
+  private _getLocale() {
+    const language = this._getLanguage();
+    switch (language) {
+      case "en":
+        return en;
+      case "zh":
+        return zh;
+      case "ja":
+        return ja;
+      default:
+        return en;
     }
   }
+
+  private _handleClickFileRemove(event: any) {
+    const index = event.target.getAttribute("data-file-index");
+    if (index !== -1 && this.files) {
+      const tempFiles = [...this.files];
+      const changedFiles = tempFiles.splice(index, 1);
+      const detail = {
+        oldFiles: this._deepClone(this.files),
+        files: this._deepClone(tempFiles),
+        action: "remove",
+        changedFiles: this._deepClone(changedFiles),
+      };
+      dispatchCustomEvent(this, "change", detail);
+      this.files = tempFiles;
+    }
+  }
+
   private _onDragEnter(event: DragEvent) {
     this._dragEnterCounter++;
     if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
@@ -179,20 +214,22 @@ export class Attachment extends KucBase {
       this._isDraging = true;
     }
   }
+
   private _onDragOver(event: DragEvent) {
     event.stopPropagation();
     if (this._isFileOrDirectoryDrag(event)) {
       event.preventDefault();
     }
   }
+
   private _onDragDrop(event: DragEvent) {
     event.preventDefault();
-
     this._onDragLeave();
     if (this._isFileDrop(event)) {
       this._addFiles(event);
     }
   }
+
   private _isFileDrop(event: DragEvent) {
     // handle IE
     if (event.dataTransfer && event.dataTransfer.files.length === 0) {
@@ -212,6 +249,7 @@ export class Attachment extends KucBase {
     }
     return true;
   }
+
   private _onDragLeave() {
     this._dragEnterCounter--;
 
@@ -220,9 +258,13 @@ export class Attachment extends KucBase {
       this._isDraging = false;
     }
   }
+
   private _handleSelectFiles(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     this._addFiles(event);
   }
+
   private _addFiles(event: any) {
     let addedFiles = event.dataTransfer
       ? event.dataTransfer.files
@@ -230,19 +272,37 @@ export class Attachment extends KucBase {
     addedFiles = Object.keys(addedFiles).map((e) => {
       return addedFiles[e];
     });
-
-    if (this.fileList) {
-      const tempFileList = this.fileList.concat(addedFiles);
+    if (this.files) {
+      const tempFileList = this.files.concat(addedFiles);
       const detail = {
-        oldvalue: this.fileList,
-        value: tempFileList,
+        oldFiles: this._deepClone(this.files),
+        files: this._deepClone(tempFileList),
         action: "add",
         changedFiles: addedFiles,
       };
       dispatchCustomEvent(this, "change", detail);
-      this.fileList = tempFileList;
+      this.files = tempFileList;
     }
   }
+
+  private _getFileSize(size: string | number) {
+    if (typeof size === "number") {
+      return this._formatFileSize(size);
+    }
+    return this._isNumber(size)
+      ? this._formatFileSize(parseInt(size, 10))
+      : "Nan size";
+  }
+
+  private _isNumber(data: string) {
+    const reg = /^[1-9]\d*$/;
+    return reg.test(data);
+  }
+
+  private _deepClone(data: any) {
+    return JSON.parse(JSON.stringify(data)) as FileItem[];
+  }
+
   private _formatFileSize(size: number) {
     if (size >= this._ONE_GB) {
       return Math.round(size / this._ONE_GB) + " GB";
@@ -272,6 +332,7 @@ export class Attachment extends KucBase {
     }
     return false;
   };
+
   private _getStyleTagTemplate() {
     return html`
       <style>
@@ -297,6 +358,17 @@ export class Attachment extends KucBase {
           height: auto;
           box-sizing: border-box;
           position: relative;
+        }
+        .kuc-attachment__group__label {
+          background-color: f5f5f5;
+          display: block;
+          padding: 4px 8px;
+          color: #333333;
+          margin: 0 -8px;
+          white-space: nowrap;
+        }
+        .kuc-attachment__group__label[hidden] {
+          display: none;
         }
         .kuc-attachment__group__files {
           border: solid 1px #e3e7e8;

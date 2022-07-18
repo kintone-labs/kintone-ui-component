@@ -17,7 +17,7 @@ export abstract class KucBase extends LitElement {
 export const dispatchCustomEvent = (
   el: HTMLElement,
   eventName: string,
-  detail?: CustomEventDetail
+  detail?: CustomEventDetail | any
 ) => {
   const event = new CustomEvent(eventName, {
     detail,

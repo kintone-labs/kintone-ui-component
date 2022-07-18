@@ -16,7 +16,7 @@ export default {
       },
     },
     requiredIcon: { name: "requiredIcon" },
-    fileList: { name: "fileList" },
+    files: { name: "files" },
     visible: { name: "visible" },
   },
   parameters: {
@@ -33,11 +33,11 @@ const Template = (args) => {
     <kuc-attachment
       .disabled="${args.disabled}"
       .language="${args.language}"
-      .fileList="${args.fileList}"
       .id="${args.id}"
       .label="${args.label}"
       .requiredIcon="${args.requiredIcon}"
       .visible="${args.visible}"
+      .files="${args.files}"
       .className="${args.className}"
       .error="${args.error}"
       @change="${handleAttachmentChange}"
@@ -46,12 +46,12 @@ const Template = (args) => {
 };
 export const BaseLanguageEN = Template.bind({});
 BaseLanguageEN.args = {
-  className: "date-picker-class",
-  error: "",
-  id: "date-picker-id",
+  className: "attachment-class",
+  error: "Error",
+  id: "attachment-id",
   label: "Attachment Label",
-  language: "en",
-  requiredIcon: false,
-  fileList: [{ name: "file.txt", size: "150" }],
+  language: "auto",
+  requiredIcon: true,
+  files: [{ name: "file.txt", size: "150" }],
   visible: true,
 };
