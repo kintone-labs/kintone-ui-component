@@ -51,10 +51,7 @@ document.body.appendChild(button);
 ```
 
 ### Using CDN
-```sh
-https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-```
-As explained in the [Using UMD](#using-umd) section, you may still use `Kuc` as a global variable but be aware of the possible version conflicts errors that may occur.
+See the guidance and sample code at [Using UMD](#using-umd) section. CDN behavior is the same with using the `kuc.min.js` file.
 
 ### Using npm
 
