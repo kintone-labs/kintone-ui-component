@@ -93,7 +93,6 @@ describe("DateTimePicker", () => {
 
     it("should throw error when set value is not a string", async () => {
       const container = new DateTimePicker({ value: undefined });
-      // @ts-expect-error
       container.value = {};
       try {
         const el = await fixture(container);

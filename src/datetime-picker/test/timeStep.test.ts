@@ -56,7 +56,6 @@ describe("DateTimePicker", () => {
     });
 
     it("should throw error when assigned value is not number", async () => {
-      // @ts-expect-error
       const container = new DateTimePicker({ timeStep: "" });
       try {
         const el = await fixture(container);

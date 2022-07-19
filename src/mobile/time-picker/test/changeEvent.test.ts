@@ -6,7 +6,7 @@ describe("MobileTimePicker", () => {
     it("should be triggered when selected on hour 24", async () => {
       let triggeredEvent: any = null;
       const container = new MobileTimePicker({ value: "12:30" });
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
@@ -26,7 +26,7 @@ describe("MobileTimePicker", () => {
     it("should be triggered when selected on hour 12", async () => {
       let triggeredEvent: any = null;
       const container = new MobileTimePicker({ value: "12:30", hour12: true });
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
 
@@ -47,7 +47,7 @@ describe("MobileTimePicker", () => {
     it("should be triggered when selected on item in minute", async () => {
       let triggeredEvent: any = null;
       const container = new MobileTimePicker({ value: "12:30" });
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
 
