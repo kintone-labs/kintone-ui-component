@@ -52,7 +52,7 @@ document.body.appendChild(button);
 
 ### Using CDN
 
-Users using Kintone UI Component through the CDN using the below link will always have the latest version.<br>
+Users using KUC through the CDN using the below link will always have the latest version.<br>
 Therefore, after the release of v1.4.0, some of your apps and plug-ins might not work correctly. <br>
 ```sh
 https://unpkg.com/kintone-ui-component/umd/kuc.min.js
