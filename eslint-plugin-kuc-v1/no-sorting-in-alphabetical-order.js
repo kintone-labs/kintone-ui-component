@@ -145,10 +145,10 @@ module.exports = {
         }
       },
       TSTypeAliasDeclaration: function(node) {
+        const typeAnnotation = node.typeAnnotation;
         if(typeAnnotation.type === "TSFunctionType"){
           return;
         }
-        const typeAnnotation = node.typeAnnotation;
         if(typeAnnotation.type === "TSUnionType"){
           typeAnnotation.types.forEach(type =>{
             checkNameOrder(type, node);
