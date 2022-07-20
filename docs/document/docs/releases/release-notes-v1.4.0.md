@@ -29,7 +29,7 @@ New components and features, document updates, security updates, and maintenance
 - Updated dependent libraries: nth-check, core-js, webpack, webpack-cli, @storybook/builder-webpack5, @storybook/manager-webpack5, @storybook/web-components, @storybook/addon-actions, @storybook/addon-controls, @storybook/addon-viewport, @storybook/addon-a11y, karma-coverage, @babel/preset-env, @babel/core, babel-loader, ts-loader, @open-wc/testing, karma, prettier, @cybozu/eslint-config, lit, @types/uuid, typescript.
 
 ### Document
-- Added article to explain version conflicts issue and solution and updated quick start description and component sample code and README.
+- Added an article to explain the version conflicts issue and solution, updated quick start description, component sample code and README.
 - Added Mobile Date/Time series components document.
 - Added/updated description of `timeStep`, `min`, `max`, and `value` properties of TimePicker and DateTimePicker components.
 - Added description of `icon` property of Dialog component.
