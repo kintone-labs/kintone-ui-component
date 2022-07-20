@@ -8,10 +8,10 @@ original_id: release-notes-v1.4.0
 ## Overview
 
 Here are the [kintone UI Component v1.4.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.4.0) Release Notes.<br>
-New components, features, maintenances, document updates, and security updates have been made.
+New components and features, document updates, security updates, and maintenance have been made.
 
 > Note that in this version, there is backward compatible breaking change with coding way and components' tags and class names for resolving version conflicts issue.
-> For more details, please check the [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) and new [Quick Start](../getting-started/quick-start) article.
+> For more details, please check the [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) and the new [Quick Start](../getting-started/quick-start) article.
 
 ## Update details
 ### New Components
@@ -30,7 +30,7 @@ New components, features, maintenances, document updates, and security updates h
 - Updated dependent libraries: nth-check, core-js, webpack, webpack-cli, @storybook/builder-webpack5, @storybook/manager-webpack5, @storybook/web-components, @storybook/addon-actions, @storybook/addon-controls, @storybook/addon-viewport, @storybook/addon-a11y, karma-coverage, @babel/preset-env, @babel/core, babel-loader, ts-loader, @open-wc/testing, karma, prettier, @cybozu/eslint-config, lit, @types/uuid, typescript.
 
 ### Document
-- Added article to explain version conflicts issue and solution and updated quick start description and component sample code and README.
+- Added an article to explain the version conflicts issue and solution, updated quick start description, component sample code and README.
 - Added Mobile Date/Time series components document.
 - Added/updated description of `timeStep`, `min`, `max`, and `value` properties of TimePicker and DateTimePicker components.
 - Added description of `icon` property of Dialog component.
