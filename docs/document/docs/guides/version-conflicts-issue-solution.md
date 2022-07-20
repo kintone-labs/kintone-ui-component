@@ -22,7 +22,7 @@ In our case, the app will not work as expected when users import more than one `
 
 ## Solution
 
-Because we cannot register the same custom HTML tag more than once, from v1.4.0, custom HTML tags will include a version number at the end. This change also applies to class names to avoid conflicting CSS styles. 
+Because we cannot register the same custom HTML tag more than once, from v1.4.0, custom HTML tags will include a version number at the end. This change also applies to class names to avoid conflicting CSS styles.
 
 ![Custom HTML tag example](assets/version-conflict-html-tag.png)
 <center>Tag and class names will include the version number at the end</center>
@@ -93,4 +93,4 @@ The following example import orders will result in an `Illegal constructor` erro
 - v1.4.1 > v1.3.2 > v1.3.0: `window.Kuc.version` returns 1.3.0 and an `Illegal constructor` error occurs
 - v1.3.2 > v1.4.0 > v1.3.2: `window.Kuc.version` returns 1.3.2 and an `Illegal constructor` error occurs
 
-Therefore, when using the `Kuc` object, it is important that the last loaded `kuc.min.js` is v1.4.0 or above. 
+Therefore, when using the `Kuc` object, it is important that the last loaded `kuc.min.js` is v1.4.0 or above.
