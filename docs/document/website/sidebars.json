@@ -46,7 +46,8 @@
       "guides/mobile-timecard-customization",
       "guides/cleaning-check-list-customization",
       "guides/bulk-update-customization",
-      "guides/format-setting-plugin"
+      "guides/format-setting-plugin",
+      "guides/version-conflicts-issue-solution"
     ]
   },
   "release-notes": {

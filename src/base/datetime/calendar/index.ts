@@ -1,6 +1,10 @@
 import { html, PropertyValues } from "lit";
 import { state, property, query } from "lit/decorators.js";
-import { KucBase, dispatchCustomEvent } from "../../kuc-base";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  createStyleOnHeader,
+} from "../../kuc-base";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import { BaseDateTimeListBox } from "../listbox";
@@ -8,6 +12,7 @@ import { getTodayStringByLocale, calculateDistanceInput } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
+import { CALENDAR_CSS } from "./style";
 
 export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String }) language = "en";
@@ -38,7 +43,6 @@ export class BaseDateTimeCalendar extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <div
         class="kuc-base-datetime-calendar__group"
         role="dialog"
@@ -159,23 +163,6 @@ export class BaseDateTimeCalendar extends KucBase {
       right === "auto" ? right : right + "px";
   }
 
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        .kuc-base-datetime-calendar__group {
-          display: inline-block;
-          box-sizing: border-box;
-          width: 336px;
-          padding: 32px 32px 24px;
-          background: #ffffff;
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
-          text-align: center;
-          font-size: 13px;
-        }
-      </style>
-    `;
-  }
-
   private _handleCalendarHeaderChange(event: CustomEvent) {
     const { year, month } = this._separateValue(event.detail.value);
     this._year = year;
@@ -207,6 +194,7 @@ export class BaseDateTimeCalendar extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-datetime-calendar")) {
+  createStyleOnHeader(CALENDAR_CSS);
   window.customElements.define(
     "kuc-base-datetime-calendar",
     BaseDateTimeCalendar

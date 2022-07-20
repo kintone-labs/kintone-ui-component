@@ -152,6 +152,9 @@ Condition: Sets the condition for the reference date<br>
 Fields: Set fields (Multiple selectable)
 
 ```javascript
+// Specify what version to use
+const Kuc = Kucs["1.x.x"];
+
 // Create DatePicker component
 const datePicker = new Kuc.DatePicker({
   label: "Reference Date",
