@@ -40,7 +40,6 @@ describe("Checkbox", () => {
   });
 
   it("should be throw error when set null on constructor", async () => {
-    // @ts-expect-error
     const container = new Checkbox({ items: initItems, selectedIndex: null });
     try {
       await fixture(container);
@@ -62,7 +61,6 @@ describe("Checkbox", () => {
       selectedIndex: [0],
     });
     try {
-      // @ts-expect-error
       container.selectedIndex = null;
       await fixture(container);
     } catch (error) {

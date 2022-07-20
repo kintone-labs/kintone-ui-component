@@ -2,6 +2,7 @@ import { html, PropertyValues } from "lit";
 import { state, property, query } from "lit/decorators.js";
 import { BaseDateTimeCalendar } from "../calendar";
 import {
+  createStyleOnHeader,
   CustomEventDetail,
   dispatchCustomEvent,
   KucBase,
@@ -14,6 +15,7 @@ import {
   isValidDateFormat,
 } from "../utils";
 import { isValidDate } from "../../validator";
+import { BASE_DATE_CSS } from "./style";
 export { BaseDateTimeCalendar };
 
 export class BaseDate extends KucBase {
@@ -63,7 +65,6 @@ export class BaseDate extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <input
         class="kuc-base-date__input"
         id="${this._GUID}-label"
@@ -124,61 +125,6 @@ export class BaseDate extends KucBase {
       this._dateInput.setAttribute("aria-label", this.inputAriaLabel);
     }
     super.updated(changedProperties);
-  }
-
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        input.kuc-base-date__input {
-          width: 100px;
-          height: 40px;
-          padding: 0px;
-          text-align: center;
-          border: 1px solid #e3e7e8;
-          color: #333333;
-          box-sizing: border-box;
-          font-size: 14px;
-          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-        }
-
-        input.kuc-base-date__input:focus {
-          outline: none;
-          border: 1px solid #3498db;
-        }
-        input.kuc-base-date__input--focus {
-          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-          border: 1px solid #3498db;
-          background-color: #ffffff;
-          color: #333333;
-        }
-        .kuc-datetime-picker__group__inputs--date
-          input.kuc-base-date__input--focus {
-          border-color: #3498db;
-        }
-        input.kuc-base-date__input:disabled {
-          color: #888888;
-          background-color: #d4d7d7;
-          box-shadow: none;
-          cursor: not-allowed;
-        }
-        .kuc-base-date__calendar {
-          position: absolute;
-          z-index: 2000;
-          background-color: #ffffff;
-          text-align: center;
-          box-sizing: border-box;
-        }
-        .kuc-base-date__assistive-text {
-          clip: rect(1px, 1px, 1px, 1px);
-          overflow: hidden;
-          position: absolute !important;
-          padding: 0px !important;
-          border: 0px !important;
-          height: 1px !important;
-          width: 1px !important;
-        }
-      </style>
-    `;
   }
 
   private _handleInputValue(event: Event) {
@@ -377,5 +323,6 @@ export class BaseDate extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-date")) {
+  createStyleOnHeader(BASE_DATE_CSS);
   window.customElements.define("kuc-base-date", BaseDate);
 }

@@ -1,10 +1,11 @@
 import { html, PropertyValues } from "lit";
 import { state, property } from "lit/decorators.js";
-import { KucBase } from "../../kuc-base";
+import { KucBase, createStyleOnHeader } from "../../kuc-base";
 import { getTodayStringByLocale } from "../../datetime/utils";
 import "./header";
 import "./body";
 import "./footer";
+import { BASE_MOBILE_CALENDAR } from "./style";
 
 export class BaseMobileDateTimeCalendar extends KucBase {
   @property({ type: String }) language = "en";
@@ -20,7 +21,6 @@ export class BaseMobileDateTimeCalendar extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <div
         class="kuc-base-mobile-datetime-calendar__group"
         role="dialog"
@@ -52,23 +52,6 @@ export class BaseMobileDateTimeCalendar extends KucBase {
     super.updated(changedProperties);
   }
 
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        .kuc-base-mobile-datetime-calendar__group {
-          display: inline-block;
-          box-sizing: border-box;
-          width: 290px;
-          padding: 0 10px;
-          background: #ffffff;
-          text-align: center;
-          font-size: 13px;
-          border: 1px solid #d8d8d8;
-        }
-      </style>
-    `;
-  }
-
   private _handleClickCalendarGroup(event: Event) {
     event.stopPropagation();
   }
@@ -98,6 +81,7 @@ export class BaseMobileDateTimeCalendar extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-mobile-datetime-calendar")) {
+  createStyleOnHeader(BASE_MOBILE_CALENDAR);
   window.customElements.define(
     "kuc-base-mobile-datetime-calendar",
     BaseMobileDateTimeCalendar

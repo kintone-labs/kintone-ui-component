@@ -6,7 +6,7 @@ describe("TimePicker", () => {
     it("should be triggered when mousedown on item in ListBox", async () => {
       let triggeredEvent: any = null;
       const container = new TimePicker();
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
 
@@ -32,7 +32,7 @@ describe("TimePicker", () => {
     it("should be triggered when focused listbox and press arrowUp/arrowDown key", async () => {
       let triggeredEvent: any = null;
       const container = new TimePicker();
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
 
