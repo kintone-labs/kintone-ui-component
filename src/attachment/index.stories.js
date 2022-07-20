@@ -27,7 +27,7 @@ export default {
 };
 const Template = (args) => {
   const handleAttachmentChange = (event) => {
-    console.log(event.detail);
+    console.log(event);
   };
   return html`
     <kuc-attachment
