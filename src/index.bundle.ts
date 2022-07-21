@@ -2,7 +2,6 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "@webcomponents/webcomponentsjs/webcomponents-bundle";
 
-export * from "./attachment";
 export * from "./button";
 export * from "./checkbox";
 export * from "./dropdown";
