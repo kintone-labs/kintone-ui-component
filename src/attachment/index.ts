@@ -190,7 +190,7 @@ let exportAttachment;
         const detail = {
           oldFiles: this._deepClone(tempFiles),
           files: this._deepClone(this.files),
-          action: "remove",
+          type: "remove",
           changedFiles: this._deepClone(changedFiles),
         };
         dispatchCustomEvent(this, "change", detail);
@@ -275,7 +275,7 @@ let exportAttachment;
         const detail = {
           oldFiles: this._deepClone(tempFileList),
           files: this._deepClone(this.files),
-          action: "add",
+          type: "add",
           changedFiles: this._deepClone(addedFiles),
         };
         dispatchCustomEvent(this, "change", detail);
