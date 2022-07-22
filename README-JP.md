@@ -20,6 +20,7 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 > npm v8.5.5 以降で package-lock.json のチェックが厳格化されたため、現時点では Node v16.15.1 以前を利用して "npm ci" で依存ライブラリのインストールをしてください。
 
 ## 目次
+- [目次](#目次)
 - [インストール](#インストール)
   - [UMD](#umd)
   - [CDN](#cdn)
@@ -67,6 +68,8 @@ npm install kintone-ui-component
 
 ```javascript
 // UMD
+const Kuc = Kucs["1.x.x"];
+
 const text = new Kuc.Text({
   value: "this is text!"
 });
@@ -82,9 +85,12 @@ const text = new Text({
 text.addEventListener("change", event => {
   console.log(`text value is changed to ${event.detail.value}`);
 });
-
-
 ```
+> v1.4.0 からは Kuc の代わりに Kucs["1.x.x"] を使いバージョンを指定してください。（ex. Kucs["1.4.0"]）<br>
+> レンダリングされたコンポーネントのタグ名とクラス名にはバージョン番号が含まれます。<br>
+> また、グローバルオブジェクトとして Kuc を使い続けることもできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加する場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この場合、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
+> v1.4.0 以前のバージョンを利用する場合は Kuc をグローバルオブジェクトとして使ってください。この場合、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加する場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。<br>
+> 詳しくは、[Quick Start](https://kintone-ui-component.netlify.app/docs/ja/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/ja/guides/version-conflicts-issue-solution) 記事をご確認ください。
 
 ## ブラウザサポート
 
