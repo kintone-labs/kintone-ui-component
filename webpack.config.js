@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/index.bundle.ts",
   output: {
     path: path.resolve(__dirname, "umd"),
-    library: "Kuc",
+    library: ["Kucs", packageJSON.version],
     libraryTarget: "umd",
     filename: "kuc.min.js"
   },

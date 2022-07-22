@@ -122,7 +122,6 @@ describe("MobileDropdown", () => {
     });
 
     it("show error when initializing with props is null", async () => {
-      // @ts-expect-error
       const container = new MobileDropdown({ items: null });
       try {
         await fixture(container);
@@ -158,7 +157,6 @@ describe("MobileDropdown", () => {
 
     it("show error when when changing by setter to null", async () => {
       const container = new MobileDropdown({});
-      // @ts-expect-error
       container.items = null;
 
       try {

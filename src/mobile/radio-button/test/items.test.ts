@@ -198,7 +198,6 @@ describe("MobileRadioButton", () => {
     it("should be throw error when assigned null by setter", async () => {
       const container = new MobileRadioButton();
       try {
-        // @ts-expect-error
         container.items = null;
         await fixture(container);
       } catch (error) {

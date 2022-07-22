@@ -4,13 +4,15 @@ import {
   KucBase,
   CustomEventDetail,
   dispatchCustomEvent,
+  createStyleOnHeader,
 } from "../../../../../kuc-base";
-import { Item } from "../../../../listbox";
+import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   setListBoxPosition,
   calculateDistanceInput,
 } from "../../../../utils";
+import { CALENDAR_HEADER_YEAR_CSS } from "./style";
 
 export class BaseDateTimeHeaderYear extends KucBase {
   @property({ type: Number }) year = 2021;
@@ -19,7 +21,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @state()
   private _listBoxVisible = false;
 
-  private _listBoxItems: Item[] | undefined;
+  private _listBoxItems: BaseDateTimeListBoxItem[] | undefined;
 
   @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
@@ -43,7 +45,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   update(changedProperties: PropertyValues) {
     this._listBoxItems = this._getYearOptions().map((year: number) => {
-      const item: Item = {
+      const item: BaseDateTimeListBoxItem = {
         value: `${year}`,
         label: `${year}${this.postfix}`,
       };
@@ -54,7 +56,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <button
         class="kuc-base-datetime-header-year__toggle"
         aria-haspopup="listbox"
@@ -124,38 +125,6 @@ export class BaseDateTimeHeaderYear extends KucBase {
     this._handleFocusOutListBox();
   }
 
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        .kuc-base-datetime-header-year__toggle {
-          position: relative;
-          box-sizing: border-box;
-          height: 32px;
-          padding: 0 24px 0 8px;
-          line-height: 30px;
-          overflow: hidden;
-          background-color: white;
-          border: 1px solid transparent;
-          cursor: pointer;
-        }
-        .kuc-base-datetime-header-year__toggle__icon {
-          position: absolute;
-          flex: none;
-          width: 24px;
-          height: 32px;
-        }
-        .kuc-base-datetime-header-year__toggle__label {
-          font-size: 13px;
-          color: #333333;
-        }
-        .kuc-base-datetime-header-year__toggle:focus {
-          border: 1px solid #3498db;
-          outline: none;
-        }
-      </style>
-    `;
-  }
-
   private _handleMouseUpDropdownToggle(event: MouseEvent) {
     event.preventDefault();
   }
@@ -220,6 +189,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-datetime-header-year")) {
+  createStyleOnHeader(CALENDAR_HEADER_YEAR_CSS);
   window.customElements.define(
     "kuc-base-datetime-header-year",
     BaseDateTimeHeaderYear

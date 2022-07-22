@@ -4,14 +4,16 @@ import {
   KucBase,
   dispatchCustomEvent,
   CustomEventDetail,
+  createStyleOnHeader,
 } from "../../../../../kuc-base";
-import { Item } from "../../../../listbox";
+import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
   getToggleIconSvgTemplate,
   getLocale,
   setListBoxPosition,
   calculateDistanceInput,
 } from "../../../../utils";
+import { CALENDAR_HEADER_MONTH_CSS } from "./style";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
   @property({ type: String }) language = "en";
@@ -21,7 +23,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   private _listBoxVisible = false;
   private _locale = getLocale("en");
   private _monthLabel = "";
-  private _listBoxItems: Item[] | undefined;
+  private _listBoxItems: BaseDateTimeListBoxItem[] | undefined;
   private _maxHeight = 1000;
 
   @query(".kuc-base-datetime-header-month__toggle")
@@ -57,7 +59,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <button
         class="kuc-base-datetime-header-month__toggle"
         aria-haspopup="listbox"
@@ -128,38 +129,6 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     this._handleFocusOutListBox();
   }
 
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        .kuc-base-datetime-header-month__toggle {
-          position: relative;
-          box-sizing: border-box;
-          height: 32px;
-          padding: 0 24px 0 8px;
-          line-height: 30px;
-          overflow: hidden;
-          background-color: white;
-          border: 1px solid transparent;
-          cursor: pointer;
-        }
-        .kuc-base-datetime-header-month__toggle__icon {
-          position: absolute;
-          flex: none;
-          width: 24px;
-          height: 32px;
-        }
-        .kuc-base-datetime-header-month__toggle__label {
-          font-size: 13px;
-          color: #333333;
-        }
-        .kuc-base-datetime-header-month__toggle:focus {
-          border: 1px solid #3498db;
-          outline: none;
-        }
-      </style>
-    `;
-  }
-
   private _handleClickDropdownMonthToggle(event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
@@ -215,7 +184,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _getListBoxItems() {
     return this._locale.MONTH_SELECT.map((month: string, index: number) => {
-      const item: Item = {
+      const item: BaseDateTimeListBoxItem = {
         value: `${index + 1}`,
         label: `${month}`,
       };
@@ -232,6 +201,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 }
 
 if (!window.customElements.get("kuc-base-datetime-header-month")) {
+  createStyleOnHeader(CALENDAR_HEADER_MONTH_CSS);
   window.customElements.define(
     "kuc-base-datetime-header-month",
     BaseDateTimeHeaderMonth
