@@ -44,7 +44,7 @@ From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expect
 > You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
 > If you only have one `kuc.min.js` file in your system, or you are okay with using the `kuc.min.js` file loaded last, you can remove the "`const Kuc = Kucs['1.x.x']`" line.
 
-When using a version before v1.4.0, please use `Kuc` as a global variable but note that it may be conflicting when adding two or more `kuc.min.js` files on kintone app plug-in or customization.
+When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in.<br>
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
