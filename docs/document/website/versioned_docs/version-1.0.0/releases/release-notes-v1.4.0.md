@@ -10,7 +10,7 @@ original_id: release-notes-v1.4.0
 Here are the [kintone UI Component v1.4.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.4.0) Release Notes.<br>
 New components and features, document updates, security updates, and maintenance have been made.
 
-> Note that in this version, there is backward compatible breaking change with coding way and components' tags and class names for resolving version conflicts issue.
+> Note that in this version, there is backward compatible big change with coding way and components' tags and class names for resolving version conflicts issue.
 > For more details, please check the [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) and the new [Quick Start](../getting-started/quick-start) article.
 
 ## Update details
