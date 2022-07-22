@@ -19,8 +19,6 @@ It supports you to develop kintone customization and kintone plugin.<br />
 > Here is a note for contributors:<br>
 > Due to the package-lock.json verification get stricter from npm v8.5.5, please use an earlier version of Node v16.15.1 to install dependencies with "npm ci" for now.
 
-## Table of contents
-- [Table of contents](#table-of-contents)
 - [Installation](#installation)
   - [UMD](#umd)
   - [CDN](#cdn)
