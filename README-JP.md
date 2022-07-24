@@ -84,10 +84,11 @@ text.addEventListener("change", event => {
   console.log(`text value is changed to ${event.detail.value}`);
 });
 ```
-> v1.4.0 からは Kuc の代わりに Kucs["1.x.x"] を使いバージョンを指定してください。（ex. Kucs["1.4.0"]）<br>
-> レンダリングされたコンポーネントのタグ名とクラス名にはバージョン番号が含まれます。<br>
-> また、グローバルオブジェクトとして Kuc を使い続けることもできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加する場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この場合、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
-> v1.4.0 以前のバージョンを利用する場合は Kuc をグローバルオブジェクトとして使ってください。この場合、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加する場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。<br>
+> v1.4.0 以上のバージョンを利用する場合は、コンポーネントを呼び出す際に Kuc オブジェクトの代わりに Kucs["1.x.x"] を使いバージョンを指定してください。（ex. `new Kucs["1.4.0"].Button()`）<br>
+> レンダリングされたコンポーネントのタグとクラス名にはバージョン番号が含まれます。<br>
+> グローバルオブジェクトとして Kuc を使うこともできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに読み込む場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この際、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
+> システム上に kuc.min.js が 1つしかない、もしくは最後に読み込まれた kuc.min.js の利用で問題ない場合は、Kuc オブジェクトを利用いただいて問題ありません。以下の `const Kuc = Kucs['1.x.x'];` の行を削除してください。<br>
+> v1.4.0 以前のバージョンを利用する場合は、Kuc をグローバルオブジェクトとして使ってください。2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加すると、バージョンコンフリクト問題が起きるのでご注意ください。
 > 詳しくは、[Quick Start](https://kintone-ui-component.netlify.app/docs/ja/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/ja/guides/version-conflicts-issue-solution) 記事をご確認ください。
 
 ## ブラウザサポート
