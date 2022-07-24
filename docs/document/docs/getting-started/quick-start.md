@@ -31,14 +31,17 @@ Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<b
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br>
 In this article, we will show you how to install and implement using each approach.
 
+> We recommend that you should upgrade Kintone UI Component to the latest version for your projects.
+
 > See the Components section in the sidebar for more details on each component.<br>
 > (Additional components will be added in order.)
 
 ### Use the UMD
-> We recommend that you should upgrade Kintone UI Component to the latest version for your projects. <br>
-> From v1.4.0, please use `Kucs["1.x.x"]` instead of `Kuc` and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
+
+> When using a version on and after v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `new Kucs["1.4.0"].Button()`).<br>
 > The rendered components' tags and class names will include the version number.<br>
 > You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
+> In case that there is only one `kuc.min.js` file on system or there is no problem with using last loaded `kuc.min.js` file, you can use Kuc object. Please remove `const Kuc = Kucs['1.x.x'];` line.
 > When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in.<br>
 > Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information!
 
@@ -98,7 +101,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 ### Use the npm package
 
-> From v1.4.0, rendered components' tags and class names will include the version number.<br>
+> When using on and after v1.4.0, rendered components' tags and class names will include the version number.<br>
 > Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information! <br>
 
 1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
