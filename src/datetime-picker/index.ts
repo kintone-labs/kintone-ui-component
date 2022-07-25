@@ -23,7 +23,7 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import {
-  FORMAT_IS_NOT_VALID,
+  INVALID_FORMAT_MESSAGE,
   MAX_MIN_IS_NOT_VALID,
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
@@ -114,6 +114,7 @@ let exportDateTimePicker;
       Object.assign(this, validProps);
     }
 
+    // eslint-disable-next-line max-statements
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
       if (_changedProperties.has("max") || _changedProperties.has("min")) {
         let _inputMinTemp = this._inputMin;
@@ -123,7 +124,7 @@ let exportDateTimePicker;
           _inputMaxTemp = MAX_TIME;
         } else {
           if (!validateTimeValue(this.max)) {
-            throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.max);
             return false;
           }
           _inputMaxTemp = this.max = timeValueConverter(this.max);
@@ -133,7 +134,7 @@ let exportDateTimePicker;
           _inputMinTemp = MIN_TIME;
         } else {
           if (!validateTimeValue(this.min)) {
-            throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.min);
             return false;
           }
           _inputMinTemp = this.min = timeValueConverter(this.min);
@@ -154,7 +155,7 @@ let exportDateTimePicker;
         }
 
         if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.timeStep);
           return false;
         }
         this._inputTimeStep = this.timeStep;
@@ -163,7 +164,7 @@ let exportDateTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string") {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
         return false;
       }
 
@@ -173,7 +174,7 @@ let exportDateTimePicker;
         validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
         isValidDate(this._dateConverted);
       if (!isValidValue) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
         return false;
       }
 
