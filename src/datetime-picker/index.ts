@@ -332,6 +332,7 @@ let exportDateTimePicker;
           <kuc-base-error
             .text="${this._errorText}"
             .guid="${this._GUID}"
+            ?hidden="${!this._errorText}"
           ></kuc-base-error>
         </fieldset>
       `;
