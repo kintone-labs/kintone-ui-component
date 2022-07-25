@@ -16,8 +16,8 @@ export const MIN_TIME = "00:00";
 export const MAX_TIME = "23:59";
 
 export const INVALID_FORMAT_MESSAGE = {
-  value: "'value' property format is not valid",
-  max: "'max' property format is not valid",
-  min: "'min' property format is not valid",
-  timeStep: "'timeStep' property format is not valid",
+  VALUE: "'value' property format is not valid",
+  MAX: "'max' property format is not valid",
+  MIN: "'min' property format is not valid",
+  TIME_STEP: "'timeStep' property format is not valid",
 };

@@ -75,7 +75,7 @@ let exportMobileTimePicker;
     protected shouldUpdate(changedProperties: PropertyValues): boolean {
       if (this.value === undefined || this.value === "") return true;
       if (!validateTimeValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;

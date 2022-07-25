@@ -65,13 +65,13 @@ let exportMobileDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (!validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
       this._dateConverted = dateValueConverter(this.value);
       if (this._dateConverted !== "" && !isValidDate(this._dateConverted)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;
