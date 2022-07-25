@@ -19,7 +19,7 @@ import "../../base/mobile-label";
 import "../../base/mobile-error";
 import { MOBILE_DATE_PICKER_CSS } from "./style";
 import { MobileDatePickerProps } from "./type";
-import { FORMAT_IS_NOT_VALID } from "../../base/datetime/resource/constant";
+import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 let exportMobileDatePicker;
 (() => {
@@ -65,13 +65,13 @@ let exportMobileDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (!validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
         return false;
       }
 
       this._dateConverted = dateValueConverter(this.value);
       if (this._dateConverted !== "" && !isValidDate(this._dateConverted)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
         return false;
       }
       return true;
