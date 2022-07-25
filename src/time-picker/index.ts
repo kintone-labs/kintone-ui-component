@@ -10,7 +10,7 @@ import {
 import { visiblePropConverter, timeValueConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
-  FORMAT_IS_NOT_VALID,
+  INVALID_FORMAT_MESSAGE,
   MAX_MIN_IS_NOT_VALID,
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
@@ -94,7 +94,7 @@ let exportTimePicker;
           _inputMaxTemp = MAX_TIME;
         } else {
           if (!validateTimeValue(this.max)) {
-            throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.max);
             return false;
           }
           _inputMaxTemp = this.max = timeValueConverter(this.max);
@@ -104,7 +104,7 @@ let exportTimePicker;
           _inputMinTemp = MIN_TIME;
         } else {
           if (!validateTimeValue(this.min)) {
-            throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.min);
             return false;
           }
           _inputMinTemp = this.min = timeValueConverter(this.min);
@@ -125,7 +125,7 @@ let exportTimePicker;
         }
 
         if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-          throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.timeStep);
           return false;
         }
         this._inputTimeStep = this.timeStep;
@@ -134,7 +134,7 @@ let exportTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (!validateTimeValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.value);
         return false;
       }
 
