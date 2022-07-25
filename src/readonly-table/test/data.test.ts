@@ -76,14 +76,12 @@ describe("ReadOnlyTable", () => {
 
     it("should throw error when set wrong type on constructor", () => {
       expect(() => {
-        // @ts-expect-error
         const container = new ReadOnlyTable({ data: null });
       }).to.throw(Error, "'data' property is invalid");
     });
 
     it("should throw error when set null array on constructor", () => {
       expect(() => {
-        // @ts-expect-error
         const container = new ReadOnlyTable({ data: [null] });
       }).to.throw(Error, "'data' property is invalid");
     });
@@ -91,7 +89,6 @@ describe("ReadOnlyTable", () => {
     it("should be throw error when assigned null by setter", async () => {
       const container = new ReadOnlyTable();
       try {
-        // @ts-expect-error
         container.items = null;
         await fixture(container);
       } catch (error) {
