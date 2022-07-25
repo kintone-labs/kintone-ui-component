@@ -14,3 +14,10 @@ export const TIMESTEP_IS_NOT_NUMBER = "'timeStep' property is not number";
 
 export const MIN_TIME = "00:00";
 export const MAX_TIME = "23:59";
+
+export const INVALID_FORMAT_MESSAGE = {
+  value: "'value' property format is not valid",
+  max: "'max' property format is not valid",
+  min: "'min' property format is not valid",
+  timeStep: "'timeStep' property format is not valid",
+};
