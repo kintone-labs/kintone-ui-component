@@ -1,4 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import { DateTimePicker } from "../index";
 
 describe("DateTimePicker", () => {
@@ -77,7 +78,7 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal("Format is not valid.");
+        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.TIME_STEP);
       }
     });
 
@@ -94,7 +95,7 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal("Format is not valid.");
+        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.TIME_STEP);
       }
     });
   });
