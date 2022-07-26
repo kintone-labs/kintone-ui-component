@@ -1,7 +1,7 @@
 import "./index.ts";
 import { Dropdown } from "../dropdown";
 import { Checkbox } from "../checkbox";
-import { Text } from "../text";
+import { TextArea } from "../textarea";
 
 import { html } from "lit-html";
 
@@ -40,7 +40,7 @@ const Template = (args) => {
 };
 
 const renderAge = (dataCell, dataRow) => {
-  const text = new Text({ value: dataCell });
+  const text = new TextArea({ value: dataCell });
   return text;
 };
 

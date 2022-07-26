@@ -10,4 +10,10 @@ export const ERROR_MESSAGE = {
     IS_NOT_ARRAY: "'selectedIndex' property is not array",
     IS_NOT_NUMBER: "'selectedIndex' property is not number",
   },
+  COLUMNS: {
+    IS_NOT_ARRAY: "'columns' property is not array",
+  },
+  DATA_TABLE: {
+    IS_NOT_ARRAY: "'data' property is not array",
+  },
 };

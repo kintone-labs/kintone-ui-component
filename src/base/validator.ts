@@ -121,3 +121,15 @@ export async function throwErrorAfterUpdateComplete(
   await _this.updateComplete;
   throw new Error(message);
 }
+
+export const validateColumnTable = (columns: object[]) => {
+  if (!Array.isArray(columns)) return false;
+
+  return true;
+};
+
+export const validateDataTable = (data: object[]) => {
+  if (!Array.isArray(data)) return false;
+
+  return true;
+};
