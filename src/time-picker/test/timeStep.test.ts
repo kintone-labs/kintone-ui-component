@@ -1,5 +1,6 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { TimePicker } from "../index";
+import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 describe("TimePicker", () => {
   describe("timeStep", () => {
@@ -77,7 +78,7 @@ describe("TimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal("Format is not valid.");
+        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.TIME_STEP);
       }
     });
 
@@ -94,7 +95,7 @@ describe("TimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal("Format is not valid.");
+        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.TIME_STEP);
       }
     });
   });
