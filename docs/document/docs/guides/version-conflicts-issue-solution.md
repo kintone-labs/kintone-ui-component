@@ -14,7 +14,7 @@ It is a problem that the version conflicts error occurs and the component cannot
 This issue occurs in both UMD and ESM ways.<br>
 For KUC, we use Web Components and create a component defining a custom HTML tag.<br>
 The `CustomElementRegistry` that we use in that case is a global window object and we cannot define an already registered custom HTML tag again with Web Components.<br>
-When KUC package try to register a custom HTML tag, the later loaded package will try to define the same tag, so the rendering problem occurred.
+When a KUC package tries to register a custom HTML tag, and a later loaded package also tries to define the same tag again, the rendering problem occurs.
 
 ![Multiple packages try to define the same custom HTML tag](assets/version-conflict-diagram.jpeg)
 
