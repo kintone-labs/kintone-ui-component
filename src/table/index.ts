@@ -43,9 +43,8 @@ export class Table extends KucBase {
 
   constructor(props?: TableProps) {
     super();
-    if (!props) {
-      return;
-    }
+    if (!props) return;
+
     const validProps = validateProps(props);
     Object.assign(this, validProps);
   }
@@ -79,26 +78,7 @@ export class Table extends KucBase {
     return JSON.parse(JSON.stringify(data)) as object[];
   }
 
-  private _getBodyTemplate(data: any, index: number) {
-    const handleCellChange = (event: CustomEvent, dataIndex: string) => {
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      const _cloneData = this._deepCloneObject(this.data);
-      (_cloneData[index] as any)[dataIndex] = event.detail.value;
-      this.data = this._deepCloneObject(_cloneData);
-
-      const detail: CustomEventDetail = {
-        data: {
-          allData: this._deepCloneObject(_cloneData),
-          rowData: this._deepCloneObject(this.data[index]),
-          rowIndex: index,
-          columnsName: dataIndex,
-        },
-        type: "changeCell",
-      };
-      dispatchCustomEvent(this, "change", detail);
-    };
-
+  private _getTableRowTemplate(data: any, index: number) {
     return html`
       <tr class="kuc-table__table__body__row">
         ${this.columns.map((col) => {
@@ -107,17 +87,45 @@ export class Table extends KucBase {
           const dataRender = isCustomRender
             ? isCustomRender(rendered, data)
             : rendered;
-          return html` <td
-            class="kuc-table__table__body__row__cell-data"
-            @change="${(event: CustomEvent) =>
-              handleCellChange(event, col.dataIndex)}"
-          >
-            ${dataRender}
-          </td>`;
+          return this._getTableCellTemplate(col, index, dataRender);
         })}
         ${this._getActionsTemplate(index)}
       </tr>
     `;
+  }
+
+  private _getTableCellTemplate(col: Column, index: number, dataRender: any) {
+    const handleCellChange = (event: CustomEvent, dataIndex: string) => {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      const _cloneData = this._deepCloneObject(this.data);
+      (_cloneData[index] as any)[dataIndex] = event.detail.value;
+      this.data = this._deepCloneObject(_cloneData);
+      const data = {
+        allData: this._deepCloneObject(_cloneData),
+        rowData: this._deepCloneObject(this.data[index]),
+        rowIndex: index,
+        columnsName: dataIndex,
+      };
+      this._dispatchChangeEvent("changeCell", data);
+    };
+    return html`
+      <td
+        class="kuc-table__table__body__row__cell-data"
+        @change="${(event: CustomEvent) =>
+          handleCellChange(event, col.dataIndex)}"
+      >
+        ${dataRender}
+      </td>
+    `;
+  }
+
+  private _dispatchChangeEvent(type: string, data: object) {
+    const detail: CustomEventDetail = {
+      data: data,
+      type: type,
+    };
+    dispatchCustomEvent(this, "change", detail);
   }
 
   private _getActionsTemplate(index: number) {
@@ -126,20 +134,22 @@ export class Table extends KucBase {
       const defaultRow = this._getDefaultRowData(this.data[0]);
       _temp.splice(index + 1, 0, defaultRow);
       this.data = [..._temp];
-
-      const detail: CustomEventDetail = {
-        data: {
-          allData: this._deepCloneObject(this.data),
-          rowIndex: index + 1,
-        },
-        type: "changeRow",
+      const data = {
+        allData: this._deepCloneObject(this.data),
+        rowIndex: index + 1,
       };
-      dispatchCustomEvent(this, "change", detail);
+      this._dispatchChangeEvent("addRow", data);
     };
     const handleRemoveRow = () => {
       _temp.splice(index, 1);
       this.data = [..._temp];
+      const data = {
+        allData: this._deepCloneObject(this.data),
+        rowIndex: index + 1,
+      };
+      this._dispatchChangeEvent("removeRow", data);
     };
+
     return html`
       <td class="kuc-table__table__body__row__action">
         <button
@@ -197,7 +207,7 @@ export class Table extends KucBase {
         </thead>
         <tbody class="kuc-table__table__body">
           ${this.data.map((data: any, index: number) => {
-            return this._getBodyTemplate(data, index);
+            return this._getTableRowTemplate(data, index);
           })}
         </tbody>
       </table>
