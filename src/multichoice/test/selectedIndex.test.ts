@@ -58,7 +58,6 @@ describe("MultiChoice", () => {
 
     it("should be throw error when set null by setter", async () => {
       const container = new MultiChoice({ items: initItems });
-      // @ts-expect-error
       container.selectedIndex = null;
       try {
         await fixture(container);

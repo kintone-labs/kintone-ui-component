@@ -41,7 +41,6 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null on constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        // @ts-expect-error
         selectedIndex: null,
       });
       try {
@@ -64,7 +63,6 @@ describe("MobileCheckbox", () => {
         selectedIndex: [0],
       });
       try {
-        // @ts-expect-error
         container.selectedIndex = null;
         await fixture(container);
       } catch (error) {

@@ -4,6 +4,10 @@
 
     const kucScript = document.createElement("script");
     kucScript.onload = function() {
+      if(typeof window.Kucs !== 'undefined') {
+        const version = Object.keys(window.Kucs)[0];
+        window.Kuc = window.Kucs[version];
+      }
       const loadedEvent = new Event("kuc:loaded");
       document.dispatchEvent(loadedEvent);
     };
@@ -12,3 +16,4 @@
     document.head.appendChild(kucScript);
   });
 })();
+

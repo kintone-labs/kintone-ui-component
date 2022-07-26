@@ -132,7 +132,6 @@ describe("MobileMultiChoice", () => {
 
     it("show error when initializing with props is null", async () => {
       const container = new MobileMultiChoice({
-        // @ts-expect-error
         items: null,
       });
       try {
@@ -170,7 +169,6 @@ describe("MobileMultiChoice", () => {
 
     it("show error when when changing by setter to null", async () => {
       const container = new MobileMultiChoice({});
-      // @ts-expect-error
       container.items = null;
       try {
         await fixture(container);

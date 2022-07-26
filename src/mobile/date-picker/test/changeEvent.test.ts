@@ -9,7 +9,7 @@ describe("MobileDatePicker", () => {
         value: "2021-12-20",
         language: "en",
       });
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
 
@@ -42,7 +42,7 @@ describe("MobileDatePicker", () => {
         value: "2021-12-20",
         language: "en",
       });
-      container.addEventListener("change", (event) => {
+      container.addEventListener("change", (event: Event) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
