@@ -22,7 +22,7 @@ We welcome contributions to kintone UI Component.<br>
 For the details, please check [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md).
 
 
-If you have a question, feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
 
 ## License
 MIT License
