@@ -23,7 +23,7 @@ let exportReadOnlyTable;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
-    @property({ type: Array }) data: string[][] = [];
+    @property({ type: Array }) data: object[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
     @property({
@@ -89,8 +89,7 @@ let exportReadOnlyTable;
             </tr>
           </thead>
           <tbody class="kuc-readonly-table__table__body">
-            ${currentPageData.map((data: string[], currentIndex: number) => {
-              console.log("hi");
+            ${currentPageData.map((data: object, currentIndex: number) => {
               return this._getDataTemplate(
                 data,
                 currentIndex,
@@ -140,7 +139,7 @@ let exportReadOnlyTable;
       }
     }
 
-    private _validateData(data: string[][]) {
+    private _validateData(data: object[]) {
       if (!Array.isArray(data)) {
         throw new Error("'data' property is invalid");
       }
@@ -177,7 +176,7 @@ let exportReadOnlyTable;
 
     // Formatting the data displayed on the current page
     private _createDisplayData(
-      data: string[][],
+      data: object[],
       pagePosition: number,
       steps: number
     ) {
@@ -185,8 +184,8 @@ let exportReadOnlyTable;
       const firstRow = (pagePosition - 1) * steps + 1;
       const lastRow = pagePosition * steps;
       const displayData = data.filter(
-        (element, index: number) =>
-          element.length && index >= firstRow - 1 && index <= lastRow - 1
+        (_element, index: number) =>
+          index >= firstRow - 1 && index <= lastRow - 1
       );
       return displayData;
     }
@@ -200,7 +199,7 @@ let exportReadOnlyTable;
         <tr
           class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
         >
-          ${columnOrder.forEach((currentCol, colIndex) => {
+          ${columnOrder.map((currentCol, colIndex) => {
             let isHidden = false;
             if (
               this.columns[colIndex] &&
@@ -208,27 +207,25 @@ let exportReadOnlyTable;
             ) {
               isHidden = true;
             }
-            data.map((dataEl: any) => {
-              return html`
-                <td
-                  class="kuc-readonly-table__table__body__row__cell-data"
-                  ?hidden="${isHidden}"
-                >
-                  ${dataEl[currentCol]}
-                </td>
-              `;
-            });
+            return html`
+              <td
+                class="kuc-readonly-table__table__body__row__cell-data"
+                ?hidden="${isHidden}"
+              >
+                ${data[currentCol]}
+              </td>
+            `;
           })}
         </tr>
       `;
     }
 
-    private _handleClickPreviusButton(event: MouseEvent | KeyboardEvent) {
+    private _handleClickPreviusButton(_event: MouseEvent | KeyboardEvent) {
       if (this._pagePosition === 1) return;
       this._pagePosition -= 1;
     }
 
-    private _handleClickNextButton(event: MouseEvent | KeyboardEvent) {
+    private _handleClickNextButton(_event: MouseEvent | KeyboardEvent) {
       this._pagePosition += 1;
     }
 

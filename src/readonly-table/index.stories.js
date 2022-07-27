@@ -13,21 +13,23 @@ storiesOf("desktop/readonly-table", module)
       pagination: true,
       columns: [
         {
-          headerName: "First column",
-          key: "order_1",
+          headerName: "First col",
+          key: "firstName",
         },
         {
-          headerName: "Second sad column",
-          key: "order_2",
+          headerName: "Second col",
+          key: "age",
         },
         {
           headerName: "Third column is very long",
-          key: "order_3",
+          key: "lastName",
         },
       ],
       data: [
-        { order_1: "1", order_2: "Testing", order_3: "new data type" },
-        { order_1: "1", order_2: "Testing", order_3: "new data type" },
+        { age: "18", firstName: "Chi", lastName: "Nguyen" },
+        { age: "17", firstName: "A", lastName: "Nguyen" },
+        { age: "17", firstName: "B", lastName: "Nguyen" },
+        { age: "12", firstName: "C", lastName: "Nguyen" },
       ],
     });
     root.appendChild(readOnlyTable);
