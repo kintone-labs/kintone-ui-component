@@ -18,8 +18,9 @@ Currently, the mainstream is v1. We are considering stopping the maintenance of 
 
 ## Contributing Guide
 
-We welcome contributions to kintone UI Component.
+We welcome contributions to kintone UI Component.<br>
 For the details, please check [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md).
+
 
 If you have a question, feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
 
