@@ -2,9 +2,8 @@
 !!! note
     We released kintone UI Component version 1.0.0 on 04 March 2021.
     If you want to use it, please check <a target="_blank" href="https://kintone-ui-component.netlify.app/">this website</a> for details.
-    (Now it's only available in Japanese. We will also support English documents in near future.)
 
-    With the release of v1, we will continue to mainly fix bugs and update libraries for v0.  We don't plan to develop new functions for now.
+    With the release of v1, we will continue to mainly fix bugs and update libraries for v0.  We don't plan to develop new functions for now.<br>
     Currently, the mainstream is v1. We are considering stopping the maintenance of v0 in the near future.
 
 ## Quick start
