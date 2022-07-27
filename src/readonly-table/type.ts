@@ -4,7 +4,6 @@ import { KucBase } from "../base/kuc-base";
 export declare type Column = {
   headerName?: string;
   visible?: boolean;
-  maxWidth?: string;
 };
 
 export declare type ReadOnlyTableProps = {

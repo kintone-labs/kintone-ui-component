@@ -151,14 +151,9 @@ let exportReadOnlyTable;
     }
 
     private _getColumnsTemplate(column: Column) {
-      if (!column.maxWidth) {
-        column.maxWidth = "none";
-      }
-
       return html`
         <th
           class="kuc-readonly-table__table__header__cell"
-          style="max-width: ${column.maxWidth}"
           ?hidden="${column.visible === false}"
         >
           <span class="kuc-readonly-table__table__header__cell__label">
@@ -200,7 +195,6 @@ let exportReadOnlyTable;
             return html`
               <td
                 class="kuc-readonly-table__table__body__row__cell-data"
-                style="max-width: ${this.columns[dataIndex].maxWidth}"
                 ?hidden="${isHidden}"
               >
                 ${dataContent}
