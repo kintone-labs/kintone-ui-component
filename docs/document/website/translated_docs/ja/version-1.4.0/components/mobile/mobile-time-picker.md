@@ -57,10 +57,15 @@ MobileTimePicker(options)<br>
 
 ## Sample Code
 
+>[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
+
 全てのパラメータを指定した場合のサンプルコードです。
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileTimePicker = new Kuc.MobileTimePicker({
   label: 'Time',
   requiredIcon: true,
