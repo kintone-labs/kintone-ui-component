@@ -16,14 +16,14 @@ cd kintone-ui-component
 
 ```sh
 cd docs/document/
-npm install
+npm ci
 ```
 
 3. Go into the website portion of the project and install the npm dependencies.
 
 ```sh
 cd website/
-npm install
+npm ci
 ```
 
 4. Start the development server locally.

@@ -19,7 +19,6 @@ It supports you to develop kintone customization and kintone plugin.<br />
 > Here is a note for contributors:<br>
 > Due to the package-lock.json verification get stricter from npm v8.5.5, please use an earlier version of Node v16.15.1 to install dependencies with "npm ci" for now.
 
-## Table of contents
 - [Installation](#installation)
   - [UMD](#umd)
   - [CDN](#cdn)
@@ -86,11 +85,12 @@ text.addEventListener("change", event => {
 });
 ```
 
->From v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `Kucs["1.4.0"]`).<br>
->The rendered components' tags and class names will include the version number.<br>
+> When using a version on and after v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `new Kucs["1.4.0"].Button()`).<br>
+> The rendered components' tags and class names will include the version number.<br>
 > You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
->When using a version before v1.4.0, please use `Kuc` as a global variable but note that it may be conflicting when adding two or more `kuc.min.js` files on Kintone app plug-in or customization.<br>
->Please visit [Quick Start](https://kintone-ui-component.netlify.app/docs/en/getting-started/quick-start#installation) and [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/en/guides/version-conflicts-issue-solution) for more information!
+> In case that there is only one `kuc.min.js` file in the Kintone system or there is no problem with using last loaded `kuc.min.js` file, you can use Kuc object. Please remove `const Kuc = Kucs['1.x.x'];` line.
+> When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in.<br>
+> Please visit [Quick Start](https://kintone-ui-component.netlify.app/docs/en/getting-started/quick-start#installation) and [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/en/guides/version-conflicts-issue-solution) for more information!
 
 ## Browser Support
 
