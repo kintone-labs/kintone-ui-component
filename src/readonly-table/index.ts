@@ -143,12 +143,16 @@ let exportReadOnlyTable;
       if (!Array.isArray(data)) {
         throw new Error("'data' property is invalid");
       }
-      // data &&
-      //   data.forEach((val) => {
-      //     if (!Array.isArray(val)) {
-      //       throw new Error("'data' property is invalid");
-      //     }
-      //   });
+      data &&
+        data.forEach((dataEl) => {
+          const validType = "[object Object]";
+          if (
+            Object.prototype.toString.call(dataEl) !== validType ||
+            dataEl === null
+          ) {
+            throw new Error("'data' property is invalid");
+          }
+        });
     }
 
     private _validateRowsPerPage(numRows: number) {
