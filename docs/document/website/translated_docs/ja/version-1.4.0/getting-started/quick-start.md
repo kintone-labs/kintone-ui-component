@@ -39,11 +39,11 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 
 ### UMD を利用する
 
-> v1.4.0 以上のバージョンを利用する場合は、コンポーネントを呼び出す際に Kuc オブジェクトの代わりに Kucs["1.x.x"] を使ってバージョンを指定してください。（ex. `new Kucs["1.4.0"].Button()`）<br>
+> v1.4.0 以降のバージョンを利用する場合は、コンポーネントを呼び出す際に Kuc オブジェクトの代わりに Kucs["1.x.x"] を使ってバージョンを指定してください。（ex. `new Kucs["1.4.0"].Button()`）<br>
 > レンダリングされたコンポーネントのタグとクラス名にはバージョン番号が含まれます。<br>
 > グローバルオブジェクトとして Kuc を使うこともできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに読み込む場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この際、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
 > システム上に kuc.min.js が 1つしかない、もしくは最後に読み込まれた kuc.min.js の利用で問題ない場合は、Kuc オブジェクトを利用いただいて問題ありません。`const Kuc = Kucs['1.x.x'];` の行を削除してください。<br>
-> v1.4.0 以前のバージョンを利用する場合は、Kuc をグローバルオブジェクトとして使ってください。2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加すると、バージョンコンフリクト問題が起きるのでご注意ください。
+> v1.3.2 以前のバージョンを利用する場合は、Kuc をグローバルオブジェクトとして使ってください。2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加すると、バージョンコンフリクト問題が起きるのでご注意ください。
 > 詳しくは、[Version conflicts issue and solution](../guides/version-conflicts-issue-solution) 記事をご確認ください。
 
 1. kintone UI Component リポジトリ内の[各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)に添付のアーカイブフォルダ（kintone-ui-component-{version}.tgz）を解凍し、以下のファイルを kintone アプリ設定の `JavaScript / CSS でカスタマイズ`にて指定します。
