@@ -13,7 +13,7 @@ v1.3.2 以前のリリースバージョンにおいて kintone UI Component（K
 ## バージョンコンフリクト問題
 
 アプリに対して複数の同一バージョンもしくは別バージョンの KUC パッケージを読み込んだ際に、エラーが出力されコンポーネントが正しく表示されないという問題です。この事象は、UMD と ESM どちらの利用方法でも発生していました。<br>
-KUC では Web Components を利用しており、custom HTML タグを定義することでコンポーネントを生成しています。その際に使っている CustomElementRegistry がグローバルな window オブジェクトであり、Web Components では既に登録されている custom HTML タグ を再定義することができません。<br>
+KUC では [Web Components](https://developer.mozilla.org/ja/docs/Web/Web_Components) を利用しており、[custom HTML タグ](https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_custom_elements)を定義することでコンポーネントを生成しています。その際に使っている [CustomElementRegistry](https://developer.mozilla.org/ja/docs/Web/API/CustomElementRegistry) がグローバルな window オブジェクトであり、Web Components では既に登録されている custom HTML タグ を再定義することができません。<br>
 KUC パッケージが custom HTML タグ を登録する際、後から読み込まれたパッケージも同じタグを定義しようとするので、正常に動作しなくなるという問題が起きていました。
 
 ![複数のパッケージが同じ custom HTML タグを定義](assets/version-conflict-diagram.jpeg)
@@ -65,22 +65,12 @@ npm パッケージを利用する場合は利用方法に変更はありませ�
 
 v1.3.2 以前のバージョンを利用する場合、以下のようなコンフリクトエラーを起こす可能性があります。
 
-#### 1. 複数の KUC パッケージを読み込む場合（UMD, ESM）
+#### 複数の KUC パッケージを読み込む場合（UMD, ESM）
 
 例えば、v1.2.0 の kuc.min.js を kintone に読み込んだ後に v1.3.0 の kuc.min.js をアプリに読み込みます。
 KUC の Button コンポーネントを呼び出そうとすると、Illegal constructor エラーが発生します。
 
 ![複数の kuc.min.js ファイルを読み込むと Illegal constructor エラーが発生](assets/UMD_multi_files.jpeg)
-
-#### 2. 複数の KUC パッケージを読み込み custom HTML タグ（`<kuc-button>`）を直接利用する場合（ESM）
-
-例えば、以下のような webpack でパッケージングされた 2つのスクリプトがあるとします。v1.2.0 利用のスクリプトを読み込んだ後に v1.3.1 利用のスクリプトを読み込みます。
-- v1.2.0 を利用し Dropdown コンポーネントのテキスト色を緑に指定
-- v1.3.1 を利用し Dropdown コンポーネントのテキスト色を赤に指定
-
-v1.3.1 利用の Dropdown のテキスト色が最初に読み込まれた v1.2.0 のスクリプトによって上書きされているのが分かります。
-
-![最初に読み込まれたファイルで custom element が上書きされる](assets/ESM_multi_files_1.png)
 
 ### v1.4.0 以降のバージョンの利用者向け
 
@@ -91,11 +81,11 @@ v1.4.0 以降を利用する場合、複数の KUC パッケージ（ESM）を�
 また、v1.4.0 前後のバージョンを同時に使う際は読み込み順によってエラーが起きるため注意が必要です。
 
 1. 最後に v1.4.0 以降のバージョンを読み込むケース
-- v1.4.0 > v1.3.2 > v1.4.1：window.Kuc.version は 1.4.1 となりエラーは起きない
-- v1.4.0 > v1.4.1 > v1.4.0：window.Kuc.version は 1.4.0 となりエラーは起きない
+- v1.4.0 > v1.3.2 > v1.4.x：window.Kuc.version は 1.4.x となりエラーは起きない
+- v1.4.0 > v1.4.x > v1.4.0：window.Kuc.version は 1.4.0 となりエラーは起きない
 
 2. 最後に v1.3.2 以前のバージョンを読み込むケース
-- v1.4.1 > v1.3.2 > v1.3.0：window.Kuc.version は 1.3.0 となり Illegal constructor エラーが起きる
+- v1.4.0 > v1.3.2 > v1.3.0：window.Kuc.version は 1.3.0 となり Illegal constructor エラーが起きる
 - v1.3.2 > v1.4.0 > v1.3.2：window.Kuc.version は 1.3.2 となり Illegal constructor エラーが起きる
 
 つまり、Kuc オブジェクトを利用する場合、最後に読み込まれた kuc.min.js が v1.3.2 以前のバージョンの場合はエラーが起きます。
