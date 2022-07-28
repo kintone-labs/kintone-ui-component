@@ -12,8 +12,8 @@ This guide will help users understand the version conflicts issue and how to ada
 
 It is a problem that the version conflicts error occurs and the component cannot render successfully when an app uses multiple KUC packages of the same version or different versions.<br>
 This issue occurs in both UMD and ESM ways.<br>
-For KUC, we use Web Components and create a component defining a custom HTML tag.<br>
-The `CustomElementRegistry` that we use in that case is a global window object and we cannot define an already registered custom HTML tag again with Web Components.<br>
+For KUC, we use [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) and create a component defining a [custom HTML tag](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).<br>
+The [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry) that we use in that case is a global window object and we cannot define an already registered custom HTML tag again with Web Components.<br>
 When a KUC package tries to register a custom HTML tag, and a later loaded package also tries to define the same tag again, the rendering problem occurs.
 
 ![Multiple packages try to define the same custom HTML tag](assets/version-conflict-diagram.jpeg)
@@ -63,21 +63,11 @@ Users using the KUC package through npm do not need to take any action but note 
 
 When using a version before v1.4.0, the below version conflicts errors might occur:
 
-#### 1. When importing multiple KUC packages and files (both ESM and UMD) of the same version or different versions:
+#### When importing multiple KUC packages and files (both ESM and UMD) of the same version or different versions:
 
 For example, we load the v1.2.0 `kuc.min.js` file in the Kintone system and the v1.3.0 `kuc.min.js` file in our app. An `Illegal constructor` error will show when we try to create a new KUC Button component.
 
 ![Illegal constructor error when importing multiple kuc.min.js files](assets/UMD_multi_files.jpeg)
-
-#### 2. When importing multiple KUC packages (ESM) and using custom HTML tags directly:
-
-For example, we have two scripts that are packaged by webpack as follows. Here, we have the v1.2.0 script loaded first and v1.3.1 loaded last.
-- One script uses v1.2.0 and specifies the text color of Dropdown to be green.
-- One script uses v1.3.1 and specifies the text color of Dropdown to be red
-
-We can see that the text color of Dropdown in the v1.3.1 script is overridden by v1.2.0 script.
-
-![Custom element is overridden by the first loaded file](assets/ESM_multi_files_1.png)
 
 ### For users using version on and after v1.4.0
 
@@ -88,11 +78,11 @@ However, please note that when loading multiple `kuc.min.js` files (UMD), only *
 When there are both versions before and on/after v1.4.0, you need to be careful.<br>
 
 1. The case importing a version on and after v1.4.0 last
-- v1.4.0 > v1.3.2 > v1.4.1: `window.Kuc.version` returns 1.4.1 and no errors
-- v1.4.0 > v1.4.1 > v1.4.0: `window.Kuc.version` returns 1.4.0 and no errors
+- v1.4.0 > v1.3.2 > v1.4.x: `window.Kuc.version` returns 1.4.x and no errors
+- v1.4.0 > v1.4.x > v1.4.0: `window.Kuc.version` returns 1.4.0 and no errors
 
 2. The case importing a version before v1.4.0 last
-- v1.4.1 > v1.3.2 > v1.3.0: `window.Kuc.version` returns 1.3.0 and an `Illegal constructor` error occurs
+- v1.4.0 > v1.3.2 > v1.3.0: `window.Kuc.version` returns 1.3.0 and an `Illegal constructor` error occurs
 - v1.3.2 > v1.4.0 > v1.3.2: `window.Kuc.version` returns 1.3.2 and an `Illegal constructor` error occurs
 
 In summary, when using the `Kuc` object, it will occur an error in case that the last loaded `kuc.min.js` is the version before v1.4.0.
