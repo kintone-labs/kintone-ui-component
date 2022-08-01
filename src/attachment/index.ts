@@ -53,8 +53,6 @@ let exportAttachment;
     private _dragEl!: HTMLDivElement;
     @query(".kuc-attachment__group__files__input")
     private _inputEl!: HTMLInputElement;
-    @query(".kuc-attachment__group__files__upload-button")
-    private _browseBt!: HTMLButtonElement;
 
     constructor(props?: AttachmentProps) {
       super();
@@ -152,7 +150,9 @@ let exportAttachment;
               aria-label="Cancel File"
               data-file-index="${index}"
               @click="${this._handleClickFileRemove}"
-            ></button>
+            >
+              ${this._getRemoveButtonIcon()}
+            </button>
           </div>
           <span class="kuc-attachment__group__file-size">
             ${this._getFileSize(item.size)}
@@ -160,7 +160,22 @@ let exportAttachment;
         </div>
       `;
     }
-
+    private _getRemoveButtonIcon() {
+      return html`<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M5.93933 7.00001L1.96966 3.03034L1.43933 2.50001L2.49999 1.43935L3.03032 1.96968L6.99999 5.93935L10.9697 1.96968L11.5 1.43935L12.5607 2.50001L12.0303 3.03034L8.06065 7.00001L12.0303 10.9697L12.5607 11.5L11.5 12.5607L10.9697 12.0303L6.99999 8.06067L3.03032 12.0303L2.49999 12.5607L1.43933 11.5L1.96966 10.9697L5.93933 7.00001Z"
+          fill="#a8a8a8"
+        />
+      </svg>`;
+    }
     private _getLanguage() {
       const langs = ["en", "ja", "zh"];
       if (langs.indexOf(this.language) !== -1) return this.language;
@@ -188,7 +203,7 @@ let exportAttachment;
     private _handleClickFileRemove(event: any) {
       const index = event.target.getAttribute("data-file-index");
       if (index !== -1 && this.files) {
-        parseInt(index, 10) === this.files.length - 1 && this._browseBt.focus();
+        parseInt(index, 10) === this.files.length - 1 && this._inputEl.focus();
         const tempFiles = [...this.files];
         const changedFiles = this.files.splice(index, 1);
         const detail = {

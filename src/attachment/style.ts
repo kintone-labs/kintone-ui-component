@@ -118,21 +118,21 @@ export const ATTACHMENT_CSS = `
     display: none;
   }
   .kuc-attachment__group__file-item
-  .kuc-attachment__group__remove-button
+  .kuc-attachment__group__remove-button 
   button {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 4px;
-    background: #f1f4f5
-        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY1MkY4OUYyRjBDODExRTNBRjRFQ0I1NjlCRDUzOTA5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJFQUI5RTAwRjBGMjExRTNBRjRFQ0I1NjlCRDUzOTA5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjUyRjg5RjBGMEM4MTFFM0FGNEVDQjU2OUJENTM5MDkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjUyRjg5RjFGMEM4MTFFM0FGNEVDQjU2OUJENTM5MDkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz624fh2AAAA7UlEQVR42mL8//8/AyWAiYFCwNLY2OgApBWAeAEBtcFA/La+vv4AugsEgXg+EE/AozkdiNcAsSaGC4B4PRCnAvFsIGYF4mw0NSlAPAOIJwLxPGwGgMAcIGYE4llA/A+Ic6HiGUA8HYgnAXEB1jBAYoNcwAzV8ByIn0DZU4A4H2cgovFBTv0KxIug/AYgbqRtNKLxYX6uhnphIRCLIIUJXgNSkfzcBhXjgor9wxUOLEhRBYqBaWi2gcLkDzSAQWm+GIj/ohsQCFUwEUdUzYHGDsiwR0Dch27AeyBOJJCUZwLxRyD+gi7BOOC5ESDAABzANqUrnrOAAAAAAElFTkSuQmCC")
-        no-repeat 5px center;
+    background-color: #f2f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid transparent;
-    font-size: 0;
-    line-height: 1.5;
-    -webkit-appearance: button;
-    cursor: pointer;
-    text-transform: none;
+    padding: 0px;
+    width:100%;
+    height:100%;
+  }
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button 
+  button:hover{
+    background: #d8e1e6;
   }
   .kuc-attachment__group__file-size {
     display: inline-block;
