@@ -16,6 +16,10 @@ export const ATTACHMENT_CSS = `
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
   }
+  .kuc-attachment {
+    font-size: 14px;
+    display: inline-table;
+  }
   .kuc-attachment__group {
   width: 293px;
   height: auto;
@@ -49,6 +53,9 @@ export const ATTACHMENT_CSS = `
   margin-right: 16px;
   padding: 8px;
   text-decoration: none;
+  }
+  .kuc-attachment__group__files__upload-button[hidden]{
+  display: none
   }
   .kuc-attachment__group__files__upload-button:focus-within {
   border: 1px solid #3498db;
@@ -106,6 +113,10 @@ export const ATTACHMENT_CSS = `
   width: 24px;
   height: 24px;
   }
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button[hidden] {
+    display: none;
+    }
   .kuc-attachment__group__file-item
   .kuc-attachment__group__remove-button
   button {

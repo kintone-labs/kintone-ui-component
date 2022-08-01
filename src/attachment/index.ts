@@ -26,7 +26,7 @@ let exportAttachment;
     @property({
       type: Array<FileItem>,
     })
-    files = [];
+    files: FileItem[] = [];
     @property({ type: String, reflect: true, attribute: "id" })
     id = "";
     @property({ type: String }) label = "";
@@ -42,9 +42,10 @@ let exportAttachment;
     private _GUID: string;
     @state()
     private _isDraging = false;
-    private _ONE_GB = 1073741824;
-    private _ONE_MB = 1048576;
     private _ONE_KB = 1024;
+    private _ONE_MB = this._ONE_KB * 1024;
+    private _ONE_GB = this._ONE_MB * 1024;
+
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
 
@@ -86,13 +87,13 @@ let exportAttachment;
         </div>
         <div
           class="kuc-attachment__group__files"
-          @dragenter="${this._onDragEnter}"
-          @dragover="${this._onDragOver}"
-          @dragleave="${this._onDragLeave}"
+          @dragenter="${this._handleDragEnter}"
+          @dragover="${this._handleDragOver}"
+          @dragleave="${this._handleDragLeave}"
         >
           <div
             class="kuc-attachment__group__files__droppable"
-            @drop="${this._onDragDrop}"
+            @drop="${this._handleDragDrop}"
             ?hidden="${!this._isDraging}"
           >
           <div class="kuc-attachment__group__files__droppable-text">${
@@ -108,14 +109,14 @@ let exportAttachment;
             this._getAttachmentItemTemplete(item, number)
           )}
             <a tabindex="1" class="kuc-attachment__group__files__upload-button"
+            ?hidden="${this.disabled}"
             role="button">
               <span class="kuc-attachment__group__files__upload-button-text">${
-                this._locale.ATTACHMENT_BROWSER
+                this._locale.ATTACHMENT_BROWSE
               }</span>
               <div class="kuc-attachment__group__files__input-container">
-                <input class="kuc-attachment__group__files__input" type="file" multiple @change="${
-                  this._handleSelectFiles
-                }"></input>
+                <input class="kuc-attachment__group__files__input" type="file" multiple 
+                @change="${this._handleChangeFiles}"></input>
               </div>
             </a>
           </div>
@@ -143,7 +144,10 @@ let exportAttachment;
           >
             ${item.name || ""}
           </div>
-          <div class="kuc-attachment__group__remove-button">
+          <div
+            class="kuc-attachment__group__remove-button"
+            ?hidden="${this.disabled}"
+          >
             <button
               role="button"
               aria-label="Cancel File"
@@ -188,17 +192,17 @@ let exportAttachment;
         const tempFiles = [...this.files];
         const changedFiles = this.files.splice(index, 1);
         const detail = {
-          oldFiles: this._deepClone(tempFiles),
-          files: this._deepClone(this.files),
+          oldFiles: tempFiles,
+          files: this.files,
           type: "remove",
-          changedFiles: this._deepClone(changedFiles),
+          changedFiles: changedFiles,
         };
-        dispatchCustomEvent(this, "change", detail);
+        dispatchCustomEvent(this, "haha", detail);
         this.requestUpdate();
       }
     }
 
-    private _onDragEnter(event: DragEvent) {
+    private _handleDragEnter(event: DragEvent) {
       this._dragEnterCounter++;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
@@ -211,16 +215,16 @@ let exportAttachment;
       }
     }
 
-    private _onDragOver(event: DragEvent) {
+    private _handleDragOver(event: DragEvent) {
       event.stopPropagation();
       if (this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
       }
     }
 
-    private _onDragDrop(event: DragEvent) {
+    private _handleDragDrop(event: DragEvent) {
       event.preventDefault();
-      this._onDragLeave();
+      this._handleDragLeave();
       if (this._isFileDrop(event)) {
         this._addFiles(event);
       }
@@ -247,7 +251,7 @@ let exportAttachment;
       return true;
     }
 
-    private _onDragLeave() {
+    private _handleDragLeave() {
       this._dragEnterCounter--;
 
       if (this._dragEnterCounter === 0) {
@@ -256,7 +260,7 @@ let exportAttachment;
       }
     }
 
-    private _handleSelectFiles(event: Event) {
+    private _handleChangeFiles(event: Event) {
       event.preventDefault();
       event.stopPropagation();
       this._addFiles(event);
@@ -271,12 +275,12 @@ let exportAttachment;
           return addedFiles[e];
         });
         const tempFileList = [...this.files];
-        addedFiles.forEach((addedFile: never) => this.files.push(addedFile));
+        addedFiles.forEach((addedFile: FileItem) => this.files.push(addedFile));
         const detail = {
-          oldFiles: this._deepClone(tempFileList),
-          files: this._deepClone(this.files),
+          oldFiles: tempFileList,
+          files: this.files,
           type: "add",
-          changedFiles: this._deepClone(addedFiles),
+          changedFiles: addedFiles,
         };
         dispatchCustomEvent(this, "change", detail);
         this.requestUpdate();
@@ -296,10 +300,6 @@ let exportAttachment;
     private _isNumber(data: string) {
       const reg = /^[1-9]\d*$/;
       return reg.test(data);
-    }
-
-    private _deepClone(data: any) {
-      return JSON.parse(JSON.stringify(data)) as FileItem[];
     }
 
     private _formatFileSize(size: number) {

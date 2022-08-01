@@ -18,6 +18,7 @@ export default {
     requiredIcon: { name: "requiredIcon" },
     files: { name: "files" },
     visible: { name: "visible" },
+    disabled: { name: "disabled" },
   },
   parameters: {
     actions: {
@@ -40,7 +41,8 @@ const Template = (args) => {
       .files="${args.files}"
       .className="${args.className}"
       .error="${args.error}"
-      @change="${handleAttachmentChange}"
+      .disabled="${args.disabled}"
+      @haha="${handleAttachmentChange}"
     ></kuc-attachment>
   `;
 };
@@ -54,4 +56,5 @@ BaseLanguageEN.args = {
   requiredIcon: true,
   files: [{ name: "file.txt", size: "150" }],
   visible: true,
+  disabled: false,
 };
