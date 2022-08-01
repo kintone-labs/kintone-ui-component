@@ -41,8 +41,7 @@ const Template = (args) => {
       .files="${args.files}"
       .className="${args.className}"
       .error="${args.error}"
-      .disabled="${args.disabled}"
-      @haha="${handleAttachmentChange}"
+      @change="${handleAttachmentChange}"
     ></kuc-attachment>
   `;
 };

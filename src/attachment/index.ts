@@ -7,10 +7,11 @@ import {
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
-import { en, ja, zh } from "../base/locale";
+import { isNumber, validateProps } from "../base/validator";
+import { en, ja, zh } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentProps, FileItem } from "./type";
+import { ATTACHMENT } from "../base/attachment/resource/constant";
 
 let exportAttachment;
 (() => {
@@ -42,9 +43,6 @@ let exportAttachment;
     private _GUID: string;
     @state()
     private _isDraging = false;
-    private _ONE_KB = 1024;
-    private _ONE_MB = this._ONE_KB * 1024;
-    private _ONE_GB = this._ONE_MB * 1024;
 
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
@@ -55,6 +53,8 @@ let exportAttachment;
     private _dragEl!: HTMLDivElement;
     @query(".kuc-attachment__group__files__input")
     private _inputEl!: HTMLInputElement;
+    @query(".kuc-attachment__group__files__upload-button")
+    private _browseBt!: HTMLButtonElement;
 
     constructor(props?: AttachmentProps) {
       super();
@@ -63,11 +63,11 @@ let exportAttachment;
       Object.assign(this, validProps);
     }
 
-    update(changedProperties: PropertyValues) {
+    willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("language")) {
         this._locale = this._getLocale();
       }
-      super.update(changedProperties);
+      return true;
     }
 
     render() {
@@ -108,14 +108,13 @@ let exportAttachment;
           ${this.files.map((item, number) =>
             this._getAttachmentItemTemplete(item, number)
           )}
-            <a tabindex="1" class="kuc-attachment__group__files__upload-button"
-            ?hidden="${this.disabled}"
-            role="button">
+            <a tabindex="-1" class="kuc-attachment__group__files__upload-button"
+            ?hidden="${this.disabled}">
               <span class="kuc-attachment__group__files__upload-button-text">${
                 this._locale.ATTACHMENT_BROWSE
               }</span>
               <div class="kuc-attachment__group__files__input-container">
-                <input class="kuc-attachment__group__files__input" type="file" multiple 
+                <input class="kuc-attachment__group__files__input" type="file" accept multiple 
                 @change="${this._handleChangeFiles}"></input>
               </div>
             </a>
@@ -189,6 +188,7 @@ let exportAttachment;
     private _handleClickFileRemove(event: any) {
       const index = event.target.getAttribute("data-file-index");
       if (index !== -1 && this.files) {
+        parseInt(index, 10) === this.files.length - 1 && this._browseBt.focus();
         const tempFiles = [...this.files];
         const changedFiles = this.files.splice(index, 1);
         const detail = {
@@ -197,7 +197,7 @@ let exportAttachment;
           type: "remove",
           changedFiles: changedFiles,
         };
-        dispatchCustomEvent(this, "haha", detail);
+        dispatchCustomEvent(this, "change", detail);
         this.requestUpdate();
       }
     }
@@ -231,11 +231,6 @@ let exportAttachment;
     }
 
     private _isFileDrop(event: DragEvent) {
-      // handle IE
-      if (event.dataTransfer && event.dataTransfer.files.length === 0) {
-        return false;
-      }
-
       // handle Chrome, Firefox, Edge, Safari
       if (event.dataTransfer && event.dataTransfer.items) {
         for (let i = 0; i < event.dataTransfer.items.length; i++) {
@@ -292,23 +287,18 @@ let exportAttachment;
       if (typeof size === "number") {
         return this._formatFileSize(size);
       }
-      return this._isNumber(size)
+      return isNumber(size)
         ? this._formatFileSize(parseInt(size, 10))
-        : "Nan size";
-    }
-
-    private _isNumber(data: string) {
-      const reg = /^[1-9]\d*$/;
-      return reg.test(data);
+        : ATTACHMENT.INVALID_SIZE_ERROR;
     }
 
     private _formatFileSize(size: number) {
-      if (size >= this._ONE_GB) {
-        return Math.round(size / this._ONE_GB) + " GB";
-      } else if (size >= this._ONE_MB) {
-        return Math.round(size / this._ONE_MB) + " MB";
-      } else if (size >= this._ONE_KB) {
-        return Math.round(size / this._ONE_KB) + " KB";
+      if (size >= ATTACHMENT.UNIT_LENGTH.ONE_GB) {
+        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_GB) + " GB";
+      } else if (size >= ATTACHMENT.UNIT_LENGTH.ONE_MB) {
+        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_MB) + " MB";
+      } else if (size >= ATTACHMENT.UNIT_LENGTH.ONE_KB) {
+        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_KB) + " KB";
       }
       return Math.round(size) + " bytes";
     }
