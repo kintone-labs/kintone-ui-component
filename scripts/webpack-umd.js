@@ -5,7 +5,7 @@ const packageJSON = require("../package.json");
 
 const fs = require("fs");
 configuration.mode = process.argv[2];
-const classNamePattern = /(kuc(-[a-z]+)+__)|(kuc(-[a-z]+)+\\)|(kuc(-[a-z]+)+\>)|(kuc(-[a-z]+)+\")|(kuc(-[a-z]+)+\[)|(kuc(-[a-z]+)+\s)|(kuc(-[a-z]+)+,)|(kuc(-[a-z]+)+;)/g;
+const classNamePattern = /(kuc(-[a-z]+)+__)|(kuc(-[a-z]+)+\\)|(kuc(-[a-z]+)+\>)|(kuc(-[a-z]+)+\")|(kuc(-[a-z]+)+\[)|(kuc(-[a-z]+)+\s)|(--)?(kuc(-[a-z]+)+,)|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", " ", "["];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
@@ -22,7 +22,7 @@ const getChangedValue = (str, version) => {
 
 const replaceAllByPattern = (data, pattern, version) => {
   let tempData = data;
-  const matchedValues = Array.from(new Set(data.match(pattern)));
+  const matchedValues = Array.from(new Set(data.match(pattern))).filter(value => value[0] != "-");
   matchedValues.forEach((matchedValue) => {
     // ignore the base file "base/kuc-base"
     const tempChangedValue =
