@@ -12,15 +12,15 @@ storiesOf("desktop/text", module)
       placeholder: "hogehoge1",
       label: "フルーツ",
       requiredIcon: true,
-      error: "エラーです"
+      error: "エラーです",
     });
-    text.addEventListener("focus", event => {
+    text.addEventListener("focus", (event) => {
       console.log(event.detail);
     });
-    text.addEventListener("change", event => {
+    text.addEventListener("change", (event) => {
       console.log(event.detail);
     });
-    text.addEventListener("input", event => {
+    text.addEventListener("input", (event) => {
       console.log(event.detail);
     });
     root.appendChild(text);
@@ -75,15 +75,8 @@ storiesOf("desktop/text", module)
       placeholder: "fruit",
       label: "Fruit",
       requiredIcon: true,
-      error: "Error occurred!"
+      error: "Error occurred!",
     });
-    root.appendChild(text);
-    return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const text = new Text({});
     root.appendChild(text);
     return root;
   });

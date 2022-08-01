@@ -13,7 +13,7 @@ describe("MobileCheckbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -28,14 +28,14 @@ describe("MobileCheckbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new MobileCheckbox({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
 
@@ -46,7 +46,7 @@ describe("MobileCheckbox", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__label__text"
+        ".kuc-base-mobile-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

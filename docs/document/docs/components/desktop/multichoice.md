@@ -8,7 +8,10 @@ sidebar_label: MultiChoice
 
 The MultiChoice component allows the user to select multiple values from multiple options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-multichoice--document" title="multichoice image" height="130px"></iframe>
+<div class="sample-container" id= "multichoice">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/multichoice.js"></script>
 
 ---
 
@@ -71,10 +74,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const multiChoice = new Kuc.MultiChoice({
   label: 'Fruit',
   requiredIcon: true,

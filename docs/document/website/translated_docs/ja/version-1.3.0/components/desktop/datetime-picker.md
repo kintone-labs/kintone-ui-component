@@ -9,10 +9,10 @@ original_id: datetime-picker
 
 DateTimePicker は日付と時間それぞれの入力エリアと選択肢を表示します。
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="datetime-picker">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/datetime-picker.js"></script>
+<script src="/js/samples/desktop/datetime-picker.js"></script>
 
 ---
 

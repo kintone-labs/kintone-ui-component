@@ -8,7 +8,10 @@ sidebar_label: MobileRadioButton
 
 The MobileRadioButton component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-radio-button--document" title="mobile radiobutton image" height="140px"></iframe>
+<div class="sample-container" id="mobile-radio-button">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-radio-button.js"></script>
 
 ---
 
@@ -26,7 +29,7 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | value *1 | string | ""  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number |
 | selectedIndex *1 | number | -1  | Index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, the item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not a number |
-| borderVisible | boolean | false | Show/Hide the border | |
+| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
@@ -66,10 +69,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileRadioButton = new Kuc.MobileRadioButton({
   label: 'Fruit',
   requiredIcon: true,
@@ -89,7 +97,8 @@ const mobileRadioButton = new Kuc.MobileRadioButton({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
 space.appendChild(mobileRadioButton);
 

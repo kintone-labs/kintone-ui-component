@@ -9,7 +9,12 @@ original_id: dialog
 
 Dialog は、ダイアログボックスを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-dialog--document" title="dialog image" width="700px" height="300px"></iframe>
+<div class="sample-container" id="dialog">
+  <div id="sample-container__components">
+    <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
+  </div>
+</div>
+<script src="/js/samples/desktop/dialog.js"></script>
 
 ---
 

@@ -7,7 +7,7 @@ export const visiblePropConverter = {
   },
   toAttribute(value: boolean) {
     return value ? null : "";
-  }
+  },
 };
 
 export const unsafeHTMLConverter = (element: string | HTMLElement) => {

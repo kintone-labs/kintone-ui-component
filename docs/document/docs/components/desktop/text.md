@@ -8,7 +8,11 @@ sidebar_label: Text
 
 The Text component allows the user to display a single line text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-text--document" title="text image" height="80px"></iframe>
+<div class="sample-container" id="text">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/text.js"></script>
+
 
 ---
 
@@ -56,10 +60,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const text = new Kuc.Text({
   label: 'Fruit',
   requiredIcon: true,

@@ -8,7 +8,7 @@ describe("TimePicker", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-time-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -23,14 +23,14 @@ describe("TimePicker", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-time-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new TimePicker({
-        label: "options-label"
+        label: "options-label",
       });
       container.label = "replace-label";
 
@@ -41,7 +41,7 @@ describe("TimePicker", () => {
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-time-picker__group__label__text"
+        ".kuc-base-label__text"
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

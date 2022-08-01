@@ -8,11 +8,11 @@ describe("BaseDateTimeCalendarBody", () => {
       const InitValue = {
         month: 8,
         year: 2021,
-        value: "2021-08-22"
+        value: "2021-08-22",
       };
       const ItemForTest = {
         index: 17,
-        value: "2021-08-18"
+        value: "2021-08-18",
       };
 
       const container = new BaseDateTimeCalendarBody();
@@ -20,7 +20,7 @@ describe("BaseDateTimeCalendarBody", () => {
       container.year = InitValue.year;
       container.value = InitValue.value;
 
-      container.addEventListener("kuc:calendar-body-click-date", event => {
+      container.addEventListener("kuc:calendar-body-click-date", (event) => {
         triggeredEvent = event;
       });
 

@@ -8,7 +8,10 @@ sidebar_label: Checkbox
 
 The Checkbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-checkbox--document" title="checkbox image" height="80px"></iframe>
+<div class="sample-container" id="checkbox">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/checkbox.js"></script>
 
 ---
 
@@ -75,10 +78,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const checkbox = new Kuc.Checkbox({
   label: 'Fruit',
   requiredIcon: true,

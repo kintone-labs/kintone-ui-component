@@ -22,9 +22,15 @@ export const dispatchCustomEvent = (
   const event = new CustomEvent(eventName, {
     detail,
     bubbles: true,
-    composed: true
+    composed: true,
   });
   return el.dispatchEvent(event);
+};
+
+export const createStyleOnHeader = (styleText: string) => {
+  const styleTag = document.createElement("style") as HTMLStyleElement;
+  styleTag.appendChild(document.createTextNode(styleText));
+  document.head.appendChild(styleTag);
 };
 
 export { CustomEventDetail };

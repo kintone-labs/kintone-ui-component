@@ -8,7 +8,10 @@ sidebar_label: MobileDropdown
 
 The MobileDropdown component allows the user to select one out of several options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-dropdown--document" title="mobile dropdown image" height="140px"></iframe>
+<div class="sample-container" id="mobile-dropdown">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-dropdown.js"></script>
 
 ---
 
@@ -67,10 +70,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileDropdown = new Kuc.MobileDropdown({
   label: 'Fruit',
   requiredIcon: true,

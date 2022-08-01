@@ -8,7 +8,10 @@ sidebar_label: TextArea
 
 The TextArea component allows the user to display multiple lines of text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-textarea--document" title="textarea image" height="170px" width="100%" style="padding-left: 25%"></iframe>
+<div class="sample-container block" id="textarea">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/textarea.js"></script>
 
 ---
 
@@ -53,10 +56,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const textarea = new Kuc.TextArea({
   label: 'Fruit',
   requiredIcon: true,

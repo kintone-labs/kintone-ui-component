@@ -9,7 +9,10 @@ original_id: checkbox
 
 The Checkbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-checkbox--document" title="checkbox image" height="80px"></iframe>
+<div class="sample-container" id="checkbox">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/checkbox.js"></script>
 
 ---
 

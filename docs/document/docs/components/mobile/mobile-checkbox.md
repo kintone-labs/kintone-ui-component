@@ -8,7 +8,10 @@ sidebar_label: MobileCheckbox
 
 The MobileCheckbox component displays a checkbox element for multiple selections.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-checkbox--document" title="mobile checkbox image" height="150px"></iframe>
+<div class="sample-container" id="mobile-checkbox">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-checkbox.js"></script>
 
 ---
 
@@ -74,10 +77,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileCheckbox = new Kuc.MobileCheckbox({
   label: 'Fruit',
   requiredIcon: true,

@@ -9,10 +9,10 @@ original_id: time-picker
 
 The TimePicker component allows the user to display a input area and time selection listbox.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="time-picker">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/time-picker.js"></script>
+<script src="/js/samples/desktop/time-picker.js"></script>
 
 ---
 

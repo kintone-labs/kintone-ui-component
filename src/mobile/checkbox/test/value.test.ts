@@ -4,7 +4,7 @@ import { MobileCheckbox } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 describe("MobileCheckbox", () => {
@@ -25,7 +25,7 @@ describe("MobileCheckbox", () => {
     it("should be checked items when assinged on constructor", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -41,7 +41,7 @@ describe("MobileCheckbox", () => {
     it("should be changed value when updated by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[1].value]
+        value: [initItems[1].value],
       });
       container.value = [initItems[2].value];
 
@@ -57,7 +57,6 @@ describe("MobileCheckbox", () => {
     });
 
     it("should be throw error when set null on constructor", async () => {
-      // @ts-expect-error
       const container = new MobileCheckbox({ items: initItems, value: null });
       try {
         await fixture(container);
@@ -76,10 +75,9 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: [initItems[0].value]
+        value: [initItems[0].value],
       });
       try {
-        // @ts-expect-error
         container.value = null;
         await fixture(container);
       } catch (error) {
@@ -97,7 +95,7 @@ describe("MobileCheckbox", () => {
     it("should be none checked items when set [] by setter", async () => {
       const container = new MobileCheckbox({
         items: initItems,
-        value: ["orange"]
+        value: ["orange"],
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
@@ -113,7 +111,6 @@ describe("MobileCheckbox", () => {
       await elementUpdated(el);
 
       expect(inputsEl.length).to.equal(3);
-      console.log("inputsEl", inputsEl);
       expect((inputsEl[0] as HTMLInputElement).checked).to.equal(false);
       expect((inputsEl[1] as HTMLInputElement).checked).to.equal(false);
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(false);

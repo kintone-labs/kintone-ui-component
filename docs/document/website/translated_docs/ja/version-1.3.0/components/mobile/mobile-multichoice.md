@@ -9,7 +9,10 @@ original_id: mobile-multichoice
 
 MobileMultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-multichoice--document" title="mobile multichoice image" height="130px"></iframe>
+<div class="sample-container" id="mobile-multichoice">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-multichoice.js"></script>
 
 ---
 

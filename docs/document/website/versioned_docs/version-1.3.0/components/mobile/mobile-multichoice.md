@@ -9,7 +9,10 @@ original_id: mobile-multichoice
 
 The MobileMultiChoice component allows the user to select multiple values from multiple options.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-multichoice--document" title="mobile multichoice image" height="130px"></iframe>
+<div class="sample-container" id="mobile-multichoice">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-multichoice.js"></script>
 
 ---
 

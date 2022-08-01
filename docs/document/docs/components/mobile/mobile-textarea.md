@@ -8,7 +8,10 @@ sidebar_label: MobileTextArea
 
 The MobileTextArea component allows the user to display multiple lines of text element.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-textarea--document" title="mobile textarea image" height="160px" width="100%"></iframe>
+<div class="sample-container display-block-mobile" id="mobile-textarea">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-textarea.js"></script>
 
 ---
 
@@ -53,10 +56,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileTextArea = new Kuc.MobileTextArea({
   label: 'Fruit',
   requiredIcon: true,

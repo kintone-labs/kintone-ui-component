@@ -7,7 +7,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox();
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -16,7 +16,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -27,7 +27,7 @@ describe("MobileCheckbox", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__error"
+        ".kuc-base-mobile-error__error"
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");

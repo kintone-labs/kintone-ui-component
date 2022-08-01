@@ -4,7 +4,7 @@ import { RadioButton } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 const initValue = "orange";
 
@@ -27,7 +27,7 @@ describe("RadioButton", () => {
       const container = new RadioButton({
         items: initItems,
         value: initValue,
-        disabled: true
+        disabled: true,
       });
 
       const el = await fixture(container);
@@ -44,7 +44,7 @@ describe("RadioButton", () => {
       const container = new RadioButton({
         items: initItems,
         value: initValue,
-        disabled: false
+        disabled: false,
       });
       container.disabled = true;
 
@@ -62,7 +62,7 @@ describe("RadioButton", () => {
       const container = new RadioButton({
         items: initItems,
         value: initValue,
-        disabled: true
+        disabled: true,
       });
       container.disabled = false;
 

@@ -8,10 +8,10 @@ sidebar_label: Dropdown
 
 The Dropdown component allows the user to select one out of several options.
 
-<div class='sample-container'>
-  <div id='sample-container__components'></div>
+<div class="sample-container" id="dropdown">
+  <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/dropdown.js"></script>
+<script src="/js/samples/desktop/dropdown.js"></script>
 
 ---
 
@@ -69,10 +69,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const dropdown = new Kuc.Dropdown({
   label: 'Fruit',
   requiredIcon: true,

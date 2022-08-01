@@ -4,18 +4,18 @@ import { Dropdown } from "../index";
 const initItems = [
   { label: "-----", value: "-----" },
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 
 const initItemsWithoutLabel = [
   { value: "-----" },
   { value: "orange" },
-  { value: "apple" }
+  { value: "apple" },
 ];
 
 const replacedItems = [
   { label: "-----", value: "-----" },
-  { label: "Apple", value: "apple" }
+  { label: "Apple", value: "apple" },
 ];
 const initItemsWithoutValue = [{ label: "-----" }, { label: "orange" }];
 const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
@@ -35,7 +35,7 @@ describe("Dropdown", () => {
     it("should set label the same as value when not assigned items label on constructor", async () => {
       const container = new Dropdown({
         items: initItemsWithoutLabel,
-        value: initItemsWithoutLabel[1].value
+        value: initItemsWithoutLabel[1].value,
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -137,7 +137,6 @@ describe("Dropdown", () => {
     });
 
     it("should be throw error when assigned null on constructor", async () => {
-      // @ts-expect-error
       const container = new Dropdown({ items: null });
       try {
         await fixture(container);
@@ -155,7 +154,6 @@ describe("Dropdown", () => {
 
     it("should be throw error when assigned null by setter", async () => {
       const container = new Dropdown();
-      // @ts-expect-error
       container.items = null;
       try {
         await fixture(container);

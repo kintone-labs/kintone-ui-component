@@ -7,38 +7,38 @@ export default {
       name: "disabled",
       control: {
         type: "select",
-        options: [true, false]
-      }
+        options: [true, false],
+      },
     },
     language: {
       name: "language",
       control: {
         type: "select",
-        options: ["en", "ja", "zh"]
-      }
+        options: ["en", "ja", "zh"],
+      },
     },
     value: {
       name: "value",
       control: {
-        type: "text"
-      }
+        type: "text",
+      },
     },
     inputId: {
       name: "inputId",
       control: {
-        type: "text"
-      }
-    }
+        type: "text",
+      },
+    },
   },
   parameters: {
     actions: {
-      handles: ["kuc:base-date-change"]
-    }
-  }
+      handles: ["kuc:base-date-change"],
+    },
+  },
 };
 
 const Template = ({ disabled, language, value, inputId }) => {
-  const handleDateChange = event => {
+  const handleDateChange = (event) => {
     console.log(event);
   };
   return html`
@@ -57,5 +57,5 @@ base.args = {
   disabled: false,
   language: "en",
   value: "2021-10-20",
-  inputId: "e7ef328d-2841-42e5-aca6"
+  inputId: "e7ef328d-2841-42e5-aca6",
 };

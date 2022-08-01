@@ -3,22 +3,26 @@ import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
   CustomEventDetail,
-  dispatchCustomEvent
+  dispatchCustomEvent,
+  createStyleOnHeader,
 } from "../../kuc-base";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SUFFIX
+  TIME_SUFFIX,
 } from "../resource/constant";
 import {
   padStart,
   generateTimeOptions,
   formatTimeValueToInputValue,
-  formatInputValueToTimeValue
+  formatInputValueToTimeValue,
+  getLocale,
+  timeCompare,
 } from "../utils";
 
-import { BaseDateTimeListBox, Item } from "../listbox";
+import { BaseDateTimeListBox, BaseDateTimeListBoxItem } from "../listbox";
+import { BASE_TIME_CSS } from "./style";
 export { BaseDateTimeListBox };
 
 type Time = {
@@ -28,15 +32,13 @@ type Time = {
 };
 
 export class BaseTime extends KucBase {
+  @property({ type: String, reflect: true }) language = "en";
+  @property({ type: String }) max = "";
+  @property({ type: String }) min = "";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
-
-  /**
-   * Please consider name again and change @state to @property when publishing the function.
-   */
-  @state()
-  private _timeStep = 30;
+  @property({ type: Number }) timeStep = 30;
 
   @state()
   private _listBoxVisible = false;
@@ -61,7 +63,9 @@ export class BaseTime extends KucBase {
   @state()
   private _inputFocusEl!: HTMLInputElement | null;
 
-  private _listBoxItems: Item[] | undefined;
+  private _listBoxItems: BaseDateTimeListBoxItem[] | undefined;
+
+  private _locale = getLocale("en");
 
   @query(".kuc-base-time__group__hours")
   private _hoursEl!: HTMLInputElement;
@@ -79,19 +83,31 @@ export class BaseTime extends KucBase {
   private _inputGroupEl!: HTMLInputElement;
 
   update(changedProperties: PropertyValues) {
-    if (changedProperties.has("hour12")) {
-      this._listBoxItems = generateTimeOptions(this.hour12, this._timeStep);
+    if (
+      changedProperties.has("hour12") ||
+      changedProperties.has("timeStep") ||
+      changedProperties.has("max") ||
+      changedProperties.has("min")
+    ) {
+      this._listBoxItems = generateTimeOptions(
+        this.hour12,
+        this.timeStep,
+        this.min,
+        this.max
+      );
       this._updateInputValue();
     }
     if (changedProperties.has("value")) {
       this._updateInputValue();
+    }
+    if (changedProperties.has("language")) {
+      this._locale = getLocale(this.language);
     }
     super.update(changedProperties);
   }
 
   render() {
     return html`
-      ${this._getStyleTagTemplate()}
       <div class="kuc-base-time__group" @click="${this._handleClickInputGroup}">
         <input
           type="text"
@@ -507,8 +523,13 @@ export class BaseTime extends KucBase {
   private _dispatchEventTimeChange(value: string, oldValue: string) {
     const detail: CustomEventDetail = {
       value: value,
-      oldValue: oldValue
+      oldValue: oldValue,
     };
+
+    if (timeCompare(value, this.min) < 0 || timeCompare(this.max, value) < 0) {
+      detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
+    }
+
     dispatchCustomEvent(this, "kuc:base-time-change", detail);
   }
 
@@ -542,9 +563,7 @@ export class BaseTime extends KucBase {
 
   private _getColonTemplate() {
     return this._hours
-      ? html`
-          <span class="kuc-base-time__group__colon">:</span>
-        `
+      ? html` <span class="kuc-base-time__group__colon">:</span> `
       : "";
   }
 
@@ -585,107 +604,9 @@ export class BaseTime extends KucBase {
         `
       : "";
   }
-
-  private _getStyleTagTemplate() {
-    return html`
-      <style>
-        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__hours,
-        :lang(ja) .kuc-base-time__group input.kuc-base-time__group__minutes {
-          width: 18px;
-        }
-        .kuc-base-time__group {
-          display: inline-flex;
-          position: relative;
-          justify-content: center;
-          -webkit-box-align: center;
-          align-items: center;
-          max-width: 85px;
-          width: 85px;
-          height: 40px;
-          color: #333333;
-          border: solid 1px #e3e7e8;
-          box-sizing: border-box;
-          padding: 0px 8px;
-          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-          background-color: #ffffff;
-        }
-        .kuc-base-time__group input.kuc-base-time__group__hours {
-          border: 0px;
-          padding: 0px;
-          width: 16px;
-          font-size: 14px;
-          outline: none;
-          background-color: transparent;
-          color: #333333;
-          caret-color: transparent;
-          user-select: none;
-        }
-        .kuc-base-time__group input.kuc-base-time__group__minutes {
-          border: 0px;
-          padding: 0px;
-          width: 16px;
-          font-size: 14px;
-          outline: none;
-          background-color: transparent;
-          color: #333333;
-          caret-color: transparent;
-          user-select: none;
-        }
-        .kuc-base-time__group input.kuc-base-time__group__hours:focus {
-          border: 0px;
-        }
-        .kuc-base-time__group input.kuc-base-time__group__minutes:focus {
-          border: 0px;
-        }
-        .kuc-base-time__group__colon {
-          width: 4px;
-          text-align: center;
-        }
-        .kuc-base-time__group input.kuc-base-time__group__suffix {
-          border: 0px;
-          width: 24px;
-          text-align: right;
-          font-size: 14px;
-          outline: none;
-          appearance: none;
-          margin-left: 1px;
-          padding: 0px;
-          background-color: transparent;
-          color: #333333;
-          caret-color: transparent;
-          user-select: none;
-        }
-        .kuc-base-time__group--focus {
-          box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-          border: 1px solid #3498db;
-          background-color: #ffffff;
-          color: #333333;
-        }
-        .kuc-base-time__assistive-text {
-          clip: rect(1px, 1px, 1px, 1px);
-          overflow: hidden;
-          position: absolute !important;
-          padding: 0px !important;
-          border: 0px !important;
-          height: 1px !important;
-          width: 1px !important;
-        }
-        .kuc-base-time__group--disabled {
-          background-color: #d4d7d7;
-          box-shadow: none;
-          color: #888888;
-          cursor: not-allowed;
-        }
-        .kuc-base-time__group--disabled input {
-          cursor: not-allowed;
-          color: #888888;
-          -webkit-text-fill-color: #888888;
-        }
-      </style>
-    `;
-  }
 }
 
 if (!window.customElements.get("kuc-base-time")) {
+  createStyleOnHeader(BASE_TIME_CSS);
   window.customElements.define("kuc-base-time", BaseTime);
 }

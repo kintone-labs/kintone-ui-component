@@ -9,7 +9,12 @@ original_id: spinner
 
 Spinner は、ローディングスピナーを表示します。
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-spinner--document" title="spinner image" width="300px" height="200px"></iframe>
+<div class="sample-container" id="spinner">
+  <div id="sample-container__components">
+    <iframe id="iframe" title="spinner image" width="300px" height="200px"></iframe>
+  </div>
+</div>
+<script src="/js/samples/desktop/spinner.js"></script>
 
 ---
 

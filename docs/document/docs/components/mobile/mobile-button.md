@@ -8,7 +8,10 @@ sidebar_label: MobileButton
 
 The MobileButton component allows the user to create and displays buttons.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=mobile-button--document" title="mobile button image" width="300px" height="80px"></iframe>
+<div class="sample-container" id="mobile-button">
+  <div id="sample-container__components" class="mobile"></div>
+</div>
+<script src="/js/samples/mobile/mobile-button.js"></script>
 
 ---
 
@@ -50,10 +53,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const header = kintone.mobile.app.getHeaderMenuSpaceElement();
+
 const mobileButton = new Kuc.MobileButton({
   text: 'Submit',
   type: 'submit',

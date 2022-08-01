@@ -4,7 +4,7 @@ import {
   MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
-  TIME_SUFFIX
+  TIME_SUFFIX,
 } from "../resource/constant";
 
 export type WeekDate = {
@@ -35,14 +35,26 @@ export const getDisplayingDates = (year: number, month: number) => {
 
 export const generateTimeOptions = (
   isHour12: boolean,
-  timeStep: number = 30
+  timeStep: number,
+  min: string,
+  max: string
 ) => {
   const timeOptions = [];
-  const limitLoop = (MAX_MINUTES / timeStep) * MAX_HOURS24;
-  for (let i = 0; i <= timeStep * limitLoop - 1; i += timeStep) {
-    const timeOption = generateTimeOption(i, isHour12);
-    timeOptions.push(timeOption);
+  const newTimeStep = Math.round(timeStep);
+  const maxMinutes = convertTimeValueToMinutes(max);
+  const minMinutes = convertTimeValueToMinutes(min);
+
+  if (newTimeStep > 0) {
+    const limitLoop = Math.floor((maxMinutes - minMinutes) / newTimeStep) + 1;
+    for (let i = 0; i < limitLoop; i++) {
+      const timeOption = generateTimeOption(
+        minMinutes + i * newTimeStep,
+        isHour12
+      );
+      timeOptions.push(timeOption);
+    }
   }
+
   return timeOptions;
 };
 
@@ -58,9 +70,40 @@ const generateTimeOption = (i: number, isHour12: boolean) => {
   if (minutes < 10) minutes = "0" + minutes;
   const timeOption = {
     label: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
-    value: hours + ":" + minutes + (isHour12 ? " " + ampm : "")
+    value: hours + ":" + minutes + (isHour12 ? " " + ampm : ""),
   };
   return timeOption;
+};
+
+export const convertTimeValueToMinutes = (value: string) => {
+  const times = value.split(":");
+  let hours = parseInt(times[0], 10);
+  let minutes = parseInt(times[1], 10);
+  if (isNaN(hours) || isNaN(minutes)) {
+    return 0;
+  }
+
+  if (hours < 0) {
+    hours = 0;
+  } else if (hours >= MAX_HOURS24) {
+    hours = MAX_HOURS24 - 1;
+  }
+
+  if (minutes < 0) {
+    minutes = 0;
+  } else if (minutes >= MAX_MINUTES) {
+    minutes = MAX_MINUTES - 1;
+  }
+
+  return hours * MAX_MINUTES + minutes;
+};
+
+export const timeCompare = (startTime: string, endTime: string) => {
+  const startTimeMinutes = convertTimeValueToMinutes(startTime);
+  const endTimeMinutes = convertTimeValueToMinutes(endTime);
+  if (startTimeMinutes > endTimeMinutes) return 1;
+  if (startTimeMinutes === endTimeMinutes) return 0;
+  return -1;
 };
 
 export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
@@ -72,7 +115,7 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
     return {
       hours: "",
       minutes: "",
-      suffix: ""
+      suffix: "",
     };
   }
   if (hour12) {
@@ -81,18 +124,46 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
   return {
     hours: padStart(newHours),
     minutes: padStart(minutes),
-    suffix: ""
+    suffix: "",
   };
 };
 
-export const convertTime24To12 = (hours: number, minutes: number) => {
-  const suffix = hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+export const formatTimeValueToInputValueForMobile = (
+  value: string,
+  hour12: boolean
+) => {
+  const timeResult = { hours: "", minutes: "", suffix: "" };
+  const times = value.split(":");
+  const hours = parseInt(times[0], 10);
+  const minutes = parseInt(times[1], 10);
+  const newHours = hours % MAX_HOURS24;
+  if (!isNaN(newHours)) {
+    timeResult.hours = padStart(
+      hour12 ? convertHour24To12(newHours) : newHours
+    );
+    timeResult.suffix = hour12 ? convertSuffix24To12(newHours) : "";
+  }
+  if (!isNaN(minutes)) {
+    timeResult.minutes = padStart(minutes);
+  }
+  return timeResult;
+};
+
+export const convertHour24To12 = (hours: number) => {
   let newHours = hours % MAX_HOURS12;
   newHours = newHours === 0 ? MAX_HOURS12 : newHours;
+  return newHours;
+};
+export const convertSuffix24To12 = (hours: number) => {
+  return hours >= MAX_HOURS12 ? TIME_SUFFIX.PM : TIME_SUFFIX.AM;
+};
+export const convertTime24To12 = (hours: number, minutes: number) => {
+  const suffix = convertSuffix24To12(hours);
+  const newHours = convertHour24To12(hours);
   return {
     hours: padStart(newHours),
     minutes: padStart(minutes),
-    suffix: suffix
+    suffix: suffix,
   };
 };
 
@@ -120,8 +191,9 @@ const getDateObj = (date: Date) => {
   const month = padStart(tmpDate.getMonth() + 1);
   const day = padStart(tmpDate.getDate());
 
-  const text = `${tmpDate.getFullYear()}-${tmpDate.getMonth() +
-    1}-${tmpDate.getDate()}`;
+  const text = `${tmpDate.getFullYear()}-${
+    tmpDate.getMonth() + 1
+  }-${tmpDate.getDate()}`;
   const attr = `${year}-${month}-${day}`;
   return { text, attr };
 };
@@ -226,7 +298,7 @@ const getDateRanges = (year: number, month: number) => {
 
   return {
     start: startDayOfFirstWeek,
-    end: endDayOfEndWeek
+    end: endDayOfEndWeek,
   };
 };
 
@@ -241,6 +313,45 @@ export const getLocale = (language: string) => {
     default:
       return en;
   }
+};
+
+export const generateMinuteOptions = (timeStep: number = 1) => {
+  const minuteOptions = [];
+  for (let i = 0; i <= 59; i += timeStep) {
+    minuteOptions.push({ value: padStart(i), label: padStart(i) });
+  }
+  return minuteOptions;
+};
+
+export const generateHourOptions = (hour12 = false) => {
+  if (hour12) {
+    const hourOptions = generateHour12Options("AM").concat(
+      generateHour12Options("PM")
+    );
+    return hourOptions;
+  }
+  return generateHour24Options();
+};
+
+export const generateHour12Options = (ampm: string) => {
+  const hour12Options = [];
+  hour12Options.push({ value: `${ampm} 12`, label: `${ampm} 12` });
+  for (let i = 1; i <= 11; i++) {
+    hour12Options.push({
+      value: `${ampm} ${padStart(i)}`,
+      label: `${ampm} ${padStart(i)}`,
+    });
+  }
+  return hour12Options;
+};
+
+export const generateHour24Options = () => {
+  const hour12Options = [];
+  hour12Options.push({ value: "00", label: `00` });
+  for (let i = 1; i <= 23; i++) {
+    hour12Options.push({ value: padStart(i), label: `${padStart(i)}` });
+  }
+  return hour12Options;
 };
 
 export const getToggleIconSvgTemplate = () => {
@@ -315,7 +426,7 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToBottom: 0,
       inputToTop: 0,
       inputToRight: 0,
-      inputToLeft: 0
+      inputToLeft: 0,
     };
   const inputDateWidth = 100;
   const inputToBottom =
@@ -330,7 +441,7 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
     inputToBottom,
     inputToTop,
     inputToRight,
-    inputToLeft
+    inputToLeft,
   };
 };
 
