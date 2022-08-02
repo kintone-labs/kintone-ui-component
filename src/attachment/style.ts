@@ -86,14 +86,14 @@ export const ATTACHMENT_CSS = `
     width: 100%;
     line-height: 1.5;
   }
-  .kuc-attachment__group__files__file-item {
+  .kuc-attachment__group__file-item {
     position: relative;
     margin-bottom: 8px;
     height: 24px;
     border: 2px solid #f1f4f5;
     background-color: #f1f4f5;
   }
-  .kuc-attachment__group__files__file-item .kuc-attachment__group__files__file-name {
+  .kuc-attachment__group__file-item .kuc-attachment__group__file-name {
     display: inline-block;
     padding: 3px 68px 0 26px;
     width: 100%;
@@ -104,8 +104,8 @@ export const ATTACHMENT_CSS = `
     word-wrap: normal;
     font-size: 14px;
   }
-  .kuc-attachment__group__files__file-item
-  .kuc-attachment__group__files__file-item__remove-button {
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -113,12 +113,12 @@ export const ATTACHMENT_CSS = `
     width: 24px;
     height: 24px;
   }
-  .kuc-attachment__group__files__file-item
-  .kuc-attachment__group__files__file-item__remove-button[hidden] {
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button[hidden] {
     display: none;
   }
-  .kuc-attachment__group__files__file-item
-  .kuc-attachment__group__files__file-item__remove-button 
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button 
   button {
     background-color: #f2f4f6;
     display: flex;
@@ -129,12 +129,12 @@ export const ATTACHMENT_CSS = `
     width:100%;
     height:100%;
   }
-  .kuc-attachment__group__files__file-item
-  .kuc-attachment__group__files__file-item__remove-button 
+  .kuc-attachment__group__file-item
+  .kuc-attachment__group__remove-button 
   button:hover{
     background: #d8e1e6;
   }
-  .kuc-attachment__group__files__file-item__file-size {
+  .kuc-attachment__group__file-size {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -166,5 +166,4 @@ export const ATTACHMENT_CSS = `
     text-align: center;
     color: #3498db;
     font-size: 14px;
-  }
 `;
