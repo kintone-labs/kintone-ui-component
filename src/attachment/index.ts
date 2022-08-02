@@ -7,7 +7,7 @@ import {
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { isNumber, validateProps } from "../base/validator";
+import { validatePositiveInteger, validateProps } from "../base/validator";
 import { en, ja, zh } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentProps, FileItem } from "./type";
@@ -302,7 +302,7 @@ let exportAttachment;
       if (typeof size === "number") {
         return this._formatFileSize(size);
       }
-      return isNumber(size)
+      return validatePositiveInteger(size)
         ? this._formatFileSize(parseInt(size, 10))
         : ATTACHMENT.INVALID_SIZE_ERROR;
     }

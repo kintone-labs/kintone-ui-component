@@ -121,8 +121,7 @@ export async function throwErrorAfterUpdateComplete(
   await _this.updateComplete;
   throw new Error(message);
 }
-
-export function isNumber(data: string) {
+export function validatePositiveInteger(data: string) {
   const reg = /^[1-9]\d*$/;
   return reg.test(data);
 }
