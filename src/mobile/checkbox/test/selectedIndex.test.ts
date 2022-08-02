@@ -38,43 +38,38 @@ describe("MobileCheckbox", () => {
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(false);
     });
 
-    it("should be throw error when set null on constructor", async () => {
+    it("should be throw error when set null on constructor", done => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'selectedIndex' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileCheckbox({
         items: initItems,
         selectedIndex: null,
       });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateSelectedIndexArray function
+      fixture(container);
     });
 
-    it("should be throw error when set null by setter", async () => {
+    it("should be throw error when set null by setter", done => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'selectedIndex' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileCheckbox({
         items: initItems,
         selectedIndex: [0],
       });
-      try {
-        container.selectedIndex = null;
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not array");
-      }
+      container.selectedIndex = null;
 
-      // TODO:
-      // Implement checking if source code does not throw error in validateSelectedIndexArray function
+      fixture(container);
     });
   });
 });

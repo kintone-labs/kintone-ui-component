@@ -143,37 +143,31 @@ describe("Checkbox", () => {
       expect(labelEl1.innerText).to.equal(replacedItems[1].label);
     });
 
-    it("should be throw error when assigned null on constructor", async () => {
-      const container = new Checkbox({ items: null });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
+    it("should be throw error when assigned null on constructor", done => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      const container = new Checkbox({ items: null });
+      fixture(container);
     });
 
-    it("should be throw error when assigned null by setter", async () => {
+    it("should be throw error when assigned null by setter", done => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new Checkbox();
       container.items = null;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      fixture(container);
     });
 
     it('should set item value "" when asigned item value undefined on constuctor', async () => {
