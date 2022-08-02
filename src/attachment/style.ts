@@ -18,7 +18,7 @@ export const ATTACHMENT_CSS = `
   }
   .kuc-attachment {
     font-size: 14px;
-    display: inline-table;
+    display: inline-block;
   }
   .kuc-attachment__group {
     width: 293px;
