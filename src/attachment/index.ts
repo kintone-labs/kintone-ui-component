@@ -49,9 +49,11 @@ let exportAttachment;
 
     @query(".kuc-attachment__group__files")
     private _groupFilesEl!: HTMLDivElement;
-    @query(".kuc-attachment__group__files__droppable-text")
+    @query(".kuc-attachment__group__files__droppable__text")
     private _dragEl!: HTMLDivElement;
-    @query(".kuc-attachment__group__files__input")
+    @query(
+      ".kuc-attachment__group__files__browse-button__input-container__input"
+    )
     private _inputEl!: HTMLInputElement;
 
     constructor(props?: AttachmentProps) {
@@ -94,25 +96,25 @@ let exportAttachment;
             @drop="${this._handleDragDrop}"
             ?hidden="${!this._isDraging}"
           >
-          <div class="kuc-attachment__group__files__droppable-text">${
+          <div class="kuc-attachment__group__files__droppable__text">${
             this._locale.ATTACHMENT_DRAG_DROP_ZONE
           }</div>
           </div>
           <div
-            class="kuc-attachment__group__files__display-field"
+            class="kuc-attachment__group__files__display-area"
             ?hidden="${this._isDraging}"
             role="list"
           >
           ${this.files.map((item, number) =>
             this._getAttachmentItemTemplete(item, number)
           )}
-            <a tabindex="-1" class="kuc-attachment__group__files__upload-button"
+            <a tabindex="-1" class="kuc-attachment__group__files__browse-button"
             ?hidden="${this.disabled}">
-              <span class="kuc-attachment__group__files__upload-button-text">${
+              <span class="kuc-attachment__group__files__browse-button__text">${
                 this._locale.ATTACHMENT_BROWSE
               }</span>
-              <div class="kuc-attachment__group__files__input-container">
-                <input class="kuc-attachment__group__files__input" type="file" accept multiple 
+              <div class="kuc-attachment__group__files__browse-button__input-container">
+                <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" accept multiple 
                 @change="${this._handleChangeFiles}"></input>
               </div>
             </a>
@@ -130,22 +132,23 @@ let exportAttachment;
     private _getAttachmentItemTemplete(item: FileItem, index: number) {
       return html`
         <div
-          class="kuc-attachment__group__file-item"
+          class="kuc-attachment__group__files__display-area__item"
           role="listitem"
           aria-labelledby="${this._GUID}-${index}"
         >
           <div
             title="${item.name || ""}"
-            class="kuc-attachment__group__file-name"
+            class="kuc-attachment__group__files__display-area__item__name"
             id="${this._GUID}-${index}"
           >
             ${item.name || ""}
           </div>
           <div
-            class="kuc-attachment__group__remove-button"
+            class="kuc-attachment__group__files__display-area__item__remove-button__container"
             ?hidden="${this.disabled}"
           >
             <button
+              class="kuc-attachment__group__files__display-area__item__remove-button__container__button"
               role="button"
               aria-label="Cancel File"
               data-file-index="${index}"
@@ -154,7 +157,7 @@ let exportAttachment;
               ${this._getRemoveButtonIcon()}
             </button>
           </div>
-          <span class="kuc-attachment__group__file-size">
+          <span class="kuc-attachment__group__files__display-area__item__size">
             ${this._getFileSize(item.size)}
           </span>
         </div>

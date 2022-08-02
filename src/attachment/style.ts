@@ -46,7 +46,7 @@ export const ATTACHMENT_CSS = `
     overflow: hidden;
     position: relative;
   }
-  .kuc-attachment__group__files__upload-button {
+  .kuc-attachment__group__files__browse-button {
     border: 1px solid transparent;
     position: relative;
     display: inline-block;
@@ -54,21 +54,21 @@ export const ATTACHMENT_CSS = `
     padding: 8px;
     text-decoration: none;
   }
-  .kuc-attachment__group__files__upload-button[hidden]{
+  .kuc-attachment__group__files__browse-button[hidden]{
     display: none
   }
-  .kuc-attachment__group__files__upload-button:focus-within {
+  .kuc-attachment__group__files__browse-button:focus-within {
     border: 1px solid #3498db;
   }
-  .kuc-attachment__group__files__upload-button:hover
-  .kuc-attachment__group__files__upload-button-text {
+  .kuc-attachment__group__files__browse-button:hover
+  .kuc-attachment__group__files__browse-button__text {
     color: #217dbb;
   }
-  .kuc-attachment__group__files__upload-button-text {
+  .kuc-attachment__group__files__browse-button__text {
     color: #3498db;
     font-size: 14px;
   }
-  .kuc-attachment__group__files__input-container {
+  .kuc-attachment__group__files__browse-button__input-container {
     opacity: 0;
     position: absolute;
     top: 0;
@@ -78,7 +78,7 @@ export const ATTACHMENT_CSS = `
     overflow: hidden;
     display: inline-block;
   }
-  .kuc-attachment__group__files__input-container input {
+  .kuc-attachment__group__files__browse-button__input-container__input {
     cursor: pointer;
     font-size: 999px;
     vertical-align: middle;
@@ -86,14 +86,14 @@ export const ATTACHMENT_CSS = `
     width: 100%;
     line-height: 1.5;
   }
-  .kuc-attachment__group__file-item {
+  .kuc-attachment__group__files__display-area__item {
     position: relative;
     margin-bottom: 8px;
     height: 24px;
     border: 2px solid #f1f4f5;
     background-color: #f1f4f5;
   }
-  .kuc-attachment__group__file-item .kuc-attachment__group__file-name {
+  .kuc-attachment__group__files__display-area__item__name {
     display: inline-block;
     padding: 3px 68px 0 26px;
     width: 100%;
@@ -104,8 +104,7 @@ export const ATTACHMENT_CSS = `
     word-wrap: normal;
     font-size: 14px;
   }
-  .kuc-attachment__group__file-item
-  .kuc-attachment__group__remove-button {
+  .kuc-attachment__group__files__display-area__item__remove-button__container {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -113,13 +112,11 @@ export const ATTACHMENT_CSS = `
     width: 24px;
     height: 24px;
   }
-  .kuc-attachment__group__file-item
-  .kuc-attachment__group__remove-button[hidden] {
+  .kuc-attachment__group__files__display-area__item__remove-button__container[hidden] {
     display: none;
   }
-  .kuc-attachment__group__file-item
-  .kuc-attachment__group__remove-button 
-  button {
+  .kuc-attachment__group__files__display-area__item__remove-button__container__button
+  {
     background-color: #f2f4f6;
     display: flex;
     align-items: center;
@@ -129,12 +126,10 @@ export const ATTACHMENT_CSS = `
     width:100%;
     height:100%;
   }
-  .kuc-attachment__group__file-item
-  .kuc-attachment__group__remove-button 
-  button:hover{
+  .kuc-attachment__group__files__display-area__item__remove-button__container__button:hover {
     background: #d8e1e6;
   }
-  .kuc-attachment__group__file-size {
+  .kuc-attachment__group__files__display-area__item__size {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -158,7 +153,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__droppable[hidden] {
     display: none;
   }
-  .kuc-attachment__group__files__droppable-text {
+  .kuc-attachment__group__files__droppable__text {
     background-color: #e2f2fe;
     border: dashed 2px #3498db;
     display: table-cell;
