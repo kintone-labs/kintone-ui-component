@@ -98,7 +98,7 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-color, #d4d7d7);
     border: 1px solid #e3e7e8;
     box-shadow: none;
-    color: #888888;
+    color: var(--kuc-button-text-color, #888888);
     cursor: default;
   }
 `;

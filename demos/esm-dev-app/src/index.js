@@ -13,9 +13,9 @@ root.appendChild(button);
 const text = new Text({
   value: "Orange",
   className: "text-class",
-  id: "aaaaaa",
-  textalign: "righttt",
-  placeholder: "hogehoge1",
+  id: "text-id",
+  textalign: "right",
+  placeholder: "placeholder",
   label: "フルーツ",
   requiredIcon: true,
   error: "エラーです"
