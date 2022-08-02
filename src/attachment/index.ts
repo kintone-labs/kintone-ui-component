@@ -130,19 +130,19 @@ let exportAttachment;
     private _getAttachmentItemTemplete(item: FileItem, index: number) {
       return html`
         <div
-          class="kuc-attachment__group__file-item"
+          class="kuc-attachment__group__files__file-item"
           role="listitem"
           aria-labelledby="${this._GUID}-${index}"
         >
           <div
             title="${item.name || ""}"
-            class="kuc-attachment__group__file-name"
+            class="kuc-attachment__group__files__file-item__file-name"
             id="${this._GUID}-${index}"
           >
             ${item.name || ""}
           </div>
           <div
-            class="kuc-attachment__group__remove-button"
+            class="kuc-attachment__group__files__file-item__remove-button"
             ?hidden="${this.disabled}"
           >
             <button
@@ -154,7 +154,7 @@ let exportAttachment;
               ${this._getRemoveButtonIcon()}
             </button>
           </div>
-          <span class="kuc-attachment__group__file-size">
+          <span class="kuc-attachment__group__files__file-item__file-size">
             ${this._getFileSize(item.size)}
           </span>
         </div>
