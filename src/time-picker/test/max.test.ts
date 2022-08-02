@@ -62,7 +62,7 @@ describe("TimePicker", () => {
       );
     });
 
-    it("should throw error when set invalid value", done => {
+    it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -76,7 +76,7 @@ describe("TimePicker", () => {
       fixture(container);
     });
 
-    it("should throw error when it is less than min", done => {
+    it("should throw error when it is less than min", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(

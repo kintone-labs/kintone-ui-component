@@ -88,7 +88,7 @@ describe("ReadOnlyTable", () => {
       }).to.throw(Error, "'data' property is invalid");
     });
 
-    it("should be throw error when assigned null by setter", done => {
+    it("should be throw error when assigned null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'data' property is invalid");

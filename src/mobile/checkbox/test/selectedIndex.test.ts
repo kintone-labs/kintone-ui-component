@@ -38,7 +38,7 @@ describe("MobileCheckbox", () => {
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(false);
     });
 
-    it("should be throw error when set null on constructor", done => {
+    it("should be throw error when set null on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'selectedIndex' property is not array");
@@ -54,7 +54,7 @@ describe("MobileCheckbox", () => {
       fixture(container);
     });
 
-    it("should be throw error when set null by setter", done => {
+    it("should be throw error when set null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'selectedIndex' property is not array");

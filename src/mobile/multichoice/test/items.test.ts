@@ -130,7 +130,7 @@ describe("MobileMultiChoice", () => {
       expect(container.items).to.be.equal(itemsForReplace);
     });
 
-    it("show error when initializing with props is null", done => {
+    it("show error when initializing with props is null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");
@@ -144,7 +144,7 @@ describe("MobileMultiChoice", () => {
       fixture(container);
     });
 
-    it("show error when when changing by setter to null", done => {
+    it("show error when when changing by setter to null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");

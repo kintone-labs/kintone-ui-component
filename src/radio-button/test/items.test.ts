@@ -200,7 +200,7 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned null on constructor", done => {
+    it("should be throw error when assigned null on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");
@@ -213,7 +213,7 @@ describe("MobileRadioButton", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null by setter", done => {
+    it("should be throw error when assigned null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");

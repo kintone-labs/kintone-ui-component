@@ -55,7 +55,7 @@ describe("TimePicker", () => {
       expect(itemsEl[1].getAttribute("value")).to.equal("01:00");
     });
 
-    it("should throw error when assigned value is not number", done => {
+    it("should throw error when assigned value is not number", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'timeStep' property is not number");
@@ -68,7 +68,7 @@ describe("TimePicker", () => {
       fixture(container);
     });
 
-    it("should throw error when set invalid value", done => {
+    it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -81,7 +81,7 @@ describe("TimePicker", () => {
       fixture(container);
     });
 
-    it("should throw error when it is too large", done => {
+    it("should throw error when it is too large", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -97,6 +97,5 @@ describe("TimePicker", () => {
       });
       fixture(container);
     });
-
   });
 });

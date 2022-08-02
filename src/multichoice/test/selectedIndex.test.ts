@@ -56,7 +56,7 @@ describe("MultiChoice", () => {
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
-    it("should be throw error when set null by setter", done => {
+    it("should be throw error when set null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'selectedIndex' property is not array");

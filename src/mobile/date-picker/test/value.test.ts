@@ -36,7 +36,7 @@ describe("MobileDatePicker", () => {
       expect(inputEl.value).to.be.equal("12/13/2021");
     });
 
-    it("should throw error when set invalid value", done => {
+    it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");
@@ -49,7 +49,7 @@ describe("MobileDatePicker", () => {
       fixture(container);
     });
 
-    it("should throw error when set invalid value", done => {
+    it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("Format is not valid.");

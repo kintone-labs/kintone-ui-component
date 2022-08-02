@@ -136,7 +136,7 @@ describe("Dropdown", () => {
       expect(itemsEl[1].textContent?.trim()).to.equal(replacedItems[1].label);
     });
 
-    it("should be throw error when assigned null on constructor", done => {
+    it("should be throw error when assigned null on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");
@@ -149,7 +149,7 @@ describe("Dropdown", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null by setter", done => {
+    it("should be throw error when assigned null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array");
