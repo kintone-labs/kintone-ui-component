@@ -86,12 +86,19 @@ export const ATTACHMENT_CSS = `
     width: 100%;
     line-height: 1.5;
   }
+  .kuc-attachment__group__files__display-area {
+    padding-inline-start: 0px;
+    list-style-type: disc;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
   .kuc-attachment__group__files__display-area__item {
     position: relative;
     margin-bottom: 8px;
     height: 24px;
     border: 2px solid #f1f4f5;
     background-color: #f1f4f5;
+    list-style: none;
   }
   .kuc-attachment__group__files__display-area__item__name {
     display: inline-block;
@@ -161,4 +168,5 @@ export const ATTACHMENT_CSS = `
     text-align: center;
     color: #3498db;
     font-size: 14px;
+  }
 `;

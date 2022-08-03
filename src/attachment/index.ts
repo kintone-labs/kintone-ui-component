@@ -72,12 +72,9 @@ let exportAttachment;
 
     render() {
       return html`
-      <div class="kuc-attachment__group" 
-        aria-describedby="${this._GUID}-error"
-        aria-required="${this.requiredIcon}">
+      <div class="kuc-attachment__group">
         <div
           class="kuc-attachment__group__label"
-          for="${this._GUID}-label"
           ?hidden="${!this.label}"
         >
           <kuc-base-label
@@ -100,24 +97,26 @@ let exportAttachment;
             this._locale.ATTACHMENT_DRAG_DROP_ZONE
           }</div>
           </div>
-          <div
+          <ul
             class="kuc-attachment__group__files__display-area"
             ?hidden="${this._isDraging}"
-            role="list"
           >
           ${this.files.map((item, number) =>
             this._getAttachmentItemTemplete(item, number)
           )}
-            <a tabindex="-1" class="kuc-attachment__group__files__browse-button"
-            ?hidden="${this.disabled}">
-              <span class="kuc-attachment__group__files__browse-button__text">${
-                this._locale.ATTACHMENT_BROWSE
-              }</span>
-              <div class="kuc-attachment__group__files__browse-button__input-container">
-                <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" accept multiple 
-                @change="${this._handleChangeFiles}"></input>
-              </div>
-            </a>
+          </ul>
+          <div class="kuc-attachment__group__files__browse-button"
+          ?hidden="${this._isDraging || this.disabled}">
+            <span class="kuc-attachment__group__files__browse-button__text">${
+              this._locale.ATTACHMENT_BROWSE
+            }</span>
+            <div class="kuc-attachment__group__files__browse-button__input-container">
+              <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" accept multiple 
+              aria-required="${this.requiredIcon}"
+              aria-invalid="${this.error}"
+              aria-describedby="${this._GUID}-error"
+              @change="${this._handleChangeFiles}"></input>
+            </div>
           </div>
         </div>
         <kuc-base-error
@@ -131,15 +130,10 @@ let exportAttachment;
 
     private _getAttachmentItemTemplete(item: FileItem, index: number) {
       return html`
-        <div
-          class="kuc-attachment__group__files__display-area__item"
-          role="listitem"
-          aria-labelledby="${this._GUID}-${index}"
-        >
+        <li class="kuc-attachment__group__files__display-area__item">
           <div
             title="${item.name || ""}"
             class="kuc-attachment__group__files__display-area__item__name"
-            id="${this._GUID}-${index}"
           >
             ${item.name || ""}
           </div>
@@ -149,7 +143,6 @@ let exportAttachment;
           >
             <button
               class="kuc-attachment__group__files__display-area__item__remove-button__container__button"
-              role="button"
               aria-label="Cancel File"
               data-file-index="${index}"
               @click="${this._handleClickFileRemove}"
@@ -160,7 +153,7 @@ let exportAttachment;
           <span class="kuc-attachment__group__files__display-area__item__size">
             ${this._getFileSize(item.size)}
           </span>
-        </div>
+        </li>
       `;
     }
     private _getRemoveButtonIcon() {
