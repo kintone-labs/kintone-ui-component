@@ -67,7 +67,7 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal("Format is not valid.");
+        expect(errorMessage).to.be.equal("'min' property format is not valid");
       }
     });
   });

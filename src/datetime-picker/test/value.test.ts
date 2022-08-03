@@ -1,7 +1,6 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { DateTimePicker } from "../index";
 import { getTodayStringByLocale } from "../../base/datetime/utils";
-import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 describe("DateTimePicker", () => {
   describe("value", () => {
@@ -62,7 +61,9 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMessage).to.be.equal(
+          "'value' property format is not valid"
+        );
       }
     });
 
@@ -75,7 +76,9 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMessage).to.be.equal(
+          "'value' property format is not valid"
+        );
       }
     });
 
@@ -88,7 +91,9 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMessage).to.be.equal(
+          "'value' property format is not valid"
+        );
       }
     });
 
@@ -102,7 +107,9 @@ describe("DateTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMessage).to.be.equal(
+          "'value' property format is not valid"
+        );
       }
     });
 
