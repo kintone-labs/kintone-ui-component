@@ -4,7 +4,6 @@ import { MobileDateTimePicker } from "../index";
 import "../../../base/datetime/mobile-time";
 import "../../../base/datetime/mobile-date";
 import { getTodayStringByLocale } from "../../../base/datetime/utils";
-import { INVALID_FORMAT_MESSAGE } from "../../../base/datetime/resource/constant";
 
 describe("MobileDateTimePicker", () => {
   describe("value", () => {
@@ -93,7 +92,7 @@ describe("MobileDateTimePicker", () => {
     it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMsg).to.equal("'value' property format is not valid");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -107,7 +106,7 @@ describe("MobileDateTimePicker", () => {
     it("should throw error when set null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMsg).to.equal("'value' property format is not valid");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
