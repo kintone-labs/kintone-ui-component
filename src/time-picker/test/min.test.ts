@@ -1,6 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { TimePicker } from "../index";
-import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 describe("TimePicker", () => {
   describe("min", () => {
@@ -68,7 +67,7 @@ describe("TimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.MIN);
+        expect(errorMessage).to.be.equal("'min' property format is not valid");
       }
     });
   });
