@@ -1,6 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
 import { MobileTimePicker } from "..";
-import { INVALID_FORMAT_MESSAGE } from "../../../base/datetime/resource/constant";
 
 describe("MobileTimePicker", () => {
   describe("value", () => {
@@ -89,7 +88,9 @@ describe("MobileTimePicker", () => {
         if (error instanceof Error) {
           errorMessage = error.message;
         }
-        expect(errorMessage).to.be.equal(INVALID_FORMAT_MESSAGE.VALUE);
+        expect(errorMessage).to.be.equal(
+          "'value' property format is not valid"
+        );
       }
     });
   });
