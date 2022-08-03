@@ -67,11 +67,16 @@ module.exports = {
       }
       const propInfos = [];
       props.forEach(prop => {
+        if(!prop) return;
         if (prop.type !== "TSPropertySignature") return;
-
+        if(!prop.typeAnnotation) return;
+        if(!prop.typeAnnotation.typeAnnotation) return;
         const typeAnnotation = prop.typeAnnotation.typeAnnotation;
+        let range = [];
+        if(typeAnnotation.range && typeAnnotation.range[0]) range = typeAnnotation.range[0];
+        if(range.length < 1) return;
         const typeValue = `${
-          sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
+          sourceCode.getTokenByRangeStart(range).value
         }_${typeAnnotation.type}`;
 
         propInfos.push({ name: prop.key.name, type: typeValue });
