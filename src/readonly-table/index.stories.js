@@ -13,23 +13,65 @@ storiesOf("desktop/readonly-table", module)
       pagination: true,
       columns: [
         {
-          headerName: "First col",
-          key: "firstName",
+          headerName: "Number",
+          field: "index",
         },
         {
-          headerName: "Second col",
-          key: "age",
+          headerName: "City",
+          field: "name",
         },
         {
-          headerName: "Third column is very long",
-          key: "lastName",
+          headerName: "Country",
+          field: "country",
+        },
+        {
+          headerName: "Population",
+          field: "population",
         },
       ],
       data: [
-        { age: "18", firstName: "Chi", lastName: "Nguyen" },
-        { age: "17", firstName: "A", lastName: "Nguyen" },
-        { age: "17", firstName: "B", lastName: "Nguyen" },
-        { age: "12", firstName: "C", lastName: "Nguyen" },
+        {
+          index: "1",
+          name: "Ho Chi Minh",
+          country: "Vietnam",
+          population: "8,993,000",
+        },
+        {
+          index: "2",
+          name: "Can Tho",
+          country: "Vietnam",
+          population: "1,282,000",
+        },
+        {
+          index: "3",
+          name: "An imaginary long long long city name as an exameple for long content in a cell",
+          country: "Vietnam",
+          population: "200,000",
+        },
+        {
+          index: "4",
+          name: "Rach Gia",
+          country: "Vietnam",
+          population: "400,000",
+        },
+        {
+          index: "5",
+          name: "Edmonton",
+          country: "Canada",
+          population: "981,000",
+        },
+        {
+          index: "6",
+          name: "Calgary",
+          country: "Canada",
+          population: "1,336,000",
+        },
+        {
+          index: "7",
+          name: "Vancouver",
+          country: "Canada",
+          population: "675,000",
+        },
       ],
     });
     root.appendChild(readOnlyTable);
@@ -43,46 +85,70 @@ storiesOf("desktop/readonly-table", module)
       visible: true,
       label: "My ReadOnlyTable",
       rowsPerPage: 3,
+      pagination: true,
       columns: [
         {
-          headerName: "First column",
-          width: "100px",
+          headerName: "Number",
+          field: "index",
         },
         {
-          headerName: "Second column",
+          headerName:
+            "This is the column for the name of the city and it is supposed to be longer than the city name",
+          field: "name",
         },
         {
-          headerName: "Third column third column third column",
+          headerName: "Country",
+          field: "country",
+        },
+        {
+          headerName: "Population",
+          field: "population",
         },
       ],
-    });
-    readOnlyTable.data = [
-      ["sample value 2", "bbb", "test"],
-      ["sample value 2", "bbb", "test"],
-      ["sample value 2", "bbb", "test"],
-    ];
-    root.appendChild(readOnlyTable);
-    return root;
-  })
-  // UI For document site. Do not change or delete below.
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const readOnlyTable = new ReadOnlyTable({
-      columns: [
+      data: [
         {
-          header: {
-            text: "Fruit",
-          },
-          visible: true,
+          index: "1",
+          name: "Ho Chi Minh",
+          country: "Vietnam",
+          population: "8,993,000",
         },
         {
-          header: {
-            text: "Producing area",
-          },
-          visible: true,
+          index: "2",
+          name: "Can Tho",
+          country: "Vietnam",
+          population: "1,282,000",
+        },
+        {
+          index: "3",
+          name: "Vinh Long is a city in Southern Vietnam",
+          country: "Vietnam",
+          population: "200,000",
+        },
+        {
+          index: "4",
+          name: "Rach Gia",
+          country: "Vietnam",
+          population: "400,000",
+        },
+        {
+          index: "5",
+          name: "Edmonton",
+          country: "Canada",
+          population: "981,000",
+        },
+        {
+          index: "6",
+          name: "Calgary",
+          country: "Canada",
+          population: "1,336,000",
+        },
+        {
+          index: "7",
+          name: "Vancouver",
+          country: "Canada",
+          population: "675,000",
         },
       ],
-      data: [["Orange", "Ehime"]],
     });
     root.appendChild(readOnlyTable);
     return root;
