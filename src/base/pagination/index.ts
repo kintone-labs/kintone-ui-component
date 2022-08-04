@@ -1,5 +1,5 @@
 import { html, svg } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
 import { visiblePropConverter } from "../converter";
 import { PAGINATION_CSS } from "./style";
@@ -12,6 +12,7 @@ let exportPagination;
   if (exportPagination) {
     return;
   }
+  // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
   class KucBasePagination extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
@@ -23,11 +24,49 @@ let exportPagination;
       converter: visiblePropConverter,
     })
     visible = true;
+    @property({
+      type: Boolean,
+      converter: visiblePropConverter,
+    })
+    isNext = true;
+    @property({
+      type: Boolean,
+      converter: visiblePropConverter,
+    })
+    isPrev = true;
+
+    @query(".kuc-base-pagination__group__pagination-prev")
+    private _prevButtonEl!: HTMLButtonElement;
+    @query(".kuc-base-pagination__group__pagination-next")
+    private _nextButtonEl!: HTMLButtonElement;
 
     constructor(props?: BasePaginationProps) {
       super();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+    }
+
+    updated() {
+      this._togglePreviousButton(this.isPrev);
+      this._toggleNextButton(this.isNext);
+    }
+
+    private async _togglePreviousButton(toggleDisplayPreviusButton: boolean) {
+      await this.updateComplete;
+      if (!toggleDisplayPreviusButton) {
+        this._prevButtonEl.classList.add("pager-disable");
+      } else {
+        this._prevButtonEl.classList.remove("pager-disable");
+      }
+    }
+
+    private async _toggleNextButton(toggleDisplayNextButton: boolean) {
+      await this.updateComplete;
+      if (!toggleDisplayNextButton) {
+        this._nextButtonEl.classList.add("pager-disable");
+      } else {
+        this._nextButtonEl.classList.remove("pager-disable");
+      }
     }
 
     render() {
