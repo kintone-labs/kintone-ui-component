@@ -18,6 +18,7 @@ let exportReadOnlyTable;
   if (exportReadOnlyTable) {
     return;
   }
+  // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
   class KucReadOnlyTable extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
@@ -101,20 +102,29 @@ let exportReadOnlyTable;
           .className="pagination-class"
           .id="pagination-id"
           .visible="${this.pagination}"
-          @kuc:pagination-click-prev=${this._handleClickPreviusButton}
+          @kuc:pagination-click-prev=${this._handleClickPreviousButton}
           @kuc:pagination-click-next=${this._handleClickNextButton}
         ></kuc-base-pagination>
       `;
     }
 
     updated() {
-      console.log(this._prevButtonEl);
-      if (!this._toggleDisplayPreviusButton()) {
+      this._togglePreviousButton(this._toggleDisplayPreviusButton());
+      this._toggleNextButton(this._toggleDisplayNextButton());
+    }
+
+    private async _togglePreviousButton(toggleDisplayPreviusButton: boolean) {
+      await this.updateComplete;
+      if (!toggleDisplayPreviusButton) {
         this._prevButtonEl.classList.add("pager-disable");
       } else {
         this._prevButtonEl.classList.remove("pager-disable");
       }
-      if (!this._toggleDisplayNextButton()) {
+    }
+
+    private async _toggleNextButton(toggleDisplayNextButton: boolean) {
+      await this.updateComplete;
+      if (!toggleDisplayNextButton) {
         this._nextButtonEl.classList.add("pager-disable");
       } else {
         this._nextButtonEl.classList.remove("pager-disable");
@@ -212,7 +222,7 @@ let exportReadOnlyTable;
       `;
     }
 
-    private _handleClickPreviusButton(_event: MouseEvent | KeyboardEvent) {
+    private _handleClickPreviousButton(_event: MouseEvent | KeyboardEvent) {
       if (this._pagePosition === 1) return;
       this._pagePosition -= 1;
     }
