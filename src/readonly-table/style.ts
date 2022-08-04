@@ -78,29 +78,4 @@ export const READ_ONLY_TABLE_CSS = `
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .kuc-readonly-table__pager {
-    margin-top: 10px;
-  }
-  .kuc-readonly-table__pager button {
-    cursor: pointer;
-  }
-  .kuc-readonly-table__pager__pagenation-prev {
-    border: none;
-    background-color: transparent;
-    visibility: visible;
-  }
-  .kuc-readonly-table__pager__pagenation-next {
-    border: none;
-    background-color: transparent;
-    visibility: visible;
-  }
-  .kuc-readonly-table__pager__pagenation-next:hover svg path,
-  .kuc-readonly-table__pager__pagenation-prev:hover svg path,
-  .kuc-readonly-table__pager__pagenation-next:focus svg path,
-  .kuc-readonly-table__pager__pagenation-prev:focus svg path {
-    fill: #3498db;
-  }
-  .pager-disable {
-    visibility: hidden;
-  }
 `;
