@@ -2,8 +2,8 @@ import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
 export declare type Column = {
+  field?: string;
   headerName?: string;
-  key?: string;
   visible?: boolean;
 };
 
