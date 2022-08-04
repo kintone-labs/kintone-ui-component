@@ -3,6 +3,8 @@ import { property } from "lit/decorators.js";
 import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
 import { visiblePropConverter } from "../converter";
 import { PAGINATION_CSS } from "./style";
+import { BasePaginationProps } from "./type";
+import { validateProps } from "../validator";
 
 let exportPagination;
 (() => {
@@ -21,6 +23,12 @@ let exportPagination;
       converter: visiblePropConverter,
     })
     visible = true;
+
+    constructor(props?: BasePaginationProps) {
+      super();
+      const validProps = validateProps(props);
+      Object.assign(this, validProps);
+    }
 
     render() {
       return html`
