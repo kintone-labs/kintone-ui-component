@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
-import { html, svg, PropertyValues } from "lit";
+import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
+import "../base/pagination";
 import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
 export { BaseLabel };
@@ -38,14 +39,13 @@ let exportReadOnlyTable;
     @state()
     private _columnOrder: string[] = [];
 
-    @query(".kuc-readonly-table__pager__pagenation-prev")
+    @query(".kuc-base-pagination__group__pagination-prev")
     private _prevButtonEl!: HTMLButtonElement;
-    @query(".kuc-readonly-table__pager__pagenation-next")
+    @query(".kuc-base-pagination__group__pagination-next")
     private _nextButtonEl!: HTMLButtonElement;
 
     constructor(props?: ReadOnlyTableProps) {
       super();
-
       if (props && props.columns && props.data) {
         this._validateColumns(props.columns);
         this._validateData(props.data);
@@ -77,7 +77,6 @@ let exportReadOnlyTable;
         this._pagePosition,
         this.rowsPerPage
       );
-      console.log(currentPageData);
       return html`
         <table class="kuc-readonly-table__table" aria-label="${this.label}">
           <caption class="kuc-readonly-table__table__label">
@@ -98,34 +97,23 @@ let exportReadOnlyTable;
             })}
           </tbody>
         </table>
-        <div class="kuc-readonly-table__pager" ?hidden="${!this.pagination}">
-          <button
-            title="previous"
-            class="kuc-readonly-table__pager__pagenation-prev"
-            type="button"
-            @click="${this._handleClickPreviusButton}"
-          >
-            ${this._getPrevButtonSvgTemplate()}
-          </button>
-          <button
-            title="next"
-            class="kuc-readonly-table__pager__pagenation-next"
-            type="button"
-            @click="${this._handleClickNextButton}"
-          >
-            ${this._getNextButtonSvgTemplate()}
-          </button>
-        </div>
+        <kuc-base-pagination
+          .className="pagination-class"
+          .id="pagination-id"
+          .visible="${this.pagination}"
+          @kuc:pagination-click-prev=${this._handleClickPreviusButton}
+          @kuc:pagination-click-next=${this._handleClickNextButton}
+        ></kuc-base-pagination>
       `;
     }
 
     updated() {
+      console.log(this._prevButtonEl);
       if (!this._toggleDisplayPreviusButton()) {
         this._prevButtonEl.classList.add("pager-disable");
       } else {
         this._prevButtonEl.classList.remove("pager-disable");
       }
-
       if (!this._toggleDisplayNextButton()) {
         this._nextButtonEl.classList.add("pager-disable");
       } else {
@@ -239,42 +227,6 @@ let exportReadOnlyTable;
 
     private _toggleDisplayNextButton() {
       return this._pagePosition < this.data.length / this.rowsPerPage;
-    }
-
-    private _getPrevButtonSvgTemplate() {
-      return svg`
-        <svg
-          width="9"
-          height="15"
-          viewBox="0 0 9 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-            fill="#888888"
-          />
-        </svg>
-      `;
-    }
-
-    private _getNextButtonSvgTemplate() {
-      return svg`
-      <svg
-        width="9"
-        height="15"
-        viewBox="0 0 9 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-          fill="#888888"
-        />
-      </svg>
-      `;
     }
   }
   window.customElements.define("kuc-readonly-table", KucReadOnlyTable);
