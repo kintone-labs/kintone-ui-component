@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable kuc-v1/no-using-event-handler-name */
-/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
@@ -18,7 +15,6 @@ let exportReadOnlyTable;
   if (exportReadOnlyTable) {
     return;
   }
-  // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
   class KucReadOnlyTable extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
@@ -39,11 +35,6 @@ let exportReadOnlyTable;
     private _pagePosition: number = 1;
     @state()
     private _columnOrder: string[] = [];
-
-    @query(".kuc-base-pagination__group__pagination-prev")
-    private _prevButtonEl!: HTMLButtonElement;
-    @query(".kuc-base-pagination__group__pagination-next")
-    private _nextButtonEl!: HTMLButtonElement;
 
     constructor(props?: ReadOnlyTableProps) {
       super();
@@ -102,33 +93,12 @@ let exportReadOnlyTable;
           .className="pagination-class"
           .id="pagination-id"
           .visible="${this.pagination}"
+          .isPrev="${this._toggleDisplayPreviusButton()}"
+          .isNext="${this._toggleDisplayNextButton()}"
           @kuc:pagination-click-prev=${this._handleClickPreviousButton}
           @kuc:pagination-click-next=${this._handleClickNextButton}
         ></kuc-base-pagination>
       `;
-    }
-
-    updated() {
-      this._togglePreviousButton(this._toggleDisplayPreviusButton());
-      this._toggleNextButton(this._toggleDisplayNextButton());
-    }
-
-    private async _togglePreviousButton(toggleDisplayPreviusButton: boolean) {
-      await this.updateComplete;
-      if (!toggleDisplayPreviusButton) {
-        this._prevButtonEl.classList.add("pager-disable");
-      } else {
-        this._prevButtonEl.classList.remove("pager-disable");
-      }
-    }
-
-    private async _toggleNextButton(toggleDisplayNextButton: boolean) {
-      await this.updateComplete;
-      if (!toggleDisplayNextButton) {
-        this._nextButtonEl.classList.add("pager-disable");
-      } else {
-        this._nextButtonEl.classList.remove("pager-disable");
-      }
     }
 
     private _validateColumns(columns: Column[]) {
