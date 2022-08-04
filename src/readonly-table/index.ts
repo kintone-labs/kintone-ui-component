@@ -50,7 +50,7 @@ let exportReadOnlyTable;
         this._validateColumns(props.columns);
         this._validateData(props.data);
         props.columns.map((col) =>
-          this._columnOrder.push(col.key ? col.key : "")
+          this._columnOrder.push(col.field ? col.field : "")
         );
       } else {
         return;
