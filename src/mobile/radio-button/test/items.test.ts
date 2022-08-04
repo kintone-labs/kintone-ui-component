@@ -195,21 +195,18 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned null by setter", async () => {
-      const container = new MobileRadioButton();
-      try {
-        container.items = null;
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
+    it("should be throw error when assigned null by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      const container = new MobileRadioButton();
+      container.items = null;
+      fixture(container);
     });
   });
 });

@@ -130,75 +130,33 @@ describe("MobileMultiChoice", () => {
       expect(container.items).to.be.equal(itemsForReplace);
     });
 
-    it("show error when initializing with props is null", async () => {
-      const container = new MobileMultiChoice({
-        items: null,
-      });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+    it("show error when initializing with props is null", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      // @ts-ignore
+      const container = new MobileMultiChoice({ items: "12,12" });
+      fixture(container);
     });
 
-    it("show error when initializing value is duplicated", async () => {
-      const container = new MobileMultiChoice({
-        items: duplicateItems,
-        value: [duplicateItems[1].value],
-      });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
-      }
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
-    });
+    it("show error when when changing by setter to null", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-    it("show error when when changing by setter to null", async () => {
-      const container = new MobileMultiChoice({});
+      // @ts-ignore
+      const container = new MobileMultiChoice();
       container.items = null;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
-    });
-
-    it("show error when initializing value duplicated value", async () => {
-      const container = new MobileMultiChoice({});
-      container.items = duplicateItems;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items[1].value' property is duplicated";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' property is duplicated"
-        );
-      }
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      fixture(container);
     });
   });
 });
