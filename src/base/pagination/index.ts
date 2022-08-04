@@ -27,7 +27,7 @@ let exportPagination;
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
           <button
             title="previous"
-            class="kuc-base-pagination__group__pagenation-prev"
+            class="kuc-base-pagination__group__pagination-prev"
             type="button"
             @click="${this._handleClickPrevButton}"
           >
@@ -35,7 +35,7 @@ let exportPagination;
           </button>
           <button
             title="next"
-            class="kuc-base-pagination__group__pagenation-next"
+            class="kuc-base-pagination__group__pagination-next"
             type="button"
             @click="${this._handleClickNextButton}"
           >
