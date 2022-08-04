@@ -152,4 +152,43 @@ storiesOf("desktop/readonly-table", module)
     });
     root.appendChild(readOnlyTable);
     return root;
+  })
+  .add("Document", () => {
+    const root = document.createElement("div");
+    const readOnlyTable = new ReadOnlyTable({
+      className: "sample-class",
+      id: "sample-id",
+      visible: true,
+      label: "My ReadOnlyTable",
+      rowsPerPage: 3,
+      pagination: true,
+      columns: [
+        {
+          headerName: "Index",
+          field: "index",
+        },
+        {
+          headerName: "Column 1",
+          field: "data1",
+        },
+        {
+          headerName: "Column 2",
+          field: "data2",
+        },
+        {
+          headerName: "Column 3",
+          field: "data3",
+        },
+      ],
+      data: [
+        {
+          index: "1",
+          data1: "Sample 1",
+          data2: "Sample 1",
+          data3: "Sample 1",
+        },
+      ],
+    });
+    root.appendChild(readOnlyTable);
+    return root;
   });
