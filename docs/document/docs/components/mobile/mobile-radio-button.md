@@ -69,10 +69,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileRadioButton = new Kuc.MobileRadioButton({
   label: 'Fruit',
   requiredIcon: true,

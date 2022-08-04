@@ -77,9 +77,13 @@ none
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const dialog = new Kuc.Dialog({
   title:  'Title',
   content: '<div>This is Content</div>',
