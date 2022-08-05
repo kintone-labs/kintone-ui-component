@@ -36,20 +36,17 @@ describe("DatePicker", () => {
       expect(inputEl.value).to.be.equal("12/13/2021");
     });
 
-    it("should throw error when set invalid value", async () => {
-      const container = new DatePicker({ value: "12,12" });
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          "'value' property format is not valid"
-        );
-      }
+      const container = new DatePicker({ value: "12,12" });
+      fixture(container);
     });
 
     it("should be today value when press today button on calendar", async () => {

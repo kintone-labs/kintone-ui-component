@@ -413,5 +413,5 @@ An external date library called luxon.js is used for this customization.
 This article introduced a simple plug-in implementation as an example.<br>
 Depending on the customization, it is possible to divide the conditions more finely and to apply conditional formatting to the Record List page. Please try adjusting it according to your actual operations.<br>
 
-> This article was reviewed using Kintone and Google Chrome as of June 2022.<br>
+> This article was reviewed using Kintone and Google Chrome as of August 2022.<br>
 > The version of Kintone UI Component used in this customization is v1.4.0.

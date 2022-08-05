@@ -52,65 +52,30 @@ describe("DateTimePicker", () => {
       expect(inputEl.value).to.be.equal("12/13/2021");
     });
 
-    it("should throw error when set invalid value", async () => {
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new DateTimePicker({ value: "2021-02-28T09:30:61" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          "'value' property format is not valid"
-        );
-      }
+      fixture(container);
     });
 
-    it("should throw error when set invalid value", async () => {
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new DateTimePicker({ value: "2021-02-28T" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          "'value' property format is not valid"
-        );
-      }
-    });
-
-    it("should throw error when set invalid value", async () => {
-      const container = new DateTimePicker({ value: "2021-02-28T09:30" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          "'value' property format is not valid"
-        );
-      }
-    });
-
-    it("should throw error when set value is not a string", async () => {
-      const container = new DateTimePicker({ value: undefined });
-      container.value = {};
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          "'value' property format is not valid"
-        );
-      }
+      fixture(container);
     });
 
     it("should be today value when press today button on calendar", async () => {
@@ -201,20 +166,20 @@ describe("DateTimePicker", () => {
       expect(container.value).to.be.equal(undefined);
     });
 
-    it("should throw error when it is less than min", async () => {
+    it("should throw error when it is less than min", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Time is out of valid range.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new DateTimePicker({
         value: "2022-12-12T10:00",
         min: "12:00",
       });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("Time is out of valid range.");
-      }
+      fixture(container);
     });
   });
 });

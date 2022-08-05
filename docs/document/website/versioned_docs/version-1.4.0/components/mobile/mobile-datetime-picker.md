@@ -60,10 +60,15 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const mobileDateTimePicker = new Kuc.MobileDateTimePicker({
   label: 'DateTime',
   requiredIcon: true,

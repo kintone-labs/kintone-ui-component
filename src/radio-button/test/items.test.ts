@@ -200,76 +200,31 @@ describe("MobileRadioButton", () => {
       expect(circlesEl1.length).to.equal(1);
     });
 
-    it("should be throw error when assigned null on constructor", async () => {
+    it("should be throw error when assigned null on constructor", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new RadioButton({ items: null });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      fixture(container);
     });
 
-    it("should be throw error when assigned dupplicated items on constructor", async () => {
-      const container = new RadioButton({ items: dupplicatedItems });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage =
-          "'items[1].value' is duplicated! You can specify unique one.";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' is duplicated! You can specify unique one."
-        );
-      }
+    it("should be throw error when assigned null by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'items' property is not array");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
-    });
-
-    it("should be throw error when assigned null by setter", async () => {
       const container = new RadioButton();
-      try {
-        container.items = null;
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
-    });
-
-    it("should be throw error when assigned dupplicated items by setter", async () => {
-      const container = new RadioButton();
-      try {
-        container.items = dupplicatedItems;
-        await fixture(container);
-      } catch (error) {
-        let errorMessage =
-          "'items[1].value' is duplicated! You can specify unique one.";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal(
-          "'items[1].value' is duplicated! You can specify unique one."
-        );
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateItems function
+      container.items = null;
+      fixture(container);
     });
   });
 });

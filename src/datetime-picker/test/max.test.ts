@@ -62,32 +62,31 @@ describe("DateTimePicker", () => {
       );
     });
 
-    it("should throw error when set invalid value", async () => {
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new DateTimePicker({ max: "12,12" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("'max' property format is not valid");
-      }
+      fixture(container);
     });
 
-    it("should throw error when it is less than min", async () => {
-      const container = new DateTimePicker({ max: "10:00", min: "12:00" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal(
-          '"max" must be greater than or equal to "min".'
+    it("should throw error when it is less than min", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal(
+          `"max" must be greater than or equal to "min".`
         );
-      }
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+      const container = new DateTimePicker({ max: "10:00", min: "12:00" });
+      fixture(container);
     });
   });
 });

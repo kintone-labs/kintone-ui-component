@@ -100,6 +100,8 @@ export const DROPDOWN_CSS = `
     line-height: 1;
     position: relative;
     cursor: pointer;
+    white-space: nowrap;
+
   }
   .kuc-dropdown__group__select-menu__item__icon {
     position: absolute;
