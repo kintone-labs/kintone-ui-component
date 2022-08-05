@@ -1,50 +1,34 @@
-import { BasePagination } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit-html";
+import "./index.ts";
 
-storiesOf("base/base-pagination", module)
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const basePagination = new BasePagination({
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      isNext: true,
-      isPrev: true,
-    });
-    root.appendChild(basePagination);
-    return root;
-  })
-  .add("Base2", () => {
-    const root = document.createElement("div");
-    const basePagination = new BasePagination({
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      isNext: true,
-      isPrev: false,
-    });
-    root.appendChild(basePagination);
-    return root;
-  })
-  .add("Base3", () => {
-    const root = document.createElement("div");
-    const basePagination = new BasePagination({
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      isNext: false,
-      isPrev: true,
-    });
-    root.appendChild(basePagination);
-    return root;
-  })
-  .add("Document", () => {
-    const root = document.createElement("div");
-    const basePagination = new BasePagination({
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-    });
-    root.appendChild(basePagination);
-    return root;
-  });
+export default {
+  title: "base/pagination",
+  argTypes: {},
+  parameters: {
+    actions: {
+      handles: ["kuc:pagination-click-prev", "kuc:pagination-click-next"],
+    },
+  },
+};
+
+const Template = (args) => {
+  return html`
+    <kuc-base-pagination
+      .id="${args.id}"
+      .class="${args.className}"
+      .visible="${args.visible}"
+      .isPrev="${args.isPrev}"
+      .isNext="${args.isNext}"
+    >
+    </kuc-base-pagination>
+  `;
+};
+
+export const Base = Template.bind({});
+Base.args = {
+  id: "sample-id",
+  className: "sample-class",
+  visible: true,
+  isPrev: true,
+  isNext: true,
+};
