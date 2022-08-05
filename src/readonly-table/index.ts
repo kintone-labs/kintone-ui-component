@@ -124,7 +124,7 @@ let exportReadOnlyTable;
     }
 
     private _validateRowsPerPage(numRows: number) {
-      if (numRows < 0 || numRows === 0 || !Number.isInteger(numRows)) {
+      if (numRows < 0 || numRows === 0 || typeof numRows !== "number") {
         console.error(
           "'rowsPerPage' property must be a positive integer! Set to 5 by default."
         );
