@@ -55,7 +55,7 @@ describe("DateTimePicker", () => {
     it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("Format is not valid.");
+        expect(errorMsg).to.equal("'value' property format is not valid");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -68,7 +68,7 @@ describe("DateTimePicker", () => {
     it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("Format is not valid.");
+        expect(errorMsg).to.equal("'value' property format is not valid");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
