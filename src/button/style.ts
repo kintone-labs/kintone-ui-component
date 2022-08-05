@@ -29,9 +29,6 @@ export const BUTTON_CSS = `
     padding: 0px 16px;
     user-select: none;
   }
-  .kuc-button__button:focus {
-    outline: none;
-  }
   .kuc-button__button--normal {
     border: 1px solid #e3e7e8;
     background-color: #f7f9fa;
