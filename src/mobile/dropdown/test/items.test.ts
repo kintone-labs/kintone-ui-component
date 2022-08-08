@@ -124,7 +124,7 @@ describe("MobileDropdown", () => {
     it("show error when initializing with props is null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'items' property is not array");
+        expect(errorMsg).to.equal("'items' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -137,7 +137,7 @@ describe("MobileDropdown", () => {
     it("show error when when changing by setter to null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'items' property is not array");
+        expect(errorMsg).to.equal("'items' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
