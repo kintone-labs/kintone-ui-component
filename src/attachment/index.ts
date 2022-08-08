@@ -197,16 +197,21 @@ let exportAttachment;
     }
 
     private _handleClickFileRemove(event: any) {
-      const index = event.target.getAttribute("data-file-index");
-      if (index !== -1 && this.files) {
-        parseInt(index, 10) === this.files.length - 1 && this._inputEl.focus();
+      const index = parseInt(
+        event.target.parentNode.getAttribute("data-file-index"),
+        10
+      );
+
+      if (!index && index !== -1 && this.files) {
+        index === this.files.length - 1 && this._inputEl.focus();
         const tempFiles = [...this.files];
-        const changedFiles = this.files.splice(index, 1);
+        this.files.splice(index, 1);
+
         const detail = {
           oldFiles: tempFiles,
           files: this.files,
-          type: "remove",
-          changedFiles: changedFiles,
+          type: "remove-file",
+          fileIndex: [index],
         };
         dispatchCustomEvent(this, "change", detail);
         this.requestUpdate();
@@ -281,12 +286,15 @@ let exportAttachment;
           return addedFiles[e];
         });
         const tempFileList = [...this.files];
+        const fileIndex = addedFiles.map((_item: any, index: number) => {
+          return tempFileList.length + index;
+        });
         addedFiles.forEach((addedFile: FileItem) => this.files.push(addedFile));
         const detail = {
           oldFiles: tempFileList,
           files: this.files,
-          type: "add",
-          changedFiles: addedFiles,
+          type: "add-file",
+          fileIndex: fileIndex,
         };
         dispatchCustomEvent(this, "change", detail);
         this.requestUpdate();
