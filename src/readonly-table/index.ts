@@ -9,6 +9,7 @@ import {
 } from "../base/validator";
 import { BaseLabel } from "../base/label";
 import "../base/pagination";
+import { ERROR_MESSAGE } from "../base/constant";
 import { Column, ReadOnlyTableProps, DataItem } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
 export { BaseLabel };
@@ -48,7 +49,7 @@ let exportReadOnlyTable;
           this._columnOrder.push(col.field ? col.field : "")
         );
         if (!validateValueArray(props.data)) {
-          throwErrorAfterUpdateComplete(this, "errir");
+          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
         }
       } else {
         return;
@@ -109,15 +110,13 @@ let exportReadOnlyTable;
 
     private _validateColumns(columns: Column[]) {
       if (!Array.isArray(columns)) {
-        throw new Error("'columns' property is invalid");
+        throw new Error(ERROR_MESSAGE.COLUMNS.INVALID);
       }
     }
 
     private _validateRowsPerPage(numRows: number) {
       if (numRows < 0 || numRows === 0 || typeof numRows !== "number") {
-        console.error(
-          "'rowsPerPage' property must be a positive integer! Set to 5 by default."
-        );
+        console.error(ERROR_MESSAGE.ROWS_PER_PAGE.INVALID);
         return 5;
       }
       return Math.round(numRows);
