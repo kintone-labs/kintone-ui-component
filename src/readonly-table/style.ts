@@ -49,6 +49,8 @@ export const READ_ONLY_TABLE_CSS = `
     height: 40px;
     box-sizing: border-box;
     text-align: left;
+    white-space: nowrap;
+    word-wrap: break-word;
   }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
@@ -57,10 +59,6 @@ export const READ_ONLY_TABLE_CSS = `
     padding: 4px 8px;
     font-weight: 400;
     font-size: 12px;
-  }
-  .kuc-readonly-table__table__body__row-0
-    > .kuc-readonly-table__table__body__row__cell-data {
-    // border-width: 0 1px 1px 1px;
   }
   .kuc-readonly-table__table__body__row__cell-data {
     border-color: #e3e7e8;
@@ -75,7 +73,7 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell,
   .kuc-readonly-table__table__body__row__cell-data {
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    white-space: prewrap;
+    word-wrap: break-word;
   }
 `;
