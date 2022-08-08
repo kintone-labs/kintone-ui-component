@@ -3,6 +3,11 @@ import { ReadOnlyTable } from "./index.ts";
 export default {
   title: "desktop/readonly-table",
   argTypes: {},
+  parameters: {
+    actions: {
+      handles: ["kuc:pagination-click-prev", "kuc:pagination-click-next"],
+    },
+  },
 };
 
 const Template = (args) => {
