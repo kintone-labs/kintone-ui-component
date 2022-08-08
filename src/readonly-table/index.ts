@@ -93,7 +93,7 @@ let exportReadOnlyTable;
           .className="pagination-class"
           .id="pagination-id"
           .visible="${this.pagination}"
-          .isPrev="${this._toggleDisplayPreviusButton()}"
+          .isPrev="${this._toggleDisplayPreviousButton()}"
           .isNext="${this._toggleDisplayNextButton()}"
           @kuc:pagination-click-prev=${this._handleClickPreviousButton}
           @kuc:pagination-click-next=${this._handleClickNextButton}
@@ -201,7 +201,7 @@ let exportReadOnlyTable;
       this._pagePosition += 1;
     }
 
-    private _toggleDisplayPreviusButton() {
+    private _toggleDisplayPreviousButton() {
       return this._pagePosition > 1;
     }
 
