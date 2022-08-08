@@ -143,5 +143,5 @@ let exportPagination;
   exportPagination = KucBasePagination;
 })();
 
-const BasePagination = exportPagination as any;
-export { BasePagination };
+const Pagination = exportPagination as any;
+export { Pagination };
