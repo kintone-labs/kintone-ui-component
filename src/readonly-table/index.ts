@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import {
