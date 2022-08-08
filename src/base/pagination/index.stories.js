@@ -1,5 +1,4 @@
-import { html } from "lit-html";
-import "./index.ts";
+import { Pagination } from "./index.ts";
 
 export default {
   title: "base/pagination",
@@ -12,16 +11,8 @@ export default {
 };
 
 const Template = (args) => {
-  return html`
-    <kuc-base-pagination
-      .id="${args.id}"
-      .class="${args.className}"
-      .visible="${args.visible}"
-      .isPrev="${args.isPrev}"
-      .isNext="${args.isNext}"
-    >
-    </kuc-base-pagination>
-  `;
+  const pagination = new Pagination(args);
+  return pagination;
 };
 
 export const Base = Template.bind({});
