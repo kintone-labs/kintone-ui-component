@@ -84,7 +84,7 @@ describe("DateTimePicker", () => {
     it("should throw error when it is too large", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("Format is not valid.");
+        expect(errorMsg).to.equal("'timeStep' property format is not valid");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
