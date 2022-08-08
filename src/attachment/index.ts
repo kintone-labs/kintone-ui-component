@@ -73,15 +73,16 @@ let exportAttachment;
     render() {
       return html`
       <div class="kuc-attachment__group">
-        <div
+        <label
           class="kuc-attachment__group__label"
           ?hidden="${!this.label}"
+          for="${this._GUID}-input"
         >
           <kuc-base-label
             .text="${this.label}"
             .requiredIcon="${this.requiredIcon}"
           ></kuc-base-label>
-        </div>
+        </label>
         <div
           class="kuc-attachment__group__files"
           @dragenter="${this._handleDragEnter}"
@@ -112,6 +113,7 @@ let exportAttachment;
             }</span>
             <div class="kuc-attachment__group__files__browse-button__input-container">
               <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" accept multiple 
+              .id="${this._GUID}-input"
               aria-required="${this.requiredIcon}"
               aria-invalid="${this.error}"
               aria-describedby="${this._GUID}-error"
