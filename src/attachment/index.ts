@@ -200,11 +200,10 @@ let exportAttachment;
 
     private _handleClickFileRemove(event: any) {
       const index = parseInt(
-        event.target.parentNode.getAttribute("data-file-index"),
+        event.currentTarget.getAttribute("data-file-index"),
         10
       );
-
-      if (!index && index !== -1 && this.files) {
+      if (!isNaN(index) && this.files) {
         index === this.files.length - 1 && this._inputEl.focus();
         const tempFiles = [...this.files];
         this.files.splice(index, 1);
