@@ -2,10 +2,14 @@ import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
+import {
+  throwErrorAfterUpdateComplete,
+  validateProps,
+  validateValueArray,
+} from "../base/validator";
 import { BaseLabel } from "../base/label";
 import "../base/pagination";
-import { Column, ReadOnlyTableProps } from "./type";
+import { Column, ReadOnlyTableProps, DataItem } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
 export { BaseLabel };
 
@@ -21,7 +25,7 @@ let exportReadOnlyTable;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
-    @property({ type: Array }) data: object[] = [];
+    @property({ type: Array }) data: DataItem[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
     @property({
@@ -40,10 +44,12 @@ let exportReadOnlyTable;
       super();
       if (props && props.columns && props.data) {
         this._validateColumns(props.columns);
-        this._validateData(props.data);
         props.columns.map((col) =>
           this._columnOrder.push(col.field ? col.field : "")
         );
+        if (!validateValueArray(props.data)) {
+          throwErrorAfterUpdateComplete(this, "errir");
+        }
       } else {
         return;
       }
@@ -58,7 +64,7 @@ let exportReadOnlyTable;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("columns")) this._validateColumns(this.columns);
-      if (changedProperties.has("data")) this._validateData(this.data);
+      if (changedProperties.has("data")) validateValueArray(this.data);
 
       super.update(changedProperties);
     }
@@ -80,7 +86,7 @@ let exportReadOnlyTable;
             </tr>
           </thead>
           <tbody class="kuc-readonly-table__table__body">
-            ${currentPageData.map((data: object, currentIndex: number) => {
+            ${currentPageData.map((data: string, currentIndex: number) => {
               return this._getDataTemplate(
                 data,
                 currentIndex,
@@ -105,22 +111,6 @@ let exportReadOnlyTable;
       if (!Array.isArray(columns)) {
         throw new Error("'columns' property is invalid");
       }
-    }
-
-    private _validateData(data: object[]) {
-      if (!Array.isArray(data)) {
-        throw new Error("'data' property is invalid");
-      }
-      data &&
-        data.forEach((dataEl) => {
-          const validType = "[object Object]";
-          if (
-            Object.prototype.toString.call(dataEl) !== validType ||
-            dataEl === null
-          ) {
-            throw new Error("'data' property is invalid");
-          }
-        });
     }
 
     private _validateRowsPerPage(numRows: number) {
@@ -148,7 +138,7 @@ let exportReadOnlyTable;
 
     // Formatting the data displayed on the current page
     private _createDisplayData(
-      data: object[],
+      data: string[],
       pagePosition: number,
       steps: number
     ) {
