@@ -65,7 +65,7 @@ describe("DateTimePicker", () => {
     it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'max' property format is not valid");
+        expect(errorMsg).to.equal("'max' property format is not valid.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
