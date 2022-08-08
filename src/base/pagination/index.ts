@@ -8,7 +8,7 @@ import { validateProps } from "../validator";
 
 let exportPagination;
 (() => {
-  exportPagination = window.customElements.get("kuc-base-pagination");
+  exportPagination = window.customElements.get("kuc-pagination");
   if (exportPagination) {
     return;
   }
@@ -138,7 +138,7 @@ let exportPagination;
       `;
     }
   }
-  window.customElements.define("kuc-base-pagination", KucBasePagination);
+  window.customElements.define("kuc-pagination", KucBasePagination);
   createStyleOnHeader(PAGINATION_CSS);
   exportPagination = KucBasePagination;
 })();
