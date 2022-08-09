@@ -11,9 +11,11 @@ export const ERROR_MESSAGE = {
     IS_NOT_NUMBER: "'selectedIndex' property is not number",
   },
   COLUMNS: {
-    IS_NOT_ARRAY: "'columns' property is not array",
+    IS_NOT_ARRAY: "'columns' property is not array.",
+    FIELD_REQUIRED: "'field' property is required in column.",
+    FIELD_UNIQUE: "'field' property is unique in column.",
   },
   DATA_TABLE: {
-    IS_NOT_ARRAY: "'data' property is not array",
+    IS_ARRAY_OBJECT: "'data' property is not array object.",
   },
 };

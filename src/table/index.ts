@@ -12,7 +12,9 @@ import { visiblePropConverter } from "../base/converter";
 import {
   validateProps,
   throwErrorAfterUpdateComplete,
-  validateColumnTable,
+  validateColumnTableArray,
+  validateFieldRequiedInColumnTable,
+  validateFieldUniqueInColumnTable,
   validateDataTable,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
@@ -32,6 +34,7 @@ let exportTable;
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
     @property({ type: Array }) data: object[] = [];
+    @property({ type: Boolean }) actionButtonsShown = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -48,17 +51,30 @@ let exportTable;
       Object.assign(this, validProps);
     }
 
+    private _getErrorMessageWhenValidateColumns() {
+      let errorMessage = "";
+      if (!validateColumnTableArray(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
+      }
+      if (!validateFieldRequiedInColumnTable(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
+      }
+      if (validateFieldUniqueInColumnTable(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
+      }
+      return errorMessage;
+    }
+
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-      if (
-        _changedProperties.has("columns") &&
-        !validateColumnTable(this.columns)
-      ) {
-        const errorMessage = ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
-        throwErrorAfterUpdateComplete(this, errorMessage);
-        return false;
+      if (_changedProperties.has("columns")) {
+        const errorMessage = this._getErrorMessageWhenValidateColumns();
+        if (errorMessage) {
+          throwErrorAfterUpdateComplete(this, errorMessage);
+          return false;
+        }
       }
       if (_changedProperties.has("data") && !validateDataTable(this.data)) {
-        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
+        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_ARRAY_OBJECT;
         throwErrorAfterUpdateComplete(this, errorMessage);
         return false;
       }
@@ -112,7 +128,7 @@ let exportTable;
       return html`
         <tr class="kuc-table__table__body__row">
           ${this.columns.map((column) => {
-            const dataCell = dataRow[column.dataIndex];
+            const dataCell = dataRow[column.field];
             const cellTemplate = column.render
               ? column.render(dataCell, dataRow)
               : dataCell;
@@ -128,25 +144,29 @@ let exportTable;
       index: number,
       cellTemplate: HTMLElement
     ) {
-      const handleChangeCell = (event: CustomEvent, dataIndex: string) => {
+      const handleChangeCell = (event: CustomEvent, field: string) => {
         event.stopPropagation();
         event.stopImmediatePropagation();
         const _cloneData = this._deepCloneObject(this.data);
-        (_cloneData[index] as any)[dataIndex] = event.detail.value;
+        const oldData = this._deepCloneObject(this.data);
+        if (field in _cloneData[index]) {
+          _cloneData[index][field] = event.detail.value;
+        }
         this.data = this._deepCloneObject(_cloneData);
         const data = {
-          allData: this.data,
-          rowData: this._deepCloneObject(this.data[index]),
+          type: "change-cell",
           rowIndex: index,
-          columnsName: dataIndex,
+          data: this._deepCloneObject(_cloneData),
+          oldData: oldData,
+          field: field,
         };
-        this._dispatchChangeEvent("changeCell", data);
+        this._dispatchChangeEvent(data);
       };
       return html`
         <td
           class="kuc-table__table__body__row__cell-data"
           @change="${(event: CustomEvent) =>
-            handleChangeCell(event, column.dataIndex)}"
+            handleChangeCell(event, column.field)}"
         >
           ${cellTemplate}
         </td>
@@ -155,28 +175,36 @@ let exportTable;
 
     private _getActionsCellTemplate(index: number) {
       const _tempData = this._deepCloneObject(this.data);
+      const allData = this._deepCloneObject(this.data);
       const handleAddRow = () => {
         const defaultRow = this._getDefaultRowData(this.data[0]);
         _tempData.splice(index + 1, 0, defaultRow);
         this.data = this._deepCloneObject(_tempData);
         const data = {
-          allData: this._deepCloneObject(this.data),
+          type: "add-row",
           rowIndex: index + 1,
+          data: this._deepCloneObject(this.data),
+          oldData: allData,
         };
-        this._dispatchChangeEvent("addRow", data);
+        this._dispatchChangeEvent(data);
       };
       const handleRemoveRow = () => {
         _tempData.splice(index, 1);
         this.data = this._deepCloneObject(_tempData);
         const data = {
-          allData: this._deepCloneObject(this.data),
+          type: "remove-row",
           rowIndex: index,
+          data: this._deepCloneObject(this.data),
+          oldData: allData,
         };
-        this._dispatchChangeEvent("removeRow", data);
+        this._dispatchChangeEvent(data);
       };
 
       return html`
-        <td class="kuc-table__table__body__row__action">
+        <td
+          class="kuc-table__table__body__row__action"
+          ?hidden="${!this.actionButtonsShown}"
+        >
           <button
             type="button"
             @click="${handleAddRow}"
@@ -199,11 +227,8 @@ let exportTable;
       return JSON.parse(JSON.stringify(obj));
     }
 
-    private _dispatchChangeEvent(type: string, data: object) {
-      const detail: CustomEventDetail = {
-        data: data,
-        type: type,
-      };
+    private _dispatchChangeEvent(_detail: object) {
+      const detail: CustomEventDetail = _detail;
       dispatchCustomEvent(this, "change", detail);
     }
 

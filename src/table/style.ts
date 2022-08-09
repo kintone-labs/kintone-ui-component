@@ -45,7 +45,6 @@ export const TABLE_CSS = `
         height: 40px;
         padding: 4px 8px;
         text-align: left;
-        min-width: 193px;
         white-space: nowrap;
     }
     .kuc-table__table__header__cell[hidden] {
@@ -60,7 +59,7 @@ export const TABLE_CSS = `
         border-color: #e3e7e8;
         border-style: solid;
         border-width: 1px;
-        padding: 4px 8px;
+        padding: 8px 8px;
         vertical-align: top;
     }
     .kuc-table__table__body__row__cell-data[hidden] {

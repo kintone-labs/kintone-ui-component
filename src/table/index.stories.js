@@ -2,7 +2,10 @@ import "./index.ts";
 import { Dropdown } from "../dropdown";
 import { Checkbox } from "../checkbox";
 import { TextArea } from "../textarea";
-
+import { DatePicker } from "../date-picker";
+import { RadioButton } from "../radio-button";
+import { MultiChoice } from "../multichoice";
+import { TimePicker } from "../time-picker";
 import { html } from "lit-html";
 
 export default {
@@ -48,22 +51,17 @@ const renderName = (cellData) => {
   const dropdown = new Dropdown({
     items: [
       {
-        label: "a",
+        label: "Nguyen Van A",
         value: "a",
       },
       {
         label: "Vo Duc Hau",
         value: "voduchau",
       },
-      {
-        label: "b",
-        value: "b",
-      },
     ],
     value: cellData,
     selectedIndex: 0,
   });
-
   return dropdown;
 };
 
@@ -81,8 +79,40 @@ const renderAddress = (cellData) => {
     ],
     value: cellData,
   });
-
   return checkbox;
+};
+
+const renderDate = (cellData) => {
+  const datePicker = new DatePicker({ value: cellData });
+  return datePicker;
+};
+
+const renderTime = (cellData) => {
+  const timePicker = new TimePicker({ value: cellData });
+  return timePicker;
+};
+
+const renderGender = (cellData) => {
+  const radioButton = new RadioButton({
+    items: [
+      { label: "male", value: "male" },
+      { label: "female", value: "female" },
+    ],
+    value: cellData,
+  });
+  return radioButton;
+};
+
+const renderMultiChoice = (cellData) => {
+  const multichoice = new MultiChoice({
+    items: [
+      { label: "sample1", value: "sample1" },
+      { label: "sample2", value: "sample2" },
+      { label: "sample3", value: "sample3" },
+    ],
+    value: cellData,
+  });
+  return multichoice;
 };
 
 export const Base = Template.bind({});
@@ -92,35 +122,59 @@ Base.args = {
   columns: [
     {
       headerName: "Name",
-      dataIndex: "name",
+      field: "name",
       requiredIcon: true,
       render: renderName,
     },
     {
       headerName: "Address",
-      dataIndex: "address",
+      field: "address",
       render: renderAddress,
     },
     {
       headerName: "Age",
-      dataIndex: "age",
+      field: "age",
       render: renderAge,
+    },
+    {
+      headerName: "Date",
+      field: "date",
+      render: renderDate,
+    },
+    {
+      headerName: "Gender",
+      field: "gender",
+      render: renderGender,
+    },
+    {
+      headerName: "Time",
+      field: "time",
+      render: renderTime,
+    },
+    {
+      headerName: "Multichoice",
+      field: "multichoice",
+      render: renderMultiChoice,
     },
   ],
   data: [
     {
-      key: "1",
       name: "a",
       age: 32,
+      date: "2021-03-31",
+      time: "12:12",
+      gender: "female",
+      multichoice: ["sample1", "sample3"],
       address: ["vn"],
-      tags: ["nice", "developer"],
     },
     {
-      key: "2",
       name: "voduchau",
       age: 20,
+      date: "2021-02-22",
+      time: "13:13",
+      gender: "male",
+      multichoice: ["sample2", "sample3"],
       address: ["vn", "ja"],
-      tags: ["nice", "developer"],
     },
   ],
 };

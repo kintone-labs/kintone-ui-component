@@ -122,14 +122,45 @@ export async function throwErrorAfterUpdateComplete(
   throw new Error(message);
 }
 
-export const validateColumnTable = (columns: object[]) => {
+export const validateColumnTableArray = (columns: object[]) => {
   if (!Array.isArray(columns)) return false;
 
   return true;
 };
 
+export const validateFieldRequiedInColumnTable = (columns: object[]) => {
+  for (let i = 0; i < columns.length; i++) {
+    const column = columns[i];
+    const containField = "field" in column;
+    if (!containField) return false;
+  }
+
+  return true;
+};
+
+export const validateFieldUniqueInColumnTable = (columns: object[]) => {
+  const valueArr = columns.map(function (item: any) {
+    return item.field;
+  });
+  const isDuplicate = valueArr.some(function (item, idx) {
+    return valueArr.indexOf(item) !== idx;
+  });
+
+  return isDuplicate;
+};
+
 export const validateDataTable = (data: object[]) => {
   if (!Array.isArray(data)) return false;
+
+  for (let i = 0; i < data.length; i++) {
+    const rowObject = data[i];
+    if (
+      typeof rowObject !== "object" ||
+      Array.isArray(rowObject) ||
+      rowObject === null
+    )
+      return false;
+  }
 
   return true;
 };
