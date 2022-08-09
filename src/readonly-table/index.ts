@@ -84,13 +84,6 @@ let exportReadOnlyTable;
       return true;
     }
 
-    update(changedProperties: PropertyValues) {
-      if (changedProperties.has("columns")) this._validateColumns(this.columns);
-      if (changedProperties.has("data")) validateValueArray(this.data);
-
-      super.update(changedProperties);
-    }
-
     render() {
       const currentPageData = this._createDisplayData(
         this.data,
