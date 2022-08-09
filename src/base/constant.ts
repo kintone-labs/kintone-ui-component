@@ -11,10 +11,13 @@ export const ERROR_MESSAGE = {
     IS_NOT_NUMBER: "'selectedIndex' property is not number",
   },
   COLUMNS: {
-    INVALID: "'columns' property is invalid",
+    IS_NOT_ARRAY: "'columns' property is not an array.",
   },
   ROWS_PER_PAGE: {
     INVALID:
       "'rowsPerPage' property must be a positive integer! Set to 5 by default.",
+  },
+  DATA: {
+    IS_NOT_ARRAY: "'data' property is not an array.",
   },
 };
