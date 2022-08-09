@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html, PropertyValueMap, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
@@ -43,24 +43,45 @@ let exportReadOnlyTable;
 
     constructor(props?: ReadOnlyTableProps) {
       super();
-      if (props && props.columns && props.data) {
-        this._validateColumns(props.columns);
-        props.columns.map((col) =>
-          this._columnOrder.push(col.field ? col.field : "")
-        );
-        if (!validateValueArray(props.data)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
-        }
-      } else {
+      if (!props) {
         return;
       }
-
-      if (props.rowsPerPage || props.rowsPerPage === 0) {
-        props.rowsPerPage = this._validateRowsPerPage(props.rowsPerPage);
-      }
-
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+    }
+
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("columns")) {
+        this.columns.map((col) =>
+          this._columnOrder.push(col.field ? col.field : "")
+        );
+
+        if (!this._validateColumns(this.columns)) {
+          throwErrorAfterUpdateComplete(
+            this,
+            ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY
+          );
+          return false;
+        }
+      }
+
+      if (changedProperties.has("data") && !validateValueArray(this.data)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
+        return false;
+      }
+
+      if (changedProperties.has("rowsPerPage")) {
+        if (!this._validateRowsPerPage(this.rowsPerPage)) {
+          this.rowsPerPage = 5;
+          throwErrorAfterUpdateComplete(
+            this,
+            ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
+          );
+          return true;
+        }
+        this.rowsPerPage = Math.round(this.rowsPerPage);
+      }
+      return true;
     }
 
     update(changedProperties: PropertyValues) {
@@ -110,16 +131,16 @@ let exportReadOnlyTable;
 
     private _validateColumns(columns: Column[]) {
       if (!Array.isArray(columns)) {
-        throw new Error(ERROR_MESSAGE.COLUMNS.INVALID);
+        return false;
       }
+      return true;
     }
 
     private _validateRowsPerPage(numRows: number) {
       if (numRows < 0 || numRows === 0 || typeof numRows !== "number") {
-        console.error(ERROR_MESSAGE.ROWS_PER_PAGE.INVALID);
-        return 5;
+        return false;
       }
-      return Math.round(numRows);
+      return true;
     }
 
     private _getColumnsTemplate(column: Column) {
