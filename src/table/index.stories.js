@@ -169,4 +169,5 @@ Base.args = {
   ],
   id: "table-id",
   className: "table-classname",
+  actionButtonsShown: true,
 };
