@@ -7,14 +7,12 @@ export declare type Column = {
   visible?: boolean;
 };
 
-export declare type DataItem = string;
-
 export declare type ReadOnlyTableProps = {
   className?: string;
   id?: string;
   label?: string;
   columns?: Column[];
-  data?: DataItem[];
+  data?: object[];
   pagination?: boolean;
   rowsPerPage?: number;
   visible?: boolean;
@@ -25,7 +23,7 @@ export declare class ReadOnlyTable extends KucBase {
   id: string;
   label: string;
   columns: Column[];
-  data: DataItem[];
+  data: object[];
   pagination: boolean;
   rowsPerPage: number;
   visible: boolean;

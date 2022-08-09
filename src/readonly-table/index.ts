@@ -5,12 +5,14 @@ import { visiblePropConverter } from "../base/converter";
 import {
   throwErrorAfterUpdateComplete,
   validateProps,
-  validateValueArray,
+  validateColumns,
+  validateData,
+  validateRowsPerPage,
 } from "../base/validator";
 import { BaseLabel } from "../base/label";
 import "../base/pagination";
 import { ERROR_MESSAGE } from "../base/constant";
-import { Column, ReadOnlyTableProps, DataItem } from "./type";
+import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
 export { BaseLabel };
 
@@ -26,7 +28,7 @@ let exportReadOnlyTable;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
-    @property({ type: Array }) data: DataItem[] = [];
+    @property({ type: Array }) data: object[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
     @property({
@@ -56,7 +58,7 @@ let exportReadOnlyTable;
           this._columnOrder.push(col.field ? col.field : "")
         );
 
-        if (!this._validateColumns(this.columns)) {
+        if (!validateColumns(this.columns)) {
           throwErrorAfterUpdateComplete(
             this,
             ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY
@@ -65,13 +67,13 @@ let exportReadOnlyTable;
         }
       }
 
-      if (changedProperties.has("data") && !validateValueArray(this.data)) {
+      if (changedProperties.has("data") && !validateData(this.data)) {
         throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
         return false;
       }
 
       if (changedProperties.has("rowsPerPage")) {
-        if (!this._validateRowsPerPage(this.rowsPerPage)) {
+        if (!validateRowsPerPage(this.rowsPerPage)) {
           this.rowsPerPage = 5;
           throwErrorAfterUpdateComplete(
             this,
@@ -101,7 +103,7 @@ let exportReadOnlyTable;
             </tr>
           </thead>
           <tbody class="kuc-readonly-table__table__body">
-            ${currentPageData.map((data: string, currentIndex: number) => {
+            ${currentPageData.map((data: object, currentIndex: number) => {
               return this._getDataTemplate(
                 data,
                 currentIndex,
@@ -151,7 +153,7 @@ let exportReadOnlyTable;
 
     // Formatting the data displayed on the current page
     private _createDisplayData(
-      data: string[],
+      data: object[],
       pagePosition: number,
       steps: number
     ) {
