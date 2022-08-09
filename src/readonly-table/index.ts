@@ -124,20 +124,6 @@ let exportReadOnlyTable;
       `;
     }
 
-    private _validateColumns(columns: Column[]) {
-      if (!Array.isArray(columns)) {
-        return false;
-      }
-      return true;
-    }
-
-    private _validateRowsPerPage(numRows: number) {
-      if (numRows < 0 || numRows === 0 || typeof numRows !== "number") {
-        return false;
-      }
-      return true;
-    }
-
     private _getColumnsTemplate(column: Column) {
       return html`
         <th
