@@ -1,14 +1,15 @@
-const custom = require('../webpack.config');
+const custom = require("../webpack.config");
 
 module.exports = {
   core: {
     builder: "webpack5",
   },
   addons: [
-    '@storybook/addon-a11y',
-    '@storybook/addon-viewport',
-    '@storybook/addon-controls',
-    '@storybook/addon-actions'
+    "@storybook/addon-a11y",
+    "@storybook/addon-viewport",
+    "@storybook/addon-controls",
+    "@storybook/addon-actions",
+    "./addons/preset.js"
   ],
   webpackFinal: (config) => {
     return {

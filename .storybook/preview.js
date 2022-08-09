@@ -1,32 +1,32 @@
-import { configure, addParameters } from '@storybook/web-components';
+import { configure, addParameters } from "@storybook/web-components";
 
 const newViewports = {
   iPhone11ProMax: {
-    name: 'iPhone 11 Pro Max',
+    name: "iPhone 11 Pro Max",
     styles: {
-      width: '414px',
-      height: '896px',
+      width: "414px",
+      height: "896px"
     },
   },
   iPhone11Pro: {
-    name: 'iPhone 11 Pro',
+    name: "iPhone 11 Pro",
     styles: {
-      width: '375px',
-      height: '812px',
+      width: "375px",
+      height: "812px"
     },
   },
   iPhoneSE: {
-    name: 'iPhoneSE',
+    name: "iPhoneSE",
     styles: {
-      width: '320px',
-      height: '568px',
+      width: "320px",
+      height: "568px"
     },
   },
   googlePixel2: {
-    name: 'Google Pixel 2',
+    name: "Google Pixel 2",
     styles: {
-      width: '411px',
-      height: '731px',
+      width: "411px",
+      height: "731px"
     },
   },
 };
@@ -36,7 +36,7 @@ addParameters({
 
 // Hot Module Reloading (HMR)
 // force full reload to not reregister web components
-const req = require.context('../src', true, /\.stories\.(js|mdx)$/);
+const req = require.context("../src", true, /\.stories\.(js|mdx)$/);
 configure(req, module);
 if (module.hot) {
   module.hot.accept(req.id, () => {
