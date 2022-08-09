@@ -30,7 +30,7 @@ export declare class ReadOnlyTable extends KucBase {
   rowsPerPage: number;
   visible: boolean;
   constructor(props?: ReadOnlyTableProps);
-  update(changedProperties: PropertyValues): void;
+  shouldUpdate(changedProperties: PropertyValues): boolean;
   render(): import("lit-html").TemplateResult<1>;
   updated(): void;
 }
