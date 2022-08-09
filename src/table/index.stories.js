@@ -1,4 +1,4 @@
-import "./index.ts";
+import { Table } from "./index.ts";
 import { Dropdown } from "../dropdown";
 import { Checkbox } from "../checkbox";
 import { TextArea } from "../textarea";
@@ -6,7 +6,6 @@ import { DatePicker } from "../date-picker";
 import { RadioButton } from "../radio-button";
 import { MultiChoice } from "../multichoice";
 import { TimePicker } from "../time-picker";
-import { html } from "lit-html";
 
 export default {
   title: "desktop/table",
@@ -26,20 +25,11 @@ export default {
 };
 
 const Template = (args) => {
-  const handleDateChange = (event) => {
+  const table = new Table({ ...args });
+  table.addEventListener("change", (event) => {
     console.log(event);
-  };
-  return html`
-    <kuc-table
-      .id="${args.id}"
-      .label="${args.label}"
-      .visible="${args.visible}"
-      .className="${args.className}"
-      .data="${args.data}"
-      .columns="${args.columns}"
-      @change="${handleDateChange}"
-    ></kuc-table>
-  `;
+  });
+  return table;
 };
 
 const renderAge = (dataCell, dataRow) => {
@@ -177,4 +167,6 @@ Base.args = {
       address: ["vn", "ja"],
     },
   ],
+  id: "table-id",
+  className: "table-classname",
 };
