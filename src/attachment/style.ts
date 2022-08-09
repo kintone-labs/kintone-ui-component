@@ -16,9 +16,12 @@ export const ATTACHMENT_CSS = `
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
         Hei, "Heiti SC", sans-serif;
   }
-  .kuc-attachment {
+  kuc-attachment {
     font-size: 14px;
     display: inline-block;
+  }
+  kuc-attachment[hidden] {
+    display: none;
   }
   .kuc-attachment__group {
     width: 293px;
