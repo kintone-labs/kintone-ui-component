@@ -2,53 +2,53 @@ const webpack = require("webpack");
 const configuration = require("../webpack.esm.config.js");
 const path = require("path");
 const packageJSON = require("../package.json");
-
 const fs = require("fs");
-const componentDirectories = [
-  "mobile/datetime-picker",
-  "mobile/time-picker",
-  "mobile/date-picker",
-  "base/datetime/mobile-time",
-  "base/datetime/mobile-date",
-  "base/datetime/mobile-calendar",
-  "base/datetime/mobile-calendar/body",
-  "base/datetime/mobile-calendar/header",
-  "base/datetime/mobile-calendar/footer",
-  "base/error",
-  "base/label",
-  "base/datetime/listbox",
-  "base/datetime/time",
-  "base/datetime/date",
-  "base/datetime/calendar",
-  "base/datetime/calendar/body",
-  "base/datetime/calendar/footer",
-  "base/datetime/calendar/header",
-  "base/datetime/calendar/header/dropdown/month",
-  "base/datetime/calendar/header/dropdown/year",
-  "button",
-  "checkbox",
-  "date-picker",
-  "datetime-picker",
-  "dialog",
-  "dropdown",
-  "multichoice",
-  "notification",
-  "radio-button",
-  "spinner",
-  "text",
-  "textarea",
-  "time-picker",
-  "base/mobile-label",
-  "base/mobile-error",
-  "mobile/button",
-  "mobile/checkbox",
-  "mobile/dropdown",
-  "mobile/multichoice",
-  "mobile/notification",
-  "mobile/radio-button",
-  "mobile/text",
-  "mobile/textarea"
-];
+
+const source = "./src";
+const ignoreComponentDirectories = ["button", "checkbox", "dialog", "mobile/button"];
+const componentDirectories = getComponentDirectories(source, ignoreComponentDirectories);
+
+function flatten(lists) {
+  return lists.reduce((a, b) => a.concat(b), []);
+}
+
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath)
+    .map(file => path.join(srcpath, file))
+    .filter(path => fs.statSync(path).isDirectory());
+}
+
+function getAllDirectories(srcpath) {
+  return [srcpath,...flatten(getDirectories(srcpath).map(getAllDirectories))];
+}
+
+function getComponentDirectories(source, ignoreList) {
+  const allDirectories = getAllDirectories(source);
+  let componentDirectories = [];
+  allDirectories.map(dir => {
+    if(hasIndexAndStyle(dir)) {
+      let formattedDir = formatDirectoryStr(dir, "src/");
+      if (!ignoreList.includes(formattedDir)) {
+        componentDirectories.push(formattedDir);
+      }
+    }
+  })
+  return componentDirectories;
+}
+
+function formatDirectoryStr(directory, replace) {
+  const formattedDir = directory.replace(replace, "");
+  return formattedDir;
+}
+
+function hasIndexAndStyle(path) {
+  const listOfFiles = fs.readdirSync(path);
+  if(listOfFiles.includes("index.ts") && listOfFiles.includes("style.ts")) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
