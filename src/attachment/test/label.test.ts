@@ -1,14 +1,14 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Attachment } from "../index";
 
-describe("Checkbox", () => {
+describe("Attachment", () => {
   describe("label", () => {
     it("should be display none when not assigned in constructor", async () => {
       const container = new Attachment();
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-checkbox__group__label"
+        ".kuc-attachment__group__label"
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
@@ -23,7 +23,7 @@ describe("Checkbox", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-checkbox__group__label"
+        ".kuc-attachment__group__label"
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
@@ -39,7 +39,7 @@ describe("Checkbox", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-checkbox__group__label"
+        ".kuc-attachment__group__label"
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 

@@ -148,6 +148,7 @@ let exportAttachment;
               aria-label="Cancel File"
               data-file-index="${index}"
               @click="${this._handleClickFileRemove}"
+              tabindex="0"
             >
               ${this._getRemoveButtonIcon()}
             </button>
