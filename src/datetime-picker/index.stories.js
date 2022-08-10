@@ -1,4 +1,4 @@
-import "./index.ts";
+import { DateTimePicker } from "./index.ts";
 import { html } from "lit-html";
 
 export default {
@@ -31,37 +31,74 @@ export default {
   },
 };
 const Template = (args) => {
-  const handleDateChange = (event) => {
+  // const handleDateChange = (event) => {
+  //   console.log(event);
+  // };
+  // return html`
+  //   <kuc-datetime-picker
+  //     .className="${args.className}"
+  //     .error="${args.error}"
+  //     .id="${args.id}"
+  //     .label="${args.label}"
+  //     .language="${args.language}"
+  //     .value="${args.value}"
+  //     .disabled="${args.disabled}"
+  //     .hour12="${args.hour12}"
+  //     .requiredIcon="${args.requiredIcon}"
+  //     .visible="${args.visible}"
+  //     .timeStep="${args.timeStep}"
+  //     .min="${args.min}"
+  //     .max="${args.max}"
+  //     @change="${handleDateChange}"
+  //   ></kuc-datetime-picker>
+  // `;
+  const div = document.createElement("div");
+  const datePicker = new DateTimePicker({ ...args });
+  datePicker.addEventListener("change", (event) => {
     console.log(event);
-  };
-  return html`
-    <kuc-datetime-picker
-      .className="${args.className}"
-      .error="${args.error}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .language="${args.language}"
-      .value="${args.value}"
-      .disabled="${args.disabled}"
-      .hour12="${args.hour12}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .timeStep="${args.timeStep}"
-      .min="${args.min}"
-      .max="${args.max}"
-      @change="${handleDateChange}"
-    ></kuc-datetime-picker>
-  `;
+  });
+  const button = document.createElement("button");
+  button.innerText = "get value";
+  button.addEventListener("click", (event) => {
+    console.log(datePicker.value, "value");
+  });
+
+  const buttonSetUndefined = document.createElement("button");
+  buttonSetUndefined.innerText = "set undefined";
+  buttonSetUndefined.addEventListener("click", (event) => {
+    datePicker.value = undefined;
+  });
+
+  const buttonSetEmpty = document.createElement("button");
+  buttonSetEmpty.innerText = "set empty";
+  buttonSetEmpty.addEventListener("click", (event) => {
+    datePicker.value = "";
+  });
+
+
+  const buttonSetNull = document.createElement("button");
+  buttonSetNull.innerText = "set null";
+  buttonSetNull.addEventListener("click", (event) => {
+    datePicker.value = null;
+  });
+
+  div.appendChild(datePicker);
+  div.appendChild(button);
+  div.appendChild(buttonSetUndefined);
+  div.appendChild(buttonSetNull);
+  div.appendChild(buttonSetEmpty);
+
+  return div;
 };
 
 export const Base = Template.bind({});
 Base.args = {
   className: "datetime-class",
-  error: "DateTimePicker error",
+  error: "Custom error",
   id: "datetime-id",
   label: "Date and Time label",
   language: "en",
-  value: "2021-02-28",
+  value: "2021-12-12",
   disabled: false,
   hour12: true,
   requiredIcon: true,
