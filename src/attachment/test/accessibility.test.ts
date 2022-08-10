@@ -13,8 +13,7 @@ describe("Attachment", () => {
         requiredIcon: true,
       });
       const el = await fixture(container);
-      // await elementUpdated(container);
-      // await elementUpdated(el);
+
       const buttonsEl = el.querySelectorAll(
         ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
       );
@@ -42,17 +41,20 @@ describe("Attachment", () => {
           console.log(triggeredEvent);
         }
       );
-      const buttonEl = el.querySelector(
+      const inputEl = el.querySelector(
         ".kuc-attachment__group__files__browse-button__input-container__input"
       );
-      (buttonEl as HTMLDivElement).addEventListener("focus", (event: Event) => {
-        triggeredEvent = event;
-        console.log(triggeredEvent);
-      });
+      (inputEl as HTMLInputElement).addEventListener(
+        "focus",
+        (event: Event) => {
+          triggeredEvent = event;
+          console.log(triggeredEvent);
+        }
+      );
       // (buttonsEl[0] as HTMLButtonElement).dispatchEvent(
       //   new KeyboardEvent("keydown", { key: "Tab" })
       // );
-      (buttonsEl[1] as HTMLDivElement).dispatchEvent(
+      (buttonsEl[1] as HTMLButtonElement).dispatchEvent(
         new KeyboardEvent("keydown", { key: "Tab" })
       );
 
