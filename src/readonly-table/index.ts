@@ -1,4 +1,4 @@
-import { html, PropertyValueMap, PropertyValues } from "lit";
+import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { KucBase, createStyleOnHeader } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
@@ -9,12 +9,10 @@ import {
   validateData,
   validateRowsPerPage,
 } from "../base/validator";
-import { BaseLabel } from "../base/label";
 import "../base/pagination";
 import { ERROR_MESSAGE } from "../base/constant";
 import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
-export { BaseLabel };
 
 let exportReadOnlyTable;
 (() => {
@@ -95,7 +93,7 @@ let exportReadOnlyTable;
       return html`
         <table class="kuc-readonly-table__table" aria-label="${this.label}">
           <caption class="kuc-readonly-table__table__label">
-            <kuc-base-label .text="${this.label}"></kuc-base-label>
+            ${this.label}
           </caption>
           <thead class="kuc-readonly-table__table__header">
             <tr>
