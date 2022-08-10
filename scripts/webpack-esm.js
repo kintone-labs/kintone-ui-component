@@ -5,49 +5,40 @@ const packageJSON = require("../package.json");
 const fs = require("fs");
 
 const source = "./src";
-const ignoreComponentDirectories = ["button", "checkbox", "dialog", "mobile/button"];
+const ignoreComponentDirectories = [];
 const componentDirectories = getComponentDirectories(source, ignoreComponentDirectories);
 
 function flatten(lists) {
-  return lists.reduce((a, b) => a.concat(b), []);
+  return [].concat(...lists);
 }
 
-function getDirectories(srcpath) {
-  return fs.readdirSync(srcpath)
-    .map(file => path.join(srcpath, file))
+function getDirectories(srcPath) {
+  return fs.readdirSync(srcPath)
+    .map(file => path.join(srcPath, file))
     .filter(path => fs.statSync(path).isDirectory());
 }
 
-function getAllDirectories(srcpath) {
-  return [srcpath,...flatten(getDirectories(srcpath).map(getAllDirectories))];
+function getAllDirectories(srcPath) {
+  return [srcPath,...flatten(getDirectories(srcPath).map(getAllDirectories))];
 }
 
 function getComponentDirectories(source, ignoreList) {
   const allDirectories = getAllDirectories(source);
   let componentDirectories = [];
-  allDirectories.map(dir => {
-    if(hasIndexAndStyle(dir)) {
-      let formattedDir = formatDirectoryStr(dir, "src/");
-      if (!ignoreList.includes(formattedDir)) {
-        componentDirectories.push(formattedDir);
-      }
-    }
-  })
+  for(let index = 0; index < allDirectories.length; index++) {
+    if(!hasIndexAndStyle(allDirectories[index])) continue;
+    let formattedDir = allDirectories[index].replace("src/", "");
+    if(ignoreList.includes(formattedDir)) continue;
+    componentDirectories.push(formattedDir);
+  }
   return componentDirectories;
-}
-
-function formatDirectoryStr(directory, replace) {
-  const formattedDir = directory.replace(replace, "");
-  return formattedDir;
 }
 
 function hasIndexAndStyle(path) {
   const listOfFiles = fs.readdirSync(path);
-  if(listOfFiles.includes("index.ts") && listOfFiles.includes("style.ts")) {
-    return true;
-  } else {
-    return false;
-  }
+  if(!listOfFiles.includes("index.ts")) return false;
+  if(!listOfFiles.includes("style.ts")) return false;
+  return true;
 }
 
 const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
