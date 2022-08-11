@@ -163,14 +163,17 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
+                const isSelectedDay = this.value === weekDate.attr;
                 return html`
                   <td
                     role="gridcell"
-                    tabindex="-1"
-                    class="kuc-base-mobile-datetime-calendar-body__table__date${(this
-                      .value === weekDate.attr ||
-                      isSameDate) &&
+                    tabindex="${(this.value === weekDate.attr || isSameDate) &&
                     isThisMonth
+                      ? 0
+                      : -1}"
+                    aria-selected="${isSelectedDay}"
+                    aria-current="${this._isToday(dateParts) ? "date" : ""}"
+                    class="kuc-base-mobile-datetime-calendar-body__table__date${isSelectedDay
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"
