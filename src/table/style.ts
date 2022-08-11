@@ -66,6 +66,7 @@ export const TABLE_CSS = `
         display: none;
     }
     .kuc-table__table__body__row__action {
+        display: flex;
         vertical-align: top;
     }
     .kuc-table__table__body__row__action-add {

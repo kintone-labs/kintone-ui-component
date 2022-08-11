@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
@@ -43,6 +43,9 @@ let exportTable;
     })
     visible = true;
 
+    @query(".kuc-table__table")
+    private _table!: HTMLTableElement;
+
     constructor(props?: TableProps) {
       super();
       if (!props) return;
@@ -82,6 +85,7 @@ let exportTable;
     }
 
     render() {
+      console.log(this.data.length, " length");
       return html`
         <table class="kuc-table__table">
           <caption>
@@ -173,33 +177,65 @@ let exportTable;
       `;
     }
 
-    private _getActionsCellTemplate(index: number) {
-      const _tempData = this._deepCloneObject(this.data);
-      const allData = this._deepCloneObject(this.data);
-      const handleAddRow = () => {
-        const defaultRow = this._getDefaultRowData(this.data[0]);
-        _tempData.splice(index + 1, 0, defaultRow);
-        this.data = this._deepCloneObject(_tempData);
-        const data = {
-          type: "add-row",
-          rowIndex: index + 1,
-          data: this._deepCloneObject(this.data),
-          oldData: allData,
-        };
-        this._dispatchChangeEvent(data);
-      };
-      const handleRemoveRow = () => {
-        _tempData.splice(index, 1);
-        this.data = this._deepCloneObject(_tempData);
-        const data = {
-          type: "remove-row",
-          rowIndex: index,
-          data: this._deepCloneObject(this.data),
-          oldData: allData,
-        };
-        this._dispatchChangeEvent(data);
-      };
+    private _handleAddRow(currentRow: HTMLTableRowElement) {
+      const defaultRow = this._getDefaultRowData(this.data[0]);
+      // const currentCell = (e.target as HTMLElement)
+      //   .parentElement as HTMLTableCellElement;
+      // const currentRow = currentCell.parentElement as HTMLTableRowElement;
+      const currentRowIndex = currentRow.rowIndex;
+      const newRow = this._table.insertRow(currentRowIndex + 1);
+      newRow.classList.add("kuc-table__table__body__row");
+      for (let i = 0; i < this.columns.length; i++) {
+        const newCell = newRow.insertCell(i);
+        newCell.classList.add("kuc-table__table__body__row__cell-data");
+        const column = this.columns[i];
+        const cellTemplate = column.render
+          ? column.render(defaultRow[column.field], column)
+          : defaultRow[column.field];
+        newCell.appendChild(cellTemplate);
+      }
+      this._addActionsButtonToNewRow(newRow, currentRowIndex);
 
+      this.data.splice(currentRowIndex + 1, 0, defaultRow);
+    }
+
+    private _addActionsButtonToNewRow(
+      newRow: HTMLTableRowElement,
+      currentRowIndex: number
+    ) {
+      const newCell = newRow.insertCell(this.columns.length);
+      newCell.classList.add("kuc-table__table__body__row__action");
+      const buttonAdd = document.createElement("button");
+      buttonAdd.classList.add("kuc-table__table__body__row__action-add");
+      buttonAdd.addEventListener("click", () => {
+        this._handleAddRow(newRow);
+      });
+      const buttonRemove = document.createElement("button");
+      buttonRemove.classList.add("kuc-table__table__body__row__action-remove");
+      buttonRemove.addEventListener("click", () => {
+        this._handleRemoveRow(newRow);
+      });
+      newCell.appendChild(buttonAdd);
+      newCell.appendChild(buttonRemove);
+    }
+
+    private _handleRemoveRow(currentRow: HTMLTableRowElement) {
+      if (!this._table) return;
+
+      console.log(currentRow.rowIndex, "currentRow");
+
+      this._table.deleteRow(currentRow.rowIndex);
+      this.data.splice(currentRow.rowIndex - 1, 1);
+      const data = {
+        type: "remove-row",
+        rowIndex: currentRow.rowIndex,
+        data: this._deepCloneObject(this.data),
+        oldData: this.data,
+      };
+      this._dispatchChangeEvent(data);
+    }
+
+    private _getActionsCellTemplate(currentIndex: number) {
       return html`
         <td
           class="kuc-table__table__body__row__action"
@@ -207,7 +243,12 @@ let exportTable;
         >
           <button
             type="button"
-            @click="${handleAddRow}"
+            @click="${(e: PointerEvent) => {
+              const currentCell = (e.target as HTMLButtonElement).parentElement;
+              const currentRow =
+                currentCell?.parentElement as HTMLTableRowElement;
+              this._handleAddRow(currentRow);
+            }}"
             class="kuc-table__table__body__row__action-add"
             title="Add row"
           ></button>
@@ -215,7 +256,13 @@ let exportTable;
             ? null
             : html`<button
                 type="button"
-                @click="${handleRemoveRow}"
+                @click="${(e: PointerEvent) => {
+                  const currentCell = (e.target as HTMLButtonElement)
+                    .parentElement;
+                  const currentRow =
+                    currentCell?.parentElement as HTMLTableRowElement;
+                  this._handleRemoveRow(currentRow);
+                }}"
                 class="kuc-table__table__body__row__action-remove"
                 title="Delete this row"
               ></button>`}
