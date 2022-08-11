@@ -204,11 +204,8 @@ let exportDateTimePicker;
 
     private _updateValueChangeByUI() {
       const validFormat = this._validateDateTimeFormat();
-      if (validFormat && !this._dateValue && !this._timeValue) {
-        this.value = "";
-      } else {
-        this.value = validFormat ? this.value : undefined;
-      }
+      this.value = validFormat ? this.value : undefined;
+      if (validFormat && !this._dateValue && !this._timeValue) this.value = "";
       const missingOnlyDate = !this._dateValue && this._timeValue;
       const missingOnlyTime = this._dateValue && !this._timeValue;
       if (missingOnlyDate || missingOnlyTime) {
