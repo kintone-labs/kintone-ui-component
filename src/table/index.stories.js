@@ -101,79 +101,55 @@ const renderMultiChoice = (cellData) => {
 const Template = (args) => {
   const table = new Table({ ...args });
   table.addEventListener("change", (event) => {
-    const checkboxEl = document.getElementById(
-      `address-${event.detail.rowIndex}`
-    );
-    const field = event.detail.field;
-    const newData = event.detail.data[event.detail.rowIndex][field];
-    if (field === "name") {
-      if (newData === "hau") {
-        checkboxEl.value = ["ja"];
-        checkboxEl.dispatchEvent(
-          new CustomEvent("change", {
-            detail: { value: ["ja"], oldValue: [] },
-            bubbles: true,
-            cancelable: true,
-          })
-        );
-      }
-      if (newData === "a") {
-        checkboxEl.value = ["vn"];
-        checkboxEl.dispatchEvent(
-          new CustomEvent("change", {
-            detail: { value: ["vn"], oldValue: [] },
-            bubbles: true,
-            cancelable: true,
-          })
-        );
-      }
-    }
+    console.log(event, "event");
   });
   return table;
 };
+
+const columns = [
+  {
+    headerName: "Name",
+    field: "name",
+    requiredIcon: true,
+    render: renderName,
+  },
+  {
+    headerName: "Address",
+    field: "address",
+    render: renderAddress,
+  },
+  {
+    headerName: "Age",
+    field: "age",
+    render: renderAge,
+  },
+  {
+    headerName: "Date",
+    field: "date",
+    render: renderDate,
+  },
+  {
+    headerName: "Gender",
+    field: "gender",
+    render: renderGender,
+  },
+  {
+    headerName: "Time",
+    field: "time",
+    render: renderTime,
+  },
+  {
+    headerName: "Multichoice",
+    field: "multichoice",
+    render: renderMultiChoice,
+  },
+];
 
 export const Base = Template.bind({});
 Base.args = {
   label: "Table component",
   visible: true,
-  columns: [
-    {
-      headerName: "Name",
-      field: "name",
-      requiredIcon: true,
-      render: renderName,
-    },
-    {
-      headerName: "Address",
-      field: "address",
-      render: renderAddress,
-    },
-    {
-      headerName: "Age",
-      field: "age",
-      render: renderAge,
-    },
-    {
-      headerName: "Date",
-      field: "date",
-      render: renderDate,
-    },
-    {
-      headerName: "Gender",
-      field: "gender",
-      render: renderGender,
-    },
-    {
-      headerName: "Time",
-      field: "time",
-      render: renderTime,
-    },
-    {
-      headerName: "Multichoice",
-      field: "multichoice",
-      render: renderMultiChoice,
-    },
-  ],
+  columns: columns,
   data: [
     {
       name: "a",
