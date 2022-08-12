@@ -124,9 +124,8 @@ export async function throwErrorAfterUpdateComplete(
 }
 
 export function validateColumns(columns: Column[]) {
-  if (!Array.isArray(columns)) {
-    return false;
-  }
+  if (!Array.isArray(columns)) return false;
+  if (columns[0] === null) return false;
   return true;
 }
 
