@@ -131,9 +131,8 @@ export function validateColumns(columns: Column[]) {
 }
 
 export function validateData(data: object[]) {
-  if (!Array.isArray(data)) {
-    return false;
-  }
+  if (!Array.isArray(data)) return false;
+  if (data[0] === null) return false;
   return true;
 }
 
