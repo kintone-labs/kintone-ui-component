@@ -103,8 +103,8 @@ let exportTable;
             ${this._getTableHeaderTemplate()}
           </thead>
           <tbody class="kuc-table__table__body">
-            ${this.data.map((dataRow: object) => {
-              return this._getTableRowTemplate(dataRow);
+            ${this.data.map((dataRow: object, rowIndex: number) => {
+              return this._getTableRowTemplate(dataRow, rowIndex);
             })}
           </tbody>
         </table>
@@ -136,13 +136,13 @@ let exportTable;
       `;
     }
 
-    private _getTableRowTemplate(dataRow: object) {
+    private _getTableRowTemplate(dataRow: object, rowIndex: number) {
       return html`
         <tr class="${rowClassName}">
           ${this.columns.map((column) => {
             const dataCell = (dataRow as { [key: string]: any })[column.field];
             const dataRender = column.render
-              ? column.render(dataCell, dataRow)
+              ? column.render(dataCell, dataRow, rowIndex)
               : dataCell;
             return this._getTableCellTemplate(column, dataRender);
           })}
@@ -244,7 +244,7 @@ let exportTable;
           this._handleChangeCell(event, column.field);
         });
         const cellTemplate = column.render
-          ? column.render(defaultRow[column.field], column)
+          ? column.render(defaultRow[column.field], column, currentRowIndex)
           : defaultRow[column.field];
         newCell.appendChild(cellTemplate);
       }

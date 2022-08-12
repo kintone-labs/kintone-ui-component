@@ -7,7 +7,11 @@ export declare type Column = {
   visible?: boolean;
   render?: Render;
 };
-declare type Render = (dataCell: any, dataRow: object) => HTMLElement;
+export declare type Render = (
+  dataCell: any,
+  dataRow: object,
+  rowIndex: number
+) => HTMLElement;
 export declare type TableProps = {
   className?: string;
   id?: string;

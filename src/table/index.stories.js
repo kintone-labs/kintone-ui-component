@@ -24,20 +24,12 @@ export default {
   },
 };
 
-const Template = (args) => {
-  const table = new Table({ ...args });
-  // table.addEventListener("change", (event) => {
-  //   console.log(event);
-  // });
-  return table;
-};
-
 const renderAge = (dataCell, dataRow) => {
   const text = new TextArea({ value: dataCell });
   return text;
 };
 
-const renderName = (cellData) => {
+const renderName = (cellData, rowData, index) => {
   const dropdown = new Dropdown({
     items: [
       {
@@ -46,7 +38,7 @@ const renderName = (cellData) => {
       },
       {
         label: "Vo Duc Hau",
-        value: "voduchau",
+        value: "hau",
       },
     ],
     value: cellData,
@@ -55,8 +47,9 @@ const renderName = (cellData) => {
   return dropdown;
 };
 
-const renderAddress = (cellData) => {
+const renderAddress = (cellData, rowData, index) => {
   const checkbox = new Checkbox({
+    id: `address-${index}`,
     items: [
       {
         label: "VietNam",
@@ -103,6 +96,40 @@ const renderMultiChoice = (cellData) => {
     value: cellData,
   });
   return multichoice;
+};
+
+const Template = (args) => {
+  const table = new Table({ ...args });
+  table.addEventListener("change", (event) => {
+    const checkboxEl = document.getElementById(
+      `address-${event.detail.rowIndex}`
+    );
+    const field = event.detail.field;
+    const newData = event.detail.data[event.detail.rowIndex][field];
+    if (field === "name") {
+      if (newData === "hau") {
+        checkboxEl.value = ["ja"];
+        checkboxEl.dispatchEvent(
+          new CustomEvent("change", {
+            detail: { value: ["ja"], oldValue: [] },
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
+      if (newData === "a") {
+        checkboxEl.value = ["vn"];
+        checkboxEl.dispatchEvent(
+          new CustomEvent("change", {
+            detail: { value: ["vn"], oldValue: [] },
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
+    }
+  });
+  return table;
 };
 
 export const Base = Template.bind({});
@@ -158,13 +185,13 @@ Base.args = {
       address: ["vn"],
     },
     {
-      name: "voduchau",
+      name: "hau",
       age: 20,
       date: "2021-02-22",
       time: "13:13",
       gender: "male",
       multichoice: ["sample2", "sample3"],
-      address: ["vn", "ja"],
+      address: ["ja"],
     },
   ],
   id: "table-id",
