@@ -111,7 +111,7 @@ describe("ReadOnlyTable", () => {
     it("should throw error when set wrong type on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'data' property is invalid");
+        expect(errorMsg).to.equal("'data' property is not an array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -124,20 +124,20 @@ describe("ReadOnlyTable", () => {
     it("should throw error when set null array on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'data' property is invalid");
+        expect(errorMsg).to.equal("'data' property is not an array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
       window.addEventListener("unhandledrejection", handleError);
 
-      const container = new ReadOnlyTable({ columns: columns, data: data });
+      const container = new ReadOnlyTable({ columns: columns, data: [null] });
       fixture(container);
     });
 
     it("should be throw error when assigned null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'data' property is invalid");
+        expect(errorMsg).to.equal("'data' property is not an array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
