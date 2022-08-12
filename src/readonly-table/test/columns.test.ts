@@ -160,21 +160,18 @@
 //     }).to.throw(Error, "'columns' property is invalid");
 //   });
 
-//   it("should be throw error when assigned null by setter", async () => {
-//     const container = new ReadOnlyTable();
-//     try {
-//       // @ts-expect-error
-//       container.items = null;
-//       await fixture(container);
-//     } catch (error) {
-//       let errorMessage = "'columns' property is invalid";
-//       if (error instanceof Error) {
-//         errorMessage = error.message;
-//       }
-//       expect(errorMessage).to.equal("'columns' property is invalid");
-//     }
+//   it("should be throw error when assigned null by setter", (done) => {
+//     const handleError = (event: any) => {
+//       const errorMsg = event.reason.message;
+//       expect(errorMsg).to.equal("'columns' property is invalid");
+//       window.removeEventListener("unhandledrejection", handleError);
+//       done();
+//     };
+//     window.addEventListener("unhandledrejection", handleError);
 
-//     // TODO:
-//     // Implement checking if source code does not throw error in _validateColumns function
+//     const container = new ReadOnlyTable();
+//     // @ts-expect-error
+//     container.columns = null;
+//     fixture(container);
 //   });
 // });
