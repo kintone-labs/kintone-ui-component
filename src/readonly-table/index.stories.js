@@ -2,7 +2,16 @@ import { ReadOnlyTable } from "./index.ts";
 
 export default {
   title: "desktop/readonly-table",
-  argTypes: {},
+  argTypes: {
+    className: { name: "className" },
+    id: { name: "id" },
+    label: { name: "label" },
+    data: { name: "data" },
+    pagination: { name: "pagination" },
+    rowsPerPage: { name: "rowsPerPage" },
+    columns: { name: "columns" },
+    visible: { name: "visible" },
+  },
   parameters: {
     actions: {
       handles: ["kuc:pagination-click-prev", "kuc:pagination-click-next"],
@@ -19,7 +28,6 @@ export const Base = Template.bind({});
 Base.args = {
   id: "sample-id",
   className: "sample-class",
-  label: "My ReadOnly Table",
   visible: true,
   pagination: true,
   rowsPerPage: 3,
