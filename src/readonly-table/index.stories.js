@@ -19,6 +19,7 @@ export const Base = Template.bind({});
 Base.args = {
   id: "sample-id",
   className: "sample-class",
+  label: "My ReadOnly Table",
   visible: true,
   pagination: true,
   rowsPerPage: 3,
