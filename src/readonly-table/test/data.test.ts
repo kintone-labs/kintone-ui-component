@@ -43,7 +43,7 @@ const columns = [
 ];
 
 describe("ReadOnlyTable", () => {
-  describe("Data", () => {
+  describe("data", () => {
     it("should be empty body when not assigned on constructor", async () => {
       const container = new ReadOnlyTable();
       const el = await fixture(container);
@@ -130,7 +130,7 @@ describe("ReadOnlyTable", () => {
       };
       window.addEventListener("unhandledrejection", handleError);
 
-      const container = new ReadOnlyTable({ columns: columns, data: [data] });
+      const container = new ReadOnlyTable({ columns: columns, data: [null] });
       fixture(container);
     });
 
