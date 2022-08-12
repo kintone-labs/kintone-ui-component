@@ -192,12 +192,11 @@ describe("ReadOnlyTable", () => {
     };
     window.addEventListener("unhandledrejection", handleError);
 
-    const container = new ReadOnlyTable();
-    container.columns = null;
+    const container = new ReadOnlyTable({ columns: null });
     fixture(container);
   });
 
-  it("should be throw error when assign null by setter", (done) => {
+  it("should throw error when assign null by setter", (done) => {
     const handleError = (event: any) => {
       const errorMsg = event.reason.message;
       expect(errorMsg).to.equal("'columns' property is not an array.");
@@ -206,7 +205,7 @@ describe("ReadOnlyTable", () => {
     };
     window.addEventListener("unhandledrejection", handleError);
 
-    const container = new ReadOnlyTable();
+    const container = new ReadOnlyTable({});
     container.columns = null;
     fixture(container);
   });
