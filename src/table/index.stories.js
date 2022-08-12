@@ -26,9 +26,9 @@ export default {
 
 const Template = (args) => {
   const table = new Table({ ...args });
-  table.addEventListener("change", (event) => {
-    console.log(event);
-  });
+  // table.addEventListener("change", (event) => {
+  //   console.log(event);
+  // });
   return table;
 };
 

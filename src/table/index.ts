@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/no-kuc-class-prefix */
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
@@ -20,6 +21,12 @@ import {
 import { ERROR_MESSAGE } from "../base/constant";
 import { TableProps, Column } from "./type";
 import { TABLE_CSS } from "./style";
+
+const cellClassName = "kuc-table__table__body__row__cell-data";
+const rowClassName = "kuc-table__table__body__row";
+const cellActionsClassName = "kuc-table__table__body__row__action";
+const btnAddRowClassName = "kuc-table__table__body__row__action-add";
+const btnRemoveRowClassName = "kuc-table__table__body__row__action-remove";
 
 let exportTable;
 (() => {
@@ -45,6 +52,8 @@ let exportTable;
 
     @query(".kuc-table__table")
     private _table!: HTMLTableElement;
+    @query(`.${btnRemoveRowClassName}`)
+    private _firstButtonRemoveRow!: HTMLButtonElement;
 
     constructor(props?: TableProps) {
       super();
@@ -52,20 +61,6 @@ let exportTable;
 
       const validProps = validateProps(props);
       Object.assign(this, validProps);
-    }
-
-    private _getErrorMessageWhenValidateColumns() {
-      let errorMessage = "";
-      if (!validateColumnTableArray(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
-      }
-      if (!validateFieldRequiedInColumnTable(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
-      }
-      if (validateFieldUniqueInColumnTable(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
-      }
-      return errorMessage;
     }
 
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
@@ -84,8 +79,21 @@ let exportTable;
       return true;
     }
 
+    private _getErrorMessageWhenValidateColumns() {
+      let errorMessage = "";
+      if (!validateColumnTableArray(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
+      }
+      if (!validateFieldRequiedInColumnTable(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
+      }
+      if (validateFieldUniqueInColumnTable(this.columns)) {
+        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
+      }
+      return errorMessage;
+    }
+
     render() {
-      console.log(this.data.length, " length");
       return html`
         <table class="kuc-table__table">
           <caption>
@@ -95,8 +103,8 @@ let exportTable;
             ${this._getTableHeaderTemplate()}
           </thead>
           <tbody class="kuc-table__table__body">
-            ${this.data.map((dataRow: object, index: number) => {
-              return this._getTableRowTemplate(dataRow, index);
+            ${this.data.map((dataRow: object) => {
+              return this._getTableRowTemplate(dataRow);
             })}
           </tbody>
         </table>
@@ -128,158 +136,90 @@ let exportTable;
       `;
     }
 
-    private _getTableRowTemplate(dataRow: any, index: number) {
+    private _getTableRowTemplate(dataRow: object) {
       return html`
-        <tr class="kuc-table__table__body__row">
+        <tr class="${rowClassName}">
           ${this.columns.map((column) => {
-            const dataCell = dataRow[column.field];
-            const cellTemplate = column.render
+            const dataCell = (dataRow as { [key: string]: any })[column.field];
+            const dataRender = column.render
               ? column.render(dataCell, dataRow)
               : dataCell;
-            return this._getTableCellTemplate(column, index, cellTemplate);
+            return this._getTableCellTemplate(column, dataRender);
           })}
-          ${this._getActionsCellTemplate(index)}
+          ${this._getActionsCellTemplate()}
         </tr>
       `;
     }
 
     private _getTableCellTemplate(
       column: Column,
-      index: number,
-      cellTemplate: HTMLElement
+      dataRender: HTMLElement | string
     ) {
-      const handleChangeCell = (event: CustomEvent, field: string) => {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        const _cloneData = this._deepCloneObject(this.data);
-        const oldData = this._deepCloneObject(this.data);
-        if (field in _cloneData[index]) {
-          _cloneData[index][field] = event.detail.value;
-        }
-        this.data = this._deepCloneObject(_cloneData);
-        const data = {
-          type: "change-cell",
-          rowIndex: index,
-          data: this._deepCloneObject(_cloneData),
-          oldData: oldData,
-          field: field,
-        };
-        this._dispatchChangeEvent(data);
-      };
       return html`
         <td
-          class="kuc-table__table__body__row__cell-data"
-          @change="${(event: CustomEvent) =>
-            handleChangeCell(event, column.field)}"
+          class="${cellClassName}"
+          @change="${(event: Event) =>
+            this._handleChangeCell(event, column.field)}"
         >
-          ${cellTemplate}
+          ${dataRender}
         </td>
       `;
     }
 
-    private _handleAddRow(currentRow: HTMLTableRowElement) {
-      const defaultRow = this._getDefaultRowData(this.data[0]);
-      // const currentCell = (e.target as HTMLElement)
-      //   .parentElement as HTMLTableCellElement;
-      // const currentRow = currentCell.parentElement as HTMLTableRowElement;
-      const currentRowIndex = currentRow.rowIndex;
-      const newRow = this._table.insertRow(currentRowIndex + 1);
-      newRow.classList.add("kuc-table__table__body__row");
-      for (let i = 0; i < this.columns.length; i++) {
-        const newCell = newRow.insertCell(i);
-        newCell.classList.add("kuc-table__table__body__row__cell-data");
-        const column = this.columns[i];
-        const cellTemplate = column.render
-          ? column.render(defaultRow[column.field], column)
-          : defaultRow[column.field];
-        newCell.appendChild(cellTemplate);
+    private _getActionsCellWhenRemoveRow(currentRowIndex: number) {
+      let actionsCell = null;
+      let i = currentRowIndex;
+      while (this.data.length > 1) {
+        const currentRow = this._table.rows[i] as HTMLTableRowElement;
+        if (!currentRow) {
+          i--;
+        } else {
+          actionsCell = currentRow.cells[this.columns.length];
+          break;
+        }
       }
-      this._addActionsButtonToNewRow(newRow, currentRowIndex);
-
-      this.data.splice(currentRowIndex + 1, 0, defaultRow);
+      return actionsCell;
     }
 
-    private _addActionsButtonToNewRow(
-      newRow: HTMLTableRowElement,
-      currentRowIndex: number
-    ) {
-      const newCell = newRow.insertCell(this.columns.length);
-      newCell.classList.add("kuc-table__table__body__row__action");
-      const buttonAdd = document.createElement("button");
-      buttonAdd.classList.add("kuc-table__table__body__row__action-add");
-      buttonAdd.addEventListener("click", () => {
-        this._handleAddRow(newRow);
-      });
-      const buttonRemove = document.createElement("button");
-      buttonRemove.classList.add("kuc-table__table__body__row__action-remove");
-      buttonRemove.addEventListener("click", () => {
-        this._handleRemoveRow(newRow);
-      });
-      newCell.appendChild(buttonAdd);
-      newCell.appendChild(buttonRemove);
+    private _getCurrentRowIndex(event: PointerEvent) {
+      const currentButtonEl = event.target as HTMLButtonElement;
+      const currentCellEl =
+        currentButtonEl.parentElement as HTMLTableCellElement;
+      const currentRow = currentCellEl.parentElement as HTMLTableRowElement;
+      return currentRow.rowIndex;
     }
 
-    private _handleRemoveRow(currentRow: HTMLTableRowElement) {
-      if (!this._table) return;
-
-      console.log(currentRow.rowIndex, "currentRow");
-
-      this._table.deleteRow(currentRow.rowIndex);
-      this.data.splice(currentRow.rowIndex - 1, 1);
-      const data = {
-        type: "remove-row",
-        rowIndex: currentRow.rowIndex,
-        data: this._deepCloneObject(this.data),
-        oldData: this.data,
-      };
-      this._dispatchChangeEvent(data);
-    }
-
-    private _getActionsCellTemplate(currentIndex: number) {
+    private _getActionsCellTemplate() {
       return html`
         <td
-          class="kuc-table__table__body__row__action"
+          class="${cellActionsClassName}"
           ?hidden="${!this.actionButtonsShown}"
         >
           <button
             type="button"
-            @click="${(e: PointerEvent) => {
-              const currentCell = (e.target as HTMLButtonElement).parentElement;
-              const currentRow =
-                currentCell?.parentElement as HTMLTableRowElement;
-              this._handleAddRow(currentRow);
+            @click="${(event: PointerEvent) => {
+              const rowIndex = this._getCurrentRowIndex(event);
+              this._handleAddRow(rowIndex);
             }}"
-            class="kuc-table__table__body__row__action-add"
+            class="${btnAddRowClassName}"
             title="Add row"
           ></button>
           ${this.data.length === 1
             ? null
             : html`<button
                 type="button"
-                @click="${(e: PointerEvent) => {
-                  const currentCell = (e.target as HTMLButtonElement)
-                    .parentElement;
-                  const currentRow =
-                    currentCell?.parentElement as HTMLTableRowElement;
-                  this._handleRemoveRow(currentRow);
+                @click="${(event: PointerEvent) => {
+                  const rowIndex = this._getCurrentRowIndex(event);
+                  this._handleRemoveRow(rowIndex);
                 }}"
-                class="kuc-table__table__body__row__action-remove"
+                class="${btnRemoveRowClassName}"
                 title="Delete this row"
               ></button>`}
         </td>
       `;
     }
 
-    private _deepCloneObject(obj: any) {
-      return JSON.parse(JSON.stringify(obj));
-    }
-
-    private _dispatchChangeEvent(_detail: object) {
-      const detail: CustomEventDetail = _detail;
-      dispatchCustomEvent(this, "change", detail);
-    }
-
-    private _getDefaultRowData(data: any) {
+    private _getDefaultDataRow(data: any) {
       const defaultRowData = {} as any;
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -291,6 +231,134 @@ let exportTable;
         }
       }
       return defaultRowData;
+    }
+
+    private _addDataCellToNewRow(currentRowIndex: number, defaultRow: any) {
+      const newRow = this._table.insertRow(currentRowIndex + 1);
+      newRow.classList.add(rowClassName);
+      for (let i = 0; i < this.columns.length; i++) {
+        const newCell = newRow.insertCell(i);
+        const column = this.columns[i];
+        newCell.classList.add(cellClassName);
+        newCell.addEventListener("change", (event: Event) => {
+          this._handleChangeCell(event, column.field);
+        });
+        const cellTemplate = column.render
+          ? column.render(defaultRow[column.field], column)
+          : defaultRow[column.field];
+        newCell.appendChild(cellTemplate);
+      }
+      this._addActionsButtonToNewRow(newRow);
+    }
+
+    private _handleChangeCell(event: Event, field: string) {
+      event.stopPropagation();
+      const oldData = this._deepCloneObject(this.data);
+      const currentRow = (event.currentTarget as HTMLTableCellElement)
+        .parentElement as HTMLTableRowElement;
+      const dataIndex = currentRow.rowIndex - 1;
+      const dataRow = this.data[dataIndex] as any;
+      if (field in dataRow) {
+        dataRow[field] = (event as CustomEvent).detail.value;
+      }
+      const data = {
+        type: "change-cell",
+        rowIndex: dataIndex,
+        data: this.data,
+        oldData: oldData,
+        field: field,
+      };
+      this._dispatchChangeEvent(data);
+    }
+
+    private _handleAddRow(currentRowIndex: number) {
+      const oldData = this._deepCloneObject(this.data);
+      const defaultDataRow = this._getDefaultDataRow(this.data[0]);
+      this._addDataCellToNewRow(currentRowIndex, defaultDataRow);
+      this.data.splice(currentRowIndex, 0, defaultDataRow);
+      const data = {
+        type: "add-row",
+        rowIndex: currentRowIndex,
+        data: this.data,
+        oldData: oldData,
+      };
+      this._dispatchChangeEvent(data);
+      this._toggleRemoveRowButton();
+    }
+
+    private _handleRemoveRow(currentRowIndex: number) {
+      const oldData = this._deepCloneObject(this.data);
+      this._table.deleteRow(currentRowIndex);
+      this.data.splice(currentRowIndex - 2, 1);
+      const data = {
+        type: "remove-row",
+        rowIndex: currentRowIndex,
+        data: this.data,
+        oldData: oldData,
+      };
+      this._dispatchChangeEvent(data);
+      this._toggleRemoveRowButton();
+      this._focusActionsButtonWhenRemoveRow(currentRowIndex);
+    }
+
+    private _focusActionsButtonWhenRemoveRow(currentRowIndex: number) {
+      const actionsCell = this._getActionsCellWhenRemoveRow(currentRowIndex);
+      if (actionsCell) {
+        this._focusRemoveRowButton(actionsCell);
+        return;
+      }
+      this._focusFirstAddRowButton();
+    }
+
+    private _focusRemoveRowButton(actionsCell: HTMLTableCellElement) {
+      const removeRowButton = (
+        actionsCell as HTMLTableCellElement
+      ).querySelector(`.${btnRemoveRowClassName}`) as HTMLButtonElement;
+      removeRowButton.focus();
+    }
+
+    private _focusFirstAddRowButton() {
+      const firstActionsCell = this._table.rows[1].cells[
+        this.columns.length
+      ] as HTMLTableCellElement;
+      const addRowButton = firstActionsCell.querySelector(
+        `.${btnAddRowClassName}`
+      ) as HTMLButtonElement;
+      addRowButton.focus();
+    }
+
+    private _toggleRemoveRowButton() {
+      if (this.data.length === 1) {
+        this._firstButtonRemoveRow.style.display = "none";
+        return;
+      }
+      this._firstButtonRemoveRow.style.display = "block";
+    }
+
+    private _addActionsButtonToNewRow(newRow: HTMLTableRowElement) {
+      const newCell = newRow.insertCell(this.columns.length);
+      newCell.classList.add(cellActionsClassName);
+      const buttonAdd = document.createElement("button");
+      buttonAdd.classList.add(btnAddRowClassName);
+      buttonAdd.addEventListener("click", () => {
+        this._handleAddRow(newRow.rowIndex);
+      });
+      const buttonRemove = document.createElement("button");
+      buttonRemove.classList.add(btnRemoveRowClassName);
+      buttonRemove.addEventListener("click", () => {
+        this._handleRemoveRow(newRow.rowIndex);
+      });
+      newCell.appendChild(buttonAdd);
+      newCell.appendChild(buttonRemove);
+    }
+
+    private _deepCloneObject(obj: any) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+
+    private _dispatchChangeEvent(_detail: object) {
+      const detail: CustomEventDetail = _detail;
+      dispatchCustomEvent(this, "change", detail);
     }
   }
 
