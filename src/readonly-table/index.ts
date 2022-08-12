@@ -52,10 +52,6 @@ let exportReadOnlyTable;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("columns")) {
-        this.columns.map((col) =>
-          this._columnOrder.push(col.field ? col.field : "")
-        );
-
         if (!validateColumns(this.columns)) {
           throwErrorAfterUpdateComplete(
             this,
@@ -63,6 +59,9 @@ let exportReadOnlyTable;
           );
           return false;
         }
+        this.columns.map((col) =>
+          this._columnOrder.push(col.field ? col.field : "")
+        );
       }
 
       if (changedProperties.has("data") && !validateData(this.data)) {
