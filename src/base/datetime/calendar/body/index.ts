@@ -286,18 +286,16 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
-                const isSelectedDay = this.value === weekDate.attr;
+                const isFocus =
+                  (this.value === weekDate.attr || isSameDate) && isThisMonth;
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__table__date${isSelectedDay
+                    class="kuc-base-datetime-calendar-body__table__date${isFocus
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
-                    aria-selected="${isSelectedDay}"
-                    tabindex="${(this.value === weekDate.attr || isSameDate) &&
-                    isThisMonth
-                      ? "0"
-                      : "-1"}"
+                    aria-selected="${this.value === weekDate.attr}"
+                    tabindex="${isFocus ? "0" : "-1"}"
                     aria-current="${this._isToday(dateParts) ? "date" : ""}"
                     aria-label="${dateParts[2]} ${monthString}"
                     data-date="${weekDate.attr}"
