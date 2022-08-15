@@ -71,8 +71,8 @@ describe("DatePicker", () => {
         ".kuc-base-datetime-calendar__group"
       ) as HTMLDivElement;
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
-      ) as HTMLButtonElement;
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+      ) as HTMLTableCellElement;
 
       selectedElRight.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
@@ -171,30 +171,6 @@ describe("DatePicker", () => {
       calendarEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
       expect(inputDateEl.value).to.equal("");
-    });
-
-    it("should be focused last day of month when click on previous month button", async () => {
-      const container = new DatePicker({ value: "2021-03-31" });
-      const el = await fixture(container);
-      const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
-      ) as HTMLInputElement;
-      inputDateEl.click();
-      await elementUpdated(container);
-      await elementUpdated(el);
-
-      const prevMonthBtn = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__button--previous-month"
-      ) as HTMLButtonElement;
-
-      prevMonthBtn.click();
-      await elementUpdated(container);
-      await elementUpdated(el);
-
-      const dateSelected = el.querySelector(
-        ".kuc-base-datetime-calendar-body__table__date--selected .kuc-base-datetime-calendar-body__table__date__button"
-      ) as HTMLButtonElement;
-      expect(dateSelected.getAttribute("data-date")).to.equal("2021-02-28");
     });
   });
 });

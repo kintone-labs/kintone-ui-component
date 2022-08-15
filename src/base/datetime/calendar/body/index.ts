@@ -23,7 +23,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @state() _month = 1;
   @state() _year = 2021;
 
-  @query('.kuc-base-datetime-calendar-body__table__date[aria-selected="true"]')
+  @query(
+    '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+  )
   private _selectedItem!: HTMLTableCellElement;
 
   @query(".kuc-base-datetime-calendar-body__table__date--selected")
@@ -103,8 +105,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     event.stopPropagation();
 
     const itemEl = event.target as HTMLTableCellElement;
-    itemEl.setAttribute("aria-current", "true");
-
+    itemEl.setAttribute("aria-selected", "true");
     const value = itemEl.getAttribute("data-date") || "";
     this._dispatchClickEvent(value);
   }
@@ -285,8 +286,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
-                const isSelectedDay =
-                  (this.value === weekDate.attr || isSameDate) && isThisMonth;
+                const isSelectedDay = this.value === weekDate.attr;
                 return html`
                   <td
                     role="gridcell"
