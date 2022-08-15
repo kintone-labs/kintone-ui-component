@@ -417,8 +417,12 @@ let exportDateTimePicker;
       const _value =
         this._errorFormat || this._errorInvalidTime ? undefined : newDateTime;
       this.value = _value;
+      const validFormat = this._validateDateTimeFormat();
+      if (validFormat && !this._dateValue && !this._timeValue) {
+        this.value = "";
+      }
       const detail = {
-        value: _value,
+        value: this.value,
         oldValue: oldDateTime,
         changedPart: type,
       };
