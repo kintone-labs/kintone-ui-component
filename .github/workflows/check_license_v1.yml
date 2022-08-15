@@ -19,11 +19,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
       - name: Cache Dependencies
         uses: actions/cache@v2
         with:
@@ -45,11 +40,6 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v2
-
-      - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
 
       - name: Cache Devdependencies
         uses: actions/cache@v2
