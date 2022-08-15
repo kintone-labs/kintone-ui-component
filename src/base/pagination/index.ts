@@ -3,17 +3,15 @@ import { property, query } from "lit/decorators.js";
 import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
 import { visiblePropConverter } from "../converter";
 import { PAGINATION_CSS } from "./style";
-import { BasePaginationProps } from "./type";
-import { validateProps } from "../validator";
 
 let exportPagination;
 (() => {
-  exportPagination = window.customElements.get("kuc-pagination");
+  exportPagination = window.customElements.get("kuc-base-pagination");
   if (exportPagination) {
     return;
   }
   // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
-  class KucBasePagination extends KucBase {
+  class BasePagination extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -39,12 +37,6 @@ let exportPagination;
     private _prevButtonEl!: HTMLButtonElement;
     @query(".kuc-base-pagination__group__pagination-next")
     private _nextButtonEl!: HTMLButtonElement;
-
-    constructor(props?: BasePaginationProps) {
-      super();
-      const validProps = validateProps(props);
-      Object.assign(this, validProps);
-    }
 
     updated() {
       this._togglePreviousButton(this.isPrev);
@@ -138,10 +130,10 @@ let exportPagination;
       `;
     }
   }
-  window.customElements.define("kuc-pagination", KucBasePagination);
+  window.customElements.define("kuc-base-pagination", BasePagination);
   createStyleOnHeader(PAGINATION_CSS);
-  exportPagination = KucBasePagination;
+  exportPagination = BasePagination;
 })();
 
-const Pagination = exportPagination as any;
-export { Pagination };
+const BasePagination = exportPagination as any;
+export { BasePagination };
