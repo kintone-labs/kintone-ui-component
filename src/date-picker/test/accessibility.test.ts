@@ -172,5 +172,28 @@ describe("DatePicker", () => {
       await elementUpdated(el);
       expect(inputDateEl.value).to.equal("");
     });
+    it("should be focused last day of month when click on previous month button", async () => {
+      const container = new DatePicker({ value: "2021-03-31" });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const prevMonthBtn = el.querySelector(
+        ".kuc-base-datetime-calendar-header__group__button--previous-month"
+      ) as HTMLButtonElement;
+
+      prevMonthBtn.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const dateSelected = el.querySelector(
+        ".kuc-base-datetime-calendar-body__table__date--selected"
+      ) as HTMLTableCellElement;
+      expect(dateSelected.getAttribute("data-date")).to.equal("2021-02-28");
+    });
   });
 });
