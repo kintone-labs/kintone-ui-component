@@ -109,7 +109,7 @@ let exportReadOnlyTable;
             })}
           </tbody>
         </table>
-        <kuc-pagination
+        <kuc-base-pagination
           .className="pagination-class"
           .id="pagination-id"
           .visible="${this.pagination}"
@@ -117,7 +117,7 @@ let exportReadOnlyTable;
           .isNext="${this._toggleDisplayNextButton()}"
           @kuc:pagination-click-prev=${this._handleClickPreviousButton}
           @kuc:pagination-click-next=${this._handleClickNextButton}
-        ></kuc-pagination>
+        ></kuc-base-pagination>
       `;
     }
 
