@@ -56,21 +56,18 @@ describe("MultiChoice", () => {
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
 
-    it("should be throw error when set null by setter", async () => {
+    it("should be throw error when set null by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'selectedIndex' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MultiChoice({ items: initItems });
       container.selectedIndex = null;
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateSelectedIndexArray function
+      fixture(container);
     });
   });
 });

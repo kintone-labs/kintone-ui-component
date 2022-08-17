@@ -1,6 +1,7 @@
 export const BASE_MOBILE_LABEL_CSS = `
   kuc-base-mobile-label {
     display: inline-table;
+    font-size: 13px;
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
@@ -21,6 +22,7 @@ export const BASE_MOBILE_LABEL_CSS = `
     font-size: 86%;
   }
   .kuc-base-mobile-label__required-icon {
+    font-size: 86%;
     position: relative;
     left: 3px;
     color: #d01212;
