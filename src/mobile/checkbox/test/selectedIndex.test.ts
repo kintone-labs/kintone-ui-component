@@ -41,7 +41,7 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'selectedIndex' property is not array");
+        expect(errorMsg).to.equal("'selectedIndex' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -57,7 +57,7 @@ describe("MobileCheckbox", () => {
     it("should be throw error when set null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'selectedIndex' property is not array");
+        expect(errorMsg).to.equal("'selectedIndex' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
