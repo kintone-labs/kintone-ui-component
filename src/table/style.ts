@@ -81,6 +81,9 @@ export const TABLE_CSS = `
         no-repeat center center;
         border: 1px solid transparent;
     }
+    .kuc-table__table__body__row__action-remove:hover {
+        background-image: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/delete-active.png)
+    }
     .kuc-table__table__body__row__action-add,
     .kuc-table__table__body__row__action-remove {
         display: inline-block;

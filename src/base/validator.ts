@@ -122,12 +122,6 @@ export async function throwErrorAfterUpdateComplete(
   throw new Error(message);
 }
 
-export const validateColumnTableArray = (columns: object[]) => {
-  if (!Array.isArray(columns)) return false;
-
-  return true;
-};
-
 export const validateFieldRequiedInColumnTable = (columns: object[]) => {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
@@ -149,7 +143,7 @@ export const validateFieldUniqueInColumnTable = (columns: object[]) => {
   return isDuplicate;
 };
 
-export const validateDataTable = (data: object[]) => {
+export const validateArrayObject = (data: object[]) => {
   if (!Array.isArray(data)) return false;
 
   for (let i = 0; i < data.length; i++) {

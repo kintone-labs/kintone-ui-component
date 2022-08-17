@@ -13,10 +13,9 @@ import { visiblePropConverter } from "../base/converter";
 import {
   validateProps,
   throwErrorAfterUpdateComplete,
-  validateColumnTableArray,
+  validateArrayObject,
   validateFieldRequiedInColumnTable,
   validateFieldUniqueInColumnTable,
-  validateDataTable,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { TableProps, Column } from "./type";
@@ -41,7 +40,7 @@ let exportTable;
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
     @property({ type: Array }) data: object[] = [];
-    @property({ type: Boolean }) actionButtonsShown = true;
+    @property({ type: Boolean }) actionButton = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -71,8 +70,8 @@ let exportTable;
           return false;
         }
       }
-      if (_changedProperties.has("data") && !validateDataTable(this.data)) {
-        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_ARRAY_OBJECT;
+      if (_changedProperties.has("data") && !validateArrayObject(this.data)) {
+        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY_OBJECT;
         throwErrorAfterUpdateComplete(this, errorMessage);
         return false;
       }
@@ -80,17 +79,16 @@ let exportTable;
     }
 
     private _getErrorMessageWhenValidateColumns() {
-      let errorMessage = "";
-      if (!validateColumnTableArray(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
+      if (!validateArrayObject(this.columns)) {
+        return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY_OBJECT;
       }
       if (!validateFieldRequiedInColumnTable(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
+        return ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
       }
       if (validateFieldUniqueInColumnTable(this.columns)) {
-        errorMessage = ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
+        return ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
       }
-      return errorMessage;
+      return "";
     }
 
     render() {
@@ -124,14 +122,12 @@ let exportTable;
         <th
           class="kuc-table__table__header__cell"
           ?hidden="${column.visible === false}"
-        >
-          ${column.headerName || ""}
-          <span
+        ><!--
+        -->${column.headerName || ""}<!--
+        --><span
             class="kuc-base-label__required-icon"
             ?hidden="${!column.requiredIcon}"
-          >
-          *
-          </span
+          >*</span
         </th>
       `;
     }
@@ -191,10 +187,7 @@ let exportTable;
 
     private _getActionsCellTemplate() {
       return html`
-        <td
-          class="${cellActionsClassName}"
-          ?hidden="${!this.actionButtonsShown}"
-        >
+        <td class="${cellActionsClassName}" ?hidden="${!this.actionButton}">
           <button
             type="button"
             @click="${(event: PointerEvent) => {

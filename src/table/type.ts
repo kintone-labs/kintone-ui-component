@@ -18,7 +18,7 @@ export declare type TableProps = {
   label?: string;
   data?: object[];
   columns?: Column[];
-  actionButtonsShown?: boolean;
+  actionButton?: boolean;
   visible?: boolean;
 };
 export declare class Table extends KucBase {
@@ -27,7 +27,7 @@ export declare class Table extends KucBase {
   label: string;
   columns: Column[];
   data: object[];
-  actionButtonsShown: boolean;
+  actionButton: boolean;
   visible: boolean;
   constructor(props?: TableProps);
   update(changedProperties: PropertyValues): void;
