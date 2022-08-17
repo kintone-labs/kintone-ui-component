@@ -46,7 +46,6 @@ let exportDatePicker;
     })
     visible = true;
 
-    @state()
     private _errorFormat = "";
 
     @state()
@@ -82,6 +81,11 @@ let exportDatePicker;
         return false;
       }
       return true;
+    }
+
+    protected willUpdate(changedProperties: PropertyValues) {
+      this._updateErrorText();
+      super.willUpdate(changedProperties);
     }
 
     update(changedProperties: PropertyValues) {
@@ -129,7 +133,6 @@ let exportDatePicker;
     }
 
     updated() {
-      this._updateErrorText();
       this._invalidValue = "";
     }
 
