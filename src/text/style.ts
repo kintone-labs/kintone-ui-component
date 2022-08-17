@@ -21,8 +21,8 @@ kuc-text {
   color: #333333;
   display: inline-table;
   vertical-align: top;
-  min-width: 193px;
-  width: 193px;
+  min-width: 177px;
+  width: 177px;
   line-height: 1.5;
 }
 kuc-text[hidden] {
@@ -32,7 +32,7 @@ kuc-text[hidden] {
   border: none;
   padding: 0px;
   height: auto;
-  display: inline-block;
+  display: block;
   margin: 0px;
 }
 .kuc-text__group__label {

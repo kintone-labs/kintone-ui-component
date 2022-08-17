@@ -31,7 +31,7 @@ export const TEXTAREA_CSS = `
     border: none;
     padding: 0px;
     height: auto;
-    display: inline-block;
+    display: block;
     width: 100%;
     margin: 0px;
   }
