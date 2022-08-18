@@ -28,9 +28,10 @@ export const Base = Template.bind({});
 Base.args = {
   id: "sample-id",
   className: "sample-class",
+  label: "My ReadOnly",
   visible: true,
-  pagination: true,
   rowsPerPage: 3,
+  pagination: true,
   columns: [
     {
       headerName: "Number",
