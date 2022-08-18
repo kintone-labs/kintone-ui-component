@@ -4,7 +4,6 @@ export const PAGINATION_CSS = `
   }
   .kuc-base-pagination__group button {
     cursor: pointer;
-    outline: none;
   }
   .kuc-base-pagination__group__pagination-prev {
     border: none;
