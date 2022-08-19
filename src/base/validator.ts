@@ -143,18 +143,8 @@ export const validateFieldUniqueInColumnTable = (columns: object[]) => {
   return isDuplicate;
 };
 
-export const validateArrayObject = (data: object[]) => {
+export const validateArrayProperty = (data: object[]) => {
   if (!Array.isArray(data)) return false;
-
-  for (let i = 0; i < data.length; i++) {
-    const rowObject = data[i];
-    if (
-      typeof rowObject !== "object" ||
-      Array.isArray(rowObject) ||
-      rowObject === null
-    )
-      return false;
-  }
 
   return true;
 };

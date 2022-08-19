@@ -13,7 +13,7 @@ import { visiblePropConverter } from "../base/converter";
 import {
   validateProps,
   throwErrorAfterUpdateComplete,
-  validateArrayObject,
+  validateArrayProperty,
   validateFieldRequiedInColumnTable,
   validateFieldUniqueInColumnTable,
 } from "../base/validator";
@@ -77,8 +77,8 @@ let exportTable;
           return false;
         }
       }
-      if (_changedProperties.has("data") && !validateArrayObject(this.data)) {
-        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY_OBJECT;
+      if (_changedProperties.has("data") && !validateArrayProperty(this.data)) {
+        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
         throwErrorAfterUpdateComplete(this, errorMessage);
         return false;
       }
@@ -86,8 +86,8 @@ let exportTable;
     }
 
     private _getErrorMessageWhenValidateColumns() {
-      if (!validateArrayObject(this.columns)) {
-        return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY_OBJECT;
+      if (!validateArrayProperty(this.columns)) {
+        return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
       }
       if (!validateFieldRequiedInColumnTable(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
