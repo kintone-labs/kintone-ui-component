@@ -16,6 +16,6 @@ export const ERROR_MESSAGE = {
     FIELD_UNIQUE: "'field' property is not unique in columns.",
   },
   DATA_TABLE: {
-    IS_NOT_ARRAY: "data' property is not array.",
+    IS_NOT_ARRAY: "'data' property is not array.",
   },
 };
