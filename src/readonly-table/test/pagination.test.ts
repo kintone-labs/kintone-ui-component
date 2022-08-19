@@ -70,57 +70,65 @@ describe("ReadOnlyTable", () => {
       ) as HTMLElement;
       expect(paginationEl.hidden).to.equal(false);
     });
-  });
 
-  it("should be visible when assigned on constructor", async () => {
-    const container = new ReadOnlyTable({
-      columns: columns,
-      data: data,
-      pagination: true,
+    it("should be visible when assigned on constructor", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+        pagination: true,
+      });
+      const el = await fixture(container);
+      const paginationEl = el.querySelector(
+        "kuc-base-pagination"
+      ) as HTMLElement;
+      expect(paginationEl.hidden).to.equal(false);
     });
-    const el = await fixture(container);
-    const paginationEl = el.querySelector("kuc-base-pagination") as HTMLElement;
-    expect(paginationEl.hidden).to.equal(false);
-  });
 
-  it("should be visible when set by setter", async () => {
-    const container = new ReadOnlyTable({
-      columns: columns,
-      data: data,
+    it("should be visible when set by setter", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+      });
+      container.pagination = true;
+      const el = await fixture(container);
+      const paginationEl = el.querySelector(
+        "kuc-base-pagination"
+      ) as HTMLElement;
+      expect(paginationEl.hidden).to.equal(false);
     });
-    container.pagination = true;
-    const el = await fixture(container);
-    const paginationEl = el.querySelector("kuc-base-pagination") as HTMLElement;
-    expect(paginationEl.hidden).to.equal(false);
-  });
 
-  it("should be hidden and display all rows when assigned on constructor", async () => {
-    const container = new ReadOnlyTable({
-      columns: columns,
-      data: data,
-      pagination: false,
+    it("should be hidden and display all rows when assigned on constructor", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+        pagination: false,
+      });
+      const el = await fixture(container);
+      const paginationEl = el.querySelector(
+        "kuc-base-pagination"
+      ) as HTMLElement;
+      const rowsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__body__row "
+      ) as NodeList;
+      expect(paginationEl.hidden).to.equal(true);
+      expect(rowsEl.length).to.equal(data.length);
     });
-    const el = await fixture(container);
-    const paginationEl = el.querySelector("kuc-base-pagination") as HTMLElement;
-    const rowsEl = el.querySelectorAll(
-      ".kuc-readonly-table__table__body__row "
-    ) as NodeList;
-    expect(paginationEl.hidden).to.equal(true);
-    expect(rowsEl.length).to.equal(data.length);
-  });
 
-  it("should be hidden and display all rows when set by setter", async () => {
-    const container = new ReadOnlyTable({
-      columns: columns,
-      data: data,
+    it("should be hidden and display all rows when set by setter", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+      });
+      container.pagination = false;
+      const el = await fixture(container);
+      const paginationEl = el.querySelector(
+        "kuc-base-pagination"
+      ) as HTMLElement;
+      const rowsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__body__row "
+      ) as NodeList;
+      expect(paginationEl.hidden).to.equal(true);
+      expect(rowsEl.length).to.equal(data.length);
     });
-    container.pagination = false;
-    const el = await fixture(container);
-    const paginationEl = el.querySelector("kuc-base-pagination") as HTMLElement;
-    const rowsEl = el.querySelectorAll(
-      ".kuc-readonly-table__table__body__row "
-    ) as NodeList;
-    expect(paginationEl.hidden).to.equal(true);
-    expect(rowsEl.length).to.equal(data.length);
   });
 });
