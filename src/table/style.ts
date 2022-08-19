@@ -69,27 +69,29 @@ export const TABLE_CSS = `
         display: flex;
         vertical-align: top;
     }
+    .kuc-table__table__body__row__action button {
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: 1px solid transparent;
+        padding: 2px;
+        cursor: pointer;
+    }
     .kuc-table__table__body__row__action-add {
         margin-left: 12px;
-        background: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/add-active.png)
-        no-repeat center center;
-        border: 1px solid transparent;
     }
     .kuc-table__table__body__row__action-remove {
         margin-left: 4px;
-        background: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/delete.png)
-        no-repeat center center;
-        border: 1px solid transparent;
     }
-    .kuc-table__table__body__row__action-remove:hover {
-        background-image: url(https://static.cybozu.com/contents/k/image/argo/app/subtable/delete-active.png)
+    .kuc-table__table__body__row__action-add:focus,
+    .kuc-table__table__body__row__action-remove:focus {
+        border: 1px solid #3498db;
+        outline: none;
     }
-    .kuc-table__table__body__row__action-add,
-    .kuc-table__table__body__row__action-remove {
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
+    .kuc-table__table__body__row__action-remove:hover path {
+        fill: #e74c3c;
     }
     .kuc-table__table caption {
         text-align: left;

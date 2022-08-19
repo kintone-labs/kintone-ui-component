@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-kuc-class-prefix */
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
-import { html, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
   KucBase,
@@ -26,6 +26,13 @@ const rowClassName = "kuc-table__table__body__row";
 const cellActionsClassName = "kuc-table__table__body__row__action";
 const btnAddRowClassName = "kuc-table__table__body__row__action-add";
 const btnRemoveRowClassName = "kuc-table__table__body__row__action-remove";
+
+const dAdd =
+  "M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM12.0355 8.49997V7.49997H8.50008V3.96454H7.50008V7.49997H3.96443V8.49997H7.50008V12.0356H8.50008V8.49997H12.0355Z";
+const fillAdd = "#3498db";
+const dRemove =
+  "M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM12.0355 7.49997V8.49997L3.96443 8.49997V7.49997H12.0355Z";
+const fillRemove = "#d4d7d7";
 
 let exportTable;
 (() => {
@@ -147,6 +154,56 @@ let exportTable;
       `;
     }
 
+    private _getActionsCellTemplate() {
+      return html`
+        <td class="${cellActionsClassName}" ?hidden="${!this.actionButton}">
+          <button
+            type="button"
+            @click="${(event: PointerEvent) => {
+              const rowIndex = this._getCurrentRowIndex(event);
+              this._handleAddRow(rowIndex);
+            }}"
+            class="${btnAddRowClassName}"
+            title="Add row"
+          >
+            ${this._getSvgTemplate(dAdd, fillAdd)}
+          </button>
+          ${this.data.length === 1
+            ? null
+            : html`<button
+                type="button"
+                @click="${(event: PointerEvent) => {
+                  const rowIndex = this._getCurrentRowIndex(event);
+                  this._handleRemoveRow(rowIndex);
+                }}"
+                class="${btnRemoveRowClassName}"
+                title="Delete this row"
+              >
+                ${this._getSvgTemplate(dRemove, fillRemove)}
+              </button>`}
+        </td>
+      `;
+    }
+
+    private _getSvgTemplate(drawn: string, fill: string) {
+      return svg`
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="${drawn}"
+              fill="${fill}"
+            />
+          </svg>
+        `;
+    }
+
     private _getTableCellTemplate(
       column: Column,
       dataRender: HTMLElement | string
@@ -178,38 +235,11 @@ let exportTable;
     }
 
     private _getCurrentRowIndex(event: PointerEvent) {
-      const currentButtonEl = event.target as HTMLButtonElement;
+      const currentButtonEl = event.currentTarget as HTMLButtonElement;
       const currentCellEl =
         currentButtonEl.parentElement as HTMLTableCellElement;
       const currentRow = currentCellEl.parentElement as HTMLTableRowElement;
       return currentRow.rowIndex;
-    }
-
-    private _getActionsCellTemplate() {
-      return html`
-        <td class="${cellActionsClassName}" ?hidden="${!this.actionButton}">
-          <button
-            type="button"
-            @click="${(event: PointerEvent) => {
-              const rowIndex = this._getCurrentRowIndex(event);
-              this._handleAddRow(rowIndex);
-            }}"
-            class="${btnAddRowClassName}"
-            title="Add row"
-          ></button>
-          ${this.data.length === 1
-            ? null
-            : html`<button
-                type="button"
-                @click="${(event: PointerEvent) => {
-                  const rowIndex = this._getCurrentRowIndex(event);
-                  this._handleRemoveRow(rowIndex);
-                }}"
-                class="${btnRemoveRowClassName}"
-                title="Delete this row"
-              ></button>`}
-        </td>
-      `;
     }
 
     private _getDefaultDataRow(data: any) {
@@ -241,7 +271,7 @@ let exportTable;
           : defaultRow[column.field];
         newCell.appendChild(cellTemplate);
       }
-      this._addActionsButtonToNewRow(newRow);
+      this._addActionsCellToNewRow(newRow);
     }
 
     private _handleChangeCell(event: Event, field: string) {
@@ -328,21 +358,56 @@ let exportTable;
       this._firstButtonRemoveRow.style.display = "block";
     }
 
-    private _addActionsButtonToNewRow(newRow: HTMLTableRowElement) {
+    private _getSvgDOM(fillPath: string, dPath: string) {
+      const iconSvg = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      iconSvg.setAttribute("fill", "none");
+      iconSvg.setAttribute("width", "18");
+      iconSvg.setAttribute("height", "18");
+      iconSvg.setAttribute("viewBox", "0 0 16 16");
+
+      const iconPath = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+      );
+      iconPath.setAttribute("d", dPath);
+      iconPath.setAttribute("fill-rule", "evenodd");
+      iconPath.setAttribute("clip-rule", "evenodd");
+      iconPath.setAttribute("fill", fillPath);
+
+      iconSvg.appendChild(iconPath);
+      return iconSvg;
+    }
+
+    private _addActionsCellToNewRow(newRow: HTMLTableRowElement) {
       const newCell = newRow.insertCell(this.columns.length);
       newCell.classList.add(cellActionsClassName);
-      const buttonAdd = document.createElement("button");
-      buttonAdd.classList.add(btnAddRowClassName);
-      buttonAdd.addEventListener("click", () => {
-        this._handleAddRow(newRow.rowIndex);
-      });
-      const buttonRemove = document.createElement("button");
-      buttonRemove.classList.add(btnRemoveRowClassName);
-      buttonRemove.addEventListener("click", () => {
+
+      const btnAddDOM = this._getActionButtonDOM("add", newRow);
+      const btnRemoveDOM = this._getActionButtonDOM("remove", newRow);
+
+      newCell.appendChild(btnAddDOM);
+      newCell.appendChild(btnRemoveDOM);
+    }
+
+    private _getActionButtonDOM(type: string, newRow: HTMLTableRowElement) {
+      const isAdd = type === "add";
+      const className = isAdd ? btnAddRowClassName : btnRemoveRowClassName;
+      const fillPath = isAdd ? fillAdd : fillRemove;
+      const dPath = isAdd ? dAdd : dRemove;
+      const svgEl = this._getSvgDOM(fillPath, dPath);
+
+      const buttonAction = document.createElement("button");
+      buttonAction.addEventListener("click", () => {
+        if (isAdd) return this._handleAddRow(newRow.rowIndex);
         this._handleRemoveRow(newRow.rowIndex);
       });
-      newCell.appendChild(buttonAdd);
-      newCell.appendChild(buttonRemove);
+      buttonAction.classList.add(className);
+      buttonAction.appendChild(svgEl);
+
+      return buttonAction;
     }
 
     private _deepCloneObject(obj: any) {
