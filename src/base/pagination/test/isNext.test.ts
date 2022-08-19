@@ -6,20 +6,20 @@ describe("BasePagination", () => {
     it("should be visible when not assigned ", async () => {
       const container = document.createElement("kuc-base-pagination");
       await fixture(container);
-      const prevEl = document.querySelector(
+      const nextEl = document.querySelector(
         "button.kuc-base-pagination__group__pagination-next"
       ) as HTMLElement;
-      expect(prevEl.hasAttribute("hidden")).to.equal(false);
+      expect(nextEl.hasAttribute("hidden")).to.equal(false);
     });
 
     it("should be hidden when assigned", async () => {
       const container = document.createElement("kuc-base-pagination");
       await fixture(container);
-      const prevEl = document.querySelector(
+      const nextEl = document.querySelector(
         "button.kuc-base-pagination__group__pagination-next"
       ) as HTMLElement;
-      prevEl.setAttribute("hidden", "");
-      expect(prevEl.hasAttribute("hidden")).to.equal(true);
+      nextEl.setAttribute("hidden", "");
+      expect(nextEl.hasAttribute("hidden")).to.equal(true);
     });
   });
 });
