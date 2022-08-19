@@ -12,9 +12,6 @@ let exportPagination;
   }
   // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
   class BasePagination extends KucBase {
-    @property({ type: String, reflect: true, attribute: "class" }) className =
-      "";
-    @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({
       type: Boolean,
       attribute: "hidden",

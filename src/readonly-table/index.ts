@@ -110,8 +110,6 @@ let exportReadOnlyTable;
           </tbody>
         </table>
         <kuc-base-pagination
-          .className="pagination-class"
-          .id="pagination-id"
           .visible="${this.pagination}"
           .isPrev="${this._toggleDisplayPreviousButton()}"
           .isNext="${this._toggleDisplayNextButton()}"
