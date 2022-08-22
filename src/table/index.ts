@@ -20,7 +20,7 @@ import {
 import { ERROR_MESSAGE } from "../base/constant";
 import { TableProps, Column } from "./type";
 import { TABLE_CSS } from "./style";
-import "./renderCell";
+import { TableCell } from "./renderCell";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";
@@ -276,10 +276,12 @@ let exportTable;
         newCell.addEventListener("change", (event: Event) => {
           this._handleChangeCell(event, column.field);
         });
-        const cellTemplate = column.render
-          ? column.render(defaultRow[column.field], column, currentRowIndex)
-          : defaultRow[column.field];
-        newCell.appendChild(cellTemplate);
+        const tableCel = new TableCell({
+          dataRow: defaultRow,
+          rowIndex: currentRowIndex + 1,
+          column: this.columns[i],
+        });
+        newCell.appendChild(tableCel);
       }
       this._addActionsCellToNewRow(newRow);
     }

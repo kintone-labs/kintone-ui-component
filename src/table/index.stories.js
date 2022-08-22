@@ -33,12 +33,12 @@ const renderName = (cellData, rowData, index) => {
   const dropdown = new Dropdown({
     items: [
       {
-        label: "Nguyen Van A (VN)",
-        value: "a",
+        label: "Vietnamese",
+        value: "Vietnamese",
       },
       {
-        label: "Vo Duc Hau (JA)",
-        value: "hau",
+        label: "Japanese",
+        value: "Japanese",
       },
     ],
     value: cellData,
@@ -99,8 +99,8 @@ const renderMultiChoice = (cellData) => {
 };
 
 const relatedNameAndAddress = {
-  hau: ["ja"],
-  a: ["vn"],
+  Vietnamese: ["vn"],
+  Japanese: ["ja"],
 };
 
 const Template = (args) => {
@@ -164,7 +164,7 @@ Base.args = {
   columns: columns,
   data: [
     {
-      name: "a",
+      name: "Vietnamese",
       age: 32,
       date: "2021-03-31",
       time: "12:12",
@@ -173,7 +173,7 @@ Base.args = {
       address: ["vn"],
     },
     {
-      name: "hau",
+      name: "Japanese",
       age: 20,
       date: "2021-02-22",
       time: "13:13",

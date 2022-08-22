@@ -1,6 +1,7 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { KucBase } from "../base/kuc-base";
+import { validateProps } from "../base/validator";
 import { Column } from "./type";
 
 let exportTableCell;
@@ -13,6 +14,15 @@ let exportTableCell;
     @property({ type: Array }) column: Column = { field: "" };
     @property({ type: Object }) dataRow = {};
     @property({ type: Number }) rowIndex = 0;
+
+    constructor(props?: any) {
+      super();
+      if (!props) return;
+
+      const validProps = validateProps(props);
+      Object.assign(this, validProps);
+    }
+
     render() {
       const dataCell = (this.dataRow as { [key: string]: any })[
         this.column.field
