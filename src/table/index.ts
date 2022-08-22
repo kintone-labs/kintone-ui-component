@@ -1,7 +1,7 @@
 /* eslint-disable kuc-v1/no-kuc-class-prefix */
 /* eslint-disable kuc-v1/no-using-event-handler-name */
 /* eslint-disable kuc-v1/validator-in-should-update */
-import { html, PropertyValues, svg } from "lit";
+import { html, LitElement, PropertyValues, svg } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
   KucBase,
@@ -20,6 +20,7 @@ import {
 import { ERROR_MESSAGE } from "../base/constant";
 import { TableProps, Column } from "./type";
 import { TABLE_CSS } from "./style";
+import "./renderCell";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";
@@ -67,6 +68,14 @@ let exportTable;
 
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+    }
+
+    public renderCell(rowIndex: number, cellIndex: number) {
+      const currentCell = this._table.rows[rowIndex].cells[cellIndex];
+      const tableCell = currentCell.getElementsByTagName(
+        "kuc-table-cell"
+      )[0] as LitElement;
+      tableCell.requestUpdate();
     }
 
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
@@ -143,11 +152,7 @@ let exportTable;
       return html`
         <tr class="${rowClassName}">
           ${this.columns.map((column) => {
-            const dataCell = (dataRow as { [key: string]: any })[column.field];
-            const dataRender = column.render
-              ? column.render(dataCell, dataRow, rowIndex)
-              : dataCell;
-            return this._getTableCellTemplate(column, dataRender);
+            return this._getTableCellTemplate(column, dataRow, rowIndex);
           })}
           ${this._getActionsCellTemplate()}
         </tr>
@@ -206,7 +211,8 @@ let exportTable;
 
     private _getTableCellTemplate(
       column: Column,
-      dataRender: HTMLElement | string
+      dataRow: any,
+      rowIndex: number
     ) {
       return html`
         <td
@@ -214,7 +220,11 @@ let exportTable;
           @change="${(event: Event) =>
             this._handleChangeCell(event, column.field)}"
         >
-          ${dataRender}
+          <kuc-table-cell
+            .dataRow="${dataRow}"
+            .rowIndex="${rowIndex}"
+            .column="${column}"
+          />
         </td>
       `;
     }

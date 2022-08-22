@@ -33,11 +33,11 @@ const renderName = (cellData, rowData, index) => {
   const dropdown = new Dropdown({
     items: [
       {
-        label: "Nguyen Van A",
+        label: "Nguyen Van A (VN)",
         value: "a",
       },
       {
-        label: "Vo Duc Hau",
+        label: "Vo Duc Hau (JA)",
         value: "hau",
       },
     ],
@@ -98,10 +98,22 @@ const renderMultiChoice = (cellData) => {
   return multichoice;
 };
 
+const relatedNameAndAddress = {
+  hau: ["ja"],
+  a: ["vn"],
+};
+
 const Template = (args) => {
   const table = new Table({ ...args });
   table.addEventListener("change", (event) => {
-    console.log(event, "event");
+    const field = event.detail.field;
+    const addressIndex = 1;
+    if (field === "name") {
+      const rowIndex = event.detail.rowIndex;
+      const value = table.data[event.detail.rowIndex][field];
+      table.data[rowIndex].address = relatedNameAndAddress[value];
+      table.renderCell(rowIndex + 1, addressIndex);
+    }
   });
   return table;
 };
