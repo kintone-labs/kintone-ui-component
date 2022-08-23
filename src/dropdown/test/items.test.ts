@@ -139,7 +139,7 @@ describe("Dropdown", () => {
     it("should be throw error when assigned null on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'items' property is not array");
+        expect(errorMsg).to.equal("'items' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -152,7 +152,7 @@ describe("Dropdown", () => {
     it("should be throw error when assigned null by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'items' property is not array");
+        expect(errorMsg).to.equal("'items' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };

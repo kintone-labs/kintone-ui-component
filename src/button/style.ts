@@ -29,9 +29,6 @@ export const BUTTON_CSS = `
     padding: 0px 16px;
     user-select: none;
   }
-  .kuc-button__button:focus {
-    outline: none;
-  }
   .kuc-button__button--normal {
     border: 1px solid #e3e7e8;
     background-color: #f7f9fa;
@@ -39,7 +36,7 @@ export const BUTTON_CSS = `
     color: #3498db;
   }
   .kuc-button__button--normal:hover,
-  .kuc-button__button--normal:focus,
+  .kuc-button__button--normal:focus-visible,
   .kuc-button__button--normal:active {
     background-color: #c8d6dd;
     box-shadow: none;
@@ -51,7 +48,7 @@ export const BUTTON_CSS = `
     color: #ffffff;
   }
   .kuc-button__button--submit:hover,
-  .kuc-button__button--submit:focus,
+  .kuc-button__button--submit:focus-visible,
   .kuc-button__button--submit:active {
     background-color: #1d6fa5;
     cursor: pointer;
@@ -63,7 +60,7 @@ export const BUTTON_CSS = `
     color: #ffffff;
   }
   .kuc-button__button--alert:hover,
-  .kuc-button__button--alert:focus,
+  .kuc-button__button--alert:focus-visible,
   .kuc-button__button--alert:active {
     background-color: #bf2718;
     box-shadow: none;

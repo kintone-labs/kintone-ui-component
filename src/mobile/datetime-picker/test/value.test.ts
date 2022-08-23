@@ -1,7 +1,8 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
+
+import { MobileDateTimePicker } from "../index";
 import "../../../base/datetime/mobile-time";
 import "../../../base/datetime/mobile-date";
-import { MobileDateTimePicker } from "../index";
 import { getTodayStringByLocale } from "../../../base/datetime/utils";
 
 describe("MobileDateTimePicker", () => {
@@ -91,7 +92,7 @@ describe("MobileDateTimePicker", () => {
     it("should throw error when set invalid value", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("Format is not valid.");
+        expect(errorMsg).to.equal("'value' property format is not valid.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -105,7 +106,7 @@ describe("MobileDateTimePicker", () => {
     it("should throw error when set null", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("Format is not valid.");
+        expect(errorMsg).to.equal("'value' property format is not valid.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
