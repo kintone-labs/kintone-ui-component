@@ -42,7 +42,6 @@
     "Utilities": ["version-1.4.0-utilities/version"],
     "Guides": [
       "version-1.4.0-guides/comparison-v0-v1",
-      "version-1.4.0-guides/custom-css",
       "version-1.4.0-guides/search-box-customization",
       "version-1.4.0-guides/mobile-timecard-customization",
       "version-1.4.0-guides/cleaning-check-list-customization",

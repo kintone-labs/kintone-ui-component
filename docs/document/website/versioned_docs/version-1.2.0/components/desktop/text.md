@@ -92,33 +92,3 @@ text.addEventListener('input', event => {
   console.log(event);
 });
 ```
-### Custom CSS
-#### Property
-| Name | Description |
-| :--- | :--- |
-| --kuc-text-input-width | input text width |
-| --kuc-text-input-height | input text height |
-| --kuc-text-input-font-size | input text font-size |
-| --kuc-text-input-color | input text color |
-
-
-#### Sample code
-Here is a sample code when custom some properties for Text
-```javascript
-<style>
-  kuc-text {
-    --kuc-text-input-width: 200px;
-    --kuc-text-input-height: 200px;
-  }
-  .sample-class {
-    --kuc-text-input-font-size: 16px;
-  }
-  #sample-id {
-    --kuc-text-input-color: #f25b0a;
-  }
-</style>
-
-<kuc-text></kuc-text>
-<kuc-text class="sample-class"></kuc-text>
-<kuc-text id="sample-id"></kuc-text>
-```

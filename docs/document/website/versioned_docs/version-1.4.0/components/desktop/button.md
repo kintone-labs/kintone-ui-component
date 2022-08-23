@@ -78,37 +78,3 @@ button.addEventListener('click', event => {
   console.log(event);
 });
 ```
-
-### Custom CSS
-#### Property
-| Name | Description |
-| :--- | :--- |
-| --kuc-button-width | Button width |
-| --kuc-button-background-color | Button backgound-color |
-| --kuc-button-background-hover | backgound-color when the button hover |
-| --kuc-button-background-active | backgound-color when the button activated |
-| --kuc-button-background-focus | backgound-color when the button focused |
-| --kuc-button-font-size | font-size of Button |
-
-
-#### Sample code
-Here is a sample code when custom some properties for Button
-
-```javascript
-<style>
-  kuc-button {
-    --kuc-button-background-color: #439c90;
-    --kuc-button-background-hover: #c5e305;
-  }
-  .sample-class {
-    --kuc-button-background-active: #e305ab;
-  }
-  #sample-id {
-    --kuc-button-font-size: 16px;
-  }
-</style>
-
-<kuc-button></kuc-button>
-<kuc-button class="sample-class"></kuc-button>
-<kuc-button id="sample-id"></kuc-button>
-```
