@@ -106,6 +106,9 @@ const Template = (args) => {
   return table;
 };
 
+// NOTES: Currently, storybook doesn't support the function type of args.
+// https://storybook.js.org/docs/react/essentials/controls#annotation
+// So please don't edit columns value on controls tab.
 const columns = [
   {
     headerName: "Name",
@@ -145,31 +148,33 @@ const columns = [
   },
 ];
 
+const data = [
+  {
+    name: "a",
+    age: 32,
+    date: "2021-03-31",
+    time: "12:12",
+    gender: "female",
+    multichoice: ["sample1", "sample3"],
+    address: ["vn"],
+  },
+  {
+    name: "hau",
+    age: 20,
+    date: "2021-02-22",
+    time: "13:13",
+    gender: "male",
+    multichoice: ["sample2", "sample3"],
+    address: ["ja"],
+  },
+]
+
 export const Base = Template.bind({});
 Base.args = {
   label: "Table component",
   visible: true,
   columns: columns,
-  data: [
-    {
-      name: "a",
-      age: 32,
-      date: "2021-03-31",
-      time: "12:12",
-      gender: "female",
-      multichoice: ["sample1", "sample3"],
-      address: ["vn"],
-    },
-    {
-      name: "hau",
-      age: 20,
-      date: "2021-02-22",
-      time: "13:13",
-      gender: "male",
-      multichoice: ["sample2", "sample3"],
-      address: ["ja"],
-    },
-  ],
+  data: data,
   id: "table-id",
   className: "table-classname",
   actionButtonsShown: true,
