@@ -137,7 +137,7 @@ Base2.args = {
     },
     {
       index: "3",
-      name: "An imaginary long long long city name as an exameple for long content in a cell",
+      name: "An imaginary long long long\ncity name as an example for long content in a cell",
       country: "Vietnam",
       population: "200,000",
     },

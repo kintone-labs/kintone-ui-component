@@ -165,14 +165,14 @@ let exportReadOnlyTable;
             ) {
               isHidden = true;
             }
+            /* eslint-disable */
             return html`
               <td
                 class="kuc-readonly-table__table__body__row__cell-data"
                 ?hidden="${isHidden}"
-              >
-                ${data[currentCol]}
-              </td>
+              >${data[currentCol]}</td>
             `;
+            /* eslint-enable */
           })}
         </tr>
       `;

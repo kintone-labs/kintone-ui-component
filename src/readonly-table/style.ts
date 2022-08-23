@@ -61,19 +61,16 @@ export const READ_ONLY_TABLE_CSS = `
     font-size: 12px;
   }
   .kuc-readonly-table__table__body__row__cell-data {
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     border-color: #e3e7e8;
     border-style: solid;
     border-width: 1px;
-    padding: 4px 8px;
-    box-sizing: border-box;
   }
   .kuc-readonly-table__table__body__row__cell-data[hidden] {
     display: none;
-  }
-  .kuc-readonly-table__table__header__cell,
-  .kuc-readonly-table__table__body__row__cell-data {
-    overflow: hidden;
-    white-space: prewrap;
-    word-wrap: break-word;
   }
 `;
