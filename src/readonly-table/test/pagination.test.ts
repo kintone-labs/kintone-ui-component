@@ -131,23 +131,22 @@ describe("ReadOnlyTable", () => {
       expect(rowsEl.length).to.equal(data.length);
     });
 
-    it("should hide Prev button when on first page ", async () => {
+    it("should hide Prev button on first page ", async () => {
       const container = new ReadOnlyTable({
         columns: columns,
         data: data,
       });
       container.pagination = false;
       const el = await fixture(container);
-      const paginationEl = el.querySelector(
-        "kuc-base-pagination"
-      ) as HTMLElement;
-      const prevEl = paginationEl.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+
+      const prevEl = el.querySelector(
+        "kuc-base-pagination button.kuc-base-pagination__group__pagination-prev"
       ) as HTMLButtonElement;
+
       expect(prevEl.classList.value.includes("pager-disable")).to.equal(true);
     });
 
-    it("should hide Next button when on last page", async () => {
+    it("should hide Next button on last page", async () => {
       const rowsPerPage = 3;
       const container = new ReadOnlyTable({
         columns: columns,
@@ -156,11 +155,9 @@ describe("ReadOnlyTable", () => {
       });
       container.pagination = false;
       const el = await fixture(container);
-      const paginationEl = el.querySelector(
-        "kuc-base-pagination"
-      ) as HTMLElement;
-      const nextEl = paginationEl.querySelector(
-        "button.kuc-base-pagination__group__pagination-next"
+
+      const nextEl = el.querySelector(
+        "kuc-base-pagination button.kuc-base-pagination__group__pagination-next"
       ) as HTMLButtonElement;
       for (let i = 0; i < data.length / rowsPerPage; i++) {
         nextEl.click();
