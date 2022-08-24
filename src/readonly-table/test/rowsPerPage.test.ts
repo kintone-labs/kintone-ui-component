@@ -65,6 +65,12 @@ describe("ReadOnlyTable", () => {
         data: data,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -78,6 +84,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: 4,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -91,6 +103,7 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: data.length + 1,
       });
       const el = await fixture(container);
+
       const paginationButtons = el.querySelectorAll(
         ".pager-disable"
       ) as NodeList;
@@ -101,9 +114,10 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({
         columns: columns,
         data: data,
-        rowsPerPage: data.length + 1,
       });
+      container.rowsPerPage = data.length + 1;
       const el = await fixture(container);
+
       const paginationButtons = el.querySelectorAll(
         ".pager-disable"
       ) as NodeList;
@@ -117,6 +131,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: "not a number",
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -130,6 +150,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: 5.7,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -143,6 +169,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: 4.3,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -156,6 +188,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: 0,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -169,6 +207,12 @@ describe("ReadOnlyTable", () => {
         rowsPerPage: -7,
       });
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -182,6 +226,12 @@ describe("ReadOnlyTable", () => {
       });
       container.rowsPerPage = "not a number";
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -195,6 +245,12 @@ describe("ReadOnlyTable", () => {
       });
       container.rowsPerPage = 5.7;
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -208,6 +264,12 @@ describe("ReadOnlyTable", () => {
       });
       container.rowsPerPage = 4.3;
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -221,6 +283,7 @@ describe("ReadOnlyTable", () => {
       });
       container.rowsPerPage = 0;
       const el = await fixture(container);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
@@ -234,6 +297,12 @@ describe("ReadOnlyTable", () => {
       });
       container.rowsPerPage = -7;
       const el = await fixture(container);
+
+      const paginationButtons = el.querySelectorAll(
+        ".pager-disable"
+      ) as NodeList;
+      expect(paginationButtons.length).to.equal(1);
+
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row "
       ) as NodeList;
