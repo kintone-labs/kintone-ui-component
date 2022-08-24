@@ -39,39 +39,31 @@ describe("Checkbox", () => {
     });
   });
 
-  it("should be throw error when set null on constructor", async () => {
-    const container = new Checkbox({ items: initItems, selectedIndex: null });
-    try {
-      await fixture(container);
-    } catch (error) {
-      let errorMessage = "'selectedIndex' property is not array";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      expect(errorMessage).to.equal("'selectedIndex' property is not array");
-    }
+  it("should throw error when set invalid value", (done) => {
+    const handleError = (event: any) => {
+      const errorMsg = event.reason.message;
+      expect(errorMsg).to.equal("'selectedIndex' property is not array.");
+      window.removeEventListener("unhandledrejection", handleError);
+      done();
+    };
+    window.addEventListener("unhandledrejection", handleError);
 
-    // TODO:
-    // Implement checking if source code does not throw error in validateSelectedIndexArray function
+    // @ts-ignore
+    const container = new Checkbox({ items: initItems, selectedIndex: null });
+    fixture(container);
   });
 
-  it("should be throw error when set null by setter", async () => {
-    const container = new Checkbox({
-      items: initItems,
-      selectedIndex: [0],
-    });
-    try {
-      container.selectedIndex = null;
-      await fixture(container);
-    } catch (error) {
-      let errorMessage = "'selectedIndex' property is not array";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      expect(errorMessage).to.equal("'selectedIndex' property is not array");
-    }
+  it("should be throw error when set null by setter", (done) => {
+    const handleError = (event: any) => {
+      const errorMsg = event.reason.message;
+      expect(errorMsg).to.equal("'selectedIndex' property is not array.");
+      window.removeEventListener("unhandledrejection", handleError);
+      done();
+    };
+    window.addEventListener("unhandledrejection", handleError);
 
-    // TODO:
-    // Implement checking if source code does not throw error in validateSelectedIndexArray function
+    const container = new Checkbox({ items: initItems, selectedIndex: [0] });
+    container.selectedIndex = null;
+    fixture(container);
   });
 });

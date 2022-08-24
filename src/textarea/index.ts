@@ -168,6 +168,7 @@ let exportTextarea;
           <kuc-base-error
             .text="${this.error}"
             .guid="${this._GUID}"
+            ?hidden="${!this.error}"
           ></kuc-base-error>
         </div>
       `;

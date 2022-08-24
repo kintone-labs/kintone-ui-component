@@ -79,17 +79,17 @@ describe("MobileTimePicker", () => {
       expect(container.value).to.be.equal(undefined);
     });
 
-    it("should throw error when set invalid value", async () => {
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileTimePicker({ value: "12:234" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("Format is not valid.");
-      }
+      fixture(container);
     });
   });
 });

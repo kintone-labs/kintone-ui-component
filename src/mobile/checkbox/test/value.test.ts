@@ -56,40 +56,34 @@ describe("MobileCheckbox", () => {
       expect((inputsEl[2] as HTMLInputElement).checked).to.equal(true);
     });
 
-    it("should be throw error when set null on constructor", async () => {
-      const container = new MobileCheckbox({ items: initItems, value: null });
-      try {
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value' property is not array");
-      }
+    it("should be throw error when set null on constructor", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
 
-      // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
+      const container = new MobileCheckbox({ items: initItems, value: null });
+      fixture(container);
     });
 
-    it("should be throw error when set null by setter", async () => {
+    it("should be throw error when set null by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new MobileCheckbox({
         items: initItems,
         value: [initItems[0].value],
       });
-      try {
-        container.value = null;
-        await fixture(container);
-      } catch (error) {
-        let errorMessage = "'value' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value' property is not array");
-      }
-
-      // TODO:
-      // Implement checking if source code does not throw error in validateValueArray function
+      container.value = null;
+      fixture(container);
     });
 
     it("should be none checked items when set [] by setter", async () => {
