@@ -287,7 +287,7 @@ let exportTable;
       const data = {
         type: "change-cell",
         rowIndex: dataIndex,
-        data: this.data,
+        data: this._deepCloneObject(this.data),
         oldData: oldData,
         field: field,
       };
@@ -302,7 +302,7 @@ let exportTable;
       const data = {
         type: "add-row",
         rowIndex: currentRowIndex,
-        data: this.data,
+        data: this._deepCloneObject(this.data),
         oldData: oldData,
       };
       this._dispatchChangeEvent(data);
@@ -316,7 +316,7 @@ let exportTable;
       const data = {
         type: "remove-row",
         rowIndex: currentRowIndex,
-        data: this.data,
+        data: this._deepCloneObject(this.data),
         oldData: oldData,
       };
       this._dispatchChangeEvent(data);
@@ -401,7 +401,10 @@ let exportTable;
 
       const buttonAction = document.createElement("button");
       buttonAction.addEventListener("click", () => {
-        if (isAdd) return this._handleAddRow(newRow.rowIndex);
+        if (isAdd) {
+          this._handleAddRow(newRow.rowIndex);
+          return;
+        }
         this._handleRemoveRow(newRow.rowIndex);
       });
       buttonAction.classList.add(className);
