@@ -53,6 +53,9 @@ Please use these CDN link.
   https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
+> unpkg is not supported by Cybozu. We recommend you to use it for verification.<br />
+> In a production environment, please use UMD to avoid the possible effects of unpkg technical obstacle and glitches.
+
 ### npm
 Please install and use `kintone-ui-component` with npm.
 ```bash
