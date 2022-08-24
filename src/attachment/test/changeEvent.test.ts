@@ -24,12 +24,63 @@ describe("Attachment", () => {
       expect(triggeredEvent.detail.type).to.equal("add-file");
     });
 
+    it("should be triggered add file event when drag file into drag file area ", async () => {
+      let triggeredEvent: any = null;
+      const container = new Attachment();
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const dragEl = el.querySelector(
+        ".kuc-attachment__group__files"
+      ) as HTMLDivElement;
+      const list = new DataTransfer();
+      const file = new File(["content"], "filename.jpg");
+      list.items.add(file);
+      dragEl.dispatchEvent(
+        new DragEvent("dragenter", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      dragEl.dispatchEvent(
+        new DragEvent("dragover", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      const dropEL = el.querySelector(
+        ".kuc-attachment__group__files__droppable"
+      ) as HTMLDivElement;
+      dropEL.dispatchEvent(
+        new DragEvent("drop", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      dragEl.dispatchEvent(
+        new DragEvent("dragleave", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      await elementUpdated(container);
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.files[0].name).to.equal("filename.jpg");
+      expect(triggeredEvent.detail.type).to.equal("add-file");
+    });
+
     it("should be triggered when click remove file button", async () => {
       let triggeredEvent: any = null;
       const container = new Attachment({
         files: [
-          { name: "filename.jpg", size: "150" },
-          { name: "icon.jpg", size: "200" },
+          { name: "filename.jpg", size: "10737418240" },
+          { size: "10485760" },
+          { name: "icon.jpg", size: "2000" },
         ],
       });
       container.addEventListener("change", (event: any) => {
@@ -39,12 +90,12 @@ describe("Attachment", () => {
       const buttonsEl = el.querySelectorAll(
         ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
       );
-      (buttonsEl[0] as HTMLButtonElement).click();
+      (buttonsEl[2] as HTMLButtonElement).click();
       await elementUpdated(container);
       expect(triggeredEvent.type).to.equal("change");
       expect(
         triggeredEvent.detail.oldFiles[triggeredEvent.detail.fileIndex[0]].name
-      ).to.equal("filename.jpg");
+      ).to.equal("icon.jpg");
       expect(triggeredEvent.detail.type).to.equal("remove-file");
     });
   });

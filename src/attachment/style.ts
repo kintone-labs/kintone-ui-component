@@ -139,6 +139,12 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__display-area__item__remove-button__container__button:hover {
     background: #d8e1e6;
   }
+  .kuc-attachment__group__files__display-area__item__remove-button__container__button:focus-within {
+    border: 1px solid #3498db;
+  }
+  .kuc-attachment__group__files__display-area__item__remove-button__container__button:focus {
+    outline: none;
+  }
   .kuc-attachment__group__files__display-area__item__size {
     display: inline-block;
     position: absolute;

@@ -11,7 +11,8 @@ type CustomEventDetail = {
 type AttachmentEventDetail = {
   files?: FileItem[];
   oldFiles?: FileItem[];
-  changedFiles?: FileItem[];
+  fileIndex?: number[];
+  type?: string;
 };
 
 export abstract class KucBase extends LitElement {

@@ -7,11 +7,22 @@ import {
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validatePositiveInteger, validateProps } from "../base/validator";
+import {
+  isArrayType,
+  throwErrorAfterUpdateComplete,
+  validatePositiveInteger,
+  validateProps,
+} from "../base/validator";
 import { en, ja, zh } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentProps, FileItem } from "./type";
-import { ATTACHMENT } from "../base/attachment/resource/constant";
+import {
+  ATTACHMENT_INVALID_SIZE_ERROR,
+  ONE_GB,
+  ONE_KB,
+  ONE_MB,
+} from "../base/attachment/resource/constant";
+import { ERROR_MESSAGE } from "../base/constant";
 
 let exportAttachment;
 (() => {
@@ -46,6 +57,9 @@ let exportAttachment;
 
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
+    private _dragTextParentPaddingHeight = 16;
+    private _dragTextParentBorderWidth = 1;
+    private _dragTextBorderWidth = 2;
 
     @query(".kuc-attachment__group__files")
     private _groupFilesEl!: HTMLDivElement;
@@ -62,7 +76,15 @@ let exportAttachment;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
     }
-
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("files")) {
+        if (!isArrayType<FileItem>(this.files)) {
+          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
+          return false;
+        }
+      }
+      return true;
+    }
     willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("language")) {
         this._locale = this._getLocale();
@@ -112,7 +134,7 @@ let exportAttachment;
               this._locale.ATTACHMENT_BROWSE
             }</span>
             <div class="kuc-attachment__group__files__browse-button__input-container">
-              <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" accept multiple 
+              <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" multiple 
               .id="${this._GUID}-input"
               aria-required="${this.requiredIcon}"
               aria-invalid="${this.error}"
@@ -199,12 +221,14 @@ let exportAttachment;
       }
     }
 
-    private _handleClickFileRemove(event: any) {
+    private _handleClickFileRemove(event: PointerEvent) {
+      const removeButtonEl = event.currentTarget as HTMLButtonElement;
       const index = parseInt(
-        event.currentTarget.getAttribute("data-file-index"),
+        removeButtonEl.getAttribute("data-file-index")!,
         10
       );
-      if (!isNaN(index) && this.files) {
+
+      if (this.files) {
         index === this.files.length - 1 && this._inputEl.focus();
         const tempFiles = [...this.files];
         this.files.splice(index, 1);
@@ -224,11 +248,17 @@ let exportAttachment;
       this._dragEnterCounter++;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
-
         this._groupFilesEl.style.height =
-          this._groupFilesEl.offsetHeight - 16 * 2 + "px";
-        this._dragEl.style.width = this._groupFilesEl.offsetWidth - 4 + "px";
-        this._dragEl.style.height = this._groupFilesEl.offsetHeight - 6 + "px";
+          this._groupFilesEl.offsetHeight -
+          (this._dragTextParentPaddingHeight +
+            this._dragTextParentBorderWidth) *
+            2 +
+          "px";
+        this._dragEl.style.width = this._groupFilesEl.offsetWidth + "px";
+        this._dragEl.style.height =
+          this._groupFilesEl.offsetHeight -
+          (this._dragTextParentBorderWidth + this._dragTextBorderWidth) * 2 +
+          "px";
         this._isDraging = true;
       }
     }
@@ -255,7 +285,7 @@ let exportAttachment;
           if (
             typeof event.dataTransfer.items[i].webkitGetAsEntry ===
               "function" &&
-            event.dataTransfer.items[i].webkitGetAsEntry()!.isDirectory
+            event.dataTransfer.items[i].webkitGetAsEntry()?.isDirectory
           ) {
             return false;
           }
@@ -290,7 +320,7 @@ let exportAttachment;
         const tempFileList = [...this.files];
         const fileIndex = addedFiles.map((_item: any, index: number) => {
           return tempFileList.length + index;
-        });
+        }) as number[];
         addedFiles.forEach((addedFile: FileItem) => this.files.push(addedFile));
         const detail = {
           oldFiles: tempFileList,
@@ -310,21 +340,24 @@ let exportAttachment;
       }
       return validatePositiveInteger(size)
         ? this._formatFileSize(parseInt(size, 10))
-        : ATTACHMENT.INVALID_SIZE_ERROR;
+        : ATTACHMENT_INVALID_SIZE_ERROR;
     }
 
     private _formatFileSize(size: number) {
-      if (size >= ATTACHMENT.UNIT_LENGTH.ONE_GB) {
-        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_GB) + " GB";
-      } else if (size >= ATTACHMENT.UNIT_LENGTH.ONE_MB) {
-        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_MB) + " MB";
-      } else if (size >= ATTACHMENT.UNIT_LENGTH.ONE_KB) {
-        return Math.round(size / ATTACHMENT.UNIT_LENGTH.ONE_KB) + " KB";
+      if (size >= ONE_GB) {
+        return Math.round(size / ONE_GB) + " GB";
+      } else if (size >= ONE_MB) {
+        return Math.round(size / ONE_MB) + " MB";
+      } else if (size >= ONE_KB) {
+        return Math.round(size / ONE_KB) + " KB";
       }
       return Math.round(size) + " bytes";
     }
 
     private _isFileOrDirectoryDrag = (event: DragEvent) => {
+      if (!event.dataTransfer) {
+        return false;
+      }
       if (event.dataTransfer && event.dataTransfer.items !== undefined) {
         for (let i = 0; i < event.dataTransfer.items.length; i++) {
           if (event.dataTransfer.items[i].kind.toLowerCase() === "file") {
@@ -333,13 +366,6 @@ let exportAttachment;
         }
       }
 
-      if (event.dataTransfer && event.dataTransfer.types !== undefined) {
-        for (let i = 0; i < event.dataTransfer.types.length; i++) {
-          if (event.dataTransfer.types[i].toLowerCase() === "files") {
-            return true;
-          }
-        }
-      }
       return false;
     };
   }

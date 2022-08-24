@@ -43,5 +43,17 @@ describe("Attachment", () => {
         }
       });
     });
+    it("should be throw error when assigned null to files on constructor", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'files' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new Attachment({ files: null });
+      fixture(container);
+    });
   });
 });
