@@ -1,5 +1,4 @@
-import "./index.ts";
-import { html } from "lit-html";
+import { DatePicker } from "./index.ts";
 
 export default {
   title: "desktop/date-picker",
@@ -26,70 +25,22 @@ export default {
   },
 };
 
-const Template = (args) => {
-  const handleDateChange = (event) => {
+const template = (args) => {
+  const datePicker = new DatePicker({ ...args });
+  datePicker.addEventListener("change", (event) => {
     console.log(event);
-  };
-  return html`
-    <kuc-date-picker
-      .disabled="${args.disabled}"
-      .language="${args.language}"
-      .value="${args.value}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .className="${args.className}"
-      .error="${args.error}"
-      @change="${handleDateChange}"
-    ></kuc-date-picker>
-  `;
+  });
+  return datePicker;
 };
 
-export const BaseLanguageEN = Template.bind({});
-BaseLanguageEN.args = {
+export const Base = template.bind({});
+Base.args = {
   className: "date-picker-class",
-  error: "",
+  error: "Error occured",
   id: "date-picker-id",
   label: "Date Picker Label",
   language: "en",
   requiredIcon: false,
-  value: "2021-03-31",
-  visible: true,
-};
-
-export const BaseLanguageJA = Template.bind({});
-BaseLanguageJA.args = {
-  className: "date-picker-class",
-  error: "",
-  id: "date-picker-id",
-  label: "Date Picker Label",
-  language: "ja",
-  requiredIcon: false,
-  value: "2021-03-31",
-  visible: true,
-};
-
-export const BaseLanguageZH = Template.bind({});
-BaseLanguageZH.args = {
-  className: "date-picker-class",
-  error: "",
-  id: "date-picker-id",
-  label: "Date Picker Label",
-  language: "zh",
-  requiredIcon: false,
-  value: "2021-03-31",
-  visible: true,
-};
-
-export const BaseError = Template.bind({});
-BaseError.args = {
-  className: "date-picker-class",
-  error: "Date picker error",
-  id: "date-picker-id",
-  label: "Date Picker Label",
-  requiredIcon: true,
-  language: "en",
-  value: "2021-03-31",
+  value: "2021-03-12",
   visible: true,
 };

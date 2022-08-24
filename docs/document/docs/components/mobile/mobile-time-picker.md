@@ -2,7 +2,6 @@
 id: mobile-time-picker
 title: MobileTimePicker
 sidebar_label: MobileTimePicker
-original_id: mobile-time-picker
 ---
 
 ## Overview
@@ -57,10 +56,15 @@ Here is a list of available constructors:
 
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.mobile.app.record.getSpaceElement('space');
+
 const mobileTimePicker = new Kuc.MobileTimePicker({
   label: 'Time',
   requiredIcon: true,

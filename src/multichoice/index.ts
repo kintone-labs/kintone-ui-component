@@ -163,6 +163,7 @@ let exportMultiChoice;
           <kuc-base-error
             .text="${this.error}"
             .guid="${this._GUID}"
+            ?hidden="${!this.error}"
             ariaLive="assertive"
           ></kuc-base-error>
         </div>

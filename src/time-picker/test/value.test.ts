@@ -47,30 +47,30 @@ describe("TimePicker", () => {
       expect(inputMinuteEl.value).to.be.equal("15");
     });
 
-    it("should throw error when set invalid value", async () => {
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new TimePicker({ value: "12,12" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("Format is not valid.");
-      }
+      fixture(container);
     });
 
-    it("should throw error when it is less than min", async () => {
+    it("should throw error when it is less than min", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("Time is out of valid range.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
       const container = new TimePicker({ value: "10:00", min: "12:00" });
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("Time is out of valid range.");
-      }
+      fixture(container);
     });
 
     it("should be empty value and UI when set '' on constructor", async () => {

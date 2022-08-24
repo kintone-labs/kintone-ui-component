@@ -53,82 +53,34 @@ describe("Base", () => {
       expect(validateTimeStep(360, "10:00", "9:00")).to.equal(false);
     });
 
-    it("should be throw error when timeStep is not number", async () => {
-      try {
-        // @ts-expect-error
-        validateTimeStepNumber(null);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'timeStep' property is not number");
-      }
+    it("should be return false when timeStep is not number", async () => {
+      // @ts-expect-error
+      expect(validateTimeStepNumber(null)).to.equal(false);
     });
 
-    it("should be throw error when item is not array", async () => {
-      try {
-        // @ts-expect-error
-        validateItems(null);
-      } catch (error) {
-        let errorMessage = "'items' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'items' property is not array");
-      }
+    it("should be return false when item is not array", async () => {
+      // @ts-expect-error
+      expect(validateItems(null)).to.equal(false);
     });
 
-    it("should be throw error when value is not array", async () => {
-      try {
-        // @ts-expect-error
-        validateValueArray(null);
-      } catch (error) {
-        let errorMessage = "'value' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value' property is not array");
-      }
+    it("should be return false when assign value is not array", async () => {
+      // @ts-expect-error
+      expect(validateValueArray(null)).to.equal(false);
     });
 
-    it("should be throw error when value is not string", async () => {
-      try {
-        // @ts-expect-error
-        validateValueString(null);
-      } catch (error) {
-        let errorMessage = "'value' property is not string";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'value' property is not string");
-      }
+    it("should be return false when assing value is not string", async () => {
+      // @ts-expect-error
+      expect(validateValueString(null)).to.equal(false);
     });
 
-    it("should be throw error when selectedIndex is not array", async () => {
-      try {
-        // @ts-expect-error
-        validateSelectedIndexArray(null);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not array";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not array");
-      }
+    it("should be return false when assign selectedIndex is not array", async () => {
+      // @ts-expect-error
+      expect(validateSelectedIndexArray(null)).to.equal(false);
     });
 
-    it("should be throw error when selectedIndex is not number", async () => {
-      try {
-        // @ts-expect-error
-        validateSelectedIndexNumber(null);
-      } catch (error) {
-        let errorMessage = "'selectedIndex' property is not number";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.equal("'selectedIndex' property is not number");
-      }
+    it("should be return false when selectedIndex is not number", async () => {
+      // @ts-expect-error
+      expect(validateSelectedIndexNumber(null)).to.equal(false);
     });
 
     it("should be return true when parameter is valid", async () => {
