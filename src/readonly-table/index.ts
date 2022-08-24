@@ -1,16 +1,17 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { KucBase, createStyleOnHeader } from "../base/kuc-base";
+
 import { visiblePropConverter } from "../base/converter";
+import { ERROR_MESSAGE } from "../base/constant";
+import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
   throwErrorAfterUpdateComplete,
-  validateProps,
   validateColumns,
   validateData,
+  validateProps,
   validateRowsPerPage,
 } from "../base/validator";
 import "../base/pagination";
-import { ERROR_MESSAGE } from "../base/constant";
 import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
 
