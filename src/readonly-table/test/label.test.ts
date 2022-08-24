@@ -5,11 +5,12 @@ describe("ReadOnlyTable", () => {
   describe("label", () => {
     it("should be empty when not assigned in constructor", async () => {
       const container = new ReadOnlyTable({});
-      const el = await fixture(container);
 
+      const el = await fixture(container);
       const labelEl = el.querySelector(
         ".kuc-readonly-table___table__label"
       ) as HTMLLegendElement;
+
       expect(labelEl).to.equal(null);
     });
 
@@ -19,7 +20,6 @@ describe("ReadOnlyTable", () => {
       });
 
       const el = await fixture(container);
-
       const labelEl = el.querySelector(
         ".kuc-readonly-table__table__label"
       ) as HTMLLegendElement;
@@ -29,11 +29,9 @@ describe("ReadOnlyTable", () => {
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
       const container = new ReadOnlyTable({ label: "options-label" });
-
       container.label = "replace-label";
 
       const el = await fixture(container);
-
       const labelEl = el.querySelector(
         ".kuc-readonly-table__table__label"
       ) as HTMLLegendElement;
