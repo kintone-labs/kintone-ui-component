@@ -1,5 +1,5 @@
 ---
-id: version-1.4.0-custom-css
+id: version-1.5.0-custom-css
 title: Custom CSS
 sidebar_label: Custom CSS
 original_id: custom-css
@@ -7,7 +7,7 @@ original_id: custom-css
 
 ## Overview
 
-**Kintone UI Component** provide some Custom CSS properties for each component by using [CSS inheritance](#css-inheritance) and [CSS variables and custom properties](#css-variables-and-custom-properties) together, it's easy to create themable elements. By applying css selectors to customize CSS custom properties, tree-based and per-instance theming is straightforward to apply.
+**Kintone UI Component (KUC)** provides some Custom CSS properties for each component by using [CSS inheritance](#css-inheritance) and [CSS variables and custom properties](#css-variables-and-custom-properties) together. It's easy to create customizable elements. By applying CSS selectors to customize CSS custom properties, tree-based and per-instance theming are straightforward to apply.
 
 ### CSS inheritance
 
@@ -17,7 +17,7 @@ CSS inheritance lets parent and host elements propagate certain CSS properties t
 
 All CSS custom properties (`--custom-property-name`) inherit. You can use this to make your component's styles configurable from outside.
 
-KUC will publicize some properties for each element, based on that users can customize css easily (_For now we will publicize some properties for **Button** and **Text** component first_).
+KUC will publish some properties for each element, based on that users can customize css easily.
 
 ## Usage
 
@@ -51,11 +51,11 @@ You can set the value for `--my-background` by using the CSS element Selector:
 <my-element id="sample-id"></my-element>
 ```
 
-> You can find list Custom CSS properties in the **Custom CSS** section in each component.
+> You can find the list of Custom CSS properties in the **Custom CSS** section on each component page.
 
 ## Sample code
 
-Here is a sample code when custom some properties for `Text` component
+Here is a sample code when customizing some CSS properties for `Text` component:
 
 ```javascript
 <style>

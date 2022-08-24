@@ -1,6 +1,6 @@
 {
   "version-1.4.0-docs": {
-    "Getting Started": ["version-1.4.0-getting-started/quick-start", "version-1.4.0-getting-started/custom-css"],
+    "Getting Started": ["version-1.4.0-getting-started/quick-start"],
     "Components": [
       {
         "type": "subcategory",
