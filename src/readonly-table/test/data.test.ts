@@ -44,8 +44,8 @@ const columns = [
 
 describe("ReadOnlyTable", () => {
   describe("data", () => {
-    it("should be empty body when not assigned on constructor", async () => {
-      const container = new ReadOnlyTable();
+    it("should be empty when not assigned on constructor", async () => {
+      const container = new ReadOnlyTable({ columns: columns });
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
         ".kuc-readonly-table__table__body__row"
@@ -53,7 +53,7 @@ describe("ReadOnlyTable", () => {
       expect(rowsEl.length).to.equal(0);
     });
 
-    it("should add rows when assigned on constructor", async () => {
+    it("should have rows when assigned on constructor", async () => {
       const container = new ReadOnlyTable({ columns: columns, data: data });
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
@@ -67,8 +67,8 @@ describe("ReadOnlyTable", () => {
       expect(rowsEl[1].children[1].textContent?.trim()).to.equal(data[1].name);
     });
 
-    it("should add rows when assigned by setter", async () => {
-      const container = new ReadOnlyTable({ columns: columns, data: data });
+    it("should have rows when assigned by setter", async () => {
+      const container = new ReadOnlyTable({ columns: columns });
       container.data = data;
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
@@ -82,7 +82,7 @@ describe("ReadOnlyTable", () => {
       expect(rowsEl[1].children[1].textContent?.trim()).to.equal(data[1].name);
     });
 
-    it("should be updated rows when replaced by setter", async () => {
+    it("should update when replaced by setter", async () => {
       const container = new ReadOnlyTable({
         columns: columns,
         data: replacedData,
@@ -134,7 +134,7 @@ describe("ReadOnlyTable", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null by setter", (done) => {
+    it("should throw error when assigned wrong type by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'data' property is not an array.");
@@ -145,6 +145,20 @@ describe("ReadOnlyTable", () => {
 
       const container = new ReadOnlyTable();
       container.data = null;
+      fixture(container);
+    });
+
+    it("should throw error when assigned null array by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'data' property is not an array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new ReadOnlyTable();
+      container.data = [null];
       fixture(container);
     });
   });
