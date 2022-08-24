@@ -163,7 +163,7 @@ describe("ReadOnlyTable", () => {
       expect(columnsEl[2].textContent?.trim()).to.equal("Country");
     });
 
-    it("should be updated header when changed columns by setter", async () => {
+    it("should update header when change columns by setter", async () => {
       const container = new ReadOnlyTable({
         columns: columns,
       });
@@ -196,7 +196,7 @@ describe("ReadOnlyTable", () => {
     fixture(container);
   });
 
-  it("should throw error when assign null by setter", (done) => {
+  it("should throw error when assign wrong type by setter", (done) => {
     const handleError = (event: any) => {
       const errorMsg = event.reason.message;
       expect(errorMsg).to.equal("'columns' property is not an array.");
