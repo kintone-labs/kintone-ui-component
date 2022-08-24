@@ -167,7 +167,7 @@ const data = [
     multichoice: ["sample2", "sample3"],
     address: ["ja"],
   },
-]
+];
 
 export const Base = Template.bind({});
 Base.args = {
