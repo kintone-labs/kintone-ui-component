@@ -16,11 +16,11 @@ CSS inheritance lets parent and host elements propagate certain CSS properties t
 
 All CSS custom properties (`--custom-property-name`) inherit. You can use this to make your component's styles configurable from outside.
 
-KUC will publish some properties for each element, based on that users can customize css easily.
+KUC will publish some properties for each element, based on that users can customize CSS easily.
 
 ## Usage
 
-You can set the value for `--my-background` by using the CSS element Selector:
+You can set the value for `--my-background` by using the CSS element selector:
 
 ```javascript
 <style>
