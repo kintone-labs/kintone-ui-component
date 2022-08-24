@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import { ReadOnlyTable } from "../index";
 
 describe("ReadOnlyTable", () => {
