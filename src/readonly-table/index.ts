@@ -120,20 +120,6 @@ let exportReadOnlyTable;
       `;
     }
 
-    private _getColumnsTemplate(column: Column) {
-      return html`
-        <th
-          class="kuc-readonly-table__table__header__cell"
-          ?hidden="${column.visible === false}"
-        >
-          <span class="kuc-readonly-table__table__header__cell__label"
-            >${column.headerName}</span
-          >
-        </th>
-      `;
-    }
-
-    // Formatting the data displayed on the current page
     private _createDisplayData(
       data: object[],
       pagePosition: number,
@@ -149,6 +135,20 @@ let exportReadOnlyTable;
       return displayData;
     }
 
+    private _getColumnsTemplate(column: Column) {
+      return html`
+        <th
+          class="kuc-readonly-table__table__header__cell"
+          ?hidden="${column.visible === false}"
+        >
+          <span class="kuc-readonly-table__table__header__cell__label"
+            >${column.headerName}</span
+          >
+        </th>
+      `;
+    }
+
+    // Formatting the data displayed on the current page
     private _getDataTemplate(
       data: any,
       currentIndex: number,
@@ -179,6 +179,14 @@ let exportReadOnlyTable;
       `;
     }
 
+    private _toggleDisplayPreviousButton() {
+      return this._pagePosition > 1;
+    }
+
+    private _toggleDisplayNextButton() {
+      return this._pagePosition < this.data.length / this.rowsPerPage;
+    }
+
     private _handleClickPreviousButton(_event: MouseEvent | KeyboardEvent) {
       if (this._pagePosition === 1) return;
       this._pagePosition -= 1;
@@ -186,14 +194,6 @@ let exportReadOnlyTable;
 
     private _handleClickNextButton(_event: MouseEvent | KeyboardEvent) {
       this._pagePosition += 1;
-    }
-
-    private _toggleDisplayPreviousButton() {
-      return this._pagePosition > 1;
-    }
-
-    private _toggleDisplayNextButton() {
-      return this._pagePosition < this.data.length / this.rowsPerPage;
     }
   }
   window.customElements.define("kuc-readonly-table", KucReadOnlyTable);
