@@ -38,10 +38,10 @@ You can set the value for `--my-background` by using the CSS element Selector:
   my-element {
     --my-background: #d9092f;
   }
-  my-element.sample-class {
+  .sample-class {
     --my-background: #a8a632;
   }
-   my-element#sample-id {
+  #sample-id {
     --my-background: #1ac9b8;
   }
 </style>
