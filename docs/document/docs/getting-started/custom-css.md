@@ -6,7 +6,7 @@ sidebar_label: Custom CSS
 
 ## Overview
 
-**Kintone UI Component (KUC)** provides some Custom CSS properties for each component by using [CSS inheritance](#css-inheritance) and [CSS variables and custom properties](#css-variables-and-custom-properties) together. It's easy to create customizable elements. By applying CSS selectors to customize CSS custom properties, tree-based and per-instance theming are straightforward to apply.
+**Kintone UI Component (KUC)** provides some Custom CSS properties to create customizable elements by using [CSS inheritance](#css-inheritance), [CSS variables and custom properties](#css-variables-and-custom-properties) together. By applying CSS selectors to customize CSS custom properties, tree-based and per-instance theming are straightforward to apply.
 
 ### CSS inheritance
 
