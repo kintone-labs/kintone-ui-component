@@ -34,19 +34,19 @@ Base.args = {
   pagination: true,
   columns: [
     {
-      headerName: "Number",
+      title: "Number",
       field: "index",
     },
     {
-      headerName: "City",
+      title: "City",
       field: "name",
     },
     {
-      headerName: "Country",
+      title: "Country",
       field: "country",
     },
     {
-      headerName: "Population",
+      title: "Population",
       field: "population",
     },
   ],
@@ -106,19 +106,19 @@ Base2.args = {
   rowsPerPage: 3,
   columns: [
     {
-      headerName: "Number",
+      title: "Number",
       field: "index",
     },
     {
-      headerName: "City",
+      title: "City",
       field: "name",
     },
     {
-      headerName: "Country",
+      title: "Country",
       field: "country",
     },
     {
-      headerName: "Population",
+      title: "Population",
       field: "population",
     },
   ],
@@ -178,20 +178,20 @@ Base3.args = {
   rowsPerPage: 3,
   columns: [
     {
-      headerName: "Number",
+      title: "Number",
       field: "index",
     },
     {
-      headerName:
+      title:
         "A very very long header name as an example of long content in header",
       field: "name",
     },
     {
-      headerName: "Country",
+      title: "Country",
       field: "country",
     },
     {
-      headerName: "Population",
+      title: "Population",
       field: "population",
     },
   ],
