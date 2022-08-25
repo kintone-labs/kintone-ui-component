@@ -50,7 +50,7 @@ You can set the value for `--my-background` by using the CSS selectors:
 <my-element id="sample-id"></my-element>
 ```
 
-> You can find the list of Custom CSS properties in the **Custom CSS** section on each component page.
+> You can find a list of the Custom CSS properties in the **Custom CSS** section on each component page.
 
 ## Sample code
 
