@@ -27,17 +27,6 @@ You can set the value for `--my-background` by using the CSS selectors:
   my-element {
     --my-background: #d9092f;
   }
-</style>
-<my-element></my-element>
-```
-
-`--my-background` is configurable per instance of `my-element`:
-
-```javascript
-<style>
-  my-element {
-    --my-background: #d9092f;
-  }
   .sample-class {
     --my-background: #a8a632;
   }
