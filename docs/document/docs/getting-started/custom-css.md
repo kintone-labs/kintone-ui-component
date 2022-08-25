@@ -16,7 +16,7 @@ CSS inheritance lets parent and host elements propagate certain CSS properties t
 
 All CSS custom properties (`--custom-property-name`) inherit their value from their parent. You can use this to make your component's styles configurable from the outside.
 
-KUC will publish some properties for each element, based on that users can customize CSS easily.
+KUC will publish some properties for each element and based on that, users can easily customize CSS properties of the element.
 
 ## Usage
 
