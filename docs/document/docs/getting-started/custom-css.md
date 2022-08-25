@@ -20,7 +20,7 @@ KUC will publish some properties for each element and based on that, users can e
 
 ## Usage
 
-You can set the value for `--my-background` by using the CSS element selector:
+You can set the value for `--my-background` by using the CSS selectors:
 
 ```javascript
 <style>
