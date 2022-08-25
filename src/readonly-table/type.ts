@@ -3,7 +3,7 @@ import { KucBase } from "../base/kuc-base";
 
 export declare type Column = {
   field?: string;
-  headerName?: string;
+  title?: string;
   visible?: boolean;
 };
 
