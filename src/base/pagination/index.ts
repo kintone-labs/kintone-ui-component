@@ -10,8 +10,10 @@ let exportPagination;
   if (exportPagination) {
     return;
   }
-  // eslint-disable-next-line kuc-v1/no-prefix-of-private-function
+
   class BasePagination extends KucBase {
+    @property({ type: Boolean }) isNext = true;
+    @property({ type: Boolean }) isPrev = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -19,59 +21,24 @@ let exportPagination;
       converter: visiblePropConverter,
     })
     visible = true;
-    @property({
-      type: Boolean,
-      converter: visiblePropConverter,
-    })
-    isNext = true;
-    @property({
-      type: Boolean,
-      converter: visiblePropConverter,
-    })
-    isPrev = true;
-
-    @query(".kuc-base-pagination__group__pagination-prev")
-    private _prevButtonEl!: HTMLButtonElement;
-    @query(".kuc-base-pagination__group__pagination-next")
-    private _nextButtonEl!: HTMLButtonElement;
-
-    updated() {
-      this._togglePreviousButton(this.isPrev);
-      this._toggleNextButton(this.isNext);
-    }
-
-    private async _togglePreviousButton(toggleDisplayPreviusButton: boolean) {
-      await this.updateComplete;
-      if (!toggleDisplayPreviusButton) {
-        this._prevButtonEl.classList.add("pager-disable");
-      } else {
-        this._prevButtonEl.classList.remove("pager-disable");
-      }
-    }
-
-    private async _toggleNextButton(toggleDisplayNextButton: boolean) {
-      await this.updateComplete;
-      if (!toggleDisplayNextButton) {
-        this._nextButtonEl.classList.add("pager-disable");
-      } else {
-        this._nextButtonEl.classList.remove("pager-disable");
-      }
-    }
 
     render() {
       return html`
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
           <button
             title="previous"
-            class="kuc-base-pagination__group__pagination-prev"
+            class="kuc-base-pagination__group__pager-prev${this.isPrev
+              ? ""
+              : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickPrevButton}"
           >
-            ${this._getPrevButtonSvgTemplate()}
-          </button>
-          <button
+            ${this._getPrevButtonSvgTemplate()}</button
+          ><button
             title="next"
-            class="kuc-base-pagination__group__pagination-next"
+            class="kuc-base-pagination__group__pager-next${this.isNext
+              ? ""
+              : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickNextButton}"
           >

@@ -13,7 +13,7 @@ describe("BasePagination", () => {
       });
       await fixture(container);
       const nextEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-next"
+        "button.kuc-base-pagination__group__pager-next"
       ) as HTMLElement;
       nextEl.click();
       await elementUpdated(nextEl);
@@ -30,7 +30,7 @@ describe("BasePagination", () => {
       });
       await fixture(container);
       const nextEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+        "button.kuc-base-pagination__group__pager-prev"
       ) as HTMLElement;
       nextEl.click();
       await elementUpdated(nextEl);

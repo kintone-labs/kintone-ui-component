@@ -6,12 +6,12 @@ export const PAGINATION_CSS = `
     cursor: pointer;
     outline: none;
   }
-  .kuc-base-pagination__group__pagination-prev {
+  .kuc-base-pagination__group__pager-prev {
     border: none;
     background-color: transparent;
     visibility: visible;
   }
-  .kuc-base-pagination__group__pagination-next {
+  .kuc-base-pagination__group__pager-next {
     border: none;
     background-color: transparent;
     visibility: visible;
@@ -22,7 +22,7 @@ export const PAGINATION_CSS = `
   .kuc-base-pagination__group__pagination-prev:focus svg path {
     fill: #3498db;
   }
-  .pager-disable {
+  .kuc-base-pagination__group__pager-disable {
     visibility: hidden;
   }
 `;

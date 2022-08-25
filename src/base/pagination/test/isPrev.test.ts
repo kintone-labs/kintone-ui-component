@@ -1,25 +1,34 @@
-import { expect, fixture } from "@open-wc/testing";
-import "../index";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { BasePagination } from "../index";
 
 describe("BasePagination", () => {
   describe("isPrev", () => {
     it("should be visible when not assigned ", async () => {
-      const container = document.createElement("kuc-base-pagination");
-      await fixture(container);
-      const prevEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+      const container = new BasePagination();
+      const el = await fixture(container);
+
+      const prevEl = el.querySelector(
+        "button.kuc-base-pagination__group__pager-prev"
       ) as HTMLElement;
-      expect(prevEl.hasAttribute("hidden")).to.equal(false);
+
+      expect(
+        prevEl.classList.contains("kuc-base-pagination__group__pager-disable")
+      ).to.equal(false);
     });
 
     it("should be hidden when assigned", async () => {
-      const container = document.createElement("kuc-base-pagination");
-      await fixture(container);
+      const container = new BasePagination();
+      const el = await fixture(container);
+      container.isPrev = false;
+      await elementUpdated(el);
+
       const prevEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+        "button.kuc-base-pagination__group__pager-prev"
       ) as HTMLElement;
-      prevEl.setAttribute("hidden", "");
-      expect(prevEl.hasAttribute("hidden")).to.equal(true);
+
+      expect(
+        prevEl.classList.contains("kuc-base-pagination__group__pager-disable")
+      ).to.equal(true);
     });
   });
 });
