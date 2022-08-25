@@ -140,7 +140,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const prevEl = el.querySelector(
-        "kuc-base-pagination button.kuc-base-pagination__group__pagination-prev"
+        "kuc-base-pagination button.kuc-base-pagination__group__pager-prev"
       ) as HTMLButtonElement;
 
       expect(prevEl.classList.value.includes("pager-disable")).to.equal(true);
@@ -157,7 +157,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const nextEl = el.querySelector(
-        "kuc-base-pagination button.kuc-base-pagination__group__pagination-next"
+        "kuc-base-pagination button.kuc-base-pagination__group__pager-next"
       ) as HTMLButtonElement;
       for (let i = 0; i < data.length / rowsPerPage; i++) {
         nextEl.click();

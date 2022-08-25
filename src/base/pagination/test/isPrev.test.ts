@@ -7,7 +7,7 @@ describe("BasePagination", () => {
       const container = document.createElement("kuc-base-pagination");
       await fixture(container);
       const prevEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+        "button.kuc-base-pagination__group__pager-prev"
       ) as HTMLElement;
       expect(prevEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -16,7 +16,7 @@ describe("BasePagination", () => {
       const container = document.createElement("kuc-base-pagination");
       await fixture(container);
       const prevEl = document.querySelector(
-        "button.kuc-base-pagination__group__pagination-prev"
+        "button.kuc-base-pagination__group__pager-prev"
       ) as HTMLElement;
       prevEl.setAttribute("hidden", "");
       expect(prevEl.hasAttribute("hidden")).to.equal(true);
