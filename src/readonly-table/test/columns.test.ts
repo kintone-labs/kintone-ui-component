@@ -3,17 +3,17 @@ import { ReadOnlyTable } from "../index";
 
 const columns = [
   {
-    headerName: "Number",
+    title: "Number",
     field: "index",
     visible: true,
   },
   {
-    headerName: "City",
+    title: "City",
     field: "name",
     visible: true,
   },
   {
-    headerName: "Country",
+    title: "Country",
     field: "country",
     visible: false,
   },
@@ -21,12 +21,12 @@ const columns = [
 
 const replaceColumns = [
   {
-    headerName: "New col 1",
+    title: "New col 1",
     field: "index",
     visible: true,
   },
   {
-    headerName: "New col 2",
+    title: "New col 2",
     field: "name",
     visible: true,
   },
@@ -40,15 +40,15 @@ const columnsWithoutHeader = [
 
 const columnsWithoutVisible = [
   {
-    headerName: "Number",
+    title: "Number",
     field: "index",
   },
   {
-    headerName: "City",
+    title: "City",
     field: "name",
   },
   {
-    headerName: "Country",
+    title: "Country",
     field: "country",
   },
 ];
