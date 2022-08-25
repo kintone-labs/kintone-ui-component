@@ -12,6 +12,8 @@ let exportPagination;
   }
 
   class BasePagination extends KucBase {
+    @property({ type: Boolean }) isNext = true;
+    @property({ type: Boolean }) isPrev = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -19,35 +21,24 @@ let exportPagination;
       converter: visiblePropConverter,
     })
     visible = true;
-    @property({
-      type: Boolean,
-      converter: visiblePropConverter,
-    })
-    isNext = true;
-    @property({
-      type: Boolean,
-      converter: visiblePropConverter,
-    })
-    isPrev = true;
 
     render() {
       return html`
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
           <button
             title="previous"
-            class="kuc-base-pagination__group__pagination-prev${this.isPrev
+            class="kuc-base-pagination__group__pager-prev${this.isPrev
               ? ""
-              : " pager-disable"}"
+              : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickPrevButton}"
           >
-            ${this._getPrevButtonSvgTemplate()}
-          </button>
-          <button
+            ${this._getPrevButtonSvgTemplate()}</button
+          ><button
             title="next"
-            class="kuc-base-pagination__group__pagination-next${this.isNext
+            class="kuc-base-pagination__group__pager-next${this.isNext
               ? ""
-              : " pager-disable"}"
+              : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickNextButton}"
           >
