@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "es2015",
+    "target": "es2018",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
