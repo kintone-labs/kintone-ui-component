@@ -67,7 +67,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -86,7 +86,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -105,7 +105,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(2);
     });
@@ -119,7 +119,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(2);
     });
@@ -133,7 +133,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -152,7 +152,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -171,7 +171,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -190,7 +190,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -209,7 +209,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -228,7 +228,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -247,7 +247,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -266,7 +266,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
@@ -299,7 +299,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".pager-disable"
+        ".kuc-base-pagination__group__pager-disable"
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
