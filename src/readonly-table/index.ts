@@ -60,9 +60,6 @@ let exportReadOnlyTable;
           );
           return false;
         }
-        this.columns.map((col) =>
-          this._columnOrder.push(col.field ? col.field : "")
-        );
       }
 
       if (changedProperties.has("data") && !validateData(this.data)) {
@@ -72,16 +69,27 @@ let exportReadOnlyTable;
 
       if (changedProperties.has("rowsPerPage")) {
         if (!validateRowsPerPage(this.rowsPerPage)) {
-          this.rowsPerPage = 5;
           throwErrorAfterUpdateComplete(
             this,
             ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
           );
-          return true;
+          return false;
         }
+      }
+
+      return true;
+    }
+
+    willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("columns")) {
+        this.columns.map((col) =>
+          this._columnOrder.push(col.field ? col.field : "")
+        );
+      }
+
+      if (changedProperties.has("rowsPerPage")) {
         this.rowsPerPage = Math.round(this.rowsPerPage);
       }
-      return true;
     }
 
     render() {
