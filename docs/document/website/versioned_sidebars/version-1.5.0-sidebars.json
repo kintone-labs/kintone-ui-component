@@ -1,0 +1,71 @@
+{
+    "version-1.5.0-docs": {
+      "Getting Started": ["version-1.5.0-getting-started/quick-start", "version-1.5.0-getting-started/custom-css"],
+      "Components": [
+        {
+          "type": "subcategory",
+          "label": "Desktop",
+          "ids": [
+            "version-1.5.0-components/desktop/button",
+            "version-1.5.0-components/desktop/checkbox",
+            "version-1.5.0-components/desktop/date-picker",
+            "version-1.5.0-components/desktop/datetime-picker",
+            "version-1.5.0-components/desktop/dialog",
+            "version-1.5.0-components/desktop/dropdown",
+            "version-1.5.0-components/desktop/multichoice",
+            "version-1.5.0-components/desktop/notification",
+            "version-1.5.0-components/desktop/radio-button",
+            "version-1.5.0-components/desktop/spinner",
+            "version-1.5.0-components/desktop/text",
+            "version-1.5.0-components/desktop/textarea",
+            "version-1.5.0-components/desktop/time-picker"
+          ]
+        },
+        {
+          "type": "subcategory",
+          "label": "Mobile",
+          "ids": [
+            "version-1.5.0-components/mobile/mobile-button",
+            "version-1.5.0-components/mobile/mobile-checkbox",
+            "version-1.5.0-components/mobile/mobile-date-picker",
+            "version-1.5.0-components/mobile/mobile-datetime-picker",
+            "version-1.5.0-components/mobile/mobile-dropdown",
+            "version-1.5.0-components/mobile/mobile-multichoice",
+            "version-1.5.0-components/mobile/mobile-notification",
+            "version-1.5.0-components/mobile/mobile-radio-button",
+            "version-1.5.0-components/mobile/mobile-text",
+            "version-1.5.0-components/mobile/mobile-textarea",
+            "version-1.5.0-components/mobile/mobile-time-picker"
+          ]
+        }
+      ],
+      "Utilities": ["version-1.5.0-utilities/version"],
+      "Guides": [
+        "version-1.5.0-guides/comparison-v0-v1",
+        "version-1.5.0-guides/search-box-customization",
+        "version-1.5.0-guides/mobile-timecard-customization",
+        "version-1.5.0-guides/cleaning-check-list-customization",
+        "version-1.5.0-guides/bulk-update-customization",
+        "version-1.5.0-guides/format-setting-plugin",
+        "version-1.5.0-guides/version-conflicts-issue-solution"
+      ]
+    },
+    "version-1.5.0-release-notes": {
+      "Releases": [
+        "version-1.5.0-releases/release-notes",
+        "version-1.5.0-releases/release-notes-v1.4.0",
+        "version-1.5.0-releases/release-notes-v1.3.2",
+        "version-1.5.0-releases/release-notes-v1.3.1",
+        "version-1.5.0-releases/release-notes-v1.3.0",
+        "version-1.5.0-releases/release-notes-v1.2.0",
+        "version-1.5.0-releases/release-notes-v1.1.1",
+        "version-1.5.0-releases/release-notes-v1.1.0",
+        "version-1.5.0-releases/release-notes-v1.0.5",
+        "version-1.5.0-releases/release-notes-v1.0.4",
+        "version-1.5.0-releases/release-notes-v1.0.3",
+        "version-1.5.0-releases/release-notes-v1.0.2",
+        "version-1.5.0-releases/release-notes-v1.0.1",
+        "version-1.5.0-releases/release-notes-v1.0.0"
+      ]
+    }
+  }
