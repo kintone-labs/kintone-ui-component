@@ -143,7 +143,11 @@ describe("ReadOnlyTable", () => {
         "kuc-base-pagination button.kuc-base-pagination__group__pager-prev"
       ) as HTMLButtonElement;
 
-      expect(prevEl.classList.value.includes("pager-disable")).to.equal(true);
+      expect(
+        prevEl.classList.value.includes(
+          "kuc-base-pagination__group__pager-disable"
+        )
+      ).to.equal(true);
     });
 
     it("should hide Next button on last page", async () => {
@@ -159,11 +163,14 @@ describe("ReadOnlyTable", () => {
       const nextEl = el.querySelector(
         "kuc-base-pagination button.kuc-base-pagination__group__pager-next"
       ) as HTMLButtonElement;
-      for (let i = 0; i < data.length / rowsPerPage; i++) {
-        nextEl.click();
-      }
+      nextEl.click();
+      nextEl.click();
       await elementUpdated(nextEl);
-      expect(nextEl.classList.value.includes("pager-disable")).to.equal(true);
+      expect(
+        nextEl.classList.value.includes(
+          "kuc-base-pagination__group__pager-disable"
+        )
+      ).to.equal(true);
     });
   });
 });
