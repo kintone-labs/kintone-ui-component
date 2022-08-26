@@ -13,7 +13,7 @@ import {
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
-import { en, ja, zh } from "../base/attachment/resource/locale";
+import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentProps, FileItem } from "./type";
 import {
@@ -42,7 +42,8 @@ let exportAttachment;
     @property({ type: String, reflect: true, attribute: "id" })
     id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({ type: String, attribute: "lang", reflect: true }) language =
+      "auto";
     @property({ type: Boolean }) requiredIcon = false;
     @property({
       type: Boolean,
@@ -99,6 +100,7 @@ let exportAttachment;
           class="kuc-attachment__group__label"
           ?hidden="${!this.label}"
           for="${this._GUID}-input"
+          @click="${this._handleClickLabel}"
         >
           <kuc-base-label
             .text="${this.label}"
@@ -198,7 +200,7 @@ let exportAttachment;
       </svg>`;
     }
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
@@ -214,6 +216,8 @@ let exportAttachment;
           return en;
         case "zh":
           return zh;
+        case "zh-TW":
+          return zh_TW;
         case "ja":
           return ja;
         default:
@@ -244,7 +248,12 @@ let exportAttachment;
       }
     }
 
+    private _handleClickLabel(event: Event) {
+      event.preventDefault();
+    }
+
     private _handleDragEnter(event: DragEvent) {
+      if (this.disabled) return;
       this._dragEnterCounter++;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
@@ -264,6 +273,7 @@ let exportAttachment;
     }
 
     private _handleDragOver(event: DragEvent) {
+      if (this.disabled) return;
       event.stopPropagation();
       if (this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
@@ -271,6 +281,7 @@ let exportAttachment;
     }
 
     private _handleDragDrop(event: DragEvent) {
+      if (this.disabled) return;
       event.preventDefault();
       this._handleDragLeave();
       if (this._isFileDrop(event)) {
@@ -295,6 +306,7 @@ let exportAttachment;
     }
 
     private _handleDragLeave() {
+      if (this.disabled) return;
       this._dragEnterCounter--;
 
       if (this._dragEnterCounter === 0) {

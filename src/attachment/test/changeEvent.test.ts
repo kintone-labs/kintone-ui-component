@@ -26,13 +26,16 @@ describe("Attachment", () => {
 
     it("should be triggered add file event when drag file into drag file area ", async () => {
       let triggeredEvent: any = null;
-      const container = new Attachment();
+      const container = new Attachment({ disabled: true });
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
       const dragEl = el.querySelector(
         ".kuc-attachment__group__files"
+      ) as HTMLDivElement;
+      const dropEL = el.querySelector(
+        ".kuc-attachment__group__files__droppable"
       ) as HTMLDivElement;
       const list = new DataTransfer();
       const file = new File(["content"], "filename.jpg");
@@ -51,9 +54,36 @@ describe("Attachment", () => {
           bubbles: true,
         })
       );
-      const dropEL = el.querySelector(
-        ".kuc-attachment__group__files__droppable"
-      ) as HTMLDivElement;
+      dropEL.dispatchEvent(
+        new DragEvent("drop", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      dragEl.dispatchEvent(
+        new DragEvent("dragleave", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      await elementUpdated(container);
+      container.disabled = false;
+      dragEl.dispatchEvent(
+        new DragEvent("dragenter", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      dragEl.dispatchEvent(
+        new DragEvent("dragover", {
+          dataTransfer: list,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
       dropEL.dispatchEvent(
         new DragEvent("drop", {
           dataTransfer: list,
