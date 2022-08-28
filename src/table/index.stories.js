@@ -30,6 +30,8 @@ const renderAge = (dataCell, dataRow) => {
 };
 
 const renderName = (cellData, rowData, index) => {
+  console.log(index, "index");
+  console.log(rowData, "rowData");
   const dropdown = new Dropdown({
     items: [
       {

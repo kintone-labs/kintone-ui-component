@@ -250,6 +250,10 @@ let exportTable;
             defaultRowData[key] = [];
             continue;
           }
+          if (typeof data[key] === "object" && data[key] !== null) {
+            defaultRowData[key] = {};
+            continue;
+          }
           defaultRowData[key] = "";
         }
       }
@@ -267,7 +271,7 @@ let exportTable;
           this._handleChangeCell(event, column.field);
         });
         const cellTemplate = column.render
-          ? column.render(defaultRow[column.field], column, currentRowIndex)
+          ? column.render(defaultRow[column.field], defaultRow, currentRowIndex)
           : defaultRow[column.field];
         newCell.appendChild(cellTemplate);
       }
@@ -282,7 +286,11 @@ let exportTable;
       const dataIndex = currentRow.rowIndex - 1;
       const dataRow = this.data[dataIndex] as any;
       if (field in dataRow) {
-        dataRow[field] = (event as CustomEvent).detail.value;
+        let _newValue = (event.target as any).value;
+        if ("detail" in event) {
+          _newValue = (event as CustomEvent).detail.value;
+        }
+        dataRow[field] = _newValue;
       }
       const data = {
         type: "change-cell",
