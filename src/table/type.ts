@@ -8,8 +8,8 @@ export declare type Column = {
   render?: Render;
 };
 export declare type Render = (
-  dataCell: any,
-  dataRow: object,
+  cellData: any,
+  rowData: object,
   rowIndex: number
 ) => HTMLElement;
 export declare type TableProps = {
