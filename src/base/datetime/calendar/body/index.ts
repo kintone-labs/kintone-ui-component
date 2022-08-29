@@ -296,7 +296,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     aria-selected="${this.value === weekDate.attr}"
                     tabindex="${isFocus ? "0" : "-1"}"
-                    aria-current="${this._isToday(dateParts) ? "date" : ""}"
+                    aria-current="${this._isToday(dateParts) ? "date" : false}"
                     aria-label="${dateParts[2]} ${monthString}"
                     data-date="${weekDate.attr}"
                     @click="${this._handleClickDateBtn}"
