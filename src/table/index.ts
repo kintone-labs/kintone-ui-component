@@ -130,7 +130,7 @@ let exportTable;
           class="kuc-table__table__header__cell"
           ?hidden="${column.visible === false}"
         ><!--
-        -->${column.headerName || ""}<!--
+        -->${column.title || ""}<!--
         --><span
             class="kuc-base-label__required-icon"
             ?hidden="${!column.requiredIcon}"

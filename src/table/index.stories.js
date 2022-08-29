@@ -113,38 +113,38 @@ const Template = (args) => {
 // So please don't edit columns value on controls tab.
 const columns = [
   {
-    headerName: "Name",
+    title: "Name",
     field: "name",
     requiredIcon: true,
     render: renderName,
   },
   {
-    headerName: "Address",
+    title: "Address",
     field: "address",
     render: renderAddress,
   },
   {
-    headerName: "Age",
+    title: "Age",
     field: "age",
     render: renderAge,
   },
   {
-    headerName: "Date",
+    title: "Date",
     field: "date",
     render: renderDate,
   },
   {
-    headerName: "Gender",
+    title: "Gender",
     field: "gender",
     render: renderGender,
   },
   {
-    headerName: "Time",
+    title: "Time",
     field: "time",
     render: renderTime,
   },
   {
-    headerName: "Multichoice",
+    title: "Multichoice",
     field: "multichoice",
     render: renderMultiChoice,
   },
