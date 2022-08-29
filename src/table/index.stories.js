@@ -24,8 +24,8 @@ export default {
   },
 };
 
-const renderAge = (dataCell, dataRow) => {
-  const text = new TextArea({ value: dataCell });
+const renderAge = (cellData, rowData) => {
+  const text = new TextArea({ value: cellData });
   return text;
 };
 
