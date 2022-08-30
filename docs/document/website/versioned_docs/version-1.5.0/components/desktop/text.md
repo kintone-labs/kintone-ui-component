@@ -14,6 +14,7 @@ The Text component allows the user to display a single line text element.
 </div>
 <script src="/js/samples/desktop/text.js"></script>
 
+
 ---
 
 ## Specification
@@ -72,10 +73,15 @@ Here is a list of properties that can be used for modifying component style:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const text = new Kuc.Text({
   label: 'Fruit',
   requiredIcon: true,
