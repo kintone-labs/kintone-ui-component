@@ -29,11 +29,6 @@ const Template = (args) => {
   const attachment = new Attachment({ ...args });
   attachment.addEventListener("change", (event) => {
     console.log(event);
-    const label = document.getElementsByClassName(
-      "kuc-attachment__group__label"
-    );
-    console.log(label);
-    label[0].dispatchEvent(new PointerEvent("click", { cancelable: true }));
   });
   return attachment;
 };
