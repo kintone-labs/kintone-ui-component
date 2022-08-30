@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Getting Started": ["getting-started/quick-start"],
+    "Getting Started": ["getting-started/quick-start", "getting-started/custom-css"],
     "Components": [
       {
         "type": "subcategory",
