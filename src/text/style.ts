@@ -60,7 +60,7 @@ kuc-text[hidden] {
   min-width: 26px;
   width: 100%;
 }
-.kuc-text__group__input-form__input-outer__input {
+input[type="text"].kuc-text__group__input-form__input-outer__input {
   width: var(--kuc-text-input-width, 100%);
   height: var(--kuc-text-input-height, 40px);
   font-size: var(--kuc-text-input-font-size, 14px);
