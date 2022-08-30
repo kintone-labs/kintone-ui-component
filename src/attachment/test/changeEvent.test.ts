@@ -128,5 +128,23 @@ describe("Attachment", () => {
       ).to.equal("icon.jpg");
       expect(triggeredEvent.detail.type).to.equal("remove-file");
     });
+    it("should not triggered add file event when dragging without specifying dataTransfer", async () => {
+      let triggeredEvent: any = null;
+      const container = new Attachment();
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const dragEl = el.querySelector(
+        ".kuc-attachment__group__files"
+      ) as HTMLDivElement;
+      dragEl.dispatchEvent(
+        new DragEvent("dragenter", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      expect(triggeredEvent).to.equal(null);
+    });
   });
 });
