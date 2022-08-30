@@ -11,7 +11,7 @@ export declare type AttachmentProps = {
   files?: FileItem[];
   id?: string;
   label?: string;
-  language?: "ja" | "en" | "zh" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
   requiredIcon?: boolean;
   visible?: boolean;
 };

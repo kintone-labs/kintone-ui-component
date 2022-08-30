@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import {
   KucBase,
@@ -78,11 +78,12 @@ let exportAttachment;
       Object.assign(this, validProps);
     }
     shouldUpdate(changedProperties: PropertyValues): boolean {
-      if (changedProperties.has("files")) {
-        if (!isArrayType<FileItem>(this.files)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
-          return false;
-        }
+      if (
+        changedProperties.has("files") &&
+        !isArrayType<FileItem>(this.files)
+      ) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
+        return false;
       }
       return true;
     }
@@ -184,7 +185,7 @@ let exportAttachment;
       `;
     }
     private _getRemoveButtonIcon() {
-      return html`<svg
+      return svg`<svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
         height="14"
@@ -370,14 +371,13 @@ let exportAttachment;
       if (!event.dataTransfer) {
         return false;
       }
-      if (event.dataTransfer && event.dataTransfer.items !== undefined) {
+      if (event.dataTransfer.items !== undefined) {
         for (let i = 0; i < event.dataTransfer.items.length; i++) {
           if (event.dataTransfer.items[i].kind.toLowerCase() === "file") {
             return true;
           }
         }
       }
-
       return false;
     };
   }

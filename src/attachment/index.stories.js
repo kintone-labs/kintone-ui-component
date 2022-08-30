@@ -1,5 +1,4 @@
-import "./index.ts";
-import { html } from "lit-html";
+import { Attachment } from "./index.ts";
 
 export default {
   title: "desktop/attachment",
@@ -27,23 +26,16 @@ export default {
   },
 };
 const Template = (args) => {
-  const handleAttachmentChange = (event) => {
+  const attachment = new Attachment({ ...args });
+  attachment.addEventListener("change", (event) => {
     console.log(event);
-  };
-  return html`
-    <kuc-attachment
-      .disabled="${args.disabled}"
-      .language="${args.language}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .files="${args.files}"
-      .className="${args.className}"
-      .error="${args.error}"
-      @change="${handleAttachmentChange}"
-    ></kuc-attachment>
-  `;
+    const label = document.getElementsByClassName(
+      "kuc-attachment__group__label"
+    );
+    console.log(label);
+    label[0].dispatchEvent(new PointerEvent("click", { cancelable: true }));
+  });
+  return attachment;
 };
 export const BaseLanguageEN = Template.bind({});
 BaseLanguageEN.args = {

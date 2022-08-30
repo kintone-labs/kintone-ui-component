@@ -31,5 +31,14 @@ describe("Attachment", () => {
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("选择文件");
     });
+    it("should be change to zh-TW language when assigned by setter", async () => {
+      const container = new Attachment({ language: "en" });
+      container.language = "zh-TW";
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-attachment__group__files__browse-button__text"
+      ) as HTMLSpanElement;
+      expect(inputDateEl.textContent).to.equal("選擇檔案");
+    });
   });
 });
