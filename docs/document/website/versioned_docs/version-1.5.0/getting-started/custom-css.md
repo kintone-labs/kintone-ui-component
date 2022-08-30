@@ -11,7 +11,7 @@ original_id: custom-css
 
 ### CSS inheritance
 
-[CSS inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) lets parent and host elements propagate certain CSS properties to their descendants.
+[CSS inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) lets parent elements propagate certain CSS properties to their descendants.
 
 ### CSS custom properties
 
