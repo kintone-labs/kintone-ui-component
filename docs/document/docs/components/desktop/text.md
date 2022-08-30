@@ -70,6 +70,7 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-text-input-color |
 
 ---
+
 ## Sample Code
 
 > Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
