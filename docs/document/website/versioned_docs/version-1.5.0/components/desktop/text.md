@@ -1,5 +1,5 @@
 ---
-id: version-1.2.0-text
+id: version-1.5.0-text
 title: Text
 sidebar_label: Text
 original_id: text
@@ -56,6 +56,18 @@ Here is a list of available constructors:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
+
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-text-input-width |
+| --kuc-text-input-height |
+| --kuc-text-input-font-size |
+| --kuc-text-input-color |
 
 ---
 ## Sample Code
