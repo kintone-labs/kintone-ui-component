@@ -1,5 +1,5 @@
 ---
-id: version-1.2.0-text
+id: version-1.5.0-text
 title: Text
 sidebar_label: Text
 original_id: text
@@ -13,6 +13,7 @@ The Text component allows the user to display a single line text element.
   <div id="sample-container__components"></div>
 </div>
 <script src="/js/samples/desktop/text.js"></script>
+
 
 ---
 
@@ -57,13 +58,31 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-text-input-width |
+| --kuc-text-input-height |
+| --kuc-text-input-font-size |
+| --kuc-text-input-color |
+
 ---
+
 ## Sample Code
+
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const text = new Kuc.Text({
   label: 'Fruit',
   requiredIcon: true,

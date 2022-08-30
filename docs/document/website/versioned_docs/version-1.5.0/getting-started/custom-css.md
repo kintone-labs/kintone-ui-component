@@ -7,15 +7,15 @@ original_id: custom-css
 
 ## Overview
 
-**Kintone UI Component (KUC)** provides some Custom CSS properties to create customizable elements by using [CSS inheritance](#css-inheritance), [CSS variables and custom properties](#css-variables-and-custom-properties) together. By applying CSS selectors to customize CSS custom properties, tree-based and per-instance theming are straightforward to apply.
+**Kintone UI Component (KUC)** provides some CSS custom properties to create customizable elements by using [CSS inheritance](#css-inheritance), [CSS custom properties](#css-custom-properties) together. By applying CSS selectors to customize CSS custom properties, tree-based and per-instance theming are straightforward to apply.
 
 ### CSS inheritance
 
-CSS inheritance lets parent and host elements propagate certain CSS properties to their descendants.
+[CSS inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) lets parent elements propagate certain CSS properties to their descendants.
 
-### CSS variables and custom properties
+### CSS custom properties
 
-All CSS custom properties (`--custom-property-name`) inherit their value from their parent. You can use this to make your component's styles configurable from the outside.
+All [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) (`--custom-property-name`) inherit their value from their parent. You can use this to make your component's styles configurable from the outside.
 
 KUC will publish some properties for each element and based on that, users can easily customize CSS properties of the element.
 
@@ -40,7 +40,7 @@ You can set the value for `--my-background` by using the CSS selectors:
 <my-element id="sample-id"></my-element>
 ```
 
-> You can find a list of the Custom CSS properties in the **Custom CSS** section on each component page.
+> You can find a list of the CSS custom properties in the **Custom CSS** section on each component page.
 
 ## Sample code
 
