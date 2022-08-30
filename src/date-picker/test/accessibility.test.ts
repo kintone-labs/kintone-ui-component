@@ -86,21 +86,18 @@ describe("DatePicker", () => {
       expect(inputDateEl.value).to.equal("12/22/2021");
     });
 
-    it("should be open calendar when focused hidden button and press enter key", async () => {
+    it("should be open calendar when click hidden button", async () => {
       const container = new DatePicker({ value: "2021-12-22" });
       const el = await fixture(container);
       const hiddenBtn = el.querySelector(
         ".kuc-base-date__assistive-text"
       ) as HTMLButtonElement;
-      hiddenBtn.focus();
-      hiddenBtn.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
-      await elementUpdated(container);
+      hiddenBtn.dispatchEvent(new Event("click"));
       await elementUpdated(el);
 
       const calendarEl = el.querySelector(
         ".kuc-base-date__calendar"
       ) as HTMLElement;
-
       expect(calendarEl.tagName).to.equal("KUC-BASE-DATETIME-CALENDAR");
     });
 
