@@ -1,23 +1,23 @@
 export const ATTACHMENT_CSS = `
   kuc-attachment,
   kuc-attachment *,
-  :lang(en) kuc-attachment,
-  :lang(en) kuc-attachment * {
+  kuc-attachment:lang(en),
+  kuc-attachment:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
         "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-attachment,
-  :lang(ja) kuc-attachment * {
+  kuc-attachment:lang(ja),
+  kuc-attachment:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
         sans-serif;
   }
-  :lang(zh) kuc-attachment,
-  :lang(zh) kuc-attachment * {
+  kuc-attachment:lang(zh),
+  kuc-attachment:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
         Hei, "Heiti SC", sans-serif;
   }
-  :lang(zh-TW) kuc-attachment,
-  :lang(zh-TW) kuc-attachment * {
+  kuc-attachment:lang(zh-TW),
+  kuc-attachment:lang(zh-TW) * {
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
         Hei,"Heiti SC",sans-serif;
   }
