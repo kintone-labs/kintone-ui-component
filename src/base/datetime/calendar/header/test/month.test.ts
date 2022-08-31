@@ -1,4 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import "../../../listbox";
 import "../index";
 
 describe("BaseDateTimeCalendarHeader", () => {
