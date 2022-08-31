@@ -6,11 +6,17 @@ kuc-mobile-date-picker * {
     "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
     "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 }
-:lang(zh) kuc-mobile-date-picker,
-:lang(zh) kuc-mobile-date-picker * {
+kuc-mobile-date-picker:lang(zh) ,
+kuc-mobile-date-picker:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
     Verdana, sans-serif;
+}
+kuc-mobile-date-picker:lang(zh-TW),
+kuc-mobile-date-picker:lang(zh-TW) * {
+    font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
+    Verdana,sans-serif
 }
 kuc-mobile-date-picker {
   font-size: 13px;

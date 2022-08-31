@@ -52,7 +52,8 @@ let exportDateTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({ type: String, attribute: "lang", reflect: true }) language =
+      "auto";
     @property({ type: String }) max = "";
     @property({ type: String }) min = "";
     @property({
@@ -466,7 +467,7 @@ let exportDateTimePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)

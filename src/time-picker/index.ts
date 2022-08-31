@@ -44,7 +44,8 @@ let exportTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({ type: String, attribute: "lang", reflect: true }) language =
+      "auto";
     @property({ type: String }) max = "";
     @property({ type: String }) min = "";
     @property({ type: String }) value? = "";
@@ -251,7 +252,7 @@ let exportTimePicker;
     }
 
     private _getLanguage() {
-      const languages = ["en", "ja", "zh"];
+      const languages = ["en", "ja", "zh", "zh-TW"];
       if (languages.indexOf(this.language) !== -1) return this.language;
 
       if (languages.indexOf(document.documentElement.lang) !== -1)

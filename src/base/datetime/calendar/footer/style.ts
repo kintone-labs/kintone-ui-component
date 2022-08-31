@@ -1,20 +1,25 @@
 export const CALENDAR_FOOTER_CSS = `
 kuc-base-datetime-calendar-footer,
 kuc-base-datetime-calendar-footer *,
-:lang(en) kuc-base-datetime-calendar-footer,
-:lang(en) kuc-base-datetime-calendar-footer * {
+kuc-base-datetime-calendar-footer:lang(en),
+kuc-base-datetime-calendar-footer:lang(en)* {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-base-datetime-calendar-footer,
-:lang(ja) kuc-base-datetime-calendar-footer * {
+kuc-base-datetime-calendar-footer:lang(ja),
+kuc-base-datetime-calendar-footer:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-base-datetime-calendar-footer,
-:lang(zh) kuc-base-datetime-calendar-footer * {
+kuc-base-datetime-calendar-footer:lang(zh),
+kuc-base-datetime-calendar-footer:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-base-datetime-calendar-footer:lang(zh-TW),
+kuc-base-datetime-calendar-footer:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC",sans-serif;
 }
 .kuc-base-datetime-calendar-footer__group {
   display: flex;

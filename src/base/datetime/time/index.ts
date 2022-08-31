@@ -32,7 +32,7 @@ type Time = {
 };
 
 export class BaseTime extends KucBase {
-  @property({ type: String, reflect: true }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String }) max = "";
   @property({ type: String }) min = "";
   @property({ type: String }) value = "";

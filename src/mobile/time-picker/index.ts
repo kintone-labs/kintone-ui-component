@@ -33,7 +33,8 @@ let exportMobileTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({ type: String, attribute: "lang", reflect: true }) language =
+      "auto";
     @property({
       type: String,
       hasChanged(newVal: string, oldVal: string) {
@@ -163,7 +164,7 @@ let exportMobileTimePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
