@@ -18,6 +18,11 @@ export const GetButton = () => {
     const component = iframe.contentWindow.document.getElementById(args.id);
     const info = {};
     const componentName = component.nodeName.replace("KUC-", "");
+    for (const key in args) {
+      if (Object.hasOwnProperty.call(args, key)) {
+        args[key] = component[key];
+      }
+    }
     info[componentName] = args;
     console.log(info);
   }
