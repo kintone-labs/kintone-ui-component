@@ -1,0 +1,16 @@
+.button-class {
+    --kuc-button-width: 100px;
+    --kuc-button-height: 100px;
+    --kuc-button-background-color: #dc3545;
+    --kuc-button-background-hover: #d5e011;
+    --kuc-button-background-active: #007bff;
+    --kuc-button-background-focus: #28a745;
+    --kuc-button-text-color: #ffffff;
+    --kuc-button-font-size: 18px;
+}
+.text-class {
+    --kuc-text-input-width: 200px;
+    --kuc-text-input-height: 30px;
+    --kuc-text-input-font-size: 18px;
+    --kuc-text-input-color: #f20606;
+}

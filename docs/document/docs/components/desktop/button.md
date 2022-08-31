@@ -49,6 +49,20 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-button-width |
+| --kuc-button-background-color |
+| --kuc-button-background-hover |
+| --kuc-button-background-active |
+| --kuc-button-background-focus |
+| --kuc-button-font-size |
+
 ---
 
 ## Sample Code
