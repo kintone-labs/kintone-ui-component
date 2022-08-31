@@ -28,7 +28,7 @@ function getComponentDirectories(source, ignoreList) {
   for(let index = 0; index < allDirectories.length; index++) {
     const directory = allDirectories[index];
     if(!hasIndexAndStyle(directory)) continue;
-    let formattedDir = directory.replace("src/", "");
+    let formattedDir = directory.split(path.sep).join("/").replace("src/", "");
     if(ignoreList.includes(formattedDir)) continue;
     componentDirectories.push(formattedDir);
   }
