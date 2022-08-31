@@ -47,7 +47,6 @@ let exportDatePicker;
     visible = true;
 
     private _errorFormat = "";
-
     private _errorText = "";
 
     private _inputValue? = "";
