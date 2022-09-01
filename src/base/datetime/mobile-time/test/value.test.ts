@@ -1,4 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import "../../../datetime/mobile-time";
 
 describe("BaseMobileTime", () => {
   describe("value", () => {
