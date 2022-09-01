@@ -15,7 +15,7 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import "../base/datetime/date";
-import { FORMAT_IS_NOT_VALID } from "../base/datetime/resource/constant";
+import { INVALID_FORMAT_MESSAGE } from "../base/datetime/resource/constant";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
 import { DatePickerProps } from "./type";
@@ -46,10 +46,7 @@ let exportDatePicker;
     })
     visible = true;
 
-    @state()
     private _errorFormat = "";
-
-    @state()
     private _errorText = "";
 
     private _inputValue? = "";
@@ -72,19 +69,19 @@ let exportDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string" || !validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
       this._valueConverted = dateValueConverter(this.value);
       if (this._valueConverted && !isValidDate(this._valueConverted)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;
     }
 
-    update(changedProperties: PropertyValues) {
+    willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("value")) {
         if (this.value === undefined) {
           this._inputValue = this._invalidValue;
@@ -93,8 +90,8 @@ let exportDatePicker;
           this._inputValue = this.value;
           this._errorFormat = "";
         }
+        this._updateErrorText();
       }
-      super.update(changedProperties);
     }
 
     render() {
@@ -129,7 +126,6 @@ let exportDatePicker;
     }
 
     updated() {
-      this._updateErrorText();
       this._invalidValue = "";
     }
 

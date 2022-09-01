@@ -32,6 +32,7 @@ export const TEXTAREA_CSS = `
     padding: 0px;
     height: auto;
     display: inline-block;
+    vertical-align: top;
     width: 100%;
     margin: 0px;
   }

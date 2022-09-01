@@ -42,7 +42,7 @@ describe("Checkbox", () => {
   it("should throw error when set invalid value", (done) => {
     const handleError = (event: any) => {
       const errorMsg = event.reason.message;
-      expect(errorMsg).to.equal("'selectedIndex' property is not array");
+      expect(errorMsg).to.equal("'selectedIndex' property is not array.");
       window.removeEventListener("unhandledrejection", handleError);
       done();
     };
@@ -56,7 +56,7 @@ describe("Checkbox", () => {
   it("should be throw error when set null by setter", (done) => {
     const handleError = (event: any) => {
       const errorMsg = event.reason.message;
-      expect(errorMsg).to.equal("'selectedIndex' property is not array");
+      expect(errorMsg).to.equal("'selectedIndex' property is not array.");
       window.removeEventListener("unhandledrejection", handleError);
       done();
     };
