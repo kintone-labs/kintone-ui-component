@@ -1,5 +1,6 @@
 import { expect, fixture } from "@open-wc/testing";
 import { Attachment } from "../index";
+import "../../base/error";
 
 describe("Attachment", () => {
   describe("error", () => {
