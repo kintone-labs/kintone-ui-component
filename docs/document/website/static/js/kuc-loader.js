@@ -13,7 +13,13 @@
     };
 
     kucScript.src = kucLink;
+
+    const iframe = document.querySelector('.sample-container #iframe');
+    if (iframe) {
+      iframe.contentWindow.document.head.appendChild(kucScript);
+      return;
+    }
+
     document.head.appendChild(kucScript);
   });
 })();
-
