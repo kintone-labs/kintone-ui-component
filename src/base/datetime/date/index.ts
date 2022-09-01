@@ -83,6 +83,7 @@ export class BaseDate extends KucBase {
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
         @click="${this._handleClickButton}"
+        ?disabled="${this.disabled}"
       >
         show date picker
       </button>

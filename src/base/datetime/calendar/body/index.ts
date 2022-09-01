@@ -100,7 +100,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     }
   }
 
-  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
+  private _handleClickDate(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -110,7 +110,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     this._dispatchClickEvent(value);
   }
 
-  private _handleKeyDownDateBtn(event: KeyboardEvent) {
+  private _handleKeyDownDate(event: KeyboardEvent) {
     let doPreventEvent = false;
     switch (event.key) {
       case "Up":
@@ -299,8 +299,8 @@ export class BaseDateTimeCalendarBody extends KucBase {
                     aria-current="${this._isToday(dateParts) ? "date" : false}"
                     aria-label="${dateParts[2]} ${monthString}"
                     data-date="${weekDate.attr}"
-                    @click="${this._handleClickDateBtn}"
-                    @keydown="${this._handleKeyDownDateBtn}"
+                    @click="${this._handleClickDate}"
+                    @keydown="${this._handleKeyDownDate}"
                   >
                     ${dateParts[2] || ""}
                   </td>

@@ -69,7 +69,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     event.stopPropagation();
 
     const itemEl = event.target as HTMLButtonElement;
-    itemEl.setAttribute("aria-current", "true");
+    itemEl.setAttribute("aria-selected", "true");
 
     const value = itemEl.getAttribute("data-date")!;
     this._dispatchClickEvent(value);
@@ -172,7 +172,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                       ? 0
                       : -1}"
                     aria-selected="${isSelectedDay}"
-                    aria-current="${this._isToday(dateParts) ? "date" : ""}"
+                    aria-current="${this._isToday(dateParts) ? "date" : false}"
                     class="kuc-base-mobile-datetime-calendar-body__table__date${isSelectedDay
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
