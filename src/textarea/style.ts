@@ -1,20 +1,25 @@
 export const TEXTAREA_CSS = `
   kuc-textarea,
   kuc-textarea *,
-  :lang(en) kuc-textarea,
-  :lang(en) kuc-textarea * {
+  kuc-textarea:lang(en),
+  kuc-textarea:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-textarea,
-  :lang(ja) kuc-textarea * {
+  kuc-textarea:lang(ja),
+  kuc-textarea:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-textarea,
-  :lang(zh) kuc-textarea * {
+  kuc-textarea:lang(zh),
+  kuc-textarea:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-textarea:lang(zh-TW),
+  kuc-textarea:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-textarea {
     font-size: 14px;

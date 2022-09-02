@@ -1,20 +1,25 @@
 export const DROPDOWN_CSS = `
   kuc-dropdown,
   kuc-dropdown *,
-  :lang(en) kuc-dropdown,
-  :lang(en) kuc-dropdown * {
+  kuc-dropdown:lang(en),
+  kuc-dropdown:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-dropdown,
-  :lang(ja) kuc-dropdown * {
+  kuc-dropdown:lang(ja),
+  kuc-dropdown:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-dropdown,
-  :lang(zh) kuc-dropdown * {
+  kuc-dropdown:lang(zh),
+  kuc-dropdown:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-dropdown:lang(zh-TW),
+  kuc-dropdown:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-dropdown {
     display: inline-table;
