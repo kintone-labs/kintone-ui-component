@@ -1,20 +1,25 @@
 export const TABLE_CSS = `
     kuc-table,
     kuc-table *,
-    :lang(en) kuc-table,
-    :lang(en) kuc-table * {
+    kuc-table:lang(en),
+    kuc-table:lang(en) * {
         font-family: "HelveticaNeueW02-45Ligh", Arial,
         "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     }
-    :lang(ja) kuc-table,
-    :lang(ja) kuc-table * {
+    kuc-table:lang(ja),
+    kuc-table:lang(ja) * {
         font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
         sans-serif;
     }
-    :lang(zh) kuc-table,
-    :lang(zh) kuc-table * {
+    kuc-table:lang(zh),
+    kuc-table:lang(zh) * {
         font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
         Hei, "Heiti SC", sans-serif;
+    }
+    kuc-table:lang(zh-TW),
+    kuc-table:lang(zh-TW) * {
+       font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+         Hei,"Heiti SC",sans-serif;
     }
     kuc-table {
         font-size: 14px;
