@@ -10,6 +10,20 @@ export const visiblePropConverter = {
   },
 };
 
+export const languagePropConverter = {
+  fromAttribute: (value: string | null) => {
+    return value === "auto";
+  },
+  toAttribute: (value: string) => {
+    const langs = ["en", "ja", "zh", "zh-TW"];
+    if (langs.indexOf(value) !== -1) return value;
+    if (langs.indexOf(document.documentElement.lang) !== -1) {
+      return document.documentElement.lang;
+    }
+    return "en";
+  },
+};
+
 export const unsafeHTMLConverter = (element: string | HTMLElement) => {
   return element instanceof HTMLElement ? element : unsafeHTML(element);
 };

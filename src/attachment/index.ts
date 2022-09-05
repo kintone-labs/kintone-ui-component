@@ -6,7 +6,7 @@ import {
   generateGUID,
   createStyleOnHeader,
 } from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
+import { languagePropConverter, visiblePropConverter } from "../base/converter";
 import {
   isArrayType,
   throwErrorAfterUpdateComplete,
@@ -42,8 +42,13 @@ let exportAttachment;
     @property({ type: String, reflect: true, attribute: "id" })
     id = "";
     @property({ type: String }) label = "";
-    @property({ type: String, attribute: "lang", reflect: true }) language =
-      "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({ type: Boolean }) requiredIcon = false;
     @property({
       type: Boolean,
