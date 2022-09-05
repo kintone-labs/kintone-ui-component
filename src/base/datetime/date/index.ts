@@ -83,6 +83,8 @@ export class BaseDate extends KucBase {
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
         @click="${this._handleClickButton}"
+        @focus="${this._handleFocusButton}"
+        @blur="${this._handleBlurButton}"
         ?disabled="${this.disabled}"
       >
         show date picker
@@ -285,6 +287,14 @@ export class BaseDate extends KucBase {
       return;
     }
     this._closeCalendar();
+  }
+
+  private _handleBlurButton() {
+    this._dateInput.classList.remove("kuc-base-date__input--focus");
+  }
+
+  private _handleFocusButton() {
+    this._dateInput.classList.add("kuc-base-date__input--focus");
   }
 }
 

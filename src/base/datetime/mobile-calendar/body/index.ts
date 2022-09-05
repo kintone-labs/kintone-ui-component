@@ -64,11 +64,11 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     dispatchCustomEvent(this, "kuc:mobile-calendar-body-blur", {});
   }
 
-  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
+  private _handleClickDate(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    const itemEl = event.target as HTMLButtonElement;
+    const itemEl = event.target as HTMLTableCellElement;
     itemEl.setAttribute("aria-selected", "true");
 
     const value = itemEl.getAttribute("data-date")!;
@@ -178,7 +178,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"
                     aria-label="${dateParts[2]} ${monthString}"
-                    @click="${this._handleClickDateBtn}"
+                    @click="${this._handleClickDate}"
                   >
                     ${dateParts[2] || ""}
                   </td>

@@ -15,6 +15,16 @@ input.kuc-base-date__input:focus {
   outline: none;
   border: 1px solid #3498db;
 }
+input.kuc-base-date__input--focus {
+  box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+  border: 1px solid #3498db;
+  background-color: #ffffff;
+  color: #333333;
+}
+.kuc-datetime-picker__group__inputs--date
+  input.kuc-base-date__input--focus {
+  border-color: #3498db;
+}
 input.kuc-base-date__input:disabled {
   color: #888888;
   background-color: #d4d7d7;
