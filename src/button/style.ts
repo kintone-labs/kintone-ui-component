@@ -45,7 +45,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--normal:hover {
     background-color: var(--kuc-button-background-hover, #c8d6dd);
   }
-  .kuc-button__button--normal:focus {
+  .kuc-button__button--normal:focus-visible {
     background-color: var(--kuc-button-background-focus, #c8d6dd);
   }
   .kuc-button__button--normal:active {
@@ -64,7 +64,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--submit:hover {
     background-color: var(--kuc-button-background-hover, #1d6fa5);
   }
-  .kuc-button__button--submit:focus {
+  .kuc-button__button--submit:focus-visible {
     background-color: var(--kuc-button-background-focus, #1d6fa5);
   }
   .kuc-button__button--submit:active {
@@ -85,7 +85,7 @@ export const BUTTON_CSS = `
   .kuc-button__button--alert:hover {
     background-color: var(--kuc-button-background-hover, #bf2718);
   }
-  .kuc-button__button--alert:focus {
+  .kuc-button__button--alert:focus-visible {
     background-color: var(--kuc-button-background-focus, #bf2718);
   }
   .kuc-button__button--alert:active {
@@ -97,5 +97,10 @@ export const BUTTON_CSS = `
     box-shadow: none;
     color: var(--kuc-button-text-color, #888888);
     cursor: default;
+  }
+  .kuc-button__button--normal:focus-visible,
+  .kuc-button__button--submit:focus-visible,
+  .kuc-button__button--alert:focus-visible {
+    outline: 1px solid #3498db;
   }
 `;
