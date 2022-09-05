@@ -35,6 +35,10 @@ export const DIALOG_CSS = `
     transform: translate(-50%, -50%);
     z-index: 10000;
   }
+  
+  .kuc-dialog__dialog:focus-visible {
+    outline: 1px solid #3498db;
+  }
 
   .kuc-dialog__dialog__header {
     min-height: 64px;
