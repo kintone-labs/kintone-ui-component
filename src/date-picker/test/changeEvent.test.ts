@@ -22,7 +22,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
       ) as HTMLButtonElement;
 
       selectedElRight.dispatchEvent(
@@ -56,7 +56,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
       ) as HTMLButtonElement;
 
       selectedElRight.dispatchEvent(
@@ -68,7 +68,7 @@ describe("DatePicker", () => {
       expect(triggeredEvent.detail.value).to.equal("2021-12-21");
 
       const selectedElLeft = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
       ) as HTMLButtonElement;
 
       selectedElLeft.dispatchEvent(
@@ -97,7 +97,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
       ) as HTMLButtonElement;
 
       selectedElUp.dispatchEvent(
@@ -109,7 +109,7 @@ describe("DatePicker", () => {
       expect(triggeredEvent.detail.value).to.equal("2021-12-13");
 
       const selectedElDown = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
       ) as HTMLButtonElement;
 
       selectedElDown.dispatchEvent(
@@ -139,13 +139,11 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
-      ) as HTMLButtonElement;
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+      ) as HTMLTableCellElement;
 
-      const nextEl = selectedElUp.parentElement
-        ?.nextElementSibling as HTMLTableCellElement;
-      const buttonEl = nextEl.firstElementChild as HTMLButtonElement;
-      buttonEl.click();
+      const nextEl = selectedElUp.nextElementSibling as HTMLTableCellElement;
+      nextEl.click();
       await elementUpdated(container);
 
       expect(triggeredEvent.type).to.equal("change");
