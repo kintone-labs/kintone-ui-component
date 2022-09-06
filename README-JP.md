@@ -16,9 +16,6 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
   <a href="./README.md">English</a> | 日本語
 </p>
 
-> コントリビューターの方向けのお知らせです。<br>
-> npm v8.5.5 以降で package-lock.json のチェックが厳格化されたため、現時点では Node v16.15.1 より前のバージョンを利用して "npm ci" で依存ライブラリのインストールをしてください。
-
 - [インストール](#インストール)
   - [UMD](#umd)
   - [CDN](#cdn)

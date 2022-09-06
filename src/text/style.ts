@@ -21,8 +21,8 @@ kuc-text {
   color: #333333;
   display: inline-table;
   vertical-align: top;
-  min-width: 193px;
-  width: 193px;
+  min-width: 177px;
+  width: 177px;
   line-height: 1.5;
 }
 kuc-text[hidden] {
@@ -33,6 +33,8 @@ kuc-text[hidden] {
   padding: 0px;
   height: auto;
   display: inline-block;
+  vertical-align: top;
+  width: 100%;
   margin: 0px;
 }
 .kuc-text__group__label {
@@ -60,14 +62,15 @@ kuc-text[hidden] {
   min-width: 26px;
   width: 100%;
 }
-.kuc-text__group__input-form__input-outer__input {
+input[type="text"].kuc-text__group__input-form__input-outer__input {
+  width: var(--kuc-text-input-width, 100%);
+  height: var(--kuc-text-input-height, 40px);
+  font-size: var(--kuc-text-input-font-size, 14px);
+  color: var(--kuc-text-input-color, #000000);
   min-width: 100%;
-  width: 100%;
-  height: 40px;
   padding: 0 8px;
   border: 1px solid #e3e7e8;
   box-sizing: border-box;
-  font-size: 14px;
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
 }
 .kuc-text__group__input-form__input-outer__input[textAlign="left"] {

@@ -64,12 +64,12 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     dispatchCustomEvent(this, "kuc:mobile-calendar-body-blur", {});
   }
 
-  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
+  private _handleClickDate(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    const itemEl = event.target as HTMLButtonElement;
-    itemEl.setAttribute("aria-current", "true");
+    const itemEl = event.target as HTMLTableCellElement;
+    itemEl.setAttribute("aria-selected", "true");
 
     const value = itemEl.getAttribute("data-date")!;
     this._dispatchClickEvent(value);
@@ -163,19 +163,22 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
+                const isSelectedDay = this.value === weekDate.attr;
                 return html`
                   <td
                     role="gridcell"
-                    tabindex="-1"
-                    class="kuc-base-mobile-datetime-calendar-body__table__date${(this
-                      .value === weekDate.attr ||
-                      isSameDate) &&
+                    tabindex="${(this.value === weekDate.attr || isSameDate) &&
                     isThisMonth
+                      ? 0
+                      : -1}"
+                    aria-selected="${isSelectedDay}"
+                    aria-current="${this._isToday(dateParts) ? "date" : false}"
+                    class="kuc-base-mobile-datetime-calendar-body__table__date${isSelectedDay
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"
                     aria-label="${dateParts[2]} ${monthString}"
-                    @click="${this._handleClickDateBtn}"
+                    @click="${this._handleClickDate}"
                   >
                     ${dateParts[2] || ""}
                   </td>

@@ -1,5 +1,5 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
-import { BaseMobileTime } from "../index";
+import "../../../datetime/mobile-time";
 
 describe("BaseMobileTime", () => {
   describe("value", () => {
@@ -49,19 +49,6 @@ describe("BaseMobileTime", () => {
 
       expect(selectHourEl.value).to.be.equal("13");
       expect(selectMinuteEl.value).to.be.equal("15");
-    });
-
-    it("should throw error when set invalid value", async () => {
-      const container = document.createElement("kuc-base-mobile-time");
-      try {
-        const el = await fixture(container);
-      } catch (error) {
-        let errorMessage = "";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        expect(errorMessage).to.be.equal("Format is not valid.");
-      }
     });
   });
 });
