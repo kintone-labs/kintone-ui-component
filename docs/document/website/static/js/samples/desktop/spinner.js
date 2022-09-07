@@ -1,8 +1,8 @@
-document.addEventListener("kuc:loaded", function() {
-  const container = document.querySelector("#sample-container__components");
-  const contentWindow = container.querySelector("#iframe").contentWindow;
-  const ifrDocument = contentWindow.document;
+document.addEventListener("kuc:loaded", function () {
+  const script = `
+    const spinner = new Kuc.Spinner();
+    spinner.open();
+  `;
 
-  const spinner = new Kuc.Spinner();
-  ifrDocument.querySelector("body").appendChild(spinner);
+  document.querySelector('.sample-container #iframe').contentWindow.eval(script);
 });

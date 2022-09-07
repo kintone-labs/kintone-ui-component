@@ -26,9 +26,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-calendar-body__table__date__button"
+        ".kuc-base-datetime-calendar-body__table__date"
       );
-      (itemsEl[ItemForTest.index] as HTMLDivElement).click();
+      (itemsEl[ItemForTest.index] as HTMLTableCellElement).click();
+      console.log(container.value);
       expect(triggeredEvent.type).to.equal("kuc:calendar-body-click-date");
       expect(triggeredEvent.detail.value).to.equal(ItemForTest.value);
     });

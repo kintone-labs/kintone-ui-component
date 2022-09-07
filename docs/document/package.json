@@ -5,11 +5,11 @@
     "es-lint": "node_modules/.bin/eslint website --ext .js"
   },
   "devDependencies": {
-    "@cybozu/eslint-config": "^17.0.1",
+    "@cybozu/eslint-config": "^17.0.3",
     "dictionary-en": "^3.0.1",
-    "eslint": "^8.17.0",
+    "eslint": "^8.21.0",
     "prettier": "^2.7.1",
-    "remark-cli": "^10.0.1",
+    "remark-cli": "^11.0.0",
     "remark-frontmatter": "^4.0.1",
     "remark-lint": "^9.1.1",
     "remark-preset-lint-consistent": "^5.1.1",
@@ -19,10 +19,10 @@
     "retext-english": "^4.1.0",
     "retext-repeated-words": "^4.2.0",
     "retext-sentence-spacing": "^5.2.0",
-    "retext-spell": "^5.1.0",
+    "retext-spell": "^5.3.0",
     "retext-syntax-urls": "^3.1.2",
     "retext-usage": "^0.5.0",
-    "typescript": "^4.7.3",
+    "typescript": "^4.7.4",
     "unified": "^10.1.2"
   }
 }

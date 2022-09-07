@@ -1,9 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ESNEXT",
-    "lib": ["es2017", "dom"],
     "outDir": "./lib",
     "declaration": true,
     "esModuleInterop": true,

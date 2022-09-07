@@ -46,10 +46,7 @@ let exportDatePicker;
     })
     visible = true;
 
-    @state()
     private _errorFormat = "";
-
-    @state()
     private _errorText = "";
 
     private _inputValue? = "";
@@ -84,7 +81,7 @@ let exportDatePicker;
       return true;
     }
 
-    update(changedProperties: PropertyValues) {
+    willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("value")) {
         if (this.value === undefined) {
           this._inputValue = this._invalidValue;
@@ -94,7 +91,7 @@ let exportDatePicker;
           this._errorFormat = "";
         }
       }
-      super.update(changedProperties);
+      this._updateErrorText();
     }
 
     render() {
@@ -129,7 +126,6 @@ let exportDatePicker;
     }
 
     updated() {
-      this._updateErrorText();
       this._invalidValue = "";
     }
 

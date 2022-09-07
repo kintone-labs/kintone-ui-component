@@ -28,7 +28,7 @@ function getComponentDirectories(source, ignoreList) {
   for(let index = 0; index < allDirectories.length; index++) {
     const directory = allDirectories[index];
     if(!hasIndexAndStyle(directory)) continue;
-    let formattedDir = directory.replace("src/", "");
+    let formattedDir = directory.split(path.sep).join("/").replace("src/", "");
     if(ignoreList.includes(formattedDir)) continue;
     componentDirectories.push(formattedDir);
   }
@@ -42,7 +42,7 @@ function hasIndexAndStyle(path) {
   return true;
 }
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|((--)?kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
@@ -59,7 +59,7 @@ const getChangedValue = (str, version) => {
 
 const replaceAllByPattern = (data, pattern, version) => {
   let tempData = data;
-  const matchedValues = Array.from(new Set(data.match(pattern)));
+  const matchedValues = Array.from(new Set(data.match(pattern))).filter(value => value[0] != "-");
   matchedValues.forEach(matchedValue => {
     // ignore the base file "base/kuc-base"
     const tempChangedValue =

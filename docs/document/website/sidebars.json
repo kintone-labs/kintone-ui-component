@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Getting Started": ["getting-started/quick-start"],
+    "Getting Started": ["getting-started/quick-start", "getting-started/custom-css"],
     "Components": [
       {
         "type": "subcategory",
@@ -53,6 +53,7 @@
   "release-notes": {
     "Releases": [
       "releases/release-notes",
+      "releases/release-notes-v1.4.0",
       "releases/release-notes-v1.3.2",
       "releases/release-notes-v1.3.1",
       "releases/release-notes-v1.3.0",
