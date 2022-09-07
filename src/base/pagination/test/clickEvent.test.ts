@@ -3,38 +3,36 @@ import { BasePagination } from "../index";
 
 describe("BasePagination", () => {
   describe("clickEvent", () => {
-    it("should trigger click event when clicking on Prev button", (done) => {
+    it("should trigger click event when clicking on Prev button", async () => {
       const handleEvent = (event: any) => {
         expect(event.type).to.equal("kuc:pagination-click-prev");
-        done();
       };
 
       const container = new BasePagination();
-      fixture(container).then(() => {
-        container.addEventListener("kuc:pagination-click-prev", handleEvent);
+      await fixture(container);
+      container.addEventListener("kuc:pagination-click-prev", handleEvent);
 
-        const nextEl = container.querySelector(
-          ".kuc-base-pagination__group__pager-prev"
-        ) as HTMLElement;
-        nextEl.click();
-      });
+      const prevEl = container.querySelector(
+        ".kuc-base-pagination__group__pager-prev"
+      ) as HTMLElement;
+
+      prevEl.click();
     });
 
-    it("should trigger click event when clicking on Next button", (done) => {
+    it("should trigger click event when clicking on Next button", async () => {
       const handleEvent = (event: any) => {
         expect(event.type).to.equal("kuc:pagination-click-next");
-        done();
       };
 
       const container = new BasePagination();
-      fixture(container).then(() => {
-        container.addEventListener("kuc:pagination-click-next", handleEvent);
+      await fixture(container);
+      container.addEventListener("kuc:pagination-click-next", handleEvent);
 
-        const nextEl = container.querySelector(
-          ".kuc-base-pagination__group__pager-next"
-        ) as HTMLElement;
-        nextEl.click();
-      });
+      const nextEl = container.querySelector(
+        ".kuc-base-pagination__group__pager-next"
+      ) as HTMLElement;
+
+      nextEl.click();
     });
   });
 });
