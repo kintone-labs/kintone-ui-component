@@ -2,7 +2,7 @@ import { expect, fixture } from "@open-wc/testing";
 import { BasePagination } from "../index";
 
 describe("BasePagination", () => {
-  describe("Click events", () => {
+  describe("clickEvent", () => {
     it("should trigger click event when clicking on Prev button", (done) => {
       const handleEvent = (event: any) => {
         expect(event.type).to.equal("kuc:pagination-click-prev");
