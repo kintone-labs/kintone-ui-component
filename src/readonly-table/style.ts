@@ -1,20 +1,25 @@
 export const READ_ONLY_TABLE_CSS = `
-  kuc-readonly-table,
-  kuc-readonly-table *,
-  :lang(en) kuc-readonly-table,
-  :lang(en) kuc-readonly-table * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
+  kuc-readonly-table ,
+  kuc-readonly-table  *,
+  kuc-readonly-table:lang(en),
+  kuc-readonly-table:lang(en) * {
+      font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-readonly-table,
-  :lang(ja) kuc-readonly-table * {
-    font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
+  kuc-readonly-table:lang(ja),
+  kuc-readonly-table:lang(ja) * {
+      font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-readonly-table,
-  :lang(zh) kuc-readonly-table * {
-    font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
+  kuc-readonly-table:lang(zh),
+  kuc-readonly-table:lang(zh) * {
+      font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-readonly-table:lang(zh-TW),
+  kuc-readonly-table:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-readonly-table {
     font-size: 14px;
