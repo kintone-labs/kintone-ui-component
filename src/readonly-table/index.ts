@@ -196,7 +196,7 @@ let exportReadOnlyTable;
     }
 
     private _handleClickPreviousButton(_event: MouseEvent | KeyboardEvent) {
-      if (this._pagePosition === 1) return;
+      if (this._pagePosition < 2) return;
       this._pagePosition -= 1;
     }
 
