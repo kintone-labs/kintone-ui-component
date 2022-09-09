@@ -88,27 +88,6 @@ describe("BaseDate", () => {
       await elementUpdated(el);
       expect(assistiveText.getAttribute("aria-expanded")).to.equal("false");
     });
-
-    it("should opened calendar when pressing ArrowUp key", async () => {
-      const container = new BaseDate();
-      container.language = "en";
-      container.value = "2021-10-20";
-      const el = await fixture(container);
-
-      const assistiveText = el.querySelector(
-        ".kuc-base-date__assistive-text"
-      ) as HTMLButtonElement;
-
-      assistiveText.focus();
-
-      assistiveText.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
-      );
-      await elementUpdated(container);
-      await elementUpdated(el);
-      expect(assistiveText.getAttribute("aria-expanded")).to.equal("true");
-    });
-
     // TODO: handle event kuc:calendar-header-previous-shifttab
   });
 });

@@ -90,8 +90,8 @@ let exportDatePicker;
           this._inputValue = this.value;
           this._errorFormat = "";
         }
-        this._updateErrorText();
       }
+      this._updateErrorText();
     }
 
     render() {
