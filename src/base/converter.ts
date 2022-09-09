@@ -12,7 +12,8 @@ export const visiblePropConverter = {
 
 export const languagePropConverter = {
   fromAttribute: (value: string | null) => {
-    return value === "auto";
+    const langs = ["en", "ja", "zh", "zh-TW"];
+    return !value || langs.indexOf(value) === -1;
   },
   toAttribute: (value: string) => {
     const langs = ["en", "ja", "zh", "zh-TW"];
