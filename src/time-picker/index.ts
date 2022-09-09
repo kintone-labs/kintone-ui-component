@@ -7,7 +7,11 @@ import {
   dispatchCustomEvent,
   createStyleOnHeader,
 } from "../base/kuc-base";
-import { visiblePropConverter, timeValueConverter } from "../base/converter";
+import {
+  visiblePropConverter,
+  timeValueConverter,
+  languagePropConverter,
+} from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
   INVALID_FORMAT_MESSAGE,
@@ -44,8 +48,13 @@ let exportTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String, attribute: "lang", reflect: true }) language =
-      "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({ type: String }) max = "";
     @property({ type: String }) min = "";
     @property({ type: String }) value? = "";

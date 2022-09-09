@@ -2,7 +2,7 @@ export const CALENDAR_FOOTER_CSS = `
 kuc-base-datetime-calendar-footer,
 kuc-base-datetime-calendar-footer *,
 kuc-base-datetime-calendar-footer:lang(en),
-kuc-base-datetime-calendar-footer:lang(en)* {
+kuc-base-datetime-calendar-footer:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }

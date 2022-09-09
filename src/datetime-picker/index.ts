@@ -11,6 +11,7 @@ import {
   visiblePropConverter,
   dateValueConverter,
   timeValueConverter,
+  languagePropConverter,
 } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
@@ -52,8 +53,13 @@ let exportDateTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String, attribute: "lang", reflect: true }) language =
-      "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({ type: String }) max = "";
     @property({ type: String }) min = "";
     @property({

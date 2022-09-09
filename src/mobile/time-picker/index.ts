@@ -1,6 +1,10 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { timeValueConverter, visiblePropConverter } from "../../base/converter";
+import {
+  languagePropConverter,
+  timeValueConverter,
+  visiblePropConverter,
+} from "../../base/converter";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
   CustomEventDetail,
@@ -33,8 +37,13 @@ let exportMobileTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String, attribute: "lang", reflect: true }) language =
-      "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({
       type: String,
       hasChanged(newVal: string, oldVal: string) {

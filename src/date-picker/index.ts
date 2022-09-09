@@ -1,6 +1,10 @@
 import { html, PropertyValues } from "lit";
-import { property, state, query } from "lit/decorators.js";
-import { visiblePropConverter, dateValueConverter } from "../base/converter";
+import { property, query } from "lit/decorators.js";
+import {
+  visiblePropConverter,
+  dateValueConverter,
+  languagePropConverter,
+} from "../base/converter";
 import {
   createStyleOnHeader,
   CustomEventDetail,
@@ -36,8 +40,13 @@ let exportDatePicker;
     @property({ type: String }) label = "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
-    @property({ type: String, attribute: "lang", reflect: true }) language =
-      "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({ type: String }) value? = "";
     @property({
       type: Boolean,

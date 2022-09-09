@@ -6,7 +6,7 @@ kuc-mobile-date-picker * {
     "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
     "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 }
-kuc-mobile-date-picker:lang(zh) ,
+kuc-mobile-date-picker:lang(zh),
 kuc-mobile-date-picker:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
