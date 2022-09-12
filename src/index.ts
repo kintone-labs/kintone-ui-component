@@ -26,4 +26,4 @@ export * from "./mobile/datetime-picker";
 
 export * from "./version";
 export * from "./dev-info";
-export * from "./base/kuc-base";
+export { CustomEventDetail } from "./base/kuc-base";
