@@ -12,6 +12,8 @@ storiesOf("desktop/button", module).add("Base", () => {
   normalButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
+  normalButton.style.margin = "5px";
+
   const submitButton = new Button({
     text: "Submit",
     type: "submit",
@@ -21,6 +23,7 @@ storiesOf("desktop/button", module).add("Base", () => {
   submitButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
+  submitButton.style.margin = "5px";
 
   const alertButton = new Button({
     text: "Alert",
@@ -31,6 +34,7 @@ storiesOf("desktop/button", module).add("Base", () => {
   alertButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
+  alertButton.style.margin = "5px";
 
   const disabledButton = new Button({
     text: "Submit",
@@ -41,6 +45,8 @@ storiesOf("desktop/button", module).add("Base", () => {
   disabledButton.addEventListener("click", (event) => {
     console.log(["clickEvent", event]);
   });
+  disabledButton.style.margin = "5px";
+
   root.appendChild(normalButton);
   root.appendChild(submitButton);
   root.appendChild(alertButton);
