@@ -82,6 +82,7 @@ let exportReadOnlyTable;
 
     willUpdate(changedProperties: PropertyValues): void {
       if (changedProperties.has("columns")) {
+        this._columnOrder = [];
         this.columns.map((col) =>
           this._columnOrder.push(col.field ? col.field : "")
         );
@@ -100,7 +101,7 @@ let exportReadOnlyTable;
       );
       return html`
         <table class="kuc-readonly-table__table" aria-label="${this.label}">
-          <caption class="kuc-readonly-table__table__label">
+          <caption class="kuc-readonly-table__table__label" ?hidden="${!this.label}">
             ${this.label}
           </caption>
           <thead class="kuc-readonly-table__table__header">
@@ -110,11 +111,7 @@ let exportReadOnlyTable;
           </thead>
           <tbody class="kuc-readonly-table__table__body">
             ${currentPageData.map((data: object, currentIndex: number) => {
-              return this._getDataTemplate(
-                data,
-                currentIndex,
-                this._columnOrder
-              );
+              return this._getDataTemplate(data, currentIndex);
             })}
           </tbody>
         </table>
@@ -131,11 +128,11 @@ let exportReadOnlyTable;
     private _createDisplayData(
       data: object[],
       pagePosition: number,
-      steps: number
+      rowsPerPage: number
     ) {
       if (!this.pagination) return data;
-      const firstRow = (pagePosition - 1) * steps + 1;
-      const lastRow = pagePosition * steps;
+      const firstRow = (pagePosition - 1) * rowsPerPage + 1;
+      const lastRow = pagePosition * rowsPerPage;
       const displayData = data.filter(
         (_element, index: number) =>
           index >= firstRow - 1 && index <= lastRow - 1
@@ -157,16 +154,12 @@ let exportReadOnlyTable;
     }
 
     // Formatting the data displayed on the current page
-    private _getDataTemplate(
-      data: any,
-      currentIndex: number,
-      columnOrder: string[]
-    ) {
+    private _getDataTemplate(data: any, currentIndex: number) {
       return html`
         <tr
           class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
         >
-          ${columnOrder.map((currentCol, colIndex) => {
+          ${this._columnOrder.map((currentCol, colIndex) => {
             let isHidden = false;
             if (
               this.columns[colIndex] &&
