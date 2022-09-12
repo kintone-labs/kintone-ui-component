@@ -2,55 +2,47 @@ const webpack = require("webpack");
 const configuration = require("../webpack.esm.config.js");
 const path = require("path");
 const packageJSON = require("../package.json");
-
 const fs = require("fs");
-const componentDirectories = [
-  "mobile/datetime-picker",
-  "mobile/time-picker",
-  "mobile/date-picker",
-  "base/datetime/mobile-time",
-  "base/datetime/mobile-date",
-  "base/datetime/mobile-calendar",
-  "base/datetime/mobile-calendar/body",
-  "base/datetime/mobile-calendar/header",
-  "base/datetime/mobile-calendar/footer",
-  "base/error",
-  "base/label",
-  "base/datetime/listbox",
-  "base/datetime/time",
-  "base/datetime/date",
-  "base/datetime/calendar",
-  "base/datetime/calendar/body",
-  "base/datetime/calendar/footer",
-  "base/datetime/calendar/header",
-  "base/datetime/calendar/header/dropdown/month",
-  "base/datetime/calendar/header/dropdown/year",
-  "button",
-  "checkbox",
-  "date-picker",
-  "datetime-picker",
-  "dialog",
-  "dropdown",
-  "multichoice",
-  "notification",
-  "radio-button",
-  "spinner",
-  "text",
-  "textarea",
-  "time-picker",
-  "base/mobile-label",
-  "base/mobile-error",
-  "mobile/button",
-  "mobile/checkbox",
-  "mobile/dropdown",
-  "mobile/multichoice",
-  "mobile/notification",
-  "mobile/radio-button",
-  "mobile/text",
-  "mobile/textarea"
-];
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|(kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
+const source = "./src";
+const ignoreComponentDirectories = [];
+const componentDirectories = getComponentDirectories(source, ignoreComponentDirectories);
+
+function flatten(lists) {
+  return [].concat(...lists);
+}
+
+function getDirectories(srcPath) {
+  return fs.readdirSync(srcPath)
+    .map(file => path.join(srcPath, file))
+    .filter(path => fs.statSync(path).isDirectory());
+}
+
+function getAllDirectories(srcPath) {
+  return [srcPath,...flatten(getDirectories(srcPath).map(getAllDirectories))];
+}
+
+function getComponentDirectories(source, ignoreList) {
+  const allDirectories = getAllDirectories(source);
+  const componentDirectories = [];
+  for(let index = 0; index < allDirectories.length; index++) {
+    const directory = allDirectories[index];
+    if(!hasIndexAndStyle(directory)) continue;
+    let formattedDir = directory.split(path.sep).join("/").replace("src/", "");
+    if(ignoreList.includes(formattedDir)) continue;
+    componentDirectories.push(formattedDir);
+  }
+  return componentDirectories;
+}
+
+function hasIndexAndStyle(path) {
+  const listOfFiles = fs.readdirSync(path);
+  if(!listOfFiles.includes("index.ts")) return false;
+  if(!listOfFiles.includes("style.ts")) return false;
+  return true;
+}
+
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|((--)?kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
 const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
@@ -67,7 +59,7 @@ const getChangedValue = (str, version) => {
 
 const replaceAllByPattern = (data, pattern, version) => {
   let tempData = data;
-  const matchedValues = Array.from(new Set(data.match(pattern)));
+  const matchedValues = Array.from(new Set(data.match(pattern))).filter(value => value[0] != "-");
   matchedValues.forEach(matchedValue => {
     // ignore the base file "base/kuc-base"
     const tempChangedValue =

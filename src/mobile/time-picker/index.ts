@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 import { timeValueConverter, visiblePropConverter } from "../../base/converter";
-import { FORMAT_IS_NOT_VALID } from "../../base/datetime/resource/constant";
+import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
   CustomEventDetail,
   dispatchCustomEvent,
@@ -75,7 +75,7 @@ let exportMobileTimePicker;
     protected shouldUpdate(changedProperties: PropertyValues): boolean {
       if (this.value === undefined || this.value === "") return true;
       if (!validateTimeValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, FORMAT_IS_NOT_VALID);
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;
