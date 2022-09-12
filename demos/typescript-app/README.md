@@ -34,11 +34,15 @@ const dropdownProps: DropdownProps = {
     {
       label: "Orange",
       value: "orange",
+    },
+    {
+      label: "Apple",
+      value: "apple",
     }
   ],
   value: "-----",
-  label: "フルーツ一覧",
-  error: "エラーです",
+  label: "Fruit",
+  error: "Error occurred!",
 };
 const dropdown = new Dropdown(dropdownProps);
 root.appendChild(dropdown);
