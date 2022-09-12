@@ -101,7 +101,10 @@ let exportReadOnlyTable;
       );
       return html`
         <table class="kuc-readonly-table__table" aria-label="${this.label}">
-          <caption class="kuc-readonly-table__table__label" ?hidden="${!this.label}">
+          <caption
+            class="kuc-readonly-table__table__label"
+            ?hidden="${!this.label}"
+          >
             ${this.label}
           </caption>
           <thead class="kuc-readonly-table__table__header">
@@ -172,7 +175,8 @@ let exportReadOnlyTable;
               <td
                 class="kuc-readonly-table__table__body__row__cell-data"
                 ?hidden="${isHidden}"
-              >${data[currentCol]}</td>
+              >${data[currentCol]}
+              </td>
             `;
             /* eslint-enable */
           })}

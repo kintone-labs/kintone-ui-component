@@ -199,5 +199,32 @@ describe("ReadOnlyTable", () => {
       ) as NodeList;
       expect(rowsEl.length).to.equal(4);
     });
+
+    it("should throw error when assigned wrong type by constructor", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'rowsPerPage' property must be a positive integer.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new ReadOnlyTable({rowsPerPage: "5"});
+      fixture(container);
+    });
+
+    it("should throw error when assigned wrong type by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'rowsPerPage' property must be a positive integer.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new ReadOnlyTable();
+      container.rowsPerPage = "5";
+      fixture(container);
+    });
   });
 });

@@ -21,12 +21,12 @@ const columns = [
 
 const replaceColumns = [
   {
-    title: "New col 1",
+    title: "New number",
     field: "index",
     visible: true,
   },
   {
-    title: "New col 2",
+    title: "New city",
     field: "name",
     visible: true,
   },
@@ -177,9 +177,9 @@ describe("ReadOnlyTable", () => {
 
       expect(columnsEl.length).to.equal(2);
       expect(columnsEl[0].hasAttribute("hidden")).to.equal(false);
-      expect(columnsEl[0].textContent?.trim()).to.equal("New col 1");
+      expect(columnsEl[0].textContent?.trim()).to.equal("New number");
       expect(columnsEl[1].hasAttribute("hidden")).to.equal(false);
-      expect(columnsEl[1].textContent?.trim()).to.equal("New col 2");
+      expect(columnsEl[1].textContent?.trim()).to.equal("New city");
     });
   });
 

@@ -124,19 +124,15 @@ export async function throwErrorAfterUpdateComplete(
 }
 
 export function validateColumns(columns: Column[]) {
-  if (!Array.isArray(columns)) return false;
-  if (columns.length === 0) return false;
-  return true;
+  return Array.isArray(columns);
 }
 
 export function validateData(data: object[]) {
-  if (!Array.isArray(data)) return false;
-  if (data.length === 0) return false;
-  return true;
+  return Array.isArray(data);
 }
 
 export function validateRowsPerPage(numRows: number) {
-  if (numRows < 0 || numRows === 0 || typeof numRows !== "number") {
+  if (numRows < 0.5 || typeof numRows !== "number") {
     return false;
   }
   return true;
