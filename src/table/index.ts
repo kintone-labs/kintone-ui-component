@@ -101,7 +101,7 @@ let exportTable;
     render() {
       return html`
         <table class="kuc-table__table">
-          <caption>
+          <caption class="kuc-table__table__label" ?hidden="${!this.label}">
             ${this.label}
           </caption>
           <thead class="kuc-table__table__header">
