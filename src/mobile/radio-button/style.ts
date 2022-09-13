@@ -29,7 +29,7 @@ export const MOBILE_RADIO_BUTTON_CSS = `
     height: auto;
     display: inline-block;
     width: 100%;
-    vertical-align:top;
+    vertical-align: top;
   }
 
   .kuc-mobile-radio-button__group__label {
