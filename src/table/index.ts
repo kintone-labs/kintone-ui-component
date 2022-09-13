@@ -12,7 +12,7 @@ import {
   validateProps,
   throwErrorAfterUpdateComplete,
   validateArrayProperty,
-  validateFieldRequiedInColumnTable,
+  validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
@@ -87,7 +87,7 @@ let exportTable;
       if (!validateArrayProperty(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
       }
-      if (!validateFieldRequiedInColumnTable(this.columns)) {
+      if (!validateFieldRequiredInColumnTable(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
       }
       if (validateFieldUniqueInColumnTable(this.columns)) {
