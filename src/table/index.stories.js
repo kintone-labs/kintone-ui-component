@@ -177,5 +177,5 @@ Base.args = {
   data: data,
   id: "table-id",
   className: "table-classname",
-  actionButton: false,
+  actionButton: true,
 };
