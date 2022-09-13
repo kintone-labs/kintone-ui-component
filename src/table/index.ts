@@ -272,7 +272,11 @@ let exportTable;
         const cellTemplate = column.render
           ? column.render(defaultRow[column.field], defaultRow, currentRowIndex)
           : defaultRow[column.field];
-        newCell.appendChild(cellTemplate);
+        if (cellTemplate && cellTemplate.nodeType) {
+          newCell.appendChild(cellTemplate);
+        } else {
+          newCell.innerText = cellTemplate;
+        }
       }
       this._addActionsCellToNewRow(newRow);
     }
