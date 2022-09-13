@@ -12,7 +12,7 @@ import {
   validateProps,
   throwErrorAfterUpdateComplete,
   validateArrayProperty,
-  validateFieldRequiedInColumnTable,
+  validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
