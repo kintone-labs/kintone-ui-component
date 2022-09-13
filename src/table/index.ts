@@ -1,6 +1,4 @@
 /* eslint-disable kuc-v1/no-kuc-class-prefix */
-/* eslint-disable kuc-v1/no-using-event-handler-name */
-/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
@@ -101,7 +99,7 @@ let exportTable;
     render() {
       return html`
         <table class="kuc-table__table">
-          <caption>
+          <caption class="kuc-table__table__label" ?hidden="${!this.label}">
             ${this.label}
           </caption>
           <thead class="kuc-table__table__header">
