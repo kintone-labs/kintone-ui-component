@@ -17,7 +17,7 @@ import { CALENDAR_BODY_CSS } from "./style";
 export class BaseDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
   @state() _month = 1;

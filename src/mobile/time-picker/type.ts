@@ -6,7 +6,7 @@ export declare type MobileTimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
-  language?: "ja" | "en" | "zh" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
   value?: string;
   disabled?: boolean;
   hour12?: boolean;

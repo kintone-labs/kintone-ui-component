@@ -1,20 +1,26 @@
 export const CALENDAR_BODY_CSS = `
 kuc-base-datetime-calendar-body,
 kuc-base-datetime-calendar-body *,
-:lang(en) kuc-base-datetime-calendar-body,
-:lang(en) kuc-base-datetime-calendar-body * {
+kuc-base-datetime-calendar-body:lang(en),
+kuc-base-datetime-calendar-body:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-base-datetime-calendar-body,
-:lang(ja) kuc-base-datetime-calendar-body * {
+kuc-base-datetime-calendar-body:lang(ja),
+kuc-base-datetime-calendar-body:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-base-datetime-calendar-body,
-:lang(zh) kuc-base-datetime-calendar-body * {
+kuc-base-datetime-calendar-body:lang(zh),
+kuc-base-datetime-calendar-body:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+
+kuc-base-datetime-calendar-body:lang(zh-TW),
+kuc-base-datetime-calendar-body:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC",sans-serif;
 }
 .kuc-base-datetime-calendar-body__table,
 .kuc-base-datetime-calendar-body__table tr {

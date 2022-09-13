@@ -6,12 +6,20 @@ kuc-base-mobile-datetime-calendar-body * {
     "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 }
 
-:lang(zh) kuc-base-mobile-datetime-calendar-body,
-:lang(zh) kuc-base-mobile-datetime-calendar-body * {
+kuc-base-mobile-datetime-calendar-body:lang(zh),
+kuc-base-mobile-datetime-calendar-body:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
     Verdana, sans-serif;
 }
+
+kuc-base-mobile-datetime-calendar-body:lang(zh-TW),
+kuc-base-mobile-datetime-calendar-body:lang(zh-TW) * {
+    font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
+    Verdana,sans-serif
+}
+
 .kuc-base-mobile-datetime-calendar-body__table,
 .kuc-base-mobile-datetime-calendar-body__table tr {
     border-collapse: separate;

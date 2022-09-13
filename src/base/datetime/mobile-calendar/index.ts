@@ -8,7 +8,7 @@ import "./footer";
 import { BASE_MOBILE_CALENDAR } from "./style";
 
 export class BaseMobileDateTimeCalendar extends KucBase {
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
   @state() _month = 1;
