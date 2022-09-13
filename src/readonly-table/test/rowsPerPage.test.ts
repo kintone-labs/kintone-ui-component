@@ -203,20 +203,24 @@ describe("ReadOnlyTable", () => {
     it("should throw error when assigned wrong type by constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'rowsPerPage' property must be a positive integer.");
+        expect(errorMsg).to.equal(
+          "'rowsPerPage' property is not a positive integer."
+        );
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
       window.addEventListener("unhandledrejection", handleError);
 
-      const container = new ReadOnlyTable({rowsPerPage: "5"});
+      const container = new ReadOnlyTable({ rowsPerPage: "5" });
       fixture(container);
     });
 
     it("should throw error when assigned wrong type by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'rowsPerPage' property must be a positive integer.");
+        expect(errorMsg).to.equal(
+          "'rowsPerPage' property is not a positive integer."
+        );
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
