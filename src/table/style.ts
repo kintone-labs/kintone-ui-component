@@ -98,6 +98,9 @@ export const TABLE_CSS = `
     .kuc-table__table__body__row__action-remove:hover path {
         fill: #e74c3c;
     }
+    .kuc-table__table__body__row__action[hidden] {
+        display: none;
+    }
     .kuc-table__table caption {
         text-align: left;
         margin-bottom: 6px;
