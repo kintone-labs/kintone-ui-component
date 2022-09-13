@@ -122,7 +122,7 @@ export async function throwErrorAfterUpdateComplete(
   throw new Error(message);
 }
 
-export const validateFieldRequiedInColumnTable = (columns: object[]) => {
+export const validateFieldRequiredInColumnTable = (columns: object[]) => {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
     const containField = "field" in column;
