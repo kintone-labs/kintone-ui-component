@@ -143,5 +143,17 @@ describe("MobileDatePicker", () => {
       expect(inputDateEl.value).to.be.equal("");
       expect(container.value).to.be.equal("");
     });
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new MobileDatePicker({ value: "12,12" });
+      fixture(container);
+    });
   });
 });

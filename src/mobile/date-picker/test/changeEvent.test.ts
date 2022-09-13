@@ -76,5 +76,30 @@ describe("MobileDatePicker", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.value).to.equal("");
     });
+    it('should be equal "error-message" when click any valid date', async () => {
+      const container = new MobileDatePicker({ error: "error-message" });
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      inputDateEl.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      const selectedElUp = el.querySelector(
+        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected"
+      ) as HTMLButtonElement;
+
+      const nextEl = selectedElUp?.nextElementSibling as HTMLTableCellElement;
+      const buttonEl = nextEl as HTMLElement;
+      buttonEl.click();
+      const errorEl = el.querySelector(
+        ".kuc-base-mobile-error__error"
+      ) as HTMLDivElement;
+      await elementUpdated(container);
+      expect(errorEl.innerText).to.have.equal("error-message");
+      expect(errorEl).not.has.attribute("hidden");
+    });
   });
 });

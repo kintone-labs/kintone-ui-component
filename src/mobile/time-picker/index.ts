@@ -19,6 +19,7 @@ import { MobileTimePickerProps } from "./type";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
+import { isStringValueEmpty } from "../../base/datetime/utils";
 
 let exportMobileTimePicker;
 (() => {
@@ -152,8 +153,7 @@ let exportMobileTimePicker;
         dispatchCustomEvent(this, "change", detail);
         return;
       }
-      const theSameValue = event.detail.value === this.value;
-      if (!theSameValue) {
+      if (!isStringValueEmpty(this._errorFormat)) {
         this.error = "";
       }
       this._isSelectError = false;

@@ -91,5 +91,16 @@ describe("MobileTimePicker", () => {
       const container = new MobileTimePicker({ value: "12:234" });
       fixture(container);
     });
+    it("should throw error when the value is not string", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property format is not valid.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+      const container = new MobileTimePicker({ value: "23.23" });
+      fixture(container);
+    });
   });
 });
