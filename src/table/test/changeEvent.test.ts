@@ -37,11 +37,17 @@ const data = [
     gender: "female",
     address: { city: "tokyo", country: "ja" },
   },
+  {
+    name: "sample3",
+    age: 3,
+    gender: "female",
+    address: { city: "tokyo", country: "ja" },
+  },
 ];
 
 describe("Table", () => {
   describe("changeEvent", () => {
-    it("should dispatch change event when click remove row button", async () => {
+    it("should dispatch change event when click add row button", async () => {
       let triggeredEvent: any = null;
       const container = new Table({ columns: [...columns], data: [...data] });
       container.addEventListener("change", (event: Event) => {
@@ -51,18 +57,19 @@ describe("Table", () => {
       const addRowButton = el.querySelectorAll(
         ".kuc-table__table__body__row__action-add"
       );
+      console.log(addRowButton.length, "111111");
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
-      expect(tableEl.rows.length).to.equal(3);
-      expect(container.data.length).to.equal(2);
+      expect(tableEl.rows.length).to.equal(4);
+      expect(container.data.length).to.equal(3);
 
       (addRowButton[0] as HTMLButtonElement).click();
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.oldData.length).to.equal(2);
-      expect(triggeredEvent.detail.data.length).to.equal(3);
+      expect(triggeredEvent.detail.oldData.length).to.equal(3);
+      expect(triggeredEvent.detail.data.length).to.equal(4);
       expect(triggeredEvent.detail.rowIndex).to.equal(1);
       expect(triggeredEvent.detail.type).to.equal("add-row");
-      expect(tableEl.rows.length).to.equal(4);
-      expect(container.data.length).to.equal(3);
+      expect(tableEl.rows.length).to.equal(5);
+      expect(container.data.length).to.equal(4);
     });
 
     it("should dispatch change event when click remove row button", async () => {
@@ -76,10 +83,19 @@ describe("Table", () => {
         ".kuc-table__table__body__row__action-remove"
       );
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
+      expect(tableEl.rows.length).to.equal(4);
+      expect(container.data.length).to.equal(3);
+
+      (removeRowButton[0] as HTMLButtonElement).click();
+      expect(triggeredEvent.type).to.equal("change");
+      expect(triggeredEvent.detail.oldData.length).to.equal(3);
+      expect(triggeredEvent.detail.data.length).to.equal(2);
+      expect(triggeredEvent.detail.rowIndex).to.equal(1);
+      expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(3);
       expect(container.data.length).to.equal(2);
 
-      (removeRowButton[0] as HTMLButtonElement).click();
+      (removeRowButton[1] as HTMLButtonElement).click();
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldData.length).to.equal(2);
       expect(triggeredEvent.detail.data.length).to.equal(1);
@@ -96,13 +112,10 @@ describe("Table", () => {
         triggeredEvent = event;
       });
       const el = await fixture(container);
-      const removeRowButton = el.querySelectorAll(
-        ".kuc-table__table__body__row__action-remove"
-      );
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
       const dropDownGender = el.querySelector("#dropdown-gender") as any;
-      expect(tableEl.rows.length).to.equal(3);
-      expect(container.data.length).to.equal(2);
+      expect(tableEl.rows.length).to.equal(4);
+      expect(container.data.length).to.equal(3);
 
       dropDownGender.dispatchEvent(
         new CustomEvent("change", {
@@ -113,13 +126,13 @@ describe("Table", () => {
       );
 
       expect(triggeredEvent.type).to.equal("change");
-      expect(triggeredEvent.detail.oldData.length).to.equal(2);
-      expect(triggeredEvent.detail.data.length).to.equal(2);
+      expect(triggeredEvent.detail.oldData.length).to.equal(3);
+      expect(triggeredEvent.detail.data.length).to.equal(3);
       expect(triggeredEvent.detail.rowIndex).to.equal(0);
       expect(triggeredEvent.detail.field).to.equal("gender");
       expect(triggeredEvent.detail.type).to.equal("change-cell");
-      expect(tableEl.rows.length).to.equal(3);
-      expect(container.data.length).to.equal(2);
+      expect(tableEl.rows.length).to.equal(4);
+      expect(container.data.length).to.equal(3);
     });
   });
 });
