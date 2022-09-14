@@ -42,8 +42,8 @@ function hasIndexAndStyle(path) {
   return true;
 }
 
-const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|((--)?kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)/g;
-const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n"];
+const classNamePattern = /(kuc(-[a-z]+)+)__|(kuc(-[a-z]+)+)\>|((--)?kuc(-[a-z]+)+)(\s|,|\[)|(kuc(-[a-z]+)+)\n|(kuc(-[a-z]+)+)\"|(kuc(-[a-z]+)+;)|(kuc(-[a-z]+)+:)/g;
+const suffixs = ["\\", ">", "__", '"', "=", ",", ";", "[", " ", "\n", ":"];
 const classNameVersion = `-${packageJSON.version.replace(/\./g, "-")}`;
 
 const getChangedValue = (str, version) => {
