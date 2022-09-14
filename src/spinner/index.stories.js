@@ -1,11 +1,15 @@
 import { Spinner } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
 
-storiesOf("desktop/spinner", module).add("Base", () => {
-  const root = document.createElement("div");
-  const spinner = new Spinner({
-    text: "now loading...",
-  });
+export default {
+  title: "desktop/spinner",
+  argTypes: {
+    text: { name: "text" },
+  },
+};
+const template = (args) => {
+  const spinner = new Spinner({ ...args });
   spinner.open();
-  return root;
-});
+  return spinner;
+};
+export const Base = template.bind({});
+Base.args = { text: "now loading..." };
