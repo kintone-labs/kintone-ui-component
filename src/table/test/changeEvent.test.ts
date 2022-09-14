@@ -90,7 +90,7 @@ describe("Table", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldData.length).to.equal(3);
       expect(triggeredEvent.detail.data.length).to.equal(2);
-      expect(triggeredEvent.detail.rowIndex).to.equal(1);
+      expect(triggeredEvent.detail.rowIndex).to.equal(0);
       expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(3);
       expect(container.data.length).to.equal(2);
@@ -99,7 +99,7 @@ describe("Table", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldData.length).to.equal(2);
       expect(triggeredEvent.detail.data.length).to.equal(1);
-      expect(triggeredEvent.detail.rowIndex).to.equal(1);
+      expect(triggeredEvent.detail.rowIndex).to.equal(0);
       expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(2);
       expect(container.data.length).to.equal(1);
