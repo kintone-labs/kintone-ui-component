@@ -170,13 +170,10 @@ let exportReadOnlyTable;
             ) {
               isHidden = true;
             }
+            const value = data[currentCol];
             /* eslint-disable */
             return html`
-              <td
-                class="kuc-readonly-table__table__body__row__cell-data"
-                ?hidden="${isHidden}"
-              >${data[currentCol]}
-              </td>
+              <td class="kuc-readonly-table__table__body__row__cell-data">${value}</td>
             `;
             /* eslint-enable */
           })}
@@ -194,10 +191,24 @@ let exportReadOnlyTable;
 
     private _handleClickPreviousButton(_event: MouseEvent | KeyboardEvent) {
       if (this._pagePosition < 2) return;
+      if (!validateRowsPerPage(this.rowsPerPage)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
+        );
+        return;
+      }
       this._pagePosition -= 1;
     }
 
     private _handleClickNextButton(_event: MouseEvent | KeyboardEvent) {
+      if (!validateRowsPerPage(this.rowsPerPage)) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
+        );
+        return;
+      }
       this._pagePosition += 1;
     }
   }
