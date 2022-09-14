@@ -39,6 +39,7 @@ export const MOBILE_TEXTAREA_CSS = `
     box-shadow: 0 1px 0 #ffffff, inset 0 2px 3px #dadada;
     border-radius: 0.4em;
     box-sizing: border-box;
+    vertical-align: top;
   }
   .kuc-mobile-textarea__form__textarea[aria-required="true"] {
     border: 1px solid #cf4a38;
