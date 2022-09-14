@@ -1,20 +1,25 @@
 export const BASE_ERROR_CSS = `
   kuc-base-error,
   kuc-base-error *,
-  :lang(en) kuc-base-error,
-  :lang(en) kuc-base-error * {
+  kuc-base-error:lang(en),
+  kuc-base-error:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-base-error,
-  :lang(ja) kuc-base-error * {
+  kuc-base-error:lang(ja),
+  kuc-base-error:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-base-error,
-  :lang(zh) kuc-base-error * {
+  kuc-base-error:lang(zh),
+  kuc-base-error:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-base-error:lang(zh-TW),
+  kuc-base-error:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-base-error {
     width: 100%;
