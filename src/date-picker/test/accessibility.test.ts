@@ -71,8 +71,8 @@ describe("DatePicker", () => {
         ".kuc-base-datetime-calendar__group"
       ) as HTMLDivElement;
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
-      ) as HTMLButtonElement;
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+      ) as HTMLTableCellElement;
 
       selectedElRight.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
@@ -86,21 +86,18 @@ describe("DatePicker", () => {
       expect(inputDateEl.value).to.equal("12/22/2021");
     });
 
-    it("should be open calendar when focused hidden button and press enter key", async () => {
+    it("should be open calendar when click hidden button", async () => {
       const container = new DatePicker({ value: "2021-12-22" });
       const el = await fixture(container);
       const hiddenBtn = el.querySelector(
         ".kuc-base-date__assistive-text"
       ) as HTMLButtonElement;
-      hiddenBtn.focus();
-      hiddenBtn.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
-      await elementUpdated(container);
+      hiddenBtn.dispatchEvent(new Event("click"));
       await elementUpdated(el);
 
       const calendarEl = el.querySelector(
         ".kuc-base-date__calendar"
       ) as HTMLElement;
-
       expect(calendarEl.tagName).to.equal("KUC-BASE-DATETIME-CALENDAR");
     });
 
@@ -172,7 +169,6 @@ describe("DatePicker", () => {
       await elementUpdated(el);
       expect(inputDateEl.value).to.equal("");
     });
-
     it("should be focused last day of month when click on previous month button", async () => {
       const container = new DatePicker({ value: "2021-03-31" });
       const el = await fixture(container);
@@ -192,8 +188,8 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const dateSelected = el.querySelector(
-        ".kuc-base-datetime-calendar-body__table__date--selected .kuc-base-datetime-calendar-body__table__date__button"
-      ) as HTMLButtonElement;
+        ".kuc-base-datetime-calendar-body__table__date--selected"
+      ) as HTMLTableCellElement;
       expect(dateSelected.getAttribute("data-date")).to.equal("2021-02-28");
     });
   });

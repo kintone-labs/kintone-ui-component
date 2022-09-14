@@ -30,9 +30,6 @@ export class BaseDate extends KucBase {
   @query(".kuc-base-date__input")
   private _dateInput!: HTMLInputElement;
 
-  @query(".kuc-base-date__assistive-text")
-  private _toggleEl!: HTMLButtonElement;
-
   @query(".kuc-base-datetime-calendar-header__group__button--previous-month")
   private _previousMonth!: HTMLButtonElement;
 
@@ -85,7 +82,7 @@ export class BaseDate extends KucBase {
         aria-haspopup="dialog"
         aria-expanded="${this._dateTimeCalendarVisible}"
         class="kuc-base-date__assistive-text"
-        @keydown="${this._handleKeyDownButton}"
+        @click="${this._handleClickButton}"
         @focus="${this._handleFocusButton}"
         @blur="${this._handleBlurButton}"
         ?disabled="${this.disabled}"
@@ -282,10 +279,14 @@ export class BaseDate extends KucBase {
     dispatchCustomEvent(this, "kuc:base-date-change", detail);
   }
 
-  private _openCalendarByKeyCode() {
-    this._valueForReset = this.value;
-    this._openCalendar();
-    this._toggleEl.blur();
+  private _handleClickButton() {
+    if (!this._dateTimeCalendarVisible) {
+      this._valueForReset = this.value;
+      this._calendarValue = this._getNewCalendarValue(this._inputValue || "");
+      this._openCalendar();
+      return;
+    }
+    this._closeCalendar();
   }
 
   private _handleBlurButton() {
@@ -294,31 +295,6 @@ export class BaseDate extends KucBase {
 
   private _handleFocusButton() {
     this._dateInput.classList.add("kuc-base-date__input--focus");
-  }
-
-  private _handleTabKey(event: KeyboardEvent) {
-    if (event.key === "Tab") return true;
-    return false;
-  }
-
-  private _handleKeyDownButton(event: KeyboardEvent) {
-    if (this._handleTabKey(event)) return;
-    this._handleSupportedKey(event);
-  }
-
-  private _handleSupportedKey(event: KeyboardEvent) {
-    event.preventDefault();
-    const keyCode = event.key;
-    switch (keyCode) {
-      case "ArrowUp":
-      case "ArrowDown":
-      case "Enter":
-      case " ":
-        this._openCalendarByKeyCode();
-        break;
-      default:
-        break;
-    }
   }
 }
 

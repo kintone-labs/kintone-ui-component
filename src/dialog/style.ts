@@ -40,6 +40,10 @@ export const DIALOG_CSS = `
     transform: translate(-50%, -50%);
     z-index: 10000;
   }
+  
+  .kuc-dialog__dialog:focus-visible {
+    outline: 1px solid #3498db;
+  }
 
   .kuc-dialog__dialog__header {
     min-height: 64px;
@@ -66,23 +70,7 @@ export const DIALOG_CSS = `
   }
 
   .kuc-dialog__dialog__header__close-button:focus-visible {
-    outline: -webkit-focus-ring-color auto 1px;
-  }
-
-  /* Firefox */
-  @-moz-document url-prefix() {
-    .kuc-dialog__dialog__header__close-button:focus-visible {
-      outline: 1px dotted;
-    }
-  }
-
-  /* Safari */
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    _::-webkit-full-page-media,
-    _:future,
-    :root .kuc-dialog__dialog__header__close-button:focus {
-      outline: 5px auto -webkit-focus-ring-color;
-    }
+    outline: 1px solid #3498db;
   }
 
   .kuc-dialog__dialog__header__close-button-svg {

@@ -24,15 +24,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @state() _year = 2021;
 
   @query(
-    '.kuc-base-datetime-calendar-body__table__date__button[aria-current="true"]'
+    '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
   )
-  private _selectedItem!: HTMLButtonElement;
+  private _selectedItem!: HTMLTableCellElement;
 
   @query(".kuc-base-datetime-calendar-body__table__date--selected")
   private _highlightItem!: HTMLTableCellElement;
 
-  @query('.kuc-base-datetime-calendar-body__table__date__button[tabindex="0"]')
-  private _focusedItem!: HTMLButtonElement;
+  @query(
+    '.kuc-base-datetime-calendar-body__table__date--selected[tabindex="0"]'
+  )
+  private _focusedItem!: HTMLTableCellElement;
 
   private _locale = getLocale("en");
 
@@ -81,7 +83,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      this._focusDateButtonEl();
+      this._focusDateEl();
     }
     super.update(changedProperties);
   }
@@ -98,18 +100,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
     }
   }
 
-  private _handleClickDateBtn(event: MouseEvent | KeyboardEvent) {
+  private _handleClickDate(event: MouseEvent | KeyboardEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    const itemEl = event.target as HTMLButtonElement;
-    itemEl.setAttribute("aria-current", "true");
-
+    const itemEl = event.target as HTMLTableCellElement;
+    itemEl.setAttribute("aria-selected", "true");
     const value = itemEl.getAttribute("data-date") || "";
     this._dispatchClickEvent(value);
   }
 
-  private _handleKeyDownDateBtn(event: KeyboardEvent) {
+  private _handleKeyDownDate(event: KeyboardEvent) {
     let doPreventEvent = false;
     switch (event.key) {
       case "Up":
@@ -196,8 +197,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getSelectedValue() {
     if (this._highlightItem) {
-      const button = this._highlightItem.children[0] as HTMLButtonElement;
-      return button.dataset.date || "";
+      return this._highlightItem.dataset.date || "";
     }
     if (this._selectedItem)
       return this._selectedItem.getAttribute("data-date") || "";
@@ -216,14 +216,14 @@ export class BaseDateTimeCalendarBody extends KucBase {
     if (isThisMonth) {
       const isToday = this._isToday(dateParts);
       if (isToday)
-        return " kuc-base-datetime-calendar-body__table__date__button--today";
+        return " kuc-base-datetime-calendar-body__table__date--selected--today";
 
       return "";
     }
     const isToday = this._isToday(dateParts);
     if (isToday)
-      return " kuc-base-datetime-calendar-body__table__date__button--today";
-    return " kuc-base-datetime-calendar-body__table__date__button--other-month";
+      return " kuc-base-datetime-calendar-body__table__date--selected--today";
+    return " kuc-base-datetime-calendar-body__table__date--other-month";
   }
 
   private _getDateString(date = new Date()) {
@@ -276,6 +276,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   private _getDateItemsTemplate() {
     const displayingDates = getDisplayingDates(this._year, this._month - 1);
+    const monthString = this._locale.MONTH_SELECT[this._month - 1];
     return html`
       <tbody>
         ${displayingDates.map((weeks) => {
@@ -285,33 +286,23 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
+                const isFocus =
+                  (this.value === weekDate.attr || isSameDate) && isThisMonth;
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__table__date${(this
-                      .value === weekDate.attr ||
-                      isSameDate) &&
-                    isThisMonth
+                    class="kuc-base-datetime-calendar-body__table__date${isFocus
                       ? "--selected"
-                      : ""}"
+                      : ""}${this._getDateClass(dateParts, isThisMonth)}"
+                    aria-selected="${this.value === weekDate.attr}"
+                    tabindex="${isFocus ? "0" : "-1"}"
+                    aria-current="${this._isToday(dateParts) ? "date" : false}"
+                    aria-label="${dateParts[2]} ${monthString}"
+                    data-date="${weekDate.attr}"
+                    @click="${this._handleClickDate}"
+                    @keydown="${this._handleKeyDownDate}"
                   >
-                    <button
-                      aria-current="${this.value === weekDate.attr}"
-                      tabindex="${(this.value === weekDate.attr ||
-                        isSameDate) &&
-                      isThisMonth
-                        ? "0"
-                        : "-1"}"
-                      class="kuc-base-datetime-calendar-body__table__date__button${this._getDateClass(
-                        dateParts,
-                        isThisMonth
-                      )}"
-                      data-date="${weekDate.attr}"
-                      @click="${this._handleClickDateBtn}"
-                      @keydown="${this._handleKeyDownDateBtn}"
-                    >
-                      ${dateParts[2] || ""}
-                    </button>
+                    ${dateParts[2] || ""}
                   </td>
                 `;
               })}
@@ -322,10 +313,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
     `;
   }
 
-  private _focusDateButtonEl() {
-    const buttonEl = this._focusedItem as HTMLButtonElement;
-    if (!buttonEl) return;
-    buttonEl.focus({ preventScroll: true });
+  private _focusDateEl() {
+    if (!this._focusedItem) return;
+    this._focusedItem.focus({ preventScroll: true });
   }
 }
 
