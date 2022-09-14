@@ -321,12 +321,13 @@ let exportTable;
     }
 
     private _handleRemoveRow(currentRowIndex: number) {
+      const dataIndexRemoved = currentRowIndex - 1;
       const oldData = this._deepCloneObject(this.data);
       this._table.deleteRow(currentRowIndex);
-      this.data.splice(currentRowIndex - 2, 1);
+      this.data.splice(dataIndexRemoved, 1);
       const data = {
         type: "remove-row",
-        rowIndex: currentRowIndex,
+        rowIndex: dataIndexRemoved,
         data: this._deepCloneObject(this.data),
         oldData: oldData,
       };
