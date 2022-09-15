@@ -58,13 +58,13 @@ Button(options)<br>
 | Name |
 | :--- |
 | --kuc-button-width |
+| --kuc-button-height |
 | --kuc-button-background-color |
 | --kuc-button-background-hover |
 | --kuc-button-background-active |
 | --kuc-button-background-focus |
 | --kuc-button-font-size |
 | --kuc-button-text-color |
-| --kuc-button-height |
 
 ---
 
