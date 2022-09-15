@@ -14,7 +14,7 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["en", "ja", "zh"],
+        options: ["en", "ja", "zh", "zh-TW"],
       },
     },
     value: {

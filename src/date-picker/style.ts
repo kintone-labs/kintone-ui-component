@@ -1,20 +1,25 @@
 export const DATE_PICKER_CSS = `
 kuc-date-picker,
 kuc-date-picker *,
-:lang(en) kuc-date-picker,
-:lang(en) kuc-date-picker * {
+kuc-date-picker:lang(en),
+kuc-date-picker:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-date-picker,
-:lang(ja) kuc-date-picker * {
+kuc-date-picker:lang(ja),
+kuc-date-picker:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-date-picker,
-:lang(zh) kuc-date-picker * {
+kuc-date-picker:lang(zh),
+kuc-date-picker:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-date-picker:lang(zh-TW),
+kuc-date-picker:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC"
 }
 kuc-date-picker {
   font-size: 14px;

@@ -92,5 +92,36 @@ describe("BaseDateTimeCalendar", () => {
       expect(footerButtonTodayEl.innerText).to.equal("今天");
       expect(footerButtonNoneEl.innerText).to.equal("清空");
     });
+
+    it("should be 'zh-TW' when assigning 'zh-TW' by setter", async () => {
+      const container = new BaseDateTimeCalendar();
+      container.language = "zh-TW";
+      const el = await fixture(container);
+      const headerCenterEl = el.querySelector(
+        ".kuc-base-datetime-calendar-header__group__center"
+      ) as HTMLSpanElement;
+      const yearEl = headerCenterEl.children[0];
+      const bodyWeekDayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-body__table__header"
+      ) as HTMLTableSectionElement;
+      const footerButtonTodayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      const footerButtonNoneEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--none"
+      ) as HTMLButtonElement;
+
+      expect(headerCenterEl.childElementCount).to.equal(2);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR"
+      );
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH"
+      );
+      expect(yearEl.textContent).to.contain("年");
+      expect(bodyWeekDayEl.innerText).to.equal("周日");
+      expect(footerButtonTodayEl.innerText).to.equal("今天");
+      expect(footerButtonNoneEl.innerText).to.equal("清空");
+    });
   });
 });

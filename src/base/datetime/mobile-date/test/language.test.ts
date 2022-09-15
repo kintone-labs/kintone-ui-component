@@ -1,10 +1,10 @@
 import { expect, fixture, elementUpdated } from "@open-wc/testing";
-import "../index";
+import { BaseMobileDate } from "../index";
 
 describe("BaseMobileDate", () => {
   describe("language", () => {
     it("should be 'en' when not assigning ", async () => {
-      const container = document.createElement("kuc-mobile-base-date");
+      const container = new BaseMobileDate();
       container.setAttribute("value", "2022-02-14");
       const el = await fixture(container);
       const inputEl = el.querySelector(
@@ -15,9 +15,21 @@ describe("BaseMobileDate", () => {
     });
 
     it("should be 'zh' when assigned by setter", async () => {
-      const container = document.createElement("kuc-mobile-base-date");
-      container.setAttribute("value", "2022-02-14");
-      container.setAttribute("language", "zh");
+      const container = new BaseMobileDate();
+      container.value = "2022-02-14";
+      container.language = "zh";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input"
+      ) as HTMLInputElement;
+
+      expect(inputEl.value).to.equal("2022-02-14");
+    });
+
+    it("should be 'zh' when assigned by setter", async () => {
+      const container = new BaseMobileDate();
+      container.value = "2022-02-14";
+      container.language = "zh-TW";
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
@@ -27,9 +39,9 @@ describe("BaseMobileDate", () => {
     });
 
     it("should be 'ja' when assigned by setter", async () => {
-      const container = document.createElement("kuc-mobile-base-date");
-      container.setAttribute("value", "2022-02-14");
-      container.setAttribute("language", "ja");
+      const container = new BaseMobileDate();
+      container.value = "2022-02-14";
+      container.language = "ja";
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
@@ -39,11 +51,11 @@ describe("BaseMobileDate", () => {
     });
 
     it("should change to 'ja' when assigned by setter", async () => {
-      const container = document.createElement("kuc-mobile-base-date");
-      container.setAttribute("language", "en");
-      container.setAttribute("value", "2022-02-14");
+      const container = new BaseMobileDate();
+      container.value = "2022-02-14";
+      container.language = "en";
       const el = await fixture(container);
-      container.setAttribute("language", "ja");
+      container.language = "ja";
       await elementUpdated(container);
 
       const inputEl = el.querySelector(

@@ -1,20 +1,25 @@
 export const TEXT_CSS = `
 kuc-text,
 kuc-text *,
-:lang(en) kuc-text,
-:lang(en) kuc-text * {
+kuc-text:lang(en),
+kuc-text:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-text,
-:lang(ja) kuc-text * {
+kuc-text:lang(ja),
+kuc-text:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-text,
-:lang(zh) kuc-text * {
+kuc-text:lang(zh),
+kuc-text:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-text:lang(zh-TW),
+kuc-text:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC",sans-serif;
 }
 kuc-text {
   font-size: 14px;

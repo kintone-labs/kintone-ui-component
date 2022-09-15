@@ -31,5 +31,15 @@ describe("DatePicker", () => {
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
+
+    it("should be change to zh-TW language when assigned by setter", async () => {
+      const container = new DatePicker({ value: "2021-12-22", language: "en" });
+      container.language = "zh-TW";
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-base-date__input"
+      ) as HTMLInputElement;
+      expect(inputDateEl.value).to.equal("2021-12-22");
+    });
   });
 });
