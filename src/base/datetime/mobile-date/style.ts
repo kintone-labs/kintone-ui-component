@@ -5,11 +5,17 @@ kuc-mobile-base-date * {
     "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
     "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 }
-:lang(zh) kuc-mobile-base-date,
-:lang(zh) kuc-mobile-base-date * {
+kuc-mobile-base-date:lang(zh),
+kuc-mobile-base-date:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
     Verdana, sans-serif;
+}
+kuc-mobile-base-date:lang(zh-TW),
+kuc-mobile-base-date:lang(zh-TW) * {
+    font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
+    Verdana,sans-serif
 }
 .kuc-mobile-base-date__group {
     display: flex;

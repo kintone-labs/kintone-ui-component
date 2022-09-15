@@ -12,13 +12,18 @@ export const MOBILE_NOTIFICATION_CSS = `
     left: 0;
   }
 
-  :lang(zh) kuc-mobile-notification,
-  :lang(zh) kuc-mobile-notification * {
+  kuc-mobile-notification:lang(zh),
+  kuc-mobile-notification:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
       Verdana, sans-serif;
   }
-
+  kuc-mobile-notification:lang(zh-TW),
+  kuc-mobile-notification:lang(zh-TW) * {
+      font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
+      Verdana,sans-serif
+  }
   .kuc-mobile-notification-fadein {
     animation-name: kuc-mobile-notification-fade-in;
     animation-duration: 250ms;
