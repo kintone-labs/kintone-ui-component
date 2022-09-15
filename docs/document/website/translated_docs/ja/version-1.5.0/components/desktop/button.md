@@ -63,6 +63,8 @@ Button(options)<br>
 | --kuc-button-background-active |
 | --kuc-button-background-focus |
 | --kuc-button-font-size |
+| --kuc-button-text-color |
+| --kuc-button-height |
 
 ---
 

@@ -63,6 +63,8 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-button-background-active |
 | --kuc-button-background-focus |
 | --kuc-button-font-size |
+| --kuc-button-text-color |
+| --kuc-button-height |
 
 ---
 
