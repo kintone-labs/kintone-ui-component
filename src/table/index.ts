@@ -138,6 +138,8 @@ let exportTable;
     }
 
     private _getTableRowTemplate(dataRow: object, rowIndex: number) {
+      if (this.columns.length === 0) return html``;
+
       return html`
         <tr class="${rowClassName}">
           ${this.columns.map((column) => {
@@ -207,11 +209,13 @@ let exportTable;
       column: Column,
       dataRender: HTMLElement | string
     ) {
+      const visible = column.visible ?? true;
       return html`
         <td
           class="${cellClassName}"
           @change="${(event: Event) =>
             this._handleChangeCell(event, column.field)}"
+          ?hidden="${!visible}"
         >
           ${dataRender}
         </td>
@@ -269,6 +273,7 @@ let exportTable;
         newCell.addEventListener("change", (event: Event) => {
           this._handleChangeCell(event, column.field);
         });
+        newCell.hidden = !(column.visible ?? true);
         const cellTemplate = column.render
           ? column.render(defaultRow[column.field], defaultRow, currentRowIndex)
           : defaultRow[column.field];
