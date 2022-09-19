@@ -100,7 +100,7 @@ let exportDatePicker;
           <label
             class="kuc-date-picker__group__label"
             for="${this._GUID}-label"
-            @click="${this._handleClickBabel}"
+            @click="${this._handleClickLabel}"
             ?hidden="${!this.label}"
           >
             <kuc-base-label
@@ -144,7 +144,7 @@ let exportDatePicker;
       return "en";
     }
 
-    private _handleClickBabel(event: Event) {
+    private _handleClickLabel(event: Event) {
       event.preventDefault();
     }
 
