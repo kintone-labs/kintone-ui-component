@@ -108,6 +108,7 @@ let exportMobileDatePicker;
           <label
             class="kuc-mobile-date-picker__group__label"
             for="${this._GUID}-label"
+            @click="${this._handleClickLabel}"
             ?hidden="${!this.label}"
           >
             <kuc-base-mobile-label
@@ -147,6 +148,10 @@ let exportMobileDatePicker;
         return document.documentElement.lang;
       }
       return "en";
+    }
+
+    private _handleClickLabel(event: Event) {
+      event.preventDefault();
     }
 
     private _handleDateChange(event: CustomEvent) {

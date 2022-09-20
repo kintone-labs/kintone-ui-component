@@ -110,6 +110,7 @@ let exportDatePicker;
           <label
             class="kuc-date-picker__group__label"
             for="${this._GUID}-label"
+            @click="${this._handleClickLabel}"
             ?hidden="${!this.label}"
           >
             <kuc-base-label
@@ -151,6 +152,10 @@ let exportDatePicker;
         return document.documentElement.lang;
 
       return "en";
+    }
+
+    private _handleClickLabel(event: Event) {
+      event.preventDefault();
     }
 
     private _handleDateChange(event: CustomEvent) {
