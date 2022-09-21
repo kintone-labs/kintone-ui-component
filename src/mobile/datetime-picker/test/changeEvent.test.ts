@@ -124,31 +124,6 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(el);
 
       expect(triggeredEvent).to.equal(null);
-    });
-
-    it('should be equal "Format is not valid." when click any invalid value and should be hidden when click any valid value', async () => {
-      const container = new MobileDateTimePicker({
-        value: "2021-12-23",
-        error: "error-message",
-      });
-      const el = await fixture(container);
-      const selectMinutesEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
-      ) as HTMLSelectElement;
-      selectMinutesEl.value = "";
-      selectMinutesEl.dispatchEvent(new Event("change"));
-      await elementUpdated(container);
-      await elementUpdated(el);
-      const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
-      ) as HTMLDivElement;
-      expect(errorEl.innerText).to.have.equal("Format is not valid.");
-      expect(errorEl).not.has.attribute("hidden");
-      selectMinutesEl.value = "01";
-      selectMinutesEl.dispatchEvent(new Event("change"));
-      await elementUpdated(container);
-      await elementUpdated(el);
-      expect(errorEl).has.attribute("hidden");
-    });
+    });    
   });
 });

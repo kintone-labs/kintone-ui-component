@@ -153,9 +153,6 @@ let exportMobileTimePicker;
         dispatchCustomEvent(this, "change", detail);
         return;
       }
-      if (!isStringValueEmpty(this._errorFormat)) {
-        this.error = "";
-      }
       this._isSelectError = false;
       this._errorFormat = "";
       this.value = event.detail.value;

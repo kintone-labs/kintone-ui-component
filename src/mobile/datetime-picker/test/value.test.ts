@@ -341,16 +341,5 @@ describe("MobileDateTimePicker", () => {
       expect(inputMinuteEl.value).to.be.equal("12");
       expect(container.value).to.be.equal(`${todayStr}T12:12:12`);
     });
-    it("should throw error when assigning invalid value on constructor", (done) => {
-      const handleError = (event: any) => {
-        const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'value' property format is not valid.");
-        window.removeEventListener("unhandledrejection", handleError);
-        done();
-      };
-      window.addEventListener("unhandledrejection", handleError);
-      const container = new MobileDateTimePicker({ value: "12-12" });
-      fixture(container);
-    });
   });
 });
