@@ -76,6 +76,5 @@ describe("MobileDatePicker", () => {
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.value).to.equal("");
     });
-    
   });
 });

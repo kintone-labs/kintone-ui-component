@@ -124,6 +124,6 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(el);
 
       expect(triggeredEvent).to.equal(null);
-    });    
+    });
   });
 });
