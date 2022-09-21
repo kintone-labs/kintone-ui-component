@@ -1,7 +1,6 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import "../../../base/datetime/mobile-date";
 import "../../../base/datetime/mobile-time";
-import "../../../base/mobile-error";
 import { MobileDateTimePicker } from "../index";
 import { getTodayStringByLocale } from "../../../base/datetime/utils";
 

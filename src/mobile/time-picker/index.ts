@@ -19,7 +19,6 @@ import { MobileTimePickerProps } from "./type";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
-import { isStringValueEmpty } from "../../base/datetime/utils";
 
 let exportMobileTimePicker;
 (() => {
