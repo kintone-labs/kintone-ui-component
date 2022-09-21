@@ -92,33 +92,37 @@ let exportReadOnlyTable;
 
     render() {
       const currentPageData = this._createDisplayData();
-      return this.columns.length < 1 ? null: html`
-        <table class="kuc-readonly-table__table">
-          <caption
-            class="kuc-readonly-table__table__label"
-            ?hidden="${!this.label}"
-          >
-            ${this.label}
-          </caption>
-          <thead class="kuc-readonly-table__table__header">
-            <tr>
-              ${this.columns.map((column) => this._getColumnsTemplate(column))}
-            </tr>
-          </thead>
-          <tbody class="kuc-readonly-table__table__body">
-            ${currentPageData.map((data: object, currentIndex: number) => {
-              return this._getDataTemplate(data, currentIndex);
-            })}
-          </tbody>
-        </table>
-        <kuc-base-pagination
-          .visible="${this.pagination}"
-          .isPrev="${this._toggleDisplayPreviousButton()}"
-          .isNext="${this._toggleDisplayNextButton()}"
-          @kuc:pagination-click-prev=${this._handleClickPreviousButton}
-          @kuc:pagination-click-next=${this._handleClickNextButton}
-        ></kuc-base-pagination>
-      `;
+      return this.columns.length < 1
+        ? null
+        : html`
+            <table class="kuc-readonly-table__table">
+              <caption
+                class="kuc-readonly-table__table__label"
+                ?hidden="${!this.label}"
+              >
+                ${this.label}
+              </caption>
+              <thead class="kuc-readonly-table__table__header">
+                <tr>
+                  ${this.columns.map((column) =>
+                    this._getColumnsTemplate(column)
+                  )}
+                </tr>
+              </thead>
+              <tbody class="kuc-readonly-table__table__body">
+                ${currentPageData.map((data: object, currentIndex: number) => {
+                  return this._getDataTemplate(data, currentIndex);
+                })}
+              </tbody>
+            </table>
+            <kuc-base-pagination
+              .visible="${this.pagination}"
+              .isPrev="${this._toggleDisplayPreviousButton()}"
+              .isNext="${this._toggleDisplayNextButton()}"
+              @kuc:pagination-click-prev=${this._handleClickPreviousButton}
+              @kuc:pagination-click-next=${this._handleClickNextButton}
+            ></kuc-base-pagination>
+          `;
     }
 
     private _createDisplayData() {
