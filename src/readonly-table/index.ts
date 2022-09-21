@@ -1,6 +1,5 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-
 import { visiblePropConverter } from "../base/converter";
 import { ERROR_MESSAGE } from "../base/constant";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
@@ -44,9 +43,7 @@ let exportReadOnlyTable;
 
     constructor(props?: ReadOnlyTableProps) {
       super();
-      if (!props) {
-        return;
-      }
+      if (!props) return;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
     }
@@ -94,13 +91,9 @@ let exportReadOnlyTable;
     }
 
     render() {
-      const currentPageData = this._createDisplayData(
-        this.data,
-        this._pagePosition,
-        this.rowsPerPage
-      );
-      return html`
-        <table class="kuc-readonly-table__table" aria-label="${this.label}">
+      const currentPageData = this._createDisplayData();
+      return this.columns.length < 1 ? null: html`
+        <table class="kuc-readonly-table__table">
           <caption
             class="kuc-readonly-table__table__label"
             ?hidden="${!this.label}"
@@ -128,15 +121,11 @@ let exportReadOnlyTable;
       `;
     }
 
-    private _createDisplayData(
-      data: object[],
-      pagePosition: number,
-      rowsPerPage: number
-    ) {
-      if (!this.pagination) return data;
-      const firstRow = (pagePosition - 1) * rowsPerPage + 1;
-      const lastRow = pagePosition * rowsPerPage;
-      const displayData = data.filter(
+    private _createDisplayData() {
+      if (!this.pagination) return this.data;
+      const firstRow = (this._pagePosition - 1) * this.rowsPerPage + 1;
+      const lastRow = this._pagePosition * this.rowsPerPage;
+      const displayData = this.data.filter(
         (_element, index: number) =>
           index >= firstRow - 1 && index <= lastRow - 1
       );
@@ -163,17 +152,11 @@ let exportReadOnlyTable;
           class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
         >
           ${this._columnOrder.map((currentCol, colIndex) => {
-            let isHidden = false;
-            if (
-              this.columns[colIndex] &&
-              this.columns[colIndex].visible === false
-            ) {
-              isHidden = true;
-            }
+            const visible = this.columns[colIndex].visible ?? true;
             const value = data[currentCol];
             /* eslint-disable */
             return html`
-              <td class="kuc-readonly-table__table__body__row__cell-data">${value}</td>
+              <td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>
             `;
             /* eslint-enable */
           })}
