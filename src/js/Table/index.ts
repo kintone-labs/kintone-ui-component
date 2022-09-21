@@ -34,8 +34,8 @@ type TableProps = ControlProps & {
 }
 
 export default class Table extends Control<TableProps> {
-  private _tableHeaderContainer: HTMLElement
-  private _tableBodyContainer: HTMLElement
+  private _tableHeaderContainer: HTMLElement;
+  private _tableBodyContainer: HTMLElement;
 
   constructor(params?: TableProps) {
     super();

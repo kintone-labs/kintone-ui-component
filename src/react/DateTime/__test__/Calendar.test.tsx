@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {render, fireEvent, cleanup} from '@testing-library/react';
 import Calendar from '../components/Calendar';

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, {useRef, useEffect, useState, useCallback} from 'react';
 
 type SaturationSpectrumProps = {

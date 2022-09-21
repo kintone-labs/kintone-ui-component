@@ -2,7 +2,7 @@
 import DateTime from '../index';
 
 const messages = {
-  INVALID_LOCALE: 'Invalid locale. This function accepts only the following locales: undefined'
+  INVALID_LOCALE: 'Invalid locale. This function accepts only the following locales: ja, en, zh'
 };
 
 describe('Unit test DateTime setLocale', () => {

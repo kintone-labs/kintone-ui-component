@@ -14,9 +14,9 @@ type HueSpectrumProps = ControlProps & {
 }
 
 class HueSpectrum extends Control<HueSpectrumProps> {
-  private colorCanvas: HTMLCanvasElement
-  private isMouseDown: boolean
-  private hasInitLayout: boolean
+  private colorCanvas: HTMLCanvasElement;
+  private isMouseDown: boolean;
+  private hasInitLayout: boolean;
 
   constructor(params: HueSpectrumProps) {
     super();

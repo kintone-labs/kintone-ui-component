@@ -4,8 +4,8 @@ type ControlProps = {
 }
 
 class Control<T extends ControlProps> {
-  protected _props: T
-  protected element: HTMLElement
+  protected _props: T;
+  protected element: HTMLElement;
 
   constructor() {
     this._props = {...this._props,

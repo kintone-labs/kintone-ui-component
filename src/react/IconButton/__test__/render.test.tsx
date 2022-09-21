@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 import IconButton from '../index';
@@ -152,7 +153,7 @@ describe('Unit test IconButton react render', () => {
       <IconButton type="file" />
     );
     expect(container.children[0].children[0].children[0]
-      .getAttribute('d')).toBe('M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20C4,21.1 4.9,22 6,22H18C19.1,22 20,21.1 20,20V8L14,2H6Z');
+      .getAttribute('d')).toBe('M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z');
   });
 
   test('Render successfully with right type', () => {

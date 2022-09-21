@@ -17,7 +17,7 @@ type ItemProps = ControlProps & {
 }
 
 class Item extends Control<ItemProps> {
-  private inputCheckboxElement: HTMLInputElement
+  private inputCheckboxElement: HTMLInputElement;
   constructor(params?: ItemProps) {
     super();
     this._props = {

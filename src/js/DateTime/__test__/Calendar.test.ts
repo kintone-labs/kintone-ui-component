@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Calendar from '../components/Calendar';
 import Locale from '../../../react/DateTime/components/Locale';

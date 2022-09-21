@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Dropdown from '../index';
 import {fireEvent} from '@testing-library/dom';
 
