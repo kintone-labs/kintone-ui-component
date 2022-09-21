@@ -92,37 +92,33 @@ let exportReadOnlyTable;
 
     render() {
       const currentPageData = this._createDisplayData();
-      return this.columns.length < 1
-        ? null
-        : html`
-            <table class="kuc-readonly-table__table">
-              <caption
-                class="kuc-readonly-table__table__label"
-                ?hidden="${!this.label}"
-              >
-                ${this.label}
-              </caption>
-              <thead class="kuc-readonly-table__table__header">
-                <tr>
-                  ${this.columns.map((column) =>
-                    this._getColumnsTemplate(column)
-                  )}
-                </tr>
-              </thead>
-              <tbody class="kuc-readonly-table__table__body">
-                ${currentPageData.map((data: object, currentIndex: number) => {
-                  return this._getDataTemplate(data, currentIndex);
-                })}
-              </tbody>
-            </table>
-            <kuc-base-pagination
-              .visible="${this.pagination}"
-              .isPrev="${this._toggleDisplayPreviousButton()}"
-              .isNext="${this._toggleDisplayNextButton()}"
-              @kuc:pagination-click-prev=${this._handleClickPreviousButton}
-              @kuc:pagination-click-next=${this._handleClickNextButton}
-            ></kuc-base-pagination>
-          `;
+      return html`
+        <table class="kuc-readonly-table__table">
+          <caption
+            class="kuc-readonly-table__table__label"
+            ?hidden="${!this.label}"
+          >
+            ${this.label}
+          </caption>
+          <thead class="kuc-readonly-table__table__header">
+            <tr>
+              ${this.columns.map((column) => this._getColumnsTemplate(column))}
+            </tr>
+          </thead>
+          <tbody class="kuc-readonly-table__table__body">
+            ${currentPageData.map((data: object, currentIndex: number) => {
+              return this._getDataTemplate(data, currentIndex);
+            })}
+          </tbody>
+        </table>
+        <kuc-base-pagination
+          .visible="${this.pagination}"
+          .isPrev="${this._toggleDisplayPreviousButton()}"
+          .isNext="${this._toggleDisplayNextButton()}"
+          @kuc:pagination-click-prev=${this._handleClickPreviousButton}
+          @kuc:pagination-click-next=${this._handleClickNextButton}
+        ></kuc-base-pagination>
+      `;
     }
 
     private _createDisplayData() {
@@ -151,21 +147,21 @@ let exportReadOnlyTable;
 
     // Formatting the data displayed on the current page
     private _getDataTemplate(data: any, currentIndex: number) {
-      return html`
-        <tr
-          class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
-        >
-          ${this._columnOrder.map((currentCol, colIndex) => {
-            const visible = this.columns[colIndex].visible ?? true;
-            const value = data[currentCol];
-            /* eslint-disable */
-            return html`
-              <td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>
-            `;
-            /* eslint-enable */
-          })}
-        </tr>
-      `;
+      return this.columns.length === 0
+        ? null
+        : html`
+            <tr
+              class="kuc-readonly-table__table__body__row kuc-readonly-table__table__body__row-${currentIndex}"
+            >
+              ${this._columnOrder.map((currentCol, colIndex) => {
+                const visible = this.columns[colIndex].visible ?? true;
+                const value = data[currentCol];
+                /* eslint-disable */
+                return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
+                /* eslint-enable */
+              })}
+            </tr>
+          `;
     }
 
     private _toggleDisplayPreviousButton() {

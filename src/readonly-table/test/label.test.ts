@@ -7,11 +7,11 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({});
 
       const el = await fixture(container);
-      const labelEl = el.querySelector(
+      const captionEl = el.querySelector(
         ".kuc-readonly-table___table__label"
-      ) as HTMLLegendElement;
+      ) as HTMLTableCaptionElement;
 
-      expect(labelEl).to.equal(null);
+      expect(captionEl).to.equal(null);
     });
 
     it('should be display "options-label" when assigned "options-label" in constructor', async () => {
@@ -20,11 +20,11 @@ describe("ReadOnlyTable", () => {
       });
 
       const el = await fixture(container);
-      const labelEl = el.querySelector(
+      const captionEl = el.querySelector(
         ".kuc-readonly-table__table__label"
-      ) as HTMLLegendElement;
+      ) as HTMLTableCaptionElement;
 
-      expect(labelEl.textContent?.trim()).to.equal("options-label");
+      expect(captionEl.textContent?.trim()).to.equal("options-label");
     });
 
     it('should be display "replace-label" when changed to "replace-label" by setter', async () => {
@@ -32,11 +32,11 @@ describe("ReadOnlyTable", () => {
       container.label = "replace-label";
 
       const el = await fixture(container);
-      const labelEl = el.querySelector(
+      const captionEl = el.querySelector(
         ".kuc-readonly-table__table__label"
-      ) as HTMLLegendElement;
+      ) as HTMLTableCaptionElement;
 
-      expect(labelEl.textContent?.trim()).to.equal("replace-label");
+      expect(captionEl.textContent?.trim()).to.equal("replace-label");
     });
   });
 });
