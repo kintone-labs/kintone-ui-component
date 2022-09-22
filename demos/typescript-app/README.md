@@ -14,7 +14,7 @@ $ npm link
 $ npm ci
 $ npm link kintone-ui-component
 ```
-> Note: Please run `npm link` after running `npm install` at the demos/esm-dev-app directory.
+> Note: Please run `npm link` after running `npm install` at the demos/typescript-app directory.
 
 3. write code
 
@@ -67,4 +67,4 @@ Please unlink the package after the demo.
 ```bash
 $ npm unlink kintone-ui-component
 ```
-> Note: Please run `npm unlink` at the demos/esm-dev-app directory.
+> Note: Please run `npm unlink` at the demos/typescript-app directory.
