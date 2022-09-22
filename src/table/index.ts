@@ -56,8 +56,9 @@ let exportTable;
 
     @query(".kuc-table__table")
     private _table!: HTMLTableElement;
-    @query(`.${btnRemoveRowClassName}`)
-    private _firstButtonRemoveRow!: HTMLButtonElement;
+
+    @query(".kuc-table__table__body")
+    private _tBody!: HTMLTableSectionElement;
 
     constructor(props?: TableProps) {
       super();
@@ -326,6 +327,8 @@ let exportTable;
     }
 
     private _handleRemoveRow(currentRowIndex: number) {
+      if (this.data.length === 1) return;
+
       const dataIndexRemoved = currentRowIndex - 1;
       const oldData = this._deepCloneObject(this.data);
       this._table.deleteRow(currentRowIndex);
@@ -368,11 +371,15 @@ let exportTable;
     }
 
     private _toggleRemoveRowButton() {
+      const firstRow = this._tBody.rows[0];
+      const removeRowButton = firstRow.querySelector(
+        `.${btnRemoveRowClassName}`
+      ) as HTMLButtonElement;
       if (this.data.length === 1) {
-        this._firstButtonRemoveRow.style.display = "none";
+        removeRowButton.style.display = "none";
         return;
       }
-      this._firstButtonRemoveRow.style.display = "block";
+      removeRowButton.style.display = "block";
     }
 
     private _getSvgDOM(fillPath: string, dPath: string) {
