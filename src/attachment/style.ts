@@ -29,7 +29,7 @@ export const ATTACHMENT_CSS = `
     display: none;
   }
   .kuc-attachment__group {
-    width: 293px;
+    width: auto;
     height: auto;
     box-sizing: border-box;
     position: relative;
