@@ -84,6 +84,9 @@ export const TABLE_CSS = `
         padding: 2px;
         cursor: pointer;
     }
+    .kuc-table__table__body__row__action button[hidden] {
+        display: none;
+    }
     .kuc-table__table__body__row__action-add {
         margin-left: 12px;
     }

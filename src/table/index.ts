@@ -169,19 +169,18 @@ let exportTable;
           >
             ${this._getSvgTemplate(dAdd, fillAdd)}
           </button>
-          ${this.data.length === 1
-            ? null
-            : html`<button
-                type="button"
-                @click="${(event: PointerEvent) => {
-                  const rowIndex = this._getCurrentRowIndex(event);
-                  this._handleRemoveRow(rowIndex);
-                }}"
-                class="${btnRemoveRowClassName}"
-                title="Delete this row"
-              >
-                ${this._getSvgTemplate(dRemove, fillRemove)}
-              </button>`}
+          <button
+            type="button"
+            @click="${(event: PointerEvent) => {
+              const rowIndex = this._getCurrentRowIndex(event);
+              this._handleRemoveRow(rowIndex);
+            }}"
+            class="${btnRemoveRowClassName}"
+            title="Delete this row"
+            ?hidden="${this.data.length === 1}"
+          >
+            ${this._getSvgTemplate(dRemove, fillRemove)}
+          </button>
         </td>
       `;
     }
