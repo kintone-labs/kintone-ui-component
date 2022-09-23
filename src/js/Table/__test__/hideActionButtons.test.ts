@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Table from '../index';
 import createTableCell from '../TableCellFactory';
 

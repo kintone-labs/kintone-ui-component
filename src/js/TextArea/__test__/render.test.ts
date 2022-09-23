@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import TextArea from '../index';
 
 describe('Unit test TextArea render', () => {

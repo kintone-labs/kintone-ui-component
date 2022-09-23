@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {render, fireEvent} from '@testing-library/react';
 import React, {createRef} from 'react';
 import TimePicker from '../components/TimePicker';

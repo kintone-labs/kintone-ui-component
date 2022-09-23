@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Spinner from '../index';
 
 describe('Unit test Spinner render', () => {

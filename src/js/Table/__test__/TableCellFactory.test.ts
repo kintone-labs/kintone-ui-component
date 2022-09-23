@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import createTableCell from '../TableCellFactory';
 import Table from '../index';
 import {fireEvent} from '@testing-library/dom';

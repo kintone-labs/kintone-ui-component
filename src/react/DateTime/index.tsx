@@ -460,4 +460,4 @@ export {
   getSeperator,
 } from './components/Locale';
 
-export { availableLocales } from './components/DateTimeConstant';
+export {availableLocales} from './components/DateTimeConstant';

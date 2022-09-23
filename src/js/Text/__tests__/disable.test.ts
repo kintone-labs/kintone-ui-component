@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {fireEvent} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 

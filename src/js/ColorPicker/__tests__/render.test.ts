@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {fireEvent} from '@testing-library/dom';
 
 import ColorPicker from '../index';

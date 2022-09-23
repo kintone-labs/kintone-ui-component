@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import FieldGroup from '../index';
 
 describe('Unit test FieldGroup render', () => {

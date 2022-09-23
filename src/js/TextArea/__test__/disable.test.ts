@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import TextArea from '../index';
 import '@testing-library/jest-dom/extend-expect';
 

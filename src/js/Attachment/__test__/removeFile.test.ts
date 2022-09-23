@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Attachment from '../index';
 import {fireEvent} from '@testing-library/dom';
 
