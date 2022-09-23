@@ -9,7 +9,7 @@ export default {
       name: "type",
       options: ["success", "info", "danger"],
       control: {
-        type: "select"
+        type: "select",
       },
     },
   },
@@ -45,4 +45,4 @@ Base1.args = {
   text: "Duration 3 seconds",
   type: "info",
   duration: 3000,
-}
+};

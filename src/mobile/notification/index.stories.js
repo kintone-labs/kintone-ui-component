@@ -37,4 +37,4 @@ export const Base1 = template.bind({});
 Base1.args = {
   text: "Duration 3 seconds",
   duration: 3000,
-}
+};
