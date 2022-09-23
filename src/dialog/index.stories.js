@@ -13,15 +13,10 @@ export default {
       },
     },
   },
-  parameters: {
-    actions: {
-      handles: ["change"],
-    },
-  },
 };
 const template = (args) => {
   const dialog = new Dialog({ ...args });
-  dialog.addEventListener("change", (event) => {
+  dialog.addEventListener("close", (event) => {
     console.log(event);
   });
   const root = document.createElement("div");
