@@ -1,21 +1,26 @@
 export const CALENDAR_HEADER_CSS = `
 kuc-base-datetime-calendar-header,
 kuc-base-datetime-calendar-header *,
-:lang(en) kuc-base-datetime-calendar-header,
-:lang(en) kuc-base-datetime-calendar-header * {
+kuc-base-datetime-calendar-header:lang(en),
+kuc-base-datetime-calendar-header:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-base-datetime-calendar-header,
-:lang(ja) kuc-base-datetime-calendar-header * {
+kuc-base-datetime-calendar-header:lang(ja),
+kuc-base-datetime-calendar-header:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
   font-weight: 700;
 }
-:lang(zh) kuc-base-datetime-calendar-header,
-:lang(zh) kuc-base-datetime-calendar-header * {
+kuc-base-datetime-calendar-header:lang(zh),
+kuc-base-datetime-calendar-header:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-base-datetime-calendar-header:lang(zh-TW),
+kuc-base-datetime-calendar-header:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC",sans-serif;
 }
 .kuc-base-datetime-calendar-header__group {
   display: flex;

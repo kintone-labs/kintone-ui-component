@@ -8,7 +8,7 @@ export default {
       name: "language",
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh"],
+        options: ["auto", "en", "ja", "zh", "zh-TW"],
       },
     },
   },

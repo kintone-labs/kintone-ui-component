@@ -21,7 +21,7 @@ export { BaseDateTimeCalendar };
 export class BaseDate extends KucBase {
   @property({ type: String }) inputAriaLabel = "";
   @property({ type: String }) inputId = "";
-  @property({ type: String, reflect: true }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value? = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) inputAriaInvalid = false;

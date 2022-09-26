@@ -22,7 +22,7 @@ function isValidYear(year: number) {
   return year >= 0 && year < 10000;
 }
 export class BaseMobileDateTimeCalendarHeader extends KucBase {
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({
     type: Number,
     hasChanged(newVal: number) {
@@ -155,7 +155,9 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   }
 
   private _getYearMonthTemplate() {
-    return this.language === "zh" || this.language === "ja"
+    return this.language === "zh" ||
+      this.language === "ja" ||
+      this.language === "zh-TW"
       ? html` ${this._getYearTemplate()}${this._getMonthTemplate()} `
       : html` ${this._getMonthTemplate()}${this._getYearTemplate()} `;
   }

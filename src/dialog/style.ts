@@ -1,20 +1,25 @@
 export const DIALOG_CSS = `
   kuc-dialog,
   kuc-dialog *,
-  :lang(en) kuc-dialog,
-  :lang(en) kuc-dialog * {
+  kuc-dialog:lang(en),
+  kuc-dialog:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-dialog,
-  :lang(ja) kuc-dialog * {
+  kuc-dialog:lang(ja),
+  kuc-dialog:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-dialog,
-  :lang(zh) kuc-dialog * {
+  kuc-dialog:lang(zh),
+  kuc-dialog:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-dialog:lang(zh-TW),
+  kuc-dialog:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
 
   kuc-dialog {

@@ -1,20 +1,25 @@
 export const TIME_PICKER_CSS = `
 kuc-time-picker,
 kuc-time-picker *,
-:lang(en) kuc-time-picker,
-:lang(en) kuc-time-picker * {
+kuc-time-picker:lang(en),
+kuc-time-picker:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-time-picker,
-:lang(ja) kuc-time-picker * {
+kuc-time-picker:lang(ja),
+kuc-time-picker:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-time-picker,
-:lang(zh) kuc-time-picker * {
+kuc-time-picker:lang(zh),
+kuc-time-picker:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-time-picker:lang(zh-TW),
+kuc-time-picker:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC"
 }
 kuc-time-picker {
   font-size: 14px;

@@ -9,7 +9,7 @@ import { getLocale } from "../../utils";
 import { CALENDAR_FOOTER_CSS } from "./style";
 
 export class BaseDateTimeCalendarFooter extends KucBase {
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
 
   @state()
   private _locale = getLocale("en");
