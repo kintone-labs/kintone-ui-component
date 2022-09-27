@@ -1,8 +1,4 @@
-import {
-  Dropdown,
-  DropdownProps,
-  CustomEventDetail,
-} from "kintone-ui-component";
+import { Dropdown, DropdownProps } from "kintone-ui-component";
 
 const root = document.getElementById("root") as HTMLElement;
 const dropdownProps: DropdownProps = {
@@ -25,9 +21,4 @@ const dropdownProps: DropdownProps = {
   error: "Error occurred!",
 };
 const dropdown = new Dropdown(dropdownProps);
-dropdown.addEventListener("change", ((event: CustomEvent) => {
-  const detail: CustomEventDetail = event.detail;
-  console.log(detail);
-}) as EventListener);
-
 root.appendChild(dropdown);
