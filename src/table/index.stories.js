@@ -173,7 +173,7 @@ export const Base = Template.bind({});
 Base.args = {
   label: "Table component",
   visible: true,
-  columns: columns,
+  // columns: columns,
   data: data,
   id: "table-id",
   className: "table-classname",

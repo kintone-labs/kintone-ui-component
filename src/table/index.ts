@@ -117,6 +117,8 @@ let exportTable;
     }
 
     protected updated(_changedProperties: PropertyValues): void {
+      if (this.columns.length === 0) return;
+
       for (let i = 0; i < this.data.length; i++) {
         this._addDataCellToNewRow(i, this.data[i]);
       }
