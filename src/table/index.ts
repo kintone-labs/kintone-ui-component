@@ -84,6 +84,11 @@ let exportTable;
       return true;
     }
 
+    protected willUpdate(_changedProperties: PropertyValues): void {
+      if (!this._tBody) return;
+      this._tBody.innerHTML = "";
+    }
+
     private _getErrorMessageWhenValidateColumns() {
       if (!validateArrayProperty(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
@@ -106,13 +111,15 @@ let exportTable;
           <thead class="kuc-table__table__header">
             ${this._getTableHeaderTemplate()}
           </thead>
-          <tbody class="kuc-table__table__body">
-            ${this.data.map((dataRow: object, rowIndex: number) => {
-              return this._getTableRowTemplate(dataRow, rowIndex);
-            })}
-          </tbody>
+          <tbody class="kuc-table__table__body"></tbody>
         </table>
       `;
+    }
+
+    protected updated(_changedProperties: PropertyValues): void {
+      for (let i = 0; i < this.data.length; i++) {
+        this._addDataCellToNewRow(i, this.data[i]);
+      }
     }
 
     private _getTableHeaderTemplate() {
@@ -264,7 +271,7 @@ let exportTable;
     }
 
     private _addDataCellToNewRow(currentRowIndex: number, defaultRow: any) {
-      const newRow = this._table.insertRow(currentRowIndex + 1);
+      const newRow = this._tBody.insertRow(currentRowIndex);
       newRow.classList.add(rowClassName);
       for (let i = 0; i < this.columns.length; i++) {
         const newCell = newRow.insertCell(i);
@@ -370,15 +377,17 @@ let exportTable;
     }
 
     private _toggleRemoveRowButton() {
-      const firstRow = this._tBody.rows[0];
-      const removeRowButton = firstRow.querySelector(
+      const removeButtons = this._tBody.querySelectorAll(
         `.${btnRemoveRowClassName}`
-      ) as HTMLButtonElement;
+      );
+      const firstRemoveButton = removeButtons[0] as HTMLButtonElement;
       if (this.data.length === 1) {
-        removeRowButton.style.display = "none";
+        firstRemoveButton.style.display = "none";
         return;
       }
-      removeRowButton.style.display = "block";
+      for (const removeButton of removeButtons) {
+        (removeButton as HTMLButtonElement).style.display = "block";
+      }
     }
 
     private _getSvgDOM(fillPath: string, dPath: string) {
@@ -413,6 +422,10 @@ let exportTable;
 
       newCell.appendChild(btnAddDOM);
       newCell.appendChild(btnRemoveDOM);
+
+      if (this.data.length === 1) {
+        btnRemoveDOM.style.display = "none";
+      }
     }
 
     private _getActionButtonDOM(type: string, newRow: HTMLTableRowElement) {
