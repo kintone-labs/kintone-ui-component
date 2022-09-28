@@ -31,7 +31,7 @@ npm install --save-dev typescript ts-loader
 
 Assuming you have successfully created a project with the following structure:
 ```
-kuc-demo-demo
+kuc-demo-ts
   |- dist
     |- index.html
   |- /src
