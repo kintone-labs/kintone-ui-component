@@ -91,6 +91,6 @@ KUC is written in TypeScript with complete definitions, so please try it out and
 ![dropdown props image](assets/kuc-dropdown-props.png)
 
 You can choose any component of KUC to develop your application.
-Now you use some type definition in your project:
+Now you can use some type of definition in your project:
 1. Items property (ex: DropdownItem)
 2. Component property (ex: DropdownProps, DatePickerProps)
