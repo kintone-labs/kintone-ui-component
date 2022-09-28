@@ -1,7 +1,7 @@
 ---
 id: how-to-use-kuc-types-in-typescript
 title: How to use KUC types in TypeScript
-sidebar_label: How to use kuc types in typescript
+sidebar_label: How to use KUC types in TypeScript
 ---
 ## Overview
 
