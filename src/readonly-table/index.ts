@@ -137,8 +137,8 @@ let exportReadOnlyTable;
         <th
           class="kuc-readonly-table__table__header__cell"
           ?hidden="${column.visible === false}"
-        ><!--
-        -->${column.title || ""}
+        >
+          ${column.title || ""}
         </th>
       `;
     }
