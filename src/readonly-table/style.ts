@@ -56,14 +56,12 @@ export const READ_ONLY_TABLE_CSS = `
     text-align: left;
     white-space: nowrap;
     word-wrap: break-word;
-  }
-  .kuc-readonly-table__table__header__cell[hidden] {
-    display: none;
-  }
-  .kuc-readonly-table__table__header__cell__label {
     padding: 4px 8px;
     font-weight: 400;
     font-size: 12px;
+  }
+  .kuc-readonly-table__table__header__cell[hidden] {
+    display: none;
   }
   .kuc-readonly-table__table__body__row__cell-data {
     overflow: hidden;

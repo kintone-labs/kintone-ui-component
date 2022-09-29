@@ -137,10 +137,8 @@ let exportReadOnlyTable;
         <th
           class="kuc-readonly-table__table__header__cell"
           ?hidden="${column.visible === false}"
-        >
-          <span class="kuc-readonly-table__table__header__cell__label"
-            >${column.title}</span
-          >
+        ><!--
+        -->${column.title || ""}
         </th>
       `;
     }
