@@ -3,7 +3,7 @@
     "Getting Started": [
       "version-1.6.0-getting-started/quick-start",
       "version-1.6.0-getting-started/custom-css",
-      "version-1.6.0-getting-started/how-to-use-kuc-types-in-typescript"
+      "version-1.6.0-getting-started/usage-with-typescript"
     ],
     "Components": [
       {
