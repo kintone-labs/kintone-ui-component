@@ -93,5 +93,5 @@ KUC は TypeScript で書かれていて型定義も充実しているので、�
 ![dropdown props image](assets/kuc-dropdown-props.png)
 
 アプリケーションを開発するために、KUC のコンポーネントを自由に選択し、以下の型定義を利用できるようになります。
-- Items property (ex: DropdownItem)
-- Component property (ex: DropdownProps, DatePickerProps)
+- Items プロパティ (ex: DropdownItem)
+- コンポーネントのプロパティ (ex: DropdownProps, DatePickerProps)
