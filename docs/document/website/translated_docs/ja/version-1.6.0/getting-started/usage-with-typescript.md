@@ -1,18 +1,18 @@
 ---
 id: version-1.6.0-usage-with-typescript
-title: Usage with Typescript
-sidebar_label: Usage with Typescript
+title: Usage with TypeScript
+sidebar_label: Usage with TypeScript
 original_id: usage-with-typescript
 ---
 ## 概要
 
-TypeScript により JavaScript に静的型付けを追加して、開発者の生産性とコードの品質を向上させることができます。
+TypeScript を使うと、JavaScript に静的型付けを追加して開発者の生産性とコードの品質を向上させることができます。
 <br>
-このガイドでは、kintone UI Component（KUC）を TypeScript と webpack で使う方法を学習できます。
+このガイドでは、TypeScript と webpack を使って kintone UI Component（KUC）のカスタマイズ方法を学習できます。
 
 ## インストールと構成
 
-1. 初期化として、`npm` を使用して `kuc-demo-ts` という名前の新しい KUC プロジェクトを作成します。
+1. `npm` を使用して `kuc-demo-ts` という名前の新しい KUC プロジェクトを作成します。
 ```sh
 mkdir kuc-demo-ts
 cd kuc-demo-ts
@@ -43,7 +43,7 @@ kuc-demo-ts
   |- tsconfig.json
 ```
 
-[KUC リポジトリ](https://github.com/kintone-labs/kintone-ui-component/tree/master/demos/typescript-app)のサンプルプロジェクトにてファイルとその内容を参照してください。
+[KUC リポジトリ](https://github.com/kintone-labs/kintone-ui-component/tree/master/demos/typescript-app)のサンプルプロジェクトにてファイルとその設定内容をご確認ください。
 
 ## KUC のインポート
 1. `kintone-ui-component` をインストールします。
@@ -51,7 +51,7 @@ kuc-demo-ts
 npm install kintone-ui-component
 ```
 
-2. `src/index.ts` を編集します.
+2. `src/index.ts` を編集します。
 ```js
 import { Dropdown, DropdownProps, DropdownItem } from 'kintone-ui-component';
 
@@ -86,7 +86,7 @@ npm run build
 
 ブラウザで `dist` ディレクトリの `index.html` を開きます。問題がなければ、ページに Dropdown コンポーネントが表示されます。
 ![dropdown image](assets/kuc-dropdown.png)
-KUC は TypeScript で書かれており、型定義も充実しているので、プロパティのサジェスチョンや型チェックをぜひご活用ください。
+KUC は TypeScript で書かれていて型定義も充実しているので、以下のようにプロパティのサジェスチョンや型チェックを活用できます。
 
 ![dropdown param image](assets/kuc-dropdown-param.png)
 
