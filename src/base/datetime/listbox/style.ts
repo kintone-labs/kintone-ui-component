@@ -1,20 +1,25 @@
 export const BASE_DATETIME_LISTBOX_CSS = `
 kuc-base-datetime-listbox,
 kuc-base-datetime-listbox *,
-:lang(en) kuc-base-datetime-listbox,
-:lang(en) kuc-base-datetime-listbox * {
+kuc-base-datetime-listbox:lang(en),
+kuc-base-datetime-listbox:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-base-datetime-listbox,
-:lang(ja) kuc-base-datetime-listbox * {
+kuc-base-datetime-listbox:lang(ja),
+kuc-base-datetime-listbox:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-base-datetime-listbox,
-:lang(zh) kuc-base-datetime-listbox * {
+kuc-base-datetime-listbox:lang(zh),
+kuc-base-datetime-listbox:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-base-datetime-listbox:lang(zh-TW),
+kuc-base-datetime-listbox:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC"
 }
 .kuc-base-datetime-listbox__listbox {
   position: absolute;

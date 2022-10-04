@@ -9,7 +9,7 @@ export declare type MobileDatePickerProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  language?: "ja" | "en" | "zh" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
   value?: string;
 };
 export declare class MobileDatePicker extends KucBase {

@@ -151,7 +151,7 @@ let exportTextarea;
             .value="${this.value}"
             aria-describedby="${this._GUID}-error"
             aria-required="${this.requiredIcon}"
-            aria-invalid="${!this.error}"
+            aria-invalid="${this.error !== ""}"
             @change="${this._handleChangeTextarea}"
             @focus="${this._handleFocusTextarea}"
             @input="${this._handleInputTextArea}"

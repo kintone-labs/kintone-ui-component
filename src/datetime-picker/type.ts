@@ -5,7 +5,7 @@ export declare type DateTimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
-  language?: "ja" | "en" | "zh" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
   max?: string;
   min?: string;
   value?: string;

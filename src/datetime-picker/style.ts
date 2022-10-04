@@ -1,20 +1,25 @@
 export const DATE_TIME_PICKER_CSS = `
 kuc-datetime-picker,
 kuc-datetime-picker *,
-:lang(en) kuc-datetime-picker,
-:lang(en) kuc-datetime-picker * {
+kuc-datetime-picker:lang(en),
+kuc-datetime-picker:lang(en) * {
   font-family: "HelveticaNeueW02-45Ligh", Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
-:lang(ja) kuc-datetime-picker,
-:lang(ja) kuc-datetime-picker * {
+kuc-datetime-picker:lang(ja),
+kuc-datetime-picker:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
 }
-:lang(zh) kuc-datetime-picker,
-:lang(zh) kuc-datetime-picker * {
+kuc-datetime-picker:lang(zh),
+kuc-datetime-picker:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
+}
+kuc-datetime-picker:lang(zh-TW),
+kuc-datetime-picker:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC"
 }
 kuc-datetime-picker {
   font-size: 14px;

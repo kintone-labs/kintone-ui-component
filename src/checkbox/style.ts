@@ -1,20 +1,25 @@
 export const CHECKBOX_CSS = `
   kuc-checkbox,
   kuc-checkbox *,
-  :lang(en) kuc-checkbox,
-  :lang(en) kuc-checkbox * {
+  kuc-checkbox:lang(en),
+  kuc-checkbox:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-checkbox,
-  :lang(ja) kuc-checkbox * {
+  kuc-checkbox:lang(ja),
+  kuc-checkbox:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-checkbox,
-  :lang(zh) kuc-checkbox * {
+  kuc-checkbox:lang(zh),
+  kuc-checkbox:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-checkbox:lang(zh-TW),
+  kuc-checkbox:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-checkbox {
     font-size: 14px;

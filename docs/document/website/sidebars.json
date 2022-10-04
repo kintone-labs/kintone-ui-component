@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Getting Started": ["getting-started/quick-start", "getting-started/custom-css"],
+    "Getting Started": ["getting-started/quick-start", "getting-started/custom-css", "getting-started/usage-with-typescript"],
     "Components": [
       {
         "type": "subcategory",

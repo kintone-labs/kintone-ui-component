@@ -90,3 +90,34 @@ export const zh = {
   CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "关闭" },
   TIME_IS_OUT_OF_VALID_RANGE: "时间超出有效范围。",
 };
+
+export const zh_TW = {
+  MONTH_SELECT: [
+    "1月",
+    "2月",
+    "3月",
+    "4月",
+    "5月",
+    "6月",
+    "7月",
+    "8月",
+    "9月",
+    "10月",
+    "11月",
+    "12月",
+  ],
+  YEAR_SELECT_POSTFIX: "年",
+  WEEK_DAYS: [
+    { text: "周日", abbr: "周日" },
+    { text: "周一", abbr: "周一" },
+    { text: "周二", abbr: "周二" },
+    { text: "周三", abbr: "周三" },
+    { text: "周四", abbr: "周四" },
+    { text: "周五", abbr: "周五" },
+    { text: "周六", abbr: "周六" },
+  ],
+  INVALID_FORMAT: "日期格式不正確。",
+  INVALID_TIME_FORMAT: "時間格式不正確。",
+  CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "關閉" },
+  TIME_IS_OUT_OF_VALID_RANGE: "時間超出有效範圍。",
+};

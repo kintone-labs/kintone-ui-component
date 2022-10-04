@@ -9,7 +9,7 @@ export declare type MobileDateTimePickerProps = {
   hour12?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  language?: "ja" | "en" | "zh" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
   value?: string;
 };
 export declare class MobileDateTimePicker extends KucBase {

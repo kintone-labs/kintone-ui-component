@@ -12,7 +12,7 @@ import { BASE_MOBILE_CALENDAR_BODY_CSS } from "./style";
 export class BaseMobileDateTimeCalendarBody extends KucBase {
   @property({ type: Number }) month = 1;
   @property({ type: Number }) year = 2021;
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
   @state() _month = 1;
@@ -163,17 +163,15 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                 const dateParts = weekDate.text.split("-");
                 const isSameDate = this._isSameDayOfMoment(dateParts);
                 const isThisMonth = parseInt(dateParts[1], 10) === this._month;
-                const isSelectedDay = this.value === weekDate.attr;
+                const isFocus =
+                  (this.value === weekDate.attr || isSameDate) && isThisMonth;
                 return html`
                   <td
                     role="gridcell"
-                    tabindex="${(this.value === weekDate.attr || isSameDate) &&
-                    isThisMonth
-                      ? 0
-                      : -1}"
-                    aria-selected="${isSelectedDay}"
+                    tabindex="${isFocus ? 0 : -1}"
+                    aria-selected="${this.value === weekDate.attr}"
                     aria-current="${this._isToday(dateParts) ? "date" : false}"
-                    class="kuc-base-mobile-datetime-calendar-body__table__date${isSelectedDay
+                    class="kuc-base-mobile-datetime-calendar-body__table__date${isFocus
                       ? "--selected"
                       : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"

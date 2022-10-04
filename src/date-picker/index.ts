@@ -1,6 +1,10 @@
 import { html, PropertyValues } from "lit";
-import { property, state, query } from "lit/decorators.js";
-import { visiblePropConverter, dateValueConverter } from "../base/converter";
+import { property, query } from "lit/decorators.js";
+import {
+  visiblePropConverter,
+  dateValueConverter,
+  languagePropConverter,
+} from "../base/converter";
 import {
   createStyleOnHeader,
   CustomEventDetail,
@@ -36,7 +40,13 @@ let exportDatePicker;
     @property({ type: String }) label = "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
-    @property({ type: String }) language = "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({ type: String }) value? = "";
     @property({
       type: Boolean,
@@ -100,6 +110,7 @@ let exportDatePicker;
           <label
             class="kuc-date-picker__group__label"
             for="${this._GUID}-label"
+            @click="${this._handleClickLabel}"
             ?hidden="${!this.label}"
           >
             <kuc-base-label
@@ -134,13 +145,17 @@ let exportDatePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
         return document.documentElement.lang;
 
       return "en";
+    }
+
+    private _handleClickLabel(event: Event) {
+      event.preventDefault();
     }
 
     private _handleDateChange(event: CustomEvent) {

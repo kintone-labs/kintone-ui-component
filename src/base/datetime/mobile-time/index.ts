@@ -39,7 +39,7 @@ type Time = {
 // eslint-disable-next-line kuc-v1/no-using-generate-guid-function
 export class BaseMobileTime extends KucBase {
   @property({ type: String }) guid = "";
-  @property({ type: String, reflect: true }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String }) value = "";
   @property({ type: Boolean }) disabled = false;
   @property({ type: Boolean }) hour12 = false;
