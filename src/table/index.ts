@@ -197,7 +197,7 @@ let exportTable;
         if (cellTemplate && cellTemplate.nodeType) {
           newCell.appendChild(cellTemplate);
         } else {
-          newCell.innerText = cellTemplate;
+          newCell.innerText = cellTemplate || "";
         }
       }
       if (!this.actionButton) return;
