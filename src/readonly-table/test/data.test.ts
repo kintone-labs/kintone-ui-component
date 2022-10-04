@@ -111,7 +111,7 @@ describe("ReadOnlyTable", () => {
     it("should throw error when set wrong type on constructor", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'data' property is not an array.");
+        expect(errorMsg).to.equal("'data' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
@@ -124,7 +124,7 @@ describe("ReadOnlyTable", () => {
     it("should throw error when assigned wrong type by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'data' property is not an array.");
+        expect(errorMsg).to.equal("'data' property is not array.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
