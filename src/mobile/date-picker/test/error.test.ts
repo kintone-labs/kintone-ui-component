@@ -35,7 +35,10 @@ describe("MobileDatePicker", () => {
       expect(errorEl).not.has.attribute("hidden");
     });
     it('should be equal "error-message" when click any valid date', async () => {
-      const container = new MobileDatePicker({ error: "error-message" });
+      const container = new MobileDatePicker({
+        error: "error-message",
+        value: "2022-12-12",
+      });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
         ".kuc-mobile-base-date__group__input"
