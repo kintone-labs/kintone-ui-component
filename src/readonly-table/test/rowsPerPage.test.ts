@@ -204,7 +204,7 @@ describe("ReadOnlyTable", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'rowsPerPage' property is not a positive integer."
+          "'rowsPerPage' property is not positive integer."
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();
@@ -219,7 +219,7 @@ describe("ReadOnlyTable", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'rowsPerPage' property is not a positive integer."
+          "'rowsPerPage' property is not positive integer."
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();
