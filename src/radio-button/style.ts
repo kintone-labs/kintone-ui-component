@@ -1,20 +1,25 @@
 export const RADIOBUTTON_CSS = `
   kuc-radio-button,
   kuc-radio-button *,
-  :lang(en) kuc-radio-button,
-  :lang(en) kuc-radio-button * {
+  kuc-radio-button:lang(en),
+  kuc-radio-button:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-radio-button,
-  :lang(ja) kuc-radio-button * {
+  kuc-radio-button:lang(ja),
+  kuc-radio-button:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-radio-button,
-  :lang(zh) kuc-radio-button * {
+  kuc-radio-button:lang(zh),
+  kuc-radio-button:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-radio-button:lang(zh-TW),
+  kuc-radio-button:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-radio-button {
     font-size: 14px;

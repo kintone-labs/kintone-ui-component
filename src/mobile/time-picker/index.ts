@@ -1,6 +1,10 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { timeValueConverter, visiblePropConverter } from "../../base/converter";
+import {
+  languagePropConverter,
+  timeValueConverter,
+  visiblePropConverter,
+} from "../../base/converter";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
   CustomEventDetail,
@@ -33,7 +37,13 @@ let exportMobileTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({
       type: String,
       hasChanged(newVal: string, oldVal: string) {
@@ -152,10 +162,6 @@ let exportMobileTimePicker;
         dispatchCustomEvent(this, "change", detail);
         return;
       }
-      const theSameValue = event.detail.value === this.value;
-      if (!theSameValue) {
-        this.error = "";
-      }
       this._isSelectError = false;
       this._errorFormat = "";
       this.value = event.detail.value;
@@ -163,7 +169,7 @@ let exportMobileTimePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)

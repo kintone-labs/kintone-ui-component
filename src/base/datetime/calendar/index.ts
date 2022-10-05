@@ -15,7 +15,7 @@ import "./footer";
 import { CALENDAR_CSS } from "./style";
 
 export class BaseDateTimeCalendar extends KucBase {
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value = "";
 
   @query(".kuc-base-datetime-calendar__group")

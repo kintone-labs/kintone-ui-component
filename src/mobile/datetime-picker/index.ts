@@ -4,6 +4,7 @@ import {
   visiblePropConverter,
   dateValueConverter,
   timeValueConverter,
+  languagePropConverter,
 } from "../../base/converter";
 import {
   dispatchCustomEvent,
@@ -41,7 +42,13 @@ let exportMobileDateTimePicker;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: String }) language = "auto";
+    @property({
+      type: String,
+      attribute: "lang",
+      reflect: true,
+      converter: languagePropConverter,
+    })
+    language = "auto";
     @property({
       type: String,
       hasChanged(newVal: string, oldVal: string) {
@@ -158,7 +165,7 @@ let exportMobileDateTimePicker;
     private _updateValueAndErrorWhenUIChange() {
       const validFormat = this._checkDateTimeFormat();
       this.value = validFormat ? this.value : undefined;
-      this._errorText = validFormat ? this.error : this._errorFormat;
+      this._updateErrorText();
     }
 
     private _checkDateTimeFormat() {
@@ -271,7 +278,7 @@ let exportMobileDateTimePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh"];
+      const langs = ["en", "ja", "zh", "zh-TW"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
@@ -327,7 +334,6 @@ let exportMobileDateTimePicker;
       this.value = _value;
       const _newValue = this._errorFormat ? undefined : newDateTime;
       this.value = _newValue;
-      this.error = "";
       const detail = {
         value: _value,
         oldValue: oldDateTime,

@@ -1,20 +1,25 @@
 export const MULTICHOICE_CSS = `
   kuc-multi-choice,
   kuc-multi-choice *,
-  :lang(en) kuc-multi-choice,
-  :lang(en) kuc-multi-choice * {
+  kuc-multi-choice:lang(en),
+  kuc-multi-choice:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-multi-choice,
-  :lang(ja) kuc-multi-choice * {
+  kuc-multi-choice:lang(ja),
+  kuc-multi-choice:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-multi-choice,
-  :lang(zh) kuc-multi-choice * {
+  kuc-multi-choice:lang(zh),
+  kuc-multi-choice:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-multi-choice:lang(zh-TW),
+  kuc-multi-choice:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-multi-choice {
     display: inline-table;

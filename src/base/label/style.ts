@@ -1,20 +1,25 @@
 export const BASE_LABEL_CSS = `
   kuc-base-label,
   kuc-base-label *,
-  :lang(en) kuc-base-label,
-  :lang(en) kuc-base-label * {
+  kuc-base-label:lang(en),
+  kuc-base-label:lang(en) * {
       font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-base-label,
-  :lang(ja) kuc-base-label * {
+  kuc-base-label:lang(ja),
+  kuc-base-label:lang(ja) * {
       font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-base-label,
-  :lang(zh) kuc-base-label * {
+  kuc-base-label:lang(zh),
+  kuc-base-label:lang(zh) * {
       font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-base-label:lang(zh-TW),
+  kuc-base-label:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-base-label {
       font-size: 14px;

@@ -102,5 +102,43 @@ describe("BaseMobileDateTimeCalendar", () => {
       expect(footerButtonTodayEl.innerText).to.equal("今天");
       expect(footerButtonNoneEl.innerText).to.equal("清空");
     });
+
+    it("should be 'zh-TW' when assigning 'zh-TW' by setter", async () => {
+      const container = new BaseMobileDateTimeCalendar();
+      container.language = "zh-TW";
+      const el = await fixture(container);
+      const bodyWeekDayEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-body__table__header"
+      ) as HTMLTableSectionElement;
+      const footerButtonTodayEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      const footerButtonNoneEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+      ) as HTMLButtonElement;
+      const footerButtonCloseEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+      ) as HTMLButtonElement;
+      const headerCenterEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-header__group__center"
+      ) as HTMLSpanElement;
+      const yearEl = headerCenterEl.children[0];
+      expect(headerCenterEl.childElementCount).to.equal(2);
+      expect(
+        headerCenterEl.children[0].classList.contains(
+          "kuc-base-mobile-datetime-calendar-header__group__center__year"
+        )
+      ).to.equal(true);
+      expect(
+        headerCenterEl.children[1].classList.contains(
+          "kuc-base-mobile-datetime-calendar-header__group__center__month"
+        )
+      ).to.equal(true);
+      expect(yearEl.textContent).to.contain("年");
+      expect(bodyWeekDayEl.innerText).to.equal("周日");
+      expect(footerButtonTodayEl.innerText).to.equal("今天");
+      expect(footerButtonNoneEl.innerText).to.equal("清空");
+      expect(footerButtonCloseEl.innerText).to.equal("關閉");
+    });
   });
 });

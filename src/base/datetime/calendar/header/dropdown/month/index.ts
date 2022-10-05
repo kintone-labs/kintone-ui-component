@@ -16,7 +16,8 @@ import {
 import { CALENDAR_HEADER_MONTH_CSS } from "./style";
 
 export class BaseDateTimeHeaderMonth extends KucBase {
-  @property({ type: String }) language = "en";
+  @property({ type: String, attribute: "lang", reflect: true }) language =
+    "auto";
   @property({ type: Number }) month = 1;
 
   @state()

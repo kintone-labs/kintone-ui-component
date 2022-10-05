@@ -13,8 +13,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Install dependencies
-        run: npm i
+        run: npm ci
         working-directory: docs/document/website
       - name: Build document
         run: npm run build
