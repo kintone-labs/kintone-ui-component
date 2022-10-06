@@ -2,7 +2,8 @@
   "version-1.6.0-docs": {
     "Getting Started": [
       "version-1.6.0-getting-started/quick-start",
-      "version-1.6.0-getting-started/custom-css"
+      "version-1.6.0-getting-started/custom-css",
+      "version-1.6.0-getting-started/usage-with-typescript"
     ],
     "Components": [
       {

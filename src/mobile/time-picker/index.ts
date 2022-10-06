@@ -162,10 +162,6 @@ let exportMobileTimePicker;
         dispatchCustomEvent(this, "change", detail);
         return;
       }
-      const theSameValue = event.detail.value === this.value;
-      if (!theSameValue) {
-        this.error = "";
-      }
       this._isSelectError = false;
       this._errorFormat = "";
       this.value = event.detail.value;
