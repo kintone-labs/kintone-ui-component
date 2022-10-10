@@ -1,5 +1,4 @@
 import { MobileNotification } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
 
 export default {
   title: "mobile/notification",
@@ -14,19 +13,19 @@ const template = (args) => {
     console.log(event);
   });
   const root = document.createElement("div");
-  const button = document.createElement("button");
-  button.textContent = "open";
-  button.addEventListener("click", (event) => {
+  const openButton = document.createElement("button");
+  openButton.textContent = "open";
+  openButton.addEventListener("click", (event) => {
     notification.open();
   });
-  const button2 = document.createElement("button");
-  button2.textContent = "close";
-  button2.addEventListener("click", (event) => {
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "close";
+  closeButton.addEventListener("click", (event) => {
     notification.close();
   });
 
-  root.appendChild(button);
-  root.appendChild(button2);
+  root.appendChild(openButton);
+  root.appendChild(closeButton);
   return root;
 };
 export const Base = template.bind({});
