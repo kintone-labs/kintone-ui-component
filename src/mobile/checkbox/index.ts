@@ -165,7 +165,7 @@ let exportMobileCheckbox;
             value="${item.value !== undefined ? item.value : ""}"
             aria-describedby="${this._GUID}-error}"
             aria-required="${this.requiredIcon}"
-            aria-invalid="${!this.error}"
+            aria-invalid="${this.error !== ""}"
             ?disabled="${this.disabled}"
             @change="${this._handleChangeInput}"
           />

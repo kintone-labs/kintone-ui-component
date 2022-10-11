@@ -5,5 +5,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true
-  }
+  },
+  "exclude": [
+    "demos"
+  ]
 }
