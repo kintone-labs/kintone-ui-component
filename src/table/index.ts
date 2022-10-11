@@ -30,7 +30,7 @@ const dAdd =
 const fillAdd = "#3498db";
 const dRemove =
   "M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM12.0355 7.49997V8.49997L3.96443 8.49997V7.49997H12.0355Z";
-const fillRemove = "#d4d7d7";
+const fillRemove = "#b5b5b5";
 
 let exportTable;
 (() => {
@@ -103,17 +103,23 @@ let exportTable;
     }
 
     render() {
-      return html`
-        <table class="kuc-table__table">
-          <caption class="kuc-table__table__label" ?hidden="${!this.label}">
-            ${this.label}
-          </caption>
-          <thead class="kuc-table__table__header">
-            ${this._getTableHeaderTemplate()}
-          </thead>
-          <tbody class="kuc-table__table__body"></tbody>
-        </table>
-      `;
+      return !this.columns || this.columns.length < 1
+        ? html`<table class="kuc-table__table">
+            <caption class="kuc-table__table__label" ?hidden="${!this.label}">
+              ${this.label}
+            </caption>
+          </table>`
+        : html`
+            <table class="kuc-table__table">
+              <caption class="kuc-table__table__label" ?hidden="${!this.label}">
+                ${this.label}
+              </caption>
+              <thead class="kuc-table__table__header">
+                ${this._getTableHeaderTemplate()}
+              </thead>
+              <tbody class="kuc-table__table__body"></tbody>
+            </table>
+          `;
     }
 
     protected updated(_changedProperties: PropertyValues): void {

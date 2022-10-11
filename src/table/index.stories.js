@@ -89,9 +89,9 @@ const renderGender = (cellData) => {
 const renderMultiChoice = (cellData) => {
   const multichoice = new MultiChoice({
     items: [
-      { label: "sample1", value: "sample1" },
-      { label: "sample2", value: "sample2" },
-      { label: "sample3", value: "sample3" },
+      { label: "Orange", value: "orange" },
+      { label: "Banana", value: "banana" },
+      { label: "Tomato", value: "tomato" },
     ],
     value: cellData,
   });
@@ -155,7 +155,7 @@ const data = [
     date: "2021-03-31",
     time: "12:12",
     gender: "female",
-    multichoice: ["sample1", "sample3"],
+    multichoice: ["banana", "tomato"],
     address: ["vn"],
   },
   {
@@ -164,7 +164,7 @@ const data = [
     date: "2021-02-22",
     time: "13:13",
     gender: "male",
-    multichoice: ["sample2", "sample3"],
+    multichoice: ["orange", "banana"],
     address: ["ja"],
   },
 ];

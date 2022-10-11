@@ -55,11 +55,6 @@ export const TABLE_CSS = `
     .kuc-table__table__header__cell[hidden] {
         display: none;
     }
-    .kuc-table__table__header__cell__label {
-        padding: 4px 8px;
-        font-weight: 400;
-        font-size: 12px;
-    }
     .kuc-table__table__body__row__cell-data {
         border-color: #e3e7e8;
         border-style: solid;
