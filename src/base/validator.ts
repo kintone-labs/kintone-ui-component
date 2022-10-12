@@ -124,18 +124,15 @@ export async function throwErrorAfterUpdateComplete(
 
 export const validateFieldRequiredInColumnTable = (columns: object[]) => {
   for (let i = 0; i < columns.length; i++) {
-    const column = columns[i];
-    const containField = "field" in column;
-    if (!containField) return false;
+    if (!Object.prototype.hasOwnProperty.call(columns[i], "field"))
+      return false;
   }
 
   return true;
 };
 
 export const validateFieldUniqueInColumnTable = (columns: object[]) => {
-  const valueArr = columns.map(function (item: any) {
-    return item.field;
-  });
+  const valueArr = columns.map((item: any) => item.field);
   const isDuplicate = valueArr.some(function (item, idx) {
     return valueArr.indexOf(item) !== idx;
   });
@@ -144,7 +141,5 @@ export const validateFieldUniqueInColumnTable = (columns: object[]) => {
 };
 
 export const validateArrayProperty = (data: object[]) => {
-  if (!Array.isArray(data)) return false;
-
-  return true;
+  return Array.isArray(data);
 };
