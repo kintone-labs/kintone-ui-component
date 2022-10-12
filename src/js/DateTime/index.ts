@@ -383,7 +383,9 @@ class DateTime extends Control<DateTimeProps> {
     dateContainer.appendChild(calendar.render());
     this._calendar = calendar;
     this.element.appendChild(dateContainer);
-
+    document.addEventListener('mousedown', (e: MouseEvent) => {
+      if (!this.element.contains(e.target as HTMLElement)) this._calendar.hide();
+    });
     return this.element;
   }
 
