@@ -49,14 +49,9 @@ let exportReadOnlyTable;
     }
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
-      if (changedProperties.has("columns")) {
-        if (!validateColumns(this.columns)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY
-          );
-          return false;
-        }
+      if (changedProperties.has("columns") && !validateColumns(this.columns)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY);
+        return false;
       }
 
       if (changedProperties.has("data") && !validateData(this.data)) {
@@ -64,16 +59,16 @@ let exportReadOnlyTable;
         return false;
       }
 
-      if (changedProperties.has("rowsPerPage")) {
-        if (!validateRowsPerPage(this.rowsPerPage)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
-          );
-          return false;
-        }
+      if (
+        changedProperties.has("rowsPerPage") &&
+        !validateRowsPerPage(this.rowsPerPage)
+      ) {
+        throwErrorAfterUpdateComplete(
+          this,
+          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
+        );
+        return false;
       }
-
       return true;
     }
 
@@ -156,7 +151,6 @@ let exportReadOnlyTable;
       `;
     }
 
-    // Formatting the data displayed on the current page
     private _getDataTemplate(data: any, currentIndex: number) {
       return html`
         <tr
