@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { Table } from "../index";
 import { Dropdown } from "../../dropdown";
 import { Text } from "../../text";
@@ -113,12 +113,23 @@ describe("Table", () => {
     });
 
     it("should be updated header when changed columns by setter", async () => {
-      const container = new Table({
+      const div = document.createElement("div");
+      const table = new Table({
         columns: columns,
       });
-      container.columns = replacedColumns;
-      const el = await fixture(container);
+      const btnChangeColumns = document.createElement("button");
+      btnChangeColumns.addEventListener("click", () => {
+        table.columns = replacedColumns;
+      });
+
+      div.appendChild(table);
+      div.appendChild(btnChangeColumns);
+
+      const el = await fixture(div);
       const columnsEl = el.querySelectorAll(".kuc-table__table__header th");
+      btnChangeColumns.click();
+
+      await elementUpdated(el);
 
       expect(columnsEl.length).to.equal(2);
       expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("City");

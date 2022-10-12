@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { Table } from "../index";
 
 const columns = [
@@ -28,10 +28,11 @@ describe("Table", () => {
         actionButton: false,
       });
       const el = await fixture(container);
+      await elementUpdated(el);
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action"
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup.hasAttribute("hidden")).to.equal(true);
+      expect(actionButtonGroup).to.equal(null);
     });
 
     it("should be display block when changed to true by setter", async () => {
@@ -59,7 +60,7 @@ describe("Table", () => {
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action"
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup.hasAttribute("hidden")).to.equal(true);
+      expect(actionButtonGroup).to.equal(null);
     });
   });
 });

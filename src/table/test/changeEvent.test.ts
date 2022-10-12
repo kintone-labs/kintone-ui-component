@@ -30,18 +30,21 @@ const data = [
     age: 1,
     gender: "male",
     address: { city: "hcm", country: "vn" },
+    hobby: ["game", "flower"],
   },
   {
     name: "sample2",
     age: 2,
     gender: "female",
     address: { city: "tokyo", country: "ja" },
+    hobby: ["music"],
   },
   {
     name: "sample3",
     age: 3,
     gender: "female",
     address: { city: "tokyo", country: "ja" },
+    hobby: ["flower"],
   },
 ];
 
@@ -57,7 +60,6 @@ describe("Table", () => {
       const addRowButton = el.querySelectorAll(
         ".kuc-table__table__body__row__action-add"
       );
-      console.log(addRowButton.length, "111111");
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
       expect(tableEl.rows.length).to.equal(4);
       expect(container.data.length).to.equal(3);
@@ -82,6 +84,7 @@ describe("Table", () => {
       const removeRowButton = el.querySelectorAll(
         ".kuc-table__table__body__row__action-remove"
       );
+
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
       expect(tableEl.rows.length).to.equal(4);
       expect(container.data.length).to.equal(3);
@@ -103,6 +106,18 @@ describe("Table", () => {
       expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(2);
       expect(container.data.length).to.equal(1);
+      expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
+        "none"
+      );
+
+      const addRowButton = el.querySelectorAll(
+        ".kuc-table__table__body__row__action-add"
+      );
+      (addRowButton[0] as HTMLElement).click();
+
+      expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
+        "block"
+      );
     });
 
     it("should dispatch change event when change component inside cell", async () => {
