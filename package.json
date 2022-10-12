@@ -46,7 +46,7 @@
     "@storybook/builder-webpack5": "^6.5.10",
     "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/web-components": "^6.5.10",
-    "@types/mocha": "^10.0.0",
+    "@types/mocha": "^9.1.1",
     "@web/test-runner": "^0.14.0",
     "babel-loader": "^8.2.5",
     "deepmerge": "^4.2.2",
@@ -64,6 +64,6 @@
     "core-js": "^3.24.1",
     "lit": "^2.2.8",
     "regenerator-runtime": "^0.13.9",
-    "uuid": "^9.0.0"
+    "uuid": "^8.3.2"
   }
 }
