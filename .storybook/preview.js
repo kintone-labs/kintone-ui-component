@@ -1,5 +1,3 @@
-import { configure, addParameters } from "@storybook/web-components";
-
 const newViewports = {
   iPhone11ProMax: {
     name: "iPhone 11 Pro Max",
@@ -30,18 +28,6 @@ const newViewports = {
     },
   },
 };
-addParameters({
+export const parameters = {
   viewport: { viewports: newViewports },
-});
-
-// Hot Module Reloading (HMR)
-// force full reload to not reregister web components
-const req = require.context("../src", true, /\.stories\.(js|mdx)$/);
-configure(req, module);
-if (module.hot) {
-  module.hot.accept(req.id, () => {
-    const currentLocationHref = window.location.href;
-    window.history.pushState(null, null, currentLocationHref);
-    window.location.reload();
-  });
 }
