@@ -6,14 +6,8 @@ const columns = [
   { field: "age", title: "Age" },
 ];
 const data = [
-  {
-    name: "sample1",
-    age: 1,
-  },
-  {
-    name: "sample2",
-    age: 2,
-  },
+  { name: "David", age: 20 },
+  { name: "Thomas", age: 30 },
 ];
 
 describe("Table", () => {

@@ -26,21 +26,21 @@ const columns = [
 ];
 const data = [
   {
-    name: "sample1",
+    name: "David",
     age: 1,
     gender: "male",
     address: { city: "hcm", country: "vn" },
     hobby: ["game", "flower"],
   },
   {
-    name: "sample2",
+    name: "Mary",
     age: 2,
     gender: "female",
     address: { city: "tokyo", country: "ja" },
     hobby: ["music"],
   },
   {
-    name: "sample3",
+    name: "Linda",
     age: 3,
     gender: "female",
     address: { city: "tokyo", country: "ja" },

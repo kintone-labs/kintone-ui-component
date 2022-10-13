@@ -5,14 +5,15 @@ const columns = [
   { field: "name", title: "Name" },
   { field: "age", title: "Age" },
 ];
+
 const data = [
-  { name: "sample1", age: 1 },
-  { name: "sample2", age: 2 },
+  { name: "David", age: 20 },
+  { name: "Thomas", age: 30 },
 ];
 
 const replacedData = [
-  { name: "sample3", age: 3 },
-  { name: "sample4", age: 4 },
+  { name: "Robert", age: 40 },
+  { name: "John", age: 50 },
 ];
 
 describe("Table", () => {

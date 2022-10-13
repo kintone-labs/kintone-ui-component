@@ -12,12 +12,12 @@ const renderName = (cellData: any) => {
   const dropdown = new Dropdown({
     items: [
       {
-        label: "Sample1",
-        value: "sample1",
+        label: "David",
+        value: "David",
       },
       {
-        label: "Sample2",
-        value: "sample2",
+        label: "Thomas",
+        value: "Thomas",
       },
     ],
     value: cellData,
@@ -30,8 +30,8 @@ const columns = [
   { field: "age", title: "Age" },
 ];
 const data = [
-  { name: "sample1", age: 1 },
-  { name: "sample2", age: 2 },
+  { name: "David", age: 20 },
+  { name: "Thomas", age: 30 },
 ];
 
 const replacedColumns = [
@@ -106,10 +106,10 @@ describe("Table", () => {
       const secondText = secondRow?.cells[1].querySelector("kuc-text") as any;
 
       expect(tBodyEl?.children.length).to.equal(data.length);
-      expect(firstDropdown.value).to.equal("sample1");
-      expect(firstText.value).to.equal(1);
-      expect(secondDropdown.value).to.equal("sample2");
-      expect(secondText.value).to.equal(2);
+      expect(firstDropdown.value).to.equal("David");
+      expect(firstText.value).to.equal(20);
+      expect(secondDropdown.value).to.equal("Thomas");
+      expect(secondText.value).to.equal(30);
     });
 
     it("should be updated header when changed columns by setter", async () => {
