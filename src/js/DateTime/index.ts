@@ -19,15 +19,15 @@ type DateTimeProps = ControlProps & {
 }
 
 class DateTime extends Control<DateTimeProps> {
-  protected element: HTMLElement
-  private _dateTextInput: HTMLInputElement
-  private _timeTextInput: HTMLInputElement
-  private _dateErrorDiv: HTMLElement
-  private _calendar: Calendar
-  private _locale: Locale = ja
+  protected element: HTMLElement;
+  private _dateTextInput: HTMLInputElement;
+  private _timeTextInput: HTMLInputElement;
+  private _dateErrorDiv: HTMLElement;
+  private _calendar: Calendar;
+  private _locale: Locale = ja;
 
-  private _timePicker: TimePicker
-  private _time: Date | null = new Date()
+  private _timePicker: TimePicker;
+  private _time: Date | null = new Date();
 
   constructor(params?: DateTimeProps) {
     super();

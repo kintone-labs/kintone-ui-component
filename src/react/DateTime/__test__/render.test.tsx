@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {render, cleanup} from '@testing-library/react';
 import DateTime from '../index';
 import React from 'react';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import TimePicker from '../components/TimePicker';
 import {fireEvent} from '@testing-library/dom';
 

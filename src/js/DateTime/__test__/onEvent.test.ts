@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
 import {fireEvent} from '@testing-library/dom';
 import Message from '../../../constant/Message';

@@ -1,5 +1,5 @@
 class Elements {
-  private elArr: HTMLElement[] = []
+  private elArr: HTMLElement[] = [];
 
   constructor(selector: string | HTMLElement) {
     if (typeof selector === 'string') {

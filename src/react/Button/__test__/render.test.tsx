@@ -6,7 +6,6 @@ describe('Unit test Button react', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     console.error.mockImplementation(() => { });
   });
   afterEach(() => {

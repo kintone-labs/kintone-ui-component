@@ -31,7 +31,7 @@ describe('Unit test IconButton setType', () => {
     const container = iconButton.render();
     iconButton.setType('file');
     expect(container.children[0].children[0].getAttribute('d'))
-      .toBe('M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20C4,21.1 4.9,22 6,22H18C19.1,22 20,21.1 20,20V8L14,2H6Z');
+      .toBe('M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z');
   });
 
   test('Function setType right run successfully', () => {

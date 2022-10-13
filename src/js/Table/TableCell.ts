@@ -1,4 +1,4 @@
-import {TableProps} from './';
+import {TableProps} from '.';
 
 type TableCellInitParams = {
   table: TableProps
@@ -22,7 +22,7 @@ type TableCellProps = {
 }
 
 export default class TableCell {
-  private _init?: (arg?: TableCellInitParams) => HTMLElement | null
+  private _init?: (arg?: TableCellInitParams) => HTMLElement | null;
   private _update?: (arg?: TableCellUpdateParams) => void;
   constructor({init, update}: TableCellProps = {}) {
     this._init = init;

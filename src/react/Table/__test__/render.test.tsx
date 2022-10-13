@@ -1,5 +1,3 @@
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {render, fireEvent} from '@testing-library/react';
 import Table from '../index';
 import React from 'react';

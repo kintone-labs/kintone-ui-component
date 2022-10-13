@@ -458,5 +458,6 @@ export {
   ja,
   format,
   getSeperator,
-  availableLocales
 } from './components/Locale';
+
+export {availableLocales} from './components/DateTimeConstant';

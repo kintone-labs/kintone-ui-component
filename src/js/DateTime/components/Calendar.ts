@@ -21,23 +21,23 @@ type CalendarProps = ControlProps & {
 }
 
 class Calendar extends Control<CalendarProps> {
-  protected element: HTMLElement
-  private _calendarHeader: HTMLElement
-  private _monthYearContainer: HTMLElement
-  private _previousButton: HTMLElement
-  private _nextButton: HTMLElement
-  private _displayDate: Date = new Date()
-  private _displayMonth: string
-  private _displayYear: string
-  private _monthYearDropdownsRow: HTMLElement
-  private _displayMonthDropdown: Dropdown
-  private _displayYearDropdown: Dropdown
-  private _daysContainer: HTMLElement
-  private _quickSelectionsContainer: HTMLElement
-  private _todayButton: HTMLElement
-  private _noneButton: HTMLElement
-  private _weekDayLabelsSpans: HTMLElement[]
-  private _displayDaysSpans: HTMLElement[]
+  protected element: HTMLElement;
+  private _calendarHeader: HTMLElement;
+  private _monthYearContainer: HTMLElement;
+  private _previousButton: HTMLElement;
+  private _nextButton: HTMLElement;
+  private _displayDate: Date = new Date();
+  private _displayMonth: string;
+  private _displayYear: string;
+  private _monthYearDropdownsRow: HTMLElement;
+  private _displayMonthDropdown: Dropdown;
+  private _displayYearDropdown: Dropdown;
+  private _daysContainer: HTMLElement;
+  private _quickSelectionsContainer: HTMLElement;
+  private _todayButton: HTMLElement;
+  private _noneButton: HTMLElement;
+  private _weekDayLabelsSpans: HTMLElement[];
+  private _displayDaysSpans: HTMLElement[];
 
   constructor(params: CalendarProps) {
     super();

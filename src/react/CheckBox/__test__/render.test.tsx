@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 
@@ -7,7 +6,6 @@ describe('Unit test Checkbox react', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error');
     // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     console.error.mockImplementation(() => { });
   });
   afterEach(() => {

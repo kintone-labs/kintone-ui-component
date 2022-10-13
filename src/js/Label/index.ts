@@ -11,9 +11,9 @@ type LabelProps = ControlProps & {
 }
 
 class Label extends Control<LabelProps> {
-  private textEl: any
-  private requiredEl: any
-  private containerEl: any
+  private textEl: any;
+  private requiredEl: any;
+  private containerEl: any;
 
   constructor(params?: LabelProps) {
     super();

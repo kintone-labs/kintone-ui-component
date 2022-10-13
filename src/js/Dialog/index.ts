@@ -11,12 +11,12 @@ type DialogProps = ControlProps & {
 }
 
 class Dialog extends Control<DialogProps> {
-  private _headerDivEl: HTMLDivElement
-  private _footerDivEl: HTMLDivElement
-  private _bodyContentDivEl: HTMLDivElement
+  private _headerDivEl: HTMLDivElement;
+  private _footerDivEl: HTMLDivElement;
+  private _bodyContentDivEl: HTMLDivElement;
 
-  private _closeButton: IconButton
-  private _containerEl: HTMLElement
+  private _closeButton: IconButton;
+  private _containerEl: HTMLElement;
 
   constructor(params?: DialogProps) {
     super();

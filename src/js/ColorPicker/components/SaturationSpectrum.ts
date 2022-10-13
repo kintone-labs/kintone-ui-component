@@ -17,8 +17,8 @@ type SaturationSpectrumProps = ControlProps & {
 }
 
 class SaturationSpectrum extends Control<SaturationSpectrumProps> {
-  private colorCanvas: HTMLCanvasElement
-  private isMouseDown: boolean
+  private colorCanvas: HTMLCanvasElement;
+  private isMouseDown: boolean;
 
   constructor(params: SaturationSpectrumProps) {
     super();

@@ -9,7 +9,7 @@ type TextProps = ControlProps & {
 }
 
 class Text extends Control<TextProps> {
-  private _onChange: (params?: any) => void
+  private _onChange: (params?: any) => void;
 
   constructor(params?: TextProps) {
     super();

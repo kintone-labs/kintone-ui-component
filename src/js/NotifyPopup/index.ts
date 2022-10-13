@@ -11,10 +11,10 @@ type PopupProps = ControlProps & {
 
 class NotifyPopup extends Control<PopupProps> {
 
-  private textEl: any
-  private closeButton: IconButton
-  private _onClick: (e: Event) => void
-  private _onClose: (e: Event) => void
+  private textEl: any;
+  private closeButton: IconButton;
+  private _onClick: (e: Event) => void;
+  private _onClose: (e: Event) => void;
 
   constructor(params?: PopupProps) {
     super();

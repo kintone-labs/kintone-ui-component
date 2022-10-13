@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Spinner from '../index';
 import {render} from '@testing-library/react';
 import React from 'react';

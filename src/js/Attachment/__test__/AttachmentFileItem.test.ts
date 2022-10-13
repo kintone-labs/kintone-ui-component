@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import AttachmentFileItem from '../AttachmentFileItem';
 
 describe('Unit test for AttachmentFileItem', () => {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 const messages = {
   INVALID_ARGUMENT: 'Error: invalid function arguments'
 };

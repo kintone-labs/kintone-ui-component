@@ -10,9 +10,9 @@ type IconBtnProps = ControlProps & {
 }
 
 class IconButton extends Control<IconBtnProps> {
-  private iconEl: SVGSVGElement
-  private pathEl: SVGPathElement
-  private _onClick: (e: Event) => void
+  private iconEl: SVGSVGElement;
+  private pathEl: SVGPathElement;
+  private _onClick: (e: Event) => void;
 
   constructor(params?: IconBtnProps) {
     super();

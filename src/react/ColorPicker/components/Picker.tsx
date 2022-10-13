@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, {useState, CSSProperties} from 'react';
 import PickerStyle from './PickerStyle';
 import HueSpectrum from './HueSpectrum';

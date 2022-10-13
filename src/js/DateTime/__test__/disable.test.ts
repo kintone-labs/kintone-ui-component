@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import DateTime from '../index';
 
 describe('Unit test DateTime disable', () => {

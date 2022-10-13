@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Table from '../index';
 
 describe('Unit test for Table removeRow', () => {

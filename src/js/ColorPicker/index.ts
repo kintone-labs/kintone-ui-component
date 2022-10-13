@@ -10,10 +10,10 @@ type ColorPickerProps = ControlProps & {
 }
 
 class ColorPicker extends Control<ColorPickerProps> {
-  private oldColor: string
-  private inputElement: HTMLInputElement
-  private Picker: Picker
-  private focus: boolean
+  private oldColor: string;
+  private inputElement: HTMLInputElement;
+  private Picker: Picker;
+  private focus: boolean;
 
   constructor(params?: ColorPickerProps) {
     super();
