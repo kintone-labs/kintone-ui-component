@@ -1,5 +1,4 @@
 import { Combobox } from "./index.ts";
-import { ComboboxItem } from "./type";
 
 export default {
   title: "desktop/combobox",
@@ -31,9 +30,9 @@ const template = (args) => {
 
 export const Base = template.bind({});
 Base.args = {
-  className: "date-picker-class",
+  className: "combobox-class",
   error: "Error occurred",
-  id: "date-picker-id",
+  id: "combobox-id",
   label: "Combobox Label",
   disabled: false,
   requiredIcon: false,
@@ -43,5 +42,8 @@ Base.args = {
     { label: "Item 1", value: "item-1" },
     { label: "Item 2", value: "item-2" },
     { label: "Item 3", value: "item-3" },
+    { label: "Item 11", value: "item-11" },
+    { label: "Item 12", value: "item-12" },
+    { label: "Item 13", value: "item-13" },
   ],
 };

@@ -51,6 +51,9 @@ let exportCombobox;
     @query(".kuc-combobox__group")
     private _groupEl!: HTMLDivElement;
 
+    @query(".kuc-combobox__group__toggle")
+    private _toggleEl!: HTMLDivElement;
+
     @query(".kuc-combobox__group__toggle__input")
     private _inputEl!: HTMLInputElement;
 
@@ -85,11 +88,10 @@ let exportCombobox;
 
     private _GUID: string;
 
+    @state()
     private _searchText = "";
 
-    private _noResults = false;
     private _query = "";
-    private _defaultValue = "";
     private _open: boolean = false;
     private _matchingItems: ComboboxItem[] = [];
 
@@ -124,7 +126,8 @@ let exportCombobox;
 
     willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("value")) {
-        this._searchText = this.value;
+        const selectedLabel = this._getSelectedLabel();
+        this._searchText = selectedLabel ? selectedLabel : "";
       }
     }
 
@@ -153,9 +156,11 @@ let exportCombobox;
               aria-labelledby="${this._GUID}-label"
               aria-required="${this.requiredIcon}"
               ?disabled="${this.disabled}"
+              @change="${this._handleChangeComboboxInput}"
               @input="${this._handleInputComboboxInput}"
               @keydown="${this._handleKeyDownComboboxInput}"
               @click="${this._handleClickComboboxInput}"
+              @blur="${this._handleBlurComboboxInput}"
             />
             <div class="kuc-combobox__group__toggle__button-icon">
               <button
@@ -163,6 +168,7 @@ let exportCombobox;
                 tabindex="-1"
                 type="button"
                 ?disabled="${this.disabled}"
+                @click="${this._handleClickToggleButton}"
               >
                 <span class="kuc-combobox__group__toggle__icon">
                   ${this._getToggleIconSvgTemplate()}
@@ -248,7 +254,6 @@ let exportCombobox;
         <li
           class="kuc-combobox__group__select-menu__item"
           role="option"
-          tabindex="${isCheckedItem ? "0" : "-1"}"
           aria-selected="${isCheckedItem ? "true" : "false"}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
@@ -302,12 +307,11 @@ let exportCombobox;
       event.preventDefault();
     }
 
-    private _handleMouseDownComboboxToggle(event: MouseEvent) {
+    private _handleClickToggleButton(event: MouseEvent): void {
       event.preventDefault();
-    }
-
-    private _handleMouseUpComboboxToggle(event: MouseEvent) {
-      event.preventDefault();
+      this._inputEl.focus();
+      this._resetToggleInputValue();
+      this._actionToggleMenu();
     }
 
     private _handleInputComboboxInput(event: Event) {
@@ -315,33 +319,26 @@ let exportCombobox;
 
       this._searchText = this._inputEl.value;
       this._query = this._inputEl.value;
-
-      const regex = new RegExp(this._query, "gi");
-      const matchingItems = this.items.filter((item) => {
-        if (item.label) {
-          return item.label.match(regex);
-        } else if (item.value) {
-          return item.value.match(regex);
-        }
-        return false;
-      });
-
-      if (matchingItems.length === 0) {
-        this._actionHideMenu();
-      } else {
-        this._actionShowMenu();
-      }
+      this._setMatchingItems();
     }
 
     private _handleClickComboboxInput(event: Event) {
       event.stopPropagation();
-      this._actionToggleMenu();
+      this._setMatchingItems();
+    }
+
+    private _handleChangeComboboxInput(event: Event) {
+      event.stopPropagation();
+    }
+
+    private _handleBlurComboboxInput(event: Event) {
+      this._resetToggleInputValue();
     }
 
     private _handleClickDocument(event: MouseEvent) {
       if (
-        event.target === this._buttonEl ||
-        this._buttonEl.contains(event.target as HTMLElement)
+        event.target === this._toggleEl ||
+        this._toggleEl.contains(event.target as HTMLElement)
       ) {
         event.stopPropagation();
       }
@@ -390,6 +387,7 @@ let exportCombobox;
           if (this._selectorVisible) {
             event.stopPropagation();
           }
+          this._resetToggleInputValue();
           this._actionHideMenu();
           break;
         }
@@ -421,7 +419,7 @@ let exportCombobox;
     }
 
     private _actionShowMenu() {
-      this._buttonEl.focus();
+      this._inputEl.focus();
       this._selectorVisible = true;
 
       if (this._query === "") {
@@ -520,12 +518,32 @@ let exportCombobox;
 
     private _actionSetActiveDescendant(value?: string) {
       if (value !== undefined && this._buttonEl !== null) {
-        this._buttonEl.setAttribute("aria-activedescendant", value);
+        this._inputEl.setAttribute("aria-activedescendant", value);
       }
     }
 
     private _actionRemoveActiveDescendant() {
-      this._buttonEl.removeAttribute("aria-activedescendant");
+      this._inputEl.removeAttribute("aria-activedescendant");
+    }
+
+    private _setMatchingItems() {
+      const regex = new RegExp(this._query, "gi");
+      const matchingItems = this.items.filter((item) => {
+        if (item.label) {
+          return item.label.match(regex);
+        } else if (item.value) {
+          return item.value.match(regex);
+        }
+        return false;
+      });
+
+      if (matchingItems.length === 0) {
+        this._matchingItems = [];
+        this._actionHideMenu();
+      } else {
+        this._matchingItems = matchingItems;
+        this._actionShowMenu();
+      }
     }
 
     private _updateContainerWidth() {
@@ -556,15 +574,15 @@ let exportCombobox;
       const isWindowBottomScrollbarShow =
         document.body.scrollWidth > window.innerWidth;
 
-      const toTop = this._buttonEl.getBoundingClientRect().top;
+      const toTop = this._toggleEl.getBoundingClientRect().top;
       const toBottom =
         window.innerHeight -
-        this._buttonEl.getBoundingClientRect().bottom -
+        this._toggleEl.getBoundingClientRect().bottom -
         (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
-      const toLeft = this._buttonEl.getBoundingClientRect().left;
+      const toLeft = this._toggleEl.getBoundingClientRect().left;
       const toRight =
         window.innerWidth -
-        this._buttonEl.getBoundingClientRect().left -
+        this._toggleEl.getBoundingClientRect().left -
         (isWindowRightScrollbarShow ? scrollbarWidth : 0);
 
       return { toTop, toBottom, toLeft, toRight };
@@ -585,7 +603,7 @@ let exportCombobox;
           ? this._errorEl.offsetHeight + 16
           : 0;
         this._menuEl.style.bottom = `${
-          this._buttonEl.offsetHeight + errorHeight
+          this._toggleEl.offsetHeight + errorHeight
         }px`;
         if (distanceToggleButton.toTop >= menuHeight) return;
         this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
@@ -611,7 +629,7 @@ let exportCombobox;
         return;
 
       // Left
-      const right = this._buttonEl.offsetWidth - distanceToggleButton.toRight;
+      const right = this._toggleEl.offsetWidth - distanceToggleButton.toRight;
       this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
     }
 
@@ -648,6 +666,15 @@ let exportCombobox;
 
     private _isCheckedItem(item: ComboboxItem) {
       return item.value === this.value;
+    }
+
+    private _resetToggleInputValue() {
+      const selectedLabel = this._getSelectedLabel();
+      if (this._searchText !== selectedLabel) {
+        this._searchText = selectedLabel ? selectedLabel : "";
+      }
+
+      this._query = "";
     }
   }
   window.customElements.define("kuc-combobox", KucCombobox);
