@@ -514,7 +514,10 @@ let exportCombobox;
     }
 
     private _actionUpdateValue(value: string) {
-      if (this.value === value) return;
+      if (this.value === value) {
+        this._resetToggleInputValue();
+        return;
+      }
       const detail: ComboboxChangeEventDetail = {
         oldValue: this.value,
         value: value,
@@ -525,7 +528,7 @@ let exportCombobox;
     }
 
     private _actionSetActiveDescendant(value?: string) {
-      if (value !== undefined && this._buttonEl !== null) {
+      if (value !== undefined && this._inputEl !== null) {
         this._inputEl.setAttribute("aria-activedescendant", value);
       }
     }
