@@ -92,7 +92,6 @@ let exportCombobox;
     private _searchText = "";
 
     private _query = "";
-    private _open: boolean = false;
     private _matchingItems: ComboboxItem[] = [];
 
     constructor(props?: ComboboxProps) {
@@ -150,7 +149,6 @@ let exportCombobox;
               role="combobox"
               type="text"
               .value="${this._searchText}"
-              aria-expanded="${this._open}"
               aria-haspopup="listbox"
               aria-autocomplete="list"
               aria-labelledby="${this._GUID}-label"
@@ -250,6 +248,17 @@ let exportCombobox;
 
     private _getItemTemplate(item: ComboboxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item);
+      const text = item.label === undefined ? item.value : item.label;
+      let newText = html`${text}`;
+      if (this._query && text) {
+        const queryIndex = text.indexOf(this._query);
+        newText = html`
+          ${text.slice(0, queryIndex)}<b>${this._query}</b>${text.slice(
+            queryIndex + this._query.length
+          )}
+        `;
+      }
+
       return html`
         <li
           class="kuc-combobox__group__select-menu__item"
@@ -260,8 +269,7 @@ let exportCombobox;
           @mousedown="${this._handleMouseDownComboboxItem}"
           @mouseover="${this._handleMouseOverComboboxItem}"
         >
-          ${this._getComboboxIconSvgTemplate(isCheckedItem)}
-          ${item.label === undefined ? item.value : item.label}
+          ${this._getComboboxIconSvgTemplate(isCheckedItem)} ${newText}
         </li>
       `;
     }
@@ -512,7 +520,7 @@ let exportCombobox;
         value: value,
       };
       this.value = value;
-      this._searchText = value;
+      this._query = "";
       dispatchCustomEvent(this, "change", detail);
     }
 
