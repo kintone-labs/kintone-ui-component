@@ -1,6 +1,6 @@
 import '../polyfill';
 import Control, {ControlProps} from '../Control';
-import Item, {ItemData} from '../CheckBox/Item';
+import Item, {ItemData} from './Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
 import '../../css/CheckBox.css';
@@ -12,7 +12,7 @@ type CheckboxProps = ControlProps & {
 }
 
 class CheckBox extends Control<CheckboxProps> {
-  private itemList: Item[] = []
+  private itemList: Item[] = [];
 
   constructor(params?: CheckboxProps) {
     super();

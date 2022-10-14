@@ -9,7 +9,7 @@ type AttachmentFileItemProps = ControlProps & {
 }
 
 class AttachmentFileItem extends Control<AttachmentFileItemProps> {
-  protected element: HTMLDivElement
+  protected element: HTMLDivElement;
   private ONE_GB = 1073741824;
   private ONE_MB = 1048576;
   private ONE_KB = 1024;

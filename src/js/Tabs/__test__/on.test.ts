@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Tabs from '../index';
 import {getByText, fireEvent} from '@testing-library/dom';
 

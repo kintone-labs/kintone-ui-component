@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import ColorPicker from '../index';
 import 'jest-canvas-mock';
 

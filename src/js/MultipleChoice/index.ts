@@ -1,6 +1,6 @@
 import '../polyfill';
 import Control, {ControlProps} from '../Control';
-import Item, {ItemData} from '../MultipleChoice/Item';
+import Item, {ItemData} from './Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';
 import Message from '../../constant/Message';
 import '../../css/MultipleChoice.css';
@@ -13,7 +13,7 @@ type MultipleChoiceProps = ControlProps & {
 
 class MultipleChoice extends Control<MultipleChoiceProps> {
 
-  private itemList: Item[] = []
+  private itemList: Item[] = [];
 
   constructor(params?: MultipleChoiceProps) {
     super();

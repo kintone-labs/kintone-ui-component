@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Table from '../index';
 import createTableCell from '../TableCellFactory';
 
@@ -86,7 +85,7 @@ describe('Unit test for Table render', () => {
 
   test('Throw error when validate props fail', () => {
     try {
-      const myTable = new Table({
+      new Table({
         // @ts-ignore
         data: 1
       });

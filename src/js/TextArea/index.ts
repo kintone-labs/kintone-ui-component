@@ -10,20 +10,20 @@ type TextAreaProps = ControlProps & {
 }
 
 class TextArea extends Control<TextAreaProps> {
-  private _onClick: (params?: any) => void
-  private _onChange: (params?: any) => void
-  private textAreaEl: HTMLTextAreaElement
-  private resizeEl: HTMLDivElement
-  private textAreaWidth= 297
-  private textAreaHeight= 123
+  private _onClick: (params?: any) => void;
+  private _onChange: (params?: any) => void;
+  private textAreaEl: HTMLTextAreaElement;
+  private resizeEl: HTMLDivElement;
+  private textAreaWidth = 297;
+  private textAreaHeight = 123;
 
-  private mixTextAreaWidth = 297
-  private mixtTextAreaHeight = 123
+  private mixTextAreaWidth = 297;
+  private mixtTextAreaHeight = 123;
 
-  private currentX: number | null = null
-  private currentY: number | null = null
-  private translateX = 0
-  private translateY = 0
+  private currentX: number | null = null;
+  private currentY: number | null = null;
+  private translateX = 0;
+  private translateY = 0;
 
   constructor(params?: TextAreaProps) {
     super();

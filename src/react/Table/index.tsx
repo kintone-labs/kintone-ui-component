@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import IconButton from '../IconButton';
 import '../../css/font.css';
@@ -108,6 +109,7 @@ const TableHeaderRow = ({columns}: TableHeaderProps) => {
       </div>
     ) : '';
   });
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <React.Fragment>{header}</React.Fragment>;
 };
 

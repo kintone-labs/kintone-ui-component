@@ -23,7 +23,7 @@
 |options.items[x].value|String|Conditional|The value of an item. This is required if <b>options.items[x]</b> is specified.<br>If the value is duplicate, the error will be displayed|
 |options.items[x].label|String|No|Display string.|
 |options.items[x].isDisabled|Boolean|No|Indicate item will be disabled when display. Default value is false.|
-|options.value|String|No|Default selected item. <br> If the options.value is nonexistent value, no item will be selected.|
+|options.value|String|No|Default selected item. <br> If the <b>options.value</b> is nonexistent value, no item will be selected.|
 |options.isDisabled|Boolean|No|The radio button will be disabled. <br> Default value: 'false'|
 |options.isVisible|Boolean|No|The radio button will be visible. <br> Default value: 'true'|
 
@@ -453,7 +453,7 @@ When using this function in pure js, selected value is released.
 | --- | --- | --- | --- |
 |options| Object| No |A object contains params of constructor.|
 |options.items| Array&lt;Object&gt;| Yes |List of items will be displayed in radio button.|
-|options.items[x].value| String| Yes |If the value is duplicate, the error message will be displayed.|
+|options.items[x].value| String| Yes |If the <b>value</b> is duplicate, the error message will be displayed.|
 |options.items[x].label| String| No |Display string.|
 |options.items[x].isDisabled| Boolean| No |Indicate item will be disabled when display.<br>Default value: 'false'.|
 
@@ -669,7 +669,7 @@ Set the selected item for radio button.
 
 | Name| Type| Required| Description |
 | --- | --- | --- | --- |
-|value|String|	Yes|Selected value in radio button. <br> If the value is nonexistent value, no item will be selected.|
+|value|String|	Yes|Selected value in radio button. <br> If the <b>value</b> is nonexistent value, no item will be selected.|
 
 **Returns**
 

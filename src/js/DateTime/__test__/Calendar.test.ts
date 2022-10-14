@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import Calendar from '../components/Calendar';
 import Locale from '../../../react/DateTime/components/Locale';
 import {fireEvent} from '@testing-library/dom';

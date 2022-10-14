@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {render} from '@testing-library/react';
 import TextArea from '../index';
 import React from 'react';

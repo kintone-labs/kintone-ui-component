@@ -11,7 +11,7 @@ type TextInputProps = ControlProps & {
 }
 
 class TextInput extends Control<TextInputProps> {
-  private inputElement: HTMLInputElement
+  private inputElement: HTMLInputElement;
 
   constructor(params: TextInputProps) {
     super();
@@ -64,9 +64,9 @@ type RGBInputProps = ControlProps & {
 }
 
 class RGBInput extends Control<RGBInputProps> {
-  private rInput: TextInput
-  private gInput: TextInput
-  private bInput: TextInput
+  private rInput: TextInput;
+  private gInput: TextInput;
+  private bInput: TextInput;
 
   constructor(params: RGBInputProps) {
     super();
@@ -149,11 +149,11 @@ type HSVInputProps = ControlProps & {
 }
 
 class HSVInput extends Control<HSVInputProps> {
-  private hInput: TextInput
-  private sInput: TextInput
-  private vInput: TextInput
+  private hInput: TextInput;
+  private sInput: TextInput;
+  private vInput: TextInput;
 
-  protected _props: HSVInputProps
+  protected _props: HSVInputProps;
 
   constructor(params: HSVInputProps) {
     super();

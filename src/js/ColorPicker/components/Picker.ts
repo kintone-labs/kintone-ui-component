@@ -4,7 +4,7 @@ import SaturationSpectrum, {SaturationSpectrumProps} from './SaturationSpectrum'
 import HueSpectrum, {HueSpectrumProps, RGB} from './HueSpectrum';
 import {hexToRgb, rgbToHex, rgbToHsv} from './utils';
 import {RGBInput, HSVInput} from './TextInput';
-import Button from '../../../js/Button';
+import Button from '../../Button';
 type PickerProps = ControlProps & {
   hexString: string;
   onChange: (hexString: string, triggerOnChange: boolean) => void;
@@ -13,13 +13,13 @@ type PickerProps = ControlProps & {
 }
 
 class Picker extends Control<PickerProps> {
-  private saturationSpectrum: SaturationSpectrum
-  private hueSpectrum: HueSpectrum
-  private saturationBackground: RGB
-  private rgbInput: RGBInput
-  private hsvInput: HSVInput
-  private okButton: Button
-  private cancelButton: Button
+  private saturationSpectrum: SaturationSpectrum;
+  private hueSpectrum: HueSpectrum;
+  private saturationBackground: RGB;
+  private rgbInput: RGBInput;
+  private hsvInput: HSVInput;
+  private okButton: Button;
+  private cancelButton: Button;
 
   constructor(params: PickerProps) {
     super();

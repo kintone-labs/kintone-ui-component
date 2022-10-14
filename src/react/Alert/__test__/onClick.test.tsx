@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {render, fireEvent} from '@testing-library/react';
 import Alert from '../index';
 import React from 'react';

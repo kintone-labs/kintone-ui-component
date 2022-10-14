@@ -1,4 +1,5 @@
-import {availableLocales} from '../react/DateTime/components/Locale';
+import {availableLocales} from '../react/DateTime/components/DateTimeConstant';
+
 const Message = {
   common: {
     SELECTTION_DUPLICATE_VALUE: 'The selection has duplicate value',
