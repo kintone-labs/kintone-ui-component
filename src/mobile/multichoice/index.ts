@@ -96,7 +96,10 @@ let exportMobileMultiChoice;
         selectEl.selectedOptions,
         (option) => option.dataset.index
       );
-      const detail: MobileMultiChoiceChangeEventDetail = { value: newValue, oldValue: oldValue };
+      const detail: MobileMultiChoiceChangeEventDetail = {
+        value: newValue,
+        oldValue: oldValue,
+      };
       this.value = newValue;
       this.selectedIndex = newSelectedIndex.map((item) =>
         item ? parseInt(item, 10) : 0

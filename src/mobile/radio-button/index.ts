@@ -91,7 +91,10 @@ let exportMobileRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: MobileRadioButtonEventDetail = { oldValue: this.value, value: value };
+      const detail: MobileRadioButtonEventDetail = {
+        oldValue: this.value,
+        value: value,
+      };
       this.value = value;
       this.selectedIndex = indexNumber;
       dispatchCustomEvent(this, "change", detail);

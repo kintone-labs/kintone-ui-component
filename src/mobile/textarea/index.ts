@@ -57,7 +57,10 @@ let exportMobileTextArea;
     private _handleChangeInput(event: Event) {
       event.stopPropagation();
       const targetEl = event.target as HTMLTextAreaElement;
-      const detail: MobileTextAreaEventDetail = { value: "", oldValue: this.value };
+      const detail: MobileTextAreaEventDetail = {
+        value: "",
+        oldValue: this.value,
+      };
       this.value = targetEl.value;
       detail.value = this.value;
       dispatchCustomEvent(this, "change", detail);
