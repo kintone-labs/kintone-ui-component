@@ -4,7 +4,6 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
@@ -16,7 +15,11 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
-import { MobileMultiChoiceItem, MobileMultiChoiceProps } from "./type";
+import {
+  MobileMultiChoiceItem,
+  MobileMultiChoiceProps,
+  MobileMultiChoiceChangeEventDetail,
+} from "./type";
 import { MOBILE_MULTICHOICE_CSS } from "./style";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
@@ -93,7 +96,7 @@ let exportMobileMultiChoice;
         selectEl.selectedOptions,
         (option) => option.dataset.index
       );
-      const detail: CustomEventDetail = { value: newValue, oldValue: oldValue };
+      const detail: MobileMultiChoiceChangeEventDetail = { value: newValue, oldValue: oldValue };
       this.value = newValue;
       this.selectedIndex = newSelectedIndex.map((item) =>
         item ? parseInt(item, 10) : 0
