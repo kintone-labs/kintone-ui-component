@@ -1,11 +1,18 @@
 import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
+import { FileItem } from "../attachment/type";
 
 type CustomEventDetail = {
   data?: string | null;
   oldValue?: string | string[];
   value?: string | string[];
   error?: string;
+};
+type AttachmentEventDetail = {
+  files?: FileItem[];
+  oldFiles?: FileItem[];
+  fileIndex?: number[];
+  type?: string;
 };
 
 export abstract class KucBase extends LitElement {
@@ -17,7 +24,7 @@ export abstract class KucBase extends LitElement {
 export const dispatchCustomEvent = (
   el: HTMLElement,
   eventName: string,
-  detail?: CustomEventDetail
+  detail?: CustomEventDetail | AttachmentEventDetail
 ) => {
   const event = new CustomEvent(eventName, {
     detail,
