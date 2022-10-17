@@ -7,7 +7,6 @@ import {
 } from "../../base/converter";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
-  CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
@@ -19,7 +18,7 @@ import {
   validateTimeValue,
 } from "../../base/validator";
 import { MOBILE_TIME_PICKER_CSS } from "./style";
-import { MobileTimePickerProps } from "./type";
+import { MobileTimePickerEventDetail, MobileTimePickerProps } from "./type";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
@@ -148,7 +147,7 @@ let exportMobileTimePicker;
     private _handleTimeChange(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
-      const detail: CustomEventDetail = {
+      const detail: MobileTimePickerEventDetail = {
         value: event.detail.value,
         oldValue: this.value,
       };

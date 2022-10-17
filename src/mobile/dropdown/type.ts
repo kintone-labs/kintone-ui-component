@@ -1,6 +1,11 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
 
+export declare type MobileDropdownEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
 export declare type MobileDropdownItem = {
   label?: string;
   value?: string;
