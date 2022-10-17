@@ -17,7 +17,11 @@ import {
 import { ERROR_MESSAGE } from "../../base/constant";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
-import { MobileCheckboxProps, MobileCheckboxItem } from "./type";
+import {
+  MobileCheckboxEventDetail,
+  MobileCheckboxProps,
+  MobileCheckboxItem,
+} from "./type";
 import { MOBILE_CHECKBOX_CSS } from "./style";
 export { BaseMobileLabel, BaseMobileError };
 
@@ -106,10 +110,11 @@ let exportMobileCheckbox;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      dispatchCustomEvent(this, "change", {
+      const detail: MobileCheckboxEventDetail = {
         oldValue,
         value: newValue,
-      });
+      };
+      dispatchCustomEvent(this, "change", detail);
     }
 
     private _getCheckboxIconSvgTemplate(checked: boolean) {
