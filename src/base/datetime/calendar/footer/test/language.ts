@@ -1,4 +1,4 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 import { BaseDateTimeCalendarFooter } from "../index";
 
 describe("BaseDateTimeCalendarFooter", () => {
@@ -33,6 +33,19 @@ describe("BaseDateTimeCalendarFooter", () => {
     it("should be '今天' and '清空' when assigning language prop with 'zh'", async () => {
       const container = new BaseDateTimeCalendarFooter();
       container.language = "zh";
+      const el = await fixture(container);
+      const buttonTodayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--today"
+      ) as HTMLButtonElement;
+      const buttonNoneEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--none"
+      ) as HTMLButtonElement;
+      expect(buttonTodayEl.innerText).to.equal("今天");
+      expect(buttonNoneEl.innerText).to.equal("清空");
+    });
+    it("should be '今天' and '清空' when assigning language prop with 'zh-TW'", async () => {
+      const container = new BaseDateTimeCalendarFooter();
+      container.language = "zh-TW";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
         ".kuc-base-datetime-calendar-footer__group__button--today"

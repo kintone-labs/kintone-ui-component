@@ -20,7 +20,7 @@ export default {
     },
     language: {
       name: "language",
-      options: ["en", "ja", "zh"],
+      options: ["en", "ja", "zh", "zh-TW"],
       control: { type: "select" },
     },
     value: {

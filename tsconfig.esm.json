@@ -8,6 +8,7 @@
   },
   "exclude": [
     "node_modules",
+    "./demos",
     "lib",
     "./src/readonly-table/",
     "./src/index.bundle.ts",

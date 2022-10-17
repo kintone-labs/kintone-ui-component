@@ -1,19 +1,24 @@
 export const BUTTON_CSS = `
   kuc-button,
   kuc-button *,
-  :lang(en) kuc-button,
-  :lang(en) kuc-button * {
+  kuc-button:lang(en),
+  kuc-button:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial, "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
   }
-  :lang(ja) kuc-button,
-  :lang(ja) kuc-button * {
+  kuc-button:lang(ja),
+  kuc-button:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(zh) kuc-button,
-  :lang(zh) kuc-button * {
+  kuc-button:lang(zh),
+  kuc-button:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti, Hei,
       "Heiti SC", sans-serif;
+  }
+  kuc-button:lang(zh-TW),
+  kuc-button:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-button {
     display: inline-block;

@@ -1,5 +1,5 @@
 import { svg } from "lit";
-import { en, zh, ja } from "../resource/locale";
+import { en, zh, ja, zh_TW } from "../resource/locale";
 import {
   MAX_MINUTES,
   MAX_HOURS12,
@@ -310,6 +310,8 @@ export const getLocale = (language: string) => {
       return zh;
     case "ja":
       return ja;
+    case "zh-TW":
+      return zh_TW;
     default:
       return en;
   }

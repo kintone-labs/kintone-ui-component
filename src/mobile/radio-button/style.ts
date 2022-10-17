@@ -8,13 +8,18 @@ export const MOBILE_RADIO_BUTTON_CSS = `
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
   }
 
-  :lang(zh) kuc-mobile-radio-button,
-  :lang(zh) kuc-mobile-radio-button * {
+  kuc-mobile-radio-button:lang(zh) ,
+  kuc-mobile-radio-button:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", "Lucida Grande", "Lucida Sans Unicode", Arial,
       Verdana, sans-serif;
   }
-
+  kuc-mobile-radio-button:lang(zh-TW),
+  kuc-mobile-radio-button:lang(zh-TW) * {
+      font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
+      Verdana,sans-serif
+  }
   kuc-mobile-radio-button {
     width: 100%;
     display: inline-block;
@@ -29,6 +34,7 @@ export const MOBILE_RADIO_BUTTON_CSS = `
     height: auto;
     display: inline-block;
     width: 100%;
+    vertical-align: top;
   }
 
   .kuc-mobile-radio-button__group__label {

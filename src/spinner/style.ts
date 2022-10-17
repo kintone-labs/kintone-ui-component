@@ -1,20 +1,25 @@
 export const SPINNER_CSS = `
   kuc-spinner,
   kuc-spinner *,
-  :lang(en) kuc-spinner,
-  :lang(en) kuc-spinner * {
+  kuc-spinner:lang(en),
+  kuc-spinner:lang(en) * {
     font-family: "HelveticaNeueW02-45Ligh", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-spinner,
-  :lang(ja) kuc-spinner * {
+  kuc-spinner:lang(ja),
+  kuc-spinner:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-spinner,
-  :lang(zh) kuc-spinner * {
+  kuc-spinner:lang(zh),
+  kuc-spinner:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-spinner:lang(zh-TW),
+  kuc-spinner:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-spinner {
     font-size: 14px;

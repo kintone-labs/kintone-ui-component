@@ -1,20 +1,25 @@
 export const NOTIFICATION_CSS = `
   kuc-notification,
   kuc-notification *,
-  :lang(en) kuc-notification,
-  :lang(en) kuc-notification * {
+  kuc-notification:lang(en),
+  kuc-notification:lang(en) * {
     font-family: "HelveticaNeueW02-65Medi", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  :lang(ja) kuc-notification,
-  :lang(ja) kuc-notification * {
+  kuc-notification:lang(ja),
+  kuc-notification:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  :lang(zh) kuc-notification,
-  :lang(zh) kuc-notification * {
+  kuc-notification:lang(zh),
+  kuc-notification:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
+  }
+  kuc-notification:lang(zh-TW),
+  kuc-notification:lang(zh-TW) * {
+    font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+      Hei,"Heiti SC",sans-serif;
   }
   kuc-notification {
     color: #ffffff;
