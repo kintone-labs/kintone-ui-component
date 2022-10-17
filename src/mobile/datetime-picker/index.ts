@@ -165,7 +165,7 @@ let exportMobileDateTimePicker;
     private _updateValueAndErrorWhenUIChange() {
       const validFormat = this._checkDateTimeFormat();
       this.value = validFormat ? this.value : undefined;
-      this._errorText = validFormat ? this.error : this._errorFormat;
+      this._updateErrorText();
     }
 
     private _checkDateTimeFormat() {
@@ -334,7 +334,6 @@ let exportMobileDateTimePicker;
       this.value = _value;
       const _newValue = this._errorFormat ? undefined : newDateTime;
       this.value = _newValue;
-      this.error = "";
       const detail = {
         value: _value,
         oldValue: oldDateTime,

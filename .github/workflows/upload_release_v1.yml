@@ -6,7 +6,7 @@ on:
 jobs:
   On_upload:
     name: Upload integrity and package to release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     # Use this to check automation test
     # - name: Check if automation test is fail
