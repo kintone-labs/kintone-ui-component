@@ -6,7 +6,6 @@ import {
   languagePropConverter,
 } from "../../base/converter";
 import {
-  CustomEventDetail,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
@@ -22,7 +21,7 @@ import "../../base/datetime/mobile-date";
 import "../../base/mobile-label";
 import "../../base/mobile-error";
 import { MOBILE_DATE_PICKER_CSS } from "./style";
-import { MobileDatePickerProps } from "./type";
+import { MobileDatePickerEventDetail, MobileDatePickerProps } from "./type";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 let exportMobileDatePicker;
@@ -157,16 +156,16 @@ let exportMobileDatePicker;
     private _handleDateChange(event: CustomEvent) {
       event.stopPropagation();
       event.preventDefault();
-      const eventDetail: CustomEventDetail = {
+      const eventDetail: MobileDatePickerEventDetail = {
         oldValue: this.value,
         value: "",
       };
       this.value = event.detail.value;
       eventDetail.value = this.value;
-      this._disptchChangeEvent(eventDetail);
+      this._dispatchChangeEvent(eventDetail);
     }
 
-    private _disptchChangeEvent(eventDetail: CustomEventDetail) {
+    private _dispatchChangeEvent(eventDetail: MobileDatePickerEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
   }
