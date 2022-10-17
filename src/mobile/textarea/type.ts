@@ -1,5 +1,11 @@
 import { KucBase } from "../../base/kuc-base";
 
+export declare type MobileTextAreaEventDetail = {
+  oldValue?: string | undefined;
+  value: string | undefined;
+  data?: string | null;
+}
+
 export declare type MobileTextAreaProps = {
   className?: string;
   error?: string;
