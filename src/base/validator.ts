@@ -142,6 +142,7 @@ export function validateRowsPerPage(numRows: number) {
     return false;
   }
   return true;
+}
 
 export const validateFieldRequiredInColumnTable = (columns: object[]) => {
   for (let i = 0; i < columns.length; i++) {
