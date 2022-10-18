@@ -12,6 +12,7 @@ import {
   validateProps,
   validateItems,
   validateValueString,
+  validateDuplicatedValues,
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
@@ -108,6 +109,15 @@ let exportCombobox;
           throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
+
+        const itemsValues = this.items.map((item) => item.value);
+        if (!validateDuplicatedValues(itemsValues)) {
+          throwErrorAfterUpdateComplete(
+            this,
+            ERROR_MESSAGE.ITEMS.IS_DUPLICATED
+          );
+          return false;
+        }
       }
 
       if (changedProperties.has("value")) {
@@ -152,6 +162,7 @@ let exportCombobox;
               aria-haspopup="listbox"
               aria-autocomplete="list"
               aria-labelledby="${this._GUID}-label"
+              aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeComboboxInput}"

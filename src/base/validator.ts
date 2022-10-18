@@ -114,6 +114,19 @@ export function validateDateTimeValue(date: string, time: string) {
   return true;
 }
 
+export function validateDuplicatedValues(values: Array<string | undefined>) {
+  const valuesLength = values.length;
+  if (valuesLength < 2) return true;
+
+  for (let i = 0; i < valuesLength; i++) {
+    for (let j = i + 1; j < valuesLength; j++) {
+      if (values[i] === values[j]) return false;
+    }
+  }
+
+  return true;
+}
+
 export async function throwErrorAfterUpdateComplete(
   _this: any,
   message: string
