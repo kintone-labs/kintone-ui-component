@@ -29,9 +29,8 @@ export const BUTTON_CSS = `
   }
   .kuc-button__button {
     font-size: var(--kuc-button-font-size, 16px);
-    width: var(--kuc-button-width, "auto");
+    width: var(--kuc-button-width, 163px);
     height: var(--kuc-button-height, 48px);
-    min-width: 163px;
     padding: 0px 16px;
     user-select: none;
   }
