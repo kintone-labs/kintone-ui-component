@@ -20,6 +20,11 @@ export declare type RadioButtonProps = {
   items?: RadioButtonItem[];
 };
 
+export declare type RadioButtonEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
 export declare class RadioButton extends KucBase {
   className: string;
   error: string;

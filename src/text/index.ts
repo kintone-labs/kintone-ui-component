@@ -4,14 +4,18 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
-import { TextProps } from "./type";
+import {
+  TextChangeEventDetail,
+  TextFocusEventDetail,
+  TextInputEventDetail,
+  TextProps,
+} from "./type";
 import { TEXT_CSS } from "./style";
 export { BaseError, BaseLabel };
 
@@ -52,14 +56,14 @@ let exportText;
     }
 
     private _handleFocusInput(event: FocusEvent) {
-      const detail: CustomEventDetail = { value: this.value };
+      const detail: TextFocusEventDetail = { value: this.value };
       dispatchCustomEvent(this, "focus", detail);
     }
 
     private _handleChangeInput(event: Event) {
       event.stopPropagation();
       const targetEl = event.target as HTMLInputElement;
-      const detail: CustomEventDetail = { value: "", oldValue: this.value };
+      const detail: TextChangeEventDetail = { value: "", oldValue: this.value };
       this.value = targetEl.value;
       detail.value = this.value;
       dispatchCustomEvent(this, "change", detail);
@@ -68,7 +72,7 @@ let exportText;
     private _handleInputText(event: InputEvent) {
       event.stopPropagation();
       const targetEl = event.target as HTMLInputElement;
-      const detail: CustomEventDetail = {
+      const detail: TextInputEventDetail = {
         value: targetEl.value,
         data: event.data,
       };

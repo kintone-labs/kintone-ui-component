@@ -14,7 +14,12 @@ import { BaseError } from "../base/error";
 export { BaseError, BaseLabel };
 
 import { TEXTAREA_CSS } from "./style";
-import { TextAreaProps } from "./type";
+import {
+  TextAreaChangeEventDetail,
+  TextAreaFocusEventDetail,
+  TextAreaInputEventDetail,
+  TextAreaProps,
+} from "./type";
 
 let exportTextarea;
 (() => {
@@ -60,14 +65,17 @@ let exportTextarea;
     }
 
     private _handleFocusTextarea(event: FocusEvent) {
-      const detail: CustomEventDetail = { value: this.value };
+      const detail: TextAreaFocusEventDetail = { value: this.value };
       dispatchCustomEvent(this, "focus", detail);
     }
 
     private _handleChangeTextarea(event: Event) {
       event.stopPropagation();
       const targetEl = event.target as HTMLInputElement;
-      const detail: CustomEventDetail = { value: "", oldValue: this.value };
+      const detail: TextAreaChangeEventDetail = {
+        value: "",
+        oldValue: this.value,
+      };
       this.value = targetEl.value;
       detail.value = this.value;
       dispatchCustomEvent(this, "change", detail);
@@ -76,7 +84,7 @@ let exportTextarea;
     private _handleInputTextArea(event: InputEvent) {
       event.stopPropagation();
       const targetEl = event.target as HTMLTextAreaElement;
-      const detail: CustomEventDetail = {
+      const detail: TextAreaInputEventDetail = {
         value: targetEl.value,
         data: event.data,
       };

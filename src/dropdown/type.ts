@@ -19,6 +19,11 @@ export declare type DropdownProps = {
   items?: DropdownItem[];
 };
 
+export declare type DropdownEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
 export declare class Dropdown extends KucBase {
   className: string;
   error: string;

@@ -16,6 +16,10 @@ export declare type CheckboxProps = {
   value?: string[];
   selectedIndex?: number[];
 };
+export declare type CheckboxEventDetail = {
+  oldValue: string[] | undefined;
+  value: string[] | undefined;
+};
 
 export declare class Checkbox extends KucBase {
   className: string;

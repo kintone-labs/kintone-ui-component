@@ -15,7 +15,7 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckBoxItem, CheckboxProps } from "./type";
+import { CheckboxEventDetail, CheckBoxItem, CheckboxProps } from "./type";
 import { CHECKBOX_CSS } from "./style";
 import { BaseError } from "../base/error";
 import { BaseLabel } from "../base/label";
@@ -145,10 +145,15 @@ let exportCheckbox;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      dispatchCustomEvent(this, "change", {
-        oldValue,
+      const eventDetail: CheckboxEventDetail = {
+        oldValue: oldValue,
         value: newValue,
-      });
+      };
+      this._dispatchCustomEvent(eventDetail);
+    }
+
+    private _dispatchCustomEvent(eventDetail: CheckboxEventDetail) {
+      dispatchCustomEvent(this, "change", eventDetail);
     }
 
     private _handleFocusInput(event: FocusEvent) {

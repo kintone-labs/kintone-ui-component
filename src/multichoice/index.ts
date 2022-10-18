@@ -15,7 +15,11 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { MultiChoiceItem, MultiChoiceProps } from "./type";
+import {
+  MultiChoiceEventDetail,
+  MultiChoiceItem,
+  MultiChoiceProps,
+} from "./type";
 import { MULTICHOICE_CSS } from "./style";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
@@ -410,10 +414,15 @@ let exportMultiChoice;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      dispatchCustomEvent(this, "change", {
-        oldValue,
+      const eventDetail: MultiChoiceEventDetail = {
+        oldValue: oldValue,
         value: newValue,
-      });
+      };
+      this._dispatchCustomEvent(eventDetail);
+    }
+
+    private _dispatchCustomEvent(eventDetail: MultiChoiceEventDetail) {
+      dispatchCustomEvent(this, "change", eventDetail);
     }
 
     private _getNewValueMapping(value: string, selectedIndex: string) {

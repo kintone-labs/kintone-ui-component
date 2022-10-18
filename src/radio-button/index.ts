@@ -17,7 +17,11 @@ import {
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
-import { RadioButtonItem, RadioButtonProps } from "./type";
+import {
+  RadioButtonEventDetail,
+  RadioButtonItem,
+  RadioButtonProps,
+} from "./type";
 import { RADIOBUTTON_CSS } from "./style";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
@@ -125,10 +129,17 @@ let exportRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: CustomEventDetail = { oldValue: this.value, value: value };
+      const detail: RadioButtonEventDetail = {
+        oldValue: this.value,
+        value: value,
+      };
       this.value = value;
       this.selectedIndex = indexNumber;
-      dispatchCustomEvent(this, "change", detail);
+      this._dispatchCustomEvent(detail);
+    }
+
+    private _dispatchCustomEvent(eventDetail: RadioButtonEventDetail) {
+      dispatchCustomEvent(this, "change", eventDetail);
     }
 
     private _handleFocusInput(event: FocusEvent) {
