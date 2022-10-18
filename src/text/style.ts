@@ -26,8 +26,8 @@ kuc-text {
   color: #333333;
   display: inline-table;
   vertical-align: top;
-  min-width: 177px;
-  width: 177px;
+  min-width: var(--kuc-text-input-width, 177px);
+  width: var(--kuc-text-input-width, 177px);
   line-height: 1.5;
 }
 kuc-text[hidden] {
@@ -72,7 +72,6 @@ input[type="text"].kuc-text__group__input-form__input-outer__input {
   height: var(--kuc-text-input-height, 40px);
   font-size: var(--kuc-text-input-font-size, 14px);
   color: var(--kuc-text-input-color, #000000);
-  min-width: 100%;
   padding: 0 8px;
   border: 1px solid #e3e7e8;
   box-sizing: border-box;
