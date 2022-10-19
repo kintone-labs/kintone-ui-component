@@ -38,7 +38,11 @@ import "../base/datetime/time";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
 import { DATE_TIME_PICKER_CSS } from "./style";
-import { DateAndTime, DateTimePickerProps } from "./type";
+import {
+  DateAndTime,
+  DateTimePickerProps,
+  DateTimePickerEventDetail,
+} from "./type";
 export { BaseError, BaseLabel };
 
 let exportDateTimePicker;
@@ -408,7 +412,7 @@ let exportDateTimePicker;
       this._updateDateTimeValue(newValue, "time");
     }
 
-    private _updateDateTimeValue(newValue: string, type: string) {
+    private _updateDateTimeValue(newValue: string, type: "date" | "time") {
       const oldDateTime = this.value;
 
       if (type === "date") {
@@ -429,7 +433,7 @@ let exportDateTimePicker;
       if (validFormat && !this._dateValue && !this._timeValue) {
         this.value = "";
       }
-      const detail = {
+      const detail: DateTimePickerEventDetail = {
         value: this.value,
         oldValue: oldDateTime,
         changedPart: type,
