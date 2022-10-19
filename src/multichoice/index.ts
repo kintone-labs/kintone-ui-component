@@ -415,13 +415,9 @@ let exportMultiChoice;
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
       const eventDetail: MultiChoiceEventDetail = {
-        oldValue: oldValue,
+        oldValue,
         value: newValue,
       };
-      this._dispatchCustomEvent(eventDetail);
-    }
-
-    private _dispatchCustomEvent(eventDetail: MultiChoiceEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
 

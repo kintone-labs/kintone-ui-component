@@ -146,13 +146,9 @@ let exportCheckbox;
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
       const eventDetail: CheckboxEventDetail = {
-        oldValue: oldValue,
+        oldValue,
         value: newValue,
       };
-      this._dispatchCustomEvent(eventDetail);
-    }
-
-    private _dispatchCustomEvent(eventDetail: CheckboxEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
 

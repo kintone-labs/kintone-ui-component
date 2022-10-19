@@ -4,7 +4,6 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
@@ -129,16 +128,12 @@ let exportRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: RadioButtonEventDetail = {
+      const eventDetail: RadioButtonEventDetail = {
         oldValue: this.value,
         value: value,
       };
       this.value = value;
       this.selectedIndex = indexNumber;
-      this._dispatchCustomEvent(detail);
-    }
-
-    private _dispatchCustomEvent(eventDetail: RadioButtonEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
 
