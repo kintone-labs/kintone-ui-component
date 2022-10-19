@@ -495,16 +495,12 @@ let exportDropdown;
     private _actionUpdateValue(value: string, index: string) {
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: DropdownEventDetail = {
+      const eventDetail: DropdownEventDetail = {
         oldValue: this.value,
         value: value,
       };
       this.value = value;
       this.selectedIndex = indexNumber;
-      this._dispatchCustomEvent(detail);
-    }
-
-    private _dispatchCustomEvent(eventDetail: DropdownEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
 
