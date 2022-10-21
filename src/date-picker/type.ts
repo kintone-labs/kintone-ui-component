@@ -1,7 +1,7 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
-export declare type DatePickerEventDetail = {
+export declare type DatePickerChangeEventDetail = {
   oldValue: string | undefined;
   value: string | undefined;
 };

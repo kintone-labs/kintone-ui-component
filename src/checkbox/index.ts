@@ -15,7 +15,7 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckboxEventDetail, CheckBoxItem, CheckboxProps } from "./type";
+import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
 import { CHECKBOX_CSS } from "./style";
 import { BaseError } from "../base/error";
 import { BaseLabel } from "../base/label";
@@ -145,7 +145,7 @@ let exportCheckbox;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      const eventDetail: CheckboxEventDetail = {
+      const eventDetail: CheckboxChangeEventDetail = {
         oldValue,
         value: newValue,
       };

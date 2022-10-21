@@ -21,7 +21,7 @@ import "../base/datetime/date";
 import { INVALID_FORMAT_MESSAGE } from "../base/datetime/resource/constant";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
-import { DatePickerProps, DatePickerEventDetail } from "./type";
+import { DatePickerProps, DatePickerChangeEventDetail } from "./type";
 import { DATE_PICKER_CSS } from "./style";
 export { BaseError, BaseLabel };
 
@@ -160,7 +160,7 @@ let exportDatePicker;
     private _handleDateChange(event: CustomEvent) {
       event.stopPropagation();
       event.preventDefault();
-      const eventDetail: DatePickerEventDetail = {
+      const eventDetail: DatePickerChangeEventDetail = {
         oldValue: this.value,
         value: "",
       };
@@ -178,7 +178,7 @@ let exportDatePicker;
       this._dispatchChangeEvent(eventDetail);
     }
 
-    private _dispatchChangeEvent(eventDetail: DatePickerEventDetail) {
+    private _dispatchChangeEvent(eventDetail: DatePickerChangeEventDetail) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
   }

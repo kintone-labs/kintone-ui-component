@@ -31,7 +31,7 @@ import "../base/datetime/time";
 import { timeCompare } from "../base/datetime/utils";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
-import { TimePickerProps, TimePickerEventDetail } from "./type";
+import { TimePickerProps, TimePickerChangeEventDetail } from "./type";
 import { TIME_PICKER_CSS } from "./style";
 export { BaseError, BaseLabel };
 
@@ -240,7 +240,7 @@ let exportTimePicker;
     private _handleTimeChange(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
-      const detail: TimePickerEventDetail = {
+      const detail: TimePickerChangeEventDetail = {
         value: event.detail.value,
         oldValue: this.value,
       };

@@ -19,7 +19,7 @@ export declare type DropdownProps = {
   items?: DropdownItem[];
 };
 
-export declare type DropdownEventDetail = {
+export declare type DropdownChangeEventDetail = {
   oldValue: string | undefined;
   value: string | undefined;
 };

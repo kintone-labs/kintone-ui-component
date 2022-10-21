@@ -17,7 +17,7 @@ import {
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
 import {
-  RadioButtonEventDetail,
+  RadioButtonChangeEventDetail,
   RadioButtonItem,
   RadioButtonProps,
 } from "./type";
@@ -128,7 +128,7 @@ let exportRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const eventDetail: RadioButtonEventDetail = {
+      const eventDetail: RadioButtonChangeEventDetail = {
         oldValue: this.value,
         value: value,
       };

@@ -16,7 +16,7 @@ export declare type CheckboxProps = {
   value?: string[];
   selectedIndex?: number[];
 };
-export declare type CheckboxEventDetail = {
+export declare type CheckboxChangeEventDetail = {
   oldValue: string[] | undefined;
   value: string[] | undefined;
 };

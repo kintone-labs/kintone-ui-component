@@ -16,7 +16,7 @@ import {
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import {
-  MultiChoiceEventDetail,
+  MultiChoiceChangeEventDetail,
   MultiChoiceItem,
   MultiChoiceProps,
 } from "./type";
@@ -414,7 +414,7 @@ let exportMultiChoice;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      const eventDetail: MultiChoiceEventDetail = {
+      const eventDetail: MultiChoiceChangeEventDetail = {
         oldValue,
         value: newValue,
       };

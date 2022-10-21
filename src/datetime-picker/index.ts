@@ -41,7 +41,7 @@ import { DATE_TIME_PICKER_CSS } from "./style";
 import {
   DateAndTime,
   DateTimePickerProps,
-  DateTimePickerEventDetail,
+  DateTimePickerChangeEventDetail,
 } from "./type";
 export { BaseError, BaseLabel };
 
@@ -433,7 +433,7 @@ let exportDateTimePicker;
       if (validFormat && !this._dateValue && !this._timeValue) {
         this.value = "";
       }
-      const detail: DateTimePickerEventDetail = {
+      const detail: DateTimePickerChangeEventDetail = {
         value: this.value,
         oldValue: oldDateTime,
         changedPart: type,

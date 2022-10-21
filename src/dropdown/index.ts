@@ -16,7 +16,7 @@ import {
   throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { DropdownEventDetail, DropdownItem, DropdownProps } from "./type";
+import { DropdownChangeEventDetail, DropdownItem, DropdownProps } from "./type";
 import { DROPDOWN_CSS } from "./style";
 import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
@@ -495,7 +495,7 @@ let exportDropdown;
     private _actionUpdateValue(value: string, index: string) {
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const eventDetail: DropdownEventDetail = {
+      const eventDetail: DropdownChangeEventDetail = {
         oldValue: this.value,
         value: value,
       };
