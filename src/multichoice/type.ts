@@ -19,7 +19,7 @@ export declare type MultiChoiceProps = {
   items?: MultiChoiceItem[];
 };
 
-export declare type MultiChoiceEventDetail = {
+export declare type MultiChoiceChangeEventDetail = {
   oldValue: string[] | undefined;
   value: string[] | undefined;
 };

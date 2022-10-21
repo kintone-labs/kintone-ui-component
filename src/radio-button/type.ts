@@ -20,7 +20,7 @@ export declare type RadioButtonProps = {
   items?: RadioButtonItem[];
 };
 
-export declare type RadioButtonEventDetail = {
+export declare type RadioButtonChangeEventDetail = {
   oldValue: string | undefined;
   value: string | undefined;
 };
