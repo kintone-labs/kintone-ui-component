@@ -10,6 +10,7 @@ kuc-base-datetime-listbox:lang(ja),
 kuc-base-datetime-listbox:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
     sans-serif;
+  font-weight: 400;
 }
 kuc-base-datetime-listbox:lang(zh),
 kuc-base-datetime-listbox:lang(zh) * {
