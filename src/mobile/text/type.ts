@@ -1,4 +1,10 @@
 import { KucBase } from "../../base/kuc-base";
+
+export declare type MobileTextEventDetail = {
+  data?: string | null;
+  oldValue?: string | undefined;
+  value: string | undefined;
+};
 export declare type MobileTextProps = {
   className?: string;
   error?: string;

@@ -4,7 +4,6 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
@@ -17,7 +16,11 @@ import {
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_RADIO_BUTTON_CSS } from "./style";
-import { MobileRadioButtonItem, MobileRadioButtonProps } from "./type";
+import {
+  MobileRadioButtonItem,
+  MobileRadioButtonProps,
+  MobileRadioButtonEventDetail,
+} from "./type";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
 export { BaseMobileLabel, BaseMobileError };
@@ -88,7 +91,10 @@ let exportMobileRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: CustomEventDetail = { oldValue: this.value, value: value };
+      const detail: MobileRadioButtonEventDetail = {
+        oldValue: this.value,
+        value: value,
+      };
       this.value = value;
       this.selectedIndex = indexNumber;
       dispatchCustomEvent(this, "change", detail);
