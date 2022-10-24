@@ -20,7 +20,7 @@ import {
 } from "../../base/validator";
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import {
-  MobileDateTimePickerEventDetail,
+  MobileDateTimePickerChangeEventDetail,
   MobileDateTimePickerProps,
 } from "./type";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
@@ -337,7 +337,7 @@ let exportMobileDateTimePicker;
       this.value = _value;
       const _newValue = this._errorFormat ? undefined : newDateTime;
       this.value = _newValue;
-      const detail: MobileDateTimePickerEventDetail = {
+      const detail: MobileDateTimePickerChangeEventDetail = {
         value: _value,
         oldValue: oldDateTime,
         changedPart: type,

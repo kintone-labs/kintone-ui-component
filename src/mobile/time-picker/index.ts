@@ -18,7 +18,10 @@ import {
   validateTimeValue,
 } from "../../base/validator";
 import { MOBILE_TIME_PICKER_CSS } from "./style";
-import { MobileTimePickerEventDetail, MobileTimePickerProps } from "./type";
+import {
+  MobileTimePickerChangeEventDetail,
+  MobileTimePickerProps,
+} from "./type";
 import "../../base/mobile-error";
 import "../../base/datetime/mobile-time";
 import "../../base/mobile-label";
@@ -147,7 +150,7 @@ let exportMobileTimePicker;
     private _handleTimeChange(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
-      const detail: MobileTimePickerEventDetail = {
+      const detail: MobileTimePickerChangeEventDetail = {
         value: event.detail.value,
         oldValue: this.value,
       };

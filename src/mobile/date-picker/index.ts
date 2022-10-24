@@ -21,7 +21,10 @@ import "../../base/datetime/mobile-date";
 import "../../base/mobile-label";
 import "../../base/mobile-error";
 import { MOBILE_DATE_PICKER_CSS } from "./style";
-import { MobileDatePickerEventDetail, MobileDatePickerProps } from "./type";
+import {
+  MobileDatePickerChangeEventDetail,
+  MobileDatePickerProps,
+} from "./type";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 let exportMobileDatePicker;
@@ -156,7 +159,7 @@ let exportMobileDatePicker;
     private _handleDateChange(event: CustomEvent) {
       event.stopPropagation();
       event.preventDefault();
-      const eventDetail: MobileDatePickerEventDetail = {
+      const eventDetail: MobileDatePickerChangeEventDetail = {
         oldValue: this.value,
         value: "",
       };
@@ -165,7 +168,9 @@ let exportMobileDatePicker;
       this._dispatchChangeEvent(eventDetail);
     }
 
-    private _dispatchChangeEvent(eventDetail: MobileDatePickerEventDetail) {
+    private _dispatchChangeEvent(
+      eventDetail: MobileDatePickerChangeEventDetail
+    ) {
       dispatchCustomEvent(this, "change", eventDetail);
     }
   }

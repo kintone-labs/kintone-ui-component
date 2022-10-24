@@ -1,7 +1,7 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
 
-export declare type MobileCheckboxEventDetail = {
+export declare type MobileCheckboxChangeEventDetail = {
   oldValue: string[] | undefined;
   value: string[] | undefined;
 };

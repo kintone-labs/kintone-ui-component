@@ -18,7 +18,7 @@ import { ERROR_MESSAGE } from "../../base/constant";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
 import {
-  MobileCheckboxEventDetail,
+  MobileCheckboxChangeEventDetail,
   MobileCheckboxProps,
   MobileCheckboxItem,
 } from "./type";
@@ -110,7 +110,7 @@ let exportMobileCheckbox;
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
-      const detail: MobileCheckboxEventDetail = {
+      const detail: MobileCheckboxChangeEventDetail = {
         oldValue,
         value: newValue,
       };
