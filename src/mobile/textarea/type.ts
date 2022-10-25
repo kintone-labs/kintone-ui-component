@@ -1,6 +1,5 @@
 import { KucBase } from "../../base/kuc-base";
 
-
 export declare type MobileTextAreaFocusEventDetail = {
   value: string | undefined;
 };
