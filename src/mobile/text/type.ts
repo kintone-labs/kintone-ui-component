@@ -1,8 +1,14 @@
 import { KucBase } from "../../base/kuc-base";
 
-export declare type MobileTextEventDetail = {
-  data?: string | null;
+export declare type MobileTextFocusEventDetail = {
+  value: string | undefined;
+};
+export declare type MobileTextChangeEventDetail = {
   oldValue?: string | undefined;
+  value: string | undefined;
+};
+export declare type MobileTextInputEventDetail = {
+  data?: string | null;
   value: string | undefined;
 };
 export declare type MobileTextProps = {

@@ -19,7 +19,7 @@ import { MOBILE_RADIO_BUTTON_CSS } from "./style";
 import {
   MobileRadioButtonItem,
   MobileRadioButtonProps,
-  MobileRadioButtonEventDetail,
+  MobileRadioButtonChangeEventDetail,
 } from "./type";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
@@ -91,7 +91,7 @@ let exportMobileRadioButton;
 
       const indexNumber = parseInt(index, 10);
       if (this.value === value && this.selectedIndex === indexNumber) return;
-      const detail: MobileRadioButtonEventDetail = {
+      const detail: MobileRadioButtonChangeEventDetail = {
         oldValue: this.value,
         value: value,
       };
