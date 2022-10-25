@@ -99,3 +99,4 @@ You can choose any component of KUC to develop your application.
 Now you can use some type of definition in your project:
 - Items property (ex: DropdownItem)
 - Component property (ex: DropdownProps, DatePickerProps)
+- CustomEvent.detail property (ex: DropdownChangeEventDetail)
