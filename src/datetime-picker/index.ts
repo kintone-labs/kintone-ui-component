@@ -1,4 +1,3 @@
-/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import {
@@ -125,51 +124,19 @@ let exportDateTimePicker;
       Object.assign(this, validProps);
     }
 
-    // eslint-disable-next-line max-statements
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-      if (_changedProperties.has("max") || _changedProperties.has("min")) {
-        let _inputMinTemp = this._inputMin;
-        let _inputMaxTemp = this._inputMax;
-
-        if (this.max === undefined || this.max === "") {
-          _inputMaxTemp = MAX_TIME;
-        } else {
-          if (!validateTimeValue(this.max)) {
-            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MAX);
-            return false;
-          }
-          _inputMaxTemp = this.max = timeValueConverter(this.max);
-        }
-
-        if (this.min === undefined || this.min === "") {
-          _inputMinTemp = MIN_TIME;
-        } else {
-          if (!validateTimeValue(this.min)) {
-            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MIN);
-            return false;
-          }
-          _inputMinTemp = this.min = timeValueConverter(this.min);
-        }
-
-        if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
-          throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
-          return false;
-        }
-        this._inputMin = _inputMinTemp;
-        this._inputMax = _inputMaxTemp;
+      if (
+        (_changedProperties.has("max") || _changedProperties.has("min")) &&
+        !this._checkAndUpdateMaxMinProperty()
+      ) {
+        return false;
       }
 
-      if (_changedProperties.has("timeStep")) {
-        if (!validateTimeStepNumber(this.timeStep)) {
-          throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
-          return false;
-        }
-
-        if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.TIME_STEP);
-          return false;
-        }
-        this._inputTimeStep = this.timeStep;
+      if (
+        _changedProperties.has("timeStep") &&
+        !this._checkAndUpdateTimeStepProperty()
+      ) {
+        return false;
       }
 
       if (this.value === undefined || this.value === "") return true;
@@ -214,6 +181,51 @@ let exportDateTimePicker;
       this._updateValueWhenSetter();
     }
 
+    private _checkAndUpdateMaxMinProperty() {
+      let _inputMinTemp = this._inputMin;
+      let _inputMaxTemp = this._inputMax;
+
+      if (this.max === undefined || this.max === "") {
+        _inputMaxTemp = MAX_TIME;
+      } else {
+        if (!validateTimeValue(this.max)) {
+          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MAX);
+          return false;
+        }
+        _inputMaxTemp = this.max = timeValueConverter(this.max);
+      }
+
+      if (this.min === undefined || this.min === "") {
+        _inputMinTemp = MIN_TIME;
+      } else {
+        if (!validateTimeValue(this.min)) {
+          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MIN);
+          return false;
+        }
+        _inputMinTemp = this.min = timeValueConverter(this.min);
+      }
+
+      if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
+        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        return false;
+      }
+      this._inputMin = _inputMinTemp;
+      this._inputMax = _inputMaxTemp;
+      return true;
+    }
+    private _checkAndUpdateTimeStepProperty() {
+      if (!validateTimeStepNumber(this.timeStep)) {
+        throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+        return false;
+      }
+
+      if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
+        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.TIME_STEP);
+        return false;
+      }
+      this._inputTimeStep = this.timeStep;
+      return true;
+    }
     private _updateValueChangeByUI() {
       const validFormat = this._validateDateTimeFormat();
       this.value = validFormat ? this.value : undefined;
