@@ -4,11 +4,11 @@ export declare type MobileTextFocusEventDetail = {
   value: string | undefined;
 };
 export declare type MobileTextChangeEventDetail = {
-  oldValue?: string | undefined;
+  oldValue: string | undefined;
   value: string | undefined;
 };
 export declare type MobileTextInputEventDetail = {
-  data?: string | null;
+  data: string | null;
   value: string | undefined;
 };
 export declare type MobileTextProps = {

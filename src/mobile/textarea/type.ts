@@ -5,12 +5,12 @@ export declare type MobileTextAreaFocusEventDetail = {
 };
 
 export declare type MobileTextAreaChangeEventDetail = {
-  oldValue?: string | undefined;
+  oldValue: string | undefined;
   value: string | undefined;
 };
 
 export declare type MobileTextAreaInputEventDetail = {
-  data?: string | null;
+  data: string | null;
   value: string | undefined;
 };
 
