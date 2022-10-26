@@ -52,7 +52,7 @@ npm install kintone-ui-component
 
 2. Modify `src/index.ts`.
 ```js
-import { Dropdown, DropdownProps, DropdownItem } from 'kintone-ui-component';
+import { Dropdown, DropdownProps, DropdownItem, DropdownChangeEventDetail } from 'kintone-ui-component';
 
 const root = document.getElementById('root');
 const items: DropdownItem[] = [
@@ -76,6 +76,10 @@ const dropdownProps: DropdownProps = {
   error: 'Error occurred!',
 };
 const dropdown = new Dropdown(dropdownProps);
+dropdown.addEventListener('change', (event: Event) => {
+  const detail: DropdownChangeEventDetail = (<CustomEvent>event).detail;
+  console.log(detail);
+});
 root.appendChild(dropdown);
 ```
 3. Now run the following command to build.
@@ -95,3 +99,4 @@ You can choose any component of KUC to develop your application.
 Now you can use some type of definition in your project:
 - Items property (ex: DropdownItem)
 - Component property (ex: DropdownProps, DatePickerProps)
+- CustomEvent.detail property (ex: DropdownChangeEventDetail)
