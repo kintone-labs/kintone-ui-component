@@ -225,6 +225,12 @@ let exportCombobox;
       if (this._selectorVisible) {
         this._setMenuPosition();
         this._scrollToView();
+        if (this._selectedItemEl === null) {
+          this._actionClearAllHighlightMenuItem();
+        } else {
+          this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
+        }
+
         setTimeout(() => {
           document.addEventListener("click", this._handleClickDocument, true);
         }, 1);
@@ -329,6 +335,7 @@ let exportCombobox;
     private _handleClickToggleButton(event: MouseEvent): void {
       event.preventDefault();
       this._inputEl.focus();
+      this._inputEl.select();
       this._resetToggleInputValue();
       this._actionToggleMenu();
     }
@@ -343,6 +350,7 @@ let exportCombobox;
 
     private _handleClickComboboxInput(event: Event) {
       event.stopPropagation();
+      this._inputEl.select();
       this._setMatchingItems();
     }
 
@@ -444,9 +452,6 @@ let exportCombobox;
       if (this._query === "") {
         this._matchingItems = this.items;
       }
-
-      if (this._selectedItemEl === null) return;
-      this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
     private _actionHideMenu() {

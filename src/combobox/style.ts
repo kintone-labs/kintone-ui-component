@@ -68,6 +68,8 @@ export const COMBOBOX_CSS = `
   .kuc-combobox__group__toggle__input:focus {
     outline: none;
     border: 1px solid #3498db;
+    background-color: #e2f2fe;
+    box-shadow: none;
   }
   .kuc-combobox__group__toggle__input:disabled,
   .kuc-combobox__group__toggle__button:disabled {
