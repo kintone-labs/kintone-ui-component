@@ -267,11 +267,12 @@ let exportCombobox;
       const isCheckedItem = this._isCheckedItem(item);
       const text = item.label === undefined ? item.value : item.label;
       let newText = html`${text}`;
-      if (this._query && text) {
-        const queryIndex = text.indexOf(this._query);
+      if (this._query.trim() !== "" && text) {
+        const trimmedQuery = this._query.trim();
+        const queryIndex = text.indexOf(trimmedQuery);
         newText = html`
-          ${text.slice(0, queryIndex)}<b>${this._query}</b>${text.slice(
-            queryIndex + this._query.length
+          ${text.slice(0, queryIndex)}<b>${trimmedQuery}</b>${text.slice(
+            queryIndex + trimmedQuery.length
           )}
         `;
       }
@@ -449,7 +450,7 @@ let exportCombobox;
       this._inputEl.focus();
       this._selectorVisible = true;
 
-      if (this._query === "") {
+      if (this._query.trim() === "") {
         this._matchingItems = this.items;
       }
     }
@@ -554,12 +555,15 @@ let exportCombobox;
     }
 
     private _setMatchingItems() {
-      const regex = new RegExp(this._query, "gi");
+      const escapePattern = (string: string) => {
+        return string.replace(/[.*+?^=!:${}()|[\]/\\]/g, "\\$&");
+      };
+      const regex = new RegExp(escapePattern(this._query.trim()), "gi");
       const matchingItems = this.items.filter((item) => {
         if (item.label) {
-          return item.label.match(regex);
+          return regex.test(item.label);
         } else if (item.value) {
-          return item.value.match(regex);
+          return regex.test(item.value);
         }
         return false;
       });
