@@ -15,6 +15,12 @@ export declare type AttachmentProps = {
   requiredIcon?: boolean;
   visible?: boolean;
 };
+export declare type AttachmentEventDetail = {
+  files?: FileItem[];
+  oldFiles?: FileItem[];
+  fileIndex?: number[];
+  type?: string;
+};
 export declare class Attachment extends KucBase {
   className: string;
   disabled: boolean;

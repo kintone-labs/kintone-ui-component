@@ -15,7 +15,7 @@ import {
 } from "../base/validator";
 import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
-import { AttachmentProps, FileItem } from "./type";
+import { AttachmentEventDetail, AttachmentProps, FileItem } from "./type";
 import {
   ATTACHMENT_INVALID_SIZE_ERROR,
   ONE_GB,
@@ -75,6 +75,11 @@ let exportAttachment;
       ".kuc-attachment__group__files__browse-button__input-container__input"
     )
     private _inputEl!: HTMLInputElement;
+    @query(".kuc-attachment__group__files__droppable")
+    private _dragArea!: HTMLDivElement;
+
+    @query(".kuc-attachment__group")
+    private _attachment!: HTMLDivElement;
 
     constructor(props?: AttachmentProps) {
       super();
@@ -243,7 +248,7 @@ let exportAttachment;
         const tempFiles = [...this.files];
         this.files.splice(index, 1);
 
-        const detail = {
+        const detail: AttachmentEventDetail = {
           oldFiles: tempFiles,
           files: this.files,
           type: "remove-file",
@@ -269,6 +274,9 @@ let exportAttachment;
             this._dragTextParentBorderWidth) *
             2 +
           "px";
+        this._dragArea.style.width = this._groupFilesEl.offsetWidth + "px";
+        this._attachment.style.width =
+          this._groupFilesEl.offsetWidth + this._dragTextBorderWidth + "px";
         this._dragEl.style.width = this._groupFilesEl.offsetWidth + "px";
         this._dragEl.style.height =
           this._groupFilesEl.offsetHeight -
@@ -317,6 +325,7 @@ let exportAttachment;
 
       if (this._dragEnterCounter === 0) {
         this._groupFilesEl.style.height = "auto";
+        this._attachment.style.width = "auto";
         this._isDraging = false;
       }
     }
@@ -340,7 +349,7 @@ let exportAttachment;
           return tempFileList.length + index;
         }) as number[];
         addedFiles.forEach((addedFile: FileItem) => this.files.push(addedFile));
-        const detail = {
+        const detail: AttachmentEventDetail = {
           oldFiles: tempFileList,
           files: this.files,
           type: "add-file",
