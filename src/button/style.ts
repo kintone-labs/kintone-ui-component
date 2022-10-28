@@ -39,12 +39,10 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-color, #f7f9fa);
     color: var(--kuc-button-text-color, #3498db);
     border: 1px solid #e3e7e8;
-    box-shadow: 1px 1px 1px #ffffff inset;
   }
   .kuc-button__button--normal:hover,
   .kuc-button__button--normal:focus-visible,
   .kuc-button__button--normal:active {
-    box-shadow: none;
     cursor: pointer;
   }
   .kuc-button__button--normal:hover {
@@ -78,13 +76,11 @@ export const BUTTON_CSS = `
   .kuc-button__button--alert {
     background-color: var(--kuc-button-background-color, #e74c3c);
     color: var(--kuc-button-text-color, #ffffff);
-    border: 0 none;
-    box-shadow: 1px 1px 1px #ffffff inset;
+    border: 1px solid #e3e7e8;
   }
   .kuc-button__button--alert:hover,
   .kuc-button__button--alert:focus-visible,
   .kuc-button__button--alert:active {
-    box-shadow: none;
     cursor: pointer;
   }
   .kuc-button__button--alert:hover {
@@ -99,7 +95,6 @@ export const BUTTON_CSS = `
   .kuc-button__button:disabled {
     background-color: var(--kuc-button-background-color, #d4d7d7);
     border: 1px solid #e3e7e8;
-    box-shadow: none;
     color: var(--kuc-button-text-color, #888888);
     cursor: default;
   }

@@ -3,7 +3,6 @@ import { v4 as uuid } from "uuid";
 import { FileItem } from "../attachment/type";
 
 type CustomEventDetail = {
-  data?: string | null;
   oldValue?: string | string[];
   value?: string | string[];
   error?: string;

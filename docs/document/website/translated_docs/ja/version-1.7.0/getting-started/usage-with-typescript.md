@@ -1,5 +1,5 @@
 ---
-id: version-1.6.0-usage-with-typescript
+id: version-1.7.0-usage-with-typescript
 title: Usage with TypeScript
 sidebar_label: Usage with TypeScript
 original_id: usage-with-typescript
@@ -53,7 +53,7 @@ npm install kintone-ui-component
 
 2. `src/index.ts` を編集します。
 ```js
-import { Dropdown, DropdownProps, DropdownItem } from 'kintone-ui-component';
+import { Dropdown, DropdownProps, DropdownItem, DropdownChangeEventDetail } from 'kintone-ui-component';
 
 const root = document.getElementById('root');
 const items: DropdownItem[] = [
@@ -77,6 +77,10 @@ const dropdownProps: DropdownProps = {
   error: 'Error occurred!',
 };
 const dropdown = new Dropdown(dropdownProps);
+dropdown.addEventListener('change', ((event: CustomEvent) => {
+  const detail: DropdownChangeEventDetail = event.detail;
+  console.log(detail);
+}) as EventListener);
 root.appendChild(dropdown);
 ```
 3. 次のコマンドを実行してビルドします。
@@ -95,3 +99,4 @@ KUC は TypeScript で書かれていて型定義も充実しているので、�
 アプリケーションを開発するために、KUC のコンポーネントを自由に選択し、以下の型定義を利用できるようになります。
 - Items プロパティ (ex: DropdownItem)
 - コンポーネントのプロパティ (ex: DropdownProps, DatePickerProps)
+- CustomEvent.detail プロパティ（ex: DropdownChangeEventDetail）
