@@ -3,8 +3,8 @@ import { v4 as uuid } from "uuid";
 
 type CustomEventDetail = {
   error?: string;
-  oldValue?: string | string[];
-  value?: string | string[];
+  oldValue?: string;
+  value?: string;
 };
 
 export abstract class KucBase extends LitElement {
