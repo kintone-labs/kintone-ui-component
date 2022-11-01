@@ -267,11 +267,12 @@ let exportCombobox;
       let newText = html`${text}`;
       if (this._query.trim() !== "" && text) {
         const trimmedQuery = this._query.trim();
-        const queryIndex = text.indexOf(trimmedQuery);
+        const queryIndex = text.toLowerCase().indexOf(trimmedQuery);
         newText = html`
-          ${text.slice(0, queryIndex)}<b>${trimmedQuery}</b>${text.slice(
+          ${text.slice(0, queryIndex)}<b>${text.slice(
+            queryIndex,
             queryIndex + trimmedQuery.length
-          )}
+          )}</b>${text.slice(queryIndex + trimmedQuery.length)}
         `;
       }
 
@@ -553,11 +554,12 @@ let exportCombobox;
     }
 
     private _setMatchingItems() {
-      const escapePattern = (string: string) => {
-        return string.replace(/[.*+?^=!:${}()|[\]/\\]/g, "\\$&");
-      };
-      const regex = new RegExp(escapePattern(this._query.trim()), "gi");
       const matchingItems = this.items.filter((item) => {
+        const escapePattern = (string: string) => {
+          return string.replace(/[.*+?^=!:${}()|[\]/\\]/g, "\\$&");
+        };
+        const regex = new RegExp(escapePattern(this._query.trim()), "gi");
+
         if (item.label) {
           return regex.test(item.label);
         } else if (item.value) {
