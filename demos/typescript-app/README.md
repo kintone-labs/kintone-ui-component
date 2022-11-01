@@ -45,11 +45,12 @@ const dropdownProps: DropdownProps = {
   label: 'Fruit',
   error: 'Error occurred!',
 };
+
 const dropdown = new Dropdown(dropdownProps);
-dropdown.addEventListener('change', (event: Event) => {
-  const detail: DropdownChangeEventDetail = (<CustomEvent>event).detail;
+dropdown.addEventListener('change', ((event: CustomEvent) => {
+  const detail: DropdownChangeEventDetail = event.detail;
   console.log(detail);
-});
+}) as EventListener);
 root.appendChild(dropdown);
 
 ```
