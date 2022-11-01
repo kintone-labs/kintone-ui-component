@@ -171,17 +171,15 @@ let exportCombobox;
               @click="${this._handleClickComboboxInput}"
               @blur="${this._handleBlurComboboxInput}"
             />
-            <div class="kuc-combobox__group__toggle__button-icon">
+            <div class="kuc-combobox__group__toggle__icon">
               <button
-                class="kuc-combobox__group__toggle__button"
+                class="kuc-combobox__group__toggle__icon__button"
                 tabindex="-1"
                 type="button"
                 ?disabled="${this.disabled}"
                 @click="${this._handleClickToggleButton}"
               >
-                <span class="kuc-combobox__group__toggle__icon">
-                  ${this._getToggleIconSvgTemplate()}
-                </span>
+                ${this._getToggleIconSvgTemplate()}
               </button>
             </div>
           </div>

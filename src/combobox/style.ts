@@ -72,19 +72,19 @@ export const COMBOBOX_CSS = `
     box-shadow: none;
   }
   .kuc-combobox__group__toggle__input:disabled,
-  .kuc-combobox__group__toggle__button:disabled {
+  .kuc-combobox__group__toggle__icon__button:disabled {
     background-color: #d4d7d7;
     box-shadow: none;
     cursor: not-allowed;
     color: #888888;
   }
-  .kuc-combobox__group__toggle__button-icon {
+  .kuc-combobox__group__toggle__icon {
     position: absolute;
     right: 0px;
     top: 2px;
     border-left: 1px solid #e3e7e8;
   }
-  .kuc-combobox__group__toggle__button {
+  .kuc-combobox__group__toggle__icon__button {
     width: 40px;
     height: 36px;
     display: flex;
@@ -95,10 +95,6 @@ export const COMBOBOX_CSS = `
     border-style: none;
     background-color: transparent;
     cursor: pointer;
-  }
-  .kuc-combobox__group__toggle__icon {
-    display: inline-block;
-    font-size: 0;
   }
   .kuc-combobox__group__select-menu {
     min-width: 280px;
