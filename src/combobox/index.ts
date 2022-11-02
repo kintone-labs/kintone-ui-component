@@ -266,7 +266,7 @@ let exportCombobox;
       const text = item.label === undefined ? item.value : item.label;
       let newText = html`${text}`;
       if (this._query.trim() !== "" && text) {
-        const trimmedQuery = this._query.trim();
+        const trimmedQuery = this._query.trim().toLowerCase();
         const queryIndex = text.toLowerCase().indexOf(trimmedQuery);
         newText = html`
           ${text.slice(0, queryIndex)}<b>${text.slice(
