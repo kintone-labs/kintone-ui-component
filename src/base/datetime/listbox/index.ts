@@ -43,7 +43,6 @@ export class BaseDateTimeListBox extends KucBase {
   @state()
   private _firstHighlight = true;
 
-  @state()
   private _itemSelectedEl!: HTMLLIElement;
 
   constructor() {
