@@ -13,6 +13,20 @@ export declare type TextProps = {
   requiredIcon?: boolean;
   visible?: boolean;
 };
+export declare type TextChangeEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
+export declare type TextInputEventDetail = {
+  data: string | null;
+  value: string | undefined;
+};
+
+export declare type TextFocusEventDetail = {
+  value: string | undefined;
+};
+
 export declare class Text extends KucBase {
   className: string;
   error: string;

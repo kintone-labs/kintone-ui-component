@@ -1,6 +1,10 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
 
+export declare type MobileRadioButtonChangeEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
 export declare type MobileRadioButtonItem = {
   label?: string;
   value?: string;

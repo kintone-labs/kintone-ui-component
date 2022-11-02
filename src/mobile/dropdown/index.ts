@@ -4,7 +4,6 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
@@ -17,7 +16,11 @@ import {
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_DROPDOWN_CSS } from "./style";
-import { MobileDropdownProps, MobileDropdownItem } from "./type";
+import {
+  MobileDropdownChangeEventDetail,
+  MobileDropdownProps,
+  MobileDropdownItem,
+} from "./type";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
 export { BaseMobileLabel, BaseMobileError };
@@ -75,7 +78,10 @@ let exportMobileDropdown;
       const value = selectEl.value;
       if (this.value === value && this.selectedIndex === selectEl.selectedIndex)
         return;
-      const detail: CustomEventDetail = { oldValue: this.value, value: value };
+      const detail: MobileDropdownChangeEventDetail = {
+        oldValue: this.value,
+        value: value,
+      };
       this.value = value;
       this.selectedIndex = selectEl.selectedIndex;
       dispatchCustomEvent(this, "change", detail);

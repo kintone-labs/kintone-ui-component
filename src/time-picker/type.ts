@@ -1,6 +1,11 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
+export declare type TimePickerChangeEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
 export declare type TimePickerProps = {
   className?: string;
   error?: string;
