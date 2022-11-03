@@ -1,6 +1,5 @@
 import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
-import { FileItem } from "../attachment/type";
 
 /**
  * This type is only used in base components
@@ -9,12 +8,6 @@ type CustomEventDetail = {
   error?: string;
   oldValue?: string;
   value?: string;
-};
-type AttachmentEventDetail = {
-  files?: FileItem[];
-  oldFiles?: FileItem[];
-  fileIndex?: number[];
-  type?: string;
 };
 
 export abstract class KucBase extends LitElement {
