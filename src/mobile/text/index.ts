@@ -4,14 +4,18 @@ import {
   KucBase,
   generateGUID,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
 import { validateProps } from "../../base/validator";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
-import { MobileTextProps } from "./type";
+import {
+  MobileTextProps,
+  MobileTextFocusEventDetail,
+  MobileTextChangeEventDetail,
+  MobileTextInputEventDetail,
+} from "./type";
 import { MOBILE_TEXT_CSS } from "./style";
 export { BaseMobileLabel, BaseMobileError };
 
@@ -52,14 +56,17 @@ let exportMobileText;
     }
 
     private _handleFocusInput(event: FocusEvent) {
-      const detail: CustomEventDetail = { value: this.value };
+      const detail: MobileTextFocusEventDetail = { value: this.value };
       dispatchCustomEvent(this, "focus", detail);
     }
 
     private _handleChangeInput(event: Event) {
       event.stopPropagation();
       const targetEl = event.target as HTMLInputElement;
-      const detail: CustomEventDetail = { value: "", oldValue: this.value };
+      const detail: MobileTextChangeEventDetail = {
+        value: "",
+        oldValue: this.value,
+      };
       this.value = targetEl.value;
       detail.value = this.value;
       dispatchCustomEvent(this, "change", detail);
@@ -68,7 +75,7 @@ let exportMobileText;
     private _handleInputText(event: InputEvent) {
       event.stopPropagation();
       const targetEl = event.target as HTMLInputElement;
-      const detail: CustomEventDetail = {
+      const detail: MobileTextInputEventDetail = {
         value: targetEl.value,
         data: event.data,
       };

@@ -1,5 +1,10 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../../base/kuc-base";
+
+export declare type MobileMultiChoiceChangeEventDetail = {
+  oldValue: string[] | undefined;
+  value: string[] | undefined;
+};
 export declare type MobileMultiChoiceItem = {
   label?: string;
   value?: string;
