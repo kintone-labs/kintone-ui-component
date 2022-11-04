@@ -22,10 +22,10 @@ export const COMBOBOX_CSS = `
   }
   kuc-combobox {
     position: relative;
-    display: inline-block;
+    display: inline-table;
     font-size: 14px;
     color: #333333;
-    width: 168px;
+    width: 180px;
     line-height: 1.5;
   }
   kuc-combobox[hidden] {
