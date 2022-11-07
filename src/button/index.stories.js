@@ -1,55 +1,52 @@
-import { Button } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit-html";
+import "./index.ts";
+export default {
+  title: "desktop/button",
+  argTypes: {
+    className: { name: "className" },
+    disabled: { name: "disabled" },
+    id: { name: "id" },
+    type: {
+      name: "type",
+      options: ["normal", "alert", "submit"],
+      control: {
+        type: "select",
+      },
+    },
+    text: { name: "text" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    actions: {
+      handles: ["click"],
+    },
+  },
+};
 
-storiesOf("desktop/button", module).add("Base", () => {
-  const root = document.createElement("div");
-  const normalButton = new Button({
-    className: "sample-class",
-    id: "sample-id",
-    visible: true,
-    disabled: false,
-  });
-  normalButton.addEventListener("click", (event) => {
-    console.log(["clickEvent", event]);
-  });
-  normalButton.style.margin = "5px";
+const template = (args) => {
+  const handleClick = (event) => {
+    console.log(event);
+  };
+  return html`
+    <kuc-button
+      .className="${args.className}"
+      .disable="${args.disabled}"
+      .id="${args.id}"
+      .type="${args.type}"
+      .text="${args.text}"
+      .visible="${args.visible}"
+      @click="${handleClick}"
+    ></kuc-button>
+  `;
+};
 
-  const submitButton = new Button({
-    text: "Submit",
-    type: "submit",
-    visible: true,
-    disabled: false,
-  });
-  submitButton.addEventListener("click", (event) => {
-    console.log(["clickEvent", event]);
-  });
-  submitButton.style.margin = "5px";
-
-  const alertButton = new Button({
-    text: "Alert",
-    type: "alert",
-    visible: true,
-    disabled: false,
-  });
-  alertButton.addEventListener("click", (event) => {
-    console.log(["clickEvent", event]);
-  });
-  alertButton.style.margin = "5px";
-
-  const disabledButton = new Button({
-    text: "Submit",
-    type: "submit",
-    visible: true,
-    disabled: true,
-  });
-  disabledButton.addEventListener("click", (event) => {
-    console.log(["clickEvent", event]);
-  });
-  disabledButton.style.margin = "5px";
-
-  root.appendChild(normalButton);
-  root.appendChild(submitButton);
-  root.appendChild(alertButton);
-  root.appendChild(disabledButton);
-  return root;
-});
+export const Base = template.bind({});
+Base.args = {
+  className: "sample-class",
+  error: "button error",
+  id: "sample-id",
+  text: "Button",
+  visible: true,
+  disabled: false,
+  type: "normal",
+};

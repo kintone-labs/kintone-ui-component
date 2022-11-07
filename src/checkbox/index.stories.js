@@ -1,141 +1,149 @@
-import { Checkbox } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit";
+import "./index.ts";
 
-storiesOf("desktop/checkbox", module)
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["sample1"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      itemLayout: "vertical",
-      label: "フルーツ",
-      requiredIcon: true,
-      error: "エラーです",
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(["detail.oldValue", event.detail.oldValue]);
-      console.log(["detail.value", event.detail.value]);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base2", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      items: [
-        {
-          label: "Orange",
-          value: "Orange",
-        },
-        {
-          label: "Orange2",
-          value: "Orange2",
-        },
-        {
-          label: "Apple",
-          value: "Apple",
-        },
-      ],
-      value: ["Orange"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      itemLayout: "horizontal",
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(event);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base3", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      items: [
-        {
-          label: "Orange",
-          value: "Orange",
-        },
-        {
-          label: "Apple",
-          value: "Apple",
-        },
-      ],
-      value: ["Orange"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: false,
-      itemLayout: "horizontal",
-      label: "",
-      error: "",
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(event);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base4", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["", undefined],
-    });
-    // checkbox.value = ["", undefined];
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base5", () => {
-    const root = document.createElement("div");
-    const checkbox = new Checkbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["sample1"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      itemLayout: "vertical",
-      label: "Fruit",
-      requiredIcon: true,
-      error: "Error occurred!",
-    });
-    root.appendChild(checkbox);
-    return root;
-  });
+export default {
+  title: "desktop/checkbox",
+  argTypes: {
+    borderVisible: { name: "borderVisible" },
+    className: { name: "className" },
+    disabled: { name: "disabled" },
+    error: { name: "error" },
+    id: { name: "id" },
+    items: { name: "items" },
+    itemLayout: {
+      name: "itemLayout",
+      options: ["horizontal", "vertical"],
+      control: {
+        type: "select",
+      },
+    },
+    label: { name: "label" },
+    requiredIcon: { name: "requiredIcon" },
+    selectedIndex: { name: "selectedIndex" },
+    value: { name: "value" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    actions: {
+      handles: ["change"],
+    },
+  },
+};
+const template = (args) => {
+  const handleCheckBoxChange = (event) => {
+    console.log(event);
+  };
+  return html`
+    <kuc-checkbox
+      .borderVisible="${args.borderVisible}"
+      .className="${args.className}"
+      .disabled="${args.disabled}"
+      .error="${args.error}"
+      .id="${args.id}"
+      .items="${args.items}"
+      .itemLayout="${args.itemLayout}"
+      .label="${args.label}"
+      .requiredIcon="${args.requiredIcon}"
+      .selectedIndex="${args.selectedIndex}"
+      .value="${args.value}"
+      .visible="${args.visible}"
+      @change="${handleCheckBoxChange}"
+    ></kuc-checkbox>
+  `;
+};
+export const Base = template.bind({});
+Base.args = {
+  items: [
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample2",
+      value: "sample2",
+    },
+  ],
+  value: ["sample1"],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  itemLayout: "vertical",
+  label: "フルーツ",
+  requiredIcon: true,
+  error: "エラーです",
+  selectedIndex: [],
+};
+export const Base1 = template.bind({});
+Base1.args = {
+  items: [
+    {
+      label: "Orange",
+      value: "Orange",
+    },
+    {
+      label: "Orange2",
+      value: "Orange2",
+    },
+    {
+      label: "Apple",
+      value: "Apple",
+    },
+  ],
+  value: ["Orange"],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  itemLayout: "horizontal",
+  selectedIndex: [],
+  error: "",
+  label: "フルーツ",
+  requiredIcon: false,
+};
+export const Base2 = template.bind({});
+Base2.args = {
+  items: [
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample2",
+      value: "sample2",
+    },
+  ],
+  value: ["", undefined],
+  selectedIndex: [],
+  visible: true,
+};
+export const Base3 = template.bind({});
+Base3.args = {
+  items: [
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample2",
+      value: "sample2",
+    },
+  ],
+  value: ["sample1"],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  itemLayout: "vertical",
+  label: "Fruit",
+  requiredIcon: true,
+  error: "Error occurred!",
+  selectedIndex: [1],
+};
