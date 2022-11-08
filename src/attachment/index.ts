@@ -63,13 +63,12 @@ let exportAttachment;
 
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
-    private _groupFilesPaddingHeight = 8;
+    private _groupFilesPaddingHeight = 16;
     private _dragTextBorderWidth = 2;
     private _groupFilesBorderWidth = 1;
     private _labelPaddingWidth = 8;
     private _groupFilesPaddingAndBorderWidth = 5;
     private _fileItemBorderWidth = 2;
-    private _attachmentPaddingWidth = 8;
 
     private _fileNameMaxWidth = 150;
 
@@ -334,9 +333,7 @@ let exportAttachment;
           (this._groupFilesBorderWidth + this._dragTextBorderWidth) * 2 +
           "px";
         this._attachmentEl.style.width =
-          this._groupFilesEl.getBoundingClientRect().width +
-          this._attachmentPaddingWidth * 2 +
-          "px";
+          this._groupFilesEl.getBoundingClientRect().width + "px";
         this._isDraging = true;
       }
     }

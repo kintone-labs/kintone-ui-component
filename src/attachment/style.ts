@@ -31,8 +31,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group {
     width: auto;
     height: auto;
-    min-width: 180px;
-    padding: 0px 8px;
+    min-width: 191px;
     box-sizing: border-box;
     position: relative;
   }
@@ -50,7 +49,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files {
     border: solid 1px #e3e7e8;
     background-color: #eeeeee;
-    padding: 8px 4px;
+    padding: 16px 4px;
     display: block;
     font-size: 14px;
     overflow: hidden;
