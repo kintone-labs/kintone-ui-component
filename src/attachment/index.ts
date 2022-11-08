@@ -1,5 +1,5 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query, state } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
@@ -15,7 +15,7 @@ import {
 } from "../base/validator";
 import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
-import { AttachmentEventDetail, AttachmentProps, FileItem } from "./type";
+import { AttachmentChangeEventDetail, AttachmentProps, FileItem } from "./type";
 import {
   ATTACHMENT_INVALID_SIZE_ERROR,
   ONE_GB,
@@ -63,23 +63,38 @@ let exportAttachment;
 
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
-    private _dragTextParentPaddingHeight = 16;
-    private _dragTextParentBorderWidth = 1;
+    private _groupFilesPaddingHeight = 8;
     private _dragTextBorderWidth = 2;
+    private _groupFilesBorderWidth = 1;
+    private _labelPaddingWidth = 8;
+    private _groupFilesPaddingAndBorderWidth = 5;
+    private _fileItemBorderWidth = 2;
+    private _attachmentPaddingWidth = 8;
+
+    private _fileNameMaxWidth = 150;
 
     @query(".kuc-attachment__group__files")
     private _groupFilesEl!: HTMLDivElement;
     @query(".kuc-attachment__group__files__droppable__text")
-    private _dragEl!: HTMLDivElement;
+    private _dragTextEl!: HTMLDivElement;
     @query(
       ".kuc-attachment__group__files__browse-button__input-container__input"
     )
     private _inputEl!: HTMLInputElement;
     @query(".kuc-attachment__group__files__droppable")
-    private _dragArea!: HTMLDivElement;
+    private _dragAreaEl!: HTMLDivElement;
 
     @query(".kuc-attachment__group")
-    private _attachment!: HTMLDivElement;
+    private _attachmentEl!: HTMLDivElement;
+
+    @query(".kuc-attachment__group__label")
+    private _labelEl!: HTMLDivElement;
+
+    @query(".kuc-attachment__error")
+    private _errorEl!: HTMLDivElement;
+
+    @queryAll(".kuc-attachment__group__files__display-area__item__name")
+    private _fileItemsEl!: HTMLDivElement[];
 
     constructor(props?: AttachmentProps) {
       super();
@@ -138,7 +153,7 @@ let exportAttachment;
             ?hidden="${this._isDraging}"
           >
           ${this.files.map((item, number) =>
-            this._getAttachmentItemTemplete(item, number)
+            this._getAttachmentItemTemplate(item, number)
           )}
           </ul>
           <div class="kuc-attachment__group__files__browse-button"
@@ -157,6 +172,7 @@ let exportAttachment;
           </div>
         </div>
         <kuc-base-error
+          class="kuc-attachment__error"
           ?hidden="${!this.error}"
           .text="${this.error}"
           .guid="${this._GUID}"
@@ -165,7 +181,7 @@ let exportAttachment;
     `;
     }
 
-    private _getAttachmentItemTemplete(item: FileItem, index: number) {
+    private _getAttachmentItemTemplate(item: FileItem, index: number) {
       return html`
         <li class="kuc-attachment__group__files__display-area__item">
           <div
@@ -194,6 +210,38 @@ let exportAttachment;
         </li>
       `;
     }
+    async updated(_changedProperties: PropertyValues) {
+      await this.updateComplete;
+      this._updateFileNameMaxWidth();
+    }
+
+    private _updateFileNameMaxWidth() {
+      let fileNameMaxWidth = this._fileNameMaxWidth;
+      if (this._labelEl) {
+        const labelWidth = this._labelEl.getBoundingClientRect().width;
+        const gapBetweenLabelAndFileNameDiv =
+          (this._labelPaddingWidth +
+            this._groupFilesPaddingAndBorderWidth +
+            this._fileItemBorderWidth) *
+          2;
+        if (labelWidth - gapBetweenLabelAndFileNameDiv > fileNameMaxWidth) {
+          fileNameMaxWidth = labelWidth - gapBetweenLabelAndFileNameDiv;
+        }
+      }
+      if (this._errorEl) {
+        const errorWidth = this._errorEl.getBoundingClientRect().width;
+        const gapBetweenErrorAndFileNameDiv =
+          (this._groupFilesPaddingAndBorderWidth + this._fileItemBorderWidth) *
+          2;
+        if (errorWidth - gapBetweenErrorAndFileNameDiv > fileNameMaxWidth) {
+          fileNameMaxWidth = errorWidth - gapBetweenErrorAndFileNameDiv;
+        }
+      }
+      this._fileItemsEl.forEach((fileItem) => {
+        fileItem.style.maxWidth = fileNameMaxWidth + "px";
+      });
+    }
+
     private _getRemoveButtonIcon() {
       return svg`<svg
         xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +296,7 @@ let exportAttachment;
         const tempFiles = [...this.files];
         this.files.splice(index, 1);
 
-        const detail: AttachmentEventDetail = {
+        const detail: AttachmentChangeEventDetail = {
           oldFiles: tempFiles,
           files: this.files,
           type: "remove-file",
@@ -269,18 +317,25 @@ let exportAttachment;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
         this._groupFilesEl.style.height =
-          this._groupFilesEl.offsetHeight -
-          (this._dragTextParentPaddingHeight +
-            this._dragTextParentBorderWidth) *
-            2 +
+          this._groupFilesEl.getBoundingClientRect().height -
+          (this._groupFilesPaddingHeight + this._groupFilesBorderWidth) * 2 +
           "px";
-        this._dragArea.style.width = this._groupFilesEl.offsetWidth + "px";
-        this._attachment.style.width =
-          this._groupFilesEl.offsetWidth + this._dragTextBorderWidth + "px";
-        this._dragEl.style.width = this._groupFilesEl.offsetWidth + "px";
-        this._dragEl.style.height =
-          this._groupFilesEl.offsetHeight -
-          (this._dragTextParentBorderWidth + this._dragTextBorderWidth) * 2 +
+
+        this._dragAreaEl.style.width =
+          this._groupFilesEl.getBoundingClientRect().width -
+          this._groupFilesBorderWidth * 2 +
+          "px";
+        this._dragTextEl.style.width =
+          this._groupFilesEl.getBoundingClientRect().width -
+          this._groupFilesBorderWidth * 2 +
+          "px";
+        this._dragTextEl.style.height =
+          this._groupFilesEl.getBoundingClientRect().height -
+          (this._groupFilesBorderWidth + this._dragTextBorderWidth) * 2 +
+          "px";
+        this._attachmentEl.style.width =
+          this._groupFilesEl.getBoundingClientRect().width +
+          this._attachmentPaddingWidth * 2 +
           "px";
         this._isDraging = true;
       }
@@ -325,7 +380,7 @@ let exportAttachment;
 
       if (this._dragEnterCounter === 0) {
         this._groupFilesEl.style.height = "auto";
-        this._attachment.style.width = "auto";
+        this._attachmentEl.style.width = "auto";
         this._isDraging = false;
       }
     }
@@ -349,7 +404,7 @@ let exportAttachment;
           return tempFileList.length + index;
         }) as number[];
         addedFiles.forEach((addedFile: FileItem) => this.files.push(addedFile));
-        const detail: AttachmentEventDetail = {
+        const detail: AttachmentChangeEventDetail = {
           oldFiles: tempFileList,
           files: this.files,
           type: "add-file",

@@ -15,7 +15,7 @@ export declare type AttachmentProps = {
   requiredIcon?: boolean;
   visible?: boolean;
 };
-export declare type AttachmentEventDetail = {
+export declare type AttachmentChangeEventDetail = {
   files?: FileItem[];
   oldFiles?: FileItem[];
   fileIndex?: number[];
