@@ -80,7 +80,8 @@ export class BaseDateTimeListBox extends KucBase {
     `;
   }
 
-  updated(changedProperties: any) {
+  async updated(changedProperties: any) {
+    await this.updateComplete;
     if (changedProperties.has("value")) {
       this._highlightSelectedItem();
     }
