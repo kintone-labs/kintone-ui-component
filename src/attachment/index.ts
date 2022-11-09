@@ -279,15 +279,10 @@ let exportAttachment;
     }
 
     private _handleDragEnter(event: DragEvent) {
-      console.log("enter");
-      console.log(this.disabled);
       if (this.disabled) return;
       this._dragEnterCounter++;
-      console.log(this._dragEnterCounter);
-
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
-        console.log(this._dragEnterCounter);
         const DRAG_TEXT_BORDER_WIDTH = 2;
         const FILES_BORDER_WIDTH = 1;
         const FILES_PADDING_HEIGHT = 16;
