@@ -223,7 +223,6 @@ let exportAttachment;
         if (labelWidth > this._minWidth) {
           this._attachmentEl.style.width = labelWidth + "px";
         } else return;
-        console.log("continue");
         let fileNameMaxWidth = this._fileNameMaxWidth;
         const gapBetweenLabelAndFileNameDiv =
           (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2;
