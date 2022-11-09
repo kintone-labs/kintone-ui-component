@@ -63,14 +63,10 @@ let exportAttachment;
 
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
-    private _groupFilesPaddingHeight = 16;
-    private _dragTextBorderWidth = 2;
-    private _groupFilesBorderWidth = 1;
-    private _labelPaddingWidth = 8;
-    private _groupFilesPaddingAndBorderWidth = 5;
-    private _fileItemBorderWidth = 2;
 
     private _fileNameMaxWidth = 150;
+
+    private _minWidth = 191;
 
     @query(".kuc-attachment__group__files")
     private _groupFilesEl!: HTMLDivElement;
@@ -86,11 +82,11 @@ let exportAttachment;
     @query(".kuc-attachment__group")
     private _attachmentEl!: HTMLDivElement;
 
-    @query(".kuc-attachment__group__label")
-    private _labelEl!: HTMLDivElement;
+    @query(".kuc-base-label__text")
+    private _labelTextEl!: HTMLDivElement;
 
-    @query(".kuc-attachment__error")
-    private _errorEl!: HTMLDivElement;
+    @query(".kuc-base-label__required-icon")
+    private _labelIconEl!: HTMLDivElement;
 
     @queryAll(".kuc-attachment__group__files__display-area__item__name")
     private _fileItemsEl!: HTMLDivElement[];
@@ -215,30 +211,29 @@ let exportAttachment;
     }
 
     private _updateFileNameMaxWidth() {
-      let fileNameMaxWidth = this._fileNameMaxWidth;
-      if (this._labelEl) {
-        const labelWidth = this._labelEl.getBoundingClientRect().width;
+      if (this._labelTextEl) {
+        const LABEL_ICON_PADDING = 4;
+        const FILES_PADDING_AND_BORDER_WIDTH = 5;
+        const FILE_ITEM_BORDER_WIDTH = 2;
+        const labelIconWidth = this.requiredIcon
+          ? this._labelIconEl.getBoundingClientRect().width + LABEL_ICON_PADDING
+          : 0;
+        const labelWidth =
+          this._labelTextEl.getBoundingClientRect().width + labelIconWidth;
+        if (labelWidth > this._minWidth) {
+          this._attachmentEl.style.width = labelWidth + "px";
+        } else return;
+        console.log("continue");
+        let fileNameMaxWidth = this._fileNameMaxWidth;
         const gapBetweenLabelAndFileNameDiv =
-          (this._labelPaddingWidth +
-            this._groupFilesPaddingAndBorderWidth +
-            this._fileItemBorderWidth) *
-          2;
+          (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2;
         if (labelWidth - gapBetweenLabelAndFileNameDiv > fileNameMaxWidth) {
           fileNameMaxWidth = labelWidth - gapBetweenLabelAndFileNameDiv;
         }
+        this._fileItemsEl.forEach((fileItem) => {
+          fileItem.style.maxWidth = fileNameMaxWidth + "px";
+        });
       }
-      if (this._errorEl) {
-        const errorWidth = this._errorEl.getBoundingClientRect().width;
-        const gapBetweenErrorAndFileNameDiv =
-          (this._groupFilesPaddingAndBorderWidth + this._fileItemBorderWidth) *
-          2;
-        if (errorWidth - gapBetweenErrorAndFileNameDiv > fileNameMaxWidth) {
-          fileNameMaxWidth = errorWidth - gapBetweenErrorAndFileNameDiv;
-        }
-      }
-      this._fileItemsEl.forEach((fileItem) => {
-        fileItem.style.maxWidth = fileNameMaxWidth + "px";
-      });
     }
 
     private _getRemoveButtonIcon() {
@@ -315,22 +310,25 @@ let exportAttachment;
       this._dragEnterCounter++;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
+        const DRAG_TEXT_BORDER_WIDTH = 2;
+        const FILES_BORDER_WIDTH = 1;
+        const FILES_PADDING_HEIGHT = 16;
         this._groupFilesEl.style.height =
           this._groupFilesEl.getBoundingClientRect().height -
-          (this._groupFilesPaddingHeight + this._groupFilesBorderWidth) * 2 +
+          (FILES_PADDING_HEIGHT + FILES_BORDER_WIDTH) * 2 +
           "px";
 
         this._dragAreaEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width -
-          this._groupFilesBorderWidth * 2 +
+          FILES_BORDER_WIDTH * 2 +
           "px";
         this._dragTextEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width -
-          this._groupFilesBorderWidth * 2 +
+          FILES_BORDER_WIDTH * 2 +
           "px";
         this._dragTextEl.style.height =
           this._groupFilesEl.getBoundingClientRect().height -
-          (this._groupFilesBorderWidth + this._dragTextBorderWidth) * 2 +
+          (FILES_BORDER_WIDTH + DRAG_TEXT_BORDER_WIDTH) * 2 +
           "px";
         this._attachmentEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width + "px";
@@ -377,7 +375,6 @@ let exportAttachment;
 
       if (this._dragEnterCounter === 0) {
         this._groupFilesEl.style.height = "auto";
-        this._attachmentEl.style.width = "auto";
         this._isDraging = false;
       }
     }
