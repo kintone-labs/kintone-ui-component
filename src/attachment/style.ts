@@ -23,24 +23,24 @@ export const ATTACHMENT_CSS = `
   }
   kuc-attachment {
     font-size: 14px;
-    display: inline-block;
+    display: inline-table;
+    width: 191px;
+    min-width: 191px;
   }
   kuc-attachment[hidden] {
     display: none;
   }
   .kuc-attachment__group {
-    width: 191px;
+    width: 100%;
     height: auto;
-    min-width: 191px;
     box-sizing: border-box;
     position: relative;
+    display: inline-block;
   }
   .kuc-attachment__group__label {
-    background-color: f5f5f5;
-    display: block;
-    padding: 4px 8px;
+    display: inline-block;
+    padding: 4px 0 8px 0;
     color: #333333;
-    margin: 0 -8px;
     white-space: nowrap;
   }
   .kuc-attachment__group__label[hidden] {
@@ -113,7 +113,7 @@ export const ATTACHMENT_CSS = `
     display: inline-block;
     padding: 3px 68px 0 26px;
     width: 100%;
-    max-width: 150px;
+    max-width: 177px;
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;

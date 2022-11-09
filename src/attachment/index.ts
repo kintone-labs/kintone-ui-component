@@ -72,17 +72,9 @@ let exportAttachment;
       ".kuc-attachment__group__files__browse-button__input-container__input"
     )
     private _inputEl!: HTMLInputElement;
-    @query(".kuc-attachment__group__files__droppable")
-    private _dragAreaEl!: HTMLDivElement;
-
-    @query(".kuc-attachment__group")
-    private _attachmentEl!: HTMLDivElement;
 
     @query(".kuc-base-label__text")
     private _labelTextEl!: HTMLDivElement;
-
-    @query(".kuc-base-label__required-icon")
-    private _labelIconEl!: HTMLDivElement;
 
     @queryAll(".kuc-attachment__group__files__display-area__item__name")
     private _fileItemsEl!: HTMLDivElement[];
@@ -207,30 +199,14 @@ let exportAttachment;
     }
 
     private _updateFileNameMaxWidth() {
-      if (this._labelTextEl) {
-        const LABEL_ICON_PADDING = 4;
-        const FILES_PADDING_AND_BORDER_WIDTH = 5;
-        const FILE_ITEM_BORDER_WIDTH = 2;
-        const FILE_NAME_MAX_WIDTH = 150;
-        const ATTACHMENT_MIN_WIDTH = 191;
-        const labelIconWidth = this.requiredIcon
-          ? this._labelIconEl.getBoundingClientRect().width + LABEL_ICON_PADDING
-          : 0;
-        const labelWidth =
-          this._labelTextEl.getBoundingClientRect().width + labelIconWidth;
-        if (labelWidth > ATTACHMENT_MIN_WIDTH) {
-          this._attachmentEl.style.width = labelWidth + "px";
-        } else return;
-        let fileNameMaxWidth = FILE_NAME_MAX_WIDTH;
-        const gapBetweenLabelAndFileNameDiv =
-          (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2;
-        if (labelWidth - gapBetweenLabelAndFileNameDiv > fileNameMaxWidth) {
-          fileNameMaxWidth = labelWidth - gapBetweenLabelAndFileNameDiv;
-        }
-        this._fileItemsEl.forEach((fileItem) => {
-          fileItem.style.maxWidth = fileNameMaxWidth + "px";
-        });
-      }
+      const FILES_PADDING_AND_BORDER_WIDTH = 5;
+      const FILE_ITEM_BORDER_WIDTH = 2;
+      this._fileItemsEl.forEach((fileItem) => {
+        fileItem.style.maxWidth = `${
+          this._groupFilesEl.getBoundingClientRect().width -
+          (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2
+        }px`;
+      });
     }
 
     private _getRemoveButtonIcon() {
@@ -303,21 +279,21 @@ let exportAttachment;
     }
 
     private _handleDragEnter(event: DragEvent) {
+      console.log("enter");
+      console.log(this.disabled);
       if (this.disabled) return;
       this._dragEnterCounter++;
+      console.log(this._dragEnterCounter);
+
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
+        console.log(this._dragEnterCounter);
         const DRAG_TEXT_BORDER_WIDTH = 2;
         const FILES_BORDER_WIDTH = 1;
         const FILES_PADDING_HEIGHT = 16;
         this._groupFilesEl.style.height =
           this._groupFilesEl.getBoundingClientRect().height -
           (FILES_PADDING_HEIGHT + FILES_BORDER_WIDTH) * 2 +
-          "px";
-
-        this._dragAreaEl.style.width =
-          this._groupFilesEl.getBoundingClientRect().width -
-          FILES_BORDER_WIDTH * 2 +
           "px";
         this._dragTextEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width -
@@ -327,8 +303,6 @@ let exportAttachment;
           this._groupFilesEl.getBoundingClientRect().height -
           (FILES_BORDER_WIDTH + DRAG_TEXT_BORDER_WIDTH) * 2 +
           "px";
-        this._attachmentEl.style.width =
-          this._groupFilesEl.getBoundingClientRect().width + "px";
         this._isDraging = true;
       }
     }
