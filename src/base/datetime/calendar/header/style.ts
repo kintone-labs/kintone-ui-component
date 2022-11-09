@@ -22,6 +22,9 @@ kuc-base-datetime-calendar-header:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC",sans-serif;
 }
+kuc-base-datetime-calendar-header:lang(ja) kuc-base-datetime-listbox * {
+  font-weight: 400;
+}
 .kuc-base-datetime-calendar-header__group {
   display: flex;
   align-items: center;

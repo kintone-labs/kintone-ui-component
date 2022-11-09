@@ -19,6 +19,11 @@ export declare type MultiChoiceProps = {
   items?: MultiChoiceItem[];
 };
 
+export declare type MultiChoiceChangeEventDetail = {
+  oldValue: string[] | undefined;
+  value: string[] | undefined;
+};
+
 export declare class MultiChoice extends KucBase {
   className: string;
   error: string;

@@ -12,6 +12,20 @@ export declare type TextAreaProps = {
   visible?: boolean;
 };
 
+export declare type TextAreaChangeEventDetail = {
+  oldValue: string | undefined;
+  value: string | undefined;
+};
+
+export declare type TextAreaInputEventDetail = {
+  data: string | null;
+  value: string | undefined;
+};
+
+export declare type TextAreaFocusEventDetail = {
+  value: string | undefined;
+};
+
 export declare class TextArea extends KucBase {
   className: string;
   error: string;

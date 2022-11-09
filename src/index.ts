@@ -5,14 +5,12 @@ export * from "./multichoice";
 export * from "./notification";
 export * from "./radio-button";
 export * from "./spinner";
-export * from "./table";
 export * from "./text";
 export * from "./textarea";
 export * from "./dialog";
 export * from "./date-picker";
 export * from "./datetime-picker";
 export * from "./time-picker";
-export * from "./attachment";
 
 export * from "./mobile/button";
 export * from "./mobile/checkbox";

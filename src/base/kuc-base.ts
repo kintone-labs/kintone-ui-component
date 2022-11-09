@@ -1,19 +1,13 @@
 import { LitElement } from "lit";
 import { v4 as uuid } from "uuid";
-import { FileItem } from "../attachment/type";
 
+/**
+ * This type is only used in base components
+ */
 type CustomEventDetail = {
-  data?: any;
-  type?: string;
-  oldValue?: string | string[];
-  value?: string | string[];
   error?: string;
-};
-type AttachmentEventDetail = {
-  files?: FileItem[];
-  oldFiles?: FileItem[];
-  fileIndex?: number[];
-  type?: string;
+  oldValue?: string;
+  value?: string;
 };
 
 export abstract class KucBase extends LitElement {
@@ -22,10 +16,17 @@ export abstract class KucBase extends LitElement {
   }
 }
 
+/**
+ * Common function to dispatch custom event.
+ * This is used in all components.
+ * @param el        Event target, the type is HTMLElement
+ * @param eventName Event name, the type is string
+ * @param detail    The detail property of event, the type declaration means any object
+ */
 export const dispatchCustomEvent = (
   el: HTMLElement,
   eventName: string,
-  detail?: CustomEventDetail | AttachmentEventDetail
+  detail?: { [p: string]: any }
 ) => {
   const event = new CustomEvent(eventName, {
     detail,
