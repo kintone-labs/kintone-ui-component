@@ -64,10 +64,6 @@ let exportAttachment;
     private _dragEnterCounter = 0;
     private _locale = this._getLocale();
 
-    private _fileNameMaxWidth = 150;
-
-    private _minWidth = 191;
-
     @query(".kuc-attachment__group__files")
     private _groupFilesEl!: HTMLDivElement;
     @query(".kuc-attachment__group__files__droppable__text")
@@ -215,15 +211,17 @@ let exportAttachment;
         const LABEL_ICON_PADDING = 4;
         const FILES_PADDING_AND_BORDER_WIDTH = 5;
         const FILE_ITEM_BORDER_WIDTH = 2;
+        const FILE_NAME_MAX_WIDTH = 150;
+        const ATTACHMENT_MIN_WIDTH = 191;
         const labelIconWidth = this.requiredIcon
           ? this._labelIconEl.getBoundingClientRect().width + LABEL_ICON_PADDING
           : 0;
         const labelWidth =
           this._labelTextEl.getBoundingClientRect().width + labelIconWidth;
-        if (labelWidth > this._minWidth) {
+        if (labelWidth > ATTACHMENT_MIN_WIDTH) {
           this._attachmentEl.style.width = labelWidth + "px";
         } else return;
-        let fileNameMaxWidth = this._fileNameMaxWidth;
+        let fileNameMaxWidth = FILE_NAME_MAX_WIDTH;
         const gapBetweenLabelAndFileNameDiv =
           (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2;
         if (labelWidth - gapBetweenLabelAndFileNameDiv > fileNameMaxWidth) {
