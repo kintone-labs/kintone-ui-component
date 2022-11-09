@@ -4,7 +4,6 @@ import { property, query } from "lit/decorators.js";
 import {
   KucBase,
   dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
 } from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
@@ -16,7 +15,7 @@ import {
   validateFieldUniqueInColumnTable,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { TableProps, Column } from "./type";
+import { TableProps, Column, TableChangeEventDetail } from "./type";
 import { TABLE_CSS } from "./style";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
@@ -224,7 +223,7 @@ let exportTable;
         }
         dataRow[field] = _newValue;
       }
-      const data = {
+      const data: TableChangeEventDetail = {
         type: "change-cell",
         rowIndex: dataIndex,
         data: this._deepCloneObject(this.data),
@@ -239,7 +238,7 @@ let exportTable;
       const defaultDataRow = this._getDefaultDataRow(this.data[0]);
       this._addRowToTable(currentRowIndex, defaultDataRow);
       this.data.splice(currentRowIndex, 0, defaultDataRow);
-      const data = {
+      const data: TableChangeEventDetail = {
         type: "add-row",
         rowIndex: currentRowIndex,
         data: this._deepCloneObject(this.data),
@@ -256,7 +255,7 @@ let exportTable;
       const oldData = this._deepCloneObject(this.data);
       this._table.deleteRow(currentRowIndex);
       this.data.splice(dataIndexRemoved, 1);
-      const data = {
+      const data: TableChangeEventDetail = {
         type: "remove-row",
         rowIndex: dataIndexRemoved,
         data: this._deepCloneObject(this.data),
@@ -370,8 +369,8 @@ let exportTable;
       return JSON.parse(JSON.stringify(obj));
     }
 
-    private _dispatchChangeEvent(_detail: object) {
-      const detail: CustomEventDetail = _detail;
+    private _dispatchChangeEvent(_detail: TableChangeEventDetail) {
+      const detail: TableChangeEventDetail = _detail;
       dispatchCustomEvent(this, "change", detail);
     }
   }

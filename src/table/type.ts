@@ -25,6 +25,14 @@ export declare type TableProps = {
   visible?: boolean;
 };
 
+export declare type TableChangeEventDetail = {
+  rowIndex: number;
+  data: object[] | undefined;
+  oldData: object[] | undefined;
+  field?: string;
+  type: string;
+};
+
 export declare class Table extends KucBase {
   className: string;
   id: string;
