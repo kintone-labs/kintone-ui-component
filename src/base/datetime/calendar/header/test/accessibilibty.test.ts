@@ -68,7 +68,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
-      await elementUpdated(container);
+      await fixture(container);
 
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
@@ -83,7 +83,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       liEl.dispatchEvent(eventKeyDown);
       liEl.dispatchEvent(eventKeyEnter);
-      await elementUpdated(container);
+      await fixture(container);
 
       expect(yearSelectEl.innerText).to.equal("2022");
     });
@@ -102,7 +102,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
-      await elementUpdated(container);
+      await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
@@ -116,7 +116,7 @@ describe("BaseDateTimeCalendarHeader", () => {
 
       liEl.dispatchEvent(eventKeyDown);
       liEl.dispatchEvent(eventKeyEnter);
-      await elementUpdated(container);
+      await fixture(container);
 
       expect(monthSelectEl.innerText).to.equal("FEBRUARY");
     });
