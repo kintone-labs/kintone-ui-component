@@ -407,6 +407,13 @@ let exportAttachment;
           }
         }
       }
+      if (event.dataTransfer.types !== undefined) {
+        for (let i = 0; i < event.dataTransfer.types.length; i++) {
+          if (event.dataTransfer.types[i].toLowerCase() === "files") {
+            return true;
+          }
+        }
+      }
       return false;
     };
   }
