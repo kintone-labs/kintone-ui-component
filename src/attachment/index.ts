@@ -73,9 +73,6 @@ let exportAttachment;
     )
     private _inputEl!: HTMLInputElement;
 
-    @query(".kuc-base-label__text")
-    private _labelTextEl!: HTMLDivElement;
-
     @queryAll(".kuc-attachment__group__files__display-area__item__name")
     private _fileItemsEl!: HTMLDivElement[];
 
