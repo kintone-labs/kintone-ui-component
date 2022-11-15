@@ -10,7 +10,6 @@
         "type": "subcategory",
         "label": "Desktop",
         "ids": [
-          "version-1.7.0-components/desktop/attachment",
           "version-1.7.0-components/desktop/button",
           "version-1.7.0-components/desktop/checkbox",
           "version-1.7.0-components/desktop/date-picker",
@@ -20,9 +19,7 @@
           "version-1.7.0-components/desktop/multichoice",
           "version-1.7.0-components/desktop/notification",
           "version-1.7.0-components/desktop/radio-button",
-          "version-1.7.0-components/desktop/readonly-table",
           "version-1.7.0-components/desktop/spinner",
-          "version-1.7.0-components/desktop/table",
           "version-1.7.0-components/desktop/text",
           "version-1.7.0-components/desktop/textarea",
           "version-1.7.0-components/desktop/time-picker"
