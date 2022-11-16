@@ -2,13 +2,17 @@
 id: readonly-table
 title: ReadOnlyTable
 sidebar_label: ReadOnlyTable
+original_id: readonly-table
 ---
 
 ## Overview
 
-The ReadOnlyTable component allows the user to display a read table on the Kintone details screen.
+The ReadOnlyTable component allows the user to display data in a table.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
+<div class="sample-container" id="date-picker">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/readonly-table.js"></script>
 
 ---
 
@@ -24,11 +28,13 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
-| Columns.header | Object | Null | Table header object | |
-| Columns.header.text | String | Null | Text to be displayed in the table header | |
-| Columns.visible | Boolean | Null | Show/Hide the column | |
-| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
+| columns | Array\<Column\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
+| Column.title | String | "" | The header name of each column | |
+| Column.field | String | "" | The key of the data object | |
+| Column.visible | Boolean | true | Show/Hide the column | |
+| data | Array\<object\> | []  | An array of objects to be displayed in the body of the ReadOnlyTable | Will result an error if the data is not an array |
+| pagination | boolean | true | A boolean to determine whether to enable pagination | pagination is false, all rows are displayed. |
+| rowsPerPage | number | 5 | Set the number of table rows per page | Round off to the nearest whole number: <br/> - `{rowsPerPage: 20.5}` Display up to 21 rows per page. <br/> - `{rowsPerPage: 20.4}` Display up to 20 rows per page|
 
 ### Constructor
 
@@ -48,35 +54,54 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const space = kintone.app.record.getSpaceElement('space');
 const readOnlyTable = new Kuc.ReadOnlyTable({
-  label: 'Table',
+  label: "ReadOnlyTable",
+  rowsPerPage: 3,
+  pagination: true,
   columns: [
     {
-      header: {
-        text: 'fruit',
-      },
-      visible: true
+      title: "Number",
+      field: "index",
     },
     {
-      header: {
-        text: 'Producing area',
-      },
-      visible: true,
+      title: "City",
+      field: "name",
     },
     {
-      header: {
-        text: 'Price',
-      },
-      visible: true
+      title: "Country",
+      field: "country",
+    },
+    {
+      title: "Population",
+      field: "population",
+    },
+    {
+      title: "Coordinates",
+      field: "coordinates",
     }
   ],
   data: [
-    ['Orange', 'Ehime', '400'],
-    ['Apple', 'Aomori', '200'],
-    ['Banana', 'Tokyo', '100']
+    {
+      index: "1",
+      name: "HoChiMinh",
+      country: "Vietnam",
+      population: "8,371,000",
+      coordinates: "10.762622, 106.660172",
+    },
+    {
+      index: "2",
+      name: "Tokyo",
+      country: "Japan",
+      population: "14,000,000",
+      coordinates: "35.689487, 139.691711",
+    },
+    {
+      index: "3",
+      name: "New York",
+      country: "USA",
+      population: "8,400,000",
+      coordinates: "40.712776, -74.005974",
+    },
   ],
-  className: 'options-class',
-  id: 'options-id',
-  visible: true
 });
 space.appendChild(readOnlyTable);
 ```
