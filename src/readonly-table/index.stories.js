@@ -66,38 +66,21 @@ storiesOf("desktop/readonly-table", module)
   .add("Document", () => {
     const root = document.createElement("div");
     const readOnlyTable = new ReadOnlyTable({
-      label: "Read Only Table",
       columns: [
         {
           header: {
-            text: "Number",
+            text: "Fruit",
           },
           visible: true,
         },
         {
           header: {
-            text: "City",
-          },
-          visible: true,
-        },
-        {
-          header: {
-            text: "Country",
-          },
-          visible: true,
-        },
-        {
-          header: {
-            text: "Population",
+            text: "Producing area",
           },
           visible: true,
         },
       ],
-      data: [
-        ["4", "Rachgia", "Vietnam", "400,000"],
-        ["5", "Edmonton", "Canada", "981,000"],
-        ["6", "Calgary", "Canada", "1,336,000"],
-      ],
+      data: [["Orange", "Ehime"]],
     });
     root.appendChild(readOnlyTable);
     return root;
