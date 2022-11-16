@@ -195,6 +195,7 @@ let exportReadOnlyTable;
         );
         return;
       }
+      if(this._toggleDisplayNextButton() === false) return;
       this._pagePosition += 1;
     }
   }

@@ -22,6 +22,7 @@ export const PAGINATION_CSS = `
   {
     fill: #3498db;
   }
+  .kuc-base-pagination__group__pager--focus,
   .kuc-base-pagination__group__pager-next:focus-visible,
   .kuc-base-pagination__group__pager-prev:focus-visible {
     outline: 1px solid #3498db;

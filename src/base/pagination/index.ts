@@ -1,5 +1,5 @@
 import { html, svg } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
 import { visiblePropConverter } from "../converter";
 import { PAGINATION_CSS } from "./style";
@@ -22,6 +22,12 @@ let exportPagination;
     })
     visible = true;
 
+    @query(".kuc-base-pagination__group__pager-prev")
+    private _prevButtonEl!: HTMLButtonElement;
+
+    @query(".kuc-base-pagination__group__pager-next")
+    private _nextButtonEl!: HTMLButtonElement;
+
     render() {
       return html`
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
@@ -32,6 +38,8 @@ let exportPagination;
               : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickPrevButton}"
+            @focus="${this._handleFocusPrevButton}"
+            @blur="${this._handleBlurPrevButton}"
           >
             ${this._getPrevButtonSvgTemplate()}</button
           ><button
@@ -41,6 +49,8 @@ let exportPagination;
               : " kuc-base-pagination__group__pager-disable"}"
             type="button"
             @click="${this._handleClickNextButton}"
+            @focus="${this._handleFocusNextButton}"
+            @blur="${this._handleBlurNextButton}"
           >
             ${this._getNextButtonSvgTemplate()}
           </button>
@@ -53,9 +63,25 @@ let exportPagination;
       dispatchCustomEvent(this, "kuc:pagination-click-prev");
     }
 
+    private _handleFocusPrevButton() {
+      this._prevButtonEl.classList.add("kuc-base-pagination__group__pager--focus");
+    }
+
+    private _handleBlurPrevButton() {
+      this._prevButtonEl.classList.remove("kuc-base-pagination__group__pager--focus");
+    }
+
     private _handleClickNextButton(event: MouseEvent) {
       event.stopPropagation();
       dispatchCustomEvent(this, "kuc:pagination-click-next");
+    }
+
+    private _handleFocusNextButton() {
+      this._nextButtonEl.classList.add("kuc-base-pagination__group__pager--focus");
+    }
+
+    private _handleBlurNextButton() {
+      this._nextButtonEl.classList.remove("kuc-base-pagination__group__pager--focus");
     }
 
     private _getPrevButtonSvgTemplate() {
