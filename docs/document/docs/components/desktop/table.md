@@ -75,10 +75,10 @@ const Kuc = Kucs['1.x.x'];
 
 const header = kintone.app.getHeaderMenuSpaceElement();
 
-const renderAge = (dataCell, dataRow) => {
-  const element = document.createElement("h3");
-  element.innerText = `The age is ${dataCell}`;
-  return element;
+const renderAge = (dataCell) => {
+  const spanElement = document.createElement("span");
+  spanElement.innerText = `The age is ${dataCell}`;
+  return spanElement;
 };
 
 const renderName = (cellData) => {

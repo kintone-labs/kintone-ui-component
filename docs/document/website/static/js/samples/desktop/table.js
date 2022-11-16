@@ -1,9 +1,9 @@
 document.addEventListener("kuc:loaded", function () {
   const container = document.getElementById("sample-container__components");
   const renderAge = (dataCell) => {
-    const element = document.createElement("h3");
-    element.innerText = `The age is ${dataCell}`;
-    return element;
+    const spanElement = document.createElement("span");
+    spanElement.innerText = `The age is ${dataCell}`;
+    return spanElement;
   };
   const renderName = (cellData) => {
     const dropdown = new Kuc.Dropdown({
@@ -52,7 +52,6 @@ document.addEventListener("kuc:loaded", function () {
         address: "New York No. 2 Lake Park",
       },
     ],
-    label: "Editable Table",
   });
   container.appendChild(table);
 });

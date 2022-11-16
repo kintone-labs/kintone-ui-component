@@ -54,3 +54,12 @@ td[class^="kuc"] {
 #mobile-text .cus-mobile-text {
     min-width: 250px;
 }
+#table tr{
+  border-top: 0;
+}
+#table tr[class$="__table__body__row"]{
+  background-color: transparent;
+}
+#table td[class$="__table__body__row__action"]{
+  border: 0;
+}
