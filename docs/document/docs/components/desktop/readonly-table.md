@@ -52,7 +52,10 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const readOnlyTable = new Kuc.ReadOnlyTable({
   label: "ReadOnlyTable",
   rowsPerPage: 3,
