@@ -76,5 +76,3 @@ attachment.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
-Attachment English language
