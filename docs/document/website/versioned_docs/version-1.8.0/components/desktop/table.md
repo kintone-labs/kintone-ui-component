@@ -6,7 +6,7 @@ original_id: table
 ---
 
 ## Overview
-The Table component allows the user to display an input table on the kintone’s edit screen.
+The Table component allows the user to display an input table on the Kintone’s edit screen.
 
 <div class="sample-container" id="table">
   <div id="sample-container__components"></div>
@@ -25,21 +25,21 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| data | Array<object> | []  | Row data of table | Throw an error if the data is not an array object `'data' property is not array.` |
-| columns | Array<[Columns](#column)> |  [ ]  | Array of data to be displayed in the table header | Throw an error if columns is not an array object `'columns' property is not array.` |
-| label | string | ""  | Text description for the component | Label will not be displayed if unspecified or left empty |
 | className | string | ""  | Component class name | |
 | id | string | "" | Component id name | |
-| visible | boolean | true | Show/Hide the component | |
+| label | string | ""  | Text description for the component | Label will not be displayed if unspecified or left empty |
 | actionButton | boolean | true | Flag to show the add/remove row button | |
+| visible | boolean | true | Show/Hide the component | |
+| columns | Array\<[Columns](#column)\> |  [ ]  | Array of data to be displayed in the table header | Throw an error if columns is not an array object `'columns' property is not array.` |
+| data | Array\<object\> | []  | Row data of table | Throw an error if the data is not an array object `'data' property is not array.` |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| title | string | ""  | Text to be displayed in table header | |
-| visible | boolean |  true  | Visible/invisible each column | |
 | field | string <br> `Required` and `Unique` | -  | Display field of the data record | <li>`columns.field` is unique and required.</li><li>If the `field` is duplicated, the error message `'field' property is not unique in columns.` will throw in window console.</li><li>If the `field` is NOT specified, the error message `'field' property is not specified in columns.` will throw in window console.</li> |
+| title | string | ""  | Text to be displayed in table header | |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
+| visible | boolean |  true  | Visible/invisible each column | |
 | render | function <br> `function(cellData, rowData, rowIndex) {}` | - | Renderer of the table cell. The return value should be a DOM. | <ul><li>3 params below provide more information for render function:</li> <ul><li>`cellData` is data of current cell rendered.</li><li>`rowData` is data of current row rendered.</li><li>`rowIndex` is index of current row rendered.</li></ul><li>If render function is not specified, the cell will display with default text.</li></ul>|
 
 
@@ -83,7 +83,10 @@ const renderAge = (dataCell) => {
 
 const renderName = (cellData) => {
   const dropdown = new Dropdown({
-    items: [...],
+    items: [
+      { label: 'John Brown', value: 'John Brown' },
+      { label: 'Steven Gerrard', value: 'Steven Gerrard' },
+    ],
     value: cellData,
     selectedIndex: 0
   });
