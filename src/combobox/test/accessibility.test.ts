@@ -351,6 +351,25 @@ describe("Combobox", () => {
       ).to.equal(true);
     });
 
+    it("should open menu when it can get filter result", async () => {
+      const container = new Combobox({
+        items: initItems,
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggleInput = el.querySelector(
+        ".kuc-combobox__group__toggle__input"
+      ) as HTMLInputElement;
+      toggleInput.dispatchEvent(new InputEvent("input", { data: "a" }));
+      await fixture(container);
+
+      const menuEl = el.querySelector(
+        ".kuc-combobox__group__select-menu"
+      ) as HTMLUListElement;
+
+      expect(menuEl.hidden).to.equal(false);
+    });
+
     it('should changed value when pressing "Enter" key', async () => {
       const container = new Combobox({
         items: initItems,
