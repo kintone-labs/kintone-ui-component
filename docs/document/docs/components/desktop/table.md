@@ -29,17 +29,17 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | "" | Component id name | |
 | label | string | ""  | Text description for the component | Label will not be displayed if unspecified or left empty |
 | actionButton | boolean | true | Flag to show the add/remove row button | |
-| visible | boolean | true | Show/Hide the component | |
-| columns | Array\<[Columns](#column)\> |  [ ]  | Array of data to be displayed in the table header | Throw an error if columns is not an array object `'columns' property is not array.` |
-| data | Array\<object\> | []  | Row data of table | Throw an error if the data is not an array object `'data' property is not array.` |
+| visible | boolean | true | Setting to Show/Hide the component | |
+| columns | Array\<[Columns](#column)\> |  []  | Array of data to be displayed in the table header | Throw an error if columns is not an array. |
+| data | Array\<object\> | []  | An array of objects to be displayed in the body of the Table | Throw an error if the data is not an array. |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string <br> `Required` and `Unique` | -  | Display field of the data record | <li>`columns.field` is unique and required.</li><li>If the `field` is duplicated, the error message `'field' property is not unique in columns.` will throw in window console.</li><li>If the `field` is NOT specified, the error message `'field' property is not specified in columns.` will throw in window console.</li> |
-| title | string | ""  | Text to be displayed in table header | |
+| field | string <br> `Required` and `Unique` | -  | The key of the data object | <ul><li>The `field` property represents the key of the data object and the value associated with that key will be rendered in the column.</li><li>Throw an error if the `field` is duplicated or not specified</li></ul> |
+| title | string | ""  | 	The header name of each column. | |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
-| visible | boolean |  true  | Visible/invisible each column | |
+| visible | boolean |  true  | Determine the visibility of the column. | |
 | render | function <br> `function(cellData, rowData, rowIndex) {}` | - | Renderer of the table cell. The return value should be a DOM. | <ul><li>3 params below provide more information for render function:</li> <ul><li>`cellData` is data of current cell rendered.</li><li>`rowData` is data of current row rendered.</li><li>`rowIndex` is index of current row rendered.</li></ul><li>If render function is not specified, the cell will display with default text.</li></ul>|
 
 
@@ -49,7 +49,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | The function fire when the table change. | `function(event: Event => void)` <br><br> - Take the event object of Event as the argument<br> - Can receive the following values when used `event.detail` <ul><li>`change-cell` (Triggered if the data in cell is changed)</li><ul><li>event.detail.`type` : change-cell</li><li>event.detail.`rowIndex`: the row's index has changed</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li><li>event.detail.`field`: The columns has changed</li></ul><li>`add-row` (Triggered if button add row is clicked)</li><ul><li>event.detail.`type` : add-row</li><li>event.detail.`rowIndex`: The row’s index added.</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li></ul><li>`remove-row` (Triggered if button remove row is clicked</li><ul><li>event.detail.`type` : remove-row</li><li>event.detail.`rowIndex`: The row’s index removed.</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li></ul></ul>|
+| change | function | The function fire when the table change. | `function(event: Event => void)` <br><br> - Take the event object of Event as the argument<br> - You can receive the following values when used `event.detail` <ul><li>`change-cell` (Triggered if the data in cell is changed)</li><ul><li>event.detail.`type` : change-cell</li><li>event.detail.`rowIndex`: the row's index has changed</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li><li>event.detail.`field`: The columns has changed</li></ul><li>`add-row` (Triggered if button add row is clicked)</li><ul><li>event.detail.`type` : add-row</li><li>event.detail.`rowIndex`: The row’s index added.</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li></ul><li>`remove-row` (Triggered if button remove row is clicked</li><ul><li>event.detail.`type` : remove-row</li><li>event.detail.`rowIndex`: The row’s index removed.</li><li>event.detail.`data`: all data of table</li><li>event.detail.`oldData`: old data of table</li></ul></ul>|
 
 ### Constructor
 
