@@ -76,6 +76,11 @@ let exportAttachment;
     @queryAll(".kuc-attachment__group__files__display-area__item__name")
     private _fileItemsEl!: HTMLDivElement[];
 
+    @queryAll(
+      ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
+    )
+    private _fileRemoveButtons!: HTMLButtonElement[];
+
     constructor(props?: AttachmentProps) {
       super();
       this._GUID = generateGUID();
@@ -259,7 +264,6 @@ let exportAttachment;
         index === this.files.length - 1 && this._inputEl.focus();
         const tempFiles = [...this.files];
         this.files.splice(index, 1);
-
         const detail: AttachmentChangeEventDetail = {
           oldFiles: tempFiles,
           files: this.files,
@@ -268,6 +272,9 @@ let exportAttachment;
         };
         dispatchCustomEvent(this, "change", detail);
         this.requestUpdate();
+        if (index <= this.files.length - 1) {
+          this._fileRemoveButtons[index].focus();
+        }
       }
     }
 
