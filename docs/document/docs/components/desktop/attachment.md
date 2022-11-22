@@ -61,7 +61,7 @@ Here is a list of available constructors:
 
 Here is a sample code when all parameters are specified:
 ``` javascript
-const KUC = Kucs['1.x.x'];
+const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
