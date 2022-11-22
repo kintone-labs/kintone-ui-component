@@ -27,11 +27,15 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| language | string | "auto"  | Language setting | The text of “Browse“ button and “Drag & drop zone” will be changed according to language property<br>Available options: "auto", "en", "ja", "zh", "zh-TW"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"zh-TW"/"ja", the language setting will be "en") |
-| files | Array<File \| {name: string; size: string; [key:string]: any}> | [] | The files of the selected | [File objects](https://developer.mozilla.org/en-US/docs/Web/API/File)<br>Or objects contain "name" and "size"<br>ex:<br>const fileObject = new File(["foo"], "foo.txt", {type: "text/plain"});<br>const customFile = {name:"foo.txt", size: "150", type: ".jpg"}<br> const attachment = new Attachment({files:[fileObject, customFile]});
+| language | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW"<br>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"zh-TW"/"ja", the language setting will be "en") |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
+| files | Array\<File> | [] | The files of the selected | [File objects](https://developer.mozilla.org/en-US/docs/Web/API/File)<br>Or objects contain "name" and "size"
+| file.name | string | "" | The file name | |
+| file.size | string | "" | The file size | |
+
+> *1 The text of “Browse“ button and “Drag & drop zone” will be changed according to language property
 
 ### Event
 
@@ -59,9 +63,10 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 ``` javascript
 const space = kintone.app.record.getSpaceElement('space');
+const KUC = Kucs['1.x.x'];
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
-  files: [{name: "file.txt", size: "150"}],
+  files: [{name: "file.txt", size: '150'}],
   language: 'auto'
   error: 'Error occurred!',
   className: 'options-class',
