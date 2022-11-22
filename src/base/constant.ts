@@ -2,9 +2,6 @@ export const ERROR_MESSAGE = {
   ITEMS: {
     IS_NOT_ARRAY: "'items' property is not array.",
   },
-  FILES: {
-    IS_NOT_ARRAY: "'files' property is not array.",
-  },
   VALUE: {
     IS_NOT_ARRAY: "'value' property is not array.",
     IS_NOT_STRING: "'value' property is not string.",
