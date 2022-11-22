@@ -66,7 +66,7 @@ const space = kintone.app.record.getSpaceElement('space');
 const KUC = Kucs['1.x.x'];
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
-  files: [{name: "file.txt", size: '150'}],
+  files: [{name: 'file.txt', size: '150'}],
   language: 'auto'
   error: 'Error occurred!',
   className: 'options-class',
