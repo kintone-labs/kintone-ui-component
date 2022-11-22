@@ -159,6 +159,8 @@ let exportCombobox;
               aria-haspopup="listbox"
               aria-autocomplete="list"
               aria-labelledby="${this._GUID}-label"
+              aria-controls="${this._GUID}-listbox"
+              aria-descibedby="${this._GUID}-error"
               aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
               ?disabled="${this.disabled}"
@@ -173,6 +175,9 @@ let exportCombobox;
                 class="kuc-combobox__group__toggle__icon__button"
                 tabindex="-1"
                 type="button"
+                aria-labelledby="${this._GUID}-label"
+                aria-controls="${this._GUID}-listbox"
+                aria-expanded="${this._selectorVisible}"
                 ?disabled="${this.disabled}"
                 @click="${this._handleClickToggleButton}"
               >
@@ -183,6 +188,8 @@ let exportCombobox;
           <ul
             class="kuc-combobox__group__select-menu"
             role="listbox"
+            id="${this._GUID}-listbox"
+            aria-labelledby="${this._GUID}-label"
             aria-hidden="${!this._selectorVisible}"
             ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
