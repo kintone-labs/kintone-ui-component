@@ -315,6 +315,7 @@ let exportTable;
       iconSvg.setAttribute("width", "18");
       iconSvg.setAttribute("height", "18");
       iconSvg.setAttribute("viewBox", "0 0 16 16");
+      iconSvg.setAttribute("aria-hidden", "true");
 
       const iconPath = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -345,14 +346,22 @@ let exportTable;
     }
 
     private _getActionButtonDOM(type: string, newRow: HTMLTableRowElement) {
+      const titleDeleteRow = "Delete this row";
+      const titleAddRow = "Add row";
+      let className = btnRemoveRowClassName;
+      let title = titleDeleteRow;
       const isAdd = type === "add";
-      const className = isAdd ? btnAddRowClassName : btnRemoveRowClassName;
+      if (isAdd) {
+        className = btnAddRowClassName;
+        title = titleAddRow;
+      }
       const fillPath = isAdd ? fillAdd : fillRemove;
       const dPath = isAdd ? dAdd : dRemove;
       const svgEl = this._getSvgDOM(fillPath, dPath);
 
       const buttonAction = document.createElement("button");
       buttonAction.classList.add(className);
+      buttonAction.setAttribute("title", title);
       buttonAction.appendChild(svgEl);
       buttonAction.addEventListener("click", () => {
         if (isAdd) {
