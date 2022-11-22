@@ -68,17 +68,12 @@ let exportTable;
     }
 
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
-      if (_changedProperties.has("columns")) {
-        const errorMessage = this._getErrorMessageWhenValidateColumns();
+      if (_changedProperties.has("data") || _changedProperties.has("columns")) {
+        const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
           throwErrorAfterUpdateComplete(this, errorMessage);
           return false;
         }
-      }
-      if (_changedProperties.has("data") && !validateArrayProperty(this.data)) {
-        const errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
-        throwErrorAfterUpdateComplete(this, errorMessage);
-        return false;
       }
       return true;
     }
@@ -365,6 +360,11 @@ let exportTable;
       buttonAction.setAttribute("title", title);
       buttonAction.appendChild(svgEl);
       buttonAction.addEventListener("click", () => {
+        const errorMessage = this._getErrorValidateColumnsAndData();
+        if (errorMessage) {
+          throwErrorAfterUpdateComplete(this, errorMessage);
+          return;
+        }
         if (isAdd) {
           this._handleAddRow(newRow.rowIndex);
           return;
@@ -373,6 +373,18 @@ let exportTable;
       });
 
       return buttonAction;
+    }
+
+    private _getErrorValidateColumnsAndData() {
+      let errorMessage = "";
+      const errorColumns = this._getErrorMessageWhenValidateColumns();
+      if (errorColumns) {
+        errorMessage = errorColumns;
+      }
+      if (!validateArrayProperty(this.data)) {
+        errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
+      }
+      return errorMessage;
     }
 
     private _deepCloneObject(obj: any) {
