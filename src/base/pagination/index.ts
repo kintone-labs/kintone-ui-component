@@ -64,11 +64,15 @@ let exportPagination;
     }
 
     private _handleFocusPrevButton() {
-      this._prevButtonEl.classList.add("kuc-base-pagination__group__pager--focus");
+      this._prevButtonEl.classList.add(
+        "kuc-base-pagination__group__pager--focus"
+      );
     }
 
     private _handleBlurPrevButton() {
-      this._prevButtonEl.classList.remove("kuc-base-pagination__group__pager--focus");
+      this._prevButtonEl.classList.remove(
+        "kuc-base-pagination__group__pager--focus"
+      );
     }
 
     private _handleClickNextButton(event: MouseEvent) {
@@ -77,11 +81,15 @@ let exportPagination;
     }
 
     private _handleFocusNextButton() {
-      this._nextButtonEl.classList.add("kuc-base-pagination__group__pager--focus");
+      this._nextButtonEl.classList.add(
+        "kuc-base-pagination__group__pager--focus"
+      );
     }
 
     private _handleBlurNextButton() {
-      this._nextButtonEl.classList.remove("kuc-base-pagination__group__pager--focus");
+      this._nextButtonEl.classList.remove(
+        "kuc-base-pagination__group__pager--focus"
+      );
     }
 
     private _getPrevButtonSvgTemplate() {
