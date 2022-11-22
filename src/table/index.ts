@@ -293,16 +293,17 @@ let exportTable;
     }
 
     private _toggleRemoveRowButton() {
-      const removeButtons = this._tBody.querySelectorAll(
-        `.${btnRemoveRowClassName}`
-      );
-      const firstRemoveButton = removeButtons[0] as HTMLButtonElement;
+      const firstActionsCell = this._tBody.rows[0]
+        .lastChild as HTMLTableCellElement;
+      const firstRemoveRow = firstActionsCell.lastChild as HTMLButtonElement;
       if (this.data.length === 1) {
-        firstRemoveButton.style.display = "none";
+        firstRemoveRow.style.display = "none";
         return;
       }
-      for (const removeButton of removeButtons) {
-        (removeButton as HTMLButtonElement).style.display = "block";
+      if (this.data.length === 2) {
+        const secondRemoveRow = this._tBody.rows[1].lastChild
+          ?.lastChild as HTMLButtonElement;
+        firstRemoveRow.style.display = secondRemoveRow.style.display = "block";
       }
     }
 
