@@ -376,15 +376,13 @@ let exportTable;
     }
 
     private _getErrorValidateColumnsAndData() {
-      let errorMessage = "";
       const errorColumns = this._getErrorMessageWhenValidateColumns();
-      if (errorColumns) {
-        errorMessage = errorColumns;
-      }
-      if (!validateArrayProperty(this.data)) {
-        errorMessage = ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
-      }
-      return errorMessage;
+      if (errorColumns) return errorColumns;
+
+      if (!validateArrayProperty(this.data))
+        return ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
+
+      return "";
     }
 
     private _deepCloneObject(obj: any) {
