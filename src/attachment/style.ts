@@ -24,6 +24,7 @@ export const ATTACHMENT_CSS = `
   kuc-attachment {
     font-size: 14px;
     display: inline-table;
+    vertical-align: top;
     width: 191px;
     min-width: 191px;
   }
