@@ -9,8 +9,9 @@ export const BASE_TIME_CSS = `
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  max-width: 85px;
-  width: 85px;
+  max-width: var(--kuc-time-picker-input-width, 85px);
+  width: var(--kuc-time-picker-input-width, 85px);
+  font-size: var(--kuc-time-picker-font-size, 14px);
   height: 40px;
   color: #333333;
   border: solid 1px #e3e7e8;
@@ -22,8 +23,8 @@ export const BASE_TIME_CSS = `
 .kuc-base-time__group input.kuc-base-time__group__hours {
   border: 0px;
   padding: 0px;
-  width: 16px;
-  font-size: 14px;
+  width: 2ch;
+  font-size: inherit;
   outline: none;
   background-color: transparent;
   color: #333333;
@@ -33,8 +34,8 @@ export const BASE_TIME_CSS = `
 .kuc-base-time__group input.kuc-base-time__group__minutes {
   border: 0px;
   padding: 0px;
-  width: 16px;
-  font-size: 14px;
+  width: 2ch;
+  font-size: inherit;
   outline: none;
   background-color: transparent;
   color: #333333;
@@ -53,9 +54,9 @@ export const BASE_TIME_CSS = `
 }
 .kuc-base-time__group input.kuc-base-time__group__suffix {
   border: 0px;
-  width: 24px;
+  width: 3ch;
   text-align: right;
-  font-size: 14px;
+  font-size: inherit;
   outline: none;
   appearance: none;
   margin-left: 1px;
