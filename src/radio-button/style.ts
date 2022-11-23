@@ -56,7 +56,7 @@ export const RADIOBUTTON_CSS = `
 
   .kuc-radio-button__group__select-menu {
     display: block;
-    width: var(--kuc-radio-button-width,239px);
+    width: var(--kuc-radio-button-width, auto);
     min-width: var(--kuc-radio-button-width,239px);
   }
 
