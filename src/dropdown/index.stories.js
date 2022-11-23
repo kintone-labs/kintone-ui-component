@@ -123,6 +123,7 @@ const template2 = (args) => {
 export const Base2 = template2.bind({});
 Base2.args = {
   label: "Dropdown",
+  id: "sample-id",
   items: [
     {
       label: "Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1",

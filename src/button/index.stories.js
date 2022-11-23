@@ -30,7 +30,7 @@ const template = (args) => {
   return html`
     <kuc-button
       .className="${args.className}"
-      .disable="${args.disabled}"
+      .disabled="${args.disabled}"
       .id="${args.id}"
       .type="${args.type}"
       .text="${args.text}"
@@ -43,10 +43,9 @@ const template = (args) => {
 export const Base = template.bind({});
 Base.args = {
   className: "sample-class",
-  error: "button error",
+  disabled: false,
   id: "sample-id",
+  type: "normal",
   text: "Button",
   visible: true,
-  disabled: false,
-  type: "normal",
 };

@@ -105,6 +105,7 @@ Base1.args = {
 };
 export const Base2 = template.bind({});
 Base2.args = {
+  id: "sample-id",
   items: [
     {
       label: "sample1",

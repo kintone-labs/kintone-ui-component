@@ -14,7 +14,7 @@ export default {
     suffix: { name: "suffix" },
     textAlign: {
       name: "textAlign",
-      options: ["left", "tight"],
+      options: ["left", "right"],
       control: {
         type: "select",
       },
@@ -63,7 +63,7 @@ Base.args = {
   value: "Orange",
   className: "hoge var",
   id: "aaaaaa",
-  textalign: "right",
+  textAlign: "right",
   placeholder: "hogehoge1",
   label: "フルーツ",
   requiredIcon: true,
@@ -82,17 +82,17 @@ Base1.args = {
   label: "フルーツ",
   requiredIcon: true,
   error: "エラーです",
+  visible: true,
   prefix: "$$$",
   suffix: "円",
   disabled: false,
-  visible: true,
 };
 export const Base2 = template.bind({});
 Base2.args = {
   value: "Orange",
   className: "options-class",
   id: "options-id",
-  textalign: "right",
+  textAlign: "right",
   placeholder: "fruit",
   label: "Fruit",
   requiredIcon: true,
