@@ -61,7 +61,6 @@ const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 
 const readOnlyTable = new Kuc.ReadOnlyTable({
-  label: 'ReadOnlyTable',
   rowsPerPage: 3,
   pagination: true,
   columns: [
