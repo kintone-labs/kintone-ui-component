@@ -26,12 +26,12 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name. | |
 | id | string | ""  | Component id name. | |
-| label | string | ""  | Label for the component. | Label will not be displayed if unspecified or left empty. |
+| label | string | ""  | Text description for the component. | Label will not be displayed if unspecified or left empty. |
 | rowsPerPage | number | 5 | Set the number of table rows per page. | Round off to the nearest whole number: <br/> - `{rowsPerPage: 20.5}` Display up to 21 rows per page. <br/> - `{rowsPerPage: 20.4}` Display up to 20 rows per page. |
 | pagination | boolean | true | A boolean to determine whether to enable pagination. | pagination is false, all rows are displayed. |
 | visible | boolean | true | Show/Hide the component. | |
-| columns | Array\<[Columns](#column)\> | []  | Array of data to be displayed in the table header. | Will result an error if the value for columns is not an array. |
-| data | Array\<object\> | []  | An array of objects to be displayed in the body of the ReadOnlyTable. | Will result an error if the data is not an array. |
+| columns | Array\<[Columns](#column)\> | []  | Array of data to be displayed in the table header. | Throw an error if columns is not an array. |
+| data | Array\<object\> | []  | An array of objects to be displayed in the body of the ReadOnlyTable. | Throw an error if columns is not an array. |
 
 #### Column
 | Name | Type | Default | Description | Remark |
