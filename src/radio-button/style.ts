@@ -25,7 +25,6 @@ export const RADIOBUTTON_CSS = `
     font-size: 14px;
     color: #333333;
     display: inline-table;
-    width: var(--kuc-radio-button-width,239px);
     min-width: var(--kuc-radio-button-width,239px);
     vertical-align: top;
     line-height: 1.5;
