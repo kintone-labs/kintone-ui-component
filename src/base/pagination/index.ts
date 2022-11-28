@@ -40,6 +40,8 @@ let exportPagination;
             @click="${this._handleClickPrevButton}"
             @focus="${this._handleFocusPrevButton}"
             @blur="${this._handleBlurPrevButton}"
+            @mouseover="${this._handleMouseOverPrevButton}"
+            @mouseleave="${this._handleMouseLeavePrevButton}"
           >
             ${this._getPrevButtonSvgTemplate()}</button
           ><button
@@ -51,6 +53,8 @@ let exportPagination;
             @click="${this._handleClickNextButton}"
             @focus="${this._handleFocusNextButton}"
             @blur="${this._handleBlurNextButton}"
+            @mouseover="${this._handleMouseOverNextButton}"
+            @mouseleave="${this._handleMouseLeaveNextButton}"
           >
             ${this._getNextButtonSvgTemplate()}
           </button>
@@ -75,6 +79,18 @@ let exportPagination;
       );
     }
 
+    private _handleMouseOverPrevButton() {
+      this._prevButtonEl.classList.add(
+        "kuc-base-pagination__group__pager--horver"
+      );
+    }
+
+    private _handleMouseLeavePrevButton() {
+      this._prevButtonEl.classList.remove(
+        "kuc-base-pagination__group__pager--horver"
+      );
+    }
+
     private _handleClickNextButton(event: MouseEvent) {
       event.stopPropagation();
       dispatchCustomEvent(this, "kuc:pagination-click-next");
@@ -89,6 +105,18 @@ let exportPagination;
     private _handleBlurNextButton() {
       this._nextButtonEl.classList.remove(
         "kuc-base-pagination__group__pager--focus"
+      );
+    }
+
+    private _handleMouseOverNextButton() {
+      this._nextButtonEl.classList.add(
+        "kuc-base-pagination__group__pager--horver"
+      );
+    }
+
+    private _handleMouseLeaveNextButton() {
+      this._nextButtonEl.classList.remove(
+        "kuc-base-pagination__group__pager--horver"
       );
     }
 
