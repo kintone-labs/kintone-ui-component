@@ -35,10 +35,7 @@ let exportAttachment;
       "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: String }) error = "";
-    @property({
-      type: Array<FileItem>,
-    })
-    files: FileItem[] = [];
+    @property({ type: Array }) files: FileItem[] = [];
     @property({ type: String, reflect: true, attribute: "id" })
     id = "";
     @property({ type: String }) label = "";
