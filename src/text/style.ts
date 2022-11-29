@@ -51,21 +51,16 @@ kuc-text[hidden] {
   display: none;
 }
 .kuc-text__group__input-form {
-  display: table;
+  display: flex;
+  align-items: center;
   width: 100%;
-}
-.kuc-text__group__input-form__prefix-outer,
-.kuc-text__group__input-form__input-outer,
-.kuc-text__group__input-form__suffix-outer {
-  display: table-cell;
 }
 .kuc-text__group__input-form__prefix-outer__prefix {
   padding-right: 4px;
   white-space: nowrap;
 }
 .kuc-text__group__input-form__input-outer {
-  min-width: 26px;
-  width: 100%;
+  width: var(--kuc-text-input-width, 100%);
 }
 input[type="text"].kuc-text__group__input-form__input-outer__input {
   width: var(--kuc-text-input-width, 100%);
