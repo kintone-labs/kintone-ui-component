@@ -7,7 +7,7 @@ original_id: readonly-table
 
 ## Overview
 
-The ReadOnlyTable component allows the user to display data in a table.
+The ReadOnlyTable component allows the user to display a read-only mode table.
 
 <div class="sample-container" id="readonly-table">
   <div id="sample-container__components"></div>
@@ -27,18 +27,18 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name. | |
 | id | string | ""  | Component id name. | |
 | label | string | ""  | Text description for the component. | Label will not be displayed if unspecified or left empty. |
-| rowsPerPage | number | 5 | Set the number of table rows per page. | Round off to the nearest whole number: <br/> - `{rowsPerPage: 20.5}` Display up to 21 rows per page. <br/> - `{rowsPerPage: 20.4}` Display up to 20 rows per page. |
-| pagination | boolean | true | A boolean to determine whether to enable pagination. | pagination is false, all rows are displayed. |
+| rowsPerPage | number | 5 | Number of table rows per page. | <ul><li>Round off to the nearest whole number. </li><ul> <li> `{rowsPerPage: 10}` Display up to 10 rows per page. </li><li> `{rowsPerPage: 20.5}` Display up to 21 rows per page. </li> <li> `{rowsPerPage: 20.4}` Display up to 20 rows per page. </li></ul><li>Throw an error if `rowsPerPage` is not a positive number in constructor and setter.</li><ul>|
+| pagination | boolean | true | Show/Hide the pagination. | <ul><li>`{pagination: false}` Pagination is hidden, all rows are displayed.</li><li>`{pagination: true}` Only the number of rows set in rowsPerPage are displayed.</li></ul> |
 | visible | boolean | true | Show/Hide the component. | |
-| columns | Array\<[Columns](#column)\> | []  | Array of data to be displayed in the table header. | Throw an error if columns is not an array. |
-| data | Array\<object\> | []  | An array of objects to be displayed in the body of the ReadOnlyTable. | Throw an error if columns is not an array. |
+| columns | Array\<[Columns](#column)\> | []  | Column data of the component. | Throw an error if the `columns` is not an array. |
+| data | Array\<object\> | []  | Row data of the component. | Throw an error if the `data` is not an array. |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string | ""  | The key of the data object. | |
-| title | string | ""  | The header name of each column. | |
-| visible | boolean |  true  | Determine the visibility of the column. | |
+| field | string | ""  | Key of the data object. | |
+| title | string | ""  | Header name of the column. | |
+| visible | boolean |  true  | Show/Hide the column. | |
 
 ### Constructor
 
