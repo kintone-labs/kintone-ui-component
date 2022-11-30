@@ -117,14 +117,9 @@ let exportCombobox;
         }
       }
 
-      if (changedProperties.has("value")) {
-        if (!validateValueString(this.value)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.VALUE.IS_NOT_STRING
-          );
-          return false;
-        }
+      if (changedProperties.has("value") && !validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
       }
 
       return true;
@@ -132,8 +127,7 @@ let exportCombobox;
 
     willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("value")) {
-        const selectedLabel = this._getSelectedLabel();
-        this._searchText = selectedLabel ? selectedLabel : "";
+        this._searchText = this._getSelectedLabel() || "";
       }
     }
 
@@ -269,14 +263,15 @@ let exportCombobox;
       const isCheckedItem = this._isCheckedItem(item);
       const text = item.label === undefined ? item.value : item.label;
       let newText = html`${text}`;
-      if (this._query.trim() !== "" && text) {
-        const trimmedQuery = this._query.trim().toLowerCase();
-        const queryIndex = text.toLowerCase().indexOf(trimmedQuery);
+      const trimmedQuery = this._query.trim().toLowerCase();
+      if (trimmedQuery && text) {
+        const startIndex = text.toLowerCase().indexOf(trimmedQuery);
+        const endIndex = startIndex + trimmedQuery.length;
         newText = html`
-          ${text.slice(0, queryIndex)}<b>${text.slice(
-            queryIndex,
-            queryIndex + trimmedQuery.length
-          )}</b>${text.slice(queryIndex + trimmedQuery.length)}
+          ${text.slice(0, startIndex)}<b>${text.slice(
+            startIndex,
+            endIndex
+          )}</b>${text.slice(endIndex)}
         `;
       }
 
@@ -371,6 +366,7 @@ let exportCombobox;
         event.target === this._toggleEl ||
         this._toggleEl.contains(event.target as HTMLElement)
       ) {
+        this._inputEl.focus();
         event.stopPropagation();
       }
       this._actionHideMenu();
@@ -381,6 +377,9 @@ let exportCombobox;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
+          if (this.items.length === 0) {
+            break;
+          }
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -396,6 +395,9 @@ let exportCombobox;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
+          if (this.items.length === 0) {
+            break;
+          }
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -469,7 +471,9 @@ let exportCombobox;
         return;
       }
 
-      this._actionShowMenu();
+      if (this.items.length > 0) {
+        this._actionShowMenu();
+      }
     }
 
     private _actionHighlightFirstMenuItem() {
@@ -564,11 +568,8 @@ let exportCombobox;
         };
         const regex = new RegExp(escapePattern(this._query.trim()), "gi");
 
-        if (item.label) {
-          return regex.test(item.label);
-        } else if (item.value) {
-          return regex.test(item.value);
-        }
+        if (item.label) return regex.test(item.label);
+        if (item.value) return regex.test(item.value);
         return false;
       });
 
@@ -628,6 +629,7 @@ let exportCombobox;
       this._menuEl.style.bottom = "auto";
       this._menuEl.style.overflowY = "";
 
+      const ERROR_MARGIN = 16;
       const menuHeight = this._menuEl.getBoundingClientRect().height;
       const distanceToggleButton = this._getDistanceToggleButton();
       if (distanceToggleButton.toBottom >= menuHeight) return;
@@ -635,7 +637,7 @@ let exportCombobox;
       if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
         // Above
         const errorHeight = this._errorEl.offsetHeight
-          ? this._errorEl.offsetHeight + 16
+          ? this._errorEl.offsetHeight + ERROR_MARGIN
           : 0;
         this._menuEl.style.bottom = `${
           this._toggleEl.offsetHeight + errorHeight

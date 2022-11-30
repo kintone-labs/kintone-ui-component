@@ -115,16 +115,8 @@ export function validateDateTimeValue(date: string, time: string) {
 }
 
 export function validateDuplicatedValues(values: Array<string | undefined>) {
-  const valuesLength = values.length;
-  if (valuesLength < 2) return true;
-
-  for (let i = 0; i < valuesLength; i++) {
-    for (let j = i + 1; j < valuesLength; j++) {
-      if (values[i] === values[j]) return false;
-    }
-  }
-
-  return true;
+  if (values.length < 2) return true;
+  return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
 }
 
 export async function throwErrorAfterUpdateComplete(

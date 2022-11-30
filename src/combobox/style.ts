@@ -26,6 +26,7 @@ export const COMBOBOX_CSS = `
     font-size: 14px;
     color: #333333;
     width: 180px;
+    vertical-align: top;
     line-height: 1.5;
   }
   kuc-combobox[hidden] {
@@ -117,6 +118,15 @@ export const COMBOBOX_CSS = `
     position: relative;
     cursor: pointer;
     white-space: nowrap;
+  }
+  .kuc-combobox__group__select-menu__item:lang(en) b {
+    font-family: HelveticaNeueW02-65Medi,Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  }
+  .kuc-combobox__group__select-menu__item:lang(en) b,
+  .kuc-combobox__group__select-menu__item:lang(ja) b,
+  .kuc-combobox__group__select-menu__item:lang(zh) b,
+  .kuc-combobox__group__select-menu__item:lang(zh-TW) b{
+    font-weight: 700;
   }
   .kuc-combobox__group__select-menu__item__icon {
     position: absolute;
