@@ -71,6 +71,7 @@ Base.args = {
   visible: true,
   prefix: "",
   suffix: "",
+  disabled: false,
 };
 export const Base1 = template.bind({});
 Base1.args = {
