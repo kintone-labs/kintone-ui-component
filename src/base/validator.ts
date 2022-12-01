@@ -76,6 +76,13 @@ export function validateItems(value: Item[]) {
   return true;
 }
 
+export function isArrayType<T>(value: T[]) {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+  return true;
+}
+
 export function validateValueArray(value: string[]) {
   if (!Array.isArray(value)) {
     return false;
@@ -120,4 +127,9 @@ export async function throwErrorAfterUpdateComplete(
 ) {
   await _this.updateComplete;
   throw new Error(message);
+}
+
+export function validatePositiveInteger(data: string) {
+  const reg = /^[1-9]\d*$/;
+  return reg.test(data);
 }
