@@ -7,9 +7,9 @@ export default {
     footer: { name: "footer" },
     icon: {
       name: "icon",
+      options: ["success", "info", "error", "warning", "question"],
       control: {
         type: "select",
-        options: ["success", "info", "error", "warning", "question"],
       },
     },
   },

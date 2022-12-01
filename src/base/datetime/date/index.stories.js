@@ -5,16 +5,16 @@ export default {
   argTypes: {
     disabled: {
       name: "disabled",
+      options: [true, false],
       control: {
         type: "select",
-        options: [true, false],
       },
     },
     language: {
       name: "language",
+      options: ["en", "ja", "zh", "zh-TW"],
       control: {
         type: "select",
-        options: ["en", "ja", "zh", "zh-TW"],
       },
     },
     value: {
