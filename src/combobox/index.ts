@@ -377,9 +377,6 @@ let exportCombobox;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
-          if (this.items.length === 0) {
-            break;
-          }
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -395,9 +392,6 @@ let exportCombobox;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
-          if (this.items.length === 0) {
-            break;
-          }
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -452,12 +446,16 @@ let exportCombobox;
     }
 
     private _actionShowMenu() {
-      this._inputEl.focus();
-      this._selectorVisible = true;
-
       if (this._query.trim() === "") {
         this._matchingItems = this.items;
       }
+
+      if (this.items.length === 0 || this._matchingItems.length === 0) {
+        return;
+      }
+
+      this._inputEl.focus();
+      this._selectorVisible = true;
     }
 
     private _actionHideMenu() {
@@ -471,9 +469,7 @@ let exportCombobox;
         return;
       }
 
-      if (this.items.length > 0) {
-        this._actionShowMenu();
-      }
+      this._actionShowMenu();
     }
 
     private _actionHighlightFirstMenuItem() {
