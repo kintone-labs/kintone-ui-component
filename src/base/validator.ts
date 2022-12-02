@@ -129,6 +129,28 @@ export async function throwErrorAfterUpdateComplete(
   throw new Error(message);
 }
 
+export const validateFieldRequiredInColumnTable = (columns: object[]) => {
+  for (let i = 0; i < columns.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(columns[i], "field"))
+      return false;
+  }
+
+  return true;
+};
+
+export const validateFieldUniqueInColumnTable = (columns: object[]) => {
+  const valueArr = columns.map((item: any) => item.field);
+  const isDuplicate = valueArr.some(function (item, idx) {
+    return valueArr.indexOf(item) !== idx;
+  });
+
+  return isDuplicate;
+};
+
+export const validateArrayProperty = (data: object[]) => {
+  return Array.isArray(data);
+};
+
 export function validatePositiveInteger(data: string) {
   const reg = /^[1-9]\d*$/;
   return reg.test(data);
