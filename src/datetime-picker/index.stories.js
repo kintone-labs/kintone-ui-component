@@ -10,9 +10,9 @@ export default {
     label: { name: "label" },
     language: {
       name: "language",
+      options: ["auto", "en", "ja", "zh", "zh-TW"],
       control: {
         type: "select",
-        options: ["auto", "en", "ja", "zh", "zh-TW"],
       },
     },
     value: { name: "value" },

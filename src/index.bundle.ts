@@ -15,6 +15,7 @@ export * from "./dialog";
 export * from "./date-picker";
 export * from "./datetime-picker";
 export * from "./time-picker";
+export * from "./attachment";
 export * from "./combobox";
 
 export * from "./mobile/button";
