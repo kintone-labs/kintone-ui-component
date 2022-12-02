@@ -76,6 +76,13 @@ export function validateItems(value: Item[]) {
   return true;
 }
 
+export function isArrayType<T>(value: T[]) {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+  return true;
+}
+
 export function validateValueArray(value: string[]) {
   if (!Array.isArray(value)) {
     return false;
@@ -143,3 +150,8 @@ export const validateFieldUniqueInColumnTable = (columns: object[]) => {
 export const validateArrayProperty = (data: object[]) => {
   return Array.isArray(data);
 };
+
+export function validatePositiveInteger(data: string) {
+  const reg = /^[1-9]\d*$/;
+  return reg.test(data);
+}

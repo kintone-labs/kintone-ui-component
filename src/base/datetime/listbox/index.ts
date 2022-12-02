@@ -43,7 +43,6 @@ export class BaseDateTimeListBox extends KucBase {
   @state()
   private _firstHighlight = true;
 
-  @state()
   private _itemSelectedEl!: HTMLLIElement;
 
   constructor() {
@@ -81,7 +80,8 @@ export class BaseDateTimeListBox extends KucBase {
     `;
   }
 
-  updated(changedProperties: any) {
+  async updated(changedProperties: any) {
+    await this.updateComplete;
     if (changedProperties.has("value")) {
       this._highlightSelectedItem();
     }
