@@ -26,7 +26,8 @@ export const TEXTAREA_CSS = `
     color: #333333;
     display: inline-table;
     vertical-align: top;
-    width: 299px;
+    min-width: var(--kuc-text-area-width, 299px);
+    width: var(--kuc-text-area-width, 299px);
     line-height: 1.5;
   }
   kuc-textarea[hidden] {
@@ -55,11 +56,8 @@ export const TEXTAREA_CSS = `
     box-sizing: border-box;
     font-size: 14px;
     box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-    min-width: 299px;
-    min-height: 125px;
-    padding: 8px;
-    resize: none;
-    width: 100%;
+    width: var(--kuc-text-area-width, 100%);
+    height: var(--kuc-text-area-height, 125px);
     background-color: #ffffff;
   }
   .kuc-textarea__group__textarea:focus {
@@ -77,12 +75,8 @@ export const TEXTAREA_CSS = `
     cursor: not-allowed;
     resize: none;
   }
-  .kuc-textarea__group__resizer {
-    position: relative;
-    width: 16px;
-    height: 16px;
-    cursor: se-resize;
-    float: right;
-    margin: -16px 0px;
-  }
+  textarea::-webkit-resizer {
+    background-image:url("https://static.cybozu.com/k/kintone_22.11.4_120731/image/cybozu/icon/textarea-resizer.png");\
+    background-repeat: no-repeat;
+  };
 `;
