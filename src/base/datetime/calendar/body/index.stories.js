@@ -6,16 +6,16 @@ export default {
   argTypes: {
     month: {
       name: "month",
+      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       control: {
         type: "select",
-        options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       },
     },
     year: {
       name: "year",
+      options: [2019, 2020, 2021, 2022, 2023],
       control: {
         type: "select",
-        options: [2019, 2020, 2021, 2022, 2023],
       },
     },
     language: {

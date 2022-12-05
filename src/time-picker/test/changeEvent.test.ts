@@ -47,7 +47,7 @@ describe("TimePicker", () => {
       buttonOpen.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
       );
-      await elementUpdated(el);
+      await fixture(container);
 
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.value).to.equal("00:00");
