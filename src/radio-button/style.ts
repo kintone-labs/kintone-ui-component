@@ -25,6 +25,7 @@ export const RADIOBUTTON_CSS = `
     font-size: 14px;
     color: #333333;
     display: inline-table;
+    width: var(--kuc-radio-button-width,239px);
     min-width: var(--kuc-radio-button-width,239px);
     vertical-align: top;
     line-height: 1.5;
@@ -57,6 +58,11 @@ export const RADIOBUTTON_CSS = `
     display: block;
     width: var(--kuc-radio-button-width, auto);
     min-width: var(--kuc-radio-button-width,239px);
+    overflow: hidden;
+  }
+
+  .kuc-radio-button__group__select-menu[itemlayout="horizontal"] {
+    display: flex;
   }
 
   .kuc-radio-button__group__select-menu[bordervisible] {
