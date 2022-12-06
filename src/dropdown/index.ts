@@ -344,6 +344,7 @@ let exportDropdown;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
+          if (this.items.length == 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -359,6 +360,7 @@ let exportDropdown;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
+          if (this.items.length == 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -368,6 +370,7 @@ let exportDropdown;
         }
         case "Enter": {
           event.preventDefault();
+          if (this.items.length == 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -413,6 +416,7 @@ let exportDropdown;
       this._buttonEl.focus();
       this._selectorVisible = true;
 
+      if (this.items.length == 0) return;
       if (this._selectedItemEl === null) return;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
@@ -423,6 +427,7 @@ let exportDropdown;
     }
 
     private _actionToggleMenu() {
+      if (this.items.length == 0) return;
       if (this._selectorVisible) {
         this._actionHideMenu();
         return;
