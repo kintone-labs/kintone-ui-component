@@ -19,6 +19,12 @@ export const ERROR_MESSAGE = {
     FIELD_REQUIRED: "'field' property is not specified in columns.",
     FIELD_UNIQUE: "'field' property is not unique in columns.",
   },
+  ROWS_PER_PAGE: {
+    INVALID: "'rowsPerPage' property is not positive integer.",
+  },
+  DATA: {
+    IS_NOT_ARRAY: "'data' property is not array.",
+  },
   DATA_TABLE: {
     IS_NOT_ARRAY: "'data' property is not array.",
   },
