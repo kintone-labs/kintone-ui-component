@@ -1,6 +1,7 @@
 import { convertTimeValueToMinutes } from "./datetime/utils";
 
 type Item = { label?: string; value?: string };
+type Column = { field?: string; headerName?: string; visible?: boolean };
 
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};
@@ -127,6 +128,21 @@ export async function throwErrorAfterUpdateComplete(
 ) {
   await _this.updateComplete;
   throw new Error(message);
+}
+
+export function validateColumns(columns: Column[]) {
+  return Array.isArray(columns);
+}
+
+export function validateData(data: object[]) {
+  return Array.isArray(data);
+}
+
+export function validateRowsPerPage(numRows: number) {
+  if (numRows < 0.5 || typeof numRows !== "number") {
+    return false;
+  }
+  return true;
 }
 
 export const validateFieldRequiredInColumnTable = (columns: object[]) => {
