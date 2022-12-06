@@ -53,7 +53,7 @@ export const COMBOBOX_CSS = `
     position: relative;
     display: flex;
   }
-  .kuc-combobox__group__toggle__input {
+  input[type=text].kuc-combobox__group__toggle__input {
     width: 100%;
     height: 40px;
     box-sizing: border-box;
@@ -66,13 +66,13 @@ export const COMBOBOX_CSS = `
     padding: 0 40px 0 8px;
     margin: 0;
   }
-  .kuc-combobox__group__toggle__input:focus {
+  input[type=text].kuc-combobox__group__toggle__input:focus {
     outline: none;
     border: 1px solid #3498db;
     background-color: #e2f2fe;
     box-shadow: none;
   }
-  .kuc-combobox__group__toggle__input:disabled,
+  input[type=text].kuc-combobox__group__toggle__input:disabled,
   .kuc-combobox__group__toggle__icon__button:disabled {
     background-color: #d4d7d7;
     box-shadow: none;
