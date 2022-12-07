@@ -263,7 +263,7 @@ let exportMultiChoice;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
-
+          if (this.items.length == 0) break;
           this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
             if (
               itemEl.classList.contains(
@@ -290,6 +290,7 @@ let exportMultiChoice;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
+          if (this.items.length == 0) break;
           this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
             if (
               itemEl.classList.contains(
