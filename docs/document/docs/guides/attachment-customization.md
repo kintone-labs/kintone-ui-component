@@ -39,6 +39,7 @@ Display the KUC Attachment component and two Button components:
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
 const SPACE_ID = 'space'; // kintone space ID
+const Kuc = Kucs['1.7.0'];
 kintone.events.on('app.record.detail.show', async (event) => {
   if (event.record[`${KINTONE_ATTACHMENT_FIELD}`]) {
     const attachment = new Kuc.Attachment({
@@ -102,32 +103,40 @@ When a user selects/deletes any files, we can get the file info by the callback 
 Validate the type/size("text/50MB") of the files and get the index of invalid files.
 
 ```javascript
-attachment.addEventListener('change',(event)=>{
+attachment.addEventListener('change',(event) => {
   console.log(event.detail);//The changed file info
   attachment.error = validateAttachmentFiles(event.detail.files);
 });
-function validateAttachmentFiles(files){
+function validateAttachmentFiles(files) {
   const acceptType = 'text';
   const maxSize = 1024 * 1024 * 50;//50Mb
   let error = '';
-  files.forEach((file,index)=>{
+  let typeErrorCount = 0;
+  let sizeErrorCount = 0;
+  files.forEach((file, index) => {
     let types = [];
-    if(file.type){
+    if (file.type) {
       types = file.type.split('/');
     }
-    //The file type in the native kintone attachment field file is "contentType"
-    if(file.contentType){
+    // The file type in the native kintone attachment field file is "contentType"
+    if (file.contentType) {
       types = file.contentType.split('/');
     }
-    if(!types.includes(acceptType)){
-        error = 'There is an invalid file type!';
-        console.log(`Invalid type file index is ${index}`);
+    if (!types.includes(acceptType)) {
+      typeErrorCount++;
+      console.log(`Invalid type file index is ${index}`);
     }
-    if(!file.size || parseInt(file.size) > maxSize){
-        error = 'There is an invalid file size!'
-        console.log(`Invalid size file index is ${index}`);
+    if (!file.size || parseInt(file.size, 10) > maxSize) {
+      sizeErrorCount++;
+      console.log(`Invalid size file index is ${index}`);
     }
   });
+  if (typeErrorCount > 0) {
+    error = `There ${typeErrorCount === 1 ? 'is an invalid type file' : 'are ' + typeErrorCount + ' invalid type files'}!`;
+  }
+  if (sizeErrorCount > 0) {
+    error = `There ${sizeErrorCount === 1 ? 'is an invalid size file' : 'are ' + sizeErrorCount + ' invalid size files'}!`;
+  }
   return error;
 }
 ```
@@ -184,9 +193,5 @@ function updateRecord(params) {
 }
 ```
 
-## Conclusion
-
 > This article was reviewed by Kintone and Google Chrome as of December, 2022.<br>
 > In addition, the version of Kintone UI Component that is used for customizations is v1.8.0.
-
-> The documentation for v0 is a separate site.Please check [here](https://kintone-labs.github.io/kintone-ui-component/latest/).
