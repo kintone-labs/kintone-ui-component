@@ -46,7 +46,6 @@ const template = (args) => {
 export const Base = template.bind({});
 Base.args = {
   className: "sample-class",
-  error: "button error",
   id: "sample-id",
   text: "MobileButton",
   visible: true,

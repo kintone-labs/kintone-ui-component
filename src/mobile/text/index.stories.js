@@ -14,7 +14,7 @@ export default {
     suffix: { name: "suffix" },
     textAlign: {
       name: "textAlign",
-      options: ["left", "tight"],
+      options: ["left", "right"],
       control: {
         type: "select",
       },

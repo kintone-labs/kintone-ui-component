@@ -9,13 +9,6 @@ export default {
     error: { name: "error" },
     id: { name: "id" },
     items: { name: "items" },
-    itemLayout: {
-      name: "itemLayout",
-      options: ["horizontal", "vertical"],
-      control: {
-        type: "select",
-      },
-    },
     label: { name: "label" },
     requiredIcon: { name: "requiredIcon" },
     selectedIndex: { name: "selectedIndex" },
@@ -43,7 +36,6 @@ const template = (args) => {
       .error="${args.error}"
       .id="${args.id}"
       .items="${args.items}"
-      .itemLayout="${args.itemLayout}"
       .label="${args.label}"
       .requiredIcon="${args.requiredIcon}"
       .selectedIndex="${args.selectedIndex}"
@@ -107,7 +99,6 @@ Base1.args = {
   visible: true,
   disabled: false,
   borderVisible: true,
-  itemLayout: "",
   label: "Radio Button",
   requiredIcon: true,
   error: "Error occurred!",

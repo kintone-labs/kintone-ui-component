@@ -101,6 +101,7 @@ Base1.args = {
   error: "エラーです",
 };
 export const Base2 = template.bind({});
+// Check for array validation of items
 Base2.args = {
   className: "sample-class",
   id: "sample-id",
