@@ -344,7 +344,7 @@ let exportDropdown;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
-          if (this.items.length == 0) break;
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -360,7 +360,7 @@ let exportDropdown;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
-          if (this.items.length == 0) break;
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -370,17 +370,13 @@ let exportDropdown;
         }
         case "Enter": {
           event.preventDefault();
-          if (this.items.length == 0) break;
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
           }
-
-          const itemEl = this._highlightItemEl as HTMLLIElement;
-          if (itemEl === null) break;
-
-          const value = itemEl.getAttribute("value") as string;
-          const selectedIndex = itemEl.dataset.index || "0";
+          const { value, selectedIndex } = this._getInfoHighlightItem();
+          if (value === null) break;
           this._actionUpdateValue(value, selectedIndex);
           this._actionHideMenu();
           break;
@@ -412,11 +408,20 @@ let exportDropdown;
       }
     }
 
+    private _getInfoHighlightItem() {
+      const itemEl = this._highlightItemEl as HTMLLIElement;
+      if (itemEl === null) return { value: null, selectedIndex: "-1" };
+
+      const value = itemEl.getAttribute("value") as string;
+      const selectedIndex = itemEl.dataset.index || "0";
+      return { value: value, selectedIndex: selectedIndex };
+    }
+
     private _actionShowMenu() {
       this._buttonEl.focus();
+      if (this.items.length === 0) return;
       this._selectorVisible = true;
 
-      if (this.items.length == 0) return;
       if (this._selectedItemEl === null) return;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
@@ -427,7 +432,7 @@ let exportDropdown;
     }
 
     private _actionToggleMenu() {
-      if (this.items.length == 0) return;
+      if (this.items.length === 0) return;
       if (this._selectorVisible) {
         this._actionHideMenu();
         return;
