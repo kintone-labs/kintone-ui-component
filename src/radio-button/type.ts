@@ -9,7 +9,7 @@ export declare type RadioButtonProps = {
   className?: string;
   error?: string;
   id?: string;
-  itemLayout?: string;
+  itemLayout?: "horizontal" | "vertical";
   label?: string;
   value?: string;
   selectedIndex?: number;
