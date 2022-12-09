@@ -1,138 +1,122 @@
-import { MobileCheckbox } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit";
+import "./index";
+export default {
+  title: "mobile/checkbox",
+  argTypes: {
+    borderVisible: { name: "borderVisible" },
+    className: { name: "className" },
+    disabled: { name: "disabled" },
+    error: { name: "error" },
+    id: { name: "id" },
+    items: { name: "items" },
+    label: { name: "label" },
+    requiredIcon: { name: "requiredIcon" },
+    selectedIndex: { name: "selectedIndex" },
+    value: { name: "value" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro",
+    },
+    actions: {
+      handles: ["change"],
+    },
+  },
+};
+const template = (args) => {
+  const handleMobileCheckBoxChange = (event) => {
+    console.log(event);
+  };
+  return html`
+    <kuc-mobile-checkbox
+      .borderVisible="${args.borderVisible}"
+      .className="${args.className}"
+      .disabled="${args.disabled}"
+      .error="${args.error}"
+      .id="${args.id}"
+      .items="${args.items}"
+      .itemLayout="${args.itemLayout}"
+      .label="${args.label}"
+      .requiredIcon="${args.requiredIcon}"
+      .selectedIndex="${args.selectedIndex}"
+      .value="${args.value}"
+      .visible="${args.visible}"
+      @change="${handleMobileCheckBoxChange}"
+    ></kuc-mobile-checkbox>
+  `;
+};
+export const Base = template.bind({});
+Base.args = {
+  items: [
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample2",
+      value: "sample2",
+    },
+  ],
+  value: ["sample1"],
+  selectedIndex: [0],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  label: "フルーツ",
+  requiredIcon: true,
+  error: "エラーです",
+};
 
-storiesOf("mobile/checkbox", module)
-  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const checkbox = new MobileCheckbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["sample1"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      label: "フルーツ",
-      requiredIcon: true,
-      error: "エラーです",
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(["detail.oldValue", event.detail.oldValue]);
-      console.log(["detail.value", event.detail.value]);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base2", () => {
-    const root = document.createElement("div");
-    const checkbox = new MobileCheckbox({
-      items: [
-        {
-          label: "Orange",
-          value: "Orange",
-        },
-        {
-          label: "Orange2",
-          value: "Orange2",
-        },
-        {
-          label: "Apple",
-          value: "Apple",
-        },
-      ],
-      value: ["Orange"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: true,
-      borderVisible: true,
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(event);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base3", () => {
-    const root = document.createElement("div");
-    const checkbox = new MobileCheckbox({
-      items: [
-        {
-          label: "Orange",
-          value: "Orange",
-        },
-        {
-          label: "Apple",
-          value: "Apple",
-        },
-      ],
-      value: ["Orange"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: false,
-      label: "",
-      error: "",
-    });
-    checkbox.addEventListener("change", (event) => {
-      console.log(event);
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  // Check for duplicate value validation
-  .add("Base4", () => {
-    const root = document.createElement("div");
-    const checkbox = new MobileCheckbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["", undefined],
-    });
-    root.appendChild(checkbox);
-    return root;
-  })
-  .add("Base5", () => {
-    const root = document.createElement("div");
-    const checkbox = new MobileCheckbox({
-      items: [
-        {
-          label: "sample1",
-          value: "sample1",
-        },
-        {
-          label: "sample2",
-          value: "sample2",
-        },
-      ],
-      value: ["sample1"],
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      label: "Fruit",
-      // requiredIcon: true,
-      error: "Error occurred!",
-    });
-    root.appendChild(checkbox);
-    return root;
-  });
+export const Base1 = template.bind({});
+Base1.args = {
+  items: [
+    {
+      label: "Orange",
+      value: "orange",
+    },
+    {
+      label: "Apple",
+      value: "apple",
+    },
+  ],
+  value: ["", undefined],
+  selectedIndex: [],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: true,
+  borderVisible: true,
+  label: "フルーツ",
+  requiredIcon: false,
+  error: "",
+};
+export const Base2 = template.bind({});
+Base2.args = {
+  items: [
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample1",
+      value: "sample1",
+    },
+    {
+      label: "sample2",
+      value: "sample2",
+    },
+  ],
+  value: ["sample1"],
+  selectedIndex: [1],
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  label: "Fruit",
+  requiredIcon: true,
+  error: "Error occurred!",
+};
