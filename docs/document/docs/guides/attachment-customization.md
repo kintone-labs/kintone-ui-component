@@ -39,7 +39,7 @@ Display the KUC Attachment component and two Button components:
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
 const SPACE_ID = 'space'; // kintone space ID
-const Kuc = Kucs['1.7.0'];
+const Kuc = Kucs['1.x.x'];
 kintone.events.on('app.record.detail.show', async (event) => {
   if (event.record[`${KINTONE_ATTACHMENT_FIELD}`]) {
     const attachment = new Kuc.Attachment({
@@ -78,12 +78,12 @@ addCustomFilesButton.addEventListener('click', () => {
   attachment.files = attachment.files.concat(initCustomFiles());
 });
 function initCustomFiles() {
-  const blob = new Blob(['this type is blob'], {type: 'txt'});
+  const blob = new Blob(['this type is blob'], {type: 'text'});
   const buffer = new ArrayBuffer(8);
   const customFiles = [
-    arrayBufferToFile(buffer, 'array-buffer-file.txt', 'txt'),
+    arrayBufferToFile(buffer, 'array-buffer-file.txt', 'text'),
     blobToFile(blob, 'blob-file.txt'),
-    {name: 'custom-file.txt', size: '150', type: 'txt'},
+    {name: 'custom-file.txt', size: '150', type: 'text'},
   ];
   return customFiles;
 }
@@ -146,7 +146,7 @@ When the button is clicked, show the KUC Spinner component.<br>
 Use the `uploadFile` method of KintoneRestApiClient to upload files to Kintone.<br>
 Then use the fileKeys returned by the upload method to update the Kintone record.<br>
 Finally, close the KUC Spinner component and refresh the page.<br>
-All API calls use [@kintone/rest-api-client](https://github.com/kintone/js-sdk/tree/master/packages/rest-api-client).
+All API calls use [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) + [kintone REST API](https://kintone.dev/en/docs/kintone/rest-api/).
 
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
@@ -182,14 +182,48 @@ async function uploadFiles(files) {
   return fileKeys;
 }
 
-const client = new KintoneRestAPIClient();
-
 function uploadFile(file) {
-  return client.file.uploadFile({file: file});
+  return new Promise((resolve, reject)=>{
+    const formData = new FormData();
+    const blob = new Blob([file], {type: file.type ?? ''});
+    formData.append('__REQUEST_TOKEN__', kintone.getRequestToken());
+    formData.append('file', blob, file.name);
+    const url = 'https://sdd-demo.cybozu.com//k/v1/file.json';
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        // success
+        resolve(JSON.parse(xhr.responseText));
+      } else {
+        // error
+        reject(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(formData);
+  });
 }
 
 function updateRecord(params) {
-  return client.record.updateRecord(params);
+  params.__REQUEST_TOKEN__ = kintone.getRequestToken();
+  return new Promise((resolve, reject) => {
+    const url = 'https://sdd-demo.cybozu.com//k/v1/record.json';
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', url);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        // success
+        resolve(JSON.parse(xhr.responseText));
+      } else {
+        // error
+        reject(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(JSON.stringify(params));
+  });
 }
 ```
 
