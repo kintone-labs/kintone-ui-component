@@ -147,7 +147,7 @@ When the button is clicked, show the KUC Spinner component.<br>
 Use the `uploadFile` method of KintoneRestApiClient to upload files to Kintone.<br>
 Then use the fileKeys returned by the upload method to update the Kintone record.<br>
 Finally, close the KUC Spinner component and refresh the page.<br>
-All API calls use [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) + [kintone REST API](https://kintone.dev/en/docs/kintone/rest-api/).
+All API calls use [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [kintone REST API](https://kintone.dev/en/docs/kintone/rest-api/).
 
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
@@ -207,24 +207,7 @@ function uploadFile(file) {
 }
 
 function updateRecord(params) {
-  params.__REQUEST_TOKEN__ = kintone.getRequestToken();
-  return new Promise((resolve, reject) => {
-    const url = 'https://sdd-demo.cybozu.com//k/v1/record.json';
-    const xhr = new XMLHttpRequest();
-    xhr.open('PUT', url);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        // success
-        resolve(JSON.parse(xhr.responseText));
-      } else {
-        // error
-        reject(JSON.parse(xhr.responseText));
-      }
-    };
-    xhr.send(JSON.stringify(params));
-  });
+  return kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', params);
 }
 ```
 
