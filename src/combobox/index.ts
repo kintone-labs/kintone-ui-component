@@ -262,7 +262,7 @@ let exportCombobox;
     private _getItemTemplate(item: ComboboxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item);
       const text = item.label === undefined ? item.value : item.label;
-      let newText = html`${text}`;
+      let newText = isCheckedItem ? html`<b>${text}</b>` : html`${text}`;
       const trimmedQuery = this._query.trim().toLowerCase();
       if (trimmedQuery && text) {
         const startIndex = text.toLowerCase().indexOf(trimmedQuery);
