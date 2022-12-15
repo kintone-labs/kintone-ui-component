@@ -88,7 +88,7 @@ input[type="text"].kuc-text__group__input-form__input-outer__input {
   outline: none;
   border: 1px solid #3498db;
 }
-.kuc-text__group__input-form__input-outer__input:disabled {
+input.kuc-text__group__input-form__input-outer__input:disabled {
   color: #888888;
   background-color: #d4d7d7;
   box-shadow: none;
