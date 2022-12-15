@@ -31,7 +31,7 @@ export const BUTTON_CSS = `
     font-size: var(--kuc-button-font-size, 16px);
     width: var(--kuc-button-width, "auto");
     height: var(--kuc-button-height, 48px);
-    min-width: 163px;
+    min-width: var(--kuc-button-width, 163px);
     padding: 0px 16px;
     user-select: none;
   }

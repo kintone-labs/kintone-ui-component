@@ -26,8 +26,8 @@ kuc-text {
   color: #333333;
   display: inline-table;
   vertical-align: top;
-  min-width: 177px;
-  width: 177px;
+  min-width: var(--kuc-text-input-width, 177px);
+  width: var(--kuc-text-input-width, 177px);
   line-height: 1.5;
 }
 kuc-text[hidden] {
@@ -51,28 +51,22 @@ kuc-text[hidden] {
   display: none;
 }
 .kuc-text__group__input-form {
-  display: table;
+  display: flex;
+  align-items: center;
   width: 100%;
-}
-.kuc-text__group__input-form__prefix-outer,
-.kuc-text__group__input-form__input-outer,
-.kuc-text__group__input-form__suffix-outer {
-  display: table-cell;
 }
 .kuc-text__group__input-form__prefix-outer__prefix {
   padding-right: 4px;
   white-space: nowrap;
 }
 .kuc-text__group__input-form__input-outer {
-  min-width: 26px;
-  width: 100%;
+  width: var(--kuc-text-input-width, 100%);
 }
 input[type="text"].kuc-text__group__input-form__input-outer__input {
   width: var(--kuc-text-input-width, 100%);
   height: var(--kuc-text-input-height, 40px);
   font-size: var(--kuc-text-input-font-size, 14px);
   color: var(--kuc-text-input-color, #000000);
-  min-width: 100%;
   padding: 0 8px;
   border: 1px solid #e3e7e8;
   box-sizing: border-box;
