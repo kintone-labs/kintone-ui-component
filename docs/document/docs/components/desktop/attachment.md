@@ -64,6 +64,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
+
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
   files: [{name: 'file.txt', size: '150'}, new File(['foo'], 'foo.txt', {
