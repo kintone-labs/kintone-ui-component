@@ -2,7 +2,6 @@
 id: readonly-table
 title: ReadOnlyTable
 sidebar_label: ReadOnlyTable
-original_id: readonly-table
 ---
 
 ## Overview
@@ -24,21 +23,21 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component class name. | |
-| id | string | ""  | Component id name. | |
-| label | string | ""  | Text description for the component. | Label will not be displayed if unspecified or left empty. |
-| rowsPerPage | number | 5 | Number of table rows per page. | <ul><li>Round off to the nearest whole number. </li><ul> <li> `{rowsPerPage: 10}` Display up to 10 rows per page. </li><li> `{rowsPerPage: 20.5}` Display up to 21 rows per page. </li> <li> `{rowsPerPage: 20.4}` Display up to 20 rows per page. </li></ul><li>Throw an error if `rowsPerPage` is not a positive number in constructor and setter.</li><ul>|
-| pagination | boolean | true | Show/Hide the pagination. | <ul><li>`{pagination: false}` Pagination is hidden, all rows are displayed.</li><li>`{pagination: true}` Only the number of rows set in rowsPerPage are displayed.</li></ul> |
-| visible | boolean | true | Show/Hide the component. | |
-| columns | Array\<[Columns](#column)\> | []  | Column data of the component. | Throw an error if the `columns` is not an array. |
-| data | Array\<object\> | []  | Row data of the component. | Throw an error if the `data` is not an array. |
+| className | string | ""  | Component class name | |
+| id | string | ""  | Component id name | |
+| label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
+| rowsPerPage | number | 5 | Number of table rows per page | Positive integer<br>Round off to the nearest whole number when the decimal point is set<br>Will result an error if the value of `rowsPerPage` is not a number |
+| pagination | boolean | true | Show/Hide the pagination. | If setting `false`, pagination is hidden and all rows are displayed<br>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` is displayed</li></ul> |
+| visible | boolean | true | Show/Hide the component | |
+| columns | Array\<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
+| data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string | ""  | Key of the data object. | |
-| title | string | ""  | Header name of the column. | |
-| visible | boolean |  true  | Show/Hide the column. | |
+| field | string | ""  | Key of the data object | |
+| title | string | ""  | Header name of the column | |
+| visible | boolean |  true  | Show/Hide the column | |
 
 ### Constructor
 
@@ -53,6 +52,8 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
@@ -60,9 +61,8 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const readOnlyTable = new Kuc.ReadOnlyTable({
-  rowsPerPage: 3,
-  pagination: true,
+const readOnlyTable = new ReadOnlyTable({
+  label: 'ReadOnlyTable',
   columns: [
     {
       title: 'Number',
@@ -106,8 +106,13 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
       country: 'USA',
       population: '8,400,000',
       coordinates: '40.712776, -74.005974',
-    },
+    }
   ],
+  className: 'sample-class',
+  id: 'sample-id',
+  visible: true,
+  pagination: true,
+  rowsPerPage: 3,
 });
 space.appendChild(readOnlyTable);
 ```
