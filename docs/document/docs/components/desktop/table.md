@@ -112,7 +112,7 @@ const table = new Kuc.Table({
     ],
   data: [
     {
-      name: 'join',
+      name: 'john',
       age: 32,
       address: 'New York No. 1 Lake Park'
     },
