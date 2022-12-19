@@ -95,11 +95,7 @@ const renderName = (cellData) => {
 
 
 const table = new Kuc.Table({
-  className: 'options-class',
-  id: 'options-id',
-  label: 'Editable Table',
-  actionButton: true,
-  visible: true,
+  label: 'Table',
   columns: [
       {
         title: 'Name',
@@ -127,7 +123,11 @@ const table = new Kuc.Table({
       age: 22,
       address: 'New York No. 2 Lake Park'
     }
-  ]
+  ],
+  className: 'options-class',
+  id: 'options-id',
+  actionButton: true,
+  visible: true
 });
 
 header.appendChild(table);
