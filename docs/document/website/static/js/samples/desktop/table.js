@@ -10,11 +10,11 @@ document.addEventListener("kuc:loaded", function () {
       items: [
         {
           label: "John Brown",
-          value: "John Brown",
+          value: "john",
         },
         {
           label: "Steven Gerrard",
-          value: "Steven Gerrard",
+          value: "steven",
         },
       ],
       value: cellData,
