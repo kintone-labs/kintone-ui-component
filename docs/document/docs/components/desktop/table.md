@@ -84,8 +84,8 @@ const renderAge = (dataCell) => {
 const renderName = (cellData) => {
   const dropdown = new Dropdown({
     items: [
-      { label: 'John Brown', value: 'John Brown' },
-      { label: 'Steven Gerrard', value: 'Steven Gerrard' },
+      { label: 'John Brown', value: 'john' },
+      { label: 'Steven Gerrard', value: 'steven' },
     ],
     value: cellData,
     selectedIndex: 0
