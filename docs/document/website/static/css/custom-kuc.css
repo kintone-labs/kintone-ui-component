@@ -62,4 +62,5 @@ td[class^="kuc"] {
 }
 #table td[class$="__table__body__row__action"]{
   border: 0;
+  padding: 0;
 }

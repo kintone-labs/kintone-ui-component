@@ -18,7 +18,6 @@ document.addEventListener("kuc:loaded", function () {
         },
       ],
       value: cellData,
-      selectedIndex: 0,
     });
     return dropdown;
   };
@@ -42,12 +41,12 @@ document.addEventListener("kuc:loaded", function () {
     ],
     data: [
       {
-        name: "John Brown",
+        name: "john",
         age: 32,
         address: "New York No. 1 Lake Park",
       },
       {
-        name: "Steven Gerrard",
+        name: "steven",
         age: 22,
         address: "New York No. 2 Lake Park",
       },

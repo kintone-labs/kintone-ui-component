@@ -88,11 +88,9 @@ const renderName = (cellData) => {
       { label: 'Steven Gerrard', value: 'steven' },
     ],
     value: cellData,
-    selectedIndex: 0
   });
   return dropdown;
 };
-
 
 const table = new Kuc.Table({
   label: 'Table',
@@ -114,12 +112,12 @@ const table = new Kuc.Table({
     ],
   data: [
     {
-      name: 'John Brown',
+      name: 'join',
       age: 32,
       address: 'New York No. 1 Lake Park'
     },
     {
-      name: 'Steven Gerrard',
+      name: 'steven',
       age: 22,
       address: 'New York No. 2 Lake Park'
     }
