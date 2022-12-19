@@ -31,11 +31,11 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| files | Array\<File> | [] | The list of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains 'name' and 'size' |
+| files | Array\<File> | [] | The list of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size` |
 | File.name | string | "" | The file name | |
 | File.size | string | "" | The file size | There are 4 types to show the size<li>size >= 1073741824  :  xxx GB</li><li>1073741824 > size >= 1048576  :  xxx MB</li><li>1048576 > size >= 1024  :  xxx KB</li><li>1024 > size  :  xxx bytes</li> |
 
-> *1: The text of “Browse“ button and “Drag & drop zone” will be changed according to the 'language' property.
+> *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
 
 ### Event
 
@@ -43,7 +43,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the files have been changed | It will pass the event object as the argument<br>You can receive the following values in event.detail <li>add-file(Triggered if add any file)<ul><li>event.detail.type: add-file<li>event.detail.oldFiles : Files before add<li>event.detail.files: Files after add<li>event.detail.fileIndex: Index number of the added files(Type: number[])<ul><li>We can get the added files by "event.detail.files[event.detail.fileIndex[0]]"</ul></li></ul><li>remove-file(Triggered if remove any file)<ul><li>event.detail.type: remove-file<li>event.detail.oldFiles : Files before remove<li>event.detail.files : Files after remove<li>event.detail.fileIndex: Index number of the removed file(Type: number[])<ul><li>You can get the removed file by "event.detail.oldFiles[event.detail.fileIndex[0]]"</ul></li></ul></li> |
+| change | function | Event handler when the files have been changed | It will pass the event object as the argument<br>You can receive the following values in event.detail <li>add-file (Triggered if add any file)<ul><li>event.detail.type: "add-file"<li>event.detail.oldFiles: Files before add<li>event.detail.files: Files after add<li>event.detail.fileIndex: Index number of the added file (Type: Array<number>)<ul><li>You can get the added files by "event.detail.files[event.detail.fileIndex[0]]"</ul></li></ul><li>remove-file (Triggered if remove any file)<ul><li>event.detail.type: "remove-file"<li>event.detail.oldFiles: Files before remove<li>event.detail.files: Files after remove<li>event.detail.fileIndex: Index number of the removed file (Type: Array<number>)<ul><li>You can get the removed file by "event.detail.oldFiles[event.detail.fileIndex[0]]"</ul></li></ul></li> |
 
 ### Constructor
 
@@ -68,10 +68,11 @@ const space = kintone.app.record.getSpaceElement('space');
 
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
-  files: [{name: 'file.txt', size: '150'}, new File(['foo'], 'foo.txt', {
-    type: 'text/plain',
-  })],
-  language: 'auto'
+  files: [
+    { name: 'file.txt', size: '150' },
+    new File(['foo'], 'foo.txt', { type: 'text/plain' })
+  ],
+  language: 'auto',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
