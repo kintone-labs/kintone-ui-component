@@ -27,7 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | id | string | "" | Component id name | |
-| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | actionButton | boolean | true | Show/Hide the add/remove row button | |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array\<[Columns](#column)\> |  []  | Column data of the component | Throw an error if the columns is not an array. |
