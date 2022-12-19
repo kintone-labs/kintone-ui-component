@@ -68,7 +68,7 @@ Here is a list of available constructors:
 
 > Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 
-Here is a sample code when all parameters are specified.
+Here is a sample code when all parameters are specified:
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
