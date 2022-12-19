@@ -36,7 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string <br> `Required` and `Unique` | -  | Key of the column | <ul><li>It represents the key of the data object and the value associated with that key will be rendered in the column.</li><li>Throw an error if the `field` is duplicated or not specified</li></ul> |
+| field | string <br> `Required` and `Unique` | null  | Key of the column | It represents the key of the data object<br>The value associated with that key will be rendered in the column<br>Will result an error if the `field` is duplicated in `columns` or not specified |
 | title | string | ""  | 	Header name of the column | |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
 | visible | boolean |  true  | Show/Hide the column | |
