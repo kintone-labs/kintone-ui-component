@@ -40,7 +40,7 @@ Here is a list of properties that can be used for modifying the component:
 | title | string | ""  | 	Header name of the column | |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
 | visible | boolean |  true  | Show/Hide the column | |
-| render | function <br> `function(cellData, rowData, rowIndex) {}` | - | Renderer of the cell | <ul><li>The return value should be a DOM</li><li>`cellData` is the data of the current cell rendered</li><li>`rowData` is the data of the current row rendered</li><li>`rowIndex` is the index of the current row rendered</li></ul> 3 params above provide more information for the function.</br>If `render` function is not specified, the cell will display with the default text.|
+| render | function <br> `function(cellData, rowData, rowIndex) {}` | null | Renderer of the cell | The return value should be a DOM<br>Following 3 params provide more information for the function<br><ul><li>`cellData` is the data of the current cell rendered</li><li>`rowData` is the data of the current row rendered</li><li>`rowIndex` is the index number of the current row rendered</li></ul><br>If `render` function is not specified, the cell will display with the default text |
 
 
 ### Event
