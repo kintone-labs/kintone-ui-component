@@ -27,8 +27,8 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
-| rowsPerPage | number | 5 | Number of table rows per page | Positive integer<br>Round off to the nearest whole number when the decimal point is set<br>Will result an error if the value of `rowsPerPage` is not a number |
-| pagination | boolean | true | Show/Hide the pagination. | If setting `false`, pagination is hidden and all rows are displayed<br>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` is displayed</li></ul> |
+| rowsPerPage | number | 5 | Number of table rows per page | Round off to the nearest whole number when the decimal point is set<br>Will result an error if the value of `rowsPerPage` is not a positive integer |
+| pagination | boolean | true | Show/Hide the pagination | If setting `false`, pagination is hidden and all rows are displayed<br>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` are displayed</li></ul> |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array\<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
 | data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
@@ -36,7 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string | ""  | Key of the data object | |
+| field | string | ""  | Key of the column | It represents the key of the `data` object<br>The value associated with that key will be rendered in the column |
 | title | string | ""  | Header name of the column | |
 | visible | boolean |  true  | Show/Hide the column | |
 

@@ -27,16 +27,16 @@ ReadOnlyTable は読み取り専用のテーブルを表示します。
 | className | string | ""  | コンポーネントの class 名 | |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| rowsPerPage | number | 5 | ページごとの行数 | 正の整数を指定できる<br>小数点以下を指定した場合は、最も近い整数に丸められる<br>rowsPerPage が数値以外の場合、エラーを出力する|
+| rowsPerPage | number | 5 | ページごとの行数 | 小数点以下を指定した場合は、最も近い整数に丸められる<br>rowsPerPage が正の整数以外の場合、エラーを出力する|
 | pagination | boolean | true | ページネーションの表示/非表示設定 | false を指定した場合、ページネーションは非表示になり全ての行が表示される<br>true を指定した場合、ページネーションは表示され rowsPerPage に指定された行数のみがページごとに表示される |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| columns | Array\<[Columns](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
+| columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string | ""  | 列のキー項目 | |
+| field | string | ""  | 列のキー項目 | data オブジェクトのキー項目になる<br>そのキーに関連づけられた値が列に表示される |
 | title | string | ""  | 列のヘッダー名 | |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
 
