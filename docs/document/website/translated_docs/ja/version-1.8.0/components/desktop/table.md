@@ -49,7 +49,7 @@ Table は編集可能なテーブルを表示します。
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | テーブルの値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br>event.detail で以下の値を受け取ることができる<ul><li>change-cell（セルの値が変更された時にトリガーされる）</li><ul><li>event.detail.type: "change-cell"</li><li>event.detail.rowIndex: 変更された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li><li>event.detail.field: 変更された列の field の値</li></ul><li>add-row（行追加ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "add-row"</li><li>event.detail.rowIndex: 追加された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul><li>remove-row（行削除ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "remove-row"</li><li>event.detail.rowIndex: 削除された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul></ul>|
+| change | function | テーブルの値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br>event.detail で以下の値を受け取ることができる<ul><li>change-cell（セルの値が変更された時にトリガーされる）</li><ul><li>event.detail.type: "change-cell"</li><li>event.detail.rowIndex: 変更された行番号</li><li>event.detail.data: 変更後の data の値</li><li>event.detail.oldData: 変更前の data の値</li><li>event.detail.field: 変更された列の field の値</li></ul><li>add-row（行追加ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "add-row"</li><li>event.detail.rowIndex: 追加された行番号</li><li>event.detail.data: 変更後の data の値</li><li>event.detail.oldData: 変更前の data の値</li></ul><li>remove-row（行削除ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "remove-row"</li><li>event.detail.rowIndex: 削除された行番号</li><li>event.detail.data: 変更後の data の値</li><li>event.detail.oldData: 変更前の data の値</li></ul></ul>|
 
 ### Constructor
 
