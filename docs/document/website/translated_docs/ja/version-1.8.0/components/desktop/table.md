@@ -30,13 +30,13 @@ Table は編集可能なテーブルを表示します。
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | actionButton | boolean | true | 行追加/削除ボタンの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| columns | Array\<[Columns](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
+| columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| field | string<br> 必須かつ一意の値 | null | 列のキー項目 | データのキー項目になる<br>そのキーに関連づけられた値が列に表示される<br>field が columns 内で重複もしくは未指定の場合、エラーを出力する |
+| field | string | null | 列のキー項目<br> 必須かつ一意の値 | data オブジェクトのキー項目になる<br>そのキーに関連づけられた値が列に表示される<br>field が columns 内で重複もしくは未指定の場合、エラーを出力する |
 | title | string | ""  | 列のヘッダー名 | |
 | requiredIcon | boolean | false  | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
@@ -49,7 +49,7 @@ Table は編集可能なテーブルを表示します。
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | テーブルの値が変更された時のイベントハンドラー | 引数には Event の event オブジェクトをとる<br>event.detail で以下の値を受け取ることができる<ul><li>change-cell（セルの値が変更された時にトリガーされる）</li><ul><li>event.detail.type: "change-cell"</li><li>event.detail.rowIndex: 変更された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li><li>event.detail.field: 変更された列の field の値</li></ul><li>add-row（行追加ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "add-row"</li><li>event.detail.rowIndex: 追加された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul><li>remove-row（行削除ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "remove-row"</li><li>event.detail.rowIndex: 削除された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul></ul>|
+| change | function | テーブルの値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br>event.detail で以下の値を受け取ることができる<ul><li>change-cell（セルの値が変更された時にトリガーされる）</li><ul><li>event.detail.type: "change-cell"</li><li>event.detail.rowIndex: 変更された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li><li>event.detail.field: 変更された列の field の値</li></ul><li>add-row（行追加ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "add-row"</li><li>event.detail.rowIndex: 追加された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul><li>remove-row（行削除ボタンがクリックされた時にトリガーされる）</li><ul><li>event.detail.type: "remove-row"</li><li>event.detail.rowIndex: 削除された行番号</li><li>event.detail.data: 変更後の全てのテーブルの値</li><li>event.detail.oldData: 変更前の全てのテーブルの値</li></ul></ul>|
 
 ### Constructor
 
