@@ -6,9 +6,12 @@ sidebar_label: ReadOnlyTable
 
 ## Overview
 
-The ReadOnlyTable component allows the user to display a read table on the Kintone details screen.
+The ReadOnlyTable component allows the user to display a read-only mode table.
 
-<iframe src="https://kuc-storybook.netlify.app/iframe.html?id=desktop-readonly-table--document" title="readonly-table image" width="420px" height="100px"></iframe>
+<div class="sample-container" id="readonly-table">
+  <div id="sample-container__components"></div>
+</div>
+<script src="/js/samples/desktop/readonly-table.js"></script>
 
 ---
 
@@ -22,13 +25,19 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
-| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
+| rowsPerPage | number | 5 | Number of table rows per page | Round off to the nearest whole number when the decimal point is set<br>Will result an error if the value of `rowsPerPage` is not a positive integer |
+| pagination | boolean | true | Show/Hide the pagination | If setting `false`, pagination is hidden and all rows are displayed<br>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` are displayed</li></ul> |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
-| Columns.header | Object | Null | Table header object | |
-| Columns.header.text | String | Null | Text to be displayed in the table header | |
-| Columns.visible | Boolean | Null | Show/Hide the column | |
-| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
+| columns | Array\<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
+| data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+
+#### Column
+| Name | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| field | string | ""  | Key of the column | It represents the key of the `data` object<br>The value associated with that key will be rendered in the column |
+| title | string | ""  | Header name of the column | |
+| visible | boolean |  true  | Show/Hide the column | |
 
 ### Constructor
 
@@ -43,40 +52,67 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
+> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
-const readOnlyTable = new Kuc.ReadOnlyTable({
-  label: 'Table',
+
+const readOnlyTable = new ReadOnlyTable({
+  label: 'ReadOnlyTable',
   columns: [
     {
-      header: {
-        text: 'fruit',
-      },
-      visible: true
+      title: 'Number',
+      field: 'index',
     },
     {
-      header: {
-        text: 'Producing area',
-      },
-      visible: true,
+      title: 'City',
+      field: 'name',
     },
     {
-      header: {
-        text: 'Price',
-      },
-      visible: true
+      title: 'Country',
+      field: 'country',
+    },
+    {
+      title: 'Population',
+      field: 'population',
+    },
+    {
+      title: 'Coordinates',
+      field: 'coordinates',
     }
   ],
   data: [
-    ['Orange', 'Ehime', '400'],
-    ['Apple', 'Aomori', '200'],
-    ['Banana', 'Tokyo', '100']
+    {
+      index: '1',
+      name: 'HoChiMinh',
+      country: 'Vietnam',
+      population: '8,371,000',
+      coordinates: '10.762622, 106.660172',
+    },
+    {
+      index: '2',
+      name: 'Tokyo',
+      country: 'Japan',
+      population: '14,000,000',
+      coordinates: '35.689487, 139.691711',
+    },
+    {
+      index: '3',
+      name: 'New York',
+      country: 'USA',
+      population: '8,400,000',
+      coordinates: '40.712776, -74.005974',
+    }
   ],
-  className: 'options-class',
-  id: 'options-id',
-  visible: true
+  className: 'sample-class',
+  id: 'sample-id',
+  visible: true,
+  pagination: true,
+  rowsPerPage: 3,
 });
 space.appendChild(readOnlyTable);
 ```
