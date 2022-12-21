@@ -1,4 +1,3 @@
-# approval configuration file (for devdependency)
 ---
 - - :approve
   - eslint-plugin-kuc-v1
@@ -12,5 +11,5 @@
   - :who: 
     :why: 
     :versions:
-    - 0.14.0
-    :when: 2022-09-24 10:47:41.422017500 Z
+    - 0.15.0
+    :when: 2022-12-21 02:07:23.673690500 Z
