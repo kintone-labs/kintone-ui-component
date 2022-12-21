@@ -1,3 +1,4 @@
+# approval configuration file (for devdependency)
 ---
 - - :approve
   - eslint-plugin-kuc-v1
