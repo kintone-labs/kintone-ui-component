@@ -34,6 +34,7 @@ export const BUTTON_CSS = `
     min-width: var(--kuc-button-width, 163px);
     padding: 0px 16px;
     user-select: none;
+    white-space: nowrap;
   }
   .kuc-button__button--normal {
     background-color: var(--kuc-button-background-color, #f7f9fa);
