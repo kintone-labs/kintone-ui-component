@@ -28,8 +28,6 @@ export const BUTTON_CSS = `
     display: none;
   }
   .kuc-button__button {
-    display: flex;
-    align-items: center;
     font-size: var(--kuc-button-font-size, 16px);
     width: var(--kuc-button-width, "auto");
     height: var(--kuc-button-height, 48px);
