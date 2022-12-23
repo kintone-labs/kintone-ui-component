@@ -16,7 +16,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
-      await elementUpdated(container);
+      await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
@@ -50,7 +50,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLButtonElement;
 
       btnYearToggleEl.click();
-      await elementUpdated(container);
+      await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
@@ -141,7 +141,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       ) as HTMLButtonElement;
 
       btnMonthToggleEl.click();
-      await elementUpdated(container);
+      await fixture(container);
       const itemsEl = el.querySelectorAll(
         ".kuc-base-datetime-listbox__listbox"
       )[0];
