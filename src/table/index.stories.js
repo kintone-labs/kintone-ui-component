@@ -1,11 +1,11 @@
-import { Table } from "./index.ts";
-import { Dropdown } from "../dropdown";
 import { Checkbox } from "../checkbox";
-import { TextArea } from "../textarea";
 import { DatePicker } from "../date-picker";
-import { RadioButton } from "../radio-button";
+import { Dropdown } from "../dropdown";
 import { MultiChoice } from "../multichoice";
+import { RadioButton } from "../radio-button";
+import { TextArea } from "../textarea";
 import { TimePicker } from "../time-picker";
+import { Table } from "./index.ts";
 
 export default {
   title: "desktop/table",

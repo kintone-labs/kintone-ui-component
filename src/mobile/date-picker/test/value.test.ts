@@ -1,6 +1,6 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
-import { MobileDatePicker } from "../index";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { getTodayStringByLocale } from "../../../base/datetime/utils";
+import { MobileDatePicker } from "../index";
 
 describe("MobileDatePicker", () => {
   describe("value", () => {

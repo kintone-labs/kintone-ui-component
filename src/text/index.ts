@@ -1,22 +1,22 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
-import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import { validateProps } from "../base/validator";
+import { TEXT_CSS } from "./style";
 import {
   TextChangeEventDetail,
   TextFocusEventDetail,
   TextInputEventDetail,
   TextProps,
 } from "./type";
-import { TEXT_CSS } from "./style";
 export { BaseError, BaseLabel };
 
 let exportText;

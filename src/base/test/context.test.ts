@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { getWidthElmByContext, createContextElm } from "../context";
+import { createContextElm, getWidthElmByContext } from "../context";
 
 describe("Context", () => {
   describe("createContextElm", () => {

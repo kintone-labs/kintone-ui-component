@@ -1,28 +1,28 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
 import {
-  KucBase,
+  ATTACHMENT_INVALID_SIZE_ERROR,
+  ONE_GB,
+  ONE_KB,
+  ONE_MB,
+} from "../base/attachment/resource/constant";
+import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
+import { ERROR_MESSAGE } from "../base/constant";
+import { languagePropConverter, visiblePropConverter } from "../base/converter";
+import {
+  createStyleOnHeader,
   dispatchCustomEvent,
   generateGUID,
-  createStyleOnHeader,
+  KucBase,
 } from "../base/kuc-base";
-import { languagePropConverter, visiblePropConverter } from "../base/converter";
 import {
   isArrayType,
   throwErrorAfterUpdateComplete,
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
-import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentChangeEventDetail, AttachmentProps, FileItem } from "./type";
-import {
-  ATTACHMENT_INVALID_SIZE_ERROR,
-  ONE_GB,
-  ONE_KB,
-  ONE_MB,
-} from "../base/attachment/resource/constant";
-import { ERROR_MESSAGE } from "../base/constant";
 
 let exportAttachment;
 (() => {

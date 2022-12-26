@@ -18,5 +18,31 @@ module.exports = {
     "kuc-v1/no-using-event-handler-name": "error",
     "kuc-v1/private-custom-event": "error",
     "kuc-v1/no-sorting-in-alphabetical-order": "error"
-  }
+  },
+  plugins: ["import"],
+  settings: {
+    // settings for typescript
+    "import/resolver": {
+      typescript: true,
+      node: true,
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+  },
+  rules: {
+    // disable original eslint sort imports
+    "sort-imports": [
+      "error",
+      { ignoreCase: true, ignoreDeclarationSort: true },
+    ],
+    // import without name such as `import "../../../hoge.css"` can not lint. please put at bottom manually.
+    "import/order": [
+      "error",
+      {
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+      },
+    ],
+  },
 };

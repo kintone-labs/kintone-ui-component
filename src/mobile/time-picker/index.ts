@@ -7,10 +7,10 @@ import {
 } from "../../base/converter";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
+  createStyleOnHeader,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
-  createStyleOnHeader,
 } from "../../base/kuc-base";
 import {
   throwErrorAfterUpdateComplete,

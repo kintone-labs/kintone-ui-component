@@ -1,17 +1,17 @@
 import { expect } from "@open-wc/testing";
-import { padStart } from "../../utils";
 import {
-  generateTimeOptions,
+  convertTime12To24,
+  convertTime24To12,
   convertTimeValueToMinutes,
-  timeCompare,
-  formatTimeValueToInputValue,
   formatInputValueToTimeValue,
   formatInputValueToValue,
+  formatTimeValueToInputValue,
   formatValueToInputValue,
+  generateTimeOptions,
   getTodayStringByLocale,
   isValidDateFormat,
-  convertTime24To12,
-  convertTime12To24,
+  padStart,
+  timeCompare,
 } from "../";
 
 describe("BaseDateTimeUtils", () => {

@@ -1,11 +1,11 @@
 import { svg } from "lit";
-import { en, zh, ja, zh_TW } from "../resource/locale";
 import {
-  MAX_MINUTES,
   MAX_HOURS12,
   MAX_HOURS24,
+  MAX_MINUTES,
   TIME_SUFFIX,
 } from "../resource/constant";
+import { en, ja, zh, zh_TW } from "../resource/locale";
 
 export type WeekDate = {
   attr: string;

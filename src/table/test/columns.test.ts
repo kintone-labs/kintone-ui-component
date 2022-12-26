@@ -1,7 +1,7 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
-import { Table } from "../index";
 import { Dropdown } from "../../dropdown";
 import { Text } from "../../text";
+import { Table } from "../index";
 
 const renderAge = (cellData: any) => {
   const text = new Text({ value: cellData });

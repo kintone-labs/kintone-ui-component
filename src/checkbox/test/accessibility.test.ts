@@ -1,8 +1,8 @@
 import {
-  triggerFocusFor,
-  triggerBlurFor,
   expect,
   fixture,
+  triggerBlurFor,
+  triggerFocusFor,
 } from "@open-wc/testing";
 import { Checkbox } from "../index";
 

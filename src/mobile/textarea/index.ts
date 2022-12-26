@@ -1,23 +1,23 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import { validateProps } from "../../base/validator";
-import { BaseMobileLabel } from "../../base/mobile-label";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
 import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { validateProps } from "../../base/validator";
 export { BaseMobileLabel, BaseMobileError };
 
 import { MOBILE_TEXTAREA_CSS } from "./style";
 import {
-  MobileTextAreaProps,
-  MobileTextAreaFocusEventDetail,
   MobileTextAreaChangeEventDetail,
+  MobileTextAreaFocusEventDetail,
   MobileTextAreaInputEventDetail,
+  MobileTextAreaProps,
 } from "./type";
 
 let exportMobileTextArea;

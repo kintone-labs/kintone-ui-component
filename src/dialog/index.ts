@@ -1,15 +1,15 @@
-import { html, svg, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  generateGUID,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { validateProps } from "../base/validator";
-import { unsafeHTMLConverter } from "../base/converter";
 import { DirectiveResult } from "lit/directive.js";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
+import { unsafeHTMLConverter } from "../base/converter";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { validateProps } from "../base/validator";
 import { DIALOG_CSS } from "./style";
 import { DialogProps } from "./type";
 

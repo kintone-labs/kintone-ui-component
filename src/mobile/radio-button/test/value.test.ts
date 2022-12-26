@@ -1,4 +1,4 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { MobileRadioButton } from "../index";
 
 const initItems = [

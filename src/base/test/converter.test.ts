@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import {
-  visiblePropConverter,
   dateValueConverter,
   timeValueConverter,
+  visiblePropConverter,
 } from "../converter";
 
 describe("Base", () => {

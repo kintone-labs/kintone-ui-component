@@ -1,6 +1,6 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
-import { DateTimePicker } from "../index";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { getTodayStringByLocale } from "../../base/datetime/utils";
+import { DateTimePicker } from "../index";
 
 describe("DateTimePicker", () => {
   describe("value", () => {

@@ -1,28 +1,28 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
+import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
-  validateProps,
-  validateValueString,
-  validateItems,
-  validateSelectedIndexNumber,
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
+import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import {
   throwErrorAfterUpdateComplete,
+  validateItems,
+  validateProps,
+  validateSelectedIndexNumber,
+  validateValueString,
 } from "../../base/validator";
-import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_DROPDOWN_CSS } from "./style";
 import {
   MobileDropdownChangeEventDetail,
-  MobileDropdownProps,
   MobileDropdownItem,
+  MobileDropdownProps,
 } from "./type";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
 export { BaseMobileLabel, BaseMobileError };
 
 let exportMobileDropdown;

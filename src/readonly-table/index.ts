@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { visiblePropConverter } from "../base/converter";
 import { ERROR_MESSAGE } from "../base/constant";
+import { visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
   throwErrorAfterUpdateComplete,
@@ -11,8 +11,8 @@ import {
   validateRowsPerPage,
 } from "../base/validator";
 import "../base/pagination";
-import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
+import { Column, ReadOnlyTableProps } from "./type";
 
 let exportReadOnlyTable;
 (() => {

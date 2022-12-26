@@ -1,6 +1,6 @@
 import { expect, fixture } from "@open-wc/testing";
-import { Table } from "../index";
 import { Dropdown } from "../../dropdown";
+import { Table } from "../index";
 
 const renderGender = (cellData: any) => {
   const dropdown = new Dropdown({
