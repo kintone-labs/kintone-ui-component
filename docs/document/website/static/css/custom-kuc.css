@@ -64,3 +64,6 @@ td[class^="kuc"] {
   border: 0;
   padding: 0;
 }
+table[class^="kuc-readonly-table-"] {
+  margin-bottom: 0px;
+}
