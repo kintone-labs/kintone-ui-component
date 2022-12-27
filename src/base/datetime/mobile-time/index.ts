@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
+
 import {
   formatInputValueToTimeValue,
   formatTimeValueToInputValueForMobile,
@@ -14,6 +15,7 @@ import {
   KucBase,
 } from "../../kuc-base";
 import { validateProps, validateTimeValue } from "../../validator";
+
 import { BASE_MOBILE_TIME_CSS } from "./style";
 
 type BaseMobileTimeSelectItem = {

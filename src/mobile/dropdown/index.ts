@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -17,6 +18,7 @@ import {
   validateSelectedIndexNumber,
   validateValueString,
 } from "../../base/validator";
+
 import { MOBILE_DROPDOWN_CSS } from "./style";
 import {
   MobileDropdownChangeEventDetail,

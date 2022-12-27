@@ -34,14 +34,28 @@ module.exports = {
       "error",
       { ignoreCase: true, ignoreDeclarationSort: true },
     ],
-    // import without name such as `import "../../../hoge.css"` can not lint. please put at bottom manually.
+    // order imports depend on groups below and alphabetize with import path.
+    // import without name such as `import "./index.ts"` can not lint. please put at bottom manually.
     "import/order": [
       "error",
       {
+        // sort depend on following group order
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type",
+        ],
+        pathGroupsExcludedImportTypes: ["builtin"],
         alphabetize: {
           order: "asc",
           caseInsensitive: true,
         },
+        "newlines-between": "always",
       },
     ],
   },

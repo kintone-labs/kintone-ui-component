@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
@@ -10,6 +11,7 @@ import {
   validateProps,
   validateRowsPerPage,
 } from "../base/validator";
+
 import "../base/pagination";
 import { READ_ONLY_TABLE_CSS } from "./style";
 import { Column, ReadOnlyTableProps } from "./type";

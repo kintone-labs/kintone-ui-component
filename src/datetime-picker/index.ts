@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import { getWidthElmByContext } from "../base/context";
 import {
   dateValueConverter,
@@ -16,7 +17,6 @@ import {
   TIMESTEP_IS_NOT_NUMBER,
 } from "../base/datetime/resource/constant";
 import { timeCompare } from "../base/datetime/utils";
-
 import "../base/datetime/date";
 import "../base/datetime/time";
 import { BaseError } from "../base/error";
@@ -36,6 +36,7 @@ import {
   validateTimeStepNumber,
   validateTimeValue,
 } from "../base/validator";
+
 import { DATE_TIME_PICKER_CSS } from "./style";
 import {
   DateAndTime,

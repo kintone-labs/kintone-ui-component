@@ -1,5 +1,6 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
+
 import {
   ATTACHMENT_INVALID_SIZE_ERROR,
   ONE_GB,
@@ -21,6 +22,7 @@ import {
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
+
 import { ATTACHMENT_CSS } from "./style";
 import { AttachmentChangeEventDetail, AttachmentProps, FileItem } from "./type";
 

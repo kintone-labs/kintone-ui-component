@@ -1,4 +1,5 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
+
 import "../../../base/datetime/mobile-time";
 import { MobileDateTimePicker } from "../index";
 

@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -17,6 +18,7 @@ import {
   validateSelectedIndexArray,
   validateValueArray,
 } from "../../base/validator";
+
 import { MOBILE_MULTICHOICE_CSS } from "./style";
 import {
   MobileMultiChoiceChangeEventDetail,

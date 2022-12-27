@@ -1,5 +1,6 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
@@ -17,6 +18,7 @@ import {
   validateSelectedIndexArray,
   validateValueArray,
 } from "../base/validator";
+
 import { CHECKBOX_CSS } from "./style";
 import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
 export { BaseError, BaseLabel };

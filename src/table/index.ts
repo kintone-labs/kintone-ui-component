@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -14,6 +15,7 @@ import {
   validateFieldUniqueInColumnTable,
   validateProps,
 } from "../base/validator";
+
 import { TABLE_CSS } from "./style";
 import { Column, TableChangeEventDetail, TableProps } from "./type";
 

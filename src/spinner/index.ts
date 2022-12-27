@@ -1,7 +1,9 @@
 import { html, svg } from "lit";
 import { property } from "lit/decorators.js";
+
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+
 import { SPINNER_CSS } from "./style";
 import { SpinnerProps } from "./type";
 

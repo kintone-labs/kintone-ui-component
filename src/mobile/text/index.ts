@@ -1,5 +1,6 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
+
 import { visiblePropConverter } from "../../base/converter";
 import {
   createStyleOnHeader,
@@ -10,6 +11,7 @@ import {
 import { BaseMobileError } from "../../base/mobile-error";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { validateProps } from "../../base/validator";
+
 import { MOBILE_TEXT_CSS } from "./style";
 import {
   MobileTextChangeEventDetail,

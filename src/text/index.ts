@@ -1,5 +1,6 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
+
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
 import {
@@ -10,6 +11,7 @@ import {
 } from "../base/kuc-base";
 import { BaseLabel } from "../base/label";
 import { validateProps } from "../base/validator";
+
 import { TEXT_CSS } from "./style";
 import {
   TextChangeEventDetail,

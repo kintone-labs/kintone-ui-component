@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import {
   createStyleOnHeader,
   CustomEventDetail,
@@ -14,6 +15,7 @@ import {
   getLocale,
   getRightArrowIconSvgTemplate,
 } from "../../utils/";
+
 import { CALENDAR_HEADER_CSS } from "./style";
 
 function isValidMonth(month: number) {

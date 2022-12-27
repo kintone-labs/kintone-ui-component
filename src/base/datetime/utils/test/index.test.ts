@@ -1,4 +1,5 @@
 import { expect } from "@open-wc/testing";
+
 import {
   convertTime12To24,
   convertTime24To12,

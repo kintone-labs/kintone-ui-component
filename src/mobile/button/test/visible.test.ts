@@ -1,4 +1,5 @@
 import { expect, fixture } from "@open-wc/testing";
+
 import { MobileButton } from "../index";
 
 describe("MobileButton", () => {

@@ -1,5 +1,6 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
@@ -17,6 +18,7 @@ import {
   validateSelectedIndexArray,
   validateValueArray,
 } from "../../base/validator";
+
 import { MOBILE_CHECKBOX_CSS } from "./style";
 import {
   MobileCheckboxChangeEventDetail,

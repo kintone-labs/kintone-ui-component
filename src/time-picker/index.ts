@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import { getWidthElmByContext } from "../base/context";
 import {
   languagePropConverter,
@@ -31,6 +32,7 @@ import {
   validateTimeStepNumber,
   validateTimeValue,
 } from "../base/validator";
+
 import { TIME_PICKER_CSS } from "./style";
 import { TimePickerChangeEventDetail, TimePickerProps } from "./type";
 export { BaseError, BaseLabel };

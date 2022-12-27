@@ -1,5 +1,6 @@
 import { html, svg } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
 import {

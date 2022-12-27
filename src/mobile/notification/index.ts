@@ -1,11 +1,13 @@
 import { html, svg } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
   KucBase,
 } from "../../base/kuc-base";
 import { validateProps } from "../../base/validator";
+
 import { MOBILE_NOTIFICATION_CSS } from "./style";
 import { MobileNotificationProps } from "./type";
 

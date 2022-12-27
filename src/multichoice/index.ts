@@ -1,5 +1,6 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
@@ -17,6 +18,7 @@ import {
   validateSelectedIndexArray,
   validateValueArray,
 } from "../base/validator";
+
 import { MULTICHOICE_CSS } from "./style";
 import {
   MultiChoiceChangeEventDetail,

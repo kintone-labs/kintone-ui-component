@@ -2,6 +2,7 @@ import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive.js";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
+
 import { unsafeHTMLConverter } from "../base/converter";
 import {
   createStyleOnHeader,
@@ -10,6 +11,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+
 import { DIALOG_CSS } from "./style";
 import { DialogProps } from "./type";
 

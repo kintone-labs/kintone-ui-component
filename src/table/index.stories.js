@@ -5,6 +5,7 @@ import { MultiChoice } from "../multichoice";
 import { RadioButton } from "../radio-button";
 import { TextArea } from "../textarea";
 import { TimePicker } from "../time-picker";
+
 import { Table } from "./index.ts";
 
 export default {
