@@ -1,0 +1,506 @@
+---
+id: table-readonly-table-customization
+title: Table and readOnlyTable customization
+sidebar_label: Table and readOnlyTable customization
+---
+
+## Overview
+This article explains how to utilize and customize the Table, ReadOnlyTable component and the usage difference between them.<br>
+We assume the following scenario:
+1. Table and ReadOnlyTable usage difference
+2. Table and ReadOnlyTable: Create simple one
+3. Table: Set multiple components in one cell
+4. Table: Update cell value depending on the other cell value change
+5. Table: Table in table
+
+## Components to use
+- [Dropdown](../components/desktop/dropdown.md)
+- [Table](../components/desktop/table.md)
+- [Text](../components/desktop/text.md)
+- [ReadOnlyTable](../components/desktop/readonly-table.md)
+- [RadioButton](../components/desktop/radio-button.md)
+
+## Table and ReadOnlyTable usage difference
+Basically, the Table and ReadOnlyTable component have the same structure.
+
+The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.</br>
+
+In contrast, the Table allows the user to manipulate the components displayed in the table cell such as changing data, adding and deleting records.
+
+The biggest difference between Table and ReadOnlyTable components is the columns property of the table have a render property (`columns.render`) to specify which elements to display in the cell that the user can interact with. In addition, columns also have `actionButton` property (`table.actionButton`) to show/hide the add/remove row button.
+
+## Understanding `change` event
+It will be easier for you to customize the table when you understand the `change` event flow in the Table.
+>The table cell will listen `change` event from the component inside the cell and assign that new value to the field.</br>
+
+### Create an App
+Create an app that includes a blank space field with the id "space".
+
+### JavaScript and CSS Customization
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
+You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
+
+
+### Prepare basic table
+Suppose we have the following settings to display username with Text component:
+```javascript
+const renderName = (cellData) => {
+  const text = new Kuc.Text({ value: cellData });
+  return text;
+};
+
+const columns = [{ title: "Username", field: "username", render: renderName }];
+const data = [{ username: "user1" }, { username: "user2" }];
+
+const table = new Kuc.Table({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(table);
+```
+
+### The display on UI
+
+![render](assets/table-edit-text.gif)
+When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = "user1 edited"`.
+The table then catch that value and assigns it back to the `username` field.
+Now the data of the table will be:
+```javascript
+[{ username: "user1 edited" }, { username: "user2" }];
+```
+
+### Modify the event detail
+If you want to customize the value the table receives then you need to modify it in the `change` event before the table receives it.
+We also use the sample code above and add the following content to `renderName` function:
+
+```javascript
+// table.js
+...
+const renderName = (cellData) => {
+  const text = new Text({ value: cellData });
+
+  // Modify the value before it bubble to table cell
+  text.addEventListener('change', (event) => {
+    event.detail.value = "modified value" // add any value you want set to username;
+  });
+  return text;
+};
+...
+```
+When you edit the input in the first cell, The value received by the table will always be `"modified value"`
+
+## Examples
+### Basic Usage
+
+#### ReadOnlyTable
+![readonly-table](assets/readonly-table.png)
+
+Display a read-only mode table.
+<details>
+  <summary>Show code</summary>
+
+  ```js
+const columns = [
+    {
+        title: 'Name',
+        field: 'name',
+    },
+    {
+        title: 'Gender',
+        field: 'gender',
+    },
+    {
+        title: 'Address',
+        field: 'address',
+    },
+];
+
+const data = [
+    {
+        name: 'John Brown',
+        gender: 'male',
+        address: 'osaka-japan',
+    },
+    {
+        name: 'Jim Green',
+        gender: 'female',
+        address: 'tokyo-japan',
+    },
+    {
+        name: 'Joe Black',
+        gender: 'male',
+        address: 'hochiminh-vietnam',
+    },
+];
+
+const readOnlyTable = new Kuc.ReadOnlyTable({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(readOnlyTable);
+  ```
+</details>
+
+#### Table
+![table](assets/table.png)
+
+You can manipulate with the components displayed in the table.</br>
+Use the `columns.render` function to specify the component to be displayed in the cell. Please check `renderGender` and `renderAddress` functions in below code example:
+<details>
+  <summary>Show code</summary>
+
+  ```js
+// render gender column with dropdown
+const renderGender = (cellData) => {
+    const radioButton = new Kuc.RadioButton({
+        items: [
+        {
+            label: 'Male',
+            value: 'male',
+        },
+        {
+            label: 'Female',
+            value: 'female',
+        },
+        ],
+        itemLayout: 'vertical',
+        value: cellData,
+    });
+
+    return radioButton;
+};
+
+// render address column with dropdown
+const renderAddress = (cellData) => {
+    const country = cellData.split('-')[1];
+    const dropdownCountry = new Kuc.Dropdown({
+        items: [
+        {
+            label: 'Việt Nam',
+            value: 'vietnam',
+        },
+        {
+            label: 'Japan',
+            value: 'japan',
+        },
+        ],
+        value: country,
+    });
+
+    return dropdownCountry;
+};
+
+const columns = [
+    {
+      title: 'Name',
+      field: 'name',
+    },
+    {
+      title: 'Gender',
+      field: 'gender',
+      render: renderGender,
+    },
+    {
+      title: 'Address',
+      field: 'address',
+      render: renderAddress,
+    },
+];
+
+const data = [
+    {
+        name: 'John Brown',
+        gender: 'male',
+        address: 'osaka-japan',
+    },
+    {
+        name: 'Jim Green',
+        gender: 'female',
+        address: 'tokyo-japan',
+    },
+    {
+        name: 'Joe Black',
+        gender: 'male',
+        address: 'hochiminh-vietnam',
+    },
+];
+
+const table = new Kuc.ReadOnlyTable({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(table);
+  ```
+</details>
+
+### Multiple components in one cell
+![multi-components](assets/two-component-in-cell.png)
+
+You can put multiple component in one table cell using `columns.render` function.</br>
+The example code below will display two dropdowns (city and country) in the same cell.
+<details>
+  <summary>Show code</summary>
+
+  ```js
+const renderAddress = (cellData) => {
+    // The format of cellData: "city-country";
+    const city = cellData.split('-')[0];
+    const country = cellData.split('-')[1];
+
+    // Make dropdown city
+    const dropdownCity = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Tokyo',
+          value: 'tokyo',
+        },
+        {
+          label: 'Osaka',
+          value: 'osaka',
+        },
+        {
+          label: 'Hồ Chí Minh',
+          value: 'hochiminh',
+        },
+      ],
+      value: city,
+    });
+    dropdownCity.addEventListener('change', (event) => {
+      event.detail.value = `${event.detail.value}-${country}`;
+    });
+
+    // Make dropdown country
+    const dropdownCountry = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Việt Nam',
+          value: 'vietnam',
+        },
+        {
+          label: 'Japan',
+          value: 'japan',
+        },
+      ],
+      value: country,
+    });
+    dropdownCountry.addEventListener('change', (event) => {
+      event.detail.value = `${city}-${event.detail.value}`;
+    });
+
+    // Div element that wraps 2 dropdowns
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.appendChild(dropdownCity);
+    container.appendChild(dropdownCountry);
+
+    return container;
+};
+
+const columns = [
+    {
+      title: 'Name',
+      field: 'name',
+    },
+    {
+      title: 'Address',
+      field: 'address',
+      render: renderAddress,
+    },
+];
+
+const data = [
+    {
+        name: 'John Brown',
+        gender: 'male',
+        address: 'osaka-japan',
+    },
+    {
+        name: 'Jim Green',
+        gender: 'female',
+        address: 'tokyo-japan',
+    },
+    {
+        name: 'Joe Black',
+        gender: 'male',
+        address: 'hochiminh-vietnam',
+    },
+];
+
+const table = new Kuc.ReadOnlyTable({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(table);
+  ```
+</details>
+
+
+### Dependent columns
+![dependent-columns](assets/dependent-columns.gif)
+Update the city dropdown when the country dropdown changes.
+<details>
+  <summary>Show code</summary>
+
+  ```js
+// Each country will have corresponding cities.
+const relatedData = {
+    japan: [
+        {label: 'Tokyo', value: 'tokyo'},
+        {label: 'Osaka', value: 'osaka'},
+    ],
+    vietnam: [
+        {label: 'Ha Noi', value: 'hanoi'},
+        {label: 'Ho Chi Minh', value: 'hochiminh'},
+    ],
+};
+
+const renderCity = (cellData, rowData) => {
+    const dropdownCity = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Tokyo',
+          value: 'tokyo',
+        },
+        {
+          label: 'Hồ Chí Minh',
+          value: 'hochiminh',
+        },
+      ],
+      value: cellData,
+    });
+
+    // Update the city when country column changed
+    lastRenderedCountryComponent.addEventListener('change', (e) => {
+      dropdownCity.items = relatedData[e.detail.value];
+      rowData.city = '';
+    });
+
+    return dropdownCity;
+};
+
+let lastRenderedCountryComponent;
+const renderCountry = (cellData) => {
+    const dropdownCountry = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Việt Nam',
+          value: 'vietnam',
+        },
+        {
+          label: 'Japan',
+          value: 'japan',
+        },
+      ],
+      value: cellData,
+    });
+    lastRenderedCountryComponent = dropdownCountry;
+    return dropdownCountry;
+};
+
+const columns = [
+    {
+      title: 'Country',
+      field: 'country',
+      render: renderCountry,
+    },
+    {
+      title: 'City',
+      field: 'city',
+      render: renderCity,
+    },
+];
+
+const data = [
+    {
+      country: 'japan',
+      city: 'tokyo',
+    },
+    {
+      country: 'vietnam',
+      city: 'hochiminh',
+    },
+];
+
+const table = new Kuc.ReadOnlyTable({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(table);
+  ```
+</details>
+
+### Nested tables
+![table-in-table](assets/table-in-table.png)
+Showing more detailed info of every row.
+<details>
+  <summary>Show code</summary>
+
+  ```js
+const renderDropdown = (cellData) => {
+    const dropdown = new Kuc.Dropdown({
+      items: [
+        {label: 'Japan', value: 'japan'},
+        {label: 'Viet Nam', value: 'vietnam'},
+      ],
+      value: cellData,
+    });
+
+    return dropdown;
+};
+
+const renderSubTable = (cellData) => {
+    const renderDropdownSubTable = (cellDataSubTable) => {
+      const dropdown = new Kuc.Dropdown({
+        items: [
+          {label: 'Japan', value: 'japan'},
+          {label: 'Viet Nam', value: 'vietnam'},
+        ],
+        value: cellDataSubTable,
+      });
+      return dropdown;
+    };
+
+    const columnsSubTable = [
+      {
+        title: 'Dropdown',
+        field: 'dropdown',
+        render: renderDropdownSubTable,
+      },
+    ];
+    const dataSubTable = [{dropdown: cellData}];
+
+    // render SubTable
+    const subTable = new Kuc.Table({
+      columns: columnsSubTable,
+      data: dataSubTable,
+    });
+
+    subTable.addEventListener('change', (subTableEvent) => {
+      const changedDetail = subTableEvent.detail;
+      subTableEvent.detail.value = changedDetail.data[changedDetail.rowIndex].dropdown;
+    });
+    return subTable;
+};
+
+const columns = [
+    {
+      title: 'Dropdown',
+      field: 'dropdown',
+      render: renderDropdown,
+    },
+    {
+      title: 'Sub-table',
+      field: 'subTable',
+      render: renderSubTable,
+    },
+];
+
+const data = [
+    {
+      dropdown: 'japan',
+      subTable: 'vietnam',
+    },
+    {
+      dropdown: 'vietnam',
+      subTable: 'japan',
+    },
+];
+
+const table = new Kuc.ReadOnlyTable({columns, data});
+const space = kintone.app.record.getSpaceElement('space');
+space.appendChild(table);
+  ```
+</details>
+
+> This article was reviewed by Kintone and Google Chrome as of December, 2022.<br>
+> In addition, the version of Kintone UI Component that is used for customizations is v1.8.0.

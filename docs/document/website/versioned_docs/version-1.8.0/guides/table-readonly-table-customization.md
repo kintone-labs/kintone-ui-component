@@ -46,7 +46,7 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 Suppose we have the following settings to display username with Text component:
 ```javascript
 const renderName = (cellData) => {
-  const text = new Text({ value: cellData });
+  const text = new Kuc.Text({ value: cellData });
   return text;
 };
 
@@ -79,7 +79,7 @@ const renderName = (cellData) => {
   const text = new Text({ value: cellData });
 
   // Modify the value before it bubble to table cell
-  text.addEventListener('click', (event) => {
+  text.addEventListener('change', (event) => {
     event.detail.value = "modified value" // add any value you want set to username;
   });
   return text;
