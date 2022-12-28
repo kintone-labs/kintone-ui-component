@@ -1,7 +1,6 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
   const readOnlyTable = new Kuc.ReadOnlyTable({
-    label: "ReadOnlyTable",
     rowsPerPage: 3,
     pagination: true,
     columns: [
