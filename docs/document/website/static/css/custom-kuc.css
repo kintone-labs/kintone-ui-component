@@ -73,3 +73,6 @@ table[class^="kuc-readonly-table-"] {
 #attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
   box-sizing: content-box;
 }
+#attachment div[class$="__group"] {
+  display: block;
+}
