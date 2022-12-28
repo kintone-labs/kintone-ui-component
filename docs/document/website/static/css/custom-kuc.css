@@ -70,6 +70,6 @@ td[class^="kuc"] {
 table[class^="kuc-readonly-table-"] {
   margin-bottom: 0px;
 }
-.kuc-attachment-1-8-0__group__files, .kuc-attachment-1-8-0__group__files__droppable__text {
+#attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
   box-sizing: content-box;
 }
