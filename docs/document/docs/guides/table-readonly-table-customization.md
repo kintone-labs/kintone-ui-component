@@ -221,7 +221,7 @@ const data = [
     },
 ];
 
-const table = new Kuc.ReadOnlyTable({columns, data});
+const table = new Kuc.Table({columns, data});
 const space = kintone.app.record.getSpaceElement('space');
 space.appendChild(table);
   ```
@@ -236,12 +236,11 @@ The example code below will display two dropdowns (city and country) in the same
   <summary>Show code</summary>
 
   ```js
-const renderAddress = (cellData) => {
-    // The format of cellData: "city-country";
+  const renderAddress = (cellData, rowData) => {
+    // the format of cellData: "city-country";
     const city = cellData.split('-')[0];
     const country = cellData.split('-')[1];
 
-    // Make dropdown city
     const dropdownCity = new Kuc.Dropdown({
       items: [
         {
@@ -253,21 +252,21 @@ const renderAddress = (cellData) => {
           value: 'osaka',
         },
         {
-          label: 'Hồ Chí Minh',
+          label: 'Ho Chi Minh',
           value: 'hochiminh',
         },
       ],
       value: city,
     });
     dropdownCity.addEventListener('change', (event) => {
-      event.detail.value = `${event.detail.value}-${country}`;
+      const _country = rowData.address.split('-')[1];
+      event.detail.value = `${event.detail.value}-${_country}`;
     });
 
-    // Make dropdown country
     const dropdownCountry = new Kuc.Dropdown({
       items: [
         {
-          label: 'Việt Nam',
+          label: 'Viet Nam',
           value: 'vietnam',
         },
         {
@@ -278,19 +277,37 @@ const renderAddress = (cellData) => {
       value: country,
     });
     dropdownCountry.addEventListener('change', (event) => {
-      event.detail.value = `${city}-${event.detail.value}`;
+      const _city = rowData.address.split('-')[0];
+      event.detail.value = `${_city}-${event.detail.value}`;
     });
 
-    // Div element that wraps 2 dropdowns
     const container = document.createElement('div');
     container.style.display = 'flex';
-    container.appendChild(dropdownCity);
     container.appendChild(dropdownCountry);
+    container.appendChild(dropdownCity);
 
     return container;
-};
+  };
 
-const columns = [
+  const data = [
+    {
+      name: 'John Brown',
+      gender: 'male',
+      address: 'osaka-japan',
+    },
+    {
+      name: 'Jim Green',
+      gender: 'female',
+      address: 'tokyo-japan',
+    },
+    {
+      name: 'Joe Black',
+      gender: 'male',
+      address: 'hochiminh-vietnam',
+    },
+  ];
+
+  const columns = [
     {
       title: 'Name',
       field: 'name',
@@ -300,27 +317,9 @@ const columns = [
       field: 'address',
       render: renderAddress,
     },
-];
+  ];
 
-const data = [
-    {
-        name: 'John Brown',
-        gender: 'male',
-        address: 'osaka-japan',
-    },
-    {
-        name: 'Jim Green',
-        gender: 'female',
-        address: 'tokyo-japan',
-    },
-    {
-        name: 'Joe Black',
-        gender: 'male',
-        address: 'hochiminh-vietnam',
-    },
-];
-
-const table = new Kuc.ReadOnlyTable({columns, data});
+const table = new Kuc.Table({columns, data});
 const space = kintone.app.record.getSpaceElement('space');
 space.appendChild(table);
   ```
@@ -354,28 +353,28 @@ const renderCity = (cellData, rowData) => {
           value: 'tokyo',
         },
         {
-          label: 'Hồ Chí Minh',
+          label: 'Ho Chi Minh',
           value: 'hochiminh',
         },
       ],
       value: cellData,
     });
 
-    // Update the city when country column changed
+    // Logic update city when country column changed
     lastRenderedCountryComponent.addEventListener('change', (e) => {
       dropdownCity.items = relatedData[e.detail.value];
       rowData.city = '';
     });
 
     return dropdownCity;
-};
+  };
 
-let lastRenderedCountryComponent;
-const renderCountry = (cellData) => {
+  let lastRenderedCountryComponent;
+  const renderCountry = (cellData) => {
     const dropdownCountry = new Kuc.Dropdown({
       items: [
         {
-          label: 'Việt Nam',
+          label: 'Viet Nam',
           value: 'vietnam',
         },
         {
@@ -387,9 +386,9 @@ const renderCountry = (cellData) => {
     });
     lastRenderedCountryComponent = dropdownCountry;
     return dropdownCountry;
-};
+  };
 
-const columns = [
+  const columns = [
     {
       title: 'Country',
       field: 'country',
@@ -400,9 +399,9 @@ const columns = [
       field: 'city',
       render: renderCity,
     },
-];
+  ];
 
-const data = [
+  const data = [
     {
       country: 'japan',
       city: 'tokyo',
@@ -411,9 +410,9 @@ const data = [
       country: 'vietnam',
       city: 'hochiminh',
     },
-];
+  ];
 
-const table = new Kuc.ReadOnlyTable({columns, data});
+const table = new Kuc.Table({columns, data});
 const space = kintone.app.record.getSpaceElement('space');
 space.appendChild(table);
   ```
@@ -426,20 +425,20 @@ Showing more detailed info of every row.
   <summary>Show code</summary>
 
   ```js
-const renderDropdown = (cellData) => {
+  const renderCity = (cellData) => {
     const dropdown = new Kuc.Dropdown({
       items: [
-        {label: 'Japan', value: 'japan'},
-        {label: 'Viet Nam', value: 'vietnam'},
+        {label: 'Tokyo', value: 'tokyo'},
+        {label: 'Ho Chi Minh', value: 'hochiminh'},
       ],
       value: cellData,
     });
 
     return dropdown;
-};
+  };
 
-const renderSubTable = (cellData) => {
-    const renderDropdownSubTable = (cellDataSubTable) => {
+  const renderCountry = (cellData) => {
+    const renderSubTable = (cellDataSubTable) => {
       const dropdown = new Kuc.Dropdown({
         items: [
           {label: 'Japan', value: 'japan'},
@@ -452,53 +451,62 @@ const renderSubTable = (cellData) => {
 
     const columnsSubTable = [
       {
-        title: 'Dropdown',
+        title: 'Sub Table',
         field: 'dropdown',
-        render: renderDropdownSubTable,
+        render: renderSubTable,
       },
     ];
-    const dataSubTable = [{dropdown: cellData}];
 
-    // render SubTable
+    const dataSubTable = [];
+    for (let i = 0; i < cellData.split(',').length; i++) {
+      dataSubTable.push({dropdown: cellData.split(',')[i]});
+    }
     const subTable = new Kuc.Table({
       columns: columnsSubTable,
       data: dataSubTable,
     });
 
     subTable.addEventListener('change', (subTableEvent) => {
-      const changedDetail = subTableEvent.detail;
-      subTableEvent.detail.value = changedDetail.data[changedDetail.rowIndex].dropdown;
+      const _dataSubTable = subTableEvent.detail.data;
+      let countries = '';
+      for (let i = 0; i < _dataSubTable.length; i++) {
+        countries += _dataSubTable[i].dropdown;
+        if (i !== _dataSubTable.length - 1) {
+          countries += ',';
+        }
+      }
+      subTableEvent.detail.value = countries;
     });
     return subTable;
-};
+  };
 
-const columns = [
+  const columns = [
     {
-      title: 'Dropdown',
-      field: 'dropdown',
-      render: renderDropdown,
+      title: 'Country',
+      field: 'country',
+      render: renderCountry,
     },
     {
-      title: 'Sub-table',
-      field: 'subTable',
-      render: renderSubTable,
+      title: 'City',
+      field: 'city',
+      render: renderCity,
     },
-];
+  ];
 
-const data = [
+  const data = [
     {
-      dropdown: 'japan',
-      subTable: 'vietnam',
+      city: 'tokyo',
+      country: 'japan',
     },
     {
-      dropdown: 'vietnam',
-      subTable: 'japan',
+      city: 'hochiminh',
+      country: 'vietnam',
     },
-];
+  ];
 
-const table = new Kuc.ReadOnlyTable({columns, data});
-const space = kintone.app.record.getSpaceElement('space');
-space.appendChild(table);
+  const table = new Kuc.Table({columns, data});
+  const space = kintone.app.record.getSpaceElement('space');
+  space.appendChild(table);
   ```
 </details>
 
