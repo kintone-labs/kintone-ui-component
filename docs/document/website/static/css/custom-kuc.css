@@ -70,6 +70,10 @@ td[class^="kuc"] {
 table[class^="kuc-readonly-table-"] {
   margin-bottom: 0px;
 }
+table th[class$="__table__header__cell"] {
+  border: none;
+  vertical-align: middle;
+}
 #attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
   box-sizing: content-box;
 }
