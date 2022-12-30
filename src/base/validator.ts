@@ -122,14 +122,6 @@ export function validateDateTimeValue(date: string, time: string) {
   return true;
 }
 
-export async function throwErrorAfterUpdateComplete(
-  _this: any,
-  message: string
-) {
-  await _this.updateComplete;
-  throw new Error(message);
-}
-
 export function validateColumns(columns: Column[]) {
   return Array.isArray(columns);
 }
