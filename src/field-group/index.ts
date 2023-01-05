@@ -20,6 +20,7 @@ let exportFieldGroup;
       "";
     @property() content: string | HTMLElement = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
+    @property({ type: String }) title = "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) toggle = false;
     @property({
@@ -74,9 +75,7 @@ let exportFieldGroup;
             @click="${this._handleClickButton}"
           >
             <span class="kuc-field-group__trigger--icon"></span>
-            <span class="kuc-field-group__trigger--label">
-              Personal Information
-            </span>
+            <span class="kuc-field-group__trigger--label">${this.title}</span>
           </button>
           <div
             id="${this._GUID}-body"

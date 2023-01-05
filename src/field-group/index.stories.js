@@ -14,29 +14,32 @@ export default {
 
 const getContent = () => {
   const wrapper = document.createElement("div");
+
   const text = new Text({
     label: "Text",
-    error: "error occured",
+    error: "Error occurred",
     value: "orange",
   });
   const dropdown = new Dropdown({
     label: "Dropdown",
-    id: "sample-id",
     items: [
       {
-        label: "Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1 Sample 1",
-        value: "Sample 1",
+        label: "-----",
+        value: "-----",
       },
       {
-        label: "Sample 2",
-        value: "Sample 2",
+        label: "Orange",
+        value: "orange",
+      },
+      {
+        label: "Apple",
+        value: "apple",
       },
     ],
-    value: "",
-    selectedIndex: 0,
-    error: "Error",
-    visible: true,
+    value: "apple",
+    error: "Error occurred",
   });
+
   wrapper.appendChild(text);
   wrapper.appendChild(dropdown);
 
@@ -48,6 +51,7 @@ const template = (args) => {
 };
 export const Base = template.bind({});
 Base.args = {
+  title: "Field Group",
   disabled: false,
   toggle: false,
   content: getContent(),
