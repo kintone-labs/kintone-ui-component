@@ -12,7 +12,7 @@ jobs:
   publishMasterCommit:
     name: Deploying on Netlify Document Staging Environment
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.pull_request.merged == 'true')
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
