@@ -43,15 +43,6 @@ let exportFieldGroup;
       Object.assign(this, validProps);
     }
 
-    private _handleClickButton(event: Event) {
-      if (this.disabled) {
-        event.preventDefault();
-        return;
-      }
-
-      this.toggle = !this.toggle;
-    }
-
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
         this._content = unsafeHTMLConverter(this.content);
@@ -65,11 +56,9 @@ let exportFieldGroup;
           <button
             type="button"
             id="${this._GUID}-control"
-            class="kuc-field-group__trigger${this.disabled
-              ? " kuc-field-group__trigger-disabled"
-              : ""}"
+            class="kuc-field-group__trigger"
             aria-controls="${this._GUID}-body"
-            aria-expanded="${this.toggle}"
+            aria-expanded="${this.toggle && !this.disabled}"
             aria-disabled="${this.disabled}"
             tabindex="${this.disabled ? -1 : 0}"
             @click="${this._handleClickButton}"
@@ -87,6 +76,15 @@ let exportFieldGroup;
           </div>
         </div>
       `;
+    }
+
+    private _handleClickButton(event: Event) {
+      if (this.disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      this.toggle = !this.toggle;
     }
   }
   window.customElements.define("kuc-field-group", KucFieldGroup);
