@@ -51,7 +51,7 @@ const template = (args) => {
 };
 export const Base = template.bind({});
 Base.args = {
-  title: "Field Group",
+  header: "Field Group",
   disabled: false,
   toggle: false,
   content: getContent(),
