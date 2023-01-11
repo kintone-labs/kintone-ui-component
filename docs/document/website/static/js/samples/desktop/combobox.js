@@ -1,6 +1,6 @@
 document.addEventListener("kuc:loaded", function () {
   const container = document.getElementById("sample-container__components");
-  const checkbox = new Kuc.Combobox({
+  const combobox = new Kuc.Combobox({
     items: [
       { label: "Banana", value: "banana" },
       { label: "Orange", value: "orange" },
@@ -8,5 +8,5 @@ document.addEventListener("kuc:loaded", function () {
     ],
     value: "orange",
   });
-  container.appendChild(checkbox);
+  container.appendChild(combobox);
 });
