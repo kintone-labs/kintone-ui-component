@@ -12,7 +12,6 @@ import {
   validateItems,
   validateValueArray,
   validateSelectedIndexArray,
-  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import {
@@ -110,22 +109,21 @@ let exportMobileMultiChoice;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
         if (!validateValueArray(this.value)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
         if (!validateSelectedIndexArray(this.selectedIndex)) {
-          throwErrorAfterUpdateComplete(
-            this,
+          this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );
           return false;
