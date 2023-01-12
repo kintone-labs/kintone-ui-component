@@ -9,7 +9,6 @@ import {
 import { languagePropConverter, visiblePropConverter } from "../base/converter";
 import {
   isArrayType,
-  throwErrorAfterUpdateComplete,
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
@@ -89,7 +88,7 @@ let exportAttachment;
         changedProperties.has("files") &&
         !isArrayType<FileItem>(this.files)
       ) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
         return false;
       }
       return true;

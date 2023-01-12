@@ -122,6 +122,11 @@ export function validateDateTimeValue(date: string, time: string) {
   return true;
 }
 
+export function validateDuplicatedValues(values: Array<string | undefined>) {
+  if (values.length < 2) return true;
+  return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
+}
+
 export async function throwErrorAfterUpdateComplete(
   _this: any,
   message: string

@@ -16,7 +16,6 @@ import {
   validateProps,
   validateDateTimeValue,
   isValidDate,
-  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import {
@@ -104,7 +103,7 @@ let exportMobileDateTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string") {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -114,7 +113,7 @@ let exportMobileDateTimePicker;
         validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
         isValidDate(this._dateConverted);
       if (!isValidValue) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 

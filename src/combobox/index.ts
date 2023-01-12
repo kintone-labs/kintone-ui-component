@@ -12,30 +12,29 @@ import {
   validateProps,
   validateItems,
   validateValueString,
-  validateSelectedIndexNumber,
+  validateDuplicatedValues,
+  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
-import { DropdownChangeEventDetail, DropdownItem, DropdownProps } from "./type";
-import { DROPDOWN_CSS } from "./style";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
-export { BaseError, BaseLabel };
+import { ComboboxItem, ComboboxProps, ComboboxChangeEventDetail } from "./type";
+import { COMBOBOX_CSS } from "./style";
+import "../base/label";
+import "../base/error";
 
-let exportDropdown;
+let exportCombobox;
 (() => {
-  exportDropdown = window.customElements.get("kuc-dropdown");
-  if (exportDropdown) {
+  exportCombobox = window.customElements.get("kuc-combobox");
+  if (exportCombobox) {
     return;
   }
 
-  class KucDropdown extends KucBase {
+  class KucCombobox extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: String }) value = "";
-    @property({ type: Number }) selectedIndex = -1;
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
     @property({
@@ -45,36 +44,39 @@ let exportDropdown;
       converter: visiblePropConverter,
     })
     visible = true;
-    @property({ type: Array }) items: DropdownItem[] = [];
+    @property({ type: Array }) items: ComboboxItem[] = [];
 
     @state()
     private _selectorVisible = false;
 
-    @query(".kuc-dropdown__group")
+    @query(".kuc-combobox__group")
     private _groupEl!: HTMLDivElement;
 
-    @query(".kuc-dropdown__group__select-menu")
+    @query(".kuc-combobox__group__toggle")
+    private _toggleEl!: HTMLDivElement;
+
+    @query(".kuc-combobox__group__toggle__input")
+    private _inputEl!: HTMLInputElement;
+
+    @query(".kuc-combobox__group__select-menu")
     private _menuEl!: HTMLUListElement;
 
-    @queryAll(".kuc-dropdown__group__select-menu__item")
+    @queryAll(".kuc-combobox__group__select-menu__item")
     private _itemsEl!: HTMLLIElement[];
 
-    @query("button.kuc-dropdown__group__toggle")
-    private _buttonEl!: HTMLButtonElement;
-
-    @query(".kuc-dropdown__group__label")
+    @query(".kuc-combobox__group__label")
     private _labelEl!: HTMLDivElement;
 
-    @query(".kuc-dropdown__group__select-menu__item")
+    @query(".kuc-combobox__group__select-menu__item")
     private _firstItemEl!: HTMLLIElement;
 
-    @query(".kuc-dropdown__group__select-menu__item:last-child")
+    @query(".kuc-combobox__group__select-menu__item:last-child")
     private _lastItemEl!: HTMLLIElement;
 
-    @query(".kuc-dropdown__group__select-menu__item[aria-selected=true]")
+    @query(".kuc-combobox__group__select-menu__item[aria-selected=true]")
     private _selectedItemEl!: HTMLLIElement;
 
-    @query(".kuc-dropdown__group__select-menu__highlight")
+    @query(".kuc-combobox__group__select-menu__highlight")
     private _highlightItemEl!: HTMLLIElement;
 
     @query(".kuc-base-error__error")
@@ -84,132 +86,56 @@ let exportDropdown;
 
     private _GUID: string;
 
-    constructor(props?: DropdownProps) {
+    @state()
+    private _searchText = "";
+
+    private _query = "";
+    private _matchingItems: ComboboxItem[] = [];
+
+    constructor(props?: ComboboxProps) {
       super();
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
-      this._setInitialValue(validProps);
       Object.assign(this, validProps);
-    }
-
-    private _setInitialValue(validProps: DropdownProps) {
-      const hasValue = "value" in validProps;
-      const hasSelectedIndex = "selectedIndex" in validProps;
-      if (!hasValue && hasSelectedIndex) {
-        this.value = this._getValue(validProps) || "";
-      }
-    }
-
-    private _getSelectedLabel() {
-      const items = this.items.filter((item, index) =>
-        this._isCheckedItem(item, index)
-      );
-      if (items.length === 0) return "";
-      return items[0].label === undefined ? items[0].value : items[0].label;
-    }
-
-    private _getToggleIconSvgTemplate() {
-      return svg`
-      <svg
-        width="36"
-        height="36"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z"
-          fill="#3498db"/>
-      </svg>
-    `;
     }
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
-      }
 
-      if (changedProperties.has("value")) {
-        if (!validateValueString(this.value)) {
-          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_STRING);
-          return false;
-        }
-      }
-
-      if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
-          this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+        const itemsValues = this.items.map((item) => item.value);
+        if (!validateDuplicatedValues(itemsValues)) {
+          throwErrorAfterUpdateComplete(
+            this,
+            ERROR_MESSAGE.ITEMS.IS_DUPLICATED
           );
           return false;
         }
       }
+
+      if (changedProperties.has("value") && !validateValueString(this.value)) {
+        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
+
       return true;
     }
 
-    willUpdate(changedProperties: PropertyValues): void {
+    willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("value")) {
-        if (this.value !== "") return;
-
-        this.selectedIndex = -1;
+        this._searchText = this._getSelectedLabel() || "";
       }
-    }
-
-    update(changedProperties: PropertyValues) {
-      if (
-        changedProperties.has("items") ||
-        changedProperties.has("value") ||
-        changedProperties.has("selectedIndex")
-      ) {
-        this.selectedIndex = this._getSelectedIndex();
-        this.value =
-          this._getValue({
-            items: this.items,
-            selectedIndex: this.selectedIndex,
-          }) || "";
-      }
-      super.update(changedProperties);
-    }
-
-    private _getSelectedIndex() {
-      if (!this.value) {
-        if (this.items[this.selectedIndex]) return this.selectedIndex;
-        return -1;
-      }
-
-      const firstIndex = this.items.findIndex(
-        (item) => item.value === this.value
-      );
-      if (firstIndex === -1) return -1;
-      const selectedIndex = this.items.findIndex(
-        (item, index) =>
-          item.value === this.value && index === this.selectedIndex
-      );
-      return selectedIndex > -1 ? selectedIndex : firstIndex;
-    }
-
-    private _getValue(validProps: DropdownProps) {
-      const _items = validProps.items || [];
-      const _selectedIndex =
-        validProps.selectedIndex === 0 || validProps.selectedIndex
-          ? validProps.selectedIndex
-          : -1;
-      const item = _items[_selectedIndex];
-      if (!item) return "";
-      return item.value;
     }
 
     render() {
       return html`
-        <div class="kuc-dropdown__group">
+        <div class="kuc-combobox__group">
           <div
-            class="kuc-dropdown__group__label"
+            class="kuc-combobox__group__label"
             id="${this._GUID}-label"
             ?hidden="${!this.label}"
           >
@@ -218,36 +144,52 @@ let exportDropdown;
               .requiredIcon="${this.requiredIcon}"
             ></kuc-base-label>
           </div>
-          <button
-            class="kuc-dropdown__group__toggle"
-            id="${this._GUID}-toggle"
-            type="button"
-            aria-haspopup="true"
-            aria-labelledby="${this._GUID}-label ${this._GUID}-toggle"
-            aria-describedby="${this._GUID}-error"
-            aria-required="${this.requiredIcon}"
-            ?disabled="${this.disabled}"
-            @mouseup="${this._handleMouseUpDropdownToggle}"
-            @mousedown="${this._handleMouseDownDropdownToggle}"
-            @click="${this._handleClickDropdownToggle}"
-            @keydown="${this._handleKeyDownDropdownToggle}"
-          >
-            <span class="kuc-dropdown__group__toggle__selected-item-label"
-              >${this._getSelectedLabel()}</span
-            >
-            <span class="kuc-dropdown__group__toggle__icon">
-              ${this._getToggleIconSvgTemplate()}
-            </span>
-          </button>
+          <div class="kuc-combobox__group__toggle">
+            <input
+              class="kuc-combobox__group__toggle__input"
+              role="combobox"
+              type="text"
+              .value="${this._searchText}"
+              aria-haspopup="listbox"
+              aria-autocomplete="list"
+              aria-labelledby="${this._GUID}-label"
+              aria-controls="${this._GUID}-listbox"
+              aria-descibedby="${this._GUID}-error"
+              aria-expanded="${this._selectorVisible}"
+              aria-required="${this.requiredIcon}"
+              ?disabled="${this.disabled}"
+              @change="${this._handleChangeComboboxInput}"
+              @input="${this._handleInputComboboxInput}"
+              @keydown="${this._handleKeyDownComboboxInput}"
+              @click="${this._handleClickComboboxInput}"
+              @blur="${this._handleBlurComboboxInput}"
+            />
+            <div class="kuc-combobox__group__toggle__icon">
+              <button
+                class="kuc-combobox__group__toggle__icon__button"
+                tabindex="-1"
+                type="button"
+                aria-labelledby="${this._GUID}-label"
+                aria-controls="${this._GUID}-listbox"
+                aria-expanded="${this._selectorVisible}"
+                ?disabled="${this.disabled}"
+                @click="${this._handleClickToggleButton}"
+              >
+                ${this._getToggleIconSvgTemplate()}
+              </button>
+            </div>
+          </div>
           <ul
-            class="kuc-dropdown__group__select-menu"
+            class="kuc-combobox__group__select-menu"
             role="listbox"
+            id="${this._GUID}-listbox"
+            aria-labelledby="${this._GUID}-label"
             aria-hidden="${!this._selectorVisible}"
             ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
             @mousedown="${this._handleMouseDownMenu}"
           >
-            ${this.items.map((item, number) =>
+            ${this._matchingItems.map((item, number) =>
               this._getItemTemplate(item, number)
             )}
           </ul>
@@ -271,12 +213,20 @@ let exportDropdown;
       });
     }
 
-    async updated() {
+    async updated(changedProperties: PropertyValues) {
+      super.updated(changedProperties);
+
       await this.updateComplete;
       this._updateContainerWidth();
       if (this._selectorVisible) {
         this._setMenuPosition();
         this._scrollToView();
+        if (this._selectedItemEl === null) {
+          this._actionClearAllHighlightMenuItem();
+        } else {
+          this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
+        }
+
         setTimeout(() => {
           document.addEventListener("click", this._handleClickDocument, true);
         }, 1);
@@ -291,14 +241,84 @@ let exportDropdown;
       }
     }
 
-    private _handleMouseDownDropdownItem(event: MouseEvent) {
-      const itemEl = event.target as HTMLLIElement;
-      const value = itemEl.getAttribute("value") as string;
-      const selectedIndex = itemEl.dataset.index || "0";
-      this._actionUpdateValue(value, selectedIndex);
+    private _getToggleIconSvgTemplate() {
+      return svg`
+      <svg
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M24.2122 15.6665L25 16.1392L19.7332 21.4998H18.2668L13 16.1392L13.7878 15.6665L18.765 20.6866H19.235L24.2122 15.6665Z"
+          fill="#3498db"/>
+      </svg>
+    `;
     }
 
-    private _handleMouseOverDropdownItem(event: Event) {
+    private _getItemTemplate(item: ComboboxItem, index: number) {
+      const isCheckedItem = this._isCheckedItem(item);
+      const text = item.label === undefined ? item.value : item.label;
+      let newText = isCheckedItem ? html`<b>${text}</b>` : html`${text}`;
+      const trimmedQuery = this._query.trim().toLowerCase();
+      if (trimmedQuery && text) {
+        const startIndex = text.toLowerCase().indexOf(trimmedQuery);
+        const endIndex = startIndex + trimmedQuery.length;
+        newText = html`
+          ${text.slice(0, startIndex)}<b>${text.slice(
+            startIndex,
+            endIndex
+          )}</b>${text.slice(endIndex)}
+        `;
+      }
+
+      return html`
+        <li
+          class="kuc-combobox__group__select-menu__item"
+          role="option"
+          aria-selected="${isCheckedItem ? "true" : "false"}"
+          value="${item.value !== undefined ? item.value : ""}"
+          id="${this._GUID}-menuitem-${index}"
+          @mousedown="${this._handleMouseDownComboboxItem}"
+          @mouseover="${this._handleMouseOverComboboxItem}"
+        >
+          ${this._getComboboxIconSvgTemplate(isCheckedItem)} ${newText}
+        </li>
+      `;
+    }
+
+    private _getComboboxIconSvgTemplate(checked: boolean) {
+      return svg`
+      ${
+        checked
+          ? svg`<svg
+          class="kuc-combobox__group__select-menu__item__icon"
+          width="11"
+          height="9"
+          viewBox="0 0 11 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
+            fill="#3498db"/>
+        </svg>`
+          : ""
+      }`;
+    }
+
+    private _handleMouseDownComboboxItem(event: MouseEvent) {
+      const itemEl = event.target as HTMLLIElement;
+      const value = itemEl.getAttribute("value") as string;
+      this._actionUpdateValue(value);
+    }
+
+    private _handleMouseOverComboboxItem(event: Event) {
       const itemEl = event.target as HTMLLIElement;
       this._actionHighlightMenuItem(itemEl);
     }
@@ -311,35 +331,52 @@ let exportDropdown;
       event.preventDefault();
     }
 
-    private _handleMouseDownDropdownToggle(event: MouseEvent) {
+    private _handleClickToggleButton(event: MouseEvent): void {
       event.preventDefault();
-    }
-
-    private _handleMouseUpDropdownToggle(event: MouseEvent) {
-      event.preventDefault();
-    }
-
-    private _handleClickDropdownToggle(event: Event) {
-      event.stopPropagation();
+      this._inputEl.focus();
+      this._inputEl.select();
+      this._resetToggleInputValue();
       this._actionToggleMenu();
+    }
+
+    private _handleInputComboboxInput(event: Event) {
+      event.stopPropagation();
+
+      this._searchText = this._inputEl.value;
+      this._query = this._inputEl.value;
+      this._setMatchingItems();
+    }
+
+    private _handleClickComboboxInput(event: Event) {
+      event.stopPropagation();
+      this._inputEl.select();
+      this._setMatchingItems();
+    }
+
+    private _handleChangeComboboxInput(event: Event) {
+      event.stopPropagation();
+    }
+
+    private _handleBlurComboboxInput(event: Event) {
+      this._resetToggleInputValue();
     }
 
     private _handleClickDocument(event: MouseEvent) {
       if (
-        event.target === this._buttonEl ||
-        this._buttonEl.contains(event.target as HTMLElement)
+        event.target === this._toggleEl ||
+        this._toggleEl.contains(event.target as HTMLElement)
       ) {
+        this._inputEl.focus();
         event.stopPropagation();
       }
       this._actionHideMenu();
     }
 
-    private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
+    private _handleKeyDownComboboxInput(event: KeyboardEvent) {
       switch (event.key) {
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
-          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -355,7 +392,6 @@ let exportDropdown;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
-          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -365,14 +401,11 @@ let exportDropdown;
         }
         case "Enter": {
           event.preventDefault();
-          if (this.items.length === 0) break;
-          if (!this._selectorVisible) {
-            this._actionShowMenu();
-            break;
-          }
-          const { value, selectedIndex } = this._getInfoHighlightItem();
-          if (value === null) break;
-          this._actionUpdateValue(value, selectedIndex);
+          const itemEl = this._highlightItemEl as HTMLLIElement;
+          if (itemEl === null) break;
+
+          const value = itemEl.getAttribute("value") as string;
+          this._actionUpdateValue(value);
           this._actionHideMenu();
           break;
         }
@@ -381,6 +414,7 @@ let exportDropdown;
           if (this._selectorVisible) {
             event.stopPropagation();
           }
+          this._resetToggleInputValue();
           this._actionHideMenu();
           break;
         }
@@ -403,22 +437,25 @@ let exportDropdown;
       }
     }
 
-    private _getInfoHighlightItem() {
-      const itemEl = this._highlightItemEl as HTMLLIElement;
-      if (itemEl === null) return { value: null, selectedIndex: "-1" };
-
-      const value = itemEl.getAttribute("value") as string;
-      const selectedIndex = itemEl.dataset.index || "0";
-      return { value: value, selectedIndex: selectedIndex };
+    private _getSelectedLabel() {
+      const items = this.items.filter((item, index) =>
+        this._isCheckedItem(item)
+      );
+      if (items.length === 0) return "";
+      return items[0].label === undefined ? items[0].value : items[0].label;
     }
 
     private _actionShowMenu() {
-      this._buttonEl.focus();
-      if (this.items.length === 0) return;
-      this._selectorVisible = true;
+      if (this._query.trim() === "") {
+        this._matchingItems = this.items;
+      }
 
-      if (this._selectedItemEl === null) return;
-      this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
+      if (this.items.length === 0 || this._matchingItems.length === 0) {
+        return;
+      }
+
+      this._inputEl.focus();
+      this._selectorVisible = true;
     }
 
     private _actionHideMenu() {
@@ -427,7 +464,6 @@ let exportDropdown;
     }
 
     private _actionToggleMenu() {
-      if (this.items.length === 0) return;
       if (this._selectorVisible) {
         this._actionHideMenu();
         return;
@@ -450,7 +486,7 @@ let exportDropdown;
         prevItem = this._highlightItemEl
           .previousElementSibling as HTMLLIElement;
         this._highlightItemEl.classList.remove(
-          "kuc-dropdown__group__select-menu__highlight"
+          "kuc-combobox__group__select-menu__highlight"
         );
       }
 
@@ -466,7 +502,7 @@ let exportDropdown;
       if (this._highlightItemEl !== null) {
         nextItem = this._highlightItemEl.nextElementSibling as HTMLLIElement;
         this._highlightItemEl.classList.remove(
-          "kuc-dropdown__group__select-menu__highlight"
+          "kuc-combobox__group__select-menu__highlight"
         );
       }
 
@@ -479,7 +515,7 @@ let exportDropdown;
 
     private _actionClearAllHighlightMenuItem() {
       this._itemsEl.forEach((itemEl: HTMLLIElement) => {
-        itemEl.classList.remove("kuc-dropdown__group__select-menu__highlight");
+        itemEl.classList.remove("kuc-combobox__group__select-menu__highlight");
       });
       this._actionRemoveActiveDescendant();
     }
@@ -494,29 +530,52 @@ let exportDropdown;
 
     private _actionHighlightMenuItem(item: HTMLLIElement) {
       this._actionClearAllHighlightMenuItem();
-      item.classList.add("kuc-dropdown__group__select-menu__highlight");
+      item.classList.add("kuc-combobox__group__select-menu__highlight");
     }
 
-    private _actionUpdateValue(value: string, index: string) {
-      const indexNumber = parseInt(index, 10);
-      if (this.value === value && this.selectedIndex === indexNumber) return;
-      const eventDetail: DropdownChangeEventDetail = {
+    private _actionUpdateValue(value: string) {
+      if (this.value === value) {
+        this._resetToggleInputValue();
+        return;
+      }
+      const detail: ComboboxChangeEventDetail = {
         oldValue: this.value,
         value: value,
       };
       this.value = value;
-      this.selectedIndex = indexNumber;
-      dispatchCustomEvent(this, "change", eventDetail);
+      this._query = "";
+      dispatchCustomEvent(this, "change", detail);
     }
 
     private _actionSetActiveDescendant(value?: string) {
-      if (value !== undefined && this._buttonEl !== null) {
-        this._buttonEl.setAttribute("aria-activedescendant", value);
+      if (value !== undefined && this._inputEl !== null) {
+        this._inputEl.setAttribute("aria-activedescendant", value);
       }
     }
 
     private _actionRemoveActiveDescendant() {
-      this._buttonEl.removeAttribute("aria-activedescendant");
+      this._inputEl.removeAttribute("aria-activedescendant");
+    }
+
+    private _setMatchingItems() {
+      const matchingItems = this.items.filter((item) => {
+        const escapePattern = (string: string) => {
+          return string.replace(/[.*+?^=!:${}()|[\]/\\]/g, "\\$&");
+        };
+        const regex = new RegExp(escapePattern(this._query.trim()), "gi");
+
+        if (item.label) return regex.test(item.label);
+        if (item.value) return regex.test(item.value);
+        return false;
+      });
+
+      if (matchingItems.length === 0) {
+        this._matchingItems = [];
+        this._actionHideMenu();
+      } else {
+        this._matchingItems = matchingItems;
+        this._actionShowMenu();
+      }
     }
 
     private _updateContainerWidth() {
@@ -547,15 +606,15 @@ let exportDropdown;
       const isWindowBottomScrollbarShow =
         document.body.scrollWidth > window.innerWidth;
 
-      const toTop = this._buttonEl.getBoundingClientRect().top;
+      const toTop = this._toggleEl.getBoundingClientRect().top;
       const toBottom =
         window.innerHeight -
-        this._buttonEl.getBoundingClientRect().bottom -
+        this._toggleEl.getBoundingClientRect().bottom -
         (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
-      const toLeft = this._buttonEl.getBoundingClientRect().left;
+      const toLeft = this._toggleEl.getBoundingClientRect().left;
       const toRight =
         window.innerWidth -
-        this._buttonEl.getBoundingClientRect().left -
+        this._toggleEl.getBoundingClientRect().left -
         (isWindowRightScrollbarShow ? scrollbarWidth : 0);
 
       return { toTop, toBottom, toLeft, toRight };
@@ -566,6 +625,7 @@ let exportDropdown;
       this._menuEl.style.bottom = "auto";
       this._menuEl.style.overflowY = "";
 
+      const ERROR_MARGIN = 16;
       const menuHeight = this._menuEl.getBoundingClientRect().height;
       const distanceToggleButton = this._getDistanceToggleButton();
       if (distanceToggleButton.toBottom >= menuHeight) return;
@@ -573,10 +633,10 @@ let exportDropdown;
       if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
         // Above
         const errorHeight = this._errorEl.offsetHeight
-          ? this._errorEl.offsetHeight + 16
+          ? this._errorEl.offsetHeight + ERROR_MARGIN
           : 0;
         this._menuEl.style.bottom = `${
-          this._buttonEl.offsetHeight + errorHeight
+          this._toggleEl.offsetHeight + errorHeight
         }px`;
         if (distanceToggleButton.toTop >= menuHeight) return;
         this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
@@ -602,7 +662,7 @@ let exportDropdown;
         return;
 
       // Left
-      const right = this._buttonEl.offsetWidth - distanceToggleButton.toRight;
+      const right = this._toggleEl.offsetWidth - distanceToggleButton.toRight;
       this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
     }
 
@@ -637,57 +697,23 @@ let exportDropdown;
       }, 50);
     }
 
-    private _isCheckedItem(item: DropdownItem, index: number) {
-      if (!this.value) return this.selectedIndex === index;
-      return item.value === this.value && this.selectedIndex === index;
+    private _isCheckedItem(item: ComboboxItem) {
+      return item.value === this.value;
     }
 
-    private _getItemTemplate(item: DropdownItem, index: number) {
-      const isCheckedItem = this._isCheckedItem(item, index);
-      return html`
-        <li
-          class="kuc-dropdown__group__select-menu__item"
-          role="option"
-          tabindex="${isCheckedItem ? "0" : "-1"}"
-          aria-selected="${isCheckedItem ? "true" : "false"}"
-          data-index="${index}"
-          value="${item.value !== undefined ? item.value : ""}"
-          id="${this._GUID}-menuitem-${index}"
-          @mousedown="${this._handleMouseDownDropdownItem}"
-          @mouseover="${this._handleMouseOverDropdownItem}"
-        >
-          ${this._getDropdownIconSvgTemplate(isCheckedItem)}
-          ${item.label === undefined ? item.value : item.label}
-        </li>
-      `;
-    }
+    private _resetToggleInputValue() {
+      const selectedLabel = this._getSelectedLabel();
+      if (this._searchText !== selectedLabel) {
+        this._searchText = selectedLabel ? selectedLabel : "";
+      }
 
-    private _getDropdownIconSvgTemplate(checked: boolean) {
-      return svg`
-      ${
-        checked
-          ? svg`<svg
-          class="kuc-dropdown__group__select-menu__item__icon"
-          width="11"
-          height="9"
-          viewBox="0 0 11 9"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
-            fill="#3498db"/>
-        </svg>`
-          : ""
-      }`;
+      this._query = "";
     }
   }
-  window.customElements.define("kuc-dropdown", KucDropdown);
-  createStyleOnHeader(DROPDOWN_CSS);
-  exportDropdown = KucDropdown;
+  window.customElements.define("kuc-combobox", KucCombobox);
+  createStyleOnHeader(COMBOBOX_CSS);
+  exportCombobox = KucCombobox;
 })();
 
-const Dropdown = exportDropdown as any;
-export { Dropdown };
+const Combobox = exportCombobox as any;
+export { Combobox };

@@ -9,7 +9,6 @@ import {
 import { visiblePropConverter } from "../base/converter";
 import {
   validateProps,
-  throwErrorAfterUpdateComplete,
   validateArrayProperty,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
@@ -71,7 +70,7 @@ let exportTable;
       if (_changedProperties.has("data") || _changedProperties.has("columns")) {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return false;
         }
       }
@@ -362,7 +361,7 @@ let exportTable;
       buttonAction.addEventListener("click", () => {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return;
         }
         if (isAdd) {
