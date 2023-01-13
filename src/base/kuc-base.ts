@@ -14,6 +14,11 @@ export abstract class KucBase extends LitElement {
   public createRenderRoot() {
     return this;
   }
+
+  async throwErrorAfterUpdateComplete(message: string) {
+    await this.updateComplete;
+    throw new Error(message);
+  }
 }
 
 /**

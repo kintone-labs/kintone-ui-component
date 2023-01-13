@@ -1,26 +1,23 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
-
-import { ERROR_MESSAGE } from "../base/constant";
-import { visiblePropConverter } from "../base/converter";
-import { BaseError } from "../base/error";
 import {
-  createStyleOnHeader,
-  dispatchCustomEvent,
-  generateGUID,
   KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  createStyleOnHeader,
 } from "../base/kuc-base";
-import { BaseLabel } from "../base/label";
+import { visiblePropConverter } from "../base/converter";
 import {
-  throwErrorAfterUpdateComplete,
-  validateItems,
   validateProps,
-  validateSelectedIndexArray,
+  validateItems,
   validateValueArray,
+  validateSelectedIndexArray,
 } from "../base/validator";
-
-import { CHECKBOX_CSS } from "./style";
+import { ERROR_MESSAGE } from "../base/constant";
 import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
+import { CHECKBOX_CSS } from "./style";
+import { BaseError } from "../base/error";
+import { BaseLabel } from "../base/label";
 export { BaseError, BaseLabel };
 
 type CheckBoxValueMapping = {
@@ -84,22 +81,21 @@ let exportCheckbox;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
         if (!validateValueArray(this.value)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
         if (!validateSelectedIndexArray(this.selectedIndex)) {
-          throwErrorAfterUpdateComplete(
-            this,
+          this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );
           return false;

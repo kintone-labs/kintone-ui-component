@@ -1,23 +1,21 @@
+/* eslint-disable kuc-v1/no-kuc-class-prefix */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-
-import { ERROR_MESSAGE } from "../base/constant";
+import {
+  KucBase,
+  dispatchCustomEvent,
+  createStyleOnHeader,
+} from "../base/kuc-base";
 import { visiblePropConverter } from "../base/converter";
 import {
-  createStyleOnHeader,
-  dispatchCustomEvent,
-  KucBase,
-} from "../base/kuc-base";
-import {
-  throwErrorAfterUpdateComplete,
+  validateProps,
   validateArrayProperty,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
-  validateProps,
 } from "../base/validator";
-
+import { ERROR_MESSAGE } from "../base/constant";
+import { TableProps, Column, TableChangeEventDetail } from "./type";
 import { TABLE_CSS } from "./style";
-import { Column, TableChangeEventDetail, TableProps } from "./type";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";
@@ -72,7 +70,7 @@ let exportTable;
       if (_changedProperties.has("data") || _changedProperties.has("columns")) {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return false;
         }
       }
@@ -363,7 +361,7 @@ let exportTable;
       buttonAction.addEventListener("click", () => {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return;
         }
         if (isAdd) {

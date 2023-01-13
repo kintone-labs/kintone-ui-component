@@ -1,30 +1,27 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-
 import {
+  visiblePropConverter,
   dateValueConverter,
   languagePropConverter,
-  visiblePropConverter,
 } from "../base/converter";
-import { INVALID_FORMAT_MESSAGE } from "../base/datetime/resource/constant";
-import { BaseError } from "../base/error";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
 } from "../base/kuc-base";
-import { BaseLabel } from "../base/label";
 import {
-  isValidDate,
-  throwErrorAfterUpdateComplete,
-  validateDateValue,
   validateProps,
+  validateDateValue,
+  isValidDate,
 } from "../base/validator";
 import "../base/datetime/date";
-
+import { INVALID_FORMAT_MESSAGE } from "../base/datetime/resource/constant";
+import { BaseLabel } from "../base/label";
+import { BaseError } from "../base/error";
+import { DatePickerProps, DatePickerChangeEventDetail } from "./type";
 import { DATE_PICKER_CSS } from "./style";
-import { DatePickerChangeEventDetail, DatePickerProps } from "./type";
 export { BaseError, BaseLabel };
 
 let exportDatePicker;
@@ -80,13 +77,13 @@ let exportDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string" || !validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
       this._valueConverted = dateValueConverter(this.value);
       if (this._valueConverted && !isValidDate(this._valueConverted)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;

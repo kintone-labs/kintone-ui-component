@@ -1,47 +1,45 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-
+import {
+  generateGUID,
+  KucBase,
+  dispatchCustomEvent,
+  createStyleOnHeader,
+} from "../base/kuc-base";
+import {
+  visiblePropConverter,
+  dateValueConverter,
+  timeValueConverter,
+  languagePropConverter,
+} from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
-  dateValueConverter,
-  languagePropConverter,
-  timeValueConverter,
-  visiblePropConverter,
-} from "../base/converter";
+  validateProps,
+  validateDateTimeValue,
+  isValidDate,
+  validateTimeValue,
+  validateTimeStepNumber,
+  validateTimeStep,
+} from "../base/validator";
 import {
   INVALID_FORMAT_MESSAGE,
   MAX_MIN_IS_NOT_VALID,
-  MAX_TIME,
-  MIN_TIME,
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
+  MIN_TIME,
+  MAX_TIME,
 } from "../base/datetime/resource/constant";
 import { timeCompare } from "../base/datetime/utils";
+
 import "../base/datetime/date";
 import "../base/datetime/time";
-import { BaseError } from "../base/error";
-import {
-  createStyleOnHeader,
-  dispatchCustomEvent,
-  generateGUID,
-  KucBase,
-} from "../base/kuc-base";
 import { BaseLabel } from "../base/label";
-import {
-  isValidDate,
-  throwErrorAfterUpdateComplete,
-  validateDateTimeValue,
-  validateProps,
-  validateTimeStep,
-  validateTimeStepNumber,
-  validateTimeValue,
-} from "../base/validator";
-
+import { BaseError } from "../base/error";
 import { DATE_TIME_PICKER_CSS } from "./style";
 import {
   DateAndTime,
-  DateTimePickerChangeEventDetail,
   DateTimePickerProps,
+  DateTimePickerChangeEventDetail,
 } from "./type";
 export { BaseError, BaseLabel };
 
@@ -143,7 +141,7 @@ let exportDateTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string") {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -153,7 +151,7 @@ let exportDateTimePicker;
         validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
         isValidDate(this._dateConverted);
       if (!isValidValue) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -165,7 +163,7 @@ let exportDateTimePicker;
         (timeCompare(this._timeConverted, this._inputMin) < 0 ||
           timeCompare(this._inputMax, this._timeConverted) < 0)
       ) {
-        throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
+        this.throwErrorAfterUpdateComplete(TIME_IS_OUT_OF_VALID_RANGE);
         return false;
       }
 
@@ -190,7 +188,7 @@ let exportDateTimePicker;
         _inputMaxTemp = MAX_TIME;
       } else {
         if (!validateTimeValue(this.max)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MAX);
+          this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MAX);
           return false;
         }
         _inputMaxTemp = this.max = timeValueConverter(this.max);
@@ -200,14 +198,14 @@ let exportDateTimePicker;
         _inputMinTemp = MIN_TIME;
       } else {
         if (!validateTimeValue(this.min)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MIN);
+          this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MIN);
           return false;
         }
         _inputMinTemp = this.min = timeValueConverter(this.min);
       }
 
       if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
-        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        this.throwErrorAfterUpdateComplete(MAX_MIN_IS_NOT_VALID);
         return false;
       }
       this._inputMin = _inputMinTemp;
@@ -216,12 +214,12 @@ let exportDateTimePicker;
     }
     private _checkAndUpdateTimeStepProperty() {
       if (!validateTimeStepNumber(this.timeStep)) {
-        throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+        this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
         return false;
       }
 
       if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.TIME_STEP);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.TIME_STEP);
         return false;
       }
       this._inputTimeStep = this.timeStep;
