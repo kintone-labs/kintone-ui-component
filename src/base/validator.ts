@@ -127,14 +127,6 @@ export function validateDuplicatedValues(values: Array<string | undefined>) {
   return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
 }
 
-export async function throwErrorAfterUpdateComplete(
-  _this: any,
-  message: string
-) {
-  await _this.updateComplete;
-  throw new Error(message);
-}
-
 export function validateColumns(columns: Column[]) {
   return Array.isArray(columns);
 }
