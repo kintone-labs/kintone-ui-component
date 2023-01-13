@@ -154,7 +154,7 @@ let exportCombobox;
               aria-autocomplete="list"
               aria-labelledby="${this._GUID}-label"
               aria-controls="${this._GUID}-listbox"
-              aria-descibedby="${this._GUID}-error"
+              aria-describedby="${this._GUID}-error"
               aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
               ?disabled="${this.disabled}"
