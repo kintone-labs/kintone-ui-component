@@ -36,7 +36,7 @@ export const ATTACHMENT_CSS = `
     height: auto;
     box-sizing: border-box;
     position: relative;
-    display: inline-block;
+    display: block;
   }
   .kuc-attachment__group__label {
     display: inline-block;
