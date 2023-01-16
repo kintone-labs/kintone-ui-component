@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { fixture } from "@open-wc/testing";
 
 import { TextArea } from "../index";
 

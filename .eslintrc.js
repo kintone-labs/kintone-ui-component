@@ -1,6 +1,14 @@
 module.exports = {
   extends: "@cybozu/eslint-config/presets/typescript-prettier",
-  plugins: ["kuc-v1"],
+  plugins: ["import", "kuc-v1"],
+  settings: {
+    // settings for typescript
+    "import/resolver": {
+      typescript: true,
+      node: true,
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+  },
   rules: {
     "@typescript-eslint/no-non-null-assertion": "off",
     "kuc-v1/no-create-render-root-function": "error",
@@ -17,20 +25,9 @@ module.exports = {
     "kuc-v1/no-using-bem-method-for-classname": "error",
     "kuc-v1/no-using-event-handler-name": "error",
     "kuc-v1/private-custom-event": "error",
-    "kuc-v1/no-sorting-in-alphabetical-order": "error"
-  },
-  plugins: ["import"],
-  settings: {
-    // settings for typescript
-    "import/resolver": {
-      typescript: true,
-      node: true,
-    },
-    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
-  },
-  rules: {
-    // disable original eslint sort imports
-    "sort-imports": [
+    "kuc-v1/no-sorting-in-alphabetical-order": "error",
+     // disable original eslint sort imports
+     "sort-imports": [
       "error",
       { ignoreCase: true, ignoreDeclarationSort: true },
     ],

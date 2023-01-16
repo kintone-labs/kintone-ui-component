@@ -1,27 +1,30 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, queryAll, query, state } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-} from "../base/validator";
+import { property, query, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
+import { visiblePropConverter } from "../base/converter";
+import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import {
+  validateItems,
+  validateProps,
+  validateSelectedIndexArray,
+  validateValueArray,
+} from "../base/validator";
+
+import { MULTICHOICE_CSS } from "./style";
 import {
   MultiChoiceChangeEventDetail,
   MultiChoiceItem,
   MultiChoiceProps,
 } from "./type";
-import { MULTICHOICE_CSS } from "./style";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
+
 export { BaseError, BaseLabel };
 
 type ValueMapping = {

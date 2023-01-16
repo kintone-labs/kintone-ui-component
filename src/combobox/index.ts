@@ -1,23 +1,25 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, state, queryAll, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import { getWidthElmByContext } from "../base/context";
-import {
-  validateProps,
-  validateItems,
-  validateValueString,
-  validateDuplicatedValues,
-  throwErrorAfterUpdateComplete,
-} from "../base/validator";
+import { property, query, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
-import { ComboboxItem, ComboboxProps, ComboboxChangeEventDetail } from "./type";
+import { getWidthElmByContext } from "../base/context";
+import { visiblePropConverter } from "../base/converter";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import {
+  throwErrorAfterUpdateComplete,
+  validateDuplicatedValues,
+  validateItems,
+  validateProps,
+  validateValueString,
+} from "../base/validator";
+
 import { COMBOBOX_CSS } from "./style";
+import { ComboboxChangeEventDetail, ComboboxItem, ComboboxProps } from "./type";
 import "../base/label";
 import "../base/error";
 
