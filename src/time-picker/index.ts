@@ -25,7 +25,6 @@ import {
   validateTimeValue,
   validateTimeStepNumber,
   validateTimeStep,
-  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import "../base/datetime/time";
 import { timeCompare } from "../base/datetime/utils";
@@ -103,7 +102,7 @@ let exportTimePicker;
           _inputMaxTemp = MAX_TIME;
         } else {
           if (!validateTimeValue(this.max)) {
-            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MAX);
+            this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MAX);
             return false;
           }
           _inputMaxTemp = this.max = timeValueConverter(this.max);
@@ -113,14 +112,14 @@ let exportTimePicker;
           _inputMinTemp = MIN_TIME;
         } else {
           if (!validateTimeValue(this.min)) {
-            throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MIN);
+            this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MIN);
             return false;
           }
           _inputMinTemp = this.min = timeValueConverter(this.min);
         }
 
         if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
-          throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+          this.throwErrorAfterUpdateComplete(MAX_MIN_IS_NOT_VALID);
           return false;
         }
         this._inputMin = _inputMinTemp;
@@ -129,12 +128,12 @@ let exportTimePicker;
 
       if (_changedProperties.has("timeStep")) {
         if (!validateTimeStepNumber(this.timeStep)) {
-          throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+          this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
           return false;
         }
 
         if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.TIME_STEP);
+          this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.TIME_STEP);
           return false;
         }
         this._inputTimeStep = this.timeStep;
@@ -143,7 +142,7 @@ let exportTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (!validateTimeValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -153,7 +152,7 @@ let exportTimePicker;
         (timeCompare(this._valueConverted, this._inputMin) < 0 ||
           timeCompare(this._inputMax, this._valueConverted) < 0)
       ) {
-        throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
+        this.throwErrorAfterUpdateComplete(TIME_IS_OUT_OF_VALID_RANGE);
         return false;
       }
 

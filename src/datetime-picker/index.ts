@@ -20,7 +20,6 @@ import {
   validateTimeValue,
   validateTimeStepNumber,
   validateTimeStep,
-  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import {
   INVALID_FORMAT_MESSAGE,
@@ -142,7 +141,7 @@ let exportDateTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string") {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -152,7 +151,7 @@ let exportDateTimePicker;
         validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
         isValidDate(this._dateConverted);
       if (!isValidValue) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -164,7 +163,7 @@ let exportDateTimePicker;
         (timeCompare(this._timeConverted, this._inputMin) < 0 ||
           timeCompare(this._inputMax, this._timeConverted) < 0)
       ) {
-        throwErrorAfterUpdateComplete(this, TIME_IS_OUT_OF_VALID_RANGE);
+        this.throwErrorAfterUpdateComplete(TIME_IS_OUT_OF_VALID_RANGE);
         return false;
       }
 
@@ -189,7 +188,7 @@ let exportDateTimePicker;
         _inputMaxTemp = MAX_TIME;
       } else {
         if (!validateTimeValue(this.max)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MAX);
+          this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MAX);
           return false;
         }
         _inputMaxTemp = this.max = timeValueConverter(this.max);
@@ -199,14 +198,14 @@ let exportDateTimePicker;
         _inputMinTemp = MIN_TIME;
       } else {
         if (!validateTimeValue(this.min)) {
-          throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.MIN);
+          this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.MIN);
           return false;
         }
         _inputMinTemp = this.min = timeValueConverter(this.min);
       }
 
       if (timeCompare(_inputMaxTemp, _inputMinTemp) < 0) {
-        throwErrorAfterUpdateComplete(this, MAX_MIN_IS_NOT_VALID);
+        this.throwErrorAfterUpdateComplete(MAX_MIN_IS_NOT_VALID);
         return false;
       }
       this._inputMin = _inputMinTemp;
@@ -215,12 +214,12 @@ let exportDateTimePicker;
     }
     private _checkAndUpdateTimeStepProperty() {
       if (!validateTimeStepNumber(this.timeStep)) {
-        throwErrorAfterUpdateComplete(this, TIMESTEP_IS_NOT_NUMBER);
+        this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
         return false;
       }
 
       if (!validateTimeStep(this.timeStep, this._inputMax, this._inputMin)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.TIME_STEP);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.TIME_STEP);
         return false;
       }
       this._inputTimeStep = this.timeStep;

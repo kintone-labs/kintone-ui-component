@@ -15,7 +15,6 @@ import {
   validateProps,
   validateDateValue,
   isValidDate,
-  throwErrorAfterUpdateComplete,
 } from "../../base/validator";
 import "../../base/datetime/mobile-date";
 import "../../base/mobile-label";
@@ -77,13 +76,13 @@ let exportMobileDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (!validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
       this._dateConverted = dateValueConverter(this.value);
       if (this._dateConverted !== "" && !isValidDate(this._dateConverted)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;

@@ -15,7 +15,6 @@ import {
   validateProps,
   validateDateValue,
   isValidDate,
-  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import "../base/datetime/date";
 import { INVALID_FORMAT_MESSAGE } from "../base/datetime/resource/constant";
@@ -78,13 +77,13 @@ let exportDatePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string" || !validateDateValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
       this._valueConverted = dateValueConverter(this.value);
       if (this._valueConverted && !isValidDate(this._valueConverted)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;
