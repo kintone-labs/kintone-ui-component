@@ -31,6 +31,7 @@ export const NOTIFICATION_CSS = `
     position: fixed;
     display: inline-block;
     top: 0;
+    left: 0;
     width: 100%;
     line-height: 1.5;
     z-index: 10000;
