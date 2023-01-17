@@ -4,7 +4,7 @@ import "../index";
 
 describe("BaseDateTimeCalendarHeader", () => {
   describe("year", () => {
-    it("should be 2021 when not assigning", async () => {
+    it("should be current year when not assigning", async () => {
       const container = document.createElement(
         "kuc-base-datetime-calendar-header"
       );
@@ -22,8 +22,8 @@ describe("BaseDateTimeCalendarHeader", () => {
       const optionMonthEl = el.querySelector(
         ".kuc-base-datetime-header-year__listbox"
       ) as HTMLUListElement;
-
-      expect(yearSelectEl.innerText).to.equal("2021");
+      const currentYear = new Date().getFullYear().toString();
+      expect(yearSelectEl.innerText).to.equal(currentYear);
       expect(optionMonthEl.children[0].children.length).to.equal(201);
     });
 
@@ -69,7 +69,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(yearSelectEl.innerText).to.equal("99999");
     });
 
-    it("should be 2021 when assigning invalid value by setter", async () => {
+    it("should be current year when assigning invalid value by setter", async () => {
       const container = document.createElement(
         "kuc-base-datetime-calendar-header"
       );
@@ -79,8 +79,8 @@ describe("BaseDateTimeCalendarHeader", () => {
       const yearSelectEl = el.querySelector(
         ".kuc-base-datetime-header-year__toggle__label"
       ) as HTMLSpanElement;
-
-      expect(yearSelectEl.innerText).to.equal("2021");
+      const currentYear = new Date().getFullYear().toString();
+      expect(yearSelectEl.innerText).to.equal(currentYear);
     });
 
     it("should open/close dropdown year when click button year toggle", async () => {

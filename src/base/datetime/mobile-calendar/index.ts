@@ -12,7 +12,7 @@ export class BaseMobileDateTimeCalendar extends KucBase {
   @property({ type: String, reflect: true }) value = "";
 
   @state() _month = 1;
-  @state() _year = 2021;
+  @state() _year = new Date().getFullYear();
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) this._updateValue();
