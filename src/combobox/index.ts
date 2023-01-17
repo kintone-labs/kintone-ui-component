@@ -13,7 +13,6 @@ import {
   validateItems,
   validateValueString,
   validateDuplicatedValues,
-  throwErrorAfterUpdateComplete,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { ComboboxItem, ComboboxProps, ComboboxChangeEventDetail } from "./type";
@@ -103,22 +102,19 @@ let exportCombobox;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
 
         const itemsValues = this.items.map((item) => item.value);
         if (!validateDuplicatedValues(itemsValues)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.ITEMS.IS_DUPLICATED
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_DUPLICATED);
           return false;
         }
       }
 
       if (changedProperties.has("value") && !validateValueString(this.value)) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_STRING);
         return false;
       }
 
