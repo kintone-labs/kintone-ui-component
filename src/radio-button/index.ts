@@ -9,9 +9,9 @@ import {
 import { visiblePropConverter } from "../base/converter";
 import {
   validateProps,
-  validateItems,
+  validateArrayType,
   validateValueString,
-  validateSelectedIndexNumber,
+  validateNumberType,
 } from "../base/validator";
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
@@ -84,7 +84,7 @@ let exportRadioButton;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -98,7 +98,7 @@ let exportRadioButton;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

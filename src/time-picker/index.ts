@@ -23,7 +23,7 @@ import {
 import {
   validateProps,
   validateTimeValue,
-  validateTimeStepNumber,
+  validateNumberType,
   validateTimeStep,
 } from "../base/validator";
 import "../base/datetime/time";
@@ -127,7 +127,7 @@ let exportTimePicker;
       }
 
       if (_changedProperties.has("timeStep")) {
-        if (!validateTimeStepNumber(this.timeStep)) {
+        if (!validateNumberType(this.timeStep)) {
           this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
           return false;
         }

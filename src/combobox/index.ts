@@ -10,7 +10,7 @@ import { visiblePropConverter } from "../base/converter";
 import { getWidthElmByContext } from "../base/context";
 import {
   validateProps,
-  validateItems,
+  validateArrayType,
   validateValueString,
   validateDuplicatedValues,
 } from "../base/validator";
@@ -101,7 +101,7 @@ let exportCombobox;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }

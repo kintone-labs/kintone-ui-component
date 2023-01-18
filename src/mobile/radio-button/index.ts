@@ -10,8 +10,8 @@ import { visiblePropConverter } from "../../base/converter";
 import {
   validateProps,
   validateValueString,
-  validateSelectedIndexNumber,
-  validateItems,
+  validateNumberType,
+  validateArrayType,
 } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { MOBILE_RADIO_BUTTON_CSS } from "./style";
@@ -171,7 +171,7 @@ let exportMobileRadioButton;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -185,7 +185,7 @@ let exportMobileRadioButton;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

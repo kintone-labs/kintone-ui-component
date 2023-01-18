@@ -7,12 +7,7 @@ import {
   createStyleOnHeader,
 } from "../../base/kuc-base";
 import { visiblePropConverter } from "../../base/converter";
-import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-} from "../../base/validator";
+import { validateProps, validateArrayType } from "../../base/validator";
 import { ERROR_MESSAGE } from "../../base/constant";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import { BaseMobileError } from "../../base/mobile-error";
@@ -72,7 +67,7 @@ let exportMobileCheckbox;
       const hasSelectedIndex = "selectedIndex" in validProps;
       const _selectedIndex = validProps.selectedIndex || [];
       if (!hasValue && hasSelectedIndex) {
-        if (!validateSelectedIndexArray(_selectedIndex)) return;
+        if (!validateArrayType(_selectedIndex)) return;
         const _valueMapping = this._getValueMapping(validProps);
         this.value = this._getValidValue(_valueMapping, _selectedIndex);
       }
@@ -185,21 +180,21 @@ let exportMobileCheckbox;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
-        if (!validateValueArray(this.value)) {
+        if (!validateArrayType(this.value)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexArray(this.selectedIndex)) {
+        if (!validateArrayType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );

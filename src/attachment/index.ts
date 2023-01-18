@@ -8,7 +8,7 @@ import {
 } from "../base/kuc-base";
 import { languagePropConverter, visiblePropConverter } from "../base/converter";
 import {
-  isArrayType,
+  validateArrayType,
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
@@ -86,7 +86,7 @@ let exportAttachment;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (
         changedProperties.has("files") &&
-        !isArrayType<FileItem>(this.files)
+        !validateArrayType<FileItem>(this.files)
       ) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
         return false;

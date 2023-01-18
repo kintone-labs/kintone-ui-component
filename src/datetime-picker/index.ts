@@ -18,7 +18,7 @@ import {
   validateDateTimeValue,
   isValidDate,
   validateTimeValue,
-  validateTimeStepNumber,
+  validateNumberType,
   validateTimeStep,
 } from "../base/validator";
 import {
@@ -213,7 +213,7 @@ let exportDateTimePicker;
       return true;
     }
     private _checkAndUpdateTimeStepProperty() {
-      if (!validateTimeStepNumber(this.timeStep)) {
+      if (!validateNumberType(this.timeStep)) {
         this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
         return false;
       }
