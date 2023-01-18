@@ -54,7 +54,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(itemsEl.children.length).to.equal(201);
     });
 
-    it("should be 2022 when press key Enter 2022 in dropdown", async () => {
+    it("should be next year when press key Down and key Enter in dropdown", async () => {
       const container = document.createElement(
         "kuc-base-datetime-calendar-header"
       );
@@ -84,8 +84,8 @@ describe("BaseDateTimeCalendarHeader", () => {
       liEl.dispatchEvent(eventKeyDown);
       liEl.dispatchEvent(eventKeyEnter);
       await fixture(container);
-
-      expect(yearSelectEl.innerText).to.equal("2022");
+      const nextYear = (new Date().getFullYear() + 1).toString();
+      expect(yearSelectEl.innerText).to.equal(nextYear);
     });
 
     it("should be FEBRUARY when press key Enter FEBRUARY in dropdown", async () => {

@@ -1,25 +1,22 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query, queryAll, state } from "lit/decorators.js";
-
-import { ERROR_MESSAGE } from "../base/constant";
-import { getWidthElmByContext } from "../base/context";
-import { visiblePropConverter } from "../base/converter";
+import { property, state, queryAll, query } from "lit/decorators.js";
 import {
-  createStyleOnHeader,
-  dispatchCustomEvent,
-  generateGUID,
   KucBase,
+  generateGUID,
+  dispatchCustomEvent,
+  createStyleOnHeader,
 } from "../base/kuc-base";
+import { visiblePropConverter } from "../base/converter";
+import { getWidthElmByContext } from "../base/context";
 import {
-  throwErrorAfterUpdateComplete,
-  validateDuplicatedValues,
-  validateItems,
   validateProps,
+  validateItems,
   validateValueString,
+  validateDuplicatedValues,
 } from "../base/validator";
-
+import { ERROR_MESSAGE } from "../base/constant";
+import { ComboboxItem, ComboboxProps, ComboboxChangeEventDetail } from "./type";
 import { COMBOBOX_CSS } from "./style";
-import { ComboboxChangeEventDetail, ComboboxItem, ComboboxProps } from "./type";
 import "../base/label";
 import "../base/error";
 
@@ -105,22 +102,19 @@ let exportCombobox;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
 
         const itemsValues = this.items.map((item) => item.value);
         if (!validateDuplicatedValues(itemsValues)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.ITEMS.IS_DUPLICATED
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_DUPLICATED);
           return false;
         }
       }
 
       if (changedProperties.has("value") && !validateValueString(this.value)) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_STRING);
         return false;
       }
 
@@ -156,7 +150,7 @@ let exportCombobox;
               aria-autocomplete="list"
               aria-labelledby="${this._GUID}-label"
               aria-controls="${this._GUID}-listbox"
-              aria-descibedby="${this._GUID}-error"
+              aria-describedby="${this._GUID}-error"
               aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
               ?disabled="${this.disabled}"

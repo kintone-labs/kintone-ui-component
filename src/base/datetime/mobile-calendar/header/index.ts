@@ -38,7 +38,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
       return isValidYear(newVal);
     },
   })
-  year = 2021;
+  year = new Date().getFullYear();
 
   @state()
   private _monthOptions!: BaseMobileDateSelectItem[];

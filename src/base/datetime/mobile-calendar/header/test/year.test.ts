@@ -3,7 +3,7 @@ import "../index";
 
 describe("BaseMobileDateTimeCalendarHeader", () => {
   describe("year", () => {
-    it("should be 2021 when not assigning", async () => {
+    it("should be current year when not assigning", async () => {
       const container = document.createElement(
         "kuc-base-mobile-datetime-calendar-header"
       );
@@ -14,7 +14,8 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       yearToggle.click();
       await elementUpdated(container);
 
-      expect(yearToggle.value).to.equal("2021");
+      const currentYear = new Date().getFullYear().toString();
+      expect(yearToggle.value).to.equal(currentYear);
       expect(yearToggle.options.length).to.equal(201);
     });
 
