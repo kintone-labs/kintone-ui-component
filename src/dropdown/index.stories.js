@@ -1,4 +1,5 @@
 import { html } from "lit";
+import "./index.ts";
 
 export default {
   title: "desktop/dropdown",
