@@ -15,13 +15,13 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install node
         uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
