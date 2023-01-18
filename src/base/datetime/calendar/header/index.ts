@@ -37,7 +37,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       return isValidYear(newVal);
     },
   })
-  year = 2021;
+  year = new Date().getFullYear();
   private _locale = getLocale("en");
   @query(".kuc-base-datetime-calendar-header__month")
   private _baseDateTimeHeaderMonthEl!: any;
