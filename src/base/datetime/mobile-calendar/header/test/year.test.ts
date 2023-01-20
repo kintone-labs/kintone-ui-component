@@ -1,9 +1,9 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import "../index";
 
 describe("BaseMobileDateTimeCalendarHeader", () => {
   describe("year", () => {
-    it("should be 2021 when not assigning", async () => {
+    it("should be current year when not assigning", async () => {
       const container = document.createElement(
         "kuc-base-mobile-datetime-calendar-header"
       );
@@ -14,7 +14,8 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       yearToggle.click();
       await elementUpdated(container);
 
-      expect(yearToggle.value).to.equal("2021");
+      const currentYear = new Date().getFullYear().toString();
+      expect(yearToggle.value).to.equal(currentYear);
       expect(yearToggle.options.length).to.equal(201);
     });
 
@@ -59,7 +60,7 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       expect(yearToggle.value).to.equal("9999");
     });
 
-    it("should be 2021 when assigning invalid value by setter", async () => {
+    it("should be current year when assigning invalid value by setter", async () => {
       const container = document.createElement(
         "kuc-base-mobile-datetime-calendar-header"
       );
@@ -69,7 +70,8 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
         ".kuc-base-mobile-datetime-calendar-header__group__center__year__select"
       ) as HTMLSelectElement;
 
-      expect(yearToggle.value).to.equal("2022");
+      const currentYear = new Date().getFullYear().toString();
+      expect(yearToggle.value).to.equal(currentYear);
     });
   });
 });

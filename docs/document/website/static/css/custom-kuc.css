@@ -54,3 +54,29 @@ td[class^="kuc"] {
 #mobile-text .cus-mobile-text {
     min-width: 250px;
 }
+#table tr{
+  border-top: 0;
+}
+#table tr[class$="__table__body__row"]{
+  background-color: transparent;
+}
+#table td[class$="__table__body__row__action"]{
+  border: 0;
+  padding: 0;
+}
+#table table {
+  overflow: visible;
+}
+table[class^="kuc-readonly-table-"] {
+  margin-bottom: 0px;
+}
+table th[class$="__table__header__cell"] {
+  border: none;
+  vertical-align: middle;
+}
+#attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
+  box-sizing: content-box;
+}
+#attachment div[class$="__group"] {
+  display: block;
+}

@@ -1,21 +1,23 @@
 import { html, PropertyValues } from "lit";
 import { property, query, state } from "lit/decorators.js";
+
 import {
-  KucBase,
+  createStyleOnHeader,
   CustomEventDetail,
   dispatchCustomEvent,
-  createStyleOnHeader,
+  KucBase,
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
+  calculateDistanceInput,
   getToggleIconSvgTemplate,
   setListBoxPosition,
-  calculateDistanceInput,
 } from "../../../../utils";
+
 import { CALENDAR_HEADER_YEAR_CSS } from "./style";
 
 export class BaseDateTimeHeaderYear extends KucBase {
-  @property({ type: Number }) year = 2021;
+  @property({ type: Number }) year = new Date().getFullYear();
   @property({ type: String }) postfix = "";
 
   @state()
@@ -177,7 +179,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   private _getYearOptions() {
     const options = [];
     if (!Number.isInteger(this.year)) {
-      this.year = 2021;
+      this.year = new Date().getFullYear();
     }
     let i = this.year < 100 ? 0 : this.year - 100;
     const maxYear = this.year >= 9999 - 100 ? 9999 : this.year + 100;

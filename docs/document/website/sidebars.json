@@ -6,6 +6,7 @@
         "type": "subcategory",
         "label": "Desktop",
         "ids": [
+          "components/desktop/attachment",
           "components/desktop/button",
           "components/desktop/checkbox",
           "components/desktop/date-picker",
@@ -15,7 +16,9 @@
           "components/desktop/multichoice",
           "components/desktop/notification",
           "components/desktop/radio-button",
+          "components/desktop/readonly-table",
           "components/desktop/spinner",
+          "components/desktop/table",
           "components/desktop/text",
           "components/desktop/textarea",
           "components/desktop/time-picker"

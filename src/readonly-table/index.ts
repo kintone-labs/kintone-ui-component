@@ -1,18 +1,19 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { visiblePropConverter } from "../base/converter";
+
 import { ERROR_MESSAGE } from "../base/constant";
+import { visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
-  throwErrorAfterUpdateComplete,
   validateColumns,
   validateData,
   validateProps,
   validateRowsPerPage,
 } from "../base/validator";
+
 import "../base/pagination";
-import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
+import { Column, ReadOnlyTableProps } from "./type";
 
 let exportReadOnlyTable;
 (() => {
@@ -50,12 +51,12 @@ let exportReadOnlyTable;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("columns") && !validateColumns(this.columns)) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY);
         return false;
       }
 
       if (changedProperties.has("data") && !validateData(this.data)) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
         return false;
       }
 
@@ -63,10 +64,7 @@ let exportReadOnlyTable;
         changedProperties.has("rowsPerPage") &&
         !validateRowsPerPage(this.rowsPerPage)
       ) {
-        throwErrorAfterUpdateComplete(
-          this,
-          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
-        );
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ROWS_PER_PAGE.INVALID);
         return false;
       }
       return true;
@@ -178,10 +176,7 @@ let exportReadOnlyTable;
     private _handleClickPreviousButton(_event: MouseEvent | KeyboardEvent) {
       if (this._pagePosition < 2) return;
       if (!validateRowsPerPage(this.rowsPerPage)) {
-        throwErrorAfterUpdateComplete(
-          this,
-          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
-        );
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ROWS_PER_PAGE.INVALID);
         return;
       }
       this._pagePosition -= 1;
@@ -189,10 +184,7 @@ let exportReadOnlyTable;
 
     private _handleClickNextButton(_event: MouseEvent | KeyboardEvent) {
       if (!validateRowsPerPage(this.rowsPerPage)) {
-        throwErrorAfterUpdateComplete(
-          this,
-          ERROR_MESSAGE.ROWS_PER_PAGE.INVALID
-        );
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ROWS_PER_PAGE.INVALID);
         return;
       }
       if (this._toggleDisplayNextButton() === false) return;

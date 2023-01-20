@@ -1,4 +1,5 @@
 import { elementUpdated, expect } from "@open-wc/testing";
+
 import { Dialog } from "../index";
 
 describe("Dialog", () => {

@@ -37,7 +37,7 @@ module.exports = {
                 ex: shouldUpdate(changedProperties: PropertyValues):boolean {
                       if (changedProperties.has("items")) {
                         if (!validateItems(this.items)) {
-                          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+                          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
                           return false;
                         }
                       }
