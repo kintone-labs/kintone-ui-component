@@ -2,6 +2,7 @@ export const ERROR_MESSAGE = {
   ITEMS: {
     IS_NOT_ARRAY: "'items' property is not array.",
     IS_DUPLICATED: "'value' property is not unique in items.",
+    HAVE_DUPLICATE_VALUE: "There have duplicate 'value' in items",
   },
   FILES: {
     IS_NOT_ARRAY: "'files' property is not array.",
