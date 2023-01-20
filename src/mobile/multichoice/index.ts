@@ -1,27 +1,30 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-} from "../../base/validator";
-import { ERROR_MESSAGE } from "../../base/constant";
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
+import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
 import {
+  validateItems,
+  validateProps,
+  validateSelectedIndexArray,
+  validateValueArray,
+} from "../../base/validator";
+
+import { MOBILE_MULTICHOICE_CSS } from "./style";
+import {
+  MobileMultiChoiceChangeEventDetail,
   MobileMultiChoiceItem,
   MobileMultiChoiceProps,
-  MobileMultiChoiceChangeEventDetail,
 } from "./type";
-import { MOBILE_MULTICHOICE_CSS } from "./style";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
+
 export { BaseMobileLabel, BaseMobileError };
 
 type ValueMapping = {

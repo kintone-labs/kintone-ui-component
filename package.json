@@ -51,6 +51,8 @@
     "babel-loader": "^9.1.0",
     "deepmerge": "^4.2.2",
     "eslint": "^8.30.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
     "prettier": "^2.8.1",
     "ts-loader": "^9.4.2",
