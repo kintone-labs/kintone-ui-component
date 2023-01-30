@@ -90,6 +90,7 @@ export const DIALOG_CSS = `
   .kuc-dialog__dialog__content__icon-warning,
   .kuc-dialog__dialog__content__icon-question {
     margin-right: 16px;
+    vertical-align: middle;
     width: 24px;
     height: 24px;
   }

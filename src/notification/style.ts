@@ -54,7 +54,7 @@ export const NOTIFICATION_CSS = `
     position: relative;
     display: inline-block;
     text-align: left;
-    padding: 16px 56px 16px 24px;
+    padding: 16px 16px 16px 24px;
     background-color: #e74c3c;
   }
   .kuc-notification__notification--info {
@@ -67,7 +67,7 @@ export const NOTIFICATION_CSS = `
     background-color: #e74c3c;
   }
   .kuc-notification__notification__title {
-    display: block;
+    display: inline-block;
     margin: 0px;
     font-size: 16px;
     max-width: 500px;
@@ -76,16 +76,12 @@ export const NOTIFICATION_CSS = `
     white-space: pre-wrap;
   }
   .kuc-notification__notification__close-button {
-    position: absolute;
-    top: 5px;
-    right: 0px;
-    width: 48px;
-    height: 48px;
     background-color: transparent;
     outline: none;
     border: none;
     pointer-events: auto;
     cursor: pointer;
+    vertical-align: middle;
   }
   @keyframes kuc-notification-fade-in {
     0% {
