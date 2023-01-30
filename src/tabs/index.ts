@@ -39,7 +39,7 @@ let exportTabs;
     })
     visible = true;
 
-    @queryAll(".kuc-tabs__group__tabs__tab__button")
+    @queryAll(".kuc-tabs__group__tab-list__tab__button")
     private _tabButtons!: HTMLButtonElement[];
 
     private _GUID: string;
@@ -86,8 +86,8 @@ let exportTabs;
 
     render() {
       return html`
-        <div class="kuc-tabs__group" aria-labelledby="${this._GUID}-group">
-          <ul class="kuc-tabs__group__tabs" role="tablist">
+        <div class="kuc-tabs__group">
+          <ul class="kuc-tabs__group__tab-list" role="tablist">
             ${this.items.map((item) => this._getTabTemplate(item))}
           </ul>
           <div
@@ -102,11 +102,17 @@ let exportTabs;
 
     private _getTabTemplate(item: TabsItem) {
       const isSelected = item.value === this._selectedValue;
-      return html`<li role="presentation" class="kuc-tabs__group__tabs__tab">
+      return html`<li
+        role="presentation"
+        class="kuc-tabs__group__tab-list__tab"
+      >
         <button
           role="tab"
           aria-selected="${isSelected}"
-          class="kuc-tabs__group__tabs__tab__button"
+          tabindex="${isSelected ? "" : "-1"}"
+          class="kuc-tabs__group__tab-list__tab__button"
+          id="${this._GUID}-button-${item.value}"
+          aria-controls="${this._GUID}-tabpanel-${item.value}"
           value="${item.value}"
           @click="${this._handleClickTab}"
           @keydown="${this._handleKeyDownTab}"
@@ -121,6 +127,9 @@ let exportTabs;
       const isSelected = item.value === this._selectedValue;
       return html`<div
         class="kuc-tabs__group__tab-panel__content"
+        role="tabpanel"
+        id="${this._GUID}-tabpanel-${item.value}"
+        aria-labelledby="${this._GUID}-button-${item.value}"
         ?hidden="${!isSelected}"
       >
         ${item.content ? unsafeHTMLConverter(item.content) : ""}

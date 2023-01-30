@@ -27,17 +27,17 @@ export const TABS_CSS = `
   kuc-tabs[hidden] {
     display: none;
   }
-  .kuc-tabs__group__tabs {
+  .kuc-tabs__group__tab-list {
     display: flex;
     flex: 1;
     padding: 16px 16px 0 16px;
     margin: 0;
     list-style: none;
   }
-  .kuc-tabs__group__tabs__tab {
+  .kuc-tabs__group__tab-list__tab {
     height: 48px;
   }
-  .kuc-tabs__group__tabs__tab__button {
+  .kuc-tabs__group__tab-list__tab__button {
     min-width: 200px;
     height: 100%;
     margin: 0;
@@ -52,14 +52,14 @@ export const TABS_CSS = `
     line-height: 1.5;
     word-wrap: break-word;
   }
-  .kuc-tabs__group__tabs__tab__button:last-of-type {
+  .kuc-tabs__group__tab-list__tab__button:last-of-type {
     border-right: 1px solid #C7CBCB;
   }
-  .kuc-tabs__group__tabs__tab__button:disabled {
+  .kuc-tabs__group__tab-list__tab__button:disabled {
     color: GrayText;
     cursor: default;
   }
-  .kuc-tabs__group__tabs__tab__button[aria-selected="true"] {
+  .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
     background-color: #FFFFFF;
     box-shadow: none;
   }
