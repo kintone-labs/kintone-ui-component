@@ -1,5 +1,5 @@
 click==8.0.3
-future==0.18.2
+future==0.18.3
 ghp-import==2.0.2
 importlib-metadata==4.8.2
 Jinja2==3.0.3
@@ -22,7 +22,7 @@ python-dateutil==2.8.2
 PyYAML==6.0
 pyyaml_env_tag==0.1
 regex==2021.11.10
-ruamel.yaml==0.17.17
+ruamel.yaml==0.17.21
 six==1.16.0
 tornado==6.1
 tqdm==4.62.3
