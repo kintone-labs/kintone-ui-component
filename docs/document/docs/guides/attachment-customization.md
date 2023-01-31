@@ -24,7 +24,7 @@ The completed image of the customized page is as follows:
 
 ## What you will need to have ready
 
-Create an app that includes an attachment field with the id "Attachment" and a blank space field with the id "space". 
+Create an app that includes an attachment field with the id "Attachment" and a blank space field with the id "space".
 
 ## JavaScript and CSS Customization
 
