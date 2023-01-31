@@ -15,6 +15,6 @@
 - - :approve
   -  "@mdi/js"
   - :who: 
-    :why: Because of the MIT License
-    :versions: [7.0.96]
+    :why: 
+    :versions: [7.1.96]
     :when: 2022-09-20 12:23:25.098597000 Z
