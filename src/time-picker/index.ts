@@ -217,6 +217,7 @@ let exportTimePicker;
           <kuc-base-error
             .text="${this._errorText}"
             .guid="${this._GUID}"
+            ?hidden="${!this.error}"
           ></kuc-base-error>
         </fieldset>
       `;
