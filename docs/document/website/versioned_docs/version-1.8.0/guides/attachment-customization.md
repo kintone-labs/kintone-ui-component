@@ -18,7 +18,7 @@ We assume the following scenario:
 - [Button](../components/desktop/button.md)
 - [Spinner](../components/desktop/spinner.md)
 
-# Completed image
+## Completed image
 
 The completed image of the customized page is as follows:
 ![attachment customize](assets/attachment_customize.gif)

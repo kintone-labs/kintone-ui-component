@@ -1,7 +1,8 @@
 ---
-id: attachment-customization
+id: version-1.8.0-attachment-customization
 title: Attachment customization
 sidebar_label: Attachment customization
+original_id: attachment-customization
 ---
 
 ## Overview
@@ -17,7 +18,7 @@ We assume the following scenario:
 - [Button](../components/desktop/button.md)
 - [Spinner](../components/desktop/spinner.md)
 
-## Completed image
+# Completed image
 
 The completed image of the customized page is as follows:
 ![attachment customize](assets/attachment_customize.gif)
