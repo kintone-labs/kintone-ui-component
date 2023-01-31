@@ -112,8 +112,8 @@ export function validatePositiveInteger(data: string) {
   return reg.test(data);
 }
 
-export function validateNumberType(valve: number) {
-  return typeof valve === "number" && !Number.isNaN(valve);
+export function validateNumberType(value: number) {
+  return typeof value === "number" && !Number.isNaN(value);
 }
 
 export function validateArrayType<T>(value: T[]) {
