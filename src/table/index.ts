@@ -1,21 +1,23 @@
 /* eslint-disable kuc-v1/no-kuc-class-prefix */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import {
-  validateProps,
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  KucBase,
+} from "../base/kuc-base";
+import {
   validateArrayType,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
+  validateProps,
 } from "../base/validator";
-import { ERROR_MESSAGE } from "../base/constant";
-import { TableProps, Column, TableChangeEventDetail } from "./type";
+
 import { TABLE_CSS } from "./style";
+import { Column, TableChangeEventDetail, TableProps } from "./type";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";

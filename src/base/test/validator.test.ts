@@ -1,12 +1,13 @@
 import { expect } from "@open-wc/testing";
+
 import {
-  validateProps,
-  validateTimeValue,
-  validateTimeStep,
-  validateValueString,
   validateArrayType,
-  validateNumberType,
   validateDateTimeValue,
+  validateNumberType,
+  validateProps,
+  validateTimeStep,
+  validateTimeValue,
+  validateValueString,
 } from "../validator";
 
 describe("Base", () => {

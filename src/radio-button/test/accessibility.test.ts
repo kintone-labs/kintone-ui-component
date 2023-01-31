@@ -4,6 +4,7 @@ import {
   triggerBlurFor,
   triggerFocusFor,
 } from "@open-wc/testing";
+
 import { RadioButton } from "../index";
 
 const initItems = [

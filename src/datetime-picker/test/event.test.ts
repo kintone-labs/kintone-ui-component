@@ -1,6 +1,7 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
-import { DateTimePicker } from "../index";
+
 import { BaseDate } from "../../base/datetime/date";
+import { DateTimePicker } from "../index";
 
 describe("DateTimePicker", () => {
   describe("event", () => {
