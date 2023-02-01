@@ -332,7 +332,7 @@ You can update the city dropdown when the country dropdown changes.
   <summary>Show code</summary>
 
   ```js
-// Each country will have corresponding cities.
+// Each country will have corresponding cities
 const relatedData = {
     japan: [
         {label: 'Tokyo', value: 'tokyo'},
