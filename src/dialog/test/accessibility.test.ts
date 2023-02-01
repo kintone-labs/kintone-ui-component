@@ -1,4 +1,5 @@
-import { fixture, triggerFocusFor, expect } from "@open-wc/testing";
+import { expect, fixture, triggerFocusFor } from "@open-wc/testing";
+
 import { Dialog } from "../index";
 
 describe("Dialog", () => {

@@ -2,18 +2,22 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "@webcomponents/webcomponentsjs/webcomponents-bundle";
 
+export * from "./attachment";
 export * from "./button";
 export * from "./checkbox";
+export * from "./combobox";
+export * from "./date-picker";
+export * from "./datetime-picker";
+export * from "./dialog";
 export * from "./dropdown";
 export * from "./multichoice";
 export * from "./notification";
 export * from "./radio-button";
+export * from "./readonly-table";
 export * from "./spinner";
+export * from "./table";
 export * from "./text";
 export * from "./textarea";
-export * from "./dialog";
-export * from "./date-picker";
-export * from "./datetime-picker";
 export * from "./time-picker";
 
 export * from "./mobile/button";

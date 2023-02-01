@@ -1,29 +1,30 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import {
-  visiblePropConverter,
   dateValueConverter,
-  timeValueConverter,
   languagePropConverter,
+  timeValueConverter,
+  visiblePropConverter,
 } from "../../base/converter";
+import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
+  createStyleOnHeader,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
-  createStyleOnHeader,
 } from "../../base/kuc-base";
 import {
-  validateProps,
-  validateDateTimeValue,
   isValidDate,
-  throwErrorAfterUpdateComplete,
+  validateDateTimeValue,
+  validateProps,
 } from "../../base/validator";
+
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import {
   MobileDateTimePickerChangeEventDetail,
   MobileDateTimePickerProps,
 } from "./type";
-import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 
 type DateAndTime = {
   date: string;
@@ -104,7 +105,7 @@ let exportMobileDateTimePicker;
       if (this.value === undefined || this.value === "") return true;
 
       if (typeof this.value !== "string") {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 
@@ -114,7 +115,7 @@ let exportMobileDateTimePicker;
         validateDateTimeValue(this._dateAndTime.date, this._dateAndTime.time) &&
         isValidDate(this._dateConverted);
       if (!isValidValue) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
 

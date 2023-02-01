@@ -1,4 +1,5 @@
-import { expect, elementUpdated } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
+
 import { Notification } from "../index";
 
 describe("Notification", () => {

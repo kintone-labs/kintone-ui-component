@@ -1,10 +1,11 @@
-import { html } from "lit";
 import { expect, fixture } from "@open-wc/testing";
+import { html } from "lit";
+
 import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
   CustomEventDetail,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
 } from "../kuc-base";
 
 describe("KucBase", () => {

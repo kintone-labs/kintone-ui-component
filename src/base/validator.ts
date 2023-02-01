@@ -1,7 +1,5 @@
 import { convertTimeValueToMinutes } from "./datetime/utils";
 
-type Item = { label?: string; value?: string };
-
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};
 
@@ -34,13 +32,6 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
-export function validateTimeStepNumber(timeStep: number) {
-  if (typeof timeStep !== "number") {
-    return false;
-  }
-  return true;
-}
-
 export function validateTimeStep(timeStep: number, max: string, min: string) {
   const _tempTimeStep = Math.round(timeStep);
   const maxMinutes = convertTimeValueToMinutes(max);
@@ -69,36 +60,8 @@ export function isValidDate(date: string) {
   return false;
 }
 
-export function validateItems(value: Item[]) {
-  if (!Array.isArray(value)) {
-    return false;
-  }
-  return true;
-}
-
-export function validateValueArray(value: string[]) {
-  if (!Array.isArray(value)) {
-    return false;
-  }
-  return true;
-}
-
 export function validateValueString(value: string) {
   if (typeof value !== "string") {
-    return false;
-  }
-  return true;
-}
-
-export function validateSelectedIndexArray(selectedIndex: number[]) {
-  if (!Array.isArray(selectedIndex)) {
-    return false;
-  }
-  return true;
-}
-
-export function validateSelectedIndexNumber(selectedIndex: number) {
-  if (typeof selectedIndex !== "number") {
     return false;
   }
   return true;
@@ -114,10 +77,45 @@ export function validateDateTimeValue(date: string, time: string) {
   return true;
 }
 
-export async function throwErrorAfterUpdateComplete(
-  _this: any,
-  message: string
-) {
-  await _this.updateComplete;
-  throw new Error(message);
+export function validateDuplicatedValues(values: Array<string | undefined>) {
+  if (values.length < 2) return true;
+  return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
+}
+
+export function validateRowsPerPage(numRows: number) {
+  if (numRows < 0.5 || !validateNumberType(numRows)) {
+    return false;
+  }
+  return true;
+}
+
+export const validateFieldRequiredInColumnTable = (columns: object[]) => {
+  for (let i = 0; i < columns.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(columns[i], "field"))
+      return false;
+  }
+
+  return true;
+};
+
+export const validateFieldUniqueInColumnTable = (columns: object[]) => {
+  const valueArr = columns.map((item: any) => item.field);
+  const isDuplicate = valueArr.some(function (item, idx) {
+    return valueArr.indexOf(item) !== idx;
+  });
+
+  return isDuplicate;
+};
+
+export function validatePositiveInteger(data: string) {
+  const reg = /^[1-9]\d*$/;
+  return reg.test(data);
+}
+
+export function validateNumberType(value: number) {
+  return typeof value === "number" && !Number.isNaN(value);
+}
+
+export function validateArrayType<T>(value: T[]) {
+  return Array.isArray(value);
 }

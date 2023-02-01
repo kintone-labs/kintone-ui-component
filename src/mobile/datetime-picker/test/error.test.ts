@@ -1,4 +1,5 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
+
 import "../../../base/mobile-error";
 import "../../../base/mobile-label";
 import "../../../base/datetime/mobile-time";

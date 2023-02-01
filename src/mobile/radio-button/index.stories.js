@@ -1,143 +1,132 @@
-import { MobileRadioButton } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
-
-storiesOf("mobile/radio-button", module)
-  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const radioButton = new MobileRadioButton({
-      items: [
-        {
-          label: "Item 1",
-          value: "item-1",
-        },
-        {
-          label: "Item 2",
-          value: "item-2",
-        },
-        {
-          label: "Item 3",
-          value: "item-3",
-        },
-      ],
+import { html } from "lit";
+import "./index.ts";
+export default {
+  title: "mobile/radio-button",
+  argTypes: {
+    borderVisible: { name: "borderVisible" },
+    className: { name: "className" },
+    disabled: { name: "disabled" },
+    error: { name: "error" },
+    id: { name: "id" },
+    items: { name: "items" },
+    label: { name: "label" },
+    requiredIcon: { name: "requiredIcon" },
+    selectedIndex: { name: "selectedIndex" },
+    value: { name: "value" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro",
+    },
+    actions: {
+      handles: ["change"],
+    },
+  },
+};
+const template = (args) => {
+  const handleRadioButtonChange = (event) => {
+    console.log(event);
+  };
+  return html`
+    <kuc-mobile-radio-button
+      .className="${args.className}"
+      .borderVisible="${args.borderVisible}"
+      .disabled="${args.disabled}"
+      .error="${args.error}"
+      .id="${args.id}"
+      .items="${args.items}"
+      .label="${args.label}"
+      .requiredIcon="${args.requiredIcon}"
+      .selectedIndex="${args.selectedIndex}"
+      .value="${args.value}"
+      .visible="${args.visible}"
+      @change="${handleRadioButtonChange}"
+    ></kuc-mobile-radio-button>
+  `;
+};
+export const Base = template.bind({});
+Base.args = {
+  items: [
+    {
+      label: "Item 1",
+      value: "item-1",
+    },
+    {
+      label: "Item 2",
       value: "item-2",
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      label: "Radio button",
-      requiredIcon: true,
-      error: "Error occurred!",
-    });
-    radioButton.addEventListener("change", function (event) {
-      console.log(event.detail);
-    });
-    root.appendChild(radioButton);
-    return root;
-  })
-  .add("Base2", () => {
-    const root = document.createElement("div");
-    const radioButton = new MobileRadioButton({
-      items: [
-        {
-          label: "Item 1",
-          value: "item-1",
-        },
-        {
-          label: "Item 2",
-          value: "item-2",
-        },
-        {
-          label: "Item 3",
-          value: "item-3",
-        },
-      ],
+    },
+    {
+      label: "Item 3",
+      value: "item-3",
+    },
+  ],
+  value: "item-2",
+  selectedIndex: 1,
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  label: "Radio button",
+  requiredIcon: true,
+  error: "Error occurred!",
+};
+export const Base1 = template.bind({});
+Base1.args = {
+  items: [
+    {
+      label: "Item 1",
+      value: "item-1",
+    },
+    {
+      label: "Item 2",
       value: "item-2",
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: true,
-      borderVisible: true,
-      label: "Radio button",
-      requiredIcon: true,
-      error: "Error occurred!",
-    });
-    radioButton.addEventListener("change", function (event) {
-      console.log(event.detail);
-    });
-    root.appendChild(radioButton);
-    return root;
-  })
-  .add("Base3", () => {
-    const root = document.createElement("div");
-    const radioButton = new MobileRadioButton({
-      items: [
-        {
-          label: "Item 1",
-          value: "item-1",
-        },
-        {
-          label: "Item 2",
-          value: "item-2",
-        },
-        {
-          label: "Item 3",
-          value: "item-3",
-        },
-      ],
-      value: "",
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      label: "Radio button",
-      requiredIcon: true,
-      error: "Error occurred!",
-    });
-    radioButton.addEventListener("change", function (event) {
-      console.log(event.detail);
-    });
-    root.appendChild(radioButton);
-    return root;
-  })
-  // Check for duplicate Item.value validation
-  .add("Base4", () => {
-    const root = document.createElement("div");
-    const radioButton = new MobileRadioButton({
-      items: [
-        {
-          label: "Item 1",
-          value: "item-1",
-        },
-        {
-          label: "Item 2",
-          value: "item-2",
-        },
-        {
-          label: "Item 3",
-          value: "item-3",
-        },
-        {
-          label: "Item 3",
-          value: "item-3",
-        },
-      ],
+    },
+    {
+      label: "Item 3",
+      value: "item-3",
+    },
+    {
+      label: "Item 3",
+      value: "item-3",
+    },
+  ],
+  value: "item-3",
+  selectedIndex: 3,
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  label: "Radio Button",
+  requiredIcon: true,
+  error: "Error occurred!",
+};
+export const Base2 = template.bind({});
+Base2.args = {
+  items: [
+    {
+      label: "Item 1",
+      value: "item-1",
+    },
+    {
+      label: "Item 2",
       value: "item-2",
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-      borderVisible: true,
-      itemLayout: "",
-      label: "Radio Button",
-      requiredIcon: true,
-      error: "Error occurred!",
-    });
-    radioButton.addEventListener("change", function (event) {
-      console.log(event.detail);
-    });
-    root.appendChild(radioButton);
-    return root;
-  });
+    },
+    {
+      label: "Item 3",
+      value: "item-3",
+    },
+  ],
+  value: "",
+  selectedIndex: 0,
+  className: "sample-class",
+  id: "sample-id",
+  visible: true,
+  disabled: false,
+  borderVisible: true,
+  label: "Radio button",
+  requiredIcon: true,
+  error: "Error occurred!",
+};
