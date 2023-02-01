@@ -26,9 +26,9 @@ import {
 } from "../base/kuc-base";
 import { BaseLabel } from "../base/label";
 import {
+  validateNumberType,
   validateProps,
   validateTimeStep,
-  validateTimeStepNumber,
   validateTimeValue,
 } from "../base/validator";
 
@@ -129,7 +129,7 @@ let exportTimePicker;
       }
 
       if (_changedProperties.has("timeStep")) {
-        if (!validateTimeStepNumber(this.timeStep)) {
+        if (!validateNumberType(this.timeStep)) {
           this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
           return false;
         }

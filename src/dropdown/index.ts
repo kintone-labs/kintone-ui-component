@@ -13,9 +13,9 @@ import {
 } from "../base/kuc-base";
 import { BaseLabel } from "../base/label";
 import {
-  validateItems,
+  validateArrayType,
+  validateNumberType,
   validateProps,
-  validateSelectedIndexNumber,
   validateValueString,
 } from "../base/validator";
 
@@ -132,7 +132,7 @@ let exportDropdown;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -146,7 +146,7 @@ let exportDropdown;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

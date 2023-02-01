@@ -10,7 +10,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
-  validateArrayProperty,
+  validateArrayType,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
   validateProps,
@@ -85,7 +85,7 @@ let exportTable;
     }
 
     private _getErrorMessageWhenValidateColumns() {
-      if (!validateArrayProperty(this.columns)) {
+      if (!validateArrayType(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
       }
       if (!validateFieldRequiredInColumnTable(this.columns)) {
@@ -380,7 +380,7 @@ let exportTable;
       const errorColumns = this._getErrorMessageWhenValidateColumns();
       if (errorColumns) return errorColumns;
 
-      if (!validateArrayProperty(this.data))
+      if (!validateArrayType(this.data))
         return ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
 
       return "";

@@ -5,8 +5,7 @@ import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
-  validateColumns,
-  validateData,
+  validateArrayType,
   validateProps,
   validateRowsPerPage,
 } from "../base/validator";
@@ -50,12 +49,15 @@ let exportReadOnlyTable;
     }
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
-      if (changedProperties.has("columns") && !validateColumns(this.columns)) {
+      if (
+        changedProperties.has("columns") &&
+        !validateArrayType(this.columns)
+      ) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY);
         return false;
       }
 
-      if (changedProperties.has("data") && !validateData(this.data)) {
+      if (changedProperties.has("data") && !validateArrayType(this.data)) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
         return false;
       }
