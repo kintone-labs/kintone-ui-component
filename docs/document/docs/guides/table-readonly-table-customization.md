@@ -230,7 +230,7 @@ space.appendChild(table);
 ![multi-components](assets/two-component-in-cell.png)
 
 You can put multiple components in one table cell using the `columns.render` function.<br>
-The example code below will display two dropdowns (city and country) in the same cell.
+The following example code will display two dropdowns (city and country) in the same cell.
 <details>
   <summary>Show code</summary>
 
