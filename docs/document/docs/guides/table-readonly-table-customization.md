@@ -21,7 +21,7 @@ We assume the following scenario:
 - [RadioButton](../components/desktop/radio-button.md)
 
 ## Table and ReadOnlyTable usage difference
-Basically, the Table and ReadOnlyTable component have the same structure.
+Basically, the Table and ReadOnlyTable components have the same structure.
 
 The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.<br>
 
