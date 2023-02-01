@@ -104,12 +104,12 @@ Validate the type/size("text/50MB") of the files and get the index of invalid fi
 
 ```javascript
 attachment.addEventListener('change',(event) => {
-  console.log(event.detail);//The changed file info
+  console.log(event.detail); // The changed file info
   attachment.error = validateAttachmentFiles(event.detail.files);
 });
 function validateAttachmentFiles(files) {
   const acceptType = 'text';
-  const maxSize = 1024 * 1024 * 50;//50Mb
+  const maxSize = 1024 * 1024 * 50; // 50Mb
   let error = '';
   let typeErrorCount = 0;
   let sizeErrorCount = 0;
