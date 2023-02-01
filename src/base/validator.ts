@@ -1,6 +1,7 @@
 import { convertTimeValueToMinutes } from "./datetime/utils";
 
 type Item = { label?: string; value?: string };
+type Column = { field?: string; headerName?: string; visible?: boolean };
 
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};
@@ -76,6 +77,13 @@ export function validateItems(value: Item[]) {
   return true;
 }
 
+export function isArrayType<T>(value: T[]) {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+  return true;
+}
+
 export function validateValueArray(value: string[]) {
   if (!Array.isArray(value)) {
     return false;
@@ -114,10 +122,49 @@ export function validateDateTimeValue(date: string, time: string) {
   return true;
 }
 
-export async function throwErrorAfterUpdateComplete(
-  _this: any,
-  message: string
-) {
-  await _this.updateComplete;
-  throw new Error(message);
+export function validateDuplicatedValues(values: Array<string | undefined>) {
+  if (values.length < 2) return true;
+  return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
+}
+
+export function validateColumns(columns: Column[]) {
+  return Array.isArray(columns);
+}
+
+export function validateData(data: object[]) {
+  return Array.isArray(data);
+}
+
+export function validateRowsPerPage(numRows: number) {
+  if (numRows < 0.5 || typeof numRows !== "number") {
+    return false;
+  }
+  return true;
+}
+
+export const validateFieldRequiredInColumnTable = (columns: object[]) => {
+  for (let i = 0; i < columns.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(columns[i], "field"))
+      return false;
+  }
+
+  return true;
+};
+
+export const validateFieldUniqueInColumnTable = (columns: object[]) => {
+  const valueArr = columns.map((item: any) => item.field);
+  const isDuplicate = valueArr.some(function (item, idx) {
+    return valueArr.indexOf(item) !== idx;
+  });
+
+  return isDuplicate;
+};
+
+export const validateArrayProperty = (data: object[]) => {
+  return Array.isArray(data);
+};
+
+export function validatePositiveInteger(data: string) {
+  const reg = /^[1-9]\d*$/;
+  return reg.test(data);
 }

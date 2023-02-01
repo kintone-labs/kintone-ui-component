@@ -1,6 +1,8 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
+
 import { createStyleOnHeader, KucBase } from "../kuc-base";
+
 import { BASE_ERROR_CSS } from "./style";
 export class BaseError extends KucBase {
   @property({ type: String }) ariaLive = "";

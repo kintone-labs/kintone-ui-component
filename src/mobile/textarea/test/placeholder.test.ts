@@ -1,4 +1,5 @@
 import { expect, fixture } from "@open-wc/testing";
+
 import { MobileTextArea } from "../index";
 describe("MobileTextarea", () => {
   describe("placeholder", () => {

@@ -1,58 +1,54 @@
-import { MobileButton } from "./index.ts";
-import { storiesOf } from "@storybook/web-components";
+import { html } from "lit";
+import "./index.ts";
+export default {
+  title: "mobile/button",
+  argTypes: {
+    className: { name: "className" },
+    disabled: { name: "disabled" },
+    id: { name: "id" },
+    type: {
+      name: "type",
+      options: ["normal", "submit"],
+      control: {
+        type: "select",
+      },
+    },
+    text: { name: "text" },
+    visible: { name: "visible" },
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "iPhone11Pro",
+    },
+    actions: {
+      handles: ["click"],
+    },
+  },
+};
 
-storiesOf("mobile/button", module)
-  .addParameters({ viewport: { defaultViewport: "iPhone11Pro" } })
-  .add("Base", () => {
-    const root = document.createElement("div");
-    const normalButton = new MobileButton({
-      className: "sample-class",
-      id: "sample-id",
-      visible: true,
-      disabled: false,
-    });
+const template = (args) => {
+  const handleClick = (event) => {
+    console.log(event);
+  };
+  return html`
+    <kuc-mobile-button
+      .className="${args.className}"
+      .disabled="${args.disabled}"
+      .id="${args.id}"
+      .type="${args.type}"
+      .text="${args.text}"
+      .visible="${args.visible}"
+      @click="${handleClick}"
+    ></kuc-mobile-button>
+  `;
+};
 
-    normalButton.addEventListener("click", (event) => {
-      console.log(["clickEvent", event]);
-    });
-
-    const disableNormalButton = new MobileButton({
-      className: "sample-class",
-      text: "Normal",
-      id: "sample-id",
-      visible: true,
-      disabled: true,
-    });
-
-    disableNormalButton.addEventListener("click", (event) => {
-      console.log(["clickEvent", event]);
-    });
-
-    const submitButton = new MobileButton({
-      text: "Submit",
-      type: "submit",
-      visible: true,
-      disabled: false,
-    });
-
-    submitButton.addEventListener("click", (event) => {
-      console.log(["clickEvent", event]);
-    });
-
-    const disableSubmitButton = new MobileButton({
-      text: "Submit",
-      type: "submit",
-      visible: true,
-      disabled: true,
-    });
-
-    disableSubmitButton.addEventListener("click", (event) => {
-      console.log(["clickEvent", event]);
-    });
-
-    root.appendChild(normalButton);
-    root.appendChild(disableNormalButton);
-    root.appendChild(submitButton);
-    root.appendChild(disableSubmitButton);
-    return root;
-  });
+export const Base = template.bind({});
+Base.args = {
+  className: "sample-class",
+  id: "sample-id",
+  text: "MobileButton",
+  visible: true,
+  disabled: false,
+  type: "normal",
+};

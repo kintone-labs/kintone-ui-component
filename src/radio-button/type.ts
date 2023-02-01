@@ -1,4 +1,5 @@
 import { PropertyValues } from "lit";
+
 import { KucBase } from "../base/kuc-base";
 
 export declare type RadioButtonItem = {
@@ -9,7 +10,7 @@ export declare type RadioButtonProps = {
   className?: string;
   error?: string;
   id?: string;
-  itemLayout?: string;
+  itemLayout?: "horizontal" | "vertical";
   label?: string;
   value?: string;
   selectedIndex?: number;

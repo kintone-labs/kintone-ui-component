@@ -1,25 +1,27 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, state, queryAll, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import { getWidthElmByContext } from "../base/context";
-import {
-  validateProps,
-  validateItems,
-  validateValueString,
-  validateSelectedIndexNumber,
-  throwErrorAfterUpdateComplete,
-} from "../base/validator";
+import { property, query, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
-import { DropdownChangeEventDetail, DropdownItem, DropdownProps } from "./type";
-import { DROPDOWN_CSS } from "./style";
-import { BaseLabel } from "../base/label";
+import { getWidthElmByContext } from "../base/context";
+import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import {
+  validateItems,
+  validateProps,
+  validateSelectedIndexNumber,
+  validateValueString,
+} from "../base/validator";
+
+import { DROPDOWN_CSS } from "./style";
+import { DropdownChangeEventDetail, DropdownItem, DropdownProps } from "./type";
+
 export { BaseError, BaseLabel };
 
 let exportDropdown;
@@ -131,25 +133,21 @@ let exportDropdown;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
         if (!validateValueString(this.value)) {
-          throwErrorAfterUpdateComplete(
-            this,
-            ERROR_MESSAGE.VALUE.IS_NOT_STRING
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_STRING);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
         if (!validateSelectedIndexNumber(this.selectedIndex)) {
-          throwErrorAfterUpdateComplete(
-            this,
+          this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );
           return false;
@@ -344,6 +342,7 @@ let exportDropdown;
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -359,6 +358,7 @@ let exportDropdown;
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
@@ -368,16 +368,13 @@ let exportDropdown;
         }
         case "Enter": {
           event.preventDefault();
+          if (this.items.length === 0) break;
           if (!this._selectorVisible) {
             this._actionShowMenu();
             break;
           }
-
-          const itemEl = this._highlightItemEl as HTMLLIElement;
-          if (itemEl === null) break;
-
-          const value = itemEl.getAttribute("value") as string;
-          const selectedIndex = itemEl.dataset.index || "0";
+          const { value, selectedIndex } = this._getInfoHighlightItem();
+          if (value === null) break;
           this._actionUpdateValue(value, selectedIndex);
           this._actionHideMenu();
           break;
@@ -409,8 +406,18 @@ let exportDropdown;
       }
     }
 
+    private _getInfoHighlightItem() {
+      const itemEl = this._highlightItemEl as HTMLLIElement;
+      if (itemEl === null) return { value: null, selectedIndex: "-1" };
+
+      const value = itemEl.getAttribute("value") as string;
+      const selectedIndex = itemEl.dataset.index || "0";
+      return { value: value, selectedIndex: selectedIndex };
+    }
+
     private _actionShowMenu() {
       this._buttonEl.focus();
+      if (this.items.length === 0) return;
       this._selectorVisible = true;
 
       if (this._selectedItemEl === null) return;
@@ -423,6 +430,7 @@ let exportDropdown;
     }
 
     private _actionToggleMenu() {
+      if (this.items.length === 0) return;
       if (this._selectorVisible) {
         this._actionHideMenu();
         return;
