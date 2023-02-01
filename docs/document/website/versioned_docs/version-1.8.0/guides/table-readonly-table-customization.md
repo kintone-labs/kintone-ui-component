@@ -1,7 +1,7 @@
 ---
 id: version-1.8.0-table-readonly-table-customization
-title: Table and readOnlyTable customization
-sidebar_label: Table and readOnlyTable customization
+title: Table and ReadOnlyTable customization
+sidebar_label: Table and ReadOnlyTable customization
 original_id: table-readonly-table-customization
 ---
 
@@ -31,7 +31,7 @@ The biggest difference between Table and ReadOnlyTable components is the `column
 
 ## Understanding `change` event
 It will be easier for you to customize the table when you understand the `change` event flow in the Table.
->The table cell will listen `change` event from the component inside the cell and assign that new value to the field.</br>
+>The table cell will listen `change` event from the component inside the cell and assign that new value to the corresponding `field` value.<br>
 
 ### Create an App
 Create an app that includes a blank space field with the id "space".
