@@ -5,7 +5,7 @@ sidebar_label: Table and readOnlyTable customization
 ---
 
 ## Overview
-This article explains how to utilize and customize the Table, ReadOnlyTable component and the usage difference between them.<br>
+This article explains how to utilize and customize the Table, and ReadOnlyTable components and the usage difference between them.<br>
 We assume the following scenario:
 1. Table and ReadOnlyTable usage difference
 2. Table and ReadOnlyTable: Create simple one
