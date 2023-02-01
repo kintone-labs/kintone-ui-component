@@ -42,7 +42,7 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 
 
 ### Prepare basic table
-Suppose we have the following settings to display username with Text component:
+Suppose we have the following settings to display the username with the Text component:
 ```javascript
 const renderName = (cellData) => {
   const text = new Kuc.Text({ value: cellData });
