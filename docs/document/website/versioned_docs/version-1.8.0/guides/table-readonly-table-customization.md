@@ -6,7 +6,7 @@ original_id: table-readonly-table-customization
 ---
 
 ## Overview
-This article explains how to utilize and customize the Table, ReadOnlyTable component and the usage difference between them.<br>
+This article explains how to utilize and customize the Table, and ReadOnlyTable components and the usage difference between them.<br>
 We assume the following scenario:
 1. Table and ReadOnlyTable usage difference
 2. Table and ReadOnlyTable: Create simple one
@@ -22,13 +22,13 @@ We assume the following scenario:
 - [RadioButton](../components/desktop/radio-button.md)
 
 ## Table and ReadOnlyTable usage difference
-Basically, the Table and ReadOnlyTable component have the same structure.
+Basically, the Table and ReadOnlyTable components have the same structure.
 
-The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.</br>
+The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.<br>
 
-In contrast, the Table allows the user to manipulate the components displayed in the table cell such as changing data, adding and deleting records.
+In contrast, the Table component allows the user to manipulate the components displayed in the table cell such as changing data and adding and deleting records.
 
-The biggest difference between Table and ReadOnlyTable components is the columns property of the table have a render property (`columns.render`) to specify which elements to display in the cell that the user can interact with. In addition, columns also have `actionButton` property (`table.actionButton`) to show/hide the add/remove row button.
+The biggest difference between Table and ReadOnlyTable components is the `columns` property of the Table has a `render` property (`columns.render`) to specify which elements to display in the cell that the user can interact with. In addition, also has an `actionButton` property (`table.actionButton`) to show/hide the add/remove row button.
 
 ## Understanding `change` event
 It will be easier for you to customize the table when you understand the `change` event flow in the Table.
@@ -43,7 +43,7 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 
 
 ### Prepare basic table
-Suppose we have the following settings to display username with Text component:
+Suppose we have the following settings to display the username with the Text component:
 ```javascript
 const renderName = (cellData) => {
   const text = new Kuc.Text({ value: cellData });
@@ -62,18 +62,17 @@ space.appendChild(table);
 
 ![render](assets/table-edit-text.gif)
 When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = "user1 edited"`.
-The table then catch that value and assigns it back to the `username` field.
+The table then catches that value and assigns it back to the `username` field.
 Now the data of the table will be:
 ```javascript
 [{ username: "user1 edited" }, { username: "user2" }];
 ```
 
 ### Modify the event detail
-If you want to customize the value the table receives then you need to modify it in the `change` event before the table receives it.
-We also use the sample code above and add the following content to `renderName` function:
+If you want to customize the value that the table receives, you need to modify it in the `change` event before the table receives it.
+We also use the sample code above and add the following content to the `renderName` function:
 
 ```javascript
-// table.js
 ...
 const renderName = (cellData) => {
   const text = new Text({ value: cellData });
@@ -86,7 +85,7 @@ const renderName = (cellData) => {
 };
 ...
 ```
-When you edit the input in the first cell, The value received by the table will always be `"modified value"`
+When you edit the input in the first cell, the value received by the table will always be `"modified value"`
 
 ## Examples
 ### Basic Usage
@@ -142,7 +141,7 @@ space.appendChild(readOnlyTable);
 ![table](assets/table.png)
 
 You can manipulate with the components displayed in the table.</br>
-Use the `columns.render` function to specify the component to be displayed in the cell. Please check `renderGender` and `renderAddress` functions in below code example:
+Use the `columns.render` function to specify the component to be displayed in the cell. Please check the `renderGender` and the `renderAddress` functions in the following code example:
 <details>
   <summary>Show code</summary>
 
@@ -173,7 +172,7 @@ const renderAddress = (cellData) => {
     const dropdownCountry = new Kuc.Dropdown({
         items: [
         {
-            label: 'Việt Nam',
+            label: 'Viet Nam',
             value: 'vietnam',
         },
         {
@@ -231,14 +230,16 @@ space.appendChild(table);
 ### Multiple components in one cell
 ![multi-components](assets/two-component-in-cell.png)
 
-You can put multiple component in one table cell using `columns.render` function.</br>
-The example code below will display two dropdowns (city and country) in the same cell.
+You can put multiple components in one table cell using the `columns.render` function.<br>
+The following example code will display two dropdowns (city and country) in the same cell.
+>This example uses the Table component
+
 <details>
   <summary>Show code</summary>
 
   ```js
   const renderAddress = (cellData, rowData) => {
-    // the format of cellData: "city-country";
+    // the format of cellData: "city-country"
     const city = cellData.split('-')[0];
     const country = cellData.split('-')[1];
 
@@ -329,12 +330,13 @@ space.appendChild(table);
 
 ### Dependent columns
 ![dependent-columns](assets/dependent-columns.gif)
-Update the city dropdown when the country dropdown changes.
+
+You can update the city dropdown when the country dropdown changes.
 <details>
   <summary>Show code</summary>
 
   ```js
-// Each country will have corresponding cities.
+// Each country will have corresponding cities
 const relatedData = {
     japan: [
         {label: 'Tokyo', value: 'tokyo'},
@@ -362,8 +364,8 @@ const renderCity = (cellData, rowData) => {
     });
 
     // Logic update city when country column changed
-    lastRenderedCountryComponent.addEventListener('change', (e) => {
-      dropdownCity.items = relatedData[e.detail.value];
+    lastRenderedCountryComponent.addEventListener('change', (event) => {
+      dropdownCity.items = relatedData[event.detail.value];
       rowData.city = '';
     });
 
@@ -421,7 +423,8 @@ space.appendChild(table);
 
 ### Nested tables
 ![table-in-table](assets/table-in-table.png)
-Showing more detailed info of every row.
+
+You can show more detailed info on every row with nested tables.
 <details>
   <summary>Show code</summary>
 
