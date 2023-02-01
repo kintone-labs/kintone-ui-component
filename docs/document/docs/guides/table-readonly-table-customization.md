@@ -140,7 +140,7 @@ space.appendChild(readOnlyTable);
 ![table](assets/table.png)
 
 You can manipulate with the components displayed in the table.</br>
-Use the `columns.render` function to specify the component to be displayed in the cell. Please check `renderGender` and `renderAddress` functions in below code example:
+Use the `columns.render` function to specify the component to be displayed in the cell. Please check the `renderGender` and the `renderAddress` functions in the following code example:
 <details>
   <summary>Show code</summary>
 
