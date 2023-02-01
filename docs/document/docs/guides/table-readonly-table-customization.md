@@ -171,7 +171,7 @@ const renderAddress = (cellData) => {
     const dropdownCountry = new Kuc.Dropdown({
         items: [
         {
-            label: 'Việt Nam',
+            label: 'Viet Nam',
             value: 'vietnam',
         },
         {
