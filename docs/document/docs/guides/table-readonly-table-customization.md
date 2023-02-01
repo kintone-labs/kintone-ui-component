@@ -72,7 +72,6 @@ If you want to customize the value that the table receives, you need to modify i
 We also use the sample code above and add the following content to the `renderName` function:
 
 ```javascript
-// table.js
 ...
 const renderName = (cellData) => {
   const text = new Text({ value: cellData });
