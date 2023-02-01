@@ -360,8 +360,8 @@ const renderCity = (cellData, rowData) => {
     });
 
     // Logic update city when country column changed
-    lastRenderedCountryComponent.addEventListener('change', (e) => {
-      dropdownCity.items = relatedData[e.detail.value];
+    lastRenderedCountryComponent.addEventListener('change', (event) => {
+      dropdownCity.items = relatedData[event.detail.value];
       rowData.city = '';
     });
 
