@@ -61,7 +61,7 @@ space.appendChild(table);
 
 ![render](assets/table-edit-text.gif)
 When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = "user1 edited"`.
-The table then catch that value and assigns it back to the `username` field.
+The table then catches that value and assigns it back to the `username` field.
 Now the data of the table will be:
 ```javascript
 [{ username: "user1 edited" }, { username: "user2" }];
