@@ -327,6 +327,7 @@ space.appendChild(table);
 
 ### Dependent columns
 ![dependent-columns](assets/dependent-columns.gif)
+
 You can update the city dropdown when the country dropdown changes.
 <details>
   <summary>Show code</summary>
