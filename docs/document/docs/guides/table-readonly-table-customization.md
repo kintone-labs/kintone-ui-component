@@ -419,7 +419,7 @@ space.appendChild(table);
 
 ### Nested tables
 ![table-in-table](assets/table-in-table.png)
-Showing more detailed info of every row.
+You can show more detailed info on every row with nested tables.
 <details>
   <summary>Show code</summary>
 
