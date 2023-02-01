@@ -215,5 +215,5 @@ function updateRecord(params) {
 }
 ```
 
-> 本記事は、 2022 年 12 月時点の kintone と Google Chrome で確認したものになります。
+> 本記事は、 2022 年 12 月時点の kintone と Google Chrome で確認したものになります。<br>
 > また、カスタマイズに使用した kintone UI Component のバージョンは、v1.8.0 です。
