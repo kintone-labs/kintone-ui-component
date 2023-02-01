@@ -68,7 +68,7 @@ Now the data of the table will be:
 ```
 
 ### Modify the event detail
-If you want to customize the value the table receives then you need to modify it in the `change` event before the table receives it.
+If you want to customize the value that the table receives, you need to modify it in the `change` event before the table receives it.
 We also use the sample code above and add the following content to `renderName` function:
 
 ```javascript
