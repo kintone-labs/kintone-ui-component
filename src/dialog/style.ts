@@ -35,7 +35,7 @@ export const DIALOG_CSS = `
     font-size: 20px;
     background-color: #ffffff;
     position: fixed;
-    line-height: 1.5;
+    line-height: normal;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
