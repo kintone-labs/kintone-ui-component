@@ -1,7 +1,7 @@
 ---
 id: table-readonly-table-customization
-title: Table and readOnlyTable customization
-sidebar_label: Table and readOnlyTable customization
+title: Table and ReadOnlyTable customization
+sidebar_label: Table and ReadOnlyTable customization
 ---
 
 ## Overview
