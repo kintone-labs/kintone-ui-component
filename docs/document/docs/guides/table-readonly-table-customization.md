@@ -236,7 +236,7 @@ The following example code will display two dropdowns (city and country) in the 
 
   ```js
   const renderAddress = (cellData, rowData) => {
-    // the format of cellData: "city-country";
+    // the format of cellData: "city-country"
     const city = cellData.split('-')[0];
     const country = cellData.split('-')[1];
 
