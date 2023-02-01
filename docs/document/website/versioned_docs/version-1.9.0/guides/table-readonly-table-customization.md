@@ -1,5 +1,5 @@
 ---
-id: version-1.8.0-table-readonly-table-customization
+id: version-1.9.0-table-readonly-table-customization
 title: Table and ReadOnlyTable customization
 sidebar_label: Table and ReadOnlyTable customization
 original_id: table-readonly-table-customization
