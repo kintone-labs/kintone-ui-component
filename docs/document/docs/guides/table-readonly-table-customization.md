@@ -84,7 +84,7 @@ const renderName = (cellData) => {
 };
 ...
 ```
-When you edit the input in the first cell, The value received by the table will always be `"modified value"`
+When you edit the input in the first cell, the value received by the table will always be `"modified value"`
 
 ## Examples
 ### Basic Usage
