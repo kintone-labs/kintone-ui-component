@@ -226,7 +226,7 @@ space.appendChild(table);
   ```
 </details>
 
-### Multiple components in one cell
+### Multiple components in one cell (Table)
 ![multi-components](assets/two-component-in-cell.png)
 
 You can put multiple components in one table cell using the `columns.render` function.<br>
