@@ -1,43 +1,41 @@
 ---
-id: version-1.8.0-attachment-customization
+id: version-1.9.0-attachment-customization
 title: Attachment customization
 sidebar_label: Attachment customization
 original_id: attachment-customization
 ---
 
-## 概要
-今回は、Attachment コンポーネントの活用とカスタマイズの仕方を説明します。<br>
-以下のシナリオを想定します。
-1. ファイルオブジェクト（Blob/ArrayBuffer, シンプルなオブジェクトパターン）を作って KUC（kintone UI Component）の Attachment コンポーネントに追加する
-2. ユーザーが添付したファイル情報を取得する
-3. ファイルの type/size を検証して不正な値の場合にエラーを表示する
-4. KUC Attachment コンポーネントのファイルを kintone の添付ファイルフィールドにアップロードする
+## Overview
+This article explains how to utilize and customize the Attachment component.<br>
+We assume the following scenario:
+1. Create a file object (Blob/ArrayBuffer pattern and simple object pattern) and add it to the KUC (Kintone UI Component) Attachment component
+2. Get the file info that the user attached
+3. Validate the file type/size and show an error in case it is invalid
+4. Upload KUC Attachment component files into the native Kintone Attachment field
 
-### 使用するコンポーネント
+### Components to use
 - [Attachment](../components/desktop/attachment.md)
 - [Button](../components/desktop/button.md)
 - [Spinner](../components/desktop/spinner.md)
 
-## 完成イメージ
+## Completed image
 
-以下が画面の完成イメージです。
+The completed image of the customized page is as follows:
 ![attachment customize](assets/attachment_customize.gif)
 
-## 事前準備
+## What you will need to have ready
 
-以下のフィールドを含むアプリを作成します。
-- 添付ファイルフィールド（フィールドコード：Attachment）
-- スペースフィールド（要素ID：space）
+Create an app that includes an attachment field with the id "Attachment" and a blank space field with the id "space".
 
-## JavaScript/CSS カスタマイズ
+## JavaScript and CSS Customization
 
-kintone UI Component の UMD ファイルをアプリに読み込んだ上で、以下のような実装をした JavaScript ファイルをアップロードします。<br>
-ファイルのアップロード方法などは、 [Quick Start](../getting-started/quick-start.md) をご覧ください。
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
+You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
-### カスタムの Attachment エリアの表示
-KUC Attachment コンポーネントと 2つの Button コンポーネントを表示します。
-- カスタムファイルを KUC Attachment に追加する
-- kintone の添付ファイルフィールドにアップロードする
+### Display custom attachment area
+Display the KUC Attachment component and two Button components:
+- add custom files to KUC Attachment
+- upload to native kintone Attachment
 
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
@@ -66,13 +64,12 @@ kintone.events.on('app.record.detail.show', async (event) => {
   return event;
 });
 ```
-### ファイルオブジェクトの作成と KUC Attachment コンポーネントへの適用
-
-`addCustomFilesButton` に click イベントリスナーを追加します。<br>
-ボタンがクリックされた時、以下の 3つの種類のファイルオブジェクトが生成されます。
-- [File object](https://developer.mozilla.org/ja/docs/Web/API/File) に変換された Blob/ArrayBuffer ファイル
-- シンプルなオブジェクト（`{name: "xx", size: "xx"}`）
-そして、それらを KUC Attachment コンポーネントの `files` プロパティに追加します。
+### Create some file objects and apply them to the KUC Attachment component
+Add a click event listener for `addCustomFilesButton`.<br>
+When the button is clicked, it will create three types of file objects as follows:
+- Blob/ArrayBuffer files modified to [File object](https://developer.mozilla.org/en-US/docs/Web/API/File)
+- Simple object (`{name: "xx", size: "xx"}`)
+And add them to the `files` property of the KUC Attachment component.
 
 ```javascript
 const addCustomFilesButton = new Kuc.Button({
@@ -101,11 +98,10 @@ function blobToFile(blob, filename) {
   return new File([blob], filename, {type: blob.type});
 }
 ```
-### ユーザーが添付したファイル情報の取得と type/size の検証
-
-`attachment` に change イベントリスナーを追加します。<br>
-いずれかのファイルを選択もしくは削除した場合、change イベントのコールバックでファイル情報を取得することができます。<br>
-ファイルの type/size（text/50MB）を検証して、不正なファイルの配列番号を取得します。
+### Get the files info selected by a user and validate the type and size of them
+Add a change event listener for `attachment`.<br>
+When a user selects/deletes any files, we can get the file info by the callback of the change event.<br>
+Validate the type/size("text/50MB") of the files and get the index of invalid files.
 
 ```javascript
 attachment.addEventListener('change',(event) => {
@@ -145,13 +141,13 @@ function validateAttachmentFiles(files) {
   return error;
 }
 ```
-### KUC Attachment コンポーネントのファイルを kintone 添付ファイルフィールドに適用
-`uploadButton` に click イベントリスナーを追加します。<br>
-ボタンがクリックされた時、KUC の Spinner コンポーネントを表示します。<br>
-KintoneRestApiClient の `uploadFile` メソッドを使って kintone にファイルをアップロードします。<br>
-upload メソッドから返された fileKeys を使って kintone のレコードを更新します。<br>
-最後に、KUC Spinner コンポーネントを閉じてページを更新します。 <br>
-全ての API コールは [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) もしくは [kintone REST API](https://cybozu.dev/ja/kintone/sdk/rest-api-client/kintone-javascript-client/) を使っています。
+### Upload KUC Attachment component files into the native Kintone Attachment field
+Add a click event listener for `uploadButton`.<br>
+When the button is clicked, show the KUC Spinner component.<br>
+Use the `uploadFile` method of KintoneRestApiClient to upload files to Kintone.<br>
+Then use the fileKeys returned by the upload method to update the Kintone record.<br>
+Finally, close the KUC Spinner component and refresh the page.<br>
+All API calls use [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [kintone REST API](https://kintone.dev/en/docs/kintone/rest-api/).
 
 ```javascript
 const KINTONE_ATTACHMENT_FIELD = 'Attachment'; // kintone attachment field ID
@@ -215,5 +211,5 @@ function updateRecord(params) {
 }
 ```
 
-> 本記事は、 2022 年 12 月時点の kintone と Google Chrome で確認したものになります。<br>
-> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.8.0 です。
+> This article was reviewed by Kintone and Google Chrome as of February, 2023.<br>
+> In addition, the version of Kintone UI Component that is used for customizations is v1.9.0.
