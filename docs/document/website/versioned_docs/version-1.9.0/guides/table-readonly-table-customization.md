@@ -25,7 +25,7 @@ Basically, the Table and ReadOnlyTable components have the same structure.
 
 The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.<br>
 
-In contrast, the Table component allows the user to manipulate the components displayed in the table cell such as changing data and adding and deleting records.
+In contrast, the Table component allows the user to manipulate the components displayed in the table cell such as changing data and adding and deleting rows.
 
 The biggest difference between Table and ReadOnlyTable components is the `columns` property of the Table has a `render` property (`columns.render`) to specify which elements to display in the cell that the user can interact with. In addition, also has an `actionButton` property (`table.actionButton`) to show/hide the add/remove row button.
 
