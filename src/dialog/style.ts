@@ -85,6 +85,10 @@ export const DIALOG_CSS = `
     display: flex;
   }
 
+  .kuc-dialog__dialog__content__content {
+    line-height: 1.2;
+  }
+
   .kuc-dialog__dialog__content__icon-info,
   .kuc-dialog__dialog__content__icon-success,
   .kuc-dialog__dialog__content__icon-error,
