@@ -25,7 +25,8 @@
           "version-1.9.0-components/desktop/spinner",
           "version-1.9.0-components/desktop/table",
           "version-1.9.0-components/desktop/text",
-          "version-1.9.0-components/desktop/textarea"
+          "version-1.9.0-components/desktop/textarea",
+          "version-1.9.0-components/desktop/time-picker"
         ]
       },
       {
