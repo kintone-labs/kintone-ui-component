@@ -11,7 +11,7 @@ module.exports = {
         const sourceCode = context.getSourceCode();
         const baseValidatorPattern = '\\./base/validator"';
         const baseValidatorRegex = new RegExp(baseValidatorPattern);
-        if (!baseValidatorRegex.test(sourceCode.getText(node.parent.parent)))
+        if (!baseValidatorRegex.test(sourceCode.getText()))
           return;
 
         const pattern = "validate[a-zA-z]+\\(";

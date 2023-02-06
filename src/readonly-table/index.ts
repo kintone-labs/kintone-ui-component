@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 
@@ -159,9 +160,12 @@ let exportReadOnlyTable;
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
             const value = data[currentCol];
-            /* eslint-disable */
-            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
-            /* eslint-enable */
+            return html`<td
+              class="kuc-readonly-table__table__body__row__cell-data"
+              ?hidden="${!visible}"
+            >
+              ${value}
+            </td>`;
           })}
         </tr>
       `;
