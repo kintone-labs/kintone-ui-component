@@ -1,6 +1,12 @@
 import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
+export declare type TooltipPlacement = "top" | "bottom" | "left" | "right";
+
+export declare type KeyBoardFunction = (event: KeyboardEvent) => void;
+
+export declare type PointerFunction = (event: PointerEvent) => void;
+
 export declare type TooltipProps = {
   className?: string;
   error?: string;

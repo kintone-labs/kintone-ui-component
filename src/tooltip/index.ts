@@ -1,19 +1,17 @@
-import { html, PropertyValueMap, PropertyValues } from "lit";
+import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
-import {
-  KucBase,
-  generateGUID,
-  createStyleOnHeader,
-} from "../base/kuc-base";
+import { KucBase, generateGUID, createStyleOnHeader } from "../base/kuc-base";
 import { unsafeHTMLConverter } from "../base/converter";
 import { validateProps } from "../base/validator";
-import { TooltipProps } from "./type";
+import {
+  KeyBoardFunction,
+  PointerFunction,
+  TooltipPlacement,
+  TooltipProps,
+} from "./type";
 import { TOOLTIP_CSS } from "./style";
-
-type GreetFunction = (a: KeyboardEvent) => void;
-type GreetFunction2 = (a: PointerEvent) => void;
 
 let exportTooltip;
 (() => {
@@ -27,17 +25,15 @@ let exportTooltip;
       "";
     @property() content: string | HTMLElement = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
-    @property({ type: String }) placement = "bottom";
+    @property({ type: String }) placement: TooltipPlacement = "bottom";
     @property() text: string | HTMLElement = "";
     private _content:
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
-    private _text: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
-      "";
 
     private _GUID: string;
-    private _globalEscapeBound: GreetFunction;
-    private _globalPointerDownBound: GreetFunction2;
+    private _globalEscapeBound: KeyBoardFunction;
+    private _globalPointerDownBound: PointerFunction;
 
     @query(".kuc-tooltip__container")
     private _container!: HTMLDivElement;
@@ -57,20 +53,13 @@ let exportTooltip;
       this._globalPointerDownBound = this._globalPointerDown.bind(this);
     }
 
-    protected firstUpdated(): void {
-      this._bindEvents();
-    }
-
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
         this._content = unsafeHTMLConverter(this.content);
       }
-      if (changedProperties.has("text")) {
-        this._text = unsafeHTMLConverter(this.text);
-      }
       super.update(changedProperties);
     }
-    
+
     render() {
       return html`
         <div class="kuc-tooltip__container ${this._getPlacement()}">
@@ -81,7 +70,7 @@ let exportTooltip;
           >
             ${this._content}
           </div>
-          <div class="kuc-tooltip__tooltip hidden" role="tooltip">
+          <div class="kuc-tooltip__tooltip tooltip-hidden" role="tooltip">
             <div class="kuc-tooltip__tooltip--wrapper">
               <div class="kuc-tooltip__tooltip--arrow"></div>
               <div class="kuc-tooltip__tooltip--text">${this.text}</div>
@@ -91,18 +80,10 @@ let exportTooltip;
       `;
     }
 
-    // Show or hide the tooltip
-    private _showTooltip() {
-      this._container.classList.add("tooltip-visible");
-      this._tooltip.classList.remove("hidden");
+    protected firstUpdated(): void {
+      this._bindEvents();
     }
 
-    private _hideTooltip() {
-      this._container.classList.remove("tooltip-visible");
-      this._tooltip.classList.add("hidden");
-    }
-
-    // Basic actions
     private _openTooltip() {
       this._showTooltip();
       // this.checkBoundingBox();
@@ -115,36 +96,34 @@ let exportTooltip;
       this._removeGlobalListener();
     }
 
-    // Binding event listteners
+    private _showTooltip() {
+      this._container.classList.add("tooltip-visible");
+      this._tooltip.classList.remove("tooltip-hidden");
+    }
+
+    private _hideTooltip() {
+      this._container.classList.remove("tooltip-visible");
+      this._tooltip.classList.add("tooltip-hidden");
+    }
+
     private _bindEvents() {
-      // Events that trigger openTooltip()
-      // Open on mouse hover
+      const _contentElement = this._trigger.childNodes[2];
+
       this._container.addEventListener(
         "mouseenter",
         this._openTooltip.bind(this)
       );
-      // Open when a touch is detected
       this._container.addEventListener(
         "touchstart",
         this._openTooltip.bind(this)
       );
-      // Open when the trigger gets focus
-      this._trigger.childNodes[2].addEventListener(
-        "focus",
-        this._openTooltip.bind(this)
-      );
-
-      // Events that trigger closeTooltip()
-      // Close when the mouse cursor leaves the trigger or tooltip area
       this._container.addEventListener(
         "mouseleave",
         this._closeTooltip.bind(this)
       );
-      // Close when the trigger loses focus
-      this._trigger.childNodes[2].addEventListener(
-        "blur",
-        this._closeTooltip.bind(this)
-      );
+
+      _contentElement.addEventListener("focus", this._openTooltip.bind(this));
+      _contentElement.addEventListener("blur", this._closeTooltip.bind(this));
     }
 
     private _attachGlobalListener() {
@@ -163,7 +142,6 @@ let exportTooltip;
       }
     }
 
-    // Close the tooltip if the target is anything other than the components within the tooltip widget
     private _globalPointerDown(event: PointerEvent) {
       switch (event.target) {
         case this._container:
@@ -178,15 +156,10 @@ let exportTooltip;
     }
 
     private _getPlacement() {
-      if (
-        this.placement === "left" ||
-        this.placement === "top" ||
-        this.placement === "right" ||
-        this.placement === "bottom"
-      ) {
-        return this.placement;
-      }
-      return "bottom";
+      const isOfTypePlacement = ["top", "bottom", "left", "right"].includes(
+        this.placement
+      );
+      return isOfTypePlacement ? this.placement : "bottom";
     }
   }
   window.customElements.define("kuc-tooltip", KucTooltip);
