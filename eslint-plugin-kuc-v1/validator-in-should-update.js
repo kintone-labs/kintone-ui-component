@@ -14,7 +14,7 @@ module.exports = {
         if (!baseValidatorRegex.test(sourceCode.getText()))
           return;
 
-        const pattern = "validate[a-zA-z]+\\(";
+        const pattern = "([^_]|^)validate[a-zA-z]+\\(";
         const regex = new RegExp(pattern);
         if (!regex.test(sourceCode.getText())) return;
 
@@ -25,10 +25,15 @@ module.exports = {
             !body.computed
           ) {
             const functionSourceCode = sourceCode.getText(body.value);
+            const ignoredFunctionList = [
+              "_setInitialValue",
+              "_checkAndUpdateMaxMinProperty",
+              "_checkAndUpdateTimeStepProperty"
+            ];
             if (
               body.kind !== "constructor" &&
               body.key.name !== "shouldUpdate" &&
-              body.key.name !== "_setInitialValue" &&
+              !ignoredFunctionList.includes(body.key.name) &&
               regex.test(functionSourceCode)
             ) {
               context.report({
