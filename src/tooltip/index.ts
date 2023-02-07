@@ -30,6 +30,9 @@ let exportTooltip;
     private _content:
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+    private _text:
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
@@ -57,6 +60,9 @@ let exportTooltip;
       if (changedProperties.has("content")) {
         this._content = unsafeHTMLConverter(this.content);
       }
+      if (changedProperties.has("text")) {
+        this._text = unsafeHTMLConverter(this.text);
+      }
       super.update(changedProperties);
     }
 
@@ -73,7 +79,7 @@ let exportTooltip;
           <div class="kuc-tooltip__tooltip tooltip-hidden" role="tooltip">
             <div class="kuc-tooltip__tooltip--wrapper">
               <div class="kuc-tooltip__tooltip--arrow"></div>
-              <div class="kuc-tooltip__tooltip--text">${this.text}</div>
+              <div class="kuc-tooltip__tooltip--text">${this._text}</div>
             </div>
           </div>
         </div>
