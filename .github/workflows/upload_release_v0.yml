@@ -7,10 +7,6 @@ jobs:
     name: Upload integrity and package to release
     runs-on: ubuntu-latest
     steps:
-    # Use this to check automation test
-    # - name: Check if automation test is fail
-    #   if: github.event.client_payload.status != 'success'
-    #   run: exit 1
     - uses: actions/checkout@v3
       with:
         ref: v0_dev

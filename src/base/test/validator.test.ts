@@ -1,15 +1,12 @@
 import { expect } from "@open-wc/testing";
 
 import {
+  validateArrayType,
   validateDateTimeValue,
-  validateItems,
+  validateNumberType,
   validateProps,
-  validateSelectedIndexArray,
-  validateSelectedIndexNumber,
   validateTimeStep,
-  validateTimeStepNumber,
   validateTimeValue,
-  validateValueArray,
   validateValueString,
 } from "../validator";
 
@@ -54,34 +51,19 @@ describe("Base", () => {
       expect(validateTimeStep(360, "10:00", "9:00")).to.equal(false);
     });
 
-    it("should be return false when timeStep is not number", async () => {
+    it("should be return false when assign value is not number", async () => {
       // @ts-expect-error
-      expect(validateTimeStepNumber(null)).to.equal(false);
-    });
-
-    it("should be return false when item is not array", async () => {
-      // @ts-expect-error
-      expect(validateItems(null)).to.equal(false);
+      expect(validateNumberType(null)).to.equal(false);
     });
 
     it("should be return false when assign value is not array", async () => {
       // @ts-expect-error
-      expect(validateValueArray(null)).to.equal(false);
+      expect(validateArrayType(null)).to.equal(false);
     });
 
     it("should be return false when assing value is not string", async () => {
       // @ts-expect-error
       expect(validateValueString(null)).to.equal(false);
-    });
-
-    it("should be return false when assign selectedIndex is not array", async () => {
-      // @ts-expect-error
-      expect(validateSelectedIndexArray(null)).to.equal(false);
-    });
-
-    it("should be return false when selectedIndex is not number", async () => {
-      // @ts-expect-error
-      expect(validateSelectedIndexNumber(null)).to.equal(false);
     });
 
     it("should be return true when parameter is valid", async () => {
