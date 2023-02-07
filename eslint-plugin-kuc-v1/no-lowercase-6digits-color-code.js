@@ -2,7 +2,7 @@ module.exports = {
   create: function(context) {
     function checkColorCodes(node) {
       const sourceCode = context.getSourceCode().getText();
-      const pattern = "(?<!url\\()\\#(?![a-z0-9]{6})";
+      const pattern = "(?<!url\\()\\#(?![a-f0-9]{6})";
       const regex = new RegExp(pattern, "g");
       if (!regex.test(sourceCode)) return;
 
