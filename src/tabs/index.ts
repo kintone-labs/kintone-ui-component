@@ -10,7 +10,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
-  validateItems,
+  validateArrayType,
   validateProps,
   validateValueString,
 } from "../base/validator";
@@ -54,7 +54,7 @@ let exportTabs;
     }
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
