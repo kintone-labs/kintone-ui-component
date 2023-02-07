@@ -2,16 +2,18 @@ import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
-import { KucBase, generateGUID, createStyleOnHeader } from "../base/kuc-base";
+
 import { unsafeHTMLConverter } from "../base/converter";
+import { createStyleOnHeader, generateGUID, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
+
+import { TOOLTIP_CSS } from "./style";
 import {
   KeyBoardFunction,
   PointerFunction,
   TooltipPlacement,
   TooltipProps,
 } from "./type";
-import { TOOLTIP_CSS } from "./style";
 
 let exportTooltip;
 (() => {
@@ -30,9 +32,8 @@ let exportTooltip;
     private _content:
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
-    private _text:
-      | HTMLElement
-      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+    private _text: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+      "";
 
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
