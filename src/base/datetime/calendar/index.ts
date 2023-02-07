@@ -1,14 +1,16 @@
 import { html, PropertyValues } from "lit";
-import { state, property, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
+
 import {
-  KucBase,
-  dispatchCustomEvent,
   createStyleOnHeader,
+  dispatchCustomEvent,
+  KucBase,
 } from "../../kuc-base";
+import { BaseDateTimeListBox } from "../listbox";
+import { calculateDistanceInput, getTodayStringByLocale } from "../utils";
+
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
-import { BaseDateTimeListBox } from "../listbox";
-import { getTodayStringByLocale, calculateDistanceInput } from "../utils";
 import "./header";
 import "./body";
 import "./footer";
@@ -34,7 +36,7 @@ export class BaseDateTimeCalendar extends KucBase {
   private _listBoxYearEl!: BaseDateTimeListBox;
 
   @state() _month = 1;
-  @state() _year = 2021;
+  @state() _year = new Date().getFullYear();
 
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) this._updateValue();

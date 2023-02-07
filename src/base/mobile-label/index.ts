@@ -1,6 +1,8 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
-import { KucBase, createStyleOnHeader } from "../kuc-base";
+
+import { createStyleOnHeader, KucBase } from "../kuc-base";
+
 import { BASE_MOBILE_LABEL_CSS } from "./style";
 
 export class BaseMobileLabel extends KucBase {

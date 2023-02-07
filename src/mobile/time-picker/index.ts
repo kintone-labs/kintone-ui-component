@@ -1,5 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import {
   languagePropConverter,
   timeValueConverter,
@@ -7,16 +8,13 @@ import {
 } from "../../base/converter";
 import { INVALID_FORMAT_MESSAGE } from "../../base/datetime/resource/constant";
 import {
+  createStyleOnHeader,
   dispatchCustomEvent,
   generateGUID,
   KucBase,
-  createStyleOnHeader,
 } from "../../base/kuc-base";
-import {
-  throwErrorAfterUpdateComplete,
-  validateProps,
-  validateTimeValue,
-} from "../../base/validator";
+import { validateProps, validateTimeValue } from "../../base/validator";
+
 import { MOBILE_TIME_PICKER_CSS } from "./style";
 import {
   MobileTimePickerChangeEventDetail,
@@ -87,7 +85,7 @@ let exportMobileTimePicker;
     protected shouldUpdate(changedProperties: PropertyValues): boolean {
       if (this.value === undefined || this.value === "") return true;
       if (!validateTimeValue(this.value)) {
-        throwErrorAfterUpdateComplete(this, INVALID_FORMAT_MESSAGE.VALUE);
+        this.throwErrorAfterUpdateComplete(INVALID_FORMAT_MESSAGE.VALUE);
         return false;
       }
       return true;

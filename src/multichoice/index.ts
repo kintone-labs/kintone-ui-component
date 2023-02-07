@@ -1,28 +1,25 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, queryAll, query, state } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-  throwErrorAfterUpdateComplete,
-} from "../base/validator";
+import { property, query, queryAll, state } from "lit/decorators.js";
+
 import { ERROR_MESSAGE } from "../base/constant";
+import { visiblePropConverter } from "../base/converter";
+import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import { validateArrayType, validateProps } from "../base/validator";
+
+import { MULTICHOICE_CSS } from "./style";
 import {
   MultiChoiceChangeEventDetail,
   MultiChoiceItem,
   MultiChoiceProps,
 } from "./type";
-import { MULTICHOICE_CSS } from "./style";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
+
 export { BaseError, BaseLabel };
 
 type ValueMapping = {
@@ -78,7 +75,7 @@ let exportMultiChoice;
       const hasSelectedIndex = "selectedIndex" in validProps;
       const _selectedIndex = validProps.selectedIndex || [];
       if (!hasValue && hasSelectedIndex) {
-        if (!validateSelectedIndexArray(_selectedIndex)) return;
+        if (!validateArrayType(_selectedIndex)) return;
 
         const _valueMapping = this._getValueMapping(validProps);
         this.value = this._getValidValue(_valueMapping, _selectedIndex);
@@ -87,23 +84,22 @@ let exportMultiChoice;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
+        if (!validateArrayType(this.items)) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
-        if (!validateValueArray(this.value)) {
-          throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
+        if (!validateArrayType(this.value)) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexArray(this.selectedIndex)) {
-          throwErrorAfterUpdateComplete(
-            this,
+        if (!validateArrayType(this.selectedIndex)) {
+          this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );
           return false;

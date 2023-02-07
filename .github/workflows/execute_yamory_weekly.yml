@@ -10,7 +10,7 @@ jobs:
     name: execute yamory on master branch
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
           ref: master
     - name: run Yamory
@@ -28,7 +28,7 @@ jobs:
     name: execute yamory on v0_dev branch
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
           ref: v0_dev
     - name: run Yamory
