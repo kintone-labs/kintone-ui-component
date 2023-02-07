@@ -35,7 +35,7 @@ export const TABS_CSS = `
     list-style: none;
   }
   .kuc-tabs__group__tab-list__tab {
-    height: 48px;
+    min-height: 48px;
   }
   .kuc-tabs__group__tab-list__tab__button {
     min-width: 200px;
@@ -58,6 +58,10 @@ export const TABS_CSS = `
   .kuc-tabs__group__tab-list__tab__button:disabled {
     color: GrayText;
     cursor: default;
+  }
+  .kuc-tabs__group__tab-list__tab__button:focus {
+    outline: none;
+    border: 1px solid #3498db;
   }
   .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
     background-color: #FFFFFF;

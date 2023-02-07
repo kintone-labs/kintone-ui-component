@@ -67,9 +67,7 @@ let exportTabs;
           }
         }
         if (this._validateItemsHaveDuplicateValue(this.items)) {
-          this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.ITEMS.HAVE_DUPLICATE_VALUE
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_DUPLICATED);
           return false;
         }
       }
@@ -131,6 +129,7 @@ let exportTabs;
         id="${this._GUID}-tabpanel-${item.value}"
         aria-labelledby="${this._GUID}-button-${item.value}"
         ?hidden="${!isSelected}"
+        @change="${this._handleChangeEvent}"
       >
         ${item.content ? unsafeHTMLConverter(item.content) : ""}
       </div>`;
@@ -153,6 +152,12 @@ let exportTabs;
         value: newValue,
       };
       dispatchCustomEvent(this, "change", eventDetail);
+      const currentIndex = this._getCurrentTabIndex(this.value);
+      this._tabButtons[currentIndex].focus();
+    }
+
+    private _handleChangeEvent(event: Event) {
+      event.stopPropagation();
     }
 
     private _handleKeyDownTab(event: KeyboardEvent) {
@@ -212,7 +217,7 @@ let exportTabs;
       const currentIndex = this._getCurrentTabIndex(currentValue);
       for (
         let nextIndex = currentIndex + 1;
-        nextIndex <= this.items.length;
+        nextIndex < this.items.length;
         nextIndex++
       ) {
         if (this.items[nextIndex].disabled !== true) {
