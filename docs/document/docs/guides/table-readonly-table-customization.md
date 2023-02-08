@@ -22,15 +22,15 @@ We assume the following scenario:
 ## Table and ReadOnlyTable usage difference
 Basically, the Table and ReadOnlyTable components have the same structure.
 
-The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.<br>
+The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.
 
 In contrast, the Table component allows the user to manipulate the components displayed in the table cell such as changing data and adding and deleting rows.
 
 The biggest difference between Table and ReadOnlyTable components is the `columns` property of the Table has a `render` property (`columns.render`) to specify which elements to display in the cell that the user can interact with. In addition, also has an `actionButton` property (`table.actionButton`) to show/hide the add/remove row button.
 
-## Understanding `change` event
+## Understanding change event
 It will be easier for you to customize the table when you understand the `change` event flow in the Table.
->The table cell will listen `change` event from the component inside the cell and assign that new value to the corresponding `field` value.<br>
+>The table cell will listen `change` event from the component inside the cell and assign that new value to the corresponding `field` value.
 
 ### Create an App
 Create an app that includes a blank space field with the id "space".
@@ -39,9 +39,9 @@ Create an app that includes a blank space field with the id "space".
 When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
-
 ### Prepare basic table
 Suppose we have the following settings to display the username with the Text component:
+
 ```javascript
 const renderName = (cellData) => {
   const text = new Kuc.Text({ value: cellData });
@@ -57,11 +57,12 @@ space.appendChild(table);
 ```
 
 ### The display on UI
-
 ![render](assets/table-edit-text.gif)
+
 When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = "user1 edited"`.
 The table then catches that value and assigns it back to the `username` field.
 Now the data of the table will be:
+
 ```javascript
 [{ username: "user1 edited" }, { username: "user2" }];
 ```
@@ -83,15 +84,16 @@ const renderName = (cellData) => {
 };
 ...
 ```
-When you edit the input in the first cell, the value received by the table will always be `"modified value"`
+
+When you edit the input in the first cell, the value received by the table will always be `"modified value"`.
 
 ## Examples
 ### Basic Usage
-
 #### ReadOnlyTable
 ![readonly-table](assets/readonly-table.png)
 
 Display a read-only mode table.
+
 <details>
   <summary>Show code</summary>
 
@@ -138,8 +140,9 @@ space.appendChild(readOnlyTable);
 #### Table
 ![table](assets/table.png)
 
-You can manipulate with the components displayed in the table.</br>
+Display a table that can manipulate the components displayed in it.<br>
 Use the `columns.render` function to specify the component to be displayed in the cell. Please check the `renderGender` and the `renderAddress` functions in the following code example:
+
 <details>
   <summary>Show code</summary>
 
@@ -228,8 +231,8 @@ space.appendChild(table);
 ### Multiple components in one cell (Table)
 ![multi-components](assets/two-component-in-cell.png)
 
-You can put multiple components in one table cell using the `columns.render` function.<br>
-The following example code will display two dropdowns (city and country) in the same cell.
+Put multiple components in one table cell using the `columns.render` function.<br>
+You can display two dropdowns (city and country) in the same cell.
 
 <details>
   <summary>Show code</summary>
@@ -324,11 +327,12 @@ space.appendChild(table);
   ```
 </details>
 
-
 ### Dependent columns (Table)
 ![dependent-columns](assets/dependent-columns.gif)
 
-You can update the city dropdown when the country dropdown changes.
+Develop the dependent columns.<br>
+The city dropdown will be updated when the country dropdown is changed.
+
 <details>
   <summary>Show code</summary>
 
@@ -421,7 +425,8 @@ space.appendChild(table);
 ### Nested tables (Table)
 ![table-in-table](assets/table-in-table.png)
 
-You can show more detailed info on every row with nested tables.
+Show more detailed info on every row with nested tables.
+
 <details>
   <summary>Show code</summary>
 
