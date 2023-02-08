@@ -1,6 +1,14 @@
 module.exports = {
   extends: "@cybozu/eslint-config/presets/typescript-prettier",
-  plugins: ["kuc-v1"],
+  plugins: ["import", "kuc-v1"],
+  settings: {
+    // settings for typescript
+    "import/resolver": {
+      typescript: true,
+      node: true,
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+  },
   rules: {
     "@typescript-eslint/no-non-null-assertion": "off",
     "kuc-v1/no-create-render-root-function": "error",
@@ -17,6 +25,35 @@ module.exports = {
     "kuc-v1/no-using-bem-method-for-classname": "error",
     "kuc-v1/no-using-event-handler-name": "error",
     "kuc-v1/private-custom-event": "error",
-    "kuc-v1/no-sorting-in-alphabetical-order": "error"
-  }
+    "kuc-v1/no-sorting-in-alphabetical-order": "error",
+     // disable original eslint sort imports
+     "sort-imports": [
+      "error",
+      { ignoreCase: true, ignoreDeclarationSort: true },
+    ],
+    // order imports depend on groups below and alphabetize with import path.
+    // import without name such as `import "./index.ts"` can not lint. please put at bottom manually.
+    "import/order": [
+      "error",
+      {
+        // sort depend on following group order
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type",
+        ],
+        pathGroupsExcludedImportTypes: ["builtin"],
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "always",
+      },
+    ],
+  },
 };

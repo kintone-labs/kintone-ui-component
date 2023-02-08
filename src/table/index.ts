@@ -1,22 +1,24 @@
-/* eslint-disable kuc-v1/no-kuc-class-prefix */
+// This file is irregular so disable validator-in-should-update
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
 import {
-  validateProps,
-  throwErrorAfterUpdateComplete,
-  validateArrayProperty,
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  KucBase,
+} from "../base/kuc-base";
+import {
+  validateArrayType,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
+  validateProps,
 } from "../base/validator";
-import { ERROR_MESSAGE } from "../base/constant";
-import { TableProps, Column, TableChangeEventDetail } from "./type";
+
 import { TABLE_CSS } from "./style";
+import { Column, TableChangeEventDetail, TableProps } from "./type";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";
@@ -71,7 +73,7 @@ let exportTable;
       if (_changedProperties.has("data") || _changedProperties.has("columns")) {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return false;
         }
       }
@@ -84,7 +86,7 @@ let exportTable;
     }
 
     private _getErrorMessageWhenValidateColumns() {
-      if (!validateArrayProperty(this.columns)) {
+      if (!validateArrayType(this.columns)) {
         return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
       }
       if (!validateFieldRequiredInColumnTable(this.columns)) {
@@ -362,7 +364,7 @@ let exportTable;
       buttonAction.addEventListener("click", () => {
         const errorMessage = this._getErrorValidateColumnsAndData();
         if (errorMessage) {
-          throwErrorAfterUpdateComplete(this, errorMessage);
+          this.throwErrorAfterUpdateComplete(errorMessage);
           return;
         }
         if (isAdd) {
@@ -379,7 +381,7 @@ let exportTable;
       const errorColumns = this._getErrorMessageWhenValidateColumns();
       if (errorColumns) return errorColumns;
 
-      if (!validateArrayProperty(this.data))
+      if (!validateArrayType(this.data))
         return ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
 
       return "";

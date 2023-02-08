@@ -1,4 +1,5 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
+
 import { BasePagination } from "../index";
 
 describe("BasePagination", () => {

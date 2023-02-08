@@ -35,6 +35,7 @@ export const DIALOG_CSS = `
     font-size: 20px;
     background-color: #ffffff;
     position: fixed;
+    line-height: normal;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -82,6 +83,10 @@ export const DIALOG_CSS = `
     background-color: #f7f9fa;
     padding: 24px;
     display: flex;
+  }
+
+  .kuc-dialog__dialog__content__content {
+    line-height: 1.2;
   }
 
   .kuc-dialog__dialog__content__icon-info,

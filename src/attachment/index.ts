@@ -1,28 +1,31 @@
+// This file is irregular so disable validator-in-should-update
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
-import {
-  KucBase,
-  dispatchCustomEvent,
-  generateGUID,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { languagePropConverter, visiblePropConverter } from "../base/converter";
-import {
-  isArrayType,
-  throwErrorAfterUpdateComplete,
-  validatePositiveInteger,
-  validateProps,
-} from "../base/validator";
-import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
-import { ATTACHMENT_CSS } from "./style";
-import { AttachmentChangeEventDetail, AttachmentProps, FileItem } from "./type";
+
 import {
   ATTACHMENT_INVALID_SIZE_ERROR,
   ONE_GB,
   ONE_KB,
   ONE_MB,
 } from "../base/attachment/resource/constant";
+import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ERROR_MESSAGE } from "../base/constant";
+import { languagePropConverter, visiblePropConverter } from "../base/converter";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import {
+  validateArrayType,
+  validatePositiveInteger,
+  validateProps,
+} from "../base/validator";
+
+import { ATTACHMENT_CSS } from "./style";
+import { AttachmentChangeEventDetail, AttachmentProps, FileItem } from "./type";
 
 let exportAttachment;
 (() => {
@@ -87,9 +90,9 @@ let exportAttachment;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (
         changedProperties.has("files") &&
-        !isArrayType<FileItem>(this.files)
+        !validateArrayType<FileItem>(this.files)
       ) {
-        throwErrorAfterUpdateComplete(this, ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
         return false;
       }
       return true;

@@ -31,6 +31,7 @@ export const NOTIFICATION_CSS = `
     position: fixed;
     display: inline-block;
     top: 0;
+    left: 0;
     width: 100%;
     line-height: 1.5;
     z-index: 10000;
@@ -75,6 +76,7 @@ export const NOTIFICATION_CSS = `
     white-space: pre-wrap;
   }
   .kuc-notification__notification__close-button {
+    line-height: normal;
     position: absolute;
     top: 5px;
     right: 0px;

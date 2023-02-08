@@ -1,11 +1,13 @@
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
+
 import {
-  KucBase,
-  dispatchCustomEvent,
   createStyleOnHeader,
+  dispatchCustomEvent,
+  KucBase,
 } from "../../../kuc-base";
 import { getLocale } from "../../utils";
+
 import { CALENDAR_FOOTER_CSS } from "./style";
 
 export class BaseDateTimeCalendarFooter extends KucBase {
