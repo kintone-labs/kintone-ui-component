@@ -12,9 +12,9 @@ import {
 import { BaseMobileError } from "../../base/mobile-error";
 import { BaseMobileLabel } from "../../base/mobile-label";
 import {
-  validateItems,
+  validateArrayType,
+  validateNumberType,
   validateProps,
-  validateSelectedIndexNumber,
   validateValueString,
 } from "../../base/validator";
 
@@ -174,7 +174,7 @@ let exportMobileRadioButton;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -188,7 +188,7 @@ let exportMobileRadioButton;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

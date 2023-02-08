@@ -1,3 +1,5 @@
+// This file is irregular so disable validator-in-should-update
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
 
@@ -17,7 +19,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
-  isArrayType,
+  validateArrayType,
   validatePositiveInteger,
   validateProps,
 } from "../base/validator";
@@ -88,7 +90,7 @@ let exportAttachment;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (
         changedProperties.has("files") &&
-        !isArrayType<FileItem>(this.files)
+        !validateArrayType<FileItem>(this.files)
       ) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
         return false;
