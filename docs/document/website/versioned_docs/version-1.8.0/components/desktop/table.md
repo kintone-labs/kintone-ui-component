@@ -9,7 +9,9 @@ original_id: table
 The Table component allows the user to display an editable table.
 
 <div class="sample-container" id="table">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="table" width="500px" height="250px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/table.js"></script>
 

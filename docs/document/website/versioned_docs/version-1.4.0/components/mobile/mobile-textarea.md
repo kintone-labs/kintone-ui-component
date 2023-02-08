@@ -9,8 +9,10 @@ original_id: mobile-textarea
 
 The MobileTextArea component allows the user to display multiple lines of text element.
 
-<div class="sample-container display-block-mobile" id="mobile-textarea">
-  <div id="sample-container__components" class="mobile"></div>
+<div class="sample-container" id="mobile-textarea">
+  <div id="sample-container__components">
+    <iframe id="iframe" title="mobile-textarea" width="300px" height="200px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/mobile/mobile-textarea.js"></script>
 

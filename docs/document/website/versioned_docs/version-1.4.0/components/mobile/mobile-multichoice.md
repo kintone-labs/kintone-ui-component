@@ -10,7 +10,9 @@ original_id: mobile-multichoice
 The MobileMultiChoice component allows the user to select multiple values from multiple options.
 
 <div class="sample-container" id="mobile-multichoice">
-  <div id="sample-container__components" class="mobile"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="mobile-multichoice" width="300px" height="100px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/mobile/mobile-multichoice.js"></script>
 

@@ -10,10 +10,11 @@ original_id: text
 The Text component allows the user to display a single line text element.
 
 <div class="sample-container" id="text">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="text" width="300px" height="100px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/text.js"></script>
-
 
 ---
 

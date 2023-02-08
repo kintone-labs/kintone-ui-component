@@ -1,5 +1,7 @@
 document.addEventListener("kuc:loaded", function() {
-  const container = document.getElementById("sample-container__components");
-  const mobileTextArea = new Kuc.MobileTextArea({});
-  container.appendChild(mobileTextArea);
+  const script = `
+    const mobileTextArea = new Kuc.MobileTextArea({});
+    document.body.appendChild(mobileTextArea);
+  `;
+  document.querySelector('.sample-container #iframe').contentWindow.eval(script);
 });

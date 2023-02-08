@@ -10,7 +10,9 @@ original_id: date-picker
 The DatePicker component allows the user to display a input area and date selection calendar.
 
 <div class="sample-container" id="date-picker">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="date-picker" width="500px" height="200px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/date-picker.js"></script>
 

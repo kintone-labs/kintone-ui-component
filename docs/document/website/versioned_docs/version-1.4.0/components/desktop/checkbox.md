@@ -10,7 +10,9 @@ original_id: checkbox
 The Checkbox component displays a checkbox element for multiple selections.
 
 <div class="sample-container" id="checkbox">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="checkbox" width="300px" height="100px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/checkbox.js"></script>
 

@@ -10,7 +10,9 @@ original_id: mobile-dropdown
 The MobileDropdown component allows the user to select one out of several options.
 
 <div class="sample-container" id="mobile-dropdown">
-  <div id="sample-container__components" class="mobile"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="mobile-dropdown" width="300px" height="100px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/mobile/mobile-dropdown.js"></script>
 

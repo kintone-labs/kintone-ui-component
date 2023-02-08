@@ -10,7 +10,9 @@ original_id: mobile-checkbox
 The MobileCheckbox component displays a checkbox element for multiple selections.
 
 <div class="sample-container" id="mobile-checkbox">
-  <div id="sample-container__components" class="mobile"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="mobile-checkbox" width="300px" height="100px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/mobile/mobile-checkbox.js"></script>
 

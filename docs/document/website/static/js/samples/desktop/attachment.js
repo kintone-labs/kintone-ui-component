@@ -1,5 +1,7 @@
-document.addEventListener("kuc:loaded", function() {
-  const container = document.getElementById("sample-container__components");
-  const attachment = new Kuc.Attachment({});
-  container.appendChild(attachment);
+document.addEventListener("kuc:loaded", function () {
+  const script = `
+    const attachment = new Kuc.Attachment({});
+    document.body.appendChild(attachment);
+  `;
+  document.querySelector('.sample-container #iframe').contentWindow.eval(script);
 });

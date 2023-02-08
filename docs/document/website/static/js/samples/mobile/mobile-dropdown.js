@@ -1,17 +1,19 @@
 document.addEventListener("kuc:loaded", function() {
-  const container = document.getElementById("sample-container__components");
-  const dropdown = new Kuc.MobileDropdown({
-    value: "Orange",
-    items: [
-      {
-        label: "orange",
-        value: "Orange"
-      },
-      {
-        label: "apple",
-        value: "Apple"
-      }
-    ]
-  });
-  container.appendChild(dropdown);
+  const script = `
+    const dropdown = new Kuc.MobileDropdown({
+      value: "Orange",
+      items: [
+        {
+          label: "orange",
+          value: "Orange"
+        },
+        {
+          label: "apple",
+          value: "Apple"
+        }
+      ]
+    });
+    document.body.appendChild(dropdown);
+  `;
+  document.querySelector('.sample-container #iframe').contentWindow.eval(script);
 });

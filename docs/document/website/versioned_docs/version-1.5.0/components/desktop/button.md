@@ -10,7 +10,9 @@ original_id: button
 The Button component allows the user to create and display buttons.
 
 <div class="sample-container" id="button">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="button" width="300px" height="200px"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/button.js"></script>
 

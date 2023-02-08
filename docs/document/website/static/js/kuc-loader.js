@@ -1,6 +1,7 @@
 (function() {
   window.addEventListener("DOMContentLoaded", () => {
-    const kucLink = `https://unpkg.com/kintone-ui-component/umd/kuc.min.js`;
+    // const kucLink = `https://unpkg.com/kintone-ui-component/umd/kuc.min.js`;
+    const kucLink = `/js/kuc.min.js`;
 
     const kucScript = document.createElement("script");
     kucScript.onload = function() {

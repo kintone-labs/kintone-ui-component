@@ -1,5 +1,7 @@
 document.addEventListener("kuc:loaded", function() {
-  const container = document.getElementById("sample-container__components");
-  const text = new Kuc.Text({});
-  container.appendChild(text);
+  const script = `
+    const text = new Kuc.Text({});
+    document.body.appendChild(text);
+  `;
+  document.querySelector('.sample-container #iframe').contentWindow.eval(script);
 });

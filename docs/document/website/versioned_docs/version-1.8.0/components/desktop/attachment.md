@@ -10,7 +10,9 @@ original_id: attachment
 The Attachment component allows the user to upload files by selecting or dragging.
 
 <div class="sample-container" id="attachment">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="attachment"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/attachment.js"></script>
 
