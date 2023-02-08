@@ -48,8 +48,8 @@ const renderName = (cellData) => {
   return text;
 };
 
-const columns = [{ title: "Username", field: "username", render: renderName }];
-const data = [{ username: "user1" }, { username: "user2" }];
+const columns = [{ title: 'Username', field: 'username', render: renderName }];
+const data = [{ username: 'user1' }, { username: 'user2' }];
 
 const table = new Kuc.Table({columns, data});
 const space = kintone.app.record.getSpaceElement('space');
@@ -59,12 +59,12 @@ space.appendChild(table);
 ### The display on UI
 ![render](assets/table-edit-text.gif)
 
-When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = "user1 edited"`.
+When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = 'user1 edited'`.
 The table then catches that value and assigns it back to the `username` field.
 Now the data of the table will be:
 
 ```javascript
-[{ username: "user1 edited" }, { username: "user2" }];
+[{ username: 'user1 edited' }, { username: 'user2' }];
 ```
 
 ### Modify the event detail
@@ -78,14 +78,14 @@ const renderName = (cellData) => {
 
   // Modify the value before it bubble to table cell
   text.addEventListener('change', (event) => {
-    event.detail.value = "modified value" // add any value you want set to username;
+    event.detail.value = 'modified value' // add any value you want set to username;
   });
   return text;
 };
 ...
 ```
 
-When you edit the input in the first cell, the value received by the table will always be `"modified value"`.
+When you edit the input in the first cell, the value received by the table will always be `'modified value'`.
 
 ## Examples
 ### Basic Usage
@@ -239,7 +239,7 @@ You can display two dropdowns (city and country) in the same cell.
 
   ```js
   const renderAddress = (cellData, rowData) => {
-    // the format of cellData: "city-country"
+    // the format of cellData: 'city-country'
     const city = cellData.split('-')[0];
     const country = cellData.split('-')[1];
 
