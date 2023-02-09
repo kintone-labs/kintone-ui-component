@@ -161,12 +161,8 @@ let exportReadOnlyTable;
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
             const value = data[currentCol];
-            return html`<td
-              class="kuc-readonly-table__table__body__row__cell-data"
-              ?hidden="${!visible}"
-            >
-              ${value}
-            </td>`;
+            // eslint-disable-next-line
+            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
           })}
         </tr>
       `;
