@@ -10,7 +10,9 @@ original_id: combobox
 The Combobox component allows the user to find an item among many choices.
 
 <div class="sample-container" id="combobox">
-  <div id="sample-container__components"></div>
+  <div id="sample-container__components">
+    <iframe id="iframe" title="combobox"></iframe>
+  </div>
 </div>
 <script src="/js/samples/desktop/combobox.js"></script>
 
