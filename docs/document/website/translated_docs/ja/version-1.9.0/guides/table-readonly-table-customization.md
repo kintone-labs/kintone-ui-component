@@ -51,8 +51,8 @@ const renderName = (cellData) => {
   return text;
 };
 
-const columns = [{ title: "Username", field: "username", render: renderName }];
-const data = [{ username: "user1" }, { username: "user2" }];
+const columns = [{ title: 'Username', field: 'username', render: renderName }];
+const data = [{ username: 'user1' }, { username: 'user2' }];
 
 const table = new Kuc.Table({columns, data});
 const space = kintone.app.record.getSpaceElement('space');
@@ -62,12 +62,12 @@ space.appendChild(table);
 ### UI 上に表示
 ![render](assets/table-edit-text.gif)
 
-最初のセルの入力値を編集した場合、Text コンポーネントは `detail.value = "user1 edited"` を含む `change` イベントをトリガーします。
+最初のセルの入力値を編集した場合、Text コンポーネントは `detail.value = 'user1 edited'` を含む `change` イベントをトリガーします。
 そしてテーブルは値を受け取り、`username` field に登録し直します。
 テーブルのデータは以下のようになります。
 
 ```javascript
-[{ username: "user1 edited" }, { username: "user2" }];
+[{ username: 'user1 edited' }, { username: 'user2' }];
 ```
 
 ### event detail のカスタマイズ
@@ -81,14 +81,14 @@ const renderName = (cellData) => {
 
   // Modify the value before it bubble to table cell
   text.addEventListener('change', (event) => {
-    event.detail.value = "modified value" // add any value you want set to username;
+    event.detail.value = 'modified value' // add any value you want set to username;
   });
   return text;
 };
 ...
 ```
 
-最初のセルの入力値を編集した場合、テーブルが受け取る値は必ず `"modified value"` になります。
+最初のセルの入力値を編集した場合、テーブルが受け取る値は必ず `'modified value'` になります。
 
 ## カスタマイズ例
 ### 基本的な使い方
@@ -243,7 +243,7 @@ space.appendChild(table);
 
   ```js
   const renderAddress = (cellData, rowData) => {
-    // the format of cellData: "city-country"
+    // the format of cellData: 'city-country'
     const city = cellData.split('-')[0];
     const country = cellData.split('-')[1];
 
