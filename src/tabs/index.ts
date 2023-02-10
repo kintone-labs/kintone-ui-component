@@ -143,6 +143,8 @@ let exportTabs;
 
     private _handleClickTab(event: Event) {
       const tabEl = event.target as HTMLButtonElement;
+      const currentIndex = this._getCurrentTabIndex(tabEl.value);
+      this._tabButtons[currentIndex].focus();
       if (this.value === tabEl.value) return;
       const oldValue = this.value;
       const newValue = tabEl.value;
@@ -152,8 +154,6 @@ let exportTabs;
         value: newValue,
       };
       dispatchCustomEvent(this, "change", eventDetail);
-      const currentIndex = this._getCurrentTabIndex(this.value);
-      this._tabButtons[currentIndex].focus();
     }
 
     private _handleChangeEvent(event: Event) {
