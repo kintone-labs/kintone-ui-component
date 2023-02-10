@@ -28,7 +28,7 @@ const template = (args) => {
     console.log(event);
   };
   return html`
-    <kuc-multi-choice
+    <kuc-mobile-multi-choice
       .className="${args.className}"
       .disabled="${args.disabled}"
       .error="${args.error}"
@@ -40,7 +40,7 @@ const template = (args) => {
       .value="${args.value}"
       .visible="${args.visible}"
       @change="${handleMultiChoiceChange}"
-    ></kuc-multi-choice>
+    ></kuc-mobile-multi-choice>
   `;
 };
 export const Base = template.bind({});
