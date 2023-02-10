@@ -9,10 +9,10 @@ original_id: combobox
 
 Combobox は複数選択肢の中から一つの値を検索して選択することができます。
 
-<div class="sample-container" id="dropdown">
+<div class="sample-container" id="combobox">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/desktop/dropdown.js"></script>
+<script src="/js/samples/desktop/combobox.js"></script>
 
 ---
 
