@@ -60,7 +60,7 @@ export const FIELD_GROUP_CSS = `
     outline: 0;
     border: 1px solid #3498db;
   }
-  .kuc-field-group__trigger--header {
+  .kuc-field-group__trigger--label {
     display: block;
     pointer-events: none;
   }

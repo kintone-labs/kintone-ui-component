@@ -20,9 +20,9 @@ let exportFieldGroup;
       "";
     @property() content: string | HTMLElement = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
-    @property({ type: String }) header = "";
+    @property({ type: String }) label = "";
     @property({ type: Boolean }) disabled = false;
-    @property({ type: Boolean }) toggle = false;
+    @property({ type: Boolean }) expanded = false;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -58,19 +58,19 @@ let exportFieldGroup;
             id="${this._GUID}-control"
             class="kuc-field-group__trigger"
             aria-controls="${this._GUID}-body"
-            aria-expanded="${this.toggle && !this.disabled}"
+            aria-expanded="${this.expanded && !this.disabled}"
             aria-disabled="${this.disabled}"
             tabindex="${this.disabled ? -1 : 0}"
             @click="${this._handleClickButton}"
           >
             <span class="kuc-field-group__trigger--icon"></span>
-            <span class="kuc-field-group__trigger--header">${this.header}</span>
+            <span class="kuc-field-group__trigger--label">${this.label}</span>
           </button>
           <div
             id="${this._GUID}-body"
             class="kuc-field-group__body"
             aria-labelledby="${this._GUID}-control"
-            ?hidden="${!this.toggle || this.disabled}"
+            ?hidden="${!this.expanded || this.disabled}"
           >
             ${this._content}
           </div>
@@ -84,7 +84,7 @@ let exportFieldGroup;
         return;
       }
 
-      this.toggle = !this.toggle;
+      this.expanded = !this.expanded;
     }
   }
   window.customElements.define("kuc-field-group", KucFieldGroup);
