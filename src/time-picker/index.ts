@@ -1,37 +1,39 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import {
-  visiblePropConverter,
-  timeValueConverter,
-  languagePropConverter,
-} from "../base/converter";
+
 import { getWidthElmByContext } from "../base/context";
+import {
+  languagePropConverter,
+  timeValueConverter,
+  visiblePropConverter,
+} from "../base/converter";
 import {
   INVALID_FORMAT_MESSAGE,
   MAX_MIN_IS_NOT_VALID,
+  MAX_TIME,
+  MIN_TIME,
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
-  MIN_TIME,
-  MAX_TIME,
 } from "../base/datetime/resource/constant";
-import {
-  validateProps,
-  validateTimeValue,
-  validateTimeStepNumber,
-  validateTimeStep,
-} from "../base/validator";
 import "../base/datetime/time";
 import { timeCompare } from "../base/datetime/utils";
-import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
-import { TimePickerProps, TimePickerChangeEventDetail } from "./type";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import {
+  validateNumberType,
+  validateProps,
+  validateTimeStep,
+  validateTimeValue,
+} from "../base/validator";
+
 import { TIME_PICKER_CSS } from "./style";
+import { TimePickerChangeEventDetail, TimePickerProps } from "./type";
 export { BaseError, BaseLabel };
 
 let exportTimePicker;
@@ -127,7 +129,7 @@ let exportTimePicker;
       }
 
       if (_changedProperties.has("timeStep")) {
-        if (!validateTimeStepNumber(this.timeStep)) {
+        if (!validateNumberType(this.timeStep)) {
           this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
           return false;
         }
@@ -215,6 +217,7 @@ let exportTimePicker;
           <kuc-base-error
             .text="${this._errorText}"
             .guid="${this._GUID}"
+            ?hidden="${!this._errorText}"
           ></kuc-base-error>
         </fieldset>
       `;

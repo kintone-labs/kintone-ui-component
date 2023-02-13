@@ -1,23 +1,21 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-} from "../base/validator";
+
 import { ERROR_MESSAGE } from "../base/constant";
-import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
-import { CHECKBOX_CSS } from "./style";
+import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
 import { BaseLabel } from "../base/label";
+import { validateArrayType, validateProps } from "../base/validator";
+
+import { CHECKBOX_CSS } from "./style";
+import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
+
 export { BaseError, BaseLabel };
 
 type CheckBoxValueMapping = {
@@ -72,7 +70,7 @@ let exportCheckbox;
       const hasSelectedIndex = "selectedIndex" in validProps;
       const _selectedIndex = validProps.selectedIndex || [];
       if (!hasValue && hasSelectedIndex) {
-        if (!validateSelectedIndexArray(_selectedIndex)) return;
+        if (!validateArrayType(_selectedIndex)) return;
         const _valueMapping = this._getValueMapping(validProps);
         this.value = this._getValidValue(_valueMapping, _selectedIndex);
       }
@@ -80,21 +78,21 @@ let exportCheckbox;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
-        if (!validateValueArray(this.value)) {
+        if (!validateArrayType(this.value)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexArray(this.selectedIndex)) {
+        if (!validateArrayType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );

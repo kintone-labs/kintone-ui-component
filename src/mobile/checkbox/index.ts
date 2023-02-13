@@ -1,27 +1,24 @@
-import { html, svg, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, queryAll, state } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
-  validateProps,
-  validateItems,
-  validateValueArray,
-  validateSelectedIndexArray,
-} from "../../base/validator";
-import { ERROR_MESSAGE } from "../../base/constant";
-import { BaseMobileLabel } from "../../base/mobile-label";
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
 import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import { validateArrayType, validateProps } from "../../base/validator";
+
+import { MOBILE_CHECKBOX_CSS } from "./style";
 import {
   MobileCheckboxChangeEventDetail,
-  MobileCheckboxProps,
   MobileCheckboxItem,
+  MobileCheckboxProps,
 } from "./type";
-import { MOBILE_CHECKBOX_CSS } from "./style";
 export { BaseMobileLabel, BaseMobileError };
 
 type MobileCheckboxValueMapping = { [key: number]: string };
@@ -72,7 +69,7 @@ let exportMobileCheckbox;
       const hasSelectedIndex = "selectedIndex" in validProps;
       const _selectedIndex = validProps.selectedIndex || [];
       if (!hasValue && hasSelectedIndex) {
-        if (!validateSelectedIndexArray(_selectedIndex)) return;
+        if (!validateArrayType(_selectedIndex)) return;
         const _valueMapping = this._getValueMapping(validProps);
         this.value = this._getValidValue(_valueMapping, _selectedIndex);
       }
@@ -185,21 +182,21 @@ let exportMobileCheckbox;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("value")) {
-        if (!validateValueArray(this.value)) {
+        if (!validateArrayType(this.value)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_ARRAY);
           return false;
         }
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexArray(this.selectedIndex)) {
+        if (!validateArrayType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
           );

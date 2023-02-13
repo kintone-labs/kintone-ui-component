@@ -9,6 +9,7 @@
           "components/desktop/attachment",
           "components/desktop/button",
           "components/desktop/checkbox",
+          "components/desktop/combobox",
           "components/desktop/date-picker",
           "components/desktop/datetime-picker",
           "components/desktop/dialog",
@@ -50,7 +51,9 @@
       "guides/cleaning-check-list-customization",
       "guides/bulk-update-customization",
       "guides/format-setting-plugin",
-      "guides/version-conflicts-issue-solution"
+      "guides/version-conflicts-issue-solution",
+      "guides/attachment-customization",
+      "guides/table-readonly-table-customization"
     ]
   },
   "release-notes": {

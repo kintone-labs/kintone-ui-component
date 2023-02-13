@@ -1,28 +1,31 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import { visiblePropConverter } from "../base/converter";
-import {
-  validateProps,
-  validateItems,
-  validateValueString,
-  validateSelectedIndexNumber,
-} from "../base/validator";
+
 import { ERROR_MESSAGE } from "../base/constant";
 import { getWidthElmByContext } from "../base/context";
+import { visiblePropConverter } from "../base/converter";
+import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import {
+  validateArrayType,
+  validateNumberType,
+  validateProps,
+  validateValueString,
+} from "../base/validator";
+
+import { RADIOBUTTON_CSS } from "./style";
 import {
   RadioButtonChangeEventDetail,
   RadioButtonItem,
   RadioButtonProps,
 } from "./type";
-import { RADIOBUTTON_CSS } from "./style";
-import { BaseLabel } from "../base/label";
-import { BaseError } from "../base/error";
+
 export { BaseError, BaseLabel };
 
 let exportRadioButton;
@@ -84,7 +87,7 @@ let exportRadioButton;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -98,7 +101,7 @@ let exportRadioButton;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

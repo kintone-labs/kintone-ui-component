@@ -1,4 +1,5 @@
-import { fixture, expect, elementUpdated } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
+
 import { Combobox } from "../index";
 
 const initItems = [

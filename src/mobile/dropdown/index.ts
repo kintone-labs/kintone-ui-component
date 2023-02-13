@@ -1,27 +1,30 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
+import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import {
+  validateArrayType,
+  validateNumberType,
   validateProps,
   validateValueString,
-  validateItems,
-  validateSelectedIndexNumber,
 } from "../../base/validator";
-import { ERROR_MESSAGE } from "../../base/constant";
+
 import { MOBILE_DROPDOWN_CSS } from "./style";
 import {
   MobileDropdownChangeEventDetail,
-  MobileDropdownProps,
   MobileDropdownItem,
+  MobileDropdownProps,
 } from "./type";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
+
 export { BaseMobileLabel, BaseMobileError };
 
 let exportMobileDropdown;
@@ -88,7 +91,7 @@ let exportMobileDropdown;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -102,7 +105,7 @@ let exportMobileDropdown;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

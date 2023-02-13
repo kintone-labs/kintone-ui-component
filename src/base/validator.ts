@@ -1,8 +1,5 @@
 import { convertTimeValueToMinutes } from "./datetime/utils";
 
-type Item = { label?: string; value?: string };
-type Column = { field?: string; headerName?: string; visible?: boolean };
-
 export function validateProps<Type>(props: Type) {
   if (!props || typeof props !== "object") return {};
 
@@ -35,13 +32,6 @@ export function validateTimeValue(value: string) {
   return false;
 }
 
-export function validateTimeStepNumber(timeStep: number) {
-  if (typeof timeStep !== "number") {
-    return false;
-  }
-  return true;
-}
-
 export function validateTimeStep(timeStep: number, max: string, min: string) {
   const _tempTimeStep = Math.round(timeStep);
   const maxMinutes = convertTimeValueToMinutes(max);
@@ -70,43 +60,8 @@ export function isValidDate(date: string) {
   return false;
 }
 
-export function validateItems(value: Item[]) {
-  if (!Array.isArray(value)) {
-    return false;
-  }
-  return true;
-}
-
-export function isArrayType<T>(value: T[]) {
-  if (!Array.isArray(value)) {
-    return false;
-  }
-  return true;
-}
-
-export function validateValueArray(value: string[]) {
-  if (!Array.isArray(value)) {
-    return false;
-  }
-  return true;
-}
-
 export function validateValueString(value: string) {
   if (typeof value !== "string") {
-    return false;
-  }
-  return true;
-}
-
-export function validateSelectedIndexArray(selectedIndex: number[]) {
-  if (!Array.isArray(selectedIndex)) {
-    return false;
-  }
-  return true;
-}
-
-export function validateSelectedIndexNumber(selectedIndex: number) {
-  if (typeof selectedIndex !== "number") {
     return false;
   }
   return true;
@@ -127,16 +82,8 @@ export function validateDuplicatedValues(values: Array<string | undefined>) {
   return !values.some((x) => values.indexOf(x) !== values.lastIndexOf(x));
 }
 
-export function validateColumns(columns: Column[]) {
-  return Array.isArray(columns);
-}
-
-export function validateData(data: object[]) {
-  return Array.isArray(data);
-}
-
 export function validateRowsPerPage(numRows: number) {
-  if (numRows < 0.5 || typeof numRows !== "number") {
+  if (numRows < 0.5 || !validateNumberType(numRows)) {
     return false;
   }
   return true;
@@ -160,11 +107,15 @@ export const validateFieldUniqueInColumnTable = (columns: object[]) => {
   return isDuplicate;
 };
 
-export const validateArrayProperty = (data: object[]) => {
-  return Array.isArray(data);
-};
-
 export function validatePositiveInteger(data: string) {
   const reg = /^[1-9]\d*$/;
   return reg.test(data);
+}
+
+export function validateNumberType(value: number) {
+  return typeof value === "number" && !Number.isNaN(value);
+}
+
+export function validateArrayType<T>(value: T[]) {
+  return Array.isArray(value);
 }

@@ -1,45 +1,46 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  generateGUID,
-  KucBase,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
-import {
-  visiblePropConverter,
-  dateValueConverter,
-  timeValueConverter,
-  languagePropConverter,
-} from "../base/converter";
+
 import { getWidthElmByContext } from "../base/context";
 import {
-  validateProps,
-  validateDateTimeValue,
-  isValidDate,
-  validateTimeValue,
-  validateTimeStepNumber,
-  validateTimeStep,
-} from "../base/validator";
+  dateValueConverter,
+  languagePropConverter,
+  timeValueConverter,
+  visiblePropConverter,
+} from "../base/converter";
 import {
   INVALID_FORMAT_MESSAGE,
   MAX_MIN_IS_NOT_VALID,
+  MAX_TIME,
+  MIN_TIME,
   TIME_IS_OUT_OF_VALID_RANGE,
   TIMESTEP_IS_NOT_NUMBER,
-  MIN_TIME,
-  MAX_TIME,
 } from "../base/datetime/resource/constant";
 import { timeCompare } from "../base/datetime/utils";
-
 import "../base/datetime/date";
 import "../base/datetime/time";
-import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import {
+  isValidDate,
+  validateDateTimeValue,
+  validateNumberType,
+  validateProps,
+  validateTimeStep,
+  validateTimeValue,
+} from "../base/validator";
+
 import { DATE_TIME_PICKER_CSS } from "./style";
 import {
   DateAndTime,
-  DateTimePickerProps,
   DateTimePickerChangeEventDetail,
+  DateTimePickerProps,
 } from "./type";
 export { BaseError, BaseLabel };
 
@@ -213,7 +214,7 @@ let exportDateTimePicker;
       return true;
     }
     private _checkAndUpdateTimeStepProperty() {
-      if (!validateTimeStepNumber(this.timeStep)) {
+      if (!validateNumberType(this.timeStep)) {
         this.throwErrorAfterUpdateComplete(TIMESTEP_IS_NOT_NUMBER);
         return false;
       }

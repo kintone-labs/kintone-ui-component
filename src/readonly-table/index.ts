@@ -1,17 +1,20 @@
+// This file is irregular so disable validator-in-should-update
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
-import { visiblePropConverter } from "../base/converter";
+
 import { ERROR_MESSAGE } from "../base/constant";
+import { visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
-  validateColumns,
-  validateData,
+  validateArrayType,
   validateProps,
   validateRowsPerPage,
 } from "../base/validator";
+
 import "../base/pagination";
-import { Column, ReadOnlyTableProps } from "./type";
 import { READ_ONLY_TABLE_CSS } from "./style";
+import { Column, ReadOnlyTableProps } from "./type";
 
 let exportReadOnlyTable;
 (() => {
@@ -48,12 +51,15 @@ let exportReadOnlyTable;
     }
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
-      if (changedProperties.has("columns") && !validateColumns(this.columns)) {
+      if (
+        changedProperties.has("columns") &&
+        !validateArrayType(this.columns)
+      ) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY);
         return false;
       }
 
-      if (changedProperties.has("data") && !validateData(this.data)) {
+      if (changedProperties.has("data") && !validateArrayType(this.data)) {
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.DATA.IS_NOT_ARRAY);
         return false;
       }
@@ -155,9 +161,9 @@ let exportReadOnlyTable;
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
             const value = data[currentCol];
-            /* eslint-disable */
+            // Do not remove below disable comment. This is for table display.
+            // eslint-disable-next-line
             return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
-            /* eslint-enable */
           })}
         </tr>
       `;

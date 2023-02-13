@@ -1,27 +1,30 @@
-import { html, svg, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, queryAll } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../base/kuc-base";
+
+import { ERROR_MESSAGE } from "../../base/constant";
 import { visiblePropConverter } from "../../base/converter";
 import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../../base/kuc-base";
+import { BaseMobileError } from "../../base/mobile-error";
+import { BaseMobileLabel } from "../../base/mobile-label";
+import {
+  validateArrayType,
+  validateNumberType,
   validateProps,
   validateValueString,
-  validateSelectedIndexNumber,
-  validateItems,
 } from "../../base/validator";
-import { ERROR_MESSAGE } from "../../base/constant";
+
 import { MOBILE_RADIO_BUTTON_CSS } from "./style";
 import {
+  MobileRadioButtonChangeEventDetail,
   MobileRadioButtonItem,
   MobileRadioButtonProps,
-  MobileRadioButtonChangeEventDetail,
 } from "./type";
-import { BaseMobileLabel } from "../../base/mobile-label";
-import { BaseMobileError } from "../../base/mobile-error";
+
 export { BaseMobileLabel, BaseMobileError };
 
 let exportMobileRadioButton;
@@ -171,7 +174,7 @@ let exportMobileRadioButton;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
-        if (!validateItems(this.items)) {
+        if (!validateArrayType(this.items)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_NOT_ARRAY);
           return false;
         }
@@ -185,7 +188,7 @@ let exportMobileRadioButton;
       }
 
       if (changedProperties.has("selectedIndex")) {
-        if (!validateSelectedIndexNumber(this.selectedIndex)) {
+        if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
             ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
           );

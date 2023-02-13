@@ -1,19 +1,21 @@
 import { html, PropertyValues } from "lit";
-import { property, state, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
+
 import {
-  KucBase,
-  CustomEventDetail,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../../kuc-base";
-import { validateProps, validateTimeValue } from "../../validator";
-import {
-  generateMinuteOptions,
-  generateHourOptions,
   formatInputValueToTimeValue,
   formatTimeValueToInputValueForMobile,
+  generateHourOptions,
+  generateMinuteOptions,
   getLocale,
 } from "../../datetime/utils";
+import {
+  createStyleOnHeader,
+  CustomEventDetail,
+  dispatchCustomEvent,
+  KucBase,
+} from "../../kuc-base";
+import { validateProps, validateTimeValue } from "../../validator";
+
 import { BASE_MOBILE_TIME_CSS } from "./style";
 
 type BaseMobileTimeSelectItem = {
@@ -36,7 +38,7 @@ type Time = {
   suffix?: string;
 };
 
-// eslint-disable-next-line kuc-v1/no-using-generate-guid-function
+// eslint-disable-next-line
 export class BaseMobileTime extends KucBase {
   @property({ type: String }) guid = "";
   @property({ type: String, attribute: "lang", reflect: true }) language = "en";
