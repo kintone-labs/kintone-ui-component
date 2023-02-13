@@ -101,46 +101,68 @@ module.exports = {
         if (nodeBody.type !== "ClassBody") return;
 
         const properties = [];
-        nodeBody.body.forEach(prop => {
-          if (
-            prop.type === "ClassProperty" &&
-            prop.key.type === "Identifier" &&
-            !prop.computed &&
-            prop.decorators
-          ) {
-            const decorators = prop.decorators;
+
+        const physicalFilename = context.getPhysicalFilename();
+        const typeFileName = "^.*(type\.ts).*$";
+        const regexPath = new RegExp(typeFileName, "i");
+        if (regexPath.test(physicalFilename)) { // check type.ts
+          nodeBody.body.forEach(prop => {
             if (
-              decorators.length === 0 ||
-              decorators[0].expression.callee.name !== "property"
+              prop.type === "PropertyDefinition" &&
+              prop.key.type === "Identifier" &&
+              !prop.computed &&
+              prop.typeAnnotation
             ) {
-              return;
-            }
+              const typeAnnotation = prop.typeAnnotation.typeAnnotation;
+              const typeValue = `${
+                sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
+              }_${typeAnnotation.type}`;
 
-            let typeValue = ""; // @property() b = "";
-            const expressionArguments = decorators[0].expression.arguments;
-            if (expressionArguments.length === 0) {
-              if (prop.typeAnnotation) {
-                // @property() c: string = "";
-                const typeAnnotation = prop.typeAnnotation.typeAnnotation;
-                typeValue = `${
-                  sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
-                }_${typeAnnotation.type}`;
+              properties.push({ name: prop.key.name, type: typeValue });
+            }
+          });
+        } else {
+          nodeBody.body.forEach(prop => {
+            if (
+              prop.type === "PropertyDefinition" &&
+              prop.key.type === "Identifier" &&
+              !prop.computed &&
+              prop.decorators
+            ) {
+              const decorators = prop.decorators;
+              if (
+                decorators.length === 0 ||
+                decorators[0].expression.callee.name !== "property"
+              ) {
+                return;
               }
-            } else {
-              // @property({ type: String }) a = "";
-              const argumentProperties = expressionArguments[0].properties;
-              argumentProperties.forEach(argumentProperty => {
-                if (argumentProperty.key.name === "type") {
-                  typeValue = argumentProperty.value.name;
+
+              let typeValue = ""; // @property() b = "";
+              const expressionArguments = decorators[0].expression.arguments;
+              if (expressionArguments.length === 0) {
+                if (prop.typeAnnotation) {
+                  // @property() c: string = "";
+                  const typeAnnotation = prop.typeAnnotation.typeAnnotation;
+                  typeValue = `${
+                    sourceCode.getTokenByRangeStart(typeAnnotation.range[0]).value
+                  }_${typeAnnotation.type}`;
                 }
-              });
+              } else {
+                // @property({ type: String }) a = "";
+                const argumentProperties = expressionArguments[0].properties;
+                argumentProperties.forEach(argumentProperty => {
+                  if (argumentProperty.key.name === "type") {
+                    typeValue = argumentProperty.value.name;
+                  }
+                });
+              }
+
+              properties.push({ name: prop.key.name, type: typeValue });
             }
+          });
+        }
 
-            properties.push({ name: prop.key.name, type: typeValue });
-          }
-        });
         const wrongOrderNames = checkNames(properties);
-
         if (wrongOrderNames.length > 0) {
           context.report({
             node,

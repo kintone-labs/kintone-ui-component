@@ -1,6 +1,6 @@
 {
   "name": "kintone-ui-component",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
@@ -32,7 +32,8 @@
     "build:storybook": "build-storybook -o ./docs/storybook/",
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && web-test-runner",
-    "es-lint": "node_modules/.bin/eslint \"src/**\""
+    "es-lint": "node_modules/.bin/eslint \"src/**\"",
+    "actionlint": "node-actionlint"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -54,6 +55,7 @@
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
+    "node-actionlint": "^1.2.2",
     "prettier": "^2.8.3",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",

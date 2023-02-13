@@ -1,4 +1,5 @@
-/* eslint-disable kuc-v1/no-kuc-class-prefix */
+// This file is irregular so disable validator-in-should-update
+/* eslint-disable kuc-v1/validator-in-should-update */
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 
