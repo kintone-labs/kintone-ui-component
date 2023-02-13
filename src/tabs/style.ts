@@ -63,6 +63,12 @@ export const TABS_CSS = `
     outline: none;
     border: 1px solid #3498db;
   }
+  .kuc-tabs__group__tab-list__tab__button--click:focus{
+    border: none;
+    border-top: 1px solid #C7CBCB;
+    border-left: 1px solid #C7CBCB;
+    border-right: 1px solid #C7CBCB;
+  }
   .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
     background-color: #FFFFFF;
     box-shadow: none;

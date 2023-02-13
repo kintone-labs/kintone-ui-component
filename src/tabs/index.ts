@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, queryAll } from "lit/decorators.js";
+import { property, queryAll, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
 import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
@@ -45,6 +45,8 @@ let exportTabs;
     private _GUID: string;
     private _selectedValue: string = "";
     private _defaultTabIndex = 0;
+    @state()
+    private _isClick = false;
 
     constructor(props?: TabsProp) {
       super();
@@ -85,7 +87,11 @@ let exportTabs;
     render() {
       return html`
         <div class="kuc-tabs__group">
-          <ul class="kuc-tabs__group__tab-list" role="tablist">
+          <ul
+            class="kuc-tabs__group__tab-list"
+            role="tablist"
+            @blur="${this._handleBlur}"
+          >
             ${this.items.map((item) => this._getTabTemplate(item))}
           </ul>
           <div
@@ -108,11 +114,14 @@ let exportTabs;
           role="tab"
           aria-selected="${isSelected}"
           tabindex="${isSelected ? "" : "-1"}"
-          class="kuc-tabs__group__tab-list__tab__button"
+          class="kuc-tabs__group__tab-list__tab__button ${this._isClick
+            ? "kuc-tabs__group__tab-list__tab__button--click"
+            : ""}"
           id="${this._GUID}-button-${item.value}"
           aria-controls="${this._GUID}-tabpanel-${item.value}"
           value="${item.value}"
           @click="${this._handleClickTab}"
+          @mousedown="${this._handleMouseDown}"
           @keydown="${this._handleKeyDownTab}"
           ?disabled="${item.disabled}"
         >
@@ -141,6 +150,9 @@ let exportTabs;
       return valueSet.size !== valueArray.length;
     }
 
+    private _handleMouseDown(event: Event) {
+      this._isClick = true;
+    }
     private _handleClickTab(event: Event) {
       const tabEl = event.target as HTMLButtonElement;
       const currentIndex = this._getCurrentTabIndex(tabEl.value);
@@ -160,7 +172,12 @@ let exportTabs;
       event.stopPropagation();
     }
 
+    private _handleBlur(event: Event) {
+      this._isClick = false;
+    }
+
     private _handleKeyDownTab(event: KeyboardEvent) {
+      this._isClick = false;
       let doPreventEvent = false;
       switch (event.key) {
         case "Left":
