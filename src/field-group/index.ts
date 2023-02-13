@@ -2,16 +2,18 @@ import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
+
 import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
 import { validateProps } from "../base/validator";
-import { FieldGroupProps, FieldGroupChangeEventDetail } from "./type";
+
 import { FIELD_GROUP_CSS } from "./style";
+import { FieldGroupChangeEventDetail, FieldGroupProps } from "./type";
 
 let exportFieldGroup;
 (() => {

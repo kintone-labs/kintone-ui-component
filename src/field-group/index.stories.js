@@ -1,6 +1,7 @@
-import { FieldGroup } from "./index.ts";
-import { Text } from "../text/index.ts";
 import { Dropdown } from "../dropdown/index.ts";
+import { Text } from "../text/index.ts";
+
+import { FieldGroup } from "./index.ts";
 
 export default {
   title: "desktop/field-group",
