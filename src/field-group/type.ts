@@ -19,9 +19,8 @@ export declare type FieldGroupProps = {
   items?: DropdownItem[];
 };
 
-export declare type DropdownChangeEventDetail = {
-  oldValue: string | undefined;
-  value: string | undefined;
+export declare type FieldGroupChangeEventDetail = {
+  expanded: boolean;
 };
 
 export declare class Dropdown extends KucBase {
