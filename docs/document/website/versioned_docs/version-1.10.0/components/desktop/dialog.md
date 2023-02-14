@@ -1,5 +1,5 @@
 ---
-id: version-1.9.0-dialog
+id: version-1.10.0-dialog
 title: Dialog
 sidebar_label: Dialog
 original_id: dialog
@@ -81,23 +81,23 @@ Here is a sample code when all parameters are specified:
 ```javascript
 // Create Ok and Cancel buttons
 const dialogOKButton = new Kuc.Button({
-  text: "OK",
-  type: "submit"
+  text: 'OK',
+  type: 'submit'
 });
 const dialogCancelButton = new Kuc.Button({
-  text: "Cancel",
-  type: "cancel",
-  id: "kuc_dialog_cancel_button"
+  text: 'Cancel',
+  type: 'cancel',
+  id: 'kuc_dialog_cancel_button'
 });
-dialogOKButton.addEventListener("click", () => {
+dialogOKButton.addEventListener('click', () => {
     // handle click Ok button
 })
-dialogCancelButton.addEventListener("click", () => {
+dialogCancelButton.addEventListener('click', () => {
     // handle click Cancel button
 })
 
 // Wrap Ok and Cancel buttons into a div
-const divEl = document.createElement("div");
+const divEl = document.createElement('div');
 divEl.appendChild(dialogOKButton)
 divEl.appendChild(dialogCancelButton)
 
