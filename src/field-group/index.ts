@@ -63,19 +63,21 @@ let exportFieldGroup;
           <button
             type="button"
             id="${this._GUID}-control"
-            class="kuc-field-group__trigger"
+            class="kuc-field-group__group__trigger"
             aria-controls="${this._GUID}-body"
             aria-expanded="${this.expanded && !this.disabled}"
             aria-disabled="${this.disabled}"
             tabindex="${this.disabled ? -1 : 0}"
             @click="${this._handleClickButton}"
           >
-            <span class="kuc-field-group__trigger--icon"></span>
-            <span class="kuc-field-group__trigger--label">${this.label}</span>
+            <span class="kuc-field-group__group__trigger__icon"></span>
+            <span class="kuc-field-group__group__trigger__label"
+              >${this.label}</span
+            >
           </button>
           <div
             id="${this._GUID}-body"
-            class="kuc-field-group__body"
+            class="kuc-field-group__group__body"
             aria-labelledby="${this._GUID}-control"
             ?hidden="${!this.expanded || this.disabled}"
           >
