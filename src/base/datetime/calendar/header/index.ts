@@ -1,19 +1,21 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
+
 import {
-  KucBase,
-  dispatchCustomEvent,
-  CustomEventDetail,
   createStyleOnHeader,
+  CustomEventDetail,
+  dispatchCustomEvent,
+  KucBase,
 } from "../../../kuc-base";
 import "../../calendar/header/dropdown/year";
 import "../../calendar/header/dropdown/month";
 import { BaseDateTimeListBox } from "../../listbox";
 import {
   getLeftArrowIconSvgTemplate,
-  getRightArrowIconSvgTemplate,
   getLocale,
+  getRightArrowIconSvgTemplate,
 } from "../../utils/";
+
 import { CALENDAR_HEADER_CSS } from "./style";
 
 function isValidMonth(month: number) {
@@ -37,7 +39,7 @@ export class BaseDateTimeCalendarHeader extends KucBase {
       return isValidYear(newVal);
     },
   })
-  year = 2021;
+  year = new Date().getFullYear();
   private _locale = getLocale("en");
   @query(".kuc-base-datetime-calendar-header__month")
   private _baseDateTimeHeaderMonthEl!: any;

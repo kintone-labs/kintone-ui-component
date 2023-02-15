@@ -1,4 +1,5 @@
-import { expect, fixture, elementUpdated } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
+
 import { BaseDateTimeCalendar } from "../index";
 
 describe("BaseDateTimeCalendar", () => {

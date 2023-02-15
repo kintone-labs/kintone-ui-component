@@ -1,4 +1,5 @@
-import { expect, aTimeout, elementUpdated } from "@open-wc/testing";
+import { aTimeout, elementUpdated, expect } from "@open-wc/testing";
+
 import { Notification } from "../index";
 
 describe("Notification", () => {

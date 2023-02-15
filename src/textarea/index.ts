@@ -1,15 +1,16 @@
 import { html, svg } from "lit";
 import { property, query } from "lit/decorators.js";
-import {
-  KucBase,
-  generateGUID,
-  dispatchCustomEvent,
-  createStyleOnHeader,
-} from "../base/kuc-base";
+
 import { visiblePropConverter } from "../base/converter";
-import { validateProps } from "../base/validator";
-import { BaseLabel } from "../base/label";
 import { BaseError } from "../base/error";
+import {
+  createStyleOnHeader,
+  dispatchCustomEvent,
+  generateGUID,
+  KucBase,
+} from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
+import { validateProps } from "../base/validator";
 export { BaseError, BaseLabel };
 
 import { TEXTAREA_CSS } from "./style";

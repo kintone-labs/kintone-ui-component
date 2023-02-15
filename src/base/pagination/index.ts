@@ -1,7 +1,9 @@
 import { html, svg } from "lit";
 import { property, query } from "lit/decorators.js";
-import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
+
 import { visiblePropConverter } from "../converter";
+import { createStyleOnHeader, dispatchCustomEvent, KucBase } from "../kuc-base";
+
 import { PAGINATION_CSS } from "./style";
 
 let exportPagination;

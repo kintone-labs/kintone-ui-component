@@ -8,13 +8,13 @@ jobs:
     name: Prepare for the release and trigger upload workflow
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install node
       uses: actions/setup-node@v3
       with:
         node-version: 16
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.npm
         key: npm-${{ hashFiles('package-lock.json') }}
@@ -35,11 +35,3 @@ jobs:
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v1
-    # Use this to run flow auto test
-    # - name: Trigger run automation test
-    #   uses: peter-evans/repository-dispatch@v1
-    #   with:
-    #     token: ${{secrets.WORKFLOW_TOKEN}}
-    #     repository: SDQA-VN/ui-component-auto
-    #     event-type: kuc-trigger-auto-test-release
-    #     client-payload: '{"repository": "${{github.repository}}", "responseType": "release_dispatch"}'
